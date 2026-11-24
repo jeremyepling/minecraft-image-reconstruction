@@ -1,0 +1,54 @@
+# Minecraft Image Reconstruction
+
+Reconstruct a Minecraft Java build from a screenshot and place it in a real world. The project measures the visible block grid independently of material identification. A version calibration ties the atlas, in-game examples, scoring benchmarks and structure exporter to a specific vanilla client.
+
+## Start with a version
+
+Use Python 3.11 or newer, an installed vanilla Java client, and a JDK compatible with that client. Live verification has run on Windows with JDK 25 and Minecraft Java 26.1, 26.2 and 26.3.
+
+```console
+python -m pip install -r requirements.txt
+python reconstruct.py calibrate --version 26.3 --out runs/26.3
+```
+
+The command reads the game's block registry and texture/model assets. It creates a flat calibration world, builds three shuffled displays of the registry plus walls of touching blocks, and takes labeled screenshots at clear noon from different angles. It chooses the matching method on validation images, scores held-out placements and grid boundaries, then reconstructs a separate example wall. A second game session places the exported structures and reads back the resulting blocks. Compare `evaluation.json` and `independent-check.json` when evaluating releases or algorithm changes. Use a fresh output directory for each run.
+
+For a new release, substitute its Java Edition version ID. If the client is missing, add `--install-dir runs/minecraft-cache` to download the matching official assets and libraries. A release that changes the game's driver API or save format can require an adapter. The compile and live-placement checks expose those incompatibilities. [Runtime and installer](runtime/README.md) · [Calibration and metrics](calibration/README.md)
+
+For an offline atlas and a first reconstruction without launching Minecraft, run `python reconstruct.py atlas --version 26.3 --out runs/26.3/atlas` and omit `--library` below. Use `--jar PATH` for a client outside the usual installation or Gradle cache. The generated atlas PNG, texture metadata, and direction-specific placement index stay on your machine.
+
+## Reconstruct an image
+
+```console
+python reconstruct.py analyze examples/repair-wall/wall-only.png --out runs/wall-grid
+python reconstruct.py build examples/repair-wall/wall-only.png --geometry runs/wall-grid/geometry.json --atlas runs/26.3/atlas --library runs/26.3/face_textures/softened-library.npz --out runs/wall
+python reconstruct.py verify-build runs/wall --version 26.3 --out runs/wall-world
+```
+
+Replace the example PNG with a JPEG, PNG, or another Pillow-readable image. To run both image stages in one command, omit `--geometry`. Review `grid.png` for the detected outline and spacing. `geometry.json` records the image fingerprint, camera-plane transforms, source pixels and destination coordinates. You can reuse this file with another version's atlas and library. `dimensions.json` reports block measurements. `matches.json` records the closest texture candidates, distances and margins. Each visible cell receives its best eligible block when building. A small margin means the decision is ambiguous. Reviewer labels belong in test cases.
+
+The result is a Java datapack, `reconstruction.zip`, containing tiled structure templates. To place it in an existing world, put the ZIP in that world's `datapacks` folder, run `/reload`, stand at the desired origin and run `/function reconstruction:build`. For a separate playable world use `verify-build`. Its save is under `client/saves/Palette Lab` and its real framebuffer screenshot is under `captures`.
+
+## Angled views and hidden geometry
+
+The automatic pass proposes a main wall or a front and return from image structure and looks for periodic seams. Busy backgrounds, stepped roofs and repeated window bays can produce the wrong outline or block pitch. For those images, edit the generated `proposed-scene.json` and rebuild using `--scene PATH`. Geometry hints are independent of block identities. This example defines a six-by-six wall by its four pixel corners and world-relative location.
+
+```json
+{"planes":[{"name":"front","quad":[[80,40],[250,55],[247,211],[82,216]],"columns":6,"rows":6,"origin":[0,0,0],"facing":"south"}]}
+```
+
+Order corners clockwise from top left. The origin is the block at the bottom left of that plane. Supply a plane per visible surface with shared coordinates at adjoining edges. Directions include north, south, east, west, up and down. A south wall runs toward positive X on the right. On an upward-facing roof, the image top runs toward negative Z. Omit both counts to estimate the lattice from seams. Use `holes` containing lists of image polygons to exclude openings or occlusions. Alpha transparency also excludes cells. For detailed parallel façades, the geometry engine also supports shared vanishing directions, approximate block scales and per-plane anchors; the `dimensions` section can join measured adjoining bands across setbacks.
+
+By default, the pack contains the observed surfaces. For one wall, `--depth 8` builds a hollow eight-block-deep shell from its side, roof, floor and back edges. Depth supplied this way is an assumption. Hidden rooms, backs of buildings, stair/slab states, and identical-looking block IDs cannot generally be recovered from one view. Reconstruction currently places full cubes. The catalog also measures exact-ID recognition for irregular blocks as a separate research metric. Use `--white-balance` for conservative neutral-patch correction on a shader image.
+
+## Verification
+
+| Java release | Registry IDs tested | Held-out labeled faces correct | Touching-wall material IDs correct | Auto-detected independent wall |
+| --- | ---: | ---: | ---: | ---: |
+| 26.1 | 1,168 | 393/400 | 233/240 | 6 × 6, 33/36 IDs |
+| 26.2 | 1,196 | 401/409 | 229/240 | 6 × 6, 29/36 IDs |
+| 26.3 | 1,286 | 413/417 | 234/240 | 6 × 6, 31/36 IDs |
+
+The contiguous-wall benchmark supplies a coarse wall outline and grid seed, then tests the fit against independent camera-projected seams. All 448 tested seams per version were within one tenth of a block. The independent automatic case is a cropped in-game wall with nine masonry materials. The versioned packs also passed live readback on a 36-block reconstruction from an oblique view. Whole-building accuracy on arbitrary scenes remains unmeasured. [Detailed client results](tests/results/client-validation.json)
+
+Run `python -m unittest discover -s tests` for the release-format and geometry regressions. The client JARs, vanilla texture sheets, trained libraries, generated worlds and runtime data are produced locally.

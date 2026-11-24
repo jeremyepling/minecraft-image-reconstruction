@@ -1,0 +1,167 @@
+{
+  "date": "2026-11-24",
+  "platform": "Windows x86_64, vanilla Java client, default resources",
+  "calibration": {
+    "26.1": {
+      "registry_ids": 1168,
+      "views": 18,
+      "readbacks": 4224,
+      "stable_id_mismatches": 0,
+      "face_textures": {
+        "macro": 0.9812138728323699,
+        "correct": 393,
+        "n": 400
+      },
+      "exact_block_ids": {
+        "macro": 0.5512489233419466,
+        "correct": 640,
+        "n": 1161
+      },
+      "adjacent_seams": {
+        "count": 448,
+        "within_tenth_of_block": 1.0,
+        "p50_px": 0.16210098180889698,
+        "p95_px": 0.22108230004551105
+      },
+      "adjacent_texture_top_choice": {
+        "correct": 233,
+        "samples": 240
+      }
+    },
+    "26.2": {
+      "registry_ids": 1196,
+      "views": 18,
+      "readbacks": 4308,
+      "stable_id_mismatches": 0,
+      "face_textures": {
+        "macro": 0.9774647887323944,
+        "correct": 401,
+        "n": 409
+      },
+      "exact_block_ids": {
+        "macro": 0.5466778805719091,
+        "correct": 650,
+        "n": 1189
+      },
+      "adjacent_seams": {
+        "count": 448,
+        "within_tenth_of_block": 1.0,
+        "p50_px": 0.16210098180889698,
+        "p95_px": 0.22108230004551105
+      },
+      "adjacent_texture_top_choice": {
+        "correct": 229,
+        "samples": 240
+      }
+    },
+    "26.3": {
+      "registry_ids": 1286,
+      "views": 21,
+      "readbacks": 4578,
+      "stable_id_mismatches": 0,
+      "face_textures": {
+        "macro": 0.9903047091412742,
+        "correct": 413,
+        "n": 417
+      },
+      "exact_block_ids": {
+        "macro": 0.5379202501954652,
+        "correct": 688,
+        "n": 1279
+      },
+      "adjacent_seams": {
+        "count": 448,
+        "within_tenth_of_block": 1.0,
+        "p50_px": 0.16210098180889698,
+        "p95_px": 0.22108230004551105
+      },
+      "adjacent_texture_top_choice": {
+        "correct": 234,
+        "samples": 240
+      }
+    }
+  },
+  "reconstruction": {
+    "26.1": {
+      "annotated": {
+        "rows": 6,
+        "columns": 6,
+        "block_id_accuracy": {
+          "correct": 34,
+          "samples": 36
+        }
+      },
+      "auto": {
+        "rows": 6,
+        "columns": 6,
+        "block_id_accuracy": {
+          "correct": 33,
+          "samples": 36
+        }
+      },
+      "datapack_ingame_readback": {
+        "correct": 36,
+        "samples": 36
+      },
+      "frame_sha256": "dc5bcebcda844591f2c266a05e4241012e9f9f88045200531215b2f05c7915d4"
+    },
+    "26.2": {
+      "annotated": {
+        "rows": 6,
+        "columns": 6,
+        "block_id_accuracy": {
+          "correct": 30,
+          "samples": 36
+        }
+      },
+      "auto": {
+        "rows": 6,
+        "columns": 6,
+        "block_id_accuracy": {
+          "correct": 29,
+          "samples": 36
+        }
+      },
+      "datapack_ingame_readback": {
+        "correct": 36,
+        "samples": 36
+      },
+      "frame_sha256": "32f75dd8ec0e2aff82def235e1433e11aadfcddfda34415a1bb40d1317443139"
+    },
+    "26.3": {
+      "annotated": {
+        "rows": 6,
+        "columns": 6,
+        "block_id_accuracy": {
+          "correct": 34,
+          "samples": 36
+        }
+      },
+      "auto": {
+        "rows": 6,
+        "columns": 6,
+        "block_id_accuracy": {
+          "correct": 31,
+          "samples": 36
+        }
+      },
+      "datapack_ingame_readback": {
+        "correct": 36,
+        "samples": 36
+      },
+      "frame_sha256": "db445d53aea9758e43b883d7ba29ad13bcc556f2ec92d9348bdbd5c608cc50a7"
+    }
+  },
+  "entry_point_smoke": {
+    "command": "python reconstruct.py calibrate --version 26.2 --out NEW_RUN",
+    "views": 18,
+    "readbacks": 4308
+  },
+  "reconstruction_case": {
+    "source": "A real Minecraft 26.3 repair-hall wall, 6 by 6 blocks of nine materials, independent of the calibration catalog.",
+    "annotated": "Oblique source screenshot and one measured face outline with six rows and six columns.",
+    "auto": "A separate frontal view rectified and cropped to the wall. No scene file or counts supplied.",
+    "pack_check": "Executed reconstruction:build at the base of a fresh flat world and read all 36 coordinates back in-game.",
+    "limitations": "One vertical wall, vanilla textures and clear noon. Unseen building geometry and identifying full block IDs from shared textures are not established."
+  }
+}
