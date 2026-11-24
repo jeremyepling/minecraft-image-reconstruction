@@ -163,5 +163,25 @@
     "auto": "A separate frontal view rectified and cropped to the wall. No scene file or counts supplied.",
     "pack_check": "Executed reconstruction:build at the base of a fresh flat world and read all 36 coordinates back in-game.",
     "limitations": "One vertical wall, vanilla textures and clear noon. Unseen building geometry and identifying full block IDs from shared textures are not established."
+  },
+  "full_pipeline_smoke": {
+    "command": "python reconstruct.py calibrate --version 26.3 --out NEW_RUN",
+    "exit_code": 0,
+    "views": 21,
+    "registry_ids": 1286,
+    "readbacks": 4578,
+    "independent_check": {
+      "reference_cells": 36,
+      "predicted_cells": 36,
+      "correct_id_at_coordinate": 31,
+      "placed_as_predicted": 36
+    },
+    "second_world_verification": {
+      "version": "26.3",
+      "expected": 36,
+      "matched": 36,
+      "differences": []
+    },
+    "second_world_frame_sha256": "a9a82ef00baa9c2ef3ffc272b731e9326136778c1e6e345d76a589916bdc0fa7"
   }
 }
