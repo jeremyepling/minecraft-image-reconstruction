@@ -1,0 +1,222 @@
+{
+  "schema": 1,
+  "run_id": "camera-01",
+  "revision": {
+    "commit": "93ace01077fd387bd6c1fb840b33b4b4ed56b33c",
+    "predictor_and_runner_sha256": "b811051a59012fbdb231e3615d0f1fe1da59c81b2ed9a4b3ab7ad850e7dcc4ed",
+    "source_dirty": false
+  },
+  "version": "26.3",
+  "environment": {
+    "python": "3.12.14",
+    "numpy": "2.3.5",
+    "pillow": "13.0.0"
+  },
+  "fixture": {
+    "index": "../../data/camera-round-01/index.json",
+    "sha256": "660d1e535ae134452bca903a9d7cbe8d37953927fa118d9ffb327afad0885bc2",
+    "index_sha256": "5fb2156a78ccfb33f1bddbf15b44e94c50406c4dae8e3212a7bccc3487cac641",
+    "layouts": {
+      "dev": [
+        "shopfront",
+        "wing"
+      ],
+      "holdout": [
+        "courtyard",
+        "portico"
+      ]
+    },
+    "frames": 20,
+    "state_readbacks": 22032,
+    "visible_faces": 3924,
+    "by_split": {
+      "dev": 10,
+      "holdout": 10
+    }
+  },
+  "stage": "camera",
+  "baseline": "pavement",
+  "methods": [
+    "pavement",
+    "seam-fit",
+    "tile-lines"
+  ],
+  "settings": {
+    "pavement": {
+      "implementation": "benchmark.oblique_recess.pavement@a67988b",
+      "profile_rows": 26,
+      "floor_band": [
+        0.81,
+        0.985
+      ],
+      "minimum_height_ratio": 0.9
+    },
+    "seam-fit": {
+      "seed_width_limit": 768,
+      "horizon_trials": 7,
+      "floor_rows": 88,
+      "center_fit_iterations": 14,
+      "minimum_supported_lines": 4,
+      "maximum_height_disagreement": 0.08,
+      "maximum_normalized_residual": 0.04
+    },
+    "tile-lines": {
+      "max_width": 1000,
+      "ground_rows": [
+        0.57,
+        0.995
+      ],
+      "threshold_quantiles": [
+        0.14,
+        0.5
+      ],
+      "min_tiles": 12,
+      "neighbor_tolerance": 0.3,
+      "consensus_cell_fraction": 0.12
+    }
+  },
+  "common": {
+    "camera_input": "one unannotated RGB framebuffer and game version",
+    "charts": "engine.camera_grid.contact_planes",
+    "unknown_scale_axes": "engine.cube_axes.fit_axes",
+    "registration_reference_uv": [
+      0.5,
+      0.72
+    ],
+    "corner_tolerance_px": 2,
+    "span_minimum_blocks": 3,
+    "span_face_minimum_visible_fraction": 0.98,
+    "span_endpoints_and_plane": "supplied during scoring"
+  },
+  "recommended": "seam-fit",
+  "selection_rule": "Highest layout-averaged fraction of visible vertices within 2 source pixels, counting missing projections as misses. Break ties by metric frame count, then lower conditional visible-span MAE; retain registry order on exact ties.",
+  "scores": {
+    "dev": {
+      "pavement": {
+        "layouts": 2,
+        "images": 10,
+        "metric_images": 4,
+        "vertices": 2018,
+        "within_2px": 1092,
+        "projected": 1108,
+        "spans": 580,
+        "measured_spans": 330,
+        "layout_hit_rate": 0.41133333333333333,
+        "layout_mean_px": 0.8981160361004797,
+        "layout_span_mae_blocks": 0.10426365361307303,
+        "layout_axis_mae_deg": 0.35117462869549143,
+        "layout_fov_error_deg": 0.1428379305780041,
+        "charts": 18,
+        "predicted_charts": 8,
+        "conditional_chart_extent_mae": 2.5,
+        "exact_chart_planes": 2
+      },
+      "seam-fit": {
+        "layouts": 2,
+        "images": 10,
+        "metric_images": 8,
+        "vertices": 2018,
+        "within_2px": 1948,
+        "projected": 1948,
+        "spans": 580,
+        "measured_spans": 556,
+        "layout_hit_rate": 0.8333333333333333,
+        "layout_mean_px": 0.3801269059527068,
+        "layout_span_mae_blocks": 0.007926700855003736,
+        "layout_axis_mae_deg": 0.25900956065904585,
+        "layout_fov_error_deg": 0.020803318065803822,
+        "charts": 18,
+        "predicted_charts": 16,
+        "conditional_chart_extent_mae": 2.0625,
+        "exact_chart_planes": 4
+      },
+      "tile-lines": {
+        "layouts": 2,
+        "images": 10,
+        "metric_images": 8,
+        "vertices": 2018,
+        "within_2px": 1948,
+        "projected": 1948,
+        "spans": 580,
+        "measured_spans": 556,
+        "layout_hit_rate": 0.8333333333333333,
+        "layout_mean_px": 0.6134342173189702,
+        "layout_span_mae_blocks": 0.031051653185658074,
+        "layout_axis_mae_deg": 0.2815743742399047,
+        "layout_fov_error_deg": 0.07288489696276734,
+        "charts": 18,
+        "predicted_charts": 16,
+        "conditional_chart_extent_mae": 2.0,
+        "exact_chart_planes": 4
+      }
+    },
+    "holdout": {
+      "pavement": {
+        "layouts": 2,
+        "images": 10,
+        "metric_images": 6,
+        "vertices": 2362,
+        "within_2px": 1846,
+        "projected": 1846,
+        "spans": 660,
+        "measured_spans": 502,
+        "layout_hit_rate": 0.6666666666666666,
+        "layout_mean_px": 0.6626662786720394,
+        "layout_span_mae_blocks": 0.027771747702601327,
+        "layout_axis_mae_deg": 0.10394137869505461,
+        "layout_fov_error_deg": 0.05951011232202852,
+        "charts": 18,
+        "predicted_charts": 12,
+        "conditional_chart_extent_mae": 2.25,
+        "exact_chart_planes": 4
+      },
+      "seam-fit": {
+        "layouts": 2,
+        "images": 10,
+        "metric_images": 8,
+        "vertices": 2362,
+        "within_2px": 2292,
+        "projected": 2292,
+        "spans": 660,
+        "measured_spans": 636,
+        "layout_hit_rate": 0.8333333333333333,
+        "layout_mean_px": 0.353507572615416,
+        "layout_span_mae_blocks": 0.006464206757805641,
+        "layout_axis_mae_deg": 0.058585980001965875,
+        "layout_fov_error_deg": 0.01966827118973935,
+        "charts": 18,
+        "predicted_charts": 14,
+        "conditional_chart_extent_mae": 2.607142857142857,
+        "exact_chart_planes": 2
+      },
+      "tile-lines": {
+        "layouts": 2,
+        "images": 10,
+        "metric_images": 8,
+        "vertices": 2362,
+        "within_2px": 2292,
+        "projected": 2292,
+        "spans": 660,
+        "measured_spans": 636,
+        "layout_hit_rate": 0.8333333333333333,
+        "layout_mean_px": 0.6816641623586519,
+        "layout_span_mae_blocks": 0.022776195878132285,
+        "layout_axis_mae_deg": 0.09649249069730081,
+        "layout_fov_error_deg": 0.10195010151880624,
+        "charts": 18,
+        "predicted_charts": 16,
+        "conditional_chart_extent_mae": 2.0,
+        "exact_chart_planes": 4
+      }
+    }
+  },
+  "artifacts": {
+    "lock": "selection.json",
+    "dev": "dev-scores.json",
+    "holdout": "holdout-scores.json",
+    "predictions": "predictions/",
+    "sheet": "comparison.png",
+    "regions": "regions.json",
+    "visual_feedback": "feedback.jsonl"
+  }
+}
