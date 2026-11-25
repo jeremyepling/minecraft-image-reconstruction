@@ -1,0 +1,193 @@
+{
+  "schema": 1,
+  "game": "Minecraft Java Edition",
+  "version": "26.3",
+  "install": "Extract either ZIP directly into the Java game directory's saves folder. Open the extracted 'Exterior v1' world in Singleplayer. Its level.dat belongs immediately inside the named world folder.",
+  "bounds": "World XYZ, lower inclusive and upper exclusive.",
+  "worlds": [
+    {
+      "floor": "smooth_stone",
+      "archive": "smooth-stone.zip",
+      "folder": "Exterior v1 - Smooth stone",
+      "bytes": 3318057,
+      "sha256": "0fc5c78dbf3063ec169b6189063330db93a11efd9dea65ef32c51c0cc31d93f2",
+      "clock_ticks": 6000,
+      "raining": false,
+      "thundering": false,
+      "advance_time": false,
+      "advance_weather": false,
+      "matched_sites": 8,
+      "matched_layout_cells": 8768,
+      "matched_camera_floor_probes": 20
+    },
+    {
+      "floor": "light_gray_concrete",
+      "archive": "light-gray-concrete.zip",
+      "folder": "Exterior v1 - Light gray concrete",
+      "bytes": 2777397,
+      "sha256": "6dec02501b335937dc2c387f52d6510ea86d9296eb407b10328f6854d108c007",
+      "clock_ticks": 6000,
+      "raining": false,
+      "thundering": false,
+      "advance_time": false,
+      "advance_weather": false,
+      "matched_sites": 8,
+      "matched_layout_cells": 8768,
+      "matched_camera_floor_probes": 20
+    }
+  ],
+  "sites": [
+    {
+      "layout": "wing",
+      "palette": "masonry",
+      "split": "dev",
+      "bounds_xyz": [
+        [
+          0,
+          65,
+          -8
+        ],
+        [
+          17,
+          73,
+          1
+        ]
+      ],
+      "low_left_view": "dev-wing-masonry-low-left",
+      "teleport": "/tp @s -3.32191 66.48000 19.70181 -153.00000 -1.97948"
+    },
+    {
+      "layout": "wing",
+      "palette": "plaster",
+      "split": "dev",
+      "bounds_xyz": [
+        [
+          256,
+          65,
+          -8
+        ],
+        [
+          273,
+          73,
+          1
+        ]
+      ],
+      "low_left_view": "dev-wing-plaster-low-left",
+      "teleport": "/tp @s 252.67809 66.48000 19.70181 -153.00000 -1.97948"
+    },
+    {
+      "layout": "shopfront",
+      "palette": "masonry",
+      "split": "dev",
+      "bounds_xyz": [
+        [
+          512,
+          65,
+          -4
+        ],
+        [
+          527,
+          72,
+          4
+        ]
+      ],
+      "low_left_view": "dev-shopfront-masonry-low-left",
+      "teleport": "/tp @s 509.05822 66.48000 20.49315 -153.00000 -0.99635"
+    },
+    {
+      "layout": "shopfront",
+      "palette": "plaster",
+      "split": "dev",
+      "bounds_xyz": [
+        [
+          768,
+          65,
+          -4
+        ],
+        [
+          783,
+          72,
+          4
+        ]
+      ],
+      "low_left_view": "dev-shopfront-plaster-low-left",
+      "teleport": "/tp @s 765.05822 66.48000 20.49315 -153.00000 -0.99635"
+    },
+    {
+      "layout": "courtyard",
+      "palette": "masonry",
+      "split": "holdout",
+      "bounds_xyz": [
+        [
+          1024,
+          65,
+          -6
+        ],
+        [
+          1040,
+          73,
+          2
+        ]
+      ],
+      "low_left_view": "holdout-courtyard-masonry-low-left",
+      "teleport": "/tp @s 1020.95895 66.48000 19.66928 -153.00000 -2.11935"
+    },
+    {
+      "layout": "courtyard",
+      "palette": "plaster",
+      "split": "holdout",
+      "bounds_xyz": [
+        [
+          1280,
+          65,
+          -6
+        ],
+        [
+          1296,
+          73,
+          2
+        ]
+      ],
+      "low_left_view": "holdout-courtyard-plaster-low-left",
+      "teleport": "/tp @s 1276.95895 66.48000 19.66928 -153.00000 -2.11935"
+    },
+    {
+      "layout": "portico",
+      "palette": "masonry",
+      "split": "holdout",
+      "bounds_xyz": [
+        [
+          1535,
+          65,
+          -5
+        ],
+        [
+          1553,
+          74,
+          3
+        ]
+      ],
+      "low_left_view": "holdout-portico-masonry-low-left",
+      "teleport": "/tp @s 1531.76042 66.48000 23.02154 -153.00000 -2.97263"
+    },
+    {
+      "layout": "portico",
+      "palette": "plaster",
+      "split": "holdout",
+      "bounds_xyz": [
+        [
+          1791,
+          65,
+          -5
+        ],
+        [
+          1809,
+          74,
+          3
+        ]
+      ],
+      "low_left_view": "holdout-portico-plaster-low-left",
+      "teleport": "/tp @s 1787.76042 66.48000 23.02154 -153.00000 -2.97263"
+    }
+  ]
+}
