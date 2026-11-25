@@ -1,12 +1,14 @@
 """Measure a planar repeat against vanilla face textures and rank rectified block faces."""
 from dataclasses import dataclass
+import gzip
+import hashlib
 import json
 from pathlib import Path
 
 import numpy as np
 from PIL import Image
 
-from engine.atlas import digest
+from engine.atlas import digest, discover, make_atlas
 from engine.geometry import transform
 from engine.reconstruction import opaque_sprites
 from engine.surface_pitch import _aspect
@@ -17,6 +19,9 @@ SETTINGS = dict(color_shortlist=32, period_shortlist=12, analysis_side=224, tile
                 min_brightness=.30, max_brightness=1.15, minimum_mask_pixels=32,
                 minimum_axis_repeat=.16, maximum_phase_ambiguity_bins=2, phase_tie_correlation=.025)
 METHOD = 'atlas-repeat'
+ROOT = Path(__file__).resolve().parents[1]
+CALIBRATED_INDEX = ROOT/'benchmark/data/count-atlas-v1/placement-index-26.3.json.gz'
+INDEX_SHA256 = '32f95873f5b10e0fa36023c149b4277a4b1f7a59fb77940ede120f9292f37ac6'
 
 
 @dataclass
@@ -53,16 +58,26 @@ def _prepare(tiles, labels, ids, provenance):
 
 
 def load_atlas(path=None, version='26.3'):
-    """Load ordinary atlas/placement-index artifacts or locate the workspace calibration."""
+    """Load local vanilla art and the frozen full-block index for the measured game release."""
     if path is None:
-        repo = Path(__file__).resolve().parents[1]
-        paths = [repo/'runs'/version/'atlas', repo/'runs'/'atlas',
-                 repo.parent.parent/'workspace'/'builds'/'mcir-port-validation'/('final-cli-'+version)/'atlas']
-        path = next((p for p in paths if (p/'placement-index.json').is_file()),None)
-    if path is None or not (Path(path)/'placement-index.json').is_file():
+        paths = [ROOT/'runs'/version/'atlas', ROOT/'runs'/'atlas',
+                 ROOT.parent.parent/'workspace'/'builds'/'mcir-port-validation'/('final-cli-'+version)/'atlas']
+        path = next((p for p in paths if (p/'atlas.json').is_file()),None)
+        if path is None and version=='26.3':
+            path=paths[0]
+            make_atlas(discover(version),path,version)
+    if path is None or not (Path(path)/'atlas.json').is_file():
         raise FileNotFoundError(f'Prepare an atlas with python reconstruct.py atlas --version {version} --out runs/{version}/atlas')
     path = Path(path)
-    index = json.loads((path/'placement-index.json').read_bytes())
+    # A catalog rebuilt without game-state defaults omits stateful full cubes. Keep
+    # the recorded calibration index fixed while allowing local regeneration of art.
+    if version=='26.3':
+        index_bytes=gzip.decompress(CALIBRATED_INDEX.read_bytes())
+        if hashlib.sha256(index_bytes).hexdigest()!=INDEX_SHA256:
+            raise ValueError('The frozen 26.3 block placement index changed')
+    else:
+        index_bytes=(path/'placement-index.json').read_bytes()
+    index = json.loads(index_bytes)
     meta = json.loads((path/'atlas.json').read_bytes())
     if (meta['version'] != version or index['version'] != version
             or index['atlas_sha256'] != meta['atlas_sha256']
@@ -75,7 +90,7 @@ def load_atlas(path=None, version='26.3'):
         blocks = set().union(*(v.get(texture,[]) for v in index['choices'].values()))
         ids.append(['minecraft:'+b for b in sorted(blocks,key=lambda b:(b!=texture,b))])
     provenance = dict(version=version, atlas_sha256=meta['atlas_sha256'],
-                      client_sha256=index['client_sha256'], placement_index_sha256=digest(path/'placement-index.json'),
+                      client_sha256=index['client_sha256'], placement_index_sha256=hashlib.sha256(index_bytes).hexdigest(),
                       atlas_json_sha256=digest(path/'atlas.json'), texture_count=len(labels),
                       block_count=len(set().union(*map(set,ids))),
                       scope='all opaque untinted full-cube face sprites in the placement index, all six directions')
