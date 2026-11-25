@@ -28,6 +28,8 @@ Run `python -m benchmark.oblique_recess --image IMAGE --out RESULT.json` for an 
 
 ## Isolating lighting changes
 
+The follow-up back-corner comparison measures how much further edge tracing and texture spacing can improve the angled results. [Back-corner experiments](BACK_CORNERS.md)
+
 A separate comparison takes two rectified face patches. It fits uniform brightness change, a smooth gradient, and a sharp step in log luminance. It compares hue and fine texture after accounting for lighting. Geometry output records ambiguous pairs, likely material changes and transitions consistent with lighting. Lighting evidence alone never sets a block depth. The fitted gain map is available for inspection.
 
 ![Paired in-game face patches under different lighting](shadow-examples.png)

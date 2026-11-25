@@ -1,0 +1,165 @@
+{
+  "positive_observations": 10,
+  "methods": {
+    "baseline": {
+      "exact": 3,
+      "wrong_depth": 0,
+      "false_recess": 0,
+      "unknown": 7,
+      "utility": 3
+    },
+    "edges": {
+      "exact": 4,
+      "wrong_depth": 0,
+      "false_recess": 0,
+      "unknown": 6,
+      "utility": 4
+    },
+    "texture": {
+      "exact": 5,
+      "wrong_depth": 0,
+      "false_recess": 0,
+      "unknown": 5,
+      "utility": 5
+    },
+    "agreement": {
+      "exact": 4,
+      "wrong_depth": 0,
+      "false_recess": 0,
+      "unknown": 6,
+      "utility": 4
+    },
+    "corroborated": {
+      "exact": 4,
+      "wrong_depth": 0,
+      "false_recess": 0,
+      "unknown": 6,
+      "utility": 4
+    }
+  },
+  "views": {
+    "heldout-facade-oblique-left": [
+      {
+        "target": [
+          "window1",
+          3
+        ],
+        "predictions": {
+          "baseline": 3,
+          "edges": 3,
+          "texture": 3,
+          "agreement": 3,
+          "corroborated": 3
+        }
+      },
+      {
+        "target": [
+          "window2",
+          2
+        ],
+        "predictions": {
+          "baseline": null,
+          "edges": null,
+          "texture": 2,
+          "agreement": null,
+          "corroborated": null
+        }
+      },
+      {
+        "target": [
+          "window3",
+          3
+        ],
+        "predictions": {
+          "baseline": null,
+          "edges": null,
+          "texture": null,
+          "agreement": null,
+          "corroborated": null
+        }
+      },
+      {
+        "target": [
+          "door2",
+          0
+        ],
+        "predictions": {
+          "baseline": null,
+          "edges": null,
+          "texture": null,
+          "agreement": null,
+          "corroborated": null
+        }
+      },
+      {
+        "target": [
+          "door3",
+          1
+        ],
+        "predictions": {
+          "baseline": 1,
+          "edges": 1,
+          "texture": 1,
+          "agreement": 1,
+          "corroborated": 1
+        }
+      }
+    ],
+    "heldout-facade-oblique-right": [
+      {
+        "target": [
+          "window3",
+          3
+        ],
+        "predictions": {
+          "baseline": null,
+          "edges": 3,
+          "texture": 3,
+          "agreement": 3,
+          "corroborated": 3
+        }
+      },
+      {
+        "target": [
+          "window1",
+          3
+        ],
+        "predictions": {
+          "baseline": null,
+          "edges": null,
+          "texture": null,
+          "agreement": null,
+          "corroborated": null
+        }
+      },
+      {
+        "target": [
+          "door3",
+          1
+        ],
+        "predictions": {
+          "baseline": 1,
+          "edges": 1,
+          "texture": 1,
+          "agreement": 1,
+          "corroborated": 1
+        }
+      },
+      {
+        "target": [
+          "door2",
+          0
+        ],
+        "predictions": {
+          "baseline": null,
+          "edges": null,
+          "texture": null,
+          "agreement": null,
+          "corroborated": null
+        }
+      }
+    ]
+  },
+  "selected": "edges",
+  "selection_rule": "Development exact minus wrong depth minus twice false recesses; ties prefer the earlier listed method"
+}

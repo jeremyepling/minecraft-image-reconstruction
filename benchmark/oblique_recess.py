@@ -155,7 +155,7 @@ def internal_repeat(field,lo,hi,vp,distance,depth,pitch,spacing=(1.,1.)):
                 veto=zero>.50 and zero>inset+.05)
 
 
-def infer(image):
+def infer(image, on_candidate=None):
     rgb=np.array(image.convert('RGB')); mask=structure_mask(image)
     cal=pavement(rgb)
     if not cal:return dict(reason='no stable pavement calibration',candidates=[])
@@ -214,6 +214,8 @@ def infer(image):
         calibration=local_spacing(field,front,a*scale,b*scale,scale)
         spacing=[c['ratio'] if c else 1. for c in calibration]
         corrected=internal_repeat(field,a*scale,b*scale,vp,ratio,base_depth,scale,spacing) if base_depth and all(calibration) else test
+        if on_candidate is not None:
+            on_candidate(rect,q,vp,ratio,scale,spacing,H)
         out.append(dict(depth=None if corrected and corrected['veto'] else base_depth,
                         prior_depth=None if test and test['veto'] else base_depth,
                         local_spacing=calibration,corrected_repeat=corrected,

@@ -8,7 +8,9 @@ import shutil
 from benchmark.color_gallery import load
 
 
-def stage(source, out, buildings):
+def stage(source, out, buildings, angles=(-26,26)):
+    if not -90 < angles[0] < 0 < angles[1] < 90:
+        raise ValueError('Provide one negative left and one positive right facade heading between -90 and 90 degrees')
     manifest = load(source/'layout.json')
     original_views = load(source/'views.json')
     parents = [v for v in original_views if v['angle']=='left' and v['building_id'] in buildings]
@@ -21,7 +23,7 @@ def stage(source, out, buildings):
         tx,ty,tz = old['target']
         radius = math.hypot(old['x']-tx,old['z']-tz)
         # A matched elevation and radial distance isolate horizontal heading.
-        for name,degrees in [('oblique-left',-26),('oblique-right',26)]:
+        for name,degrees in zip(('oblique-left','oblique-right'),angles):
             angle=math.radians(degrees)
             views.append(dict(old,id=old['building_id']+'-'+name,angle=name,
                 x=tx+radius*math.sin(angle),z=tz+radius*math.cos(angle)))
@@ -39,5 +41,6 @@ if __name__=='__main__':
     p.add_argument('--source',type=Path,required=True)
     p.add_argument('--out',type=Path,required=True)
     p.add_argument('--buildings',nargs='+',required=True)
+    p.add_argument('--angles',nargs=2,type=float,metavar=('LEFT','RIGHT'),default=(-26,26))
     args=p.parse_args()
-    stage(args.source,args.out,args.buildings)
+    stage(args.source,args.out,args.buildings,args.angles)

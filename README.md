@@ -2,6 +2,8 @@
 
 Reconstruct a Minecraft Java build from a screenshot and place it in a real world. The project measures the visible block grid independently of material identification. A version calibration ties the atlas, in-game examples, scoring benchmarks and structure exporter to a specific vanilla client.
 
+[Architecture, call paths, defaults and experimental modes](ARCHITECTURE.md)
+
 ## Start with a version
 
 Use Python 3.11 or newer, an installed vanilla Java client, and a JDK compatible with that client. Live verification has run on Windows with JDK 25 and Minecraft Java 26.1, 26.2 and 26.3.
