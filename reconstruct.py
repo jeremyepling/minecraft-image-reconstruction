@@ -74,6 +74,12 @@ def main():
     p.add_argument('--cube-turns',action='store_true',help='Fit projected block axes to the outline, face corners and depth edges')
     p.add_argument('image',type=Path)
     p.add_argument('--out',type=Path,required=True)
+    p=cmds.add_parser('fit-voxels',help='Fit experimental solid geometry to a single screenshot')
+    p.add_argument('image',type=Path)
+    p.add_argument('--out',type=Path,required=True)
+    p.add_argument('--atlas',type=Path,help='Also export a smooth-stone structure pack for this atlas version')
+    p.add_argument('--method',choices=['sheet','cone','symmetric','boxes','carving','layers','recess'],default='symmetric')
+    p.add_argument('--relative',action='store_true',help='Allow an arbitrary model scale when the metric ground grid is missing')
     p=cmds.add_parser('analyze')
     p.add_argument('--geometry-method',choices=['baseline','texel','remap','cube'],default='baseline')
     p.add_argument('image',type=Path)
@@ -98,7 +104,10 @@ def main():
     p.add_argument('--library',type=Path,help='Calibrated face_textures/softened-library.npz')
     p.add_argument('--depth',type=int,help='Extrapolate a hollow shell behind one visible wall')
     args=parser.parse_args()
-    if args.command=='inspect-form':
+    if args.command=='fit-voxels':
+        from engine.voxel_fit import fit
+        fit(args.image,args.method,args.out,args.atlas,args.relative)
+    elif args.command=='inspect-form':
         from benchmark.line_form import inspect_file
         inspect_file(args.image,args.out,cube_turns=args.cube_turns)
     elif args.command=='inspect-openings':

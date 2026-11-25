@@ -56,6 +56,8 @@ The user-facing diagnostic is `reconstruct.py inspect-openings IMAGE --out REVIE
 
 ### Two ways to follow a run
 
+The opt-in `fit-voxels` command follows a separate geometry path. It fits a perspective camera and a bounded cell grid, proposes solid block occupancy, then renders the visible faces back into the screenshot. The default for this command uses depth symmetry. Full-cube geometry is exported in smooth stone when an atlas is supplied. [Candidates, results and reproduction instructions](benchmark/VOXEL_FIT.md)
+
 ```console
 python reconstruct.py build wall.png --atlas runs/26.3/atlas --out runs/default
 ```

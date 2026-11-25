@@ -1,5 +1,5 @@
 """An explicitly unscaled search volume for a cropped single-view sketch."""
-from itertools import product
+from engine.voxel_space import silhouette_volume
 
 import numpy as np
 from PIL import Image
@@ -65,16 +65,7 @@ def relative_scene(image, refined_mask, axes, resolution=36, depth_fraction=.35)
     if max(shape)>3*resolution or min(shape)<1:
         raise ValueError('Facade is too oblique for the relative depth budget')
     P = K@np.column_stack((basis*unit,basis@lo))
-    ids = np.indices(tuple(shape)).reshape(3,-1).T
-    votes = np.zeros(len(ids),int)
-    for offset in [(0.5,)*3, *product((.15,.85),repeat=3)]:
-        p = (ids+offset)@P[:,:3].T+P[:,3]
-        xx,yy = np.floor(p[:,:2]/p[:,2,None]).astype(int).T
-        ok = (p[:,2]>0)&(xx>=0)&(xx<size[0])&(yy>=0)&(yy<size[1])
-        votes[ok] += mask[yy[ok],xx[ok]]
-    hull = (votes>=6).reshape(shape)
-    if not hull.any():
-        raise ValueError('No occupied cells in the relative sketch')
+    hull = silhouette_volume(P,tuple(shape),mask)
     return dict(P=P,mask=mask,hull=hull,image=np.asarray(image.convert('RGB').resize(size,Image.Resampling.BOX)),
                 metric=np.array(False),source_size=np.array(image.size),
                 sketch_resolution=np.array(resolution), depth_fraction=np.array(depth_fraction))
