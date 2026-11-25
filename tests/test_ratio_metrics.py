@@ -4,7 +4,7 @@ import numpy as np
 
 from benchmark.ratio_metrics import score
 from calibration.world import GROUND
-from engine.voxel_space import project
+from engine.geometry import project
 
 
 def wall(oblique=True, gap=False):
