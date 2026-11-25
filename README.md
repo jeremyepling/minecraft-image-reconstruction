@@ -6,6 +6,8 @@ Reconstruct a Minecraft Java build from a screenshot and place it in a real worl
 
 ## Single-image exterior benchmark
 
+Regions First supplies the visible outlines in the **Surface Finder**. The **Surface Straightener** then removes perspective from each masked surface. The **Block Counter** measures repeated textures across and down, and the **Material Matcher** compares individual cells with the vanilla atlas. Run `.\Invoke-BlockCountRound.ps1` to grade the saved screenshots. [Stage names and B’s components](benchmark/SURFACE_FINDER.md) · [Block-count comparison](benchmark/COUNT_ROUND.md) · [Per-picture report](benchmark/reviews/count-01/report.html)
+
 Run `.\Invoke-MaskRound.ps1` for the four-way comparison on the 56 saved views. It compares B, preserved regions, and the same regions refined with ScaleLSD v2 or DeepLSD. The review shows each building from the same angle, with the recorded geometry in its own column. [Comparison sheet](benchmark/reviews/mask-four-01/comparison.jpg) · [Per-picture results](benchmark/reviews/mask-four-01/report.html) · [How the experiment works](benchmark/MASK_ROUND.md)
 
 Use the same 56 saved screenshots and their geometry whenever you test a new surface method. Change the method, run it on the images, then compare its outlines against the same Minecraft surfaces. A coordinator in one chat can give the baseline and each challenger to a different agent, run them in parallel and return one comparison. [How to run a new combination](benchmark/OFFLINE_GEOMETRY.md)

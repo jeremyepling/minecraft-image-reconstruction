@@ -2,6 +2,8 @@
 
 The entry point is [reconstruct.py](reconstruct.py). A plain `build` uses baseline geometry and ranks block textures at the image's current brightness. Newer algorithms have their own switches or research commands. The normal build never runs a tournament of algorithms on the user's image.
 
+For a single exterior, `build --through counts` runs the Surface Finder (Regions First), Surface Straightener and Block Counter (masked repetition). Add `--material-match atlas` to rank block IDs for complete cells. The [stage guide](benchmark/SURFACE_FINDER.md) documents the image inputs, masks and abstentions. The [count experiment](benchmark/COUNT_ROUND.md) measures how often each stage succeeds on the frozen suite.
+
 ```mermaid
 flowchart TD
     V["Java version and client JAR"] --> A["atlas: sprite sheet, texture metadata, placement index"]

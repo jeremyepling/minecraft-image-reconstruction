@@ -89,6 +89,8 @@ def summary(cases):
 def run(args):
     from benchmark.count_materials import evaluate_materials
     from benchmark.count_review import review
+    from benchmark.count_extent_diagnostic import evaluate as check_reference_extents
+    from engine import atlas_count, masked_count, surface_pitch, surface_sample
     from engine.atlas_count import load_atlas
     atlas=load_atlas(args.atlas,version='26.3')
     frozen=read(FINDER/'manifest.json')
@@ -123,14 +125,24 @@ def run(args):
     if not args.dev_only:
         from benchmark.count_export import export_counts
         export_counts(results,rows,lookup,out,decision['selected'])
+        check_reference_extents(lookup.values(),out/'extent-diagnostic.json')
     review(out,results,rows,lookup,atlas,frozen,decision['selected'])
     code_files=['engine/surface_sample.py','engine/legacy_count.py','engine/masked_count.py','engine/atlas_count.py',
-                'engine/surface_dimensions.py','engine/surface_tiles.py','benchmark/count_metrics.py','benchmark/count_materials.py']
+                'engine/surface_pitch.py','engine/surface_dimensions.py','engine/surface_tiles.py','benchmark/count_metrics.py',
+                'benchmark/count_materials.py','benchmark/count_export.py','benchmark/count_extent_diagnostic.py','benchmark/count_round.py']
     manifest=dict(run_id=out.name,code=stamp,version=suite['version'],surface_finder='mask-first',
         frozen_finder_manifest_sha256=digest(FINDER/'manifest.json'),shared_models=frozen['shared_models'],
         client_sha256=frozen['client_sha256'],capture=frozen['capture'],fixtures=fixtures,reference_sha256=digest(ARCHIVE),
         atlas=atlas.provenance,methods=list(METHODS),selection=decision,methods_source_sha256={f:digest(ROOT/f) for f in code_files},
         stage_names=['Surface Finder','Surface Straightener','Block Counter','Material Matcher'],
+        settings={'straightener':surface_sample.SETTINGS,'legacy-repeat':surface_pitch.SETTINGS,
+                  'masked-repeat':masked_count.SETTINGS,'atlas-repeat':atlas_count.SETTINGS,
+                  'material_matcher':'rank_tile, vanilla 26.3 atlas, exact ID and top five',
+                  'models_this_replay':'frozen Surface Finder predictions; zero model inference calls',
+                  'counter_timing':'wall seconds on predicted sampling charts only; excludes common straightening and evaluation',
+                  'reference_surface_match':'one-to-one, mask intersection over union >= 0.5',
+                  'material_sampling':'phase on both axes, full mask support, at least 4 native pixels per edge'},
+        reproduce=r'.\Invoke-BlockCountRound.ps1',
         scoring='whole visible mask span rounded to a block, compared to integer extents of recorded visible cells; exact in both axes. Front-on diagnostic on true planar rectangles uses half-block tolerance.',
         split='20 development images (shopfront and wing); 36 previously reviewed regression views from six other buildings',
         frames=[{k:r[k] for k in ('key','sha256','cohort','layout')} for r in rows],
