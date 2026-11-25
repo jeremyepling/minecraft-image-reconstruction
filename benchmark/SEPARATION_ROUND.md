@@ -46,6 +46,8 @@ The alternate MoGe-2 depth test uses the installed checkpoint’s 3D point outpu
 
 ## Replay or build one image
 
+We checked the ordinary build with its default settings against all 56 saved pictures. Reusing verified neural fields reproduced all 626 region records, including every mask and sampling corner. Separate direct builds also reproduced the expected outputs with fresh model inference on two pictures for the Wall Separator and two for the Underside Finder. [Ordinary build verification](reviews/separation-01/build-verification.json)
+
 ```powershell
 .\Invoke-SurfaceRound.ps1 -Round separation
 ```
