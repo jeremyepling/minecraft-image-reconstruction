@@ -278,7 +278,7 @@ def build(image_path, version, out, *, outlines=None, order_method=None, through
     defaults = json.loads(DEFAULTS.read_text())
     outlines = outlines or defaults['outlines']
     mask_first = outlines == 'mask-first'
-    if boundary is not None and (not mask_first or boundary not in ('regions-first','color-edges','depth-split','wall-depth-anything','strip-mlsd')):
+    if boundary is not None and (not mask_first or boundary not in ('regions-first','color-edges','depth-split','wall-depth-anything','strip-mlsd','wall-and-underside')):
         raise ValueError('Select a Regions First boundary method for a mask-first surface build.')
     if context_px is not None and (not mask_first or not isinstance(context_px, int) or context_px < 0):
         raise ValueError('Surface context requires Regions First and a nonnegative whole number of pixels.')
@@ -297,10 +297,14 @@ def build(image_path, version, out, *, outlines=None, order_method=None, through
         from engine.surface_perimeter import DEFAULT_CONTEXT_PX, context_crop, masked_crop, with_outline
         boundary = boundary or defaults['boundary']
         boundary_settings = {}
-        if boundary in ('color-edges','wall-depth-anything','strip-mlsd'):
-            from engine.surface_boundary_refine import SETTINGS as boundary_settings, refine
+        if boundary in ('color-edges','wall-depth-anything','strip-mlsd','wall-and-underside'):
+            from engine.surface_boundary_refine import SETTINGS as contrast_settings, refine
             patches=refine(image,patches,version)
-            if boundary == 'wall-depth-anything':
+            boundary_settings = contrast_settings
+            if boundary != 'color-edges':
+                boundary_settings = dict(contrast_alignment=contrast_settings)
+                methods['initial_boundary'] = 'color-edges'
+            if boundary in ('wall-depth-anything','wall-and-underside'):
                 from engine.normal_regions import SETTINGS as rectangle_settings
                 from engine.surface_depth_split import SETTINGS as vote_settings
                 from engine.surface_wall_split import SETTINGS as split_settings, refine as divide_walls
@@ -313,19 +317,19 @@ def build(image_path, version, out, *, outlines=None, order_method=None, through
                     if orientation is not None:
                         rect['normal_camera'] = orientation[1].tolist()
                 patches = divide_walls(image, patches, fields['depth'], rectangles)
-                methods.update(initial_boundary='color-edges', split_hints='rectangle-finder',
-                               split_depth='depth-anything-v2')
-                boundary_settings = dict(contrast_alignment=boundary_settings,
-                                         rectangle_finder=rectangle_settings, rectangle_lift=SETTINGS,
+                methods.update(split_hints='rectangle-finder', split_depth='depth-anything-v2')
+                boundary_settings.update(rectangle_finder=rectangle_settings, rectangle_lift=SETTINGS,
                                          depth_vote=vote_settings, wall_split=split_settings)
-            elif boundary == 'strip-mlsd':
+            if boundary in ('strip-mlsd','wall-and-underside'):
                 from engine import mlsd_tiny
                 from engine.surface_strip_split import SETTINGS as strip_settings, refine as split_strips
                 evidence = mlsd_tiny.detect(image)
                 patches = split_strips(image, patches, {'mlsd':evidence}, fields['normal'], fields['depth'])
-                methods.update(initial_boundary='color-edges', line_detector=mlsd_tiny.NAME)
-                boundary_settings = dict(contrast_alignment=boundary_settings, strip_split=strip_settings,
-                                         line_inference=mlsd_tiny.SETTINGS, detected_segments=len(evidence['segments']))
+                methods['line_detector'] = mlsd_tiny.NAME
+                boundary_settings.update(strip_split=strip_settings, line_inference=mlsd_tiny.SETTINGS,
+                                         detected_segments=len(evidence['segments']))
+            if boundary == 'wall-and-underside':
+                methods['boundary_sequence'] = ['color-edges','wall-depth-anything','strip-mlsd']
         elif boundary=='depth-split':
             from engine.surface_depth_split import SETTINGS as boundary_settings, split
             patches=split(image,patches,fields['depth'],version)
@@ -374,7 +378,7 @@ def build(image_path, version, out, *, outlines=None, order_method=None, through
     if fields:
         manifest['model_sha256'] = {k: MODELS[k][2] for k in fields}
         manifest['inference_settings'] = inference
-        if mask_first and boundary == 'strip-mlsd':
+        if 'line_detector' in methods:
             manifest['model_sha256']['mlsd'] = mlsd_tiny.MODEL[2]
     if mask_first:
         from engine.mask_first import SETTINGS as finder_settings
