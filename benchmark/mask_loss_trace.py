@@ -13,8 +13,9 @@ import numpy as np
 from PIL import Image
 
 from benchmark.camera_labels import rasterize
-from benchmark.camera_round import ROOT, digest, read, revision, save
+from benchmark.camera_round import digest, read, revision, save
 from benchmark.depth_probe_score import occlusion_pairs
+from benchmark.mask_loss_sheet import render
 from benchmark.normal_fields import cached_fields
 from benchmark.score_saved_planes import ROUND
 from benchmark.surface_metrics import DOWNSAMPLE, IOU_THRESHOLD, _one_to_one, observed_support
@@ -263,6 +264,7 @@ def main():
     (args.out/'surfaces.json.gz').write_bytes(gzip.compress(payload,mtime=0))
     save(args.out/'summary.json', summary)
     save(args.out/'pictures.json', per_picture)
+    render(rows, args.fields, args.out/'stages.jpg')
     baseline_manifest=read(ROUND/'manifest.json')
     save(args.out/'manifest.json',dict(run_id=args.out.name, diagnostic=True, method=METHOD, version='26.3',
          baseline_run='normals-01', code=revision(), baseline_source=baseline_manifest['code'],
