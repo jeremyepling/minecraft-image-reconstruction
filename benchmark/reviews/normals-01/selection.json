@@ -1,0 +1,11 @@
+{
+  "rule": "Freeze highest mean layout F1 at IoU >= 0.5 on shopfront and wing. On a tie retain registry order.",
+  "adoption": "Promote if fresh layout-mean F1 exceeds baseline and pooled opening fill grows by <= 3 percentage points.",
+  "order_rule": "Keep relative ordering experimental unless Depth Anything yields more correct pairs than geometry, with at least half of all emitted relations verified as correct, on development and blind cohorts.",
+  "mean_layout_f1": {
+    "edges+shade": 0.2678213738659126,
+    "normal-rank": 0.40283715507190054,
+    "normal-regions": 0.671067106710671
+  },
+  "selected": "normal-regions"
+}

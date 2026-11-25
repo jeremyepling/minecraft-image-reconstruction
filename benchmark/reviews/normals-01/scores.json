@@ -1,0 +1,3353 @@
+{
+  "six": {
+    "frames": 48,
+    "methods": {
+      "edges+shade": {
+        "outlines": {
+          "matched": 78,
+          "eligible": 466,
+          "proposed": 351,
+          "precision": 0.2222222222222222,
+          "recall": 0.16738197424892703,
+          "f1": 0.1909424724602203,
+          "foreground_spill": 0.013902025251842844
+        },
+        "gaps": {
+          "filled_pixels": 969,
+          "opening_pixels": 12608,
+          "fill_rate": 0.07685596446700507
+        },
+        "support_matches": 78,
+        "observed_normal_median_deg": null,
+        "support_gaps": {
+          "filled_pixels": 969,
+          "opening_pixels": 12608
+        },
+        "pitch": {
+          "charts": 78,
+          "counts_returned": 6,
+          "within_half_block": 5,
+          "charts_with_grid_points": 0,
+          "accurate_registered": 0,
+          "registered_rate": 0.0,
+          "accurate_rate": 0.0641025641025641,
+          "net_correct_rate": 0.05128205128205128,
+          "grid_precision": 0.0,
+          "grid_recall": 0.0
+        },
+        "lift": {
+          "matched": 78,
+          "normals": 78,
+          "within_15_degrees": 18,
+          "median_normal_error_degrees": 24.34633070266353,
+          "metric_depths": 7,
+          "within_one_block": 0,
+          "median_depth_error_blocks": 11.261137309412902
+        },
+        "known_lift": {
+          "matched": 78,
+          "normals": 78,
+          "within_15_degrees": 24,
+          "median_normal_error_degrees": 23.477360101056966,
+          "metric_depths": 7,
+          "within_one_block": 5,
+          "median_depth_error_blocks": 0.7425004174158936
+        },
+        "soffits_matched": 0,
+        "order": {
+          "geometry": {
+            "eligible": 322,
+            "proposed": 19,
+            "correct": 0,
+            "reversed": 0,
+            "other": 19
+          },
+          "depth-anything": {
+            "eligible": 322,
+            "proposed": 205,
+            "correct": 3,
+            "reversed": 0,
+            "other": 202
+          }
+        }
+      },
+      "normal-rank": {
+        "outlines": {
+          "matched": 97,
+          "eligible": 466,
+          "proposed": 192,
+          "precision": 0.5052083333333334,
+          "recall": 0.20815450643776823,
+          "f1": 0.2948328267477204,
+          "foreground_spill": 0.01664320087418833
+        },
+        "gaps": {
+          "filled_pixels": 1196,
+          "opening_pixels": 12608,
+          "fill_rate": 0.09486040609137056
+        },
+        "support_matches": 97,
+        "observed_normal_median_deg": 4.658453867868225,
+        "support_gaps": {
+          "filled_pixels": 1196,
+          "opening_pixels": 12608
+        },
+        "pitch": {
+          "charts": 97,
+          "counts_returned": 5,
+          "within_half_block": 5,
+          "charts_with_grid_points": 0,
+          "accurate_registered": 0,
+          "registered_rate": 0.0,
+          "accurate_rate": 0.05154639175257732,
+          "net_correct_rate": 0.05154639175257732,
+          "grid_precision": 0.0,
+          "grid_recall": 0.0
+        },
+        "lift": {
+          "matched": 97,
+          "normals": 97,
+          "within_15_degrees": 29,
+          "median_normal_error_degrees": 28.604778481338553,
+          "metric_depths": 5,
+          "within_one_block": 1,
+          "median_depth_error_blocks": 3.9635613445434004
+        },
+        "known_lift": {
+          "matched": 97,
+          "normals": 97,
+          "within_15_degrees": 28,
+          "median_normal_error_degrees": 30.5522286211326,
+          "metric_depths": 5,
+          "within_one_block": 3,
+          "median_depth_error_blocks": 0.10029474539431149
+        },
+        "soffits_matched": 0,
+        "order": {
+          "geometry": {
+            "eligible": 322,
+            "proposed": 3,
+            "correct": 0,
+            "reversed": 0,
+            "other": 3
+          },
+          "depth-anything": {
+            "eligible": 322,
+            "proposed": 84,
+            "correct": 6,
+            "reversed": 0,
+            "other": 78
+          }
+        }
+      },
+      "normal-regions": {
+        "outlines": {
+          "matched": 223,
+          "eligible": 466,
+          "proposed": 339,
+          "precision": 0.6578171091445427,
+          "recall": 0.47854077253218885,
+          "f1": 0.5540372670807453,
+          "foreground_spill": 0.020510394768763214
+        },
+        "gaps": {
+          "filled_pixels": 3102,
+          "opening_pixels": 12608,
+          "fill_rate": 0.24603426395939088
+        },
+        "support_matches": 216,
+        "observed_normal_median_deg": 4.229981859076449,
+        "support_gaps": {
+          "filled_pixels": 578,
+          "opening_pixels": 12608
+        },
+        "pitch": {
+          "charts": 223,
+          "counts_returned": 12,
+          "within_half_block": 12,
+          "charts_with_grid_points": 1,
+          "accurate_registered": 1,
+          "registered_rate": 0.004484304932735426,
+          "accurate_rate": 0.053811659192825115,
+          "net_correct_rate": 0.053811659192825115,
+          "grid_precision": 1.0,
+          "grid_recall": 0.0027143180275955667
+        },
+        "lift": {
+          "matched": 223,
+          "normals": 223,
+          "within_15_degrees": 72,
+          "median_normal_error_degrees": 22.731738167058605,
+          "metric_depths": 15,
+          "within_one_block": 7,
+          "median_depth_error_blocks": 1.0783634316806925
+        },
+        "known_lift": {
+          "matched": 223,
+          "normals": 223,
+          "within_15_degrees": 61,
+          "median_normal_error_degrees": 24.15240142657969,
+          "metric_depths": 15,
+          "within_one_block": 14,
+          "median_depth_error_blocks": 0.33604874636376536
+        },
+        "soffits_matched": 1,
+        "order": {
+          "geometry": {
+            "eligible": 322,
+            "proposed": 5,
+            "correct": 0,
+            "reversed": 0,
+            "other": 5
+          },
+          "depth-anything": {
+            "eligible": 322,
+            "proposed": 274,
+            "correct": 41,
+            "reversed": 1,
+            "other": 232
+          }
+        }
+      }
+    },
+    "soffits_eligible": 14,
+    "oracle_depth_order": {
+      "eligible_pairs": 346,
+      "correct_order": 342
+    },
+    "oracle_normal_samples": {
+      "samples": 1048928,
+      "within_15": 806793,
+      "soffit_samples": 4496,
+      "soffit_within_15": 1246
+    }
+  },
+  "blind": {
+    "frames": 8,
+    "methods": {
+      "edges+shade": {
+        "outlines": {
+          "matched": 15,
+          "eligible": 132,
+          "proposed": 76,
+          "precision": 0.19736842105263158,
+          "recall": 0.11363636363636363,
+          "f1": 0.14423076923076922,
+          "foreground_spill": 0.007118853908737177
+        },
+        "gaps": {
+          "filled_pixels": 120,
+          "opening_pixels": 4022,
+          "fill_rate": 0.029835902536051714
+        },
+        "support_matches": 15,
+        "observed_normal_median_deg": null,
+        "support_gaps": {
+          "filled_pixels": 120,
+          "opening_pixels": 4022
+        },
+        "pitch": {
+          "charts": 15,
+          "counts_returned": 2,
+          "within_half_block": 2,
+          "charts_with_grid_points": 1,
+          "accurate_registered": 1,
+          "registered_rate": 0.06666666666666667,
+          "accurate_rate": 0.13333333333333333,
+          "net_correct_rate": 0.13333333333333333,
+          "grid_precision": 0.8888888888888888,
+          "grid_recall": 0.03524229074889868
+        },
+        "lift": {
+          "matched": 15,
+          "normals": 15,
+          "within_15_degrees": 2,
+          "median_normal_error_degrees": 33.2692445735541,
+          "metric_depths": 2,
+          "within_one_block": 0,
+          "median_depth_error_blocks": 10.210062795830396
+        },
+        "known_lift": {
+          "matched": 15,
+          "normals": 15,
+          "within_15_degrees": 2,
+          "median_normal_error_degrees": 35.66365869667686,
+          "metric_depths": 1,
+          "within_one_block": 1,
+          "median_depth_error_blocks": 0.09893247519529069
+        },
+        "soffits_matched": 0,
+        "order": {
+          "geometry": {
+            "eligible": 110,
+            "proposed": 4,
+            "correct": 0,
+            "reversed": 0,
+            "other": 4
+          },
+          "depth-anything": {
+            "eligible": 110,
+            "proposed": 40,
+            "correct": 0,
+            "reversed": 0,
+            "other": 40
+          }
+        }
+      },
+      "normal-rank": {
+        "outlines": {
+          "matched": 21,
+          "eligible": 132,
+          "proposed": 42,
+          "precision": 0.5,
+          "recall": 0.1590909090909091,
+          "f1": 0.2413793103448276,
+          "foreground_spill": 0.018535636098272926
+        },
+        "gaps": {
+          "filled_pixels": 232,
+          "opening_pixels": 4022,
+          "fill_rate": 0.057682744903033316
+        },
+        "support_matches": 21,
+        "observed_normal_median_deg": 3.6527568271622335,
+        "support_gaps": {
+          "filled_pixels": 232,
+          "opening_pixels": 4022
+        },
+        "pitch": {
+          "charts": 21,
+          "counts_returned": 0,
+          "within_half_block": 0,
+          "charts_with_grid_points": 0,
+          "accurate_registered": 0,
+          "registered_rate": 0.0,
+          "accurate_rate": 0.0,
+          "net_correct_rate": 0.0,
+          "grid_precision": 0.0,
+          "grid_recall": 0.0
+        },
+        "lift": {
+          "matched": 21,
+          "normals": 21,
+          "within_15_degrees": 3,
+          "median_normal_error_degrees": 56.52033410116352,
+          "metric_depths": 0,
+          "within_one_block": 0,
+          "median_depth_error_blocks": null
+        },
+        "known_lift": {
+          "matched": 21,
+          "normals": 21,
+          "within_15_degrees": 3,
+          "median_normal_error_degrees": 54.86040018867334,
+          "metric_depths": 0,
+          "within_one_block": 0,
+          "median_depth_error_blocks": null
+        },
+        "soffits_matched": 1,
+        "order": {
+          "geometry": {
+            "eligible": 110,
+            "proposed": 0,
+            "correct": 0,
+            "reversed": 0,
+            "other": 0
+          },
+          "depth-anything": {
+            "eligible": 110,
+            "proposed": 18,
+            "correct": 1,
+            "reversed": 1,
+            "other": 16
+          }
+        }
+      },
+      "normal-regions": {
+        "outlines": {
+          "matched": 58,
+          "eligible": 132,
+          "proposed": 82,
+          "precision": 0.7073170731707317,
+          "recall": 0.4393939393939394,
+          "f1": 0.5420560747663551,
+          "foreground_spill": 0.06080434699422187
+        },
+        "gaps": {
+          "filled_pixels": 1754,
+          "opening_pixels": 4022,
+          "fill_rate": 0.43610144206862256
+        },
+        "support_matches": 58,
+        "observed_normal_median_deg": 4.649954436261323,
+        "support_gaps": {
+          "filled_pixels": 118,
+          "opening_pixels": 4022
+        },
+        "pitch": {
+          "charts": 58,
+          "counts_returned": 0,
+          "within_half_block": 0,
+          "charts_with_grid_points": 0,
+          "accurate_registered": 0,
+          "registered_rate": 0.0,
+          "accurate_rate": 0.0,
+          "net_correct_rate": 0.0,
+          "grid_precision": 0.0,
+          "grid_recall": 0.0
+        },
+        "lift": {
+          "matched": 58,
+          "normals": 58,
+          "within_15_degrees": 14,
+          "median_normal_error_degrees": 33.2257880647082,
+          "metric_depths": 0,
+          "within_one_block": 0,
+          "median_depth_error_blocks": null
+        },
+        "known_lift": {
+          "matched": 58,
+          "normals": 58,
+          "within_15_degrees": 14,
+          "median_normal_error_degrees": 33.838232430986636,
+          "metric_depths": 0,
+          "within_one_block": 0,
+          "median_depth_error_blocks": null
+        },
+        "soffits_matched": 2,
+        "order": {
+          "geometry": {
+            "eligible": 110,
+            "proposed": 0,
+            "correct": 0,
+            "reversed": 0,
+            "other": 0
+          },
+          "depth-anything": {
+            "eligible": 110,
+            "proposed": 71,
+            "correct": 14,
+            "reversed": 2,
+            "other": 55
+          }
+        }
+      }
+    },
+    "soffits_eligible": 4,
+    "oracle_depth_order": {
+      "eligible_pairs": 118,
+      "correct_order": 117
+    },
+    "oracle_normal_samples": {
+      "samples": 88504,
+      "within_15": 76576,
+      "soffit_samples": 1470,
+      "soffit_within_15": 845
+    }
+  },
+  "layouts": {
+    "courtyard": {
+      "frames": 12,
+      "methods": {
+        "edges+shade": {
+          "outlines": {
+            "matched": 14,
+            "eligible": 56,
+            "proposed": 76,
+            "precision": 0.18421052631578946,
+            "recall": 0.25,
+            "f1": 0.21212121212121213,
+            "foreground_spill": 0.007346332695088117
+          },
+          "gaps": {
+            "filled_pixels": 73,
+            "opening_pixels": 2584,
+            "fill_rate": 0.02825077399380805
+          },
+          "support_matches": 14,
+          "observed_normal_median_deg": null,
+          "support_gaps": {
+            "filled_pixels": 73,
+            "opening_pixels": 2584
+          },
+          "pitch": {
+            "charts": 14,
+            "counts_returned": 1,
+            "within_half_block": 0,
+            "charts_with_grid_points": 0,
+            "accurate_registered": 0,
+            "registered_rate": 0.0,
+            "accurate_rate": 0.0,
+            "net_correct_rate": -0.07142857142857142,
+            "grid_precision": 0.0,
+            "grid_recall": 0.0
+          },
+          "lift": {
+            "matched": 14,
+            "normals": 14,
+            "within_15_degrees": 7,
+            "median_normal_error_degrees": 15.822015726543984,
+            "metric_depths": 1,
+            "within_one_block": 0,
+            "median_depth_error_blocks": 1.7192602007036513
+          },
+          "known_lift": {
+            "matched": 14,
+            "normals": 14,
+            "within_15_degrees": 9,
+            "median_normal_error_degrees": 12.490276696229984,
+            "metric_depths": 1,
+            "within_one_block": 1,
+            "median_depth_error_blocks": 0.7425004174158936
+          },
+          "soffits_matched": 0,
+          "order": {
+            "geometry": {
+              "eligible": 28,
+              "proposed": 9,
+              "correct": 0,
+              "reversed": 0,
+              "other": 9
+            },
+            "depth-anything": {
+              "eligible": 28,
+              "proposed": 39,
+              "correct": 0,
+              "reversed": 0,
+              "other": 39
+            }
+          }
+        },
+        "normal-rank": {
+          "outlines": {
+            "matched": 18,
+            "eligible": 56,
+            "proposed": 36,
+            "precision": 0.5,
+            "recall": 0.32142857142857145,
+            "f1": 0.391304347826087,
+            "foreground_spill": 0.014888811122069162
+          },
+          "gaps": {
+            "filled_pixels": 170,
+            "opening_pixels": 2584,
+            "fill_rate": 0.06578947368421052
+          },
+          "support_matches": 18,
+          "observed_normal_median_deg": 3.327034607778643,
+          "support_gaps": {
+            "filled_pixels": 170,
+            "opening_pixels": 2584
+          },
+          "pitch": {
+            "charts": 18,
+            "counts_returned": 1,
+            "within_half_block": 1,
+            "charts_with_grid_points": 0,
+            "accurate_registered": 0,
+            "registered_rate": 0.0,
+            "accurate_rate": 0.05555555555555555,
+            "net_correct_rate": 0.05555555555555555,
+            "grid_precision": 0.0,
+            "grid_recall": 0.0
+          },
+          "lift": {
+            "matched": 18,
+            "normals": 18,
+            "within_15_degrees": 6,
+            "median_normal_error_degrees": 19.479224744316575,
+            "metric_depths": 1,
+            "within_one_block": 0,
+            "median_depth_error_blocks": 2.594418205892566
+          },
+          "known_lift": {
+            "matched": 18,
+            "normals": 18,
+            "within_15_degrees": 6,
+            "median_normal_error_degrees": 19.936021340468812,
+            "metric_depths": 1,
+            "within_one_block": 0,
+            "median_depth_error_blocks": 1.1214612669011856
+          },
+          "soffits_matched": 0,
+          "order": {
+            "geometry": {
+              "eligible": 28,
+              "proposed": 1,
+              "correct": 0,
+              "reversed": 0,
+              "other": 1
+            },
+            "depth-anything": {
+              "eligible": 28,
+              "proposed": 17,
+              "correct": 0,
+              "reversed": 0,
+              "other": 17
+            }
+          }
+        },
+        "normal-regions": {
+          "outlines": {
+            "matched": 36,
+            "eligible": 56,
+            "proposed": 52,
+            "precision": 0.6923076923076923,
+            "recall": 0.6428571428571429,
+            "f1": 0.6666666666666666,
+            "foreground_spill": 0.010987258766138316
+          },
+          "gaps": {
+            "filled_pixels": 701,
+            "opening_pixels": 2584,
+            "fill_rate": 0.27128482972136225
+          },
+          "support_matches": 35,
+          "observed_normal_median_deg": 2.1807231665166444,
+          "support_gaps": {
+            "filled_pixels": 4,
+            "opening_pixels": 2584
+          },
+          "pitch": {
+            "charts": 36,
+            "counts_returned": 2,
+            "within_half_block": 2,
+            "charts_with_grid_points": 0,
+            "accurate_registered": 0,
+            "registered_rate": 0.0,
+            "accurate_rate": 0.05555555555555555,
+            "net_correct_rate": 0.05555555555555555,
+            "grid_precision": 0.0,
+            "grid_recall": 0.0
+          },
+          "lift": {
+            "matched": 36,
+            "normals": 36,
+            "within_15_degrees": 16,
+            "median_normal_error_degrees": 18.00728169099459,
+            "metric_depths": 2,
+            "within_one_block": 2,
+            "median_depth_error_blocks": 0.9991661801121952
+          },
+          "known_lift": {
+            "matched": 36,
+            "normals": 36,
+            "within_15_degrees": 17,
+            "median_normal_error_degrees": 17.535046439257712,
+            "metric_depths": 2,
+            "within_one_block": 2,
+            "median_depth_error_blocks": 0.0018695830804764668
+          },
+          "soffits_matched": 0,
+          "order": {
+            "geometry": {
+              "eligible": 28,
+              "proposed": 0,
+              "correct": 0,
+              "reversed": 0,
+              "other": 0
+            },
+            "depth-anything": {
+              "eligible": 28,
+              "proposed": 30,
+              "correct": 4,
+              "reversed": 1,
+              "other": 25
+            }
+          }
+        }
+      },
+      "soffits_eligible": 0,
+      "oracle_depth_order": {
+        "eligible_pairs": 36,
+        "correct_order": 36
+      },
+      "oracle_normal_samples": {
+        "samples": 408620,
+        "within_15": 392017,
+        "soffit_samples": 192,
+        "soffit_within_15": 0
+      }
+    },
+    "crossing": {
+      "frames": 4,
+      "methods": {
+        "edges+shade": {
+          "outlines": {
+            "matched": 5,
+            "eligible": 46,
+            "proposed": 50,
+            "precision": 0.1,
+            "recall": 0.10869565217391304,
+            "f1": 0.10416666666666667,
+            "foreground_spill": 0.006928822100242958
+          },
+          "gaps": {
+            "filled_pixels": 32,
+            "opening_pixels": 3508,
+            "fill_rate": 0.009122006841505131
+          },
+          "support_matches": 5,
+          "observed_normal_median_deg": null,
+          "support_gaps": {
+            "filled_pixels": 32,
+            "opening_pixels": 3508
+          },
+          "pitch": {
+            "charts": 5,
+            "counts_returned": 1,
+            "within_half_block": 1,
+            "charts_with_grid_points": 0,
+            "accurate_registered": 0,
+            "registered_rate": 0.0,
+            "accurate_rate": 0.2,
+            "net_correct_rate": 0.2,
+            "grid_precision": 0.0,
+            "grid_recall": 0.0
+          },
+          "lift": {
+            "matched": 5,
+            "normals": 5,
+            "within_15_degrees": 1,
+            "median_normal_error_degrees": 23.557442015818342,
+            "metric_depths": 2,
+            "within_one_block": 0,
+            "median_depth_error_blocks": 11.381920864270938
+          },
+          "known_lift": {
+            "matched": 5,
+            "normals": 5,
+            "within_15_degrees": 1,
+            "median_normal_error_degrees": 20.502952303757162,
+            "metric_depths": 2,
+            "within_one_block": 1,
+            "median_depth_error_blocks": 1.3888566748969513
+          },
+          "soffits_matched": 0,
+          "order": {
+            "geometry": {
+              "eligible": 22,
+              "proposed": 2,
+              "correct": 0,
+              "reversed": 0,
+              "other": 2
+            },
+            "depth-anything": {
+              "eligible": 22,
+              "proposed": 30,
+              "correct": 0,
+              "reversed": 0,
+              "other": 30
+            }
+          }
+        },
+        "normal-rank": {
+          "outlines": {
+            "matched": 5,
+            "eligible": 46,
+            "proposed": 20,
+            "precision": 0.25,
+            "recall": 0.10869565217391304,
+            "f1": 0.15151515151515152,
+            "foreground_spill": 0.018764122212398076
+          },
+          "gaps": {
+            "filled_pixels": 89,
+            "opening_pixels": 3508,
+            "fill_rate": 0.025370581527936146
+          },
+          "support_matches": 5,
+          "observed_normal_median_deg": 3.5837491137768764,
+          "support_gaps": {
+            "filled_pixels": 89,
+            "opening_pixels": 3508
+          },
+          "pitch": {
+            "charts": 5,
+            "counts_returned": 1,
+            "within_half_block": 1,
+            "charts_with_grid_points": 0,
+            "accurate_registered": 0,
+            "registered_rate": 0.0,
+            "accurate_rate": 0.2,
+            "net_correct_rate": 0.2,
+            "grid_precision": 0.0,
+            "grid_recall": 0.0
+          },
+          "lift": {
+            "matched": 5,
+            "normals": 5,
+            "within_15_degrees": 1,
+            "median_normal_error_degrees": 47.834557550326195,
+            "metric_depths": 1,
+            "within_one_block": 0,
+            "median_depth_error_blocks": 8.110411991241765
+          },
+          "known_lift": {
+            "matched": 5,
+            "normals": 5,
+            "within_15_degrees": 1,
+            "median_normal_error_degrees": 41.116453513646455,
+            "metric_depths": 1,
+            "within_one_block": 1,
+            "median_depth_error_blocks": 0.059069014832306976
+          },
+          "soffits_matched": 0,
+          "order": {
+            "geometry": {
+              "eligible": 22,
+              "proposed": 0,
+              "correct": 0,
+              "reversed": 0,
+              "other": 0
+            },
+            "depth-anything": {
+              "eligible": 22,
+              "proposed": 8,
+              "correct": 2,
+              "reversed": 0,
+              "other": 6
+            }
+          }
+        },
+        "normal-regions": {
+          "outlines": {
+            "matched": 19,
+            "eligible": 46,
+            "proposed": 38,
+            "precision": 0.5,
+            "recall": 0.41304347826086957,
+            "f1": 0.4523809523809524,
+            "foreground_spill": 0.053363276654903216
+          },
+          "gaps": {
+            "filled_pixels": 639,
+            "opening_pixels": 3508,
+            "fill_rate": 0.18215507411630558
+          },
+          "support_matches": 20,
+          "observed_normal_median_deg": 4.609280651764334,
+          "support_gaps": {
+            "filled_pixels": 255,
+            "opening_pixels": 3508
+          },
+          "pitch": {
+            "charts": 19,
+            "counts_returned": 0,
+            "within_half_block": 0,
+            "charts_with_grid_points": 0,
+            "accurate_registered": 0,
+            "registered_rate": 0.0,
+            "accurate_rate": 0.0,
+            "net_correct_rate": 0.0,
+            "grid_precision": 0.0,
+            "grid_recall": 0.0
+          },
+          "lift": {
+            "matched": 19,
+            "normals": 19,
+            "within_15_degrees": 5,
+            "median_normal_error_degrees": 18.68461489832038,
+            "metric_depths": 0,
+            "within_one_block": 0,
+            "median_depth_error_blocks": null
+          },
+          "known_lift": {
+            "matched": 19,
+            "normals": 19,
+            "within_15_degrees": 4,
+            "median_normal_error_degrees": 19.197309158206743,
+            "metric_depths": 0,
+            "within_one_block": 0,
+            "median_depth_error_blocks": null
+          },
+          "soffits_matched": 1,
+          "order": {
+            "geometry": {
+              "eligible": 22,
+              "proposed": 0,
+              "correct": 0,
+              "reversed": 0,
+              "other": 0
+            },
+            "depth-anything": {
+              "eligible": 22,
+              "proposed": 31,
+              "correct": 3,
+              "reversed": 0,
+              "other": 28
+            }
+          }
+        }
+      },
+      "soffits_eligible": 2,
+      "oracle_depth_order": {
+        "eligible_pairs": 34,
+        "correct_order": 34
+      },
+      "oracle_normal_samples": {
+        "samples": 45306,
+        "within_15": 38407,
+        "soffit_samples": 932,
+        "soffit_within_15": 697
+      }
+    },
+    "galleries": {
+      "frames": 4,
+      "methods": {
+        "edges+shade": {
+          "outlines": {
+            "matched": 9,
+            "eligible": 98,
+            "proposed": 41,
+            "precision": 0.21951219512195122,
+            "recall": 0.09183673469387756,
+            "f1": 0.12949640287769784,
+            "foreground_spill": 0.00468900841263274
+          },
+          "gaps": {
+            "filled_pixels": 32,
+            "opening_pixels": 2976,
+            "fill_rate": 0.010752688172043012
+          },
+          "support_matches": 9,
+          "observed_normal_median_deg": null,
+          "support_gaps": {
+            "filled_pixels": 32,
+            "opening_pixels": 2976
+          },
+          "pitch": {
+            "charts": 9,
+            "counts_returned": 1,
+            "within_half_block": 1,
+            "charts_with_grid_points": 0,
+            "accurate_registered": 0,
+            "registered_rate": 0.0,
+            "accurate_rate": 0.1111111111111111,
+            "net_correct_rate": 0.1111111111111111,
+            "grid_precision": 0.0,
+            "grid_recall": 0.0
+          },
+          "lift": {
+            "matched": 9,
+            "normals": 9,
+            "within_15_degrees": 0,
+            "median_normal_error_degrees": 35.33045642825767,
+            "metric_depths": 1,
+            "within_one_block": 0,
+            "median_depth_error_blocks": 9.1113722293107
+          },
+          "known_lift": {
+            "matched": 9,
+            "normals": 9,
+            "within_15_degrees": 0,
+            "median_normal_error_degrees": 46.26925203012747,
+            "metric_depths": 0,
+            "within_one_block": 0,
+            "median_depth_error_blocks": null
+          },
+          "soffits_matched": 0,
+          "order": {
+            "geometry": {
+              "eligible": 86,
+              "proposed": 4,
+              "correct": 0,
+              "reversed": 0,
+              "other": 4
+            },
+            "depth-anything": {
+              "eligible": 86,
+              "proposed": 21,
+              "correct": 0,
+              "reversed": 0,
+              "other": 21
+            }
+          }
+        },
+        "normal-rank": {
+          "outlines": {
+            "matched": 14,
+            "eligible": 98,
+            "proposed": 22,
+            "precision": 0.6363636363636364,
+            "recall": 0.14285714285714285,
+            "f1": 0.23333333333333334,
+            "foreground_spill": 0.025016174250593055
+          },
+          "gaps": {
+            "filled_pixels": 194,
+            "opening_pixels": 2976,
+            "fill_rate": 0.06518817204301075
+          },
+          "support_matches": 14,
+          "observed_normal_median_deg": 3.1375487221757212,
+          "support_gaps": {
+            "filled_pixels": 194,
+            "opening_pixels": 2976
+          },
+          "pitch": {
+            "charts": 14,
+            "counts_returned": 0,
+            "within_half_block": 0,
+            "charts_with_grid_points": 0,
+            "accurate_registered": 0,
+            "registered_rate": 0.0,
+            "accurate_rate": 0.0,
+            "net_correct_rate": 0.0,
+            "grid_precision": 0.0,
+            "grid_recall": 0.0
+          },
+          "lift": {
+            "matched": 14,
+            "normals": 14,
+            "within_15_degrees": 1,
+            "median_normal_error_degrees": 55.172333151868216,
+            "metric_depths": 0,
+            "within_one_block": 0,
+            "median_depth_error_blocks": null
+          },
+          "known_lift": {
+            "matched": 14,
+            "normals": 14,
+            "within_15_degrees": 1,
+            "median_normal_error_degrees": 54.35994016814698,
+            "metric_depths": 0,
+            "within_one_block": 0,
+            "median_depth_error_blocks": null
+          },
+          "soffits_matched": 1,
+          "order": {
+            "geometry": {
+              "eligible": 86,
+              "proposed": 0,
+              "correct": 0,
+              "reversed": 0,
+              "other": 0
+            },
+            "depth-anything": {
+              "eligible": 86,
+              "proposed": 11,
+              "correct": 1,
+              "reversed": 1,
+              "other": 9
+            }
+          }
+        },
+        "normal-regions": {
+          "outlines": {
+            "matched": 37,
+            "eligible": 98,
+            "proposed": 51,
+            "precision": 0.7254901960784313,
+            "recall": 0.37755102040816324,
+            "f1": 0.4966442953020134,
+            "foreground_spill": 0.09684375612624975
+          },
+          "gaps": {
+            "filled_pixels": 1643,
+            "opening_pixels": 2976,
+            "fill_rate": 0.5520833333333334
+          },
+          "support_matches": 38,
+          "observed_normal_median_deg": 5.648953585834552,
+          "support_gaps": {
+            "filled_pixels": 116,
+            "opening_pixels": 2976
+          },
+          "pitch": {
+            "charts": 37,
+            "counts_returned": 0,
+            "within_half_block": 0,
+            "charts_with_grid_points": 0,
+            "accurate_registered": 0,
+            "registered_rate": 0.0,
+            "accurate_rate": 0.0,
+            "net_correct_rate": 0.0,
+            "grid_precision": 0.0,
+            "grid_recall": 0.0
+          },
+          "lift": {
+            "matched": 37,
+            "normals": 37,
+            "within_15_degrees": 5,
+            "median_normal_error_degrees": 34.77810133578245,
+            "metric_depths": 0,
+            "within_one_block": 0,
+            "median_depth_error_blocks": null
+          },
+          "known_lift": {
+            "matched": 37,
+            "normals": 37,
+            "within_15_degrees": 4,
+            "median_normal_error_degrees": 35.35291046694071,
+            "metric_depths": 0,
+            "within_one_block": 0,
+            "median_depth_error_blocks": null
+          },
+          "soffits_matched": 2,
+          "order": {
+            "geometry": {
+              "eligible": 86,
+              "proposed": 0,
+              "correct": 0,
+              "reversed": 0,
+              "other": 0
+            },
+            "depth-anything": {
+              "eligible": 86,
+              "proposed": 47,
+              "correct": 12,
+              "reversed": 1,
+              "other": 34
+            }
+          }
+        }
+      },
+      "soffits_eligible": 4,
+      "oracle_depth_order": {
+        "eligible_pairs": 94,
+        "correct_order": 93
+      },
+      "oracle_normal_samples": {
+        "samples": 39564,
+        "within_15": 31193,
+        "soffit_samples": 1470,
+        "soffit_within_15": 845
+      }
+    },
+    "portico": {
+      "frames": 8,
+      "methods": {
+        "edges+shade": {
+          "outlines": {
+            "matched": 25,
+            "eligible": 148,
+            "proposed": 63,
+            "precision": 0.3968253968253968,
+            "recall": 0.16891891891891891,
+            "f1": 0.23696682464454977,
+            "foreground_spill": 0.039919037445181604
+          },
+          "gaps": {
+            "filled_pixels": 666,
+            "opening_pixels": 4912,
+            "fill_rate": 0.13558631921824105
+          },
+          "support_matches": 25,
+          "observed_normal_median_deg": null,
+          "support_gaps": {
+            "filled_pixels": 666,
+            "opening_pixels": 4912
+          },
+          "pitch": {
+            "charts": 25,
+            "counts_returned": 2,
+            "within_half_block": 2,
+            "charts_with_grid_points": 0,
+            "accurate_registered": 0,
+            "registered_rate": 0.0,
+            "accurate_rate": 0.08,
+            "net_correct_rate": 0.08,
+            "grid_precision": 0.0,
+            "grid_recall": 0.0
+          },
+          "lift": {
+            "matched": 25,
+            "normals": 25,
+            "within_15_degrees": 1,
+            "median_normal_error_degrees": 36.073832544856394,
+            "metric_depths": 2,
+            "within_one_block": 0,
+            "median_depth_error_blocks": 14.182536114848432
+          },
+          "known_lift": {
+            "matched": 25,
+            "normals": 25,
+            "within_15_degrees": 3,
+            "median_normal_error_degrees": 36.37293440633064,
+            "metric_depths": 2,
+            "within_one_block": 1,
+            "median_depth_error_blocks": 0.953149578886471
+          },
+          "soffits_matched": 0,
+          "order": {
+            "geometry": {
+              "eligible": 120,
+              "proposed": 2,
+              "correct": 0,
+              "reversed": 0,
+              "other": 2
+            },
+            "depth-anything": {
+              "eligible": 120,
+              "proposed": 30,
+              "correct": 2,
+              "reversed": 0,
+              "other": 28
+            }
+          }
+        },
+        "normal-rank": {
+          "outlines": {
+            "matched": 28,
+            "eligible": 148,
+            "proposed": 46,
+            "precision": 0.6086956521739131,
+            "recall": 0.1891891891891892,
+            "f1": 0.28865979381443296,
+            "foreground_spill": 0.0407451212300414
+          },
+          "gaps": {
+            "filled_pixels": 595,
+            "opening_pixels": 4912,
+            "fill_rate": 0.12113192182410423
+          },
+          "support_matches": 28,
+          "observed_normal_median_deg": 7.615977856114467,
+          "support_gaps": {
+            "filled_pixels": 595,
+            "opening_pixels": 4912
+          },
+          "pitch": {
+            "charts": 28,
+            "counts_returned": 0,
+            "within_half_block": 0,
+            "charts_with_grid_points": 0,
+            "accurate_registered": 0,
+            "registered_rate": 0.0,
+            "accurate_rate": 0.0,
+            "net_correct_rate": 0.0,
+            "grid_precision": 0.0,
+            "grid_recall": 0.0
+          },
+          "lift": {
+            "matched": 28,
+            "normals": 28,
+            "within_15_degrees": 3,
+            "median_normal_error_degrees": 50.14457619557056,
+            "metric_depths": 0,
+            "within_one_block": 0,
+            "median_depth_error_blocks": null
+          },
+          "known_lift": {
+            "matched": 28,
+            "normals": 28,
+            "within_15_degrees": 3,
+            "median_normal_error_degrees": 48.32254839120857,
+            "metric_depths": 0,
+            "within_one_block": 0,
+            "median_depth_error_blocks": null
+          },
+          "soffits_matched": 0,
+          "order": {
+            "geometry": {
+              "eligible": 120,
+              "proposed": 1,
+              "correct": 0,
+              "reversed": 0,
+              "other": 1
+            },
+            "depth-anything": {
+              "eligible": 120,
+              "proposed": 22,
+              "correct": 3,
+              "reversed": 0,
+              "other": 19
+            }
+          }
+        },
+        "normal-regions": {
+          "outlines": {
+            "matched": 67,
+            "eligible": 148,
+            "proposed": 99,
+            "precision": 0.6767676767676768,
+            "recall": 0.4527027027027027,
+            "f1": 0.5425101214574899,
+            "foreground_spill": 0.07248057284673909
+          },
+          "gaps": {
+            "filled_pixels": 1330,
+            "opening_pixels": 4912,
+            "fill_rate": 0.2707654723127036
+          },
+          "support_matches": 67,
+          "observed_normal_median_deg": 5.765963919586234,
+          "support_gaps": {
+            "filled_pixels": 295,
+            "opening_pixels": 4912
+          },
+          "pitch": {
+            "charts": 67,
+            "counts_returned": 0,
+            "within_half_block": 0,
+            "charts_with_grid_points": 0,
+            "accurate_registered": 0,
+            "registered_rate": 0.0,
+            "accurate_rate": 0.0,
+            "net_correct_rate": 0.0,
+            "grid_precision": 0.0,
+            "grid_recall": 0.0
+          },
+          "lift": {
+            "matched": 67,
+            "normals": 67,
+            "within_15_degrees": 12,
+            "median_normal_error_degrees": 33.99903486750897,
+            "metric_depths": 0,
+            "within_one_block": 0,
+            "median_depth_error_blocks": null
+          },
+          "known_lift": {
+            "matched": 67,
+            "normals": 67,
+            "within_15_degrees": 7,
+            "median_normal_error_degrees": 37.793381368124976,
+            "metric_depths": 0,
+            "within_one_block": 0,
+            "median_depth_error_blocks": null
+          },
+          "soffits_matched": 0,
+          "order": {
+            "geometry": {
+              "eligible": 120,
+              "proposed": 0,
+              "correct": 0,
+              "reversed": 0,
+              "other": 0
+            },
+            "depth-anything": {
+              "eligible": 120,
+              "proposed": 101,
+              "correct": 18,
+              "reversed": 0,
+              "other": 83
+            }
+          }
+        }
+      },
+      "soffits_eligible": 4,
+      "oracle_depth_order": {
+        "eligible_pairs": 120,
+        "correct_order": 116
+      },
+      "oracle_normal_samples": {
+        "samples": 63092,
+        "within_15": 46979,
+        "soffit_samples": 1688,
+        "soffit_within_15": 412
+      }
+    },
+    "registry": {
+      "frames": 4,
+      "methods": {
+        "edges+shade": {
+          "outlines": {
+            "matched": 6,
+            "eligible": 34,
+            "proposed": 35,
+            "precision": 0.17142857142857143,
+            "recall": 0.17647058823529413,
+            "f1": 0.17391304347826086,
+            "foreground_spill": 0.008265538561666124
+          },
+          "gaps": {
+            "filled_pixels": 88,
+            "opening_pixels": 1046,
+            "fill_rate": 0.0841300191204589
+          },
+          "support_matches": 6,
+          "observed_normal_median_deg": null,
+          "support_gaps": {
+            "filled_pixels": 88,
+            "opening_pixels": 1046
+          },
+          "pitch": {
+            "charts": 6,
+            "counts_returned": 1,
+            "within_half_block": 1,
+            "charts_with_grid_points": 1,
+            "accurate_registered": 1,
+            "registered_rate": 0.16666666666666666,
+            "accurate_rate": 0.16666666666666666,
+            "net_correct_rate": 0.16666666666666666,
+            "grid_precision": 0.8888888888888888,
+            "grid_recall": 0.04597701149425287
+          },
+          "lift": {
+            "matched": 6,
+            "normals": 6,
+            "within_15_degrees": 2,
+            "median_normal_error_degrees": 31.799560295171403,
+            "metric_depths": 1,
+            "within_one_block": 0,
+            "median_depth_error_blocks": 11.308753362350092
+          },
+          "known_lift": {
+            "matched": 6,
+            "normals": 6,
+            "within_15_degrees": 2,
+            "median_normal_error_degrees": 26.515133553103777,
+            "metric_depths": 1,
+            "within_one_block": 1,
+            "median_depth_error_blocks": 0.09893247519529069
+          },
+          "soffits_matched": 0,
+          "order": {
+            "geometry": {
+              "eligible": 24,
+              "proposed": 0,
+              "correct": 0,
+              "reversed": 0,
+              "other": 0
+            },
+            "depth-anything": {
+              "eligible": 24,
+              "proposed": 19,
+              "correct": 0,
+              "reversed": 0,
+              "other": 19
+            }
+          }
+        },
+        "normal-rank": {
+          "outlines": {
+            "matched": 7,
+            "eligible": 34,
+            "proposed": 20,
+            "precision": 0.35,
+            "recall": 0.20588235294117646,
+            "f1": 0.25925925925925924,
+            "foreground_spill": 0.013208048931832285
+          },
+          "gaps": {
+            "filled_pixels": 38,
+            "opening_pixels": 1046,
+            "fill_rate": 0.036328871892925434
+          },
+          "support_matches": 7,
+          "observed_normal_median_deg": 4.11074925036102,
+          "support_gaps": {
+            "filled_pixels": 38,
+            "opening_pixels": 1046
+          },
+          "pitch": {
+            "charts": 7,
+            "counts_returned": 0,
+            "within_half_block": 0,
+            "charts_with_grid_points": 0,
+            "accurate_registered": 0,
+            "registered_rate": 0.0,
+            "accurate_rate": 0.0,
+            "net_correct_rate": 0.0,
+            "grid_precision": 0.0,
+            "grid_recall": 0.0
+          },
+          "lift": {
+            "matched": 7,
+            "normals": 7,
+            "within_15_degrees": 2,
+            "median_normal_error_degrees": 70.12770366955898,
+            "metric_depths": 0,
+            "within_one_block": 0,
+            "median_depth_error_blocks": null
+          },
+          "known_lift": {
+            "matched": 7,
+            "normals": 7,
+            "within_15_degrees": 2,
+            "median_normal_error_degrees": 68.44442150638694,
+            "metric_depths": 0,
+            "within_one_block": 0,
+            "median_depth_error_blocks": null
+          },
+          "soffits_matched": 0,
+          "order": {
+            "geometry": {
+              "eligible": 24,
+              "proposed": 0,
+              "correct": 0,
+              "reversed": 0,
+              "other": 0
+            },
+            "depth-anything": {
+              "eligible": 24,
+              "proposed": 7,
+              "correct": 0,
+              "reversed": 0,
+              "other": 7
+            }
+          }
+        },
+        "normal-regions": {
+          "outlines": {
+            "matched": 21,
+            "eligible": 34,
+            "proposed": 31,
+            "precision": 0.6774193548387096,
+            "recall": 0.6176470588235294,
+            "f1": 0.6461538461538462,
+            "foreground_spill": 0.03772518988136338
+          },
+          "gaps": {
+            "filled_pixels": 111,
+            "opening_pixels": 1046,
+            "fill_rate": 0.10611854684512428
+          },
+          "support_matches": 20,
+          "observed_normal_median_deg": 3.764953175842738,
+          "support_gaps": {
+            "filled_pixels": 2,
+            "opening_pixels": 1046
+          },
+          "pitch": {
+            "charts": 21,
+            "counts_returned": 0,
+            "within_half_block": 0,
+            "charts_with_grid_points": 0,
+            "accurate_registered": 0,
+            "registered_rate": 0.0,
+            "accurate_rate": 0.0,
+            "net_correct_rate": 0.0,
+            "grid_precision": 0.0,
+            "grid_recall": 0.0
+          },
+          "lift": {
+            "matched": 21,
+            "normals": 21,
+            "within_15_degrees": 9,
+            "median_normal_error_degrees": 17.91138691087259,
+            "metric_depths": 0,
+            "within_one_block": 0,
+            "median_depth_error_blocks": null
+          },
+          "known_lift": {
+            "matched": 21,
+            "normals": 21,
+            "within_15_degrees": 10,
+            "median_normal_error_degrees": 24.13219963692845,
+            "metric_depths": 0,
+            "within_one_block": 0,
+            "median_depth_error_blocks": null
+          },
+          "soffits_matched": 0,
+          "order": {
+            "geometry": {
+              "eligible": 24,
+              "proposed": 0,
+              "correct": 0,
+              "reversed": 0,
+              "other": 0
+            },
+            "depth-anything": {
+              "eligible": 24,
+              "proposed": 24,
+              "correct": 2,
+              "reversed": 1,
+              "other": 21
+            }
+          }
+        }
+      },
+      "soffits_eligible": 0,
+      "oracle_depth_order": {
+        "eligible_pairs": 24,
+        "correct_order": 24
+      },
+      "oracle_normal_samples": {
+        "samples": 48940,
+        "within_15": 45383,
+        "soffit_samples": 0,
+        "soffit_within_15": 0
+      }
+    },
+    "shopfront": {
+      "frames": 8,
+      "methods": {
+        "edges+shade": {
+          "outlines": {
+            "matched": 10,
+            "eligible": 120,
+            "proposed": 87,
+            "precision": 0.11494252873563218,
+            "recall": 0.08333333333333333,
+            "f1": 0.0966183574879227,
+            "foreground_spill": 0.021624929871984496
+          },
+          "gaps": {
+            "filled_pixels": 185,
+            "opening_pixels": 952,
+            "fill_rate": 0.19432773109243698
+          },
+          "support_matches": 10,
+          "observed_normal_median_deg": null,
+          "support_gaps": {
+            "filled_pixels": 185,
+            "opening_pixels": 952
+          },
+          "pitch": {
+            "charts": 10,
+            "counts_returned": 2,
+            "within_half_block": 2,
+            "charts_with_grid_points": 0,
+            "accurate_registered": 0,
+            "registered_rate": 0.0,
+            "accurate_rate": 0.2,
+            "net_correct_rate": 0.2,
+            "grid_precision": 0.0,
+            "grid_recall": 0.0
+          },
+          "lift": {
+            "matched": 10,
+            "normals": 10,
+            "within_15_degrees": 2,
+            "median_normal_error_degrees": 33.659890097279074,
+            "metric_depths": 2,
+            "within_one_block": 0,
+            "median_depth_error_blocks": 2.5209629151242545
+          },
+          "known_lift": {
+            "matched": 10,
+            "normals": 10,
+            "within_15_degrees": 2,
+            "median_normal_error_degrees": 34.18850059076286,
+            "metric_depths": 2,
+            "within_one_block": 2,
+            "median_depth_error_blocks": 0.4639411395710198
+          },
+          "soffits_matched": 0,
+          "order": {
+            "geometry": {
+              "eligible": 96,
+              "proposed": 5,
+              "correct": 0,
+              "reversed": 0,
+              "other": 5
+            },
+            "depth-anything": {
+              "eligible": 96,
+              "proposed": 61,
+              "correct": 0,
+              "reversed": 0,
+              "other": 61
+            }
+          }
+        },
+        "normal-rank": {
+          "outlines": {
+            "matched": 16,
+            "eligible": 120,
+            "proposed": 46,
+            "precision": 0.34782608695652173,
+            "recall": 0.13333333333333333,
+            "f1": 0.1927710843373494,
+            "foreground_spill": 0.00921474358974359
+          },
+          "gaps": {
+            "filled_pixels": 145,
+            "opening_pixels": 952,
+            "fill_rate": 0.15231092436974789
+          },
+          "support_matches": 16,
+          "observed_normal_median_deg": 8.670556153392855,
+          "support_gaps": {
+            "filled_pixels": 145,
+            "opening_pixels": 952
+          },
+          "pitch": {
+            "charts": 16,
+            "counts_returned": 1,
+            "within_half_block": 1,
+            "charts_with_grid_points": 0,
+            "accurate_registered": 0,
+            "registered_rate": 0.0,
+            "accurate_rate": 0.0625,
+            "net_correct_rate": 0.0625,
+            "grid_precision": 0.0,
+            "grid_recall": 0.0
+          },
+          "lift": {
+            "matched": 16,
+            "normals": 16,
+            "within_15_degrees": 3,
+            "median_normal_error_degrees": 42.923576754367105,
+            "metric_depths": 1,
+            "within_one_block": 0,
+            "median_depth_error_blocks": 3.9635613445434004
+          },
+          "known_lift": {
+            "matched": 16,
+            "normals": 16,
+            "within_15_degrees": 3,
+            "median_normal_error_degrees": 44.011015401141336,
+            "metric_depths": 1,
+            "within_one_block": 0,
+            "median_depth_error_blocks": 2.4800809079399038
+          },
+          "soffits_matched": 0,
+          "order": {
+            "geometry": {
+              "eligible": 96,
+              "proposed": 0,
+              "correct": 0,
+              "reversed": 0,
+              "other": 0
+            },
+            "depth-anything": {
+              "eligible": 96,
+              "proposed": 13,
+              "correct": 0,
+              "reversed": 0,
+              "other": 13
+            }
+          }
+        },
+        "normal-regions": {
+          "outlines": {
+            "matched": 57,
+            "eligible": 120,
+            "proposed": 82,
+            "precision": 0.6951219512195121,
+            "recall": 0.475,
+            "f1": 0.5643564356435643,
+            "foreground_spill": 0.04458518731161189
+          },
+          "gaps": {
+            "filled_pixels": 124,
+            "opening_pixels": 952,
+            "fill_rate": 0.13025210084033614
+          },
+          "support_matches": 51,
+          "observed_normal_median_deg": 5.171450220304744,
+          "support_gaps": {
+            "filled_pixels": 6,
+            "opening_pixels": 952
+          },
+          "pitch": {
+            "charts": 57,
+            "counts_returned": 2,
+            "within_half_block": 2,
+            "charts_with_grid_points": 0,
+            "accurate_registered": 0,
+            "registered_rate": 0.0,
+            "accurate_rate": 0.03508771929824561,
+            "net_correct_rate": 0.03508771929824561,
+            "grid_precision": 0.0,
+            "grid_recall": 0.0
+          },
+          "lift": {
+            "matched": 57,
+            "normals": 57,
+            "within_15_degrees": 17,
+            "median_normal_error_degrees": 27.020158867562998,
+            "metric_depths": 2,
+            "within_one_block": 0,
+            "median_depth_error_blocks": 6.32381640275174
+          },
+          "known_lift": {
+            "matched": 57,
+            "normals": 57,
+            "within_15_degrees": 10,
+            "median_normal_error_degrees": 31.091988268768134,
+            "metric_depths": 2,
+            "within_one_block": 2,
+            "median_depth_error_blocks": 0.3413225801628421
+          },
+          "soffits_matched": 0,
+          "order": {
+            "geometry": {
+              "eligible": 96,
+              "proposed": 0,
+              "correct": 0,
+              "reversed": 0,
+              "other": 0
+            },
+            "depth-anything": {
+              "eligible": 96,
+              "proposed": 61,
+              "correct": 11,
+              "reversed": 0,
+              "other": 50
+            }
+          }
+        }
+      },
+      "soffits_eligible": 4,
+      "oracle_depth_order": {
+        "eligible_pairs": 100,
+        "correct_order": 100
+      },
+      "oracle_normal_samples": {
+        "samples": 80376,
+        "within_15": 61035,
+        "soffit_samples": 1100,
+        "soffit_within_15": 56
+      }
+    },
+    "wing": {
+      "frames": 12,
+      "methods": {
+        "edges+shade": {
+          "outlines": {
+            "matched": 18,
+            "eligible": 36,
+            "proposed": 46,
+            "precision": 0.391304347826087,
+            "recall": 0.5,
+            "f1": 0.43902439024390244,
+            "foreground_spill": 0.008945014469876349
+          },
+          "gaps": {
+            "filled_pixels": 7,
+            "opening_pixels": 132,
+            "fill_rate": 0.05303030303030303
+          },
+          "support_matches": 18,
+          "observed_normal_median_deg": null,
+          "support_gaps": {
+            "filled_pixels": 7,
+            "opening_pixels": 132
+          },
+          "pitch": {
+            "charts": 18,
+            "counts_returned": 0,
+            "within_half_block": 0,
+            "charts_with_grid_points": 0,
+            "accurate_registered": 0,
+            "registered_rate": 0.0,
+            "accurate_rate": 0.0,
+            "net_correct_rate": 0.0,
+            "grid_precision": 0.0,
+            "grid_recall": 0.0
+          },
+          "lift": {
+            "matched": 18,
+            "normals": 18,
+            "within_15_degrees": 6,
+            "median_normal_error_degrees": 18.640438450946448,
+            "metric_depths": 0,
+            "within_one_block": 0,
+            "median_depth_error_blocks": null
+          },
+          "known_lift": {
+            "matched": 18,
+            "normals": 18,
+            "within_15_degrees": 9,
+            "median_normal_error_degrees": 14.128859027983806,
+            "metric_depths": 0,
+            "within_one_block": 0,
+            "median_depth_error_blocks": null
+          },
+          "soffits_matched": 0,
+          "order": {
+            "geometry": {
+              "eligible": 4,
+              "proposed": 1,
+              "correct": 0,
+              "reversed": 0,
+              "other": 1
+            },
+            "depth-anything": {
+              "eligible": 4,
+              "proposed": 35,
+              "correct": 1,
+              "reversed": 0,
+              "other": 34
+            }
+          }
+        },
+        "normal-rank": {
+          "outlines": {
+            "matched": 19,
+            "eligible": 36,
+            "proposed": 26,
+            "precision": 0.7307692307692307,
+            "recall": 0.5277777777777778,
+            "f1": 0.6129032258064516,
+            "foreground_spill": 0.010161155933098949
+          },
+          "gaps": {
+            "filled_pixels": 10,
+            "opening_pixels": 132,
+            "fill_rate": 0.07575757575757576
+          },
+          "support_matches": 19,
+          "observed_normal_median_deg": 3.5201246826477885,
+          "support_gaps": {
+            "filled_pixels": 10,
+            "opening_pixels": 132
+          },
+          "pitch": {
+            "charts": 19,
+            "counts_returned": 2,
+            "within_half_block": 2,
+            "charts_with_grid_points": 0,
+            "accurate_registered": 0,
+            "registered_rate": 0.0,
+            "accurate_rate": 0.10526315789473684,
+            "net_correct_rate": 0.10526315789473684,
+            "grid_precision": 0.0,
+            "grid_recall": 0.0
+          },
+          "lift": {
+            "matched": 19,
+            "normals": 19,
+            "within_15_degrees": 13,
+            "median_normal_error_degrees": 10.200895049959758,
+            "metric_depths": 2,
+            "within_one_block": 1,
+            "median_depth_error_blocks": 2.934554062974689
+          },
+          "known_lift": {
+            "matched": 19,
+            "normals": 19,
+            "within_15_degrees": 13,
+            "median_normal_error_degrees": 6.785616464822096,
+            "metric_depths": 2,
+            "within_one_block": 2,
+            "median_depth_error_blocks": 0.07971117973322528
+          },
+          "soffits_matched": 0,
+          "order": {
+            "geometry": {
+              "eligible": 4,
+              "proposed": 0,
+              "correct": 0,
+              "reversed": 0,
+              "other": 0
+            },
+            "depth-anything": {
+              "eligible": 4,
+              "proposed": 18,
+              "correct": 1,
+              "reversed": 0,
+              "other": 17
+            }
+          }
+        },
+        "normal-regions": {
+          "outlines": {
+            "matched": 28,
+            "eligible": 36,
+            "proposed": 36,
+            "precision": 0.7777777777777778,
+            "recall": 0.7777777777777778,
+            "f1": 0.7777777777777778,
+            "foreground_spill": 0.005231628991567076
+          },
+          "gaps": {
+            "filled_pixels": 34,
+            "opening_pixels": 132,
+            "fill_rate": 0.25757575757575757
+          },
+          "support_matches": 26,
+          "observed_normal_median_deg": 3.1307335537896357,
+          "support_gaps": {
+            "filled_pixels": 17,
+            "opening_pixels": 132
+          },
+          "pitch": {
+            "charts": 28,
+            "counts_returned": 8,
+            "within_half_block": 8,
+            "charts_with_grid_points": 1,
+            "accurate_registered": 1,
+            "registered_rate": 0.03571428571428571,
+            "accurate_rate": 0.2857142857142857,
+            "net_correct_rate": 0.2857142857142857,
+            "grid_precision": 1.0,
+            "grid_recall": 0.010230179028132993
+          },
+          "lift": {
+            "matched": 28,
+            "normals": 28,
+            "within_15_degrees": 18,
+            "median_normal_error_degrees": 4.846160428728183,
+            "metric_depths": 11,
+            "within_one_block": 5,
+            "median_depth_error_blocks": 1.0783634316806925
+          },
+          "known_lift": {
+            "matched": 28,
+            "normals": 28,
+            "within_15_degrees": 18,
+            "median_normal_error_degrees": 4.169597230093075,
+            "metric_depths": 11,
+            "within_one_block": 10,
+            "median_depth_error_blocks": 0.33604874636376536
+          },
+          "soffits_matched": 0,
+          "order": {
+            "geometry": {
+              "eligible": 4,
+              "proposed": 4,
+              "correct": 0,
+              "reversed": 0,
+              "other": 4
+            },
+            "depth-anything": {
+              "eligible": 4,
+              "proposed": 22,
+              "correct": 2,
+              "reversed": 0,
+              "other": 20
+            }
+          }
+        }
+      },
+      "soffits_eligible": 0,
+      "oracle_depth_order": {
+        "eligible_pairs": 4,
+        "correct_order": 4
+      },
+      "oracle_normal_samples": {
+        "samples": 408628,
+        "within_15": 233186,
+        "soffit_samples": 0,
+        "soffit_within_15": 0
+      }
+    },
+    "workshop": {
+      "frames": 4,
+      "methods": {
+        "edges+shade": {
+          "outlines": {
+            "matched": 6,
+            "eligible": 60,
+            "proposed": 29,
+            "precision": 0.20689655172413793,
+            "recall": 0.1,
+            "f1": 0.1348314606741573,
+            "foreground_spill": 0.0011330861145447055
+          },
+          "gaps": {
+            "filled_pixels": 6,
+            "opening_pixels": 520,
+            "fill_rate": 0.011538461538461539
+          },
+          "support_matches": 6,
+          "observed_normal_median_deg": null,
+          "support_gaps": {
+            "filled_pixels": 6,
+            "opening_pixels": 520
+          },
+          "pitch": {
+            "charts": 6,
+            "counts_returned": 0,
+            "within_half_block": 0,
+            "charts_with_grid_points": 0,
+            "accurate_registered": 0,
+            "registered_rate": 0.0,
+            "accurate_rate": 0.0,
+            "net_correct_rate": 0.0,
+            "grid_precision": 0.0,
+            "grid_recall": 0.0
+          },
+          "lift": {
+            "matched": 6,
+            "normals": 6,
+            "within_15_degrees": 1,
+            "median_normal_error_degrees": 29.10573952461401,
+            "metric_depths": 0,
+            "within_one_block": 0,
+            "median_depth_error_blocks": null
+          },
+          "known_lift": {
+            "matched": 6,
+            "normals": 6,
+            "within_15_degrees": 0,
+            "median_normal_error_degrees": 30.7336730400082,
+            "metric_depths": 0,
+            "within_one_block": 0,
+            "median_depth_error_blocks": null
+          },
+          "soffits_matched": 0,
+          "order": {
+            "geometry": {
+              "eligible": 52,
+              "proposed": 0,
+              "correct": 0,
+              "reversed": 0,
+              "other": 0
+            },
+            "depth-anything": {
+              "eligible": 52,
+              "proposed": 10,
+              "correct": 0,
+              "reversed": 0,
+              "other": 10
+            }
+          }
+        },
+        "normal-rank": {
+          "outlines": {
+            "matched": 11,
+            "eligible": 60,
+            "proposed": 18,
+            "precision": 0.6111111111111112,
+            "recall": 0.18333333333333332,
+            "f1": 0.28205128205128205,
+            "foreground_spill": 0.022835900159320233
+          },
+          "gaps": {
+            "filled_pixels": 187,
+            "opening_pixels": 520,
+            "fill_rate": 0.3596153846153846
+          },
+          "support_matches": 11,
+          "observed_normal_median_deg": 5.012032325902797,
+          "support_gaps": {
+            "filled_pixels": 187,
+            "opening_pixels": 520
+          },
+          "pitch": {
+            "charts": 11,
+            "counts_returned": 0,
+            "within_half_block": 0,
+            "charts_with_grid_points": 0,
+            "accurate_registered": 0,
+            "registered_rate": 0.0,
+            "accurate_rate": 0.0,
+            "net_correct_rate": 0.0,
+            "grid_precision": 0.0,
+            "grid_recall": 0.0
+          },
+          "lift": {
+            "matched": 11,
+            "normals": 11,
+            "within_15_degrees": 3,
+            "median_normal_error_degrees": 18.702937159710245,
+            "metric_depths": 0,
+            "within_one_block": 0,
+            "median_depth_error_blocks": null
+          },
+          "known_lift": {
+            "matched": 11,
+            "normals": 11,
+            "within_15_degrees": 2,
+            "median_normal_error_degrees": 21.98902822417881,
+            "metric_depths": 0,
+            "within_one_block": 0,
+            "median_depth_error_blocks": null
+          },
+          "soffits_matched": 0,
+          "order": {
+            "geometry": {
+              "eligible": 52,
+              "proposed": 1,
+              "correct": 0,
+              "reversed": 0,
+              "other": 1
+            },
+            "depth-anything": {
+              "eligible": 52,
+              "proposed": 6,
+              "correct": 0,
+              "reversed": 0,
+              "other": 6
+            }
+          }
+        },
+        "normal-regions": {
+          "outlines": {
+            "matched": 16,
+            "eligible": 60,
+            "proposed": 32,
+            "precision": 0.5,
+            "recall": 0.26666666666666666,
+            "f1": 0.34782608695652173,
+            "foreground_spill": 0.130275946051513
+          },
+          "gaps": {
+            "filled_pixels": 274,
+            "opening_pixels": 520,
+            "fill_rate": 0.5269230769230769
+          },
+          "support_matches": 17,
+          "observed_normal_median_deg": 3.1710743016479643,
+          "support_gaps": {
+            "filled_pixels": 1,
+            "opening_pixels": 520
+          },
+          "pitch": {
+            "charts": 16,
+            "counts_returned": 0,
+            "within_half_block": 0,
+            "charts_with_grid_points": 0,
+            "accurate_registered": 0,
+            "registered_rate": 0.0,
+            "accurate_rate": 0.0,
+            "net_correct_rate": 0.0,
+            "grid_precision": 0.0,
+            "grid_recall": 0.0
+          },
+          "lift": {
+            "matched": 16,
+            "normals": 16,
+            "within_15_degrees": 4,
+            "median_normal_error_degrees": 24.646235896825704,
+            "metric_depths": 0,
+            "within_one_block": 0,
+            "median_depth_error_blocks": null
+          },
+          "known_lift": {
+            "matched": 16,
+            "normals": 16,
+            "within_15_degrees": 5,
+            "median_normal_error_degrees": 23.12650284417078,
+            "metric_depths": 0,
+            "within_one_block": 0,
+            "median_depth_error_blocks": null
+          },
+          "soffits_matched": 0,
+          "order": {
+            "geometry": {
+              "eligible": 52,
+              "proposed": 1,
+              "correct": 0,
+              "reversed": 0,
+              "other": 1
+            },
+            "depth-anything": {
+              "eligible": 52,
+              "proposed": 29,
+              "correct": 3,
+              "reversed": 0,
+              "other": 26
+            }
+          }
+        }
+      },
+      "soffits_eligible": 4,
+      "oracle_depth_order": {
+        "eligible_pairs": 52,
+        "correct_order": 52
+      },
+      "oracle_normal_samples": {
+        "samples": 42906,
+        "within_15": 35169,
+        "soffit_samples": 584,
+        "soffit_within_15": 81
+      }
+    }
+  },
+  "floors": {
+    "light_gray_concrete": {
+      "frames": 28,
+      "methods": {
+        "edges+shade": {
+          "outlines": {
+            "matched": 43,
+            "eligible": 286,
+            "proposed": 216,
+            "precision": 0.19907407407407407,
+            "recall": 0.15034965034965034,
+            "f1": 0.17131474103585656,
+            "foreground_spill": 0.01370276960983717
+          },
+          "gaps": {
+            "filled_pixels": 587,
+            "opening_pixels": 8318,
+            "fill_rate": 0.07056984852127915
+          },
+          "support_matches": 43,
+          "observed_normal_median_deg": null,
+          "support_gaps": {
+            "filled_pixels": 587,
+            "opening_pixels": 8318
+          },
+          "pitch": {
+            "charts": 43,
+            "counts_returned": 3,
+            "within_half_block": 3,
+            "charts_with_grid_points": 0,
+            "accurate_registered": 0,
+            "registered_rate": 0.0,
+            "accurate_rate": 0.06976744186046512,
+            "net_correct_rate": 0.06976744186046512,
+            "grid_precision": 0.0,
+            "grid_recall": 0.0
+          },
+          "lift": {
+            "matched": 43,
+            "normals": 43,
+            "within_15_degrees": 10,
+            "median_normal_error_degrees": 24.921600920116468,
+            "metric_depths": 4,
+            "within_one_block": 0,
+            "median_depth_error_blocks": 11.381920864270938
+          },
+          "known_lift": {
+            "matched": 43,
+            "normals": 43,
+            "within_15_degrees": 11,
+            "median_normal_error_degrees": 24.93055100382472,
+            "metric_depths": 4,
+            "within_one_block": 3,
+            "median_depth_error_blocks": 0.6779012122686794
+          },
+          "soffits_matched": 0,
+          "order": {
+            "geometry": {
+              "eligible": 198,
+              "proposed": 11,
+              "correct": 0,
+              "reversed": 0,
+              "other": 11
+            },
+            "depth-anything": {
+              "eligible": 198,
+              "proposed": 122,
+              "correct": 1,
+              "reversed": 0,
+              "other": 121
+            }
+          }
+        },
+        "normal-rank": {
+          "outlines": {
+            "matched": 55,
+            "eligible": 286,
+            "proposed": 111,
+            "precision": 0.4954954954954955,
+            "recall": 0.19230769230769232,
+            "f1": 0.2770780856423174,
+            "foreground_spill": 0.015641867330528077
+          },
+          "gaps": {
+            "filled_pixels": 788,
+            "opening_pixels": 8318,
+            "fill_rate": 0.09473431113248378
+          },
+          "support_matches": 55,
+          "observed_normal_median_deg": 4.328759692871806,
+          "support_gaps": {
+            "filled_pixels": 788,
+            "opening_pixels": 8318
+          },
+          "pitch": {
+            "charts": 55,
+            "counts_returned": 3,
+            "within_half_block": 3,
+            "charts_with_grid_points": 0,
+            "accurate_registered": 0,
+            "registered_rate": 0.0,
+            "accurate_rate": 0.05454545454545454,
+            "net_correct_rate": 0.05454545454545454,
+            "grid_precision": 0.0,
+            "grid_recall": 0.0
+          },
+          "lift": {
+            "matched": 55,
+            "normals": 55,
+            "within_15_degrees": 15,
+            "median_normal_error_degrees": 28.644550809722695,
+            "metric_depths": 3,
+            "within_one_block": 1,
+            "median_depth_error_blocks": 2.594418205892566
+          },
+          "known_lift": {
+            "matched": 55,
+            "normals": 55,
+            "within_15_degrees": 14,
+            "median_normal_error_degrees": 31.8667772229717,
+            "metric_depths": 3,
+            "within_one_block": 2,
+            "median_depth_error_blocks": 0.05912761407213907
+          },
+          "soffits_matched": 0,
+          "order": {
+            "geometry": {
+              "eligible": 198,
+              "proposed": 2,
+              "correct": 0,
+              "reversed": 0,
+              "other": 2
+            },
+            "depth-anything": {
+              "eligible": 198,
+              "proposed": 51,
+              "correct": 3,
+              "reversed": 0,
+              "other": 48
+            }
+          }
+        },
+        "normal-regions": {
+          "outlines": {
+            "matched": 127,
+            "eligible": 286,
+            "proposed": 203,
+            "precision": 0.625615763546798,
+            "recall": 0.44405594405594406,
+            "f1": 0.5194274028629857,
+            "foreground_spill": 0.025990455155299932
+          },
+          "gaps": {
+            "filled_pixels": 2120,
+            "opening_pixels": 8318,
+            "fill_rate": 0.2548689588843472
+          },
+          "support_matches": 124,
+          "observed_normal_median_deg": 4.078679432759576,
+          "support_gaps": {
+            "filled_pixels": 414,
+            "opening_pixels": 8318
+          },
+          "pitch": {
+            "charts": 127,
+            "counts_returned": 6,
+            "within_half_block": 6,
+            "charts_with_grid_points": 0,
+            "accurate_registered": 0,
+            "registered_rate": 0.0,
+            "accurate_rate": 0.047244094488188976,
+            "net_correct_rate": 0.047244094488188976,
+            "grid_precision": 0.0,
+            "grid_recall": 0.0
+          },
+          "lift": {
+            "matched": 127,
+            "normals": 127,
+            "within_15_degrees": 40,
+            "median_normal_error_degrees": 22.698949331662913,
+            "metric_depths": 7,
+            "within_one_block": 3,
+            "median_depth_error_blocks": 1.0783634316806925
+          },
+          "known_lift": {
+            "matched": 127,
+            "normals": 127,
+            "within_15_degrees": 33,
+            "median_normal_error_degrees": 24.047083022860033,
+            "metric_depths": 7,
+            "within_one_block": 7,
+            "median_depth_error_blocks": 0.2250566944931407
+          },
+          "soffits_matched": 1,
+          "order": {
+            "geometry": {
+              "eligible": 198,
+              "proposed": 3,
+              "correct": 0,
+              "reversed": 0,
+              "other": 3
+            },
+            "depth-anything": {
+              "eligible": 198,
+              "proposed": 168,
+              "correct": 26,
+              "reversed": 0,
+              "other": 142
+            }
+          }
+        }
+      },
+      "soffits_eligible": 10,
+      "oracle_depth_order": {
+        "eligible_pairs": 216,
+        "correct_order": 214
+      },
+      "oracle_normal_samples": {
+        "samples": 568570,
+        "within_15": 440241,
+        "soffit_samples": 3006,
+        "soffit_within_15": 1013
+      }
+    },
+    "smooth_stone": {
+      "frames": 20,
+      "methods": {
+        "edges+shade": {
+          "outlines": {
+            "matched": 35,
+            "eligible": 180,
+            "proposed": 135,
+            "precision": 0.25925925925925924,
+            "recall": 0.19444444444444445,
+            "f1": 0.2222222222222222,
+            "foreground_spill": 0.014265425949085359
+          },
+          "gaps": {
+            "filled_pixels": 382,
+            "opening_pixels": 4290,
+            "fill_rate": 0.08904428904428904
+          },
+          "support_matches": 35,
+          "observed_normal_median_deg": null,
+          "support_gaps": {
+            "filled_pixels": 382,
+            "opening_pixels": 4290
+          },
+          "pitch": {
+            "charts": 35,
+            "counts_returned": 3,
+            "within_half_block": 2,
+            "charts_with_grid_points": 0,
+            "accurate_registered": 0,
+            "registered_rate": 0.0,
+            "accurate_rate": 0.05714285714285714,
+            "net_correct_rate": 0.02857142857142857,
+            "grid_precision": 0.0,
+            "grid_recall": 0.0
+          },
+          "lift": {
+            "matched": 35,
+            "normals": 35,
+            "within_15_degrees": 8,
+            "median_normal_error_degrees": 21.681850190920677,
+            "metric_depths": 3,
+            "within_one_block": 0,
+            "median_depth_error_blocks": 2.173603894401303
+          },
+          "known_lift": {
+            "matched": 35,
+            "normals": 35,
+            "within_15_degrees": 13,
+            "median_normal_error_degrees": 20.823101351448724,
+            "metric_depths": 3,
+            "within_one_block": 2,
+            "median_depth_error_blocks": 0.7425004174158936
+          },
+          "soffits_matched": 0,
+          "order": {
+            "geometry": {
+              "eligible": 124,
+              "proposed": 8,
+              "correct": 0,
+              "reversed": 0,
+              "other": 8
+            },
+            "depth-anything": {
+              "eligible": 124,
+              "proposed": 83,
+              "correct": 2,
+              "reversed": 0,
+              "other": 81
+            }
+          }
+        },
+        "normal-rank": {
+          "outlines": {
+            "matched": 42,
+            "eligible": 180,
+            "proposed": 81,
+            "precision": 0.5185185185185185,
+            "recall": 0.23333333333333334,
+            "f1": 0.3218390804597701,
+            "foreground_spill": 0.018392042940418248
+          },
+          "gaps": {
+            "filled_pixels": 408,
+            "opening_pixels": 4290,
+            "fill_rate": 0.0951048951048951
+          },
+          "support_matches": 42,
+          "observed_normal_median_deg": 5.151553188030251,
+          "support_gaps": {
+            "filled_pixels": 408,
+            "opening_pixels": 4290
+          },
+          "pitch": {
+            "charts": 42,
+            "counts_returned": 2,
+            "within_half_block": 2,
+            "charts_with_grid_points": 0,
+            "accurate_registered": 0,
+            "registered_rate": 0.0,
+            "accurate_rate": 0.047619047619047616,
+            "net_correct_rate": 0.047619047619047616,
+            "grid_precision": 0.0,
+            "grid_recall": 0.0
+          },
+          "lift": {
+            "matched": 42,
+            "normals": 42,
+            "within_15_degrees": 14,
+            "median_normal_error_degrees": 25.262341955051717,
+            "metric_depths": 2,
+            "within_one_block": 0,
+            "median_depth_error_blocks": 4.474272101417236
+          },
+          "known_lift": {
+            "matched": 42,
+            "normals": 42,
+            "within_15_degrees": 14,
+            "median_normal_error_degrees": 25.683493424157597,
+            "metric_depths": 2,
+            "within_one_block": 1,
+            "median_depth_error_blocks": 1.2901878266671076
+          },
+          "soffits_matched": 0,
+          "order": {
+            "geometry": {
+              "eligible": 124,
+              "proposed": 1,
+              "correct": 0,
+              "reversed": 0,
+              "other": 1
+            },
+            "depth-anything": {
+              "eligible": 124,
+              "proposed": 33,
+              "correct": 3,
+              "reversed": 0,
+              "other": 30
+            }
+          }
+        },
+        "normal-regions": {
+          "outlines": {
+            "matched": 96,
+            "eligible": 180,
+            "proposed": 136,
+            "precision": 0.7058823529411765,
+            "recall": 0.5333333333333333,
+            "f1": 0.6075949367088608,
+            "foreground_spill": 0.01399330223710614
+          },
+          "gaps": {
+            "filled_pixels": 982,
+            "opening_pixels": 4290,
+            "fill_rate": 0.2289044289044289
+          },
+          "support_matches": 92,
+          "observed_normal_median_deg": 4.43174512013718,
+          "support_gaps": {
+            "filled_pixels": 164,
+            "opening_pixels": 4290
+          },
+          "pitch": {
+            "charts": 96,
+            "counts_returned": 6,
+            "within_half_block": 6,
+            "charts_with_grid_points": 1,
+            "accurate_registered": 1,
+            "registered_rate": 0.010416666666666666,
+            "accurate_rate": 0.0625,
+            "net_correct_rate": 0.0625,
+            "grid_precision": 1.0,
+            "grid_recall": 0.006853226727584237
+          },
+          "lift": {
+            "matched": 96,
+            "normals": 96,
+            "within_15_degrees": 32,
+            "median_normal_error_degrees": 23.04774863260321,
+            "metric_depths": 8,
+            "within_one_block": 4,
+            "median_depth_error_blocks": 1.5181997078940224
+          },
+          "known_lift": {
+            "matched": 96,
+            "normals": 96,
+            "within_15_degrees": 28,
+            "median_normal_error_degrees": 24.846981616983363,
+            "metric_depths": 8,
+            "within_one_block": 7,
+            "median_depth_error_blocks": 0.33868566326330374
+          },
+          "soffits_matched": 0,
+          "order": {
+            "geometry": {
+              "eligible": 124,
+              "proposed": 2,
+              "correct": 0,
+              "reversed": 0,
+              "other": 2
+            },
+            "depth-anything": {
+              "eligible": 124,
+              "proposed": 106,
+              "correct": 15,
+              "reversed": 1,
+              "other": 90
+            }
+          }
+        }
+      },
+      "soffits_eligible": 4,
+      "oracle_depth_order": {
+        "eligible_pairs": 130,
+        "correct_order": 128
+      },
+      "oracle_normal_samples": {
+        "samples": 480358,
+        "within_15": 366552,
+        "soffit_samples": 1490,
+        "soffit_within_15": 233
+      }
+    }
+  },
+  "cohorts": {
+    "development": {
+      "frames": 20,
+      "methods": {
+        "edges+shade": {
+          "outlines": {
+            "matched": 28,
+            "eligible": 156,
+            "proposed": 133,
+            "precision": 0.21052631578947367,
+            "recall": 0.1794871794871795,
+            "f1": 0.19377162629757785,
+            "foreground_spill": 0.012547087800637496
+          },
+          "gaps": {
+            "filled_pixels": 192,
+            "opening_pixels": 1084,
+            "fill_rate": 0.17712177121771217
+          },
+          "support_matches": 28,
+          "observed_normal_median_deg": null,
+          "support_gaps": {
+            "filled_pixels": 192,
+            "opening_pixels": 1084
+          },
+          "pitch": {
+            "charts": 28,
+            "counts_returned": 2,
+            "within_half_block": 2,
+            "charts_with_grid_points": 0,
+            "accurate_registered": 0,
+            "registered_rate": 0.0,
+            "accurate_rate": 0.07142857142857142,
+            "net_correct_rate": 0.07142857142857142,
+            "grid_precision": 0.0,
+            "grid_recall": 0.0
+          },
+          "lift": {
+            "matched": 28,
+            "normals": 28,
+            "within_15_degrees": 8,
+            "median_normal_error_degrees": 23.077292226021562,
+            "metric_depths": 2,
+            "within_one_block": 0,
+            "median_depth_error_blocks": 2.5209629151242545
+          },
+          "known_lift": {
+            "matched": 28,
+            "normals": 28,
+            "within_15_degrees": 11,
+            "median_normal_error_degrees": 20.00276076770877,
+            "metric_depths": 2,
+            "within_one_block": 2,
+            "median_depth_error_blocks": 0.4639411395710198
+          },
+          "soffits_matched": 0,
+          "order": {
+            "geometry": {
+              "eligible": 100,
+              "proposed": 6,
+              "correct": 0,
+              "reversed": 0,
+              "other": 6
+            },
+            "depth-anything": {
+              "eligible": 100,
+              "proposed": 96,
+              "correct": 1,
+              "reversed": 0,
+              "other": 95
+            }
+          }
+        },
+        "normal-rank": {
+          "outlines": {
+            "matched": 35,
+            "eligible": 156,
+            "proposed": 72,
+            "precision": 0.4861111111111111,
+            "recall": 0.22435897435897437,
+            "f1": 0.30701754385964913,
+            "foreground_spill": 0.009887965305384893
+          },
+          "gaps": {
+            "filled_pixels": 155,
+            "opening_pixels": 1084,
+            "fill_rate": 0.1429889298892989
+          },
+          "support_matches": 35,
+          "observed_normal_median_deg": 4.412272780467084,
+          "support_gaps": {
+            "filled_pixels": 155,
+            "opening_pixels": 1084
+          },
+          "pitch": {
+            "charts": 35,
+            "counts_returned": 3,
+            "within_half_block": 3,
+            "charts_with_grid_points": 0,
+            "accurate_registered": 0,
+            "registered_rate": 0.0,
+            "accurate_rate": 0.08571428571428572,
+            "net_correct_rate": 0.08571428571428572,
+            "grid_precision": 0.0,
+            "grid_recall": 0.0
+          },
+          "lift": {
+            "matched": 35,
+            "normals": 35,
+            "within_15_degrees": 16,
+            "median_normal_error_degrees": 18.555251534004757,
+            "metric_depths": 3,
+            "within_one_block": 1,
+            "median_depth_error_blocks": 3.9635613445434004
+          },
+          "known_lift": {
+            "matched": 35,
+            "normals": 35,
+            "within_15_degrees": 16,
+            "median_normal_error_degrees": 15.3898288747114,
+            "metric_depths": 3,
+            "within_one_block": 2,
+            "median_depth_error_blocks": 0.10029474539431149
+          },
+          "soffits_matched": 0,
+          "order": {
+            "geometry": {
+              "eligible": 100,
+              "proposed": 0,
+              "correct": 0,
+              "reversed": 0,
+              "other": 0
+            },
+            "depth-anything": {
+              "eligible": 100,
+              "proposed": 31,
+              "correct": 1,
+              "reversed": 0,
+              "other": 30
+            }
+          }
+        },
+        "normal-regions": {
+          "outlines": {
+            "matched": 85,
+            "eligible": 156,
+            "proposed": 118,
+            "precision": 0.7203389830508474,
+            "recall": 0.5448717948717948,
+            "f1": 0.6204379562043796,
+            "foreground_spill": 0.010066122988759092
+          },
+          "gaps": {
+            "filled_pixels": 158,
+            "opening_pixels": 1084,
+            "fill_rate": 0.14575645756457564
+          },
+          "support_matches": 77,
+          "observed_normal_median_deg": 4.450136636075089,
+          "support_gaps": {
+            "filled_pixels": 23,
+            "opening_pixels": 1084
+          },
+          "pitch": {
+            "charts": 85,
+            "counts_returned": 10,
+            "within_half_block": 10,
+            "charts_with_grid_points": 1,
+            "accurate_registered": 1,
+            "registered_rate": 0.011764705882352941,
+            "accurate_rate": 0.11764705882352941,
+            "net_correct_rate": 0.11764705882352941,
+            "grid_precision": 1.0,
+            "grid_recall": 0.006188757091284167
+          },
+          "lift": {
+            "matched": 85,
+            "normals": 85,
+            "within_15_degrees": 35,
+            "median_normal_error_degrees": 22.258749226051716,
+            "metric_depths": 13,
+            "within_one_block": 5,
+            "median_depth_error_blocks": 1.6154431949281722
+          },
+          "known_lift": {
+            "matched": 85,
+            "normals": 85,
+            "within_15_degrees": 28,
+            "median_normal_error_degrees": 23.04143480606077,
+            "metric_depths": 13,
+            "within_one_block": 12,
+            "median_depth_error_blocks": 0.3413225801628421
+          },
+          "soffits_matched": 0,
+          "order": {
+            "geometry": {
+              "eligible": 100,
+              "proposed": 4,
+              "correct": 0,
+              "reversed": 0,
+              "other": 4
+            },
+            "depth-anything": {
+              "eligible": 100,
+              "proposed": 83,
+              "correct": 13,
+              "reversed": 0,
+              "other": 70
+            }
+          }
+        }
+      },
+      "soffits_eligible": 4,
+      "oracle_depth_order": {
+        "eligible_pairs": 104,
+        "correct_order": 104
+      },
+      "oracle_normal_samples": {
+        "samples": 489004,
+        "within_15": 294221,
+        "soffit_samples": 1100,
+        "soffit_within_15": 56
+      }
+    },
+    "regression": {
+      "frames": 28,
+      "methods": {
+        "edges+shade": {
+          "outlines": {
+            "matched": 50,
+            "eligible": 310,
+            "proposed": 218,
+            "precision": 0.22935779816513763,
+            "recall": 0.16129032258064516,
+            "f1": 0.1893939393939394,
+            "foreground_spill": 0.015358733916944454
+          },
+          "gaps": {
+            "filled_pixels": 777,
+            "opening_pixels": 11524,
+            "fill_rate": 0.06742450538007637
+          },
+          "support_matches": 50,
+          "observed_normal_median_deg": null,
+          "support_gaps": {
+            "filled_pixels": 777,
+            "opening_pixels": 11524
+          },
+          "pitch": {
+            "charts": 50,
+            "counts_returned": 4,
+            "within_half_block": 3,
+            "charts_with_grid_points": 0,
+            "accurate_registered": 0,
+            "registered_rate": 0.0,
+            "accurate_rate": 0.06,
+            "net_correct_rate": 0.04,
+            "grid_precision": 0.0,
+            "grid_recall": 0.0
+          },
+          "lift": {
+            "matched": 50,
+            "normals": 50,
+            "within_15_degrees": 10,
+            "median_normal_error_degrees": 24.34633070266353,
+            "metric_depths": 5,
+            "within_one_block": 0,
+            "median_depth_error_blocks": 11.502704419128975
+          },
+          "known_lift": {
+            "matched": 50,
+            "normals": 50,
+            "within_15_degrees": 13,
+            "median_normal_error_degrees": 23.608553371418363,
+            "metric_depths": 5,
+            "within_one_block": 3,
+            "median_depth_error_blocks": 0.891861284966339
+          },
+          "soffits_matched": 0,
+          "order": {
+            "geometry": {
+              "eligible": 222,
+              "proposed": 13,
+              "correct": 0,
+              "reversed": 0,
+              "other": 13
+            },
+            "depth-anything": {
+              "eligible": 222,
+              "proposed": 109,
+              "correct": 2,
+              "reversed": 0,
+              "other": 107
+            }
+          }
+        },
+        "normal-rank": {
+          "outlines": {
+            "matched": 62,
+            "eligible": 310,
+            "proposed": 120,
+            "precision": 0.5166666666666667,
+            "recall": 0.2,
+            "f1": 0.28837209302325584,
+            "foreground_spill": 0.02299350419916832
+          },
+          "gaps": {
+            "filled_pixels": 1041,
+            "opening_pixels": 11524,
+            "fill_rate": 0.0903332176327664
+          },
+          "support_matches": 62,
+          "observed_normal_median_deg": 4.950432736023562,
+          "support_gaps": {
+            "filled_pixels": 1041,
+            "opening_pixels": 11524
+          },
+          "pitch": {
+            "charts": 62,
+            "counts_returned": 2,
+            "within_half_block": 2,
+            "charts_with_grid_points": 0,
+            "accurate_registered": 0,
+            "registered_rate": 0.0,
+            "accurate_rate": 0.03225806451612903,
+            "net_correct_rate": 0.03225806451612903,
+            "grid_precision": 0.0,
+            "grid_recall": 0.0
+          },
+          "lift": {
+            "matched": 62,
+            "normals": 62,
+            "within_15_degrees": 13,
+            "median_normal_error_degrees": 32.479605726226254,
+            "metric_depths": 2,
+            "within_one_block": 0,
+            "median_depth_error_blocks": 5.352415098567166
+          },
+          "known_lift": {
+            "matched": 62,
+            "normals": 62,
+            "within_15_degrees": 12,
+            "median_normal_error_degrees": 36.23351192501137,
+            "metric_depths": 2,
+            "within_one_block": 1,
+            "median_depth_error_blocks": 0.5902651408667463
+          },
+          "soffits_matched": 0,
+          "order": {
+            "geometry": {
+              "eligible": 222,
+              "proposed": 3,
+              "correct": 0,
+              "reversed": 0,
+              "other": 3
+            },
+            "depth-anything": {
+              "eligible": 222,
+              "proposed": 53,
+              "correct": 5,
+              "reversed": 0,
+              "other": 48
+            }
+          }
+        },
+        "normal-regions": {
+          "outlines": {
+            "matched": 138,
+            "eligible": 310,
+            "proposed": 221,
+            "precision": 0.6244343891402715,
+            "recall": 0.44516129032258067,
+            "f1": 0.519774011299435,
+            "foreground_spill": 0.029426540899674294
+          },
+          "gaps": {
+            "filled_pixels": 2944,
+            "opening_pixels": 11524,
+            "fill_rate": 0.2554668517875738
+          },
+          "support_matches": 139,
+          "observed_normal_median_deg": 3.9698840609854447,
+          "support_gaps": {
+            "filled_pixels": 555,
+            "opening_pixels": 11524
+          },
+          "pitch": {
+            "charts": 138,
+            "counts_returned": 2,
+            "within_half_block": 2,
+            "charts_with_grid_points": 0,
+            "accurate_registered": 0,
+            "registered_rate": 0.0,
+            "accurate_rate": 0.014492753623188406,
+            "net_correct_rate": 0.014492753623188406,
+            "grid_precision": 0.0,
+            "grid_recall": 0.0
+          },
+          "lift": {
+            "matched": 138,
+            "normals": 138,
+            "within_15_degrees": 37,
+            "median_normal_error_degrees": 23.738630648491174,
+            "metric_depths": 2,
+            "within_one_block": 2,
+            "median_depth_error_blocks": 0.9991661801121952
+          },
+          "known_lift": {
+            "matched": 138,
+            "normals": 138,
+            "within_15_degrees": 33,
+            "median_normal_error_degrees": 24.3002901964972,
+            "metric_depths": 2,
+            "within_one_block": 2,
+            "median_depth_error_blocks": 0.0018695830804764668
+          },
+          "soffits_matched": 1,
+          "order": {
+            "geometry": {
+              "eligible": 222,
+              "proposed": 1,
+              "correct": 0,
+              "reversed": 0,
+              "other": 1
+            },
+            "depth-anything": {
+              "eligible": 222,
+              "proposed": 191,
+              "correct": 28,
+              "reversed": 1,
+              "other": 162
+            }
+          }
+        }
+      },
+      "soffits_eligible": 10,
+      "oracle_depth_order": {
+        "eligible_pairs": 242,
+        "correct_order": 238
+      },
+      "oracle_normal_samples": {
+        "samples": 559924,
+        "within_15": 512572,
+        "soffit_samples": 3396,
+        "soffit_within_15": 1190
+      }
+    },
+    "blind": {
+      "frames": 8,
+      "methods": {
+        "edges+shade": {
+          "outlines": {
+            "matched": 15,
+            "eligible": 132,
+            "proposed": 76,
+            "precision": 0.19736842105263158,
+            "recall": 0.11363636363636363,
+            "f1": 0.14423076923076922,
+            "foreground_spill": 0.007118853908737177
+          },
+          "gaps": {
+            "filled_pixels": 120,
+            "opening_pixels": 4022,
+            "fill_rate": 0.029835902536051714
+          },
+          "support_matches": 15,
+          "observed_normal_median_deg": null,
+          "support_gaps": {
+            "filled_pixels": 120,
+            "opening_pixels": 4022
+          },
+          "pitch": {
+            "charts": 15,
+            "counts_returned": 2,
+            "within_half_block": 2,
+            "charts_with_grid_points": 1,
+            "accurate_registered": 1,
+            "registered_rate": 0.06666666666666667,
+            "accurate_rate": 0.13333333333333333,
+            "net_correct_rate": 0.13333333333333333,
+            "grid_precision": 0.8888888888888888,
+            "grid_recall": 0.03524229074889868
+          },
+          "lift": {
+            "matched": 15,
+            "normals": 15,
+            "within_15_degrees": 2,
+            "median_normal_error_degrees": 33.2692445735541,
+            "metric_depths": 2,
+            "within_one_block": 0,
+            "median_depth_error_blocks": 10.210062795830396
+          },
+          "known_lift": {
+            "matched": 15,
+            "normals": 15,
+            "within_15_degrees": 2,
+            "median_normal_error_degrees": 35.66365869667686,
+            "metric_depths": 1,
+            "within_one_block": 1,
+            "median_depth_error_blocks": 0.09893247519529069
+          },
+          "soffits_matched": 0,
+          "order": {
+            "geometry": {
+              "eligible": 110,
+              "proposed": 4,
+              "correct": 0,
+              "reversed": 0,
+              "other": 4
+            },
+            "depth-anything": {
+              "eligible": 110,
+              "proposed": 40,
+              "correct": 0,
+              "reversed": 0,
+              "other": 40
+            }
+          }
+        },
+        "normal-rank": {
+          "outlines": {
+            "matched": 21,
+            "eligible": 132,
+            "proposed": 42,
+            "precision": 0.5,
+            "recall": 0.1590909090909091,
+            "f1": 0.2413793103448276,
+            "foreground_spill": 0.018535636098272926
+          },
+          "gaps": {
+            "filled_pixels": 232,
+            "opening_pixels": 4022,
+            "fill_rate": 0.057682744903033316
+          },
+          "support_matches": 21,
+          "observed_normal_median_deg": 3.6527568271622335,
+          "support_gaps": {
+            "filled_pixels": 232,
+            "opening_pixels": 4022
+          },
+          "pitch": {
+            "charts": 21,
+            "counts_returned": 0,
+            "within_half_block": 0,
+            "charts_with_grid_points": 0,
+            "accurate_registered": 0,
+            "registered_rate": 0.0,
+            "accurate_rate": 0.0,
+            "net_correct_rate": 0.0,
+            "grid_precision": 0.0,
+            "grid_recall": 0.0
+          },
+          "lift": {
+            "matched": 21,
+            "normals": 21,
+            "within_15_degrees": 3,
+            "median_normal_error_degrees": 56.52033410116352,
+            "metric_depths": 0,
+            "within_one_block": 0,
+            "median_depth_error_blocks": null
+          },
+          "known_lift": {
+            "matched": 21,
+            "normals": 21,
+            "within_15_degrees": 3,
+            "median_normal_error_degrees": 54.86040018867334,
+            "metric_depths": 0,
+            "within_one_block": 0,
+            "median_depth_error_blocks": null
+          },
+          "soffits_matched": 1,
+          "order": {
+            "geometry": {
+              "eligible": 110,
+              "proposed": 0,
+              "correct": 0,
+              "reversed": 0,
+              "other": 0
+            },
+            "depth-anything": {
+              "eligible": 110,
+              "proposed": 18,
+              "correct": 1,
+              "reversed": 1,
+              "other": 16
+            }
+          }
+        },
+        "normal-regions": {
+          "outlines": {
+            "matched": 58,
+            "eligible": 132,
+            "proposed": 82,
+            "precision": 0.7073170731707317,
+            "recall": 0.4393939393939394,
+            "f1": 0.5420560747663551,
+            "foreground_spill": 0.06080434699422187
+          },
+          "gaps": {
+            "filled_pixels": 1754,
+            "opening_pixels": 4022,
+            "fill_rate": 0.43610144206862256
+          },
+          "support_matches": 58,
+          "observed_normal_median_deg": 4.649954436261323,
+          "support_gaps": {
+            "filled_pixels": 118,
+            "opening_pixels": 4022
+          },
+          "pitch": {
+            "charts": 58,
+            "counts_returned": 0,
+            "within_half_block": 0,
+            "charts_with_grid_points": 0,
+            "accurate_registered": 0,
+            "registered_rate": 0.0,
+            "accurate_rate": 0.0,
+            "net_correct_rate": 0.0,
+            "grid_precision": 0.0,
+            "grid_recall": 0.0
+          },
+          "lift": {
+            "matched": 58,
+            "normals": 58,
+            "within_15_degrees": 14,
+            "median_normal_error_degrees": 33.2257880647082,
+            "metric_depths": 0,
+            "within_one_block": 0,
+            "median_depth_error_blocks": null
+          },
+          "known_lift": {
+            "matched": 58,
+            "normals": 58,
+            "within_15_degrees": 14,
+            "median_normal_error_degrees": 33.838232430986636,
+            "metric_depths": 0,
+            "within_one_block": 0,
+            "median_depth_error_blocks": null
+          },
+          "soffits_matched": 2,
+          "order": {
+            "geometry": {
+              "eligible": 110,
+              "proposed": 0,
+              "correct": 0,
+              "reversed": 0,
+              "other": 0
+            },
+            "depth-anything": {
+              "eligible": 110,
+              "proposed": 71,
+              "correct": 14,
+              "reversed": 2,
+              "other": 55
+            }
+          }
+        }
+      },
+      "soffits_eligible": 4,
+      "oracle_depth_order": {
+        "eligible_pairs": 118,
+        "correct_order": 117
+      },
+      "oracle_normal_samples": {
+        "samples": 88504,
+        "within_15": 76576,
+        "soffit_samples": 1470,
+        "soffit_within_15": 845
+      }
+    }
+  }
+}
