@@ -13,6 +13,7 @@ from benchmark.camera_round import ROOT, read
 from benchmark.camera_sheet import font
 from benchmark.normal_sheet import case_data
 from benchmark.surface_sheet import scene_box
+from runtime.mode import image_only
 
 
 REFERENCE = ROOT / 'benchmark/reviews/normals-01'
@@ -183,7 +184,8 @@ def render(run, previews, out):
     canvas.save(out, quality=94, subsampling=0, optimize=True)
 
 
-if __name__ == '__main__':
+@image_only()
+def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--run', type=Path, default=REFERENCE)
     parser.add_argument('--cache', type=Path, default=ROOT / 'runs/normal-fields')
@@ -198,3 +200,7 @@ if __name__ == '__main__':
         if json.loads(previews.read('recipe.json')) != normal_recipe(args.run):
             raise ValueError('These surface directions were produced with different model settings')
         render(args.run, previews, args.out)
+
+
+if __name__ == '__main__':
+    main()

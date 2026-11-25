@@ -1,5 +1,7 @@
 # Vanilla capture runtime
 
+Routine exterior benchmarks score saved screenshots and reference geometry. The camera, surface and assembly build commands also run on disk. An assembly build writes a placement file and datapack. To place it and read the blocks back in a live world, use the separate `reconstruct.py verify-build` command. The saved-image entry points and their workers set `MCIR_IMAGE_ONLY=1`. The fixture capture, placement verification and Java runtime launchers check that setting before opening Minecraft. Explicit capture and calibration commands run in their own process outside an image comparison. [Offline comparison](../benchmark/OFFLINE_GEOMETRY.md)
+
 Use Python 3.11 or newer and a JDK compatible with the selected release. Minecraft 26.1 through 26.3 use JDK 25. Install the vanilla client and assets locally. The runtime discovers the launcher installation and also recognizes NeoForm's cached client, manifest, libraries and assets. Pass `--minecraft-dir`, `--gradle-home`, `--manifest`, `--jar` or `--java-home` to change those locations. Client and library SHA-1 values are checked against the selected launch manifest.
 
 From the repository root:

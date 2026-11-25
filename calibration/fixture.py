@@ -10,6 +10,7 @@ from zipfile import ZipFile, ZIP_DEFLATED
 
 from .models import Models, INVISIBLE
 from .world import GROUND, PACK, create_world
+from runtime.mode import require_game_runtime
 
 SPLITS = (('train',176,0,0,32), ('validation',581,7,3,34), ('test',911,-9,6,37))
 MASONRY = ('stone','smooth_stone','andesite','diorite','polished_andesite','calcite','tuff',
@@ -47,6 +48,8 @@ def panel(page, split, ids, adjacent, models, registry, facing):
 
 
 def make_fixture(version, jar_path, out, registry_path):
+    if registry_path is None:
+        require_game_runtime('registry lookup')
     out.mkdir(parents=True,exist_ok=True)
     world=out/'fixture/saves/Palette Lab'
     if world.exists():
