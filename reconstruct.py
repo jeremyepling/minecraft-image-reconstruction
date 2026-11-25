@@ -68,7 +68,7 @@ def main():
         else:
             p.add_argument('--registry',type=Path,help='Include default-state faces from a matching runtime registry')
     p=cmds.add_parser('analyze')
-    p.add_argument('--geometry-method',choices=['baseline','texel'],default='baseline')
+    p.add_argument('--geometry-method',choices=['baseline','texel','remap'],default='baseline')
     p.add_argument('image',type=Path)
     p.add_argument('--scene',type=Path)
     p.add_argument('--out',type=Path,required=True)
@@ -79,7 +79,7 @@ def main():
     p.add_argument('--out',type=Path,required=True)
     for key in ('minecraft-dir','manifest','java-home'): p.add_argument('--'+key,type=Path)
     p=cmds.add_parser('build')
-    p.add_argument('--geometry-method',choices=['baseline','texel'],default='baseline')
+    p.add_argument('--geometry-method',choices=['baseline','texel','remap'],default='baseline')
     p.add_argument('image',type=Path)
     for key in ('atlas','out'): p.add_argument('--'+key,type=Path,required=True)
     shape=p.add_mutually_exclusive_group()

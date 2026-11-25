@@ -15,7 +15,7 @@ from engine.propose import estimate_grid
 from engine.plane_candidates import repeat_grid
 from engine.texel_grid import texel_grid
 
-METHODS=('baseline','partition','texel','outlined-baseline','outlined-partition','outlined-texel')
+METHODS=('baseline','partition','texel','common','remap','ground','outlined-baseline','outlined-partition','outlined-texel')
 
 
 def load(path):

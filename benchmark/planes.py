@@ -10,7 +10,7 @@ from engine.plane_candidates import candidate
 from engine.texel_grid import candidate as texel_candidate
 from engine.reconstruction import geometry
 
-METHODS=('baseline','partition','texel')
+METHODS=('baseline','partition','texel','common','remap','ground')
 
 
 def predict(task):
@@ -20,6 +20,8 @@ def predict(task):
     files=['geometry.py','reconstruction.py','propose.py']
     if method!='baseline': files.append('plane_candidates.py')
     if method=='texel': files.append('texel_grid.py')
+    if method in ('common','remap','ground'): files+=['texel_grid.py','remap.py','local_pitch.py']
+    if method=='ground': files+=['depth_layers.py']
     fingerprint=hashlib.sha256(b''.join((code/f).read_bytes() for f in files)).hexdigest()
     output=folder/method/(image.stem+'.json')
     if output.is_file():
@@ -29,8 +31,13 @@ def predict(task):
         _,planes,cells=geometry(image)
     elif method=='partition':
         planes,cells=candidate(image)
-    else:
+    elif method=='texel':
         planes,cells=texel_candidate(image)
+    else:
+        from PIL import Image
+        from engine.remap import candidate as remap
+        with Image.open(image) as source:
+            planes,cells=remap(source,method!='common',method=='ground')
     output.parent.mkdir(parents=True,exist_ok=True)
     output.write_text(json.dumps(dict(image_hash=key,method_hash=fingerprint,planes=planes,cells=cells),
                                  separators=(',',':')))

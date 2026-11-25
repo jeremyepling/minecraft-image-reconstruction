@@ -1,0 +1,5634 @@
+{
+ "texel": {
+  "utility": 0.5497833050565738,
+  "overall": {
+   "views": 60,
+   "silhouette_iou": {
+    "n": 60,
+    "mean": 0.8285,
+    "median": 0.858,
+    "p90": 0.9363
+   },
+   "automatic": {
+    "width": {
+     "total": 60,
+     "n": 58,
+     "mean": 19.4032,
+     "median": 19.9319,
+     "p90": 37.7291
+    },
+    "height": {
+     "total": 60,
+     "n": 58,
+     "mean": 17.2019,
+     "median": 20.6901,
+     "p90": 28.6451
+    },
+    "gap": {
+     "total": 48,
+     "n": 32,
+     "mean": 2.3754,
+     "median": 2.1469,
+     "p90": 4.6464
+    }
+   },
+   "air": {
+    "probes": 710,
+    "incorrectly_filled": 388
+   },
+   "corners": {
+    "flat_seam": {
+     "coplanar": 4
+    },
+    "geometric_corner": {
+     "None": 3,
+     "corner": 1
+    }
+   },
+   "assisted_lengths": {
+    "tier__width": {
+     "status": {
+      "unresolved_plane": 10,
+      "measured": 2
+     },
+     "n": 2,
+     "mean": 0.8246,
+     "median": 0.8246,
+     "p90": 0.8717
+    },
+    "front_setback": {
+     "status": {
+      "foreshortened": 2,
+      "measured": 4,
+      "unresolved_plane": 2
+     },
+     "n": 4,
+     "mean": 0.9999,
+     "median": 0.7867,
+     "p90": 1.6451
+    },
+    "side_setback": {
+     "status": {
+      "unresolved_plane": 6,
+      "measured": 2
+     },
+     "n": 2,
+     "mean": 0.0706,
+     "median": 0.0706,
+     "p90": 0.1067
+    },
+    "total_height": {
+     "status": {
+      "occluded": 4
+     },
+     "n": 0,
+     "mean": null
+    },
+    "overall_width": {
+     "status": {
+      "unresolved_plane": 57,
+      "measured": 3
+     },
+     "n": 3,
+     "mean": 0.5747,
+     "median": 0.5675,
+     "p90": 0.8531
+    },
+    "overall_height": {
+     "status": {
+      "unresolved_plane": 54,
+      "measured": 6
+     },
+     "n": 6,
+     "mean": 2.1842,
+     "median": 0.9523,
+     "p90": 5.428
+    },
+    "door_depth": {
+     "status": {
+      "unresolved_plane": 3,
+      "foreshortened": 2,
+      "occluded": 6,
+      "measured": 1
+     },
+     "n": 1,
+     "mean": 1.2043,
+     "median": 1.2043,
+     "p90": 1.2043
+    },
+    "window_depth": {
+     "status": {
+      "foreshortened": 4,
+      "occluded": 6,
+      "unresolved_plane": 2
+     },
+     "n": 0,
+     "mean": null
+    },
+    "door_width": {
+     "status": {
+      "measured": 12
+     },
+     "n": 12,
+     "mean": 0.1371,
+     "median": 0.0945,
+     "p90": 0.3211
+    },
+    "door_height": {
+     "status": {
+      "measured": 11,
+      "unresolved_plane": 1
+     },
+     "n": 11,
+     "mean": 1.0501,
+     "median": 0.3557,
+     "p90": 3.4326
+    },
+    "window_width": {
+     "status": {
+      "measured": 12
+     },
+     "n": 12,
+     "mean": 0.068,
+     "median": 0.0503,
+     "p90": 0.1513
+    },
+    "window_height": {
+     "status": {
+      "measured": 12
+     },
+     "n": 12,
+     "mean": 0.8095,
+     "median": 0.3179,
+     "p90": 2.5432
+    },
+    "flat_seam_line": {
+     "status": {
+      "measured": 4
+     },
+     "n": 4,
+     "mean": 3.8644,
+     "median": 3.3684,
+     "p90": 7.3033
+    },
+    "geometric_corner_line": {
+     "status": {
+      "unresolved_plane": 4
+     },
+     "n": 0,
+     "mean": null
+    },
+    "clear_pillar_spacing": {
+     "status": {
+      "measured": 15,
+      "unresolved_plane": 33
+     },
+     "n": 15,
+     "mean": 5.4713,
+     "median": 4.1388,
+     "p90": 11.5524
+    },
+    "roof_overhang": {
+     "status": {
+      "foreshortened": 12,
+      "occluded": 36
+     },
+     "n": 0,
+     "mean": null
+    },
+    "clear_height": {
+     "status": {
+      "unresolved_plane": 30,
+      "occluded": 16,
+      "measured": 2
+     },
+     "n": 2,
+     "mean": 9.3623,
+     "median": 9.3623,
+     "p90": 12.9707
+    },
+    "roof_width": {
+     "status": {
+      "measured": 29,
+      "unresolved_plane": 19
+     },
+     "n": 29,
+     "mean": 8.0345,
+     "median": 3.1446,
+     "p90": 23.8628
+    }
+   }
+  },
+  "by_family": {
+   "canopy": {
+    "views": 48,
+    "silhouette_iou": {
+     "n": 48,
+     "mean": 0.8032,
+     "median": 0.8412,
+     "p90": 0.8811
+    },
+    "automatic": {
+     "width": {
+      "total": 48,
+      "n": 46,
+      "mean": 21.2005,
+      "median": 23.0964,
+      "p90": 37.9875
+     },
+     "height": {
+      "total": 48,
+      "n": 46,
+      "mean": 18.6267,
+      "median": 24.6906,
+      "p90": 30.1414
+     },
+     "gap": {
+      "total": 48,
+      "n": 32,
+      "mean": 2.3754,
+      "median": 2.1469,
+      "p90": 4.6464
+     }
+    },
+    "air": {
+     "probes": 710,
+     "incorrectly_filled": 388
+    },
+    "corners": {},
+    "assisted_lengths": {
+     "clear_pillar_spacing": {
+      "status": {
+       "measured": 15,
+       "unresolved_plane": 33
+      },
+      "n": 15,
+      "mean": 5.4713,
+      "median": 4.1388,
+      "p90": 11.5524
+     },
+     "roof_overhang": {
+      "status": {
+       "foreshortened": 12,
+       "occluded": 36
+      },
+      "n": 0,
+      "mean": null
+     },
+     "clear_height": {
+      "status": {
+       "unresolved_plane": 30,
+       "occluded": 16,
+       "measured": 2
+      },
+      "n": 2,
+      "mean": 9.3623,
+      "median": 9.3623,
+      "p90": 12.9707
+     },
+     "roof_width": {
+      "status": {
+       "measured": 29,
+       "unresolved_plane": 19
+      },
+      "n": 29,
+      "mean": 8.0345,
+      "median": 3.1446,
+      "p90": 23.8628
+     },
+     "overall_width": {
+      "status": {
+       "unresolved_plane": 48
+      },
+      "n": 0,
+      "mean": null
+     },
+     "overall_height": {
+      "status": {
+       "unresolved_plane": 48
+      },
+      "n": 0,
+      "mean": null
+     }
+    }
+   },
+   "corner": {
+    "views": 4,
+    "silhouette_iou": {
+     "n": 4,
+     "mean": 0.938,
+     "median": 0.9449,
+     "p90": 0.9604
+    },
+    "automatic": {
+     "width": {
+      "total": 4,
+      "n": 4,
+      "mean": 19.7116,
+      "median": 25.8761,
+      "p90": 26.4357
+     },
+     "height": {
+      "total": 4,
+      "n": 4,
+      "mean": 13.8541,
+      "median": 16.4936,
+      "p90": 19.5889
+     }
+    },
+    "air": {
+     "probes": 0,
+     "incorrectly_filled": 0
+    },
+    "corners": {
+     "flat_seam": {
+      "coplanar": 4
+     },
+     "geometric_corner": {
+      "None": 3,
+      "corner": 1
+     }
+    },
+    "assisted_lengths": {
+     "flat_seam_line": {
+      "status": {
+       "measured": 4
+      },
+      "n": 4,
+      "mean": 3.8644,
+      "median": 3.3684,
+      "p90": 7.3033
+     },
+     "geometric_corner_line": {
+      "status": {
+       "unresolved_plane": 4
+      },
+      "n": 0,
+      "mean": null
+     },
+     "overall_width": {
+      "status": {
+       "unresolved_plane": 4
+      },
+      "n": 0,
+      "mean": null
+     },
+     "overall_height": {
+      "status": {
+       "measured": 3,
+       "unresolved_plane": 1
+      },
+      "n": 3,
+      "mean": 3.7208,
+      "median": 2.1613,
+      "p90": 7.388
+     }
+    }
+   },
+   "recess": {
+    "views": 4,
+    "silhouette_iou": {
+     "n": 4,
+     "mean": 0.9323,
+     "median": 0.9368,
+     "p90": 0.9396
+    },
+    "automatic": {
+     "width": {
+      "total": 4,
+      "n": 4,
+      "mean": 1.8593,
+      "median": 2.0599,
+      "p90": 2.21
+     },
+     "height": {
+      "total": 4,
+      "n": 4,
+      "mean": 6.2827,
+      "median": 2.0551,
+      "p90": 15.4959
+     }
+    },
+    "air": {
+     "probes": 0,
+     "incorrectly_filled": 0
+    },
+    "corners": {},
+    "assisted_lengths": {
+     "door_depth": {
+      "status": {
+       "unresolved_plane": 3,
+       "foreshortened": 2,
+       "occluded": 6,
+       "measured": 1
+      },
+      "n": 1,
+      "mean": 1.2043,
+      "median": 1.2043,
+      "p90": 1.2043
+     },
+     "window_depth": {
+      "status": {
+       "foreshortened": 4,
+       "occluded": 6,
+       "unresolved_plane": 2
+      },
+      "n": 0,
+      "mean": null
+     },
+     "overall_width": {
+      "status": {
+       "measured": 3,
+       "unresolved_plane": 1
+      },
+      "n": 3,
+      "mean": 0.5747,
+      "median": 0.5675,
+      "p90": 0.8531
+     },
+     "overall_height": {
+      "status": {
+       "measured": 3,
+       "unresolved_plane": 1
+      },
+      "n": 3,
+      "mean": 0.6476,
+      "median": 0.2896,
+      "p90": 1.3366
+     },
+     "door_width": {
+      "status": {
+       "measured": 12
+      },
+      "n": 12,
+      "mean": 0.1371,
+      "median": 0.0945,
+      "p90": 0.3211
+     },
+     "door_height": {
+      "status": {
+       "measured": 11,
+       "unresolved_plane": 1
+      },
+      "n": 11,
+      "mean": 1.0501,
+      "median": 0.3557,
+      "p90": 3.4326
+     },
+     "window_width": {
+      "status": {
+       "measured": 12
+      },
+      "n": 12,
+      "mean": 0.068,
+      "median": 0.0503,
+      "p90": 0.1513
+     },
+     "window_height": {
+      "status": {
+       "measured": 12
+      },
+      "n": 12,
+      "mean": 0.8095,
+      "median": 0.3179,
+      "p90": 2.5432
+     }
+    }
+   },
+   "stepped_tower": {
+    "views": 4,
+    "silhouette_iou": {
+     "n": 4,
+     "mean": 0.9196,
+     "median": 0.9209,
+     "p90": 0.9558
+    },
+    "automatic": {
+     "width": {
+      "total": 4,
+      "n": 4,
+      "mean": 15.9696,
+      "median": 14.68,
+      "p90": 31.1814
+     },
+     "height": {
+      "total": 4,
+      "n": 4,
+      "mean": 15.0834,
+      "median": 16.4421,
+      "p90": 22.5498
+     }
+    },
+    "air": {
+     "probes": 0,
+     "incorrectly_filled": 0
+    },
+    "corners": {},
+    "assisted_lengths": {
+     "tier__width": {
+      "status": {
+       "unresolved_plane": 10,
+       "measured": 2
+      },
+      "n": 2,
+      "mean": 0.8246,
+      "median": 0.8246,
+      "p90": 0.8717
+     },
+     "front_setback": {
+      "status": {
+       "foreshortened": 2,
+       "measured": 4,
+       "unresolved_plane": 2
+      },
+      "n": 4,
+      "mean": 0.9999,
+      "median": 0.7867,
+      "p90": 1.6451
+     },
+     "side_setback": {
+      "status": {
+       "unresolved_plane": 6,
+       "measured": 2
+      },
+      "n": 2,
+      "mean": 0.0706,
+      "median": 0.0706,
+      "p90": 0.1067
+     },
+     "total_height": {
+      "status": {
+       "occluded": 4
+      },
+      "n": 0,
+      "mean": null
+     },
+     "overall_width": {
+      "status": {
+       "unresolved_plane": 4
+      },
+      "n": 0,
+      "mean": null
+     },
+     "overall_height": {
+      "status": {
+       "unresolved_plane": 4
+      },
+      "n": 0,
+      "mean": null
+     }
+    }
+   }
+  },
+  "by_angle": {
+   "elevated": {
+    "views": 15,
+    "silhouette_iou": {
+     "n": 15,
+     "mean": 0.8547,
+     "median": 0.8582,
+     "p90": 0.8975
+    },
+    "automatic": {
+     "width": {
+      "total": 15,
+      "n": 15,
+      "mean": 26.467,
+      "median": 32.32,
+      "p90": 38.6198
+     },
+     "height": {
+      "total": 15,
+      "n": 15,
+      "mean": 17.9212,
+      "median": 20.8688,
+      "p90": 29.0102
+     },
+     "gap": {
+      "total": 12,
+      "n": 9,
+      "mean": 3.1863,
+      "median": 3.0667,
+      "p90": 5.2381
+     }
+    },
+    "air": {
+     "probes": 174,
+     "incorrectly_filled": 136
+    },
+    "corners": {
+     "flat_seam": {
+      "coplanar": 1
+     },
+     "geometric_corner": {
+      "None": 1
+     }
+    },
+    "assisted_lengths": {
+     "tier__width": {
+      "status": {
+       "unresolved_plane": 3
+      },
+      "n": 0,
+      "mean": null
+     },
+     "front_setback": {
+      "status": {
+       "measured": 1,
+       "unresolved_plane": 1
+      },
+      "n": 1,
+      "mean": 0.6331,
+      "median": 0.6331,
+      "p90": 0.6331
+     },
+     "side_setback": {
+      "status": {
+       "unresolved_plane": 2
+      },
+      "n": 0,
+      "mean": null
+     },
+     "total_height": {
+      "status": {
+       "occluded": 1
+      },
+      "n": 0,
+      "mean": null
+     },
+     "overall_width": {
+      "status": {
+       "unresolved_plane": 15
+      },
+      "n": 0,
+      "mean": null
+     },
+     "overall_height": {
+      "status": {
+       "unresolved_plane": 15
+      },
+      "n": 0,
+      "mean": null
+     },
+     "door_depth": {
+      "status": {
+       "measured": 1,
+       "occluded": 2
+      },
+      "n": 1,
+      "mean": 1.2043,
+      "median": 1.2043,
+      "p90": 1.2043
+     },
+     "window_depth": {
+      "status": {
+       "occluded": 3
+      },
+      "n": 0,
+      "mean": null
+     },
+     "door_width": {
+      "status": {
+       "measured": 3
+      },
+      "n": 3,
+      "mean": 0.3236,
+      "median": 0.3237,
+      "p90": 0.3447
+     },
+     "door_height": {
+      "status": {
+       "unresolved_plane": 1,
+       "measured": 2
+      },
+      "n": 2,
+      "mean": 3.4382,
+      "median": 3.4382,
+      "p90": 3.4426
+     },
+     "window_width": {
+      "status": {
+       "measured": 3
+      },
+      "n": 3,
+      "mean": 0.1541,
+      "median": 0.1543,
+      "p90": 0.178
+     },
+     "window_height": {
+      "status": {
+       "measured": 3
+      },
+      "n": 3,
+      "mean": 2.5441,
+      "median": 2.5442,
+      "p90": 2.552
+     },
+     "flat_seam_line": {
+      "status": {
+       "measured": 1
+      },
+      "n": 1,
+      "mean": 4.5755,
+      "median": 4.5755,
+      "p90": 4.5755
+     },
+     "geometric_corner_line": {
+      "status": {
+       "unresolved_plane": 1
+      },
+      "n": 0,
+      "mean": null
+     },
+     "clear_pillar_spacing": {
+      "status": {
+       "unresolved_plane": 8,
+       "measured": 4
+      },
+      "n": 4,
+      "mean": 9.5772,
+      "median": 11.5287,
+      "p90": 12.9852
+     },
+     "roof_overhang": {
+      "status": {
+       "occluded": 12
+      },
+      "n": 0,
+      "mean": null
+     },
+     "clear_height": {
+      "status": {
+       "occluded": 12
+      },
+      "n": 0,
+      "mean": null
+     },
+     "roof_width": {
+      "status": {
+       "unresolved_plane": 12
+      },
+      "n": 0,
+      "mean": null
+     }
+    }
+   },
+   "front": {
+    "views": 15,
+    "silhouette_iou": {
+     "n": 15,
+     "mean": 0.8436,
+     "median": 0.8472,
+     "p90": 0.9184
+    },
+    "automatic": {
+     "width": {
+      "total": 15,
+      "n": 15,
+      "mean": 11.9925,
+      "median": 7.2,
+      "p90": 28.6909
+     },
+     "height": {
+      "total": 15,
+      "n": 15,
+      "mean": 12.2183,
+      "median": 6.2513,
+      "p90": 25.555
+     },
+     "gap": {
+      "total": 12,
+      "n": 2,
+      "mean": 2.88,
+      "median": 2.88,
+      "p90": 4.3093
+     }
+    },
+    "air": {
+     "probes": 108,
+     "incorrectly_filled": 58
+    },
+    "corners": {
+     "flat_seam": {
+      "coplanar": 1
+     },
+     "geometric_corner": {
+      "None": 1
+     }
+    },
+    "assisted_lengths": {
+     "tier__width": {
+      "status": {
+       "unresolved_plane": 3
+      },
+      "n": 0,
+      "mean": null
+     },
+     "front_setback": {
+      "status": {
+       "foreshortened": 2
+      },
+      "n": 0,
+      "mean": null
+     },
+     "side_setback": {
+      "status": {
+       "unresolved_plane": 2
+      },
+      "n": 0,
+      "mean": null
+     },
+     "total_height": {
+      "status": {
+       "occluded": 1
+      },
+      "n": 0,
+      "mean": null
+     },
+     "overall_width": {
+      "status": {
+       "unresolved_plane": 14,
+       "measured": 1
+      },
+      "n": 1,
+      "mean": 0.2322,
+      "median": 0.2322,
+      "p90": 0.2322
+     },
+     "overall_height": {
+      "status": {
+       "unresolved_plane": 13,
+       "measured": 2
+      },
+      "n": 2,
+      "mean": 1.1081,
+      "median": 1.1081,
+      "p90": 1.9507
+     },
+     "door_depth": {
+      "status": {
+       "unresolved_plane": 1,
+       "foreshortened": 2
+      },
+      "n": 0,
+      "mean": null
+     },
+     "window_depth": {
+      "status": {
+       "foreshortened": 3
+      },
+      "n": 0,
+      "mean": null
+     },
+     "door_width": {
+      "status": {
+       "measured": 3
+      },
+      "n": 3,
+      "mean": 0.0382,
+      "median": 0.0339,
+      "p90": 0.0586
+     },
+     "door_height": {
+      "status": {
+       "measured": 3
+      },
+      "n": 3,
+      "mean": 0.1575,
+      "median": 0.1577,
+      "p90": 0.189
+     },
+     "window_width": {
+      "status": {
+       "measured": 3
+      },
+      "n": 3,
+      "mean": 0.0352,
+      "median": 0.0446,
+      "p90": 0.0536
+     },
+     "window_height": {
+      "status": {
+       "measured": 3
+      },
+      "n": 3,
+      "mean": 0.0462,
+      "median": 0.0463,
+      "p90": 0.0657
+     },
+     "flat_seam_line": {
+      "status": {
+       "measured": 1
+      },
+      "n": 1,
+      "mean": 2.1613,
+      "median": 2.1613,
+      "p90": 2.1613
+     },
+     "geometric_corner_line": {
+      "status": {
+       "unresolved_plane": 1
+      },
+      "n": 0,
+      "mean": null
+     },
+     "clear_pillar_spacing": {
+      "status": {
+       "measured": 9,
+       "unresolved_plane": 3
+      },
+      "n": 9,
+      "mean": 4.3046,
+      "median": 3.5756,
+      "p90": 8.3979
+     },
+     "roof_overhang": {
+      "status": {
+       "foreshortened": 12
+      },
+      "n": 0,
+      "mean": null
+     },
+     "clear_height": {
+      "status": {
+       "unresolved_plane": 11,
+       "measured": 1
+      },
+      "n": 1,
+      "mean": 4.8518,
+      "median": 4.8518,
+      "p90": 4.8518
+     },
+     "roof_width": {
+      "status": {
+       "measured": 11,
+       "unresolved_plane": 1
+      },
+      "n": 11,
+      "mean": 6.4965,
+      "median": 7.0163,
+      "p90": 9.7478
+     }
+    }
+   },
+   "left": {
+    "views": 15,
+    "silhouette_iou": {
+     "n": 15,
+     "mean": 0.8029,
+     "median": 0.8631,
+     "p90": 0.9357
+    },
+    "automatic": {
+     "width": {
+      "total": 15,
+      "n": 14,
+      "mean": 15.7311,
+      "median": 11.9602,
+      "p90": 31.3831
+     },
+     "height": {
+      "total": 15,
+      "n": 14,
+      "mean": 19.5582,
+      "median": 25.2283,
+      "p90": 27.1776
+     },
+     "gap": {
+      "total": 12,
+      "n": 10,
+      "mean": 2.2588,
+      "median": 1.7019,
+      "p90": 4.3217
+     }
+    },
+    "air": {
+     "probes": 211,
+     "incorrectly_filled": 98
+    },
+    "corners": {
+     "flat_seam": {
+      "coplanar": 1
+     },
+     "geometric_corner": {
+      "None": 1
+     }
+    },
+    "assisted_lengths": {
+     "tier__width": {
+      "status": {
+       "unresolved_plane": 2,
+       "measured": 1
+      },
+      "n": 1,
+      "mean": 0.7657,
+      "median": 0.7657,
+      "p90": 0.7657
+     },
+     "front_setback": {
+      "status": {
+       "measured": 2
+      },
+      "n": 2,
+      "mean": 1.2131,
+      "median": 1.2131,
+      "p90": 1.8003
+     },
+     "side_setback": {
+      "status": {
+       "unresolved_plane": 1,
+       "measured": 1
+      },
+      "n": 1,
+      "mean": 0.1158,
+      "median": 0.1158,
+      "p90": 0.1158
+     },
+     "total_height": {
+      "status": {
+       "occluded": 1
+      },
+      "n": 0,
+      "mean": null
+     },
+     "overall_width": {
+      "status": {
+       "unresolved_plane": 14,
+       "measured": 1
+      },
+      "n": 1,
+      "mean": 0.5675,
+      "median": 0.5675,
+      "p90": 0.5675
+     },
+     "overall_height": {
+      "status": {
+       "unresolved_plane": 13,
+       "measured": 2
+      },
+      "n": 2,
+      "mean": 5.1465,
+      "median": 5.1465,
+      "p90": 7.9851
+     },
+     "door_depth": {
+      "status": {
+       "occluded": 3
+      },
+      "n": 0,
+      "mean": null
+     },
+     "window_depth": {
+      "status": {
+       "foreshortened": 1,
+       "occluded": 2
+      },
+      "n": 0,
+      "mean": null
+     },
+     "door_width": {
+      "status": {
+       "measured": 3
+      },
+      "n": 3,
+      "mean": 0.0809,
+      "median": 0.0813,
+      "p90": 0.1212
+     },
+     "door_height": {
+      "status": {
+       "measured": 3
+      },
+      "n": 3,
+      "mean": 1.0646,
+      "median": 1.0649,
+      "p90": 1.0945
+     },
+     "window_width": {
+      "status": {
+       "measured": 3
+      },
+      "n": 3,
+      "mean": 0.0438,
+      "median": 0.0298,
+      "p90": 0.0685
+     },
+     "window_height": {
+      "status": {
+       "measured": 3
+      },
+      "n": 3,
+      "mean": 0.5415,
+      "median": 0.5417,
+      "p90": 0.5609
+     },
+     "flat_seam_line": {
+      "status": {
+       "measured": 1
+      },
+      "n": 1,
+      "mean": 8.4724,
+      "median": 8.4724,
+      "p90": 8.4724
+     },
+     "geometric_corner_line": {
+      "status": {
+       "unresolved_plane": 1
+      },
+      "n": 0,
+      "mean": null
+     },
+     "clear_pillar_spacing": {
+      "status": {
+       "unresolved_plane": 10,
+       "measured": 2
+      },
+      "n": 2,
+      "mean": 2.5097,
+      "median": 2.5097,
+      "p90": 3.813
+     },
+     "roof_overhang": {
+      "status": {
+       "occluded": 12
+      },
+      "n": 0,
+      "mean": null
+     },
+     "clear_height": {
+      "status": {
+       "unresolved_plane": 11,
+       "measured": 1
+      },
+      "n": 1,
+      "mean": 13.8728,
+      "median": 13.8728,
+      "p90": 13.8728
+     },
+     "roof_width": {
+      "status": {
+       "measured": 8,
+       "unresolved_plane": 4
+      },
+      "n": 8,
+      "mean": 9.9346,
+      "median": 3.1494,
+      "p90": 27.7024
+     }
+    }
+   },
+   "right": {
+    "views": 15,
+    "silhouette_iou": {
+     "n": 15,
+     "mean": 0.8131,
+     "median": 0.8743,
+     "p90": 0.9511
+    },
+    "automatic": {
+     "width": {
+      "total": 15,
+      "n": 14,
+      "mean": 23.4471,
+      "median": 28.3157,
+      "p90": 38.1389
+     },
+     "height": {
+      "total": 15,
+      "n": 14,
+      "mean": 19.4143,
+      "median": 25.3896,
+      "p90": 29.9932
+     },
+     "gap": {
+      "total": 12,
+      "n": 11,
+      "mean": 1.7261,
+      "median": 1.3684,
+      "p90": 3.3452
+     }
+    },
+    "air": {
+     "probes": 217,
+     "incorrectly_filled": 96
+    },
+    "corners": {
+     "flat_seam": {
+      "coplanar": 1
+     },
+     "geometric_corner": {
+      "corner": 1
+     }
+    },
+    "assisted_lengths": {
+     "tier__width": {
+      "status": {
+       "unresolved_plane": 2,
+       "measured": 1
+      },
+      "n": 1,
+      "mean": 0.8835,
+      "median": 0.8835,
+      "p90": 0.8835
+     },
+     "front_setback": {
+      "status": {
+       "unresolved_plane": 1,
+       "measured": 1
+      },
+      "n": 1,
+      "mean": 0.9403,
+      "median": 0.9403,
+      "p90": 0.9403
+     },
+     "side_setback": {
+      "status": {
+       "unresolved_plane": 1,
+       "measured": 1
+      },
+      "n": 1,
+      "mean": 0.0255,
+      "median": 0.0255,
+      "p90": 0.0255
+     },
+     "total_height": {
+      "status": {
+       "occluded": 1
+      },
+      "n": 0,
+      "mean": null
+     },
+     "overall_width": {
+      "status": {
+       "unresolved_plane": 14,
+       "measured": 1
+      },
+      "n": 1,
+      "mean": 0.9245,
+      "median": 0.9245,
+      "p90": 0.9245
+     },
+     "overall_height": {
+      "status": {
+       "unresolved_plane": 13,
+       "measured": 2
+      },
+      "n": 2,
+      "mean": 0.2979,
+      "median": 0.2979,
+      "p90": 0.3046
+     },
+     "door_depth": {
+      "status": {
+       "occluded": 1,
+       "unresolved_plane": 2
+      },
+      "n": 0,
+      "mean": null
+     },
+     "window_depth": {
+      "status": {
+       "occluded": 1,
+       "unresolved_plane": 2
+      },
+      "n": 0,
+      "mean": null
+     },
+     "door_width": {
+      "status": {
+       "measured": 3
+      },
+      "n": 3,
+      "mean": 0.1055,
+      "median": 0.1056,
+      "p90": 0.123
+     },
+     "door_height": {
+      "status": {
+       "measured": 3
+      },
+      "n": 3,
+      "mean": 0.336,
+      "median": 0.3361,
+      "p90": 0.3518
+     },
+     "window_width": {
+      "status": {
+       "measured": 3
+      },
+      "n": 3,
+      "mean": 0.039,
+      "median": 0.0391,
+      "p90": 0.0573
+     },
+     "window_height": {
+      "status": {
+       "measured": 3
+      },
+      "n": 3,
+      "mean": 0.1061,
+      "median": 0.1061,
+      "p90": 0.1162
+     },
+     "flat_seam_line": {
+      "status": {
+       "measured": 1
+      },
+      "n": 1,
+      "mean": 0.2484,
+      "median": 0.2484,
+      "p90": 0.2484
+     },
+     "geometric_corner_line": {
+      "status": {
+       "unresolved_plane": 1
+      },
+      "n": 0,
+      "mean": null
+     },
+     "clear_pillar_spacing": {
+      "status": {
+       "unresolved_plane": 12
+      },
+      "n": 0,
+      "mean": null
+     },
+     "roof_overhang": {
+      "status": {
+       "occluded": 12
+      },
+      "n": 0,
+      "mean": null
+     },
+     "clear_height": {
+      "status": {
+       "unresolved_plane": 8,
+       "occluded": 4
+      },
+      "n": 0,
+      "mean": null
+     },
+     "roof_width": {
+      "status": {
+       "measured": 10,
+       "unresolved_plane": 2
+      },
+      "n": 10,
+      "mean": 8.2061,
+      "median": 1.244,
+      "p90": 22.7093
+     }
+    }
+   }
+  }
+ },
+ "common": {
+  "utility": 0.6332302497841942,
+  "overall": {
+   "views": 60,
+   "silhouette_iou": {
+    "n": 60,
+    "mean": 0.7899,
+    "median": 0.774,
+    "p90": 0.9021
+   },
+   "automatic": {
+    "width": {
+     "total": 60,
+     "n": 60,
+     "mean": 3.9666,
+     "median": 4.0477,
+     "p90": 7.0597
+    },
+    "height": {
+     "total": 60,
+     "n": 60,
+     "mean": 2.1061,
+     "median": 2.078,
+     "p90": 4.0731
+    },
+    "gap": {
+     "total": 48,
+     "n": 29,
+     "mean": 2.575,
+     "median": 2.086,
+     "p90": 5.0506
+    }
+   },
+   "air": {
+    "probes": 710,
+    "incorrectly_filled": 476
+   },
+   "corners": {
+    "flat_seam": {
+     "coplanar": 4
+    },
+    "geometric_corner": {
+     "None": 3,
+     "coplanar": 1
+    }
+   },
+   "assisted_lengths": {
+    "tier__width": {
+     "status": {
+      "measured": 10,
+      "unresolved_plane": 2
+     },
+     "n": 10,
+     "mean": 0.631,
+     "median": 0.3533,
+     "p90": 1.2642
+    },
+    "front_setback": {
+     "status": {
+      "foreshortened": 2,
+      "unresolved_plane": 2,
+      "measured": 4
+     },
+     "n": 4,
+     "mean": 0.7824,
+     "median": 0.5558,
+     "p90": 1.5896
+    },
+    "side_setback": {
+     "status": {
+      "measured": 8
+     },
+     "n": 8,
+     "mean": 0.3232,
+     "median": 0.3194,
+     "p90": 0.6435
+    },
+    "total_height": {
+     "status": {
+      "occluded": 4
+     },
+     "n": 0,
+     "mean": null
+    },
+    "overall_width": {
+     "status": {
+      "measured": 19,
+      "unresolved_plane": 41
+     },
+     "n": 19,
+     "mean": 3.5935,
+     "median": 1.7764,
+     "p90": 10.0906
+    },
+    "overall_height": {
+     "status": {
+      "unresolved_plane": 30,
+      "measured": 30
+     },
+     "n": 30,
+     "mean": 1.4907,
+     "median": 1.1913,
+     "p90": 3.2694
+    },
+    "door_depth": {
+     "status": {
+      "unresolved_plane": 3,
+      "foreshortened": 2,
+      "occluded": 6,
+      "measured": 1
+     },
+     "n": 1,
+     "mean": 0.1443,
+     "median": 0.1443,
+     "p90": 0.1443
+    },
+    "window_depth": {
+     "status": {
+      "foreshortened": 4,
+      "occluded": 6,
+      "measured": 1,
+      "unresolved_plane": 1
+     },
+     "n": 1,
+     "mean": 0.5676,
+     "median": 0.5676,
+     "p90": 0.5676
+    },
+    "door_width": {
+     "status": {
+      "measured": 9,
+      "unresolved_plane": 3
+     },
+     "n": 9,
+     "mean": 0.7568,
+     "median": 0.7787,
+     "p90": 1.5644
+    },
+    "door_height": {
+     "status": {
+      "measured": 12
+     },
+     "n": 12,
+     "mean": 0.7485,
+     "median": 0.3011,
+     "p90": 1.7315
+    },
+    "window_width": {
+     "status": {
+      "measured": 12
+     },
+     "n": 12,
+     "mean": 0.6132,
+     "median": 0.3674,
+     "p90": 1.5766
+    },
+    "window_height": {
+     "status": {
+      "measured": 12
+     },
+     "n": 12,
+     "mean": 0.4535,
+     "median": 0.3245,
+     "p90": 1.053
+    },
+    "flat_seam_line": {
+     "status": {
+      "measured": 4
+     },
+     "n": 4,
+     "mean": 1.1845,
+     "median": 1.1699,
+     "p90": 2.0393
+    },
+    "geometric_corner_line": {
+     "status": {
+      "measured": 4
+     },
+     "n": 4,
+     "mean": 1.1963,
+     "median": 0.9814,
+     "p90": 2.4855
+    },
+    "clear_pillar_spacing": {
+     "status": {
+      "measured": 42,
+      "unresolved_plane": 6
+     },
+     "n": 42,
+     "mean": 0.6139,
+     "median": 0.54,
+     "p90": 1.4228
+    },
+    "roof_overhang": {
+     "status": {
+      "foreshortened": 12,
+      "occluded": 36
+     },
+     "n": 0,
+     "mean": null
+    },
+    "clear_height": {
+     "status": {
+      "measured": 32,
+      "occluded": 16
+     },
+     "n": 32,
+     "mean": 1.0627,
+     "median": 1.2796,
+     "p90": 2.0591
+    },
+    "roof_width": {
+     "status": {
+      "measured": 48
+     },
+     "n": 48,
+     "mean": 1.86,
+     "median": 1.2809,
+     "p90": 4.8845
+    }
+   }
+  },
+  "by_family": {
+   "canopy": {
+    "views": 48,
+    "silhouette_iou": {
+     "n": 48,
+     "mean": 0.7617,
+     "median": 0.7675,
+     "p90": 0.8252
+    },
+    "automatic": {
+     "width": {
+      "total": 48,
+      "n": 48,
+      "mean": 3.9561,
+      "median": 4.0477,
+      "p90": 6.0843
+     },
+     "height": {
+      "total": 48,
+      "n": 48,
+      "mean": 1.9079,
+      "median": 2.0797,
+      "p90": 3.0692
+     },
+     "gap": {
+      "total": 48,
+      "n": 29,
+      "mean": 2.575,
+      "median": 2.086,
+      "p90": 5.0506
+     }
+    },
+    "air": {
+     "probes": 710,
+     "incorrectly_filled": 476
+    },
+    "corners": {},
+    "assisted_lengths": {
+     "clear_pillar_spacing": {
+      "status": {
+       "measured": 42,
+       "unresolved_plane": 6
+      },
+      "n": 42,
+      "mean": 0.6139,
+      "median": 0.54,
+      "p90": 1.4228
+     },
+     "roof_overhang": {
+      "status": {
+       "foreshortened": 12,
+       "occluded": 36
+      },
+      "n": 0,
+      "mean": null
+     },
+     "clear_height": {
+      "status": {
+       "measured": 32,
+       "occluded": 16
+      },
+      "n": 32,
+      "mean": 1.0627,
+      "median": 1.2796,
+      "p90": 2.0591
+     },
+     "roof_width": {
+      "status": {
+       "measured": 48
+      },
+      "n": 48,
+      "mean": 1.86,
+      "median": 1.2809,
+      "p90": 4.8845
+     },
+     "overall_width": {
+      "status": {
+       "measured": 10,
+       "unresolved_plane": 38
+      },
+      "n": 10,
+      "mean": 1.7862,
+      "median": 0.6604,
+      "p90": 3.7235
+     },
+     "overall_height": {
+      "status": {
+       "measured": 22,
+       "unresolved_plane": 26
+      },
+      "n": 22,
+      "mean": 1.6163,
+      "median": 1.3536,
+      "p90": 3.2447
+     }
+    }
+   },
+   "corner": {
+    "views": 4,
+    "silhouette_iou": {
+     "n": 4,
+     "mean": 0.8862,
+     "median": 0.8702,
+     "p90": 0.9276
+    },
+    "automatic": {
+     "width": {
+      "total": 4,
+      "n": 4,
+      "mean": 6.2034,
+      "median": 6.9265,
+      "p90": 9.6122
+     },
+     "height": {
+      "total": 4,
+      "n": 4,
+      "mean": 2.8103,
+      "median": 2.0648,
+      "p90": 5.5722
+     }
+    },
+    "air": {
+     "probes": 0,
+     "incorrectly_filled": 0
+    },
+    "corners": {
+     "flat_seam": {
+      "coplanar": 4
+     },
+     "geometric_corner": {
+      "None": 3,
+      "coplanar": 1
+     }
+    },
+    "assisted_lengths": {
+     "flat_seam_line": {
+      "status": {
+       "measured": 4
+      },
+      "n": 4,
+      "mean": 1.1845,
+      "median": 1.1699,
+      "p90": 2.0393
+     },
+     "geometric_corner_line": {
+      "status": {
+       "measured": 4
+      },
+      "n": 4,
+      "mean": 1.1963,
+      "median": 0.9814,
+      "p90": 2.4855
+     },
+     "overall_width": {
+      "status": {
+       "measured": 4
+      },
+      "n": 4,
+      "mean": 7.6442,
+      "median": 9.2857,
+      "p90": 11.3122
+     },
+     "overall_height": {
+      "status": {
+       "measured": 4
+      },
+      "n": 4,
+      "mean": 1.051,
+      "median": 0.6156,
+      "p90": 2.3858
+     }
+    }
+   },
+   "recess": {
+    "views": 4,
+    "silhouette_iou": {
+     "n": 4,
+     "mean": 0.8973,
+     "median": 0.8895,
+     "p90": 0.9315
+    },
+    "automatic": {
+     "width": {
+      "total": 4,
+      "n": 4,
+      "mean": 3.9814,
+      "median": 3.4659,
+      "p90": 7.32
+     },
+     "height": {
+      "total": 4,
+      "n": 4,
+      "mean": 2.8078,
+      "median": 1.0344,
+      "p90": 6.6836
+     }
+    },
+    "air": {
+     "probes": 0,
+     "incorrectly_filled": 0
+    },
+    "corners": {},
+    "assisted_lengths": {
+     "door_depth": {
+      "status": {
+       "unresolved_plane": 3,
+       "foreshortened": 2,
+       "occluded": 6,
+       "measured": 1
+      },
+      "n": 1,
+      "mean": 0.1443,
+      "median": 0.1443,
+      "p90": 0.1443
+     },
+     "window_depth": {
+      "status": {
+       "foreshortened": 4,
+       "occluded": 6,
+       "measured": 1,
+       "unresolved_plane": 1
+      },
+      "n": 1,
+      "mean": 0.5676,
+      "median": 0.5676,
+      "p90": 0.5676
+     },
+     "overall_width": {
+      "status": {
+       "measured": 3,
+       "unresolved_plane": 1
+      },
+      "n": 3,
+      "mean": 5.9565,
+      "median": 7.3102,
+      "p90": 9.4559
+     },
+     "overall_height": {
+      "status": {
+       "measured": 4
+      },
+      "n": 4,
+      "mean": 1.2394,
+      "median": 0.7068,
+      "p90": 2.8419
+     },
+     "door_width": {
+      "status": {
+       "measured": 9,
+       "unresolved_plane": 3
+      },
+      "n": 9,
+      "mean": 0.7568,
+      "median": 0.7787,
+      "p90": 1.5644
+     },
+     "door_height": {
+      "status": {
+       "measured": 12
+      },
+      "n": 12,
+      "mean": 0.7485,
+      "median": 0.3011,
+      "p90": 1.7315
+     },
+     "window_width": {
+      "status": {
+       "measured": 12
+      },
+      "n": 12,
+      "mean": 0.6132,
+      "median": 0.3674,
+      "p90": 1.5766
+     },
+     "window_height": {
+      "status": {
+       "measured": 12
+      },
+      "n": 12,
+      "mean": 0.4535,
+      "median": 0.3245,
+      "p90": 1.053
+     }
+    }
+   },
+   "stepped_tower": {
+    "views": 4,
+    "silhouette_iou": {
+     "n": 4,
+     "mean": 0.9243,
+     "median": 0.9209,
+     "p90": 0.9374
+    },
+    "automatic": {
+     "width": {
+      "total": 4,
+      "n": 4,
+      "mean": 1.8409,
+      "median": 1.1198,
+      "p90": 4.1628
+     },
+     "height": {
+      "total": 4,
+      "n": 4,
+      "mean": 3.0781,
+      "median": 4.0739,
+      "p90": 4.1008
+     }
+    },
+    "air": {
+     "probes": 0,
+     "incorrectly_filled": 0
+    },
+    "corners": {},
+    "assisted_lengths": {
+     "tier__width": {
+      "status": {
+       "measured": 10,
+       "unresolved_plane": 2
+      },
+      "n": 10,
+      "mean": 0.631,
+      "median": 0.3533,
+      "p90": 1.2642
+     },
+     "front_setback": {
+      "status": {
+       "foreshortened": 2,
+       "unresolved_plane": 2,
+       "measured": 4
+      },
+      "n": 4,
+      "mean": 0.7824,
+      "median": 0.5558,
+      "p90": 1.5896
+     },
+     "side_setback": {
+      "status": {
+       "measured": 8
+      },
+      "n": 8,
+      "mean": 0.3232,
+      "median": 0.3194,
+      "p90": 0.6435
+     },
+     "total_height": {
+      "status": {
+       "occluded": 4
+      },
+      "n": 0,
+      "mean": null
+     },
+     "overall_width": {
+      "status": {
+       "measured": 2,
+       "unresolved_plane": 2
+      },
+      "n": 2,
+      "mean": 0.9845,
+      "median": 0.9845,
+      "p90": 1.618
+     },
+     "overall_height": {
+      "status": {
+       "unresolved_plane": 4
+      },
+      "n": 0,
+      "mean": null
+     }
+    }
+   }
+  },
+  "by_angle": {
+   "elevated": {
+    "views": 15,
+    "silhouette_iou": {
+     "n": 15,
+     "mean": 0.7852,
+     "median": 0.7744,
+     "p90": 0.8823
+    },
+    "automatic": {
+     "width": {
+      "total": 15,
+      "n": 15,
+      "mean": 2.6401,
+      "median": 3.0333,
+      "p90": 4.046
+     },
+     "height": {
+      "total": 15,
+      "n": 15,
+      "mean": 1.5857,
+      "median": 0.047,
+      "p90": 5.8633
+     },
+     "gap": {
+      "total": 12,
+      "n": 3,
+      "mean": 1.387,
+      "median": 1.057,
+      "p90": 1.8491
+     }
+    },
+    "air": {
+     "probes": 174,
+     "incorrectly_filled": 159
+    },
+    "corners": {
+     "flat_seam": {
+      "coplanar": 1
+     },
+     "geometric_corner": {
+      "None": 1
+     }
+    },
+    "assisted_lengths": {
+     "tier__width": {
+      "status": {
+       "measured": 3
+      },
+      "n": 3,
+      "mean": 0.8258,
+      "median": 0.4294,
+      "p90": 1.507
+     },
+     "front_setback": {
+      "status": {
+       "measured": 1,
+       "unresolved_plane": 1
+      },
+      "n": 1,
+      "mean": 0.2314,
+      "median": 0.2314,
+      "p90": 0.2314
+     },
+     "side_setback": {
+      "status": {
+       "measured": 2
+      },
+      "n": 2,
+      "mean": 0.3581,
+      "median": 0.3581,
+      "p90": 0.3725
+     },
+     "total_height": {
+      "status": {
+       "occluded": 1
+      },
+      "n": 0,
+      "mean": null
+     },
+     "overall_width": {
+      "status": {
+       "measured": 4,
+       "unresolved_plane": 11
+      },
+      "n": 4,
+      "mean": 2.7962,
+      "median": 1.2184,
+      "p90": 6.1941
+     },
+     "overall_height": {
+      "status": {
+       "unresolved_plane": 11,
+       "measured": 4
+      },
+      "n": 4,
+      "mean": 1.5557,
+      "median": 1.6105,
+      "p90": 1.8955
+     },
+     "door_depth": {
+      "status": {
+       "measured": 1,
+       "occluded": 2
+      },
+      "n": 1,
+      "mean": 0.1443,
+      "median": 0.1443,
+      "p90": 0.1443
+     },
+     "window_depth": {
+      "status": {
+       "occluded": 3
+      },
+      "n": 0,
+      "mean": null
+     },
+     "door_width": {
+      "status": {
+       "unresolved_plane": 3
+      },
+      "n": 0,
+      "mean": null
+     },
+     "door_height": {
+      "status": {
+       "measured": 3
+      },
+      "n": 3,
+      "mean": 0.1706,
+      "median": 0.1562,
+      "p90": 0.2926
+     },
+     "window_width": {
+      "status": {
+       "measured": 3
+      },
+      "n": 3,
+      "mean": 0.4223,
+      "median": 0.409,
+      "p90": 0.7102
+     },
+     "window_height": {
+      "status": {
+       "measured": 3
+      },
+      "n": 3,
+      "mean": 0.3241,
+      "median": 0.3238,
+      "p90": 0.4403
+     },
+     "flat_seam_line": {
+      "status": {
+       "measured": 1
+      },
+      "n": 1,
+      "mean": 1.2925,
+      "median": 1.2925,
+      "p90": 1.2925
+     },
+     "geometric_corner_line": {
+      "status": {
+       "measured": 1
+      },
+      "n": 1,
+      "mean": 1.7893,
+      "median": 1.7893,
+      "p90": 1.7893
+     },
+     "clear_pillar_spacing": {
+      "status": {
+       "measured": 12
+      },
+      "n": 12,
+      "mean": 0.5939,
+      "median": 0.6373,
+      "p90": 0.7797
+     },
+     "roof_overhang": {
+      "status": {
+       "occluded": 12
+      },
+      "n": 0,
+      "mean": null
+     },
+     "clear_height": {
+      "status": {
+       "occluded": 12
+      },
+      "n": 0,
+      "mean": null
+     },
+     "roof_width": {
+      "status": {
+       "measured": 12
+      },
+      "n": 12,
+      "mean": 1.7916,
+      "median": 1.4961,
+      "p90": 3.3407
+     }
+    }
+   },
+   "front": {
+    "views": 15,
+    "silhouette_iou": {
+     "n": 15,
+     "mean": 0.8048,
+     "median": 0.832,
+     "p90": 0.944
+    },
+    "automatic": {
+     "width": {
+      "total": 15,
+      "n": 15,
+      "mean": 2.3903,
+      "median": 1.0553,
+      "p90": 6.0785
+     },
+     "height": {
+      "total": 15,
+      "n": 15,
+      "mean": 1.7849,
+      "median": 2.0836,
+      "p90": 3.6678
+     },
+     "gap": {
+      "total": 12,
+      "n": 3,
+      "mean": 1.3753,
+      "median": 2.0349,
+      "p90": 2.0434
+     }
+    },
+    "air": {
+     "probes": 108,
+     "incorrectly_filled": 69
+    },
+    "corners": {
+     "flat_seam": {
+      "coplanar": 1
+     },
+     "geometric_corner": {
+      "None": 1
+     }
+    },
+    "assisted_lengths": {
+     "tier__width": {
+      "status": {
+       "measured": 3
+      },
+      "n": 3,
+      "mean": 0.4498,
+      "median": 0.2772,
+      "p90": 0.7591
+     },
+     "front_setback": {
+      "status": {
+       "foreshortened": 2
+      },
+      "n": 0,
+      "mean": null
+     },
+     "side_setback": {
+      "status": {
+       "measured": 2
+      },
+      "n": 2,
+      "mean": 0.0235,
+      "median": 0.0235,
+      "p90": 0.0383
+     },
+     "total_height": {
+      "status": {
+       "occluded": 1
+      },
+      "n": 0,
+      "mean": null
+     },
+     "overall_width": {
+      "status": {
+       "measured": 9,
+       "unresolved_plane": 6
+      },
+      "n": 9,
+      "mean": 1.8189,
+      "median": 0.5669,
+      "p90": 3.7981
+     },
+     "overall_height": {
+      "status": {
+       "unresolved_plane": 7,
+       "measured": 8
+      },
+      "n": 8,
+      "mean": 2.0165,
+      "median": 2.012,
+      "p90": 4.0505
+     },
+     "door_depth": {
+      "status": {
+       "unresolved_plane": 1,
+       "foreshortened": 2
+      },
+      "n": 0,
+      "mean": null
+     },
+     "window_depth": {
+      "status": {
+       "foreshortened": 3
+      },
+      "n": 0,
+      "mean": null
+     },
+     "door_width": {
+      "status": {
+       "measured": 3
+      },
+      "n": 3,
+      "mean": 0.068,
+      "median": 0.068,
+      "p90": 0.068
+     },
+     "door_height": {
+      "status": {
+       "measured": 3
+      },
+      "n": 3,
+      "mean": 0.1323,
+      "median": 0.1323,
+      "p90": 0.1323
+     },
+     "window_width": {
+      "status": {
+       "measured": 3
+      },
+      "n": 3,
+      "mean": 0.0227,
+      "median": 0.0227,
+      "p90": 0.0227
+     },
+     "window_height": {
+      "status": {
+       "measured": 3
+      },
+      "n": 3,
+      "mean": 0.0187,
+      "median": 0.0187,
+      "p90": 0.0187
+     },
+     "flat_seam_line": {
+      "status": {
+       "measured": 1
+      },
+      "n": 1,
+      "mean": 0.0386,
+      "median": 0.0386,
+      "p90": 0.0386
+     },
+     "geometric_corner_line": {
+      "status": {
+       "measured": 1
+      },
+      "n": 1,
+      "mean": 0.0386,
+      "median": 0.0386,
+      "p90": 0.0386
+     },
+     "clear_pillar_spacing": {
+      "status": {
+       "measured": 12
+      },
+      "n": 12,
+      "mean": 0.9547,
+      "median": 0.9508,
+      "p90": 1.6445
+     },
+     "roof_overhang": {
+      "status": {
+       "foreshortened": 12
+      },
+      "n": 0,
+      "mean": null
+     },
+     "clear_height": {
+      "status": {
+       "measured": 12
+      },
+      "n": 12,
+      "mean": 0.9702,
+      "median": 0.8483,
+      "p90": 2.0134
+     },
+     "roof_width": {
+      "status": {
+       "measured": 12
+      },
+      "n": 12,
+      "mean": 2.6046,
+      "median": 1.8808,
+      "p90": 5.7225
+     }
+    }
+   },
+   "left": {
+    "views": 15,
+    "silhouette_iou": {
+     "n": 15,
+     "mean": 0.7872,
+     "median": 0.77,
+     "p90": 0.8652
+    },
+    "automatic": {
+     "width": {
+      "total": 15,
+      "n": 15,
+      "mean": 5.7188,
+      "median": 5.0691,
+      "p90": 10.2574
+     },
+     "height": {
+      "total": 15,
+      "n": 15,
+      "mean": 2.5264,
+      "median": 2.083,
+      "p90": 3.6882
+     },
+     "gap": {
+      "total": 12,
+      "n": 12,
+      "mean": 2.8045,
+      "median": 3.0311,
+      "p90": 5.0525
+     }
+    },
+    "air": {
+     "probes": 211,
+     "incorrectly_filled": 128
+    },
+    "corners": {
+     "flat_seam": {
+      "coplanar": 1
+     },
+     "geometric_corner": {
+      "None": 1
+     }
+    },
+    "assisted_lengths": {
+     "tier__width": {
+      "status": {
+       "unresolved_plane": 1,
+       "measured": 2
+      },
+      "n": 2,
+      "mean": 1.0759,
+      "median": 1.0759,
+      "p90": 1.181
+     },
+     "front_setback": {
+      "status": {
+       "unresolved_plane": 1,
+       "measured": 1
+      },
+      "n": 1,
+      "mean": 1.8937,
+      "median": 1.8937,
+      "p90": 1.8937
+     },
+     "side_setback": {
+      "status": {
+       "measured": 2
+      },
+      "n": 2,
+      "mean": 0.3848,
+      "median": 0.3848,
+      "p90": 0.5538
+     },
+     "total_height": {
+      "status": {
+       "occluded": 1
+      },
+      "n": 0,
+      "mean": null
+     },
+     "overall_width": {
+      "status": {
+       "unresolved_plane": 11,
+       "measured": 4
+      },
+      "n": 4,
+      "mean": 4.7658,
+      "median": 3.9724,
+      "p90": 9.5318
+     },
+     "overall_height": {
+      "status": {
+       "unresolved_plane": 11,
+       "measured": 4
+      },
+      "n": 4,
+      "mean": 1.544,
+      "median": 1.5622,
+      "p90": 2.9994
+     },
+     "door_depth": {
+      "status": {
+       "occluded": 3
+      },
+      "n": 0,
+      "mean": null
+     },
+     "window_depth": {
+      "status": {
+       "foreshortened": 1,
+       "occluded": 2
+      },
+      "n": 0,
+      "mean": null
+     },
+     "door_width": {
+      "status": {
+       "measured": 3
+      },
+      "n": 3,
+      "mean": 0.8167,
+      "median": 0.8437,
+      "p90": 1.3192
+     },
+     "door_height": {
+      "status": {
+       "measured": 3
+      },
+      "n": 3,
+      "mean": 1.0101,
+      "median": 1.0896,
+      "p90": 1.55
+     },
+     "window_width": {
+      "status": {
+       "measured": 3
+      },
+      "n": 3,
+      "mean": 1.0288,
+      "median": 1.135,
+      "p90": 1.5275
+     },
+     "window_height": {
+      "status": {
+       "measured": 3
+      },
+      "n": 3,
+      "mean": 0.724,
+      "median": 0.7655,
+      "p90": 1.0182
+     },
+     "flat_seam_line": {
+      "status": {
+       "measured": 1
+      },
+      "n": 1,
+      "mean": 1.0474,
+      "median": 1.0474,
+      "p90": 1.0474
+     },
+     "geometric_corner_line": {
+      "status": {
+       "measured": 1
+      },
+      "n": 1,
+      "mean": 2.7839,
+      "median": 2.7839,
+      "p90": 2.7839
+     },
+     "clear_pillar_spacing": {
+      "status": {
+       "measured": 11,
+       "unresolved_plane": 1
+      },
+      "n": 11,
+      "mean": 0.5009,
+      "median": 0.2632,
+      "p90": 1.4326
+     },
+     "roof_overhang": {
+      "status": {
+       "occluded": 12
+      },
+      "n": 0,
+      "mean": null
+     },
+     "clear_height": {
+      "status": {
+       "measured": 12
+      },
+      "n": 12,
+      "mean": 1.7809,
+      "median": 1.5995,
+      "p90": 2.1913
+     },
+     "roof_width": {
+      "status": {
+       "measured": 12
+      },
+      "n": 12,
+      "mean": 1.9435,
+      "median": 1.3508,
+      "p90": 5.333
+     }
+    }
+   },
+   "right": {
+    "views": 15,
+    "silhouette_iou": {
+     "n": 15,
+     "mean": 0.7825,
+     "median": 0.7708,
+     "p90": 0.8771
+    },
+    "automatic": {
+     "width": {
+      "total": 15,
+      "n": 15,
+      "mean": 5.1173,
+      "median": 6.0264,
+      "p90": 7.6134
+     },
+     "height": {
+      "total": 15,
+      "n": 15,
+      "mean": 2.5274,
+      "median": 2.083,
+      "p90": 3.0692
+     },
+     "gap": {
+      "total": 12,
+      "n": 11,
+      "mean": 2.9758,
+      "median": 3.0724,
+      "p90": 5.0493
+     }
+    },
+    "air": {
+     "probes": 217,
+     "incorrectly_filled": 120
+    },
+    "corners": {
+     "flat_seam": {
+      "coplanar": 1
+     },
+     "geometric_corner": {
+      "coplanar": 1
+     }
+    },
+    "assisted_lengths": {
+     "tier__width": {
+      "status": {
+       "unresolved_plane": 1,
+       "measured": 2
+      },
+      "n": 2,
+      "mean": 0.1657,
+      "median": 0.1657,
+      "p90": 0.2149
+     },
+     "front_setback": {
+      "status": {
+       "measured": 2
+      },
+      "n": 2,
+      "mean": 0.5022,
+      "median": 0.5022,
+      "p90": 0.8045
+     },
+     "side_setback": {
+      "status": {
+       "measured": 2
+      },
+      "n": 2,
+      "mean": 0.5264,
+      "median": 0.5264,
+      "p90": 0.7086
+     },
+     "total_height": {
+      "status": {
+       "occluded": 1
+      },
+      "n": 0,
+      "mean": null
+     },
+     "overall_width": {
+      "status": {
+       "unresolved_plane": 13,
+       "measured": 2
+      },
+      "n": 2,
+      "mean": 10.8298,
+      "median": 10.8298,
+      "p90": 11.4997
+     },
+     "overall_height": {
+      "status": {
+       "unresolved_plane": 1,
+       "measured": 14
+      },
+      "n": 14,
+      "mean": 1.1563,
+      "median": 0.7943,
+      "p90": 2.5443
+     },
+     "door_depth": {
+      "status": {
+       "occluded": 1,
+       "unresolved_plane": 2
+      },
+      "n": 0,
+      "mean": null
+     },
+     "window_depth": {
+      "status": {
+       "occluded": 1,
+       "measured": 1,
+       "unresolved_plane": 1
+      },
+      "n": 1,
+      "mean": 0.5676,
+      "median": 0.5676,
+      "p90": 0.5676
+     },
+     "door_width": {
+      "status": {
+       "measured": 3
+      },
+      "n": 3,
+      "mean": 1.3855,
+      "median": 1.4814,
+      "p90": 1.8135
+     },
+     "door_height": {
+      "status": {
+       "measured": 3
+      },
+      "n": 3,
+      "mean": 1.6811,
+      "median": 1.7388,
+      "p90": 2.1009
+     },
+     "window_width": {
+      "status": {
+       "measured": 3
+      },
+      "n": 3,
+      "mean": 0.979,
+      "median": 1.1303,
+      "p90": 1.578
+     },
+     "window_height": {
+      "status": {
+       "measured": 3
+      },
+      "n": 3,
+      "mean": 0.747,
+      "median": 0.797,
+      "p90": 1.0679
+     },
+     "flat_seam_line": {
+      "status": {
+       "measured": 1
+      },
+      "n": 1,
+      "mean": 2.3594,
+      "median": 2.3594,
+      "p90": 2.3594
+     },
+     "geometric_corner_line": {
+      "status": {
+       "measured": 1
+      },
+      "n": 1,
+      "mean": 0.1734,
+      "median": 0.1734,
+      "p90": 0.1734
+     },
+     "clear_pillar_spacing": {
+      "status": {
+       "unresolved_plane": 5,
+       "measured": 7
+      },
+      "n": 7,
+      "mean": 0.2415,
+      "median": 0.1362,
+      "p90": 0.4751
+     },
+     "roof_overhang": {
+      "status": {
+       "occluded": 12
+      },
+      "n": 0,
+      "mean": null
+     },
+     "clear_height": {
+      "status": {
+       "measured": 8,
+       "occluded": 4
+      },
+      "n": 8,
+      "mean": 0.1241,
+      "median": 0.1243,
+      "p90": 0.2393
+     },
+     "roof_width": {
+      "status": {
+       "measured": 12
+      },
+      "n": 12,
+      "mean": 1.1004,
+      "median": 1.0753,
+      "p90": 1.9348
+     }
+    }
+   }
+  }
+ },
+ "remap": {
+  "utility": 0.632878861550537,
+  "overall": {
+   "views": 60,
+   "silhouette_iou": {
+    "n": 60,
+    "mean": 0.8109,
+    "median": 0.8115,
+    "p90": 0.902
+   },
+   "automatic": {
+    "width": {
+     "total": 60,
+     "n": 60,
+     "mean": 4.1211,
+     "median": 4.046,
+     "p90": 8.052
+    },
+    "height": {
+     "total": 60,
+     "n": 60,
+     "mean": 2.0916,
+     "median": 2.0676,
+     "p90": 4.0474
+    },
+    "gap": {
+     "total": 48,
+     "n": 27,
+     "mean": 2.7292,
+     "median": 3.0372,
+     "p90": 5.0704
+    }
+   },
+   "air": {
+    "probes": 710,
+    "incorrectly_filled": 445
+   },
+   "corners": {
+    "flat_seam": {
+     "coplanar": 4
+    },
+    "geometric_corner": {
+     "None": 3,
+     "coplanar": 1
+    }
+   },
+   "assisted_lengths": {
+    "tier__width": {
+     "status": {
+      "measured": 10,
+      "unresolved_plane": 2
+     },
+     "n": 10,
+     "mean": 0.6457,
+     "median": 0.5197,
+     "p90": 1.3426
+    },
+    "front_setback": {
+     "status": {
+      "foreshortened": 2,
+      "unresolved_plane": 2,
+      "measured": 4
+     },
+     "n": 4,
+     "mean": 0.7672,
+     "median": 0.5239,
+     "p90": 1.5851
+    },
+    "side_setback": {
+     "status": {
+      "measured": 8
+     },
+     "n": 8,
+     "mean": 0.3379,
+     "median": 0.302,
+     "p90": 0.6048
+    },
+    "total_height": {
+     "status": {
+      "occluded": 4
+     },
+     "n": 0,
+     "mean": null
+    },
+    "overall_width": {
+     "status": {
+      "measured": 18,
+      "unresolved_plane": 42
+     },
+     "n": 18,
+     "mean": 3.8274,
+     "median": 1.6018,
+     "p90": 10.295
+    },
+    "overall_height": {
+     "status": {
+      "unresolved_plane": 35,
+      "measured": 25
+     },
+     "n": 25,
+     "mean": 1.343,
+     "median": 1.1869,
+     "p90": 3.4478
+    },
+    "door_depth": {
+     "status": {
+      "unresolved_plane": 3,
+      "foreshortened": 2,
+      "occluded": 6,
+      "measured": 1
+     },
+     "n": 1,
+     "mean": 0.1443,
+     "median": 0.1443,
+     "p90": 0.1443
+    },
+    "window_depth": {
+     "status": {
+      "foreshortened": 4,
+      "occluded": 6,
+      "measured": 1,
+      "unresolved_plane": 1
+     },
+     "n": 1,
+     "mean": 0.5739,
+     "median": 0.5739,
+     "p90": 0.5739
+    },
+    "door_width": {
+     "status": {
+      "measured": 9,
+      "unresolved_plane": 3
+     },
+     "n": 9,
+     "mean": 0.7693,
+     "median": 0.8115,
+     "p90": 1.5856
+    },
+    "door_height": {
+     "status": {
+      "measured": 12
+     },
+     "n": 12,
+     "mean": 0.7471,
+     "median": 0.2655,
+     "p90": 1.7116
+    },
+    "window_width": {
+     "status": {
+      "measured": 12
+     },
+     "n": 12,
+     "mean": 0.6219,
+     "median": 0.3606,
+     "p90": 1.5726
+    },
+    "window_height": {
+     "status": {
+      "measured": 12
+     },
+     "n": 12,
+     "mean": 0.453,
+     "median": 0.3094,
+     "p90": 1.0256
+    },
+    "flat_seam_line": {
+     "status": {
+      "measured": 4
+     },
+     "n": 4,
+     "mean": 1.2186,
+     "median": 1.1699,
+     "p90": 2.0393
+    },
+    "geometric_corner_line": {
+     "status": {
+      "measured": 4
+     },
+     "n": 4,
+     "mean": 1.2304,
+     "median": 0.9822,
+     "p90": 2.4855
+    },
+    "clear_pillar_spacing": {
+     "status": {
+      "measured": 41,
+      "unresolved_plane": 7
+     },
+     "n": 41,
+     "mean": 0.5744,
+     "median": 0.5361,
+     "p90": 1.2594
+    },
+    "roof_overhang": {
+     "status": {
+      "foreshortened": 12,
+      "occluded": 36
+     },
+     "n": 0,
+     "mean": null
+    },
+    "clear_height": {
+     "status": {
+      "measured": 32,
+      "occluded": 16
+     },
+     "n": 32,
+     "mean": 1.1461,
+     "median": 1.2789,
+     "p90": 2.2437
+    },
+    "roof_width": {
+     "status": {
+      "measured": 47,
+      "unresolved_plane": 1
+     },
+     "n": 47,
+     "mean": 1.8976,
+     "median": 1.1965,
+     "p90": 4.5205
+    }
+   }
+  },
+  "by_family": {
+   "canopy": {
+    "views": 48,
+    "silhouette_iou": {
+     "n": 48,
+     "mean": 0.787,
+     "median": 0.7949,
+     "p90": 0.8542
+    },
+    "automatic": {
+     "width": {
+      "total": 48,
+      "n": 48,
+      "mean": 4.0794,
+      "median": 4.046,
+      "p90": 7.0398
+     },
+     "height": {
+      "total": 48,
+      "n": 48,
+      "mean": 1.8881,
+      "median": 2.0683,
+      "p90": 3.0875
+     },
+     "gap": {
+      "total": 48,
+      "n": 27,
+      "mean": 2.7292,
+      "median": 3.0372,
+      "p90": 5.0704
+     }
+    },
+    "air": {
+     "probes": 710,
+     "incorrectly_filled": 445
+    },
+    "corners": {},
+    "assisted_lengths": {
+     "clear_pillar_spacing": {
+      "status": {
+       "measured": 41,
+       "unresolved_plane": 7
+      },
+      "n": 41,
+      "mean": 0.5744,
+      "median": 0.5361,
+      "p90": 1.2594
+     },
+     "roof_overhang": {
+      "status": {
+       "foreshortened": 12,
+       "occluded": 36
+      },
+      "n": 0,
+      "mean": null
+     },
+     "clear_height": {
+      "status": {
+       "measured": 32,
+       "occluded": 16
+      },
+      "n": 32,
+      "mean": 1.1461,
+      "median": 1.2789,
+      "p90": 2.2437
+     },
+     "roof_width": {
+      "status": {
+       "measured": 47,
+       "unresolved_plane": 1
+      },
+      "n": 47,
+      "mean": 1.8976,
+      "median": 1.1965,
+      "p90": 4.5205
+     },
+     "overall_width": {
+      "status": {
+       "measured": 9,
+       "unresolved_plane": 39
+      },
+      "n": 9,
+      "mean": 1.7162,
+      "median": 0.7139,
+      "p90": 3.8752
+     },
+     "overall_height": {
+      "status": {
+       "measured": 19,
+       "unresolved_plane": 29
+      },
+      "n": 19,
+      "mean": 1.479,
+      "median": 1.4177,
+      "p90": 3.5072
+     }
+    }
+   },
+   "corner": {
+    "views": 4,
+    "silhouette_iou": {
+     "n": 4,
+     "mean": 0.8964,
+     "median": 0.8811,
+     "p90": 0.9381
+    },
+    "automatic": {
+     "width": {
+      "total": 4,
+      "n": 4,
+      "mean": 6.9821,
+      "median": 7.4102,
+      "p90": 10.3615
+     },
+     "height": {
+      "total": 4,
+      "n": 4,
+      "mean": 2.8206,
+      "median": 2.0648,
+      "p90": 5.5722
+     }
+    },
+    "air": {
+     "probes": 0,
+     "incorrectly_filled": 0
+    },
+    "corners": {
+     "flat_seam": {
+      "coplanar": 4
+     },
+     "geometric_corner": {
+      "None": 3,
+      "coplanar": 1
+     }
+    },
+    "assisted_lengths": {
+     "flat_seam_line": {
+      "status": {
+       "measured": 4
+      },
+      "n": 4,
+      "mean": 1.2186,
+      "median": 1.1699,
+      "p90": 2.0393
+     },
+     "geometric_corner_line": {
+      "status": {
+       "measured": 4
+      },
+      "n": 4,
+      "mean": 1.2304,
+      "median": 0.9822,
+      "p90": 2.4855
+     },
+     "overall_width": {
+      "status": {
+       "measured": 4
+      },
+      "n": 4,
+      "mean": 8.2269,
+      "median": 9.4809,
+      "p90": 11.9083
+     },
+     "overall_height": {
+      "status": {
+       "measured": 2,
+       "unresolved_plane": 2
+      },
+      "n": 2,
+      "mean": 0.15,
+      "median": 0.15,
+      "p90": 0.1701
+     }
+    }
+   },
+   "recess": {
+    "views": 4,
+    "silhouette_iou": {
+     "n": 4,
+     "mean": 0.9015,
+     "median": 0.8915,
+     "p90": 0.9342
+    },
+    "automatic": {
+     "width": {
+      "total": 4,
+      "n": 4,
+      "mean": 4.0139,
+      "median": 3.4872,
+      "p90": 8.0517
+     },
+     "height": {
+      "total": 4,
+      "n": 4,
+      "mean": 2.8115,
+      "median": 1.0613,
+      "p90": 6.6972
+     }
+    },
+    "air": {
+     "probes": 0,
+     "incorrectly_filled": 0
+    },
+    "corners": {},
+    "assisted_lengths": {
+     "door_depth": {
+      "status": {
+       "unresolved_plane": 3,
+       "foreshortened": 2,
+       "occluded": 6,
+       "measured": 1
+      },
+      "n": 1,
+      "mean": 0.1443,
+      "median": 0.1443,
+      "p90": 0.1443
+     },
+     "window_depth": {
+      "status": {
+       "foreshortened": 4,
+       "occluded": 6,
+       "measured": 1,
+       "unresolved_plane": 1
+      },
+      "n": 1,
+      "mean": 0.5739,
+      "median": 0.5739,
+      "p90": 0.5739
+     },
+     "overall_width": {
+      "status": {
+       "measured": 3,
+       "unresolved_plane": 1
+      },
+      "n": 3,
+      "mean": 6.0413,
+      "median": 7.2213,
+      "p90": 9.6155
+     },
+     "overall_height": {
+      "status": {
+       "measured": 4
+      },
+      "n": 4,
+      "mean": 1.2936,
+      "median": 0.7653,
+      "p90": 2.826
+     },
+     "door_width": {
+      "status": {
+       "measured": 9,
+       "unresolved_plane": 3
+      },
+      "n": 9,
+      "mean": 0.7693,
+      "median": 0.8115,
+      "p90": 1.5856
+     },
+     "door_height": {
+      "status": {
+       "measured": 12
+      },
+      "n": 12,
+      "mean": 0.7471,
+      "median": 0.2655,
+      "p90": 1.7116
+     },
+     "window_width": {
+      "status": {
+       "measured": 12
+      },
+      "n": 12,
+      "mean": 0.6219,
+      "median": 0.3606,
+      "p90": 1.5726
+     },
+     "window_height": {
+      "status": {
+       "measured": 12
+      },
+      "n": 12,
+      "mean": 0.453,
+      "median": 0.3094,
+      "p90": 1.0256
+     }
+    }
+   },
+   "stepped_tower": {
+    "views": 4,
+    "silhouette_iou": {
+     "n": 4,
+     "mean": 0.9216,
+     "median": 0.9201,
+     "p90": 0.9307
+    },
+    "automatic": {
+     "width": {
+      "total": 4,
+      "n": 4,
+      "mean": 1.8675,
+      "median": 1.1261,
+      "p90": 3.9357
+     },
+     "height": {
+      "total": 4,
+      "n": 4,
+      "mean": 3.0845,
+      "median": 4.0739,
+      "p90": 4.1066
+     }
+    },
+    "air": {
+     "probes": 0,
+     "incorrectly_filled": 0
+    },
+    "corners": {},
+    "assisted_lengths": {
+     "tier__width": {
+      "status": {
+       "measured": 10,
+       "unresolved_plane": 2
+      },
+      "n": 10,
+      "mean": 0.6457,
+      "median": 0.5197,
+      "p90": 1.3426
+     },
+     "front_setback": {
+      "status": {
+       "foreshortened": 2,
+       "unresolved_plane": 2,
+       "measured": 4
+      },
+      "n": 4,
+      "mean": 0.7672,
+      "median": 0.5239,
+      "p90": 1.5851
+     },
+     "side_setback": {
+      "status": {
+       "measured": 8
+      },
+      "n": 8,
+      "mean": 0.3379,
+      "median": 0.302,
+      "p90": 0.6048
+     },
+     "total_height": {
+      "status": {
+       "occluded": 4
+      },
+      "n": 0,
+      "mean": null
+     },
+     "overall_width": {
+      "status": {
+       "measured": 2,
+       "unresolved_plane": 2
+      },
+      "n": 2,
+      "mean": 1.2079,
+      "median": 1.2079,
+      "p90": 1.6627
+     },
+     "overall_height": {
+      "status": {
+       "unresolved_plane": 4
+      },
+      "n": 0,
+      "mean": null
+     }
+    }
+   }
+  },
+  "by_angle": {
+   "elevated": {
+    "views": 15,
+    "silhouette_iou": {
+     "n": 15,
+     "mean": 0.7909,
+     "median": 0.7823,
+     "p90": 0.8893
+    },
+    "automatic": {
+     "width": {
+      "total": 15,
+      "n": 15,
+      "mean": 2.7727,
+      "median": 3.0333,
+      "p90": 4.046
+     },
+     "height": {
+      "total": 15,
+      "n": 15,
+      "mean": 1.5846,
+      "median": 0.047,
+      "p90": 5.8633
+     },
+     "gap": {
+      "total": 12,
+      "n": 0,
+      "mean": null
+     }
+    },
+    "air": {
+     "probes": 174,
+     "incorrectly_filled": 162
+    },
+    "corners": {
+     "flat_seam": {
+      "coplanar": 1
+     },
+     "geometric_corner": {
+      "None": 1
+     }
+    },
+    "assisted_lengths": {
+     "tier__width": {
+      "status": {
+       "measured": 3
+      },
+      "n": 3,
+      "mean": 0.8258,
+      "median": 0.4294,
+      "p90": 1.507
+     },
+     "front_setback": {
+      "status": {
+       "measured": 1,
+       "unresolved_plane": 1
+      },
+      "n": 1,
+      "mean": 0.2314,
+      "median": 0.2314,
+      "p90": 0.2314
+     },
+     "side_setback": {
+      "status": {
+       "measured": 2
+      },
+      "n": 2,
+      "mean": 0.3581,
+      "median": 0.3581,
+      "p90": 0.3725
+     },
+     "total_height": {
+      "status": {
+       "occluded": 1
+      },
+      "n": 0,
+      "mean": null
+     },
+     "overall_width": {
+      "status": {
+       "measured": 3,
+       "unresolved_plane": 12
+      },
+      "n": 3,
+      "mean": 3.7457,
+      "median": 1.7764,
+      "p90": 7.1376
+     },
+     "overall_height": {
+      "status": {
+       "unresolved_plane": 13,
+       "measured": 2
+      },
+      "n": 2,
+      "mean": 1.5804,
+      "median": 1.5804,
+      "p90": 1.7842
+     },
+     "door_depth": {
+      "status": {
+       "measured": 1,
+       "occluded": 2
+      },
+      "n": 1,
+      "mean": 0.1443,
+      "median": 0.1443,
+      "p90": 0.1443
+     },
+     "window_depth": {
+      "status": {
+       "occluded": 3
+      },
+      "n": 0,
+      "mean": null
+     },
+     "door_width": {
+      "status": {
+       "unresolved_plane": 3
+      },
+      "n": 0,
+      "mean": null
+     },
+     "door_height": {
+      "status": {
+       "measured": 3
+      },
+      "n": 3,
+      "mean": 0.1706,
+      "median": 0.1562,
+      "p90": 0.2926
+     },
+     "window_width": {
+      "status": {
+       "measured": 3
+      },
+      "n": 3,
+      "mean": 0.4223,
+      "median": 0.409,
+      "p90": 0.7102
+     },
+     "window_height": {
+      "status": {
+       "measured": 3
+      },
+      "n": 3,
+      "mean": 0.3241,
+      "median": 0.3238,
+      "p90": 0.4403
+     },
+     "flat_seam_line": {
+      "status": {
+       "measured": 1
+      },
+      "n": 1,
+      "mean": 1.2925,
+      "median": 1.2925,
+      "p90": 1.2925
+     },
+     "geometric_corner_line": {
+      "status": {
+       "measured": 1
+      },
+      "n": 1,
+      "mean": 1.7893,
+      "median": 1.7893,
+      "p90": 1.7893
+     },
+     "clear_pillar_spacing": {
+      "status": {
+       "measured": 12
+      },
+      "n": 12,
+      "mean": 0.5848,
+      "median": 0.6373,
+      "p90": 0.7797
+     },
+     "roof_overhang": {
+      "status": {
+       "occluded": 12
+      },
+      "n": 0,
+      "mean": null
+     },
+     "clear_height": {
+      "status": {
+       "occluded": 12
+      },
+      "n": 0,
+      "mean": null
+     },
+     "roof_width": {
+      "status": {
+       "measured": 12
+      },
+      "n": 12,
+      "mean": 1.8194,
+      "median": 1.5327,
+      "p90": 3.3407
+     }
+    }
+   },
+   "front": {
+    "views": 15,
+    "silhouette_iou": {
+     "n": 15,
+     "mean": 0.8357,
+     "median": 0.8567,
+     "p90": 0.934
+    },
+    "automatic": {
+     "width": {
+      "total": 15,
+      "n": 15,
+      "mean": 2.7287,
+      "median": 1.1416,
+      "p90": 6.6536
+     },
+     "height": {
+      "total": 15,
+      "n": 15,
+      "mean": 1.7765,
+      "median": 1.0657,
+      "p90": 3.6389
+     },
+     "gap": {
+      "total": 12,
+      "n": 3,
+      "mean": 1.3811,
+      "median": 1.0683,
+      "p90": 1.8419
+     }
+    },
+    "air": {
+     "probes": 108,
+     "incorrectly_filled": 56
+    },
+    "corners": {
+     "flat_seam": {
+      "coplanar": 1
+     },
+     "geometric_corner": {
+      "None": 1
+     }
+    },
+    "assisted_lengths": {
+     "tier__width": {
+      "status": {
+       "measured": 3
+      },
+      "n": 3,
+      "mean": 0.4946,
+      "median": 0.61,
+      "p90": 0.6335
+     },
+     "front_setback": {
+      "status": {
+       "foreshortened": 2
+      },
+      "n": 0,
+      "mean": null
+     },
+     "side_setback": {
+      "status": {
+       "measured": 2
+      },
+      "n": 2,
+      "mean": 0.151,
+      "median": 0.151,
+      "p90": 0.1918
+     },
+     "total_height": {
+      "status": {
+       "occluded": 1
+      },
+      "n": 0,
+      "mean": null
+     },
+     "overall_width": {
+      "status": {
+       "measured": 11,
+       "unresolved_plane": 4
+      },
+      "n": 11,
+      "mean": 1.5653,
+      "median": 0.6944,
+      "p90": 3.5157
+     },
+     "overall_height": {
+      "status": {
+       "unresolved_plane": 6,
+       "measured": 9
+      },
+      "n": 9,
+      "mean": 1.8729,
+      "median": 1.6005,
+      "p90": 3.8842
+     },
+     "door_depth": {
+      "status": {
+       "unresolved_plane": 1,
+       "foreshortened": 2
+      },
+      "n": 0,
+      "mean": null
+     },
+     "window_depth": {
+      "status": {
+       "foreshortened": 3
+      },
+      "n": 0,
+      "mean": null
+     },
+     "door_width": {
+      "status": {
+       "measured": 3
+      },
+      "n": 3,
+      "mean": 0.0826,
+      "median": 0.0826,
+      "p90": 0.0826
+     },
+     "door_height": {
+      "status": {
+       "measured": 3
+      },
+      "n": 3,
+      "mean": 0.2042,
+      "median": 0.2042,
+      "p90": 0.2042
+     },
+     "window_width": {
+      "status": {
+       "measured": 3
+      },
+      "n": 3,
+      "mean": 0.0375,
+      "median": 0.0375,
+      "p90": 0.0375
+     },
+     "window_height": {
+      "status": {
+       "measured": 3
+      },
+      "n": 3,
+      "mean": 0.0627,
+      "median": 0.0627,
+      "p90": 0.0627
+     },
+     "flat_seam_line": {
+      "status": {
+       "measured": 1
+      },
+      "n": 1,
+      "mean": 0.1751,
+      "median": 0.1751,
+      "p90": 0.1751
+     },
+     "geometric_corner_line": {
+      "status": {
+       "measured": 1
+      },
+      "n": 1,
+      "mean": 0.1751,
+      "median": 0.1751,
+      "p90": 0.1751
+     },
+     "clear_pillar_spacing": {
+      "status": {
+       "measured": 12
+      },
+      "n": 12,
+      "mean": 0.9774,
+      "median": 1.0007,
+      "p90": 1.6651
+     },
+     "roof_overhang": {
+      "status": {
+       "foreshortened": 12
+      },
+      "n": 0,
+      "mean": null
+     },
+     "clear_height": {
+      "status": {
+       "measured": 12
+      },
+      "n": 12,
+      "mean": 1.0424,
+      "median": 0.9938,
+      "p90": 2.0453
+     },
+     "roof_width": {
+      "status": {
+       "measured": 11,
+       "unresolved_plane": 1
+      },
+      "n": 11,
+      "mean": 2.9482,
+      "median": 3.7735,
+      "p90": 6.4334
+     }
+    }
+   },
+   "left": {
+    "views": 15,
+    "silhouette_iou": {
+     "n": 15,
+     "mean": 0.8072,
+     "median": 0.8061,
+     "p90": 0.8706
+    },
+    "automatic": {
+     "width": {
+      "total": 15,
+      "n": 15,
+      "mean": 5.5944,
+      "median": 5.1051,
+      "p90": 9.6365
+     },
+     "height": {
+      "total": 15,
+      "n": 15,
+      "mean": 2.5307,
+      "median": 2.083,
+      "p90": 3.6807
+     },
+     "gap": {
+      "total": 12,
+      "n": 12,
+      "mean": 2.8149,
+      "median": 3.0324,
+      "p90": 5.074
+     }
+    },
+    "air": {
+     "probes": 211,
+     "incorrectly_filled": 121
+    },
+    "corners": {
+     "flat_seam": {
+      "coplanar": 1
+     },
+     "geometric_corner": {
+      "None": 1
+     }
+    },
+    "assisted_lengths": {
+     "tier__width": {
+      "status": {
+       "unresolved_plane": 1,
+       "measured": 2
+      },
+      "n": 2,
+      "mean": 1.1444,
+      "median": 1.1444,
+      "p90": 1.2644
+     },
+     "front_setback": {
+      "status": {
+       "unresolved_plane": 1,
+       "measured": 1
+      },
+      "n": 1,
+      "mean": 1.9146,
+      "median": 1.9146,
+      "p90": 1.9146
+     },
+     "side_setback": {
+      "status": {
+       "measured": 2
+      },
+      "n": 2,
+      "mean": 0.3563,
+      "median": 0.3563,
+      "p90": 0.5196
+     },
+     "total_height": {
+      "status": {
+       "occluded": 1
+      },
+      "n": 0,
+      "mean": null
+     },
+     "overall_width": {
+      "status": {
+       "unresolved_plane": 13,
+       "measured": 2
+      },
+      "n": 2,
+      "mean": 8.8526,
+      "median": 8.8526,
+      "p90": 10.1576
+     },
+     "overall_height": {
+      "status": {
+       "unresolved_plane": 13,
+       "measured": 2
+      },
+      "n": 2,
+      "mean": 0.1499,
+      "median": 0.1499,
+      "p90": 0.1698
+     },
+     "door_depth": {
+      "status": {
+       "occluded": 3
+      },
+      "n": 0,
+      "mean": null
+     },
+     "window_depth": {
+      "status": {
+       "foreshortened": 1,
+       "occluded": 2
+      },
+      "n": 0,
+      "mean": null
+     },
+     "door_width": {
+      "status": {
+       "measured": 3
+      },
+      "n": 3,
+      "mean": 0.8158,
+      "median": 0.8329,
+      "p90": 1.3108
+     },
+     "door_height": {
+      "status": {
+       "measured": 3
+      },
+      "n": 3,
+      "mean": 0.9493,
+      "median": 1.03,
+      "p90": 1.4975
+     },
+     "window_width": {
+      "status": {
+       "measured": 3
+      },
+      "n": 3,
+      "mean": 1.0189,
+      "median": 1.1256,
+      "p90": 1.5201
+     },
+     "window_height": {
+      "status": {
+       "measured": 3
+      },
+      "n": 3,
+      "mean": 0.6894,
+      "median": 0.7314,
+      "p90": 0.988
+     },
+     "flat_seam_line": {
+      "status": {
+       "measured": 1
+      },
+      "n": 1,
+      "mean": 1.0474,
+      "median": 1.0474,
+      "p90": 1.0474
+     },
+     "geometric_corner_line": {
+      "status": {
+       "measured": 1
+      },
+      "n": 1,
+      "mean": 2.7839,
+      "median": 2.7839,
+      "p90": 2.7839
+     },
+     "clear_pillar_spacing": {
+      "status": {
+       "measured": 11,
+       "unresolved_plane": 1
+      },
+      "n": 11,
+      "mean": 0.4106,
+      "median": 0.213,
+      "p90": 1.0119
+     },
+     "roof_overhang": {
+      "status": {
+       "occluded": 12
+      },
+      "n": 0,
+      "mean": null
+     },
+     "clear_height": {
+      "status": {
+       "measured": 12
+      },
+      "n": 12,
+      "mean": 1.8576,
+      "median": 1.621,
+      "p90": 2.505
+     },
+     "roof_width": {
+      "status": {
+       "measured": 12
+      },
+      "n": 12,
+      "mean": 1.872,
+      "median": 1.0638,
+      "p90": 4.5357
+     }
+    }
+   },
+   "right": {
+    "views": 15,
+    "silhouette_iou": {
+     "n": 15,
+     "mean": 0.8097,
+     "median": 0.8118,
+     "p90": 0.8869
+    },
+    "automatic": {
+     "width": {
+      "total": 15,
+      "n": 15,
+      "mean": 5.3886,
+      "median": 6.0491,
+      "p90": 8.5986
+     },
+     "height": {
+      "total": 15,
+      "n": 15,
+      "mean": 2.4744,
+      "median": 2.0835,
+      "p90": 3.0978
+     },
+     "gap": {
+      "total": 12,
+      "n": 12,
+      "mean": 2.9805,
+      "median": 3.0737,
+      "p90": 5.067
+     }
+    },
+    "air": {
+     "probes": 217,
+     "incorrectly_filled": 106
+    },
+    "corners": {
+     "flat_seam": {
+      "coplanar": 1
+     },
+     "geometric_corner": {
+      "coplanar": 1
+     }
+    },
+    "assisted_lengths": {
+     "tier__width": {
+      "status": {
+       "unresolved_plane": 1,
+       "measured": 2
+      },
+      "n": 2,
+      "mean": 0.1035,
+      "median": 0.1035,
+      "p90": 0.1082
+     },
+     "front_setback": {
+      "status": {
+       "measured": 2
+      },
+      "n": 2,
+      "mean": 0.4614,
+      "median": 0.4614,
+      "p90": 0.7454
+     },
+     "side_setback": {
+      "status": {
+       "measured": 2
+      },
+      "n": 2,
+      "mean": 0.4861,
+      "median": 0.4861,
+      "p90": 0.6639
+     },
+     "total_height": {
+      "status": {
+       "occluded": 1
+      },
+      "n": 0,
+      "mean": null
+     },
+     "overall_width": {
+      "status": {
+       "unresolved_plane": 13,
+       "measured": 2
+      },
+      "n": 2,
+      "mean": 11.3664,
+      "median": 11.3664,
+      "p90": 12.2882
+     },
+     "overall_height": {
+      "status": {
+       "unresolved_plane": 3,
+       "measured": 12
+      },
+      "n": 12,
+      "mean": 1.1049,
+      "median": 0.6777,
+      "p90": 2.032
+     },
+     "door_depth": {
+      "status": {
+       "occluded": 1,
+       "unresolved_plane": 2
+      },
+      "n": 0,
+      "mean": null
+     },
+     "window_depth": {
+      "status": {
+       "occluded": 1,
+       "measured": 1,
+       "unresolved_plane": 1
+      },
+      "n": 1,
+      "mean": 0.5739,
+      "median": 0.5739,
+      "p90": 0.5739
+     },
+     "door_width": {
+      "status": {
+       "measured": 3
+      },
+      "n": 3,
+      "mean": 1.4094,
+      "median": 1.5038,
+      "p90": 1.831
+     },
+     "door_height": {
+      "status": {
+       "measured": 3
+      },
+      "n": 3,
+      "mean": 1.6644,
+      "median": 1.7224,
+      "p90": 2.0864
+     },
+     "window_width": {
+      "status": {
+       "measured": 3
+      },
+      "n": 3,
+      "mean": 1.0088,
+      "median": 1.1579,
+      "p90": 1.5991
+     },
+     "window_height": {
+      "status": {
+       "measured": 3
+      },
+      "n": 3,
+      "mean": 0.7357,
+      "median": 0.7859,
+      "p90": 1.0582
+     },
+     "flat_seam_line": {
+      "status": {
+       "measured": 1
+      },
+      "n": 1,
+      "mean": 2.3594,
+      "median": 2.3594,
+      "p90": 2.3594
+     },
+     "geometric_corner_line": {
+      "status": {
+       "measured": 1
+      },
+      "n": 1,
+      "mean": 0.1734,
+      "median": 0.1734,
+      "p90": 0.1734
+     },
+     "clear_pillar_spacing": {
+      "status": {
+       "unresolved_plane": 6,
+       "measured": 6
+      },
+      "n": 6,
+      "mean": 0.0476,
+      "median": 0.0501,
+      "p90": 0.082
+     },
+     "roof_overhang": {
+      "status": {
+       "occluded": 12
+      },
+      "n": 0,
+      "mean": null
+     },
+     "clear_height": {
+      "status": {
+       "measured": 8,
+       "occluded": 4
+      },
+      "n": 8,
+      "mean": 0.2342,
+      "median": 0.1849,
+      "p90": 0.5521
+     },
+     "roof_width": {
+      "status": {
+       "measured": 12
+      },
+      "n": 12,
+      "mean": 1.0383,
+      "median": 0.9599,
+      "p90": 1.7682
+     }
+    }
+   }
+  }
+ },
+ "ground": {
+  "utility": 0.6336084734292564,
+  "overall": {
+   "views": 60,
+   "silhouette_iou": {
+    "n": 60,
+    "mean": 0.8062,
+    "median": 0.8052,
+    "p90": 0.9025
+   },
+   "automatic": {
+    "width": {
+     "total": 60,
+     "n": 60,
+     "mean": 3.7166,
+     "median": 3.0673,
+     "p90": 7.1618
+    },
+    "height": {
+     "total": 60,
+     "n": 60,
+     "mean": 1.6859,
+     "median": 1.5529,
+     "p90": 3.1983
+    },
+    "gap": {
+     "total": 48,
+     "n": 27,
+     "mean": 2.6896,
+     "median": 3.0372,
+     "p90": 5.0704
+    }
+   },
+   "air": {
+    "probes": 710,
+    "incorrectly_filled": 453
+   },
+   "corners": {
+    "flat_seam": {
+     "coplanar": 4
+    },
+    "geometric_corner": {
+     "None": 3,
+     "coplanar": 1
+    }
+   },
+   "assisted_lengths": {
+    "tier__width": {
+     "status": {
+      "measured": 10,
+      "unresolved_plane": 2
+     },
+     "n": 10,
+     "mean": 0.8477,
+     "median": 1.0211,
+     "p90": 1.4439
+    },
+    "front_setback": {
+     "status": {
+      "foreshortened": 2,
+      "unresolved_plane": 2,
+      "measured": 4
+     },
+     "n": 4,
+     "mean": 0.7672,
+     "median": 0.5239,
+     "p90": 1.5851
+    },
+    "side_setback": {
+     "status": {
+      "measured": 8
+     },
+     "n": 8,
+     "mean": 0.3508,
+     "median": 0.302,
+     "p90": 0.6048
+    },
+    "total_height": {
+     "status": {
+      "occluded": 4
+     },
+     "n": 0,
+     "mean": null
+    },
+    "overall_width": {
+     "status": {
+      "measured": 20,
+      "unresolved_plane": 40
+     },
+     "n": 20,
+     "mean": 3.1624,
+     "median": 1.1561,
+     "p90": 10.2411
+    },
+    "overall_height": {
+     "status": {
+      "unresolved_plane": 32,
+      "measured": 28
+     },
+     "n": 28,
+     "mean": 0.8395,
+     "median": 0.6777,
+     "p90": 1.6186
+    },
+    "door_depth": {
+     "status": {
+      "unresolved_plane": 3,
+      "foreshortened": 2,
+      "occluded": 6,
+      "measured": 1
+     },
+     "n": 1,
+     "mean": 0.1443,
+     "median": 0.1443,
+     "p90": 0.1443
+    },
+    "window_depth": {
+     "status": {
+      "foreshortened": 4,
+      "occluded": 6,
+      "measured": 1,
+      "unresolved_plane": 1
+     },
+     "n": 1,
+     "mean": 0.5739,
+     "median": 0.5739,
+     "p90": 0.5739
+    },
+    "door_width": {
+     "status": {
+      "measured": 9,
+      "unresolved_plane": 3
+     },
+     "n": 9,
+     "mean": 0.7884,
+     "median": 0.8115,
+     "p90": 1.5856
+    },
+    "door_height": {
+     "status": {
+      "measured": 12
+     },
+     "n": 12,
+     "mean": 0.7426,
+     "median": 0.2651,
+     "p90": 1.7116
+    },
+    "window_width": {
+     "status": {
+      "measured": 12
+     },
+     "n": 12,
+     "mean": 0.6471,
+     "median": 0.3606,
+     "p90": 1.5726
+    },
+    "window_height": {
+     "status": {
+      "measured": 12
+     },
+     "n": 12,
+     "mean": 0.4647,
+     "median": 0.3094,
+     "p90": 1.0256
+    },
+    "flat_seam_line": {
+     "status": {
+      "measured": 4
+     },
+     "n": 4,
+     "mean": 1.2346,
+     "median": 1.1699,
+     "p90": 2.0393
+    },
+    "geometric_corner_line": {
+     "status": {
+      "measured": 4
+     },
+     "n": 4,
+     "mean": 1.2464,
+     "median": 1.0142,
+     "p90": 2.4855
+    },
+    "clear_pillar_spacing": {
+     "status": {
+      "measured": 41,
+      "unresolved_plane": 7
+     },
+     "n": 41,
+     "mean": 0.3843,
+     "median": 0.2407,
+     "p90": 0.8945
+    },
+    "roof_overhang": {
+     "status": {
+      "foreshortened": 12,
+      "occluded": 36
+     },
+     "n": 0,
+     "mean": null
+    },
+    "clear_height": {
+     "status": {
+      "measured": 32,
+      "occluded": 16
+     },
+     "n": 32,
+     "mean": 0.9921,
+     "median": 0.8762,
+     "p90": 2.238
+    },
+    "roof_width": {
+     "status": {
+      "measured": 48
+     },
+     "n": 48,
+     "mean": 1.3812,
+     "median": 1.1357,
+     "p90": 2.5092
+    }
+   }
+  },
+  "by_family": {
+   "canopy": {
+    "views": 48,
+    "silhouette_iou": {
+     "n": 48,
+     "mean": 0.7814,
+     "median": 0.7894,
+     "p90": 0.8455
+    },
+    "automatic": {
+     "width": {
+      "total": 48,
+      "n": 48,
+      "mean": 3.5844,
+      "median": 3.0673,
+      "p90": 6.0884
+     },
+     "height": {
+      "total": 48,
+      "n": 48,
+      "mean": 1.3636,
+      "median": 1.0604,
+      "p90": 3.0729
+     },
+     "gap": {
+      "total": 48,
+      "n": 27,
+      "mean": 2.6896,
+      "median": 3.0372,
+      "p90": 5.0704
+     }
+    },
+    "air": {
+     "probes": 710,
+     "incorrectly_filled": 453
+    },
+    "corners": {},
+    "assisted_lengths": {
+     "clear_pillar_spacing": {
+      "status": {
+       "measured": 41,
+       "unresolved_plane": 7
+      },
+      "n": 41,
+      "mean": 0.3843,
+      "median": 0.2407,
+      "p90": 0.8945
+     },
+     "roof_overhang": {
+      "status": {
+       "foreshortened": 12,
+       "occluded": 36
+      },
+      "n": 0,
+      "mean": null
+     },
+     "clear_height": {
+      "status": {
+       "measured": 32,
+       "occluded": 16
+      },
+      "n": 32,
+      "mean": 0.9921,
+      "median": 0.8762,
+      "p90": 2.238
+     },
+     "roof_width": {
+      "status": {
+       "measured": 48
+      },
+      "n": 48,
+      "mean": 1.3812,
+      "median": 1.1357,
+      "p90": 2.5092
+     },
+     "overall_width": {
+      "status": {
+       "measured": 11,
+       "unresolved_plane": 37
+      },
+      "n": 11,
+      "mean": 0.7469,
+      "median": 0.6878,
+      "p90": 1.3455
+     },
+     "overall_height": {
+      "status": {
+       "measured": 22,
+       "unresolved_plane": 26
+      },
+      "n": 22,
+      "mean": 0.8127,
+      "median": 0.6837,
+      "p90": 1.5163
+     }
+    }
+   },
+   "corner": {
+    "views": 4,
+    "silhouette_iou": {
+     "n": 4,
+     "mean": 0.8911,
+     "median": 0.8811,
+     "p90": 0.9233
+    },
+    "automatic": {
+     "width": {
+      "total": 4,
+      "n": 4,
+      "mean": 6.823,
+      "median": 7.4102,
+      "p90": 10.3615
+     },
+     "height": {
+      "total": 4,
+      "n": 4,
+      "mean": 2.8276,
+      "median": 2.0648,
+      "p90": 5.5722
+     }
+    },
+    "air": {
+     "probes": 0,
+     "incorrectly_filled": 0
+    },
+    "corners": {
+     "flat_seam": {
+      "coplanar": 4
+     },
+     "geometric_corner": {
+      "None": 3,
+      "coplanar": 1
+     }
+    },
+    "assisted_lengths": {
+     "flat_seam_line": {
+      "status": {
+       "measured": 4
+      },
+      "n": 4,
+      "mean": 1.2346,
+      "median": 1.1699,
+      "p90": 2.0393
+     },
+     "geometric_corner_line": {
+      "status": {
+       "measured": 4
+      },
+      "n": 4,
+      "mean": 1.2464,
+      "median": 1.0142,
+      "p90": 2.4855
+     },
+     "overall_width": {
+      "status": {
+       "measured": 4
+      },
+      "n": 4,
+      "mean": 8.4016,
+      "median": 9.4809,
+      "p90": 11.9083
+     },
+     "overall_height": {
+      "status": {
+       "measured": 2,
+       "unresolved_plane": 2
+      },
+      "n": 2,
+      "mean": 0.182,
+      "median": 0.182,
+      "p90": 0.2277
+     }
+    }
+   },
+   "recess": {
+    "views": 4,
+    "silhouette_iou": {
+     "n": 4,
+     "mean": 0.8984,
+     "median": 0.8915,
+     "p90": 0.9256
+    },
+    "automatic": {
+     "width": {
+      "total": 4,
+      "n": 4,
+      "mean": 4.0852,
+      "median": 3.4872,
+      "p90": 8.0517
+     },
+     "height": {
+      "total": 4,
+      "n": 4,
+      "mean": 2.8292,
+      "median": 1.0613,
+      "p90": 6.6972
+     }
+    },
+    "air": {
+     "probes": 0,
+     "incorrectly_filled": 0
+    },
+    "corners": {},
+    "assisted_lengths": {
+     "door_depth": {
+      "status": {
+       "unresolved_plane": 3,
+       "foreshortened": 2,
+       "occluded": 6,
+       "measured": 1
+      },
+      "n": 1,
+      "mean": 0.1443,
+      "median": 0.1443,
+      "p90": 0.1443
+     },
+     "window_depth": {
+      "status": {
+       "foreshortened": 4,
+       "occluded": 6,
+       "measured": 1,
+       "unresolved_plane": 1
+      },
+      "n": 1,
+      "mean": 0.5739,
+      "median": 0.5739,
+      "p90": 0.5739
+     },
+     "overall_width": {
+      "status": {
+       "measured": 3,
+       "unresolved_plane": 1
+      },
+      "n": 3,
+      "mean": 6.2008,
+      "median": 7.2213,
+      "p90": 9.6155
+     },
+     "overall_height": {
+      "status": {
+       "measured": 4
+      },
+      "n": 4,
+      "mean": 1.3157,
+      "median": 0.8096,
+      "p90": 2.826
+     },
+     "door_width": {
+      "status": {
+       "measured": 9,
+       "unresolved_plane": 3
+      },
+      "n": 9,
+      "mean": 0.7884,
+      "median": 0.8115,
+      "p90": 1.5856
+     },
+     "door_height": {
+      "status": {
+       "measured": 12
+      },
+      "n": 12,
+      "mean": 0.7426,
+      "median": 0.2651,
+      "p90": 1.7116
+     },
+     "window_width": {
+      "status": {
+       "measured": 12
+      },
+      "n": 12,
+      "mean": 0.6471,
+      "median": 0.3606,
+      "p90": 1.5726
+     },
+     "window_height": {
+      "status": {
+       "measured": 12
+      },
+      "n": 12,
+      "mean": 0.4647,
+      "median": 0.3094,
+      "p90": 1.0256
+     }
+    }
+   },
+   "stepped_tower": {
+    "views": 4,
+    "silhouette_iou": {
+     "n": 4,
+     "mean": 0.9265,
+     "median": 0.9275,
+     "p90": 0.9333
+    },
+    "automatic": {
+     "width": {
+      "total": 4,
+      "n": 4,
+      "mean": 1.8268,
+      "median": 1.0446,
+      "p90": 3.9263
+     },
+     "height": {
+      "total": 4,
+      "n": 4,
+      "mean": 3.269,
+      "median": 4.0739,
+      "p90": 4.1066
+     }
+    },
+    "air": {
+     "probes": 0,
+     "incorrectly_filled": 0
+    },
+    "corners": {},
+    "assisted_lengths": {
+     "tier__width": {
+      "status": {
+       "measured": 10,
+       "unresolved_plane": 2
+      },
+      "n": 10,
+      "mean": 0.8477,
+      "median": 1.0211,
+      "p90": 1.4439
+     },
+     "front_setback": {
+      "status": {
+       "foreshortened": 2,
+       "unresolved_plane": 2,
+       "measured": 4
+      },
+      "n": 4,
+      "mean": 0.7672,
+      "median": 0.5239,
+      "p90": 1.5851
+     },
+     "side_setback": {
+      "status": {
+       "measured": 8
+      },
+      "n": 8,
+      "mean": 0.3508,
+      "median": 0.302,
+      "p90": 0.6048
+     },
+     "total_height": {
+      "status": {
+       "occluded": 4
+      },
+      "n": 0,
+      "mean": null
+     },
+     "overall_width": {
+      "status": {
+       "measured": 2,
+       "unresolved_plane": 2
+      },
+      "n": 2,
+      "mean": 1.412,
+      "median": 1.412,
+      "p90": 1.7035
+     },
+     "overall_height": {
+      "status": {
+       "unresolved_plane": 4
+      },
+      "n": 0,
+      "mean": null
+     }
+    }
+   }
+  },
+  "by_angle": {
+   "elevated": {
+    "views": 15,
+    "silhouette_iou": {
+     "n": 15,
+     "mean": 0.7909,
+     "median": 0.7823,
+     "p90": 0.8893
+    },
+    "automatic": {
+     "width": {
+      "total": 15,
+      "n": 15,
+      "mean": 2.7727,
+      "median": 3.0333,
+      "p90": 4.046
+     },
+     "height": {
+      "total": 15,
+      "n": 15,
+      "mean": 1.5846,
+      "median": 0.047,
+      "p90": 5.8633
+     },
+     "gap": {
+      "total": 12,
+      "n": 0,
+      "mean": null
+     }
+    },
+    "air": {
+     "probes": 174,
+     "incorrectly_filled": 162
+    },
+    "corners": {
+     "flat_seam": {
+      "coplanar": 1
+     },
+     "geometric_corner": {
+      "None": 1
+     }
+    },
+    "assisted_lengths": {
+     "tier__width": {
+      "status": {
+       "measured": 3
+      },
+      "n": 3,
+      "mean": 0.8258,
+      "median": 0.4294,
+      "p90": 1.507
+     },
+     "front_setback": {
+      "status": {
+       "measured": 1,
+       "unresolved_plane": 1
+      },
+      "n": 1,
+      "mean": 0.2314,
+      "median": 0.2314,
+      "p90": 0.2314
+     },
+     "side_setback": {
+      "status": {
+       "measured": 2
+      },
+      "n": 2,
+      "mean": 0.3581,
+      "median": 0.3581,
+      "p90": 0.3725
+     },
+     "total_height": {
+      "status": {
+       "occluded": 1
+      },
+      "n": 0,
+      "mean": null
+     },
+     "overall_width": {
+      "status": {
+       "measured": 3,
+       "unresolved_plane": 12
+      },
+      "n": 3,
+      "mean": 3.7457,
+      "median": 1.7764,
+      "p90": 7.1376
+     },
+     "overall_height": {
+      "status": {
+       "unresolved_plane": 13,
+       "measured": 2
+      },
+      "n": 2,
+      "mean": 1.5804,
+      "median": 1.5804,
+      "p90": 1.7842
+     },
+     "door_depth": {
+      "status": {
+       "measured": 1,
+       "occluded": 2
+      },
+      "n": 1,
+      "mean": 0.1443,
+      "median": 0.1443,
+      "p90": 0.1443
+     },
+     "window_depth": {
+      "status": {
+       "occluded": 3
+      },
+      "n": 0,
+      "mean": null
+     },
+     "door_width": {
+      "status": {
+       "unresolved_plane": 3
+      },
+      "n": 0,
+      "mean": null
+     },
+     "door_height": {
+      "status": {
+       "measured": 3
+      },
+      "n": 3,
+      "mean": 0.1706,
+      "median": 0.1562,
+      "p90": 0.2926
+     },
+     "window_width": {
+      "status": {
+       "measured": 3
+      },
+      "n": 3,
+      "mean": 0.4223,
+      "median": 0.409,
+      "p90": 0.7102
+     },
+     "window_height": {
+      "status": {
+       "measured": 3
+      },
+      "n": 3,
+      "mean": 0.3241,
+      "median": 0.3238,
+      "p90": 0.4403
+     },
+     "flat_seam_line": {
+      "status": {
+       "measured": 1
+      },
+      "n": 1,
+      "mean": 1.2925,
+      "median": 1.2925,
+      "p90": 1.2925
+     },
+     "geometric_corner_line": {
+      "status": {
+       "measured": 1
+      },
+      "n": 1,
+      "mean": 1.7893,
+      "median": 1.7893,
+      "p90": 1.7893
+     },
+     "clear_pillar_spacing": {
+      "status": {
+       "measured": 12
+      },
+      "n": 12,
+      "mean": 0.5848,
+      "median": 0.6373,
+      "p90": 0.7797
+     },
+     "roof_overhang": {
+      "status": {
+       "occluded": 12
+      },
+      "n": 0,
+      "mean": null
+     },
+     "clear_height": {
+      "status": {
+       "occluded": 12
+      },
+      "n": 0,
+      "mean": null
+     },
+     "roof_width": {
+      "status": {
+       "measured": 12
+      },
+      "n": 12,
+      "mean": 1.8194,
+      "median": 1.5327,
+      "p90": 3.3407
+     }
+    }
+   },
+   "front": {
+    "views": 15,
+    "silhouette_iou": {
+     "n": 15,
+     "mean": 0.8171,
+     "median": 0.8427,
+     "p90": 0.9344
+    },
+    "automatic": {
+     "width": {
+      "total": 15,
+      "n": 15,
+      "mean": 1.1106,
+      "median": 1.3254,
+      "p90": 2.1007
+     },
+     "height": {
+      "total": 15,
+      "n": 15,
+      "mean": 0.1541,
+      "median": 0.1261,
+      "p90": 0.1388
+     },
+     "gap": {
+      "total": 12,
+      "n": 3,
+      "mean": 1.0253,
+      "median": 1.0536,
+      "p90": 1.8169
+     }
+    },
+    "air": {
+     "probes": 108,
+     "incorrectly_filled": 64
+    },
+    "corners": {
+     "flat_seam": {
+      "coplanar": 1
+     },
+     "geometric_corner": {
+      "None": 1
+     }
+    },
+    "assisted_lengths": {
+     "tier__width": {
+      "status": {
+       "measured": 3
+      },
+      "n": 3,
+      "mean": 1.1679,
+      "median": 1.0489,
+      "p90": 1.3353
+     },
+     "front_setback": {
+      "status": {
+       "foreshortened": 2
+      },
+      "n": 0,
+      "mean": null
+     },
+     "side_setback": {
+      "status": {
+       "measured": 2
+      },
+      "n": 2,
+      "mean": 0.2027,
+      "median": 0.2027,
+      "p90": 0.2081
+     },
+     "total_height": {
+      "status": {
+       "occluded": 1
+      },
+      "n": 0,
+      "mean": null
+     },
+     "overall_width": {
+      "status": {
+       "measured": 13,
+       "unresolved_plane": 2
+      },
+      "n": 13,
+      "mean": 0.8903,
+      "median": 0.8125,
+      "p90": 1.5135
+     },
+     "overall_height": {
+      "status": {
+       "unresolved_plane": 3,
+       "measured": 12
+      },
+      "n": 12,
+      "mean": 0.5656,
+      "median": 0.5447,
+      "p90": 0.8452
+     },
+     "door_depth": {
+      "status": {
+       "unresolved_plane": 1,
+       "foreshortened": 2
+      },
+      "n": 0,
+      "mean": null
+     },
+     "window_depth": {
+      "status": {
+       "foreshortened": 3
+      },
+      "n": 0,
+      "mean": null
+     },
+     "door_width": {
+      "status": {
+       "measured": 3
+      },
+      "n": 3,
+      "mean": 0.1401,
+      "median": 0.1401,
+      "p90": 0.1401
+     },
+     "door_height": {
+      "status": {
+       "measured": 3
+      },
+      "n": 3,
+      "mean": 0.186,
+      "median": 0.186,
+      "p90": 0.186
+     },
+     "window_width": {
+      "status": {
+       "measured": 3
+      },
+      "n": 3,
+      "mean": 0.1386,
+      "median": 0.1386,
+      "p90": 0.1386
+     },
+     "window_height": {
+      "status": {
+       "measured": 3
+      },
+      "n": 3,
+      "mean": 0.1096,
+      "median": 0.1096,
+      "p90": 0.1096
+     },
+     "flat_seam_line": {
+      "status": {
+       "measured": 1
+      },
+      "n": 1,
+      "mean": 0.2391,
+      "median": 0.2391,
+      "p90": 0.2391
+     },
+     "geometric_corner_line": {
+      "status": {
+       "measured": 1
+      },
+      "n": 1,
+      "mean": 0.2391,
+      "median": 0.2391,
+      "p90": 0.2391
+     },
+     "clear_pillar_spacing": {
+      "status": {
+       "measured": 12
+      },
+      "n": 12,
+      "mean": 0.3281,
+      "median": 0.1605,
+      "p90": 0.8932
+     },
+     "roof_overhang": {
+      "status": {
+       "foreshortened": 12
+      },
+      "n": 0,
+      "mean": null
+     },
+     "clear_height": {
+      "status": {
+       "measured": 12
+      },
+      "n": 12,
+      "mean": 0.6319,
+      "median": 0.4921,
+      "p90": 1.2111
+     },
+     "roof_width": {
+      "status": {
+       "measured": 12
+      },
+      "n": 12,
+      "mean": 0.7952,
+      "median": 0.7575,
+      "p90": 1.3675
+     }
+    }
+   },
+   "left": {
+    "views": 15,
+    "silhouette_iou": {
+     "n": 15,
+     "mean": 0.8072,
+     "median": 0.8061,
+     "p90": 0.8706
+    },
+    "automatic": {
+     "width": {
+      "total": 15,
+      "n": 15,
+      "mean": 5.5944,
+      "median": 5.1051,
+      "p90": 9.6365
+     },
+     "height": {
+      "total": 15,
+      "n": 15,
+      "mean": 2.5307,
+      "median": 2.083,
+      "p90": 3.6807
+     },
+     "gap": {
+      "total": 12,
+      "n": 12,
+      "mean": 2.8149,
+      "median": 3.0324,
+      "p90": 5.074
+     }
+    },
+    "air": {
+     "probes": 211,
+     "incorrectly_filled": 121
+    },
+    "corners": {
+     "flat_seam": {
+      "coplanar": 1
+     },
+     "geometric_corner": {
+      "None": 1
+     }
+    },
+    "assisted_lengths": {
+     "tier__width": {
+      "status": {
+       "unresolved_plane": 1,
+       "measured": 2
+      },
+      "n": 2,
+      "mean": 1.1444,
+      "median": 1.1444,
+      "p90": 1.2644
+     },
+     "front_setback": {
+      "status": {
+       "unresolved_plane": 1,
+       "measured": 1
+      },
+      "n": 1,
+      "mean": 1.9146,
+      "median": 1.9146,
+      "p90": 1.9146
+     },
+     "side_setback": {
+      "status": {
+       "measured": 2
+      },
+      "n": 2,
+      "mean": 0.3563,
+      "median": 0.3563,
+      "p90": 0.5196
+     },
+     "total_height": {
+      "status": {
+       "occluded": 1
+      },
+      "n": 0,
+      "mean": null
+     },
+     "overall_width": {
+      "status": {
+       "unresolved_plane": 13,
+       "measured": 2
+      },
+      "n": 2,
+      "mean": 8.8526,
+      "median": 8.8526,
+      "p90": 10.1576
+     },
+     "overall_height": {
+      "status": {
+       "unresolved_plane": 13,
+       "measured": 2
+      },
+      "n": 2,
+      "mean": 0.1499,
+      "median": 0.1499,
+      "p90": 0.1698
+     },
+     "door_depth": {
+      "status": {
+       "occluded": 3
+      },
+      "n": 0,
+      "mean": null
+     },
+     "window_depth": {
+      "status": {
+       "foreshortened": 1,
+       "occluded": 2
+      },
+      "n": 0,
+      "mean": null
+     },
+     "door_width": {
+      "status": {
+       "measured": 3
+      },
+      "n": 3,
+      "mean": 0.8158,
+      "median": 0.8329,
+      "p90": 1.3108
+     },
+     "door_height": {
+      "status": {
+       "measured": 3
+      },
+      "n": 3,
+      "mean": 0.9493,
+      "median": 1.03,
+      "p90": 1.4975
+     },
+     "window_width": {
+      "status": {
+       "measured": 3
+      },
+      "n": 3,
+      "mean": 1.0189,
+      "median": 1.1256,
+      "p90": 1.5201
+     },
+     "window_height": {
+      "status": {
+       "measured": 3
+      },
+      "n": 3,
+      "mean": 0.6894,
+      "median": 0.7314,
+      "p90": 0.988
+     },
+     "flat_seam_line": {
+      "status": {
+       "measured": 1
+      },
+      "n": 1,
+      "mean": 1.0474,
+      "median": 1.0474,
+      "p90": 1.0474
+     },
+     "geometric_corner_line": {
+      "status": {
+       "measured": 1
+      },
+      "n": 1,
+      "mean": 2.7839,
+      "median": 2.7839,
+      "p90": 2.7839
+     },
+     "clear_pillar_spacing": {
+      "status": {
+       "measured": 11,
+       "unresolved_plane": 1
+      },
+      "n": 11,
+      "mean": 0.4106,
+      "median": 0.213,
+      "p90": 1.0119
+     },
+     "roof_overhang": {
+      "status": {
+       "occluded": 12
+      },
+      "n": 0,
+      "mean": null
+     },
+     "clear_height": {
+      "status": {
+       "measured": 12
+      },
+      "n": 12,
+      "mean": 1.8576,
+      "median": 1.621,
+      "p90": 2.505
+     },
+     "roof_width": {
+      "status": {
+       "measured": 12
+      },
+      "n": 12,
+      "mean": 1.872,
+      "median": 1.0638,
+      "p90": 4.5357
+     }
+    }
+   },
+   "right": {
+    "views": 15,
+    "silhouette_iou": {
+     "n": 15,
+     "mean": 0.8097,
+     "median": 0.8118,
+     "p90": 0.8869
+    },
+    "automatic": {
+     "width": {
+      "total": 15,
+      "n": 15,
+      "mean": 5.3886,
+      "median": 6.0491,
+      "p90": 8.5986
+     },
+     "height": {
+      "total": 15,
+      "n": 15,
+      "mean": 2.4744,
+      "median": 2.0835,
+      "p90": 3.0978
+     },
+     "gap": {
+      "total": 12,
+      "n": 12,
+      "mean": 2.9805,
+      "median": 3.0737,
+      "p90": 5.067
+     }
+    },
+    "air": {
+     "probes": 217,
+     "incorrectly_filled": 106
+    },
+    "corners": {
+     "flat_seam": {
+      "coplanar": 1
+     },
+     "geometric_corner": {
+      "coplanar": 1
+     }
+    },
+    "assisted_lengths": {
+     "tier__width": {
+      "status": {
+       "unresolved_plane": 1,
+       "measured": 2
+      },
+      "n": 2,
+      "mean": 0.1035,
+      "median": 0.1035,
+      "p90": 0.1082
+     },
+     "front_setback": {
+      "status": {
+       "measured": 2
+      },
+      "n": 2,
+      "mean": 0.4614,
+      "median": 0.4614,
+      "p90": 0.7454
+     },
+     "side_setback": {
+      "status": {
+       "measured": 2
+      },
+      "n": 2,
+      "mean": 0.4861,
+      "median": 0.4861,
+      "p90": 0.6639
+     },
+     "total_height": {
+      "status": {
+       "occluded": 1
+      },
+      "n": 0,
+      "mean": null
+     },
+     "overall_width": {
+      "status": {
+       "unresolved_plane": 13,
+       "measured": 2
+      },
+      "n": 2,
+      "mean": 11.3664,
+      "median": 11.3664,
+      "p90": 12.2882
+     },
+     "overall_height": {
+      "status": {
+       "unresolved_plane": 3,
+       "measured": 12
+      },
+      "n": 12,
+      "mean": 1.1049,
+      "median": 0.6777,
+      "p90": 2.032
+     },
+     "door_depth": {
+      "status": {
+       "occluded": 1,
+       "unresolved_plane": 2
+      },
+      "n": 0,
+      "mean": null
+     },
+     "window_depth": {
+      "status": {
+       "occluded": 1,
+       "measured": 1,
+       "unresolved_plane": 1
+      },
+      "n": 1,
+      "mean": 0.5739,
+      "median": 0.5739,
+      "p90": 0.5739
+     },
+     "door_width": {
+      "status": {
+       "measured": 3
+      },
+      "n": 3,
+      "mean": 1.4094,
+      "median": 1.5038,
+      "p90": 1.831
+     },
+     "door_height": {
+      "status": {
+       "measured": 3
+      },
+      "n": 3,
+      "mean": 1.6644,
+      "median": 1.7224,
+      "p90": 2.0864
+     },
+     "window_width": {
+      "status": {
+       "measured": 3
+      },
+      "n": 3,
+      "mean": 1.0088,
+      "median": 1.1579,
+      "p90": 1.5991
+     },
+     "window_height": {
+      "status": {
+       "measured": 3
+      },
+      "n": 3,
+      "mean": 0.7357,
+      "median": 0.7859,
+      "p90": 1.0582
+     },
+     "flat_seam_line": {
+      "status": {
+       "measured": 1
+      },
+      "n": 1,
+      "mean": 2.3594,
+      "median": 2.3594,
+      "p90": 2.3594
+     },
+     "geometric_corner_line": {
+      "status": {
+       "measured": 1
+      },
+      "n": 1,
+      "mean": 0.1734,
+      "median": 0.1734,
+      "p90": 0.1734
+     },
+     "clear_pillar_spacing": {
+      "status": {
+       "unresolved_plane": 6,
+       "measured": 6
+      },
+      "n": 6,
+      "mean": 0.0476,
+      "median": 0.0501,
+      "p90": 0.082
+     },
+     "roof_overhang": {
+      "status": {
+       "occluded": 12
+      },
+      "n": 0,
+      "mean": null
+     },
+     "clear_height": {
+      "status": {
+       "measured": 8,
+       "occluded": 4
+      },
+      "n": 8,
+      "mean": 0.2342,
+      "median": 0.1849,
+      "p90": 0.5521
+     },
+     "roof_width": {
+      "status": {
+       "measured": 12
+      },
+      "n": 12,
+      "mean": 1.0383,
+      "median": 0.9599,
+      "p90": 1.7682
+     }
+    }
+   }
+  }
+ }
+}

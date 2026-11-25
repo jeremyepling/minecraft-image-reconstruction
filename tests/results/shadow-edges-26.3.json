@@ -1,0 +1,186 @@
+{
+  "release": "26.3",
+  "task": "Boundary classification with supplied rectified neighboring face patches",
+  "unit": "Pair observations repeated across angles and render conditions",
+  "methods": {
+    "luminance": {
+      "threshold_from_dev": 0.027548145709499237,
+      "dev": {
+        "different": 3036,
+        "correct_seams": 2306,
+        "same": 1068,
+        "correct_same": 868,
+        "balanced_accuracy": 0.7861430622788708
+      },
+      "test": {
+        "different": 3024,
+        "correct_seams": 2277,
+        "same": 1080,
+        "correct_same": 861,
+        "balanced_accuracy": 0.7750992063492064
+      },
+      "test_changed_skylight": {
+        "different": 171,
+        "correct_seams": 160,
+        "same": 189,
+        "correct_same": 0,
+        "balanced_accuracy": 0.4678362573099415
+      },
+      "test_paired_light": {
+        "different": 0,
+        "correct_seams": 0,
+        "same": 990,
+        "correct_same": 9,
+        "balanced_accuracy": null
+      },
+      "by_condition": {
+        "normal": {
+          "different": 1008,
+          "correct_seams": 755,
+          "same": 360,
+          "correct_same": 288,
+          "balanced_accuracy": 0.7745039682539683
+        },
+        "small": {
+          "different": 1008,
+          "correct_seams": 760,
+          "same": 360,
+          "correct_same": 288,
+          "balanced_accuracy": 0.776984126984127
+        },
+        "warm-shader": {
+          "different": 1008,
+          "correct_seams": 762,
+          "same": 360,
+          "correct_same": 285,
+          "balanced_accuracy": 0.7738095238095237
+        }
+      },
+      "by_angle": {
+        "elevated": {
+          "different": 666,
+          "correct_seams": 517,
+          "same": 243,
+          "correct_same": 201,
+          "balanced_accuracy": 0.8017183850517184
+        },
+        "front": {
+          "different": 789,
+          "correct_seams": 589,
+          "same": 279,
+          "correct_same": 218,
+          "balanced_accuracy": 0.7639382912901863
+        },
+        "left": {
+          "different": 780,
+          "correct_seams": 579,
+          "same": 279,
+          "correct_same": 222,
+          "balanced_accuracy": 0.7690033085194375
+        },
+        "right": {
+          "different": 789,
+          "correct_seams": 592,
+          "same": 279,
+          "correct_same": 220,
+          "balanced_accuracy": 0.769423661365278
+        }
+      }
+    },
+    "texture": {
+      "threshold_from_dev": 0.5049303437647716,
+      "dev": {
+        "different": 3036,
+        "correct_seams": 2993,
+        "same": 1068,
+        "correct_same": 971,
+        "balanced_accuracy": 0.9475063285517609
+      },
+      "test": {
+        "different": 3024,
+        "correct_seams": 2979,
+        "same": 1080,
+        "correct_same": 984,
+        "balanced_accuracy": 0.9481150793650794
+      },
+      "test_changed_skylight": {
+        "different": 171,
+        "correct_seams": 170,
+        "same": 189,
+        "correct_same": 169,
+        "balanced_accuracy": 0.94416597048176
+      },
+      "test_paired_light": {
+        "different": 0,
+        "correct_seams": 0,
+        "same": 990,
+        "correct_same": 875,
+        "balanced_accuracy": null
+      },
+      "by_condition": {
+        "normal": {
+          "different": 1008,
+          "correct_seams": 998,
+          "same": 360,
+          "correct_same": 344,
+          "balanced_accuracy": 0.9728174603174604
+        },
+        "small": {
+          "different": 1008,
+          "correct_seams": 977,
+          "same": 360,
+          "correct_same": 296,
+          "balanced_accuracy": 0.895734126984127
+        },
+        "warm-shader": {
+          "different": 1008,
+          "correct_seams": 1004,
+          "same": 360,
+          "correct_same": 344,
+          "balanced_accuracy": 0.9757936507936509
+        }
+      },
+      "by_angle": {
+        "elevated": {
+          "different": 666,
+          "correct_seams": 656,
+          "same": 243,
+          "correct_same": 221,
+          "balanced_accuracy": 0.9472250027805583
+        },
+        "front": {
+          "different": 789,
+          "correct_seams": 785,
+          "same": 279,
+          "correct_same": 267,
+          "balanced_accuracy": 0.9759597694100332
+        },
+        "left": {
+          "different": 780,
+          "correct_seams": 769,
+          "same": 279,
+          "correct_same": 248,
+          "balanced_accuracy": 0.9373931623931624
+        },
+        "right": {
+          "different": 789,
+          "correct_seams": 769,
+          "same": 279,
+          "correct_same": 248,
+          "balanced_accuracy": 0.9317701732150401
+        }
+      }
+    }
+  },
+  "lighting_models_on_same_material_with_changed_skylight": {
+    "uniform": 162,
+    "smooth": 27,
+    "step": 0
+  },
+  "adjacent_pairs_with_observable_texture_or_hue": 3300,
+  "limits": [
+    "World readback establishes block identity and skylight. The fitted spatial lighting shape has no physical shadow-mask ground truth.",
+    "Known camera-projected neighboring faces are inputs. This experiment does not detect seams in an unlabeled full frame.",
+    "Distinct neutral flat materials can be inseparable from changes in illumination when neither side has texture."
+  ]
+}

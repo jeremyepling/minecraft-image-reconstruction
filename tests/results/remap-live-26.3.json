@@ -1,0 +1,334 @@
+{
+  "alignment": "Translate min X and min Y to zero and max Z (south front) to zero; no rotation, scaling or search.",
+  "previews": "Live framebuffer crops are framed separately for legibility. Dimensions are in world blocks.",
+  "cases": {
+    "test-canopy-30-front": {
+      "texel": {
+        "size_xyz": [
+          16,
+          38,
+          1
+        ],
+        "source_size_xyz": [
+          6,
+          8,
+          7
+        ],
+        "occupancy": {
+          "front_xy": {
+            "source": 34,
+            "predicted": 287,
+            "intersection": 32,
+            "union": 289,
+            "iou": 0.11072664359861592
+          },
+          "footprint_xz": {
+            "source": 42,
+            "predicted": 16,
+            "intersection": 6,
+            "union": 52,
+            "iou": 0.11538461538461539
+          },
+          "occupied_xyz": {
+            "source": 84,
+            "predicted": 287,
+            "intersection": 4,
+            "union": 367,
+            "iou": 0.010899182561307902
+          }
+        },
+        "readback": {
+          "expected": 287,
+          "matched": 287,
+          "run": "verify"
+        }
+      },
+      "remap": {
+        "size_xyz": [
+          6,
+          8,
+          1
+        ],
+        "source_size_xyz": [
+          6,
+          8,
+          7
+        ],
+        "occupancy": {
+          "front_xy": {
+            "source": 34,
+            "predicted": 34,
+            "intersection": 34,
+            "union": 34,
+            "iou": 1.0
+          },
+          "footprint_xz": {
+            "source": 42,
+            "predicted": 6,
+            "intersection": 6,
+            "union": 42,
+            "iou": 0.14285714285714285
+          },
+          "occupied_xyz": {
+            "source": 84,
+            "predicted": 34,
+            "intersection": 6,
+            "union": 112,
+            "iou": 0.05357142857142857
+          }
+        },
+        "readback": {
+          "expected": 34,
+          "matched": 34,
+          "run": "verify"
+        }
+      }
+    },
+    "test-stepped_tower-27-front": {
+      "texel": {
+        "size_xyz": [
+          29,
+          22,
+          1
+        ],
+        "source_size_xyz": [
+          16,
+          15,
+          9
+        ],
+        "occupancy": {
+          "front_xy": {
+            "source": 160,
+            "predicted": 580,
+            "intersection": 155,
+            "union": 585,
+            "iou": 0.26495726495726496
+          },
+          "footprint_xz": {
+            "source": 144,
+            "predicted": 29,
+            "intersection": 16,
+            "union": 157,
+            "iou": 0.10191082802547771
+          },
+          "occupied_xyz": {
+            "source": 1240,
+            "predicted": 580,
+            "intersection": 75,
+            "union": 1745,
+            "iou": 0.04297994269340974
+          }
+        },
+        "readback": {
+          "expected": 580,
+          "matched": 580,
+          "run": "verify"
+        }
+      },
+      "remap": {
+        "size_xyz": [
+          15,
+          14,
+          2
+        ],
+        "source_size_xyz": [
+          16,
+          15,
+          9
+        ],
+        "occupancy": {
+          "front_xy": {
+            "source": 160,
+            "predicted": 148,
+            "intersection": 142,
+            "union": 166,
+            "iou": 0.8554216867469879
+          },
+          "footprint_xz": {
+            "source": 144,
+            "predicted": 24,
+            "intersection": 24,
+            "union": 144,
+            "iou": 0.16666666666666666
+          },
+          "occupied_xyz": {
+            "source": 1240,
+            "predicted": 148,
+            "intersection": 120,
+            "union": 1268,
+            "iou": 0.0946372239747634
+          }
+        },
+        "readback": {
+          "expected": 148,
+          "matched": 148,
+          "run": "verify"
+        }
+      }
+    },
+    "test-recess-28-front": {
+      "texel": {
+        "size_xyz": [
+          26,
+          8,
+          1
+        ],
+        "source_size_xyz": [
+          25,
+          8,
+          5
+        ],
+        "occupancy": {
+          "front_xy": {
+            "source": 200,
+            "predicted": 208,
+            "intersection": 200,
+            "union": 208,
+            "iou": 0.9615384615384616
+          },
+          "footprint_xz": {
+            "source": 125,
+            "predicted": 26,
+            "intersection": 25,
+            "union": 126,
+            "iou": 0.1984126984126984
+          },
+          "occupied_xyz": {
+            "source": 856,
+            "predicted": 208,
+            "intersection": 128,
+            "union": 936,
+            "iou": 0.13675213675213677
+          }
+        },
+        "readback": {
+          "expected": 208,
+          "matched": 208,
+          "run": "verify"
+        }
+      },
+      "remap": {
+        "size_xyz": [
+          25,
+          8,
+          4
+        ],
+        "source_size_xyz": [
+          25,
+          8,
+          5
+        ],
+        "occupancy": {
+          "front_xy": {
+            "source": 200,
+            "predicted": 200,
+            "intersection": 200,
+            "union": 200,
+            "iou": 1.0
+          },
+          "footprint_xz": {
+            "source": 125,
+            "predicted": 70,
+            "intersection": 70,
+            "union": 125,
+            "iou": 0.56
+          },
+          "occupied_xyz": {
+            "source": 856,
+            "predicted": 269,
+            "intersection": 269,
+            "union": 856,
+            "iou": 0.3142523364485981
+          }
+        },
+        "readback": {
+          "expected": 269,
+          "matched": 269,
+          "run": "verify-final-material"
+        }
+      }
+    },
+    "test-corner-29-front": {
+      "texel": {
+        "size_xyz": [
+          10,
+          12,
+          1
+        ],
+        "source_size_xyz": [
+          28,
+          7,
+          8
+        ],
+        "occupancy": {
+          "front_xy": {
+            "source": 168,
+            "predicted": 107,
+            "intersection": 68,
+            "union": 207,
+            "iou": 0.3285024154589372
+          },
+          "footprint_xz": {
+            "source": 31,
+            "predicted": 10,
+            "intersection": 10,
+            "union": 31,
+            "iou": 0.3225806451612903
+          },
+          "occupied_xyz": {
+            "source": 217,
+            "predicted": 107,
+            "intersection": 68,
+            "union": 256,
+            "iou": 0.265625
+          }
+        },
+        "readback": {
+          "expected": 107,
+          "matched": 107,
+          "run": "verify"
+        }
+      },
+      "remap": {
+        "size_xyz": [
+          26,
+          7,
+          1
+        ],
+        "source_size_xyz": [
+          28,
+          7,
+          8
+        ],
+        "occupancy": {
+          "front_xy": {
+            "source": 168,
+            "predicted": 161,
+            "intersection": 147,
+            "union": 182,
+            "iou": 0.8076923076923077
+          },
+          "footprint_xz": {
+            "source": 31,
+            "predicted": 23,
+            "intersection": 21,
+            "union": 33,
+            "iou": 0.6363636363636364
+          },
+          "occupied_xyz": {
+            "source": 217,
+            "predicted": 161,
+            "intersection": 147,
+            "union": 231,
+            "iou": 0.6363636363636364
+          }
+        },
+        "readback": {
+          "expected": 161,
+          "matched": 161,
+          "run": "verify"
+        }
+      }
+    }
+  }
+}

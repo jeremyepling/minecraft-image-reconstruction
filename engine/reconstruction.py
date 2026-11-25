@@ -90,7 +90,14 @@ def geometry(image_path, scene=None, method='baseline'):
         image=ImageOps.exif_transpose(f).convert('RGBA')
     rgb=np.asarray(image)[:,:,:3]
     alpha=np.asarray(image)[:,:,3]
-    if method not in ('baseline','texel'): raise ValueError('Unknown geometry method')
+    if method not in ('baseline','texel','remap'): raise ValueError('Unknown geometry method')
+    if method=='remap' and not scene:
+        from engine.remap import candidate
+        planes,cells=candidate(image,ground=True)
+        if not cells: raise ValueError('No occupied cells in the inferred elevation')
+        from engine.depth_layers import refine_depth
+        planes,cells=refine_depth(rgb,planes,cells)
+        return rgb,planes,cells
     if method=='texel' and not scene:
         trial=trial_elevation(image_path,rgb)
         if trial is not None: return trial
@@ -134,7 +141,7 @@ def geometry(image_path, scene=None, method='baseline'):
         elif known:
             cols,rows=p['columns'],p['rows']
             strength=None
-        elif method=='texel':
+        elif method in ('texel','remap'):
             from engine.texel_grid import texel_grid
             cols,rows=texel_grid(rgb,quad)
             strength=None
@@ -191,6 +198,9 @@ def geometry(image_path, scene=None, method='baseline'):
 def analyze(image,scene,out,method='baseline'):
     rgb,planes,cells=geometry(image,scene,method)
     geometry_data=dict(image_sha256=digest(image),geometry_method=method,planes=planes,cells=cells)
+    if method=='remap':
+        from engine.boundary_evidence import boundary_evidence
+        geometry_data['appearance_boundaries']=boundary_evidence(rgb,cells)
     out.mkdir(parents=True,exist_ok=True)
     (out/'geometry.json').write_text(json.dumps(geometry_data))
     limits=[[min(v),max(v)] for v in zip(*(c['xyz'] for c in cells))]
@@ -205,7 +215,7 @@ def analyze(image,scene,out,method='baseline'):
             fitted=dict(geometry_data,planes=[dict(p,cells=by_plane[p['name']]) for p in planes])
             dimensions['landmark_measurements']=measure(fitted,dict(hints,planes=outlines))
     (out/'dimensions.json').write_text(json.dumps(dimensions,indent=2))
-    if scene is None:
+    if scene is None and method!='remap':
         fields=('name','quad','columns','rows','origin','facing')
         proposal=dict(image_sha256=geometry_data['image_sha256'],
                       planes=[{key:p[key] for key in fields} for p in planes])
@@ -278,7 +288,12 @@ def reconstruct(image, atlas_dir, scene, library, out, depth=None, grid=None, wh
         appearance_refs=prototypes(sprite_tiles,appearance_labels,tiles,labels)
         method='appearance-'+match_appearance
     grouped=defaultdict(list)
-    for cell in cells: grouped[cell['facing']].append(cell)
+    inherited=[]
+    for cell in cells:
+        if cell.get('depth_surface')=='inferred return':
+            inherited.append(cell)
+        else:
+            grouped[cell['facing']].append(cell)
     blocks={}; margins={}; decisions=[]; alternatives={}
     for side,part in grouped.items():
         mapping=catalog['choices'][side]
@@ -337,7 +352,18 @@ def reconstruct(image, atlas_dir, scene, library, out, depth=None, grid=None, wh
                                   textures=names,distances=ds,relative_margin=gap))
             if match_appearance=='adaptive':
                 decisions[-1]['material_method']='exposure' if index in trusted else 'motif'
+    for cell in inherited:
+        pos=tuple(cell['xyz'])
+        source=tuple(cell['sample_source_xyz'])
+        blocks[pos]=blocks[source]
+        if source in alternatives:
+            alternatives[pos]=alternatives[source]
+        decisions.append(dict(plane=cell['plane'],ij=cell['ij'],xyz=cell['xyz'],
+                              block_id=blocks[pos],material_method='adjacent facade',
+                              sample_source_xyz=list(source)))
     if depth is not None:
+        if any(c.get('depth_surface') for c in cells) or planes[0].get('depth_evidence',{}).get('ledges'):
+            raise ValueError('Shell extrusion requires a single flat wall; this geometry already measures depth')
         if len(planes)!=1 or planes[0]['facing'] in ROW_UP or type(depth)!=int or not 1<=depth<=256:
             raise ValueError('--depth needs a single vertical wall and 1 to 256 blocks')
         p=planes[0]; dx,_,dz=RIGHT[p['facing']]
