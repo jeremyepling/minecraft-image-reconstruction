@@ -288,8 +288,20 @@ def build(image_path, version, out, *, outlines=None, order_method=None, through
     patches = proposals_for(image, version, outlines, fields.get('normal'), fields.get('depth'))
     methods = dict(outlines=outlines)
     if mask_first:
-        # The region itself is authoritative. Its optional quad only describes the sampling transform.
-        model = dict(footprint='support', image_size=list(image.size), planes=patches)
+        from engine.surface_perimeter import masked_crop, with_outline
+        patches = [with_outline(part) for part in patches]
+        crop_dir = out/'surface-crops'
+        crop_dir.mkdir(parents=True, exist_ok=True)
+        for i, part in enumerate(patches):
+            crop = masked_crop(image, part)
+            if crop is not None:
+                photo, box = crop
+                path = crop_dir/f'surface-{i:03}.png'
+                photo.save(path)
+                part['source_crop'] = dict(path=path.relative_to(out).as_posix(), xyxy=list(box))
+        model = dict(footprint='support', image_size=list(image.size), planes=patches,
+                     outline_coordinates='closed outer and hole rings on support-grid pixel edges',
+                     sampling_chart_coordinates='optional four source-image points for rectification')
         if order_method == 'geometry':
             charted = [p for p in patches if 'quad' in p]
             lifted = assemble(charted, [dict(counts=None) for p in charted], image.size)
@@ -318,7 +330,8 @@ def build(image_path, version, out, *, outlines=None, order_method=None, through
         from engine.mask_first import SETTINGS as finder_settings
         manifest['surface_finder'] = dict(name='Surface Finder', method='Regions First',
                                           directions='MoGe-2', relative_depth='Depth Anything V2',
-                                          settings=finder_settings)
+                                          settings=finder_settings, outline='exact-support-perimeter')
+        manifest['artifacts']['source_crops'] = 'surface-crops/'
     if through == 'counts':
         counter = counter or defaults['block_count']
         atlas = None
