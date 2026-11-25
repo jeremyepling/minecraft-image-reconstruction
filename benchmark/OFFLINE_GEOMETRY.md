@@ -1,6 +1,6 @@
 # Reusing the same buildings without starting Minecraft
 
-For surface-matching reviews, start with `.\Invoke-SurfaceRound.ps1 -Round detection-sheet`. It prints the path to a portrait sheet drawn entirely from saved screenshots, predictions and recorded geometry. The per-surface pairings are saved beside it. The default source is `separation-01`. Pass `-SourceRun benchmark/reviews/perimeters-01` to regenerate the earlier sheet. [Current review layout](reviews/separation-01/comparison.jpg)
+For surface-matching reviews, start with `.\Invoke-SurfaceRound.ps1 -Round detection-sheet`. It redraws all six recovery methods in one portrait image from saved screenshots and masks. Pass `-SourceRun benchmark/reviews/recovery-01` for the separate low-angle underside sheet. Run `.\Invoke-SurfaceRound.ps1 -Round recovery-summary` to regrade and count all 56 pictures and regenerate the full sheet. [Current review layout](reviews/recovery-overview-01/comparison.jpg) · [Recovery experiments](RECOVERY_ROUND.md)
 
 Use `.\Invoke-SurfaceRound.ps1 -Round separation` to repeat the wall and underside comparisons and the downstream dimension check on all 56 pictures. It runs picture jobs in parallel and reuses frozen model evidence by screenshot hash. [Inputs, selection and scores](SEPARATION_ROUND.md)
 

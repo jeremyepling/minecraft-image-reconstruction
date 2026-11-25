@@ -6,9 +6,11 @@ Reconstruct a Minecraft Java build from a screenshot and place it in a real worl
 
 ## Single-image exterior benchmark
 
-The default **Surface Finder** now uses the **Wall Separator**. It found 423 of 598 scored surfaces across the 56 saved screenshots, up from 398, and kept every previous match. The separate **Underside Finder** recovered 14 of 18 scored undersides, up from eight. [Surface-matching sheet](benchmark/reviews/separation-01/comparison.jpg) · [Depth and line model results](benchmark/SEPARATION_ROUND.md)
+Run `.\Invoke-WallRecovery.ps1 .\screenshot.png -Out .\runs\my-build` to use the full surface-recovery sequence on a new image. It writes the outlines, crops and block count estimates and records which models ran. [Single-image build and local models](benchmark/WALL_RECOVERY_BUILD.md)
 
-Start with the latest surface-matching sheet when debugging detection. Read down a building’s column to see its predictions, actual surfaces, misses and extra guesses. The bottom section enlarges the low angles where an overhang’s underside is visible. Rebuild the sheet from saved results with `.\Invoke-SurfaceRound.ps1 -Round detection-sheet`. Run `.\Invoke-SurfaceRound.ps1 -Round separation` to repeat both experiments.
+The **Wall Separator** found 423 of 598 scored surfaces on 56 saved screenshots. Joining short wall edges, looking under overhangs and splitting merged walls with MobileSAM brought that to **471 of 598**. The review shows what each individual change added and where the full sequence still missed a wall. [Zoomable surface comparison](benchmark/reviews/recovery-overview-01/comparison.jpg) · [Results for all eight buildings](benchmark/RECOVERY_ROUND.md)
+
+Read down each building’s column for the source, recorded surfaces, predictions and same-location close-ups. Run `.\Invoke-SurfaceRound.ps1 -Round recovery-summary` to rescore all six combinations and rerun the ordinary Block Counter. The [underside sheet](benchmark/reviews/recovery-01/comparison.jpg) enlarges the low angles. The earlier [depth and line comparison](benchmark/SEPARATION_ROUND.md) tested which model should supply each kind of evidence.
 
 Open the [pipeline comparison](benchmark/reviews/perimeters-01/comparison.jpg) to follow the same surface through the original photograph, Surface Finder outline, context crop, perspective correction, block-grid overlay and texture match. The [three close-ups](benchmark/reviews/perimeters-01/edge-closeups.jpg) show why the old courtyard, workshop and registry diagonals were misleading. Reproduce the review with `.\Invoke-SurfaceRound.ps1 -Round perimeters`. [Surface and crop results](benchmark/PERIMETER_ROUND.md)
 
