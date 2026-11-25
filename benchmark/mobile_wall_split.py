@@ -62,7 +62,7 @@ def choose_parts(parent, masks, records, selected):
     return best[1] if best else []
 
 
-def children(image, part, members, masks, records):
+def children(image, part, members, masks, records, *, minimum_seed_area=0):
     """Grow seeds only inside the exact original mask on its native working lattice."""
     local, left, top = _local_mask(np.asarray(part['support']['runs']))
     size = tuple(part['support']['size'])
@@ -74,6 +74,14 @@ def children(image, part, members, masks, records):
     members = sorted(members, key=lambda i: (records[i]['quality'], i))
     for number, i in enumerate(members, 1):
         labels[local & masks[i][np.ix_(y, x)]] = number
+    if minimum_seed_area:
+        # Tiny slivers can appear where a coarse proposal touches a fine parent rim.
+        # Relabel them from the nearest reachable substantial piece inside this parent.
+        for number in range(1,len(members)+1):
+            for runs in _runs(labels==number):
+                if sum(b-a for _,a,b in runs)<minimum_seed_area:
+                    for row,a,b in runs:
+                        labels[row,a:b]=0
     while True:
         border = np.pad(labels, 1)
         neighbor = np.maximum.reduce([border[:-2, 1:-1], border[2:, 1:-1],
