@@ -1,0 +1,77 @@
+{
+  "baseline": "mask-four-01",
+  "replay": "final-independent",
+  "code": {
+    "commit": "bdb085b6d38fd8cd2448f2d378ed0dcd6e07044b",
+    "predictor_and_runner_sha256": "789381b5a6719fbe980e70747c9ede86fff307ae4874f175a8d331c8e03fcdeb",
+    "source_dirty": false
+  },
+  "prediction_files": 56,
+  "methods": [
+    "current-b",
+    "mask-first",
+    "scalelsd",
+    "deeplsd"
+  ],
+  "predictions_by_method": 224,
+  "score_files": {
+    "scores.json": "58c429208052ea1249cdd0362ae46cb12519ad917280c31689d7470e61323c76",
+    "selection.json": "e752055f5513360506271e8feaa96e2ba07b4b0baa701f9912ded3ca9fcee5b9",
+    "blocks.json": "4d9c6828678a1b668f866c9a2320af5deaf06fc4c28d02ffbf07cbfa5197921e",
+    "recovered-by-stage.json": "a283d0ae81a9975fe8f256e39acef54443ddfa3b79eb4c41e21ebde075194304"
+  },
+  "identical_pack_readbacks": {
+    "baseline-known-plane-diagnostic.zip": 56,
+    "baseline-visible.zip": 56,
+    "selected-known-plane-diagnostic.zip": 56,
+    "selected-visible.zip": 56,
+    "selected_with_B_charts-visible.zip": 56
+  },
+  "nonempty_packs": {
+    "baseline-known-plane-diagnostic.zip": 56,
+    "baseline-visible.zip": 2,
+    "selected-known-plane-diagnostic.zip": 56,
+    "selected-visible.zip": 5,
+    "selected_with_B_charts-visible.zip": 2
+  },
+  "coordinates_examined": {
+    "baseline-known-plane-diagnostic.zip": 4397,
+    "baseline-visible.zip": 129,
+    "selected-known-plane-diagnostic.zip": 5257,
+    "selected-visible.zip": 81,
+    "selected_with_B_charts-visible.zip": 125
+  },
+  "selection": "mask-first",
+  "runtime_seconds": {
+    "published": {
+      "current-b": 17.439022100152215,
+      "mask-first": 12.242228499992052,
+      "scalelsd_inference_recorded": 4.233563999878243,
+      "model_fields_cached": 0.26744319999124855,
+      "deeplsd_refine": 4.680421000055503,
+      "deeplsd_inference_recorded": 394.6315614709999,
+      "scalelsd_refine": 5.183054399909452
+    },
+    "independent": {
+      "mask-first": 12.598104300064733,
+      "deeplsd_inference_recorded": 394.6315614709999,
+      "model_fields_cached": 0.27510970004368573,
+      "scalelsd_inference_recorded": 4.233563999878243,
+      "current-b": 18.186838600056944,
+      "scalelsd_refine": 5.316861199971754,
+      "deeplsd_refine": 4.949543900118442
+    },
+    "original_unique_line_inference": {
+      "scalelsd": 3.867723099916475,
+      "deeplsd": 366.40507227699993
+    },
+    "separate_shared_field_inference": {
+      "normal": 69.40721820006729,
+      "depth": 45.617544099950464
+    },
+    "output_directory_creation_to_last_write": {
+      "mask-four-01": 171.08,
+      "final-independent": 171.05
+    }
+  }
+}

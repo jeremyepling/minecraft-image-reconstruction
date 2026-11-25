@@ -50,4 +50,6 @@ The downstream check reuses the seam-fit camera, texture repetition, shared-edge
 
 Run `.\Invoke-MaskRound.ps1` in this checkout. It verifies source images and line evidence, reuses numerical normals and depth, runs all four predictions, scores the held-back buildings and exports the selected geometry. It writes a new run directory each time. The manifest records the methods, checkpoints, hashes, environment, scores and artifact paths. [Cache and environment](MASK_REPLAY.md)
 
+A second offline run independently reproduced all 224 method-by-picture predictions byte for byte, as well as the scores and selection. Decoding the two sets of 280 packs produced the same coordinates and block states for every frame and diagnostic. Each cached replay took about 171 seconds on this PC. [Independent verification record](reviews/mask-four-01/independent-verification.json)
+
 Visual feedback can be recorded with `python -m benchmark.camera_feedback`. Use the run directory, image ID, floor, native-pixel rectangle, stage (`regions` or `block-placement`), preferred method and note. Entries go in the run’s feedback journal alongside the measured scores. [Review images and crop coordinates](reviews/mask-four-01/review-regions.json)
