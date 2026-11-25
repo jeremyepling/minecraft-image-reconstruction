@@ -14,6 +14,18 @@ The public solver requires a reliable front view for this depth measurement. It 
 
 An experimental oblique solver estimates two ground-plane vanishing points, rectifies the wall, and repeats the projected-rim test. Across the left and right test views, six of twelve opening observations produced a depth and all six were correct. It also gave one flush dark inlay a depth of one block. Comparing repeated details inside that inlay did not remove the false positive. On that inlay the inferred block scale was off by about 5%, enough to make the flat texture repeat at the scale predicted for a one-block setback. The experiment is available for comparison and remains outside the build command. [Oblique experiment results](../tests/results/oblique-recess-26.3.json)
 
+## Local spacing around angled openings
+
+The oblique experiment now measures the horizontal and vertical repeat of the wall texture in a band extending 2.5 blocks around each proposed opening. It masks the openings and samples pairs on the surrounding wall. A distinct correlation peak on each axis supplies the local block size. It then checks whether the texture inside the rectangle repeats at that spacing or at the smaller spacing predicted by a recessed back wall. The local test can reject a depth proposal. Weak local evidence falls back to the earlier comparison.
+
+On the original false positive, measured repeats were 95.0% and 94.5% of the facade-wide spacing. Using them rejected the spurious one-block recess and preserved every correct depth call on the earlier views. [Per-opening measurements](../tests/results/local-rim-26.3.json)
+
+![Matched oblique frames of flush inlays and real openings](local-rim.jpg)
+
+Eight fresh game captures used two new headings of ±26° on the same four builds. The local check eliminated all three false recesses on the flat dark-inlay wall. Across 22 observations of genuine recesses, both methods returned eight exact depths, three depths off by one block, and eleven unknowns. The physical-shade control produced no depth proposals for either method. The new angles test camera sensitivity on these particular buildings. [Fresh-angle results](../tests/results/local-rim-new-angles-26.3.json) · [Camera and block readbacks](../tests/results/rim-camera-26.3.json)
+
+Run `python -m benchmark.oblique_recess --image IMAGE --out RESULT.json` for an individual image. The report includes the earlier and corrected estimates, the local spacing on each axis, and evidence for accepting or rejecting the depth. Automatic oblique placement remains experimental.
+
 ## Isolating lighting changes
 
 A separate comparison takes two rectified face patches. It fits uniform brightness change, a smooth gradient, and a sharp step in log luminance. It compares hue and fine texture after accounting for lighting. Geometry output records ambiguous pairs, likely material changes and transitions consistent with lighting. Lighting evidence alone never sets a block depth. The fitted gain map is available for inspection.

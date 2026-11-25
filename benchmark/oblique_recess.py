@@ -10,10 +10,13 @@ from benchmark.recess_review import known_openings
 from engine.depth_layers import fit_reveal, depth_fingerprints
 from engine.geometry import bilinear, project, UNIT
 from engine.remap import structure_mask
+from engine.rim_spacing import texture_detail,local_spacing
 
 
 def pavement(rgb):
     h,w=rgb.shape[:2]
+    if min(w,h)<128:
+        return None
     sky=np.median(np.concatenate((rgb[:,:w//12],rgb[:,-w//12:]),axis=1),axis=1)
     chroma=sky[:,2].astype(float)-sky[:,0]
     ys=np.arange(h//7,2*h//3)
@@ -118,7 +121,7 @@ def dark_boxes(seeds):
     return boxes
 
 
-def internal_repeat(rect,lo,hi,vp,distance,depth,pitch):
+def internal_repeat(field,lo,hi,vp,distance,depth,pitch,spacing=(1.,1.)):
     """Compare adjacent motifs *inside* the apparent back face at two candidate pitches.
 
     Both measurements sample the same visible rectangle after excluding the
@@ -127,14 +130,10 @@ def internal_repeat(rect,lo,hi,vp,distance,depth,pitch):
     fraction = 1/(1+depth/distance)
     lower=np.maximum(lo,vp+(lo-vp)*fraction)+.07*pitch
     upper=np.minimum(hi,vp+(hi-vp)*fraction)-.07*pitch
-    luma=rect.astype(np.float32).mean(2)
-    high=luma-(np.roll(luma,2,axis=0)+np.roll(luma,-2,axis=0)+
-               np.roll(luma,2,axis=1)+np.roll(luma,-2,axis=1))*.25
-    field=high[:,:,None]
     results=[[],[]]
     axes=[]
     for axis in (0,1):
-        step=np.eye(2)[axis]*pitch
+        step=np.eye(2)[axis]*pitch*spacing[axis]
         limits=upper-step
         if np.any(limits-lower<.30*pitch):
             continue
@@ -190,21 +189,34 @@ def infer(image):
     H=K@np.stack([side,-up,side*ox+forward*z+(ny-height)*up],axis=1)
     scale=36
     full=np.stack(np.meshgrid(np.arange(nx*scale)+.5,np.arange(ny*scale)+.5),axis=-1)
-    rect=bilinear(rgb,project(H,full/scale)).astype(np.uint8)
+    source_xy=project(H,full/scale)
+    rect=bilinear(rgb,source_xy).astype(np.uint8)
     mean=rect.reshape(ny,scale,nx,scale,3)[:,6:-6,:,6:-6].mean(axis=(1,3,4))
     seeds=mean<np.quantile(mean,.75,axis=1,keepdims=True)*.91
     G=np.diag([scale,scale,1.]); vp_grid=np.linalg.solve(H,K@forward)
     vp=vp_grid[:2]/vp_grid[2]*scale
     # Rectification makes all back planes shrink toward one finite epipole.
     ratio=abs(z); out=[]
-    for a,b in dark_boxes(seeds):
+    boxes=dark_boxes(seeds.copy())
+    front=(bilinear(mask[:,:,None],source_xy)[:,:,0]>.99)
+    front &= ~seeds.repeat(scale,axis=0).repeat(scale,axis=1)
+    for a,b in boxes:
+        low=np.maximum(0,a*scale-4); high=b*scale+4
+        front[low[1]:high[1],low[0]:high[0]]=False
+    field=texture_detail(rect)
+    for a,b in boxes:
         q=(a+UNIT*(b-a))*scale
         fingerprints=depth_fingerprints(rect,G,nx,ny,a,b,vp,1.,ratio)
         r=fit_reveal(rect.mean(2),q,vp,1.,ratio,fingerprints)
         base_depth=r['depth']
-        test=(internal_repeat(rect,a*scale,b*scale,vp,ratio,base_depth,scale)
+        test=(internal_repeat(field,a*scale,b*scale,vp,ratio,base_depth,scale)
               if base_depth else None)
-        out.append(dict(depth=None if test and test['veto'] else base_depth,
+        calibration=local_spacing(field,front,a*scale,b*scale,scale)
+        spacing=[c['ratio'] if c else 1. for c in calibration]
+        corrected=internal_repeat(field,a*scale,b*scale,vp,ratio,base_depth,scale,spacing) if base_depth and all(calibration) else test
+        out.append(dict(depth=None if corrected and corrected['veto'] else base_depth,
+                        prior_depth=None if test and test['veto'] else base_depth,
+                        local_spacing=calibration,corrected_repeat=corrected,
                         initial_depth=base_depth,internal_repeat=test,
                         rim_size=(b-a).tolist(),
                         rim=project(H,q/scale).tolist()))
@@ -218,7 +230,7 @@ def run(source,controls,out,split=None,positive=None):
             continue
         scenes={b['id']:b for b in json.loads((root/'buildings.json').read_text())}
         for view in json.loads((root/'views.json').read_text()):
-            if view['angle'] not in ('left','right') or (root==source and
+            if view['angle'] not in ('left','right','oblique-left','oblique-right') or (root==source and
                     (view['kind']!='recess' or view['split']=='train' or
                      (split and view['split']!=split))):continue
             path=root/'captures'/(view['id']+'.png')
@@ -238,7 +250,20 @@ def run(source,controls,out,split=None,positive=None):
 
 if __name__=='__main__':
     parser=argparse.ArgumentParser(description=__doc__)
-    for key in ('source','controls','out'):parser.add_argument('--'+key,type=Path,required=True)
+    mode=parser.add_mutually_exclusive_group(required=True)
+    mode.add_argument('--source',type=Path)
+    mode.add_argument('--image',type=Path,help='Inspect an individual screenshot without fixture metadata')
+    parser.add_argument('--controls',type=Path)
+    parser.add_argument('--out',type=Path,required=True)
     parser.add_argument('--split',choices=['dev','test'])
     parser.add_argument('--positive',type=Path,help='Independent live positive control containing genuine recesses')
-    a=parser.parse_args();run(a.source,a.controls,a.out,a.split,a.positive)
+    a=parser.parse_args()
+    if a.image:
+        with Image.open(a.image) as im:
+            result=infer(im)
+        a.out.parent.mkdir(parents=True,exist_ok=True)
+        a.out.write_text(json.dumps(result,indent=2)+'\n')
+    elif a.controls:
+        run(a.source,a.controls,a.out,a.split,a.positive)
+    else:
+        parser.error('--source needs --controls')
