@@ -178,6 +178,8 @@ def assemble(proposals, pitches, size, diagnostic_K=None):
 
 
 def proposals_for(image, version, method, normals=None, depth=None):
+    if method == 'rectangle-finder':
+        method = 'normal-regions'
     if method == 'mask-first':
         from engine.mask_first import regions
         from engine.surface_fields import infer
@@ -276,7 +278,7 @@ def build(image_path, version, out, *, outlines=None, order_method=None, through
     defaults = json.loads(DEFAULTS.read_text())
     outlines = outlines or defaults['outlines']
     mask_first = outlines == 'mask-first'
-    if boundary is not None and (not mask_first or boundary not in ('regions-first','color-edges','depth-split')):
+    if boundary is not None and (not mask_first or boundary not in ('regions-first','color-edges','depth-split','wall-depth-anything')):
         raise ValueError('Select a Regions First boundary method for a mask-first surface build.')
     if context_px is not None and (not mask_first or not isinstance(context_px, int) or context_px < 0):
         raise ValueError('Surface context requires Regions First and a nonnegative whole number of pixels.')
@@ -285,7 +287,7 @@ def build(image_path, version, out, *, outlines=None, order_method=None, through
     with Image.open(image_path) as src:
         image = Image.fromarray(np.asarray(src.convert('RGB')))
     fields = {}
-    if mask_first or outlines.startswith('normal-'):
+    if mask_first or outlines.startswith('normal-') or outlines == 'rectangle-finder':
         fields['normal'] = infer(image, 'normal')
     if mask_first or order_method == 'depth-anything':
         fields['depth'] = infer(image, 'depth')
@@ -295,9 +297,27 @@ def build(image_path, version, out, *, outlines=None, order_method=None, through
         from engine.surface_perimeter import DEFAULT_CONTEXT_PX, context_crop, masked_crop, with_outline
         boundary = boundary or defaults['boundary']
         boundary_settings = {}
-        if boundary=='color-edges':
+        if boundary in ('color-edges','wall-depth-anything'):
             from engine.surface_boundary_refine import SETTINGS as boundary_settings, refine
             patches=refine(image,patches,version)
+            if boundary == 'wall-depth-anything':
+                from engine.normal_regions import SETTINGS as rectangle_settings
+                from engine.surface_depth_split import SETTINGS as vote_settings
+                from engine.surface_wall_split import SETTINGS as split_settings, refine as divide_walls
+                rectangles = proposals_for(image, version, 'rectangle-finder', fields['normal'])
+                # The original rectangle finder's normals are the chart normals after camera lifting.
+                # Computing these orientations needs neither a texture pitch nor a block scale.
+                camera, _ = lens([r['quad'] for r in rectangles], image.size)
+                for rect in rectangles:
+                    orientation = lift(rect['quad'], camera, {})
+                    if orientation is not None:
+                        rect['normal_camera'] = orientation[1].tolist()
+                patches = divide_walls(image, patches, fields['depth'], rectangles)
+                methods.update(initial_boundary='color-edges', split_hints='rectangle-finder',
+                               split_depth='depth-anything-v2')
+                boundary_settings = dict(contrast_alignment=boundary_settings,
+                                         rectangle_finder=rectangle_settings, rectangle_lift=SETTINGS,
+                                         depth_vote=vote_settings, wall_split=split_settings)
         elif boundary=='depth-split':
             from engine.surface_depth_split import SETTINGS as boundary_settings, split
             patches=split(image,patches,fields['depth'],version)
@@ -355,6 +375,11 @@ def build(image_path, version, out, *, outlines=None, order_method=None, through
         manifest['artifacts']['source_crops'] = 'surface-crops/'
         manifest['surface_finder']['context_crop'] = dict(margin_px=context_px, coordinates='source image pixels',
                                                          purpose='context only; support and counting input unchanged')
+    elif outlines in ('rectangle-finder', 'normal-regions'):
+        from engine.normal_regions import SETTINGS as rectangle_settings
+        manifest['surface_finder'] = dict(name='Surface Finder', method='Rectangle Finder',
+                                          implementation='normal-regions', directions='MoGe-2',
+                                          settings=rectangle_settings, outline='fitted quadrilateral')
     if through == 'counts':
         counter = counter or defaults['block_count']
         atlas = None
