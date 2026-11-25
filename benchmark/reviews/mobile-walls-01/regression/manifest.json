@@ -1,0 +1,27 @@
+{
+  "method": "Wall Separator + MobileSAM wall parts",
+  "run_id": "mobile-walls-01",
+  "split": "regression",
+  "settings": {
+    "maximum_vertical_normal_y": 0.5,
+    "minimum_containment": 0.6,
+    "minimum_parent_share": 0.1,
+    "minimum_samples": 32,
+    "maximum_overlap_with_smaller": 0.05,
+    "minimum_explained": 0.8
+  },
+  "fixtures": {
+    "smooth_stone": "660d1e535ae134452bca903a9d7cbe8d37953927fa118d9ffb327afad0885bc2",
+    "light_gray_concrete": "321505e15563f8efc0da868baa27409837aaa474410a61f3513b3dac0030f066",
+    "surface_confirm_v1": "0a479a8264f2c0f714284928354ff6ff5f9729491709676f07e2033d25e48fc3",
+    "normal_confirm_v1": "61bdf3a89a505a8be3757efe480185bec9c1888a1c72ffb69ef0093623e27dda"
+  },
+  "baseline_manifest": "28f694e90b2733c23e5c25c84c8b6d300a5849a360ea5640fb68997fcc2527e1",
+  "probe_manifest": "46a62cf9ec80de7c308dee379672528ecad6c07faee98856c9f3a9c0087363da",
+  "code_revision": "60e6abc73b515d04940a3cde220824af65c2f849",
+  "runner_sha256": "fa308fed217bcd59e049d46476bf7170b5277ae1d6729fe86678d637aa07e467",
+  "artifacts": {
+    "cases.json": "fd42332efb8b9d0578dbcf26a9c8742974be9f0dccdff232bd1670d326f40b25",
+    "scores.json": "c638875b7a4a117aa10432f59faa334218120aa81aeec49f3ffdedb2ba52473e"
+  }
+}
