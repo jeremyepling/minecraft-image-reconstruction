@@ -184,7 +184,7 @@ def _vanishing_directions(lines, size):
     return chosen
 
 
-def _junctions(field, quad, vps):
+def _junctions(field, quad, vps, third_axis=None):
     edges = np.roll(quad,-1,axis=0)-quad
     lengths = np.linalg.norm(edges, axis=1)
     sides = edges/lengths[:,None]
@@ -208,7 +208,20 @@ def _junctions(field, quad, vps):
         return []
     trials = []
     for i,corner in enumerate(quad):
-        if vanishing is None:
+        if third_axis is not None:
+            vp = np.asarray(third_axis, dtype=float)
+            ray = vp[:2] - corner*vp[2]
+            if np.linalg.norm(ray)<1.e-8:
+                continue
+            if vp[2]<0:
+                ray=-ray
+            # An endpoint can be displaced a few pixels by sampling or blur.
+            # Search nearby directions, then apply a pixel-space tolerance that
+            # tightens in angular units as the connector grows longer.
+            angles=np.arctan2(ray[1],ray[0])+np.deg2rad(np.arange(-8.,9.,2.))
+            if abs(vp[2])<1.e-10:
+                angles=np.r_[angles,angles+np.pi]
+        elif vanishing is None:
             angles=base+np.deg2rad(np.arange(-56,57,4))
             angles=np.r_[angles,angles+np.pi]
         else:
@@ -220,6 +233,9 @@ def _junctions(field, quad, vps):
         # Positive local coordinates point into the quadrilateral.
         coeff = shift@np.linalg.inv(np.stack((away1,away2)))
         valid = np.min(np.abs(coeff), axis=1) > max(2.,spread*1.35)
+        if third_axis is not None:
+            miss=abs(_cross(shift,ray))/np.linalg.norm(ray)
+            valid &= miss < 2.+.05*np.linalg.norm(shift,axis=1)
         ray = shift[valid]
         coeff = coeff[valid]
         if not len(ray):
@@ -287,7 +303,30 @@ def _flat_repeat(field,quad):
     return True
 
 
-def analyze(image,lines,outline_mask):
+def _best_junctions(trials):
+    best = {}
+    for t in trials:
+        score=t['weight']
+        if t['label']=='protrusion':
+            # The cap has visible connectors departing multiple corners
+            # along the same direction; a lone outward stripe is weak.
+            other=max((v['weight'] for v in trials if v['label']==t['label']
+                and v['corner']!=t['corner'] and t['ray']@v['ray']>.95), default=0.)
+            score=min(score,1.5*other)
+        if score>best.get(t['label'],(0.,None))[0]:
+            best[t['label']]=(score,t)
+    return tuple(best.get(k,(0.,None)) for k in ('recess','protrusion'))
+
+
+def _aligned_connector(t,axis):
+    start,end=np.asarray(t['line'])
+    ray=axis[:2]-start*axis[2]
+    delta=end-start
+    miss=abs(_cross(delta,ray))/max(1.e-12,np.linalg.norm(ray))
+    return miss<=2.+.05*np.linalg.norm(delta)
+
+
+def analyze(image,lines,outline_mask,cube_axes=None):
     """Run after whole-image tracing. Inputs and returned quadrilaterals use source pixels."""
     mask = np.asarray(outline_mask.convert('L'))>0
     if mask.shape != (image.height,image.width):
@@ -309,27 +348,34 @@ def analyze(image,lines,outline_mask):
             segment[key]=[x+bbox[0],y+bbox[1]]
     results = []
     for face_score,quad in _faces([*lines,*local],mask,field):
-        trials = _junctions(field,quad,directions)
-        best = {}
-        for t in trials:
-            score=t['weight']
-            if t['label']=='protrusion':
-                # The cap has visible connectors departing multiple corners
-                # along the same direction; a lone outward stripe is weak.
-                other=max((v['weight'] for v in trials if v['label']==t['label']
-                    and v['corner']!=t['corner'] and t['ray']@v['ray']>.95), default=0.)
-                score=min(score,1.5*other)
-            if score>best.get(t['label'],(0.,None))[0]:
-                best[t['label']]=(score,t)
-        inward,outer=(best.get(k,(0.,None)) for k in ('recess','protrusion'))
+        third_axis=None
+        evidence={}
+        measured_quad=quad
+        if cube_axes:
+            from engine.cube_faces import fit_face
+            fitted=fit_face(quad,cube_axes)
+            if fitted is None:
+                results.append(dict(quad=quad.round(2).tolist(),label='unknown',
+                    face_score=round(float(face_score),3),cube_turn=dict(status='unsupported')))
+                continue
+            quad,turn=fitted
+            third_axis=cube_axes[turn['third_axis']]
+            evidence['cube_turn']=turn
+        observed = _junctions(field,measured_quad,directions)
+        inward,outer = _best_junctions(observed)
+        flat_possible = max(inward[0],outer[0]) < .075
+        if third_axis is not None:
+            compatible=[t for t in observed if _aligned_connector(t,np.asarray(third_axis))]
+            compatible.extend(_junctions(field,measured_quad,directions,third_axis))
+            inward,outer=_best_junctions(compatible)
         winner,runner=(inward,outer) if inward[0]>=outer[0] else (outer,inward)
         row=dict(quad=quad.round(2).tolist(),label='unknown',face_score=round(float(face_score),3),
-                 inward_score=round(inward[0],4),outward_score=round(outer[0],4))
+                 inward_score=round(inward[0],4),outward_score=round(outer[0],4),**evidence)
         if winner[0]>.09 and winner[0]>1.45*runner[0]+.035:
             t=winner[1]
             row.update(label=t['label'],connector=np.round(t['line'],2).tolist(),
                        cross_gradient=t['cross_step'],continuation=t['after'],end_arms=t['arm_steps'])
-        elif winner[0]<.075 and _flat_repeat(field,quad):
+        elif flat_possible and winner[0]<.075 and _flat_repeat(field,measured_quad):
             row.update(label='flat',evidence='matching exterior and interior texture periods on both axes')
         results.append(row)
     return results

@@ -59,7 +59,7 @@ def grade_panels(predicted, regions, pose):
     return dict(rows=rows, extra=extra)
 
 
-def score_flat_controls(root):
+def score_flat_controls(root, *, cube_turns=False):
     """Count relief calls contained on verified flush wall, excluding the canopy."""
     from benchmark.line_form import inspect
     buildings = {b['id']:b for b in json.loads((root/'buildings.json').read_text())}
@@ -70,7 +70,7 @@ def score_flat_controls(root):
             continue
         path = root/'captures'/(view['id']+'.png')
         with Image.open(path) as image:
-            result, _ = inspect(image)
+            result, _ = inspect(image, cube_turns=cube_turns)
         b = buildings[view['building_id']]
         pose = json.loads(path.with_suffix('.json').read_text())
         (x,y,_),(u,v,z) = b['facade_bounds']

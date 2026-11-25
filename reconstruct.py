@@ -71,10 +71,11 @@ def main():
     p.add_argument('image',type=Path)
     p.add_argument('--out',type=Path,required=True)
     p=cmds.add_parser('inspect-form',help='Trace the whole-frame outline, then inspect smaller line junctions')
+    p.add_argument('--cube-turns',action='store_true',help='Fit projected block axes to the outline, face corners and depth edges')
     p.add_argument('image',type=Path)
     p.add_argument('--out',type=Path,required=True)
     p=cmds.add_parser('analyze')
-    p.add_argument('--geometry-method',choices=['baseline','texel','remap'],default='baseline')
+    p.add_argument('--geometry-method',choices=['baseline','texel','remap','cube'],default='baseline')
     p.add_argument('image',type=Path)
     p.add_argument('--scene',type=Path)
     p.add_argument('--out',type=Path,required=True)
@@ -85,7 +86,7 @@ def main():
     p.add_argument('--out',type=Path,required=True)
     for key in ('minecraft-dir','manifest','java-home'): p.add_argument('--'+key,type=Path)
     p=cmds.add_parser('build')
-    p.add_argument('--geometry-method',choices=['baseline','texel','remap'],default='baseline')
+    p.add_argument('--geometry-method',choices=['baseline','texel','remap','cube'],default='baseline')
     p.add_argument('image',type=Path)
     for key in ('atlas','out'): p.add_argument('--'+key,type=Path,required=True)
     shape=p.add_mutually_exclusive_group()
@@ -99,7 +100,7 @@ def main():
     args=parser.parse_args()
     if args.command=='inspect-form':
         from benchmark.line_form import inspect_file
-        inspect_file(args.image,args.out)
+        inspect_file(args.image,args.out,cube_turns=args.cube_turns)
     elif args.command=='inspect-openings':
         from benchmark.entrances import inspect_to_folder
         inspect_to_folder(args.image,args.out)

@@ -90,10 +90,10 @@ def geometry(image_path, scene=None, method='baseline'):
         image=ImageOps.exif_transpose(f).convert('RGBA')
     rgb=np.asarray(image)[:,:,:3]
     alpha=np.asarray(image)[:,:,3]
-    if method not in ('baseline','texel','remap'): raise ValueError('Unknown geometry method')
-    if method=='remap' and not scene:
+    if method not in ('baseline','texel','remap','cube'): raise ValueError('Unknown geometry method')
+    if method in ('remap','cube') and not scene:
         from engine.remap import candidate
-        planes,cells=candidate(image,ground=True)
+        planes,cells=candidate(image,ground=True,cube_turns=method=='cube')
         if not cells: raise ValueError('No occupied cells in the inferred elevation')
         from engine.depth_layers import refine_depth
         planes,cells=refine_depth(rgb,planes,cells)
@@ -141,7 +141,7 @@ def geometry(image_path, scene=None, method='baseline'):
         elif known:
             cols,rows=p['columns'],p['rows']
             strength=None
-        elif method in ('texel','remap'):
+        elif method in ('texel','remap','cube'):
             from engine.texel_grid import texel_grid
             cols,rows=texel_grid(rgb,quad)
             strength=None
@@ -198,7 +198,7 @@ def geometry(image_path, scene=None, method='baseline'):
 def analyze(image,scene,out,method='baseline'):
     rgb,planes,cells=geometry(image,scene,method)
     geometry_data=dict(image_sha256=digest(image),geometry_method=method,planes=planes,cells=cells)
-    if method=='remap':
+    if method in ('remap','cube'):
         from engine.boundary_evidence import boundary_evidence
         geometry_data['appearance_boundaries']=boundary_evidence(rgb,cells)
     out.mkdir(parents=True,exist_ok=True)
@@ -215,7 +215,7 @@ def analyze(image,scene,out,method='baseline'):
             fitted=dict(geometry_data,planes=[dict(p,cells=by_plane[p['name']]) for p in planes])
             dimensions['landmark_measurements']=measure(fitted,dict(hints,planes=outlines))
     (out/'dimensions.json').write_text(json.dumps(dimensions,indent=2))
-    if scene is None and method!='remap':
+    if scene is None and method not in ('remap','cube'):
         fields=('name','quad','columns','rows','origin','facing')
         proposal=dict(image_sha256=geometry_data['image_sha256'],
                       planes=[{key:p[key] for key in fields} for p in planes])

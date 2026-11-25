@@ -66,3 +66,5 @@ Use `--geometry-method remap` to estimate a common elevation grid from texture r
 For an angled wall, `python reconstruct.py inspect-openings IMAGE --out REVIEW` writes an annotated image and the evidence for each depth decision. This experimental command is separate from export. [How a setting earns adoption, and what happened on two new walls](benchmark/ENTRANCES.md)
 
 To trace the general form first, run `python reconstruct.py inspect-form IMAGE --out REVIEW`. It draws the visible outline and major edges, then inspects smaller line junctions for inward and outward relief. It also works on images without visible pavement. [Line tracing, screenshot comparison and measured accuracy](benchmark/LINE_FORM.md)
+
+Add `--cube-turns` to fit three mutually perpendicular world directions to the image. The preview marks supported outline turns and shows how the same axis projects differently across the frame. Use `--geometry-method cube` with `analyze` or `build` to use the corrected silhouette for block occupancy. [Projected block directions and test results](benchmark/CUBE_TURNS.md)

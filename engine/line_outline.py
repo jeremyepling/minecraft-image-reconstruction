@@ -110,3 +110,11 @@ def group_lines(lines, mask):
 
 def contour(mask):
     return np.asarray(mask) > np.asarray(mask.filter(ImageFilter.MinFilter(3)))
+
+
+def cube_outline(image, lines, initial):
+    from engine.cube_axes import fit_axes
+    from engine.cube_contour import refine
+    axes = fit_axes(lines, image.size)
+    mask, changes = refine(image, initial, lines, axes)
+    return mask, dict(axes=axes, contour=changes)
