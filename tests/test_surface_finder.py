@@ -32,7 +32,16 @@ class SurfaceFinderTests(unittest.TestCase):
             pitch.assert_not_called()
             model = json.loads((Path(temp)/'surfaces.json').read_text())
             manifest = json.loads((Path(temp)/'build-manifest.json').read_text())
-        self.assertEqual((model['footprint'], model['planes']), ('support', [wall]))
+            plane, = model['planes']
+            with Image.open(Path(temp)/plane['source_crop']['path']) as crop:
+                self.assertEqual(crop.mode, 'RGBA')
+                self.assertEqual(crop.getpixel((30, 15))[3], 0)
+        self.assertEqual(model['footprint'], 'support')
+        self.assertEqual({k: plane[k] for k in wall}, wall)
+        self.assertIsNone(plane['sampling_chart'])
+        self.assertEqual([r['kind'] for r in plane['outline']['rings']], ['outer'])
+        self.assertEqual(plane['source_crop']['xyxy'], [0, 0, 64, 21])
+        self.assertEqual(manifest['artifacts']['source_crops'], 'surface-crops/')
         self.assertEqual(manifest['stages'], {'outlines': 'mask-first'})
         self.assertEqual(set(manifest['model_sha256']), {'normal', 'depth'})
         dev = next(r for r in read(ROUND/'cases.json') if r['id'].startswith('dev-'))
