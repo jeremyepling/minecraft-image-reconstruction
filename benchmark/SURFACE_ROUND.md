@@ -34,4 +34,6 @@ The six layouts give a small controlled development set. For the next validation
 
 [Comparison sheet](reviews/surfaces-01/comparison.jpg) · [Fixture gallery](reviews/surfaces-01/fixtures.jpg) · [Run manifest](reviews/surfaces-01/manifest.json) · [Per-floor scores](reviews/surfaces-01/floor-scores.json) · [Opening and junction scores](reviews/surfaces-01/topology.json)
 
+An independent development-frame probe compares three downloadable models for segments, relative depth and surface normals. It uses the same shopfront image for all three. [Model research, CPU timings and downloads](LOCAL_VISION_MODELS.md)
+
 Use `python -m benchmark.camera_feedback RUN --stage outlines --floor light_gray_concrete --image IMAGE_ID --region X0 Y0 X1 Y1 --preferred edges --note "Your observation"` to attach a visual preference. The journal accepts native-image coordinates and keeps reviewer entries independent of the numerical scores. The comparison's example coordinates are in `review-regions.json`.

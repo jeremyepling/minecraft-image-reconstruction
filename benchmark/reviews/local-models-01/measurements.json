@@ -1,0 +1,255 @@
+{
+  "kind": "Single development-frame diagnostic",
+  "image": "dev-shopfront-masonry-low-left",
+  "image_sha256": "0359c24dea1b318ec9cd002a1523ae8fc0d7d59fc9d7418972cf9ce9af8d4d57",
+  "floor": "light_gray_concrete",
+  "region_xyxy": [
+    380,
+    260,
+    1064,
+    632
+  ],
+  "artifact": "preview.jpg",
+  "mlsd": {
+    "model": "NAVER M-LSD Tiny 512 FP16",
+    "model_file": "M-LSD_512_tiny_fp16.tflite",
+    "model_sha256": "e869f90601ffa263f21ac47e09ff0d65dc936d1aeb47126b8499d5504adfb100",
+    "model_bytes": 1279312,
+    "image": "dev-shopfront-masonry-low-left.png",
+    "image_sha256": "0359c24dea1b318ec9cd002a1523ae8fc0d7d59fc9d7418972cf9ce9af8d4d57",
+    "size": [
+      1440,
+      900
+    ],
+    "runtime": "ai-edge-litert 2.4.0",
+    "num_threads": 1,
+    "preprocessing": "Pillow BOX resize to 512 square, float32 RGB plus 1.0 alpha",
+    "score_threshold": 0.1,
+    "min_length_output_pixels": 20,
+    "segment_count": 54,
+    "first_invoke_ms": 107.325,
+    "load_through_decode_ms": 159.709
+  },
+  "physical_boundaries": {
+    "frame": "dev-shopfront-masonry-low-left",
+    "fixture": "camera-gray-concrete-v1",
+    "image_sha256": "0359c24dea1b318ec9cd002a1523ae8fc0d7d59fc9d7418972cf9ce9af8d4d57",
+    "model_sha256": "e869f90601ffa263f21ac47e09ff0d65dc936d1aeb47126b8499d5504adfb100",
+    "tolerance_native_px": 5,
+    "scope": "One development observation. Unique rasterized 1-pixel lines in the visible building footprint and 5-pixel exterior band.",
+    "truth": "Foreground pixel adjacent (4-neighborhood) to another visible face normal/plane offset or air, at native resolution. Coplanar block seams excluded.",
+    "roi_px": 175100,
+    "results": {
+      "mlsd-tiny-512-fp16": {
+        "segments": 54,
+        "all_line_px": 12532,
+        "evaluated_line_px": 7139,
+        "line_px_within_tolerance": 5330,
+        "line_precision": 0.7466031657094832,
+        "truth_boundary_px": 10120,
+        "recovered_boundary_px": 6774,
+        "boundary_recall": 0.6693675889328063
+      },
+      "structural_lines.detect": {
+        "segments": 720,
+        "all_line_px": 40824,
+        "evaluated_line_px": 17825,
+        "line_px_within_tolerance": 8778,
+        "line_precision": 0.49245441795231415,
+        "truth_boundary_px": 10120,
+        "recovered_boundary_px": 8941,
+        "boundary_recall": 0.883498023715415
+      }
+    }
+  },
+  "relative_depth": {
+    "model": "model_uint8.onnx",
+    "model_sha256": "fcf51f1b230362b28690bb9d1809bf0431f29cad20534e3f589bd7285547f20d",
+    "bytes": 27258801,
+    "source": "dev-shopfront-masonry-low-left.png",
+    "source_sha256": "0359c24dea1b318ec9cd002a1523ae8fc0d7d59fc9d7418972cf9ce9af8d4d57",
+    "source_size": [
+      1440,
+      900
+    ],
+    "runtime": "1.23.2",
+    "provider": [
+      "CPUExecutionProvider"
+    ],
+    "intra_op_threads": 4,
+    "input_shape": [
+      1,
+      3,
+      518,
+      826
+    ],
+    "output_shape": [
+      1,
+      518,
+      826
+    ],
+    "output_pixels": 427868,
+    "output_range": [
+      0.0,
+      9.519889831542969
+    ],
+    "output_units": "relative inverse depth",
+    "session_load_seconds": 0.1628,
+    "one_cpu_inference_seconds": 0.7381,
+    "display_percentiles": [
+      1,
+      99
+    ]
+  },
+  "depth_ordering": {
+    "eligible_pairs": 8,
+    "correct_order": 8,
+    "pairs": [
+      {
+        "near_patch": 3,
+        "far_patch": 12,
+        "samples": 64,
+        "median_near_minus_far": 0.20361042022705078,
+        "correct": true
+      },
+      {
+        "near_patch": 5,
+        "far_patch": 13,
+        "samples": 43,
+        "median_near_minus_far": 0.12473201751708984,
+        "correct": true
+      },
+      {
+        "near_patch": 12,
+        "far_patch": 11,
+        "samples": 42,
+        "median_near_minus_far": 0.397746205329895,
+        "correct": true
+      },
+      {
+        "near_patch": 13,
+        "far_patch": 10,
+        "samples": 33,
+        "median_near_minus_far": 0.24479830265045166,
+        "correct": true
+      },
+      {
+        "near_patch": 14,
+        "far_patch": 8,
+        "samples": 4,
+        "median_near_minus_far": 0.4433176517486572,
+        "correct": true
+      },
+      {
+        "near_patch": 14,
+        "far_patch": 9,
+        "samples": 34,
+        "median_near_minus_far": 0.7507990598678589,
+        "correct": true
+      },
+      {
+        "near_patch": 14,
+        "far_patch": 13,
+        "samples": 10,
+        "median_near_minus_far": 0.2821614742279053,
+        "correct": true
+      },
+      {
+        "near_patch": 16,
+        "far_patch": 12,
+        "samples": 70,
+        "median_near_minus_far": 0.241599440574646,
+        "correct": true
+      }
+    ],
+    "min_true_depth_step_blocks": 0.75,
+    "min_boundary_samples": 4,
+    "sample_offset_native_px": 10
+  },
+  "normal": {
+    "model": "Ruicheng/moge-2-vits-normal-onnx",
+    "checkpoint_revision": "e50ffda41565591092adea54c6ac83d6212e1e23",
+    "checkpoint_sha256": "24eacb5dc7a2c54c7bc98f7de085ffbed79ad006ea5b664c2c2cdc02ff3a52f0",
+    "checkpoint_bytes": 140852051,
+    "upstream_source_revision": "74fbce054ebed49800de42d0ad0e83495065719a",
+    "docs": "https://github.com/microsoft/MoGe/blob/74fbce054ebed49800de42d0ad0e83495065719a/docs/onnx.md",
+    "upstream_graph": "https://huggingface.co/Ruicheng/moge-2-vits-normal-onnx/blob/e50ffda41565591092adea54c6ac83d6212e1e23/model.onnx",
+    "image_sha256": "0359c24dea1b318ec9cd002a1523ae8fc0d7d59fc9d7418972cf9ce9af8d4d57",
+    "source_size": [
+      1440,
+      900
+    ],
+    "input_size": [
+      720,
+      450
+    ],
+    "preprocessing": "Aspect-preserving Lanczos, RGB float32 in [0,1], NCHW",
+    "num_tokens": 1200,
+    "requested_output": [
+      "normal"
+    ],
+    "raw_normal_shape": [
+      1,
+      450,
+      720,
+      3
+    ],
+    "onnxruntime": "1.23.2",
+    "providers": [
+      "CPUExecutionProvider"
+    ],
+    "threads": [
+      4,
+      1
+    ],
+    "loading_seconds": 0.4540972000104375,
+    "inference_seconds": 1.0464756999863312,
+    "diagnostic": {
+      "n": 10338,
+      "mean_deg": 12.322144529321578,
+      "median_deg": 7.274745308234275,
+      "within_15_deg": 0.7700715805765138,
+      "within_30_deg": 0.8977558521957826
+    },
+    "frame": "dev-shopfront-masonry-low-left",
+    "floor": "light_gray_concrete",
+    "split": "dev",
+    "evaluation": "Signed camera-normal angles on every labeled foreground sample; quarter-resolution native pixel centers; bilinear prediction sampling and renormalization.",
+    "directions": {
+      "down": {
+        "n": 275,
+        "mean_deg": 38.88065648318417,
+        "median_deg": 36.77656412448047,
+        "within_15_deg": 0.09090909090909091,
+        "within_30_deg": 0.4036363636363636
+      },
+      "south": {
+        "n": 7867,
+        "mean_deg": 10.74958225136448,
+        "median_deg": 6.408305778800406,
+        "within_15_deg": 0.8276344222702428,
+        "within_30_deg": 0.9187746281937206
+      },
+      "up": {
+        "n": 61,
+        "mean_deg": 20.937306606468763,
+        "median_deg": 19.127457083419007,
+        "within_15_deg": 0.29508196721311475,
+        "within_30_deg": 0.819672131147541
+      },
+      "west": {
+        "n": 2135,
+        "mean_deg": 14.449653553523127,
+        "median_deg": 9.718941015141104,
+        "within_15_deg": 0.659016393442623,
+        "within_30_deg": 0.8861826697892272
+      }
+    },
+    "comparison_native_crop_xyxy": [
+      380,
+      260,
+      1064,
+      632
+    ]
+  }
+}
