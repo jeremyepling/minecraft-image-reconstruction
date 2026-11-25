@@ -1,0 +1,1522 @@
+{
+  "texel": {
+    "oracle": [
+      {
+        "patch_id": 1,
+        "quad": [
+          [
+            457.4037874142095,
+            262.8208349412409
+          ],
+          [
+            453.63699966815165,
+            618.9066103104515
+          ],
+          [
+            427.68390407838103,
+            598.2117939776075
+          ],
+          [
+            431.20980636615,
+            294.74034654469006
+          ]
+        ],
+        "prediction": {
+          "counts": [
+            21,
+            2
+          ],
+          "grid": {
+            "phase_blocks": [
+              0,
+              0
+            ],
+            "grid_to_image": [
+              [
+                -0.484853407850965,
+                24.07556361570009,
+                457.4037874142095
+              ],
+              [
+                16.539689133840593,
+                41.36792446427123,
+                262.8208349412409
+              ],
+              [
+                -0.0006734075109042291,
+                0.08620526154770647,
+                1.0
+              ]
+            ]
+          },
+          "confidence": null,
+          "reason": "Legacy texel spacing; first chart corner assumed to lie on a seam."
+        },
+        "score": {
+          "expected_counts": [
+            7.570000000000029,
+            3.5800000000000023
+          ],
+          "counts": [
+            21.0,
+            2.0
+          ],
+          "mean_count_error": 7.504999999999987,
+          "half_block_both": false,
+          "truth_intersections": 21,
+          "predicted_intersections": 66,
+          "truth_within_3px": 4,
+          "predicted_within_3px": 4,
+          "grid_precision": 0.06060606060606061,
+          "grid_recall": 0.19047619047619047,
+          "grid_f1": 0.09195402298850575
+        }
+      },
+      {
+        "patch_id": 2,
+        "quad": [
+          [
+            945.0834078999338,
+            455.79851162939104
+          ],
+          [
+            1009.4610121751922,
+            456.85122818246197
+          ],
+          [
+            1010.8093378120986,
+            573.3866632668901
+          ],
+          [
+            946.1800267327802,
+            577.682660608184
+          ]
+        ],
+        "prediction": {
+          "counts": [
+            4,
+            15
+          ],
+          "grid": {
+            "phase_blocks": [
+              0,
+              0
+            ],
+            "grid_to_image": [
+              [
+                27.632291277859366,
+                -0.23272481101481,
+                945.0834078999338
+              ],
+              [
+                5.48487591413263,
+                7.938886198563255,
+                455.79851162939104
+              ],
+              [
+                0.011429753175095763,
+                -0.0003232289041871124,
+                1.0
+              ]
+            ]
+          },
+          "confidence": null,
+          "reason": "Legacy texel spacing; first chart corner assumed to lie on a seam."
+        },
+        "score": {
+          "expected_counts": [
+            2.5700000000000784,
+            3.5800000000000125
+          ],
+          "counts": [
+            4.0,
+            15.0
+          ],
+          "mean_count_error": 6.4249999999999545,
+          "half_block_both": false,
+          "truth_intersections": 6,
+          "predicted_intersections": 80,
+          "truth_within_3px": 1,
+          "predicted_within_3px": 1,
+          "grid_precision": 0.0125,
+          "grid_recall": 0.16666666666666666,
+          "grid_f1": 0.023255813953488372
+        }
+      },
+      {
+        "patch_id": 3,
+        "quad": [
+          [
+            467.2928532528156,
+            258.4729178054921
+          ],
+          [
+            928.7540074200659,
+            310.85988510939336
+          ],
+          [
+            931.0464809840197,
+            583.9972260516763
+          ],
+          [
+            463.64512285649914,
+            616.7351841691626
+          ]
+        ],
+        "prediction": {
+          "counts": [
+            11,
+            20
+          ],
+          "grid": {
+            "phase_blocks": [
+              0,
+              0
+            ],
+            "grid_to_image": [
+              [
+                68.12082181677525,
+                -0.512251983385755,
+                467.2928532528156
+              ],
+              [
+                13.521653020975899,
+                17.47433023302463,
+                258.4729178054921
+              ],
+              [
+                0.02817732961849212,
+                -0.0007114610880357056,
+                1.0
+              ]
+            ]
+          },
+          "confidence": null,
+          "reason": "Legacy texel spacing; first chart corner assumed to lie on a seam."
+        },
+        "score": {
+          "expected_counts": [
+            12.570000000000078,
+            7.579999999999998
+          ],
+          "counts": [
+            11.0,
+            20.0
+          ],
+          "mean_count_error": 6.99500000000004,
+          "half_block_both": false,
+          "truth_intersections": 84,
+          "predicted_intersections": 252,
+          "truth_within_3px": 3,
+          "predicted_within_3px": 3,
+          "grid_precision": 0.011904761904761904,
+          "grid_recall": 0.03571428571428571,
+          "grid_f1": 0.017857142857142856
+        }
+      }
+    ],
+    "auto": [
+      {
+        "id": "surface-988",
+        "patch_id": 3,
+        "score": {
+          "expected_counts": [
+            12.77320904332403,
+            7.288499617380614
+          ],
+          "counts": [
+            4.0,
+            5.0
+          ],
+          "mean_count_error": 5.530854330352322,
+          "half_block_both": false,
+          "truth_intersections": 86,
+          "predicted_intersections": 30,
+          "truth_within_3px": 0,
+          "predicted_within_3px": 0,
+          "grid_precision": 0.0,
+          "grid_recall": 0.0,
+          "grid_f1": 0.0
+        }
+      },
+      {
+        "id": "surface-3100",
+        "patch_id": 2,
+        "score": {
+          "expected_counts": [
+            2.5748437475657067,
+            3.02778277444948
+          ],
+          "counts": [
+            3.0,
+            3.0
+          ],
+          "mean_count_error": 0.2264695134418866,
+          "half_block_both": true,
+          "truth_intersections": 6,
+          "predicted_intersections": 16,
+          "truth_within_3px": 0,
+          "predicted_within_3px": 0,
+          "grid_precision": 0.0,
+          "grid_recall": 0.0,
+          "grid_f1": 0.0
+        }
+      }
+    ],
+    "model": {
+      "lens_source": "orthogonal-outline-vanishing-points",
+      "intrinsics": [
+        [
+          1752.9254716063294,
+          0.0,
+          720.0
+        ],
+        [
+          0.0,
+          1752.9254716063294,
+          450.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "planes": [
+        {
+          "id": "surface-988",
+          "quad": [
+            [
+              459.22,
+              248.57
+            ],
+            [
+              931.02,
+              304.7
+            ],
+            [
+              930.85,
+              571.11
+            ],
+            [
+              456.34,
+              588.33
+            ]
+          ],
+          "confidence": 0.9523,
+          "evidence": {
+            "source": "four joined edges",
+            "boundary_support": 0.9293,
+            "region_purity": 1.0,
+            "shading_used": true,
+            "median_luminance_step": 10.663
+          },
+          "corner_junctions": [],
+          "pitch": {
+            "counts": [
+              4,
+              5
+            ],
+            "grid": {
+              "phase_blocks": [
+                0,
+                0
+              ],
+              "grid_to_image": [
+                [
+                  181.94941270856128,
+                  -1.0882548490765271,
+                  459.22
+                ],
+                [
+                  34.97793731853089,
+                  67.29158255827413,
+                  248.57
+                ],
+                [
+                  0.06874117925346533,
+                  -0.0011225289237772641,
+                  1.0
+                ]
+              ]
+            },
+            "confidence": null,
+            "reason": "Legacy texel spacing; first chart corner assumed to lie on a seam."
+          },
+          "normal_camera": [
+            0.6731236833851073,
+            -0.018676691250398645,
+            -0.7392940470949317
+          ],
+          "component": 0,
+          "units": "relative",
+          "scale_source": "unknown",
+          "corners_camera": [
+            [
+              -0.1311109446106343,
+              -0.10127186737065755,
+              0.8813088212836395
+            ],
+            [
+              0.13526531569703754,
+              -0.09313832987763979,
+              1.1236376519297153
+            ],
+            [
+              0.1345613597685901,
+              0.07729061551612015,
+              1.1186911787163605
+            ],
+            [
+              -0.13181490053908176,
+              0.06915707802310239,
+              0.8763623480702849
+            ]
+          ]
+        },
+        {
+          "id": "surface-3100",
+          "quad": [
+            [
+              945.93,
+              456.29
+            ],
+            [
+              1010.48,
+              456.18
+            ],
+            [
+              1010.48,
+              556.91
+            ],
+            [
+              945.93,
+              556.91
+            ]
+          ],
+          "confidence": 0.9888,
+          "evidence": {
+            "source": "four joined edges",
+            "boundary_support": 0.9858,
+            "region_purity": 1.0,
+            "shading_used": true,
+            "median_luminance_step": 11.644
+          },
+          "corner_junctions": [],
+          "pitch": {
+            "counts": [
+              3,
+              3
+            ],
+            "grid": {
+              "phase_blocks": [
+                0,
+                0
+              ],
+              "grid_to_image": [
+                [
+                  21.148842450114138,
+                  0.0,
+                  945.93
+                ],
+                [
+                  -0.20272047387408065,
+                  33.53999999999998,
+                  456.29
+                ],
+                [
+                  -0.00036400939806086795,
+                  0.0,
+                  1.0
+                ]
+              ]
+            },
+            "confidence": null,
+            "reason": "Legacy texel spacing; first chart corner assumed to lie on a seam."
+          },
+          "normal_camera": [
+            -0.029788440070355502,
+            0.0,
+            -0.9995562259513843
+          ],
+          "component": 1,
+          "units": "relative",
+          "scale_source": "unknown",
+          "corners_camera": [
+            [
+              0.12895780911405824,
+              0.0035902475073138988,
+              1.0005463123913585
+            ],
+            [
+              0.16562102147475574,
+              0.0035236088980790076,
+              0.9994536876086416
+            ],
+            [
+              0.16562102147475574,
+              0.06095615328375836,
+              0.9994536876086416
+            ],
+            [
+              0.12895780911405824,
+              0.061022791892993256,
+              1.0005463123913585
+            ]
+          ]
+        },
+        {
+          "id": "surface-1384",
+          "quad": [
+            [
+              544.68,
+              585.12
+            ],
+            [
+              819.85,
+              575.14
+            ],
+            [
+              765.57,
+              589.54
+            ],
+            [
+              505.35,
+              598.18
+            ]
+          ],
+          "confidence": 0.8053,
+          "evidence": {
+            "source": "four joined edges",
+            "boundary_support": 1.0,
+            "region_purity": 0.9882,
+            "shading_used": true,
+            "median_luminance_step": 1.672
+          },
+          "corner_junctions": [
+            {
+              "corner": 1,
+              "neighbor": "surface-256",
+              "neighbor_corner": 0,
+              "distance_px": 0.0
+            }
+          ],
+          "pitch": {
+            "counts": [
+              17,
+              3
+            ],
+            "grid": {
+              "phase_blocks": [
+                0,
+                0
+              ],
+              "grid_to_image": [
+                [
+                  12.956942513607673,
+                  -5.785323776348737,
+                  544.68
+                ],
+                [
+                  -2.8526327417355866,
+                  13.023512067801892,
+                  585.12
+                ],
+                [
+                  -0.003939169451274778,
+                  0.014494263824381591,
+                  1.0
+                ]
+              ]
+            },
+            "confidence": null,
+            "reason": "Legacy texel spacing; first chart corner assumed to lie on a seam."
+          },
+          "normal_camera": [
+            -0.05777661215630631,
+            0.9576919935765359,
+            -0.28193600076460584
+          ],
+          "component": 2,
+          "units": "relative",
+          "scale_source": "unknown",
+          "corners_camera": [
+            [
+              -0.10120395187056694,
+              0.07799839138005363,
+              1.011881046435876
+            ],
+            [
+              0.05377886150806631,
+              0.06739996724205725,
+              0.9441195410263253
+            ],
+            [
+              0.02568767551346852,
+              0.07865828925059018,
+              0.988118953564124
+            ],
+            [
+              -0.12929513786516472,
+              0.08925671338858655,
+              1.0558804589736748
+            ]
+          ]
+        },
+        {
+          "id": "surface-3031",
+          "quad": [
+            [
+              522.01,
+              587.22
+            ],
+            [
+              536.14,
+              587.96
+            ],
+            [
+              484.98,
+              604.94
+            ],
+            [
+              466.14,
+              597.63
+            ]
+          ],
+          "confidence": 0.7883,
+          "evidence": {
+            "source": "four joined edges",
+            "boundary_support": 1.0,
+            "region_purity": 1.0,
+            "shading_used": true,
+            "median_luminance_step": 0.452
+          },
+          "corner_junctions": [],
+          "pitch": {
+            "counts": [
+              1,
+              8
+            ],
+            "grid": {
+              "phase_blocks": [
+                0,
+                0
+              ],
+              "grid_to_image": [
+                [
+                  -54.90674801854129,
+                  -41.924711135655755,
+                  522.01
+                ],
+                [
+                  -74.96941613194599,
+                  -43.495949561294786,
+                  587.22
+                ],
+                [
+                  -0.12876627003868635,
+                  -0.07495808369943742,
+                  1.0
+                ]
+              ]
+            },
+            "confidence": null,
+            "reason": "Legacy texel spacing; first chart corner assumed to lie on a seam."
+          },
+          "normal_camera": [
+            -0.014578338553757978,
+            -0.9972418639410852,
+            0.07277456182157319
+          ],
+          "component": 3,
+          "units": "relative",
+          "scale_source": "unknown",
+          "corners_camera": [
+            [
+              -0.17765189619325866,
+              0.12312436585503793,
+              1.5728599116941595
+            ],
+            [
+              -0.14373036496371736,
+              0.10784858669854486,
+              1.370328607571925
+            ],
+            [
+              -0.05726795872368001,
+              0.037754648645421655,
+              0.42714008830584055
+            ],
+            [
+              -0.09118948995322132,
+              0.05303042780191471,
+              0.629671392428075
+            ]
+          ]
+        },
+        {
+          "id": "surface-256",
+          "quad": [
+            [
+              819.85,
+              575.14
+            ],
+            [
+              917.4,
+              571.6
+            ],
+            [
+              895.28,
+              576.39
+            ],
+            [
+              802.78,
+              579.67
+            ]
+          ],
+          "confidence": 0.8179,
+          "evidence": {
+            "source": "four joined edges",
+            "boundary_support": 1.0,
+            "region_purity": 1.0,
+            "shading_used": true,
+            "median_luminance_step": 2.067
+          },
+          "corner_junctions": [
+            {
+              "corner": 0,
+              "neighbor": "surface-1384",
+              "neighbor_corner": 1,
+              "distance_px": 0.0
+            }
+          ],
+          "pitch": {
+            "counts": [
+              6,
+              1
+            ],
+            "grid": {
+              "phase_blocks": [
+                0,
+                0
+              ],
+              "grid_to_image": [
+                [
+                  13.169147661466827,
+                  22.878835543641856,
+                  819.85
+                ],
+                [
+                  -2.5147640397197315,
+                  33.37618637681915,
+                  575.14
+                ],
+                [
+                  -0.003367326871448116,
+                  0.049763117595906604,
+                  1.0
+                ]
+              ]
+            },
+            "confidence": null,
+            "reason": "Legacy texel spacing; first chart corner assumed to lie on a seam."
+          },
+          "normal_camera": [
+            0.01728094854964223,
+            0.9923336338862823,
+            -0.12237372215990841
+          ],
+          "component": 4,
+          "units": "relative",
+          "scale_source": "unknown",
+          "corners_camera": [
+            [
+              0.056132307893264184,
+              0.07034949433913949,
+              0.985435676376082
+            ],
+            [
+              0.10872956665586377,
+              0.06697829435335888,
+              0.965525972177213
+            ],
+            [
+              0.1014491702729606,
+              0.07315244540620432,
+              1.0145643236239177
+            ],
+            [
+              0.048851911510361015,
+              0.07652364539198495,
+              1.0344740278227866
+            ]
+          ]
+        }
+      ],
+      "shared_edges": []
+    },
+    "estimated_lift": [
+      {
+        "patch_id": 3,
+        "id": "surface-988",
+        "units": "relative",
+        "truth_depth": 21.05731858564351,
+        "normal_error_deg": 15.314780614458197
+      },
+      {
+        "patch_id": 2,
+        "id": "surface-3100",
+        "units": "relative",
+        "truth_depth": 26.029840051931842,
+        "normal_error_deg": 28.770337846326715
+      }
+    ],
+    "known_lift": [
+      {
+        "patch_id": 3,
+        "id": "surface-988",
+        "units": "relative",
+        "truth_depth": 21.05731858564351,
+        "normal_error_deg": 3.043523310710145
+      },
+      {
+        "patch_id": 2,
+        "id": "surface-3100",
+        "units": "relative",
+        "truth_depth": 26.029840051931842,
+        "normal_error_deg": 27.90713868301363
+      }
+    ]
+  },
+  "repeat": {
+    "oracle": [
+      {
+        "patch_id": 1,
+        "quad": [
+          [
+            457.4037874142095,
+            262.8208349412409
+          ],
+          [
+            453.63699966815165,
+            618.9066103104515
+          ],
+          [
+            427.68390407838103,
+            598.2117939776075
+          ],
+          [
+            431.20980636615,
+            294.74034654469006
+          ]
+        ],
+        "prediction": {
+          "counts": null,
+          "grid": null,
+          "confidence": 0.0,
+          "reason": "insufficient native texture evidence on both axes",
+          "evidence": {
+            "axes": [
+              {
+                "count": null,
+                "reason": "insufficient surface contrast"
+              },
+              {
+                "count": null,
+                "reason": "insufficient surface contrast"
+              }
+            ],
+            "patch_aspect": 2.114525175842378,
+            "assumption": "one block spans sixteen resolved vanilla texture texels"
+          }
+        },
+        "score": {
+          "expected_counts": [
+            7.570000000000029,
+            3.5800000000000023
+          ],
+          "counts": null,
+          "mean_count_error": null,
+          "half_block_both": false,
+          "truth_intersections": 21,
+          "predicted_intersections": 0,
+          "truth_within_3px": 0,
+          "predicted_within_3px": 0,
+          "grid_precision": null,
+          "grid_recall": 0.0,
+          "grid_f1": 0.0
+        }
+      },
+      {
+        "patch_id": 2,
+        "quad": [
+          [
+            945.0834078999338,
+            455.79851162939104
+          ],
+          [
+            1009.4610121751922,
+            456.85122818246197
+          ],
+          [
+            1010.8093378120986,
+            573.3866632668901
+          ],
+          [
+            946.1800267327802,
+            577.682660608184
+          ]
+        ],
+        "prediction": {
+          "counts": [
+            2.5686537079508924,
+            3.578125
+          ],
+          "grid": null,
+          "confidence": 0.7819035239247379,
+          "reason": "pitch supported; joint phase unresolved",
+          "evidence": {
+            "axes": [
+              {
+                "count": null,
+                "reason": "no resolved native texel lattice"
+              },
+              {
+                "count": 3.578125,
+                "candidates": [
+                  {
+                    "count": 3.578125,
+                    "native_phase": 0.9431571592227492,
+                    "strength": 0.3127614095698952,
+                    "aligned_energy": 2.7632011229091944,
+                    "effective_bins": 10.695036338642238,
+                    "repeat": 0.8267684375977733
+                  }
+                ],
+                "reason": "native 16-texel lattice"
+              }
+            ],
+            "patch_aspect": 0.71787701881597,
+            "assumption": "one block spans sixteen resolved vanilla texture texels",
+            "selected": [
+              {
+                "count": 2.5686537079508924,
+                "strength": 0.23457105717742138,
+                "source": "rectangular plane aspect"
+              },
+              {
+                "count": 3.578125,
+                "native_phase": 0.9431571592227492,
+                "strength": 0.3127614095698952,
+                "aligned_energy": 2.7632011229091944,
+                "effective_bins": 10.695036338642238,
+                "repeat": 0.8267684375977733
+              }
+            ],
+            "phase_by_axis": [
+              null,
+              null
+            ]
+          }
+        },
+        "score": {
+          "expected_counts": [
+            2.5700000000000784,
+            3.5800000000000125
+          ],
+          "counts": [
+            2.5686537079508924,
+            3.578125
+          ],
+          "mean_count_error": 0.0016106460245992604,
+          "half_block_both": true,
+          "truth_intersections": 6,
+          "predicted_intersections": 0,
+          "truth_within_3px": 0,
+          "predicted_within_3px": 0,
+          "grid_precision": null,
+          "grid_recall": 0.0,
+          "grid_f1": 0.0
+        }
+      },
+      {
+        "patch_id": 3,
+        "quad": [
+          [
+            467.2928532528156,
+            258.4729178054921
+          ],
+          [
+            928.7540074200659,
+            310.85988510939336
+          ],
+          [
+            931.0464809840197,
+            583.9972260516763
+          ],
+          [
+            463.64512285649914,
+            616.7351841691626
+          ]
+        ],
+        "prediction": {
+          "counts": null,
+          "grid": null,
+          "confidence": 0.0,
+          "reason": "insufficient native texture evidence on both axes",
+          "evidence": {
+            "axes": [
+              {
+                "count": null,
+                "reason": "insufficient surface contrast"
+              },
+              {
+                "count": null,
+                "reason": "insufficient surface contrast"
+              }
+            ],
+            "patch_aspect": 1.65831116972436,
+            "assumption": "one block spans sixteen resolved vanilla texture texels"
+          }
+        },
+        "score": {
+          "expected_counts": [
+            12.570000000000078,
+            7.579999999999998
+          ],
+          "counts": null,
+          "mean_count_error": null,
+          "half_block_both": false,
+          "truth_intersections": 84,
+          "predicted_intersections": 0,
+          "truth_within_3px": 0,
+          "predicted_within_3px": 0,
+          "grid_precision": null,
+          "grid_recall": 0.0,
+          "grid_f1": 0.0
+        }
+      }
+    ],
+    "auto": [
+      {
+        "id": "surface-988",
+        "patch_id": 3,
+        "score": {
+          "expected_counts": [
+            12.77320904332403,
+            7.288499617380614
+          ],
+          "counts": null,
+          "mean_count_error": null,
+          "half_block_both": false,
+          "truth_intersections": 86,
+          "predicted_intersections": 0,
+          "truth_within_3px": 0,
+          "predicted_within_3px": 0,
+          "grid_precision": null,
+          "grid_recall": 0.0,
+          "grid_f1": 0.0
+        }
+      },
+      {
+        "id": "surface-3100",
+        "patch_id": 2,
+        "score": {
+          "expected_counts": [
+            2.5748437475657067,
+            3.02778277444948
+          ],
+          "counts": null,
+          "mean_count_error": null,
+          "half_block_both": false,
+          "truth_intersections": 6,
+          "predicted_intersections": 0,
+          "truth_within_3px": 0,
+          "predicted_within_3px": 0,
+          "grid_precision": null,
+          "grid_recall": 0.0,
+          "grid_f1": 0.0
+        }
+      }
+    ],
+    "model": {
+      "lens_source": "orthogonal-outline-vanishing-points",
+      "intrinsics": [
+        [
+          1752.9254716063294,
+          0.0,
+          720.0
+        ],
+        [
+          0.0,
+          1752.9254716063294,
+          450.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "planes": [
+        {
+          "id": "surface-988",
+          "quad": [
+            [
+              459.22,
+              248.57
+            ],
+            [
+              931.02,
+              304.7
+            ],
+            [
+              930.85,
+              571.11
+            ],
+            [
+              456.34,
+              588.33
+            ]
+          ],
+          "confidence": 0.9523,
+          "evidence": {
+            "source": "four joined edges",
+            "boundary_support": 0.9293,
+            "region_purity": 1.0,
+            "shading_used": true,
+            "median_luminance_step": 10.663
+          },
+          "corner_junctions": [],
+          "pitch": {
+            "counts": null,
+            "grid": null,
+            "confidence": 0.0,
+            "reason": "insufficient native texture evidence on both axes",
+            "evidence": {
+              "axes": [
+                {
+                  "count": null,
+                  "reason": "insufficient surface contrast"
+                },
+                {
+                  "count": null,
+                  "reason": "insufficient surface contrast"
+                }
+              ],
+              "patch_aspect": 2.112596881802607,
+              "assumption": "one block spans sixteen resolved vanilla texture texels"
+            }
+          },
+          "normal_camera": [
+            0.6731236833851073,
+            -0.018676691250398645,
+            -0.7392940470949317
+          ],
+          "component": 0,
+          "units": "relative",
+          "scale_source": "unknown",
+          "corners_camera": [
+            [
+              -0.1311109446106343,
+              -0.10127186737065755,
+              0.8813088212836395
+            ],
+            [
+              0.13526531569703754,
+              -0.09313832987763979,
+              1.1236376519297153
+            ],
+            [
+              0.1345613597685901,
+              0.07729061551612015,
+              1.1186911787163605
+            ],
+            [
+              -0.13181490053908176,
+              0.06915707802310239,
+              0.8763623480702849
+            ]
+          ]
+        },
+        {
+          "id": "surface-3100",
+          "quad": [
+            [
+              945.93,
+              456.29
+            ],
+            [
+              1010.48,
+              456.18
+            ],
+            [
+              1010.48,
+              556.91
+            ],
+            [
+              945.93,
+              556.91
+            ]
+          ],
+          "confidence": 0.9888,
+          "evidence": {
+            "source": "four joined edges",
+            "boundary_support": 0.9858,
+            "region_purity": 1.0,
+            "shading_used": true,
+            "median_luminance_step": 11.644
+          },
+          "corner_junctions": [],
+          "pitch": {
+            "counts": null,
+            "grid": null,
+            "confidence": 0.0,
+            "reason": "insufficient native texture evidence on both axes",
+            "evidence": {
+              "axes": [
+                {
+                  "count": null,
+                  "reason": "no resolved native texel lattice"
+                },
+                {
+                  "count": 3.0234375,
+                  "candidates": [
+                    {
+                      "count": 3.0234375,
+                      "native_phase": 0.946741700582429,
+                      "strength": 0.13120660309262863,
+                      "aligned_energy": 1.6906226884224929,
+                      "effective_bins": 8.39265615991964,
+                      "repeat": 0.6604332130015537
+                    }
+                  ],
+                  "reason": "native 16-texel lattice"
+                }
+              ],
+              "patch_aspect": null,
+              "assumption": "one block spans sixteen resolved vanilla texture texels"
+            }
+          },
+          "normal_camera": [
+            -0.029788440070355502,
+            0.0,
+            -0.9995562259513843
+          ],
+          "component": 1,
+          "units": "relative",
+          "scale_source": "unknown",
+          "corners_camera": [
+            [
+              0.12895780911405824,
+              0.0035902475073138988,
+              1.0005463123913585
+            ],
+            [
+              0.16562102147475574,
+              0.0035236088980790076,
+              0.9994536876086416
+            ],
+            [
+              0.16562102147475574,
+              0.06095615328375836,
+              0.9994536876086416
+            ],
+            [
+              0.12895780911405824,
+              0.061022791892993256,
+              1.0005463123913585
+            ]
+          ]
+        },
+        {
+          "id": "surface-1384",
+          "quad": [
+            [
+              544.68,
+              585.12
+            ],
+            [
+              819.85,
+              575.14
+            ],
+            [
+              765.57,
+              589.54
+            ],
+            [
+              505.35,
+              598.18
+            ]
+          ],
+          "confidence": 0.8053,
+          "evidence": {
+            "source": "four joined edges",
+            "boundary_support": 1.0,
+            "region_purity": 0.9882,
+            "shading_used": true,
+            "median_luminance_step": 1.672
+          },
+          "corner_junctions": [
+            {
+              "corner": 1,
+              "neighbor": "surface-256",
+              "neighbor_corner": 0,
+              "distance_px": 0.0
+            }
+          ],
+          "pitch": {
+            "counts": null,
+            "grid": null,
+            "confidence": 0.0,
+            "reason": "insufficient native texture evidence on both axes",
+            "evidence": {
+              "axes": [
+                {
+                  "count": null,
+                  "reason": "insufficient surface contrast"
+                },
+                {
+                  "count": null,
+                  "reason": "insufficient surface contrast"
+                }
+              ],
+              "patch_aspect": null,
+              "assumption": "one block spans sixteen resolved vanilla texture texels"
+            }
+          },
+          "normal_camera": [
+            -0.05777661215630631,
+            0.9576919935765359,
+            -0.28193600076460584
+          ],
+          "component": 2,
+          "units": "relative",
+          "scale_source": "unknown",
+          "corners_camera": [
+            [
+              -0.10120395187056694,
+              0.07799839138005363,
+              1.011881046435876
+            ],
+            [
+              0.05377886150806631,
+              0.06739996724205725,
+              0.9441195410263253
+            ],
+            [
+              0.02568767551346852,
+              0.07865828925059018,
+              0.988118953564124
+            ],
+            [
+              -0.12929513786516472,
+              0.08925671338858655,
+              1.0558804589736748
+            ]
+          ]
+        },
+        {
+          "id": "surface-3031",
+          "quad": [
+            [
+              522.01,
+              587.22
+            ],
+            [
+              536.14,
+              587.96
+            ],
+            [
+              484.98,
+              604.94
+            ],
+            [
+              466.14,
+              597.63
+            ]
+          ],
+          "confidence": 0.7883,
+          "evidence": {
+            "source": "four joined edges",
+            "boundary_support": 1.0,
+            "region_purity": 1.0,
+            "shading_used": true,
+            "median_luminance_step": 0.452
+          },
+          "corner_junctions": [],
+          "pitch": {
+            "counts": null,
+            "grid": null,
+            "confidence": 0.0,
+            "reason": "insufficient native texture evidence on both axes",
+            "evidence": {
+              "axes": [
+                {
+                  "count": null,
+                  "reason": "insufficient surface contrast"
+                },
+                {
+                  "count": null,
+                  "reason": "insufficient surface contrast"
+                }
+              ],
+              "patch_aspect": null,
+              "assumption": "one block spans sixteen resolved vanilla texture texels"
+            }
+          },
+          "normal_camera": [
+            -0.014578338553757978,
+            -0.9972418639410852,
+            0.07277456182157319
+          ],
+          "component": 3,
+          "units": "relative",
+          "scale_source": "unknown",
+          "corners_camera": [
+            [
+              -0.17765189619325866,
+              0.12312436585503793,
+              1.5728599116941595
+            ],
+            [
+              -0.14373036496371736,
+              0.10784858669854486,
+              1.370328607571925
+            ],
+            [
+              -0.05726795872368001,
+              0.037754648645421655,
+              0.42714008830584055
+            ],
+            [
+              -0.09118948995322132,
+              0.05303042780191471,
+              0.629671392428075
+            ]
+          ]
+        },
+        {
+          "id": "surface-256",
+          "quad": [
+            [
+              819.85,
+              575.14
+            ],
+            [
+              917.4,
+              571.6
+            ],
+            [
+              895.28,
+              576.39
+            ],
+            [
+              802.78,
+              579.67
+            ]
+          ],
+          "confidence": 0.8179,
+          "evidence": {
+            "source": "four joined edges",
+            "boundary_support": 1.0,
+            "region_purity": 1.0,
+            "shading_used": true,
+            "median_luminance_step": 2.067
+          },
+          "corner_junctions": [
+            {
+              "corner": 0,
+              "neighbor": "surface-1384",
+              "neighbor_corner": 1,
+              "distance_px": 0.0
+            }
+          ],
+          "pitch": {
+            "counts": null,
+            "grid": null,
+            "confidence": 0.0,
+            "reason": "insufficient native texture evidence on both axes",
+            "evidence": {
+              "axes": [
+                {
+                  "count": null,
+                  "reason": "insufficient surface contrast"
+                },
+                {
+                  "count": null,
+                  "reason": "insufficient surface contrast"
+                }
+              ],
+              "patch_aspect": null,
+              "assumption": "one block spans sixteen resolved vanilla texture texels"
+            }
+          },
+          "normal_camera": [
+            0.01728094854964223,
+            0.9923336338862823,
+            -0.12237372215990841
+          ],
+          "component": 4,
+          "units": "relative",
+          "scale_source": "unknown",
+          "corners_camera": [
+            [
+              0.056132307893264184,
+              0.07034949433913949,
+              0.985435676376082
+            ],
+            [
+              0.10872956665586377,
+              0.06697829435335888,
+              0.965525972177213
+            ],
+            [
+              0.1014491702729606,
+              0.07315244540620432,
+              1.0145643236239177
+            ],
+            [
+              0.048851911510361015,
+              0.07652364539198495,
+              1.0344740278227866
+            ]
+          ]
+        }
+      ],
+      "shared_edges": []
+    },
+    "estimated_lift": [
+      {
+        "patch_id": 3,
+        "id": "surface-988",
+        "units": "relative",
+        "truth_depth": 21.05731858564351,
+        "normal_error_deg": 15.314780614458197
+      },
+      {
+        "patch_id": 2,
+        "id": "surface-3100",
+        "units": "relative",
+        "truth_depth": 26.029840051931842,
+        "normal_error_deg": 28.770337846326715
+      }
+    ],
+    "known_lift": [
+      {
+        "patch_id": 3,
+        "id": "surface-988",
+        "units": "relative",
+        "truth_depth": 21.05731858564351,
+        "normal_error_deg": 3.043523310710145
+      },
+      {
+        "patch_id": 2,
+        "id": "surface-3100",
+        "units": "relative",
+        "truth_depth": 26.029840051931842,
+        "normal_error_deg": 27.90713868301363
+      }
+    ]
+  }
+}

@@ -1,0 +1,951 @@
+{
+  "contact": {
+    "proposals": [],
+    "scores": {
+      "eligible": 5,
+      "proposed": 0,
+      "matched": 0,
+      "precision": null,
+      "recall": 0.0,
+      "matches": [],
+      "proposed_pixels": 0,
+      "spill_pixels": 0,
+      "spill_fraction": null
+    }
+  },
+  "edges": {
+    "proposals": [
+      {
+        "id": "surface-35",
+        "quad": [
+          [
+            820.71,
+            491.53
+          ],
+          [
+            878.13,
+            486.22
+          ],
+          [
+            878.28,
+            561.19
+          ],
+          [
+            821.44,
+            562.22
+          ]
+        ],
+        "confidence": 0.9655,
+        "evidence": {
+          "source": "four joined edges",
+          "boundary_support": 0.9179,
+          "region_purity": 1.0,
+          "shading_used": false
+        },
+        "corner_junctions": [
+          {
+            "corner": 1,
+            "neighbor": "surface-12",
+            "neighbor_corner": 3,
+            "distance_px": 4.37
+          },
+          {
+            "corner": 1,
+            "neighbor": "surface-15",
+            "neighbor_corner": 0,
+            "distance_px": 3.44
+          },
+          {
+            "corner": 1,
+            "neighbor": "surface-38",
+            "neighbor_corner": 3,
+            "distance_px": 3.72
+          }
+        ]
+      },
+      {
+        "id": "surface-36",
+        "quad": [
+          [
+            814.41,
+            422.21
+          ],
+          [
+            870.66,
+            413.6
+          ],
+          [
+            875.01,
+            492.33
+          ],
+          [
+            814.87,
+            489.84
+          ]
+        ],
+        "confidence": 0.9518,
+        "evidence": {
+          "source": "four joined edges",
+          "boundary_support": 0.8852,
+          "region_purity": 1.0,
+          "shading_used": false
+        },
+        "corner_junctions": [
+          {
+            "corner": 1,
+            "neighbor": "surface-38",
+            "neighbor_corner": 0,
+            "distance_px": 3.36
+          },
+          {
+            "corner": 2,
+            "neighbor": "surface-38",
+            "neighbor_corner": 3,
+            "distance_px": 4.54
+          }
+        ]
+      },
+      {
+        "id": "surface-39",
+        "quad": [
+          [
+            929.98,
+            482.32
+          ],
+          [
+            980.59,
+            482.32
+          ],
+          [
+            984.55,
+            564.54
+          ],
+          [
+            963.13,
+            564.5
+          ]
+        ],
+        "confidence": 0.9668,
+        "evidence": {
+          "source": "four joined edges",
+          "boundary_support": 0.9374,
+          "region_purity": 0.9882,
+          "shading_used": false
+        },
+        "corner_junctions": [
+          {
+            "corner": 0,
+            "neighbor": "surface-13",
+            "neighbor_corner": 3,
+            "distance_px": 1.05
+          },
+          {
+            "corner": 1,
+            "neighbor": "surface-13",
+            "neighbor_corner": 2,
+            "distance_px": 2.72
+          },
+          {
+            "corner": 0,
+            "neighbor": "surface-12",
+            "neighbor_corner": 2,
+            "distance_px": 1.79
+          },
+          {
+            "corner": 0,
+            "neighbor": "surface-15",
+            "neighbor_corner": 1,
+            "distance_px": 1.84
+          }
+        ]
+      },
+      {
+        "id": "surface-29",
+        "quad": [
+          [
+            449.98,
+            327.64
+          ],
+          [
+            459.32,
+            328.44
+          ],
+          [
+            454.96,
+            643.57
+          ],
+          [
+            445.16,
+            643.81
+          ]
+        ],
+        "confidence": 0.9432,
+        "evidence": {
+          "source": "four joined edges",
+          "boundary_support": 0.9302,
+          "region_purity": 0.9527,
+          "shading_used": false
+        },
+        "corner_junctions": []
+      },
+      {
+        "id": "surface-4",
+        "quad": [
+          [
+            481.37,
+            314.48
+          ],
+          [
+            659.42,
+            329.24
+          ],
+          [
+            664.45,
+            344.85
+          ],
+          [
+            482.04,
+            331.25
+          ]
+        ],
+        "confidence": 0.825,
+        "evidence": {
+          "source": "region boundary",
+          "boundary_support": 0.5833,
+          "region_purity": 1.0,
+          "shading_used": false
+        },
+        "corner_junctions": []
+      },
+      {
+        "id": "surface-13",
+        "quad": [
+          [
+            931.03,
+            452.38
+          ],
+          [
+            978.36,
+            455.62
+          ],
+          [
+            977.87,
+            482.32
+          ],
+          [
+            931.03,
+            482.32
+          ]
+        ],
+        "confidence": 0.965,
+        "evidence": {
+          "source": "region boundary",
+          "boundary_support": 0.9167,
+          "region_purity": 1.0,
+          "shading_used": false
+        },
+        "corner_junctions": [
+          {
+            "corner": 3,
+            "neighbor": "surface-39",
+            "neighbor_corner": 0,
+            "distance_px": 1.05
+          },
+          {
+            "corner": 2,
+            "neighbor": "surface-39",
+            "neighbor_corner": 1,
+            "distance_px": 2.72
+          },
+          {
+            "corner": 0,
+            "neighbor": "surface-12",
+            "neighbor_corner": 1,
+            "distance_px": 1.74
+          },
+          {
+            "corner": 3,
+            "neighbor": "surface-12",
+            "neighbor_corner": 2,
+            "distance_px": 1.64
+          },
+          {
+            "corner": 3,
+            "neighbor": "surface-15",
+            "neighbor_corner": 1,
+            "distance_px": 2.48
+          }
+        ]
+      },
+      {
+        "id": "surface-12",
+        "quad": [
+          [
+            881.09,
+            459.5
+          ],
+          [
+            931.21,
+            450.65
+          ],
+          [
+            930.75,
+            483.94
+          ],
+          [
+            882.44,
+            486.94
+          ]
+        ],
+        "confidence": 0.895,
+        "evidence": {
+          "source": "region boundary",
+          "boundary_support": 0.75,
+          "region_purity": 1.0,
+          "shading_used": false
+        },
+        "corner_junctions": [
+          {
+            "corner": 3,
+            "neighbor": "surface-35",
+            "neighbor_corner": 1,
+            "distance_px": 4.37
+          },
+          {
+            "corner": 2,
+            "neighbor": "surface-39",
+            "neighbor_corner": 0,
+            "distance_px": 1.79
+          },
+          {
+            "corner": 1,
+            "neighbor": "surface-13",
+            "neighbor_corner": 0,
+            "distance_px": 1.74
+          },
+          {
+            "corner": 2,
+            "neighbor": "surface-13",
+            "neighbor_corner": 3,
+            "distance_px": 1.64
+          },
+          {
+            "corner": 2,
+            "neighbor": "surface-15",
+            "neighbor_corner": 1,
+            "distance_px": 1.55
+          },
+          {
+            "corner": 3,
+            "neighbor": "surface-15",
+            "neighbor_corner": 0,
+            "distance_px": 1.13
+          },
+          {
+            "corner": 3,
+            "neighbor": "surface-38",
+            "neighbor_corner": 2,
+            "distance_px": 0.63
+          }
+        ]
+      },
+      {
+        "id": "surface-15",
+        "quad": [
+          [
+            881.38,
+            487.34
+          ],
+          [
+            929.2,
+            483.99
+          ],
+          [
+            928.82,
+            517.17
+          ],
+          [
+            881.38,
+            515.83
+          ]
+        ],
+        "confidence": 0.86,
+        "evidence": {
+          "source": "region boundary",
+          "boundary_support": 0.6667,
+          "region_purity": 1.0,
+          "shading_used": false
+        },
+        "corner_junctions": [
+          {
+            "corner": 0,
+            "neighbor": "surface-35",
+            "neighbor_corner": 1,
+            "distance_px": 3.44
+          },
+          {
+            "corner": 1,
+            "neighbor": "surface-39",
+            "neighbor_corner": 0,
+            "distance_px": 1.84
+          },
+          {
+            "corner": 1,
+            "neighbor": "surface-13",
+            "neighbor_corner": 3,
+            "distance_px": 2.48
+          },
+          {
+            "corner": 1,
+            "neighbor": "surface-12",
+            "neighbor_corner": 2,
+            "distance_px": 1.55
+          },
+          {
+            "corner": 0,
+            "neighbor": "surface-12",
+            "neighbor_corner": 3,
+            "distance_px": 1.13
+          },
+          {
+            "corner": 0,
+            "neighbor": "surface-38",
+            "neighbor_corner": 2,
+            "distance_px": 1.62
+          }
+        ]
+      },
+      {
+        "id": "surface-38",
+        "quad": [
+          [
+            870.85,
+            416.95
+          ],
+          [
+            885.49,
+            417.54
+          ],
+          [
+            883.0,
+            487.23
+          ],
+          [
+            874.76,
+            487.8
+          ]
+        ],
+        "confidence": 1.0,
+        "evidence": {
+          "source": "four joined edges",
+          "boundary_support": 1.0,
+          "region_purity": 1.0,
+          "shading_used": false
+        },
+        "corner_junctions": [
+          {
+            "corner": 3,
+            "neighbor": "surface-35",
+            "neighbor_corner": 1,
+            "distance_px": 3.72
+          },
+          {
+            "corner": 0,
+            "neighbor": "surface-36",
+            "neighbor_corner": 1,
+            "distance_px": 3.36
+          },
+          {
+            "corner": 3,
+            "neighbor": "surface-36",
+            "neighbor_corner": 2,
+            "distance_px": 4.54
+          },
+          {
+            "corner": 2,
+            "neighbor": "surface-12",
+            "neighbor_corner": 3,
+            "distance_px": 0.63
+          },
+          {
+            "corner": 2,
+            "neighbor": "surface-15",
+            "neighbor_corner": 0,
+            "distance_px": 1.62
+          }
+        ]
+      }
+    ],
+    "scores": {
+      "eligible": 5,
+      "proposed": 9,
+      "matched": 0,
+      "precision": 0.0,
+      "recall": 0.0,
+      "matches": [],
+      "proposed_pixels": 1400,
+      "spill_pixels": 4,
+      "spill_fraction": 0.002857142857142857
+    }
+  },
+  "edges+shade": {
+    "proposals": [
+      {
+        "id": "surface-36",
+        "quad": [
+          [
+            814.41,
+            422.21
+          ],
+          [
+            870.66,
+            413.6
+          ],
+          [
+            875.01,
+            492.33
+          ],
+          [
+            814.87,
+            489.84
+          ]
+        ],
+        "confidence": 0.9026,
+        "evidence": {
+          "source": "four joined edges",
+          "boundary_support": 0.8852,
+          "region_purity": 1.0,
+          "shading_used": true,
+          "median_luminance_step": 8.739
+        },
+        "corner_junctions": [
+          {
+            "corner": 2,
+            "neighbor": "surface-34",
+            "neighbor_corner": 1,
+            "distance_px": 3.13
+          },
+          {
+            "corner": 1,
+            "neighbor": "surface-38",
+            "neighbor_corner": 0,
+            "distance_px": 3.36
+          },
+          {
+            "corner": 2,
+            "neighbor": "surface-38",
+            "neighbor_corner": 3,
+            "distance_px": 4.54
+          }
+        ]
+      },
+      {
+        "id": "surface-34",
+        "quad": [
+          [
+            820.69,
+            490.08
+          ],
+          [
+            878.14,
+            492.46
+          ],
+          [
+            878.28,
+            561.19
+          ],
+          [
+            821.44,
+            562.22
+          ]
+        ],
+        "confidence": 0.8349,
+        "evidence": {
+          "source": "four joined edges",
+          "boundary_support": 0.9235,
+          "region_purity": 1.0,
+          "shading_used": true,
+          "median_luminance_step": 4.363
+        },
+        "corner_junctions": [
+          {
+            "corner": 1,
+            "neighbor": "surface-36",
+            "neighbor_corner": 2,
+            "distance_px": 3.13
+          }
+        ]
+      },
+      {
+        "id": "surface-29",
+        "quad": [
+          [
+            449.98,
+            327.64
+          ],
+          [
+            459.32,
+            328.44
+          ],
+          [
+            454.96,
+            643.57
+          ],
+          [
+            445.16,
+            643.81
+          ]
+        ],
+        "confidence": 0.9557,
+        "evidence": {
+          "source": "four joined edges",
+          "boundary_support": 0.9302,
+          "region_purity": 0.9527,
+          "shading_used": true,
+          "median_luminance_step": 17.833
+        },
+        "corner_junctions": []
+      },
+      {
+        "id": "surface-41",
+        "quad": [
+          [
+            929.98,
+            482.32
+          ],
+          [
+            980.59,
+            482.32
+          ],
+          [
+            984.46,
+            562.62
+          ],
+          [
+            962.79,
+            563.64
+          ]
+        ],
+        "confidence": 0.8601,
+        "evidence": {
+          "source": "four joined edges",
+          "boundary_support": 0.9478,
+          "region_purity": 0.9882,
+          "shading_used": true,
+          "median_luminance_step": 5.595
+        },
+        "corner_junctions": [
+          {
+            "corner": 0,
+            "neighbor": "surface-12",
+            "neighbor_corner": 2,
+            "distance_px": 1.79
+          },
+          {
+            "corner": 0,
+            "neighbor": "surface-13",
+            "neighbor_corner": 3,
+            "distance_px": 1.05
+          },
+          {
+            "corner": 1,
+            "neighbor": "surface-13",
+            "neighbor_corner": 2,
+            "distance_px": 2.72
+          },
+          {
+            "corner": 0,
+            "neighbor": "surface-15",
+            "neighbor_corner": 1,
+            "distance_px": 1.84
+          }
+        ]
+      },
+      {
+        "id": "surface-4",
+        "quad": [
+          [
+            481.37,
+            314.48
+          ],
+          [
+            659.42,
+            329.24
+          ],
+          [
+            664.45,
+            344.85
+          ],
+          [
+            482.04,
+            331.25
+          ]
+        ],
+        "confidence": 0.8239,
+        "evidence": {
+          "source": "region boundary",
+          "boundary_support": 0.5833,
+          "region_purity": 1.0,
+          "shading_used": true,
+          "median_luminance_step": 9.842
+        },
+        "corner_junctions": []
+      },
+      {
+        "id": "surface-12",
+        "quad": [
+          [
+            881.09,
+            459.5
+          ],
+          [
+            931.21,
+            450.65
+          ],
+          [
+            930.75,
+            483.94
+          ],
+          [
+            882.44,
+            486.94
+          ]
+        ],
+        "confidence": 0.8109,
+        "evidence": {
+          "source": "region boundary",
+          "boundary_support": 0.75,
+          "region_purity": 1.0,
+          "shading_used": true,
+          "median_luminance_step": 6.152
+        },
+        "corner_junctions": [
+          {
+            "corner": 2,
+            "neighbor": "surface-41",
+            "neighbor_corner": 0,
+            "distance_px": 1.79
+          },
+          {
+            "corner": 1,
+            "neighbor": "surface-13",
+            "neighbor_corner": 0,
+            "distance_px": 1.74
+          },
+          {
+            "corner": 2,
+            "neighbor": "surface-13",
+            "neighbor_corner": 3,
+            "distance_px": 1.64
+          },
+          {
+            "corner": 2,
+            "neighbor": "surface-15",
+            "neighbor_corner": 1,
+            "distance_px": 1.55
+          },
+          {
+            "corner": 3,
+            "neighbor": "surface-15",
+            "neighbor_corner": 0,
+            "distance_px": 1.13
+          },
+          {
+            "corner": 3,
+            "neighbor": "surface-38",
+            "neighbor_corner": 2,
+            "distance_px": 0.63
+          }
+        ]
+      },
+      {
+        "id": "surface-13",
+        "quad": [
+          [
+            931.03,
+            452.38
+          ],
+          [
+            978.36,
+            455.62
+          ],
+          [
+            977.87,
+            482.32
+          ],
+          [
+            931.03,
+            482.32
+          ]
+        ],
+        "confidence": 0.8448,
+        "evidence": {
+          "source": "region boundary",
+          "boundary_support": 0.9167,
+          "region_purity": 1.0,
+          "shading_used": true,
+          "median_luminance_step": 5.023
+        },
+        "corner_junctions": [
+          {
+            "corner": 3,
+            "neighbor": "surface-41",
+            "neighbor_corner": 0,
+            "distance_px": 1.05
+          },
+          {
+            "corner": 2,
+            "neighbor": "surface-41",
+            "neighbor_corner": 1,
+            "distance_px": 2.72
+          },
+          {
+            "corner": 0,
+            "neighbor": "surface-12",
+            "neighbor_corner": 1,
+            "distance_px": 1.74
+          },
+          {
+            "corner": 3,
+            "neighbor": "surface-12",
+            "neighbor_corner": 2,
+            "distance_px": 1.64
+          },
+          {
+            "corner": 3,
+            "neighbor": "surface-15",
+            "neighbor_corner": 1,
+            "distance_px": 2.48
+          }
+        ]
+      },
+      {
+        "id": "surface-15",
+        "quad": [
+          [
+            881.38,
+            487.34
+          ],
+          [
+            929.2,
+            483.99
+          ],
+          [
+            928.82,
+            517.17
+          ],
+          [
+            881.38,
+            515.83
+          ]
+        ],
+        "confidence": 0.7823,
+        "evidence": {
+          "source": "region boundary",
+          "boundary_support": 0.6667,
+          "region_purity": 1.0,
+          "shading_used": true,
+          "median_luminance_step": 6.081
+        },
+        "corner_junctions": [
+          {
+            "corner": 1,
+            "neighbor": "surface-41",
+            "neighbor_corner": 0,
+            "distance_px": 1.84
+          },
+          {
+            "corner": 1,
+            "neighbor": "surface-12",
+            "neighbor_corner": 2,
+            "distance_px": 1.55
+          },
+          {
+            "corner": 0,
+            "neighbor": "surface-12",
+            "neighbor_corner": 3,
+            "distance_px": 1.13
+          },
+          {
+            "corner": 1,
+            "neighbor": "surface-13",
+            "neighbor_corner": 3,
+            "distance_px": 2.48
+          },
+          {
+            "corner": 0,
+            "neighbor": "surface-38",
+            "neighbor_corner": 2,
+            "distance_px": 1.62
+          }
+        ]
+      },
+      {
+        "id": "surface-38",
+        "quad": [
+          [
+            870.85,
+            416.95
+          ],
+          [
+            885.49,
+            417.54
+          ],
+          [
+            883.0,
+            487.23
+          ],
+          [
+            874.76,
+            487.8
+          ]
+        ],
+        "confidence": 0.8472,
+        "evidence": {
+          "source": "four joined edges",
+          "boundary_support": 1.0,
+          "region_purity": 1.0,
+          "shading_used": true,
+          "median_luminance_step": 3.663
+        },
+        "corner_junctions": [
+          {
+            "corner": 0,
+            "neighbor": "surface-36",
+            "neighbor_corner": 1,
+            "distance_px": 3.36
+          },
+          {
+            "corner": 3,
+            "neighbor": "surface-36",
+            "neighbor_corner": 2,
+            "distance_px": 4.54
+          },
+          {
+            "corner": 2,
+            "neighbor": "surface-12",
+            "neighbor_corner": 3,
+            "distance_px": 0.63
+          },
+          {
+            "corner": 2,
+            "neighbor": "surface-15",
+            "neighbor_corner": 0,
+            "distance_px": 1.62
+          }
+        ]
+      }
+    ],
+    "scores": {
+      "eligible": 5,
+      "proposed": 9,
+      "matched": 0,
+      "precision": 0.0,
+      "recall": 0.0,
+      "matches": [],
+      "proposed_pixels": 1399,
+      "spill_pixels": 4,
+      "spill_fraction": 0.0028591851322373124
+    }
+  }
+}

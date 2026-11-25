@@ -1,0 +1,188 @@
+{
+  "texel": {
+    "oracle": [
+      {
+        "patch_id": 2,
+        "quad": [
+          [
+            92.72574992926536,
+            48.81030234264164
+          ],
+          [
+            1327.326048147864,
+            48.81020215941983
+          ],
+          [
+            1327.326048147864,
+            842.323674788624
+          ],
+          [
+            92.72574992926536,
+            842.323576819409
+          ]
+        ],
+        "prediction": {
+          "counts": [
+            16,
+            50
+          ],
+          "grid": {
+            "phase_blocks": [
+              0,
+              0
+            ],
+            "grid_to_image": [
+              [
+                77.16249792281292,
+                0.0,
+                92.72574992926536
+              ],
+              [
+                -7.023242185599798e-06,
+                15.870265489535347,
+                48.81030234264164
+              ],
+              [
+                -1.5607204820052778e-08,
+                0.0,
+                1.0
+              ]
+            ]
+          },
+          "confidence": null,
+          "reason": "Legacy texel spacing; first chart corner assumed to lie on a seam."
+        },
+        "score": {
+          "expected_counts": [
+            5.570000000000164,
+            3.5799999999999983
+          ],
+          "counts": [
+            16.0,
+            50.0
+          ],
+          "mean_count_error": 28.42499999999992,
+          "half_block_both": false,
+          "truth_intersections": 15,
+          "predicted_intersections": 867,
+          "truth_within_3px": 0,
+          "predicted_within_3px": 0,
+          "grid_precision": 0.0,
+          "grid_recall": 0.0,
+          "grid_f1": 0.0
+        }
+      }
+    ],
+    "auto": [],
+    "model": {
+      "lens_source": "assumed-70-degree-vertical-fov",
+      "intrinsics": [
+        [
+          642.6666030339516,
+          0.0,
+          720.0
+        ],
+        [
+          0.0,
+          642.6666030339516,
+          450.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "planes": [],
+      "shared_edges": []
+    },
+    "estimated_lift": [],
+    "known_lift": []
+  },
+  "repeat": {
+    "oracle": [
+      {
+        "patch_id": 2,
+        "quad": [
+          [
+            92.72574992926536,
+            48.81030234264164
+          ],
+          [
+            1327.326048147864,
+            48.81020215941983
+          ],
+          [
+            1327.326048147864,
+            842.323674788624
+          ],
+          [
+            92.72574992926536,
+            842.323576819409
+          ]
+        ],
+        "prediction": {
+          "counts": null,
+          "grid": null,
+          "confidence": 0.0,
+          "reason": "insufficient native texture evidence on both axes",
+          "evidence": {
+            "axes": [
+              {
+                "count": null,
+                "reason": "insufficient surface contrast"
+              },
+              {
+                "count": null,
+                "reason": "insufficient surface contrast"
+              }
+            ],
+            "patch_aspect": 1.555865775999886,
+            "assumption": "one block spans sixteen resolved vanilla texture texels"
+          }
+        },
+        "score": {
+          "expected_counts": [
+            5.570000000000164,
+            3.5799999999999983
+          ],
+          "counts": null,
+          "mean_count_error": null,
+          "half_block_both": false,
+          "truth_intersections": 15,
+          "predicted_intersections": 0,
+          "truth_within_3px": 0,
+          "predicted_within_3px": 0,
+          "grid_precision": null,
+          "grid_recall": 0.0,
+          "grid_f1": 0.0
+        }
+      }
+    ],
+    "auto": [],
+    "model": {
+      "lens_source": "assumed-70-degree-vertical-fov",
+      "intrinsics": [
+        [
+          642.6666030339516,
+          0.0,
+          720.0
+        ],
+        [
+          0.0,
+          642.6666030339516,
+          450.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "planes": [],
+      "shared_edges": []
+    },
+    "estimated_lift": [],
+    "known_lift": []
+  }
+}

@@ -1,0 +1,1196 @@
+{
+  "dev": {
+    "all": {
+      "frames": 20,
+      "outlines": {
+        "contact": {
+          "matched": 6,
+          "eligible": 156,
+          "proposed": 16,
+          "precision": 0.375,
+          "recall": 0.038461538461538464,
+          "f1": 0.06976744186046512,
+          "foreground_spill": 0.09368964224970451
+        },
+        "edges": {
+          "matched": 30,
+          "eligible": 156,
+          "proposed": 167,
+          "precision": 0.17964071856287425,
+          "recall": 0.19230769230769232,
+          "f1": 0.18575851393188855,
+          "foreground_spill": 0.011848536438025152
+        },
+        "edges+shade": {
+          "matched": 28,
+          "eligible": 156,
+          "proposed": 133,
+          "precision": 0.21052631578947367,
+          "recall": 0.1794871794871795,
+          "f1": 0.19377162629757785,
+          "foreground_spill": 0.012547087800637496
+        }
+      },
+      "pitch": {
+        "texel": {
+          "oracle": {
+            "charts": 88,
+            "counts_returned": 88,
+            "within_half_block": 4,
+            "charts_with_grid_points": 88,
+            "accurate_registered": 0,
+            "registered_rate": 0.0,
+            "accurate_rate": 0.045454545454545456,
+            "net_correct_rate": -0.9090909090909091,
+            "grid_precision": 0.024598615407276477,
+            "grid_recall": 0.18688118811881188
+          },
+          "auto": {
+            "charts": 28,
+            "counts_returned": 28,
+            "within_half_block": 4,
+            "charts_with_grid_points": 28,
+            "accurate_registered": 0,
+            "registered_rate": 0.0,
+            "accurate_rate": 0.14285714285714285,
+            "net_correct_rate": -0.7142857142857143,
+            "grid_precision": 0.04350025290844714,
+            "grid_recall": 0.1423728813559322
+          }
+        },
+        "repeat": {
+          "oracle": {
+            "charts": 88,
+            "counts_returned": 28,
+            "within_half_block": 28,
+            "charts_with_grid_points": 4,
+            "accurate_registered": 4,
+            "registered_rate": 0.045454545454545456,
+            "accurate_rate": 0.3181818181818182,
+            "net_correct_rate": 0.3181818181818182,
+            "grid_precision": 1.0,
+            "grid_recall": 0.018564356435643563
+          },
+          "auto": {
+            "charts": 28,
+            "counts_returned": 2,
+            "within_half_block": 2,
+            "charts_with_grid_points": 0,
+            "accurate_registered": 0,
+            "registered_rate": 0.0,
+            "accurate_rate": 0.07142857142857142,
+            "net_correct_rate": 0.07142857142857142,
+            "grid_precision": 0.0,
+            "grid_recall": 0.0
+          }
+        }
+      },
+      "lift": {
+        "texel": {
+          "estimated_lift": {
+            "matched": 28,
+            "normals": 28,
+            "within_15_degrees": 8,
+            "median_normal_error_degrees": 23.077292226021562,
+            "metric_depths": 7,
+            "within_one_block": 0,
+            "median_depth_error_blocks": 13.794887403925596
+          },
+          "known_lift": {
+            "matched": 28,
+            "normals": 28,
+            "within_15_degrees": 11,
+            "median_normal_error_degrees": 20.00276076770877,
+            "metric_depths": 7,
+            "within_one_block": 0,
+            "median_depth_error_blocks": 17.689324494903172
+          }
+        },
+        "repeat": {
+          "estimated_lift": {
+            "matched": 28,
+            "normals": 28,
+            "within_15_degrees": 8,
+            "median_normal_error_degrees": 23.077292226021562,
+            "metric_depths": 2,
+            "within_one_block": 0,
+            "median_depth_error_blocks": 2.5209629151242545
+          },
+          "known_lift": {
+            "matched": 28,
+            "normals": 28,
+            "within_15_degrees": 11,
+            "median_normal_error_degrees": 20.00276076770877,
+            "metric_depths": 2,
+            "within_one_block": 2,
+            "median_depth_error_blocks": 0.4639411395710198
+          }
+        }
+      },
+      "connections": {
+        "texel": 6,
+        "repeat": 6
+      }
+    },
+    "shopfront": {
+      "frames": 8,
+      "outlines": {
+        "contact": {
+          "matched": 0,
+          "eligible": 120,
+          "proposed": 8,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "foreground_spill": 0.14218771856203666
+        },
+        "edges": {
+          "matched": 12,
+          "eligible": 120,
+          "proposed": 115,
+          "precision": 0.10434782608695652,
+          "recall": 0.1,
+          "f1": 0.10212765957446808,
+          "foreground_spill": 0.018273499116493556
+        },
+        "edges+shade": {
+          "matched": 10,
+          "eligible": 120,
+          "proposed": 87,
+          "precision": 0.11494252873563218,
+          "recall": 0.08333333333333333,
+          "f1": 0.0966183574879227,
+          "foreground_spill": 0.021624929871984496
+        }
+      },
+      "pitch": {
+        "texel": {
+          "oracle": {
+            "charts": 52,
+            "counts_returned": 52,
+            "within_half_block": 2,
+            "charts_with_grid_points": 52,
+            "accurate_registered": 0,
+            "registered_rate": 0.0,
+            "accurate_rate": 0.038461538461538464,
+            "net_correct_rate": -0.9230769230769231,
+            "grid_precision": 0.08586232420429311,
+            "grid_recall": 0.31645569620253167
+          },
+          "auto": {
+            "charts": 10,
+            "counts_returned": 10,
+            "within_half_block": 2,
+            "charts_with_grid_points": 10,
+            "accurate_registered": 0,
+            "registered_rate": 0.0,
+            "accurate_rate": 0.2,
+            "net_correct_rate": -0.6,
+            "grid_precision": 0.025280898876404494,
+            "grid_recall": 0.14754098360655737
+          }
+        },
+        "repeat": {
+          "oracle": {
+            "charts": 52,
+            "counts_returned": 12,
+            "within_half_block": 12,
+            "charts_with_grid_points": 0,
+            "accurate_registered": 0,
+            "registered_rate": 0.0,
+            "accurate_rate": 0.23076923076923078,
+            "net_correct_rate": 0.23076923076923078,
+            "grid_precision": 0.0,
+            "grid_recall": 0.0
+          },
+          "auto": {
+            "charts": 10,
+            "counts_returned": 2,
+            "within_half_block": 2,
+            "charts_with_grid_points": 0,
+            "accurate_registered": 0,
+            "registered_rate": 0.0,
+            "accurate_rate": 0.2,
+            "net_correct_rate": 0.2,
+            "grid_precision": 0.0,
+            "grid_recall": 0.0
+          }
+        }
+      },
+      "lift": {
+        "texel": {
+          "estimated_lift": {
+            "matched": 10,
+            "normals": 10,
+            "within_15_degrees": 2,
+            "median_normal_error_degrees": 33.659890097279074,
+            "metric_depths": 3,
+            "within_one_block": 0,
+            "median_depth_error_blocks": 9.908046568477738
+          },
+          "known_lift": {
+            "matched": 10,
+            "normals": 10,
+            "within_15_degrees": 2,
+            "median_normal_error_degrees": 34.18850059076286,
+            "metric_depths": 3,
+            "within_one_block": 0,
+            "median_depth_error_blocks": 3.995108477564589
+          }
+        },
+        "repeat": {
+          "estimated_lift": {
+            "matched": 10,
+            "normals": 10,
+            "within_15_degrees": 2,
+            "median_normal_error_degrees": 33.659890097279074,
+            "metric_depths": 2,
+            "within_one_block": 0,
+            "median_depth_error_blocks": 2.5209629151242545
+          },
+          "known_lift": {
+            "matched": 10,
+            "normals": 10,
+            "within_15_degrees": 2,
+            "median_normal_error_degrees": 34.18850059076286,
+            "metric_depths": 2,
+            "within_one_block": 2,
+            "median_depth_error_blocks": 0.4639411395710198
+          }
+        }
+      },
+      "connections": {
+        "texel": 5,
+        "repeat": 5
+      }
+    },
+    "wing": {
+      "frames": 12,
+      "outlines": {
+        "contact": {
+          "matched": 6,
+          "eligible": 36,
+          "proposed": 8,
+          "precision": 0.75,
+          "recall": 0.16666666666666666,
+          "f1": 0.2727272727272727,
+          "foreground_spill": 0.05968319356578883
+        },
+        "edges": {
+          "matched": 18,
+          "eligible": 36,
+          "proposed": 52,
+          "precision": 0.34615384615384615,
+          "recall": 0.5,
+          "f1": 0.4090909090909091,
+          "foreground_spill": 0.008844921725464912
+        },
+        "edges+shade": {
+          "matched": 18,
+          "eligible": 36,
+          "proposed": 46,
+          "precision": 0.391304347826087,
+          "recall": 0.5,
+          "f1": 0.43902439024390244,
+          "foreground_spill": 0.008945014469876349
+        }
+      },
+      "pitch": {
+        "texel": {
+          "oracle": {
+            "charts": 36,
+            "counts_returned": 36,
+            "within_half_block": 2,
+            "charts_with_grid_points": 36,
+            "accurate_registered": 0,
+            "registered_rate": 0.0,
+            "accurate_rate": 0.05555555555555555,
+            "net_correct_rate": -0.8888888888888888,
+            "grid_precision": 0.009378447958808385,
+            "grid_recall": 0.10365853658536585
+          },
+          "auto": {
+            "charts": 18,
+            "counts_returned": 18,
+            "within_half_block": 2,
+            "charts_with_grid_points": 18,
+            "accurate_registered": 0,
+            "registered_rate": 0.0,
+            "accurate_rate": 0.1111111111111111,
+            "net_correct_rate": -0.7777777777777778,
+            "grid_precision": 0.047501542257865514,
+            "grid_recall": 0.14177693761814744
+          }
+        },
+        "repeat": {
+          "oracle": {
+            "charts": 36,
+            "counts_returned": 16,
+            "within_half_block": 16,
+            "charts_with_grid_points": 4,
+            "accurate_registered": 4,
+            "registered_rate": 0.1111111111111111,
+            "accurate_rate": 0.4444444444444444,
+            "net_correct_rate": 0.4444444444444444,
+            "grid_precision": 1.0,
+            "grid_recall": 0.03048780487804878
+          },
+          "auto": {
+            "charts": 18,
+            "counts_returned": 0,
+            "within_half_block": 0,
+            "charts_with_grid_points": 0,
+            "accurate_registered": 0,
+            "registered_rate": 0.0,
+            "accurate_rate": 0.0,
+            "net_correct_rate": 0.0,
+            "grid_precision": 0.0,
+            "grid_recall": 0.0
+          }
+        }
+      },
+      "lift": {
+        "texel": {
+          "estimated_lift": {
+            "matched": 18,
+            "normals": 18,
+            "within_15_degrees": 6,
+            "median_normal_error_degrees": 18.640438450946448,
+            "metric_depths": 4,
+            "within_one_block": 0,
+            "median_depth_error_blocks": 39.85135107868611
+          },
+          "known_lift": {
+            "matched": 18,
+            "normals": 18,
+            "within_15_degrees": 9,
+            "median_normal_error_degrees": 14.128859027983806,
+            "metric_depths": 4,
+            "within_one_block": 0,
+            "median_depth_error_blocks": 41.750460102839504
+          }
+        },
+        "repeat": {
+          "estimated_lift": {
+            "matched": 18,
+            "normals": 18,
+            "within_15_degrees": 6,
+            "median_normal_error_degrees": 18.640438450946448,
+            "metric_depths": 0,
+            "within_one_block": 0,
+            "median_depth_error_blocks": null
+          },
+          "known_lift": {
+            "matched": 18,
+            "normals": 18,
+            "within_15_degrees": 9,
+            "median_normal_error_degrees": 14.128859027983806,
+            "metric_depths": 0,
+            "within_one_block": 0,
+            "median_depth_error_blocks": null
+          }
+        }
+      },
+      "connections": {
+        "texel": 1,
+        "repeat": 1
+      }
+    }
+  },
+  "regression": {
+    "all": {
+      "frames": 20,
+      "outlines": {
+        "contact": {
+          "matched": 0,
+          "eligible": 204,
+          "proposed": 14,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "foreground_spill": 0.17998419953727215
+        },
+        "edges": {
+          "matched": 37,
+          "eligible": 204,
+          "proposed": 163,
+          "precision": 0.22699386503067484,
+          "recall": 0.18137254901960784,
+          "f1": 0.2016348773841962,
+          "foreground_spill": 0.01693974512677057
+        },
+        "edges+shade": {
+          "matched": 39,
+          "eligible": 204,
+          "proposed": 139,
+          "precision": 0.2805755395683453,
+          "recall": 0.19117647058823528,
+          "f1": 0.22740524781341107,
+          "foreground_spill": 0.020702215459805887
+        }
+      },
+      "pitch": {
+        "texel": {
+          "oracle": {
+            "charts": 100,
+            "counts_returned": 100,
+            "within_half_block": 2,
+            "charts_with_grid_points": 100,
+            "accurate_registered": 0,
+            "registered_rate": 0.0,
+            "accurate_rate": 0.02,
+            "net_correct_rate": -0.96,
+            "grid_precision": 0.04727398205659075,
+            "grid_recall": 0.15178571428571427
+          },
+          "auto": {
+            "charts": 39,
+            "counts_returned": 39,
+            "within_half_block": 4,
+            "charts_with_grid_points": 39,
+            "accurate_registered": 1,
+            "registered_rate": 0.02564102564102564,
+            "accurate_rate": 0.10256410256410256,
+            "net_correct_rate": -0.7948717948717948,
+            "grid_precision": 0.04485294117647059,
+            "grid_recall": 0.11741682974559686
+          }
+        },
+        "repeat": {
+          "oracle": {
+            "charts": 100,
+            "counts_returned": 36,
+            "within_half_block": 36,
+            "charts_with_grid_points": 6,
+            "accurate_registered": 6,
+            "registered_rate": 0.06,
+            "accurate_rate": 0.36,
+            "net_correct_rate": 0.36,
+            "grid_precision": 1.0,
+            "grid_recall": 0.04945054945054945
+          },
+          "auto": {
+            "charts": 39,
+            "counts_returned": 3,
+            "within_half_block": 2,
+            "charts_with_grid_points": 0,
+            "accurate_registered": 0,
+            "registered_rate": 0.0,
+            "accurate_rate": 0.05128205128205128,
+            "net_correct_rate": 0.02564102564102564,
+            "grid_precision": 0.0,
+            "grid_recall": 0.0
+          }
+        }
+      },
+      "lift": {
+        "texel": {
+          "estimated_lift": {
+            "matched": 39,
+            "normals": 39,
+            "within_15_degrees": 8,
+            "median_normal_error_degrees": 24.57117503827167,
+            "metric_depths": 10,
+            "within_one_block": 0,
+            "median_depth_error_blocks": 9.154063976499053
+          },
+          "known_lift": {
+            "matched": 39,
+            "normals": 39,
+            "within_15_degrees": 12,
+            "median_normal_error_degrees": 24.93055100382472,
+            "metric_depths": 10,
+            "within_one_block": 4,
+            "median_depth_error_blocks": 18.016280690978242
+          }
+        },
+        "repeat": {
+          "estimated_lift": {
+            "matched": 39,
+            "normals": 39,
+            "within_15_degrees": 8,
+            "median_normal_error_degrees": 24.57117503827167,
+            "metric_depths": 3,
+            "within_one_block": 0,
+            "median_depth_error_blocks": 14.167680040954092
+          },
+          "known_lift": {
+            "matched": 39,
+            "normals": 39,
+            "within_15_degrees": 12,
+            "median_normal_error_degrees": 24.93055100382472,
+            "metric_depths": 3,
+            "within_one_block": 2,
+            "median_depth_error_blocks": 0.891861284966339
+          }
+        }
+      },
+      "connections": {
+        "texel": 11,
+        "repeat": 11
+      }
+    },
+    "courtyard": {
+      "frames": 12,
+      "outlines": {
+        "contact": {
+          "matched": 0,
+          "eligible": 56,
+          "proposed": 8,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "foreground_spill": 0.10118319053447572
+        },
+        "edges": {
+          "matched": 14,
+          "eligible": 56,
+          "proposed": 86,
+          "precision": 0.16279069767441862,
+          "recall": 0.25,
+          "f1": 0.19718309859154928,
+          "foreground_spill": 0.007199074937520982
+        },
+        "edges+shade": {
+          "matched": 14,
+          "eligible": 56,
+          "proposed": 76,
+          "precision": 0.18421052631578946,
+          "recall": 0.25,
+          "f1": 0.21212121212121213,
+          "foreground_spill": 0.007346332695088117
+        }
+      },
+      "pitch": {
+        "texel": {
+          "oracle": {
+            "charts": 52,
+            "counts_returned": 52,
+            "within_half_block": 0,
+            "charts_with_grid_points": 52,
+            "accurate_registered": 0,
+            "registered_rate": 0.0,
+            "accurate_rate": 0.0,
+            "net_correct_rate": -1.0,
+            "grid_precision": 0.02047952047952048,
+            "grid_recall": 0.07740585774058577
+          },
+          "auto": {
+            "charts": 14,
+            "counts_returned": 14,
+            "within_half_block": 1,
+            "charts_with_grid_points": 14,
+            "accurate_registered": 0,
+            "registered_rate": 0.0,
+            "accurate_rate": 0.07142857142857142,
+            "net_correct_rate": -0.8571428571428571,
+            "grid_precision": 0.08762886597938144,
+            "grid_recall": 0.12830188679245283
+          }
+        },
+        "repeat": {
+          "oracle": {
+            "charts": 52,
+            "counts_returned": 30,
+            "within_half_block": 30,
+            "charts_with_grid_points": 6,
+            "accurate_registered": 6,
+            "registered_rate": 0.11538461538461539,
+            "accurate_rate": 0.5769230769230769,
+            "net_correct_rate": 0.5769230769230769,
+            "grid_precision": 1.0,
+            "grid_recall": 0.07531380753138076
+          },
+          "auto": {
+            "charts": 14,
+            "counts_returned": 1,
+            "within_half_block": 0,
+            "charts_with_grid_points": 0,
+            "accurate_registered": 0,
+            "registered_rate": 0.0,
+            "accurate_rate": 0.0,
+            "net_correct_rate": -0.07142857142857142,
+            "grid_precision": 0.0,
+            "grid_recall": 0.0
+          }
+        }
+      },
+      "lift": {
+        "texel": {
+          "estimated_lift": {
+            "matched": 14,
+            "normals": 14,
+            "within_15_degrees": 7,
+            "median_normal_error_degrees": 15.822015726543984,
+            "metric_depths": 1,
+            "within_one_block": 0,
+            "median_depth_error_blocks": 6.226758947819068
+          },
+          "known_lift": {
+            "matched": 14,
+            "normals": 14,
+            "within_15_degrees": 9,
+            "median_normal_error_degrees": 12.490276696229984,
+            "metric_depths": 1,
+            "within_one_block": 1,
+            "median_depth_error_blocks": 0.06069422571097505
+          }
+        },
+        "repeat": {
+          "estimated_lift": {
+            "matched": 14,
+            "normals": 14,
+            "within_15_degrees": 7,
+            "median_normal_error_degrees": 15.822015726543984,
+            "metric_depths": 1,
+            "within_one_block": 0,
+            "median_depth_error_blocks": 1.7192602007036513
+          },
+          "known_lift": {
+            "matched": 14,
+            "normals": 14,
+            "within_15_degrees": 9,
+            "median_normal_error_degrees": 12.490276696229984,
+            "metric_depths": 1,
+            "within_one_block": 1,
+            "median_depth_error_blocks": 0.7425004174158936
+          }
+        }
+      },
+      "connections": {
+        "texel": 8,
+        "repeat": 8
+      }
+    },
+    "portico": {
+      "frames": 8,
+      "outlines": {
+        "contact": {
+          "matched": 0,
+          "eligible": 148,
+          "proposed": 6,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "foreground_spill": 0.25392398140552364
+        },
+        "edges": {
+          "matched": 23,
+          "eligible": 148,
+          "proposed": 77,
+          "precision": 0.2987012987012987,
+          "recall": 0.1554054054054054,
+          "f1": 0.20444444444444446,
+          "foreground_spill": 0.031261997477101955
+        },
+        "edges+shade": {
+          "matched": 25,
+          "eligible": 148,
+          "proposed": 63,
+          "precision": 0.3968253968253968,
+          "recall": 0.16891891891891891,
+          "f1": 0.23696682464454977,
+          "foreground_spill": 0.039919037445181604
+        }
+      },
+      "pitch": {
+        "texel": {
+          "oracle": {
+            "charts": 48,
+            "counts_returned": 48,
+            "within_half_block": 2,
+            "charts_with_grid_points": 48,
+            "accurate_registered": 0,
+            "registered_rate": 0.0,
+            "accurate_rate": 0.041666666666666664,
+            "net_correct_rate": -0.9166666666666666,
+            "grid_precision": 0.10714285714285714,
+            "grid_recall": 0.294
+          },
+          "auto": {
+            "charts": 25,
+            "counts_returned": 25,
+            "within_half_block": 3,
+            "charts_with_grid_points": 25,
+            "accurate_registered": 1,
+            "registered_rate": 0.04,
+            "accurate_rate": 0.12,
+            "net_correct_rate": -0.76,
+            "grid_precision": 0.027777777777777776,
+            "grid_recall": 0.10569105691056911
+          }
+        },
+        "repeat": {
+          "oracle": {
+            "charts": 48,
+            "counts_returned": 6,
+            "within_half_block": 6,
+            "charts_with_grid_points": 0,
+            "accurate_registered": 0,
+            "registered_rate": 0.0,
+            "accurate_rate": 0.125,
+            "net_correct_rate": 0.125,
+            "grid_precision": 0.0,
+            "grid_recall": 0.0
+          },
+          "auto": {
+            "charts": 25,
+            "counts_returned": 2,
+            "within_half_block": 2,
+            "charts_with_grid_points": 0,
+            "accurate_registered": 0,
+            "registered_rate": 0.0,
+            "accurate_rate": 0.08,
+            "net_correct_rate": 0.08,
+            "grid_precision": 0.0,
+            "grid_recall": 0.0
+          }
+        }
+      },
+      "lift": {
+        "texel": {
+          "estimated_lift": {
+            "matched": 25,
+            "normals": 25,
+            "within_15_degrees": 1,
+            "median_normal_error_degrees": 36.073832544856394,
+            "metric_depths": 9,
+            "within_one_block": 0,
+            "median_depth_error_blocks": 9.783716021991559
+          },
+          "known_lift": {
+            "matched": 25,
+            "normals": 25,
+            "within_15_degrees": 3,
+            "median_normal_error_degrees": 36.37293440633064,
+            "metric_depths": 9,
+            "within_one_block": 3,
+            "median_depth_error_blocks": 21.965811731169268
+          }
+        },
+        "repeat": {
+          "estimated_lift": {
+            "matched": 25,
+            "normals": 25,
+            "within_15_degrees": 1,
+            "median_normal_error_degrees": 36.073832544856394,
+            "metric_depths": 2,
+            "within_one_block": 0,
+            "median_depth_error_blocks": 14.182536114848432
+          },
+          "known_lift": {
+            "matched": 25,
+            "normals": 25,
+            "within_15_degrees": 3,
+            "median_normal_error_degrees": 36.37293440633064,
+            "metric_depths": 2,
+            "within_one_block": 1,
+            "median_depth_error_blocks": 0.953149578886471
+          }
+        }
+      },
+      "connections": {
+        "texel": 3,
+        "repeat": 3
+      }
+    }
+  },
+  "confirmation": {
+    "all": {
+      "frames": 8,
+      "outlines": {
+        "contact": {
+          "matched": 0,
+          "eligible": 106,
+          "proposed": 0,
+          "precision": null,
+          "recall": 0.0,
+          "f1": 0.0,
+          "foreground_spill": null
+        },
+        "edges": {
+          "matched": 16,
+          "eligible": 106,
+          "proposed": 97,
+          "precision": 0.16494845360824742,
+          "recall": 0.1509433962264151,
+          "f1": 0.15763546798029557,
+          "foreground_spill": 0.003541185527328714
+        },
+        "edges+shade": {
+          "matched": 11,
+          "eligible": 106,
+          "proposed": 79,
+          "precision": 0.13924050632911392,
+          "recall": 0.10377358490566038,
+          "f1": 0.11891891891891893,
+          "foreground_spill": 0.004226502089236828
+        }
+      },
+      "pitch": {
+        "texel": {
+          "oracle": {
+            "charts": 62,
+            "counts_returned": 62,
+            "within_half_block": 3,
+            "charts_with_grid_points": 62,
+            "accurate_registered": 0,
+            "registered_rate": 0.0,
+            "accurate_rate": 0.04838709677419355,
+            "net_correct_rate": -0.9032258064516129,
+            "grid_precision": 0.06342182890855458,
+            "grid_recall": 0.19491525423728814
+          },
+          "auto": {
+            "charts": 11,
+            "counts_returned": 11,
+            "within_half_block": 0,
+            "charts_with_grid_points": 11,
+            "accurate_registered": 0,
+            "registered_rate": 0.0,
+            "accurate_rate": 0.0,
+            "net_correct_rate": -1.0,
+            "grid_precision": 0.026156941649899398,
+            "grid_recall": 0.125
+          }
+        },
+        "repeat": {
+          "oracle": {
+            "charts": 62,
+            "counts_returned": 26,
+            "within_half_block": 26,
+            "charts_with_grid_points": 2,
+            "accurate_registered": 2,
+            "registered_rate": 0.03225806451612903,
+            "accurate_rate": 0.41935483870967744,
+            "net_correct_rate": 0.41935483870967744,
+            "grid_precision": 1.0,
+            "grid_recall": 0.053268765133171914
+          },
+          "auto": {
+            "charts": 11,
+            "counts_returned": 1,
+            "within_half_block": 1,
+            "charts_with_grid_points": 0,
+            "accurate_registered": 0,
+            "registered_rate": 0.0,
+            "accurate_rate": 0.09090909090909091,
+            "net_correct_rate": 0.09090909090909091,
+            "grid_precision": 0.0,
+            "grid_recall": 0.0
+          }
+        }
+      },
+      "lift": {
+        "texel": {
+          "estimated_lift": {
+            "matched": 11,
+            "normals": 11,
+            "within_15_degrees": 2,
+            "median_normal_error_degrees": 24.03079795069615,
+            "metric_depths": 1,
+            "within_one_block": 0,
+            "median_depth_error_blocks": 3.3389366507449623
+          },
+          "known_lift": {
+            "matched": 11,
+            "normals": 11,
+            "within_15_degrees": 1,
+            "median_normal_error_degrees": 20.502952303757162,
+            "metric_depths": 0,
+            "within_one_block": 0,
+            "median_depth_error_blocks": null
+          }
+        },
+        "repeat": {
+          "estimated_lift": {
+            "matched": 11,
+            "normals": 11,
+            "within_15_degrees": 2,
+            "median_normal_error_degrees": 24.03079795069615,
+            "metric_depths": 2,
+            "within_one_block": 0,
+            "median_depth_error_blocks": 11.381920864270938
+          },
+          "known_lift": {
+            "matched": 11,
+            "normals": 11,
+            "within_15_degrees": 1,
+            "median_normal_error_degrees": 20.502952303757162,
+            "metric_depths": 2,
+            "within_one_block": 1,
+            "median_depth_error_blocks": 1.3888566748969513
+          }
+        }
+      },
+      "connections": {
+        "texel": 3,
+        "repeat": 3
+      }
+    },
+    "crossing": {
+      "frames": 4,
+      "outlines": {
+        "contact": {
+          "matched": 0,
+          "eligible": 46,
+          "proposed": 0,
+          "precision": null,
+          "recall": 0.0,
+          "f1": 0.0,
+          "foreground_spill": null
+        },
+        "edges": {
+          "matched": 7,
+          "eligible": 46,
+          "proposed": 57,
+          "precision": 0.12280701754385964,
+          "recall": 0.15217391304347827,
+          "f1": 0.13592233009708737,
+          "foreground_spill": 0.005961251862891207
+        },
+        "edges+shade": {
+          "matched": 5,
+          "eligible": 46,
+          "proposed": 50,
+          "precision": 0.1,
+          "recall": 0.10869565217391304,
+          "f1": 0.10416666666666667,
+          "foreground_spill": 0.006928822100242958
+        }
+      },
+      "pitch": {
+        "texel": {
+          "oracle": {
+            "charts": 32,
+            "counts_returned": 32,
+            "within_half_block": 1,
+            "charts_with_grid_points": 32,
+            "accurate_registered": 0,
+            "registered_rate": 0.0,
+            "accurate_rate": 0.03125,
+            "net_correct_rate": -0.9375,
+            "grid_precision": 0.0790080738177624,
+            "grid_recall": 0.28378378378378377
+          },
+          "auto": {
+            "charts": 5,
+            "counts_returned": 5,
+            "within_half_block": 0,
+            "charts_with_grid_points": 5,
+            "accurate_registered": 0,
+            "registered_rate": 0.0,
+            "accurate_rate": 0.0,
+            "net_correct_rate": -1.0,
+            "grid_precision": 0.026905829596412557,
+            "grid_recall": 0.1875
+          }
+        },
+        "repeat": {
+          "oracle": {
+            "charts": 32,
+            "counts_returned": 16,
+            "within_half_block": 16,
+            "charts_with_grid_points": 2,
+            "accurate_registered": 2,
+            "registered_rate": 0.0625,
+            "accurate_rate": 0.5,
+            "net_correct_rate": 0.5,
+            "grid_precision": 1.0,
+            "grid_recall": 0.0990990990990991
+          },
+          "auto": {
+            "charts": 5,
+            "counts_returned": 1,
+            "within_half_block": 1,
+            "charts_with_grid_points": 0,
+            "accurate_registered": 0,
+            "registered_rate": 0.0,
+            "accurate_rate": 0.2,
+            "net_correct_rate": 0.2,
+            "grid_precision": 0.0,
+            "grid_recall": 0.0
+          }
+        }
+      },
+      "lift": {
+        "texel": {
+          "estimated_lift": {
+            "matched": 5,
+            "normals": 5,
+            "within_15_degrees": 1,
+            "median_normal_error_degrees": 23.557442015818342,
+            "metric_depths": 0,
+            "within_one_block": 0,
+            "median_depth_error_blocks": null
+          },
+          "known_lift": {
+            "matched": 5,
+            "normals": 5,
+            "within_15_degrees": 1,
+            "median_normal_error_degrees": 20.502952303757162,
+            "metric_depths": 0,
+            "within_one_block": 0,
+            "median_depth_error_blocks": null
+          }
+        },
+        "repeat": {
+          "estimated_lift": {
+            "matched": 5,
+            "normals": 5,
+            "within_15_degrees": 1,
+            "median_normal_error_degrees": 23.557442015818342,
+            "metric_depths": 2,
+            "within_one_block": 0,
+            "median_depth_error_blocks": 11.381920864270938
+          },
+          "known_lift": {
+            "matched": 5,
+            "normals": 5,
+            "within_15_degrees": 1,
+            "median_normal_error_degrees": 20.502952303757162,
+            "metric_depths": 2,
+            "within_one_block": 1,
+            "median_depth_error_blocks": 1.3888566748969513
+          }
+        }
+      },
+      "connections": {
+        "texel": 3,
+        "repeat": 3
+      }
+    },
+    "workshop": {
+      "frames": 4,
+      "outlines": {
+        "contact": {
+          "matched": 0,
+          "eligible": 60,
+          "proposed": 0,
+          "precision": null,
+          "recall": 0.0,
+          "f1": 0.0,
+          "foreground_spill": null
+        },
+        "edges": {
+          "matched": 9,
+          "eligible": 60,
+          "proposed": 40,
+          "precision": 0.225,
+          "recall": 0.15,
+          "f1": 0.18,
+          "foreground_spill": 0.0012092812334668582
+        },
+        "edges+shade": {
+          "matched": 6,
+          "eligible": 60,
+          "proposed": 29,
+          "precision": 0.20689655172413793,
+          "recall": 0.1,
+          "f1": 0.1348314606741573,
+          "foreground_spill": 0.0011330861145447055
+        }
+      },
+      "pitch": {
+        "texel": {
+          "oracle": {
+            "charts": 30,
+            "counts_returned": 30,
+            "within_half_block": 2,
+            "charts_with_grid_points": 30,
+            "accurate_registered": 0,
+            "registered_rate": 0.0,
+            "accurate_rate": 0.06666666666666667,
+            "net_correct_rate": -0.8666666666666667,
+            "grid_precision": 0.03578732106339468,
+            "grid_recall": 0.09162303664921466
+          },
+          "auto": {
+            "charts": 6,
+            "counts_returned": 6,
+            "within_half_block": 0,
+            "charts_with_grid_points": 6,
+            "accurate_registered": 0,
+            "registered_rate": 0.0,
+            "accurate_rate": 0.0,
+            "net_correct_rate": -1.0,
+            "grid_precision": 0.025547445255474453,
+            "grid_recall": 0.09722222222222222
+          }
+        },
+        "repeat": {
+          "oracle": {
+            "charts": 30,
+            "counts_returned": 10,
+            "within_half_block": 10,
+            "charts_with_grid_points": 0,
+            "accurate_registered": 0,
+            "registered_rate": 0.0,
+            "accurate_rate": 0.3333333333333333,
+            "net_correct_rate": 0.3333333333333333,
+            "grid_precision": 0.0,
+            "grid_recall": 0.0
+          },
+          "auto": {
+            "charts": 6,
+            "counts_returned": 0,
+            "within_half_block": 0,
+            "charts_with_grid_points": 0,
+            "accurate_registered": 0,
+            "registered_rate": 0.0,
+            "accurate_rate": 0.0,
+            "net_correct_rate": 0.0,
+            "grid_precision": 0.0,
+            "grid_recall": 0.0
+          }
+        }
+      },
+      "lift": {
+        "texel": {
+          "estimated_lift": {
+            "matched": 6,
+            "normals": 6,
+            "within_15_degrees": 1,
+            "median_normal_error_degrees": 29.10573952461401,
+            "metric_depths": 1,
+            "within_one_block": 0,
+            "median_depth_error_blocks": 3.3389366507449623
+          },
+          "known_lift": {
+            "matched": 6,
+            "normals": 6,
+            "within_15_degrees": 0,
+            "median_normal_error_degrees": 30.7336730400082,
+            "metric_depths": 0,
+            "within_one_block": 0,
+            "median_depth_error_blocks": null
+          }
+        },
+        "repeat": {
+          "estimated_lift": {
+            "matched": 6,
+            "normals": 6,
+            "within_15_degrees": 1,
+            "median_normal_error_degrees": 29.10573952461401,
+            "metric_depths": 0,
+            "within_one_block": 0,
+            "median_depth_error_blocks": null
+          },
+          "known_lift": {
+            "matched": 6,
+            "normals": 6,
+            "within_15_degrees": 0,
+            "median_normal_error_degrees": 30.7336730400082,
+            "metric_depths": 0,
+            "within_one_block": 0,
+            "median_depth_error_blocks": null
+          }
+        }
+      },
+      "connections": {
+        "texel": 0,
+        "repeat": 0
+      }
+    }
+  }
+}

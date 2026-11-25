@@ -1,0 +1,268 @@
+{
+  "texel": {
+    "oracle": [
+      {
+        "patch_id": 2,
+        "quad": [
+          [
+            92.72574992932506,
+            48.81030234264164
+          ],
+          [
+            1327.326048147864,
+            48.81020215941983
+          ],
+          [
+            1327.326048147864,
+            842.3236747886258
+          ],
+          [
+            92.72574992932506,
+            842.323576819409
+          ]
+        ],
+        "prediction": {
+          "counts": [
+            8,
+            4
+          ],
+          "grid": {
+            "phase_blocks": [
+              0,
+              0
+            ],
+            "grid_to_image": [
+              [
+                154.324995845618,
+                0.0,
+                92.72574992932506
+              ],
+              [
+                -1.4046484385410452e-05,
+                198.37831861919184,
+                48.81030234264164
+              ],
+              [
+                -3.12144099266459e-08,
+                0.0,
+                1.0
+              ]
+            ]
+          },
+          "confidence": null,
+          "reason": "Legacy texel spacing; first chart corner assumed to lie on a seam."
+        },
+        "score": {
+          "expected_counts": [
+            5.569999999999709,
+            3.5800000000000054
+          ],
+          "counts": [
+            8.0,
+            4.0
+          ],
+          "mean_count_error": 1.4250000000001428,
+          "half_block_both": false,
+          "truth_intersections": 15,
+          "predicted_intersections": 45,
+          "truth_within_3px": 0,
+          "predicted_within_3px": 0,
+          "grid_precision": 0.0,
+          "grid_recall": 0.0,
+          "grid_f1": 0.0
+        }
+      }
+    ],
+    "auto": [],
+    "model": {
+      "lens_source": "assumed-70-degree-vertical-fov",
+      "intrinsics": [
+        [
+          642.6666030339516,
+          0.0,
+          720.0
+        ],
+        [
+          0.0,
+          642.6666030339516,
+          450.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "planes": [],
+      "shared_edges": []
+    },
+    "estimated_lift": [],
+    "known_lift": []
+  },
+  "repeat": {
+    "oracle": [
+      {
+        "patch_id": 2,
+        "quad": [
+          [
+            92.72574992932506,
+            48.81030234264164
+          ],
+          [
+            1327.326048147864,
+            48.81020215941983
+          ],
+          [
+            1327.326048147864,
+            842.3236747886258
+          ],
+          [
+            92.72574992932506,
+            842.323576819409
+          ]
+        ],
+        "prediction": {
+          "counts": [
+            5.5703125,
+            3.578125
+          ],
+          "grid": null,
+          "confidence": 1.0,
+          "reason": "pitch supported; joint phase unresolved",
+          "evidence": {
+            "axes": [
+              {
+                "count": 5.5703125,
+                "candidates": [
+                  {
+                    "count": 5.5703125,
+                    "native_phase": 0.2824630992542423,
+                    "strength": 1.3649575161148602,
+                    "aligned_energy": 26.25697340294061,
+                    "effective_bins": 15.346009559222967,
+                    "repeat": 0.9878107688014219
+                  },
+                  {
+                    "count": 17.53125,
+                    "native_phase": 0.5205084891092566,
+                    "strength": 0.08443079616854707,
+                    "aligned_energy": 1.412424343210639,
+                    "effective_bins": 14.470766469371302,
+                    "repeat": 0.0794650149654099
+                  }
+                ],
+                "reason": "native 16-texel lattice"
+              },
+              {
+                "count": 3.578125,
+                "candidates": [
+                  {
+                    "count": 3.578125,
+                    "native_phase": 0.9438861916404987,
+                    "strength": 1.3711696442555505,
+                    "aligned_energy": 31.037480715658866,
+                    "effective_bins": 15.680338666669368,
+                    "repeat": 0.9951101246154015
+                  },
+                  {
+                    "count": 28.1171875,
+                    "native_phase": 0.4341394582298571,
+                    "strength": 0.1336324641375482,
+                    "aligned_energy": 1.5773976640823142,
+                    "effective_bins": 11.44043124023111,
+                    "repeat": 0.06381335066329213
+                  },
+                  {
+                    "count": 24.5390625,
+                    "native_phase": 0.4836727708394435,
+                    "strength": 0.08901989826060272,
+                    "aligned_energy": 1.4552431377820898,
+                    "effective_bins": 10.361792025284156,
+                    "repeat": 0.08010033847956977
+                  },
+                  {
+                    "count": 24.8125,
+                    "native_phase": 0.6824569155472968,
+                    "strength": 0.060467160199891234,
+                    "aligned_energy": 1.2941556833702343,
+                    "effective_bins": 15.673695347599853,
+                    "repeat": 0.07875250555437148
+                  }
+                ],
+                "reason": "native 16-texel lattice"
+              }
+            ],
+            "patch_aspect": 1.5558657759998091,
+            "assumption": "one block spans sixteen resolved vanilla texture texels",
+            "selected": [
+              {
+                "count": 5.5703125,
+                "native_phase": 0.2824630992542423,
+                "strength": 1.3649575161148602,
+                "aligned_energy": 26.25697340294061,
+                "effective_bins": 15.346009559222967,
+                "repeat": 0.9878107688014219
+              },
+              {
+                "count": 3.578125,
+                "native_phase": 0.9438861916404987,
+                "strength": 1.3711696442555505,
+                "aligned_energy": 31.037480715658866,
+                "effective_bins": 15.680338666669368,
+                "repeat": 0.9951101246154015
+              }
+            ],
+            "phase_by_axis": [
+              null,
+              null
+            ]
+          }
+        },
+        "score": {
+          "expected_counts": [
+            5.569999999999709,
+            3.5800000000000054
+          ],
+          "counts": [
+            5.5703125,
+            3.578125
+          ],
+          "mean_count_error": 0.0010937500001482192,
+          "half_block_both": true,
+          "truth_intersections": 15,
+          "predicted_intersections": 0,
+          "truth_within_3px": 0,
+          "predicted_within_3px": 0,
+          "grid_precision": null,
+          "grid_recall": 0.0,
+          "grid_f1": 0.0
+        }
+      }
+    ],
+    "auto": [],
+    "model": {
+      "lens_source": "assumed-70-degree-vertical-fov",
+      "intrinsics": [
+        [
+          642.6666030339516,
+          0.0,
+          720.0
+        ],
+        [
+          0.0,
+          642.6666030339516,
+          450.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "planes": [],
+      "shared_edges": []
+    },
+    "estimated_lift": [],
+    "known_lift": []
+  }
+}
