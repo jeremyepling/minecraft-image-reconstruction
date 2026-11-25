@@ -8,7 +8,8 @@ from PIL import Image,ImageDraw
 from benchmark.camera_round import read,save
 from benchmark.camera_labels import rasterize
 from benchmark.normal_round import METHODS,BASE
-from benchmark.surface_metrics import truth,DOWNSAMPLE,observed_support
+from benchmark.surface_metrics import DOWNSAMPLE,observed_support
+from benchmark.surface_reference import recorded,review_case
 from benchmark.surface_topology import opening_mask
 from benchmark.surface_sheet import scene_box,overlay_scene,text,panel,poly,box_of,PAPER,DIM
 
@@ -17,11 +18,10 @@ TITLES=('Contrast + shading','Contrast scored by normals','Regions grouped by no
 
 
 def case_data(out,row):
-    src=(out/row['source']).resolve()
-    root=src.parent.parent
-    frame=next(f for f in read(root/'index.json')['frames'] if f['id']==row['id'])
-    im=Image.open(src).convert('RGB')
-    t=truth(read(root/frame['pose']),read(root/frame['labels'])['faces'])
+    case=review_case(out,row)
+    with Image.open(case.path('image')) as src:
+        im=src.convert('RGB')
+    _,t=recorded(case)
     pred=json.loads(gzip.decompress((out/row['prediction']).read_bytes()))
     return im,t,pred
 

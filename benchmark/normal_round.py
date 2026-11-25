@@ -15,6 +15,7 @@ from benchmark.depth_probe_score import occlusion_pairs
 from benchmark.exterior_set import Capture, check_capture_conditions, load_suite
 from benchmark.normal_fields import fields
 from benchmark.surface_metrics import score_pitch, score_planes, DOWNSAMPLE, observed_support
+from benchmark.surface_reference import ARCHIVE as REFERENCE_MAPS
 from benchmark.surface_round import (image_of, recorded, outline_summary, depth_summary,
                                      lift_scores, pitch_summary, artifact_path)
 from benchmark.surface_topology import opening_mask, opening_coverage
@@ -256,6 +257,8 @@ def main():
     from engine.surface_pitch import SETTINGS as scale
     manifest=dict(run_id=out.name,suite='normal-round',code=code,version=suite['version'],client_sha256=suite['client_sha256'],
        capture=suite['capture_conditions'],fixtures=hashes,split={k:sorted({c.frame['layout'] for c in cs}) for k,cs in cohorts.items()},
+       evaluation_reference=(dict(path=artifact_path(REFERENCE_MAPS,out),sha256=digest(REFERENCE_MAPS))
+                             if REFERENCE_MAPS.is_file() else dict(source='project recorded face labels')),
        blind_world=dict(path=artifact_path(archive_dir/world['archive'],out),sha256=world['sha256']),
        methods=dict(outlines=list(METHODS),pitch=['repeat'],order=['geometry','depth-anything'],lift='shared-edges-v1'),
        selected_on_development=winner,recommended_outlines=adopted,recommended_depth_order=adopted_order,

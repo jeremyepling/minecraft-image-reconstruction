@@ -4,7 +4,8 @@ from PIL import Image, ImageDraw
 
 from benchmark.camera_round import read, save
 from benchmark.camera_sheet import font
-from benchmark.surface_metrics import truth, DOWNSAMPLE
+from benchmark.surface_metrics import DOWNSAMPLE
+from benchmark.surface_reference import recorded
 from engine.geometry import project, transform
 
 
@@ -43,7 +44,7 @@ def panel(canvas,im,box,x,y,width,height):
 def captured(case):
     with Image.open(case.path('image')) as im:
         src = im.convert('RGB')
-    return src,truth(read(case.path('pose')),read(case.path('labels'))['faces'])
+    return src,recorded(case)[1]
 
 
 def scene_box(t,src):

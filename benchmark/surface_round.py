@@ -14,7 +14,8 @@ from benchmark.camera_round import ROOT, fixture_digest, read, revision, save
 from benchmark.camera_metrics import truth_camera
 from benchmark.exterior_set import Capture, check_capture_conditions, load_suite
 from benchmark.surface_fixture import FROZEN, FROZEN_SHA256
-from benchmark.surface_metrics import truth, score_planes, score_pitch
+from benchmark.surface_metrics import score_planes, score_pitch
+from benchmark.surface_reference import recorded
 from engine.surface_model import assemble, intrinsic, pitch, proposals_for, SETTINGS
 
 
@@ -27,11 +28,6 @@ RULE = dict(outlines='Maximize mean development-layout plane F1 at IoU 0.5. Tie:
 def image_of(case):
     with Image.open(case.path('image')) as src:
         return Image.fromarray(np.asarray(src.convert('RGB')))
-
-
-def recorded(case):
-    pose = read(case.path('pose'))
-    return pose, truth(pose, read(case.path('labels'))['faces'])
 
 
 def evaluate_outlines(job):
