@@ -110,7 +110,7 @@ def gallery(out,groups):
 
 def render(out,groups,stages):
     gallery(out,groups)
-    canvas = Image.new('RGB',(W,1608),PAPER)
+    canvas = Image.new('RGB',(W,1985),PAPER)
     d = ImageDraw.Draw(canvas)
     text(d,M,20,'Finding planes and counting blocks',42,True)
     text(d,M,80,'Java 26.3  /  fresh confirmation  /  clear noon  /  light gray concrete floor',23,fill=DIM)
@@ -148,7 +148,7 @@ def render(out,groups,stages):
                                         ('Missed or unresolved count',[e for e in eligible if not e[0]]))):
         if not pool:
             continue
-        _,_,_,case,_,old,new = max(pool,key=lambda e:(e[1],e[2]))
+        _,_,_,case,_,old,new = max(pool,key=lambda e:(e[6]['prediction']['grid'] is not None,e[1],e[2]))
         src,gt = captured(case)
         q = new['quad']
         crop = box_of(q,src.size,5)
@@ -161,5 +161,40 @@ def render(out,groups,stages):
             panel(canvas,view,crop,x,y+36,COL,208)
             text(d,x,y+250,title,17,bold=True)
         regions.append(dict(image=case.id,floor=case.floor,region_xyxy=crop,stage='pitch'))
+    text(d,M,1582,'Depth from the same outlines',27,True)
+    text(d,M,1620,'Distances are in blocks along the viewing direction. Each column uses the same two predicted footprints.',20)
+    candidates = []
+    for case,p in items:
+        data = read(out/p/'surfaces.json')[stages['pitch']]
+        measured = [r for r in data['estimated_lift'] if 'depth' in r]
+        if measured:
+            candidates.append((len(measured),max(r['depth_error_blocks'] for r in measured),case,data))
+    if candidates:
+        _,_,case,data = max(candidates,key=lambda c:c[:2])
+        src,_ = captured(case)
+        shown = sorted((r for r in data['estimated_lift'] if 'depth' in r),key=lambda r:-r['depth_error_blocks'])[:2]
+        patches = {p['id']:p for p in data['model']['planes']}
+        known = {r['id']:r for r in data['known_lift']}
+        crop = box_of([patches[r['id']]['quad'] for r in shown],src.size,24)
+        for i,title in enumerate(('Recorded world depth','Estimated camera','Recorded camera diagnostic')):
+            x = M+i*(COL+GAP)
+            img = src.copy()
+            pen = ImageDraw.Draw(img)
+            labels = []
+            for j,r in enumerate(shown):
+                color = (CYAN,GOLD)[j]
+                q = patches[r['id']]['quad']
+                poly(pen,q,color,4,True)
+                val = (r['truth_depth'],r['depth'],known.get(r['id'],{}).get('depth'))[i]
+                letter = chr(ord('A')+j)
+                pt = np.mean(q,axis=0)
+                pen.text(tuple(pt),letter,font=font(18,True),fill=color,stroke_width=2,stroke_fill='#102323',anchor='mm')
+                labels.append(letter+'  '+(f'{val:.2f}' if val is not None else 'unknown'))
+            text(d,x,1662,title,21,True)
+            panel(canvas,img,crop,x,1701,COL,196)
+            text(d,x,1911,'    /    '.join(labels)+' blocks',19,True)
+        regions.append(dict(image=case.id,floor=case.floor,region_xyxy=crop,stage='lift'))
+    else:
+        text(d,M,1692,'No matched patch yielded metric depth.',24)
     canvas.save(out/'comparison.jpg',quality=94,subsampling=0)
     save(out/'review-regions.json',regions)

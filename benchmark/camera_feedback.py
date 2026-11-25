@@ -14,8 +14,9 @@ def record(run, image_id, box, preferred, note, floor=None, stage=None):
         from PIL import Image
         case = next((c for c in read(run / manifest['artifacts']['cases'])
                      if c['id'] == image_id and c['floor'] == floor), None)
-        if not case or stage not in ('pitch', 'outlines') or preferred not in [
-                *manifest['methods'][stage], 'no-preference']:
+        choices = {'lift':['shared-edges-v1','no-preference'],
+                   **{k:[*manifest['methods'][k],'no-preference'] for k in ('pitch','outlines')}}
+        if not case or preferred not in choices.get(stage, []):
             raise ValueError('Choose a recorded image, floor, stage and method from this surface run.')
         with Image.open(run / case['source']) as src:
             w, h = src.size

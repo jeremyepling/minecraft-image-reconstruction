@@ -102,9 +102,9 @@ def outline_summary(rows):
     n = sum(r['eligible'] for r in rows)
     p = sum(r['proposed'] for r in rows)
     m = sum(r['matched'] for r in rows)
-    return dict(matched=m,eligible=n,proposed=p,precision=frac(m,p),recall=frac(m,n),
-                f1=frac(2*m,p+n),foreground_spill=frac(sum(r['spill_pixels'] for r in rows),
-                                                       sum(r['proposed_pixels'] for r in rows)))
+    pixels = sum(r['proposed_pixels'] for r in rows)
+    return dict(matched=m,eligible=n,proposed=p,precision=m/p if p else None,recall=frac(m,n),
+                f1=frac(2*m,p+n),foreground_spill=sum(r['spill_pixels'] for r in rows)/pixels if pixels else None)
 
 
 def pitch_summary(rows):
@@ -112,6 +112,7 @@ def pitch_summary(rows):
     supported = sum(r.get('counts') is not None for r in rows)
     registered = sum(bool(r.get('half_block_both')) and (r.get('grid_f1') or 0.)>=.5 for r in rows)
     return dict(charts=len(rows),counts_returned=supported,within_half_block=accurate,
+                charts_with_grid_points=sum(r['predicted_intersections']>0 for r in rows),
                 accurate_registered=registered,registered_rate=frac(registered,len(rows)),
                 accurate_rate=frac(accurate,len(rows)),net_correct_rate=frac(2*accurate-supported,len(rows)),
                 grid_precision=frac(sum(r['predicted_within_3px'] for r in rows),sum(r['predicted_intersections'] for r in rows)),
@@ -156,6 +157,11 @@ def main():
         for case in variants.values():
             group = 'dev' if case.frame['split']=='dev' else 'regression'
             groups[group].append((case,Path('cases')/case.floor/case.id))
+    from benchmark.surface_world import OUTPUT as world_dir, FILENAME as archive
+    from benchmark.camera_round import digest
+    world = read(world_dir/'world-index.json')['worlds'][0]
+    if digest(world_dir/archive) != world['sha256']:
+        raise ValueError('Frozen confirmation world differs from its index.')
     frozen = read(FROZEN/'index.json')
     if fixture_digest(FROZEN,frozen) != FROZEN_SHA256 or frozen['client_sha256'] != suite['client_sha256']:
         raise ValueError('Confirmation release digest or client changed')
@@ -191,6 +197,11 @@ def main():
                for k,cases in groups.items() for c,p in cases]
     save(out/'cases.json',records)
     save(out/'scores.json',summary)
+    floors = {cohort:{floor:summaries([(c,p) for c,p in cases if c.floor==floor],out,True)['all']
+                      for floor in sorted({c.floor for c,p in cases})} for cohort,cases in groups.items()}
+    save(out/'floor-scores.json',floors)
+    from benchmark.surface_topology import evaluate_run
+    topology = evaluate_run(out)
     (out/'feedback.jsonl').touch()
     from benchmark.surface_sheet import render
     render(out,groups,stages)
@@ -200,11 +211,14 @@ def main():
                     environment=dict(python=sys.version.split()[0],numpy=np.__version__,pillow=pillow_version),
                     capture=suite['capture_conditions'], split={k:sorted({c.frame['layout'] for c,_ in v}) for k,v in groups.items()},
                     releases={**{f:d['sha256'] for f,d in suite['conditions'].items()},'surface-confirm-v1':FROZEN_SHA256},
+                    confirmation_world=dict(archive=os.path.relpath(world_dir/archive,out),sha256=world['sha256']),
                     stages=stages,methods=dict(outlines=list(OUTLINES),pitch=list(PITCH),lift='shared-edges-v1'),
                     settings=dict(outlines=edges_settings,shade_weight=.22,pitch=pitch_settings,lift=SETTINGS,
                                   reference_methods=['engine.camera_grid:seam-fit/contact_planes','engine.texel_grid:texel_grid']),
                     selection_rule=RULE, confirmation=summary['confirmation']['all'],
+                    confirmation_topology=topology['cohorts']['confirmation'],
                     artifacts=dict(review='comparison.jpg',gallery='fixtures.jpg',scores='scores.json',selection='selection.json',
+                                   floors='floor-scores.json',topology='topology.json',review_regions='review-regions.json',
                                    cases='cases.json',per_case=['outlines.json','surfaces.json'],visual_feedback='feedback.jsonl'))
     save(out/'manifest.json',manifest)
     print(out,flush=True)

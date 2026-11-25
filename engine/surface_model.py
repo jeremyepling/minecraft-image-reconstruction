@@ -116,7 +116,7 @@ def assemble(proposals, pitches, size, diagnostic_K=None):
         K, source = diagnostic_K, 'recorded-camera-diagnostic'
     planes, items = [], {}
     for p, result in zip(proposals, pitches, strict=True):
-        row = dict(id=p['id'], quad=p['quad'], pitch=result)
+        row = dict(p, pitch=result)
         lifted = lift(p['quad'], K, result)
         if lifted:
             xyz, normal, scale = lifted
@@ -186,7 +186,16 @@ def proposals_for(image, version, method):
         raise ValueError(f'Unknown outline method {method}')
     from engine.surface_edges import detect_planes
     parts = detect_planes(image, version=version, shading=method == 'edges+shade')
-    return [dict(p, quad=canonical(p['quad'])) for p in parts]
+    reordered = {}
+    for p in parts:
+        old = p['quad']
+        p['quad'] = canonical(old)
+        reordered[p['id']] = [p['quad'].index(corner) for corner in old]
+    for p in parts:
+        for link in p['corner_junctions']:
+            link['corner'] = reordered[p['id']][link['corner']]
+            link['neighbor_corner'] = reordered[link['neighbor']][link['neighbor_corner']]
+    return parts
 
 
 def build(image_path, version, out):
