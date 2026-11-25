@@ -1,0 +1,486 @@
+{
+  "split": "test",
+  "outline_means": {
+    "previous": {
+      "iou": 0.9369,
+      "boundary_f1": 0.844
+    },
+    "without_lines": {
+      "iou": 0.9409,
+      "boundary_f1": 0.8471
+    },
+    "line_first": {
+      "iou": 0.9461,
+      "boundary_f1": 0.854
+    }
+  },
+  "views": {
+    "test-adjacency-26-left": {
+      "outlines": {
+        "previous": {
+          "iou": 0.8812,
+          "boundary_f1": 0.7764
+        },
+        "without_lines": {
+          "iou": 0.8382,
+          "boundary_f1": 0.6085
+        },
+        "line_first": {
+          "iou": 0.845,
+          "boundary_f1": 0.635
+        }
+      },
+      "panels": {}
+    },
+    "test-adjacency-26-right": {
+      "outlines": {
+        "previous": {
+          "iou": 0.894,
+          "boundary_f1": 0.7977
+        },
+        "without_lines": {
+          "iou": 0.8896,
+          "boundary_f1": 0.7529
+        },
+        "line_first": {
+          "iou": 0.8966,
+          "boundary_f1": 0.7963
+        }
+      },
+      "panels": {}
+    },
+    "test-stepped_tower-27-left": {
+      "outlines": {
+        "previous": {
+          "iou": 0.9579,
+          "boundary_f1": 0.8852
+        },
+        "without_lines": {
+          "iou": 0.9437,
+          "boundary_f1": 0.7973
+        },
+        "line_first": {
+          "iou": 0.955,
+          "boundary_f1": 0.8362
+        }
+      },
+      "panels": {}
+    },
+    "test-stepped_tower-27-right": {
+      "outlines": {
+        "previous": {
+          "iou": 0.956,
+          "boundary_f1": 0.8526
+        },
+        "without_lines": {
+          "iou": 0.9421,
+          "boundary_f1": 0.7881
+        },
+        "line_first": {
+          "iou": 0.9492,
+          "boundary_f1": 0.8148
+        }
+      },
+      "panels": {}
+    },
+    "test-recess-28-left": {
+      "outlines": {
+        "previous": {
+          "iou": 0.9243,
+          "boundary_f1": 0.6631
+        },
+        "without_lines": {
+          "iou": 0.9453,
+          "boundary_f1": 0.7867
+        },
+        "line_first": {
+          "iou": 0.9439,
+          "boundary_f1": 0.778
+        }
+      },
+      "panels": {}
+    },
+    "test-recess-28-right": {
+      "outlines": {
+        "previous": {
+          "iou": 0.9355,
+          "boundary_f1": 0.7107
+        },
+        "without_lines": {
+          "iou": 0.9552,
+          "boundary_f1": 0.8261
+        },
+        "line_first": {
+          "iou": 0.959,
+          "boundary_f1": 0.817
+        }
+      },
+      "panels": {}
+    },
+    "test-corner-29-left": {
+      "outlines": {
+        "previous": {
+          "iou": 0.955,
+          "boundary_f1": 0.9816
+        },
+        "without_lines": {
+          "iou": 0.9621,
+          "boundary_f1": 0.9969
+        },
+        "line_first": {
+          "iou": 0.9701,
+          "boundary_f1": 1.0
+        }
+      },
+      "panels": {}
+    },
+    "test-corner-29-right": {
+      "outlines": {
+        "previous": {
+          "iou": 0.9553,
+          "boundary_f1": 0.9589
+        },
+        "without_lines": {
+          "iou": 0.9668,
+          "boundary_f1": 0.9714
+        },
+        "line_first": {
+          "iou": 0.9716,
+          "boundary_f1": 0.9543
+        }
+      },
+      "panels": {}
+    },
+    "test-canopy-30-left": {
+      "outlines": {
+        "previous": {
+          "iou": 0.9187,
+          "boundary_f1": 0.9076
+        },
+        "without_lines": {
+          "iou": 0.9493,
+          "boundary_f1": 0.9559
+        },
+        "line_first": {
+          "iou": 0.9523,
+          "boundary_f1": 0.9572
+        }
+      },
+      "panels": {}
+    },
+    "test-canopy-30-right": {
+      "outlines": {
+        "previous": {
+          "iou": 0.9297,
+          "boundary_f1": 0.9121
+        },
+        "without_lines": {
+          "iou": 0.9461,
+          "boundary_f1": 0.9579
+        },
+        "line_first": {
+          "iou": 0.9481,
+          "boundary_f1": 0.9566
+        }
+      },
+      "panels": {}
+    },
+    "test-relief-00-oblique-left": {
+      "outlines": {
+        "previous": {
+          "iou": 0.9657,
+          "boundary_f1": 0.8101
+        },
+        "without_lines": {
+          "iou": 0.9753,
+          "boundary_f1": 0.828
+        },
+        "line_first": {
+          "iou": 0.9792,
+          "boundary_f1": 0.8166
+        }
+      },
+      "panels": {
+        "line_junctions": {
+          "rows": [
+            {
+              "target": "panel-1",
+              "actual": "flat",
+              "decision": "unknown",
+              "iou": 0.984
+            },
+            {
+              "target": "panel-2",
+              "actual": "recess",
+              "decision": "recess",
+              "iou": 0.867
+            },
+            {
+              "target": "panel-3",
+              "actual": "protrusion",
+              "decision": "protrusion",
+              "iou": 0.775
+            },
+            {
+              "target": "panel-4",
+              "actual": "flat",
+              "decision": "missed",
+              "iou": 0.0
+            },
+            {
+              "target": "panel-5",
+              "actual": "recess",
+              "decision": "recess",
+              "iou": 0.9
+            },
+            {
+              "target": "panel-6",
+              "actual": "protrusion",
+              "decision": "unknown",
+              "iou": 0.692
+            },
+            {
+              "target": "panel-7",
+              "actual": "flat",
+              "decision": "flat",
+              "iou": 0.976
+            },
+            {
+              "target": "panel-8",
+              "actual": "recess",
+              "decision": "protrusion",
+              "iou": 0.856
+            },
+            {
+              "target": "panel-9",
+              "actual": "protrusion",
+              "decision": "protrusion",
+              "iou": 0.865
+            }
+          ],
+          "extra": {
+            "unknown": 18,
+            "recess": 3,
+            "protrusion": 4
+          }
+        },
+        "opening_inspector": {
+          "rows": [
+            {
+              "target": "panel-1",
+              "actual": "flat",
+              "decision": "missed",
+              "iou": 0.0
+            },
+            {
+              "target": "panel-2",
+              "actual": "recess",
+              "decision": "unknown",
+              "iou": 0.675
+            },
+            {
+              "target": "panel-3",
+              "actual": "protrusion",
+              "decision": "missed",
+              "iou": 0.0
+            },
+            {
+              "target": "panel-4",
+              "actual": "flat",
+              "decision": "missed",
+              "iou": 0.0
+            },
+            {
+              "target": "panel-5",
+              "actual": "recess",
+              "decision": "unknown",
+              "iou": 0.674
+            },
+            {
+              "target": "panel-6",
+              "actual": "protrusion",
+              "decision": "missed",
+              "iou": 0.0
+            },
+            {
+              "target": "panel-7",
+              "actual": "flat",
+              "decision": "flat",
+              "iou": 0.69
+            },
+            {
+              "target": "panel-8",
+              "actual": "recess",
+              "decision": "missed",
+              "iou": 0.0
+            },
+            {
+              "target": "panel-9",
+              "actual": "protrusion",
+              "decision": "missed",
+              "iou": 0.0
+            }
+          ],
+          "extra": {
+            "flat": 1
+          }
+        }
+      }
+    },
+    "test-relief-00-oblique-right": {
+      "outlines": {
+        "previous": {
+          "iou": 0.9698,
+          "boundary_f1": 0.8723
+        },
+        "without_lines": {
+          "iou": 0.9776,
+          "boundary_f1": 0.896
+        },
+        "line_first": {
+          "iou": 0.9831,
+          "boundary_f1": 0.8854
+        }
+      },
+      "panels": {
+        "line_junctions": {
+          "rows": [
+            {
+              "target": "panel-1",
+              "actual": "flat",
+              "decision": "recess",
+              "iou": 0.983
+            },
+            {
+              "target": "panel-2",
+              "actual": "recess",
+              "decision": "recess",
+              "iou": 0.896
+            },
+            {
+              "target": "panel-3",
+              "actual": "protrusion",
+              "decision": "unknown",
+              "iou": 0.913
+            },
+            {
+              "target": "panel-4",
+              "actual": "flat",
+              "decision": "flat",
+              "iou": 0.726
+            },
+            {
+              "target": "panel-5",
+              "actual": "recess",
+              "decision": "recess",
+              "iou": 0.905
+            },
+            {
+              "target": "panel-6",
+              "actual": "protrusion",
+              "decision": "protrusion",
+              "iou": 0.925
+            },
+            {
+              "target": "panel-7",
+              "actual": "flat",
+              "decision": "recess",
+              "iou": 0.943
+            },
+            {
+              "target": "panel-8",
+              "actual": "recess",
+              "decision": "recess",
+              "iou": 0.836
+            },
+            {
+              "target": "panel-9",
+              "actual": "protrusion",
+              "decision": "unknown",
+              "iou": 0.792
+            }
+          ],
+          "extra": {
+            "unknown": 7,
+            "recess": 7,
+            "protrusion": 1
+          }
+        },
+        "opening_inspector": {
+          "rows": [
+            {
+              "target": "panel-1",
+              "actual": "flat",
+              "decision": "unknown",
+              "iou": 0.663
+            },
+            {
+              "target": "panel-2",
+              "actual": "recess",
+              "decision": "unknown",
+              "iou": 0.762
+            },
+            {
+              "target": "panel-3",
+              "actual": "protrusion",
+              "decision": "missed",
+              "iou": 0.0
+            },
+            {
+              "target": "panel-4",
+              "actual": "flat",
+              "decision": "missed",
+              "iou": 0.0
+            },
+            {
+              "target": "panel-5",
+              "actual": "recess",
+              "decision": "unknown",
+              "iou": 0.675
+            },
+            {
+              "target": "panel-6",
+              "actual": "protrusion",
+              "decision": "missed",
+              "iou": 0.0
+            },
+            {
+              "target": "panel-7",
+              "actual": "flat",
+              "decision": "flat",
+              "iou": 0.744
+            },
+            {
+              "target": "panel-8",
+              "actual": "recess",
+              "decision": "recess",
+              "iou": 0.777
+            },
+            {
+              "target": "panel-9",
+              "actual": "protrusion",
+              "decision": "missed",
+              "iou": 0.0
+            }
+          ],
+          "extra": {}
+        }
+      }
+    }
+  },
+  "flat_controls": {
+    "dark-inlay-oblique-left": {
+      "flat": 2,
+      "recess": 6,
+      "unknown": 8,
+      "protrusion": 1
+    },
+    "dark-inlay-oblique-right": {
+      "protrusion": 7,
+      "flat": 1,
+      "unknown": 9
+    },
+    "physical-shade-oblique-left": {},
+    "physical-shade-oblique-right": {}
+  }
+}

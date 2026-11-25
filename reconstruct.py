@@ -70,6 +70,9 @@ def main():
     p=cmds.add_parser('inspect-openings',help='Run the experimental entrance check and write its decisions and review overlay')
     p.add_argument('image',type=Path)
     p.add_argument('--out',type=Path,required=True)
+    p=cmds.add_parser('inspect-form',help='Trace the whole-frame outline, then inspect smaller line junctions')
+    p.add_argument('image',type=Path)
+    p.add_argument('--out',type=Path,required=True)
     p=cmds.add_parser('analyze')
     p.add_argument('--geometry-method',choices=['baseline','texel','remap'],default='baseline')
     p.add_argument('image',type=Path)
@@ -94,7 +97,10 @@ def main():
     p.add_argument('--library',type=Path,help='Calibrated face_textures/softened-library.npz')
     p.add_argument('--depth',type=int,help='Extrapolate a hollow shell behind one visible wall')
     args=parser.parse_args()
-    if args.command=='inspect-openings':
+    if args.command=='inspect-form':
+        from benchmark.line_form import inspect_file
+        inspect_file(args.image,args.out)
+    elif args.command=='inspect-openings':
         from benchmark.entrances import inspect_to_folder
         inspect_to_folder(args.image,args.out)
     elif args.command=='atlas':
