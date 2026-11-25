@@ -230,6 +230,13 @@ def exemplar_bank(atlas_dir, library, catalog):
             if str(f['version'])!=atlas['version'] or str(f['atlas_sha256'])!=atlas['atlas_sha256']:
                 raise ValueError('Calibration version or atlas digest mismatch')
             return f['tiles'],f['labels'],str(f['method'])
+    tiles, labels = opaque_sprites(atlas_dir, catalog)
+    return np.concatenate([tiles,degrade(tiles,10,(.8,.8,.8))]),np.tile(labels,2),'multiscale'
+
+
+def opaque_sprites(atlas_dir, catalog):
+    atlas=json.loads((atlas_dir/'atlas.json').read_text())
+    png=atlas_dir/atlas['atlas']
     images=[]; labels=[]
     placeable=set().union(*(set(choices) for choices in catalog['choices'].values()))
     with Image.open(png) as sheet:
@@ -240,12 +247,11 @@ def exemplar_bank(atlas_dir, library, catalog):
             patch=sheet.crop((x,y,x+w,y+h)).resize((16,16),Image.Resampling.BOX)
             if patch.convert('RGBA').getchannel('A').getextrema()[0]<255: continue
             images.append(np.asarray(patch.convert('RGB')));labels.append(name)
-    tiles=np.stack(images)
-    return np.concatenate([tiles,degrade(tiles,10,(.8,.8,.8))]),np.tile(labels,2),'multiscale'
+    return np.stack(images), np.asarray(labels)
 
 
 def reconstruct(image, atlas_dir, scene, library, out, depth=None, grid=None, white_balance=False,match_exposure=False,
-                geometry_method='baseline'):
+                geometry_method='baseline',match_appearance=None):
     out.mkdir(parents=True,exist_ok=True)
     catalog=json.loads((atlas_dir/'placement-index.json').read_text())
     if grid:
@@ -261,28 +267,76 @@ def reconstruct(image, atlas_dir, scene, library, out, depth=None, grid=None, wh
         gains,lighting=cast_estimate(im,[],[0,0,*im.size])
         if lighting['confidence']=='moderate': rgb=np.asarray(correct(im,gains))
     tiles,labels,method=exemplar_bank(atlas_dir,library,catalog)
+    calibrated_method=method
+    if match_appearance:
+        from engine.appearance import prototypes, appearance_rows
+        if match_exposure:
+            raise ValueError('Appearance and exposure are separate ranking modes')
+        if not library:
+            raise ValueError('Appearance matching requires a rendered --library')
+        sprite_tiles,appearance_labels=opaque_sprites(atlas_dir,catalog)
+        appearance_refs=prototypes(sprite_tiles,appearance_labels,tiles,labels)
+        method='appearance-'+match_appearance
     grouped=defaultdict(list)
     for cell in cells: grouped[cell['facing']].append(cell)
     blocks={}; margins={}; decisions=[]; alternatives={}
     for side,part in grouped.items():
         mapping=catalog['choices'][side]
-        use=np.isin(labels,list(mapping))
-        train=features(tiles[use])
-        for start in range(0,len(part),96):
-            batch=part[start:start+96]
-            query=np.stack([face(rgb,c['quad'],16) for c in batch])
-            for index,(c,(names,ds,gap)) in enumerate(zip(batch,rank(query,train,labels[use],method,match_exposure))):
-                # Prefer a namesake full block among visually equivalent IDs.
-                texture=names[0]; block=min(mapping[texture],key=lambda s:(s!=texture,len(s),s))
-                pos=tuple(c['xyz'])
-                if pos not in margins or gap>margins[pos]:
-                    blocks[pos]=block;margins[pos]=gap
-                    alternatives.pop(pos,None)
-                    if falls_without_support(block):
-                        alternatives[pos]=ranked_stable_block(names,mapping,query[index:index+1],train,
-                                                              labels[use],method,match_exposure)
-                decisions.append(dict(plane=c['plane'],ij=c['ij'],xyz=c['xyz'],block_id=block,
-                                      textures=names,distances=ds,relative_margin=gap))
+        trusted=set()
+        if match_appearance:
+            use=np.isin(appearance_labels,list(mapping))
+            support=None
+            if match_appearance in ('motif','adaptive'):
+                from engine.motifs import bank, priors
+                support=priors(rgb,part,bank(atlas_dir,set(appearance_labels[use])))
+            ranked=appearance_rows(rgb,part,face,appearance_refs[use],appearance_labels[use],
+                                   mapping,stable_alternative,match_appearance!='local',support)
+            if match_appearance=='adaptive':
+                from engine.routing import alignment_scores, trusted_cells
+                eligible=np.isin(labels,list(mapping))
+                train=features(tiles[eligible])
+                by_plane=defaultdict(list)
+                for index,cell in enumerate(part):
+                    by_plane[cell['plane']].append(index)
+                for indices in by_plane.values():
+                    patches=np.stack([face(rgb,part[i]['quad'],16) for i in indices])
+                    rows,evidence=alignment_scores(patches,train,labels[eligible],calibrated_method)
+                    widths=[np.linalg.norm(np.subtract(part[i]['quad'][1],part[i]['quad'][0])) for i in indices]
+                    for j,accept in enumerate(trusted_cells(evidence,widths)):
+                        if accept:
+                            names,ds,gap=rows[j]
+                            alternate=stable_alternative(names,mapping)
+                            if not alternate:
+                                alternate=ranked_stable_block(names,mapping,patches[j:j+1],
+                                    train,labels[eligible],calibrated_method,True)
+                            index=indices[j]
+                            ranked[index]=(names,ds,gap,alternate)
+                            trusted.add(index)
+        else:
+            use=np.isin(labels,list(mapping))
+            train=features(tiles[use])
+            ranked=[]
+            for start in range(0,len(part),96):
+                batch=part[start:start+96]
+                query=np.stack([face(rgb,c['quad'],16) for c in batch])
+                for index,(names,ds,gap) in enumerate(rank(query,train,labels[use],method,match_exposure)):
+                    alternate=None
+                    if any(falls_without_support(b) for b in mapping[names[0]]):
+                        alternate=ranked_stable_block(names,mapping,query[index:index+1],train,
+                                                      labels[use],method,match_exposure)
+                    ranked.append((names,ds,gap,alternate))
+        for index,(c,(names,ds,gap,alternate)) in enumerate(zip(part,ranked)):
+            texture=names[0]; block=min(mapping[texture],key=lambda s:(s!=texture,len(s),s))
+            pos=tuple(c['xyz'])
+            if pos not in margins or gap>margins[pos]:
+                blocks[pos]=block;margins[pos]=gap
+                alternatives.pop(pos,None)
+                if falls_without_support(block):
+                    alternatives[pos]=alternate
+            decisions.append(dict(plane=c['plane'],ij=c['ij'],xyz=c['xyz'],block_id=block,
+                                  textures=names,distances=ds,relative_margin=gap))
+            if match_appearance=='adaptive':
+                decisions[-1]['material_method']='exposure' if index in trusted else 'motif'
     if depth is not None:
         if len(planes)!=1 or planes[0]['facing'] in ROW_UP or type(depth)!=int or not 1<=depth<=256:
             raise ValueError('--depth needs a single vertical wall and 1 to 256 blocks')

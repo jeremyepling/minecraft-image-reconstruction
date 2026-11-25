@@ -86,6 +86,7 @@ def main():
     shape.add_argument('--scene',type=Path)
     shape.add_argument('--geometry',type=Path,help='Use a previously measured grid for this image')
     p.add_argument('--white-balance',action='store_true',help='Estimate and correct a consistent neutral-patch color cast')
+    p.add_argument('--match-appearance',choices=['local','shared','motif','adaptive'],help='Match calibrated face colors, share a palette, detect atlas motifs, or adapt to grid alignment')
     p.add_argument('--match-exposure',action='store_true',help='Allow bounded brightness differences when ranking candidate textures')
     p.add_argument('--library',type=Path,help='Calibrated face_textures/softened-library.npz')
     p.add_argument('--depth',type=int,help='Extrapolate a hollow shell behind one visible wall')
@@ -104,7 +105,7 @@ def main():
         verify(args.build,jar,args.out,runtime_options(args,jar))
     else:
         reconstruct(args.image,args.atlas,args.scene,args.library,args.out,args.depth,args.geometry,
-                    args.white_balance,match_exposure=args.match_exposure,geometry_method=args.geometry_method)
+                    args.white_balance,match_exposure=args.match_exposure,geometry_method=args.geometry_method,match_appearance=args.match_appearance)
 
 
 if __name__=='__main__':

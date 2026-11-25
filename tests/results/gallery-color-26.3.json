@@ -1,0 +1,855 @@
+{
+  "test-canopy-30-front": {
+    "crops": 299,
+    "majority_background": 42,
+    "clean_material_crops": 249,
+    "palette": [
+      "tuff"
+    ],
+    "methods": {
+      "original": {
+        "exact": 3,
+        "in_building_palette": 3,
+        "different_ids": 63,
+        "most_frequent": [
+          [
+            "polished_basalt",
+            29
+          ],
+          [
+            "coal_ore",
+            25
+          ],
+          [
+            "gray_glazed_terracotta",
+            16
+          ],
+          [
+            "smooth_basalt",
+            15
+          ],
+          [
+            "chiseled_stone_bricks",
+            12
+          ],
+          [
+            "dripstone_block",
+            11
+          ],
+          [
+            "basalt",
+            10
+          ],
+          [
+            "chain_command_block",
+            9
+          ]
+        ],
+        "live_color": {
+          "rgb_mae": 23.170571173583223,
+          "chromatic_mae": 4.982987505577867
+        }
+      },
+      "atlas": {
+        "exact": 6,
+        "in_building_palette": 6,
+        "different_ids": 46,
+        "most_frequent": [
+          [
+            "polished_basalt",
+            38
+          ],
+          [
+            "dripstone_block",
+            20
+          ],
+          [
+            "smooth_basalt",
+            18
+          ],
+          [
+            "mud",
+            15
+          ],
+          [
+            "basalt",
+            15
+          ],
+          [
+            "acacia_log",
+            13
+          ],
+          [
+            "polished_tuff",
+            10
+          ],
+          [
+            "netherite_block",
+            10
+          ]
+        ]
+      },
+      "build": {
+        "exact": 68,
+        "in_building_palette": 68,
+        "different_ids": 11,
+        "most_frequent": [
+          [
+            "tuff",
+            68
+          ],
+          [
+            "chiseled_tuff",
+            56
+          ],
+          [
+            "cracked_deepslate_tiles",
+            36
+          ],
+          [
+            "tuff_bricks",
+            29
+          ],
+          [
+            "bedrock",
+            28
+          ],
+          [
+            "dead_brain_coral_block",
+            10
+          ],
+          [
+            "polished_deepslate",
+            10
+          ],
+          [
+            "cracked_deepslate_bricks",
+            6
+          ]
+        ],
+        "live_color": {
+          "rgb_mae": 6.168869924141008,
+          "chromatic_mae": 1.9843385889235952
+        }
+      },
+      "rendered": {
+        "exact": 1,
+        "in_building_palette": 1,
+        "different_ids": 50,
+        "most_frequent": [
+          [
+            "polished_basalt",
+            32
+          ],
+          [
+            "coal_ore",
+            29
+          ],
+          [
+            "gray_glazed_terracotta",
+            19
+          ],
+          [
+            "smooth_basalt",
+            16
+          ],
+          [
+            "acacia_log",
+            13
+          ],
+          [
+            "weathered_copper_grate",
+            10
+          ],
+          [
+            "chiseled_stone_bricks",
+            10
+          ],
+          [
+            "dripstone_block",
+            9
+          ]
+        ]
+      },
+      "motif": {
+        "exact": 230,
+        "in_building_palette": 230,
+        "different_ids": 5,
+        "most_frequent": [
+          [
+            "tuff",
+            230
+          ],
+          [
+            "cracked_deepslate_tiles",
+            10
+          ],
+          [
+            "cracked_deepslate_bricks",
+            4
+          ],
+          [
+            "light_gray_concrete_powder",
+            3
+          ],
+          [
+            "andesite",
+            2
+          ]
+        ],
+        "live_color": {
+          "rgb_mae": 16.796482225197085,
+          "chromatic_mae": 1.1575251623779064
+        }
+      }
+    },
+    "aligned_south_faces": {
+      "total": 34,
+      "correct": {
+        "atlas": 30,
+        "rendered": 30,
+        "original": 34
+      },
+      "automatic_crops_with_centers_on_these_faces": 232,
+      "median_crop_to_face_width_height_ratio": [
+        0.3790230255145283,
+        0.12580377655346742
+      ]
+    },
+    "evaluation": "Diagnostic reuse of four previously seen gallery views; each crop is an observation, and multiple crops may map to one export coordinate."
+  },
+  "test-corner-29-front": {
+    "crops": 149,
+    "majority_background": 9,
+    "clean_material_crops": 131,
+    "palette": [
+      "andesite",
+      "tuff"
+    ],
+    "methods": {
+      "original": {
+        "exact": 9,
+        "in_building_palette": 13,
+        "different_ids": 33,
+        "most_frequent": [
+          [
+            "reinforced_deepslate",
+            15
+          ],
+          [
+            "andesite",
+            9
+          ],
+          [
+            "cracked_stone_bricks",
+            9
+          ],
+          [
+            "gray_glazed_terracotta",
+            9
+          ],
+          [
+            "dead_bubble_coral_block",
+            6
+          ],
+          [
+            "pale_moss_block",
+            6
+          ],
+          [
+            "coal_ore",
+            6
+          ],
+          [
+            "smooth_basalt",
+            6
+          ]
+        ],
+        "live_color": {
+          "rgb_mae": 27.198049194232397,
+          "chromatic_mae": 2.3559631514466113
+        }
+      },
+      "atlas": {
+        "exact": 19,
+        "in_building_palette": 19,
+        "different_ids": 24,
+        "most_frequent": [
+          [
+            "andesite",
+            19
+          ],
+          [
+            "dead_horn_coral_block",
+            16
+          ],
+          [
+            "cobblestone",
+            14
+          ],
+          [
+            "iron_ore",
+            12
+          ],
+          [
+            "gravel",
+            9
+          ],
+          [
+            "cracked_stone_bricks",
+            7
+          ],
+          [
+            "polished_tuff",
+            7
+          ],
+          [
+            "dead_bubble_coral_block",
+            7
+          ]
+        ]
+      },
+      "build": {
+        "exact": 100,
+        "in_building_palette": 100,
+        "different_ids": 5,
+        "most_frequent": [
+          [
+            "andesite",
+            100
+          ],
+          [
+            "dropper",
+            15
+          ],
+          [
+            "cobblestone",
+            7
+          ],
+          [
+            "piston",
+            7
+          ],
+          [
+            "blast_furnace",
+            2
+          ]
+        ],
+        "live_color": {
+          "rgb_mae": 2.2407230703986447,
+          "chromatic_mae": 0.3790995193666969
+        }
+      },
+      "rendered": {
+        "exact": 21,
+        "in_building_palette": 21,
+        "different_ids": 21,
+        "most_frequent": [
+          [
+            "andesite",
+            21
+          ],
+          [
+            "cobblestone",
+            19
+          ],
+          [
+            "dead_horn_coral_block",
+            15
+          ],
+          [
+            "gravel",
+            14
+          ],
+          [
+            "dead_bubble_coral_block",
+            9
+          ],
+          [
+            "reinforced_deepslate",
+            7
+          ],
+          [
+            "dead_tube_coral_block",
+            7
+          ],
+          [
+            "chain_command_block",
+            6
+          ]
+        ]
+      },
+      "motif": {
+        "exact": 128,
+        "in_building_palette": 128,
+        "different_ids": 2,
+        "most_frequent": [
+          [
+            "andesite",
+            128
+          ],
+          [
+            "piston",
+            3
+          ]
+        ],
+        "live_color": {
+          "rgb_mae": 3.321688577890869,
+          "chromatic_mae": 0.3426632739609859
+        }
+      }
+    },
+    "aligned_south_faces": {
+      "total": 168,
+      "correct": {
+        "atlas": 152,
+        "rendered": 152,
+        "original": 168
+      },
+      "automatic_crops_with_centers_on_these_faces": 134,
+      "median_crop_to_face_width_height_ratio": [
+        0.961437423965869,
+        0.37104750771049605
+      ]
+    },
+    "evaluation": "Diagnostic reuse of four previously seen gallery views; each crop is an observation, and multiple crops may map to one export coordinate."
+  },
+  "test-recess-28-front": {
+    "crops": 208,
+    "majority_background": 8,
+    "clean_material_crops": 188,
+    "palette": [
+      "tuff"
+    ],
+    "methods": {
+      "original": {
+        "exact": 7,
+        "in_building_palette": 7,
+        "different_ids": 45,
+        "most_frequent": [
+          [
+            "smooth_basalt",
+            15
+          ],
+          [
+            "deepslate_coal_ore",
+            14
+          ],
+          [
+            "reinforced_deepslate",
+            12
+          ],
+          [
+            "calcite",
+            12
+          ],
+          [
+            "fletching_table",
+            11
+          ],
+          [
+            "warped_nylium",
+            8
+          ],
+          [
+            "cobblestone",
+            7
+          ],
+          [
+            "chiseled_tuff",
+            7
+          ]
+        ],
+        "live_color": {
+          "rgb_mae": 30.013827324665087,
+          "chromatic_mae": 4.381731021801944
+        }
+      },
+      "atlas": {
+        "exact": 9,
+        "in_building_palette": 9,
+        "different_ids": 32,
+        "most_frequent": [
+          [
+            "piston",
+            22
+          ],
+          [
+            "cobblestone",
+            19
+          ],
+          [
+            "bedrock",
+            16
+          ],
+          [
+            "coal_ore",
+            14
+          ],
+          [
+            "netherite_block",
+            13
+          ],
+          [
+            "basalt",
+            13
+          ],
+          [
+            "chiseled_tuff",
+            12
+          ],
+          [
+            "lodestone",
+            10
+          ]
+        ]
+      },
+      "build": {
+        "exact": 86,
+        "in_building_palette": 86,
+        "different_ids": 6,
+        "most_frequent": [
+          [
+            "tuff",
+            86
+          ],
+          [
+            "bedrock",
+            51
+          ],
+          [
+            "deepslate_bricks",
+            26
+          ],
+          [
+            "tuff_bricks",
+            12
+          ],
+          [
+            "cracked_deepslate_tiles",
+            9
+          ],
+          [
+            "dropper",
+            4
+          ]
+        ],
+        "live_color": {
+          "rgb_mae": 3.838123029944838,
+          "chromatic_mae": 1.1903976228001054
+        }
+      },
+      "rendered": {
+        "exact": 10,
+        "in_building_palette": 10,
+        "different_ids": 38,
+        "most_frequent": [
+          [
+            "piston",
+            15
+          ],
+          [
+            "gray_glazed_terracotta",
+            12
+          ],
+          [
+            "coal_ore",
+            12
+          ],
+          [
+            "deepslate_iron_ore",
+            11
+          ],
+          [
+            "reinforced_deepslate",
+            10
+          ],
+          [
+            "warped_nylium",
+            10
+          ],
+          [
+            "tuff",
+            10
+          ],
+          [
+            "glass",
+            9
+          ]
+        ]
+      },
+      "motif": {
+        "exact": 167,
+        "in_building_palette": 167,
+        "different_ids": 4,
+        "most_frequent": [
+          [
+            "tuff",
+            167
+          ],
+          [
+            "cracked_deepslate_tiles",
+            9
+          ],
+          [
+            "bedrock",
+            6
+          ],
+          [
+            "deepslate_bricks",
+            6
+          ]
+        ],
+        "live_color": {
+          "rgb_mae": 9.16377314814815,
+          "chromatic_mae": 0.5140448515891779
+        }
+      }
+    },
+    "aligned_south_faces": {
+      "total": 166,
+      "correct": {
+        "atlas": 147,
+        "rendered": 148,
+        "original": 166
+      },
+      "automatic_crops_with_centers_on_these_faces": 164,
+      "median_crop_to_face_width_height_ratio": [
+        0.9943311235688572,
+        1.0279244601096234
+      ]
+    },
+    "evaluation": "Diagnostic reuse of four previously seen gallery views; each crop is an observation, and multiple crops may map to one export coordinate."
+  },
+  "test-stepped_tower-27-front": {
+    "crops": 1002,
+    "majority_background": 72,
+    "clean_material_crops": 911,
+    "palette": [
+      "tuff"
+    ],
+    "methods": {
+      "original": {
+        "exact": 17,
+        "in_building_palette": 17,
+        "different_ids": 85,
+        "most_frequent": [
+          [
+            "chiseled_tuff_bricks",
+            84
+          ],
+          [
+            "chiseled_tuff",
+            49
+          ],
+          [
+            "lodestone",
+            42
+          ],
+          [
+            "light_gray_glazed_terracotta",
+            38
+          ],
+          [
+            "dropper",
+            30
+          ],
+          [
+            "gray_glazed_terracotta",
+            26
+          ],
+          [
+            "coal_ore",
+            24
+          ],
+          [
+            "blast_furnace",
+            22
+          ]
+        ],
+        "live_color": {
+          "rgb_mae": 25.427559763385776,
+          "chromatic_mae": 3.793489382173978
+        }
+      },
+      "atlas": {
+        "exact": 44,
+        "in_building_palette": 44,
+        "different_ids": 58,
+        "most_frequent": [
+          [
+            "chiseled_tuff_bricks",
+            144
+          ],
+          [
+            "chiseled_tuff",
+            74
+          ],
+          [
+            "polished_tuff",
+            53
+          ],
+          [
+            "tuff",
+            44
+          ],
+          [
+            "blast_furnace",
+            40
+          ],
+          [
+            "mossy_stone_bricks",
+            36
+          ],
+          [
+            "tuff_bricks",
+            31
+          ],
+          [
+            "gray_concrete_powder",
+            28
+          ]
+        ]
+      },
+      "build": {
+        "exact": 622,
+        "in_building_palette": 622,
+        "different_ids": 10,
+        "most_frequent": [
+          [
+            "tuff",
+            622
+          ],
+          [
+            "chiseled_tuff",
+            90
+          ],
+          [
+            "tuff_bricks",
+            71
+          ],
+          [
+            "light_gray_wool",
+            49
+          ],
+          [
+            "polished_deepslate",
+            39
+          ],
+          [
+            "bedrock",
+            16
+          ],
+          [
+            "dropper",
+            14
+          ],
+          [
+            "light_gray_concrete",
+            8
+          ]
+        ],
+        "live_color": {
+          "rgb_mae": 5.889173476440217,
+          "chromatic_mae": 0.9576777655811685
+        }
+      },
+      "rendered": {
+        "exact": 42,
+        "in_building_palette": 42,
+        "different_ids": 73,
+        "most_frequent": [
+          [
+            "chiseled_tuff_bricks",
+            127
+          ],
+          [
+            "chiseled_tuff",
+            59
+          ],
+          [
+            "tuff_bricks",
+            51
+          ],
+          [
+            "tuff",
+            42
+          ],
+          [
+            "piston",
+            42
+          ],
+          [
+            "lodestone",
+            39
+          ],
+          [
+            "deepslate_iron_ore",
+            37
+          ],
+          [
+            "coal_ore",
+            35
+          ]
+        ]
+      },
+      "motif": {
+        "exact": 622,
+        "in_building_palette": 622,
+        "different_ids": 10,
+        "most_frequent": [
+          [
+            "tuff",
+            622
+          ],
+          [
+            "chiseled_tuff",
+            90
+          ],
+          [
+            "tuff_bricks",
+            71
+          ],
+          [
+            "light_gray_wool",
+            49
+          ],
+          [
+            "polished_deepslate",
+            39
+          ],
+          [
+            "bedrock",
+            16
+          ],
+          [
+            "dropper",
+            14
+          ],
+          [
+            "light_gray_concrete",
+            8
+          ]
+        ],
+        "live_color": {
+          "rgb_mae": 5.889173476440217,
+          "chromatic_mae": 0.9576777655811685
+        }
+      }
+    },
+    "aligned_south_faces": {
+      "total": 160,
+      "correct": {
+        "atlas": 160,
+        "rendered": 160,
+        "original": 160
+      },
+      "automatic_crops_with_centers_on_these_faces": 841,
+      "median_crop_to_face_width_height_ratio": [
+        0.28455505565907036,
+        0.3289633487397928
+      ]
+    },
+    "evaluation": "Diagnostic reuse of four previously seen gallery views; each crop is an observation, and multiple crops may map to one export coordinate."
+  }
+}

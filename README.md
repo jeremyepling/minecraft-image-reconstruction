@@ -56,3 +56,5 @@ The contiguous-wall benchmark supplies a coarse wall outline and grid seed, then
 The Java 26.3 building benchmark adds canopies, stepped towers, recessed openings, and flat seams beside real corners. The experimental `--geometry-method texel` improved mean silhouette overlap from 0.195 to 0.829 across 60 held-out views. The optional `--match-exposure` improved material accuracy on aligned faces from 61.2% to 75.2%. Combining the options reduced end-to-end accuracy on adjacent-material panels. [Four-family benchmark, screenshots and reproduction steps](benchmark/README.md)
 
 Run `python -m unittest discover -s tests` for the release-format and geometry regressions. The client JARs, vanilla texture sheets, trained libraries, generated worlds and runtime data are produced locally.
+
+The gallery color experiment compares fixed geometry with three material matchers in fresh Minecraft worlds. Searching for repeated atlas details recovered 1,147 of 1,479 material observations on four previously seen views. Sharing a palette produced the closest rendered colors. [In-game comparison and material options](benchmark/COLOR.md)
