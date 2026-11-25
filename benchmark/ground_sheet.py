@@ -178,9 +178,16 @@ def sheet(out: Path, examples: list):
         with Image.open(close['images'][FLOORS[0]]) as im:
             strip = crop_box(np.array(im.size)/2, min(940, im.width), min(212, im.height), im.size)
         plot(close, [strip, strip], bottom+101, 154, 'facade-only-detail')
+        close_pairs = _pairs(close)
+        close_pair = next((p for p in close_pairs if p[1]['predicted_ratio'] is not None),
+                          close_pairs[0] if close_pairs else None)
         for j, floor in enumerate(FLOORS):
             label(d, (xs[j], bottom+272), _status(close['predictions'][floor], close['metrics'][floor]), 18)
-        bottom += 322
+            if close_pair:
+                ratio = close_pair[j]['predicted_ratio']
+                estimate = f'{ratio:.3f}' if ratio is not None else 'unavailable'
+                label(d, (xs[j], bottom+304), f'Full-frame endpoint ratio   {estimate}   ·   Recorded {close_pair[j]["expected_ratio"]:.3f}', 18, bold=True)
+        bottom += 350 if close_pair else 322
     rule(bottom+4)
     label(d, (MARGIN, bottom+24), f'{primary["split"].capitalize()} ratio coverage', 25, bold=True)
     for j, floor in enumerate(FLOORS):
