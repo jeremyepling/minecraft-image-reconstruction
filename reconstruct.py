@@ -82,9 +82,13 @@ def main():
     p.add_argument('--out',type=Path,required=True)
     for key in ('minecraft-dir','manifest','java-home'): p.add_argument('--'+key,type=Path)
     p=cmds.add_parser('build')
+    p.add_argument('--through',choices=['camera','assembly'],default='assembly',
+                   help='Stop after the default single-image camera fit, or produce the existing datapack build')
+    p.add_argument('--version',help='Target Java version (required for a camera-only build)')
     p.add_argument('--geometry-method',choices=['baseline','texel','remap'],default='baseline')
     p.add_argument('image',type=Path)
-    for key in ('atlas','out'): p.add_argument('--'+key,type=Path,required=True)
+    p.add_argument('--atlas',type=Path,help='Versioned atlas for assembly')
+    p.add_argument('--out',type=Path,required=True)
     shape=p.add_mutually_exclusive_group()
     shape.add_argument('--scene',type=Path)
     shape.add_argument('--geometry',type=Path,help='Use a previously measured grid for this image')
@@ -109,7 +113,19 @@ def main():
         from calibration.verify_build import verify
         jar=args.jar or catalog.discover(args.version)
         verify(args.build,jar,args.out,runtime_options(args,jar))
+    elif args.through=='camera':
+        if not args.version:
+            parser.error('A camera build needs --version')
+        if (args.scene or args.geometry or args.geometry_method!='baseline' or args.depth is not None
+                or args.library or args.atlas or args.match_exposure or args.white_balance or args.match_appearance):
+            parser.error('A camera build takes the image, --version and --out')
+        from engine.camera_grid import build_camera
+        build_camera(args.image,args.version,args.out)
     else:
+        if not args.atlas:
+            parser.error('An assembly build needs --atlas')
+        if args.version and args.version!=json.loads((args.atlas/'placement-index.json').read_text())['version']:
+            parser.error('--version and the atlas version differ')
         reconstruct(args.image,args.atlas,args.scene,args.library,args.out,args.depth,args.geometry,
                     args.white_balance,match_exposure=args.match_exposure,geometry_method=args.geometry_method,match_appearance=args.match_appearance)
 

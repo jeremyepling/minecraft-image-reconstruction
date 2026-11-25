@@ -382,4 +382,15 @@ def reconstruct(image, atlas_dir, scene, library, out, depth=None, grid=None, wh
     (out/'placements.json').write_text(json.dumps(dict(version=catalog['version'],bounds_xyz=bounds,blocks=rows,
                                                      substitutions=substitutions)))
     write_pack(out/'reconstruction.zip',blocks,catalog)
+    geometry_source = data.get('geometry_method', 'unspecified') if grid else geometry_method
+    geometry_run = 'reuse-geometry-json' if grid else 'scene-planes' if scene else geometry_method
+    stages = dict(camera='reuse-geometry-json' if grid else 'legacy-'+geometry_run,
+                  visible_faces=geometry_run, materials=method + ('+exposure' if match_exposure else ''),
+                  assembly='visible-block-datapack')
+    provenance = dict(version=catalog['version'], image_sha256=digest(image), through='assembly',
+                      stages=stages, geometry_method=geometry_source, scene_supplied=bool(scene),
+                      geometry_input_sha256=digest(grid) if grid else None, calibrated_library=bool(library),
+                      white_balance_requested=white_balance, shell_depth=depth,
+                      placement_verification='separate verify-build command')
+    (out/'build-manifest.json').write_text(json.dumps(provenance,indent=2))
     print(f"{catalog['version']}: {len(planes)} planes, {len(blocks)} blocks -> {out/'reconstruction.zip'}")
