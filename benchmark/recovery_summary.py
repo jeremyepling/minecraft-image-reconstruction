@@ -101,6 +101,21 @@ def remaining(case, parts, matched, sam):
                 in_raw_sam=sorted(misses.intersection(sam['pool_matches'])))
 
 
+def picture_table(rows):
+    lines=['# Surface recovery by screenshot','',
+           'Each number counts a distinct visible surface matched in that picture. The last column counts surfaces with both block dimensions correct using the full combination.','',
+           '| Building | Floor, palette and view | Scored | Wall Separator | + underside | + junctions | + MobileSAM | Junctions + underside | All three | Both sizes right |',
+           '| --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |']
+    for row in sorted(rows,key=lambda r:(r['layout'],r['key'])):
+        floor,view=row['key'].split('/')
+        detail=view.split(row['layout']+'-',1)[1].replace('-',' ')
+        cells=[row['layout'].title(),floor.replace('_',' ')+' · '+detail,row['scores']['current']['eligible']]
+        cells.extend(row['scores'][name]['matched'] for name in METHODS)
+        cells.append(row['counts']['combined']['correct'])
+        lines.append('| '+' | '.join(map(str,cells))+' |')
+    return '\n'.join(lines)+'\n'
+
+
 def grade(job):
     case,frame=job
     verified(case.path('image'),frame['sha256'])
@@ -149,6 +164,7 @@ def run(out, workers):
     remaining_counts={key:sum(len(r['remaining'][key]) for r in rows) for key in rows[0]['remaining']}
     save(out/'cases.json',rows)
     save(out/'scores.json',scores)
+    (out/'pictures.md').write_text(picture_table(rows),encoding='utf-8')
     save(out/'manifest.json',dict(run_id=out.name,code=revision(),version=suite['version'],fixtures=fixtures,
         sources=manifests,reference_sha256=digest(ARCHIVE),methods=METHODS,counter='masked-repeat',
         scope='Recorded surface matches and visible dimensions. In-game placement was not tested.',
@@ -156,7 +172,7 @@ def run(out, workers):
         diagnostic='A merge covers half each of two eligible surfaces. Filtered and raw SAM counts use reference-selected one-to-one matches as a diagnostic.',
         frames=[{k:r[k] for k in ('key','sha256','cohort','layout')} for r in rows],
         settings='Frozen settings from each source manifest. No inference or tuning during this replay.',
-        artifacts={f:digest(out/f) for f in ('cases.json','scores.json')},
+        artifacts={f:digest(out/f) for f in ('cases.json','scores.json','pictures.md')},
         reproduce=r'.\Invoke-SurfaceRound.ps1 -Round recovery-summary'))
     print(out,flush=True)
 
