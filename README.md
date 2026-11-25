@@ -6,6 +6,8 @@ Reconstruct a Minecraft Java build from a screenshot and place it in a real worl
 
 ## Single-image exterior benchmark
 
+Run `.\Invoke-MaskRound.ps1` for the four-way comparison on the 56 saved views. It compares B, preserved regions, and the same regions refined with ScaleLSD v2 or DeepLSD. The review shows each building from the same angle, with the recorded geometry in its own column. [Comparison sheet](benchmark/reviews/mask-four-01/comparison.jpg) · [Per-picture results](benchmark/reviews/mask-four-01/report.html) · [How the experiment works](benchmark/MASK_ROUND.md)
+
 Use the same 56 saved screenshots and their geometry whenever you test a new surface method. Change the method, run it on the images, then compare its outlines against the same Minecraft surfaces. A coordinator in one chat can give the baseline and each challenger to a different agent, run them in parallel and return one comparison. [How to run a new combination](benchmark/OFFLINE_GEOMETRY.md)
 
 Open the [eight-building picture sheet](benchmark/reviews/normals-01/buildings-b.jpg) to see each original screenshot beside B’s surface directions and its checked outlines. Run `.\Invoke-SurfaceRound.ps1 -Round saved` to compare B’s saved outlines against the recorded buildings entirely offline. [Saved geometry and replay commands](benchmark/OFFLINE_GEOMETRY.md)
