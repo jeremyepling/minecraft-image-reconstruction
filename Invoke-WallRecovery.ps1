@@ -8,6 +8,9 @@ param(
     [string] $ScaleSource,
     [string] $ScaleCheckpoint,
     [string] $MobileSource,
+    [string] $DepthProSource,
+    [string] $DepthProCheckpoint,
+    [ValidateSet('wall-recovery','wall-recovery-single-v2','wall-recovery-single-pro')][string] $SurfaceBoundary,
     [ValidateSet('cuda','cpu')][string] $Device
 )
 
@@ -45,6 +48,9 @@ try {
     $checkpointName = 'scalelsd-vitbase-v2-train-sa1b.pt'
     Set-ModelOption 'MCIR_SCALELSD_CHECKPOINT' $ScaleCheckpoint @((Join-Path $localDeps $checkpointName), (Join-Path $scaleRun $checkpointName))
     Set-ModelOption 'MCIR_MOBILESAM_SOURCE' $MobileSource @((Join-Path $localDeps 'MobileSAM'), (Join-Path $PSScriptRoot '../surface-recovery-round/runs/mobile-sam-source'))
+    $depthProDeps=Join-Path $PSScriptRoot '../surface-one-depth-pro/.deps'
+    Set-ModelOption 'MCIR_DEPTH_PRO_SOURCE' $DepthProSource @((Join-Path $localDeps 'ml-depth-pro'), (Join-Path $depthProDeps 'ml-depth-pro'))
+    Set-ModelOption 'MCIR_DEPTH_PRO_CHECKPOINT' $DepthProCheckpoint @((Join-Path $localDeps 'depth_pro.pt'), (Join-Path $depthProDeps 'depth_pro.pt'))
     Set-ModelOption 'MCIR_RECOVERY_DEVICE' $Device @()
     foreach ($model in @{
         MINECRAFT_MOGE_ONNX='moge-2-vits.onnx'
@@ -59,7 +65,9 @@ try {
         $changes['PYTHONPATH'] = $env:PYTHONPATH
         $env:PYTHONPATH = (@($env:PYTHONPATH) + @($extra) | Where-Object { $_ }) -join [IO.Path]::PathSeparator
     }
-    & $Python (Join-Path $PSScriptRoot 'reconstruct.py') build $sourceImage --version 26.3 --through $Through --surface-boundary wall-recovery --out $destination
+    $options=@()
+    if ($SurfaceBoundary) { $options+=@('--surface-boundary',$SurfaceBoundary) }
+    & $Python (Join-Path $PSScriptRoot 'reconstruct.py') build $sourceImage --version 26.3 --through $Through @options --out $destination
     if ($LASTEXITCODE -ne 0) { throw "Wall Recovery exited with code $LASTEXITCODE" }
 } finally {
     foreach ($name in $changes.Keys) { [Environment]::SetEnvironmentVariable($name, $changes[$name]) }
