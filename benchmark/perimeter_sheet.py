@@ -255,9 +255,14 @@ if __name__=='__main__':
     from runtime.mode import image_only
 
     parser=argparse.ArgumentParser(description='Rebuild the surface-matching sheet from a saved surface round.')
-    parser.add_argument('--run',type=Path,default=ROOT/'benchmark/reviews/separation-01')
+    parser.add_argument('--run',type=Path,help='Earlier review to redraw instead of the complete recovery comparison.')
     parser.add_argument('--out',type=Path,help='New directory for the sheet and per-surface pairings')
     args=parser.parse_args()
     out=args.out or ROOT/'runs'/f'surface-detection-{uuid4().hex[:12]}'
     with image_only():
-        print(replay_detection(args.run,out).resolve())
+        if args.run is None:
+            from benchmark.recovery_summary import redraw
+            redraw(out)
+            print((out/'comparison.jpg').resolve())
+        else:
+            print(replay_detection(args.run,out).resolve())

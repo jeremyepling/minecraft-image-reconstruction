@@ -7,13 +7,15 @@ import json
 from pathlib import Path
 from uuid import uuid4
 
+import numpy as np
 from PIL import Image
 
 from benchmark.camera_round import ROOT, digest, read, revision, save
 from benchmark.normal_round import groups
+from benchmark.mask_metrics import footprint
 from benchmark.split_count_check import count_frame
 from benchmark.split_round import score_regions, pooled
-from benchmark.surface_reference import ARCHIVE
+from benchmark.surface_reference import ARCHIVE, recorded
 from runtime.mode import image_only, mark_image_only
 
 
@@ -64,7 +66,39 @@ def sources(fixtures):
                     raise ValueError(f"Wrong MobileSAM archive row for {row['key']}")
                 item['resources'][method]=(directory+'/'+row['predictions'],row['prediction_sha256'])
                 item['reported'][method]=row['split']['matched']
+    _,screen=load('mobile-regions-01')
+    for row in screen:
+        frame=frames[row['key']]
+        if row['sha256']!=frame['sha256']:
+            raise ValueError('MobileSAM region screen used a different picture')
+        frame['sam_matched']={name:sorted(map(int,row[name])) for name in ('pool_matches','selected_matches')}
     return frames,manifests
+
+
+def remaining(case, parts, matched, sam):
+    """Inspect merged surfaces and possible SAM matches after the last automatic stage."""
+    _,ref=recorded(case)
+    ids=ref['id_map']
+    areas=np.bincount(ids.ravel(),minlength=max(ref['patches'])+1)
+    eligible={rid for rid,p in ref['patches'].items() if p['eligible']}
+    misses=eligible-set(matched)
+    merges=set()
+    parallel=set()
+    for part in parts:
+        mask=footprint(part,ids.shape,ref['image_size'],use_mask=True)
+        hits=np.bincount(ids[mask],minlength=len(areas))
+        covered=[rid for rid in eligible if hits[rid]*2>=areas[rid]]
+        if len(covered)<2:
+            continue
+        for rid in misses.intersection(covered):
+            merges.add(rid)
+            face=ref['patches'][rid]
+            if any(ref['patches'][other]['normal']==face['normal'] and ref['patches'][other]['offset']!=face['offset']
+                   for other in covered):
+                parallel.add(rid)
+    return dict(missed=sorted(misses),merged=sorted(merges),parallel_step=sorted(parallel),
+                in_filtered_sam=sorted(misses.intersection(sam['selected_matches'])),
+                in_raw_sam=sorted(misses.intersection(sam['pool_matches'])))
 
 
 def grade(job):
@@ -83,6 +117,7 @@ def grade(job):
     if {m:row['matched'] for m,row in scores.items()}!=frame['reported']:
         raise ValueError(f"Independent grades differ on {frame['key']}")
     frame.update(scores=scores,scopes=scopes)
+    frame['remaining']=remaining(case,predictions['combined'],scopes['combined']['matched'],frame.pop('sam_matched'))
     with Image.open(case.path('image')) as im:
         counts,_ = count_frame(case,im.convert('RGB'),frame,predictions,METHODS)
     frame['counts']={m:{k:counts[m]['totals'][k] for k in ('correct','incorrect','missing','unmatched_returned')}
@@ -111,11 +146,14 @@ def run(out, workers):
             for row in members:
                 counts.update(row['counts'][method])
             scores[group][method]=dict(**result,counts=dict(counts))
+    remaining_counts={key:sum(len(r['remaining'][key]) for r in rows) for key in rows[0]['remaining']}
     save(out/'cases.json',rows)
     save(out/'scores.json',scores)
     save(out/'manifest.json',dict(run_id=out.name,code=revision(),version=suite['version'],fixtures=fixtures,
         sources=manifests,reference_sha256=digest(ARCHIVE),methods=METHODS,counter='masked-repeat',
         scope='Recorded surface matches and visible dimensions. In-game placement was not tested.',
+        combined_misses=remaining_counts,
+        diagnostic='A merge covers half each of two eligible surfaces. Filtered and raw SAM counts use reference-selected one-to-one matches as a diagnostic.',
         frames=[{k:r[k] for k in ('key','sha256','cohort','layout')} for r in rows],
         settings='Frozen settings from each source manifest. No inference or tuning during this replay.',
         artifacts={f:digest(out/f) for f in ('cases.json','scores.json')},
@@ -123,9 +161,18 @@ def run(out, workers):
     print(out,flush=True)
 
 
+def redraw(out):
+    from benchmark.recovery_overview import write_sheet
+    write_sheet(argparse.Namespace(recovery=REVIEWS/PRIMARY,junction=REVIEWS/JUNCTION,
+                mobile=REVIEWS/MOBILE['mobile-wall'],combined=REVIEWS/MOBILE['combined'],out=out))
+
+
 if __name__=='__main__':
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--out',type=Path,default=ROOT/'runs'/f'recovery-summary-{uuid4().hex[:12]}')
     parser.add_argument('--workers',type=int,default=3)
+    parser.add_argument('--sheet',action='store_true',help='Also redraw the complete portrait review in this output directory.')
     args=parser.parse_args()
     run(args.out,args.workers)
+    if args.sheet:
+        redraw(args.out/'review')
