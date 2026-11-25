@@ -65,9 +65,9 @@ def write(path, data):
     path.write_text(json.dumps(data, separators=(",", ":"), allow_nan=False), encoding="utf8")
 
 
-def poses(b, shape, lo, hi):
+def poses(b, shape, lo, hi, *, obliques=(("low-left", -27, 3.1), ("high-right", 34, 8.3))):
     center = b.xyz([(a + z) / 2 for a, z in zip(lo, hi)])
-    for angle, azimuth, eye_height in (("low-left", -27, 3.1), ("high-right", 34, 8.3)):
+    for angle, azimuth, eye_height in obliques:
         distance = 1.32 * (hi[0] - lo[0]) + .4 * (hi[2] - lo[2])
         az = math.radians(azimuth)
         yield dict(angle=angle, condition="ground-visible", target=center,
@@ -81,7 +81,7 @@ def poses(b, shape, lo, hi):
                    x=b.origin + x, z=wall_z + 3.9, feetY=GROUND + 1 + 4 - 1.62)
 
 
-def stage(root, jar, floor="smooth_stone"):
+def stage(root, jar, floor="smooth_stone", *, shape_groups=LAYOUTS, viewpoints=poses):
     if floor not in FLOORS:
         raise ValueError(f"Unknown fixture floor: {floor}")
     with ZipFile(jar) as archive:
@@ -97,7 +97,7 @@ def stage(root, jar, floor="smooth_stone"):
         fmt = [meta["pack_version"][k] for k in ("data_major", "data_minor")]
         pack.writestr("pack.mcmeta", json.dumps(dict(pack=dict(description="Exterior fixture",
                                                               min_format=fmt, max_format=fmt))))
-        for split, shape in LAYOUTS:
+        for split, shape in shape_groups:
             for palette_name, materials in PALETTES.items():
                 page = len(layouts)
                 b = Building(page, "test" if split == "holdout" else split, shape.__name__, {})
@@ -118,13 +118,25 @@ def stage(root, jar, floor="smooth_stone"):
                     if material != "air":
                         commands.append(f"setblock {x} {y} {z} minecraft:{material} strict")
                 pack.writestr(f"data/palette_lab/function/page_{page}.mcfunction", "\n".join(commands) + "\n")
-                for view in poses(b, shape, lo, hi):
+                for view in viewpoints(b, shape, lo, hi):
                     view_id = f"{split}-{shape.__name__}-{palette_name}-{view['angle']}"
                     views.append(dict(**common, id=view_id, **view))
     write(root / "layout.json", dict(version=VERSION, client_sha256=digest(jar), ground_y=GROUND, floor=floor,
                                      blocks=blocks))
     write(root / "buildings.json", layouts)
     write(root / "views.json", views)
+
+
+def capture(root, floor, jar=None, minecraft_dir=None, **stage_options):
+    if jar is None and minecraft_dir:
+        jar = minecraft_dir / "versions" / VERSION / f"{VERSION}.jar"
+    jar = (jar or discover(VERSION)).resolve()
+    stage(root, jar, floor, **stage_options)
+    command = [sys.executable, "-m", "runtime.capture", "capture", "--version", VERSION,
+               "--run", str(root), "--jar", str(jar)]
+    if minecraft_dir:
+        command.extend(["--minecraft-dir", str(minecraft_dir)])
+    subprocess.run(command, check=True)
 
 
 def main():
@@ -138,16 +150,7 @@ def main():
     args = parser.parse_args()
     root = args.out.resolve()
     if not args.labels_only:
-        jar = args.jar
-        if jar is None and args.minecraft_dir:
-            jar = args.minecraft_dir / "versions" / VERSION / f"{VERSION}.jar"
-        jar = (jar or discover(VERSION)).resolve()
-        stage(root, jar, args.floor)
-        command = [sys.executable, "-m", "runtime.capture", "capture", "--version", VERSION,
-                   "--run", str(root), "--jar", str(jar)]
-        if args.minecraft_dir:
-            command.extend(["--minecraft-dir", str(args.minecraft_dir)])
-        subprocess.run(command, check=True)
+        capture(root, args.floor, args.jar, args.minecraft_dir)
     from benchmark.camera_labels import label_capture, verify_pair
     label_capture(root)
     if args.paired_with:
