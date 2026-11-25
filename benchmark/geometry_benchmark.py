@@ -22,6 +22,21 @@ def load(path):
     return json.loads(path.read_text())
 
 
+def prediction_directories(roots, dirs):
+    if dirs is None:
+        return [root/'geometry-predictions' for root in roots]
+    if len(dirs)!=len(roots) or len({d.resolve() for d in dirs})!=len(roots):
+        raise ValueError('Supply one distinct prediction directory per fixture root, in the same order')
+    return dirs
+
+
+def load_prediction(directory, method, view_id, image_hash):
+    pred=load(directory/method/(view_id+'.json'))
+    if pred['image_hash']!=image_hash:
+        raise ValueError(f"Geometry predictions refer to a different image: {view_id}")
+    return pred
+
+
 @lru_cache(maxsize=4)
 def fixture(root):
     buildings={b['id']:b for b in load(root/'buildings.json')}
@@ -31,7 +46,7 @@ def fixture(root):
 
 
 def score_view(task):
-    root,v,methods=task
+    root,v,methods,prediction_dir=task
     building,occupied=fixture(root); b=building[v['building_id']]; voxels=occupied[b['page']]
     path=root/'captures'/v['id']
     digest=hashlib.sha256(path.with_suffix('.png').read_bytes()).hexdigest()
@@ -43,9 +58,7 @@ def score_view(task):
             estimator={'outlined-baseline':estimate_grid,'outlined-partition':repeat_grid,'outlined-texel':texel_grid}[method]
             planes,cells=outline_prediction(raw,b,pose,voxels,estimator)
         else:
-            pred=load(root/'geometry-predictions'/method/(v['id']+'.json'))
-            if pred['image_hash']!=digest:
-                raise ValueError(f"Geometry predictions refer to a different image: {v['id']}")
+            pred=load_prediction(prediction_dir,method,v['id'],digest)
             planes,cells=pred['planes'],pred['cells']
         metrics=score(b,pose,voxels,planes,cells)
         metrics.pop('air_probes', None)
@@ -92,7 +105,7 @@ def aggregate(rows):
     return report
 
 
-def run(roots,split,out,workers,methods,selection):
+def run(roots,split,out,workers,methods,selection,prediction_dirs=None):
     frozen=None
     if split=='test':
         if selection is None or not selection.is_file():
@@ -100,7 +113,8 @@ def run(roots,split,out,workers,methods,selection):
         frozen=load(selection)
         if frozen['selected'] not in methods or set(methods)-set(frozen['dev']):
             raise ValueError('The holdout must evaluate the development selection and declared methods')
-    tasks=[(r,v,methods) for r in roots for v in load(r/'views.json')
+    dirs=prediction_directories(roots,prediction_dirs)
+    tasks=[(r,v,methods,d) for r,d in zip(roots,dirs) for v in load(r/'views.json')
            if v['split']==split and v['kind']!='adjacency']
     with ProcessPoolExecutor(workers) as pool:
         rows=[x for group in pool.map(score_view,tasks,chunksize=2) for x in group]
@@ -124,4 +138,5 @@ if __name__=='__main__':
     p.add_argument('--out',required=True,type=Path);p.add_argument('--workers',type=int,default=2)
     p.add_argument('--methods',choices=METHODS,nargs='+',default=METHODS)
     p.add_argument('--selection',type=Path)
-    a=p.parse_args();run(a.roots,a.split,a.out,a.workers,a.methods,a.selection)
+    p.add_argument('--prediction-dirs',type=Path,nargs='+',help='One prediction directory per fixture root, in order')
+    a=p.parse_args();run(a.roots,a.split,a.out,a.workers,a.methods,a.selection,a.prediction_dirs)

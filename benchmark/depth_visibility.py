@@ -1,12 +1,14 @@
 """Audit whether two supplied query pixels have visible evidence for a depth return."""
 import argparse
 from collections import Counter,defaultdict
+import hashlib
 import json
 from pathlib import Path
 
 import numpy as np
 
 from benchmark.fixtures import clear_sightline
+from benchmark.geometry_benchmark import load_prediction,prediction_directories
 from calibration.projection import camera_project
 from engine.geometry import project
 
@@ -93,11 +95,11 @@ def summary(records):
                 truth_counts=dict(Counter(r['truth'] for r in records)))
 
 
-def audit(roots,out,selection):
+def audit(roots,out,selection,prediction_dirs=None):
     load=lambda p:json.loads(p.read_text())
     controls()
     winner=load(selection)['selected'];rows=[]
-    for root in roots:
+    for root,prediction_dir in zip(roots,prediction_directories(roots,prediction_dirs)):
         buildings={b['page']:b for b in load(root/'buildings.json')}
         occupied=defaultdict(set)
         for c in load(root/'layout.json')['blocks']:occupied[c['page']].add((c['x'],c['y'],c['z']))
@@ -107,9 +109,10 @@ def audit(roots,out,selection):
             depths=[m for m in b['measurements'] if m['axis']=='z']
             if not depths:continue
             pose=load(root/'captures'/(v['id']+'.json'))
+            digest=hashlib.sha256((root/'captures'/(v['id']+'.png')).read_bytes()).hexdigest()
             # All three frozen RGB-only proposal variants are audited. No parameter selection here.
             for method in ['baseline','partition','texel']:
-                planes=load(root/'geometry-predictions'/method/(v['id']+'.json'))['planes']
+                planes=load_prediction(prediction_dir,method,v['id'],digest)['planes']
                 for m in depths:
                     xy=camera_project([m['a'],m['b']],pose)
                     rows.append(dict(dataset=root.name,building=b['id'],kind=b['kind'],angle=v['angle'],
@@ -134,4 +137,5 @@ if __name__=='__main__':
     p.add_argument('--roots',type=Path,nargs='+',required=True)
     p.add_argument('--out',type=Path,required=True)
     p.add_argument('--selection',type=Path,required=True)
-    opts=p.parse_args();audit(opts.roots,opts.out,opts.selection)
+    p.add_argument('--prediction-dirs',type=Path,nargs='+',help='One prediction directory per fixture root, in order')
+    opts=p.parse_args();audit(opts.roots,opts.out,opts.selection,opts.prediction_dirs)

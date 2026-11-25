@@ -37,10 +37,8 @@ Run from the repository root with Python and the matching Java client JAR. Repla
 ```console
 python -m benchmark.fixtures --jar CLIENT_JAR --out MAIN
 python -m benchmark.fixtures --jar CLIENT_JAR --out OPEN --open-only
-python -m runtime.capture capture --version 26.3 --run MAIN
-python -m runtime.capture capture --version 26.3 --run OPEN
-python -m benchmark.planes MAIN --splits dev
-python -m benchmark.planes OPEN --splits dev
+python -m runtime.capture capture --version 26.3 --run MAIN --predict-split dev
+python -m runtime.capture capture --version 26.3 --run OPEN --predict-split dev
 python -m benchmark.geometry_benchmark MAIN OPEN --split dev --out SCORES
 python -m benchmark.planes MAIN --splits test
 python -m benchmark.planes OPEN --splits test
@@ -49,6 +47,17 @@ python -m benchmark.depth_visibility --roots MAIN OPEN --selection SCORES/select
 ```
 
 The fixture generator records dimensions, placements, openings and viewpoints. The capture driver reads the placed blocks back from the game. Predictions and per-view scores are written alongside the runs. The additional small-frame and warm-shader captures use the adjacency panels in MAIN. [Capture setup](../runtime/README.md)
+
+Each capture command starts geometry prediction as its frames arrive and waits for both capture verification and prediction. MAIN and OPEN may run concurrently in separate terminals. Each command defaults to two prediction workers. Use `--workers` and `--methods` to size the experiment. Adjacency frames remain available for material scoring.
+
+To compare candidates using existing captures, give each candidate its own prediction directory per fixture and its own scores directory. Run from the checkout containing that candidate's implementation. For example, these commands evaluate the baseline and texel methods on one development fixture without starting Minecraft.
+
+```console
+python -m benchmark.planes MAIN --splits dev --methods baseline texel --prediction-dir CANDIDATE/main-predictions
+python -m benchmark.geometry_benchmark MAIN --split dev --methods baseline texel --prediction-dirs CANDIDATE/main-predictions --out CANDIDATE/scores
+```
+
+For two fixtures, supply both paths to `--prediction-dirs` in fixture order. The same option is available for the depth audit. A live capture accepts `--prediction-dir` too. A second candidate can run `benchmark.planes` with `--wait 900` against that same fixture while the capture runs. Repeating prediction in its own directory reuses completed entries with matching image and method hashes. Keep every view of a building in its assigned split and freeze the development selection before scoring the test buildings.
 
 ## Export verification
 

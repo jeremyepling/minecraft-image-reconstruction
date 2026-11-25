@@ -1,26 +1,28 @@
 """Compare occupancy support thresholds on a frozen common lattice."""
 import argparse
+import hashlib
 import json
 from pathlib import Path
 import numpy as np
 from PIL import Image
-from benchmark.geometry_benchmark import fixture,load
+from benchmark.geometry_benchmark import fixture,load,load_prediction,prediction_directories
 from benchmark.geometry_metrics import score
 from engine.geometry import UNIT,project
 from engine.remap import structure_mask
 
 
-def run(roots,split):
+def run(roots,split,prediction_dirs=None):
     trials=(.50,.60,.70,.80)
     metrics={str(t):[] for t in trials}
     uv=np.stack(np.meshgrid((np.arange(7)+.5)/7,(np.arange(7)+.5)/7),axis=-1)
-    for root in roots:
+    for root,prediction_dir in zip(roots,prediction_directories(roots,prediction_dirs)):
         buildings,voxels=fixture(root)
         for v in load(root/'views.json'):
             if v['split']!=split or v['kind']=='adjacency':
                 continue
             name=v['id'];building=buildings[v['building_id']]
-            raw=load(root/'geometry-predictions/ground'/(name+'.json'))
+            digest=hashlib.sha256((root/'captures'/(name+'.png')).read_bytes()).hexdigest()
+            raw=load_prediction(prediction_dir,'ground',name,digest)
             pose=load(root/'captures'/(name+'.json'))
             with Image.open(root/'captures'/(name+'.png')) as im:
                 mask=structure_mask(im)
@@ -47,6 +49,7 @@ if __name__=='__main__':
     p.add_argument('roots',nargs='+',type=Path)
     p.add_argument('--split',choices=['dev','test'],required=True)
     p.add_argument('--out',type=Path,required=True)
+    p.add_argument('--prediction-dirs',type=Path,nargs='+',help='One prediction directory per fixture root, in order')
     args=p.parse_args()
-    result=run(args.roots,args.split);print(result)
+    result=run(args.roots,args.split,args.prediction_dirs);print(result)
     args.out.write_text(json.dumps(result,indent=2)+'\n')

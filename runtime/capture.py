@@ -10,6 +10,7 @@ import shutil
 import subprocess
 import sys
 import tempfile
+import time
 import uuid
 from zipfile import ZipFile
 
@@ -102,6 +103,33 @@ def classpath(args):
     return os.pathsep.join(map(str,jars)),metadata,index,assets
 
 
+def run_client(cmd, game, log_file, timeout, predict_frames=None):
+    with log_file.open("w", encoding="utf8") as log:
+        with subprocess.Popen(cmd, cwd=game, stdout=log, stderr=subprocess.STDOUT) as client:
+            deadline = time.monotonic() + timeout
+
+            def capture_active():
+                status = client.poll()
+                if status is not None:
+                    if status:
+                        raise RuntimeError(f"Client exited with status {status}. See {log_file}")
+                    return False
+                if time.monotonic() >= deadline:
+                    raise RuntimeError(f"Client timed out. See {log_file}")
+                return True
+
+            try:
+                if predict_frames:
+                    predict_frames(capture_active)
+                client.wait(timeout=max(0, deadline - time.monotonic()))
+                capture_active()
+            except subprocess.TimeoutExpired as exc:
+                raise RuntimeError(f"Client timed out. See {log_file}") from exc
+            finally:
+                if client.poll() is None:
+                    client.kill()
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     modes = parser.add_subparsers(dest="action",required=True)
@@ -119,7 +147,26 @@ def main():
             mode.add_argument("--run",type=Path,required=True)
             mode.add_argument("--resolution",nargs=2,type=int,metavar=("WIDTH","HEIGHT"),default=(1440,900))
             mode.add_argument("--resource-pack",type=Path,help="Local resource pack to enable in this private client")
+            mode.add_argument("--predict-split",choices=("train","dev","test"),
+                              help="Predict geometry for this shape-fixture split as captures arrive")
+            mode.add_argument("--methods",nargs="+",help="Plane prediction methods (default: all)")
+            mode.add_argument("--workers",type=int,help="Prediction processes (default: 2)")
+            mode.add_argument("--prediction-dir",type=Path,help="Private prediction directory for this fixture")
     args=parser.parse_args()
+    predict_frames = None
+    if args.action=="capture":
+        if args.predict_split:
+            from benchmark import planes
+            methods = args.methods or planes.METHODS
+            if set(methods)-set(planes.METHODS):
+                parser.error("choose prediction methods from " + ", ".join(planes.METHODS))
+            if args.workers is not None and args.workers<1:
+                parser.error("--workers must be positive")
+            def predict_frames(capture_active):
+                planes.run(args.run, [args.predict_split], args.workers or 2, 0, methods,
+                           args.prediction_dir, capture_active)
+        elif any(value is not None for value in (args.methods, args.workers, args.prediction_dir)):
+            parser.error("prediction options require --predict-split")
     cp,meta,index,assets=classpath(args)
     java=str(args.java_home/"bin/java") if args.java_home else "java"
     javac=str(args.java_home/"bin/javac") if args.java_home else "javac"
@@ -182,12 +229,7 @@ def main():
                     "--versionType","release","--gameDir",str(game),"--assetsDir",str(assets),
                     "--assetIndex",index,"--width",str(width),"--height",str(height),"--quickPlaySingleplayer",save.name])
         log_file=root/"client-run.log"
-        with log_file.open("w",encoding="utf8") as log:
-            try:
-                subprocess.run(cmd,cwd=game,stdout=log,stderr=subprocess.STDOUT,check=True,
-                               timeout=max(420,len(views)*20+120))
-            except (subprocess.CalledProcessError,subprocess.TimeoutExpired) as exc:
-                raise RuntimeError(f"Client failed. See {log_file}") from exc
+        run_client(cmd, game, log_file, max(420,len(views)*20+120), predict_frames)
         for v in views:
             stem=root/"captures"/v["id"]
             if not stem.with_suffix(".png").is_file() or json.loads(stem.with_suffix(".json").read_text())["minecraft_version"]!=args.version:
