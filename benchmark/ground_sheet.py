@@ -185,13 +185,19 @@ def sheet(out: Path, examples: list):
     label(d, (MARGIN, bottom+24), f'{primary["split"].capitalize()} ratio coverage', 25, bold=True)
     for j, floor in enumerate(FLOORS):
         for k, (key, name) in enumerate((('endpoint_diagnostic', 'Given the endpoints'), ('automatic_charts', 'Automatic wall planes'))):
-            rows = [e['metrics'][floor][key] for e in scope]
+            metrics = [e['metrics'][floor] for e in scope]
+            rows = [m[key] for m in metrics]
             count = sum(row['measured'] for row in rows)
             total = sum(row['total'] for row in rows)
-            errors = [c['abs_error_pct'] for row in rows for c in row['cases'] if c['abs_error_pct'] is not None]
-            error = f'{np.mean(errors):.2f}% mean error' if errors else 'Error unavailable'
+            per_layout = []
+            for layout in sorted({m['layout'] for m in metrics}):
+                errors = [m[key]['mean_abs_error_pct'] for m in metrics
+                          if m['layout'] == layout and m[key]['mean_abs_error_pct'] is not None]
+                if errors:
+                    per_layout.append(np.mean(errors))
+            error = f'{np.mean(per_layout):.2f}% mean error' if per_layout else 'Error unavailable'
             label(d, (xs[j], bottom+65+k*31), f'{name}   ·   {count}/{total} measured   ·   {error}', 18, bold=k==0)
-    label(d, (MARGIN, bottom+137), 'Errors are absolute percentages across returned ratios. Counts include all labeled spans or eligible wall planes.', 17, MUTED)
+    label(d, (MARGIN, bottom+137), 'Mean absolute percentage error weights layouts equally on returned estimates. Counts include every eligible ratio.', 17, MUTED)
     canvas = canvas.crop((0, 0, WIDTH, bottom+178))
     canvas.save(Path(out)/'comparison.png')
     return regions
