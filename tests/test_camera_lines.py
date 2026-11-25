@@ -4,6 +4,7 @@ import numpy as np
 from PIL import Image
 
 from benchmark.camera_metrics import truth_camera, registration
+from benchmark.camera_round import FROZEN, read
 from calibration.world import GROUND
 from engine.camera_lines import predict
 from engine.geometry import project
@@ -18,8 +19,10 @@ class TileCameraTest(unittest.TestCase):
 
     def test_indexed_tiles_constrain_elevated_intersections(self):
         size = (800, 500)
-        pose = dict(eye_world=[.12, GROUND+1+4.5, -.72], yaw_pitch_deg=[155, 10],
-                    image_size=size, vertical_fov_deg=64)
+        # Use a known vanilla lens for the analytic unit-tile render. Only the
+        # synthetic framebuffer goes to the predictor.
+        pose = read(FROZEN / 'captures/dev-wing-masonry-high-right.json')
+        pose.update(eye_world=[.12, GROUND+1+4.5, -.72], image_size=size)
         W = truth_camera(pose)
         y, x = np.indices(size[::-1])+.5
         rays = np.dstack([x, y, np.ones_like(x)]) @ np.linalg.inv(W[:, :3]).T
