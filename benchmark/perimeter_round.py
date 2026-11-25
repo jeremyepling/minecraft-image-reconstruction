@@ -269,6 +269,13 @@ def run(out, field_cache):
         summary.setdefault('block_counts',{})[cohort]={m:{k:sum(r['block_counts'][m][k] for r in rows)
             for k in ('eligible','correct','incorrect','missing')} for m in METHODS}
     save(out/'scores.json',summary)
+    from benchmark.perimeter_context_count import run as run_context_counts
+    # An independent image-only regeneration also checks that the margin experiment starts from the same masks.
+    run_context_counts(out/'count-context')
+    context_scores=read(out/'count-context/scores.json')['all']
+    control=context_scores['tight']
+    if any(control[k]!=summary['block_counts']['all']['color-edges'][k] for k in ('eligible','correct','incorrect','missing')):
+        raise ValueError('The tight-crop control differs from the Surface Finder comparison')
     make_sheet(out,results,lookup,originals,frozen,selected['selected'])
     manifest=dict(run_id=out.name,code=stamp,stage='Surface Finder',version=suite['version'],fixtures=fixtures,
         models=frozen['shared_models'],capture=frozen['capture'],reference_sha256=digest(ARCHIVE),

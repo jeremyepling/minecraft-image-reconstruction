@@ -22,6 +22,10 @@ On the 56 saved screenshots, Regions First matched **394 of 598** eligible surfa
 
 ## Use the stages on one image
 
+Surface Finder writes outer and inner perimeter rings and a full-resolution, transparent PNG of every visible region. A second RGB crop includes neighboring pixels on every side, with eight native pixels of margin by default. `--surface-context-px 0` requests the tight bounding box for the RGB crop. The JSON gives the native location of both crops and the mask location inside the context photo. The Block Counter ordinarily samples the owned mask. The saved RGB context supports separate tests of grid alignment.
+
+On the current branch the Surface Finder applies `color-edges` to its initial regions. Use `--surface-boundary regions-first` for the original ownership mask or `--surface-boundary depth-split` for the separately evaluated parallel-wall method. The build manifest names the selected refinement. [Comparison and per-picture results](PERIMETER_ROUND.md)
+
 With the pinned models in this checkout and the dependencies from `benchmark/suites/normal-requirements.txt`, this writes one mask per surface in `surfaces.json`. Each mask records its dimensions and half-open pixel runs `[row, start, end]`. `build-manifest.json` identifies the finder, model hashes and settings.
 
 ```powershell

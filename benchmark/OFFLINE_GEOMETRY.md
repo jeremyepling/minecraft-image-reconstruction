@@ -1,5 +1,7 @@
 # Reusing the same buildings without starting Minecraft
 
+Use `.\Invoke-SurfaceRound.ps1 -Round perimeters` to score the three Surface Finder methods and review the surface through cropping, straightening, counting and atlas matching. The experiment reuses the same frame IDs and the model's numerical depth cache. An optional `-Fields` path can point to a different compatible cache. [Review and results](PERIMETER_ROUND.md)
+
 Run `.\Invoke-MaskRound.ps1` to replay the four-method comparison of B, model regions, ScaleLSD v2 and DeepLSD. Its per-picture report and comparison sheet use the 56 saved images. [Reproduction and cache setup](MASK_REPLAY.md)
 
 Run `.\Invoke-BlockCountRound.ps1` to straighten the same surfaces, count blocks, compare individual texture crops and score the coordinates decoded from the exported datapacks. It reuses the frozen Regions First masks from the four-method experiment. [Count comparison](COUNT_ROUND.md)

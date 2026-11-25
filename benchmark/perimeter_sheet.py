@@ -13,7 +13,7 @@ from benchmark.count_round import FINDER,cached_regions
 from benchmark.surface_metrics import DOWNSAMPLE
 from benchmark.surface_reference import recorded
 from benchmark.surface_sheet import text
-from engine.surface_perimeter import draw_outline
+from engine.surface_perimeter import context_crop,draw_outline,masked_crop
 
 
 FOCUS=('courtyard','workshop','registry')
@@ -94,6 +94,14 @@ def detail_sheet(out,examples,lookup):
         text(draw,26,y+273,ex['key'],15)
         details.append(dict(frame=ex['key'],proposal=ex['part']['id'],stage='surface-finder',
                             native_detail_xyxy=list(zbox),native_scene_xyxy=ex['box'],reference_surface=view['recorded_surface']))
+        dest=out/'crops'/ex['layout']
+        dest.mkdir(parents=True,exist_ok=True)
+        cut,tight=masked_crop(image,ex['part'])
+        cut.save(dest/'surface.png')
+        surroundings,context,local=context_crop(image,ex['part'],ex['margin'])
+        surroundings.save(dest/'context.png')
+        details[-1].update(tight_xyxy=list(tight),context_xyxy=list(context),tight_xyxy_in_context=list(local),
+                           source_png=lookup[ex['key']].path('image').name,margin_px=ex['margin'])
     canvas.save(out/'edge-closeups.jpg',quality=93,subsampling=0)
     save(out/'edge-closeups.json',details)
 
@@ -147,15 +155,23 @@ def make_sheet(out,results,lookup,originals,frozen,selected):
            '<a href="comparison.jpg"><img src="comparison.jpg" alt="Eight buildings shown through each stage of reconstruction"></a>',
            '<h2>The three highlighted buildings</h2><p>The older sheet used the four sampling corners as a surface outline. The detail shows where that chart cuts across visible pixels. The gold overlay is the independently recorded surface.</p>',
            '<a href="edge-closeups.jpg"><img src="edge-closeups.jpg" alt="Old chart and actual surface contours on courtyard, workshop and registry"></a>',
+           '<p>Full-resolution crops: '+' · '.join(f'{k.title()} <a href="crops/{k}/surface.png">surface</a> / <a href="crops/{k}/context.png">with context</a>' for k in FOCUS)+'</p>',
            '<h2>Which boundaries improved?</h2>',
            table(['Method','Matched / eligible','Mean border error','Correct surface pixels','Opening area covered','Both block counts correct'],
                  [[NAMES[m],f"{v['matched']} / {v['eligible']}",f"{v['edge_error_px']:.2f} px",
                    f"{v['assigned_fraction']:.2%}",f"{v['opening_fill']:.2%}",stats['block_counts']['all'][m]['correct']]
                   for m,v in stats['all'].items()]),
-           '<h2>How much context does a wider crop show?</h2><p>Each count is a sample of four by four native pixels, summed across matched regions. The added margin shows real neighboring pixels. The ownership mask and counter use the original accepted surface. A separate phase experiment would be needed to use these neighbors as evidence for the grid.</p>']
+           '<h2>How much context does a wider crop show?</h2><p>Each count is a sample of four by four native pixels, summed across matched regions. The added margin shows real neighboring pixels. The ordinary Block Counter measures the owned surface.</p>']
     margins=read(out/'context-margins.json')['native_pixel_margins']
     parts.append(table(['Margin on each side','Missed target samples visible in RGB context','Other surface or background samples in context'],
                        [[k+' px',v['missed_target_visible_in_context'],v['other_surface_or_background_in_context']] for k,v in margins.items()]))
+    context_counts=read(out/'count-context/scores.json')['all']
+    caption={'tight':'Tight surface only','context8':'8 px with neighboring texture','context16':'16 px with neighboring texture',
+             'padding8':'8 px, extra pixels hidden','padding16':'16 px, extra pixels hidden'}
+    parts+=['<h2>Does the extra texture improve counting?</h2><p>In this diagnostic we allowed connected, similar-colored pixels outside the tight crop to help the counter. Holes and other detected surfaces stayed excluded. We also ran the expanded sampling charts with the extra RGB hidden to isolate the effect of seeing those neighbors.</p>',
+            table(['Counter input','Both dimensions right','Wrong pair','No complete count','Both grid origins estimated'],
+              [[caption.get(k,k),v['correct'],v['incorrect'],v['missing'],v['both_phases_returned_on_matches']] for k,v in context_counts.items()]),
+            '<p><a href="count-context/cases.json">All context measurements</a> · <a href="count-context/manifest.json">Context settings and methods</a></p>']
     parts+=['<h2>All 56 original pictures</h2>']
     for row in results:
         case=lookup[row['key']]
