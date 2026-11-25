@@ -8,7 +8,7 @@ from PIL import Image,ImageDraw
 from benchmark.camera_round import read,save
 from benchmark.camera_labels import rasterize
 from benchmark.normal_round import METHODS,BASE
-from benchmark.surface_metrics import truth,DOWNSAMPLE
+from benchmark.surface_metrics import truth,DOWNSAMPLE,observed_support
 from benchmark.surface_topology import opening_mask
 from benchmark.surface_sheet import scene_box,overlay_scene,text,panel,poly,box_of,PAPER,DIM
 
@@ -33,9 +33,75 @@ def delta(row,method):
     return f1(method)-f1(BASE)
 
 
-def render(out,rows,winner):
+def quad_coverage(planes,shape):
+    covered=np.zeros(shape,dtype=bool)
+    for plane in planes:
+        q=np.column_stack([np.asarray(plane['quad'])/DOWNSAMPLE,np.ones(4)])
+        hit=rasterize(q,shape[1],shape[0])
+        if hit:
+            box,mask=hit[:2]
+            covered[box]|=mask
+    return covered
+
+
+def support_review(canvas,out,row,y):
+    im,t,pred=case_data(out,row)
+    method='normal-regions'
+    planes=pred[method]['model']['planes']
+    opening=opening_mask(t['id_map'])
+    quads=quad_coverage(planes,opening.shape)
+    support=np.zeros_like(opening)
+    for plane in planes:
+        support|=observed_support(plane['support'],opening.shape,im.size)
+    masks=[quads,support]
+    stats=row['methods'][method]
+    opening_size=int(opening.sum())
+    fills=[int((m&opening).sum()) for m in masks]
+    for filled,key in zip(fills,['gaps','support_gaps']):
+        if (filled,opening_size)!=(stats[key]['filled_pixels'],stats[key]['opening_pixels']):
+            raise ValueError(f'Opening overlay differs from the saved {key} score for {row["id"]}')
+    ys,xs=np.where(opening)
+    crop=scene_box(t,im)
+    if len(xs):
+        ends=np.array([[xs.min(),ys.min()],[xs.max()+1,ys.max()+1]])*DOWNSAMPLE
+        crop=box_of(ends,im.size,32)
+
+    def native(mask):
+        return Image.fromarray(mask).resize(im.size,Image.Resampling.NEAREST)
+
+    # Mark the opening perimeter on the two diagnostic images. The raw crop
+    # has no marks. Red takes precedence even on a single boundary sample.
+    padded=np.pad(opening,1)
+    interior=(padded[1:-1,:-2]&padded[1:-1,2:]&padded[:-2,1:-1]&padded[2:,1:-1])
+    rim=native(opening&~interior)
+    cyan=Image.blend(im,Image.new('RGB',im.size,'#18d9d0'),.49)
+    views=[im]
+    for mask in masks:
+        view=Image.composite(cyan,im,native(mask))
+        view.paste('#ffd055',(0,0,*im.size),rim)
+        view.paste('#fc463f',(0,0,*im.size),native(mask&opening))
+        views.append(view)
+    pen=ImageDraw.Draw(canvas)
+    text(pen,34,y,'How much of the opening does each representation fill?',27,True)
+    x0,y0,x1,y1=crop
+    text(pen,34,y+44,f"{row['id']}   /   Normal regions   /   Native crop ({x0}, {y0}) to ({x1}, {y1})",19)
+    text(pen,34,y+81,'Teal = predicted coverage     Gold edge = recorded opening     Red = coverage inside a recorded opening',18)
+    labels=['Source screenshot','Fitted quadrilaterals','Predicted support mask (RLE)']
+    captions=[f'{opening_size:,} opening pixels on a {opening.shape[1]} × {opening.shape[0]} scoring grid']+[
+        f'{n:,} / {opening_size:,} opening pixels filled' for n in fills]
+    for j,(view,label,caption) in enumerate(zip(views,labels,captions)):
+        x=34+j*507
+        text(pen,x,y+131,label,22,True)
+        panel(canvas,view,crop,x,y+170,492,325)
+        text(pen,x,y+511,caption,18)
+    return dict(image=row['id'],floor=row['floor'],region_xyxy=crop,stage='outlines',
+                name='Fitted outlines and saved region support over openings',method=method)
+
+
+def render(out,rows,winner,*,destination=None):
+    destination=out if destination is None else destination
     scores=read(out/'scores.json')
-    canvas=Image.new('RGB',(1580,2010),PAPER)
+    canvas=Image.new('RGB',(1580,2580),PAPER)
     pen=ImageDraw.Draw(canvas)
     text(pen,34,22,'Recovering visible planes from one screenshot',40,True)
     text(pen,34,83,'Minecraft Java 26.3   /   clear noon   /   48 suite frames and 8 new blind frames',22,fill=DIM)
@@ -76,19 +142,14 @@ def render(out,rows,winner):
             outlines=row['methods'][m]['outlines']
             view=overlay_scene(im,t,planes,outlines)
             gap=opening_mask(t['id_map'])
-            spill=np.zeros_like(gap)
-            for p in planes:
-                q=np.column_stack([np.array(p['quad'])/DOWNSAMPLE,np.ones(4)])
-                hit=rasterize(q,gap.shape[1],gap.shape[0])
-                if hit:
-                    box,mask=hit[:2]
-                    spill[box]|=mask&gap[box]
+            spill=quad_coverage(planes,gap.shape)&gap
             view.paste('#fc463f',(0,0,*view.size),Image.fromarray(spill).resize(view.size,Image.Resampling.NEAREST))
             text(pen,x,y+45,TITLES[j],20,True)
             panel(canvas,view,crop,x,y+79,492,280)
             text(pen,x,y+377,f"{outlines['matched']} matched   /   {outlines['proposed']} proposed   /   {outlines['eligible']} eligible",18)
         regions.append(dict(image=row['id'],floor=row['floor'],region_xyxy=crop,stage='outlines'))
-    text(pen,34,1558,'Which surface is in front?',27,True)
+    regions.append(support_review(canvas,out,difficult,1558))
+    text(pen,34,2128,'Which surface is in front?',27,True)
     # Choose a measured automatic relationship; the two methods share the same predicted quads.
     choices=sorted(rows,key=lambda r:(r['cohort']=='blind',r['methods'][winner]['order']['depth-anything']['correct']),reverse=True)
     for row in choices:
@@ -107,23 +168,24 @@ def render(out,rows,winner):
             continue
         near,far=pair['near'],pair['far']
         crop=box_of([by_id[near]['quad'],by_id[far]['quad']],im.size,20)
-        text(pen,34,1600,row['id']+'   /   Cyan = nearer, amber = farther',19)
+        text(pen,34,2170,row['id']+'   /   Cyan = nearer, amber = farther',19)
         old=next((p for p in data['relations']['geometry'] if {p['near'],p['far']}=={near,far}),None)
         for j,(title,relation) in enumerate((('Recorded order on matched planes',pair),('Geometry ordering',old),('Relative-depth ordering',pair))):
             x=34+j*507
-            text(pen,x,1655,title,21,True)
+            text(pen,x,2225,title,21,True)
             view=im.copy()
             d=ImageDraw.Draw(view)
             for a in (near,far):
                 color=('#35fff0' if relation['near']==a else '#ffd055') if relation else '#eeeeee'
                 poly(d,by_id[a]['quad'],color,4,True)
-            panel(canvas,view,crop,x,1705,492,236)
+            panel(canvas,view,crop,x,2275,492,236)
             if j:
-                text(pen,x,1956,'No comparable depths' if relation is None else
+                text(pen,x,2526,'No comparable depths' if relation is None else
                      ('Matches recorded order' if relation['near']==near else 'Order reversed'),18)
         regions.append(dict(image=row['id'],floor=row['floor'],region_xyxy=crop,stage='order'))
         break
     else:
-        text(pen,34,1620,'No automatic relationship matched a measurable occlusion boundary.',20)
-    canvas.save(out/'comparison.jpg',quality=94,subsampling=0)
-    save(out/'review-regions.json',regions)
+        text(pen,34,2190,'No automatic relationship matched a measurable occlusion boundary.',20)
+    destination.mkdir(parents=True,exist_ok=True)
+    canvas.save(destination/'comparison.jpg',quality=94,subsampling=0)
+    save(destination/'review-regions.json',regions)
