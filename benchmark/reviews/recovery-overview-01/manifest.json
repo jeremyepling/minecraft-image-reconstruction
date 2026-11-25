@@ -1,0 +1,2701 @@
+{
+  "run_id": "recovery-overview-01",
+  "code": {
+    "commit": "6e01fc7c82b58b1e09b3fb71ef5e3c9bd720f9fd",
+    "predictor_and_runner_sha256": "2c38a10c0514e506a5dffb99ce50f302c4b8a322c155b99f19bc12d4e816f2db",
+    "source_dirty": false
+  },
+  "source_runs": {
+    "recovery-01": {
+      "cases.json": "9d729cb5ccafc44b50626a303966931c1043e8b8fee5060882c02f9d7b420c99",
+      "manifest.json": "a746d23907536b3340145e81a35c43a0cdfcdb92889031edfe85e48bbd7cf19f",
+      "sheet-views.json": "e052002cfd6cb993b162fc8d9bb46131e75a186d53310a70dcf4fa5ebd775bdb"
+    },
+    "junction-underside-01": {
+      "cases.json": "fa3a70c64e446c1d9ebd154894908a408f8b487b2fb888bbe151718d87dd7835",
+      "manifest.json": "0b4f33016d9222d0fd7affbf98cd4ad0e04eb7316ddb0fe70b7bc74e2a1b64fa"
+    },
+    "mobile-walls-01": {
+      "development/cases.json": "a61cc345e4c41717992bbc83c4ae6fa67fa583c3c243daeaaeace70e38d0329b",
+      "development/manifest.json": "900fa960edcc76762f4a40ec345c753d0bac27e21837c046a16c9835be4e0e6e",
+      "regression/cases.json": "fd42332efb8b9d0578dbcf26a9c8742974be9f0dccdff232bd1670d326f40b25",
+      "regression/manifest.json": "868399178cde672a025e78d06776047ddfc36170aca8f6d80269f6aa3b44c581"
+    },
+    "mobile-combined-01": {
+      "development/cases.json": "9782eeba9be072b9165bf2f0a92dd7b09fb38b06d390dab53972bd0400158224",
+      "development/manifest.json": "48f2de6851950067086a1d98a5f3cb25bfa7ab73e3d87b9770837790579d975f",
+      "regression/cases.json": "4943c3edb4c7cf7f59c5f72cfdc716ddc666cc7cb5d959fc806bd171afe09830",
+      "regression/manifest.json": "97ee02fa579963accea3f4af812609a1ff2fd1cd578399a0911ad2c3b0aa3c9c"
+    }
+  },
+  "version": "26.3",
+  "fixtures": {
+    "smooth_stone": "660d1e535ae134452bca903a9d7cbe8d37953927fa118d9ffb327afad0885bc2",
+    "light_gray_concrete": "321505e15563f8efc0da868baa27409837aaa474410a61f3513b3dac0030f066",
+    "surface_confirm_v1": "0a479a8264f2c0f714284928354ff6ff5f9729491709676f07e2033d25e48fc3",
+    "normal_confirm_v1": "61bdf3a89a505a8be3757efe480185bec9c1888a1c72ffb69ef0093623e27dda"
+  },
+  "time_and_weather": {
+    "clock_ticks": 6000,
+    "raining": false,
+    "thundering": false,
+    "resource_packs": [
+      "vanilla"
+    ],
+    "hud_hidden": true,
+    "image_size": [
+      1440,
+      900
+    ]
+  },
+  "reference_sha256": "91efa6d3e992b1a68672eae1fdd6d380e87724742a1a4b6cbe5f84d284f731a1",
+  "frame_selection": "Same eight views as recovery-01.",
+  "focus_selection": "For illustration after scoring, prioritize a new match, then a persistently merged or missed surface. Prefer vertical faces, broader recovery across candidates, then previous focus and visible area.",
+  "crop_changes": "Compared with Wall Separator. A changed eligible ID is in the crop if any of its native reference pixels are visible there.",
+  "methods": {
+    "current": "Wall Separator",
+    "wall-and-underside": "Wall + underside",
+    "junction-cuts": "Junction splits",
+    "junction-then-underside": "Junction + underside",
+    "mobile-walls": "Wall + MobileSAM",
+    "mobile-combined": "All three refinements"
+  },
+  "displayed_methods": [
+    "current",
+    "wall-and-underside",
+    "junction-cuts",
+    "junction-then-underside",
+    "mobile-walls",
+    "mobile-combined"
+  ],
+  "suite_counts": {
+    "current": {
+      "frames": 56,
+      "found": 423,
+      "eligible": 598
+    },
+    "wall-and-underside": {
+      "frames": 56,
+      "found": 430,
+      "eligible": 598
+    },
+    "junction-cuts": {
+      "frames": 56,
+      "found": 441,
+      "eligible": 598
+    },
+    "junction-then-underside": {
+      "frames": 56,
+      "found": 448,
+      "eligible": 598
+    },
+    "mobile-walls": {
+      "frames": 56,
+      "found": 444,
+      "eligible": 598
+    },
+    "mobile-combined": {
+      "frames": 56,
+      "found": 471,
+      "eligible": 598
+    }
+  },
+  "views": [
+    {
+      "frame": "light_gray_concrete/dev-shopfront-masonry-high-right",
+      "layout": "shopfront",
+      "sha256": "bb588b0b0d1cdb05b720ff5bc3b515479426c7772fd98fb7fadb8a55b79ca9db",
+      "scene_xyxy": [
+        472,
+        284,
+        1076,
+        696
+      ],
+      "crop_xyxy": [
+        724,
+        401,
+        1034,
+        715
+      ],
+      "focus_reference": 7,
+      "focus_reason": "Recovered surface",
+      "reference_ids_in_crop": [
+        1,
+        2,
+        5,
+        7,
+        8,
+        10,
+        11,
+        16,
+        17,
+        18,
+        19
+      ],
+      "visible": 19,
+      "eligible": [
+        4,
+        5,
+        6,
+        7,
+        8,
+        10,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19
+      ],
+      "methods": {
+        "current": {
+          "found": [
+            4,
+            5,
+            8,
+            10,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19
+          ],
+          "missed": [
+            6,
+            7
+          ],
+          "counts": {
+            "visible": 19,
+            "scored": 14,
+            "found": 12,
+            "missed": 2,
+            "small": 5,
+            "small_found": 2,
+            "unsampled": 0,
+            "proposed": 16,
+            "unmatched": 4,
+            "unpaired": 2
+          },
+          "focus": {
+            "found": false,
+            "overlap": 0.24602385685884692,
+            "proposal": "mask-0",
+            "index": 1
+          },
+          "focus_outline_in_crop": true,
+          "gained_in_crop": [],
+          "lost_in_crop": []
+        },
+        "wall-and-underside": {
+          "found": [
+            4,
+            5,
+            8,
+            10,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19
+          ],
+          "missed": [
+            6,
+            7
+          ],
+          "counts": {
+            "visible": 19,
+            "scored": 14,
+            "found": 12,
+            "missed": 2,
+            "small": 5,
+            "small_found": 2,
+            "unsampled": 0,
+            "proposed": 16,
+            "unmatched": 4,
+            "unpaired": 2
+          },
+          "focus": {
+            "found": false,
+            "overlap": 0.24602385685884692,
+            "proposal": "mask-0",
+            "index": 1
+          },
+          "focus_outline_in_crop": true,
+          "gained_in_crop": [],
+          "lost_in_crop": []
+        },
+        "junction-cuts": {
+          "found": [
+            4,
+            5,
+            8,
+            10,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19
+          ],
+          "missed": [
+            6,
+            7
+          ],
+          "counts": {
+            "visible": 19,
+            "scored": 14,
+            "found": 12,
+            "missed": 2,
+            "small": 5,
+            "small_found": 2,
+            "unsampled": 0,
+            "proposed": 16,
+            "unmatched": 4,
+            "unpaired": 2
+          },
+          "focus": {
+            "found": false,
+            "overlap": 0.24602385685884692,
+            "proposal": "mask-0",
+            "index": 1
+          },
+          "focus_outline_in_crop": true,
+          "gained_in_crop": [],
+          "lost_in_crop": []
+        },
+        "junction-then-underside": {
+          "found": [
+            4,
+            5,
+            8,
+            10,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19
+          ],
+          "missed": [
+            6,
+            7
+          ],
+          "counts": {
+            "visible": 19,
+            "scored": 14,
+            "found": 12,
+            "missed": 2,
+            "small": 5,
+            "small_found": 2,
+            "unsampled": 0,
+            "proposed": 16,
+            "unmatched": 4,
+            "unpaired": 2
+          },
+          "focus": {
+            "found": false,
+            "overlap": 0.24602385685884692,
+            "proposal": "mask-0",
+            "index": 1
+          },
+          "focus_outline_in_crop": true,
+          "gained_in_crop": [],
+          "lost_in_crop": []
+        },
+        "mobile-walls": {
+          "found": [
+            4,
+            5,
+            7,
+            8,
+            10,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19
+          ],
+          "missed": [
+            6
+          ],
+          "counts": {
+            "visible": 19,
+            "scored": 14,
+            "found": 13,
+            "missed": 1,
+            "small": 5,
+            "small_found": 2,
+            "unsampled": 0,
+            "proposed": 18,
+            "unmatched": 5,
+            "unpaired": 3
+          },
+          "focus": {
+            "found": true,
+            "overlap": 0.7694704049844237,
+            "proposal": "mask-0-mobile-1",
+            "index": 2
+          },
+          "focus_outline_in_crop": true,
+          "gained_in_crop": [
+            7
+          ],
+          "lost_in_crop": []
+        },
+        "mobile-combined": {
+          "found": [
+            4,
+            5,
+            7,
+            8,
+            10,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19
+          ],
+          "missed": [
+            6
+          ],
+          "counts": {
+            "visible": 19,
+            "scored": 14,
+            "found": 13,
+            "missed": 1,
+            "small": 5,
+            "small_found": 2,
+            "unsampled": 0,
+            "proposed": 18,
+            "unmatched": 5,
+            "unpaired": 3
+          },
+          "focus": {
+            "found": true,
+            "overlap": 0.7694704049844237,
+            "proposal": "mask-0-mobile-1",
+            "index": 2
+          },
+          "focus_outline_in_crop": true,
+          "gained_in_crop": [
+            7
+          ],
+          "lost_in_crop": []
+        }
+      },
+      "prediction_files": {
+        "current": {
+          "run": "recovery-01",
+          "path": "predictions/light_gray_concrete/dev-shopfront-masonry-high-right.json.gz",
+          "sha256": "c0453769ad8e23fb457f1b005ede5f59b5600661ec8fb4b4ba67c028fed4532c"
+        },
+        "wall-and-underside": {
+          "run": "recovery-01",
+          "path": "predictions/light_gray_concrete/dev-shopfront-masonry-high-right.json.gz",
+          "sha256": "c0453769ad8e23fb457f1b005ede5f59b5600661ec8fb4b4ba67c028fed4532c"
+        },
+        "junction-cuts": {
+          "run": "recovery-01",
+          "path": "predictions/light_gray_concrete/dev-shopfront-masonry-high-right.json.gz",
+          "sha256": "c0453769ad8e23fb457f1b005ede5f59b5600661ec8fb4b4ba67c028fed4532c"
+        },
+        "junction-then-underside": {
+          "run": "junction-underside-01",
+          "path": "predictions/light_gray_concrete/dev-shopfront-masonry-high-right.json.gz",
+          "sha256": "c82fca5677f477d525e973ec75697851feae2952760bc8868891365f207dcd30"
+        },
+        "mobile-walls": {
+          "run": "mobile-walls-01",
+          "path": "development/predictions/light_gray_concrete/dev-shopfront-masonry-high-right.json.gz",
+          "sha256": "ef81e9e0d1e096d6634d1ebecac21bed816af2a04e1764a529bb0e0200123244"
+        },
+        "mobile-combined": {
+          "run": "mobile-combined-01",
+          "path": "development/predictions/light_gray_concrete/dev-shopfront-masonry-high-right.json.gz",
+          "sha256": "ef81e9e0d1e096d6634d1ebecac21bed816af2a04e1764a529bb0e0200123244"
+        }
+      }
+    },
+    {
+      "frame": "smooth_stone/dev-wing-masonry-high-right",
+      "layout": "wing",
+      "sha256": "8cd9e20f608db25df6d141941051d30afcbf80733ea4c6f2058874c02019bf9f",
+      "scene_xyxy": [
+        388,
+        292,
+        1032,
+        704
+      ],
+      "crop_xyxy": [
+        582,
+        255,
+        1038,
+        718
+      ],
+      "focus_reference": 7,
+      "focus_reason": "Already found",
+      "reference_ids_in_crop": [
+        1,
+        2,
+        3,
+        5,
+        6,
+        7,
+        8
+      ],
+      "visible": 8,
+      "eligible": [
+        1,
+        2,
+        3,
+        7,
+        8
+      ],
+      "methods": {
+        "current": {
+          "found": [
+            1,
+            2,
+            3,
+            7,
+            8
+          ],
+          "missed": [],
+          "counts": {
+            "visible": 8,
+            "scored": 5,
+            "found": 5,
+            "missed": 0,
+            "small": 3,
+            "small_found": 0,
+            "unsampled": 2,
+            "proposed": 8,
+            "unmatched": 3,
+            "unpaired": 3
+          },
+          "focus": {
+            "found": true,
+            "overlap": 0.8947368421052632,
+            "proposal": "mask-2",
+            "index": 3
+          },
+          "focus_outline_in_crop": true,
+          "gained_in_crop": [],
+          "lost_in_crop": []
+        },
+        "wall-and-underside": {
+          "found": [
+            1,
+            2,
+            3,
+            7,
+            8
+          ],
+          "missed": [],
+          "counts": {
+            "visible": 8,
+            "scored": 5,
+            "found": 5,
+            "missed": 0,
+            "small": 3,
+            "small_found": 0,
+            "unsampled": 2,
+            "proposed": 8,
+            "unmatched": 3,
+            "unpaired": 3
+          },
+          "focus": {
+            "found": true,
+            "overlap": 0.8947368421052632,
+            "proposal": "mask-2",
+            "index": 3
+          },
+          "focus_outline_in_crop": true,
+          "gained_in_crop": [],
+          "lost_in_crop": []
+        },
+        "junction-cuts": {
+          "found": [
+            1,
+            2,
+            3,
+            7,
+            8
+          ],
+          "missed": [],
+          "counts": {
+            "visible": 8,
+            "scored": 5,
+            "found": 5,
+            "missed": 0,
+            "small": 3,
+            "small_found": 0,
+            "unsampled": 2,
+            "proposed": 8,
+            "unmatched": 3,
+            "unpaired": 3
+          },
+          "focus": {
+            "found": true,
+            "overlap": 0.8947368421052632,
+            "proposal": "mask-2",
+            "index": 3
+          },
+          "focus_outline_in_crop": true,
+          "gained_in_crop": [],
+          "lost_in_crop": []
+        },
+        "junction-then-underside": {
+          "found": [
+            1,
+            2,
+            3,
+            7,
+            8
+          ],
+          "missed": [],
+          "counts": {
+            "visible": 8,
+            "scored": 5,
+            "found": 5,
+            "missed": 0,
+            "small": 3,
+            "small_found": 0,
+            "unsampled": 2,
+            "proposed": 8,
+            "unmatched": 3,
+            "unpaired": 3
+          },
+          "focus": {
+            "found": true,
+            "overlap": 0.8947368421052632,
+            "proposal": "mask-2",
+            "index": 3
+          },
+          "focus_outline_in_crop": true,
+          "gained_in_crop": [],
+          "lost_in_crop": []
+        },
+        "mobile-walls": {
+          "found": [
+            1,
+            2,
+            3,
+            7,
+            8
+          ],
+          "missed": [],
+          "counts": {
+            "visible": 8,
+            "scored": 5,
+            "found": 5,
+            "missed": 0,
+            "small": 3,
+            "small_found": 0,
+            "unsampled": 2,
+            "proposed": 8,
+            "unmatched": 3,
+            "unpaired": 3
+          },
+          "focus": {
+            "found": true,
+            "overlap": 0.8947368421052632,
+            "proposal": "mask-2",
+            "index": 3
+          },
+          "focus_outline_in_crop": true,
+          "gained_in_crop": [],
+          "lost_in_crop": []
+        },
+        "mobile-combined": {
+          "found": [
+            1,
+            2,
+            3,
+            7,
+            8
+          ],
+          "missed": [],
+          "counts": {
+            "visible": 8,
+            "scored": 5,
+            "found": 5,
+            "missed": 0,
+            "small": 3,
+            "small_found": 0,
+            "unsampled": 2,
+            "proposed": 8,
+            "unmatched": 3,
+            "unpaired": 3
+          },
+          "focus": {
+            "found": true,
+            "overlap": 0.8947368421052632,
+            "proposal": "mask-2",
+            "index": 3
+          },
+          "focus_outline_in_crop": true,
+          "gained_in_crop": [],
+          "lost_in_crop": []
+        }
+      },
+      "prediction_files": {
+        "current": {
+          "run": "recovery-01",
+          "path": "predictions/smooth_stone/dev-wing-masonry-high-right.json.gz",
+          "sha256": "bf6308d5acd21a9c77894e5277af3891d5f071327b544c1294d2872c6a4a12b4"
+        },
+        "wall-and-underside": {
+          "run": "recovery-01",
+          "path": "predictions/smooth_stone/dev-wing-masonry-high-right.json.gz",
+          "sha256": "bf6308d5acd21a9c77894e5277af3891d5f071327b544c1294d2872c6a4a12b4"
+        },
+        "junction-cuts": {
+          "run": "recovery-01",
+          "path": "predictions/smooth_stone/dev-wing-masonry-high-right.json.gz",
+          "sha256": "bf6308d5acd21a9c77894e5277af3891d5f071327b544c1294d2872c6a4a12b4"
+        },
+        "junction-then-underside": {
+          "run": "junction-underside-01",
+          "path": "predictions/smooth_stone/dev-wing-masonry-high-right.json.gz",
+          "sha256": "7e77274ce00aecd55699eb08c43d5c9bf9ff89cd0e246509ec5d13ef79ae21dd"
+        },
+        "mobile-walls": {
+          "run": "mobile-walls-01",
+          "path": "development/predictions/smooth_stone/dev-wing-masonry-high-right.json.gz",
+          "sha256": "048367b87e5c8ae45c8da58e880d86dd909d8adcd728c91b55be25b35aae6d0b"
+        },
+        "mobile-combined": {
+          "run": "mobile-combined-01",
+          "path": "development/predictions/smooth_stone/dev-wing-masonry-high-right.json.gz",
+          "sha256": "048367b87e5c8ae45c8da58e880d86dd909d8adcd728c91b55be25b35aae6d0b"
+        }
+      }
+    },
+    {
+      "frame": "light_gray_concrete/holdout-courtyard-masonry-high-right",
+      "layout": "courtyard",
+      "sha256": "b5b2bb5300687da8d904fb129043b5d2df0ae56e9ba4e14afb932b3e6d44dd3b",
+      "scene_xyxy": [
+        392,
+        280,
+        1080,
+        696
+      ],
+      "crop_xyxy": [
+        514,
+        297,
+        701,
+        427
+      ],
+      "focus_reference": 11,
+      "focus_reason": "Merged in baseline",
+      "reference_ids_in_crop": [
+        1,
+        3,
+        5,
+        6,
+        7,
+        10,
+        11
+      ],
+      "visible": 12,
+      "eligible": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        10,
+        11,
+        12
+      ],
+      "methods": {
+        "current": {
+          "found": [
+            1,
+            2,
+            3,
+            4,
+            10,
+            12
+          ],
+          "missed": [
+            5,
+            11
+          ],
+          "counts": {
+            "visible": 12,
+            "scored": 8,
+            "found": 6,
+            "missed": 2,
+            "small": 4,
+            "small_found": 0,
+            "unsampled": 4,
+            "proposed": 7,
+            "unmatched": 1,
+            "unpaired": 1
+          },
+          "focus": {
+            "found": false,
+            "overlap": 0.14812889812889812,
+            "proposal": "mask-2",
+            "index": 3
+          },
+          "focus_outline_in_crop": true,
+          "gained_in_crop": [],
+          "lost_in_crop": []
+        },
+        "wall-and-underside": {
+          "found": [
+            1,
+            2,
+            3,
+            4,
+            10,
+            12
+          ],
+          "missed": [
+            5,
+            11
+          ],
+          "counts": {
+            "visible": 12,
+            "scored": 8,
+            "found": 6,
+            "missed": 2,
+            "small": 4,
+            "small_found": 0,
+            "unsampled": 4,
+            "proposed": 7,
+            "unmatched": 1,
+            "unpaired": 1
+          },
+          "focus": {
+            "found": false,
+            "overlap": 0.14812889812889812,
+            "proposal": "mask-2",
+            "index": 3
+          },
+          "focus_outline_in_crop": true,
+          "gained_in_crop": [],
+          "lost_in_crop": []
+        },
+        "junction-cuts": {
+          "found": [
+            1,
+            2,
+            3,
+            4,
+            10,
+            12
+          ],
+          "missed": [
+            5,
+            11
+          ],
+          "counts": {
+            "visible": 12,
+            "scored": 8,
+            "found": 6,
+            "missed": 2,
+            "small": 4,
+            "small_found": 0,
+            "unsampled": 4,
+            "proposed": 7,
+            "unmatched": 1,
+            "unpaired": 1
+          },
+          "focus": {
+            "found": false,
+            "overlap": 0.14812889812889812,
+            "proposal": "mask-2",
+            "index": 3
+          },
+          "focus_outline_in_crop": true,
+          "gained_in_crop": [],
+          "lost_in_crop": []
+        },
+        "junction-then-underside": {
+          "found": [
+            1,
+            2,
+            3,
+            4,
+            10,
+            12
+          ],
+          "missed": [
+            5,
+            11
+          ],
+          "counts": {
+            "visible": 12,
+            "scored": 8,
+            "found": 6,
+            "missed": 2,
+            "small": 4,
+            "small_found": 0,
+            "unsampled": 4,
+            "proposed": 7,
+            "unmatched": 1,
+            "unpaired": 1
+          },
+          "focus": {
+            "found": false,
+            "overlap": 0.14812889812889812,
+            "proposal": "mask-2",
+            "index": 3
+          },
+          "focus_outline_in_crop": true,
+          "gained_in_crop": [],
+          "lost_in_crop": []
+        },
+        "mobile-walls": {
+          "found": [
+            1,
+            2,
+            3,
+            4,
+            10,
+            12
+          ],
+          "missed": [
+            5,
+            11
+          ],
+          "counts": {
+            "visible": 12,
+            "scored": 8,
+            "found": 6,
+            "missed": 2,
+            "small": 4,
+            "small_found": 0,
+            "unsampled": 4,
+            "proposed": 7,
+            "unmatched": 1,
+            "unpaired": 1
+          },
+          "focus": {
+            "found": false,
+            "overlap": 0.14812889812889812,
+            "proposal": "mask-2",
+            "index": 3
+          },
+          "focus_outline_in_crop": true,
+          "gained_in_crop": [],
+          "lost_in_crop": []
+        },
+        "mobile-combined": {
+          "found": [
+            1,
+            2,
+            3,
+            4,
+            10,
+            12
+          ],
+          "missed": [
+            5,
+            11
+          ],
+          "counts": {
+            "visible": 12,
+            "scored": 8,
+            "found": 6,
+            "missed": 2,
+            "small": 4,
+            "small_found": 0,
+            "unsampled": 4,
+            "proposed": 7,
+            "unmatched": 1,
+            "unpaired": 1
+          },
+          "focus": {
+            "found": false,
+            "overlap": 0.14812889812889812,
+            "proposal": "mask-2",
+            "index": 3
+          },
+          "focus_outline_in_crop": true,
+          "gained_in_crop": [],
+          "lost_in_crop": []
+        }
+      },
+      "prediction_files": {
+        "current": {
+          "run": "recovery-01",
+          "path": "predictions/light_gray_concrete/holdout-courtyard-masonry-high-right.json.gz",
+          "sha256": "267bc43a5d631a17c5f641d6e0d0821206b4b7e7fde67d653bcff2957cac295b"
+        },
+        "wall-and-underside": {
+          "run": "recovery-01",
+          "path": "predictions/light_gray_concrete/holdout-courtyard-masonry-high-right.json.gz",
+          "sha256": "267bc43a5d631a17c5f641d6e0d0821206b4b7e7fde67d653bcff2957cac295b"
+        },
+        "junction-cuts": {
+          "run": "recovery-01",
+          "path": "predictions/light_gray_concrete/holdout-courtyard-masonry-high-right.json.gz",
+          "sha256": "267bc43a5d631a17c5f641d6e0d0821206b4b7e7fde67d653bcff2957cac295b"
+        },
+        "junction-then-underside": {
+          "run": "junction-underside-01",
+          "path": "predictions/light_gray_concrete/holdout-courtyard-masonry-high-right.json.gz",
+          "sha256": "b708243672dbac38f962d18db3341683bd98e57fa1bd47c6778617e6e8ce95d0"
+        },
+        "mobile-walls": {
+          "run": "mobile-walls-01",
+          "path": "regression/predictions/light_gray_concrete/holdout-courtyard-masonry-high-right.json.gz",
+          "sha256": "e7fae52abe4a75bdb6aa8b8192a517081a607b80402980f27132d30796a07a47"
+        },
+        "mobile-combined": {
+          "run": "mobile-combined-01",
+          "path": "regression/predictions/light_gray_concrete/holdout-courtyard-masonry-high-right.json.gz",
+          "sha256": "e7fae52abe4a75bdb6aa8b8192a517081a607b80402980f27132d30796a07a47"
+        }
+      }
+    },
+    {
+      "frame": "smooth_stone/holdout-portico-masonry-high-right",
+      "layout": "portico",
+      "sha256": "54819d55b59d36a91e891bf2ff6148104d917d5ca59084f4f73edc43d623e390",
+      "scene_xyxy": [
+        404,
+        280,
+        1068,
+        672
+      ],
+      "crop_xyxy": [
+        468,
+        412,
+        678,
+        625
+      ],
+      "focus_reference": 6,
+      "focus_reason": "Recovered surface",
+      "reference_ids_in_crop": [
+        1,
+        5,
+        6,
+        7,
+        9,
+        10,
+        11,
+        12
+      ],
+      "visible": 17,
+      "eligible": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17
+      ],
+      "methods": {
+        "current": {
+          "found": [
+            1,
+            2,
+            3,
+            4,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17
+          ],
+          "missed": [
+            5,
+            6,
+            7,
+            8
+          ],
+          "counts": {
+            "visible": 17,
+            "scored": 17,
+            "found": 13,
+            "missed": 4,
+            "small": 0,
+            "small_found": 0,
+            "unsampled": 0,
+            "proposed": 15,
+            "unmatched": 2,
+            "unpaired": 2
+          },
+          "focus": {
+            "found": false,
+            "overlap": 0.08123877917414722,
+            "proposal": "mask-0",
+            "index": 1
+          },
+          "focus_outline_in_crop": true,
+          "gained_in_crop": [],
+          "lost_in_crop": []
+        },
+        "wall-and-underside": {
+          "found": [
+            1,
+            2,
+            3,
+            4,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17
+          ],
+          "missed": [
+            5,
+            6,
+            7,
+            8
+          ],
+          "counts": {
+            "visible": 17,
+            "scored": 17,
+            "found": 13,
+            "missed": 4,
+            "small": 0,
+            "small_found": 0,
+            "unsampled": 0,
+            "proposed": 15,
+            "unmatched": 2,
+            "unpaired": 2
+          },
+          "focus": {
+            "found": false,
+            "overlap": 0.08123877917414722,
+            "proposal": "mask-0",
+            "index": 1
+          },
+          "focus_outline_in_crop": true,
+          "gained_in_crop": [],
+          "lost_in_crop": []
+        },
+        "junction-cuts": {
+          "found": [
+            1,
+            2,
+            3,
+            4,
+            6,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17
+          ],
+          "missed": [
+            5,
+            7,
+            8
+          ],
+          "counts": {
+            "visible": 17,
+            "scored": 17,
+            "found": 14,
+            "missed": 3,
+            "small": 0,
+            "small_found": 0,
+            "unsampled": 0,
+            "proposed": 16,
+            "unmatched": 2,
+            "unpaired": 2
+          },
+          "focus": {
+            "found": true,
+            "overlap": 0.7637130801687764,
+            "proposal": "mask-0-junction-0",
+            "index": 1
+          },
+          "focus_outline_in_crop": true,
+          "gained_in_crop": [
+            6
+          ],
+          "lost_in_crop": []
+        },
+        "junction-then-underside": {
+          "found": [
+            1,
+            2,
+            3,
+            4,
+            6,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17
+          ],
+          "missed": [
+            5,
+            7,
+            8
+          ],
+          "counts": {
+            "visible": 17,
+            "scored": 17,
+            "found": 14,
+            "missed": 3,
+            "small": 0,
+            "small_found": 0,
+            "unsampled": 0,
+            "proposed": 16,
+            "unmatched": 2,
+            "unpaired": 2
+          },
+          "focus": {
+            "found": true,
+            "overlap": 0.7637130801687764,
+            "proposal": "mask-0-junction-0",
+            "index": 1
+          },
+          "focus_outline_in_crop": true,
+          "gained_in_crop": [
+            6
+          ],
+          "lost_in_crop": []
+        },
+        "mobile-walls": {
+          "found": [
+            1,
+            2,
+            3,
+            4,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17
+          ],
+          "missed": [
+            5,
+            6,
+            7,
+            8
+          ],
+          "counts": {
+            "visible": 17,
+            "scored": 17,
+            "found": 13,
+            "missed": 4,
+            "small": 0,
+            "small_found": 0,
+            "unsampled": 0,
+            "proposed": 15,
+            "unmatched": 2,
+            "unpaired": 2
+          },
+          "focus": {
+            "found": false,
+            "overlap": 0.08123877917414722,
+            "proposal": "mask-0",
+            "index": 1
+          },
+          "focus_outline_in_crop": true,
+          "gained_in_crop": [],
+          "lost_in_crop": []
+        },
+        "mobile-combined": {
+          "found": [
+            1,
+            2,
+            3,
+            4,
+            6,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17
+          ],
+          "missed": [
+            5,
+            7,
+            8
+          ],
+          "counts": {
+            "visible": 17,
+            "scored": 17,
+            "found": 14,
+            "missed": 3,
+            "small": 0,
+            "small_found": 0,
+            "unsampled": 0,
+            "proposed": 16,
+            "unmatched": 2,
+            "unpaired": 2
+          },
+          "focus": {
+            "found": true,
+            "overlap": 0.7637130801687764,
+            "proposal": "mask-0-junction-0",
+            "index": 1
+          },
+          "focus_outline_in_crop": true,
+          "gained_in_crop": [
+            6
+          ],
+          "lost_in_crop": []
+        }
+      },
+      "prediction_files": {
+        "current": {
+          "run": "recovery-01",
+          "path": "predictions/smooth_stone/holdout-portico-masonry-high-right.json.gz",
+          "sha256": "cf38d4f6dc5934252353de5cc3eeb9bbcb3a19605de26b750a7c3b578505c60a"
+        },
+        "wall-and-underside": {
+          "run": "recovery-01",
+          "path": "predictions/smooth_stone/holdout-portico-masonry-high-right.json.gz",
+          "sha256": "cf38d4f6dc5934252353de5cc3eeb9bbcb3a19605de26b750a7c3b578505c60a"
+        },
+        "junction-cuts": {
+          "run": "recovery-01",
+          "path": "predictions/smooth_stone/holdout-portico-masonry-high-right.json.gz",
+          "sha256": "cf38d4f6dc5934252353de5cc3eeb9bbcb3a19605de26b750a7c3b578505c60a"
+        },
+        "junction-then-underside": {
+          "run": "junction-underside-01",
+          "path": "predictions/smooth_stone/holdout-portico-masonry-high-right.json.gz",
+          "sha256": "caae333bc46b4299eb4dc17e078206527dbb23720680cfb4e061bb9f5138d734"
+        },
+        "mobile-walls": {
+          "run": "mobile-walls-01",
+          "path": "regression/predictions/smooth_stone/holdout-portico-masonry-high-right.json.gz",
+          "sha256": "048131e14c5ef17617c39d8ed126c302b7ba5271b399bb6498c643dff00019ff"
+        },
+        "mobile-combined": {
+          "run": "mobile-combined-01",
+          "path": "regression/predictions/smooth_stone/holdout-portico-masonry-high-right.json.gz",
+          "sha256": "dd5fbf800ee0dc418653b9f816a7344b622ab7d713b161c52c0bf20c3f85bd06"
+        }
+      }
+    },
+    {
+      "frame": "light_gray_concrete/holdout-workshop-plaster-high-right",
+      "layout": "workshop",
+      "sha256": "d35ab308820f92501ec898cafb1f50939f3f0ed1141e3d9ee38a00eae1199aa0",
+      "scene_xyxy": [
+        368,
+        248,
+        1052,
+        684
+      ],
+      "crop_xyxy": [
+        751,
+        405,
+        1044,
+        610
+      ],
+      "focus_reference": 3,
+      "focus_reason": "Recovered surface",
+      "reference_ids_in_crop": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        8,
+        15,
+        16,
+        17,
+        18,
+        19
+      ],
+      "visible": 19,
+      "eligible": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        8,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19
+      ],
+      "methods": {
+        "current": {
+          "found": [
+            1,
+            2,
+            4,
+            5,
+            6,
+            8,
+            11,
+            12,
+            13,
+            14,
+            16
+          ],
+          "missed": [
+            3,
+            15,
+            17,
+            18,
+            19
+          ],
+          "counts": {
+            "visible": 19,
+            "scored": 16,
+            "found": 11,
+            "missed": 5,
+            "small": 3,
+            "small_found": 0,
+            "unsampled": 1,
+            "proposed": 17,
+            "unmatched": 6,
+            "unpaired": 6
+          },
+          "focus": {
+            "found": false,
+            "overlap": 0.2414187643020595,
+            "proposal": "mask-1",
+            "index": 3
+          },
+          "focus_outline_in_crop": true,
+          "gained_in_crop": [],
+          "lost_in_crop": []
+        },
+        "wall-and-underside": {
+          "found": [
+            1,
+            2,
+            4,
+            5,
+            6,
+            8,
+            11,
+            12,
+            13,
+            14,
+            16
+          ],
+          "missed": [
+            3,
+            15,
+            17,
+            18,
+            19
+          ],
+          "counts": {
+            "visible": 19,
+            "scored": 16,
+            "found": 11,
+            "missed": 5,
+            "small": 3,
+            "small_found": 0,
+            "unsampled": 1,
+            "proposed": 17,
+            "unmatched": 6,
+            "unpaired": 6
+          },
+          "focus": {
+            "found": false,
+            "overlap": 0.2414187643020595,
+            "proposal": "mask-1",
+            "index": 3
+          },
+          "focus_outline_in_crop": true,
+          "gained_in_crop": [],
+          "lost_in_crop": []
+        },
+        "junction-cuts": {
+          "found": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            8,
+            11,
+            12,
+            13,
+            14,
+            16
+          ],
+          "missed": [
+            15,
+            17,
+            18,
+            19
+          ],
+          "counts": {
+            "visible": 19,
+            "scored": 16,
+            "found": 12,
+            "missed": 4,
+            "small": 3,
+            "small_found": 0,
+            "unsampled": 1,
+            "proposed": 18,
+            "unmatched": 6,
+            "unpaired": 6
+          },
+          "focus": {
+            "found": true,
+            "overlap": 0.8208333333333333,
+            "proposal": "mask-1-junction-0",
+            "index": 3
+          },
+          "focus_outline_in_crop": true,
+          "gained_in_crop": [
+            3
+          ],
+          "lost_in_crop": []
+        },
+        "junction-then-underside": {
+          "found": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            8,
+            11,
+            12,
+            13,
+            14,
+            16
+          ],
+          "missed": [
+            15,
+            17,
+            18,
+            19
+          ],
+          "counts": {
+            "visible": 19,
+            "scored": 16,
+            "found": 12,
+            "missed": 4,
+            "small": 3,
+            "small_found": 0,
+            "unsampled": 1,
+            "proposed": 18,
+            "unmatched": 6,
+            "unpaired": 6
+          },
+          "focus": {
+            "found": true,
+            "overlap": 0.8208333333333333,
+            "proposal": "mask-1-junction-0",
+            "index": 3
+          },
+          "focus_outline_in_crop": true,
+          "gained_in_crop": [
+            3
+          ],
+          "lost_in_crop": []
+        },
+        "mobile-walls": {
+          "found": [
+            1,
+            2,
+            4,
+            5,
+            6,
+            8,
+            11,
+            12,
+            13,
+            14,
+            16
+          ],
+          "missed": [
+            3,
+            15,
+            17,
+            18,
+            19
+          ],
+          "counts": {
+            "visible": 19,
+            "scored": 16,
+            "found": 11,
+            "missed": 5,
+            "small": 3,
+            "small_found": 0,
+            "unsampled": 1,
+            "proposed": 17,
+            "unmatched": 6,
+            "unpaired": 6
+          },
+          "focus": {
+            "found": false,
+            "overlap": 0.2414187643020595,
+            "proposal": "mask-1",
+            "index": 3
+          },
+          "focus_outline_in_crop": true,
+          "gained_in_crop": [],
+          "lost_in_crop": []
+        },
+        "mobile-combined": {
+          "found": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            8,
+            11,
+            12,
+            13,
+            14,
+            16
+          ],
+          "missed": [
+            15,
+            17,
+            18,
+            19
+          ],
+          "counts": {
+            "visible": 19,
+            "scored": 16,
+            "found": 12,
+            "missed": 4,
+            "small": 3,
+            "small_found": 0,
+            "unsampled": 1,
+            "proposed": 18,
+            "unmatched": 6,
+            "unpaired": 6
+          },
+          "focus": {
+            "found": true,
+            "overlap": 0.8208333333333333,
+            "proposal": "mask-1-junction-0",
+            "index": 3
+          },
+          "focus_outline_in_crop": true,
+          "gained_in_crop": [
+            3
+          ],
+          "lost_in_crop": []
+        }
+      },
+      "prediction_files": {
+        "current": {
+          "run": "recovery-01",
+          "path": "predictions/light_gray_concrete/holdout-workshop-plaster-high-right.json.gz",
+          "sha256": "7dba8ec4263b5af14cbd103f8114d6b3ecf8f954fc6d16d2bed08ad2d4b5ecf1"
+        },
+        "wall-and-underside": {
+          "run": "recovery-01",
+          "path": "predictions/light_gray_concrete/holdout-workshop-plaster-high-right.json.gz",
+          "sha256": "7dba8ec4263b5af14cbd103f8114d6b3ecf8f954fc6d16d2bed08ad2d4b5ecf1"
+        },
+        "junction-cuts": {
+          "run": "recovery-01",
+          "path": "predictions/light_gray_concrete/holdout-workshop-plaster-high-right.json.gz",
+          "sha256": "7dba8ec4263b5af14cbd103f8114d6b3ecf8f954fc6d16d2bed08ad2d4b5ecf1"
+        },
+        "junction-then-underside": {
+          "run": "junction-underside-01",
+          "path": "predictions/light_gray_concrete/holdout-workshop-plaster-high-right.json.gz",
+          "sha256": "221b856f6cefbcf82dbf7e36fa111ce52997c2df4adbb248c28ba7215ad1578e"
+        },
+        "mobile-walls": {
+          "run": "mobile-walls-01",
+          "path": "regression/predictions/light_gray_concrete/holdout-workshop-plaster-high-right.json.gz",
+          "sha256": "faa0b6e1f6f27e9e33b0a477b34ab5b18ac7afc486ded1508223b2da9c177db7"
+        },
+        "mobile-combined": {
+          "run": "mobile-combined-01",
+          "path": "regression/predictions/light_gray_concrete/holdout-workshop-plaster-high-right.json.gz",
+          "sha256": "46773d86c7432c87c38b8012d5d2523492a9f1b8d7b78addb37a4b1e930fe9f5"
+        }
+      }
+    },
+    {
+      "frame": "light_gray_concrete/holdout-crossing-masonry-low-left",
+      "layout": "crossing",
+      "sha256": "93c9a45dbb4d6bc59edc6c18ac8007ad4f99ac340844cb0ed8f171640936fa88",
+      "scene_xyxy": [
+        372,
+        260,
+        1032,
+        688
+      ],
+      "crop_xyxy": [
+        841,
+        259,
+        963,
+        367
+      ],
+      "focus_reference": 10,
+      "focus_reason": "Merged in baseline",
+      "reference_ids_in_crop": [
+        6,
+        10,
+        14
+      ],
+      "visible": 17,
+      "eligible": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        14
+      ],
+      "methods": {
+        "current": {
+          "found": [
+            1,
+            2,
+            3,
+            6,
+            7,
+            8,
+            9,
+            11,
+            14
+          ],
+          "missed": [
+            4,
+            5,
+            10
+          ],
+          "counts": {
+            "visible": 17,
+            "scored": 12,
+            "found": 9,
+            "missed": 3,
+            "small": 5,
+            "small_found": 0,
+            "unsampled": 0,
+            "proposed": 11,
+            "unmatched": 2,
+            "unpaired": 2
+          },
+          "focus": {
+            "found": false,
+            "overlap": 0.05953582240161453,
+            "proposal": "mask-1",
+            "index": 2
+          },
+          "focus_outline_in_crop": true,
+          "gained_in_crop": [],
+          "lost_in_crop": []
+        },
+        "wall-and-underside": {
+          "found": [
+            1,
+            2,
+            3,
+            6,
+            7,
+            8,
+            9,
+            11,
+            14
+          ],
+          "missed": [
+            4,
+            5,
+            10
+          ],
+          "counts": {
+            "visible": 17,
+            "scored": 12,
+            "found": 9,
+            "missed": 3,
+            "small": 5,
+            "small_found": 0,
+            "unsampled": 0,
+            "proposed": 11,
+            "unmatched": 2,
+            "unpaired": 2
+          },
+          "focus": {
+            "found": false,
+            "overlap": 0.05953582240161453,
+            "proposal": "mask-1",
+            "index": 2
+          },
+          "focus_outline_in_crop": true,
+          "gained_in_crop": [],
+          "lost_in_crop": []
+        },
+        "junction-cuts": {
+          "found": [
+            1,
+            2,
+            3,
+            6,
+            7,
+            8,
+            9,
+            11,
+            14
+          ],
+          "missed": [
+            4,
+            5,
+            10
+          ],
+          "counts": {
+            "visible": 17,
+            "scored": 12,
+            "found": 9,
+            "missed": 3,
+            "small": 5,
+            "small_found": 0,
+            "unsampled": 0,
+            "proposed": 11,
+            "unmatched": 2,
+            "unpaired": 2
+          },
+          "focus": {
+            "found": false,
+            "overlap": 0.05953582240161453,
+            "proposal": "mask-1",
+            "index": 2
+          },
+          "focus_outline_in_crop": true,
+          "gained_in_crop": [],
+          "lost_in_crop": []
+        },
+        "junction-then-underside": {
+          "found": [
+            1,
+            2,
+            3,
+            6,
+            7,
+            8,
+            9,
+            11,
+            14
+          ],
+          "missed": [
+            4,
+            5,
+            10
+          ],
+          "counts": {
+            "visible": 17,
+            "scored": 12,
+            "found": 9,
+            "missed": 3,
+            "small": 5,
+            "small_found": 0,
+            "unsampled": 0,
+            "proposed": 11,
+            "unmatched": 2,
+            "unpaired": 2
+          },
+          "focus": {
+            "found": false,
+            "overlap": 0.05953582240161453,
+            "proposal": "mask-1",
+            "index": 2
+          },
+          "focus_outline_in_crop": true,
+          "gained_in_crop": [],
+          "lost_in_crop": []
+        },
+        "mobile-walls": {
+          "found": [
+            1,
+            2,
+            3,
+            6,
+            7,
+            8,
+            9,
+            11,
+            14
+          ],
+          "missed": [
+            4,
+            5,
+            10
+          ],
+          "counts": {
+            "visible": 17,
+            "scored": 12,
+            "found": 9,
+            "missed": 3,
+            "small": 5,
+            "small_found": 0,
+            "unsampled": 0,
+            "proposed": 11,
+            "unmatched": 2,
+            "unpaired": 2
+          },
+          "focus": {
+            "found": false,
+            "overlap": 0.05953582240161453,
+            "proposal": "mask-1",
+            "index": 2
+          },
+          "focus_outline_in_crop": true,
+          "gained_in_crop": [],
+          "lost_in_crop": []
+        },
+        "mobile-combined": {
+          "found": [
+            1,
+            2,
+            3,
+            6,
+            7,
+            8,
+            9,
+            11,
+            14
+          ],
+          "missed": [
+            4,
+            5,
+            10
+          ],
+          "counts": {
+            "visible": 17,
+            "scored": 12,
+            "found": 9,
+            "missed": 3,
+            "small": 5,
+            "small_found": 0,
+            "unsampled": 0,
+            "proposed": 11,
+            "unmatched": 2,
+            "unpaired": 2
+          },
+          "focus": {
+            "found": false,
+            "overlap": 0.05953582240161453,
+            "proposal": "mask-1",
+            "index": 2
+          },
+          "focus_outline_in_crop": true,
+          "gained_in_crop": [],
+          "lost_in_crop": []
+        }
+      },
+      "prediction_files": {
+        "current": {
+          "run": "recovery-01",
+          "path": "predictions/light_gray_concrete/holdout-crossing-masonry-low-left.json.gz",
+          "sha256": "906a3317524b66cfce9c8072067dbb8273d049f0a45ee19e6d9300ccfe86c1cf"
+        },
+        "wall-and-underside": {
+          "run": "recovery-01",
+          "path": "predictions/light_gray_concrete/holdout-crossing-masonry-low-left.json.gz",
+          "sha256": "906a3317524b66cfce9c8072067dbb8273d049f0a45ee19e6d9300ccfe86c1cf"
+        },
+        "junction-cuts": {
+          "run": "recovery-01",
+          "path": "predictions/light_gray_concrete/holdout-crossing-masonry-low-left.json.gz",
+          "sha256": "906a3317524b66cfce9c8072067dbb8273d049f0a45ee19e6d9300ccfe86c1cf"
+        },
+        "junction-then-underside": {
+          "run": "junction-underside-01",
+          "path": "predictions/light_gray_concrete/holdout-crossing-masonry-low-left.json.gz",
+          "sha256": "27fb90632d8b953cf03a9c980829edba130ceaca85558e58aaf60934e663af38"
+        },
+        "mobile-walls": {
+          "run": "mobile-walls-01",
+          "path": "regression/predictions/light_gray_concrete/holdout-crossing-masonry-low-left.json.gz",
+          "sha256": "7dbdbc8487c8e409f326ae30e95796fcfcc835e36bade9b3423fda2d3bea284c"
+        },
+        "mobile-combined": {
+          "run": "mobile-combined-01",
+          "path": "regression/predictions/light_gray_concrete/holdout-crossing-masonry-low-left.json.gz",
+          "sha256": "7dbdbc8487c8e409f326ae30e95796fcfcc835e36bade9b3423fda2d3bea284c"
+        }
+      }
+    },
+    {
+      "frame": "light_gray_concrete/holdout-galleries-masonry-low-left",
+      "layout": "galleries",
+      "sha256": "d0fba67900a91a20d0120f298c8783829953bc21c7d45fb4413a8cb829cfddc3",
+      "scene_xyxy": [
+        392,
+        252,
+        1080,
+        676
+      ],
+      "crop_xyxy": [
+        655,
+        449,
+        869,
+        667
+      ],
+      "focus_reference": 28,
+      "focus_reason": "Recovered surface",
+      "reference_ids_in_crop": [
+        8,
+        11,
+        13,
+        14,
+        22,
+        23,
+        28,
+        30
+      ],
+      "visible": 30,
+      "eligible": [
+        1,
+        2,
+        3,
+        4,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        16,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30
+      ],
+      "methods": {
+        "current": {
+          "found": [
+            1,
+            4,
+            8,
+            9,
+            10,
+            11,
+            12,
+            16,
+            19,
+            20,
+            23,
+            24,
+            25,
+            26
+          ],
+          "missed": [
+            2,
+            3,
+            6,
+            7,
+            13,
+            21,
+            22,
+            27,
+            28,
+            29,
+            30
+          ],
+          "counts": {
+            "visible": 30,
+            "scored": 25,
+            "found": 14,
+            "missed": 11,
+            "small": 5,
+            "small_found": 0,
+            "unsampled": 2,
+            "proposed": 20,
+            "unmatched": 6,
+            "unpaired": 6
+          },
+          "focus": {
+            "found": false,
+            "overlap": 0.1699552749276506,
+            "proposal": "mask-0",
+            "index": 1
+          },
+          "focus_outline_in_crop": true,
+          "gained_in_crop": [],
+          "lost_in_crop": []
+        },
+        "wall-and-underside": {
+          "found": [
+            1,
+            4,
+            8,
+            9,
+            10,
+            11,
+            12,
+            16,
+            19,
+            20,
+            23,
+            24,
+            25,
+            26
+          ],
+          "missed": [
+            2,
+            3,
+            6,
+            7,
+            13,
+            21,
+            22,
+            27,
+            28,
+            29,
+            30
+          ],
+          "counts": {
+            "visible": 30,
+            "scored": 25,
+            "found": 14,
+            "missed": 11,
+            "small": 5,
+            "small_found": 0,
+            "unsampled": 2,
+            "proposed": 21,
+            "unmatched": 7,
+            "unpaired": 7
+          },
+          "focus": {
+            "found": false,
+            "overlap": 0.17410228509249184,
+            "proposal": "mask-0",
+            "index": 1
+          },
+          "focus_outline_in_crop": true,
+          "gained_in_crop": [],
+          "lost_in_crop": []
+        },
+        "junction-cuts": {
+          "found": [
+            1,
+            4,
+            8,
+            9,
+            10,
+            11,
+            12,
+            16,
+            19,
+            20,
+            23,
+            24,
+            25,
+            26,
+            28
+          ],
+          "missed": [
+            2,
+            3,
+            6,
+            7,
+            13,
+            21,
+            22,
+            27,
+            29,
+            30
+          ],
+          "counts": {
+            "visible": 30,
+            "scored": 25,
+            "found": 15,
+            "missed": 10,
+            "small": 5,
+            "small_found": 0,
+            "unsampled": 2,
+            "proposed": 21,
+            "unmatched": 6,
+            "unpaired": 6
+          },
+          "focus": {
+            "found": true,
+            "overlap": 0.8873626373626373,
+            "proposal": "mask-0-junction-0",
+            "index": 1
+          },
+          "focus_outline_in_crop": true,
+          "gained_in_crop": [
+            28
+          ],
+          "lost_in_crop": []
+        },
+        "junction-then-underside": {
+          "found": [
+            1,
+            4,
+            8,
+            9,
+            10,
+            11,
+            12,
+            16,
+            19,
+            20,
+            23,
+            24,
+            25,
+            26,
+            28
+          ],
+          "missed": [
+            2,
+            3,
+            6,
+            7,
+            13,
+            21,
+            22,
+            27,
+            29,
+            30
+          ],
+          "counts": {
+            "visible": 30,
+            "scored": 25,
+            "found": 15,
+            "missed": 10,
+            "small": 5,
+            "small_found": 0,
+            "unsampled": 2,
+            "proposed": 22,
+            "unmatched": 7,
+            "unpaired": 7
+          },
+          "focus": {
+            "found": true,
+            "overlap": 0.9103840682788051,
+            "proposal": "mask-0-junction-0",
+            "index": 1
+          },
+          "focus_outline_in_crop": true,
+          "gained_in_crop": [
+            28
+          ],
+          "lost_in_crop": []
+        },
+        "mobile-walls": {
+          "found": [
+            1,
+            4,
+            8,
+            9,
+            10,
+            11,
+            12,
+            16,
+            19,
+            20,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            30
+          ],
+          "missed": [
+            2,
+            3,
+            6,
+            7,
+            13,
+            21,
+            22,
+            29
+          ],
+          "counts": {
+            "visible": 30,
+            "scored": 25,
+            "found": 17,
+            "missed": 8,
+            "small": 5,
+            "small_found": 0,
+            "unsampled": 2,
+            "proposed": 22,
+            "unmatched": 5,
+            "unpaired": 5
+          },
+          "focus": {
+            "found": true,
+            "overlap": 0.9374090247452693,
+            "proposal": "mask-0-mobile-1",
+            "index": 2
+          },
+          "focus_outline_in_crop": true,
+          "gained_in_crop": [
+            28,
+            30
+          ],
+          "lost_in_crop": []
+        },
+        "mobile-combined": {
+          "found": [
+            1,
+            4,
+            8,
+            9,
+            10,
+            11,
+            12,
+            16,
+            19,
+            20,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30
+          ],
+          "missed": [
+            2,
+            3,
+            6,
+            7,
+            13,
+            21,
+            22
+          ],
+          "counts": {
+            "visible": 30,
+            "scored": 25,
+            "found": 18,
+            "missed": 7,
+            "small": 5,
+            "small_found": 0,
+            "unsampled": 2,
+            "proposed": 29,
+            "unmatched": 11,
+            "unpaired": 11
+          },
+          "focus": {
+            "found": true,
+            "overlap": 0.9103840682788051,
+            "proposal": "mask-0-junction-0",
+            "index": 1
+          },
+          "focus_outline_in_crop": true,
+          "gained_in_crop": [
+            28,
+            30
+          ],
+          "lost_in_crop": []
+        }
+      },
+      "prediction_files": {
+        "current": {
+          "run": "recovery-01",
+          "path": "predictions/light_gray_concrete/holdout-galleries-masonry-low-left.json.gz",
+          "sha256": "9b309c69459b8e8680be0e34324ef6bd04f43a4427677fa7c4764056b0d880c0"
+        },
+        "wall-and-underside": {
+          "run": "recovery-01",
+          "path": "predictions/light_gray_concrete/holdout-galleries-masonry-low-left.json.gz",
+          "sha256": "9b309c69459b8e8680be0e34324ef6bd04f43a4427677fa7c4764056b0d880c0"
+        },
+        "junction-cuts": {
+          "run": "recovery-01",
+          "path": "predictions/light_gray_concrete/holdout-galleries-masonry-low-left.json.gz",
+          "sha256": "9b309c69459b8e8680be0e34324ef6bd04f43a4427677fa7c4764056b0d880c0"
+        },
+        "junction-then-underside": {
+          "run": "junction-underside-01",
+          "path": "predictions/light_gray_concrete/holdout-galleries-masonry-low-left.json.gz",
+          "sha256": "315a93a57073eca14a056440d32a5634f4fadcbed89199919f9c420b28f80eed"
+        },
+        "mobile-walls": {
+          "run": "mobile-walls-01",
+          "path": "regression/predictions/light_gray_concrete/holdout-galleries-masonry-low-left.json.gz",
+          "sha256": "fe11749a561676d490f7d40154abb2640957f3520eb04d2be5cd62aa149e8332"
+        },
+        "mobile-combined": {
+          "run": "mobile-combined-01",
+          "path": "regression/predictions/light_gray_concrete/holdout-galleries-masonry-low-left.json.gz",
+          "sha256": "d30f0620762eee379ff4bbb717487c3c4f114656687155f524355c0a4b30ed9a"
+        }
+      }
+    },
+    {
+      "frame": "light_gray_concrete/holdout-registry-masonry-high-right",
+      "layout": "registry",
+      "sha256": "e20bfd5e2588ed117375acb3e2f7c42cebb2fdd1ab7167caf35b0b4298a98e19",
+      "scene_xyxy": [
+        408,
+        240,
+        1084,
+        700
+      ],
+      "crop_xyxy": [
+        648,
+        499,
+        956,
+        714
+      ],
+      "focus_reference": 1,
+      "focus_reason": "Merged in baseline",
+      "reference_ids_in_crop": [
+        1,
+        2,
+        8,
+        9,
+        10
+      ],
+      "visible": 10,
+      "eligible": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "methods": {
+        "current": {
+          "found": [
+            2,
+            3,
+            4,
+            5,
+            7,
+            8,
+            10
+          ],
+          "missed": [
+            1,
+            6,
+            9
+          ],
+          "counts": {
+            "visible": 10,
+            "scored": 10,
+            "found": 7,
+            "missed": 3,
+            "small": 0,
+            "small_found": 0,
+            "unsampled": 0,
+            "proposed": 9,
+            "unmatched": 2,
+            "unpaired": 2
+          },
+          "focus": {
+            "found": false,
+            "overlap": 0.18946712371455282,
+            "proposal": "mask-0",
+            "index": 1
+          },
+          "focus_outline_in_crop": true,
+          "gained_in_crop": [],
+          "lost_in_crop": []
+        },
+        "wall-and-underside": {
+          "found": [
+            2,
+            3,
+            4,
+            5,
+            7,
+            8,
+            10
+          ],
+          "missed": [
+            1,
+            6,
+            9
+          ],
+          "counts": {
+            "visible": 10,
+            "scored": 10,
+            "found": 7,
+            "missed": 3,
+            "small": 0,
+            "small_found": 0,
+            "unsampled": 0,
+            "proposed": 9,
+            "unmatched": 2,
+            "unpaired": 2
+          },
+          "focus": {
+            "found": false,
+            "overlap": 0.18946712371455282,
+            "proposal": "mask-0",
+            "index": 1
+          },
+          "focus_outline_in_crop": true,
+          "gained_in_crop": [],
+          "lost_in_crop": []
+        },
+        "junction-cuts": {
+          "found": [
+            2,
+            3,
+            4,
+            5,
+            7,
+            8,
+            10
+          ],
+          "missed": [
+            1,
+            6,
+            9
+          ],
+          "counts": {
+            "visible": 10,
+            "scored": 10,
+            "found": 7,
+            "missed": 3,
+            "small": 0,
+            "small_found": 0,
+            "unsampled": 0,
+            "proposed": 9,
+            "unmatched": 2,
+            "unpaired": 2
+          },
+          "focus": {
+            "found": false,
+            "overlap": 0.18946712371455282,
+            "proposal": "mask-0",
+            "index": 1
+          },
+          "focus_outline_in_crop": true,
+          "gained_in_crop": [],
+          "lost_in_crop": []
+        },
+        "junction-then-underside": {
+          "found": [
+            2,
+            3,
+            4,
+            5,
+            7,
+            8,
+            10
+          ],
+          "missed": [
+            1,
+            6,
+            9
+          ],
+          "counts": {
+            "visible": 10,
+            "scored": 10,
+            "found": 7,
+            "missed": 3,
+            "small": 0,
+            "small_found": 0,
+            "unsampled": 0,
+            "proposed": 9,
+            "unmatched": 2,
+            "unpaired": 2
+          },
+          "focus": {
+            "found": false,
+            "overlap": 0.18946712371455282,
+            "proposal": "mask-0",
+            "index": 1
+          },
+          "focus_outline_in_crop": true,
+          "gained_in_crop": [],
+          "lost_in_crop": []
+        },
+        "mobile-walls": {
+          "found": [
+            2,
+            3,
+            4,
+            5,
+            7,
+            8,
+            10
+          ],
+          "missed": [
+            1,
+            6,
+            9
+          ],
+          "counts": {
+            "visible": 10,
+            "scored": 10,
+            "found": 7,
+            "missed": 3,
+            "small": 0,
+            "small_found": 0,
+            "unsampled": 0,
+            "proposed": 9,
+            "unmatched": 2,
+            "unpaired": 2
+          },
+          "focus": {
+            "found": false,
+            "overlap": 0.18946712371455282,
+            "proposal": "mask-0",
+            "index": 1
+          },
+          "focus_outline_in_crop": true,
+          "gained_in_crop": [],
+          "lost_in_crop": []
+        },
+        "mobile-combined": {
+          "found": [
+            2,
+            3,
+            4,
+            5,
+            7,
+            8,
+            10
+          ],
+          "missed": [
+            1,
+            6,
+            9
+          ],
+          "counts": {
+            "visible": 10,
+            "scored": 10,
+            "found": 7,
+            "missed": 3,
+            "small": 0,
+            "small_found": 0,
+            "unsampled": 0,
+            "proposed": 9,
+            "unmatched": 2,
+            "unpaired": 2
+          },
+          "focus": {
+            "found": false,
+            "overlap": 0.18946712371455282,
+            "proposal": "mask-0",
+            "index": 1
+          },
+          "focus_outline_in_crop": true,
+          "gained_in_crop": [],
+          "lost_in_crop": []
+        }
+      },
+      "prediction_files": {
+        "current": {
+          "run": "recovery-01",
+          "path": "predictions/light_gray_concrete/holdout-registry-masonry-high-right.json.gz",
+          "sha256": "f6acb24554b8d1063c65e655a955552fa0c3dd4ec157e26ecb67ab438404dd0a"
+        },
+        "wall-and-underside": {
+          "run": "recovery-01",
+          "path": "predictions/light_gray_concrete/holdout-registry-masonry-high-right.json.gz",
+          "sha256": "f6acb24554b8d1063c65e655a955552fa0c3dd4ec157e26ecb67ab438404dd0a"
+        },
+        "junction-cuts": {
+          "run": "recovery-01",
+          "path": "predictions/light_gray_concrete/holdout-registry-masonry-high-right.json.gz",
+          "sha256": "f6acb24554b8d1063c65e655a955552fa0c3dd4ec157e26ecb67ab438404dd0a"
+        },
+        "junction-then-underside": {
+          "run": "junction-underside-01",
+          "path": "predictions/light_gray_concrete/holdout-registry-masonry-high-right.json.gz",
+          "sha256": "002c1a0bde60393307a6ac5c4bf204b761f66fef7acc5f10ab2d204ff12ac178"
+        },
+        "mobile-walls": {
+          "run": "mobile-walls-01",
+          "path": "regression/predictions/light_gray_concrete/holdout-registry-masonry-high-right.json.gz",
+          "sha256": "559a44309e59a7a676d32006920224c966cb76af19401e91fd4782d7baffb83d"
+        },
+        "mobile-combined": {
+          "run": "mobile-combined-01",
+          "path": "regression/predictions/light_gray_concrete/holdout-registry-masonry-high-right.json.gz",
+          "sha256": "559a44309e59a7a676d32006920224c966cb76af19401e91fd4782d7baffb83d"
+        }
+      }
+    }
+  ],
+  "image": {
+    "file": "comparison.jpg",
+    "sha256": "9c3582097d39a17390c2709ce0864daba7f5b569ed0ae318e2bbc2b285f469f6",
+    "width": 3504,
+    "height": 6174
+  },
+  "reproduce": "python -m benchmark.recovery_overview --combined benchmark/reviews/mobile-combined-01"
+}
