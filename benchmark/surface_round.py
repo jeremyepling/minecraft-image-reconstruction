@@ -98,6 +98,10 @@ def frac(a,b):
     return a / b if b else 0.
 
 
+def artifact_path(path, run):
+    return Path(os.path.relpath(path, run)).as_posix()
+
+
 def outline_summary(rows):
     n = sum(r['eligible'] for r in rows)
     p = sum(r['proposed'] for r in rows)
@@ -193,7 +197,7 @@ def main():
                 save(out/'selection.json',dict(rule=RULE,selected=stages,development=summary['dev']))
                 print(f'Development selection frozen: {stages}',flush=True)
     records = [dict(id=c.id,floor=c.floor,layout=c.frame['layout'],palette=c.frame['palette'],cohort=k,
-                    source=os.path.relpath(c.path('image'),out),sha256=c.frame['image_sha256'],folder=p.as_posix())
+                    source=artifact_path(c.path('image'),out),sha256=c.frame['image_sha256'],folder=p.as_posix())
                for k,cases in groups.items() for c,p in cases]
     save(out/'cases.json',records)
     save(out/'scores.json',summary)
@@ -211,7 +215,7 @@ def main():
                     environment=dict(python=sys.version.split()[0],numpy=np.__version__,pillow=pillow_version),
                     capture=suite['capture_conditions'], split={k:sorted({c.frame['layout'] for c,_ in v}) for k,v in groups.items()},
                     releases={**{f:d['sha256'] for f,d in suite['conditions'].items()},'surface-confirm-v1':FROZEN_SHA256},
-                    confirmation_world=dict(archive=os.path.relpath(world_dir/archive,out),sha256=world['sha256']),
+                    confirmation_world=dict(archive=artifact_path(world_dir/archive,out),sha256=world['sha256']),
                     stages=stages,methods=dict(outlines=list(OUTLINES),pitch=list(PITCH),lift='shared-edges-v1'),
                     settings=dict(outlines=edges_settings,shade_weight=.22,pitch=pitch_settings,lift=SETTINGS,
                                   reference_methods=['engine.camera_grid:seam-fit/contact_planes','engine.texel_grid:texel_grid']),
