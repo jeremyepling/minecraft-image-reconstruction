@@ -46,7 +46,12 @@ def measures(s):
     yield 'Surfaces', [
         ('Reference surfaces found',share(s['matched'],s['eligible'])),
         ('Missed surfaces',number(s['eligible']-s['matched'])),
-        ('Extra proposals / all proposals',share(s['proposed']-s['matched'],s['proposed']))]
+        ('Unmatched proposals / all proposals',share(s['proposed']-s['matched'],s['proposed']))]
+    if 'unmatched_overlaps_small_surface' in s:
+        yield 'What the unmatched proposals covered', [
+            ('Matched a real surface below the scoring size',number(s['unmatched_overlaps_small_surface'])),
+            ('Covered mostly background',number(s['unmatched_mostly_background'])),
+            ('Covered a fragment or a mixture of surfaces',number(s['unmatched_fragment_or_mixed']))]
     yield 'Surface pixels', [
         ('Assigned to the correct surface',share(s['correct_pixels'],s['eligible_pixels'])),
         ('Assigned to the wrong surface',share(s['wrong_plane_pixels'],s['eligible_pixels'])),
@@ -62,7 +67,7 @@ def measures(s):
     yield 'Openings and joins', [
         ('Opening pixels covered',share(s['opening_filled'],s['opening_pixels'])),
         ('Gaps at least half filled',share(s['gaps_half_filled'],s['gaps'])),
-        ('Real connections recovered',share(s['correct_connections'],s['real_connections'])),
+        ('Touching outlines that recovered a real connection',share(s['correct_connections'],s['real_connections'])),
         ('Extra connections / all proposed connections',
          share(s['proposed_connections']-s['correct_connections'],s['proposed_connections']))]
 
@@ -170,7 +175,7 @@ def render_report(out):
                ('scores.json','Aggregate data'),('selection.json','Selection rule')])+'</nav>',
            '<h2>All pictures</h2><p>Counts here add up across pictures. A wall seen in four views contributes once in each view. '
            'A surface is a connected flat patch. A proposal counts as a match when its intersection covers at least half of its union with that patch. '
-           'Each proposal and each patch can be matched once.</p>',
+           'Each proposal and each patch can be matched once. The scored surfaces contain at least four visible block faces and 24 scoring samples.</p>',
            headline(scores['all']),score_table(scores['all'])]
     if blocks:
         parts+=['<nav>'+link('loss-trace/stages.jpg','Six examples of where B lost surfaces')+
@@ -182,6 +187,7 @@ def render_report(out):
     parts+=['<p>Pixel counts use the scoring grid, sampled every four image pixels in each direction. Distances use original screenshot pixels. '
             'Mean edge and corner errors cover matched surfaces with measurable boundaries. Their coverage rows also count the missed surfaces. '
             'An opening sample is background with building visible above and to both sides. '
+            'The connections check asks whether regions that touch in the picture correspond to recorded planes meeting in 3D. '
             'A dash means there was no denominator.</p>']
     total_times=defaultdict(float)
     seen=set()
