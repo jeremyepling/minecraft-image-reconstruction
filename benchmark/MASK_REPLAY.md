@@ -16,9 +16,9 @@ For the original two-method, 20-picture development check, use `.\Invoke-MaskRou
 
 The wrapper looks for a compatible numerical direction/depth cache in `runs/normal-fields`, then in the sibling `normal-round/runs/normal-fields` checkout. A complete compatible cache is read in place. A partial cache contributes its compatible entries to a new run-specific directory. The missing fields are generated from the original screenshots using the suite's frozen ONNX models. The existing model preparation helper uses local checked files when available and otherwise retrieves the pinned Hugging Face releases and verifies their SHA-256 hashes.
 
-The published numerical recipe uses Python with NumPy 2.3.5, Pillow 13.0.0 and ONNX Runtime 1.23.2 for fresh inference. The wrapper first tries the project virtual environment, the local Codex Python and the system Python. If a compatible Python 3.11–3.13 is available but lacks the pinned libraries, the wrapper can install the public wheels in a run-specific environment. A complete compatible cache needs only NumPy and Pillow. Fresh downloads require network access.
+The published numerical recipe uses Python with NumPy 2.3.5, Pillow 13.0.0 and ONNX Runtime 1.23.2 for fresh inference. The wrapper first tries the project virtual environment, the local Codex Python and the system Python. With Python 3.11 or newer and compatible public wheels, it can install missing libraries in a run-specific environment. A complete compatible cache needs only NumPy and Pillow. Fresh downloads require network access.
 
-Use `-Python`, `-Fields`, `-Lines` and `-Out` to select an interpreter, numerical cache, frozen line-output directory or new output directory. Relative paths are resolved from the checkout. Output directories must be new so earlier results stay available. For example:
+Use `-Python`, `-Fields`, `-Lines` and `-Out` to select an interpreter, numerical cache, frozen line-output directory or new output directory. Relative paths are resolved from the checkout. Use a fresh output directory to keep each run.
 
 ```powershell
 .\Invoke-MaskRound.ps1 -Fields ..\normal-round\runs\normal-fields -Out runs\boundary-review-02

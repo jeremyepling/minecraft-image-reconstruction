@@ -25,14 +25,14 @@ try {
     foreach ($name in $options) {
         $app = Get-Command -Name $name -CommandType Application -ErrorAction SilentlyContinue | Select-Object -First 1
         if (-not $app) { continue }
-        & $app.Source -c 'import sys; sys.exit(0 if (3,11)<=sys.version_info[:2]<=(3,13) else 1)' 2>$null
+        & $app.Source -c 'import sys; sys.exit(0 if sys.version_info[:2]>=(3,11) else 1)' 2>$null
         if ($LASTEXITCODE -ne 0) { continue }
         if (-not $base) { $base = $app.Source }
         & $app.Source -c "import sys, numpy, PIL; sys.exit(0 if (numpy.__version__,PIL.__version__)==('2.3.5','13.0.0') else 1)" 2>$null
         if ($LASTEXITCODE -eq 0) { $interpreter = $app.Source; break }
     }
     if (-not $interpreter) {
-        if (-not $base) { throw 'This replay needs Python 3.11, 3.12 or 3.13. Use -Python to select it.' }
+        if (-not $base) { throw 'This replay needs Python 3.11 or newer with the pinned NumPy/Pillow wheels. Use -Python to select it.' }
         $venv = Join-Path $PSScriptRoot ("runs/mask-python-" + [guid]::NewGuid().ToString('N'))
         & $base -m venv $venv
         if ($LASTEXITCODE -ne 0) { throw 'Could not create the run-specific Python environment.' }
