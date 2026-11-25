@@ -92,7 +92,8 @@ def main():
     shape.add_argument('--scene',type=Path)
     shape.add_argument('--geometry',type=Path,help='Use a previously measured grid for this image')
     p.add_argument('--white-balance',action='store_true',help='Estimate and correct a consistent neutral-patch color cast')
-    p.add_argument('--match-appearance',choices=['local','shared','motif','adaptive'],help='Match calibrated face colors, share a palette, detect atlas motifs, or adapt to grid alignment')
+    p.add_argument('--match-appearance',choices=['local','shared','motif','adaptive','context'],
+                   help='Match calibrated faces; context checks neighboring mortar courses and staggered joints')
     p.add_argument('--match-exposure',action='store_true',help='Allow bounded brightness differences when ranking candidate textures')
     p.add_argument('--library',type=Path,help='Calibrated face_textures/softened-library.npz')
     p.add_argument('--depth',type=int,help='Extrapolate a hollow shell behind one visible wall')

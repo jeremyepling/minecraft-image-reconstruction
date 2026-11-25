@@ -91,7 +91,7 @@ def appearance_rows(rgb, cells, face, references, names, mapping, stable, shared
         for index, row in zip(indices, costs):
             order = np.argsort(row, kind='stable')
             top = order[:5]
-            margin = (row[top[1]] - row[top[0]]) / max(row[top[1]], 1e-6)
+            margin = (row[top[1]] - row[top[0]]) / max(row[top[1]], 1e-6) if len(top)>1 else 0.
             output[index] = (names[top].tolist(), row[top].tolist(), float(margin),
                              stable(names[order], mapping))
     return output

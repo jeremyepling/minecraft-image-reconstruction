@@ -12,12 +12,13 @@ The canopy, tower and recessed wall use tuff throughout. The paired corner adds 
 
 ## Material options
 
-The public build command accepts `--match-appearance local|shared|motif|adaptive` with a version-matched rendered library. All four options work from the image and atlas without a supplied material list.
+The public build command accepts `--match-appearance local|shared|motif|adaptive|context` with a version-matched rendered library.
 
 - **Local** compares luminance and red–green and blue–green color distributions to calibrated rendered faces. Dark flecks in a gray stone remain distinguishable from blue or orange flecks with the same average brightness.
 - **Shared** lets cells on a plane reuse materials. An additional material must explain enough color variation to justify adding it. This gave the closest rendered colors on the four gallery frames.
 - **Motif** also searches for distinctive 7 × 7 texel patterns at 19 scales and different offsets within a native 16 × 16 sprite. Agreement at several sample positions provides evidence for the same material nearby. Weak evidence falls back to the shared palette. This recovered the most correct block IDs among the three in-game gallery comparisons.
 - **Adaptive** checks spatial agreement with the winning whole-face rendered exemplar. It uses the exposure matcher where the grid appears aligned, and the motif matcher elsewhere. Each exported match records which method was used.
+- **Context** checks for masonry across several faces and preserves a whole-face texture match when it explains the pattern. It uses the shared palette and exposure-adjusted rendered faces where neighborhood evidence is weak.
 
 | Method on the four front views | Correct block IDs / 1,479 | Mean in-game RGB channel error, 0–255 |
 | --- | ---: | ---: |
@@ -32,6 +33,20 @@ On four additional oblique development views of other buildings, ID recovery was
 Adaptive routing recovered 1,144/1,479 IDs on the four gallery views and 851/1,479 on the four oblique views. On the independent cropped repair wall it used the whole-face matcher on all 36 cells and recovered 34 IDs. The separate routing control with a shared-color fallback preserved all 411 correct IDs on the 417-face registry test. Small aligned panels still slipped from 351 to 347 correct out of 886 in that control. [Adaptive front-view results](../tests/results/front-materials-26.3.json) · [Routing controls](../tests/results/appearance-controls-26.3.json)
 
 ## Reproduce
+
+### Matching mortar across block faces
+
+```console
+python reconstruct.py build IMAGE --geometry GRID --atlas CALIBRATION/atlas --library CALIBRATION/face_textures/softened-library.npz --match-appearance context --out OUTPUT
+```
+
+The detector straightens each wall plane and finds local rectangles of occupied cells with similar color and texture. At least four repeating courses and staggered vertical joints must support a brick proposal. It compares the patch against eligible opaque atlas faces at several scales and offsets. The color comparison allows bounded exposure and tint changes. A supported neutral-patch estimate corrects the masonry comparison. A strong shifted whole-face match to a competing texture can still overrule the masonry proposal.
+
+The result records `material_method` per observed face. A `masonry` match includes its supporting rectangle in plane-grid units, course height, estimated brick width and correlation with the atlas. A `shifted face` match includes its atlas correlation. A reported margin measures separation between candidates within that route. Rows of timber planks can resemble masonry, especially when the block grid is offset. The tower that motivated this mode was used during development.
+
+On a separate 240-face Java 26.3 wall with known placements and aligned crops, context and the exposure matcher each recovered 234 exact IDs. Shared appearance recovered 187. Context used its face-level fallback throughout that wall. A second check used an oblique, JPEG-compressed composite of captured materials with aligned and offset crops. Context identified 173 of 221 brick-family observations and mislabeled 61 of 419 non-brick observations as brick. All 61 were planks. Exposure identified 149 of 221 brick observations and mislabeled eight non-bricks. These results support selecting context for mortar recognition in difficult crops while keeping exposure available for accurate face grids.
+
+### Gallery comparisons
 
 After creating the geometry fixtures and versioned calibration library, reuse one geometry JSON for all material comparisons. Set IMAGE, GRID, CALIBRATION and OUTPUT for the desired view.
 

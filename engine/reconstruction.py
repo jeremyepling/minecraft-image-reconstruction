@@ -272,10 +272,17 @@ def reconstruct(image, atlas_dir, scene, library, out, depth=None, grid=None, wh
     else:
         rgb,planes,cells=analyze(image,scene,out,geometry_method)
     lighting=None
-    if white_balance:
+    course_light=np.ones(3)
+    if white_balance or match_appearance=='context':
         im=Image.fromarray(rgb)
         gains,lighting=cast_estimate(im,[],[0,0,*im.size])
-        if lighting['confidence']=='moderate': rgb=np.asarray(correct(im,gains))
+        if lighting['confidence']=='moderate':
+            if white_balance:
+                rgb=np.asarray(correct(im,gains))
+            else:
+                course_light=gains
+        if match_appearance=='context':
+            lighting['scope']='all samples' if white_balance else 'masonry patches'
     tiles,labels,method=exemplar_bank(atlas_dir,library,catalog)
     calibrated_method=method
     if match_appearance:
@@ -295,9 +302,11 @@ def reconstruct(image, atlas_dir, scene, library, out, depth=None, grid=None, wh
         else:
             grouped[cell['facing']].append(cell)
     blocks={}; margins={}; decisions=[]; alternatives={}
+    plane_by_name={p['name']:p for p in planes}
     for side,part in grouped.items():
         mapping=catalog['choices'][side]
         trusted=set()
+        context={}
         if match_appearance:
             use=np.isin(appearance_labels,list(mapping))
             support=None
@@ -306,16 +315,25 @@ def reconstruct(image, atlas_dir, scene, library, out, depth=None, grid=None, wh
                 support=priors(rgb,part,bank(atlas_dir,set(appearance_labels[use])))
             ranked=appearance_rows(rgb,part,face,appearance_refs[use],appearance_labels[use],
                                    mapping,stable_alternative,match_appearance!='local',support)
-            if match_appearance=='adaptive':
+            if match_appearance in ('adaptive','context'):
                 from engine.routing import alignment_scores, trusted_cells
+                if match_appearance=='context':
+                    from engine.masonry import pattern_templates, context_matches
+                    pattern_bank=pattern_templates(sprite_tiles[use],appearance_labels[use])
                 eligible=np.isin(labels,list(mapping))
-                train=features(tiles[eligible])
+                face_labels=labels[eligible]
+                train=features(tiles[eligible]) if len(np.unique(face_labels))>=2 else None
                 by_plane=defaultdict(list)
                 for index,cell in enumerate(part):
                     by_plane[cell['plane']].append(index)
                 for indices in by_plane.values():
-                    patches=np.stack([face(rgb,part[i]['quad'],16) for i in indices])
-                    rows,evidence=alignment_scores(patches,train,labels[eligible],calibrated_method)
+                    plane_cells=[part[i] for i in indices]
+                    patches=np.stack([face(rgb,c['quad'],16) for c in plane_cells])
+                    if train is None:
+                        rows=[ranked[i][:3] for i in indices]
+                        evidence=np.zeros(len(indices))
+                    else:
+                        rows,evidence=alignment_scores(patches,train,face_labels,calibrated_method)
                     widths=[np.linalg.norm(np.subtract(part[i]['quad'][1],part[i]['quad'][0])) for i in indices]
                     for j,accept in enumerate(trusted_cells(evidence,widths)):
                         if accept:
@@ -323,10 +341,18 @@ def reconstruct(image, atlas_dir, scene, library, out, depth=None, grid=None, wh
                             alternate=stable_alternative(names,mapping)
                             if not alternate:
                                 alternate=ranked_stable_block(names,mapping,patches[j:j+1],
-                                    train,labels[eligible],calibrated_method,True)
+                                    train,face_labels,calibrated_method,True)
                             index=indices[j]
                             ranked[index]=(names,ds,gap,alternate)
                             trusted.add(index)
+                    if match_appearance=='context':
+                        plane=plane_by_name.get(plane_cells[0]['plane'])
+                        overrides=context_matches(rgb,plane,plane_cells,pattern_bank,patches,rows,evidence,course_light)
+                        for j,names,ds,gap,details in overrides:
+                            index=indices[j]
+                            alternate=stable_alternative(names,mapping) or ranked[index][3]
+                            ranked[index]=(names,ds,gap,alternate)
+                            context[index]=details
         else:
             use=np.isin(labels,list(mapping))
             train=features(tiles[use])
@@ -343,8 +369,11 @@ def reconstruct(image, atlas_dir, scene, library, out, depth=None, grid=None, wh
         for index,(c,(names,ds,gap,alternate)) in enumerate(zip(part,ranked)):
             texture=names[0]; block=min(mapping[texture],key=lambda s:(s!=texture,len(s),s))
             pos=tuple(c['xyz'])
-            if pos not in margins or gap>margins[pos]:
-                blocks[pos]=block;margins[pos]=gap
+            # A high color-only margin on another face can result from a
+            # featureless swatch. Repeated spatial observations take precedence.
+            priority=(index in context, gap)
+            if pos not in margins or priority>margins[pos]:
+                blocks[pos]=block;margins[pos]=priority
                 alternatives.pop(pos,None)
                 if falls_without_support(block):
                     alternatives[pos]=alternate
@@ -352,6 +381,9 @@ def reconstruct(image, atlas_dir, scene, library, out, depth=None, grid=None, wh
                                   textures=names,distances=ds,relative_margin=gap))
             if match_appearance=='adaptive':
                 decisions[-1]['material_method']='exposure' if index in trusted else 'motif'
+            elif match_appearance=='context':
+                decisions[-1]['material_method']='exposure' if index in trusted else 'shared'
+                decisions[-1].update(context.get(index,{}))
     for cell in inherited:
         pos=tuple(cell['xyz'])
         source=tuple(cell['sample_source_xyz'])

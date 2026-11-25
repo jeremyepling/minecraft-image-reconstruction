@@ -61,6 +61,8 @@ Run `python -m unittest discover -s tests` for the release-format and geometry r
 
 The gallery color experiment compares fixed geometry with three material matchers in fresh Minecraft worlds. Searching for repeated atlas details recovered 1,147 of 1,479 material observations on four previously seen views. Sharing a palette produced the closest rendered colors. [In-game comparison and material options](benchmark/COLOR.md)
 
+For a wall where shader lighting changes the apparent color of masonry, add `--match-appearance context` to a build with a calibrated `--library`. This matcher checks neighboring faces for repeating mortar courses and staggered joints. Reuse `--geometry` to compare material choices at identical block positions. Each accepted override records its evidence in `matches.json`. [Context matching and limitations](benchmark/COLOR.md#matching-mortar-across-block-faces)
+
 Use `--geometry-method remap` to estimate a common elevation grid from texture repetition and test visible openings for depth. The measured front view recovered five recess depths on a freshly arranged wall and left a flush section in place. [How the engine uses shadow, angled edges and projected rims](benchmark/RECESSES.md)
 
 For an angled wall, `python reconstruct.py inspect-openings IMAGE --out REVIEW` writes an annotated image and the evidence for each depth decision. This experimental command is separate from export. [How a setting earns adoption, and what happened on two new walls](benchmark/ENTRANCES.md)
