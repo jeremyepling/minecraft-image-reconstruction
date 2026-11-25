@@ -126,7 +126,7 @@ def refine(image, regions, masks, records, selected):
 
 
 @image_only()
-def run(probe, out, split):
+def run(probe, out, split, junction_stack=None):
     probe_manifest = read(probe / 'manifest.json')
     baseline_manifest = read(WALLS / 'manifest.json')
     cohort, _, fixtures = groups()
@@ -136,7 +136,16 @@ def run(probe, out, split):
     cases = {f'{c.floor}/{c.id}': c for group in cohort.values() for c in group}
     dest = out / split
     dest.mkdir(parents=True, exist_ok=False)
-    parent_rows = read(WALLS / 'cases.json')
+    source_root = junction_stack or WALLS
+    source_manifest = read(source_root / 'manifest.json')
+    if digest(source_root/'cases.json') != source_manifest['artifacts']['cases.json']:
+        raise ValueError('Parent predictions manifest does not match')
+    if junction_stack and (source_manifest['fixture'] != fixtures or source_manifest['reference_sha256'] != digest(ARCHIVE)):
+        raise ValueError('Mismatched stacked prediction fixture')
+    method = 'junction-then-underside' if junction_stack else METHOD
+    parent_rows = read(source_root / 'cases.json')
+    if len(cases) != len(parent_rows) or set(cases) != {r['key'] for r in parent_rows}:
+        raise ValueError('Mismatched frame IDs')
     rows = []
     for r in parent_rows:
         if (r['cohort'] == 'development') != (split == 'development'):
@@ -154,11 +163,11 @@ def run(probe, out, split):
             masks = np.unpackbits(archive['packed'], count=int(archive['shape'][2]), axis=2).astype(bool)
         with gzip.open(paths[1], 'rt', encoding='utf8') as f:
             meta = json.load(f)
-        source = WALLS / r['predictions']
-        if digest(source) != baseline_manifest['artifacts'][r['predictions']]:
+        source = source_root / r['predictions']
+        if digest(source) != source_manifest['artifacts'][r['predictions']]:
             raise ValueError(f'Baseline prediction changed: {key}')
         with gzip.open(source, 'rt', encoding='utf8') as f:
-            baseline = json.load(f)[METHOD]
+            baseline = json.load(f)[method]
         with Image.open(capture.path('image')) as f:
             image = f.convert('RGB')
         start = perf_counter()
@@ -170,8 +179,14 @@ def run(probe, out, split):
         # Saved reference data first enters algorithm evaluation here.
         _, ref = recorded(capture)
         scores, matches = measure(prediction, ref, use_mask=True)
-        old = r['scores'][METHOD]
-        before = set(r['scopes'][METHOD]['matched'])
+        if junction_stack:
+            old, pairs = measure(baseline, ref, use_mask=True)
+            before = {pid for _, pid in pairs}
+            if before != set(r['methods'][method]['found']):
+                raise ValueError(f'Parent assignments changed: {key}')
+        else:
+            old = r['scores'][METHOD]
+            before = set(r['scopes'][METHOD]['matched'])
         after = {pid for _, pid in matches}
         for invariant in ('opening_filled', 'gaps_half_filled', 'unclaimed_pixels', 'background_claimed'):
             if scores[invariant] != old[invariant]:
@@ -187,8 +202,8 @@ def run(probe, out, split):
                   lost=sum(len(r['lost']) for r in rows), walls_split=sum(len(r['events']) for r in rows),
                   image_only_cached_processing_s=sum(r['processing_s'] for r in rows))
     save(dest/'scores.json', scores)
-    save(dest/'manifest.json', dict(method='Wall Separator + MobileSAM wall parts',
-         run_id=out.name, split=split, settings=SETTINGS, fixtures=fixtures, baseline_manifest=digest(WALLS/'manifest.json'),
+    save(dest/'manifest.json', dict(method=f'{method} + MobileSAM wall parts',
+         run_id=out.name, split=split, settings=SETTINGS, fixtures=fixtures, baseline_manifest=digest(source_root/'manifest.json'),
          probe_manifest=digest(probe/'manifest.json'), code_revision=subprocess.check_output(
              ['git', '-C', str(ROOT), 'rev-parse', 'HEAD'], text=True).strip(), runner_sha256=digest(Path(__file__)),
          artifacts={n:digest(dest/n) for n in ('cases.json', 'scores.json')}))
@@ -202,5 +217,6 @@ if __name__ == '__main__':
     parser.add_argument('--probe', type=Path, required=True)
     parser.add_argument('--out', type=Path, required=True)
     parser.add_argument('--split', choices=['development', 'regression'], required=True)
+    parser.add_argument('--junction-stack', type=Path, help='Use saved junction-then-underside masks as the parent walls')
     args = parser.parse_args()
-    run(args.probe, args.out, args.split)
+    run(args.probe, args.out, args.split, args.junction_stack)
