@@ -166,7 +166,10 @@ def run(args):
     out = (args.out or ROOT / 'runs' / 'surface-experiments' / stamp).resolve()
     out.mkdir(parents=True, exist_ok=False)
     code = revision()
-    methods = {k: getattr(args,k) or v for k,v in read(surface_model.DEFAULTS).items()}
+    # This experiment compares historical four-corner candidates with a quad-based scorer.
+    methods = dict(outlines=args.outlines or 'edges+shade', pitch=args.pitch or 'repeat', order=args.order or 'geometry')
+    if methods['outlines'] == 'mask-first':
+        raise ValueError('Use Invoke-MaskRound.ps1 to compare region masks against the frozen suite.')
     kinds = (['normal'] if methods['outlines'].startswith('normal-') else []) + (
         ['depth'] if methods['order'] == 'depth-anything' else [])
     cohorts, suite, fixture_hashes = groups()
