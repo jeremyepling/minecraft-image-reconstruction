@@ -4,18 +4,20 @@ Run `normals-01` compares three ways to outline visible planes from one vanilla 
 
 ## Same pictures, three methods
 
-Each entry is the number of correctly outlined planes, pooled over the views of that layout. The eligible column counts instances across frames. The two development layouts determined the choice of challenger. The four regression layouts had appeared in earlier experiments. The two blind layouts were built and captured for this round and held back from the candidate developers until the methods were frozen.
+Start with the eight-row picture sheet. Each row shows the original building, B’s map of which way its surfaces face, and B’s rectangles over the same screenshot. B uses its map to group neighboring pixels, then uses brightness changes in the screenshot to adjust the edges. The recorded Minecraft surfaces supply the green, pink and gold scoring marks. The sheet uses B’s best whole-building view for each layout, balancing missed surfaces and extra outlines. Those eight views are selected from the original run and stay fixed when reviewing later results. [What B saw in each building](reviews/normals-01/buildings-b.jpg)
 
-| Building | Split | Frames | Eligible | Contrast + shading | Contrast ranked by normals | Regions grouped by normals |
-|---|---|---:|---:|---:|---:|---:|
-| Shopfront | Development | 8 | 120 | 10 | 16 | 57 |
-| Wing | Development | 12 | 36 | 18 | 19 | 28 |
-| Courtyard | Regression | 12 | 56 | 14 | 18 | 36 |
-| Portico | Regression | 8 | 148 | 25 | 28 | 67 |
-| Workshop | Regression | 4 | 60 | 6 | 11 | 16 |
-| Crossing | Regression | 4 | 46 | 5 | 5 | 19 |
-| Galleries | Blind | 4 | 98 | 9 | 14 | 37 |
-| Registry | Blind | 4 | 34 | 6 | 7 | 21 |
+The shopfront has 14 counted surfaces from the high-right angle and 16 from the low-left angle. Four screenshots show each angle, giving 120 chances to find a surface. The last four columns below add up all views of a building. The two development layouts determined the choice of challenger. The four regression layouts had appeared in earlier experiments. The two blind layouts were held back until the methods were frozen.
+
+| Building | Split | Frames | Surfaces in one picture | Total across frames | Contrast + shading | Contrast ranked by normals | Regions grouped by normals |
+|---|---|---:|---:|---:|---:|---:|---:|
+| Shopfront | Development | 8 | 14–16 | 120 | 10 | 16 | 57 |
+| Wing | Development | 12 | 1–5 | 36 | 18 | 19 | 28 |
+| Courtyard | Regression | 12 | 1–8 | 56 | 14 | 18 | 36 |
+| Portico | Regression | 8 | 17–20 | 148 | 25 | 28 | 67 |
+| Workshop | Regression | 4 | 14–16 | 60 | 6 | 11 | 16 |
+| Crossing | Regression | 4 | 11–12 | 46 | 5 | 5 | 19 |
+| Galleries | Blind | 4 | 24–25 | 98 | 9 | 14 | 37 |
+| Registry | Blind | 4 | 7–10 | 34 | 6 | 7 | 21 |
 
 | Cohort | Contrast + shading F1 | Ranked by normals F1 | Grouped by normals F1 | Precision, baseline → grouped | Recall, baseline → grouped |
 |---|---:|---:|---:|---:|---:|
@@ -50,6 +52,8 @@ Eight independent layouts supply 56 frames. Masonry uses stone bricks, tuff and 
 Keep these eight as frozen regression layouts after review. The earlier sample target is 18 independent layouts, six reserved for blind confirmation, with at least two palettes and two oblique views per layout. This gives 72 weak-floor images before paired floor controls. Include low-texture planes, palette changes across flush walls, visible backs at different depths, thin soffits and through-gaps. More views of one wall measure viewpoint sensitivity. More independently built layouts test generalization. [Fixture design](SURFACE_ROUND.md)
 
 ## Reproduce and review
+
+For a quick check, run `.\Invoke-SurfaceRound.ps1 -Round saved`. It compares B’s saved rectangles against the saved Minecraft surfaces in all 56 screenshots. To redraw the eight-building sheet, run `.\Invoke-SurfaceRound.ps1 -Round building-sheet`. Both commands run offline from the files in the checkout. [Saved geometry and scoring a new prediction](OFFLINE_GEOMETRY.md)
 
 From the checkout on this PC, run one command. It verifies both downloaded checkpoints, regenerates any missing image maps and creates a new timestamped run with its own sheet. On another machine, install the pinned Python dependencies in `benchmark/suites/normal-requirements.txt` first. [Pinned models and download sources](normal_assets.py)
 

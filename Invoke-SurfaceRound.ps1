@@ -1,6 +1,6 @@
 [CmdletBinding()]
 param([string] $Python, [string] $Out, [int] $Workers = 3,
-      [ValidateSet('surfaces', 'normals')] [string] $Round = 'surfaces')
+      [ValidateSet('surfaces', 'normals', 'saved', 'building-sheet')] [string] $Round = 'surfaces')
 
 $ErrorActionPreference = 'Stop'
 $options = @($Python)
@@ -15,10 +15,14 @@ if (-not $Python) {
 Push-Location -LiteralPath $PSScriptRoot
 $previousPythonPath = $env:PYTHONPATH
 try {
-    $module = 'benchmark.surface_round'
+    $module = @{
+        surfaces = 'benchmark.surface_round'
+        normals = 'benchmark.normal_round'
+        saved = 'benchmark.score_saved_planes'
+        'building-sheet' = 'benchmark.normal_building_sheet'
+    }[$Round]
     $imports = 'import numpy, PIL'
     if ($Round -eq 'normals') {
-        $module = 'benchmark.normal_round'
         $imports = 'import numpy, PIL, onnxruntime'
         $probeRuntime = Join-Path $PSScriptRoot '../surface-round/runs/depth-probe/runtime'
         if (Test-Path -LiteralPath $probeRuntime) {
@@ -34,7 +38,9 @@ try {
                 & $exe.Source -m benchmark.normal_assets --download
                 if ($LASTEXITCODE -ne 0) { throw 'Failed to prepare the pinned local model files.' }
             }
-            $arguments = @('-m', $module, '--workers', $Workers)
+            $arguments = @('-m', $module)
+            if ($Round -in 'surfaces', 'normals') { $arguments += @('--workers', $Workers) }
+            if ($Round -eq 'saved' -and $Out) { throw 'Saved scoring prints the per-building results to the terminal.' }
             if ($Out) { $arguments += @('--out', $Out) }
             & $exe.Source @arguments
             if ($LASTEXITCODE -ne 0) { throw "The surface round exited with code $LASTEXITCODE" }

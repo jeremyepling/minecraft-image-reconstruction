@@ -6,6 +6,8 @@ Reconstruct a Minecraft Java build from a screenshot and place it in a real worl
 
 ## Single-image exterior benchmark
 
+Open the [eight-building picture sheet](benchmark/reviews/normals-01/buildings-b.jpg) to see each original screenshot beside B’s surface directions and its checked outlines. Run `.\Invoke-SurfaceRound.ps1 -Round saved` to compare B’s saved outlines against the recorded buildings entirely offline. [Saved geometry and replay commands](benchmark/OFFLINE_GEOMETRY.md)
+
 The visible-plane experiment compares the deterministic outline method with two local vision alternatives on eight Minecraft structures. The review includes clean source screenshots, the effects on openings, block scale and relative depth, and one command to reproduce it. [Measured results and execution path](benchmark/NORMAL_ROUND.md)
 
 Two Windows runs produced identical predictions for all 56 frames. Two independent Linux replays reproduced every plane match count and the default selection. The experimental relative-depth pass varied across runners. Using normal regions on the original six layouts, Windows proposed 274 near/far relations and the final Linux replay proposed 277. Both verified 41 correct relations there and 14 on the blind buildings. [Windows run manifest](benchmark/reviews/normals-01/manifest.json) · [First Linux replay](https://github.com/jeremyepling/minecraft-image-reconstruction/actions/runs/45600701874) · [Final Linux replay](https://github.com/jeremyepling/minecraft-image-reconstruction/actions/runs/45601327150)
