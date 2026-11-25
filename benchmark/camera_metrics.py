@@ -7,7 +7,7 @@ import numpy as np
 from benchmark.camera_labels import screen_matrix
 from calibration.world import GROUND
 from engine.camera_grid import plane_coordinates
-from engine.voxel_space import project
+from engine.geometry import project
 
 
 def truth_camera(pose):

@@ -21,8 +21,9 @@ def transform(quad):
 
 
 def project(h, points):
+    """Project 2D plane coordinates or 3D block coordinates to image pixels."""
     p=np.asarray(points)
-    v=p@h[:,:2].T+h[:,2]
+    v=p@h[:,:-1].T+h[:,-1]
     return v[...,:2]/v[...,2,None]
 
 

@@ -5,7 +5,7 @@ from PIL import Image, ImageDraw
 
 from benchmark.oblique_recess import pavement
 from engine.plane_candidates import foreground
-from engine.voxel_space import project
+from engine.geometry import project
 
 
 METHODS = ('pavement', 'seam-fit', 'tile-lines')
