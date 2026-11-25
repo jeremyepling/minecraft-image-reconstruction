@@ -33,6 +33,14 @@ python -m benchmark.normal_assets --download
 python reconstruct.py build screenshot.png --version 26.3 --through surfaces --out runs/my-surfaces
 ```
 
+For the thin-underside test, M-LSD Tiny looks for line segments in the supplied PNG. The finder combines these with shading, orientation and relative depth to propose narrow surfaces. Prepare the extra model once, then select `strip-mlsd` when building. The setup command reuses the pinned files on this PC or downloads missing weights. [Model source](https://huggingface.co/spaces/navervision/MLSD/blob/main/tflite_models/M-LSD_512_tiny_fp16.tflite)
+
+```powershell
+python -m pip install ai-edge-litert==2.4.0
+python -m benchmark.normal_assets --mlsd --download
+python reconstruct.py build screenshot.png --version 26.3 --through surfaces --surface-boundary strip-mlsd --out runs/my-undersides
+```
+
 Continue through counting to save the masked, straightened samples and measurements. The first command uses the named default counter. The second independently requests atlas matching on complete cells. A calibrated atlas directory can be given with `--atlas PATH`. Each run records the actual counter used.
 
 ```powershell

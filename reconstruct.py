@@ -100,7 +100,7 @@ def main():
                    help='Replay an outline method from the visible-plane comparison')
     p.add_argument('--surface-context-px', type=int,
                    help='Include this many neighboring source pixels per side in Regions First context crops (default 8)')
-    p.add_argument('--surface-boundary', choices=['regions-first','color-edges','depth-split','wall-depth-anything'],
+    p.add_argument('--surface-boundary', choices=['regions-first','color-edges','depth-split','wall-depth-anything','strip-mlsd'],
                    help='Choose how Surface Finder refines its preserved regions')
     p.add_argument('--surface-order',choices=['geometry','depth-anything'],
                    help='Select the relative depth ordering method for a surface build')

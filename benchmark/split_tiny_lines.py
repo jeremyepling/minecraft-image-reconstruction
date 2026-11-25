@@ -9,10 +9,11 @@ from benchmark.camera_round import ROOT, digest, read
 from benchmark.mlsd_probe import probe
 from benchmark.normal_round import groups
 from runtime.mode import image_only
+from engine.mlsd_tiny import MODEL
 
 
 ARCHIVE = ROOT/'benchmark/data/mlsd-tiny-lines-v1.json.gz'
-CHECKPOINT_SHA256 = 'e869f90601ffa263f21ac47e09ff0d65dc936d1aeb47126b8499d5504adfb100'
+CHECKPOINT_SHA256 = MODEL[2]
 
 
 @image_only()
@@ -39,7 +40,7 @@ def freeze(checkpoint, output):
     info = dict(model=data['model'],checkpoint_sha256=CHECKPOINT_SHA256,fixtures=fixtures,runtime=data['runtime'],
                 preprocessing=data['preprocessing'],score_threshold=data['score_threshold'],
                 min_length_output_pixels=data['min_length_output_pixels'],inference_seconds=elapsed,
-                decoder_sha256=digest(ROOT/'benchmark/mlsd_probe.py'),frames=frames)
+                decoder_sha256=digest(ROOT/'engine/mlsd_tiny.py'),frames=frames)
     with output.open('xb') as file:
         file.write(gzip.compress(json.dumps(info,allow_nan=False,separators=(',',':')).encode(),mtime=0))
 

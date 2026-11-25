@@ -134,7 +134,7 @@ def main():
     if repeat['results'] != previous['results']:
         raise ValueError('The original matched concrete-frame measurement did not reproduce.')
     summary = summarize(rows)
-    files = ('engine/structural_lines.py', 'benchmark/mlsd_probe.py', 'benchmark/mlsd_boundary_score.py',
+    files = ('engine/structural_lines.py', 'engine/mlsd_tiny.py', 'benchmark/mlsd_probe.py', 'benchmark/mlsd_boundary_score.py',
              'benchmark/normal_line_round.py')
     code = {f: sha256((ROOT/f).read_text(encoding='utf-8').encode()).hexdigest() for f in files}
     manifest = dict(run='normal-lines-01', version='Java 26.3', round_type='fixed ancillary diagnostic',
