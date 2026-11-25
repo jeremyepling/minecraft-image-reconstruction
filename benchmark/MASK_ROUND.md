@@ -1,5 +1,7 @@
 # Can keeping the region shapes recover more of the building?
 
+In this archived comparison, **B** means the **Rectangle Finder**. It grouped pixels by their predicted surface direction and fitted a four-corner outline. The Surface Finder now keeps region masks. [Current stage names](SURFACE_FINDER.md)
+
 [Eight-building comparison sheet with close-ups](reviews/mask-four-01/comparison.jpg) · [Results for all 56 pictures](reviews/mask-four-01/report.html) · [Run manifest and hashes](reviews/mask-four-01/manifest.json)
 
 ## Result

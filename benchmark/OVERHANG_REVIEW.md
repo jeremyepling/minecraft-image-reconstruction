@@ -15,7 +15,7 @@ Across all 56 saved pictures, there are 598 scored surfaces, including 18 unders
 | Regions with ScaleLSD | 393 | 8 | 0 | 5 |
 | Regions with DeepLSD | 394 | 8 | 0 | 4 |
 | Regions with depth splitting | 406 | 8 | 12 | 4 |
-| Earlier B rectangles | 281 | 3 | 28 | 145 |
+| Legacy Rectangle Finder | 281 | 3 | 28 | 145 |
 
 All five region methods found exactly the same eight undersides. Picking from all six sets of finished outlines with the recorded answer in hand would find 436 surfaces. The 38 additions over the current finder are 36 vertical faces and two tops. That is a ceiling for choosing among existing matches. Adding all guesses would also add duplicates and false surfaces. [Per-surface pairings and overlaps](reviews/overhang-01/results.json) · [Split and orientation counts](reviews/overhang-01/summary.json)
 
@@ -23,7 +23,7 @@ All five region methods found exactly the same eight undersides. Picking from al
 
 - **Galleries, masonry low-left, R13.** The recorded underside occupies 2,559 pixels. None of 144 sampled MoGe directions pointed within 30 degrees of downward. The longest shared seam has a median brightness difference of 33 on a 0–255 scale. DeepLSD followed 606 of 606 tested positions on that seam, ScaleLSD 588. Along *all* shared borders of R13 they followed 76% and 67%, respectively. The closest finished outline from any method had only 9% overlap.
 - **Portico, masonry high-right, R17.** The current outline includes a neighboring face. Splitting on a supported depth change raised overlap with this vertical side face from 27% to 87%.
-- **Workshop, plaster high-right, R4.** MoGe got the direction right on 99% of sampled pixels. The front a block forward has the same direction, and both ended up in one prediction. A fitted B rectangle scored 73% overlap with R4, compared with 45% for the current finder. Its rectangle also covers the door opening, which is why it makes a better hint for a dividing edge than a replacement mask. [Original crops and predictions](reviews/overhang-01/evidence.jpg)
+- **Workshop, plaster high-right, R4.** MoGe got the direction right on 99% of sampled pixels. The front a block forward has the same direction, and both ended up in one prediction. A fitted rectangle from the Rectangle Finder scored 73% overlap with R4, compared with 45% for the current finder. Its rectangle also covers the door opening, which is why it makes a better hint for a dividing edge than a replacement mask. [Original crops and predictions](reviews/overhang-01/evidence.jpg)
 
 ## Are the raw lines worth testing?
 
@@ -39,7 +39,7 @@ These ten misses are eight pictures of four previously examined buildings, all f
 
 ## Two tests worth running
 
-1. **Separate parallel faces.** Start from the current mask. Let the depth splitter or a side of B's rectangle suggest an internal dividing edge. Fit the two sides independently using relative depth and visible corners or T-junctions. Keep the original holes. Compare with ordinary depth splitting and record gained surfaces, lost surfaces, spurious splits and covered openings.
+1. **Separate parallel faces.** Start from the current mask. Let the depth splitter or a side from the Rectangle Finder suggest an internal dividing edge. Fit the two sides independently using relative depth and visible corners or T-junctions. Keep the original holes. Compare with ordinary depth splitting and record gained surfaces, lost surfaces, spurious splits and covered openings.
 2. **Recover thin undersides.** Let a line from either detector propose a new narrow face inside or just beside an existing mask. Look for a coherent strip with two edges or an edge that meets an opening or support, with a sustained change in brightness across it. Compare DeepLSD alone with either detector allowed to propose an edge under the same acceptance rule. Count new underside matches, flat walls split by mistake and gaps filled. The missing Galleries strip makes correct predicted surface direction a poor mandatory gate.
 
 Use the original 20 development pictures to choose settings, then freeze them before scoring the other 36 regression pictures. There are only four scored underside appearances on development, so report counts by building and keep the paired palettes or floors together. Treat the gains in the table as observations on the frozen suite. This audit adds no predictor or placed-block result.

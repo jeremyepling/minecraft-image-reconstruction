@@ -213,7 +213,6 @@ def replay_detection(run, out):
     from benchmark.surface_detection_sheet import diagnostics
 
     manifest=read(run/'manifest.json')
-    selected=manifest['selection']['selected']
     cohorts,_,fixtures=groups()
     if fixtures!=manifest['fixtures']:
         raise ValueError('Saved fixture set differs from the run')
@@ -222,6 +221,16 @@ def replay_detection(run, out):
             raise ValueError(f'Saved input changed: {path}')
     verify(ARCHIVE,manifest['reference_sha256'])
     verify(run/'cases.json',manifest['artifacts']['cases.json'])
+    if manifest.get('sheet')=='comparison.jpg' and 'strip' in manifest.get('selected',{}):
+        from benchmark.split_sheet import render
+        cases=read(run/'cases.json')
+        lookup={f'{case.floor}/{case.id}':case for group in cohorts.values() for case in group}
+        for row in cases:
+            verify(run/row['predictions'],manifest['artifacts'][row['predictions']])
+        out.mkdir(parents=True,exist_ok=False)
+        render(out,cases,lookup,manifest['selected'],source=run)
+        return out/'comparison.jpg'
+    selected=manifest['selection']['selected']
     verify(COUNT/'manifest.json',manifest['review_source_manifest_sha256'])
     verify(COUNT/'review-regions.json',read(COUNT/'manifest.json')['artifacts']['review-regions.json'])
     originals,frozen=[],None
@@ -245,8 +254,8 @@ if __name__=='__main__':
     from benchmark.camera_round import ROOT
     from runtime.mode import image_only
 
-    parser=argparse.ArgumentParser(description='Rebuild the surface-matching sheet from a saved perimeter run.')
-    parser.add_argument('--run',type=Path,default=ROOT/'benchmark/reviews/perimeters-01')
+    parser=argparse.ArgumentParser(description='Rebuild the surface-matching sheet from a saved surface round.')
+    parser.add_argument('--run',type=Path,default=ROOT/'benchmark/reviews/separation-01')
     parser.add_argument('--out',type=Path,help='New directory for the sheet and per-surface pairings')
     args=parser.parse_args()
     out=args.out or ROOT/'runs'/f'surface-detection-{uuid4().hex[:12]}'

@@ -1,12 +1,14 @@
 # Reusing the same buildings without starting Minecraft
 
-For surface-matching reviews, start with `.\Invoke-SurfaceRound.ps1 -Round detection-sheet`. It prints the path to a new portrait sheet built from the saved screenshots, predictions and recorded geometry. The per-surface pairings are saved beside it. The default source is the published `perimeters-01` run. Pass `-SourceRun <perimeter-run-directory>` to review a later run on the same views. [Review layout](reviews/perimeters-01/surface-detection.jpg)
+For surface-matching reviews, start with `.\Invoke-SurfaceRound.ps1 -Round detection-sheet`. It prints the path to a portrait sheet drawn entirely from saved screenshots, predictions and recorded geometry. The per-surface pairings are saved beside it. The default source is `separation-01`. Pass `-SourceRun benchmark/reviews/perimeters-01` to regenerate the earlier sheet. [Current review layout](reviews/separation-01/comparison.jpg)
+
+Use `.\Invoke-SurfaceRound.ps1 -Round separation` to repeat the wall and underside comparisons and the downstream dimension check on all 56 pictures. It runs picture jobs in parallel and reuses frozen model evidence by screenshot hash. [Inputs, selection and scores](SEPARATION_ROUND.md)
 
 To investigate merged walls and the undersides of overhangs, compare saved outlines with the raw line, surface direction and depth evidence at the same spot. [Close-ups and six-method audit](OVERHANG_REVIEW.md)
 
 Use `.\Invoke-SurfaceRound.ps1 -Round perimeters` to score the three Surface Finder methods and review the surface through cropping, straightening, counting and atlas matching. The experiment reuses the same frame IDs and the model's numerical depth cache. An optional `-Fields` path can point to a different compatible cache. [Review and results](PERIMETER_ROUND.md)
 
-Run `.\Invoke-MaskRound.ps1` to replay the four-method comparison of B, model regions, ScaleLSD v2 and DeepLSD. Its per-picture report and comparison sheet use the 56 saved images. [Reproduction and cache setup](MASK_REPLAY.md)
+Run `.\Invoke-MaskRound.ps1` to replay the four-method comparison of the Rectangle Finder, model regions, ScaleLSD v2 and DeepLSD. Its per-picture report and comparison sheet use the 56 saved images. [Reproduction and cache setup](MASK_REPLAY.md)
 
 Run `.\Invoke-BlockCountRound.ps1` to straighten the same surfaces, count blocks, compare individual texture crops and score the coordinates decoded from the exported datapacks. It reuses the frozen Regions First masks from the four-method experiment. [Count comparison](COUNT_ROUND.md)
 

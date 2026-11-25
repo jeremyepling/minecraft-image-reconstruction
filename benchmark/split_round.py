@@ -230,6 +230,8 @@ def run(args):
         artifacts={p.relative_to(out).as_posix():digest(p) for p in out.rglob('*') if p.is_file()},
         reproduce=r'.\Invoke-SurfaceRound.ps1 -Round separation')
     save(out/'manifest.json',manifest)
+    from benchmark.split_count_check import run as check_counts
+    check_counts(out,out/'counts')
     print(out,flush=True)
 
 
