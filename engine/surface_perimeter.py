@@ -8,6 +8,7 @@ from engine.normal_regions import _local_mask
 # In image coordinates clockwise rings enclose foreground. Direct each pixel
 # edge with foreground on its right so holes naturally get the opposite winding.
 _DIRECTIONS = ((1, 0), (0, 1), (-1, 0), (0, -1))
+DEFAULT_CONTEXT_PX = 8
 
 
 def _rings(mask, left, top):
@@ -86,19 +87,13 @@ def draw_outline(image, part, color='#49ffff', width=3):
         draw.line(points + points[:1], fill=color, width=width)
 
 
-def masked_crop(image, part):
-    """Return original RGBA pixels and a tight half-open native xyxy box, or None if empty.
-
-    Each native pixel center samples the same half-open support grid as the
-    outline. The crop spans the entire support and is independent of any chart.
-    """
-    support = part['support']
+def _native_alpha(support, size):
     runs = support['runs']
     if not len(runs):
         return None
     mask, left, top = _local_mask(np.asarray(runs))
     sw, sh = support['size']
-    w, h = image.size
+    w, h = size
     # Integer arithmetic also handles a pixel exactly on a support-grid edge.
     xs = ((2 * np.arange(w) + 1) * sw) // (2 * w)
     ys = ((2 * np.arange(h) + 1) * sh) // (2 * h)
@@ -113,6 +108,39 @@ def masked_crop(image, part):
         return None
     a, b, c, d = bounds
     box = (x0 + a, y0 + b, x0 + c, y0 + d)
+    return alpha.crop(bounds), box
+
+
+def masked_crop(image, part):
+    """Return original RGBA pixels and a tight half-open native xyxy box, or None if empty.
+
+    Each native pixel center samples the same half-open support grid as the
+    outline. The crop spans the entire support and is independent of any chart.
+    """
+    result = _native_alpha(part['support'], image.size)
+    if result is None:
+        return None
+    alpha, box = result
     crop = image.crop(box).convert('RGBA')
-    crop.putalpha(alpha.crop(bounds))
+    crop.putalpha(alpha)
     return crop, box
+
+
+def context_crop(image, part, margin_px=DEFAULT_CONTEXT_PX, *, mask_box=None):
+    """Return (original RGB neighborhood, native xyxy, tight mask xyxy in neighborhood).
+
+    All boxes are half-open. Supply a box from masked_crop when it is already
+    available. Neighbors come from the supplied screenshot, including holes.
+    """
+    if not isinstance(margin_px, int) or margin_px < 0:
+        raise ValueError('The context margin must be a nonnegative whole number of source pixels.')
+    if mask_box is None:
+        result = _native_alpha(part['support'], image.size)
+        if result is None:
+            return None
+        _, mask_box = result
+    l, t, r, b = mask_box
+    x = max(0, l - margin_px)
+    y = max(0, t - margin_px)
+    box = (x, y, min(image.width, r + margin_px), min(image.height, b + margin_px))
+    return image.crop(box).convert('RGB'), box, (l-x, t-y, r-x, b-y)

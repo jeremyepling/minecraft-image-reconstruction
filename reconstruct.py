@@ -98,6 +98,8 @@ def main():
                    help='Fit the camera, find visible surfaces, measure block counts, or build a datapack')
     p.add_argument('--surface-outlines',choices=['mask-first','edges+shade','normal-rank','normal-regions'],
                    help='Replay an outline method from the visible-plane comparison')
+    p.add_argument('--surface-context-px', type=int,
+                   help='Include this many neighboring source pixels per side in Regions First context crops (default 8)')
     p.add_argument('--surface-order',choices=['geometry','depth-anything'],
                    help='Select the relative depth ordering method for a surface build')
     p.add_argument('--block-counter', choices=['legacy-repeat','masked-repeat','atlas-repeat'],
@@ -131,8 +133,11 @@ def main():
 @image_only()
 def run_image_command(parser,args):
     if (args.command=='build' and args.through not in ('surfaces','counts')
-            and (args.surface_outlines is not None or args.surface_order is not None)):
+            and (args.surface_outlines is not None or args.surface_order is not None or args.surface_context_px is not None)):
         parser.error('Choose --through surfaces or counts when selecting a surface method')
+    if args.command=='build' and args.surface_context_px is not None and (
+            args.surface_context_px < 0 or args.surface_outlines not in (None, 'mask-first')):
+        parser.error('--surface-context-px requires Regions First and a nonnegative margin')
     if args.command=='build' and args.through!='counts' and (args.block_counter or args.material_match):
         parser.error('--block-counter and --material-match apply to --through counts')
     if args.command=='fit-voxels':
@@ -163,7 +168,8 @@ def run_image_command(parser,args):
         else:
             from engine.surface_model import build
             build(args.image,args.version,args.out,outlines=args.surface_outlines,order_method=args.surface_order,
-                  through=args.through,counter=args.block_counter,atlas_path=args.atlas,material_match=args.material_match)
+                  through=args.through,counter=args.block_counter,atlas_path=args.atlas,material_match=args.material_match,
+                  context_px=args.surface_context_px)
     else:
         if not args.atlas:
             parser.error('An assembly build needs --atlas')

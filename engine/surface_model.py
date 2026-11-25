@@ -266,7 +266,7 @@ def _count_regions(image, planes, version, method, atlas, out):
 
 
 def build(image_path, version, out, *, outlines=None, order_method=None, through='surfaces',
-          counter=None, atlas_path=None, material_match=None):
+          counter=None, atlas_path=None, material_match=None, context_px=None):
     from engine.atlas import digest
     from engine.surface_fields import MODELS, SETTINGS as inference, infer
     if version != '26.3':
@@ -276,6 +276,8 @@ def build(image_path, version, out, *, outlines=None, order_method=None, through
     defaults = json.loads(DEFAULTS.read_text())
     outlines = outlines or defaults['outlines']
     mask_first = outlines == 'mask-first'
+    if context_px is not None and (not mask_first or not isinstance(context_px, int) or context_px < 0):
+        raise ValueError('Surface context requires Regions First and a nonnegative whole number of pixels.')
     if order_method is None and not mask_first:
         order_method = defaults['order']
     with Image.open(image_path) as src:
@@ -288,7 +290,8 @@ def build(image_path, version, out, *, outlines=None, order_method=None, through
     patches = proposals_for(image, version, outlines, fields.get('normal'), fields.get('depth'))
     methods = dict(outlines=outlines)
     if mask_first:
-        from engine.surface_perimeter import masked_crop, with_outline
+        from engine.surface_perimeter import DEFAULT_CONTEXT_PX, context_crop, masked_crop, with_outline
+        context_px = DEFAULT_CONTEXT_PX if context_px is None else context_px
         patches = [with_outline(part) for part in patches]
         crop_dir = out/'surface-crops'
         crop_dir.mkdir(parents=True, exist_ok=True)
@@ -299,6 +302,12 @@ def build(image_path, version, out, *, outlines=None, order_method=None, through
                 path = crop_dir/f'surface-{i:03}.png'
                 photo.save(path)
                 part['source_crop'] = dict(path=path.relative_to(out).as_posix(), xyxy=list(box))
+                context, window, local = context_crop(image, part, context_px, mask_box=box)
+                context_path = crop_dir/f'surface-{i:03}-context.png'
+                context.save(context_path)
+                part['context_crop'] = dict(path=context_path.relative_to(out).as_posix(), xyxy=list(window),
+                                            mask_xyxy_in_crop=list(local), requested_margin_px=context_px,
+                                            margins_ltrb_px=[local[0],local[1],context.width-local[2],context.height-local[3]])
         model = dict(footprint='support', image_size=list(image.size), planes=patches,
                      outline_coordinates='closed outer and hole rings on support-grid pixel edges',
                      sampling_chart_coordinates='optional four source-image points for rectification')
@@ -332,6 +341,8 @@ def build(image_path, version, out, *, outlines=None, order_method=None, through
                                           directions='MoGe-2', relative_depth='Depth Anything V2',
                                           settings=finder_settings, outline='exact-support-perimeter')
         manifest['artifacts']['source_crops'] = 'surface-crops/'
+        manifest['surface_finder']['context_crop'] = dict(margin_px=context_px, coordinates='source image pixels',
+                                                         purpose='context only; support and counting input unchanged')
     if through == 'counts':
         counter = counter or defaults['block_count']
         atlas = None
