@@ -108,7 +108,15 @@ def save_and_score(case,row,predictions,timings,out,baseline_method):
     path = out/rel
     path.parent.mkdir(parents=True,exist_ok=True)
     path.write_bytes(gzip.compress(json.dumps(predictions,allow_nan=False,separators=(',',':')).encode(),mtime=0))
-    # Scoring begins after every independent prediction is on disk.
+    scores,detail = score_regions(case,predictions,key)
+    if scores['current']!=row['scores'][baseline_method]:
+        raise ValueError(f'Frozen baseline mismatch for {key}')
+    return dict(key=key,sha256=row['sha256'],layout=row['layout'],cohort=row['cohort'],predictions=rel,
+                scopes=detail,scores=scores,cached_processing_s=timings)
+
+
+def score_regions(case,predictions,key):
+    """Grade saved proposals against the common native and sampled reference maps."""
     pose,ref = recorded(case)
     native = _native_reference(pose,ref,read(case.path('labels'))['faces'])
     pixels = np.bincount(native.ravel(),minlength=max(ref['patches'])+1)
@@ -131,10 +139,7 @@ def save_and_score(case,row,predictions,timings,out,baseline_method):
             undersides=sorted(eligible & down),underside_total=len(down),vertical=sorted(eligible & vertical),
             vertical_total=len(vertical),small=small,unpaired=len(parts)-len(eligible)-len(small),
             fragmented=split,new_fragmentation=sorted((set(split)-base_split)&base))
-    if scores['current']!=row['scores'][baseline_method]:
-        raise ValueError(f'Frozen baseline mismatch for {key}')
-    return dict(key=key,sha256=row['sha256'],layout=row['layout'],cohort=row['cohort'],predictions=rel,
-                scopes=detail,scores=scores,cached_processing_s=timings)
+    return scores,detail
 
 
 def pooled(rows, method):

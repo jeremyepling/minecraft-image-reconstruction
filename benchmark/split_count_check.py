@@ -17,6 +17,51 @@ from benchmark.surface_reference import ARCHIVE, recorded
 from runtime.mode import image_only
 
 
+def count_frame(capture, image, case, predictions, methods):
+    """Apply the ordinary counter to every distinct proposal, then grade paired sizes."""
+    start = perf_counter()
+    counts = {}
+    # Predictions with identical full input records on this frame produce the same count.
+    # Each distinct proposal is measured before recorded geometry is accessed.
+    cache = {}
+    for name in methods:
+        readings = []
+        for part in predictions[name]:
+            serialized = json.dumps(part, sort_keys=True, separators=(',',':'))
+            if serialized not in cache:
+                cache[serialized] = downstream_counts(image, [part])[0]
+            readings.append(dict(cache[serialized]))
+        counts[name] = readings
+    elapsed = perf_counter() - start
+    _, ref = recorded(capture)
+    sizes = reference_planes(ref, read(capture.path('labels'))['faces'])
+    eligible = {pid for pid, p in ref['patches'].items() if p['eligible']}
+    methods_data = {}
+    for name in methods:
+        readings = counts[name]
+        _, pairs = measure(predictions[name], ref, use_mask=True)
+        if sorted(pid for _, pid in pairs) != sorted(case['scopes'][name]['matched']):
+            raise ValueError(f"Surface matches changed for {case['key']}/{name}.")
+        detail = {}
+        for i, pid in pairs:
+            rec = readings[i]
+            expected = sizes[pid]['size']
+            rec['expected'] = expected
+            guess = rec['measures']['masked-repeat']['dimensions']['blocks']
+            detail[pid] = dict(proposal=rec['id'], expected=expected, guess=guess,
+                               status='missing' if None in guess else 'correct' if guess==expected else 'incorrect')
+        for pid in eligible - detail.keys():
+            detail[pid] = dict(proposal=None, expected=sizes[pid]['size'], guess=[None,None], status='missing')
+        totals = count_totals([dict(eligible=len(eligible), surfaces=readings)], 'masked-repeat')
+        if totals['correct']!=sum(r['status']=='correct' for r in detail.values()):
+            raise ValueError('Recorded block sizes disagree with the suite counter.')
+        current = methods_data.get('current', {}).get('references',detail)
+        difference = dict(gained=sorted(p for p in eligible if detail[p]['status']=='correct' and current[p]['status']!='correct'),
+                          lost=sorted(p for p in eligible if detail[p]['status']!='correct' and current[p]['status']=='correct'))
+        methods_data[name] = dict(totals=totals, comparisons=difference, references=detail)
+    return methods_data, elapsed
+
+
 @image_only()
 def run(source, out):
     selected = read(source/'development-selection.json')
@@ -46,46 +91,7 @@ def run(source, out):
             image = source_image.convert('RGB')
         with gzip.open(verified(case['predictions']), 'rt', encoding='utf8') as f:
             predictions = json.load(f)
-        start = perf_counter()
-        counts = {}
-        # Predictions with identical full input records on this frame produce the same count.
-        # Each distinct proposal is measured before recorded geometry is accessed.
-        cache = {}
-        for name in methods:
-            readings = []
-            for part in predictions[name]:
-                serialized = json.dumps(part, sort_keys=True, separators=(',',':'))
-                if serialized not in cache:
-                    cache[serialized] = downstream_counts(image, [part])[0]
-                readings.append(dict(cache[serialized]))
-            counts[name] = readings
-        elapsed = perf_counter() - start
-        _, ref = recorded(capture)
-        sizes = reference_planes(ref, read(capture.path('labels'))['faces'])
-        eligible = {pid for pid, p in ref['patches'].items() if p['eligible']}
-        methods_data = {}
-        for name in methods:
-            readings = counts[name]
-            _, pairs = measure(predictions[name], ref, use_mask=True)
-            if sorted(pid for _, pid in pairs) != sorted(case['scopes'][name]['matched']):
-                raise ValueError(f'Surface matches changed for {key}/{name}.')
-            detail = {}
-            for i, pid in pairs:
-                rec = readings[i]
-                expected = sizes[pid]['size']
-                rec['expected'] = expected
-                guess = rec['measures']['masked-repeat']['dimensions']['blocks']
-                detail[pid] = dict(proposal=rec['id'], expected=expected, guess=guess,
-                                   status='missing' if None in guess else 'correct' if guess==expected else 'incorrect')
-            for pid in eligible - detail.keys():
-                detail[pid] = dict(proposal=None, expected=sizes[pid]['size'], guess=[None,None], status='missing')
-            totals = count_totals([dict(eligible=len(eligible), surfaces=readings)], 'masked-repeat')
-            if totals['correct']!=sum(r['status']=='correct' for r in detail.values()):
-                raise ValueError('Recorded block sizes disagree with the suite counter.')
-            current = methods_data.get('current', {}).get('references',detail)
-            difference = dict(gained=sorted(p for p in eligible if detail[p]['status']=='correct' and current[p]['status']!='correct'),
-                              lost=sorted(p for p in eligible if detail[p]['status']!='correct' and current[p]['status']=='correct'))
-            methods_data[name] = dict(totals=totals, comparisons=difference, references=detail)
+        methods_data, elapsed = count_frame(capture, image, case, predictions, methods)
         rows.append(dict(key=key, sha256=case['sha256'], layout=case['layout'], cohort=case['cohort'],
                          counting_seconds_for_shared_proposals=elapsed, methods=methods_data))
     totals = {}
