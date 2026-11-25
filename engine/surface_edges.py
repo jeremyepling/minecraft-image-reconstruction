@@ -227,7 +227,7 @@ def _sample_grid(quad):
     return top+axis[:,None,None]*(bottom-top)
 
 
-def _score(quad, edge_support, labels, mask, colors):
+def _score(quad, edge_support, labels, mask, colors, require_uniform_color=True):
     edges = np.roll(quad,-1,axis=0)-quad
     corners = _cross(edges,np.roll(edges,-1,axis=0))
     lengths = np.linalg.norm(edges,axis=1)
@@ -255,8 +255,10 @@ def _score(quad, edge_support, labels, mask, colors):
     similar=np.max(abs(rgb-np.median(rgb.reshape(-1,3),axis=0)),axis=2)<14.
     inside=region if region.mean()>similar.mean() else similar
     purity = float(inside.mean())
-    if purity<SETTINGS['min_face_purity'] or min(inside.mean(0).min(),inside.mean(1).min()) < .43:
-        return None
+    if require_uniform_color:
+        weakest_strip = min(inside.mean(0).min(), inside.mean(1).min())
+        if purity < SETTINGS['min_face_purity'] or weakest_strip < .43:
+            return None
     return .58*purity+.42*edge_support, area, purity
 
 
@@ -290,8 +292,11 @@ def _corner_junctions(patches, tolerance):
             b['corner_junctions'].append(dict(corner=int(j),neighbor=a['id'],neighbor_corner=int(i),distance_px=score))
 
 
-def detect_planes(image, version='26.3', shading=False):
-    """Return clockwise native-pixel quads using only the supplied image."""
+def detect_planes(image, version='26.3', shading=False, *, rank_candidate=None):
+    """Return clockwise native-pixel quads. An optional (quad, score) ranker
+    replaces the color-purity gate and final confidence filter before overlap
+    suppression. It may return (confidence, evidence), or None to abstain.
+    """
     if version != '26.3':
         raise ValueError('Visible surface estimator targets Java 26.3')
     image = image.convert('RGB')
@@ -314,7 +319,7 @@ def detect_planes(image, version='26.3', shading=False):
     scored = []
     for index, (quad, edge_support, source) in enumerate(candidates):
         quad = _order(quad)
-        info = _score(quad, edge_support, components, mask, colors)
+        info = _score(quad, edge_support, components, mask, colors, require_uniform_color=rank_candidate is None)
         if info is None:
             continue
         geometry, area, purity = info
@@ -322,11 +327,19 @@ def detect_planes(image, version='26.3', shading=False):
         # broad steps persist along the border after suppressing a local ramp.
         shade = _lighting_step(quad, field) if shading else None
         confidence = .78*geometry + .22*np.clip(shade/12.,0.,1.) if shading else geometry
-        if confidence < .77:
+        extra = {}
+        if rank_candidate is not None:
+            # Other image evidence can support a coplanar surface spanning
+            # multiple colors. The geometry and foreground checks still apply.
+            decision = rank_candidate(quad * scale, confidence)
+            if decision is None:
+                continue
+            confidence, extra = decision
+        elif confidence < .77:
             continue
-        scored.append((confidence*np.sqrt(area),index,quad,confidence,edge_support,purity,shade,source))
+        scored.append((confidence*np.sqrt(area),index,quad,confidence,edge_support,purity,shade,source,extra))
     kept, occupied = [], np.zeros(mask.shape,bool)
-    for _, index, quad, confidence, support, purity, shade, source in sorted(scored,key=lambda p:-p[0]):
+    for _, index, quad, confidence, support, purity, shade, source, extra in sorted(scored,key=lambda p:-p[0]):
         lo = np.maximum(0,np.floor(quad.min(0)).astype(int))
         hi = np.minimum(size,np.ceil(quad.max(0)).astype(int))
         x,y = np.meshgrid(np.arange(lo[0],hi[0])+.5,np.arange(lo[1],hi[1])+.5)
@@ -342,6 +355,7 @@ def detect_planes(image, version='26.3', shading=False):
                         region_purity=round(float(purity),4), shading_used=bool(shading))
         if shading:
             evidence['median_luminance_step']=round(float(shade),3)
+        evidence.update(extra)
         kept.append(dict(id=f'surface-{index}',
                          quad=coords.tolist(),confidence=round(float(confidence),4),evidence=evidence))
         if len(kept) >= SETTINGS['max_patches']:
