@@ -1,0 +1,12 @@
+{
+ "selected": "texel",
+ "rule": "equal-family mean of .5 silhouette IoU + .25/(1+width error) + .25/(1+height error); unknown size gets zero",
+ "dev": {
+  "baseline": 0.17137349329458196,
+  "partition": 0.5146930169057147,
+  "texel": 0.5450849673394822,
+  "outlined-baseline": 0.533565090574031,
+  "outlined-partition": 0.6104158618436764,
+  "outlined-texel": 0.6615214276107769
+ }
+}

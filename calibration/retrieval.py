@@ -42,14 +42,30 @@ def distances(query, reference):
                 multiscale=12*color+.08*spatial+.08*coarse+.7*shape)
 
 
-def rank(query, train, labels, method):
+def exposure_distance(query, reference, method, baseline):
+    """Refit only shared RGB brightness, penalizing departure from the calibrated light."""
+    light=np.array([.213,.715,.072],dtype=np.float32)
+    source=query[0]
+    target=reference[0]
+    gain=np.clip(((source@light)[:,None]+.015)/((target@light)[None,:]+.015),.28,2.2)
+    delta=source[:,None,:]-gain[:,:,None]*target[None,:,:]
+    adjusted_color=(delta**2).mean(axis=2)
+    if method=='color':
+        return adjusted_color+(.032/12)*np.abs(np.log(gain))
+    return baseline-12*mse(source,target)+12*adjusted_color+.032*np.abs(np.log(gain))
+
+
+def rank(query, train, labels, method, match_exposure=False):
     """Rank distinct block IDs. Multiple exemplars of one ID get one vote."""
     order = np.argsort(labels, kind='stable')
     names, starts = np.unique(np.asarray(labels)[order], return_index=True)
     if len(names) < 2:
         raise ValueError('Need at least two labeled classes')
     for start in range(0, len(query), 96):
-        d = distances(features(query[start:start+96]), train)[method]
+        patch=features(query[start:start+96])
+        d=distances(patch,train)[method]
+        if match_exposure:
+            d=exposure_distance(patch,train,method,d)
         per_class = np.minimum.reduceat(d[:, order], starts, axis=1)
         best = np.argsort(per_class, axis=1, kind='stable')[:, :5]
         for idx, row in zip(best, per_class):

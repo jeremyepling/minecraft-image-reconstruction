@@ -1,0 +1,148 @@
+{
+ "selected": "texel",
+ "scope": "Held-out buildings, all annotated Z-axis segments and four angles; query endpoints supplied as image pixels.",
+ "truth_rule": "Outside frame, then absolute viewing-axis cosine >0.93, then ray obstruction at 2%, 50%, 98%; all remaining queries visible.",
+ "cue_rule": "Requires a distinct grid direction on a predicted return polygon containing the query, meeting a facade at one endpoint. Thresholds fixed before the test audit.",
+ "methods": {
+  "baseline": {
+   "queries": 80,
+   "true_visible": 0,
+   "false_visible": 0,
+   "true_unknown": 68,
+   "false_unknown": 12,
+   "visible_precision": null,
+   "visible_recall": 0.0,
+   "truth_counts": {
+    "foreshortened": 20,
+    "visible": 12,
+    "occluded": 48
+   }
+  },
+  "partition": {
+   "queries": 80,
+   "true_visible": 0,
+   "false_visible": 1,
+   "true_unknown": 67,
+   "false_unknown": 12,
+   "visible_precision": 0.0,
+   "visible_recall": 0.0,
+   "truth_counts": {
+    "foreshortened": 20,
+    "visible": 12,
+    "occluded": 48
+   }
+  },
+  "texel": {
+   "queries": 80,
+   "true_visible": 0,
+   "false_visible": 1,
+   "true_unknown": 67,
+   "false_unknown": 12,
+   "visible_precision": 0.0,
+   "visible_recall": 0.0,
+   "truth_counts": {
+    "foreshortened": 20,
+    "visible": 12,
+    "occluded": 48
+   }
+  }
+ },
+ "by_kind": {
+  "canopy": {
+   "queries": 48,
+   "true_visible": 0,
+   "false_visible": 1,
+   "true_unknown": 47,
+   "false_unknown": 0,
+   "visible_precision": 0.0,
+   "visible_recall": null,
+   "truth_counts": {
+    "foreshortened": 12,
+    "occluded": 36
+   }
+  },
+  "recess": {
+   "queries": 24,
+   "true_visible": 0,
+   "false_visible": 0,
+   "true_unknown": 18,
+   "false_unknown": 6,
+   "visible_precision": null,
+   "visible_recall": 0.0,
+   "truth_counts": {
+    "visible": 6,
+    "foreshortened": 6,
+    "occluded": 12
+   }
+  },
+  "stepped_tower": {
+   "queries": 8,
+   "true_visible": 0,
+   "false_visible": 0,
+   "true_unknown": 2,
+   "false_unknown": 6,
+   "visible_precision": null,
+   "visible_recall": 0.0,
+   "truth_counts": {
+    "foreshortened": 2,
+    "visible": 6
+   }
+  }
+ },
+ "by_angle": {
+  "elevated": {
+   "queries": 20,
+   "true_visible": 0,
+   "false_visible": 0,
+   "true_unknown": 17,
+   "false_unknown": 3,
+   "visible_precision": null,
+   "visible_recall": 0.0,
+   "truth_counts": {
+    "visible": 3,
+    "occluded": 17
+   }
+  },
+  "front": {
+   "queries": 20,
+   "true_visible": 0,
+   "false_visible": 0,
+   "true_unknown": 19,
+   "false_unknown": 1,
+   "visible_precision": null,
+   "visible_recall": 0.0,
+   "truth_counts": {
+    "foreshortened": 19,
+    "visible": 1
+   }
+  },
+  "left": {
+   "queries": 20,
+   "true_visible": 0,
+   "false_visible": 1,
+   "true_unknown": 17,
+   "false_unknown": 2,
+   "visible_precision": 0.0,
+   "visible_recall": 0.0,
+   "truth_counts": {
+    "visible": 2,
+    "occluded": 17,
+    "foreshortened": 1
+   }
+  },
+  "right": {
+   "queries": 20,
+   "true_visible": 0,
+   "false_visible": 0,
+   "true_unknown": 14,
+   "false_unknown": 6,
+   "visible_precision": null,
+   "visible_recall": 0.0,
+   "truth_counts": {
+    "visible": 6,
+    "occluded": 14
+   }
+  }
+ },
+ "records_file": "depth-visibility-cases.json"
+}

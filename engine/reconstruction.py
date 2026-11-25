@@ -14,16 +14,87 @@ from engine.lighting import cast_estimate, correct
 from engine.propose import silhouette, estimate_grid
 from engine.export import write_pack
 
+
+def falls_without_support(block):
+    # Vanilla gravity blocks in the full-cube placement catalog. Some other
+    # gravity blocks (for example anvils) are excluded by the face geometry.
+    return block in {'sand','red_sand','gravel','suspicious_gravel','suspicious_sand',
+                     'dragon_egg','anvil','chipped_anvil','damaged_anvil'} or block.endswith('_concrete_powder')
+
+
+def stable_alternative(names,mapping):
+    for texture in names:
+        candidates=[b for b in mapping[texture] if not falls_without_support(b)]
+        if candidates:
+            return min(candidates,key=lambda b:(b!=texture,len(b),b))
+    return None
+
+
+def ranked_stable_block(names,mapping,patch,train,labels,method,match_exposure):
+    alternate=stable_alternative(names,mapping)
+    if alternate is not None:
+        return alternate
+    # Even if every top-five texture falls, retain the same distance function
+    # and compare the remaining eligible rendered exemplars.
+    eligible=np.isin(labels,[t for t in mapping if stable_alternative([t],mapping)])
+    stable_labels=labels[eligible]
+    choices=np.unique(stable_labels)
+    if not len(choices):
+        raise ValueError('Palette has no self-supporting block')
+    if len(choices)>1:
+        choices,_,_=next(rank(patch,tuple(a[eligible] for a in train),stable_labels,method,match_exposure))
+    return stable_alternative(choices,mapping)
+
+
+def stabilize_placements(blocks,alternatives):
+    changes=[]
+    for x,y,z in sorted(alternatives):
+        if (x,y-1,z) in blocks: continue
+        old=blocks[x,y,z]
+        new=alternatives[x,y,z]
+        blocks[x,y,z]=new
+        changes.append(dict(x=x,y=y,z=z,predicted=old,placed=new,reason='unsupported_gravity_block'))
+    return changes
+
 RIGHT={'south':(1,0,0),'north':(-1,0,0),'west':(0,0,1),'east':(0,0,-1),
        'up':(1,0,0),'down':(1,0,0)}
 ROW_UP={'up':(0,0,-1),'down':(0,0,1)}
 
 
-def geometry(image_path, scene=None):
+def trial_elevation(image_path,rgb):
+    """Attach unanchored image-only polygons to one common elevation in block units."""
+    from engine.texel_grid import candidate
+    planes,cells=candidate(image_path)
+    if not planes or not cells:
+        return None
+    def area(p):
+        q=np.array(p['quad'])
+        return abs(np.linalg.det(np.stack((q[1]-q[0],q[3]-q[0]))))
+    reference=max(planes,key=area)
+    inv=np.linalg.inv(reference['grid_to_image'])
+    origins=np.array([project(inv,np.array(p['quad'])[3]) for p in planes])
+    origins=np.rint((origins-[origins[:,0].min(),origins[:,1].max()])*[1,-1]).astype(int)
+    by_name={}
+    for p,(x,y) in zip(planes,origins):
+        p.update(origin=[int(x),int(y),0],facing='south',location_basis='projected front elevation',
+                 depth_status='unresolved',spacing_method='texel')
+        by_name[p['name']]=p
+    for c in cells:
+        p=by_name[c['plane']]
+        c.update(facing='south',xyz=[p['origin'][0]+c['ij'][0],p['origin'][1]+p['rows']-1-c['ij'][1],0])
+    return rgb,planes,cells
+
+
+def geometry(image_path, scene=None, method='baseline'):
     with Image.open(image_path) as f:
         image=ImageOps.exif_transpose(f).convert('RGBA')
     rgb=np.asarray(image)[:,:,:3]
     alpha=np.asarray(image)[:,:,3]
+    if method not in ('baseline','texel'): raise ValueError('Unknown geometry method')
+    if method=='texel' and not scene:
+        trial=trial_elevation(image_path,rgb)
+        if trial is not None: return trial
+        raise ValueError('Experimental partition could not isolate a structure. Supply a scene outline or use baseline geometry.')
     fitted_planes={}
     hints={}
     if scene:
@@ -63,6 +134,10 @@ def geometry(image_path, scene=None):
         elif known:
             cols,rows=p['columns'],p['rows']
             strength=None
+        elif method=='texel':
+            from engine.texel_grid import texel_grid
+            cols,rows=texel_grid(rgb,quad)
+            strength=None
         else:
             (cols,sc),(rows,sr)=estimate_grid(rgb,quad)
             strength=[sc,sr]
@@ -74,7 +149,7 @@ def geometry(image_path, scene=None):
             h=raw_grid@np.diag([1/cols,1/rows,1])
         # Fit the approved periodic seam model when counts are estimated. Keep
         # measured edges when an integer wall extent was explicitly supplied.
-        if not seeded and not known and min(cols,rows)>=3 and cols*rows<=8192:
+        if method=='baseline' and not seeded and not known and min(cols,rows)>=3 and cols*rows<=8192:
             fitted=fit_plane(rgb,dict(name=p['name'],outline=quad.tolist(),holes=p.get('holes',[])),h,metric=True)
             h=np.array(fitted['grid_to_image'])
             rectified=project(np.linalg.inv(h),quad)
@@ -113,9 +188,9 @@ def geometry(image_path, scene=None):
     return rgb,measured,cells
 
 
-def analyze(image,scene,out):
-    rgb,planes,cells=geometry(image,scene)
-    geometry_data=dict(image_sha256=digest(image),planes=planes,cells=cells)
+def analyze(image,scene,out,method='baseline'):
+    rgb,planes,cells=geometry(image,scene,method)
+    geometry_data=dict(image_sha256=digest(image),geometry_method=method,planes=planes,cells=cells)
     out.mkdir(parents=True,exist_ok=True)
     (out/'geometry.json').write_text(json.dumps(geometry_data))
     limits=[[min(v),max(v)] for v in zip(*(c['xyz'] for c in cells))]
@@ -169,7 +244,8 @@ def exemplar_bank(atlas_dir, library, catalog):
     return np.concatenate([tiles,degrade(tiles,10,(.8,.8,.8))]),np.tile(labels,2),'multiscale'
 
 
-def reconstruct(image, atlas_dir, scene, library, out, depth=None, grid=None, white_balance=False):
+def reconstruct(image, atlas_dir, scene, library, out, depth=None, grid=None, white_balance=False,match_exposure=False,
+                geometry_method='baseline'):
     out.mkdir(parents=True,exist_ok=True)
     catalog=json.loads((atlas_dir/'placement-index.json').read_text())
     if grid:
@@ -178,7 +254,7 @@ def reconstruct(image, atlas_dir, scene, library, out, depth=None, grid=None, wh
         with Image.open(image) as f: rgb=np.asarray(ImageOps.exif_transpose(f).convert('RGB'))
         planes,cells=data['planes'],data['cells']
     else:
-        rgb,planes,cells=analyze(image,scene,out)
+        rgb,planes,cells=analyze(image,scene,out,geometry_method)
     lighting=None
     if white_balance:
         im=Image.fromarray(rgb)
@@ -187,7 +263,7 @@ def reconstruct(image, atlas_dir, scene, library, out, depth=None, grid=None, wh
     tiles,labels,method=exemplar_bank(atlas_dir,library,catalog)
     grouped=defaultdict(list)
     for cell in cells: grouped[cell['facing']].append(cell)
-    blocks={}; margins={}; decisions=[]
+    blocks={}; margins={}; decisions=[]; alternatives={}
     for side,part in grouped.items():
         mapping=catalog['choices'][side]
         use=np.isin(labels,list(mapping))
@@ -195,12 +271,16 @@ def reconstruct(image, atlas_dir, scene, library, out, depth=None, grid=None, wh
         for start in range(0,len(part),96):
             batch=part[start:start+96]
             query=np.stack([face(rgb,c['quad'],16) for c in batch])
-            for c,(names,ds,gap) in zip(batch,rank(query,train,labels[use],method)):
+            for index,(c,(names,ds,gap)) in enumerate(zip(batch,rank(query,train,labels[use],method,match_exposure))):
                 # Prefer a namesake full block among visually equivalent IDs.
                 texture=names[0]; block=min(mapping[texture],key=lambda s:(s!=texture,len(s),s))
                 pos=tuple(c['xyz'])
                 if pos not in margins or gap>margins[pos]:
                     blocks[pos]=block;margins[pos]=gap
+                    alternatives.pop(pos,None)
+                    if falls_without_support(block):
+                        alternatives[pos]=ranked_stable_block(names,mapping,query[index:index+1],train,
+                                                              labels[use],method,match_exposure)
                 decisions.append(dict(plane=c['plane'],ij=c['ij'],xyz=c['xyz'],block_id=block,
                                       textures=names,distances=ds,relative_margin=gap))
     if depth is not None:
@@ -211,11 +291,15 @@ def reconstruct(image, atlas_dir, scene, library, out, depth=None, grid=None, wh
             x,y,z=c['xyz']; i,j=c['ij']; block=blocks[x,y,z]
             for k in range(1,depth):
                 if k==depth-1 or i in (0,p['columns']-1) or j in (0,p['rows']-1):
-                    blocks[x+dz*k,y,z-dx*k]=block
-    (out/'matches.json').write_text(json.dumps(dict(method=method,rendered_library=bool(library),
+                    pos=(x+dz*k,y,z-dx*k)
+                    blocks[pos]=block
+                    if (x,y,z) in alternatives: alternatives[pos]=alternatives[x,y,z]
+    substitutions=stabilize_placements(blocks,alternatives)
+    (out/'matches.json').write_text(json.dumps(dict(method=method,match_exposure=match_exposure,rendered_library=bool(library),
         geometry_input=grid.name if grid else 'geometry.json',image_sha256=digest(image),lighting=lighting,cells=decisions)))
     rows=[dict(x=x,y=y,z=z,block_id=name) for (x,y,z),name in sorted(blocks.items())]
     bounds=[[min(v),max(v)] for v in zip(*blocks)]
-    (out/'placements.json').write_text(json.dumps(dict(version=catalog['version'],bounds_xyz=bounds,blocks=rows)))
+    (out/'placements.json').write_text(json.dumps(dict(version=catalog['version'],bounds_xyz=bounds,blocks=rows,
+                                                     substitutions=substitutions)))
     write_pack(out/'reconstruction.zip',blocks,catalog)
     print(f"{catalog['version']}: {len(planes)} planes, {len(blocks)} blocks -> {out/'reconstruction.zip'}")

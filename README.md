@@ -43,6 +43,8 @@ By default, the pack contains the observed surfaces. For one wall, `--depth 8` b
 
 ## Verification
 
+Minecraft can drop sand, gravel and concrete powder when a reconstructed face has a gap below it. For known vanilla gravity blocks, the exporter checks support within the reconstructed shape. Where support is missing it takes the highest-ranked self-supporting alternative and records the coordinate, original material and replacement in `placements.json` under `substitutions`. The original texture rankings remain in `matches.json`. This check assumes full-block supports and does not model later player edits or redstone changes.
+
 | Java release | Registry IDs tested | Held-out labeled faces correct | Touching-wall material IDs correct | Auto-detected independent wall |
 | --- | ---: | ---: | ---: | ---: |
 | 26.1 | 1,168 | 393/400 | 233/240 | 6 × 6, 33/36 IDs |
@@ -50,5 +52,7 @@ By default, the pack contains the observed surfaces. For one wall, `--depth 8` b
 | 26.3 | 1,286 | 413/417 | 234/240 | 6 × 6, 31/36 IDs |
 
 The contiguous-wall benchmark supplies a coarse wall outline and grid seed, then tests the fit against independent camera-projected seams. All 448 tested seams per version were within one tenth of a block. The independent automatic case is a cropped in-game wall with nine masonry materials. The versioned packs also passed live readback on a 36-block reconstruction from an oblique view. Whole-building accuracy on arbitrary scenes remains unmeasured. [Detailed client results](tests/results/client-validation.json)
+
+The Java 26.3 building benchmark adds canopies, stepped towers, recessed openings, and flat seams beside real corners. The experimental `--geometry-method texel` improved mean silhouette overlap from 0.195 to 0.829 across 60 held-out views. The optional `--match-exposure` improved material accuracy on aligned faces from 61.2% to 75.2%. Combining the options reduced end-to-end accuracy on adjacent-material panels. [Four-family benchmark, screenshots and reproduction steps](benchmark/README.md)
 
 Run `python -m unittest discover -s tests` for the release-format and geometry regressions. The client JARs, vanilla texture sheets, trained libraries, generated worlds and runtime data are produced locally.

@@ -1,0 +1,94 @@
+{
+  "release": "26.3",
+  "geometry_method": "texel",
+  "match_exposure": true,
+  "conditions": "Front camera, fixed clear noon, default resource pack. Used the first held-out building of each family; all four builds returned an elevation.",
+  "library": "26.3 face_textures/softened-library.npz",
+  "cases": {
+    "test-canopy-30-front": {
+      "source_width_height_depth": [
+        6,
+        8,
+        7
+      ],
+      "modeled_width_height_depth": [
+        16,
+        38,
+        1
+      ],
+      "depth_status": [
+        "unresolved"
+      ],
+      "planes": 4,
+      "expected_blocks": 287,
+      "matching_readbacks": 287,
+      "substitutions": [
+        {
+          "x": 5,
+          "y": 27,
+          "z": 0,
+          "predicted": "suspicious_gravel",
+          "placed": "coal_block",
+          "reason": "unsupported_gravity_block"
+        }
+      ]
+    },
+    "test-stepped_tower-27-front": {
+      "source_width_height_depth": [
+        16,
+        15,
+        9
+      ],
+      "modeled_width_height_depth": [
+        29,
+        22,
+        1
+      ],
+      "depth_status": [
+        "unresolved"
+      ],
+      "planes": 2,
+      "expected_blocks": 580,
+      "matching_readbacks": 580,
+      "substitutions": []
+    },
+    "test-recess-28-front": {
+      "source_width_height_depth": [
+        25,
+        8,
+        5
+      ],
+      "modeled_width_height_depth": [
+        26,
+        8,
+        1
+      ],
+      "depth_status": [
+        "unresolved"
+      ],
+      "planes": 1,
+      "expected_blocks": 208,
+      "matching_readbacks": 208,
+      "substitutions": []
+    },
+    "test-corner-29-front": {
+      "source_width_height_depth": [
+        28,
+        7,
+        8
+      ],
+      "modeled_width_height_depth": [
+        10,
+        12,
+        1
+      ],
+      "depth_status": [
+        "unresolved"
+      ],
+      "planes": 3,
+      "expected_blocks": 107,
+      "matching_readbacks": 107,
+      "substitutions": []
+    }
+  }
+}

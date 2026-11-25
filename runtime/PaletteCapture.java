@@ -2,6 +2,7 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.LightLayer;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.client.Camera;
 import net.minecraft.client.Minecraft;
@@ -105,8 +106,11 @@ public final class PaletteCapture {
                         var b=entry.getAsJsonObject();
                         if (b.get("page").getAsInt()!=v.page()) continue;
                         int x=b.get("x").getAsInt(), y=b.get("y").getAsInt(), z=b.get("z").getAsInt();
-                        var state=server.overworld().getBlockState(new BlockPos(x,y,z));
-                        actual.add(Map.of("x",x,"y",y,"z",z,"block_id",BuiltInRegistries.BLOCK.getKey(state.getBlock()).getPath(),"state",state.toString()));
+                        var pos=new BlockPos(x,y,z);
+                        var state=server.overworld().getBlockState(pos);
+                        actual.add(Map.of("x",x,"y",y,"z",z,"block_id",BuiltInRegistries.BLOCK.getKey(state.getBlock()).getPath(),"state",state.toString(),
+                            "south_sky_light",server.overworld().getBrightness(LightLayer.SKY,pos.south()),
+                            "south_block_light",server.overworld().getBrightness(LightLayer.BLOCK,pos.south())));
                     }
                     return actual;
                 }).get(30,TimeUnit.SECONDS);
@@ -130,6 +134,12 @@ public final class PaletteCapture {
                 info.put("thundering",mc.level.isThundering());
                 info.put("hud_hidden",ClientView.hidden(mc));
                 info.put("minecraft_version",net.minecraft.SharedConstants.getCurrentVersion().id());
+                var packs=mc.getResourcePackRepository().getSelectedIds();
+                info.put("resource_packs",packs);
+                String expectedPack=System.getProperty("palette.capture.pack");
+                if(expectedPack!=null && !packs.contains(expectedPack)) {
+                    throw new IllegalStateException("Requested resource pack was not active: "+packs);
+                }
                 if (mc.level.getOverworldClockTime()%24000!=6000 || mc.level.isRaining() || mc.level.isThundering())
                     throw new IllegalStateException("Weather or clock assertion failed: "+info);
                 Screenshot.takeScreenshot(ClientView.renderTarget(mc), frame -> {

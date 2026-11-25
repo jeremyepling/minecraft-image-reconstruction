@@ -1,0 +1,112 @@
+{
+ "signature": {
+  "version": "26.3",
+  "atlas_sha256": "49b477fbfe5f2171c2529e3ffe1722f09fee5a094de2b6b99831512b8601c950",
+  "library_sha256": "a7ca1886be4bba407d5a72bec568daeda94226734febf2869f0bf5e0b62d2e86",
+  "fixture_sha256": "072d1601739b031a147678155ad287303d58f397563732ca218e4c819395f439",
+  "classifier": "multiscale",
+  "conditions": [
+   "normal",
+   "small",
+   "warm-shader"
+  ]
+ },
+ "expected": 2658,
+ "membership_iou_minimum": 0.5,
+ "texel_grid_mean_matched_iou": 0.576660810620641,
+ "texel_grid_mean_matched_purity": 0.707033267751547,
+ "results": {
+  "image_only": {
+   "production": {
+    "all": {
+     "n": 2658,
+     "matched": 216,
+     "correct": 30
+    },
+    "condition/normal": {
+     "n": 886,
+     "matched": 85,
+     "correct": 16
+    },
+    "condition/small": {
+     "n": 886,
+     "matched": 0,
+     "correct": 0
+    },
+    "condition/warm-shader": {
+     "n": 886,
+     "matched": 131,
+     "correct": 14
+    }
+   },
+   "exposure": {
+    "all": {
+     "n": 2658,
+     "matched": 216,
+     "correct": 31
+    },
+    "condition/normal": {
+     "n": 886,
+     "matched": 85,
+     "correct": 14
+    },
+    "condition/small": {
+     "n": 886,
+     "matched": 0,
+     "correct": 0
+    },
+    "condition/warm-shader": {
+     "n": 886,
+     "matched": 131,
+     "correct": 17
+    }
+   }
+  },
+  "texel_grid": {
+   "production": {
+    "all": {
+     "n": 2658,
+     "matched": 156,
+     "correct": 7
+    },
+    "condition/normal": {
+     "n": 886,
+     "matched": 87,
+     "correct": 6
+    },
+    "condition/small": {
+     "n": 886,
+     "matched": 15,
+     "correct": 0
+    },
+    "condition/warm-shader": {
+     "n": 886,
+     "matched": 54,
+     "correct": 1
+    }
+   },
+   "exposure": {
+    "all": {
+     "n": 2658,
+     "matched": 156,
+     "correct": 6
+    },
+    "condition/normal": {
+     "n": 886,
+     "matched": 87,
+     "correct": 5
+    },
+    "condition/small": {
+     "n": 886,
+     "matched": 15,
+     "correct": 0
+    },
+    "condition/warm-shader": {
+     "n": 886,
+     "matched": 54,
+     "correct": 1
+    }
+   }
+  }
+ }
+}

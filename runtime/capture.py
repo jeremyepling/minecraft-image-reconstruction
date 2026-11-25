@@ -117,6 +117,8 @@ def main():
             mode.add_argument("--out",type=Path,required=True)
         elif name=="capture":
             mode.add_argument("--run",type=Path,required=True)
+            mode.add_argument("--resolution",nargs=2,type=int,metavar=("WIDTH","HEIGHT"),default=(1440,900))
+            mode.add_argument("--resource-pack",type=Path,help="Local resource pack to enable in this private client")
     args=parser.parse_args()
     cp,meta,index,assets=classpath(args)
     java=str(args.java_home/"bin/java") if args.java_home else "java"
@@ -154,8 +156,21 @@ def main():
         if game.exists() or (root/"captures").exists():
             raise FileExistsError("Use a fresh capture directory; this run already has a client or captures")
         save=game/"saves/Palette Lab"
+        width,height=args.resolution
+        if min(width,height)<64:
+            raise ValueError("Capture dimensions must be at least 64 pixels")
+        if args.resource_pack and not args.resource_pack.is_file():
+            raise FileNotFoundError(args.resource_pack)
         shutil.copytree(root/"fixture/saves/Palette Lab",save)
+        packs=[]
+        if args.resource_pack:
+            private=game/"resourcepacks"/"capture-profile.zip"
+            private.parent.mkdir(parents=True,exist_ok=True)
+            shutil.copyfile(args.resource_pack,private)
+            packs=["file/"+private.name]
+            cmd.insert(1,"-Dpalette.capture.pack="+packs[0])
         (game/"options.txt").write_text(f"version:{meta['world_version']}\nonboardAccessibility:false\ntutorialStep:none\n"
+            f"resourcePacks:{json.dumps(packs)}\n"
             "pauseOnLostFocus:false\nrenderDistance:8\nsimulationDistance:5\nmaxFps:60\n"
             "fullscreen:false\nenableVsync:false\nbobView:false\nfovEffectScale:0.0\n")
         # Dialogs must be handled in this private client; capture the game's own framebuffer.
@@ -165,7 +180,7 @@ def main():
         cmd.extend([source,"--version",args.version,"--username","PaletteCamera","--uuid",
                     uuid.uuid5(uuid.NAMESPACE_DNS,"local.palette.camera").hex,"--accessToken","0",
                     "--versionType","release","--gameDir",str(game),"--assetsDir",str(assets),
-                    "--assetIndex",index,"--width","1440","--height","900","--quickPlaySingleplayer",save.name])
+                    "--assetIndex",index,"--width",str(width),"--height",str(height),"--quickPlaySingleplayer",save.name])
         log_file=root/"client-run.log"
         with log_file.open("w",encoding="utf8") as log:
             try:

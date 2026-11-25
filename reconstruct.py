@@ -68,6 +68,7 @@ def main():
         else:
             p.add_argument('--registry',type=Path,help='Include default-state faces from a matching runtime registry')
     p=cmds.add_parser('analyze')
+    p.add_argument('--geometry-method',choices=['baseline','texel'],default='baseline')
     p.add_argument('image',type=Path)
     p.add_argument('--scene',type=Path)
     p.add_argument('--out',type=Path,required=True)
@@ -78,12 +79,14 @@ def main():
     p.add_argument('--out',type=Path,required=True)
     for key in ('minecraft-dir','manifest','java-home'): p.add_argument('--'+key,type=Path)
     p=cmds.add_parser('build')
+    p.add_argument('--geometry-method',choices=['baseline','texel'],default='baseline')
     p.add_argument('image',type=Path)
     for key in ('atlas','out'): p.add_argument('--'+key,type=Path,required=True)
     shape=p.add_mutually_exclusive_group()
     shape.add_argument('--scene',type=Path)
     shape.add_argument('--geometry',type=Path,help='Use a previously measured grid for this image')
     p.add_argument('--white-balance',action='store_true',help='Estimate and correct a consistent neutral-patch color cast')
+    p.add_argument('--match-exposure',action='store_true',help='Allow bounded brightness differences when ranking candidate textures')
     p.add_argument('--library',type=Path,help='Calibrated face_textures/softened-library.npz')
     p.add_argument('--depth',type=int,help='Extrapolate a hollow shell behind one visible wall')
     args=parser.parse_args()
@@ -94,13 +97,14 @@ def main():
     elif args.command=='calibrate':
         calibrate(args)
     elif args.command=='analyze':
-        analyze(args.image,args.scene,args.out)
+        analyze(args.image,args.scene,args.out,args.geometry_method)
     elif args.command=='verify-build':
         from calibration.verify_build import verify
         jar=args.jar or catalog.discover(args.version)
         verify(args.build,jar,args.out,runtime_options(args,jar))
     else:
-        reconstruct(args.image,args.atlas,args.scene,args.library,args.out,args.depth,args.geometry,args.white_balance)
+        reconstruct(args.image,args.atlas,args.scene,args.library,args.out,args.depth,args.geometry,
+                    args.white_balance,match_exposure=args.match_exposure,geometry_method=args.geometry_method)
 
 
 if __name__=='__main__':

@@ -1,0 +1,3815 @@
+{
+ "signature": {
+  "version": "26.3",
+  "atlas_sha256": "49b477fbfe5f2171c2529e3ffe1722f09fee5a094de2b6b99831512b8601c950",
+  "library_sha256": "a7ca1886be4bba407d5a72bec568daeda94226734febf2869f0bf5e0b62d2e86",
+  "fixture_sha256": "072d1601739b031a147678155ad287303d58f397563732ca218e4c819395f439",
+  "classifier": "multiscale",
+  "conditions": [
+   "normal",
+   "small",
+   "warm-shader"
+  ]
+ },
+ "split": "test",
+ "coverage": {
+  "normal/test-adjacency-26-front": {
+   "visible": 230,
+   "excluded": {
+    "occluded": 13
+   },
+   "geometry_error": null,
+   "crops": {
+    "seeded_grid": {
+     "generated": 288,
+     "intersecting_wall_boxes": 288,
+     "matched": 122,
+     "visible_holes": 77,
+     "covered_holes": 41
+    },
+    "image_only": {
+     "generated": 952,
+     "intersecting_wall_boxes": 242,
+     "matched": 0,
+     "visible_holes": 77,
+     "covered_holes": 0
+    }
+   }
+  },
+  "normal/test-adjacency-26-left": {
+   "visible": 228,
+   "excluded": {
+    "occluded": 15
+   },
+   "geometry_error": null,
+   "crops": {
+    "seeded_grid": {
+     "generated": 288,
+     "intersecting_wall_boxes": 268,
+     "matched": 108,
+     "visible_holes": 76,
+     "covered_holes": 36
+    },
+    "image_only": {
+     "generated": 2827,
+     "intersecting_wall_boxes": 611,
+     "matched": 46,
+     "visible_holes": 76,
+     "covered_holes": 12
+    }
+   }
+  },
+  "normal/test-adjacency-26-right": {
+   "visible": 230,
+   "excluded": {
+    "occluded": 13
+   },
+   "geometry_error": null,
+   "crops": {
+    "seeded_grid": {
+     "generated": 288,
+     "intersecting_wall_boxes": 264,
+     "matched": 108,
+     "visible_holes": 77,
+     "covered_holes": 36
+    },
+    "image_only": {
+     "generated": 786,
+     "intersecting_wall_boxes": 193,
+     "matched": 0,
+     "visible_holes": 77,
+     "covered_holes": 0
+    }
+   }
+  },
+  "normal/test-adjacency-26-elevated": {
+   "visible": 198,
+   "excluded": {
+    "occluded": 45
+   },
+   "geometry_error": null,
+   "crops": {
+    "seeded_grid": {
+     "generated": 324,
+     "intersecting_wall_boxes": 267,
+     "matched": 133,
+     "visible_holes": 69,
+     "covered_holes": 46
+    },
+    "image_only": {
+     "generated": 3174,
+     "intersecting_wall_boxes": 425,
+     "matched": 39,
+     "visible_holes": 69,
+     "covered_holes": 22
+    }
+   }
+  },
+  "small/test-adjacency-26-front": {
+   "visible": 230,
+   "excluded": {
+    "occluded": 13
+   },
+   "geometry_error": null,
+   "crops": {
+    "seeded_grid": {
+     "generated": 333,
+     "intersecting_wall_boxes": 307,
+     "matched": 230,
+     "visible_holes": 77,
+     "covered_holes": 77
+    },
+    "image_only": {
+     "generated": 65,
+     "intersecting_wall_boxes": 18,
+     "matched": 0,
+     "visible_holes": 77,
+     "covered_holes": 0
+    }
+   }
+  },
+  "small/test-adjacency-26-left": {
+   "visible": 228,
+   "excluded": {
+    "occluded": 15
+   },
+   "geometry_error": null,
+   "crops": {
+    "seeded_grid": {
+     "generated": 324,
+     "intersecting_wall_boxes": 315,
+     "matched": 228,
+     "visible_holes": 76,
+     "covered_holes": 76
+    },
+    "image_only": {
+     "generated": 44,
+     "intersecting_wall_boxes": 14,
+     "matched": 0,
+     "visible_holes": 76,
+     "covered_holes": 0
+    }
+   }
+  },
+  "small/test-adjacency-26-right": {
+   "visible": 230,
+   "excluded": {
+    "occluded": 13
+   },
+   "geometry_error": null,
+   "crops": {
+    "seeded_grid": {
+     "generated": 324,
+     "intersecting_wall_boxes": 315,
+     "matched": 230,
+     "visible_holes": 77,
+     "covered_holes": 77
+    },
+    "image_only": {
+     "generated": 45,
+     "intersecting_wall_boxes": 17,
+     "matched": 0,
+     "visible_holes": 77,
+     "covered_holes": 0
+    }
+   }
+  },
+  "small/test-adjacency-26-elevated": {
+   "visible": 198,
+   "excluded": {
+    "occluded": 45
+   },
+   "geometry_error": null,
+   "crops": {
+    "seeded_grid": {
+     "generated": 324,
+     "intersecting_wall_boxes": 264,
+     "matched": 129,
+     "visible_holes": 69,
+     "covered_holes": 44
+    },
+    "image_only": {
+     "generated": 190,
+     "intersecting_wall_boxes": 36,
+     "matched": 0,
+     "visible_holes": 69,
+     "covered_holes": 0
+    }
+   }
+  },
+  "warm-shader/test-adjacency-26-front": {
+   "visible": 230,
+   "excluded": {
+    "occluded": 13
+   },
+   "geometry_error": null,
+   "crops": {
+    "seeded_grid": {
+     "generated": 288,
+     "intersecting_wall_boxes": 272,
+     "matched": 108,
+     "visible_holes": 77,
+     "covered_holes": 36
+    },
+    "image_only": {
+     "generated": 2014,
+     "intersecting_wall_boxes": 468,
+     "matched": 50,
+     "visible_holes": 77,
+     "covered_holes": 22
+    }
+   }
+  },
+  "warm-shader/test-adjacency-26-left": {
+   "visible": 228,
+   "excluded": {
+    "occluded": 15
+   },
+   "geometry_error": null,
+   "crops": {
+    "seeded_grid": {
+     "generated": 288,
+     "intersecting_wall_boxes": 268,
+     "matched": 108,
+     "visible_holes": 76,
+     "covered_holes": 36
+    },
+    "image_only": {
+     "generated": 2976,
+     "intersecting_wall_boxes": 640,
+     "matched": 36,
+     "visible_holes": 76,
+     "covered_holes": 15
+    }
+   }
+  },
+  "warm-shader/test-adjacency-26-right": {
+   "visible": 230,
+   "excluded": {
+    "occluded": 13
+   },
+   "geometry_error": null,
+   "crops": {
+    "seeded_grid": {
+     "generated": 288,
+     "intersecting_wall_boxes": 264,
+     "matched": 108,
+     "visible_holes": 77,
+     "covered_holes": 36
+    },
+    "image_only": {
+     "generated": 792,
+     "intersecting_wall_boxes": 193,
+     "matched": 0,
+     "visible_holes": 77,
+     "covered_holes": 0
+    }
+   }
+  },
+  "warm-shader/test-adjacency-26-elevated": {
+   "visible": 198,
+   "excluded": {
+    "occluded": 45
+   },
+   "geometry_error": null,
+   "crops": {
+    "seeded_grid": {
+     "generated": 324,
+     "intersecting_wall_boxes": 267,
+     "matched": 133,
+     "visible_holes": 69,
+     "covered_holes": 46
+    },
+    "image_only": {
+     "generated": 3296,
+     "intersecting_wall_boxes": 450,
+     "matched": 45,
+     "visible_holes": 69,
+     "covered_holes": 11
+    }
+   }
+  }
+ },
+ "results": {
+  "known": {
+   "expected": 2658,
+   "matched": 2658,
+   "mean_iou": 1.0,
+   "mean_purity": 1.0,
+   "methods": {
+    "production": {
+     "unique_blocks": 230,
+     "counts": {
+      "all": {
+       "n": 2658,
+       "matched": 2658,
+       "correct": 1628
+      },
+      "condition/normal": {
+       "n": 886,
+       "matched": 886,
+       "correct": 717
+      },
+      "exposure/overhang": {
+       "n": 1170,
+       "matched": 1170,
+       "correct": 422
+      },
+      "skylight/14": {
+       "n": 180,
+       "matched": 180,
+       "correct": 131
+      },
+      "angle/front": {
+       "n": 690,
+       "matched": 690,
+       "correct": 457
+      },
+      "size/at_least_10px": {
+       "n": 1778,
+       "matched": 1778,
+       "correct": 1313
+      },
+      "neighbor/same": {
+       "n": 2025,
+       "matched": 2025,
+       "correct": 1260
+      },
+      "neighbor/unlike": {
+       "n": 2646,
+       "matched": 2646,
+       "correct": 1618
+      },
+      "skylight/13": {
+       "n": 90,
+       "matched": 90,
+       "correct": 47
+      },
+      "skylight/12": {
+       "n": 180,
+       "matched": 180,
+       "correct": 84
+      },
+      "neighbor/opening": {
+       "n": 1680,
+       "matched": 1680,
+       "correct": 1040
+      },
+      "skylight/11": {
+       "n": 720,
+       "matched": 720,
+       "correct": 160
+      },
+      "exposure/open_sky": {
+       "n": 1488,
+       "matched": 1488,
+       "correct": 1206
+      },
+      "skylight/15": {
+       "n": 1488,
+       "matched": 1488,
+       "correct": 1206
+      },
+      "angle/left": {
+       "n": 684,
+       "matched": 684,
+       "correct": 389
+      },
+      "angle/right": {
+       "n": 690,
+       "matched": 690,
+       "correct": 439
+      },
+      "angle/elevated": {
+       "n": 594,
+       "matched": 594,
+       "correct": 343
+      },
+      "condition/small": {
+       "n": 886,
+       "matched": 886,
+       "correct": 321
+      },
+      "size/under_10px": {
+       "n": 880,
+       "matched": 880,
+       "correct": 315
+      },
+      "condition/warm-shader": {
+       "n": 886,
+       "matched": 886,
+       "correct": 590
+      }
+     },
+     "confusion": {
+      "dead_brain_coral_block": {
+       "dead_brain_coral_block": 157,
+       "deepslate": 15,
+       "netherite_block": 72,
+       "warped_nylium_side": 2,
+       "tuff_bricks": 11,
+       "polished_tuff": 7,
+       "pale_moss_block": 2,
+       "chiseled_tuff_bricks": 38,
+       "acacia_log": 3,
+       "stone": 3,
+       "polished_deepslate": 1,
+       "polished_blackstone_bricks": 8,
+       "deepslate_bricks": 2
+      },
+      "dead_horn_coral_block": {
+       "dead_horn_coral_block": 211,
+       "acacia_log": 1,
+       "polished_tuff": 5,
+       "gray_concrete_powder": 20,
+       "cyan_terracotta": 9,
+       "light_gray_stained_glass": 1,
+       "chiseled_tuff_bricks": 4,
+       "dead_fire_coral_block": 12,
+       "andesite": 6,
+       "light_gray_wool": 2,
+       "stone": 1,
+       "polished_andesite": 1,
+       "white_stained_glass": 2,
+       "smooth_basalt": 25,
+       "gray_wool": 2,
+       "pale_oak_log": 4
+      },
+      "dead_fire_coral_block": {
+       "dead_fire_coral_block": 185,
+       "deepslate_copper_ore": 16,
+       "pale_oak_log": 33,
+       "chiseled_tuff_bricks": 10,
+       "acacia_log": 8,
+       "gray_concrete_powder": 33,
+       "light_gray_stained_glass": 2,
+       "pale_moss_block": 4,
+       "cyan_terracotta": 6,
+       "stone": 9,
+       "light_gray_terracotta": 1,
+       "polished_tuff": 1,
+       "white_stained_glass": 1
+      },
+      "deepslate": {
+       "deepslate": 115,
+       "cobbled_deepslate": 80,
+       "chiseled_polished_blackstone": 32,
+       "gilded_blackstone": 5,
+       "gray_wool": 8,
+       "mud": 21,
+       "polished_blackstone": 2,
+       "deepslate_tiles": 4,
+       "deepslate_coal_ore": 1,
+       "coal_ore": 1,
+       "gray_concrete_powder": 9,
+       "cracked_deepslate_tiles": 2,
+       "stripped_dark_oak_log": 1,
+       "light_gray_stained_glass": 18,
+       "cyan_terracotta": 1,
+       "polished_deepslate": 1,
+       "gray_stained_glass": 2,
+       "weathered_copper_grate": 1,
+       "chiseled_tuff": 1,
+       "cherry_log": 4
+      },
+      "tuff": {
+       "tuff": 226,
+       "netherite_block": 5,
+       "acacia_log": 21,
+       "gray_wool": 22,
+       "chiseled_polished_blackstone": 6,
+       "pale_moss_block": 1,
+       "stone": 2,
+       "weathered_copper_bulb": 1,
+       "gray_concrete_powder": 10,
+       "mud": 12
+      },
+      "dead_tube_coral_block": {
+       "dead_tube_coral_block": 238,
+       "polished_tuff": 8,
+       "cobbled_deepslate": 2,
+       "gray_concrete_powder": 27,
+       "cyan_terracotta": 8,
+       "chiseled_tuff_bricks": 5,
+       "stone": 3,
+       "deepslate": 5,
+       "polished_deepslate": 12,
+       "soul_sand": 7,
+       "mud": 6
+      },
+      "cobblestone": {
+       "cobblestone": 157,
+       "mossy_cobblestone": 36,
+       "deepslate": 22,
+       "netherite_block": 6,
+       "polished_tuff": 5,
+       "gray_concrete_powder": 17,
+       "pale_moss_block": 2,
+       "cyan_terracotta": 13,
+       "acacia_log": 1,
+       "suspicious_gravel_0": 4,
+       "andesite": 14,
+       "white_stained_glass": 2,
+       "polished_andesite": 1,
+       "light_blue_terracotta": 1,
+       "light_gray_stained_glass": 1,
+       "polished_blackstone": 3
+      },
+      "andesite": {
+       "andesite": 178,
+       "netherite_block": 7,
+       "acacia_log": 22,
+       "stone": 6,
+       "chiseled_tuff_bricks": 5,
+       "gray_concrete_powder": 23,
+       "cyan_terracotta": 25,
+       "light_gray_wool": 20,
+       "white_stained_glass": 1,
+       "suspicious_gravel_0": 1,
+       "light_gray_concrete": 1,
+       "deepslate": 3,
+       "chiseled_tuff": 1,
+       "polished_tuff": 1
+      },
+      "dead_bubble_coral_block": {
+       "dead_bubble_coral_block": 161,
+       "cyan_terracotta": 9,
+       "pale_moss_block": 3,
+       "chiseled_tuff_bricks": 4,
+       "gray_concrete_powder": 1,
+       "stone": 23,
+       "white_stained_glass": 1,
+       "andesite": 1,
+       "light_gray_wool": 1,
+       "gravel": 1,
+       "acacia_log": 2
+      }
+     },
+     "ordered_positions_per_neighbor_pair": {
+      "same": {
+       "n": 1080,
+       "both_matched": 1080,
+       "both_correct": 624,
+       "different_called_same": 0
+      },
+      "dead_brain_coral_block / dead_brain_coral_block": {
+       "n": 132,
+       "both_matched": 132,
+       "both_correct": 47,
+       "different_called_same": 0
+      },
+      "unlike": {
+       "n": 3024,
+       "both_matched": 3024,
+       "both_correct": 1516,
+       "different_called_same": 163
+      },
+      "dead_brain_coral_block / dead_horn_coral_block": {
+       "n": 252,
+       "both_matched": 252,
+       "both_correct": 92,
+       "different_called_same": 5
+      },
+      "dead_horn_coral_block / dead_horn_coral_block": {
+       "n": 132,
+       "both_matched": 132,
+       "both_correct": 88,
+       "different_called_same": 0
+      },
+      "dead_fire_coral_block / dead_horn_coral_block": {
+       "n": 288,
+       "both_matched": 288,
+       "both_correct": 189,
+       "different_called_same": 30
+      },
+      "dead_fire_coral_block / dead_fire_coral_block": {
+       "n": 120,
+       "both_matched": 120,
+       "both_correct": 69,
+       "different_called_same": 0
+      },
+      "dead_fire_coral_block / deepslate": {
+       "n": 240,
+       "both_matched": 240,
+       "both_correct": 55,
+       "different_called_same": 0
+      },
+      "deepslate / deepslate": {
+       "n": 120,
+       "both_matched": 120,
+       "both_correct": 18,
+       "different_called_same": 0
+      },
+      "deepslate / tuff": {
+       "n": 276,
+       "both_matched": 276,
+       "both_correct": 112,
+       "different_called_same": 1
+      },
+      "tuff / tuff": {
+       "n": 129,
+       "both_matched": 129,
+       "both_correct": 95,
+       "different_called_same": 0
+      },
+      "dead_tube_coral_block / tuff": {
+       "n": 240,
+       "both_matched": 240,
+       "both_correct": 161,
+       "different_called_same": 10
+      },
+      "dead_tube_coral_block / dead_tube_coral_block": {
+       "n": 132,
+       "both_matched": 132,
+       "both_correct": 102,
+       "different_called_same": 0
+      },
+      "cobblestone / dead_tube_coral_block": {
+       "n": 231,
+       "both_matched": 231,
+       "both_correct": 131,
+       "different_called_same": 25
+      },
+      "cobblestone / cobblestone": {
+       "n": 102,
+       "both_matched": 102,
+       "both_correct": 56,
+       "different_called_same": 0
+      },
+      "andesite / cobblestone": {
+       "n": 222,
+       "both_matched": 222,
+       "both_correct": 129,
+       "different_called_same": 12
+      },
+      "andesite / andesite": {
+       "n": 129,
+       "both_matched": 129,
+       "both_correct": 81,
+       "different_called_same": 0
+      },
+      "andesite / dead_brain_coral_block": {
+       "n": 33,
+       "both_matched": 33,
+       "both_correct": 10,
+       "different_called_same": 1
+      },
+      "dead_horn_coral_block / deepslate": {
+       "n": 54,
+       "both_matched": 54,
+       "both_correct": 16,
+       "different_called_same": 0
+      },
+      "dead_fire_coral_block / dead_tube_coral_block": {
+       "n": 66,
+       "both_matched": 66,
+       "both_correct": 15,
+       "different_called_same": 10
+      },
+      "cobblestone / deepslate": {
+       "n": 24,
+       "both_matched": 24,
+       "both_correct": 10,
+       "different_called_same": 0
+      },
+      "dead_brain_coral_block / tuff": {
+       "n": 36,
+       "both_matched": 36,
+       "both_correct": 21,
+       "different_called_same": 7
+      },
+      "dead_tube_coral_block / deepslate": {
+       "n": 60,
+       "both_matched": 60,
+       "both_correct": 18,
+       "different_called_same": 0
+      },
+      "cobblestone / dead_horn_coral_block": {
+       "n": 33,
+       "both_matched": 33,
+       "both_correct": 10,
+       "different_called_same": 8
+      },
+      "andesite / deepslate": {
+       "n": 69,
+       "both_matched": 69,
+       "both_correct": 18,
+       "different_called_same": 0
+      },
+      "cobblestone / dead_brain_coral_block": {
+       "n": 69,
+       "both_matched": 69,
+       "both_correct": 38,
+       "different_called_same": 8
+      },
+      "dead_brain_coral_block / deepslate": {
+       "n": 36,
+       "both_matched": 36,
+       "both_correct": 10,
+       "different_called_same": 0
+      },
+      "dead_horn_coral_block / tuff": {
+       "n": 36,
+       "both_matched": 36,
+       "both_correct": 23,
+       "different_called_same": 3
+      },
+      "cobblestone / tuff": {
+       "n": 63,
+       "both_matched": 63,
+       "both_correct": 17,
+       "different_called_same": 1
+      },
+      "dead_horn_coral_block / dead_tube_coral_block": {
+       "n": 24,
+       "both_matched": 24,
+       "both_correct": 13,
+       "different_called_same": 2
+      },
+      "cobblestone / dead_bubble_coral_block": {
+       "n": 24,
+       "both_matched": 24,
+       "both_correct": 7,
+       "different_called_same": 4
+      },
+      "andesite / dead_horn_coral_block": {
+       "n": 21,
+       "both_matched": 21,
+       "both_correct": 3,
+       "different_called_same": 4
+      },
+      "dead_bubble_coral_block / dead_horn_coral_block": {
+       "n": 30,
+       "both_matched": 30,
+       "both_correct": 16,
+       "different_called_same": 6
+      },
+      "dead_fire_coral_block / tuff": {
+       "n": 24,
+       "both_matched": 24,
+       "both_correct": 10,
+       "different_called_same": 2
+      },
+      "dead_bubble_coral_block / tuff": {
+       "n": 36,
+       "both_matched": 36,
+       "both_correct": 25,
+       "different_called_same": 0
+      },
+      "andesite / dead_fire_coral_block": {
+       "n": 21,
+       "both_matched": 21,
+       "both_correct": 10,
+       "different_called_same": 1
+      },
+      "andesite / tuff": {
+       "n": 42,
+       "both_matched": 42,
+       "both_correct": 28,
+       "different_called_same": 0
+      },
+      "andesite / dead_bubble_coral_block": {
+       "n": 138,
+       "both_matched": 138,
+       "both_correct": 104,
+       "different_called_same": 5
+      },
+      "dead_bubble_coral_block / dead_fire_coral_block": {
+       "n": 36,
+       "both_matched": 36,
+       "both_correct": 20,
+       "different_called_same": 1
+      },
+      "cobblestone / dead_fire_coral_block": {
+       "n": 60,
+       "both_matched": 60,
+       "both_correct": 34,
+       "different_called_same": 3
+      },
+      "dead_bubble_coral_block / dead_tube_coral_block": {
+       "n": 36,
+       "both_matched": 36,
+       "both_correct": 22,
+       "different_called_same": 3
+      },
+      "andesite / dead_tube_coral_block": {
+       "n": 60,
+       "both_matched": 60,
+       "both_correct": 55,
+       "different_called_same": 0
+      },
+      "dead_brain_coral_block / dead_fire_coral_block": {
+       "n": 36,
+       "both_matched": 36,
+       "both_correct": 22,
+       "different_called_same": 3
+      },
+      "dead_bubble_coral_block / dead_bubble_coral_block": {
+       "n": 84,
+       "both_matched": 84,
+       "both_correct": 68,
+       "different_called_same": 0
+      },
+      "dead_brain_coral_block / dead_bubble_coral_block": {
+       "n": 60,
+       "both_matched": 60,
+       "both_correct": 47,
+       "different_called_same": 5
+      },
+      "dead_bubble_coral_block / deepslate": {
+       "n": 12,
+       "both_matched": 12,
+       "both_correct": 0,
+       "different_called_same": 0
+      },
+      "dead_brain_coral_block / dead_tube_coral_block": {
+       "n": 36,
+       "both_matched": 36,
+       "both_correct": 25,
+       "different_called_same": 3
+      }
+     }
+    },
+    "exposure": {
+     "unique_blocks": 230,
+     "counts": {
+      "all": {
+       "n": 2658,
+       "matched": 2658,
+       "correct": 1999
+      },
+      "condition/normal": {
+       "n": 886,
+       "matched": 886,
+       "correct": 825
+      },
+      "exposure/overhang": {
+       "n": 1170,
+       "matched": 1170,
+       "correct": 792
+      },
+      "skylight/14": {
+       "n": 180,
+       "matched": 180,
+       "correct": 136
+      },
+      "angle/front": {
+       "n": 690,
+       "matched": 690,
+       "correct": 562
+      },
+      "size/at_least_10px": {
+       "n": 1778,
+       "matched": 1778,
+       "correct": 1654
+      },
+      "neighbor/same": {
+       "n": 2025,
+       "matched": 2025,
+       "correct": 1531
+      },
+      "neighbor/unlike": {
+       "n": 2646,
+       "matched": 2646,
+       "correct": 1989
+      },
+      "skylight/13": {
+       "n": 90,
+       "matched": 90,
+       "correct": 66
+      },
+      "skylight/12": {
+       "n": 180,
+       "matched": 180,
+       "correct": 119
+      },
+      "neighbor/opening": {
+       "n": 1680,
+       "matched": 1680,
+       "correct": 1264
+      },
+      "skylight/11": {
+       "n": 720,
+       "matched": 720,
+       "correct": 471
+      },
+      "exposure/open_sky": {
+       "n": 1488,
+       "matched": 1488,
+       "correct": 1207
+      },
+      "skylight/15": {
+       "n": 1488,
+       "matched": 1488,
+       "correct": 1207
+      },
+      "angle/left": {
+       "n": 684,
+       "matched": 684,
+       "correct": 494
+      },
+      "angle/right": {
+       "n": 690,
+       "matched": 690,
+       "correct": 527
+      },
+      "angle/elevated": {
+       "n": 594,
+       "matched": 594,
+       "correct": 416
+      },
+      "condition/small": {
+       "n": 886,
+       "matched": 886,
+       "correct": 351
+      },
+      "size/under_10px": {
+       "n": 880,
+       "matched": 880,
+       "correct": 345
+      },
+      "condition/warm-shader": {
+       "n": 886,
+       "matched": 886,
+       "correct": 823
+      }
+     },
+     "confusion": {
+      "dead_brain_coral_block": {
+       "dead_brain_coral_block": 235,
+       "stone_bricks": 8,
+       "netherite_block": 66,
+       "poplar_planks": 4,
+       "stone": 4,
+       "polished_deepslate": 2,
+       "polished_tuff": 1,
+       "pale_moss_block": 1
+      },
+      "dead_horn_coral_block": {
+       "dead_horn_coral_block": 245,
+       "gray_concrete_powder": 13,
+       "stripped_pale_oak_log": 28,
+       "white_stained_glass": 2,
+       "chiseled_tuff_bricks": 4,
+       "dead_fire_coral_block": 2,
+       "andesite": 1,
+       "quartz_pillar_side": 2,
+       "light_gray_wool": 1,
+       "polished_andesite": 1,
+       "polished_tuff": 3,
+       "pale_moss_block": 1,
+       "cyan_terracotta": 3
+      },
+      "dead_fire_coral_block": {
+       "dead_fire_coral_block": 252,
+       "chiseled_tuff_bricks": 7,
+       "gray_concrete_powder": 24,
+       "light_gray_stained_glass": 2,
+       "pale_moss_block": 6,
+       "light_gray_concrete_powder": 3,
+       "stone": 7,
+       "quartz_pillar_side": 1,
+       "dead_horn_coral_block": 1,
+       "gravel": 1,
+       "cyan_terracotta": 3,
+       "polished_tuff": 1,
+       "white_stained_glass": 1
+      },
+      "deepslate": {
+       "deepslate": 120,
+       "cobbled_deepslate": 95,
+       "stone": 25,
+       "gray_wool": 4,
+       "mud": 16,
+       "light_gray_stained_glass": 20,
+       "gray_concrete_powder": 12,
+       "netherite_block": 4,
+       "coal_ore": 2,
+       "black_concrete_powder": 1,
+       "pale_moss_block": 3,
+       "cyan_terracotta": 1,
+       "white_stained_glass": 3,
+       "weathered_copper_bulb": 1,
+       "weathered_copper_grate": 1,
+       "exposed_copper_grate": 1
+      },
+      "tuff": {
+       "tuff": 241,
+       "netherite_block": 3,
+       "acacia_log": 8,
+       "mud": 26,
+       "chiseled_tuff_bricks": 2,
+       "dead_tube_coral_block": 2,
+       "gravel": 19,
+       "iron_block": 1,
+       "light_gray_stained_glass": 2,
+       "polished_tuff": 1,
+       "gray_concrete_powder": 1
+      },
+      "dead_tube_coral_block": {
+       "dead_tube_coral_block": 292,
+       "gray_concrete_powder": 10,
+       "chiseled_tuff_bricks": 4,
+       "white_concrete_powder": 1,
+       "netherite_block": 1,
+       "stripped_poplar_log": 1,
+       "quartz_block_side": 1,
+       "polished_tuff": 3,
+       "mud": 7,
+       "cyan_terracotta": 1
+      },
+      "cobblestone": {
+       "cobblestone": 223,
+       "gray_concrete_powder": 21,
+       "polished_tuff": 2,
+       "chiseled_tuff_bricks": 3,
+       "netherite_block": 1,
+       "pale_moss_block": 1,
+       "stripped_poplar_log": 3,
+       "stripped_pale_oak_log": 1,
+       "andesite": 14,
+       "white_stained_glass": 2,
+       "light_gray_wool": 1,
+       "cyan_terracotta": 10,
+       "suspicious_gravel_0": 3
+      },
+      "andesite": {
+       "andesite": 229,
+       "netherite_block": 6,
+       "chiseled_tuff_bricks": 6,
+       "light_gray_stained_glass": 1,
+       "cyan_terracotta": 23,
+       "stone": 5,
+       "gray_concrete_powder": 1,
+       "light_gray_concrete_powder": 7,
+       "light_gray_wool": 14,
+       "white_stained_glass": 1,
+       "acacia_log": 1
+      },
+      "dead_bubble_coral_block": {
+       "dead_bubble_coral_block": 162,
+       "cyan_terracotta": 6,
+       "gray_wool": 2,
+       "pale_moss_block": 6,
+       "chiseled_tuff_bricks": 3,
+       "light_gray_wool": 6,
+       "andesite": 3,
+       "stone": 10,
+       "dead_horn_coral_block": 1,
+       "white_stained_glass": 1,
+       "stripped_poplar_log": 5,
+       "stripped_pale_oak_log": 2
+      }
+     },
+     "ordered_positions_per_neighbor_pair": {
+      "same": {
+       "n": 1080,
+       "both_matched": 1080,
+       "both_correct": 776,
+       "different_called_same": 0
+      },
+      "dead_brain_coral_block / dead_brain_coral_block": {
+       "n": 132,
+       "both_matched": 132,
+       "both_correct": 88,
+       "different_called_same": 0
+      },
+      "unlike": {
+       "n": 3024,
+       "both_matched": 3024,
+       "both_correct": 2001,
+       "different_called_same": 84
+      },
+      "dead_brain_coral_block / dead_horn_coral_block": {
+       "n": 252,
+       "both_matched": 252,
+       "both_correct": 167,
+       "different_called_same": 1
+      },
+      "dead_horn_coral_block / dead_horn_coral_block": {
+       "n": 132,
+       "both_matched": 132,
+       "both_correct": 102,
+       "different_called_same": 0
+      },
+      "dead_fire_coral_block / dead_horn_coral_block": {
+       "n": 288,
+       "both_matched": 288,
+       "both_correct": 235,
+       "different_called_same": 14
+      },
+      "dead_fire_coral_block / dead_fire_coral_block": {
+       "n": 120,
+       "both_matched": 120,
+       "both_correct": 96,
+       "different_called_same": 0
+      },
+      "dead_fire_coral_block / deepslate": {
+       "n": 240,
+       "both_matched": 240,
+       "both_correct": 83,
+       "different_called_same": 7
+      },
+      "deepslate / deepslate": {
+       "n": 120,
+       "both_matched": 120,
+       "both_correct": 18,
+       "different_called_same": 0
+      },
+      "deepslate / tuff": {
+       "n": 276,
+       "both_matched": 276,
+       "both_correct": 115,
+       "different_called_same": 11
+      },
+      "tuff / tuff": {
+       "n": 129,
+       "both_matched": 129,
+       "both_correct": 102,
+       "different_called_same": 0
+      },
+      "dead_tube_coral_block / tuff": {
+       "n": 240,
+       "both_matched": 240,
+       "both_correct": 189,
+       "different_called_same": 6
+      },
+      "dead_tube_coral_block / dead_tube_coral_block": {
+       "n": 132,
+       "both_matched": 132,
+       "both_correct": 120,
+       "different_called_same": 0
+      },
+      "cobblestone / dead_tube_coral_block": {
+       "n": 231,
+       "both_matched": 231,
+       "both_correct": 182,
+       "different_called_same": 7
+      },
+      "cobblestone / cobblestone": {
+       "n": 102,
+       "both_matched": 102,
+       "both_correct": 80,
+       "different_called_same": 0
+      },
+      "andesite / cobblestone": {
+       "n": 222,
+       "both_matched": 222,
+       "both_correct": 173,
+       "different_called_same": 9
+      },
+      "andesite / andesite": {
+       "n": 129,
+       "both_matched": 129,
+       "both_correct": 103,
+       "different_called_same": 0
+      },
+      "andesite / dead_brain_coral_block": {
+       "n": 33,
+       "both_matched": 33,
+       "both_correct": 16,
+       "different_called_same": 0
+      },
+      "dead_horn_coral_block / deepslate": {
+       "n": 54,
+       "both_matched": 54,
+       "both_correct": 16,
+       "different_called_same": 0
+      },
+      "dead_fire_coral_block / dead_tube_coral_block": {
+       "n": 66,
+       "both_matched": 66,
+       "both_correct": 43,
+       "different_called_same": 4
+      },
+      "cobblestone / deepslate": {
+       "n": 24,
+       "both_matched": 24,
+       "both_correct": 10,
+       "different_called_same": 0
+      },
+      "dead_brain_coral_block / tuff": {
+       "n": 36,
+       "both_matched": 36,
+       "both_correct": 26,
+       "different_called_same": 0
+      },
+      "dead_tube_coral_block / deepslate": {
+       "n": 60,
+       "both_matched": 60,
+       "both_correct": 19,
+       "different_called_same": 2
+      },
+      "cobblestone / dead_horn_coral_block": {
+       "n": 33,
+       "both_matched": 33,
+       "both_correct": 25,
+       "different_called_same": 3
+      },
+      "andesite / deepslate": {
+       "n": 69,
+       "both_matched": 69,
+       "both_correct": 33,
+       "different_called_same": 0
+      },
+      "cobblestone / dead_brain_coral_block": {
+       "n": 69,
+       "both_matched": 69,
+       "both_correct": 53,
+       "different_called_same": 1
+      },
+      "dead_brain_coral_block / deepslate": {
+       "n": 36,
+       "both_matched": 36,
+       "both_correct": 18,
+       "different_called_same": 4
+      },
+      "dead_horn_coral_block / tuff": {
+       "n": 36,
+       "both_matched": 36,
+       "both_correct": 28,
+       "different_called_same": 0
+      },
+      "cobblestone / tuff": {
+       "n": 63,
+       "both_matched": 63,
+       "both_correct": 42,
+       "different_called_same": 0
+      },
+      "dead_horn_coral_block / dead_tube_coral_block": {
+       "n": 24,
+       "both_matched": 24,
+       "both_correct": 19,
+       "different_called_same": 0
+      },
+      "cobblestone / dead_bubble_coral_block": {
+       "n": 24,
+       "both_matched": 24,
+       "both_correct": 16,
+       "different_called_same": 2
+      },
+      "andesite / dead_horn_coral_block": {
+       "n": 21,
+       "both_matched": 21,
+       "both_correct": 14,
+       "different_called_same": 1
+      },
+      "dead_bubble_coral_block / dead_horn_coral_block": {
+       "n": 30,
+       "both_matched": 30,
+       "both_correct": 22,
+       "different_called_same": 1
+      },
+      "dead_fire_coral_block / tuff": {
+       "n": 24,
+       "both_matched": 24,
+       "both_correct": 18,
+       "different_called_same": 0
+      },
+      "dead_bubble_coral_block / tuff": {
+       "n": 36,
+       "both_matched": 36,
+       "both_correct": 27,
+       "different_called_same": 0
+      },
+      "andesite / dead_fire_coral_block": {
+       "n": 21,
+       "both_matched": 21,
+       "both_correct": 16,
+       "different_called_same": 2
+      },
+      "andesite / tuff": {
+       "n": 42,
+       "both_matched": 42,
+       "both_correct": 34,
+       "different_called_same": 0
+      },
+      "andesite / dead_bubble_coral_block": {
+       "n": 138,
+       "both_matched": 138,
+       "both_correct": 111,
+       "different_called_same": 5
+      },
+      "dead_bubble_coral_block / dead_fire_coral_block": {
+       "n": 36,
+       "both_matched": 36,
+       "both_correct": 28,
+       "different_called_same": 1
+      },
+      "cobblestone / dead_fire_coral_block": {
+       "n": 60,
+       "both_matched": 60,
+       "both_correct": 46,
+       "different_called_same": 2
+      },
+      "dead_bubble_coral_block / dead_tube_coral_block": {
+       "n": 36,
+       "both_matched": 36,
+       "both_correct": 25,
+       "different_called_same": 0
+      },
+      "andesite / dead_tube_coral_block": {
+       "n": 60,
+       "both_matched": 60,
+       "both_correct": 53,
+       "different_called_same": 0
+      },
+      "dead_brain_coral_block / dead_fire_coral_block": {
+       "n": 36,
+       "both_matched": 36,
+       "both_correct": 24,
+       "different_called_same": 0
+      },
+      "dead_bubble_coral_block / dead_bubble_coral_block": {
+       "n": 84,
+       "both_matched": 84,
+       "both_correct": 67,
+       "different_called_same": 0
+      },
+      "dead_brain_coral_block / dead_bubble_coral_block": {
+       "n": 60,
+       "both_matched": 60,
+       "both_correct": 47,
+       "different_called_same": 1
+      },
+      "dead_bubble_coral_block / deepslate": {
+       "n": 12,
+       "both_matched": 12,
+       "both_correct": 0,
+       "different_called_same": 0
+      },
+      "dead_brain_coral_block / dead_tube_coral_block": {
+       "n": 36,
+       "both_matched": 36,
+       "both_correct": 28,
+       "different_called_same": 0
+      }
+     }
+    }
+   }
+  },
+  "seeded_grid": {
+   "expected": 2658,
+   "matched": 1745,
+   "mean_iou": 0.7764360521855683,
+   "mean_purity": 0.8149409839675397,
+   "methods": {
+    "production": {
+     "unique_blocks": 230,
+     "counts": {
+      "all": {
+       "n": 2658,
+       "matched": 1745,
+       "correct": 448
+      },
+      "condition/normal": {
+       "n": 886,
+       "matched": 471,
+       "correct": 89
+      },
+      "exposure/overhang": {
+       "n": 1170,
+       "matched": 789,
+       "correct": 46
+      },
+      "skylight/14": {
+       "n": 180,
+       "matched": 121,
+       "correct": 34
+      },
+      "angle/front": {
+       "n": 690,
+       "matched": 460,
+       "correct": 151
+      },
+      "size/at_least_10px": {
+       "n": 1778,
+       "matched": 934,
+       "correct": 184
+      },
+      "neighbor/same": {
+       "n": 2025,
+       "matched": 1315,
+       "correct": 351
+      },
+      "neighbor/unlike": {
+       "n": 2646,
+       "matched": 1738,
+       "correct": 446
+      },
+      "skylight/13": {
+       "n": 90,
+       "matched": 61,
+       "correct": 7
+      },
+      "skylight/12": {
+       "n": 180,
+       "matched": 121,
+       "correct": 5
+      },
+      "neighbor/opening": {
+       "n": 1680,
+       "matched": 1102,
+       "correct": 284
+      },
+      "skylight/11": {
+       "n": 720,
+       "matched": 486,
+       "correct": 0
+      },
+      "exposure/open_sky": {
+       "n": 1488,
+       "matched": 956,
+       "correct": 402
+      },
+      "skylight/15": {
+       "n": 1488,
+       "matched": 956,
+       "correct": 402
+      },
+      "angle/left": {
+       "n": 684,
+       "matched": 444,
+       "correct": 107
+      },
+      "angle/right": {
+       "n": 690,
+       "matched": 446,
+       "correct": 144
+      },
+      "angle/elevated": {
+       "n": 594,
+       "matched": 395,
+       "correct": 46
+      },
+      "condition/small": {
+       "n": 886,
+       "matched": 817,
+       "correct": 269
+      },
+      "size/under_10px": {
+       "n": 880,
+       "matched": 811,
+       "correct": 264
+      },
+      "condition/warm-shader": {
+       "n": 886,
+       "matched": 457,
+       "correct": 90
+      }
+     },
+     "confusion": {
+      "dead_brain_coral_block": {
+       "<missed>": 182,
+       "chiseled_tuff": 11,
+       "redstone_ore": 1,
+       "chain_command_block_back": 1,
+       "dead_brain_coral_block": 32,
+       "dead_bubble_coral_block": 4,
+       "tuff": 3,
+       "podzol_side": 3,
+       "blast_furnace_side": 9,
+       "observer_front": 4,
+       "crafter_south": 3,
+       "netherite_block": 24,
+       "acacia_log": 2,
+       "pale_moss_block": 2,
+       "chiseled_tuff_bricks": 27,
+       "tuff_bricks": 1,
+       "pale_oak_log": 1,
+       "stone": 3,
+       "weathered_copper_grate": 1,
+       "polished_tuff": 4,
+       "dead_fire_coral_block": 1,
+       "gravel": 1,
+       "deepslate_copper_ore": 1
+      },
+      "dead_horn_coral_block": {
+       "<missed>": 135,
+       "cobbled_deepslate": 1,
+       "cobblestone": 10,
+       "dead_horn_coral_block": 43,
+       "observer_front": 1,
+       "tuff_bricks": 2,
+       "acacia_log": 3,
+       "dead_fire_coral_block": 10,
+       "iron_ore": 2,
+       "dripstone_block": 11,
+       "bedrock": 13,
+       "stone_bricks": 2,
+       "lodestone_side": 2,
+       "crafter_south": 2,
+       "polished_andesite": 5,
+       "polished_tuff": 7,
+       "light_gray_stained_glass": 1,
+       "gray_concrete_powder": 16,
+       "cyan_terracotta": 7,
+       "chiseled_tuff_bricks": 7,
+       "andesite": 3,
+       "light_gray_wool": 1,
+       "chiseled_stone_bricks": 1,
+       "white_stained_glass": 2,
+       "netherite_block": 3,
+       "dead_tube_coral_block": 3,
+       "poplar_planks": 2,
+       "gravel": 2,
+       "stone": 1,
+       "deepslate_copper_ore": 1,
+       "creaking_heart": 2,
+       "deepslate_bricks": 2,
+       "deepslate": 1,
+       "dark_prismarine": 2
+      },
+      "dead_fire_coral_block": {
+       "dead_tube_coral_block": 7,
+       "acacia_log": 21,
+       "chiseled_tuff": 13,
+       "<missed>": 30,
+       "lodestone_side": 3,
+       "copper_ore": 13,
+       "chiseled_stone_bricks": 1,
+       "dead_fire_coral_block": 102,
+       "piston_bottom": 2,
+       "podzol_side": 4,
+       "stone": 17,
+       "pale_moss_block": 6,
+       "gray_concrete_powder": 28,
+       "dead_bubble_coral_block": 13,
+       "pale_oak_log": 21,
+       "dead_brain_coral_block": 1,
+       "chiseled_tuff_bricks": 3,
+       "cyan_terracotta": 9,
+       "light_gray_terracotta": 1,
+       "polished_tuff": 1,
+       "white_stained_glass": 1,
+       "light_gray_stained_glass": 2,
+       "poplar_planks": 1,
+       "suspicious_gravel_0": 1,
+       "creaking_heart": 1,
+       "basalt_side": 3,
+       "gray_wool": 1,
+       "deepslate_copper_ore": 1,
+       "brown_glazed_terracotta": 1,
+       "blast_furnace_side": 1
+      },
+      "deepslate": {
+       "glass": 28,
+       "deepslate_tiles": 46,
+       "<missed>": 32,
+       "chiseled_tuff": 10,
+       "creaking_heart": 1,
+       "warped_nylium_side": 60,
+       "deepslate": 22,
+       "tuff_bricks": 11,
+       "chiseled_polished_blackstone": 7,
+       "weathered_copper_bulb": 8,
+       "cracked_deepslate_tiles": 2,
+       "gray_concrete_powder": 8,
+       "gray_wool": 9,
+       "mud": 20,
+       "cobbled_deepslate": 10,
+       "coal_ore": 1,
+       "pale_oak_log": 4,
+       "deepslate_coal_ore": 2,
+       "stripped_dark_oak_log": 1,
+       "polished_blackstone": 3,
+       "light_gray_stained_glass": 13,
+       "cyan_terracotta": 1,
+       "weathered_copper_grate": 2,
+       "gray_stained_glass": 2,
+       "chiseled_deepslate": 1,
+       "respawn_anchor_side0": 3,
+       "cherry_log": 2
+      },
+      "tuff": {
+       "tuff_bricks": 17,
+       "deepslate_tiles": 16,
+       "<missed>": 120,
+       "basalt_side": 3,
+       "chiseled_tuff": 7,
+       "cracked_stone_bricks": 21,
+       "tuff": 45,
+       "dead_brain_coral_block": 1,
+       "crafter_south": 1,
+       "observer_front": 3,
+       "deepslate_coal_ore": 2,
+       "acacia_log": 13,
+       "gray_wool": 19,
+       "chiseled_polished_blackstone": 2,
+       "gray_concrete_powder": 9,
+       "netherite_block": 2,
+       "pale_moss_block": 5,
+       "stone": 1,
+       "dripstone_block": 1,
+       "polished_tuff": 6,
+       "dark_prismarine": 1,
+       "light_gray_stained_glass": 1,
+       "cobbled_deepslate": 1,
+       "dead_bubble_coral_block": 1,
+       "exposed_copper_bulb": 3,
+       "lodestone_side": 1,
+       "deepslate": 1,
+       "reinforced_deepslate_side": 1,
+       "podzol_side": 1,
+       "cracked_deepslate_tiles": 1
+      },
+      "dead_tube_coral_block": {
+       "<missed>": 174,
+       "tuff_bricks": 4,
+       "acacia_log": 4,
+       "cobblestone": 1,
+       "chain_command_block_back": 1,
+       "cobbled_deepslate": 6,
+       "polished_deepslate": 2,
+       "dead_bubble_coral_block": 2,
+       "gray_concrete_powder": 24,
+       "crafter_south": 2,
+       "dead_tube_coral_block": 42,
+       "lodestone_side": 1,
+       "suspicious_gravel_0": 2,
+       "dead_fire_coral_block": 2,
+       "polished_tuff": 9,
+       "cyan_terracotta": 8,
+       "chiseled_tuff_bricks": 5,
+       "tuff": 9,
+       "stone": 2,
+       "pale_moss_block": 1,
+       "light_gray_stained_glass": 2,
+       "gray_glazed_terracotta": 3,
+       "deepslate": 2,
+       "netherite_block": 7,
+       "mud": 2,
+       "brown_glazed_terracotta": 1,
+       "deepslate_bricks": 1,
+       "blast_furnace_side": 1,
+       "copper_ore": 1
+      },
+      "cobblestone": {
+       "<missed>": 78,
+       "pale_moss_block": 5,
+       "bedrock": 5,
+       "coal_ore": 5,
+       "chain_command_block_back": 1,
+       "cobblestone": 88,
+       "deepslate_copper_ore": 2,
+       "mossy_cobblestone": 5,
+       "piston_bottom": 10,
+       "weathered_copper_bulb": 3,
+       "dead_brain_coral_block": 2,
+       "acacia_log": 3,
+       "deepslate": 9,
+       "copper_ore": 1,
+       "tuff": 2,
+       "polished_tuff": 3,
+       "gray_concrete_powder": 19,
+       "netherite_block": 3,
+       "cyan_terracotta": 12,
+       "suspicious_gravel_0": 1,
+       "andesite": 9,
+       "white_stained_glass": 1,
+       "polished_andesite": 1,
+       "light_blue_terracotta": 1,
+       "chiseled_tuff_bricks": 1,
+       "light_gray_stained_glass": 1,
+       "smooth_basalt": 7,
+       "chiseled_tuff": 1,
+       "exposed_copper_grate": 1,
+       "glass": 3,
+       "deepslate_coal_ore": 1,
+       "flowering_azalea_leaves": 1
+      },
+      "andesite": {
+       "chiseled_stone_bricks": 2,
+       "<missed>": 83,
+       "polished_tuff": 4,
+       "acacia_log": 7,
+       "gravel": 7,
+       "stone": 11,
+       "cobblestone": 5,
+       "dead_horn_coral_block": 7,
+       "stone_bricks": 1,
+       "chain_command_block_back": 1,
+       "crafter_south": 23,
+       "podzol_side": 26,
+       "iron_ore": 2,
+       "copper_ore": 8,
+       "polished_andesite": 8,
+       "poplar_planks": 2,
+       "pale_moss_block": 2,
+       "andesite": 38,
+       "tuff_bricks": 1,
+       "chiseled_tuff_bricks": 4,
+       "cyan_terracotta": 25,
+       "dead_tube_coral_block": 1,
+       "light_gray_wool": 13,
+       "white_stained_glass": 1,
+       "suspicious_gravel_0": 1,
+       "light_gray_concrete": 1,
+       "gray_concrete_powder": 3,
+       "chiseled_tuff": 1,
+       "gold_ore": 3,
+       "dead_bubble_coral_block": 1,
+       "deepslate_bricks": 1,
+       "dead_brain_coral_block": 1
+      },
+      "dead_bubble_coral_block": {
+       "<missed>": 79,
+       "acacia_log": 4,
+       "fletching_table_front": 10,
+       "dead_bubble_coral_block": 36,
+       "crafter_south": 6,
+       "dead_brain_coral_block": 2,
+       "dripstone_block": 2,
+       "pale_oak_log": 2,
+       "gravel": 16,
+       "lodestone_side": 1,
+       "stone": 19,
+       "dead_tube_coral_block": 3,
+       "iron_ore": 1,
+       "cyan_terracotta": 6,
+       "pale_moss_block": 3,
+       "chiseled_tuff_bricks": 3,
+       "gray_concrete_powder": 2,
+       "white_stained_glass": 1,
+       "andesite": 1,
+       "light_gray_wool": 1,
+       "suspicious_gravel_0": 3,
+       "structure_block_load": 1,
+       "deepslate_copper_ore": 1,
+       "deepslate": 1,
+       "gray_wool": 1,
+       "chiseled_tuff": 1,
+       "piston_bottom": 1
+      }
+     },
+     "ordered_positions_per_neighbor_pair": {
+      "same": {
+       "n": 1080,
+       "both_matched": 682,
+       "both_correct": 154,
+       "different_called_same": 0
+      },
+      "dead_brain_coral_block / dead_brain_coral_block": {
+       "n": 132,
+       "both_matched": 42,
+       "both_correct": 3,
+       "different_called_same": 0
+      },
+      "unlike": {
+       "n": 3024,
+       "both_matched": 1702,
+       "both_correct": 290,
+       "different_called_same": 157
+      },
+      "dead_brain_coral_block / dead_horn_coral_block": {
+       "n": 252,
+       "both_matched": 88,
+       "both_correct": 4,
+       "different_called_same": 4
+      },
+      "dead_horn_coral_block / dead_horn_coral_block": {
+       "n": 132,
+       "both_matched": 65,
+       "both_correct": 12,
+       "different_called_same": 0
+      },
+      "dead_fire_coral_block / dead_horn_coral_block": {
+       "n": 288,
+       "both_matched": 157,
+       "both_correct": 45,
+       "different_called_same": 22
+      },
+      "dead_fire_coral_block / dead_fire_coral_block": {
+       "n": 120,
+       "both_matched": 120,
+       "both_correct": 40,
+       "different_called_same": 0
+      },
+      "dead_fire_coral_block / deepslate": {
+       "n": 240,
+       "both_matched": 240,
+       "both_correct": 11,
+       "different_called_same": 0
+      },
+      "deepslate / deepslate": {
+       "n": 120,
+       "both_matched": 120,
+       "both_correct": 3,
+       "different_called_same": 0
+      },
+      "deepslate / tuff": {
+       "n": 276,
+       "both_matched": 162,
+       "both_correct": 18,
+       "different_called_same": 10
+      },
+      "tuff / tuff": {
+       "n": 129,
+       "both_matched": 77,
+       "both_correct": 15,
+       "different_called_same": 0
+      },
+      "dead_tube_coral_block / tuff": {
+       "n": 240,
+       "both_matched": 71,
+       "both_correct": 22,
+       "different_called_same": 9
+      },
+      "dead_tube_coral_block / dead_tube_coral_block": {
+       "n": 132,
+       "both_matched": 47,
+       "both_correct": 18,
+       "different_called_same": 0
+      },
+      "cobblestone / dead_tube_coral_block": {
+       "n": 231,
+       "both_matched": 103,
+       "both_correct": 22,
+       "different_called_same": 23
+      },
+      "cobblestone / cobblestone": {
+       "n": 102,
+       "both_matched": 80,
+       "both_correct": 37,
+       "different_called_same": 0
+      },
+      "andesite / cobblestone": {
+       "n": 222,
+       "both_matched": 148,
+       "both_correct": 24,
+       "different_called_same": 14
+      },
+      "andesite / andesite": {
+       "n": 129,
+       "both_matched": 87,
+       "both_correct": 14,
+       "different_called_same": 0
+      },
+      "andesite / dead_brain_coral_block": {
+       "n": 33,
+       "both_matched": 23,
+       "both_correct": 4,
+       "different_called_same": 0
+      },
+      "dead_horn_coral_block / deepslate": {
+       "n": 54,
+       "both_matched": 41,
+       "both_correct": 1,
+       "different_called_same": 0
+      },
+      "dead_fire_coral_block / dead_tube_coral_block": {
+       "n": 66,
+       "both_matched": 40,
+       "both_correct": 1,
+       "different_called_same": 12
+      },
+      "cobblestone / deepslate": {
+       "n": 24,
+       "both_matched": 20,
+       "both_correct": 4,
+       "different_called_same": 0
+      },
+      "dead_brain_coral_block / tuff": {
+       "n": 36,
+       "both_matched": 13,
+       "both_correct": 4,
+       "different_called_same": 4
+      },
+      "dead_tube_coral_block / deepslate": {
+       "n": 60,
+       "both_matched": 38,
+       "both_correct": 2,
+       "different_called_same": 0
+      },
+      "cobblestone / dead_horn_coral_block": {
+       "n": 33,
+       "both_matched": 18,
+       "both_correct": 1,
+       "different_called_same": 8
+      },
+      "andesite / deepslate": {
+       "n": 69,
+       "both_matched": 40,
+       "both_correct": 2,
+       "different_called_same": 0
+      },
+      "cobblestone / dead_brain_coral_block": {
+       "n": 69,
+       "both_matched": 36,
+       "both_correct": 11,
+       "different_called_same": 6
+      },
+      "dead_brain_coral_block / deepslate": {
+       "n": 36,
+       "both_matched": 19,
+       "both_correct": 4,
+       "different_called_same": 0
+      },
+      "dead_horn_coral_block / tuff": {
+       "n": 36,
+       "both_matched": 16,
+       "both_correct": 4,
+       "different_called_same": 0
+      },
+      "cobblestone / tuff": {
+       "n": 63,
+       "both_matched": 30,
+       "both_correct": 9,
+       "different_called_same": 0
+      },
+      "dead_horn_coral_block / dead_tube_coral_block": {
+       "n": 24,
+       "both_matched": 11,
+       "both_correct": 2,
+       "different_called_same": 2
+      },
+      "cobblestone / dead_bubble_coral_block": {
+       "n": 24,
+       "both_matched": 15,
+       "both_correct": 1,
+       "different_called_same": 4
+      },
+      "andesite / dead_horn_coral_block": {
+       "n": 21,
+       "both_matched": 14,
+       "both_correct": 0,
+       "different_called_same": 3
+      },
+      "dead_bubble_coral_block / dead_horn_coral_block": {
+       "n": 30,
+       "both_matched": 17,
+       "both_correct": 2,
+       "different_called_same": 7
+      },
+      "dead_fire_coral_block / tuff": {
+       "n": 24,
+       "both_matched": 19,
+       "both_correct": 2,
+       "different_called_same": 2
+      },
+      "dead_bubble_coral_block / tuff": {
+       "n": 36,
+       "both_matched": 26,
+       "both_correct": 5,
+       "different_called_same": 0
+      },
+      "andesite / dead_fire_coral_block": {
+       "n": 21,
+       "both_matched": 20,
+       "both_correct": 4,
+       "different_called_same": 6
+      },
+      "andesite / tuff": {
+       "n": 42,
+       "both_matched": 31,
+       "both_correct": 8,
+       "different_called_same": 0
+      },
+      "andesite / dead_bubble_coral_block": {
+       "n": 138,
+       "both_matched": 57,
+       "both_correct": 21,
+       "different_called_same": 4
+      },
+      "dead_bubble_coral_block / dead_fire_coral_block": {
+       "n": 36,
+       "both_matched": 23,
+       "both_correct": 10,
+       "different_called_same": 2
+      },
+      "cobblestone / dead_fire_coral_block": {
+       "n": 60,
+       "both_matched": 39,
+       "both_correct": 11,
+       "different_called_same": 3
+      },
+      "dead_bubble_coral_block / dead_tube_coral_block": {
+       "n": 36,
+       "both_matched": 14,
+       "both_correct": 2,
+       "different_called_same": 1
+      },
+      "andesite / dead_tube_coral_block": {
+       "n": 60,
+       "both_matched": 29,
+       "both_correct": 12,
+       "different_called_same": 2
+      },
+      "dead_brain_coral_block / dead_fire_coral_block": {
+       "n": 36,
+       "both_matched": 22,
+       "both_correct": 7,
+       "different_called_same": 2
+      },
+      "dead_bubble_coral_block / dead_bubble_coral_block": {
+       "n": 84,
+       "both_matched": 44,
+       "both_correct": 12,
+       "different_called_same": 0
+      },
+      "dead_brain_coral_block / dead_bubble_coral_block": {
+       "n": 60,
+       "both_matched": 36,
+       "both_correct": 7,
+       "different_called_same": 5
+      },
+      "dead_bubble_coral_block / deepslate": {
+       "n": 12,
+       "both_matched": 12,
+       "both_correct": 0,
+       "different_called_same": 0
+      },
+      "dead_brain_coral_block / dead_tube_coral_block": {
+       "n": 36,
+       "both_matched": 14,
+       "both_correct": 3,
+       "different_called_same": 2
+      }
+     }
+    },
+    "exposure": {
+     "unique_blocks": 230,
+     "counts": {
+      "all": {
+       "n": 2658,
+       "matched": 1745,
+       "correct": 534
+      },
+      "condition/normal": {
+       "n": 886,
+       "matched": 471,
+       "correct": 116
+      },
+      "exposure/overhang": {
+       "n": 1170,
+       "matched": 789,
+       "correct": 173
+      },
+      "skylight/14": {
+       "n": 180,
+       "matched": 121,
+       "correct": 34
+      },
+      "angle/front": {
+       "n": 690,
+       "matched": 460,
+       "correct": 173
+      },
+      "size/at_least_10px": {
+       "n": 1778,
+       "matched": 934,
+       "correct": 264
+      },
+      "neighbor/same": {
+       "n": 2025,
+       "matched": 1315,
+       "correct": 409
+      },
+      "neighbor/unlike": {
+       "n": 2646,
+       "matched": 1738,
+       "correct": 532
+      },
+      "skylight/13": {
+       "n": 90,
+       "matched": 61,
+       "correct": 15
+      },
+      "skylight/12": {
+       "n": 180,
+       "matched": 121,
+       "correct": 32
+      },
+      "neighbor/opening": {
+       "n": 1680,
+       "matched": 1102,
+       "correct": 342
+      },
+      "skylight/11": {
+       "n": 720,
+       "matched": 486,
+       "correct": 92
+      },
+      "exposure/open_sky": {
+       "n": 1488,
+       "matched": 956,
+       "correct": 361
+      },
+      "skylight/15": {
+       "n": 1488,
+       "matched": 956,
+       "correct": 361
+      },
+      "angle/left": {
+       "n": 684,
+       "matched": 444,
+       "correct": 142
+      },
+      "angle/right": {
+       "n": 690,
+       "matched": 446,
+       "correct": 156
+      },
+      "angle/elevated": {
+       "n": 594,
+       "matched": 395,
+       "correct": 63
+      },
+      "condition/small": {
+       "n": 886,
+       "matched": 817,
+       "correct": 275
+      },
+      "size/under_10px": {
+       "n": 880,
+       "matched": 811,
+       "correct": 270
+      },
+      "condition/warm-shader": {
+       "n": 886,
+       "matched": 457,
+       "correct": 143
+      }
+     },
+     "confusion": {
+      "dead_brain_coral_block": {
+       "<missed>": 182,
+       "crafter_south": 7,
+       "calcite": 3,
+       "piston_bottom": 1,
+       "birch_log": 1,
+       "iron_ore": 1,
+       "dead_brain_coral_block": 33,
+       "andesite": 3,
+       "blast_furnace_side": 6,
+       "observer_front": 4,
+       "chiseled_tuff": 3,
+       "deepslate_copper_ore": 2,
+       "lodestone_side": 5,
+       "netherite_block": 42,
+       "iron_block": 1,
+       "poplar_planks": 6,
+       "stone_bricks": 7,
+       "stone": 3,
+       "polished_tuff": 1,
+       "pale_moss_block": 2,
+       "polished_blackstone": 1,
+       "podzol_side": 1,
+       "dead_fire_coral_block": 1,
+       "dead_bubble_coral_block": 1,
+       "gravel": 1,
+       "diorite": 1,
+       "creaking_heart": 1,
+       "warped_nylium_side": 1
+      },
+      "dead_horn_coral_block": {
+       "<missed>": 135,
+       "cobbled_deepslate": 1,
+       "bedrock": 39,
+       "dead_horn_coral_block": 46,
+       "observer_front": 1,
+       "piston_bottom": 2,
+       "dead_fire_coral_block": 6,
+       "pearlescent_froglight_side": 2,
+       "acacia_log": 2,
+       "iron_ore": 2,
+       "lodestone_side": 2,
+       "crafter_south": 2,
+       "polished_andesite": 4,
+       "stripped_pale_oak_log": 15,
+       "andesite": 2,
+       "gray_concrete_powder": 9,
+       "chiseled_tuff_bricks": 15,
+       "quartz_pillar_side": 2,
+       "light_gray_wool": 1,
+       "polished_tuff": 6,
+       "pale_moss_block": 1,
+       "cyan_terracotta": 3,
+       "white_stained_glass": 2,
+       "poplar_planks": 1,
+       "white_concrete_powder": 1,
+       "stone": 1,
+       "deepslate_copper_ore": 1,
+       "suspicious_sand_0": 1,
+       "gravel": 1
+      },
+      "dead_fire_coral_block": {
+       "chiseled_tuff": 1,
+       "copper_ore": 4,
+       "dead_fire_coral_block": 137,
+       "<missed>": 30,
+       "acacia_log": 11,
+       "andesite": 1,
+       "pale_oak_log": 14,
+       "cobbled_deepslate": 1,
+       "podzol_side": 4,
+       "sand": 8,
+       "gray_concrete_powder": 27,
+       "stone": 16,
+       "dead_tube_coral_block": 8,
+       "lodestone_side": 3,
+       "dead_bubble_coral_block": 13,
+       "dead_brain_coral_block": 1,
+       "pale_moss_block": 8,
+       "chiseled_tuff_bricks": 2,
+       "stripped_poplar_log": 1,
+       "light_gray_concrete_powder": 1,
+       "dead_horn_coral_block": 1,
+       "gravel": 2,
+       "cyan_terracotta": 5,
+       "polished_tuff": 1,
+       "white_stained_glass": 1,
+       "light_gray_stained_glass": 2,
+       "poplar_planks": 1,
+       "light_gray_wool": 1,
+       "cracked_deepslate_tiles": 1,
+       "raw_iron_block": 1,
+       "exposed_copper_bulb": 1,
+       "brown_glazed_terracotta": 1
+      },
+      "deepslate": {
+       "glass": 4,
+       "deepslate_tiles": 40,
+       "<missed>": 32,
+       "chiseled_tuff": 17,
+       "warped_nylium_side": 73,
+       "coal_ore": 6,
+       "tuff_bricks": 6,
+       "weathered_copper_bulb": 2,
+       "chiseled_tuff_bricks": 2,
+       "dead_bubble_coral_block": 6,
+       "dead_horn_coral_block": 20,
+       "chiseled_polished_blackstone": 2,
+       "cracked_deepslate_tiles": 2,
+       "netherite_block": 6,
+       "mud": 18,
+       "light_gray_stained_glass": 12,
+       "gray_concrete_powder": 6,
+       "white_stained_glass": 12,
+       "cobbled_deepslate": 10,
+       "deepslate": 16,
+       "pale_oak_log": 5,
+       "polished_blackstone": 1,
+       "stone": 2,
+       "gray_wool": 2,
+       "cyan_terracotta": 1,
+       "weathered_copper_grate": 2,
+       "tinted_glass": 1,
+       "gray_stained_glass": 1,
+       "exposed_copper_grate": 1,
+       "quartz_pillar_side": 1
+      },
+      "tuff": {
+       "deepslate_tiles": 28,
+       "<missed>": 120,
+       "chiseled_tuff": 10,
+       "tuff": 41,
+       "cracked_stone_bricks": 7,
+       "tuff_bricks": 1,
+       "dead_brain_coral_block": 1,
+       "cobbled_deepslate": 4,
+       "crafter_south": 4,
+       "cracked_deepslate_tiles": 33,
+       "acacia_log": 10,
+       "mud": 11,
+       "light_gray_stained_glass": 3,
+       "chiseled_polished_blackstone": 1,
+       "gray_wool": 10,
+       "netherite_block": 1,
+       "gravel": 10,
+       "iron_block": 1,
+       "dripstone_block": 1,
+       "cyan_terracotta": 2,
+       "chiseled_tuff_bricks": 1,
+       "polished_andesite": 1,
+       "light_gray_wool": 3,
+       "observer_front": 1,
+       "lodestone_side": 1
+      },
+      "dead_tube_coral_block": {
+       "<missed>": 174,
+       "pearlescent_froglight_side": 3,
+       "acacia_log": 2,
+       "cracked_deepslate_tiles": 1,
+       "mossy_cobblestone": 1,
+       "warped_nylium_side": 1,
+       "chain_command_block_back": 13,
+       "cobbled_deepslate": 6,
+       "dead_tube_coral_block": 62,
+       "dead_bubble_coral_block": 4,
+       "crafter_south": 2,
+       "lodestone_side": 2,
+       "deepslate": 1,
+       "dead_fire_coral_block": 1,
+       "gray_concrete_powder": 8,
+       "chiseled_tuff_bricks": 3,
+       "tuff": 1,
+       "cyan_terracotta": 3,
+       "stripped_poplar_log": 2,
+       "netherite_block": 8,
+       "quartz_block_side": 1,
+       "polished_tuff": 5,
+       "mud": 6,
+       "gravel": 1,
+       "gray_wool": 2,
+       "stone": 1,
+       "suspicious_gravel_0": 1,
+       "white_concrete_powder": 1,
+       "polished_sulfur": 1,
+       "gray_glazed_terracotta": 1,
+       "command_block_back": 1,
+       "deepslate_copper_ore": 1,
+       "pale_oak_log": 1
+      },
+      "cobblestone": {
+       "<missed>": 78,
+       "cobblestone": 127,
+       "bedrock": 1,
+       "deepslate_coal_ore": 1,
+       "chain_command_block_back": 1,
+       "reinforced_deepslate_side": 1,
+       "tuff": 2,
+       "dead_brain_coral_block": 2,
+       "copper_ore": 2,
+       "coal_ore": 7,
+       "piston_bottom": 5,
+       "polished_tuff": 6,
+       "gray_concrete_powder": 24,
+       "chiseled_tuff_bricks": 4,
+       "pale_moss_block": 2,
+       "stripped_pale_oak_log": 1,
+       "white_stained_glass": 2,
+       "andesite": 7,
+       "light_gray_wool": 1,
+       "cyan_terracotta": 9,
+       "stripped_poplar_log": 1,
+       "test_block_start": 1
+      },
+      "andesite": {
+       "tuff": 1,
+       "chiseled_stone_bricks": 7,
+       "<missed>": 83,
+       "smooth_stone": 4,
+       "coal_ore": 11,
+       "stone": 10,
+       "white_wool": 1,
+       "pearlescent_froglight_side": 3,
+       "warped_nylium_side": 1,
+       "crafter_south": 30,
+       "podzol_side": 24,
+       "light_gray_concrete_powder": 8,
+       "iron_ore": 4,
+       "copper_ore": 5,
+       "polished_andesite": 5,
+       "pale_moss_block": 5,
+       "mud": 1,
+       "dead_bubble_coral_block": 3,
+       "dead_horn_coral_block": 4,
+       "andesite": 34,
+       "iron_block": 1,
+       "chiseled_tuff_bricks": 4,
+       "cyan_terracotta": 24,
+       "polished_tuff": 1,
+       "gray_concrete_powder": 3,
+       "light_gray_wool": 9,
+       "bone_block_side": 1,
+       "white_stained_glass": 1,
+       "suspicious_gravel_0": 1,
+       "white_concrete_powder": 1,
+       "gold_ore": 2,
+       "poplar_planks": 1,
+       "mossy_cobblestone": 1
+      },
+      "dead_bubble_coral_block": {
+       "<missed>": 79,
+       "acacia_log": 2,
+       "warped_nylium_side": 10,
+       "dead_bubble_coral_block": 38,
+       "crafter_south": 7,
+       "dead_brain_coral_block": 2,
+       "chain_command_block_back": 1,
+       "suspicious_gravel_0": 6,
+       "gravel": 16,
+       "lodestone_side": 2,
+       "piston_bottom": 2,
+       "dead_tube_coral_block": 3,
+       "iron_ore": 1,
+       "gray_wool": 2,
+       "pale_moss_block": 6,
+       "chiseled_tuff_bricks": 2,
+       "light_gray_wool": 6,
+       "stone": 8,
+       "gray_concrete_powder": 2,
+       "cyan_terracotta": 4,
+       "andesite": 2,
+       "dead_horn_coral_block": 1,
+       "white_stained_glass": 1,
+       "stripped_poplar_log": 3,
+       "command_block_back": 1
+      }
+     },
+     "ordered_positions_per_neighbor_pair": {
+      "same": {
+       "n": 1080,
+       "both_matched": 682,
+       "both_correct": 187,
+       "different_called_same": 0
+      },
+      "dead_brain_coral_block / dead_brain_coral_block": {
+       "n": 132,
+       "both_matched": 42,
+       "both_correct": 3,
+       "different_called_same": 0
+      },
+      "unlike": {
+       "n": 3024,
+       "both_matched": 1702,
+       "both_correct": 292,
+       "different_called_same": 98
+      },
+      "dead_brain_coral_block / dead_horn_coral_block": {
+       "n": 252,
+       "both_matched": 88,
+       "both_correct": 4,
+       "different_called_same": 3
+      },
+      "dead_horn_coral_block / dead_horn_coral_block": {
+       "n": 132,
+       "both_matched": 65,
+       "both_correct": 12,
+       "different_called_same": 0
+      },
+      "dead_fire_coral_block / dead_horn_coral_block": {
+       "n": 288,
+       "both_matched": 157,
+       "both_correct": 42,
+       "different_called_same": 8
+      },
+      "dead_fire_coral_block / dead_fire_coral_block": {
+       "n": 120,
+       "both_matched": 120,
+       "both_correct": 58,
+       "different_called_same": 0
+      },
+      "dead_fire_coral_block / deepslate": {
+       "n": 240,
+       "both_matched": 240,
+       "both_correct": 9,
+       "different_called_same": 3
+      },
+      "deepslate / deepslate": {
+       "n": 120,
+       "both_matched": 120,
+       "both_correct": 2,
+       "different_called_same": 0
+      },
+      "deepslate / tuff": {
+       "n": 276,
+       "both_matched": 162,
+       "both_correct": 16,
+       "different_called_same": 16
+      },
+      "tuff / tuff": {
+       "n": 129,
+       "both_matched": 77,
+       "both_correct": 11,
+       "different_called_same": 0
+      },
+      "dead_tube_coral_block / tuff": {
+       "n": 240,
+       "both_matched": 71,
+       "both_correct": 19,
+       "different_called_same": 6
+      },
+      "dead_tube_coral_block / dead_tube_coral_block": {
+       "n": 132,
+       "both_matched": 47,
+       "both_correct": 21,
+       "different_called_same": 0
+      },
+      "cobblestone / dead_tube_coral_block": {
+       "n": 231,
+       "both_matched": 103,
+       "both_correct": 30,
+       "different_called_same": 8
+      },
+      "cobblestone / cobblestone": {
+       "n": 102,
+       "both_matched": 80,
+       "both_correct": 57,
+       "different_called_same": 0
+      },
+      "andesite / cobblestone": {
+       "n": 222,
+       "both_matched": 148,
+       "both_correct": 22,
+       "different_called_same": 8
+      },
+      "andesite / andesite": {
+       "n": 129,
+       "both_matched": 87,
+       "both_correct": 13,
+       "different_called_same": 0
+      },
+      "andesite / dead_brain_coral_block": {
+       "n": 33,
+       "both_matched": 23,
+       "both_correct": 4,
+       "different_called_same": 1
+      },
+      "dead_horn_coral_block / deepslate": {
+       "n": 54,
+       "both_matched": 41,
+       "both_correct": 2,
+       "different_called_same": 1
+      },
+      "dead_fire_coral_block / dead_tube_coral_block": {
+       "n": 66,
+       "both_matched": 40,
+       "both_correct": 3,
+       "different_called_same": 4
+      },
+      "cobblestone / deepslate": {
+       "n": 24,
+       "both_matched": 20,
+       "both_correct": 2,
+       "different_called_same": 0
+      },
+      "dead_brain_coral_block / tuff": {
+       "n": 36,
+       "both_matched": 13,
+       "both_correct": 3,
+       "different_called_same": 1
+      },
+      "dead_tube_coral_block / deepslate": {
+       "n": 60,
+       "both_matched": 38,
+       "both_correct": 3,
+       "different_called_same": 2
+      },
+      "cobblestone / dead_horn_coral_block": {
+       "n": 33,
+       "both_matched": 18,
+       "both_correct": 3,
+       "different_called_same": 3
+      },
+      "andesite / deepslate": {
+       "n": 69,
+       "both_matched": 40,
+       "both_correct": 3,
+       "different_called_same": 0
+      },
+      "cobblestone / dead_brain_coral_block": {
+       "n": 69,
+       "both_matched": 36,
+       "both_correct": 12,
+       "different_called_same": 2
+      },
+      "dead_brain_coral_block / deepslate": {
+       "n": 36,
+       "both_matched": 19,
+       "both_correct": 2,
+       "different_called_same": 3
+      },
+      "dead_horn_coral_block / tuff": {
+       "n": 36,
+       "both_matched": 16,
+       "both_correct": 4,
+       "different_called_same": 0
+      },
+      "cobblestone / tuff": {
+       "n": 63,
+       "both_matched": 30,
+       "both_correct": 7,
+       "different_called_same": 1
+      },
+      "dead_horn_coral_block / dead_tube_coral_block": {
+       "n": 24,
+       "both_matched": 11,
+       "both_correct": 3,
+       "different_called_same": 0
+      },
+      "cobblestone / dead_bubble_coral_block": {
+       "n": 24,
+       "both_matched": 15,
+       "both_correct": 6,
+       "different_called_same": 2
+      },
+      "andesite / dead_horn_coral_block": {
+       "n": 21,
+       "both_matched": 14,
+       "both_correct": 0,
+       "different_called_same": 2
+      },
+      "dead_bubble_coral_block / dead_horn_coral_block": {
+       "n": 30,
+       "both_matched": 17,
+       "both_correct": 2,
+       "different_called_same": 1
+      },
+      "dead_fire_coral_block / tuff": {
+       "n": 24,
+       "both_matched": 19,
+       "both_correct": 4,
+       "different_called_same": 0
+      },
+      "dead_bubble_coral_block / tuff": {
+       "n": 36,
+       "both_matched": 26,
+       "both_correct": 5,
+       "different_called_same": 0
+      },
+      "andesite / dead_fire_coral_block": {
+       "n": 21,
+       "both_matched": 20,
+       "both_correct": 4,
+       "different_called_same": 5
+      },
+      "andesite / tuff": {
+       "n": 42,
+       "both_matched": 31,
+       "both_correct": 4,
+       "different_called_same": 1
+      },
+      "andesite / dead_bubble_coral_block": {
+       "n": 138,
+       "both_matched": 57,
+       "both_correct": 19,
+       "different_called_same": 4
+      },
+      "dead_bubble_coral_block / dead_fire_coral_block": {
+       "n": 36,
+       "both_matched": 23,
+       "both_correct": 9,
+       "different_called_same": 1
+      },
+      "cobblestone / dead_fire_coral_block": {
+       "n": 60,
+       "both_matched": 39,
+       "both_correct": 19,
+       "different_called_same": 2
+      },
+      "dead_bubble_coral_block / dead_tube_coral_block": {
+       "n": 36,
+       "both_matched": 14,
+       "both_correct": 1,
+       "different_called_same": 2
+      },
+      "andesite / dead_tube_coral_block": {
+       "n": 60,
+       "both_matched": 29,
+       "both_correct": 10,
+       "different_called_same": 3
+      },
+      "dead_brain_coral_block / dead_fire_coral_block": {
+       "n": 36,
+       "both_matched": 22,
+       "both_correct": 7,
+       "different_called_same": 2
+      },
+      "dead_bubble_coral_block / dead_bubble_coral_block": {
+       "n": 84,
+       "both_matched": 44,
+       "both_correct": 10,
+       "different_called_same": 0
+      },
+      "dead_brain_coral_block / dead_bubble_coral_block": {
+       "n": 60,
+       "both_matched": 36,
+       "both_correct": 6,
+       "different_called_same": 1
+      },
+      "dead_bubble_coral_block / deepslate": {
+       "n": 12,
+       "both_matched": 12,
+       "both_correct": 0,
+       "different_called_same": 0
+      },
+      "dead_brain_coral_block / dead_tube_coral_block": {
+       "n": 36,
+       "both_matched": 14,
+       "both_correct": 3,
+       "different_called_same": 2
+      }
+     }
+    }
+   }
+  },
+  "image_only": {
+   "expected": 2658,
+   "matched": 216,
+   "mean_iou": 0.582007582991681,
+   "mean_purity": 0.8989762328140842,
+   "methods": {
+    "production": {
+     "unique_blocks": 230,
+     "counts": {
+      "all": {
+       "n": 2658,
+       "matched": 216,
+       "correct": 30
+      },
+      "condition/normal": {
+       "n": 886,
+       "matched": 85,
+       "correct": 16
+      },
+      "exposure/overhang": {
+       "n": 1170,
+       "matched": 62,
+       "correct": 0
+      },
+      "skylight/14": {
+       "n": 180,
+       "matched": 12,
+       "correct": 0
+      },
+      "angle/front": {
+       "n": 690,
+       "matched": 50,
+       "correct": 2
+      },
+      "size/at_least_10px": {
+       "n": 1778,
+       "matched": 216,
+       "correct": 30
+      },
+      "neighbor/same": {
+       "n": 2025,
+       "matched": 166,
+       "correct": 24
+      },
+      "neighbor/unlike": {
+       "n": 2646,
+       "matched": 214,
+       "correct": 30
+      },
+      "skylight/13": {
+       "n": 90,
+       "matched": 4,
+       "correct": 0
+      },
+      "skylight/12": {
+       "n": 180,
+       "matched": 9,
+       "correct": 0
+      },
+      "neighbor/opening": {
+       "n": 1680,
+       "matched": 145,
+       "correct": 21
+      },
+      "skylight/11": {
+       "n": 720,
+       "matched": 37,
+       "correct": 0
+      },
+      "exposure/open_sky": {
+       "n": 1488,
+       "matched": 154,
+       "correct": 30
+      },
+      "skylight/15": {
+       "n": 1488,
+       "matched": 154,
+       "correct": 30
+      },
+      "angle/left": {
+       "n": 684,
+       "matched": 82,
+       "correct": 14
+      },
+      "angle/right": {
+       "n": 690,
+       "matched": 0,
+       "correct": 0
+      },
+      "angle/elevated": {
+       "n": 594,
+       "matched": 84,
+       "correct": 14
+      },
+      "condition/small": {
+       "n": 886,
+       "matched": 0,
+       "correct": 0
+      },
+      "size/under_10px": {
+       "n": 880,
+       "matched": 0,
+       "correct": 0
+      },
+      "condition/warm-shader": {
+       "n": 886,
+       "matched": 131,
+       "correct": 14
+      }
+     },
+     "confusion": {
+      "dead_brain_coral_block": {
+       "<missed>": 295,
+       "poplar_log": 1,
+       "chiseled_tuff_bricks": 8,
+       "tuff_bricks": 3,
+       "dead_brain_coral_block": 4,
+       "cobblestone": 1,
+       "warped_nylium_side": 2,
+       "netherite_block": 2,
+       "deepslate_bricks": 1,
+       "tuff": 1,
+       "piston_bottom": 1,
+       "soul_sand": 1,
+       "chiseled_polished_blackstone": 1
+      },
+      "dead_horn_coral_block": {
+       "<missed>": 284,
+       "mud_bricks": 2,
+       "lodestone_side": 2,
+       "mossy_stone_bricks": 1,
+       "dead_fire_coral_block": 3,
+       "dead_horn_coral_block": 3,
+       "dead_bubble_coral_block": 1,
+       "deepslate_bricks": 1,
+       "bedrock": 1,
+       "stone_bricks": 1,
+       "pale_oak_log": 1,
+       "tuff_bricks": 1,
+       "dripstone_block": 1,
+       "raw_iron_block": 1,
+       "dead_tube_coral_block": 1,
+       "exposed_cut_copper": 1,
+       "exposed_copper_grate": 1
+      },
+      "dead_fire_coral_block": {
+       "<missed>": 289,
+       "iron_ore": 2,
+       "mossy_stone_bricks": 1,
+       "gravel": 2,
+       "dead_horn_coral_block": 3,
+       "chiseled_polished_blackstone": 1,
+       "exposed_copper_bulb": 1,
+       "stone": 1,
+       "coal_ore": 1,
+       "exposed_copper_grate": 1,
+       "acacia_log": 2,
+       "tuff": 1,
+       "dead_fire_coral_block": 1,
+       "copper_ore": 1,
+       "raw_iron_block": 1,
+       "deepslate_iron_ore": 1
+      },
+      "deepslate": {
+       "<missed>": 278,
+       "cobbled_deepslate": 2,
+       "deepslate_copper_ore": 1,
+       "deepslate": 3,
+       "smooth_basalt": 4,
+       "respawn_anchor_side0": 1,
+       "polished_blackstone": 1,
+       "glass": 3,
+       "creaking_heart": 2,
+       "deepslate_coal_ore": 4,
+       "mud": 5,
+       "deepslate_tiles": 1,
+       "chiseled_polished_blackstone": 1,
+       "polished_deepslate": 1,
+       "gilded_blackstone": 1,
+       "basalt_side": 1
+      },
+      "tuff": {
+       "<missed>": 279,
+       "crafter_south": 1,
+       "piston_bottom": 3,
+       "polished_basalt_side": 2,
+       "tuff_bricks": 1,
+       "mud": 2,
+       "netherite_block": 1,
+       "tuff": 4,
+       "dead_brain_coral_block": 1,
+       "chiseled_polished_blackstone": 5,
+       "cobbled_deepslate": 1,
+       "deepslate_copper_ore": 1,
+       "deepslate_iron_ore": 2,
+       "mossy_stone_bricks": 1,
+       "smooth_basalt": 1,
+       "structure_block_load": 1
+      },
+      "dead_tube_coral_block": {
+       "<missed>": 291,
+       "piston_bottom": 2,
+       "dead_brain_coral_block": 1,
+       "gravel": 1,
+       "dead_tube_coral_block": 5,
+       "netherite_block": 1,
+       "cobblestone": 2,
+       "dead_fire_coral_block": 1,
+       "tuff": 3,
+       "tuff_bricks": 2,
+       "deepslate": 1,
+       "gray_concrete_powder": 1,
+       "weathered_copper_grate": 1,
+       "dripstone_block": 1,
+       "dead_horn_coral_block": 1,
+       "iron_ore": 2,
+       "brown_glazed_terracotta": 1,
+       "acacia_log": 1,
+       "deepslate_coal_ore": 1,
+       "deepslate_copper_ore": 1,
+       "gold_ore": 1
+      },
+      "cobblestone": {
+       "<missed>": 264,
+       "dead_brain_coral_block": 1,
+       "cobblestone": 6,
+       "dead_tube_coral_block": 1,
+       "tuff_bricks": 2,
+       "coal_ore": 2,
+       "basalt_side": 2,
+       "gray_glazed_terracotta": 1,
+       "deepslate_iron_ore": 2,
+       "copper_ore": 2,
+       "smooth_basalt": 1,
+       "iron_ore": 1
+      },
+      "andesite": {
+       "<missed>": 276,
+       "stone": 2,
+       "polished_andesite": 3,
+       "dead_brain_coral_block": 1,
+       "light_gray_concrete_powder": 1,
+       "chiseled_tuff_bricks": 1,
+       "andesite": 1,
+       "cobblestone": 1,
+       "raw_iron_block": 1,
+       "light_gray_wool": 1,
+       "gravel": 2,
+       "poplar_planks": 1,
+       "dead_bubble_coral_block": 2,
+       "netherite_block": 1
+      },
+      "dead_bubble_coral_block": {
+       "<missed>": 186,
+       "stone_bricks": 1,
+       "chiseled_tuff_bricks": 1,
+       "dead_bubble_coral_block": 3,
+       "dead_tube_coral_block": 1,
+       "dead_horn_coral_block": 3,
+       "tuff_bricks": 2,
+       "deepslate_iron_ore": 3,
+       "mud_bricks": 1,
+       "crafter_south": 2,
+       "mossy_stone_bricks": 2,
+       "deepslate_gold_ore": 1,
+       "mossy_cobblestone": 1
+      }
+     },
+     "ordered_positions_per_neighbor_pair": {
+      "same": {
+       "n": 1080,
+       "both_matched": 38,
+       "both_correct": 3,
+       "different_called_same": 0
+      },
+      "dead_brain_coral_block / dead_brain_coral_block": {
+       "n": 132,
+       "both_matched": 2,
+       "both_correct": 0,
+       "different_called_same": 0
+      },
+      "unlike": {
+       "n": 3024,
+       "both_matched": 107,
+       "both_correct": 6,
+       "different_called_same": 2
+      },
+      "dead_brain_coral_block / dead_horn_coral_block": {
+       "n": 252,
+       "both_matched": 13,
+       "both_correct": 0,
+       "different_called_same": 0
+      },
+      "dead_horn_coral_block / dead_horn_coral_block": {
+       "n": 132,
+       "both_matched": 6,
+       "both_correct": 0,
+       "different_called_same": 0
+      },
+      "dead_fire_coral_block / dead_horn_coral_block": {
+       "n": 288,
+       "both_matched": 7,
+       "both_correct": 0,
+       "different_called_same": 0
+      },
+      "dead_fire_coral_block / dead_fire_coral_block": {
+       "n": 120,
+       "both_matched": 4,
+       "both_correct": 0,
+       "different_called_same": 0
+      },
+      "dead_fire_coral_block / deepslate": {
+       "n": 240,
+       "both_matched": 9,
+       "both_correct": 1,
+       "different_called_same": 0
+      },
+      "deepslate / deepslate": {
+       "n": 120,
+       "both_matched": 4,
+       "both_correct": 1,
+       "different_called_same": 0
+      },
+      "deepslate / tuff": {
+       "n": 276,
+       "both_matched": 13,
+       "both_correct": 0,
+       "different_called_same": 0
+      },
+      "tuff / tuff": {
+       "n": 129,
+       "both_matched": 5,
+       "both_correct": 0,
+       "different_called_same": 0
+      },
+      "dead_tube_coral_block / tuff": {
+       "n": 240,
+       "both_matched": 9,
+       "both_correct": 1,
+       "different_called_same": 0
+      },
+      "dead_tube_coral_block / dead_tube_coral_block": {
+       "n": 132,
+       "both_matched": 5,
+       "both_correct": 0,
+       "different_called_same": 0
+      },
+      "cobblestone / dead_tube_coral_block": {
+       "n": 231,
+       "both_matched": 10,
+       "both_correct": 1,
+       "different_called_same": 1
+      },
+      "cobblestone / cobblestone": {
+       "n": 102,
+       "both_matched": 4,
+       "both_correct": 2,
+       "different_called_same": 0
+      },
+      "andesite / cobblestone": {
+       "n": 222,
+       "both_matched": 4,
+       "both_correct": 0,
+       "different_called_same": 0
+      },
+      "andesite / andesite": {
+       "n": 129,
+       "both_matched": 3,
+       "both_correct": 0,
+       "different_called_same": 0
+      },
+      "andesite / dead_brain_coral_block": {
+       "n": 33,
+       "both_matched": 0,
+       "both_correct": 0,
+       "different_called_same": 0
+      },
+      "dead_horn_coral_block / deepslate": {
+       "n": 54,
+       "both_matched": 1,
+       "both_correct": 0,
+       "different_called_same": 0
+      },
+      "dead_fire_coral_block / dead_tube_coral_block": {
+       "n": 66,
+       "both_matched": 1,
+       "both_correct": 0,
+       "different_called_same": 0
+      },
+      "cobblestone / deepslate": {
+       "n": 24,
+       "both_matched": 1,
+       "both_correct": 0,
+       "different_called_same": 0
+      },
+      "dead_brain_coral_block / tuff": {
+       "n": 36,
+       "both_matched": 0,
+       "both_correct": 0,
+       "different_called_same": 0
+      },
+      "dead_tube_coral_block / deepslate": {
+       "n": 60,
+       "both_matched": 2,
+       "both_correct": 0,
+       "different_called_same": 0
+      },
+      "cobblestone / dead_horn_coral_block": {
+       "n": 33,
+       "both_matched": 0,
+       "both_correct": 0,
+       "different_called_same": 0
+      },
+      "andesite / deepslate": {
+       "n": 69,
+       "both_matched": 2,
+       "both_correct": 0,
+       "different_called_same": 0
+      },
+      "cobblestone / dead_brain_coral_block": {
+       "n": 69,
+       "both_matched": 2,
+       "both_correct": 1,
+       "different_called_same": 0
+      },
+      "dead_brain_coral_block / deepslate": {
+       "n": 36,
+       "both_matched": 0,
+       "both_correct": 0,
+       "different_called_same": 0
+      },
+      "dead_horn_coral_block / tuff": {
+       "n": 36,
+       "both_matched": 1,
+       "both_correct": 0,
+       "different_called_same": 0
+      },
+      "cobblestone / tuff": {
+       "n": 63,
+       "both_matched": 3,
+       "both_correct": 0,
+       "different_called_same": 0
+      },
+      "dead_horn_coral_block / dead_tube_coral_block": {
+       "n": 24,
+       "both_matched": 1,
+       "both_correct": 0,
+       "different_called_same": 1
+      },
+      "cobblestone / dead_bubble_coral_block": {
+       "n": 24,
+       "both_matched": 0,
+       "both_correct": 0,
+       "different_called_same": 0
+      },
+      "andesite / dead_horn_coral_block": {
+       "n": 21,
+       "both_matched": 0,
+       "both_correct": 0,
+       "different_called_same": 0
+      },
+      "dead_bubble_coral_block / dead_horn_coral_block": {
+       "n": 30,
+       "both_matched": 0,
+       "both_correct": 0,
+       "different_called_same": 0
+      },
+      "dead_fire_coral_block / tuff": {
+       "n": 24,
+       "both_matched": 0,
+       "both_correct": 0,
+       "different_called_same": 0
+      },
+      "dead_bubble_coral_block / tuff": {
+       "n": 36,
+       "both_matched": 1,
+       "both_correct": 0,
+       "different_called_same": 0
+      },
+      "andesite / dead_fire_coral_block": {
+       "n": 21,
+       "both_matched": 1,
+       "both_correct": 0,
+       "different_called_same": 0
+      },
+      "andesite / tuff": {
+       "n": 42,
+       "both_matched": 0,
+       "both_correct": 0,
+       "different_called_same": 0
+      },
+      "andesite / dead_bubble_coral_block": {
+       "n": 138,
+       "both_matched": 3,
+       "both_correct": 0,
+       "different_called_same": 0
+      },
+      "dead_bubble_coral_block / dead_fire_coral_block": {
+       "n": 36,
+       "both_matched": 1,
+       "both_correct": 0,
+       "different_called_same": 0
+      },
+      "cobblestone / dead_fire_coral_block": {
+       "n": 60,
+       "both_matched": 3,
+       "both_correct": 0,
+       "different_called_same": 0
+      },
+      "dead_bubble_coral_block / dead_tube_coral_block": {
+       "n": 36,
+       "both_matched": 2,
+       "both_correct": 0,
+       "different_called_same": 0
+      },
+      "andesite / dead_tube_coral_block": {
+       "n": 60,
+       "both_matched": 5,
+       "both_correct": 0,
+       "different_called_same": 0
+      },
+      "dead_brain_coral_block / dead_fire_coral_block": {
+       "n": 36,
+       "both_matched": 2,
+       "both_correct": 0,
+       "different_called_same": 0
+      },
+      "dead_bubble_coral_block / dead_bubble_coral_block": {
+       "n": 84,
+       "both_matched": 5,
+       "both_correct": 0,
+       "different_called_same": 0
+      },
+      "dead_brain_coral_block / dead_bubble_coral_block": {
+       "n": 60,
+       "both_matched": 7,
+       "both_correct": 2,
+       "different_called_same": 0
+      },
+      "dead_bubble_coral_block / deepslate": {
+       "n": 12,
+       "both_matched": 2,
+       "both_correct": 0,
+       "different_called_same": 0
+      },
+      "dead_brain_coral_block / dead_tube_coral_block": {
+       "n": 36,
+       "both_matched": 1,
+       "both_correct": 0,
+       "different_called_same": 0
+      }
+     }
+    },
+    "exposure": {
+     "unique_blocks": 230,
+     "counts": {
+      "all": {
+       "n": 2658,
+       "matched": 216,
+       "correct": 31
+      },
+      "condition/normal": {
+       "n": 886,
+       "matched": 85,
+       "correct": 14
+      },
+      "exposure/overhang": {
+       "n": 1170,
+       "matched": 62,
+       "correct": 6
+      },
+      "skylight/14": {
+       "n": 180,
+       "matched": 12,
+       "correct": 1
+      },
+      "angle/front": {
+       "n": 690,
+       "matched": 50,
+       "correct": 4
+      },
+      "size/at_least_10px": {
+       "n": 1778,
+       "matched": 216,
+       "correct": 31
+      },
+      "neighbor/same": {
+       "n": 2025,
+       "matched": 166,
+       "correct": 24
+      },
+      "neighbor/unlike": {
+       "n": 2646,
+       "matched": 214,
+       "correct": 31
+      },
+      "skylight/13": {
+       "n": 90,
+       "matched": 4,
+       "correct": 1
+      },
+      "skylight/12": {
+       "n": 180,
+       "matched": 9,
+       "correct": 1
+      },
+      "neighbor/opening": {
+       "n": 1680,
+       "matched": 145,
+       "correct": 21
+      },
+      "skylight/11": {
+       "n": 720,
+       "matched": 37,
+       "correct": 3
+      },
+      "exposure/open_sky": {
+       "n": 1488,
+       "matched": 154,
+       "correct": 25
+      },
+      "skylight/15": {
+       "n": 1488,
+       "matched": 154,
+       "correct": 25
+      },
+      "angle/left": {
+       "n": 684,
+       "matched": 82,
+       "correct": 12
+      },
+      "angle/right": {
+       "n": 690,
+       "matched": 0,
+       "correct": 0
+      },
+      "angle/elevated": {
+       "n": 594,
+       "matched": 84,
+       "correct": 15
+      },
+      "condition/small": {
+       "n": 886,
+       "matched": 0,
+       "correct": 0
+      },
+      "size/under_10px": {
+       "n": 880,
+       "matched": 0,
+       "correct": 0
+      },
+      "condition/warm-shader": {
+       "n": 886,
+       "matched": 131,
+       "correct": 17
+      }
+     },
+     "confusion": {
+      "dead_brain_coral_block": {
+       "<missed>": 295,
+       "poplar_log": 1,
+       "chiseled_tuff_bricks": 6,
+       "tuff_bricks": 1,
+       "smoker_side": 2,
+       "light_gray_glazed_terracotta": 1,
+       "cobblestone": 1,
+       "mud_bricks": 1,
+       "netherite_block": 2,
+       "dead_brain_coral_block": 2,
+       "warped_nylium_side": 3,
+       "deepslate_bricks": 1,
+       "iron_ore": 1,
+       "piston_bottom": 1,
+       "command_block_back": 1,
+       "soul_sand": 1,
+       "deepslate_gold_ore": 1
+      },
+      "dead_horn_coral_block": {
+       "<missed>": 284,
+       "coal_ore": 2,
+       "lodestone_side": 1,
+       "tuff_bricks": 2,
+       "dead_fire_coral_block": 2,
+       "dead_horn_coral_block": 3,
+       "polished_blackstone_bricks": 1,
+       "chiseled_sandstone": 1,
+       "deepslate_copper_ore": 1,
+       "calcite": 1,
+       "reinforced_deepslate_side": 1,
+       "cracked_stone_bricks": 1,
+       "smooth_basalt": 1,
+       "exposed_copper_grate": 2,
+       "dead_tube_coral_block": 1,
+       "command_block_back": 1,
+       "bedrock": 1
+      },
+      "dead_fire_coral_block": {
+       "<missed>": 289,
+       "pale_oak_log": 1,
+       "mossy_stone_bricks": 1,
+       "gravel": 1,
+       "deepslate_iron_ore": 2,
+       "stripped_pale_oak_log": 2,
+       "pale_moss_block": 1,
+       "chiseled_polished_blackstone": 1,
+       "exposed_copper_bulb": 1,
+       "dead_horn_coral_block": 2,
+       "coal_ore": 1,
+       "exposed_copper_grate": 1,
+       "dead_fire_coral_block": 2,
+       "acacia_log": 1,
+       "tuff": 1,
+       "copper_ore": 1,
+       "raw_iron_block": 1
+      },
+      "deepslate": {
+       "<missed>": 278,
+       "tuff": 2,
+       "dead_horn_coral_block": 1,
+       "deepslate": 4,
+       "smooth_basalt": 2,
+       "deepslate_iron_ore": 1,
+       "pale_oak_planks": 1,
+       "chiseled_tuff": 1,
+       "creaking_heart": 2,
+       "dripstone_block": 1,
+       "glass": 2,
+       "coal_ore": 4,
+       "mud": 2,
+       "deepslate_tiles": 1,
+       "pale_oak_log": 1,
+       "blackstone": 3,
+       "deepslate_diamond_ore": 1,
+       "gilded_blackstone": 1,
+       "polished_basalt_side": 1
+      },
+      "tuff": {
+       "<missed>": 279,
+       "iron_ore": 3,
+       "piston_bottom": 2,
+       "polished_basalt_side": 2,
+       "pearlescent_froglight_side": 1,
+       "dead_tube_coral_block": 3,
+       "netherite_block": 2,
+       "tuff": 4,
+       "dead_brain_coral_block": 1,
+       "gray_glazed_terracotta": 1,
+       "coal_block": 3,
+       "cobbled_deepslate": 2,
+       "pale_oak_log": 1,
+       "polished_diorite": 1,
+       "light_gray_glazed_terracotta": 1
+      },
+      "dead_tube_coral_block": {
+       "<missed>": 291,
+       "piston_bottom": 2,
+       "polished_basalt_side": 1,
+       "tuff_bricks": 2,
+       "dead_tube_coral_block": 7,
+       "chiseled_stone_bricks": 1,
+       "chain_command_block_back": 2,
+       "deepslate": 2,
+       "cobbled_deepslate": 1,
+       "pale_moss_block": 1,
+       "exposed_copper_grate": 1,
+       "glowstone": 1,
+       "iron_ore": 2,
+       "test_block_start": 1,
+       "tuff": 1,
+       "polished_diorite": 1,
+       "acacia_log": 1,
+       "deepslate_coal_ore": 1,
+       "cobblestone": 1,
+       "reinforced_deepslate_side": 1
+      },
+      "cobblestone": {
+       "<missed>": 264,
+       "dead_brain_coral_block": 1,
+       "cobblestone": 6,
+       "dead_tube_coral_block": 1,
+       "tuff_bricks": 1,
+       "chain_command_block_back": 3,
+       "cracked_deepslate_tiles": 1,
+       "exposed_copper_grate": 1,
+       "iron_ore": 2,
+       "deepslate_copper_ore": 1,
+       "coal_ore": 1,
+       "deepslate_iron_ore": 1,
+       "smooth_basalt": 1,
+       "creaking_heart": 1
+      },
+      "andesite": {
+       "<missed>": 276,
+       "pale_moss_block": 2,
+       "dead_brain_coral_block": 1,
+       "light_gray_concrete_powder": 1,
+       "polished_andesite": 1,
+       "stone": 1,
+       "chiseled_stone_bricks": 1,
+       "andesite": 1,
+       "mud": 1,
+       "cobblestone": 1,
+       "raw_iron_block": 1,
+       "light_gray_wool": 1,
+       "basalt_side": 1,
+       "gravel": 1,
+       "poplar_planks": 1,
+       "mangrove_log": 1,
+       "netherite_block": 1,
+       "acacia_log": 1
+      },
+      "dead_bubble_coral_block": {
+       "<missed>": 186,
+       "tuff_bricks": 2,
+       "chiseled_tuff_bricks": 1,
+       "dead_bubble_coral_block": 2,
+       "dead_tube_coral_block": 1,
+       "dead_horn_coral_block": 2,
+       "cobblestone": 1,
+       "tuff": 1,
+       "deepslate_iron_ore": 3,
+       "gilded_blackstone": 1,
+       "smooth_basalt": 3,
+       "crafter_south": 1,
+       "deepslate_gold_ore": 1,
+       "mossy_cobblestone": 1,
+       "polished_diorite": 1
+      }
+     },
+     "ordered_positions_per_neighbor_pair": {
+      "same": {
+       "n": 1080,
+       "both_matched": 38,
+       "both_correct": 3,
+       "different_called_same": 0
+      },
+      "dead_brain_coral_block / dead_brain_coral_block": {
+       "n": 132,
+       "both_matched": 2,
+       "both_correct": 0,
+       "different_called_same": 0
+      },
+      "unlike": {
+       "n": 3024,
+       "both_matched": 107,
+       "both_correct": 4,
+       "different_called_same": 3
+      },
+      "dead_brain_coral_block / dead_horn_coral_block": {
+       "n": 252,
+       "both_matched": 13,
+       "both_correct": 0,
+       "different_called_same": 1
+      },
+      "dead_horn_coral_block / dead_horn_coral_block": {
+       "n": 132,
+       "both_matched": 6,
+       "both_correct": 0,
+       "different_called_same": 0
+      },
+      "dead_fire_coral_block / dead_horn_coral_block": {
+       "n": 288,
+       "both_matched": 7,
+       "both_correct": 0,
+       "different_called_same": 0
+      },
+      "dead_fire_coral_block / dead_fire_coral_block": {
+       "n": 120,
+       "both_matched": 4,
+       "both_correct": 0,
+       "different_called_same": 0
+      },
+      "dead_fire_coral_block / deepslate": {
+       "n": 240,
+       "both_matched": 9,
+       "both_correct": 1,
+       "different_called_same": 0
+      },
+      "deepslate / deepslate": {
+       "n": 120,
+       "both_matched": 4,
+       "both_correct": 1,
+       "different_called_same": 0
+      },
+      "deepslate / tuff": {
+       "n": 276,
+       "both_matched": 13,
+       "both_correct": 0,
+       "different_called_same": 0
+      },
+      "tuff / tuff": {
+       "n": 129,
+       "both_matched": 5,
+       "both_correct": 0,
+       "different_called_same": 0
+      },
+      "dead_tube_coral_block / tuff": {
+       "n": 240,
+       "both_matched": 9,
+       "both_correct": 1,
+       "different_called_same": 0
+      },
+      "dead_tube_coral_block / dead_tube_coral_block": {
+       "n": 132,
+       "both_matched": 5,
+       "both_correct": 0,
+       "different_called_same": 0
+      },
+      "cobblestone / dead_tube_coral_block": {
+       "n": 231,
+       "both_matched": 10,
+       "both_correct": 1,
+       "different_called_same": 1
+      },
+      "cobblestone / cobblestone": {
+       "n": 102,
+       "both_matched": 4,
+       "both_correct": 2,
+       "different_called_same": 0
+      },
+      "andesite / cobblestone": {
+       "n": 222,
+       "both_matched": 4,
+       "both_correct": 0,
+       "different_called_same": 0
+      },
+      "andesite / andesite": {
+       "n": 129,
+       "both_matched": 3,
+       "both_correct": 0,
+       "different_called_same": 0
+      },
+      "andesite / dead_brain_coral_block": {
+       "n": 33,
+       "both_matched": 0,
+       "both_correct": 0,
+       "different_called_same": 0
+      },
+      "dead_horn_coral_block / deepslate": {
+       "n": 54,
+       "both_matched": 1,
+       "both_correct": 0,
+       "different_called_same": 0
+      },
+      "dead_fire_coral_block / dead_tube_coral_block": {
+       "n": 66,
+       "both_matched": 1,
+       "both_correct": 0,
+       "different_called_same": 0
+      },
+      "cobblestone / deepslate": {
+       "n": 24,
+       "both_matched": 1,
+       "both_correct": 0,
+       "different_called_same": 0
+      },
+      "dead_brain_coral_block / tuff": {
+       "n": 36,
+       "both_matched": 0,
+       "both_correct": 0,
+       "different_called_same": 0
+      },
+      "dead_tube_coral_block / deepslate": {
+       "n": 60,
+       "both_matched": 2,
+       "both_correct": 0,
+       "different_called_same": 0
+      },
+      "cobblestone / dead_horn_coral_block": {
+       "n": 33,
+       "both_matched": 0,
+       "both_correct": 0,
+       "different_called_same": 0
+      },
+      "andesite / deepslate": {
+       "n": 69,
+       "both_matched": 2,
+       "both_correct": 0,
+       "different_called_same": 0
+      },
+      "cobblestone / dead_brain_coral_block": {
+       "n": 69,
+       "both_matched": 2,
+       "both_correct": 0,
+       "different_called_same": 0
+      },
+      "dead_brain_coral_block / deepslate": {
+       "n": 36,
+       "both_matched": 0,
+       "both_correct": 0,
+       "different_called_same": 0
+      },
+      "dead_horn_coral_block / tuff": {
+       "n": 36,
+       "both_matched": 1,
+       "both_correct": 0,
+       "different_called_same": 0
+      },
+      "cobblestone / tuff": {
+       "n": 63,
+       "both_matched": 3,
+       "both_correct": 0,
+       "different_called_same": 0
+      },
+      "dead_horn_coral_block / dead_tube_coral_block": {
+       "n": 24,
+       "both_matched": 1,
+       "both_correct": 0,
+       "different_called_same": 1
+      },
+      "cobblestone / dead_bubble_coral_block": {
+       "n": 24,
+       "both_matched": 0,
+       "both_correct": 0,
+       "different_called_same": 0
+      },
+      "andesite / dead_horn_coral_block": {
+       "n": 21,
+       "both_matched": 0,
+       "both_correct": 0,
+       "different_called_same": 0
+      },
+      "dead_bubble_coral_block / dead_horn_coral_block": {
+       "n": 30,
+       "both_matched": 0,
+       "both_correct": 0,
+       "different_called_same": 0
+      },
+      "dead_fire_coral_block / tuff": {
+       "n": 24,
+       "both_matched": 0,
+       "both_correct": 0,
+       "different_called_same": 0
+      },
+      "dead_bubble_coral_block / tuff": {
+       "n": 36,
+       "both_matched": 1,
+       "both_correct": 0,
+       "different_called_same": 0
+      },
+      "andesite / dead_fire_coral_block": {
+       "n": 21,
+       "both_matched": 1,
+       "both_correct": 0,
+       "different_called_same": 0
+      },
+      "andesite / tuff": {
+       "n": 42,
+       "both_matched": 0,
+       "both_correct": 0,
+       "different_called_same": 0
+      },
+      "andesite / dead_bubble_coral_block": {
+       "n": 138,
+       "both_matched": 3,
+       "both_correct": 0,
+       "different_called_same": 0
+      },
+      "dead_bubble_coral_block / dead_fire_coral_block": {
+       "n": 36,
+       "both_matched": 1,
+       "both_correct": 0,
+       "different_called_same": 0
+      },
+      "cobblestone / dead_fire_coral_block": {
+       "n": 60,
+       "both_matched": 3,
+       "both_correct": 0,
+       "different_called_same": 0
+      },
+      "dead_bubble_coral_block / dead_tube_coral_block": {
+       "n": 36,
+       "both_matched": 2,
+       "both_correct": 0,
+       "different_called_same": 0
+      },
+      "andesite / dead_tube_coral_block": {
+       "n": 60,
+       "both_matched": 5,
+       "both_correct": 0,
+       "different_called_same": 0
+      },
+      "dead_brain_coral_block / dead_fire_coral_block": {
+       "n": 36,
+       "both_matched": 2,
+       "both_correct": 0,
+       "different_called_same": 0
+      },
+      "dead_bubble_coral_block / dead_bubble_coral_block": {
+       "n": 84,
+       "both_matched": 5,
+       "both_correct": 0,
+       "different_called_same": 0
+      },
+      "dead_brain_coral_block / dead_bubble_coral_block": {
+       "n": 60,
+       "both_matched": 7,
+       "both_correct": 1,
+       "different_called_same": 0
+      },
+      "dead_bubble_coral_block / deepslate": {
+       "n": 12,
+       "both_matched": 2,
+       "both_correct": 0,
+       "different_called_same": 0
+      },
+      "dead_brain_coral_block / dead_tube_coral_block": {
+       "n": 36,
+       "both_matched": 1,
+       "both_correct": 0,
+       "different_called_same": 0
+      }
+     }
+    }
+   }
+  }
+ }
+}
