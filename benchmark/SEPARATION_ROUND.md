@@ -57,4 +57,4 @@ python reconstruct.py build screenshot.png --version 26.3 --through surfaces --o
 python reconstruct.py build screenshot.png --version 26.3 --through surfaces --surface-boundary strip-mlsd --out runs/undersides
 ```
 
-The first build uses the default Wall Separator and pinned local MoGe-2 and Depth Anything V2 models. The optional underside build also needs the M-LSD Tiny 512 FP16 checkpoint and `ai-edge-litert==2.4.0`. Use `--surface-boundary color-edges` for the previous contrast-aligned baseline. [Local models and checkpoints](LOCAL_VISION_MODELS.md)
+The first build uses the default Wall Separator and pinned local MoGe-2 and Depth Anything V2 models. For the optional underside build, install `ai-edge-litert==2.4.0` in the build environment and run `python -m benchmark.normal_assets --mlsd --download` to prepare the M-LSD Tiny 512 FP16 checkpoint. Use `--surface-boundary color-edges` for the previous contrast-aligned baseline. [Local models and checkpoints](LOCAL_VISION_MODELS.md)

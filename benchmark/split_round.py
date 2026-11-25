@@ -31,7 +31,7 @@ LINES = ROOT/'benchmark/data/mask-lines-v1'
 WALL = ('wall-depth-anything','wall-moge')
 STRIP = ('strip-deeplsd','strip-scalelsd','strip-both','strip-mlsd')
 METHODS = ('current',*WALL,*STRIP)
-NAMES = dict(zip(METHODS,('Current Surface Finder','Wall Separator + Depth Anything V2',
+NAMES = dict(zip(METHODS,('Previous contrast-aligned finder','Wall Separator + Depth Anything V2',
     'Wall Separator + MoGe-2 depth','Underside Finder + DeepLSD',
     'Underside Finder + ScaleLSD v2','Underside Finder + DeepLSD and ScaleLSD','Underside Finder + M-LSD Tiny')))
 RULE = ('Choose each input on development, preferring a higher layout-average F1 for walls, '

@@ -17,8 +17,8 @@ from benchmark.surface_reference import recorded
 from engine.surface_perimeter import _native_alpha
 
 
-NAMES = {'current': 'Current finder', 'wall-depth-anything': 'Wall split · Depth Anything V2',
-         'wall-moge': 'Wall split · MoGe', 'strip-deeplsd': 'Underside · DeepLSD',
+NAMES = {'current': 'Previous finder', 'wall-depth-anything': 'Wall Separator · Depth Anything V2',
+         'wall-moge': 'Wall Separator · MoGe', 'strip-deeplsd': 'Underside · DeepLSD',
          'strip-scalelsd': 'Underside · ScaleLSD', 'strip-both': 'Underside · DeepLSD + ScaleLSD',
          'strip-mlsd': 'Underside · M-LSD Tiny'}
 LEFT, COL, GAP, HEADER = 238, 384, 14, 263
@@ -154,7 +154,7 @@ def _low_angle_section(page, top, source, cases, lookup, sample, strip):
           "The low-angle examples below are chosen after scoring. The totals above cover only the original eight views.",20)
     start = top+210
     yvals = [start+285*i for i in range(5)]
-    for y,title,note in zip(yvals,('Source location','Original pixels','Recorded underside','Current finder','Underside test'),
+    for y,title,note in zip(yvals,('Source location','Original pixels','Recorded underside','Previous finder','Underside Finder'),
                             ('White box locates the crop.', 'Same crop for all four detail rows.',
                              'Recorded geometry for scoring.', 'Original predicted outline.', NAMES[strip])):
         draw.line((15,y,page.width-15,y),fill='#bdcdc7',width=2)
@@ -218,7 +218,7 @@ def render(out, cases, lookup, selected, *, source=None):
     source = out if source is None else source
     methods = ('current', selected['wall'], selected['strip'])
     recommended = selected['recommended']
-    short = dict(zip(methods, ('Current finder', 'Wall split', 'Underside test')))
+    short = dict(zip(methods, ('Previous finder', 'Wall Separator', 'Underside Finder')))
     runs = ROOT/'benchmark/reviews'
     sample = read(runs/'perimeters-01/surface-detection.json')['views']
     previous = {v['frame']:v for v in read(runs/'overhang-01/focus.json')['views']}
@@ -241,7 +241,7 @@ def render(out, cases, lookup, selected, *, source=None):
     page = Image.new('RGB', (LEFT+len(sample)*(COL+GAP)+GAP,supplemental_top+210+5*285+10), PAPER)
     draw = ImageDraw.Draw(page)
     label(draw, (19,16), 'Which surface splits helped?', 39, bold=True)
-    label(draw, (20,72), 'Same eight building views. Each experiment starts from the current finder. A match needs at least 50% overlap with one recorded surface.', 21)
+    label(draw, (20,72), 'Same eight building views. Each experiment starts from the previous finder. A match needs at least 50% overlap with one recorded surface.', 21)
     legend = [('finder','Predicted outline'),('found','Found'),('missed','Missed'),('small_found','Small found'),('small','Small missed'),('extra','Extra guess')]
     x = 20
     for code, name in legend:
