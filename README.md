@@ -6,6 +6,8 @@ Reconstruct a Minecraft Java build from a screenshot and place it in a real worl
 
 ## Single-image exterior benchmark
 
+Use the same 56 saved screenshots and their geometry whenever you test a new surface method. Change the method, run it on the images, then compare its outlines against the same Minecraft surfaces. A coordinator in one chat can give the baseline and each challenger to a different agent, run them in parallel and return one comparison. [How to run a new combination](benchmark/OFFLINE_GEOMETRY.md)
+
 Open the [eight-building picture sheet](benchmark/reviews/normals-01/buildings-b.jpg) to see each original screenshot beside B’s surface directions and its checked outlines. Run `.\Invoke-SurfaceRound.ps1 -Round saved` to compare B’s saved outlines against the recorded buildings entirely offline. [Saved geometry and replay commands](benchmark/OFFLINE_GEOMETRY.md)
 
 The visible-plane experiment compares the deterministic outline method with two local vision alternatives on eight Minecraft structures. The review includes clean source screenshots, the effects on openings, block scale and relative depth, and one command to reproduce it. [Measured results and execution path](benchmark/NORMAL_ROUND.md)
@@ -16,9 +18,9 @@ Run the shared regression suite with `python -m benchmark.exterior_suite`. It re
 
 Round one measures the projected camera and block grid on newly captured vanilla Java 26.3 exteriors. To reproduce the experiment on its frozen inputs, run `python -m benchmark.camera_round` from this checkout. To use the selected camera on a single screenshot, run `python reconstruct.py build IMAGE --through camera --version 26.3 --out runs/camera-build`. [Round design and review](benchmark/CAMERA_ROUND.md)
 
-## Start with a version
+## Create a calibration world for a new version
 
-Use Python 3.11 or newer, an installed vanilla Java client, and a JDK compatible with that client. Live verification has run on Windows with JDK 25 and Minecraft Java 26.1, 26.2 and 26.3.
+The saved benchmarks above run with Python and their listed dependencies. Use the following live procedure when building new reference displays for a game version. It needs an installed vanilla client and compatible JDK. Live verification has run on Windows with JDK 25 and Minecraft Java 26.1, 26.2 and 26.3.
 
 ```console
 python -m pip install -r requirements.txt
@@ -36,12 +38,11 @@ For an offline atlas and a first reconstruction without launching Minecraft, run
 ```console
 python reconstruct.py analyze examples/repair-wall/wall-only.png --out runs/wall-grid
 python reconstruct.py build examples/repair-wall/wall-only.png --geometry runs/wall-grid/geometry.json --atlas runs/26.3/atlas --library runs/26.3/face_textures/softened-library.npz --out runs/wall
-python reconstruct.py verify-build runs/wall --version 26.3 --out runs/wall-world
 ```
 
 Replace the example PNG with a JPEG, PNG, or another Pillow-readable image. To run both image stages in one command, omit `--geometry`. Review `grid.png` for the detected outline and spacing. `geometry.json` records the image fingerprint, camera-plane transforms, source pixels and destination coordinates. You can reuse this file with another version's atlas and library. `dimensions.json` reports block measurements. `matches.json` records the closest texture candidates, distances and margins. Each visible cell receives its best eligible block when building. A small margin means the decision is ambiguous. Reviewer labels belong in test cases.
 
-The result is a Java datapack, `reconstruction.zip`, containing tiled structure templates. To place it in an existing world, put the ZIP in that world's `datapacks` folder, run `/reload`, stand at the desired origin and run `/function reconstruction:build`. For a separate playable world use `verify-build`. Its save is under `client/saves/Palette Lab` and its real framebuffer screenshot is under `captures`.
+The result is a Java datapack, `reconstruction.zip`, containing tiled structure templates. File export runs with Minecraft closed. When the task calls for actual placement and an in-game screenshot, run `python reconstruct.py verify-build runs/wall --version 26.3 --out runs/wall-world`. Its save is under `client/saves/Palette Lab` and the screenshot is under `captures`. To place it in an existing world, put the ZIP in that world's `datapacks` folder, run `/reload`, stand at the desired origin and run `/function reconstruction:build`.
 
 ## Angled views and hidden geometry
 

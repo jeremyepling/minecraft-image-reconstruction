@@ -1,5 +1,7 @@
 # Measuring a build from screenshots
 
+For the current eight-building exterior suite, start with the [saved geometry and comparison commands](OFFLINE_GEOMETRY.md). Run new combinations on the existing captures. The results below describe an earlier fixture collection.
+
 This Java 26.3 benchmark uses 48 built fixtures and 216 Minecraft screenshots. Each building belongs to one split. Four camera views of that building stay together, and the predictor sees one frame at a time. Physical block coordinates and actual camera poses supply ground truth for scoring.
 
 ![Four angles of the geometry fixtures and adjacent-material panels](four-angles.jpg)
@@ -32,13 +34,9 @@ Allowing a bounded change in exposure improved identification on aligned faces f
 
 ## Reproduce the geometry comparison
 
-Run from the repository root with Python and the matching Java client JAR. Replace MAIN and OPEN with separate fresh run directories and SCORES with the output directory.
+Use the completed MAIN and OPEN capture directories and a fresh SCORES directory. These historical commands write some intermediate files beside the inputs. Give each concurrent experiment private copies of the two working directories.
 
 ```console
-python -m benchmark.fixtures --jar CLIENT_JAR --out MAIN
-python -m benchmark.fixtures --jar CLIENT_JAR --out OPEN --open-only
-python -m runtime.capture capture --version 26.3 --run MAIN
-python -m runtime.capture capture --version 26.3 --run OPEN
 python -m benchmark.planes MAIN --splits dev
 python -m benchmark.planes OPEN --splits dev
 python -m benchmark.geometry_benchmark MAIN OPEN --split dev --out SCORES
@@ -48,7 +46,16 @@ python -m benchmark.geometry_benchmark MAIN OPEN --split test --selection SCORES
 python -m benchmark.depth_visibility --roots MAIN OPEN --selection SCORES/selection.json --out SCORES/depth-visibility.json
 ```
 
-The fixture generator records dimensions, placements, openings and viewpoints. The capture driver reads the placed blocks back from the game. Predictions and per-view scores are written alongside the runs. The additional small-frame and warm-shader captures use the adjacency panels in MAIN. [Capture setup](../runtime/README.md)
+### Create or edit the historical reference structures
+
+Use new MAIN and OPEN directories for a new fixture version. These commands place the structures in Minecraft and capture their screenshots and block readbacks. The additional small-frame and warm-shader captures use the adjacency panels in MAIN. [Capture setup](../runtime/README.md)
+
+```console
+python -m benchmark.fixtures --jar CLIENT_JAR --out MAIN
+python -m benchmark.fixtures --jar CLIENT_JAR --out OPEN --open-only
+python -m runtime.capture capture --version 26.3 --run MAIN
+python -m runtime.capture capture --version 26.3 --run OPEN
+```
 
 ## Export verification
 

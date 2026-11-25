@@ -8,7 +8,7 @@ The release is `exterior-v1`. Four layouts each have two palettes and two obliqu
 
 The release records SHA-256 fingerprints of both indexes, every referenced image, camera pose, visibility label and state readback, plus the cross-world pairing audit. Pairs use stable frame IDs. Block states, light readings, true camera and visible labels match across the two floors. The four facade-only controls were pixel-identical. The weakly marked concrete surface preserves normal rendering and building shadows. [Pair verification](data/camera-gray-concrete-v1/pair-verification.json)
 
-These four layouts are now regression examples. `dev` and `holdout` retain their original round-one meanings for historical comparisons. They no longer provide a blind test of improvements inspired by these images. Confirm such improvements on additional, previously unseen layouts, grouping all their floors, angles and palettes together.
+These four layouts are now regression examples. `dev` and `holdout` retain their original round-one meanings for historical comparisons. Reuse the same layouts for each new method and report them as reviewed examples. If a future task calls for creating additional reference structures for blind confirmation, keep all floors, angles and palettes of each new layout together.
 
 ## Run a variation
 

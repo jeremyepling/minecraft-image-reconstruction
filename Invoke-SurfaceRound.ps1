@@ -14,7 +14,9 @@ if (-not $Python) {
 
 Push-Location -LiteralPath $PSScriptRoot
 $previousPythonPath = $env:PYTHONPATH
+$previousImageOnly = $env:MCIR_IMAGE_ONLY
 try {
+    $env:MCIR_IMAGE_ONLY = '1'
     $module = @{
         surfaces = 'benchmark.surface_round'
         normals = 'benchmark.normal_round'
@@ -53,5 +55,6 @@ try {
     throw 'Install the suite requirements (plus onnxruntime==1.23.2 for normals) and pass that Python executable with -Python.'
 } finally {
     $env:PYTHONPATH = $previousPythonPath
+    $env:MCIR_IMAGE_ONLY = $previousImageOnly
     Pop-Location
 }
