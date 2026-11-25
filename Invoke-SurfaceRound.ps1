@@ -1,8 +1,8 @@
 [CmdletBinding()]
 param([string] $Python, [string] $Out, [int] $Workers = 3,
-      [ValidateSet('surfaces', 'normals', 'saved', 'building-sheet', 'candidate', 'compare', 'perimeters')] [string] $Round = 'surfaces',
+      [ValidateSet('surfaces', 'normals', 'saved', 'building-sheet', 'candidate', 'compare', 'perimeters', 'detection-sheet')] [string] $Round = 'surfaces',
       [string] $Name = 'candidate', [string] $Outlines, [string] $Pitch, [string] $Order,
-      [string] $Split, [string] $Fields, [string[]] $Runs)
+      [string] $Split, [string] $Fields, [string[]] $Runs, [string] $SourceRun)
 
 $ErrorActionPreference = 'Stop'
 $options = @($Python)
@@ -27,9 +27,10 @@ try {
         candidate = 'benchmark.compare_surface_methods'
         compare = 'benchmark.compare_surface_methods'
         perimeters = 'benchmark.perimeter_round'
+        'detection-sheet' = 'benchmark.perimeter_sheet'
     }[$Round]
     $imports = 'import numpy, PIL'
-    if ($Round -eq 'perimeters') {
+    if ($Round -in 'perimeters', 'detection-sheet') {
         $imports = "import sys,numpy,PIL; sys.exit(0 if (numpy.__version__,PIL.__version__)==('2.3.5','13.0.0') else 1)"
     }
     $needsInference = $Round -eq 'normals'
@@ -56,6 +57,7 @@ try {
                 if ($LASTEXITCODE -ne 0) { throw 'Failed to prepare the pinned local model files.' }
             }
             $arguments = @('-m', $module)
+            if ($Round -eq 'detection-sheet' -and $SourceRun) { $arguments += @('--run', $SourceRun) }
             if ($Round -eq 'perimeters' -and $Fields) { $arguments += @('--fields', $Fields) }
             if ($Round -in 'surfaces', 'normals') { $arguments += @('--workers', $Workers) }
             if ($Round -eq 'candidate') {

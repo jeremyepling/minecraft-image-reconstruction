@@ -6,7 +6,7 @@ Reconstruct a Minecraft Java build from a screenshot and place it in a real worl
 
 ## Single-image exterior benchmark
 
-The [surface-detection sheet](benchmark/reviews/perimeters-01/surface-detection.jpg) marks found surfaces, misses and extra predictions for every building in the eight review pictures. Each building column includes the actual visible count and the number meeting the size cutoff. The close-ups show how a missed surface can be absorbed into an adjoining wall.
+Start with the [surface-detection sheet](benchmark/reviews/perimeters-01/surface-detection.jpg) when debugging surface matching. Each building has a fixed column showing all predictions, actual surfaces, misses and extra guesses. The counts distinguish all visible surfaces from those large enough to score. The bottom two rows enlarge the same spot in the reference and prediction. Rebuild this sheet from saved results with `.\Invoke-SurfaceRound.ps1 -Round detection-sheet`.
 
 Open the [pipeline comparison](benchmark/reviews/perimeters-01/comparison.jpg) to follow the same surface through the original photograph, Surface Finder outline, context crop, perspective correction, block-grid overlay and texture match. The [three close-ups](benchmark/reviews/perimeters-01/edge-closeups.jpg) show why the old courtyard, workshop and registry diagonals were misleading. Reproduce the review with `.\Invoke-SurfaceRound.ps1 -Round perimeters`. [Surface and crop results](benchmark/PERIMETER_ROUND.md)
 

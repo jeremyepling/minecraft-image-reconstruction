@@ -1,5 +1,7 @@
 # Reusing the same buildings without starting Minecraft
 
+For surface-matching reviews, start with `.\Invoke-SurfaceRound.ps1 -Round detection-sheet`. It prints the path to a new portrait sheet built from the saved screenshots, predictions and recorded geometry. The per-surface pairings are saved beside it. The default source is the published `perimeters-01` run. Pass `-SourceRun <perimeter-run-directory>` to review a later run on the same views. [Review layout](reviews/perimeters-01/surface-detection.jpg)
+
 Use `.\Invoke-SurfaceRound.ps1 -Round perimeters` to score the three Surface Finder methods and review the surface through cropping, straightening, counting and atlas matching. The experiment reuses the same frame IDs and the model's numerical depth cache. An optional `-Fields` path can point to a different compatible cache. [Review and results](PERIMETER_ROUND.md)
 
 Run `.\Invoke-MaskRound.ps1` to replay the four-method comparison of B, model regions, ScaleLSD v2 and DeepLSD. Its per-picture report and comparison sheet use the 56 saved images. [Reproduction and cache setup](MASK_REPLAY.md)

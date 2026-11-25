@@ -7,7 +7,7 @@ import os
 import numpy as np
 from PIL import Image, ImageDraw
 
-from benchmark.camera_round import read,save
+from benchmark.camera_round import digest,read,save
 from benchmark.count_review import fit_panel,table
 from benchmark.count_round import FINDER,cached_regions
 from benchmark.surface_metrics import DOWNSAMPLE
@@ -106,32 +106,44 @@ def detail_sheet(out,examples,lookup):
     save(out/'edge-closeups.json',details)
 
 
-def make_sheet(out,results,lookup,originals,frozen,selected):
+def review_inputs(run, rows, lookup, originals, frozen, selected, artifacts=None):
+    """Use the same eight saved views in the detection review and the pipeline sheet."""
     from benchmark.perimeter_round import COUNT
+    index={r['key']:r for r in originals}
+    examples=[]
+    predictions={}
+    for view in read(COUNT/'review-regions.json'):
+        key=view['frame']
+        row=rows[key]
+        case=lookup[key]
+        if digest(case.path('image'))!=row['sha256']:
+            raise ValueError(f'Screenshot changed for {key}')
+        if artifacts is not None and selected!='regions-first':
+            path=row['predictions']
+            if digest(run/path)!=artifacts[path]:
+                raise ValueError(f'Saved predictions changed for {key}')
+        with Image.open(case.path('image')) as source:
+            image=source.convert('RGB')
+        predictions[key]=load_parts(run,row,index.get(key),frozen,selected)
+        examples.append(dict(layout=row['layout'],key=key,image=image,box=row['review']['scene_box'],
+                             source=case.path('image').name,review=row['review']))
+    return examples,predictions
+
+
+def make_sheet(out,results,lookup,originals,frozen,selected):
     from benchmark.surface_pipeline_sheet import stage_sheet
     from benchmark.surface_detection_sheet import diagnostics
     from engine.atlas_count import load_atlas
     atlas=load_atlas(version='26.3')
-    index={r['key']:r for r in originals}
     rows={r['key']:r for r in results}
-    examples=[]
-    predictions={}
-    def example(key,row,region,label=None):
-        case=lookup[key]
-        with Image.open(case.path('image')) as source:
-            image=source.convert('RGB')
-        expected=row['review']['expected'] if not label and row['review']['methods'][selected]['matched'] else None
-        return dict(layout=row['layout'],key=key,image=image,box=row['review']['scene_box'],part=region,
-                    source=case.path('image').name,expected=expected,
-                    margin=8,finder=selected,extra=label,review=row['review'])
-    for view in read(COUNT/'review-regions.json'):
-        key=view['frame']
-        row=rows[key]
-        choices=load_parts(out,row,index[key],frozen,selected)
-        predictions[key]=choices
-        part=next(p for p in choices if p['id']==row['review']['methods'][selected]['id'])
-        examples.append(example(key,row,part))
+    examples,predictions=review_inputs(out,rows,lookup,originals,frozen,selected)
     detection=diagnostics(out,examples,predictions,lookup,rows,selected)
+    for ex in examples:
+        review=ex['review']
+        focus=review['methods'][selected]
+        part=next(p for p in predictions[ex['key']] if p['id']==focus['id'])
+        ex.update(part=part,expected=review['expected'] if focus['matched'] else None,
+                  margin=8,finder=selected,extra=None)
     detail_sheet(out,[next(ex for ex in examples if ex['layout']==k) for k in FOCUS],lookup)
     # Show one supported grid as well as abstentions on the pre-selected comparison surfaces.
     from engine.masked_count import count
@@ -149,7 +161,7 @@ def make_sheet(out,results,lookup,originals,frozen,selected):
             if n and (best is None or n>best[0]):
                 best=n,part
         if best:
-            examples.append(example(key,rows[key],best[1],'Supported block grid'))
+            examples.append(dict(ex,part=best[1],extra='Supported block grid',expected=None))
             break
     for ex in examples:
         diagnostic=detection[ex['key']]
@@ -161,11 +173,11 @@ def make_sheet(out,results,lookup,originals,frozen,selected):
     stats=read(out/'scores.json')
     parts=['<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">',
            '<title>Surface Finder perimeter review</title><style>body{margin:2rem auto;padding:0 1rem;max-width:1250px;background:#faf9f4;color:#183638;font:16px/1.45 system-ui}img{max-width:100%}table{border-collapse:collapse}td,th{padding:.4rem .6rem;text-align:left;border-bottom:1px solid #cdd6d1}a{color:#106568}summary{cursor:pointer}</style>',
-           '<h1>Surface Finder perimeter review</h1><p>Open the portrait sheet to zoom in. Read down a building’s column to follow the same surface, or across a stage to compare buildings. A missing grid means that the counter could not place the lines with confidence.</p>',
-           '<a href="comparison.jpg"><img src="comparison.jpg" alt="Eight buildings shown through each stage of reconstruction"></a>',
-           '<h2>Which surfaces were found or missed?</h2><p>The pipeline follows one outline per example. This separate sheet shows every predicted region and every recorded visible building surface in those same eight views. Green marks a scored match, amber a scored miss, pink an extra prediction, blue a separately paired small surface and gray a small unpaired surface.</p>',
+           '<h1>Surface Finder perimeter review</h1><h2>Which surfaces were found or missed?</h2><p>Follow one building down its column. Green marks a scored match, amber a missed surface and pink an extra guess. Blue and gray show small surfaces checked separately. The last two rows enlarge the same spot in the recorded surface and the prediction.</p>',
            '<a href="surface-detection.jpg"><img src="surface-detection.jpg" alt="All building surfaces and close-ups of missed regions in eight pictures"></a>',
            '<p>A scored surface has at least four visible block faces and 24 samples on the four-pixel scoring grid. Small surfaces are counted and drawn from the original-resolution geometry. We check them separately against the remaining predictions. <a href="surface-detection.json">Individual surface IDs, pairings and native close-up coordinates</a></p>',
+           '<h2>What happens to a surface after detection?</h2><p>Follow a selected surface through cropping, straightening, counting and texture matching. A missing grid means the counter could not place the lines with confidence.</p>',
+           '<a href="comparison.jpg"><img src="comparison.jpg" alt="Eight buildings shown through each stage of reconstruction"></a>',
            '<h2>The three highlighted buildings</h2><p>The older sheet used the four sampling corners as a surface outline. The detail shows where that chart cuts across visible pixels. The gold overlay is the independently recorded surface.</p>',
            '<a href="edge-closeups.jpg"><img src="edge-closeups.jpg" alt="Old chart and actual surface contours on courtyard, workshop and registry"></a>',
            '<p>Full-resolution crops: '+' · '.join(f'{k.title()} <a href="crops/{k}/surface.png">surface</a> / <a href="crops/{k}/context.png">with context</a>' for k in FOCUS)+'</p>',
@@ -194,3 +206,49 @@ def make_sheet(out,results,lookup,originals,frozen,selected):
                       [[NAMES[m],s['matched'],s['eligible'],row['block_counts'][m]['correct']] for m,s in row['scores'].items()]),'</details>']
     parts+=['<p><a href="manifest.json">Run manifest</a> · <a href="cases.json">Per-picture numbers</a> · <a href="selection.json">Development choice</a></p></html>']
     (out/'report.html').write_text('\n'.join(parts),encoding='utf8')
+
+
+def replay_detection(run, out):
+    from benchmark.perimeter_round import ARCHIVE, COUNT, groups
+    from benchmark.surface_detection_sheet import diagnostics
+
+    manifest=read(run/'manifest.json')
+    selected=manifest['selection']['selected']
+    cohorts,_,fixtures=groups()
+    if fixtures!=manifest['fixtures']:
+        raise ValueError('Saved fixture set differs from the run')
+    def verify(path, expected):
+        if digest(path)!=expected:
+            raise ValueError(f'Saved input changed: {path}')
+    verify(ARCHIVE,manifest['reference_sha256'])
+    verify(run/'cases.json',manifest['artifacts']['cases.json'])
+    verify(COUNT/'manifest.json',manifest['review_source_manifest_sha256'])
+    verify(COUNT/'review-regions.json',read(COUNT/'manifest.json')['artifacts']['review-regions.json'])
+    originals,frozen=[],None
+    if selected=='regions-first':
+        verify(FINDER/'manifest.json',manifest['baseline_manifest_sha256'])
+        frozen=read(FINDER/'manifest.json')
+        verify(FINDER/'cases.json',frozen['artifact_sha256']['cases.json'])
+        originals=read(FINDER/'cases.json')
+    lookup={f'{case.floor}/{case.id}':case for group in cohorts.values() for case in group}
+    rows={row['key']:row for row in read(run/'cases.json')}
+    examples,predictions=review_inputs(run,rows,lookup,originals,frozen,selected,manifest['artifacts'])
+    out.mkdir(parents=True,exist_ok=False)
+    diagnostics(out,examples,predictions,lookup,rows,selected)
+    return out/'surface-detection.jpg'
+
+
+if __name__=='__main__':
+    import argparse
+    from pathlib import Path
+    from uuid import uuid4
+    from benchmark.camera_round import ROOT
+    from runtime.mode import image_only
+
+    parser=argparse.ArgumentParser(description='Rebuild the surface-matching sheet from a saved perimeter run.')
+    parser.add_argument('--run',type=Path,default=ROOT/'benchmark/reviews/perimeters-01')
+    parser.add_argument('--out',type=Path,help='New directory for the sheet and per-surface pairings')
+    args=parser.parse_args()
+    out=args.out or ROOT/'runs'/f'surface-detection-{uuid4().hex[:12]}'
+    with image_only():
+        print(replay_detection(args.run,out).resolve())
