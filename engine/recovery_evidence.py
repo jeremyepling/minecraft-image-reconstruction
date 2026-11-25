@@ -84,6 +84,23 @@ def _compute(source, folder):
     (folder/'evidence.json').write_text(json.dumps(result, allow_nan=False), encoding='utf8')
 
 
+def depth_pro(image_path, device):
+    """Run the Apple model on the original RGB using the same trained weights and image lattice as the suite."""
+    from benchmark import depth_pro_fields
+    source=_model_input('MCIR_DEPTH_PRO_SOURCE','ml-depth-pro')
+    checkpoint=_model_input('MCIR_DEPTH_PRO_CHECKPOINT','depth_pro.pt')
+    interpreter=os.environ.get('MCIR_RECOVERY_PYTHON') or sys.executable
+    with TemporaryDirectory() as folder:
+        dest=Path(folder)/'field.npz'
+        subprocess.run([interpreter,'-B','-m','benchmark.depth_pro_fields','--image',str(Path(image_path).resolve()),
+                        '--source',str(source),'--checkpoint',str(checkpoint),'--device',device,'--out',str(dest)],
+                       cwd=ROOT,check=True)
+        with np.load(dest,allow_pickle=False) as archive:
+            field=archive['inverse_depth']
+    return field,dict(source_revision=depth_pro_fields.SOURCE_REV,checkpoint_sha256=depth_pro_fields.WEIGHTS_SHA,
+                      device=device,settings=depth_pro_fields.SETTINGS)
+
+
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('source', type=Path)

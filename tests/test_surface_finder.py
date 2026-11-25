@@ -14,7 +14,7 @@ from engine.surface_order import order
 
 
 class SurfaceFinderTests(unittest.TestCase):
-    def test_default_keeps_a_chartless_wall_and_its_opening_without_counting(self):
+    def test_wall_separator_keeps_a_chartless_wall_and_its_opening_without_counting(self):
         normal = np.ones((6, 6, 3), dtype=np.float32)
         depth = np.ones((6, 6), dtype=np.float32)
         wall = dict(id='mask-0', support=dict(size=[6, 6], runs=[[0, 0, 6], [1, 0, 1], [1, 5, 6]]),
@@ -25,7 +25,7 @@ class SurfaceFinderTests(unittest.TestCase):
             with patch('engine.surface_fields.infer', side_effect=[normal, depth]) as infer, \
                     patch('engine.mask_first.regions', return_value=[wall]) as regions, \
                     patch.object(surface_model, 'pitch') as pitch:
-                surface_model.build(path, '26.3', Path(temp))
+                surface_model.build(path, '26.3', Path(temp),boundary='wall-depth-anything')
             self.assertEqual([call.args[1] for call in infer.call_args_list], ['normal', 'depth'])
             self.assertIs(regions.call_args.args[1], normal)
             self.assertIs(regions.call_args.args[2], depth)
