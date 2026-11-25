@@ -4,6 +4,8 @@ The [pipeline sheet](reviews/perimeters-01/comparison.jpg) is one portrait image
 
 ## Where the three diagonals came from
 
+The [surface-detection sheet](reviews/perimeters-01/surface-detection.jpg) shows every prediction and every recorded visible building surface in these eight pictures. Green regions were found, amber ones were missed, and pink marks predictions left without a match. The recorded geometry contains **132 visible surfaces**. The finder recovered **75 of 107** in the regular score and paired **2 of the 25** smaller surfaces in a separate full-resolution check. It proposed 101 regions, leaving 24 without a match after both checks. The bottom two rows compare the same area for the largest scored miss in each picture. Wing shows its weakest match because it recovered all five scored surfaces. [Surface pairings and close-up coordinates](reviews/perimeters-01/surface-detection.json)
+
 We verified the original PNG hashes and reused the same native screenshot crops. The previous count sheet drew a four-corner sampling chart on top of a pixel mask. The generated line joined distant corners across steps and recesses. The new Surface Finder emits the actual perimeter and a tight transparent copy of the full surface. It preserves every hole, step and disconnected component in its prediction. Recorded geometry enters only during scoring and when explicitly shown in gold. [Enlarged comparisons](reviews/perimeters-01/edge-closeups.jpg) · [Individual crops and scores](reviews/perimeters-01/report.html)
 
 | Same pictured surface | Old chart treated as the outline | Original region pixels | Current Surface Finder | What remains |

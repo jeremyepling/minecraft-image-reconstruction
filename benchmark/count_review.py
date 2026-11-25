@@ -73,7 +73,9 @@ def sheet(out,results,inputs,lookup,atlas,frozen,selected):
         q=np.asarray(rec['quad'])
         draw_outline(surface,part,color='#49ffff',width=3)
         box=scene_box(ref,image)
-        examples.append(dict(layout=row['layout'],key=key,image=image,part=part,box=box,margin=8,
+        s=inputs[key]['scores']['mask-first']
+        counts=dict(visible=len(ref['patches']),found=s['matched'],scored=s['eligible'],proposed=s['proposed'])
+        examples.append(dict(layout=row['layout'],key=key,image=image,part=part,box=box,margin=8,surface_counts=counts,
                              source=case.path('image').name,expected=rec['expected'],finder='regions-first',counter=selected))
         fit_panel(canvas,surface.crop(box),25,y+28,385,180)
         rgb=np.asarray(sample['rgb']).copy()

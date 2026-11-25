@@ -114,10 +114,16 @@ def _column(example, atlas):
                   scene_xyxy=list(box),card_stage_y=starts,
                   support=dict(size=support['size'],pixels=area,outer_rings=outer,holes=holes),
                   reference_whole_surface_blocks=example.get('expected'))
+    if 'surface_counts' in example:
+        status['surface_counts']=example['surface_counts']
+    if 'selected_iou' in example:
+        status['selected_iou']=example['selected_iou']
     if example.get('extra'):
         status['extra'] = str(example['extra'])
     captions = [top+PIC_H+8 for top in y]
-    text(draw,MARGIN,captions[1],f'{outer} outer  ·  {holes} enclosed openings',17,fill=MUTED)
+    caption=(f"Selected outline overlap  {example['selected_iou']:.0%}" if example.get('selected_iou') is not None
+             else f'{outer} outer  ·  {holes} enclosed openings')
+    text(draw,MARGIN,captions[1],caption,17,fill=MUTED)
     details=[None]*len(STAGES)
     if rings:
         points=np.vstack([ring['points'] for ring in rings])*np.array(image.size)/support['size']
@@ -225,7 +231,7 @@ def build(examples,atlas):
         raise ValueError('A comparison sheet requires at least one building')
     label_width=214
     width=label_width+len(buildings)*(COL+GUTTER)+MARGIN
-    heading=156
+    heading=215 if any('surface_counts' in r for r in views) else 156
     max_views=max(map(len,buildings.values()))
     heights=[]
     for caption in CAPTION_HEIGHTS:
@@ -235,7 +241,10 @@ def build(examples,atlas):
     page=Image.new('RGB',(width,height),PAPER)
     draw=ImageDraw.Draw(page)
     text(draw,MARGIN,14,'Reconstruction stages',37,True)
-    text(draw,MARGIN,63,'Cyan marks a surface. Gold marks the block grid. Blue marks the sampled block.',18,fill=MUTED)
+    legend='Cyan follows one selected surface per example. Gold marks a located grid. Blue marks the sampled block.'
+    if any('surface_counts' in r for r in views):
+        legend+=' The counts above each column cover the entire picture.'
+    text(draw,MARGIN,63,legend,18,fill=MUTED)
     stages=[]
     for i,label in enumerate(STAGES):
         top=heading+sum(heights[:i])
@@ -245,6 +254,10 @@ def build(examples,atlas):
     for j,(layout,parts) in enumerate(buildings.items()):
         x=label_width+j*(COL+GUTTER)
         text(draw,x,109,layout.title(),27,True)
+        counts=parts[0][1].get('surface_counts')
+        if counts:
+            text(draw,x,146,f"{counts['found']} of {counts['scored']} scored surfaces found",19,True)
+            text(draw,x,177,f"{counts['visible']} visible in all  ·  {counts['proposed']} predictions",17,fill=MUTED)
         for tile,record,details in parts:
             record['sheet_column_xyxy']=[x,97,x+COL,height-MARGIN]
             record['sheet_stage_xyxy']=[]

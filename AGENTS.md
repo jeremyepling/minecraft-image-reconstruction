@@ -10,6 +10,8 @@ Make the pipeline comparison sheet one full-resolution portrait image for zoomin
 
 Run `.\Invoke-BlockCountRound.ps1` for a block count or material-sampling comparison on the frozen Regions First outlines. Grade the visible surface dimensions, recovered cell crops and exported coordinates separately. [Count protocol and results](benchmark/COUNT_ROUND.md)
 
+Label each building column with matched, scored, all visible and proposed surface counts for that exact frame. A percentage beside one selected outline grades its shape. For a Surface Finder review, include a companion sheet showing every predicted and recorded region, the scored misses, small surfaces, extra predictions and the same enlarged issue in both source-coordinate overlays.
+
 For a new surface candidate, use `.\Invoke-SurfaceRound.ps1 -Round candidate`. Pass `-Round compare` the finished run directories. The runner and its workers inherit image-only mode, which blocks project Minecraft capture and registry launches. See the offline guide for a two-agent command example.
 
 From this checkout, run `python -m benchmark.exterior_suite` for the Stage 1 regression comparison. During development, `--split dev` and `--floor light_gray_concrete` isolate the development weak-ground case. Compare a changed method on both floors before reporting a result. See [the suite guide](benchmark/EXTERIOR_SUITE.md) for reference scores, release updates, review records and replay instructions.

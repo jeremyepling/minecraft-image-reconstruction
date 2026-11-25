@@ -109,11 +109,13 @@ def detail_sheet(out,examples,lookup):
 def make_sheet(out,results,lookup,originals,frozen,selected):
     from benchmark.perimeter_round import COUNT
     from benchmark.surface_pipeline_sheet import stage_sheet
+    from benchmark.surface_detection_sheet import diagnostics
     from engine.atlas_count import load_atlas
     atlas=load_atlas(version='26.3')
     index={r['key']:r for r in originals}
     rows={r['key']:r for r in results}
     examples=[]
+    predictions={}
     def example(key,row,region,label=None):
         case=lookup[key]
         with Image.open(case.path('image')) as source:
@@ -126,8 +128,10 @@ def make_sheet(out,results,lookup,originals,frozen,selected):
         key=view['frame']
         row=rows[key]
         choices=load_parts(out,row,index[key],frozen,selected)
+        predictions[key]=choices
         part=next(p for p in choices if p['id']==row['review']['methods'][selected]['id'])
         examples.append(example(key,row,part))
+    detection=diagnostics(out,examples,predictions,lookup,rows,selected)
     detail_sheet(out,[next(ex for ex in examples if ex['layout']==k) for k in FOCUS],lookup)
     # Show one supported grid as well as abstentions on the pre-selected comparison surfaces.
     from engine.masked_count import count
@@ -138,7 +142,7 @@ def make_sheet(out,results,lookup,originals,frozen,selected):
         if rows[key]['cohort']!='development':
             continue
         best=None
-        for part in load_parts(out,rows[key],index[key],frozen,selected):
+        for part in predictions[key]:
             sample=sample_surface(ex['image'],part)
             reading=count(sample)
             n=sum(1 for _ in visible_tiles(sample,reading))
@@ -147,12 +151,21 @@ def make_sheet(out,results,lookup,originals,frozen,selected):
         if best:
             examples.append(example(key,rows[key],best[1],'Supported block grid'))
             break
+    for ex in examples:
+        diagnostic=detection[ex['key']]
+        ex['surface_counts']=diagnostic['counts']
+        p=next(p for p in diagnostic['predictions'] if p['proposal']==ex['part']['id'])
+        ref=next((r for r in diagnostic['references'] if r['id']==p['reference']),None)
+        ex['selected_iou']=ref['match_iou'] if ref and ref['eligible'] else None
     stage_sheet(out,examples,atlas)
     stats=read(out/'scores.json')
     parts=['<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">',
            '<title>Surface Finder perimeter review</title><style>body{margin:2rem auto;padding:0 1rem;max-width:1250px;background:#faf9f4;color:#183638;font:16px/1.45 system-ui}img{max-width:100%}table{border-collapse:collapse}td,th{padding:.4rem .6rem;text-align:left;border-bottom:1px solid #cdd6d1}a{color:#106568}summary{cursor:pointer}</style>',
            '<h1>Surface Finder perimeter review</h1><p>Open the portrait sheet to zoom in. Read down a building’s column to follow the same surface, or across a stage to compare buildings. A missing grid means that the counter could not place the lines with confidence.</p>',
            '<a href="comparison.jpg"><img src="comparison.jpg" alt="Eight buildings shown through each stage of reconstruction"></a>',
+           '<h2>Which surfaces were found or missed?</h2><p>The pipeline follows one outline per example. This separate sheet shows every predicted region and every recorded visible building surface in those same eight views. Green marks a scored match, amber a scored miss, pink an extra prediction, blue a separately paired small surface and gray a small unpaired surface.</p>',
+           '<a href="surface-detection.jpg"><img src="surface-detection.jpg" alt="All building surfaces and close-ups of missed regions in eight pictures"></a>',
+           '<p>A scored surface has at least four visible block faces and 24 samples on the four-pixel scoring grid. Small surfaces are counted and drawn from the original-resolution geometry. We check them separately against the remaining predictions. <a href="surface-detection.json">Individual surface IDs, pairings and native close-up coordinates</a></p>',
            '<h2>The three highlighted buildings</h2><p>The older sheet used the four sampling corners as a surface outline. The detail shows where that chart cuts across visible pixels. The gold overlay is the independently recorded surface.</p>',
            '<a href="edge-closeups.jpg"><img src="edge-closeups.jpg" alt="Old chart and actual surface contours on courtyard, workshop and registry"></a>',
            '<p>Full-resolution crops: '+' · '.join(f'{k.title()} <a href="crops/{k}/surface.png">surface</a> / <a href="crops/{k}/context.png">with context</a>' for k in FOCUS)+'</p>',
