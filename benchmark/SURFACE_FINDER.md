@@ -2,7 +2,7 @@
 
 **Surface Finder** answers “which pixels belong to the same flat, connected surface?” **Regions First** is the selected method. It uses two neural models. MoGe-2 estimates which direction each pixel faces. Depth Anything V2 estimates relative depth. The grouping code separates disconnected pieces and can split adjacent regions when depth changes. A wall keeps its actual shape, including visible openings. Relative depth alone supplies no distance in blocks.
 
-**Surface Rectifier** turns one visible surface toward the viewer using a four-corner perspective transform. Its output is a face-on image with transparency outside the surface. Pixels from a pillar gap or doorway stay out of the sample. A wall can remain a measured surface even when a sampling transform cannot be established.
+**Surface Straightener** turns one visible surface toward the viewer using a four-corner perspective transform. Its output is a face-on image with transparency outside the surface. Pixels from a pillar gap or doorway stay out of the sample. A wall can remain a measured surface even when a sampling transform cannot be established.
 
 **Block Counter** estimates how many block widths lie across and down the rectified sample. A repeated texture can reveal the spacing even when the first pixel is partway through a block. The position of the first grid line (phase) is a separate estimate. The count report distinguishes the dimensions of the visible surface from the span of the sampling chart. A masked wall with a doorway can have an overall width and height without every grid cell being occupied.
 
