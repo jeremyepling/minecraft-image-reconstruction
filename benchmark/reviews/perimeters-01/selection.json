@@ -1,0 +1,24 @@
+{
+  "selected": "color-edges",
+  "rule": "Choose on shopfront and wing, weighting each layout equally. Require either a 0.10 pixel reduction in mean edge error or a 0.01 gain in surface F1. Allow at most 0.10 pixels worse edge error, 0.002 lower F1, 0.002 lower assigned pixel fraction and 0.003 higher opening fill. Among qualifying candidates prioritize F1, then lower boundary error.",
+  "ratings": {
+    "regions-first": {
+      "edge_error_px": 6.692057361997001,
+      "f1": 0.7005801687763713,
+      "assigned_fraction": 0.74680714355114,
+      "opening_fill": 0.033645276292335116
+    },
+    "color-edges": {
+      "edge_error_px": 6.543651208648001,
+      "f1": 0.7005801687763713,
+      "assigned_fraction": 0.7475287307871565,
+      "opening_fill": 0.033645276292335116
+    },
+    "depth-split": {
+      "edge_error_px": 6.661528333524135,
+      "f1": 0.7033982877251956,
+      "assigned_fraction": 0.7504056664611078,
+      "opening_fill": 0.033645276292335116
+    }
+  }
+}
