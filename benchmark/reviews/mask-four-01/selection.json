@@ -1,0 +1,26 @@
+{
+  "rule": "Use development layouts equally. Promote mask-first over B for this surface comparison if mean layout F1 or correctly assigned eligible pixel fraction improves by at least 2 points, the other falls by no more than 2 points, and opening fill increases by at most 1 point. Each line alternative must meet the same rule against mask-first. Among passing methods take highest mean layout F1 then pixel accuracy; prefer mask-first on ties. Ordinary builds also require demonstrated correct metric block placement.",
+  "ratings": {
+    "current-b": {
+      "f1": 0.671067106710671,
+      "assigned_fraction": 0.6634006751456663,
+      "opening_fill": 0.19391392920804684
+    },
+    "mask-first": {
+      "f1": 0.7005801687763713,
+      "assigned_fraction": 0.74680714355114,
+      "opening_fill": 0.033645276292335116
+    },
+    "scalelsd": {
+      "f1": 0.7005801687763713,
+      "assigned_fraction": 0.7465301511402981,
+      "opening_fill": 0.033645276292335116
+    },
+    "deeplsd": {
+      "f1": 0.7005801687763713,
+      "assigned_fraction": 0.7470294860265351,
+      "opening_fill": 0.033645276292335116
+    }
+  },
+  "selected": "mask-first"
+}

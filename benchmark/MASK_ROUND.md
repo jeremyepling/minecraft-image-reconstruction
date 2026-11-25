@@ -2,6 +2,29 @@
 
 [Eight-building comparison sheet with close-ups](reviews/mask-four-01/comparison.jpg) · [Results for all 56 pictures](reviews/mask-four-01/report.html) · [Run manifest and hashes](reviews/mask-four-01/manifest.json)
 
+## Result
+
+Keeping the model regions recovered **394 of 598 visible surfaces** across the 56 screenshots. B recovered **281**. The improvement appeared in 37 pictures, 14 tied and five lost matches. Region masks covered **3.9%** of the sampled opening area, down from **29.2%**. They also made **206** proposals with no eligible match, up from **140**. Of the 206, 21 matched real surfaces below the scoring size and 85 covered mostly background.
+
+| Method | Surfaces recovered | Correctly assigned surface pixels | Mean edge error on matched surfaces | Real connections recovered out of 606 |
+| --- | ---: | ---: | ---: | ---: |
+| Current B | 281 | 77.71% | 25.26 px | 88 |
+| Regions first | 394 | 84.69% | 6.94 px | 271 |
+| Regions + ScaleLSD v2 | 393 | 84.59% | 7.01 px | 264 |
+| Regions + DeepLSD | 394 | 84.70% | 6.92 px | 271 |
+
+On the **36 pictures held back from this round’s tuning**, B recovered 196 of 442 surfaces, regions alone recovered 287, ScaleLSD recovered 286 and DeepLSD recovered 287. The largest building-level gains were the portico (67 → 106) and galleries (37 → 66). The registry tied at 21. Each count adds up over views, palettes and available floors. [Every building and picture](reviews/mask-four-01/report.html)
+
+**Where the gain came from.** Region masks kept 253 of B’s 281 matches and recovered 141 surfaces B missed. These included 17 of the 23 surfaces that reached B’s fitter and were rejected, nine of the 12 that B’s rectangle distorted, and 70 of the 175 where the directions alone gave B too little separation. On a plaster shopfront, B submitted a recessed wall with 62% overlap to its fitter, then emitted no rectangle touching that wall. Directions agreed on most of the pixels of 536 surfaces. That number alone overstates how many distinct walls a predictor can find. [Enlarged stage-by-stage trace](reviews/mask-four-01/loss-trace/stages.jpg) · [Recoveries by failure stage](reviews/mask-four-01/recovered-by-stage.json)
+
+**Did better outlines give better blocks?** B exported 129 correct visible block coordinates and regions alone exported 81, out of 10,626 across all views. Both made zero extra blocks. The camera could establish metric scale in only 16 pictures. Given the true camera and planes in a separately labeled diagnostic, B exported 4,056 correct coordinates and 341 extras. Regions exported 4,940 correct and 317 extras.
+
+The masonry wing on smooth stone shows why this matters. The new method found all five eligible surfaces, up from four. Its largest region lacked reliable block spacing. Correct exported blocks dropped from 108 to 10. Keeping the new masks and reusing B’s original measuring charts recovered 102. That places the main loss in this picture in deriving countable geometry from the charts. The masks already contain the wall. [Wing source image](data/camera-round-01/captures/dev-wing-masonry-high-right.png) · [Same view in the comparison sheet](reviews/mask-four-01/comparison.jpg)
+
+**Recommendation.** Use regions alone for the next visible-surface experiment. ScaleLSD lost one match and DeepLSD reduced the average matched boundary error by just 0.02 native pixels. Keep the existing ordinary build defaults. The full building path still needs reliable block spacing and depth on the surfaces the model retains.
+
+**Runtime.** Reprocessing the saved numerical fields took 17.4 s for B and 12.2 s for regions across 56 frames. Refinement added 5.2 s for ScaleLSD or 4.7 s for DeepLSD. In a separate pass over the 52 distinct PNGs, MoGe-2 took 69.4 s and Depth Anything V2 took 45.6 s on the local CPU. Both reproduced the cached numerical arrays exactly. Original line inference took 3.9 s for ScaleLSD on an RTX 4080 and 366.4 s for DeepLSD on a hosted CPU. The different hardware and timing scopes preclude a direct speed ranking. [Per-image times and sample counts](reviews/mask-four-01/report.html)
+
 ## How to read the experiment
 
 Each prediction starts with one saved 1440 × 900 screenshot from vanilla Java 26.3, taken at noon in clear weather. The same shapes appear with different palettes, angles and, for the original four layouts, two floor materials. The suite contains 56 frames from eight buildings and 52 distinct PNGs. Four close-up pairs are pixel-identical. Each frame counts once in the picture scores. Shared neural inference time counts each distinct PNG once.
