@@ -4,6 +4,10 @@ Reconstruct a Minecraft Java build from a screenshot and place it in a real worl
 
 [Architecture, call paths, defaults and experimental modes](ARCHITECTURE.md)
 
+## Single-image exterior benchmark
+
+Round one measures the projected camera and block grid on newly captured vanilla Java 26.3 exteriors. To reproduce the experiment on its frozen inputs, run `python -m benchmark.camera_round` from this checkout. To use the selected camera on a single screenshot, run `python reconstruct.py build IMAGE --through camera --version 26.3 --out runs/camera-build`. [Round design and review](benchmark/CAMERA_ROUND.md)
+
 ## Start with a version
 
 Use Python 3.11 or newer, an installed vanilla Java client, and a JDK compatible with that client. Live verification has run on Windows with JDK 25 and Minecraft Java 26.1, 26.2 and 26.3.
