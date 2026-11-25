@@ -146,6 +146,18 @@ def measure(regions, reference, *, use_mask):
                 pairs.append((float(iou),i,pid))
     matches = _one_to_one(pairs)
     lookup = {i+1:pid for i,pid in matches}
+    unmatched_categories = dict(overlaps_small_surface=0,mostly_background=0,fragment_or_mixed=0)
+    for i,mask in enumerate(masks):
+        if i+1 in lookup:
+            continue
+        hits = np.bincount(ids[mask],minlength=len(areas))
+        best = int(np.argmax(hits))
+        if best>0 and best not in eligible and hits[best]/(counts[i]+areas[best]-hits[best])>=PROTOCOL['iou']:
+            unmatched_categories['overlaps_small_surface']+=1
+        elif not counts[i] or hits[0]>.5*counts[i]:
+            unmatched_categories['mostly_background']+=1
+        else:
+            unmatched_categories['fragment_or_mixed']+=1
     eligible_pixels = np.isin(ids,list(eligible))
     covered = pred_ids>0
     corr = int(sum(np.count_nonzero((ids==pid)&(pred_ids==i+1)) for i,pid in matches))
@@ -160,6 +172,7 @@ def measure(regions, reference, *, use_mask):
     claimed = adjacencies(pred_ids)
     good = {tuple(sorted((lookup[a],lookup[b]))) for a,b in claimed if a in lookup and b in lookup} & true_edges
     out = dict(eligible=len(eligible),proposed=len(regions),matched=len(matches),
+               **{'unmatched_'+k:v for k,v in unmatched_categories.items()},
                eligible_pixels=int(eligible_pixels.sum()),correct_pixels=int(corr),
                wrong_plane_pixels=int((eligible_pixels & covered).sum())-corr,
                unclaimed_pixels=int((eligible_pixels & ~covered).sum()),background_claimed=int(((ids==0)&covered).sum()),

@@ -6,3 +6,8 @@ benchmark/data/normal-confirm-v1/** -text
 benchmark/suites/*.json text eol=lf
 benchmark/worlds/exterior-v1/** -text
 benchmark/worlds/normal-confirm-v1/** -text
+# Preserve measured artifact bytes, including the JSON files fingerprinted by SHA-256.
+benchmark/reviews/mask-first-01/** -text
+benchmark/reviews/mask-loss-01/** -text
+benchmark/reviews/mask-four-01/** -text
+benchmark/data/mask-field-timing-v1.json -text

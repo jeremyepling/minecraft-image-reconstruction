@@ -244,7 +244,9 @@ def run(args):
         manifest['line_models']=model_manifests
         timing_file=ROOT/'benchmark/data/mask-field-timing-v1.json'
         timing=read(timing_file)
-        manifest['shared_field_inference']=dict(cached_during_comparison=True,
+        fresh_count=sum('model_fields_fresh' in r['timing_seconds'] for r in data)
+        manifest['shared_field_inference']=dict(cached_during_comparison=fresh_count==0,
+            fresh_frames=fresh_count,cached_frames=len(data)-fresh_count,
             unique_images=timing['unique_images'],separate_timed_replay_seconds=timing['seconds'],
             per_image_file=artifact_path(timing_file,out),timing_file_sha256=digest(timing_file))
         unique={r['sha256']:r for r in data}.values()
