@@ -127,6 +127,7 @@ def picture_table(rows):
 @image_only()
 def run(out,workers):
     from engine.single_wall_gate import SETTINGS
+    from benchmark.single_wall_opportunities import write_diagnostic
     from benchmark.single_wall_sheet import render
     source=read(BASE/'manifest.json')
     baseline=read(verify(BASE/'cases.json',source['artifacts']['cases.json']))
@@ -171,11 +172,14 @@ def run(out,workers):
     save(out/'cases.json',rows)
     save(out/'scores.json',scores)
     (out/'pictures.md').write_text(picture_table(rows),encoding='utf8')
-    sources={d.relative_to(REVIEWS).as_posix():digest(d/'manifest.json') for d in (BASE,REGIONS,*MODEL_DIRS.values())}
+    sources={d.relative_to(REVIEWS).as_posix():digest(d/'manifest.json') for d in
+             (BASE,REGIONS,REVIEWS/'single-wall-selection-01',*MODEL_DIRS.values())}
     manifest=dict(run_id=out.name,code=code,version=suite['version'],fixtures=fixtures,
                   reference_sha256=digest(ARCHIVE),capture=original['capture'],splits=original['splits'],
                   per_picture='cases.json',sources=sources,methods=LABELS,settings=SETTINGS,protocol=PROTOCOL,
                   selected_on_development=selected,recommended=recommended,selection_rule=RULE,models=original['models'],
+                  line_models=original['line_models'],mobile_model=dict(source_revision=sam['source_revision'],
+                        checkpoint_sha256=sam['checkpoint_sha256']),depth_pro_sha256=maps['single-pro']['checkpoint_sha256'],
                   model_sources={m:MODEL_DIRS[m].name+'/manifest.json' for m in METHODS[1:]},
                   frames=[{k:r[k] for k in ('key','sha256','cohort','layout','inventory_sha256')} for r in rows],
                   cached_seconds={k:sum(r['cached_processing_s'][k] for r in rows) for k in ('prepare',*METHODS[1:])},
@@ -183,7 +187,8 @@ def run(out,workers):
                   artifacts={p.relative_to(out).as_posix():digest(p) for p in out.rglob('*') if p.is_file()})
     save(out/'manifest.json',manifest)
     render(out,out)
-    for name in ('comparison.jpg','sheet-views.json'):
+    write_diagnostic(out,out/'opportunities.json')
+    for name in ('comparison.jpg','sheet-views.json','opportunities.json'):
         manifest['artifacts'][name]=digest(out/name)
     save(out/'manifest.json',manifest)
     print(out,flush=True)

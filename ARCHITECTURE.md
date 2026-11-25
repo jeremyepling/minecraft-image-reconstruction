@@ -2,7 +2,7 @@
 
 The entry point is [reconstruct.py](reconstruct.py). A plain `build` uses baseline geometry and ranks block textures at the image's current brightness. Newer algorithms have their own switches or research commands. The normal build never runs a tournament of algorithms on the user's image.
 
-For a single exterior, `build --through counts` runs the Surface Finder (Regions First with the Wall Separator), Surface Straightener and Block Counter (masked repetition). Add `--material-match atlas` to rank block IDs for complete cells. The build manifest records the actual refinements and evidence used. [Stage guide](benchmark/SURFACE_FINDER.md) · [Surface separation experiment](benchmark/SEPARATION_ROUND.md) · [Count experiment](benchmark/COUNT_ROUND.md)
+For a single exterior, `build --through counts` runs the Surface Finder (Regions First, Wall Recovery and the single-outline depth check), Surface Straightener and Block Counter (masked repetition). Five local checkpoints supply the default evidence. Add `--material-match atlas` to rank block IDs for complete cells. Each build manifest records the actual steps and models. [Stage guide](benchmark/SURFACE_FINDER.md) · [Single-outline comparison](benchmark/SINGLE_WALL_DEPTH.md) · [Count experiment](benchmark/COUNT_ROUND.md)
 
 ```mermaid
 flowchart TD

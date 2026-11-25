@@ -55,7 +55,7 @@ The Wall Separator originally missed 175 surfaces. Of those, 138 were merged wit
 
 ## Replay
 
-Use the optional **Wall Recovery** build when surface accuracy is the priority. It loads five pinned checkpoints. The lighter Wall Separator remains the ordinary default. A direct build of a renamed Galleries screenshot reproduced all 30 saved mask records and the same 19 of 25 matches before passing the surfaces to the Block Counter. [Single-image command and setup](WALL_RECOVERY_BUILD.md) · [Fresh build verification](reviews/wall-recovery-entry-01.json)
+This round introduced the five-model **Wall Recovery** build. Its original settings remain available as `-SurfaceBoundary wall-recovery`. The [single-outline round](SINGLE_WALL_DEPTH.md) selected the current surface default. [Single-image command and setup](WALL_RECOVERY_BUILD.md) · [Original build verification](reviews/wall-recovery-entry-01.json)
 
 From this checkout, regrade every saved prediction, run the Block Counter and regenerate the zoomable portrait sheet together.
 

@@ -6,9 +6,9 @@ From this checkout on the Minecraft PC:
 .\Invoke-WallRecovery.ps1 .\snapshot.png -Out .\runs\my-build
 ```
 
-This opt-in command runs the Java 26.3 Surface Finder and Block Counter. The input is one ordinary screenshot. Use `-Through surfaces` to stop after surface finding. The build writes `surfaces.json` with exact visible masks, surface crops, `counts.json` with any supported dimensions, and a `build-manifest.json` recording the actual stages, inference settings and checkpoint hashes.
+This command uses the default Java 26.3 Surface Finder and Block Counter. The input is one ordinary screenshot. Use `-Through surfaces` to stop after surface finding. The build writes `surfaces.json` with visible masks, surface crops, `counts.json` with supported dimensions and `build-manifest.json` with the methods, settings and checkpoint hashes.
 
-The Wall Separator starts with MoGe-2 directions and Depth Anything V2 depth. The original wall masks provide point prompts for MobileSAM. ScaleLSD then supplies junction-supported wall cuts. M-LSD Tiny finds thin undersides. Finally, the MobileSAM proposals can separate a remaining wall when multiple pieces account for most of its pixels. Each successful split keeps the original outline and gaps.
+The Wall Separator starts with MoGe-2 directions and Depth Anything V2 depth. Its masks supply MobileSAM point prompts. ScaleLSD identifies junction-supported cuts, M-LSD Tiny finds thin undersides, and MobileSAM can partition a wall into several confident shapes. The default now also accepts one shape when Depth Anything V2 detects a consistent step across its boundary. To compare Apple Depth Pro on that same final vote, use `-SurfaceBoundary wall-recovery-single-pro`. [Test results](SINGLE_WALL_DEPTH.md)
 
 ### Model environments
 
@@ -17,7 +17,7 @@ On this PC, the script locates the existing inference installations in the recon
 The same build is available through the normal CLI:
 
 ```powershell
-python reconstruct.py build .\snapshot.png --version 26.3 --through counts --surface-boundary wall-recovery --out .\runs\my-build
+python reconstruct.py build .\snapshot.png --version 26.3 --through counts --out .\runs\my-build
 ```
 
 For direct CLI use, configure `MCIR_RECOVERY_PYTHON`, `MCIR_SCALELSD_SOURCE`, `MCIR_SCALELSD_CHECKPOINT` and `MCIR_MOBILESAM_SOURCE`, or put the model sources and checkpoints in `.deps`. The ONNX and LiteRT paths follow the existing `MINECRAFT_MOGE_ONNX`, `MINECRAFT_DEPTH_ONNX` and `MINECRAFT_MLSD_TFLITE` settings. The default build method stays in `engine/surface_defaults.json`.
@@ -27,7 +27,7 @@ For direct CLI use, configure `MCIR_RECOVERY_PYTHON`, `MCIR_SCALELSD_SOURCE`, `M
 ```powershell
 New-Item -ItemType Directory -Force .\runs\single-image-proof | Out-Null
 Copy-Item .\benchmark\data\normal-confirm-v1\captures\holdout-galleries-plaster-low-left.png .\runs\single-image-proof\snapshot-73.png
-.\Invoke-WallRecovery.ps1 .\runs\single-image-proof\snapshot-73.png -Out .\runs\single-image-proof\build
+.\Invoke-WallRecovery.ps1 .\runs\single-image-proof\snapshot-73.png -SurfaceBoundary wall-recovery -Out .\runs\single-image-proof\build
 python -m benchmark.verify_recovery_build --build runs/single-image-proof/build --case light_gray_concrete/holdout-galleries-plaster-low-left
 ```
 

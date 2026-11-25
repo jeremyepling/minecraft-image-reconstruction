@@ -1,6 +1,6 @@
 # From a screenshot to visible surfaces and block counts
 
-**Surface Finder** answers “which pixels belong to the same flat, connected surface?” **Regions First** is the selected method. It uses two neural models. MoGe-2 estimates which direction each pixel faces. Depth Anything V2 estimates relative depth. The grouping code separates disconnected pieces and can split adjacent regions when depth changes. A wall keeps its actual shape, including visible openings. Relative depth alone supplies no distance in blocks.
+**Surface Finder** answers “which pixels belong to the same flat, connected surface?” Regions First groups MoGe-2 directions and Depth Anything V2 depths. Wall Recovery adds ScaleLSD v2 junctions, M-LSD Tiny undersides and MobileSAM wall outlines. The final pass can divide a wall using one MobileSAM shape when samples on both sides show a consistent depth step. Each partition retains its parent’s support and openings. Depth is relative. [Current method and accuracy](SINGLE_WALL_DEPTH.md)
 
 **Surface Straightener** turns one visible surface toward the viewer using a four-corner perspective transform. Its output is a face-on image with transparency outside the surface. Pixels from a pillar gap or doorway stay out of the sample. A wall can remain a measured surface even when a sampling transform cannot be established.
 
