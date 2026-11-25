@@ -1,6 +1,6 @@
 [CmdletBinding()]
 param([string] $Python, [string] $Out, [int] $Workers = 3,
-      [ValidateSet('surfaces', 'normals', 'saved', 'building-sheet', 'candidate', 'compare', 'perimeters', 'detection-sheet')] [string] $Round = 'surfaces',
+      [ValidateSet('surfaces', 'normals', 'saved', 'building-sheet', 'candidate', 'compare', 'perimeters', 'detection-sheet', 'separation')] [string] $Round = 'surfaces',
       [string] $Name = 'candidate', [string] $Outlines, [string] $Pitch, [string] $Order,
       [string] $Split, [string] $Fields, [string[]] $Runs, [string] $SourceRun)
 
@@ -28,12 +28,13 @@ try {
         compare = 'benchmark.compare_surface_methods'
         perimeters = 'benchmark.perimeter_round'
         'detection-sheet' = 'benchmark.perimeter_sheet'
+        separation = 'benchmark.split_round'
     }[$Round]
     $imports = 'import numpy, PIL'
-    if ($Round -in 'perimeters', 'detection-sheet') {
+    if ($Round -in 'perimeters', 'detection-sheet', 'separation') {
         $imports = "import sys,numpy,PIL; sys.exit(0 if (numpy.__version__,PIL.__version__)==('2.3.5','13.0.0') else 1)"
     }
-    $needsInference = $Round -eq 'normals'
+    $needsInference = $Round -in 'normals','separation'
     if ($Round -eq 'candidate' -and -not $Fields) {
         $defaults = Get-Content -LiteralPath 'engine/surface_defaults.json' -Raw | ConvertFrom-Json
         $activeOutline = if ($Outlines) { $Outlines } else { $defaults.outlines }
@@ -41,7 +42,7 @@ try {
         $needsInference = $activeOutline -like 'normal-*' -or $activeOrder -eq 'depth-anything'
     }
     if ($needsInference) {
-        $imports = 'import numpy, PIL, onnxruntime'
+        $imports = "import onnxruntime; $imports"
         $probeRuntime = Join-Path $PSScriptRoot '../surface-round/runs/depth-probe/runtime'
         if (Test-Path -LiteralPath $probeRuntime) {
             $env:PYTHONPATH = (@($previousPythonPath, $probeRuntime) | Where-Object { $_ }) -join [IO.Path]::PathSeparator
@@ -58,8 +59,8 @@ try {
             }
             $arguments = @('-m', $module)
             if ($Round -eq 'detection-sheet' -and $SourceRun) { $arguments += @('--run', $SourceRun) }
-            if ($Round -eq 'perimeters' -and $Fields) { $arguments += @('--fields', $Fields) }
-            if ($Round -in 'surfaces', 'normals') { $arguments += @('--workers', $Workers) }
+            if ($Round -in 'perimeters','separation' -and $Fields) { $arguments += @('--fields', $Fields) }
+            if ($Round -in 'surfaces', 'normals','separation') { $arguments += @('--workers', $Workers) }
             if ($Round -eq 'candidate') {
                 $arguments += @('run', '--name', $Name)
                 $stageOptions = @{outlines=$Outlines; pitch=$Pitch; order=$Order; split=$Split; fields=$Fields}
