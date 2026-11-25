@@ -159,7 +159,18 @@ def _one_to_one(pairs):
     return sorted((i, pid) for pid, i in held.items())
 
 
-def score_planes(t, proposals):
+def observed_support(support,shape,size):
+    """Resample half-open analysis-mask runs at the scoring pixel centers."""
+    sw,sh=support['size']
+    raw=np.zeros((sh,sw),dtype=bool)
+    for y,x0,x1 in support['runs']:
+        raw[y,x0:x1]=True
+    u=((np.arange(shape[1])+.5)*DOWNSAMPLE*sw/size[0]).astype(int).clip(0,sw-1)
+    v=((np.arange(shape[0])+.5)*DOWNSAMPLE*sh/size[1]).astype(int).clip(0,sh-1)
+    return raw[np.ix_(v,u)]
+
+
+def score_planes(t, proposals, *, supported_pixels=False):
     """Match image-only quad proposals to eligible surface masks; measure union spill onto background."""
     ids, patches = t["id_map"], t["patches"]
     eligible = {pid for pid, p in patches.items() if p["eligible"]}
@@ -174,9 +185,13 @@ def score_planes(t, proposals):
             raster = rasterize(homogeneous, ids.shape[1], ids.shape[0])
         except np.linalg.LinAlgError:
             continue
-        if raster is None:
+        if supported_pixels and prop.get('support') is not None:
+            box=(slice(None),slice(None))
+            inside=observed_support(prop['support'],ids.shape,t['image_size'])
+        elif raster is None:
             continue
-        box, inside = raster[:2]
+        else:
+            box, inside = raster[:2]
         union[box] |= inside
         areas = np.bincount(ids[box][inside], minlength=len(patches)+1)
         area = int(inside.sum())

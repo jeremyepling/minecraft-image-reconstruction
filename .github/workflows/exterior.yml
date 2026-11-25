@@ -23,6 +23,29 @@ on:
 permissions:
   contents: read
 jobs:
+  visible-planes:
+    runs-on: ubuntu-latest
+    env:
+      OPENBLAS_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+          cache-dependency-path: benchmark/suites/*requirements.txt
+      - run: python -m pip install -r benchmark/suites/normal-requirements.txt
+      - uses: actions/cache@v4
+        with:
+          path: .deps/*.onnx
+          key: frozen-surface-onnx-${{ hashFiles('engine/surface_fields.py', 'benchmark/normal_assets.py') }}
+      - run: python -m benchmark.normal_assets --download
+      - run: python -m benchmark.normal_round --out runs/normals/ci-${{ github.run_id }}-${{ github.run_attempt }} --workers 2
+      - uses: actions/upload-artifact@v4
+        with:
+          name: normal-planes-${{ github.sha }}
+          path: runs/normals/
+          if-no-files-found: error
   replay:
     runs-on: ubuntu-latest
     env:

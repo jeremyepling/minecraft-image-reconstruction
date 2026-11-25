@@ -177,22 +177,35 @@ def assemble(proposals, pitches, size, diagnostic_K=None):
                 shared_edges=[edge[-1] for edge in edges])
 
 
-def proposals_for(image, version, method):
+def proposals_for(image, version, method, normals=None):
     if method == 'contact':
         from engine.camera_grid import predict
         parts = predict(image, version, 'seam-fit')['planes']
         return [dict(id=f'contact-{i}', quad=canonical(p['quad'])) for i,p in enumerate(parts)]
-    if method not in ('edges', 'edges+shade'):
+    if method in ('normal-rank','normal-regions'):
+        if normals is None:
+            from engine.surface_fields import infer
+            normals=infer(image,'normal')
+        if method=='normal-rank':
+            from engine.normal_rank import detect
+        else:
+            from engine.normal_regions import detect
+        parts=detect(image,normals,version=version)
+        from engine.surface_fields import observed_normal
+        for p in parts:
+            p['observed_normal_camera']=observed_normal(p['quad'],normals,image.size)
+    elif method in ('edges','edges+shade'):
+        from engine.surface_edges import detect_planes
+        parts=detect_planes(image,version=version,shading=method=='edges+shade')
+    else:
         raise ValueError(f'Unknown outline method {method}')
-    from engine.surface_edges import detect_planes
-    parts = detect_planes(image, version=version, shading=method == 'edges+shade')
     reordered = {}
     for p in parts:
         old = p['quad']
         p['quad'] = canonical(old)
         reordered[p['id']] = [p['quad'].index(corner) for corner in old]
     for p in parts:
-        for link in p['corner_junctions']:
+        for link in p.get('corner_junctions',[]):
             link['corner'] = reordered[p['id']][link['corner']]
             link['neighbor_corner'] = reordered[link['neighbor']][link['neighbor_corner']]
     return parts
@@ -207,9 +220,21 @@ def build(image_path, version, out):
         image = src.convert('RGB')
     patches = proposals_for(image, version, methods['outlines'])
     model = assemble(patches,[pitch(image,p['quad'],version,methods['pitch']) for p in patches],image.size)
+    if 'order' in methods:
+        from engine.surface_order import order
+        field=None
+        if methods['order']=='depth-anything':
+            from engine.surface_fields import infer
+            field=infer(image,'depth')
+        model['relative_depth_order']=order(model['planes'],image.size,field)
     out.mkdir(parents=True,exist_ok=True)
     (out/'surfaces.json').write_text(json.dumps(model, allow_nan=False, indent=2))
     manifest = dict(version=version, through='surfaces', image_sha256=digest(image_path),
                     stages=dict(**methods, lens=model['lens_source'], lift='shared-edges-v1'),
                     settings=SETTINGS, artifact='surfaces.json')
+    if methods['outlines'].startswith('normal-') or methods.get('order')=='depth-anything':
+        from engine.surface_fields import MODELS, SETTINGS as inference
+        fields=(['normal'] if methods['outlines'].startswith('normal-') else [])+(['depth'] if methods.get('order')=='depth-anything' else [])
+        manifest['model_sha256']={k:MODELS[k][2] for k in fields}
+        manifest['inference_settings']=inference
     (out/'build-manifest.json').write_text(json.dumps(manifest, indent=2))

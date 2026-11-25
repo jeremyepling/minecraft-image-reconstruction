@@ -16,6 +16,8 @@ def record(run, image_id, box, preferred, note, floor=None, stage=None):
                      if c['id'] == image_id and c['floor'] == floor), None)
         choices = {'lift':['shared-edges-v1','no-preference'],
                    **{k:[*manifest['methods'][k],'no-preference'] for k in ('pitch','outlines')}}
+        if 'order' in manifest['methods']:
+            choices['order']=[*manifest['methods']['order'],'no-preference']
         if not case or preferred not in choices.get(stage, []):
             raise ValueError('Choose a recorded image, floor, stage and method from this surface run.')
         with Image.open(run / case['source']) as src:
