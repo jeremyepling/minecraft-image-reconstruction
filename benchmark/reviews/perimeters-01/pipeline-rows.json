@@ -1,4 +1,5 @@
 {
+  "schema": 2,
   "version": "26.3",
   "atlas": {
     "version": "26.3",
@@ -11,15 +12,49 @@
     "scope": "all opaque untinted full-cube face sprites in the placement index, all six directions"
   },
   "columns": [
-    "Original screenshot",
-    "Surface Finder",
-    "Crop with context",
-    "Surface Straightener",
-    "Block Counter",
-    "Material Matcher"
+    "shopfront",
+    "wing",
+    "courtyard",
+    "portico",
+    "workshop",
+    "crossing",
+    "galleries",
+    "registry"
+  ],
+  "stages": [
+    {
+      "name": "Original screenshot",
+      "y0": 156,
+      "y1": 678
+    },
+    {
+      "name": "Surface Finder",
+      "y0": 678,
+      "y1": 1252
+    },
+    {
+      "name": "Crop with context",
+      "y0": 1252,
+      "y1": 1826
+    },
+    {
+      "name": "Surface Straightener",
+      "y0": 1826,
+      "y1": 2400
+    },
+    {
+      "name": "Block Counter",
+      "y0": 2400,
+      "y1": 3066
+    },
+    {
+      "name": "Material Matcher",
+      "y0": 3066,
+      "y1": 3688
+    }
   ],
   "image": "comparison.jpg",
-  "rows": [
+  "views": [
     {
       "layout": "shopfront",
       "key": "light_gray_concrete/dev-shopfront-masonry-high-right",
@@ -36,12 +71,6 @@
         1076,
         696
       ],
-      "sheet_row_xyxy": [
-        0,
-        154,
-        2046,
-        462
-      ],
       "support": {
         "size": [
           720,
@@ -54,6 +83,12 @@
       "reference_whole_surface_blocks": [
         10,
         1
+      ],
+      "detail_native_xyxy": [
+        730,
+        382,
+        837,
+        489
       ],
       "context": {
         "native_xyxy": [
@@ -120,7 +155,51 @@
         "method": "rank_tile",
         "complete_cells": 0,
         "cell": null
-      }
+      },
+      "sheet_column_xyxy": [
+        214,
+        97,
+        564,
+        3688
+      ],
+      "sheet_stage_xyxy": [
+        [
+          214,
+          168,
+          564,
+          370
+        ],
+        [
+          214,
+          690,
+          564,
+          922
+        ],
+        [
+          214,
+          1264,
+          564,
+          1496
+        ],
+        [
+          214,
+          1838,
+          564,
+          2070
+        ],
+        [
+          214,
+          2412,
+          564,
+          2690
+        ],
+        [
+          214,
+          3078,
+          564,
+          3334
+        ]
+      ]
     },
     {
       "layout": "wing",
@@ -138,12 +217,6 @@
         1032,
         704
       ],
-      "sheet_row_xyxy": [
-        0,
-        462,
-        2046,
-        770
-      ],
       "support": {
         "size": [
           720,
@@ -156,6 +229,12 @@
       "reference_whole_surface_blocks": [
         13,
         8
+      ],
+      "detail_native_xyxy": [
+        714,
+        440,
+        821,
+        547
       ],
       "context": {
         "native_xyxy": [
@@ -222,7 +301,51 @@
         "method": "rank_tile",
         "complete_cells": 0,
         "cell": null
-      }
+      },
+      "sheet_column_xyxy": [
+        578,
+        97,
+        928,
+        3688
+      ],
+      "sheet_stage_xyxy": [
+        [
+          578,
+          194,
+          928,
+          396
+        ],
+        [
+          578,
+          716,
+          928,
+          948
+        ],
+        [
+          578,
+          1290,
+          928,
+          1522
+        ],
+        [
+          578,
+          1864,
+          928,
+          2096
+        ],
+        [
+          578,
+          2438,
+          928,
+          2716
+        ],
+        [
+          578,
+          3104,
+          928,
+          3360
+        ]
+      ]
     },
     {
       "layout": "courtyard",
@@ -240,12 +363,6 @@
         1080,
         696
       ],
-      "sheet_row_xyxy": [
-        0,
-        770,
-        2046,
-        1078
-      ],
       "support": {
         "size": [
           720,
@@ -258,6 +375,12 @@
       "reference_whole_surface_blocks": [
         16,
         8
+      ],
+      "detail_native_xyxy": [
+        672,
+        506,
+        780,
+        614
       ],
       "context": {
         "native_xyxy": [
@@ -324,7 +447,51 @@
         "method": "rank_tile",
         "complete_cells": 0,
         "cell": null
-      }
+      },
+      "sheet_column_xyxy": [
+        942,
+        97,
+        1292,
+        3688
+      ],
+      "sheet_stage_xyxy": [
+        [
+          942,
+          168,
+          1292,
+          370
+        ],
+        [
+          942,
+          690,
+          1292,
+          922
+        ],
+        [
+          942,
+          1264,
+          1292,
+          1496
+        ],
+        [
+          942,
+          1838,
+          1292,
+          2070
+        ],
+        [
+          942,
+          2412,
+          1292,
+          2690
+        ],
+        [
+          942,
+          3078,
+          1292,
+          3334
+        ]
+      ]
     },
     {
       "layout": "portico",
@@ -342,12 +509,6 @@
         1068,
         672
       ],
-      "sheet_row_xyxy": [
-        0,
-        1078,
-        2046,
-        1386
-      ],
       "support": {
         "size": [
           720,
@@ -360,6 +521,12 @@
       "reference_whole_surface_blocks": [
         18,
         1
+      ],
+      "detail_native_xyxy": [
+        681,
+        409,
+        783,
+        511
       ],
       "context": {
         "native_xyxy": [
@@ -426,7 +593,51 @@
         "method": "rank_tile",
         "complete_cells": 0,
         "cell": null
-      }
+      },
+      "sheet_column_xyxy": [
+        1306,
+        97,
+        1656,
+        3688
+      ],
+      "sheet_stage_xyxy": [
+        [
+          1306,
+          168,
+          1656,
+          370
+        ],
+        [
+          1306,
+          690,
+          1656,
+          922
+        ],
+        [
+          1306,
+          1264,
+          1656,
+          1496
+        ],
+        [
+          1306,
+          1838,
+          1656,
+          2070
+        ],
+        [
+          1306,
+          2412,
+          1656,
+          2690
+        ],
+        [
+          1306,
+          3078,
+          1656,
+          3334
+        ]
+      ]
     },
     {
       "layout": "workshop",
@@ -444,12 +655,6 @@
         1052,
         684
       ],
-      "sheet_row_xyxy": [
-        0,
-        1386,
-        2046,
-        1694
-      ],
       "support": {
         "size": [
           720,
@@ -462,6 +667,12 @@
       "reference_whole_surface_blocks": [
         14,
         5
+      ],
+      "detail_native_xyxy": [
+        722,
+        406,
+        835,
+        519
       ],
       "context": {
         "native_xyxy": [
@@ -528,7 +739,51 @@
         "method": "rank_tile",
         "complete_cells": 0,
         "cell": null
-      }
+      },
+      "sheet_column_xyxy": [
+        1670,
+        97,
+        2020,
+        3688
+      ],
+      "sheet_stage_xyxy": [
+        [
+          1670,
+          168,
+          2020,
+          370
+        ],
+        [
+          1670,
+          690,
+          2020,
+          922
+        ],
+        [
+          1670,
+          1264,
+          2020,
+          1496
+        ],
+        [
+          1670,
+          1838,
+          2020,
+          2070
+        ],
+        [
+          1670,
+          2412,
+          2020,
+          2690
+        ],
+        [
+          1670,
+          3078,
+          2020,
+          3334
+        ]
+      ]
     },
     {
       "layout": "crossing",
@@ -546,12 +801,6 @@
         1032,
         688
       ],
-      "sheet_row_xyxy": [
-        0,
-        1694,
-        2046,
-        2002
-      ],
       "support": {
         "size": [
           720,
@@ -564,6 +813,12 @@
       "reference_whole_surface_blocks": [
         4,
         8
+      ],
+      "detail_native_xyxy": [
+        624,
+        406,
+        735,
+        517
       ],
       "context": {
         "native_xyxy": [
@@ -630,7 +885,51 @@
         "method": "rank_tile",
         "complete_cells": 0,
         "cell": null
-      }
+      },
+      "sheet_column_xyxy": [
+        2034,
+        97,
+        2384,
+        3688
+      ],
+      "sheet_stage_xyxy": [
+        [
+          2034,
+          168,
+          2384,
+          370
+        ],
+        [
+          2034,
+          690,
+          2384,
+          922
+        ],
+        [
+          2034,
+          1264,
+          2384,
+          1496
+        ],
+        [
+          2034,
+          1838,
+          2384,
+          2070
+        ],
+        [
+          2034,
+          2412,
+          2384,
+          2690
+        ],
+        [
+          2034,
+          3078,
+          2384,
+          3334
+        ]
+      ]
     },
     {
       "layout": "galleries",
@@ -648,12 +947,6 @@
         1080,
         676
       ],
-      "sheet_row_xyxy": [
-        0,
-        2002,
-        2046,
-        2310
-      ],
       "support": {
         "size": [
           720,
@@ -666,6 +959,12 @@
       "reference_whole_surface_blocks": [
         12,
         2
+      ],
+      "detail_native_xyxy": [
+        701,
+        279,
+        811,
+        389
       ],
       "context": {
         "native_xyxy": [
@@ -732,7 +1031,51 @@
         "method": "rank_tile",
         "complete_cells": 0,
         "cell": null
-      }
+      },
+      "sheet_column_xyxy": [
+        2398,
+        97,
+        2748,
+        3688
+      ],
+      "sheet_stage_xyxy": [
+        [
+          2398,
+          168,
+          2748,
+          370
+        ],
+        [
+          2398,
+          690,
+          2748,
+          922
+        ],
+        [
+          2398,
+          1264,
+          2748,
+          1496
+        ],
+        [
+          2398,
+          1838,
+          2748,
+          2070
+        ],
+        [
+          2398,
+          2412,
+          2748,
+          2690
+        ],
+        [
+          2398,
+          3078,
+          2748,
+          3334
+        ]
+      ]
     },
     {
       "layout": "registry",
@@ -750,12 +1093,6 @@
         1084,
         700
       ],
-      "sheet_row_xyxy": [
-        0,
-        2310,
-        2046,
-        2618
-      ],
       "support": {
         "size": [
           720,
@@ -768,6 +1105,12 @@
       "reference_whole_surface_blocks": [
         11,
         8
+      ],
+      "detail_native_xyxy": [
+        610,
+        432,
+        730,
+        552
       ],
       "context": {
         "native_xyxy": [
@@ -834,7 +1177,51 @@
         "method": "rank_tile",
         "complete_cells": 0,
         "cell": null
-      }
+      },
+      "sheet_column_xyxy": [
+        2762,
+        97,
+        3112,
+        3688
+      ],
+      "sheet_stage_xyxy": [
+        [
+          2762,
+          168,
+          3112,
+          370
+        ],
+        [
+          2762,
+          690,
+          3112,
+          922
+        ],
+        [
+          2762,
+          1264,
+          3112,
+          1496
+        ],
+        [
+          2762,
+          1838,
+          3112,
+          2070
+        ],
+        [
+          2762,
+          2412,
+          3112,
+          2690
+        ],
+        [
+          2762,
+          3078,
+          3112,
+          3334
+        ]
+      ]
     },
     {
       "layout": "wing",
@@ -852,12 +1239,6 @@
         1032,
         704
       ],
-      "sheet_row_xyxy": [
-        0,
-        2618,
-        2046,
-        2926
-      ],
       "support": {
         "size": [
           720,
@@ -869,6 +1250,12 @@
       },
       "reference_whole_surface_blocks": null,
       "extra": "Supported block grid",
+      "detail_native_xyxy": [
+        738,
+        436,
+        845,
+        543
+      ],
       "context": {
         "native_xyxy": [
           784,
@@ -973,7 +1360,51 @@
           "minecraft:polished_diorite",
           "minecraft:pearlescent_froglight"
         ]
-      }
+      },
+      "sheet_column_xyxy": [
+        578,
+        97,
+        928,
+        3688
+      ],
+      "sheet_stage_xyxy": [
+        [
+          578,
+          455,
+          928,
+          657
+        ],
+        [
+          578,
+          1003,
+          928,
+          1235
+        ],
+        [
+          578,
+          1577,
+          928,
+          1809
+        ],
+        [
+          578,
+          2151,
+          928,
+          2383
+        ],
+        [
+          578,
+          2771,
+          928,
+          3049
+        ],
+        [
+          578,
+          3415,
+          928,
+          3671
+        ]
+      ]
     }
   ]
 }
