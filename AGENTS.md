@@ -6,6 +6,8 @@ The quick check `.\Invoke-SurfaceRound.ps1 -Round saved` re-scores the published
 
 Coordinate experiments in the user's existing chat. Delegate the baseline and up to two independent challengers to separate agents and start them in parallel on identical inputs. Give each owner a code revision, stage and settings, exact split, frame hashes, scoring rule and private outputs. Use separate worktrees for concurrent code edits. Verify that each manifest identifies the same fixtures and reference maps before reporting a result. Bring one comparison back to the user, with examples and counts per screenshot.
 
+For a new surface candidate, use `.\Invoke-SurfaceRound.ps1 -Round candidate`. Pass `-Round compare` the finished run directories. The runner and its workers inherit image-only mode, which blocks project Minecraft capture and registry launches. See the offline guide for a two-agent command example.
+
 From this checkout, run `python -m benchmark.exterior_suite` for the Stage 1 regression comparison. During development, `--split dev` and `--floor light_gray_concrete` isolate the development weak-ground case. Compare a changed method on both floors before reporting a result. See [the suite guide](benchmark/EXTERIOR_SUITE.md) for reference scores, release updates, review records and replay instructions.
 
 The earlier surface round uses `python -m benchmark.surface_round`. Replay the fixed 56-frame normals experiment with `.\Invoke-SurfaceRound.ps1 -Round normals`. Select a method on the saved development buildings and report generalization separately on the remaining layouts. All eight reviewed buildings now serve as fixed regression fixtures. [Methods and reference results](benchmark/NORMAL_ROUND.md)

@@ -12,6 +12,24 @@ On this PC, `.\Invoke-SurfaceRound.ps1 -Round saved` finds the installed Python 
 
 To make the [eight-building sheet](reviews/normals-01/buildings-b.jpg) from the archived pictures, model colors and scores, use `.\Invoke-SurfaceRound.ps1 -Round building-sheet`. Its eight camera views stay fixed to the original review. The saved color previews are for display. Future methods can make their own predictions from the original screenshots.
 
+## Try a new combination in one conversation
+
+Ask the coordinator to compare the baseline with one or two alternatives on the same saved buildings. It assigns the independent methods to parallel agents, keeps code edits in separate worktrees and gives each run a private output folder. All agents use the same version, image IDs, geometry maps and split. One coordinator checks the manifests and returns a single comparison. A useful request is “Try both ways of finding wall edges on the saved shopfront and wing pictures. Show me which finds more walls and which fills more openings.”
+
+For example, these first two commands generate fresh predictions from the 20 saved development images. They can run at the same time. Each invocation needs a new output directory. The last command reads the finished results. For a learned method, `-Fields` points to verified, read-only model outputs derived from the screenshots. When testing a changed model, generate its own outputs from those same pictures. Separate worktrees can use absolute paths to the shared fields and completed run directories.
+
+```powershell
+.\Invoke-SurfaceRound.ps1 -Round candidate -Name baseline -Outlines edges+shade -Out runs/edge-baseline
+.\Invoke-SurfaceRound.ps1 -Round candidate -Name regions -Outlines normal-regions -Fields runs/normal-fields -Out runs/regions-challenger
+.\Invoke-SurfaceRound.ps1 -Round compare -Runs runs/edge-baseline,runs/regions-challenger
+```
+
+The comparator checks that the jobs used the same frames, scoring code and saved geometry with a single stage under comparison. Each manifest records the code, methods, settings and artifact paths. Use `-Split all` to run a frozen choice across all 56 pictures. The original camera benchmark has its own 40-image suite, and material tests use the saved image crops, versioned atlas and exemplar library described in their guide. [Camera replay](EXTERIOR_SUITE.md) · [Material replay](TEXTURES.md)
+
+## When Minecraft opens
+
+The routine experiment commands set `MCIR_IMAGE_ONLY=1` for themselves and their workers. The project’s Minecraft launcher checks that flag before setting up a game session. Missing images or stale inputs surface as data errors. Restore the saved fixture for that version. Opening the game is a separate operation for creating or editing a reference structure, or for placing and photographing a completed build. Exporting a datapack can be done from files.
+
 The saved map labels every fourth pixel in each direction. At the benchmark's 1440 × 900 resolution that gives a 360 × 225 grid. Zero is background. Every other number refers to a connected flat surface. Each surface has its direction, world plane, visible block corners, extent in the picture, and whether it meets the size threshold for scoring. The camera and individual block faces remain in the original fixture files. The map can be used for outline, block-spacing and depth comparisons.
 
 The ZIP contains a JSON file per screenshot, keyed by floor and frame ID. Its index records the generating code fingerprint and hashes for the original screenshot, camera, face labels, block states and derived map. A checksum mismatch on a known frame raises an error. For a new fixture without a saved reference, the scorer can still compute the surface map from its local labels.

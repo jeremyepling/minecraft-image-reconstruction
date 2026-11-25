@@ -63,6 +63,23 @@ jobs:
       - run: python -m unittest discover -s tests
       - run: python -m benchmark.score_saved_planes
       - run: python -m benchmark.normal_building_sheet
+      - name: Compare two independent image-only runs
+        shell: bash
+        run: |
+          python -m benchmark.compare_surface_methods run --name baseline --outlines edges+shade --out runs/candidates/baseline &
+          baseline_pid=$!
+          python -m benchmark.compare_surface_methods run --name contrast --outlines edges --out runs/candidates/contrast &
+          contrast_pid=$!
+          result=0
+          wait "$baseline_pid" || result=1
+          wait "$contrast_pid" || result=1
+          test "$result" -eq 0
+          python -m benchmark.compare_surface_methods compare runs/candidates/baseline runs/candidates/contrast
+      - uses: actions/upload-artifact@v4
+        with:
+          name: surface-candidates-${{ github.sha }}
+          path: runs/candidates/
+          if-no-files-found: error
       - run: python -m benchmark.exterior_suite --out runs/exterior/ci-${{ github.run_id }}-${{ github.run_attempt }}
       - run: python -m benchmark.surface_round --out runs/surfaces/ci-${{ github.run_id }}-${{ github.run_attempt }}
       - uses: actions/upload-artifact@v4
