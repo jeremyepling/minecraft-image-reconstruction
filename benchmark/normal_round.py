@@ -251,13 +251,16 @@ def main():
     import onnxruntime as ort
     from engine.normal_rank import SETTINGS as ranking
     from engine.normal_regions import SETTINGS as regions
+    from engine.surface_edges import SETTINGS as edges
+    from engine.surface_model import SETTINGS as lift
+    from engine.surface_pitch import SETTINGS as scale
     manifest=dict(run_id=out.name,suite='normal-round',code=code,version=suite['version'],client_sha256=suite['client_sha256'],
        capture=suite['capture_conditions'],fixtures=hashes,split={k:sorted({c.frame['layout'] for c in cs}) for k,cs in cohorts.items()},
        blind_world=dict(path=artifact_path(archive_dir/world['archive'],out),sha256=world['sha256']),
        methods=dict(outlines=list(METHODS),pitch=['repeat'],order=['geometry','depth-anything'],lift='shared-edges-v1'),
        selected_on_development=winner,recommended_outlines=adopted,recommended_depth_order=adopted_order,
        selection_rule=RULE,adoption_rule=ADOPTION,order_rule=ORDER_RULE,
-       model_sha256={k:v[2] for k,v in MODELS.items()},settings=dict(inference=INFERENCE,normal_rank=ranking,
+       model_sha256={k:v[2] for k,v in MODELS.items()},settings=dict(inference=INFERENCE,edges=edges,repeat=scale,lift=lift,normal_rank=ranking,
             normal_regions=regions,ordering=ORDER_SETTINGS),environment=dict(python=sys.version.split()[0],onnxruntime=ort.__version__,
             pillow=pillow_version,numpy=np.__version__),scores={k:{m:s['outlines'] for m,s in report[k]['methods'].items()} for k in ('six','blind')},
        artifacts=dict(cases='cases.json',scores='scores.json',selection='selection.json',review='comparison.jpg',

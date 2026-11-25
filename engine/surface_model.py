@@ -211,11 +211,15 @@ def proposals_for(image, version, method, normals=None):
     return parts
 
 
-def build(image_path, version, out):
+def build(image_path, version, out, *, outlines=None, order_method=None):
     from engine.atlas import digest
     if version != '26.3':
         raise ValueError('The surface methods support Java 26.3.')
     methods = json.loads(DEFAULTS.read_text())
+    if outlines is not None:
+        methods['outlines'] = outlines
+    if order_method is not None:
+        methods['order'] = order_method
     with Image.open(image_path) as src:
         image = src.convert('RGB')
     patches = proposals_for(image, version, methods['outlines'])

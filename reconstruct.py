@@ -94,6 +94,10 @@ def main():
     p=cmds.add_parser('build')
     p.add_argument('--through',choices=['camera','surfaces','assembly'],default='assembly',
                    help='Fit the camera, recover visible surface outlines, or build a datapack')
+    p.add_argument('--surface-outlines',choices=['edges+shade','normal-rank','normal-regions'],
+                   help='Replay an outline method from the visible-plane comparison')
+    p.add_argument('--surface-order',choices=['geometry','depth-anything'],
+                   help='Select the relative depth ordering method for a surface build')
     p.add_argument('--version',help='Target Java version (required for a camera-only build)')
     p.add_argument('--geometry-method',choices=['baseline','texel','remap','cube'],default='baseline')
     p.add_argument('image',type=Path)
@@ -108,6 +112,9 @@ def main():
     p.add_argument('--library',type=Path,help='Calibrated face_textures/softened-library.npz')
     p.add_argument('--depth',type=int,help='Extrapolate a hollow shell behind one visible wall')
     args=parser.parse_args()
+    if (args.command=='build' and args.through!='surfaces'
+            and (args.surface_outlines is not None or args.surface_order is not None)):
+        parser.error('Use --through surfaces when choosing a surface method')
     if args.command=='fit-voxels':
         from engine.voxel_fit import fit
         fit(args.image,args.method,args.out,args.atlas,args.relative)
@@ -140,7 +147,7 @@ def main():
             build_camera(args.image,args.version,args.out)
         else:
             from engine.surface_model import build
-            build(args.image,args.version,args.out)
+            build(args.image,args.version,args.out,outlines=args.surface_outlines,order_method=args.surface_order)
     else:
         if not args.atlas:
             parser.error('An assembly build needs --atlas')
