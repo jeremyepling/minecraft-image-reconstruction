@@ -1,10 +1,15 @@
 """Compare the four region methods on frozen images. No game runtime is used."""
 import argparse
-from collections import defaultdict
+from collections import Counter
 import gzip
 import json
 from pathlib import Path
+import platform
+import subprocess
+import sys
+from tempfile import TemporaryDirectory
 from time import perf_counter
+from zipfile import ZIP_DEFLATED, ZipFile
 
 import numpy as np
 from PIL import __version__ as pillow_version
@@ -12,10 +17,11 @@ from PIL import __version__ as pillow_version
 from benchmark.camera_round import ROOT, digest, read, revision, save
 from benchmark.mask_metrics import PROTOCOL, aggregate, measure
 from benchmark.normal_fields import cached_fields, fields as generate_fields
+from benchmark.normal_assets import SOURCES
 from benchmark.normal_round import groups
 from benchmark.surface_reference import ARCHIVE, recorded
 from benchmark.surface_round import artifact_path, image_of
-from engine.surface_fields import MODELS
+from engine.surface_fields import MODELS, SETTINGS as FIELD_SETTINGS
 from runtime.mode import image_only
 
 
@@ -61,7 +67,18 @@ def get_fields(image_path, sha, cache, generate):
     return a,b,'fresh'
 
 
-def predict(case, row, args):
+def load_lines(directory, method, sha, size, declaration):
+    path = directory/method/(sha+'.json.gz')
+    if digest(path)!=declaration['files'].get(sha):
+        raise ValueError(f'Line evidence digest mismatch for {method}/{sha}')
+    with gzip.open(path,'rt',encoding='utf8') as file:
+        evidence = json.load(file)
+    if evidence['image_sha256']!=sha or list(size)!=evidence['image_size']:
+        raise ValueError(f'Line data belongs to a different frame: {path}')
+    return evidence
+
+
+def predict(case, row, args, model_manifests):
     from engine.mask_first import regions
     from engine.surface_model import proposals_for
     source=case.path('image')
@@ -79,6 +96,8 @@ def predict(case, row, args):
     timing['current-b']=perf_counter()-start
     same_b=len(b)==len(replay) and all(np.allclose(x['quad'],y['quad'],atol=.01) and x['support']==y['support']
                                        for x,y in zip(b,replay))
+    if not same_b:
+        raise ValueError(f'Current B replay differs from the frozen prediction for {case.id}')
     start=perf_counter()
     parts=regions(image,normals,depth,version='26.3')
     timing['mask-first']=perf_counter()-start
@@ -86,11 +105,7 @@ def predict(case, row, args):
     if args.phase=='full':
         from engine.mask_line_refine import refine
         for method in METHODS[2:]:
-            evidence_path=args.lines/method/(sha+'.json.gz')
-            with gzip.open(evidence_path,'rt',encoding='utf8') as f:
-                evidence=json.load(f)
-            if evidence['image_sha256']!=sha or list(image.size)!=evidence['image_size']:
-                raise ValueError(f'Line data belongs to a different frame: {evidence_path}')
+            evidence=load_lines(args.lines,method,sha,image.size,model_manifests[method])
             start=perf_counter()
             predictions[method]=refine(image,parts,normals,depth,evidence)
             timing[method+'_refine']=perf_counter()-start
@@ -98,9 +113,50 @@ def predict(case, row, args):
     return image,predictions,timing,same_b
 
 
+def exported_blocks(out, data, cohorts, selected):
+    from benchmark.mask_blocks import evaluate_case
+    cases = {f'{case.floor}/{case.id}':case for group in cohorts.values() for case in group}
+    with ZipFile(out/'block-packs.zip','x',compression=ZIP_DEFLATED) as archive:
+        for row in data:
+            case = cases[row['key']]
+            with gzip.open(out/row['predictions'],'rt',encoding='utf8') as f:
+                predictions = json.load(f)
+            with TemporaryDirectory(dir=out) as temp:
+                directory = Path(temp)
+                report = evaluate_case(case,image_of(case),predictions['current-b'],predictions[selected],
+                                       directory,selected_uses_masks=selected!='current-b')
+                for file in sorted(directory.iterdir()):
+                    archive.write(file,row['key']+'/'+file.name)
+            row['camera_scale_status'] = report['camera_status']
+            row['blocks'] = {}
+            for name in ('baseline','selected','selected_with_B_charts'):
+                method = report[name]
+                row['blocks'][name] = dict(score=method['score'],regions=method['regions'])
+                if 'known_camera_and_plane_diagnostic' in method:
+                    row['blocks'][name]['diagnostic'] = method['known_camera_and_plane_diagnostic']['score']
+    def combine(rows):
+        totals = {}
+        for name,fields in rows[0]['blocks'].items():
+            totals[name] = {}
+            for field in fields:
+                values = Counter()
+                for row in rows:
+                    values.update(row['blocks'][name][field])
+                totals[name][field] = dict(values)
+        return totals
+    save(out/'blocks.json',dict(selected=selected,all=combine(data),
+         development=combine([r for r in data if r['cohort']=='development']),
+         previously_reviewed_regression=combine([r for r in data if r['cohort']!='development']),
+         camera_scale_status=dict(Counter(r['camera_scale_status'] for r in data)),
+         note='Correct visible coordinates after decoding exported pack NBT. In-game placement was not run.'))
+
+
 def run(args):
     from engine.mask_first import SETTINGS as region_settings
     cohorts,suite,fixture_hashes=groups()
+    if len(set(c.frame['image_sha256'] for group in cohorts.values() for c in group))!=52 or sum(map(len,cohorts.values()))!=56:
+        raise ValueError('Expected 56 pinned frames with 52 distinct PNG digests')
+    model_manifests={m:read(args.lines/m/'manifest.json') for m in METHODS[2:]} if args.phase=='full' else {}
     prior={r['key']:r for r in read(REFERENCE/'cases.json')}
     code=revision()
     out=args.out.resolve()
@@ -112,7 +168,7 @@ def run(args):
         for case in cases:
             key=f'{case.floor}/{case.id}'
             row=prior[key]
-            image,predictions,timing,same_b=predict(case,row,args)
+            image,predictions,timing,same_b=predict(case,row,args,model_manifests)
             # Persist every picture's predictions before using any recorded surface as a scoring target.
             file=out/'predictions'/(key+'.json.gz')
             file.parent.mkdir(parents=True,exist_ok=True)
@@ -125,13 +181,17 @@ def run(args):
                 if scores['current-b'][k]!=row['methods']['normal-regions']['outlines'][k]:
                     raise ValueError(f'Published B counts differ: {key} {k}')
             data.append(dict(key=key,id=case.id,sha256=row['sha256'],layout=row['layout'],floor=case.floor,
-                             cohort=cohort,source=artifact_path(case.path('image'),out),
+                             cohort='development' if cohort=='development' else 'previously_reviewed_regression',
+                             historical_cohort=cohort,source=artifact_path(case.path('image'),out),
                              predictions=artifact_path(file,out),timing_seconds=timing,baseline_replay_agrees=same_b,
-                             scores=scores))
+                             line_changed_region_pixels={m:sum(p.get('line_changed_pixels',0) for p in predictions[m])//2
+                                                         for m in model_manifests},scores=scores))
         print(f'{cohort}: {len(cases)} images',flush=True)
         if cohort=='development':
             decision=select(data)
             save(out/'selection.json',decision)
+    if args.phase=='full':
+        exported_blocks(out,data,cohorts,decision['selected'])
     save(out/'cases.json',data)
     grouped={k:summarize([r for r in data if r['layout']==k]) for k in sorted({r['layout'] for r in data})}
     summary=dict(all=summarize(data),layouts=grouped,development=summarize([r for r in data if r['cohort']=='development']))
@@ -140,23 +200,42 @@ def run(args):
         summary['previously_reviewed_regression']=summarize(rest)
     save(out/'scores.json',summary)
     methods=list(data[0]['scores'])
+    baseline=read(REFERENCE/'manifest.json')
     manifest=dict(run_id=out.name,phase=args.phase,code=code,version=suite['version'],fixtures=fixture_hashes,
+                  client_sha256=baseline['client_sha256'],capture=baseline['capture'],baseline_revision=baseline['code'],
                   reference_sha256=digest(ARCHIVE),previous_b_run_sha256=digest(REFERENCE/'manifest.json'),
-                  shared_models={k:v[2] for k,v in MODELS.items()},settings=dict(mask_first=region_settings,metrics=PROTOCOL),
-                  split={k:sorted({r['layout'] for r in data if r['cohort']==k}) for k in cohorts},
+                  shared_models={k:dict(sha256=v[2],pinned_source=SOURCES[k][1]) for k,v in MODELS.items()},
+                  settings=dict(mask_first=region_settings,metrics=PROTOCOL,shared_inference=FIELD_SETTINGS),
+                  split={k:sorted({r['layout'] for r in data if r['cohort']==k}) for k in {r['cohort'] for r in data}},
                   split_history='Only shopfront and wing used for tuning. All six other layouts have appeared in earlier reports.',
                   methods=methods,selection=decision,baseline_replays_matching=sum(r['baseline_replay_agrees'] for r in data),
                   timings_seconds={k:sum(r['timing_seconds'].get(k,0.) for r in data) for k in set().union(*(r['timing_seconds'] for r in data))},
-                  environment=dict(numpy=np.__version__,pillow=pillow_version),
+                  frames=[dict(key=r['key'],sha256=r['sha256']) for r in data],
+                  environment=dict(numpy=np.__version__,pillow=pillow_version,python=platform.python_version(),platform=platform.platform()),
                   artifacts=dict(scores='scores.json',per_picture='cases.json',predictions='predictions/',selection='selection.json',
                                  sheet='comparison.jpg'))
     if args.phase=='full':
+        from benchmark.mask_blocks import SETTINGS as block_settings
         from engine.mask_line_refine import SETTINGS as line_settings
         manifest['settings']['line_refinement']=line_settings
-        manifest['line_models']={m:read(args.lines/m/'manifest.json') for m in METHODS[2:]}
-    save(out/'manifest.json',manifest)
+        manifest['settings']['block_export']=block_settings
+        manifest['line_models']=model_manifests
+        unique={r['sha256']:r for r in data}.values()
+        manifest['unique_line_inference_seconds']={m:sum(r['timing_seconds'][m+'_inference_recorded'] for r in unique)
+                                                   for m in model_manifests}
+        subprocess.run([sys.executable,'-m','benchmark.mask_loss_trace','--fields',str(args.fields.resolve()),
+                        '--out',str(out/'loss-trace')],cwd=ROOT,check=True)
+        manifest['artifacts'].update(report='report.html',block_scores='blocks.json',exported_packs='block-packs.zip',
+                                     loss_trace='loss-trace/manifest.json',loss_sheet='loss-trace/stages.jpg')
     from benchmark.mask_sheet import render
     render(out,data,methods)
+    if args.phase=='full':
+        from benchmark.mask_report import render_report
+        render_report(out)
+    manifest['numerical_cache_sha256']={r['sha256']:digest(args.fields/(r['sha256']+'.npz'))
+                                         for r in {v['sha256']:v for v in data}.values()}
+    manifest['artifact_sha256']={f.relative_to(out).as_posix():digest(f) for f in sorted(out.rglob('*')) if f.is_file()}
+    save(out/'manifest.json',manifest)
     print(out,flush=True)
 
 

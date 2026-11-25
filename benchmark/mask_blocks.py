@@ -192,7 +192,8 @@ def _score(read, target):
 def evaluate_case(case, image, baseline_parts, selected_parts, output_dir, *, selected_uses_masks=True):
     """Score a frame offline. ``output_dir`` must be private to that frame.
 
-    Metric predicted depth comes exclusively from the same B charts/repeat counts.
+    Each method sends its own sampling charts through the same texture count and lift.
+    A second selected-method control holds B's original charts and counts fixed.
     The recorded-camera/plane diagnostic conditions on a >=.5-IoU association: it
     cannot measure the ability to choose a depth or reject an unmatched proposal.
     """
@@ -204,9 +205,13 @@ def evaluate_case(case, image, baseline_parts, selected_parts, output_dir, *, se
     P = None if camera['P'] is None else np.asarray(camera['P'])
     methods = dict(baseline=_footprints(baseline_parts, image.size, False),
                    selected=_footprints(selected_parts, image.size, selected_uses_masks))
-    carriers = _carriers(image, baseline_parts, methods['baseline'], P)
+    baseline_carriers = _carriers(image, baseline_parts, methods['baseline'], P)
+    selected_carriers = (_carriers(image, selected_parts, methods['selected'], P)
+                         if selected_uses_masks else baseline_carriers)
     cache, reports, decoded = {}, {}, {}
-    for name, footprints in methods.items():
+    for name, footprints, carriers in [('baseline',methods['baseline'],baseline_carriers),
+                                       ('selected',methods['selected'],selected_carriers),
+                                       ('selected_with_B_charts',methods['selected'],baseline_carriers)]:
         blocks, counts, details = _blocks(footprints, carriers, P, cache)
         filename = name+'-visible.zip'
         decoded[name] = _write_read(out/filename, blocks)
@@ -217,6 +222,7 @@ def evaluate_case(case, image, baseline_parts, selected_parts, output_dir, *, se
     labels = json.loads(case.path('labels').read_text(encoding='utf8'))['faces']
     target = {tuple(f['xyz']) for f in labels}
     T = registration(P, pose) if P is not None else np.eye(4)
+    reports['selected_with_B_charts']['score'] = _score(registered(decoded['selected_with_B_charts'], T), target)
     reference_P = truth_camera(pose)
     diagnostic = [(truth['id_map']==pid, (p['axis'], p['offset'], p['normal'][p['axis']]), 'supported')
                   for pid, p in truth['patches'].items() if p['support_px']]
