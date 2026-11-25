@@ -1,12 +1,16 @@
 """Run one fresh surface candidate offline, or compare up to three completed candidate jobs."""
 import argparse
+import ast
 from collections import defaultdict
 from datetime import datetime, timezone
 import gzip
 import hashlib
+import inspect
+from importlib import import_module
 import json
 from pathlib import Path
 from time import perf_counter
+from types import CodeType
 
 import numpy as np
 from PIL import __version__ as pillow_version
@@ -25,6 +29,70 @@ from engine.surface_fields import MODELS, SETTINGS as FIELD_SETTINGS, infer
 
 def fingerprint(data):
     return hashlib.sha256(json.dumps(data, sort_keys=True, separators=(',', ':')).encode()).hexdigest()
+
+
+def code_recipe(*roots):
+    """Hash the selected local functions, their global helpers and their numerical constants."""
+    def names(code):
+        yield from code.co_names
+        for value in code.co_consts:
+            if isinstance(value, CodeType):
+                yield from names(value)
+
+    recipe = {}
+    remaining = list(roots)
+    while remaining:
+        func = inspect.unwrap(remaining.pop())
+        file = Path(inspect.getsourcefile(func)).resolve().relative_to(ROOT).as_posix()
+        key = file + ':' + func.__qualname__
+        if key in recipe:
+            continue
+        recipe[key] = inspect.getsource(func)
+        for name in set(names(func.__code__)):
+            value = func.__globals__.get(name)
+            original = inspect.unwrap(value)
+            if inspect.isfunction(original) and original.__module__.startswith(('engine.', 'benchmark.')):
+                remaining.append(original)
+            elif name.isupper() and isinstance(value, (bool, int, float, str, tuple, list, dict, np.ndarray)):
+                recipe[file + ':' + name] = value.tolist() if isinstance(value, np.ndarray) else value
+    return fingerprint(recipe)
+
+
+def stage_implementations(methods):
+    # These roots account for the lazy imports in proposals_for, pitch, infer and order.
+    from benchmark import depth_probe
+    from engine import camera_grid, camera_seam, cube_axes, geometry, structural_lines, surface_fields, texel_grid
+
+    outlines = methods['outlines']
+    backends = {'contact':camera_grid.predict, 'edges':surface_edges.detect_planes, 'edges+shade':surface_edges.detect_planes,
+                'normal-rank':normal_rank.detect, 'normal-regions':normal_regions.detect}
+    edges = [surface_model.proposals_for]
+    if outlines in backends:
+        edges.append(backends[outlines])
+    else:
+        # For a new worker-defined dispatch branch, conservatively include its imported
+        # local backends. A known method above fingerprints only its own active backend.
+        for node in ast.walk(ast.parse(inspect.getsource(surface_model.proposals_for))):
+            if isinstance(node, ast.ImportFrom) and node.module and node.module.startswith(('engine.', 'benchmark.')):
+                module = import_module(node.module)
+                for alias in node.names:
+                    backend = getattr(module, alias.name)
+                    if inspect.isfunction(backend):
+                        edges.append(backend)
+    if outlines == 'contact':
+        edges.extend([camera_seam.predict, cube_axes.fit_axes, structural_lines.detect])
+    ordering = [surface_order.order, geometry.project, geometry.transform]
+    if outlines.startswith('normal-'):
+        edges.extend([surface_fields.observed_normal, infer])
+    if methods['order'] == 'depth-anything':
+        ordering.extend([infer, depth_probe.preprocess])
+    spacing = surface_pitch.fit if methods['pitch'] == 'repeat' else texel_grid.texel_grid
+    return dict(outlines=code_recipe(*edges), pitch=code_recipe(surface_model.pitch, spacing),
+                lift=code_recipe(surface_model.assemble), order=code_recipe(*ordering))
+
+
+def evaluator_signature():
+    return code_recipe(evaluate, summary, grouped_summary)
 
 
 def stage_settings(methods):
@@ -82,6 +150,16 @@ def summary(rows):
     return result
 
 
+def grouped_summary(rows):
+    by_layout = defaultdict(list)
+    for row in rows:
+        by_layout[row['layout']].append(row)
+    layouts = {layout:summary(subset) for layout,subset in sorted(by_layout.items())}
+    scores = summary(rows)
+    scores['mean_layout_f1'] = sum(s['outlines']['f1'] for s in layouts.values()) / len(layouts)
+    return layouts, scores
+
+
 def run(args):
     started = perf_counter()
     stamp = datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%S%fZ')
@@ -118,28 +196,23 @@ def run(args):
             raise ValueError(f'Ordering reference belongs to another screenshot: {key}')
         scores = evaluate(model, reference, labels[key]['depth_diagnostic'])
         rows.append(dict(key=key, layout=case.frame['layout'], sha256=sha,
+                         field_sha256={k:hashlib.sha256(np.ascontiguousarray(v)).hexdigest() for k,v in fields.items()},
                          prediction=artifact_path(target,out), scores=scores))
         inputs.append((key,sha))
-    by_layout = defaultdict(list)
-    for row in rows:
-        by_layout[row['layout']].append(row)
-    layouts = {layout:summary(subset) for layout,subset in sorted(by_layout.items())}
-    scores = summary(rows)
-    scores['mean_layout_f1'] = sum(s['outlines']['f1'] for s in layouts.values()) / len(layouts)
+    layouts, scores = grouped_summary(rows)
     save(out/'cases.json',rows)
     save(out/'layouts.json',layouts)
-    files = ('surface_metrics.py','normal_round.py','surface_round.py','surface_topology.py','compare_surface_methods.py')
-    evaluator = fingerprint({f:(ROOT / 'benchmark' / f).read_text(encoding='utf8') for f in files})
     pair_inputs = {key:sorted((p['near_patch'],p['far_patch']) for p in labels[key]['depth_diagnostic']['pairs'])
                    for key, _ in inputs}
-    comparison = dict(version=suite['version'],split=args.split,screenshots=fingerprint(sorted(inputs)),
+    comparison = dict(version=suite['version'],split=args.split,screenshots=fingerprint(sorted(inputs)),source_reader=code_recipe(image_of),
                       fixtures=fixture_hashes, geometry_sha256=digest(ARCHIVE),
-                      occlusion_labels_sha256=fingerprint(pair_inputs), evaluator=evaluator)
+                      occlusion_labels_sha256=fingerprint(pair_inputs), evaluator=evaluator_signature())
     field_source = ('verified saved image maps' if args.fields else 'local inference') if kinds else 'unused'
-    manifest = dict(schema=1,run_id=out.name,name=args.name,comparison=comparison,code=code,
+    manifest = dict(schema=2,run_id=out.name,name=args.name,comparison=comparison,code=code,
                     prediction_source='fresh from screenshot',model_fields=field_source,
                     field_cache=str(args.fields.resolve()) if args.fields and kinds else None,
                     methods=methods,settings=stage_settings(methods),lift=dict(method='shared-edges-v1',settings=surface_model.SETTINGS),
+                    implementations=stage_implementations(methods),
                     model_sha256={k:MODELS[k][2] for k in kinds},
                     environment=dict(numpy=np.__version__,pillow=pillow_version),scores=scores,
                     elapsed_seconds=perf_counter()-started,artifacts=dict(cases='cases.json',layouts='layouts.json',
@@ -161,6 +234,8 @@ def validate_comparison(manifests):
     if not 2 <= len(manifests) <= 3:
         raise ValueError('Select the baseline and one or two challengers.')
     first = manifests[0]
+    if any(m.get('schema') != 2 for m in manifests):
+        raise ValueError('Run each candidate with the current experiment format to compare its stage implementations.')
     changed = set()
     for other in manifests[1:]:
         if first['comparison'] != other['comparison']:
@@ -169,6 +244,8 @@ def validate_comparison(manifests):
             changed.add('lift')
         changed.update(stage for stage in first['methods'] if first['methods'][stage] != other['methods'][stage]
                        or first['settings'][stage] != other['settings'][stage])
+        changed.update(stage for stage in first['implementations']
+                       if first['implementations'][stage] != other['implementations'][stage])
     if len(changed) > 1:
         raise ValueError(f"Compare one configured stage at a time; these runs change {', '.join(sorted(changed))}.")
 
