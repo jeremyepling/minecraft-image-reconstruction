@@ -1,0 +1,1365 @@
+{
+  "summary": {
+    "pavement": {
+      "layouts": 2,
+      "images": 10,
+      "metric_images": 4,
+      "vertices": 2018,
+      "within_2px": 1092,
+      "projected": 1108,
+      "spans": 580,
+      "measured_spans": 330,
+      "layout_hit_rate": 0.41133333333333333,
+      "layout_mean_px": 0.8981160361004797,
+      "layout_span_mae_blocks": 0.10426365361307303,
+      "layout_axis_mae_deg": 0.35117462869549143,
+      "layout_fov_error_deg": 0.1428379305780041,
+      "charts": 18,
+      "predicted_charts": 8,
+      "conditional_chart_extent_mae": 2.5,
+      "exact_chart_planes": 2
+    },
+    "seam-fit": {
+      "layouts": 2,
+      "images": 10,
+      "metric_images": 8,
+      "vertices": 2018,
+      "within_2px": 1948,
+      "projected": 1948,
+      "spans": 580,
+      "measured_spans": 556,
+      "layout_hit_rate": 0.8333333333333333,
+      "layout_mean_px": 0.3801269059527068,
+      "layout_span_mae_blocks": 0.007926700855003736,
+      "layout_axis_mae_deg": 0.25900956065904585,
+      "layout_fov_error_deg": 0.020803318065803822,
+      "charts": 18,
+      "predicted_charts": 16,
+      "conditional_chart_extent_mae": 2.0625,
+      "exact_chart_planes": 4
+    },
+    "tile-lines": {
+      "layouts": 2,
+      "images": 10,
+      "metric_images": 8,
+      "vertices": 2018,
+      "within_2px": 1948,
+      "projected": 1948,
+      "spans": 580,
+      "measured_spans": 556,
+      "layout_hit_rate": 0.8333333333333333,
+      "layout_mean_px": 0.6134342173189702,
+      "layout_span_mae_blocks": 0.031051653185658074,
+      "layout_axis_mae_deg": 0.2815743742399047,
+      "layout_fov_error_deg": 0.07288489696276734,
+      "charts": 18,
+      "predicted_charts": 16,
+      "conditional_chart_extent_mae": 2.0,
+      "exact_chart_planes": 4
+    }
+  },
+  "rows": [
+    {
+      "id": "dev-wing-masonry-low-left",
+      "layout": "wing",
+      "condition": "ground-visible",
+      "method": "pavement",
+      "metric": false,
+      "vertices": 182,
+      "spans": 46,
+      "within_2px": 0,
+      "projected": 0,
+      "measured_spans": 0,
+      "mean_px": null,
+      "p90_px": null,
+      "span_mae": null,
+      "relative_span_error": null,
+      "axis_mae_deg": 0.21140524348685355,
+      "fov_error_deg": null,
+      "charts": [
+        {
+          "axis": 0,
+          "plane": 0,
+          "expected": [
+            8,
+            4
+          ]
+        },
+        {
+          "axis": 2,
+          "plane": 1,
+          "expected": [
+            13,
+            8
+          ]
+        }
+      ],
+      "hit_rate": 0.0
+    },
+    {
+      "id": "dev-wing-masonry-low-left",
+      "layout": "wing",
+      "condition": "ground-visible",
+      "method": "seam-fit",
+      "metric": true,
+      "vertices": 182,
+      "spans": 46,
+      "within_2px": 182,
+      "projected": 182,
+      "measured_spans": 46,
+      "mean_px": 0.6046806191762238,
+      "p90_px": 0.831305346988013,
+      "span_mae": 0.013410052347714183,
+      "relative_span_error": -0.00015803777385799193,
+      "axis_mae_deg": 0.025427133351358627,
+      "fov_error_deg": 0.0327082981229978,
+      "charts": [
+        {
+          "axis": 0,
+          "plane": 0,
+          "expected": [
+            8,
+            4
+          ],
+          "predicted": [
+            8.0,
+            6.0
+          ],
+          "plane_error_blocks": 0.0,
+          "extent_mae_blocks": 1.0
+        },
+        {
+          "axis": 2,
+          "plane": 1,
+          "expected": [
+            13,
+            8
+          ],
+          "predicted": [
+            11.0,
+            8.0
+          ],
+          "plane_error_blocks": 1.0,
+          "extent_mae_blocks": 1.0
+        }
+      ],
+      "hit_rate": 1.0
+    },
+    {
+      "id": "dev-wing-masonry-low-left",
+      "layout": "wing",
+      "condition": "ground-visible",
+      "method": "tile-lines",
+      "metric": true,
+      "vertices": 182,
+      "spans": 46,
+      "within_2px": 182,
+      "projected": 182,
+      "measured_spans": 46,
+      "mean_px": 0.6415230087591738,
+      "p90_px": 1.095873337588132,
+      "span_mae": 0.02850741479505361,
+      "relative_span_error": -0.004980459505417358,
+      "axis_mae_deg": 0.037416252078465786,
+      "fov_error_deg": 0.08926591150141405,
+      "charts": [
+        {
+          "axis": 0,
+          "plane": 0,
+          "expected": [
+            8,
+            4
+          ],
+          "predicted": [
+            8.0,
+            6.0
+          ],
+          "plane_error_blocks": 0.0,
+          "extent_mae_blocks": 1.0
+        },
+        {
+          "axis": 2,
+          "plane": 1,
+          "expected": [
+            13,
+            8
+          ],
+          "predicted": [
+            11.0,
+            8.0
+          ],
+          "plane_error_blocks": 1.0,
+          "extent_mae_blocks": 1.0
+        }
+      ],
+      "hit_rate": 1.0
+    },
+    {
+      "id": "dev-wing-masonry-high-right",
+      "layout": "wing",
+      "condition": "ground-visible",
+      "method": "pavement",
+      "metric": true,
+      "vertices": 250,
+      "spans": 79,
+      "within_2px": 234,
+      "projected": 250,
+      "measured_spans": 79,
+      "mean_px": 1.2274982988022238,
+      "p90_px": 1.8729502450421351,
+      "span_mae": 0.18459572121653325,
+      "relative_span_error": -0.04322384053857952,
+      "axis_mae_deg": 0.17122410745772912,
+      "fov_error_deg": 0.2410164568391977,
+      "charts": [
+        {
+          "axis": 0,
+          "plane": 13,
+          "expected": [
+            8,
+            4
+          ],
+          "predicted": [
+            6.0,
+            6.0
+          ],
+          "plane_error_blocks": 4.0,
+          "extent_mae_blocks": 2.0
+        },
+        {
+          "axis": 2,
+          "plane": 1,
+          "expected": [
+            13,
+            8
+          ],
+          "predicted": [
+            16.0,
+            8.0
+          ],
+          "plane_error_blocks": 0.0,
+          "extent_mae_blocks": 1.5
+        }
+      ],
+      "hit_rate": 0.936
+    },
+    {
+      "id": "dev-wing-masonry-high-right",
+      "layout": "wing",
+      "condition": "ground-visible",
+      "method": "seam-fit",
+      "metric": true,
+      "vertices": 250,
+      "spans": 79,
+      "within_2px": 250,
+      "projected": 250,
+      "measured_spans": 79,
+      "mean_px": 0.30939074239673653,
+      "p90_px": 0.35534313992635436,
+      "span_mae": 0.00930110031580281,
+      "relative_span_error": -0.001940605866065279,
+      "axis_mae_deg": 0.006545971532974158,
+      "fov_error_deg": 0.010363051055833239,
+      "charts": [
+        {
+          "axis": 0,
+          "plane": 13,
+          "expected": [
+            8,
+            4
+          ],
+          "predicted": [
+            5.0,
+            6.0
+          ],
+          "plane_error_blocks": 4.0,
+          "extent_mae_blocks": 2.5
+        },
+        {
+          "axis": 2,
+          "plane": 1,
+          "expected": [
+            13,
+            8
+          ],
+          "predicted": [
+            16.0,
+            8.0
+          ],
+          "plane_error_blocks": 0.0,
+          "extent_mae_blocks": 1.5
+        }
+      ],
+      "hit_rate": 1.0
+    },
+    {
+      "id": "dev-wing-masonry-high-right",
+      "layout": "wing",
+      "condition": "ground-visible",
+      "method": "tile-lines",
+      "metric": true,
+      "vertices": 250,
+      "spans": 79,
+      "within_2px": 250,
+      "projected": 250,
+      "measured_spans": 79,
+      "mean_px": 0.7738575433060696,
+      "p90_px": 0.894153053197027,
+      "span_mae": 0.03407602840262656,
+      "relative_span_error": -0.006444224259632838,
+      "axis_mae_deg": 0.04283521760032491,
+      "fov_error_deg": 0.07391114054654935,
+      "charts": [
+        {
+          "axis": 0,
+          "plane": 13,
+          "expected": [
+            8,
+            4
+          ],
+          "predicted": [
+            6.0,
+            6.0
+          ],
+          "plane_error_blocks": 4.0,
+          "extent_mae_blocks": 2.0
+        },
+        {
+          "axis": 2,
+          "plane": 1,
+          "expected": [
+            13,
+            8
+          ],
+          "predicted": [
+            16.0,
+            8.0
+          ],
+          "plane_error_blocks": 0.0,
+          "extent_mae_blocks": 1.5
+        }
+      ],
+      "hit_rate": 1.0
+    },
+    {
+      "id": "dev-wing-masonry-close-front",
+      "layout": "wing",
+      "condition": "limited-ground",
+      "method": "pavement",
+      "metric": false,
+      "vertices": 35,
+      "spans": 12,
+      "within_2px": 0,
+      "projected": 0,
+      "measured_spans": 0,
+      "mean_px": null,
+      "p90_px": null,
+      "span_mae": null,
+      "relative_span_error": null,
+      "axis_mae_deg": 2.4787198289286025,
+      "fov_error_deg": null,
+      "charts": [
+        {
+          "axis": 2,
+          "plane": 1,
+          "expected": [
+            6,
+            4
+          ]
+        }
+      ],
+      "hit_rate": 0.0
+    },
+    {
+      "id": "dev-wing-masonry-close-front",
+      "layout": "wing",
+      "condition": "limited-ground",
+      "method": "seam-fit",
+      "metric": false,
+      "vertices": 35,
+      "spans": 12,
+      "within_2px": 0,
+      "projected": 0,
+      "measured_spans": 0,
+      "mean_px": null,
+      "p90_px": null,
+      "span_mae": null,
+      "relative_span_error": null,
+      "axis_mae_deg": 2.4787198289286025,
+      "fov_error_deg": null,
+      "charts": [
+        {
+          "axis": 2,
+          "plane": 1,
+          "expected": [
+            6,
+            4
+          ]
+        }
+      ],
+      "hit_rate": 0.0
+    },
+    {
+      "id": "dev-wing-masonry-close-front",
+      "layout": "wing",
+      "condition": "limited-ground",
+      "method": "tile-lines",
+      "metric": false,
+      "vertices": 35,
+      "spans": 12,
+      "within_2px": 0,
+      "projected": 0,
+      "measured_spans": 0,
+      "mean_px": null,
+      "p90_px": null,
+      "span_mae": null,
+      "relative_span_error": null,
+      "axis_mae_deg": 2.4787198289286025,
+      "fov_error_deg": null,
+      "charts": [
+        {
+          "axis": 2,
+          "plane": 1,
+          "expected": [
+            6,
+            4
+          ]
+        }
+      ],
+      "hit_rate": 0.0
+    },
+    {
+      "id": "dev-wing-plaster-low-left",
+      "layout": "wing",
+      "condition": "ground-visible",
+      "method": "pavement",
+      "metric": false,
+      "vertices": 182,
+      "spans": 46,
+      "within_2px": 0,
+      "projected": 0,
+      "measured_spans": 0,
+      "mean_px": null,
+      "p90_px": null,
+      "span_mae": null,
+      "relative_span_error": null,
+      "axis_mae_deg": 0.09237832004235497,
+      "fov_error_deg": null,
+      "charts": [
+        {
+          "axis": 0,
+          "plane": 256,
+          "expected": [
+            8,
+            4
+          ]
+        },
+        {
+          "axis": 2,
+          "plane": 1,
+          "expected": [
+            13,
+            8
+          ]
+        }
+      ],
+      "hit_rate": 0.0
+    },
+    {
+      "id": "dev-wing-plaster-low-left",
+      "layout": "wing",
+      "condition": "ground-visible",
+      "method": "seam-fit",
+      "metric": true,
+      "vertices": 182,
+      "spans": 46,
+      "within_2px": 182,
+      "projected": 182,
+      "measured_spans": 46,
+      "mean_px": 0.6046806191762153,
+      "p90_px": 0.8313053469896461,
+      "span_mae": 0.013410052347715553,
+      "relative_span_error": -0.0001580377738572751,
+      "axis_mae_deg": 0.025427133351358627,
+      "fov_error_deg": 0.0327082981229978,
+      "charts": [
+        {
+          "axis": 0,
+          "plane": 256,
+          "expected": [
+            8,
+            4
+          ],
+          "predicted": [
+            8.0,
+            6.0
+          ],
+          "plane_error_blocks": 0.0,
+          "extent_mae_blocks": 1.0
+        },
+        {
+          "axis": 2,
+          "plane": 1,
+          "expected": [
+            13,
+            8
+          ],
+          "predicted": [
+            11.0,
+            8.0
+          ],
+          "plane_error_blocks": 1.0,
+          "extent_mae_blocks": 1.0
+        }
+      ],
+      "hit_rate": 1.0
+    },
+    {
+      "id": "dev-wing-plaster-low-left",
+      "layout": "wing",
+      "condition": "ground-visible",
+      "method": "tile-lines",
+      "metric": true,
+      "vertices": 182,
+      "spans": 46,
+      "within_2px": 182,
+      "projected": 182,
+      "measured_spans": 46,
+      "mean_px": 0.6415230087589249,
+      "p90_px": 1.0958733375860796,
+      "span_mae": 0.02850741479503019,
+      "relative_span_error": -0.004980459505413469,
+      "axis_mae_deg": 0.037416252078465786,
+      "fov_error_deg": 0.08926591150141405,
+      "charts": [
+        {
+          "axis": 0,
+          "plane": 256,
+          "expected": [
+            8,
+            4
+          ],
+          "predicted": [
+            8.0,
+            6.0
+          ],
+          "plane_error_blocks": 0.0,
+          "extent_mae_blocks": 1.0
+        },
+        {
+          "axis": 2,
+          "plane": 1,
+          "expected": [
+            13,
+            8
+          ],
+          "predicted": [
+            11.0,
+            8.0
+          ],
+          "plane_error_blocks": 1.0,
+          "extent_mae_blocks": 1.0
+        }
+      ],
+      "hit_rate": 1.0
+    },
+    {
+      "id": "dev-wing-plaster-high-right",
+      "layout": "wing",
+      "condition": "ground-visible",
+      "method": "pavement",
+      "metric": true,
+      "vertices": 250,
+      "spans": 79,
+      "within_2px": 250,
+      "projected": 250,
+      "measured_spans": 79,
+      "mean_px": 1.007607545607926,
+      "p90_px": 1.4670721985923931,
+      "span_mae": 0.1365728809439391,
+      "relative_span_error": -0.03169885605141257,
+      "axis_mae_deg": 0.12110637831717509,
+      "fov_error_deg": 0.16310714697231532,
+      "charts": [
+        {
+          "axis": 0,
+          "plane": 269,
+          "expected": [
+            8,
+            4
+          ],
+          "predicted": [
+            6.0,
+            6.0
+          ],
+          "plane_error_blocks": 4.0,
+          "extent_mae_blocks": 2.0
+        },
+        {
+          "axis": 2,
+          "plane": 1,
+          "expected": [
+            13,
+            8
+          ],
+          "predicted": [
+            16.0,
+            8.0
+          ],
+          "plane_error_blocks": 0.0,
+          "extent_mae_blocks": 1.5
+        }
+      ],
+      "hit_rate": 1.0
+    },
+    {
+      "id": "dev-wing-plaster-high-right",
+      "layout": "wing",
+      "condition": "ground-visible",
+      "method": "seam-fit",
+      "metric": true,
+      "vertices": 250,
+      "spans": 79,
+      "within_2px": 250,
+      "projected": 250,
+      "measured_spans": 79,
+      "mean_px": 0.2973892457766999,
+      "p90_px": 0.34419611029060193,
+      "span_mae": 0.00572712815343347,
+      "relative_span_error": -0.0010984524418397091,
+      "axis_mae_deg": 0.007073960668803108,
+      "fov_error_deg": 0.01091808250972548,
+      "charts": [
+        {
+          "axis": 0,
+          "plane": 269,
+          "expected": [
+            8,
+            4
+          ],
+          "predicted": [
+            5.0,
+            6.0
+          ],
+          "plane_error_blocks": 4.0,
+          "extent_mae_blocks": 2.5
+        },
+        {
+          "axis": 2,
+          "plane": 1,
+          "expected": [
+            13,
+            8
+          ],
+          "predicted": [
+            16.0,
+            8.0
+          ],
+          "plane_error_blocks": 0.0,
+          "extent_mae_blocks": 1.5
+        }
+      ],
+      "hit_rate": 1.0
+    },
+    {
+      "id": "dev-wing-plaster-high-right",
+      "layout": "wing",
+      "condition": "ground-visible",
+      "method": "tile-lines",
+      "metric": true,
+      "vertices": 250,
+      "spans": 79,
+      "within_2px": 250,
+      "projected": 250,
+      "measured_spans": 79,
+      "mean_px": 0.7738575433059869,
+      "p90_px": 0.8941530531967892,
+      "span_mae": 0.03407602840260531,
+      "relative_span_error": -0.006444224259624307,
+      "axis_mae_deg": 0.04283521760032491,
+      "fov_error_deg": 0.07391114054654935,
+      "charts": [
+        {
+          "axis": 0,
+          "plane": 269,
+          "expected": [
+            8,
+            4
+          ],
+          "predicted": [
+            6.0,
+            6.0
+          ],
+          "plane_error_blocks": 4.0,
+          "extent_mae_blocks": 2.0
+        },
+        {
+          "axis": 2,
+          "plane": 1,
+          "expected": [
+            13,
+            8
+          ],
+          "predicted": [
+            16.0,
+            8.0
+          ],
+          "plane_error_blocks": 0.0,
+          "extent_mae_blocks": 1.5
+        }
+      ],
+      "hit_rate": 1.0
+    },
+    {
+      "id": "dev-wing-plaster-close-front",
+      "layout": "wing",
+      "condition": "limited-ground",
+      "method": "pavement",
+      "metric": false,
+      "vertices": 35,
+      "spans": 12,
+      "within_2px": 0,
+      "projected": 0,
+      "measured_spans": 0,
+      "mean_px": null,
+      "p90_px": null,
+      "span_mae": null,
+      "relative_span_error": null,
+      "axis_mae_deg": null,
+      "fov_error_deg": null,
+      "charts": [
+        {
+          "axis": 2,
+          "plane": 1,
+          "expected": [
+            6,
+            4
+          ]
+        }
+      ],
+      "hit_rate": 0.0
+    },
+    {
+      "id": "dev-wing-plaster-close-front",
+      "layout": "wing",
+      "condition": "limited-ground",
+      "method": "seam-fit",
+      "metric": false,
+      "vertices": 35,
+      "spans": 12,
+      "within_2px": 0,
+      "projected": 0,
+      "measured_spans": 0,
+      "mean_px": null,
+      "p90_px": null,
+      "span_mae": null,
+      "relative_span_error": null,
+      "axis_mae_deg": null,
+      "fov_error_deg": null,
+      "charts": [
+        {
+          "axis": 2,
+          "plane": 1,
+          "expected": [
+            6,
+            4
+          ]
+        }
+      ],
+      "hit_rate": 0.0
+    },
+    {
+      "id": "dev-wing-plaster-close-front",
+      "layout": "wing",
+      "condition": "limited-ground",
+      "method": "tile-lines",
+      "metric": false,
+      "vertices": 35,
+      "spans": 12,
+      "within_2px": 0,
+      "projected": 0,
+      "measured_spans": 0,
+      "mean_px": null,
+      "p90_px": null,
+      "span_mae": null,
+      "relative_span_error": null,
+      "axis_mae_deg": null,
+      "fov_error_deg": null,
+      "charts": [
+        {
+          "axis": 2,
+          "plane": 1,
+          "expected": [
+            6,
+            4
+          ]
+        }
+      ],
+      "hit_rate": 0.0
+    },
+    {
+      "id": "dev-shopfront-masonry-low-left",
+      "layout": "shopfront",
+      "condition": "ground-visible",
+      "method": "pavement",
+      "metric": false,
+      "vertices": 238,
+      "spans": 67,
+      "within_2px": 0,
+      "projected": 0,
+      "measured_spans": 0,
+      "mean_px": null,
+      "p90_px": null,
+      "span_mae": null,
+      "relative_span_error": null,
+      "axis_mae_deg": 0.1980530455573332,
+      "fov_error_deg": null,
+      "charts": [
+        {
+          "axis": 0,
+          "plane": 512,
+          "expected": [
+            7,
+            5
+          ]
+        },
+        {
+          "axis": 2,
+          "plane": 1,
+          "expected": [
+            15,
+            7
+          ]
+        }
+      ],
+      "hit_rate": 0.0
+    },
+    {
+      "id": "dev-shopfront-masonry-low-left",
+      "layout": "shopfront",
+      "condition": "ground-visible",
+      "method": "seam-fit",
+      "metric": true,
+      "vertices": 238,
+      "spans": 67,
+      "within_2px": 238,
+      "projected": 238,
+      "measured_spans": 67,
+      "mean_px": 0.3700831120398526,
+      "p90_px": 0.43389806095633293,
+      "span_mae": 0.00632823216518827,
+      "relative_span_error": 0.0007888586148835513,
+      "axis_mae_deg": 0.012060573985644968,
+      "fov_error_deg": 0.03304290416749467,
+      "charts": [
+        {
+          "axis": 0,
+          "plane": 512,
+          "expected": [
+            7,
+            5
+          ],
+          "predicted": [
+            7.0,
+            3.0
+          ],
+          "plane_error_blocks": 5.0,
+          "extent_mae_blocks": 1.0
+        },
+        {
+          "axis": 2,
+          "plane": 1,
+          "expected": [
+            15,
+            7
+          ],
+          "predicted": [
+            9.0,
+            7.0
+          ],
+          "plane_error_blocks": 2.0,
+          "extent_mae_blocks": 3.0
+        }
+      ],
+      "hit_rate": 1.0
+    },
+    {
+      "id": "dev-shopfront-masonry-low-left",
+      "layout": "shopfront",
+      "condition": "ground-visible",
+      "method": "tile-lines",
+      "metric": true,
+      "vertices": 238,
+      "spans": 67,
+      "within_2px": 238,
+      "projected": 238,
+      "measured_spans": 67,
+      "mean_px": 0.5280529532878571,
+      "p90_px": 0.9855200581010577,
+      "span_mae": 0.024403975554631484,
+      "relative_span_error": -0.0034538786915537054,
+      "axis_mae_deg": 0.03714621083372189,
+      "fov_error_deg": 0.10244007572366343,
+      "charts": [
+        {
+          "axis": 0,
+          "plane": 512,
+          "expected": [
+            7,
+            5
+          ],
+          "predicted": [
+            7.0,
+            3.0
+          ],
+          "plane_error_blocks": 5.0,
+          "extent_mae_blocks": 1.0
+        },
+        {
+          "axis": 2,
+          "plane": 1,
+          "expected": [
+            15,
+            7
+          ],
+          "predicted": [
+            9.0,
+            7.0
+          ],
+          "plane_error_blocks": 2.0,
+          "extent_mae_blocks": 3.0
+        }
+      ],
+      "hit_rate": 1.0
+    },
+    {
+      "id": "dev-shopfront-masonry-high-right",
+      "layout": "shopfront",
+      "condition": "ground-visible",
+      "method": "pavement",
+      "metric": true,
+      "vertices": 304,
+      "spans": 86,
+      "within_2px": 304,
+      "projected": 304,
+      "measured_spans": 86,
+      "mean_px": 0.6786791499967588,
+      "p90_px": 0.876894194180858,
+      "span_mae": 0.04794300614590775,
+      "relative_span_error": -0.00722030891008257,
+      "axis_mae_deg": 0.03809893214654487,
+      "fov_error_deg": 0.08361405925025167,
+      "charts": [
+        {
+          "axis": 0,
+          "plane": 527,
+          "expected": [
+            7,
+            8
+          ],
+          "predicted": [
+            9.0,
+            4.0
+          ],
+          "plane_error_blocks": 1.0,
+          "extent_mae_blocks": 3.0
+        },
+        {
+          "axis": 2,
+          "plane": 1,
+          "expected": [
+            15,
+            7
+          ],
+          "predicted": [
+            9.0,
+            8.0
+          ],
+          "plane_error_blocks": 2.0,
+          "extent_mae_blocks": 3.5
+        }
+      ],
+      "hit_rate": 1.0
+    },
+    {
+      "id": "dev-shopfront-masonry-high-right",
+      "layout": "shopfront",
+      "condition": "ground-visible",
+      "method": "seam-fit",
+      "metric": true,
+      "vertices": 304,
+      "spans": 86,
+      "within_2px": 304,
+      "projected": 304,
+      "measured_spans": 86,
+      "mean_px": 0.243375153356584,
+      "p90_px": 0.27425176784055244,
+      "span_mae": 0.004922733191589478,
+      "relative_span_error": 0.00040221310994408623,
+      "axis_mae_deg": 0.007249968162888432,
+      "fov_error_deg": 0.007068317483074793,
+      "charts": [
+        {
+          "axis": 0,
+          "plane": 527,
+          "expected": [
+            7,
+            8
+          ],
+          "predicted": [
+            9.0,
+            4.0
+          ],
+          "plane_error_blocks": 1.0,
+          "extent_mae_blocks": 3.0
+        },
+        {
+          "axis": 2,
+          "plane": 1,
+          "expected": [
+            15,
+            7
+          ],
+          "predicted": [
+            9.0,
+            8.0
+          ],
+          "plane_error_blocks": 2.0,
+          "extent_mae_blocks": 3.5
+        }
+      ],
+      "hit_rate": 1.0
+    },
+    {
+      "id": "dev-shopfront-masonry-high-right",
+      "layout": "shopfront",
+      "condition": "ground-visible",
+      "method": "tile-lines",
+      "metric": true,
+      "vertices": 304,
+      "spans": 86,
+      "within_2px": 304,
+      "projected": 304,
+      "measured_spans": 86,
+      "mean_px": 0.48074594464106535,
+      "p90_px": 0.583216312211188,
+      "span_mae": 0.032766065449215676,
+      "relative_span_error": 0.005090351354521952,
+      "axis_mae_deg": 0.029073354751201763,
+      "fov_error_deg": 0.027165763266232545,
+      "charts": [
+        {
+          "axis": 0,
+          "plane": 527,
+          "expected": [
+            7,
+            8
+          ],
+          "predicted": [
+            9.0,
+            4.0
+          ],
+          "plane_error_blocks": 1.0,
+          "extent_mae_blocks": 3.0
+        },
+        {
+          "axis": 2,
+          "plane": 1,
+          "expected": [
+            15,
+            7
+          ],
+          "predicted": [
+            9.0,
+            8.0
+          ],
+          "plane_error_blocks": 2.0,
+          "extent_mae_blocks": 3.5
+        }
+      ],
+      "hit_rate": 1.0
+    },
+    {
+      "id": "dev-shopfront-plaster-low-left",
+      "layout": "shopfront",
+      "condition": "ground-visible",
+      "method": "pavement",
+      "metric": false,
+      "vertices": 238,
+      "spans": 67,
+      "within_2px": 0,
+      "projected": 0,
+      "measured_spans": 0,
+      "mean_px": null,
+      "p90_px": null,
+      "span_mae": null,
+      "relative_span_error": null,
+      "axis_mae_deg": 0.07527901712733613,
+      "fov_error_deg": null,
+      "charts": [
+        {
+          "axis": 0,
+          "plane": 768,
+          "expected": [
+            7,
+            5
+          ]
+        },
+        {
+          "axis": 2,
+          "plane": 1,
+          "expected": [
+            15,
+            7
+          ]
+        }
+      ],
+      "hit_rate": 0.0
+    },
+    {
+      "id": "dev-shopfront-plaster-low-left",
+      "layout": "shopfront",
+      "condition": "ground-visible",
+      "method": "seam-fit",
+      "metric": true,
+      "vertices": 238,
+      "spans": 67,
+      "within_2px": 238,
+      "projected": 238,
+      "measured_spans": 67,
+      "mean_px": 0.3700831120397036,
+      "p90_px": 0.4338980609547519,
+      "span_mae": 0.006328232165190199,
+      "relative_span_error": 0.0007888586148822273,
+      "axis_mae_deg": 0.012060573985644968,
+      "fov_error_deg": 0.03304290416749467,
+      "charts": [
+        {
+          "axis": 0,
+          "plane": 768,
+          "expected": [
+            7,
+            5
+          ],
+          "predicted": [
+            7.0,
+            3.0
+          ],
+          "plane_error_blocks": 5.0,
+          "extent_mae_blocks": 1.0
+        },
+        {
+          "axis": 2,
+          "plane": 1,
+          "expected": [
+            15,
+            7
+          ],
+          "predicted": [
+            9.0,
+            7.0
+          ],
+          "plane_error_blocks": 2.0,
+          "extent_mae_blocks": 3.0
+        }
+      ],
+      "hit_rate": 1.0
+    },
+    {
+      "id": "dev-shopfront-plaster-low-left",
+      "layout": "shopfront",
+      "condition": "ground-visible",
+      "method": "tile-lines",
+      "metric": true,
+      "vertices": 238,
+      "spans": 67,
+      "within_2px": 238,
+      "projected": 238,
+      "measured_spans": 67,
+      "mean_px": 0.5280529532867732,
+      "p90_px": 0.9855200581014715,
+      "span_mae": 0.02440397555461,
+      "relative_span_error": -0.0034538786915566714,
+      "axis_mae_deg": 0.03714621083372189,
+      "fov_error_deg": 0.10244007572366343,
+      "charts": [
+        {
+          "axis": 0,
+          "plane": 768,
+          "expected": [
+            7,
+            5
+          ],
+          "predicted": [
+            7.0,
+            3.0
+          ],
+          "plane_error_blocks": 5.0,
+          "extent_mae_blocks": 1.0
+        },
+        {
+          "axis": 2,
+          "plane": 1,
+          "expected": [
+            15,
+            7
+          ],
+          "predicted": [
+            9.0,
+            7.0
+          ],
+          "plane_error_blocks": 2.0,
+          "extent_mae_blocks": 3.0
+        }
+      ],
+      "hit_rate": 1.0
+    },
+    {
+      "id": "dev-shopfront-plaster-high-right",
+      "layout": "shopfront",
+      "condition": "ground-visible",
+      "method": "pavement",
+      "metric": true,
+      "vertices": 304,
+      "spans": 86,
+      "within_2px": 304,
+      "projected": 304,
+      "measured_spans": 86,
+      "mean_px": 0.6786791499950106,
+      "p90_px": 0.8768941941803621,
+      "span_mae": 0.047943006145912,
+      "relative_span_error": -0.007220308910082825,
+      "axis_mae_deg": 0.03809893214654487,
+      "fov_error_deg": 0.08361405925025167,
+      "charts": [
+        {
+          "axis": 0,
+          "plane": 783,
+          "expected": [
+            7,
+            8
+          ],
+          "predicted": [
+            9.0,
+            4.0
+          ],
+          "plane_error_blocks": 1.0,
+          "extent_mae_blocks": 3.0
+        },
+        {
+          "axis": 2,
+          "plane": 1,
+          "expected": [
+            15,
+            7
+          ],
+          "predicted": [
+            9.0,
+            8.0
+          ],
+          "plane_error_blocks": 2.0,
+          "extent_mae_blocks": 3.5
+        }
+      ],
+      "hit_rate": 1.0
+    },
+    {
+      "id": "dev-shopfront-plaster-high-right",
+      "layout": "shopfront",
+      "condition": "ground-visible",
+      "method": "seam-fit",
+      "metric": true,
+      "vertices": 304,
+      "spans": 86,
+      "within_2px": 304,
+      "projected": 304,
+      "measured_spans": 86,
+      "mean_px": 0.24133264365963905,
+      "p90_px": 0.27362004983018734,
+      "span_mae": 0.003986076153395918,
+      "relative_span_error": 0.00026156303259474426,
+      "axis_mae_deg": 0.0061501468717112566,
+      "fov_error_deg": 0.00657468889681212,
+      "charts": [
+        {
+          "axis": 0,
+          "plane": 783,
+          "expected": [
+            7,
+            8
+          ],
+          "predicted": [
+            9.0,
+            4.0
+          ],
+          "plane_error_blocks": 1.0,
+          "extent_mae_blocks": 3.0
+        },
+        {
+          "axis": 2,
+          "plane": 1,
+          "expected": [
+            15,
+            7
+          ],
+          "predicted": [
+            9.0,
+            8.0
+          ],
+          "plane_error_blocks": 2.0,
+          "extent_mae_blocks": 3.5
+        }
+      ],
+      "hit_rate": 1.0
+    },
+    {
+      "id": "dev-shopfront-plaster-high-right",
+      "layout": "shopfront",
+      "condition": "ground-visible",
+      "method": "tile-lines",
+      "metric": true,
+      "vertices": 304,
+      "spans": 86,
+      "within_2px": 304,
+      "projected": 304,
+      "measured_spans": 86,
+      "mean_px": 0.5398607832059105,
+      "p90_px": 0.6369896514854225,
+      "span_mae": 0.041672322531491744,
+      "relative_span_error": 0.0064654454790667,
+      "axis_mae_deg": 0.037851002871644945,
+      "fov_error_deg": 0.024679156892652543,
+      "charts": [
+        {
+          "axis": 0,
+          "plane": 783,
+          "expected": [
+            7,
+            8
+          ],
+          "predicted": [
+            9.0,
+            4.0
+          ],
+          "plane_error_blocks": 1.0,
+          "extent_mae_blocks": 3.0
+        },
+        {
+          "axis": 2,
+          "plane": 1,
+          "expected": [
+            15,
+            7
+          ],
+          "predicted": [
+            9.0,
+            8.0
+          ],
+          "plane_error_blocks": 2.0,
+          "extent_mae_blocks": 3.5
+        }
+      ],
+      "hit_rate": 1.0
+    }
+  ]
+}

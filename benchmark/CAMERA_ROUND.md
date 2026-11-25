@@ -1,5 +1,17 @@
 # Single-image exterior reconstruction · Camera round 01
 
+**The recommended Stage 1 default is the subpixel seam fit (`seam-fit`).** On the held-out courtyard and portico it recovered a metric camera on all eight oblique images. The two close-front images provided insufficient evidence for a full metric camera. [Full-resolution comparison sheet](reviews/camera-01/comparison.png) · [Run manifest](reviews/camera-01/manifest.json) · [Per-image scores](reviews/camera-01/holdout-scores.json)
+
+| Camera | Metric images | Corners within 2 px, layout average | Mean corner error | Mean span error |
+| --- | ---: | ---: | ---: | ---: |
+| Published pavement fit | 6/10 | 66.7% | 0.66 px | 0.028 blocks |
+| Subpixel seam fit | 8/10 | 83.3% | 0.35 px | 0.006 blocks |
+| Connected square tiles | 8/10 | 83.3% | 0.68 px | 0.023 blocks |
+
+The seam fit projected 2,292 of 2,362 labeled corners within two pixels and measured 636 of 660 visible spans. Pixel and span errors in the table are conditional on an estimate. On the six images where all three returned a camera, mean corner errors were 0.66, 0.33 and 0.67 px respectively. The development tiebreak favored the seam fit on span error before holdout. [Frozen selection](reviews/camera-01/selection.json)
+
+**Failure to inspect.** In the sheet's low-left courtyard view, the seam-fit camera averaged 0.34 px of error with known surfaces. Its image-only proposal spanned 12 blocks across a 16-block rear wall and selected a parallel plane one block away. Across holdout it returned 14 of 18 eligible vertical planes and selected the reference plane's exact offset twice. The other two methods each selected the exact offset four times. The camera result supports measuring a supplied surface. Choosing which visible surface to measure remains a separate source of error.
+
 Run the comparison from the repository root with Python 3.11+ and the packages in `requirements.txt`.
 
 ```console

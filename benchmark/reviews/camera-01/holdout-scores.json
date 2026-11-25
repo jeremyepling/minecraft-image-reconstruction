@@ -1,0 +1,1377 @@
+{
+  "summary": {
+    "pavement": {
+      "layouts": 2,
+      "images": 10,
+      "metric_images": 6,
+      "vertices": 2362,
+      "within_2px": 1846,
+      "projected": 1846,
+      "spans": 660,
+      "measured_spans": 502,
+      "layout_hit_rate": 0.6666666666666666,
+      "layout_mean_px": 0.6626662786720394,
+      "layout_span_mae_blocks": 0.027771747702601327,
+      "layout_axis_mae_deg": 0.10394137869505461,
+      "layout_fov_error_deg": 0.05951011232202852,
+      "charts": 18,
+      "predicted_charts": 12,
+      "conditional_chart_extent_mae": 2.25,
+      "exact_chart_planes": 4
+    },
+    "seam-fit": {
+      "layouts": 2,
+      "images": 10,
+      "metric_images": 8,
+      "vertices": 2362,
+      "within_2px": 2292,
+      "projected": 2292,
+      "spans": 660,
+      "measured_spans": 636,
+      "layout_hit_rate": 0.8333333333333333,
+      "layout_mean_px": 0.353507572615416,
+      "layout_span_mae_blocks": 0.006464206757805641,
+      "layout_axis_mae_deg": 0.058585980001965875,
+      "layout_fov_error_deg": 0.01966827118973935,
+      "charts": 18,
+      "predicted_charts": 14,
+      "conditional_chart_extent_mae": 2.607142857142857,
+      "exact_chart_planes": 2
+    },
+    "tile-lines": {
+      "layouts": 2,
+      "images": 10,
+      "metric_images": 8,
+      "vertices": 2362,
+      "within_2px": 2292,
+      "projected": 2292,
+      "spans": 660,
+      "measured_spans": 636,
+      "layout_hit_rate": 0.8333333333333333,
+      "layout_mean_px": 0.6816641623586519,
+      "layout_span_mae_blocks": 0.022776195878132285,
+      "layout_axis_mae_deg": 0.09649249069730081,
+      "layout_fov_error_deg": 0.10195010151880624,
+      "charts": 18,
+      "predicted_charts": 16,
+      "conditional_chart_extent_mae": 2.0,
+      "exact_chart_planes": 4
+    }
+  },
+  "rows": [
+    {
+      "id": "holdout-courtyard-masonry-low-left",
+      "layout": "courtyard",
+      "condition": "ground-visible",
+      "method": "pavement",
+      "metric": false,
+      "vertices": 223,
+      "spans": 67,
+      "within_2px": 0,
+      "projected": 0,
+      "measured_spans": 0,
+      "mean_px": null,
+      "p90_px": null,
+      "span_mae": null,
+      "relative_span_error": null,
+      "axis_mae_deg": 0.2110672567237912,
+      "fov_error_deg": null,
+      "charts": [
+        {
+          "axis": 0,
+          "plane": 1024,
+          "expected": [
+            8,
+            8
+          ]
+        },
+        {
+          "axis": 2,
+          "plane": -4,
+          "expected": [
+            16,
+            8
+          ]
+        }
+      ],
+      "hit_rate": 0.0
+    },
+    {
+      "id": "holdout-courtyard-masonry-low-left",
+      "layout": "courtyard",
+      "condition": "ground-visible",
+      "method": "seam-fit",
+      "metric": true,
+      "vertices": 223,
+      "spans": 67,
+      "within_2px": 223,
+      "projected": 223,
+      "measured_spans": 67,
+      "mean_px": 0.3350187296556322,
+      "p90_px": 0.4294721520995748,
+      "span_mae": 0.010664853207814785,
+      "relative_span_error": 0.0013982189157553744,
+      "axis_mae_deg": 0.021088405518994876,
+      "fov_error_deg": 0.05142640961738465,
+      "charts": [
+        {
+          "axis": 0,
+          "plane": 1024,
+          "expected": [
+            8,
+            8
+          ],
+          "predicted": [
+            3.0,
+            14.0
+          ],
+          "plane_error_blocks": 4.0,
+          "extent_mae_blocks": 5.5
+        },
+        {
+          "axis": 2,
+          "plane": -4,
+          "expected": [
+            16,
+            8
+          ],
+          "predicted": [
+            12.0,
+            8.0
+          ],
+          "plane_error_blocks": 1.0,
+          "extent_mae_blocks": 2.0
+        }
+      ],
+      "hit_rate": 1.0
+    },
+    {
+      "id": "holdout-courtyard-masonry-low-left",
+      "layout": "courtyard",
+      "condition": "ground-visible",
+      "method": "tile-lines",
+      "metric": true,
+      "vertices": 223,
+      "spans": 67,
+      "within_2px": 223,
+      "projected": 223,
+      "measured_spans": 67,
+      "mean_px": 0.6117979493167217,
+      "p90_px": 0.8858242907525943,
+      "span_mae": 0.0247692191949565,
+      "relative_span_error": 0.003539231607574693,
+      "axis_mae_deg": 0.09141591355294015,
+      "fov_error_deg": 0.18283454903243523,
+      "charts": [
+        {
+          "axis": 0,
+          "plane": 1024,
+          "expected": [
+            8,
+            8
+          ],
+          "predicted": [
+            8.0,
+            5.0
+          ],
+          "plane_error_blocks": 12.0,
+          "extent_mae_blocks": 1.5
+        },
+        {
+          "axis": 2,
+          "plane": -4,
+          "expected": [
+            16,
+            8
+          ],
+          "predicted": [
+            12.0,
+            8.0
+          ],
+          "plane_error_blocks": 1.0,
+          "extent_mae_blocks": 2.0
+        }
+      ],
+      "hit_rate": 1.0
+    },
+    {
+      "id": "holdout-courtyard-masonry-high-right",
+      "layout": "courtyard",
+      "condition": "ground-visible",
+      "method": "pavement",
+      "metric": true,
+      "vertices": 307,
+      "spans": 102,
+      "within_2px": 307,
+      "projected": 307,
+      "measured_spans": 102,
+      "mean_px": 0.7962763516744598,
+      "p90_px": 1.0229939664551233,
+      "span_mae": 0.04432486404318127,
+      "relative_span_error": -0.00925852632127835,
+      "axis_mae_deg": 0.012843991505143816,
+      "fov_error_deg": 0.02983177953924354,
+      "charts": [
+        {
+          "axis": 0,
+          "plane": 1040,
+          "expected": [
+            8,
+            6
+          ],
+          "predicted": [
+            8.0,
+            6.0
+          ],
+          "plane_error_blocks": 11.0,
+          "extent_mae_blocks": 0.0
+        },
+        {
+          "axis": 2,
+          "plane": -4,
+          "expected": [
+            16,
+            8
+          ],
+          "predicted": [
+            12.0,
+            8.0
+          ],
+          "plane_error_blocks": 4.0,
+          "extent_mae_blocks": 2.0
+        }
+      ],
+      "hit_rate": 1.0
+    },
+    {
+      "id": "holdout-courtyard-masonry-high-right",
+      "layout": "courtyard",
+      "condition": "ground-visible",
+      "method": "seam-fit",
+      "metric": true,
+      "vertices": 307,
+      "spans": 102,
+      "within_2px": 307,
+      "projected": 307,
+      "measured_spans": 102,
+      "mean_px": 0.25880115326595804,
+      "p90_px": 0.3017516104436561,
+      "span_mae": 0.0026054293954927256,
+      "relative_span_error": -0.00019044212625633745,
+      "axis_mae_deg": 0.008400124940425567,
+      "fov_error_deg": 0.009225207176889683,
+      "charts": [
+        {
+          "axis": 0,
+          "plane": 1040,
+          "expected": [
+            8,
+            6
+          ],
+          "predicted": [
+            8.0,
+            6.0
+          ],
+          "plane_error_blocks": 11.0,
+          "extent_mae_blocks": 0.0
+        },
+        {
+          "axis": 2,
+          "plane": -4,
+          "expected": [
+            16,
+            8
+          ],
+          "predicted": [
+            12.0,
+            8.0
+          ],
+          "plane_error_blocks": 4.0,
+          "extent_mae_blocks": 2.0
+        }
+      ],
+      "hit_rate": 1.0
+    },
+    {
+      "id": "holdout-courtyard-masonry-high-right",
+      "layout": "courtyard",
+      "condition": "ground-visible",
+      "method": "tile-lines",
+      "metric": true,
+      "vertices": 307,
+      "spans": 102,
+      "within_2px": 307,
+      "projected": 307,
+      "measured_spans": 102,
+      "mean_px": 0.5677578706722233,
+      "p90_px": 0.6418173409738159,
+      "span_mae": 0.014085293554273355,
+      "relative_span_error": -0.0019962035220811823,
+      "axis_mae_deg": 0.03240106386540195,
+      "fov_error_deg": 0.05414275522958434,
+      "charts": [
+        {
+          "axis": 0,
+          "plane": 1040,
+          "expected": [
+            8,
+            6
+          ],
+          "predicted": [
+            8.0,
+            6.0
+          ],
+          "plane_error_blocks": 11.0,
+          "extent_mae_blocks": 0.0
+        },
+        {
+          "axis": 2,
+          "plane": -4,
+          "expected": [
+            16,
+            8
+          ],
+          "predicted": [
+            12.0,
+            8.0
+          ],
+          "plane_error_blocks": 4.0,
+          "extent_mae_blocks": 2.0
+        }
+      ],
+      "hit_rate": 1.0
+    },
+    {
+      "id": "holdout-courtyard-masonry-close-front",
+      "layout": "courtyard",
+      "condition": "limited-ground",
+      "method": "pavement",
+      "metric": false,
+      "vertices": 35,
+      "spans": 12,
+      "within_2px": 0,
+      "projected": 0,
+      "measured_spans": 0,
+      "mean_px": null,
+      "p90_px": null,
+      "span_mae": null,
+      "relative_span_error": null,
+      "axis_mae_deg": 0.4485031913999908,
+      "fov_error_deg": null,
+      "charts": [
+        {
+          "axis": 2,
+          "plane": -4,
+          "expected": [
+            6,
+            4
+          ]
+        }
+      ],
+      "hit_rate": 0.0
+    },
+    {
+      "id": "holdout-courtyard-masonry-close-front",
+      "layout": "courtyard",
+      "condition": "limited-ground",
+      "method": "seam-fit",
+      "metric": false,
+      "vertices": 35,
+      "spans": 12,
+      "within_2px": 0,
+      "projected": 0,
+      "measured_spans": 0,
+      "mean_px": null,
+      "p90_px": null,
+      "span_mae": null,
+      "relative_span_error": null,
+      "axis_mae_deg": 0.4485031913999908,
+      "fov_error_deg": null,
+      "charts": [
+        {
+          "axis": 2,
+          "plane": -4,
+          "expected": [
+            6,
+            4
+          ]
+        }
+      ],
+      "hit_rate": 0.0
+    },
+    {
+      "id": "holdout-courtyard-masonry-close-front",
+      "layout": "courtyard",
+      "condition": "limited-ground",
+      "method": "tile-lines",
+      "metric": false,
+      "vertices": 35,
+      "spans": 12,
+      "within_2px": 0,
+      "projected": 0,
+      "measured_spans": 0,
+      "mean_px": null,
+      "p90_px": null,
+      "span_mae": null,
+      "relative_span_error": null,
+      "axis_mae_deg": 0.4485031913999908,
+      "fov_error_deg": null,
+      "charts": [
+        {
+          "axis": 2,
+          "plane": -4,
+          "expected": [
+            6,
+            4
+          ]
+        }
+      ],
+      "hit_rate": 0.0
+    },
+    {
+      "id": "holdout-courtyard-plaster-low-left",
+      "layout": "courtyard",
+      "condition": "ground-visible",
+      "method": "pavement",
+      "metric": false,
+      "vertices": 223,
+      "spans": 67,
+      "within_2px": 0,
+      "projected": 0,
+      "measured_spans": 0,
+      "mean_px": null,
+      "p90_px": null,
+      "span_mae": null,
+      "relative_span_error": null,
+      "axis_mae_deg": 0.16186573210235544,
+      "fov_error_deg": null,
+      "charts": [
+        {
+          "axis": 0,
+          "plane": 1280,
+          "expected": [
+            8,
+            8
+          ]
+        },
+        {
+          "axis": 2,
+          "plane": -4,
+          "expected": [
+            16,
+            8
+          ]
+        }
+      ],
+      "hit_rate": 0.0
+    },
+    {
+      "id": "holdout-courtyard-plaster-low-left",
+      "layout": "courtyard",
+      "condition": "ground-visible",
+      "method": "seam-fit",
+      "metric": true,
+      "vertices": 223,
+      "spans": 67,
+      "within_2px": 223,
+      "projected": 223,
+      "measured_spans": 67,
+      "mean_px": 0.34994249739929095,
+      "p90_px": 0.4551532665249266,
+      "span_mae": 0.011428739888268424,
+      "relative_span_error": 0.001512516802831343,
+      "axis_mae_deg": 0.022610725927795384,
+      "fov_error_deg": 0.0545857390919835,
+      "charts": [
+        {
+          "axis": 0,
+          "plane": 1280,
+          "expected": [
+            8,
+            8
+          ],
+          "predicted": [
+            8.0,
+            4.0
+          ],
+          "plane_error_blocks": 11.0,
+          "extent_mae_blocks": 2.0
+        },
+        {
+          "axis": 2,
+          "plane": -4,
+          "expected": [
+            16,
+            8
+          ],
+          "predicted": [
+            12.0,
+            8.0
+          ],
+          "plane_error_blocks": 1.0,
+          "extent_mae_blocks": 2.0
+        }
+      ],
+      "hit_rate": 1.0
+    },
+    {
+      "id": "holdout-courtyard-plaster-low-left",
+      "layout": "courtyard",
+      "condition": "ground-visible",
+      "method": "tile-lines",
+      "metric": true,
+      "vertices": 223,
+      "spans": 67,
+      "within_2px": 223,
+      "projected": 223,
+      "measured_spans": 67,
+      "mean_px": 0.6117979493173636,
+      "p90_px": 0.8858242907536785,
+      "span_mae": 0.024769219194975167,
+      "relative_span_error": 0.003539231607577954,
+      "axis_mae_deg": 0.09141591355294015,
+      "fov_error_deg": 0.18283454903243523,
+      "charts": [
+        {
+          "axis": 0,
+          "plane": 1280,
+          "expected": [
+            8,
+            8
+          ],
+          "predicted": [
+            8.0,
+            5.0
+          ],
+          "plane_error_blocks": 12.0,
+          "extent_mae_blocks": 1.5
+        },
+        {
+          "axis": 2,
+          "plane": -4,
+          "expected": [
+            16,
+            8
+          ],
+          "predicted": [
+            12.0,
+            8.0
+          ],
+          "plane_error_blocks": 1.0,
+          "extent_mae_blocks": 2.0
+        }
+      ],
+      "hit_rate": 1.0
+    },
+    {
+      "id": "holdout-courtyard-plaster-high-right",
+      "layout": "courtyard",
+      "condition": "ground-visible",
+      "method": "pavement",
+      "metric": true,
+      "vertices": 307,
+      "spans": 102,
+      "within_2px": 307,
+      "projected": 307,
+      "measured_spans": 102,
+      "mean_px": 0.796276351674783,
+      "p90_px": 1.0229939664572048,
+      "span_mae": 0.044324864043238266,
+      "relative_span_error": -0.009258526321303626,
+      "axis_mae_deg": 0.012843991505143816,
+      "fov_error_deg": 0.02983177953924354,
+      "charts": [
+        {
+          "axis": 0,
+          "plane": 1296,
+          "expected": [
+            8,
+            6
+          ],
+          "predicted": [
+            8.0,
+            6.0
+          ],
+          "plane_error_blocks": 11.0,
+          "extent_mae_blocks": 0.0
+        },
+        {
+          "axis": 2,
+          "plane": -4,
+          "expected": [
+            16,
+            8
+          ],
+          "predicted": [
+            12.0,
+            8.0
+          ],
+          "plane_error_blocks": 4.0,
+          "extent_mae_blocks": 2.0
+        }
+      ],
+      "hit_rate": 1.0
+    },
+    {
+      "id": "holdout-courtyard-plaster-high-right",
+      "layout": "courtyard",
+      "condition": "ground-visible",
+      "method": "seam-fit",
+      "metric": true,
+      "vertices": 307,
+      "spans": 102,
+      "within_2px": 307,
+      "projected": 307,
+      "measured_spans": 102,
+      "mean_px": 0.2575934335341631,
+      "p90_px": 0.29761658871810126,
+      "span_mae": 0.002854577110227262,
+      "relative_span_error": -5.511325319417139e-05,
+      "axis_mae_deg": 0.008714991576254364,
+      "fov_error_deg": 0.007948020931912936,
+      "charts": [
+        {
+          "axis": 0,
+          "plane": 1296,
+          "expected": [
+            8,
+            6
+          ],
+          "predicted": [
+            8.0,
+            6.0
+          ],
+          "plane_error_blocks": 11.0,
+          "extent_mae_blocks": 0.0
+        },
+        {
+          "axis": 2,
+          "plane": -4,
+          "expected": [
+            16,
+            8
+          ],
+          "predicted": [
+            12.0,
+            8.0
+          ],
+          "plane_error_blocks": 4.0,
+          "extent_mae_blocks": 2.0
+        }
+      ],
+      "hit_rate": 1.0
+    },
+    {
+      "id": "holdout-courtyard-plaster-high-right",
+      "layout": "courtyard",
+      "condition": "ground-visible",
+      "method": "tile-lines",
+      "metric": true,
+      "vertices": 307,
+      "spans": 102,
+      "within_2px": 307,
+      "projected": 307,
+      "measured_spans": 102,
+      "mean_px": 0.5677578706700029,
+      "p90_px": 0.6418173409707827,
+      "span_mae": 0.014085293554361058,
+      "relative_span_error": -0.0019962035221103443,
+      "axis_mae_deg": 0.03240106386540195,
+      "fov_error_deg": 0.05414275522958434,
+      "charts": [
+        {
+          "axis": 0,
+          "plane": 1296,
+          "expected": [
+            8,
+            6
+          ],
+          "predicted": [
+            8.0,
+            6.0
+          ],
+          "plane_error_blocks": 11.0,
+          "extent_mae_blocks": 0.0
+        },
+        {
+          "axis": 2,
+          "plane": -4,
+          "expected": [
+            16,
+            8
+          ],
+          "predicted": [
+            12.0,
+            8.0
+          ],
+          "plane_error_blocks": 4.0,
+          "extent_mae_blocks": 2.0
+        }
+      ],
+      "hit_rate": 1.0
+    },
+    {
+      "id": "holdout-courtyard-plaster-close-front",
+      "layout": "courtyard",
+      "condition": "limited-ground",
+      "method": "pavement",
+      "metric": false,
+      "vertices": 35,
+      "spans": 12,
+      "within_2px": 0,
+      "projected": 0,
+      "measured_spans": 0,
+      "mean_px": null,
+      "p90_px": null,
+      "span_mae": null,
+      "relative_span_error": null,
+      "axis_mae_deg": null,
+      "fov_error_deg": null,
+      "charts": [
+        {
+          "axis": 2,
+          "plane": -4,
+          "expected": [
+            6,
+            4
+          ]
+        }
+      ],
+      "hit_rate": 0.0
+    },
+    {
+      "id": "holdout-courtyard-plaster-close-front",
+      "layout": "courtyard",
+      "condition": "limited-ground",
+      "method": "seam-fit",
+      "metric": false,
+      "vertices": 35,
+      "spans": 12,
+      "within_2px": 0,
+      "projected": 0,
+      "measured_spans": 0,
+      "mean_px": null,
+      "p90_px": null,
+      "span_mae": null,
+      "relative_span_error": null,
+      "axis_mae_deg": null,
+      "fov_error_deg": null,
+      "charts": [
+        {
+          "axis": 2,
+          "plane": -4,
+          "expected": [
+            6,
+            4
+          ]
+        }
+      ],
+      "hit_rate": 0.0
+    },
+    {
+      "id": "holdout-courtyard-plaster-close-front",
+      "layout": "courtyard",
+      "condition": "limited-ground",
+      "method": "tile-lines",
+      "metric": false,
+      "vertices": 35,
+      "spans": 12,
+      "within_2px": 0,
+      "projected": 0,
+      "measured_spans": 0,
+      "mean_px": null,
+      "p90_px": null,
+      "span_mae": null,
+      "relative_span_error": null,
+      "axis_mae_deg": null,
+      "fov_error_deg": null,
+      "charts": [
+        {
+          "axis": 2,
+          "plane": -4,
+          "expected": [
+            6,
+            4
+          ]
+        }
+      ],
+      "hit_rate": 0.0
+    },
+    {
+      "id": "holdout-portico-masonry-low-left",
+      "layout": "portico",
+      "condition": "ground-visible",
+      "method": "pavement",
+      "metric": true,
+      "vertices": 283,
+      "spans": 56,
+      "within_2px": 283,
+      "projected": 283,
+      "measured_spans": 56,
+      "mean_px": 0.36254089436709364,
+      "p90_px": 0.4578177344893501,
+      "span_mae": 0.007150674998063116,
+      "relative_span_error": 0.0004179052093515422,
+      "axis_mae_deg": 0.01590723189370113,
+      "fov_error_deg": 0.03512826086372911,
+      "charts": [
+        {
+          "axis": 0,
+          "plane": 1548,
+          "expected": [
+            5,
+            4
+          ],
+          "predicted": [
+            7.0,
+            12.0
+          ],
+          "plane_error_blocks": 12.0,
+          "extent_mae_blocks": 5.0
+        },
+        {
+          "axis": 2,
+          "plane": 2,
+          "expected": [
+            13,
+            5
+          ],
+          "predicted": [
+            14.0,
+            8.0
+          ],
+          "plane_error_blocks": 1.0,
+          "extent_mae_blocks": 2.0
+        }
+      ],
+      "hit_rate": 1.0
+    },
+    {
+      "id": "holdout-portico-masonry-low-left",
+      "layout": "portico",
+      "condition": "ground-visible",
+      "method": "seam-fit",
+      "metric": true,
+      "vertices": 283,
+      "spans": 56,
+      "within_2px": 283,
+      "projected": 283,
+      "measured_spans": 56,
+      "mean_px": 0.543969019852098,
+      "p90_px": 0.616401351680003,
+      "span_mae": 0.009713460226640777,
+      "relative_span_error": -0.00024453691752792425,
+      "axis_mae_deg": 0.02233246517096305,
+      "fov_error_deg": 0.005282337810101012,
+      "charts": [
+        {
+          "axis": 0,
+          "plane": 1548,
+          "expected": [
+            5,
+            4
+          ],
+          "predicted": [
+            7.0,
+            12.0
+          ],
+          "plane_error_blocks": 12.0,
+          "extent_mae_blocks": 5.0
+        },
+        {
+          "axis": 2,
+          "plane": 2,
+          "expected": [
+            13,
+            5
+          ],
+          "predicted": [
+            14.0,
+            8.0
+          ],
+          "plane_error_blocks": 1.0,
+          "extent_mae_blocks": 2.0
+        }
+      ],
+      "hit_rate": 1.0
+    },
+    {
+      "id": "holdout-portico-masonry-low-left",
+      "layout": "portico",
+      "condition": "ground-visible",
+      "method": "tile-lines",
+      "metric": true,
+      "vertices": 283,
+      "spans": 56,
+      "within_2px": 283,
+      "projected": 283,
+      "measured_spans": 56,
+      "mean_px": 0.8588729689633561,
+      "p90_px": 1.5048051977995769,
+      "span_mae": 0.040941938454099484,
+      "relative_span_error": -0.000514153897156531,
+      "axis_mae_deg": 0.06996404960724319,
+      "fov_error_deg": 0.1657291620488195,
+      "charts": [
+        {
+          "axis": 0,
+          "plane": 1548,
+          "expected": [
+            5,
+            4
+          ],
+          "predicted": [
+            7.0,
+            10.0
+          ],
+          "plane_error_blocks": 12.0,
+          "extent_mae_blocks": 4.0
+        },
+        {
+          "axis": 2,
+          "plane": 2,
+          "expected": [
+            13,
+            5
+          ],
+          "predicted": [
+            14.0,
+            8.0
+          ],
+          "plane_error_blocks": 1.0,
+          "extent_mae_blocks": 2.0
+        }
+      ],
+      "hit_rate": 1.0
+    },
+    {
+      "id": "holdout-portico-masonry-high-right",
+      "layout": "portico",
+      "condition": "ground-visible",
+      "method": "pavement",
+      "metric": true,
+      "vertices": 333,
+      "spans": 93,
+      "within_2px": 333,
+      "projected": 333,
+      "measured_spans": 93,
+      "mean_px": 0.6955715169684997,
+      "p90_px": 0.8502035505021114,
+      "span_mae": 0.015286587725955276,
+      "relative_span_error": 0.00231030425798892,
+      "axis_mae_deg": 0.06100861759194732,
+      "fov_error_deg": 0.14324862934589788,
+      "charts": [
+        {
+          "axis": 0,
+          "plane": 1552,
+          "expected": [
+            6,
+            5
+          ],
+          "predicted": [
+            7.0,
+            4.0
+          ],
+          "plane_error_blocks": 0.0,
+          "extent_mae_blocks": 1.0
+        },
+        {
+          "axis": 2,
+          "plane": 2,
+          "expected": [
+            13,
+            4
+          ],
+          "predicted": [
+            15.0,
+            9.0
+          ],
+          "plane_error_blocks": 0.0,
+          "extent_mae_blocks": 3.5
+        }
+      ],
+      "hit_rate": 1.0
+    },
+    {
+      "id": "holdout-portico-masonry-high-right",
+      "layout": "portico",
+      "condition": "ground-visible",
+      "method": "seam-fit",
+      "metric": true,
+      "vertices": 333,
+      "spans": 93,
+      "within_2px": 333,
+      "projected": 333,
+      "measured_spans": 93,
+      "mean_px": 0.27362667324698636,
+      "p90_px": 0.3090856750997572,
+      "span_mae": 0.0026540186348827013,
+      "relative_span_error": -0.0003535609555556729,
+      "axis_mae_deg": 0.008529678289612609,
+      "fov_error_deg": 0.012907312029248885,
+      "charts": [
+        {
+          "axis": 0,
+          "plane": 1552,
+          "expected": [
+            6,
+            5
+          ]
+        },
+        {
+          "axis": 2,
+          "plane": 2,
+          "expected": [
+            13,
+            4
+          ],
+          "predicted": [
+            15.0,
+            9.0
+          ],
+          "plane_error_blocks": 0.0,
+          "extent_mae_blocks": 3.5
+        }
+      ],
+      "hit_rate": 1.0
+    },
+    {
+      "id": "holdout-portico-masonry-high-right",
+      "layout": "portico",
+      "condition": "ground-visible",
+      "method": "tile-lines",
+      "metric": true,
+      "vertices": 333,
+      "spans": 93,
+      "within_2px": 333,
+      "projected": 333,
+      "measured_spans": 93,
+      "mean_px": 0.6882278604815557,
+      "p90_px": 0.7369559004262203,
+      "span_mae": 0.011308332309219482,
+      "relative_span_error": -5.56501451241943e-05,
+      "axis_mae_deg": 0.03755105468729004,
+      "fov_error_deg": 0.00509393976438588,
+      "charts": [
+        {
+          "axis": 0,
+          "plane": 1552,
+          "expected": [
+            6,
+            5
+          ],
+          "predicted": [
+            7.0,
+            4.0
+          ],
+          "plane_error_blocks": 0.0,
+          "extent_mae_blocks": 1.0
+        },
+        {
+          "axis": 2,
+          "plane": 2,
+          "expected": [
+            13,
+            4
+          ],
+          "predicted": [
+            15.0,
+            9.0
+          ],
+          "plane_error_blocks": 0.0,
+          "extent_mae_blocks": 3.5
+        }
+      ],
+      "hit_rate": 1.0
+    },
+    {
+      "id": "holdout-portico-plaster-low-left",
+      "layout": "portico",
+      "condition": "ground-visible",
+      "method": "pavement",
+      "metric": true,
+      "vertices": 283,
+      "spans": 56,
+      "within_2px": 283,
+      "projected": 283,
+      "measured_spans": 56,
+      "mean_px": 0.3625408943675939,
+      "p90_px": 0.4578177344893531,
+      "span_mae": 0.00715067499803567,
+      "relative_span_error": 0.00041790520935799735,
+      "axis_mae_deg": 0.01590723189370113,
+      "fov_error_deg": 0.03512826086372911,
+      "charts": [
+        {
+          "axis": 0,
+          "plane": 1804,
+          "expected": [
+            5,
+            4
+          ],
+          "predicted": [
+            7.0,
+            12.0
+          ],
+          "plane_error_blocks": 12.0,
+          "extent_mae_blocks": 5.0
+        },
+        {
+          "axis": 2,
+          "plane": 2,
+          "expected": [
+            13,
+            5
+          ],
+          "predicted": [
+            14.0,
+            8.0
+          ],
+          "plane_error_blocks": 1.0,
+          "extent_mae_blocks": 2.0
+        }
+      ],
+      "hit_rate": 1.0
+    },
+    {
+      "id": "holdout-portico-plaster-low-left",
+      "layout": "portico",
+      "condition": "ground-visible",
+      "method": "seam-fit",
+      "metric": true,
+      "vertices": 283,
+      "spans": 56,
+      "within_2px": 283,
+      "projected": 283,
+      "measured_spans": 56,
+      "mean_px": 0.543969019847613,
+      "p90_px": 0.6164013516687937,
+      "span_mae": 0.009713460226571633,
+      "relative_span_error": -0.00024453691751537477,
+      "axis_mae_deg": 0.02233246517096305,
+      "fov_error_deg": 0.005282337810101012,
+      "charts": [
+        {
+          "axis": 0,
+          "plane": 1804,
+          "expected": [
+            5,
+            4
+          ],
+          "predicted": [
+            7.0,
+            12.0
+          ],
+          "plane_error_blocks": 12.0,
+          "extent_mae_blocks": 5.0
+        },
+        {
+          "axis": 2,
+          "plane": 2,
+          "expected": [
+            13,
+            5
+          ],
+          "predicted": [
+            14.0,
+            8.0
+          ],
+          "plane_error_blocks": 1.0,
+          "extent_mae_blocks": 2.0
+        }
+      ],
+      "hit_rate": 1.0
+    },
+    {
+      "id": "holdout-portico-plaster-low-left",
+      "layout": "portico",
+      "condition": "ground-visible",
+      "method": "tile-lines",
+      "metric": true,
+      "vertices": 283,
+      "spans": 56,
+      "within_2px": 283,
+      "projected": 283,
+      "measured_spans": 56,
+      "mean_px": 0.8588729689670397,
+      "p90_px": 1.5048051978065875,
+      "span_mae": 0.040941938454107554,
+      "relative_span_error": -0.0005141538971730793,
+      "axis_mae_deg": 0.06996404960724319,
+      "fov_error_deg": 0.1657291620488195,
+      "charts": [
+        {
+          "axis": 0,
+          "plane": 1804,
+          "expected": [
+            5,
+            4
+          ],
+          "predicted": [
+            7.0,
+            10.0
+          ],
+          "plane_error_blocks": 12.0,
+          "extent_mae_blocks": 4.0
+        },
+        {
+          "axis": 2,
+          "plane": 2,
+          "expected": [
+            13,
+            5
+          ],
+          "predicted": [
+            14.0,
+            8.0
+          ],
+          "plane_error_blocks": 1.0,
+          "extent_mae_blocks": 2.0
+        }
+      ],
+      "hit_rate": 1.0
+    },
+    {
+      "id": "holdout-portico-plaster-high-right",
+      "layout": "portico",
+      "condition": "ground-visible",
+      "method": "pavement",
+      "metric": true,
+      "vertices": 333,
+      "spans": 93,
+      "within_2px": 333,
+      "projected": 333,
+      "measured_spans": 93,
+      "mean_px": 0.6955715169746421,
+      "p90_px": 0.850203550506963,
+      "span_mae": 0.015286587725917476,
+      "relative_span_error": 0.0023103042579843275,
+      "axis_mae_deg": 0.06100861759194732,
+      "fov_error_deg": 0.14324862934589788,
+      "charts": [
+        {
+          "axis": 0,
+          "plane": 1808,
+          "expected": [
+            6,
+            5
+          ],
+          "predicted": [
+            7.0,
+            4.0
+          ],
+          "plane_error_blocks": 0.0,
+          "extent_mae_blocks": 1.0
+        },
+        {
+          "axis": 2,
+          "plane": 2,
+          "expected": [
+            13,
+            4
+          ],
+          "predicted": [
+            15.0,
+            9.0
+          ],
+          "plane_error_blocks": 0.0,
+          "extent_mae_blocks": 3.5
+        }
+      ],
+      "hit_rate": 1.0
+    },
+    {
+      "id": "holdout-portico-plaster-high-right",
+      "layout": "portico",
+      "condition": "ground-visible",
+      "method": "seam-fit",
+      "metric": true,
+      "vertices": 333,
+      "spans": 93,
+      "within_2px": 333,
+      "projected": 333,
+      "measured_spans": 93,
+      "mean_px": 0.26514005412158653,
+      "p90_px": 0.296203274022626,
+      "span_mae": 0.002079115372546825,
+      "relative_span_error": -0.00025248009283486937,
+      "axis_mae_deg": 0.008039279893419507,
+      "fov_error_deg": 0.010688805050293126,
+      "charts": [
+        {
+          "axis": 0,
+          "plane": 1808,
+          "expected": [
+            6,
+            5
+          ]
+        },
+        {
+          "axis": 2,
+          "plane": 2,
+          "expected": [
+            13,
+            4
+          ],
+          "predicted": [
+            15.0,
+            9.0
+          ],
+          "plane_error_blocks": 0.0,
+          "extent_mae_blocks": 3.5
+        }
+      ],
+      "hit_rate": 1.0
+    },
+    {
+      "id": "holdout-portico-plaster-high-right",
+      "layout": "portico",
+      "condition": "ground-visible",
+      "method": "tile-lines",
+      "metric": true,
+      "vertices": 333,
+      "spans": 93,
+      "within_2px": 333,
+      "projected": 333,
+      "measured_spans": 93,
+      "mean_px": 0.6882278604809522,
+      "p90_px": 0.7369559004262141,
+      "span_mae": 0.011308332309065675,
+      "relative_span_error": -5.5650145112209864e-05,
+      "axis_mae_deg": 0.03755105468729004,
+      "fov_error_deg": 0.00509393976438588,
+      "charts": [
+        {
+          "axis": 0,
+          "plane": 1808,
+          "expected": [
+            6,
+            5
+          ],
+          "predicted": [
+            7.0,
+            4.0
+          ],
+          "plane_error_blocks": 0.0,
+          "extent_mae_blocks": 1.0
+        },
+        {
+          "axis": 2,
+          "plane": 2,
+          "expected": [
+            13,
+            4
+          ],
+          "predicted": [
+            15.0,
+            9.0
+          ],
+          "plane_error_blocks": 0.0,
+          "extent_mae_blocks": 3.5
+        }
+      ],
+      "hit_rate": 1.0
+    }
+  ]
+}
