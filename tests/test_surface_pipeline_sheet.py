@@ -1,8 +1,10 @@
 import unittest
+from types import SimpleNamespace
 
 import numpy as np
+from PIL import Image
 
-from benchmark.surface_pipeline_sheet import _straight_photo
+from benchmark.surface_pipeline_sheet import STAGES, _straight_photo, build
 
 
 class PipelineSheetGridTest(unittest.TestCase):
@@ -26,3 +28,20 @@ class PipelineSheetGridTest(unittest.TestCase):
                                     dict(counts=[5.,2.],phase=[None,None]))
         np.testing.assert_array_equal(np.asarray(a),np.asarray(b))
         self.assertEqual(lines,[[],[]])
+
+    def test_portrait_matrix_keeps_each_building_in_one_column(self):
+        image=Image.new('RGB',(24,24),'gray')
+        part=dict(id='wall',support=dict(size=[24,24],runs=[[y,3,19] for y in range(6,17)]))
+        examples=[dict(layout=f'building-{i}',key=f'view-{i}',image=image,box=[0,0,24,24],part=part)
+                  for i in range(8)]
+        extra=dict(examples[1],extra='Second surface')
+        sheet,records=build([*examples,extra],SimpleNamespace(provenance={'version':'26.3'}))
+        self.assertGreater(sheet.height,sheet.width)
+        self.assertEqual(records['columns'],[ex['layout'] for ex in examples])
+        self.assertEqual([r['name'] for r in records['stages']],list(STAGES))
+        self.assertEqual(records['views'][1]['sheet_column_xyxy'],records['views'][-1]['sheet_column_xyxy'])
+        columns=[v['sheet_column_xyxy'] for v in records['views'][:8]]
+        self.assertTrue(all(a[2]<=b[0] for a,b in zip(columns,columns[1:])))
+        for view in records['views']:
+            for stage,box in zip(records['stages'],view['sheet_stage_xyxy'],strict=True):
+                self.assertTrue(stage['y0']<=box[1]<box[3]<=stage['y1'])

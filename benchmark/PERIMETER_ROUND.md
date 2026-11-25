@@ -1,6 +1,6 @@
 # Reading a surface from its outline
 
-The [pipeline sheet](reviews/perimeters-01/comparison.jpg) follows one surface per building through the original image, detected outline, context crop, straightening, predicted block grid and atlas lookup. It uses the same eight views and initial region selections as the count round. A ninth row follows another surface on the wing so you can see an actual grid and the texture sampled from it. Dark areas in the straightened sample have no accepted pixels. “Grid origin unknown” means the counter can estimate spacing but cannot locate the first block boundary.
+The [pipeline sheet](reviews/perimeters-01/comparison.jpg) is one portrait image you can zoom into. Read down a building's column to follow its original screenshot, detected outline, context crop, straightened surface, predicted block grid and atlas lookup. Read across a stage to compare all eight buildings. The Wing column also follows a second surface with a located grid and a sampled block. Dark areas in the straightened sample have no accepted pixels. “Grid origin unknown” means the counter can estimate spacing but cannot locate the first block boundary.
 
 ## Where the three diagonals came from
 
