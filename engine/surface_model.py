@@ -278,7 +278,7 @@ def build(image_path, version, out, *, outlines=None, order_method=None, through
     defaults = json.loads(DEFAULTS.read_text())
     outlines = outlines or defaults['outlines']
     mask_first = outlines == 'mask-first'
-    if boundary is not None and (not mask_first or boundary not in ('regions-first','color-edges','depth-split','wall-depth-anything','strip-mlsd','wall-and-underside')):
+    if boundary is not None and (not mask_first or boundary not in ('regions-first','color-edges','depth-split','wall-depth-anything','strip-mlsd','wall-and-underside','wall-recovery')):
         raise ValueError('Select a Regions First boundary method for a mask-first surface build.')
     if context_px is not None and (not mask_first or not isinstance(context_px, int) or context_px < 0):
         raise ValueError('Surface context requires Regions First and a nonnegative whole number of pixels.')
@@ -297,14 +297,14 @@ def build(image_path, version, out, *, outlines=None, order_method=None, through
         from engine.surface_perimeter import DEFAULT_CONTEXT_PX, context_crop, masked_crop, with_outline
         boundary = boundary or defaults['boundary']
         boundary_settings = {}
-        if boundary in ('color-edges','wall-depth-anything','strip-mlsd','wall-and-underside'):
+        if boundary in ('color-edges','wall-depth-anything','strip-mlsd','wall-and-underside','wall-recovery'):
             from engine.surface_boundary_refine import SETTINGS as contrast_settings, refine
             patches=refine(image,patches,version)
             boundary_settings = contrast_settings
             if boundary != 'color-edges':
                 boundary_settings = dict(contrast_alignment=contrast_settings)
                 methods['initial_boundary'] = 'color-edges'
-            if boundary in ('wall-depth-anything','wall-and-underside'):
+            if boundary in ('wall-depth-anything','wall-and-underside','wall-recovery'):
                 from engine.normal_regions import SETTINGS as rectangle_settings
                 from engine.surface_depth_split import SETTINGS as vote_settings
                 from engine.surface_wall_split import SETTINGS as split_settings, refine as divide_walls
@@ -320,7 +320,15 @@ def build(image_path, version, out, *, outlines=None, order_method=None, through
                 methods.update(split_hints='rectangle-finder', split_depth='depth-anything-v2')
                 boundary_settings.update(rectangle_finder=rectangle_settings, rectangle_lift=SETTINGS,
                                          depth_vote=vote_settings, wall_split=split_settings)
-            if boundary in ('strip-mlsd','wall-and-underside'):
+            if boundary == 'wall-recovery':
+                from engine.recovery_evidence import infer as recovery_evidence
+                from engine.surface_junction_split import SETTINGS as junction_settings, refine as split_junctions
+                # Prompts come from the original walls. Junctions and undersides are later partitions.
+                recovery, mobile_masks = recovery_evidence(image_path, patches)
+                patches = split_junctions(image, patches, {'scalelsd': recovery['lines']}, fields['normal'], fields['depth'])
+                methods.update(junction_line_detector='ScaleLSD v2', wall_partition_model='MobileSAM TinyViT')
+                boundary_settings.update(junction_split=junction_settings, recovery_inference=recovery['provenance'])
+            if boundary in ('strip-mlsd','wall-and-underside','wall-recovery'):
                 from engine import mlsd_tiny
                 from engine.surface_strip_split import SETTINGS as strip_settings, refine as split_strips
                 evidence = mlsd_tiny.detect(image)
@@ -330,6 +338,11 @@ def build(image_path, version, out, *, outlines=None, order_method=None, through
                                          detected_segments=len(evidence['segments']))
             if boundary == 'wall-and-underside':
                 methods['boundary_sequence'] = ['color-edges','wall-depth-anything','strip-mlsd']
+            if boundary == 'wall-recovery':
+                from benchmark.mobile_wall_split import SETTINGS as mobile_settings, refine as mobile_split
+                patches, events = mobile_split(image, patches, mobile_masks, recovery['records'], recovery['selected'])
+                methods['boundary_sequence'] = ['color-edges','wall-depth-anything','junction-cuts','strip-mlsd','mobile-wall-split']
+                boundary_settings.update(mobile_split=mobile_settings, mobile_splits=events)
         elif boundary=='depth-split':
             from engine.surface_depth_split import SETTINGS as boundary_settings, split
             patches=split(image,patches,fields['depth'],version)
@@ -380,6 +393,9 @@ def build(image_path, version, out, *, outlines=None, order_method=None, through
         manifest['inference_settings'] = inference
         if 'line_detector' in methods:
             manifest['model_sha256']['mlsd'] = mlsd_tiny.MODEL[2]
+        if boundary == 'wall-recovery':
+            manifest['model_sha256'].update({name: recovery['provenance'][name]['checkpoint_sha256']
+                                             for name in ('scalelsd', 'mobilesam')})
     if mask_first:
         from engine.mask_first import SETTINGS as finder_settings
         manifest['surface_finder'] = dict(name='Surface Finder', method='Regions First',
