@@ -95,6 +95,12 @@ def evaluate(job):
         start = perf_counter()
         predictions[method] = strips(image,deepcopy(current),{n:lines[n] for n in names},maps['normal'],maps['depth'])
         timings[method] = perf_counter()-start
+    return save_and_score(case,row,predictions,timings,out,'color-edges')
+
+
+def save_and_score(case,row,predictions,timings,out,baseline_method):
+    """Persist predictions before using the scorer, with 'current' as the shared control."""
+    key = row['key']
     for method,parts in predictions.items():
         if len({p['id'] for p in parts})!=len(parts):
             raise ValueError(f'Duplicate region ID for {key}/{method}')
@@ -125,9 +131,9 @@ def evaluate(job):
             undersides=sorted(eligible & down),underside_total=len(down),vertical=sorted(eligible & vertical),
             vertical_total=len(vertical),small=small,unpaired=len(parts)-len(eligible)-len(small),
             fragmented=split,new_fragmentation=sorted((set(split)-base_split)&base))
-    if scores['current']!=row['scores']['color-edges']:
+    if scores['current']!=row['scores'][baseline_method]:
         raise ValueError(f'Frozen baseline mismatch for {key}')
-    return dict(key=key,sha256=sha,layout=row['layout'],cohort=row['cohort'],predictions=rel,
+    return dict(key=key,sha256=row['sha256'],layout=row['layout'],cohort=row['cohort'],predictions=rel,
                 scopes=detail,scores=scores,cached_processing_s=timings)
 
 

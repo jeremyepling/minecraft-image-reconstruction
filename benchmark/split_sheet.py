@@ -23,6 +23,9 @@ NAMES = {'current': 'Previous finder', 'wall-depth-anything': 'Wall Separator ·
          'strip-mlsd': 'Underside · M-LSD Tiny'}
 LEFT, COL, GAP, HEADER = 238, 384, 14, 263
 
+NAMES.update({'junction-cuts':'Junction-guided wall splits',
+              'wall-and-underside':'Wall Separator + Underside Finder'})
+
 
 def _tile(page, x, top, height, photo, *captions):
     y = top + 14
@@ -140,7 +143,7 @@ def _underside_selection(source, cases, lookup, strip):
     return {layout:value for layout,(_,value) in choices.items()},totals
 
 
-def _low_angle_section(page, top, source, cases, lookup, sample, strip):
+def _low_angle_section(page, top, source, cases, lookup, sample, strip, short):
     choices, totals = _underside_selection(source,cases,lookup,strip)
     suite = Counter()
     for counts in totals.values():
@@ -154,7 +157,7 @@ def _low_angle_section(page, top, source, cases, lookup, sample, strip):
           "The low-angle examples below are chosen after scoring. The totals above cover only the original eight views.",20)
     start = top+210
     yvals = [start+285*i for i in range(5)]
-    for y,title,note in zip(yvals,('Source location','Original pixels','Recorded underside','Previous finder','Underside Finder'),
+    for y,title,note in zip(yvals,('Source location','Original pixels','Recorded underside',short['current'],short[strip]),
                             ('White box locates the crop.', 'Same crop for all four detail rows.',
                              'Recorded geometry for scoring.', 'Original predicted outline.', NAMES[strip])):
         draw.line((15,y,page.width-15,y),fill='#bdcdc7',width=2)
@@ -218,7 +221,7 @@ def render(out, cases, lookup, selected, *, source=None):
     source = out if source is None else source
     methods = ('current', selected['wall'], selected['strip'])
     recommended = selected['recommended']
-    short = dict(zip(methods, ('Previous finder', 'Wall Separator', 'Underside Finder')))
+    short = selected.get('display', dict(zip(methods, ('Previous finder', 'Wall Separator', 'Underside Finder'))))
     runs = ROOT/'benchmark/reviews'
     sample = read(runs/'perimeters-01/surface-detection.json')['views']
     previous = {v['frame']:v for v in read(runs/'overhang-01/focus.json')['views']}
@@ -332,7 +335,7 @@ def render(out, cases, lookup, selected, *, source=None):
     label(draw, (15,180), 'SURFACES IN EACH VIEW', 16, bold=True)
     label(draw, (page.width-1240,25), summary+'   ·   eight pictures shown', 23, bold=True)
     label(draw, (page.width-1240,65), 'Compared here: '+NAMES[methods[1]]+' and '+NAMES[methods[2]]+'.', 19)
-    supplemental = _low_angle_section(page,supplemental_top,source,cases,lookup,sample,selected['strip'])
+    supplemental = _low_angle_section(page,supplemental_top,source,cases,lookup,sample,selected['strip'],short)
     page.save(out/'comparison.jpg', quality=94, subsampling=0)
     save(out/'sheet-views.json',dict(selected=selected, methods=list(methods), totals=totals, views=reports,
          supplemental_undersides=supplemental,
