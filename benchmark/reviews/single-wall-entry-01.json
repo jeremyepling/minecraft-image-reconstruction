@@ -1,0 +1,164 @@
+{
+  "run_id": "single-wall-entry-01",
+  "code": {
+    "commit": "2d7185ad9d5ff2b1a6c068ed19b6afe4bd2cae57",
+    "predictor_and_runner_sha256": "fa3478034c40894d0eae2c750bbdf695fbc8aaa4b672dfb068e2034718520ce9",
+    "source_dirty": false
+  },
+  "captures": "Frozen PNGs copied to arbitrary filenames. Each build saw only its PNG and recomputed every model. Reference geometry and archived predictions loaded afterward.",
+  "builds": [
+    {
+      "fixture": "smooth_stone/holdout-portico-plaster-high-right",
+      "screenshot_sha256": "fb687c20c5df87e79d9dd17ce48566c7f9fca2a092234bedff15fbe3f83b2e8c",
+      "original_png_basename": "holdout-portico-plaster-high-right.png",
+      "stage_order": [
+        "color-edges",
+        "wall-depth-anything",
+        "junction-cuts",
+        "strip-mlsd",
+        "mobile-wall-split",
+        "single-wall-split"
+      ],
+      "model_sha256": {
+        "normal": "24eacb5dc7a2c54c7bc98f7de085ffbed79ad006ea5b664c2c2cdc02ff3a52f0",
+        "depth": "fcf51f1b230362b28690bb9d1809bf0431f29cad20534e3f589bd7285547f20d",
+        "mlsd": "e869f90601ffa263f21ac47e09ff0d65dc936d1aeb47126b8499d5504adfb100",
+        "scalelsd": "d0a7333c4de518a70af7d6ea4a283aa0ce9ffe1047525373b94070b1d1d4003f",
+        "mobilesam": "6dbb90523a35330fedd7f1d3dfc66f995213d81b29a5ca8108dbcdd4e37d6c2f"
+      },
+      "visible_proposals": 18,
+      "reference_surfaces": 17,
+      "matched": 15,
+      "assignments": {
+        "mask-0-junction-0": 7,
+        "mask-0-junction-1-single-206-0": 9,
+        "mask-0-junction-1-single-206-1": 8,
+        "mask-1": 4,
+        "mask-2": 3,
+        "mask-3-wall-0": 17,
+        "mask-3-wall-1": 16,
+        "mask-4": 10,
+        "mask-5": 2,
+        "mask-6": 1,
+        "mask-7": 13,
+        "mask-8": 12,
+        "mask-9": 14,
+        "mask-10": 11,
+        "mask-11": 15
+      },
+      "single_wall_additional_reference_ids": [
+        8
+      ],
+      "all_saved_region_properties_equal": true,
+      "canonical_regions_sha256": "692191a2450afe3b5d29d1b1ab519b22cc4b1fbda00d466e9021d85742162735",
+      "source_prediction_sha256": "e8317fb1cd82714c0efbf76f3aa608a250c3ae83c7ffda58031ffba4fabd7a69",
+      "counter": "masked-repeat",
+      "block_count_records": 18,
+      "method": "wall-recovery-single-v2",
+      "final_depth": "depth-anything-v2"
+    },
+    {
+      "fixture": "smooth_stone/holdout-portico-plaster-high-right",
+      "screenshot_sha256": "fb687c20c5df87e79d9dd17ce48566c7f9fca2a092234bedff15fbe3f83b2e8c",
+      "original_png_basename": "holdout-portico-plaster-high-right.png",
+      "stage_order": [
+        "color-edges",
+        "wall-depth-anything",
+        "junction-cuts",
+        "strip-mlsd",
+        "mobile-wall-split",
+        "single-wall-split"
+      ],
+      "model_sha256": {
+        "normal": "24eacb5dc7a2c54c7bc98f7de085ffbed79ad006ea5b664c2c2cdc02ff3a52f0",
+        "depth": "fcf51f1b230362b28690bb9d1809bf0431f29cad20534e3f589bd7285547f20d",
+        "mlsd": "e869f90601ffa263f21ac47e09ff0d65dc936d1aeb47126b8499d5504adfb100",
+        "scalelsd": "d0a7333c4de518a70af7d6ea4a283aa0ce9ffe1047525373b94070b1d1d4003f",
+        "mobilesam": "6dbb90523a35330fedd7f1d3dfc66f995213d81b29a5ca8108dbcdd4e37d6c2f",
+        "depth_pro": "3eb35ca68168ad3d14cb150f8947a4edf85589941661fdb2686259c80685c0ce"
+      },
+      "visible_proposals": 20,
+      "reference_surfaces": 17,
+      "matched": 17,
+      "assignments": {
+        "mask-0-junction-0": 7,
+        "mask-0-junction-1-single-271-0": 5,
+        "mask-0-junction-1-single-271-1": 6,
+        "mask-0-junction-1-single-271-2": 8,
+        "mask-0-junction-1-single-271-3": 9,
+        "mask-1": 4,
+        "mask-2": 3,
+        "mask-3-wall-0": 17,
+        "mask-3-wall-1": 16,
+        "mask-4": 10,
+        "mask-5": 2,
+        "mask-6": 1,
+        "mask-7": 13,
+        "mask-8": 12,
+        "mask-9": 14,
+        "mask-10": 11,
+        "mask-11": 15
+      },
+      "single_wall_additional_reference_ids": [
+        5,
+        6,
+        8
+      ],
+      "all_saved_region_properties_equal": true,
+      "canonical_regions_sha256": "a80f7076543ded251102f223c775b426edd6c11a457808b0d2a31c5ad7d4c145",
+      "source_prediction_sha256": "e8317fb1cd82714c0efbf76f3aa608a250c3ae83c7ffda58031ffba4fabd7a69",
+      "counter": "masked-repeat",
+      "block_count_records": 20,
+      "method": "wall-recovery-single-pro",
+      "final_depth": "depth-pro"
+    },
+    {
+      "fixture": "smooth_stone/dev-shopfront-plaster-low-left",
+      "screenshot_sha256": "5d0c9120de4ca16f35758f90a31e176e50a3cf166358dd9833ee2213d1ff2f72",
+      "original_png_basename": "dev-shopfront-plaster-low-left.png",
+      "stage_order": [
+        "color-edges",
+        "wall-depth-anything",
+        "junction-cuts",
+        "strip-mlsd",
+        "mobile-wall-split",
+        "single-wall-split"
+      ],
+      "model_sha256": {
+        "normal": "24eacb5dc7a2c54c7bc98f7de085ffbed79ad006ea5b664c2c2cdc02ff3a52f0",
+        "depth": "fcf51f1b230362b28690bb9d1809bf0431f29cad20534e3f589bd7285547f20d",
+        "mlsd": "e869f90601ffa263f21ac47e09ff0d65dc936d1aeb47126b8499d5504adfb100",
+        "scalelsd": "d0a7333c4de518a70af7d6ea4a283aa0ce9ffe1047525373b94070b1d1d4003f",
+        "mobilesam": "6dbb90523a35330fedd7f1d3dfc66f995213d81b29a5ca8108dbcdd4e37d6c2f"
+      },
+      "visible_proposals": 13,
+      "reference_surfaces": 16,
+      "matched": 11,
+      "assignments": {
+        "mask-0-wall-0": 11,
+        "mask-0-wall-1-single-244-0": 12,
+        "mask-0-wall-1-single-244-1": 13,
+        "mask-0-wall-1-single-244-2": 14,
+        "mask-1": 1,
+        "mask-2": 4,
+        "mask-3": 6,
+        "mask-4": 5,
+        "mask-7": 2,
+        "mask-9": 18,
+        "underside-0": 8
+      },
+      "single_wall_additional_reference_ids": [
+        12,
+        13,
+        14
+      ],
+      "all_saved_region_properties_equal": true,
+      "canonical_regions_sha256": "fb73f8e9ade23949112edfa2e14c0f5825799b61e4b89cbb21514a9e46c32beb",
+      "source_prediction_sha256": "a5a66a5e088f49830da2fd16b13e54335656bd1f24c8abad1cfe2ed6bbd656a2",
+      "counter": "masked-repeat",
+      "block_count_records": 13,
+      "method": "wall-recovery-single-v2",
+      "final_depth": "depth-anything-v2"
+    }
+  ]
+}
