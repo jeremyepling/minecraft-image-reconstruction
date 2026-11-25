@@ -568,12 +568,12 @@
   ],
   "artifacts": {
     "cases.json": "b5fb9d1adce05c83b6191ca48be9046b713e074036b55ac57a58716510d937c6",
-    "comparison.jpg": "e6ae79b0a3cad32e9eacd64d7737c6255d3f6d9a224d9b9daa166908bed61d43",
+    "comparison.jpg": "a7f1c0e664450c44795eb60d69a5052ef2abee9c13451a8ada5adb37b8450ee6",
     "context-margins.json": "7a8a282e13094666beecd60a0d13a417d110073e092f63a685bae3944bc5276c",
     "edge-closeups.jpg": "6acfcf5d38ff0eb6086bf1439171552292daabfc58328da6854d64a0852669ec",
     "edge-closeups.json": "bd6cf1aa5a6fa3b1527d436dfc16ea7b56904b4fa57350632a2319dc17f88fe5",
-    "pipeline-rows.json": "9ee0fa23ab089ce3f292f4e43acee6cbca0ae1c9d092fb80a8fb19275561b16d",
-    "report.html": "18f7b45c4fc96c024d1da49c09f8b0dfad41a36dfb07dcfaabdea02bca26d2c8",
+    "pipeline-rows.json": "48ce504e3305b3aca988762a3d8988e69f27b41849147c7d784b215661986a8d",
+    "report.html": "41faea0d03bdf504726f06058943c0fb0e04d94c54b3d25dc8b70fa452b83eb5",
     "scores.json": "5e83117c2e3b683fa94dfad0727b3021307b0445d653f0e742714271050b93b8",
     "selection.json": "1ec14f0f643ae833d56425f73bfbc06f88bdf6362df51b135a406a9a24f1b2a4",
     "count-context/cases.json": "32b7524eaa27a0e6073d5380549aa6aa725a48fc7ce7148e3aed24afa2e317ec",
@@ -640,24 +640,29 @@
     "predictions/smooth_stone/holdout-portico-masonry-high-right.json.gz": "0fd376c88cc6c1a6dced8f74cf88c449590f7b0656569770b464d0c85586dad4",
     "predictions/smooth_stone/holdout-portico-masonry-low-left.json.gz": "7f5aee7ddb53e87faab77bd83f26104a9aba5c8353d756fd324c86740e545335",
     "predictions/smooth_stone/holdout-portico-plaster-high-right.json.gz": "4fdf56f9f82e3f683d44235bd6324b21ab82f1bef241ca920670226772160b0f",
-    "predictions/smooth_stone/holdout-portico-plaster-low-left.json.gz": "549d583a1f0f3c1cdea046902044d40e9a32c3ae6a76bd4406ffbb319e6ab5ed"
+    "predictions/smooth_stone/holdout-portico-plaster-low-left.json.gz": "549d583a1f0f3c1cdea046902044d40e9a32c3ae6a76bd4406ffbb319e6ab5ed",
+    "surface-detection.jpg": "5870fec8c428fa1b9013f6d833b341260ed515d6a826fc4d5eb24400dfa954f1",
+    "surface-detection.json": "cd761d3919bf473257ae7553e9c2e4ba2276c1651b830a2ed76852beb08991b6"
   },
   "reproduce": ".\\Invoke-SurfaceRound.ps1 -Round perimeters",
   "runtime": "Frozen MoGe-2 and Depth Anything V2 predictions. Per-picture timings cover refinement only.",
   "presentation": {
-    "revision": "b8921008342b9a4d2f95ba423af7d8f7fe0a05c0",
+    "revision": "b126109a7a5506a979bef36172029ecea20ddd0a",
     "image": "comparison.jpg",
     "orientation": "portrait",
     "building_columns": 8,
     "stage_rows": 6,
     "image_size_px": [
       3144,
-      3706
+      3757
     ],
     "previous_artifact_sha256": {
-      "comparison.jpg": "4c6bf472e25541a25935ca37cce0c50d5328ef502c2b30a823a968e0dfcb30d1",
-      "pipeline-rows.json": "dff16909cd5c7debaa35b919d80d18003d446ad49a749215b8350935cd3a22c0",
-      "report.html": "b570605910ff0954d5440b312e1dcdb2b9c67cd61457404c667e6274cda5eb89"
-    }
+      "comparison.jpg": "e6ae79b0a3cad32e9eacd64d7737c6255d3f6d9a224d9b9daa166908bed61d43",
+      "pipeline-rows.json": "9ee0fa23ab089ce3f292f4e43acee6cbca0ae1c9d092fb80a8fb19275561b16d",
+      "report.html": "18f7b45c4fc96c024d1da49c09f8b0dfad41a36dfb07dcfaabdea02bca26d2c8"
+    },
+    "surface_detection_image": "surface-detection.jpg",
+    "surface_detection_data": "surface-detection.json",
+    "surface_detection_method": "color-edges"
   }
 }
