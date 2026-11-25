@@ -1,5 +1,7 @@
 # Reusing the same buildings without starting Minecraft
 
+Run `.\Invoke-MaskRound.ps1` to replay the four-method comparison of B, model regions, ScaleLSD v2 and DeepLSD. Its per-picture report and comparison sheet use the 56 saved images. [Reproduction and cache setup](MASK_REPLAY.md)
+
 All 56 screenshots of the eight buildings have a saved map of their visible surfaces. The model still sees one screenshot. After it draws outlines, the scorer opens that screenshot's map and checks the guesses. The review sheet uses the same map to mark correct, extra and missed outlines. [Saved maps](data/visible-geometry-v1.zip)
 
 To score the existing predictions from disk, run this from the checkout. It reads the archived outputs and maps without starting a model or a game.
