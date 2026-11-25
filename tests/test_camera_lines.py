@@ -3,10 +3,10 @@ import unittest
 import numpy as np
 from PIL import Image
 
-from benchmark.voxel_eval import camera, registration
+from benchmark.camera_metrics import truth_camera, registration
 from calibration.world import GROUND
 from engine.camera_lines import predict
-from engine.voxel_space import project
+from engine.geometry import project
 
 
 class TileCameraTest(unittest.TestCase):
@@ -20,7 +20,7 @@ class TileCameraTest(unittest.TestCase):
         size = (800, 500)
         pose = dict(eye_world=[.12, GROUND+1+4.5, -.72], yaw_pitch_deg=[155, 10],
                     image_size=size, vertical_fov_deg=64)
-        W = camera(pose, size)
+        W = truth_camera(pose)
         y, x = np.indices(size[::-1])+.5
         rays = np.dstack([x, y, np.ones_like(x)]) @ np.linalg.inv(W[:, :3]).T
         floor = pose['eye_world']-4.5*rays/rays[:, :, 1, None]
@@ -30,7 +30,7 @@ class TileCameraTest(unittest.TestCase):
         proposal = predict(Image.fromarray(gray.astype('uint8')).convert('RGB'), '26.3')
         self.assertEqual(proposal['scale_status'], 'supported')
         P = np.array(proposal['P'])
-        true = W @ registration(P, pose, size)
+        true = W @ registration(P, pose)
         lattice = [[x, y, z] for x in (-2, 0, 2) for y in (0, 2, 4) for z in (-2, 0, 2)]
         distance = np.linalg.norm(project(P, lattice)-project(true, lattice), axis=1)
         self.assertLess(np.median(distance), 2.)

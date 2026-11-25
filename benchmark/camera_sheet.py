@@ -7,7 +7,7 @@ import numpy as np
 from PIL import Image, ImageDraw, ImageFont
 
 from benchmark.camera_metrics import observation, project_visible, registration
-from engine.voxel_space import project
+from engine.geometry import project
 
 
 PAPER, INK, MUTED, RULE = "#f8f8f4", "#182429", "#4b6064", "#bac8c7"
