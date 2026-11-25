@@ -96,11 +96,11 @@ def main():
     p=cmds.add_parser('build')
     p.add_argument('--through',choices=['camera','surfaces','counts','assembly'],default='assembly',
                    help='Fit the camera, find visible surfaces, measure block counts, or build a datapack')
-    p.add_argument('--surface-outlines',choices=['mask-first','edges+shade','normal-rank','normal-regions'],
+    p.add_argument('--surface-outlines',choices=['mask-first','edges+shade','normal-rank','rectangle-finder','normal-regions'],
                    help='Replay an outline method from the visible-plane comparison')
     p.add_argument('--surface-context-px', type=int,
                    help='Include this many neighboring source pixels per side in Regions First context crops (default 8)')
-    p.add_argument('--surface-boundary', choices=['regions-first','color-edges','depth-split'],
+    p.add_argument('--surface-boundary', choices=['regions-first','color-edges','depth-split','wall-depth-anything'],
                    help='Choose how Surface Finder refines its preserved regions')
     p.add_argument('--surface-order',choices=['geometry','depth-anything'],
                    help='Select the relative depth ordering method for a surface build')
