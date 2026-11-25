@@ -1,7 +1,6 @@
 """The round's review sheet. All columns use identical native crops and scoring thresholds."""
 import gzip
 import json
-from pathlib import Path
 
 import numpy as np
 from PIL import Image,ImageDraw
@@ -11,7 +10,7 @@ from benchmark.camera_labels import rasterize
 from benchmark.normal_round import METHODS,BASE
 from benchmark.surface_metrics import truth,DOWNSAMPLE
 from benchmark.surface_topology import opening_mask
-from benchmark.surface_sheet import scene_box,overlay_scene,text,panel,box_of,PAPER,DIM
+from benchmark.surface_sheet import scene_box,overlay_scene,text,panel,poly,box_of,PAPER,DIM
 
 
 TITLES=('Contrast + shading','Contrast scored by normals','Regions grouped by normals')
@@ -36,7 +35,7 @@ def delta(row,method):
 
 def render(out,rows,winner):
     scores=read(out/'scores.json')
-    canvas=Image.new('RGB',(1580,1570),PAPER)
+    canvas=Image.new('RGB',(1580,2010),PAPER)
     pen=ImageDraw.Draw(canvas)
     text(pen,34,22,'Recovering visible planes from one screenshot',40,True)
     text(pen,34,83,'Minecraft Java 26.3   /   clear noon   /   48 suite frames and 8 new blind frames',22,fill=DIM)
@@ -65,7 +64,7 @@ def render(out,rows,winner):
                                       r['methods'][winner]['gaps']['filled_pixels']))
     examples.append(('Most missed planes on a new structure',difficult))
     regions=[]
-    text(pen,34,585,'Gold = recorded boundary     Cyan = matched outline     Pink = unmatched outline     Red fill = covered opening',19)
+    text(pen,34,585,'Gold = recorded boundary     Cyan = matched outline     Pink = unmatched outline     Red fill = opening inside a proposed quad',18)
     for i,(description,row) in enumerate(examples):
         im,t,pred=case_data(out,row)
         crop=scene_box(t,im)
@@ -89,5 +88,42 @@ def render(out,rows,winner):
             panel(canvas,view,crop,x,y+79,492,280)
             text(pen,x,y+377,f"{outlines['matched']} matched   /   {outlines['proposed']} proposed   /   {outlines['eligible']} eligible",18)
         regions.append(dict(image=row['id'],floor=row['floor'],region_xyxy=crop,stage='outlines'))
+    text(pen,34,1558,'Which surface is in front?',27,True)
+    # Choose a measured automatic relationship; the two methods share the same predicted quads.
+    choices=sorted(rows,key=lambda r:(r['cohort']=='blind',r['methods'][winner]['order']['depth-anything']['correct']),reverse=True)
+    for row in choices:
+        if row['methods'][winner]['order']['depth-anything']['correct']==0:
+            continue
+        im,t,pred=case_data(out,row)
+        data=pred[winner]
+        planes=data['model']['planes']
+        by_id={p['id']:p for p in planes}
+        matches={planes[m['proposal_index']]['id']:m['patch_id'] for m in row['methods'][winner]['outlines']['matches']}
+        truth_pairs={(p['near_patch'],p['far_patch']) for p in row['depth_diagnostic']['pairs']}
+        pair=next((p for p in data['relations']['depth-anything'] if
+            (matches.get(p['near']),matches.get(p['far'])) in truth_pairs and
+            (matches.get(p['far']),matches.get(p['near'])) not in truth_pairs),None)
+        if not pair:
+            continue
+        near,far=pair['near'],pair['far']
+        crop=box_of([by_id[near]['quad'],by_id[far]['quad']],im.size,20)
+        text(pen,34,1600,row['id']+'   /   Cyan = nearer, amber = farther',19)
+        old=next((p for p in data['relations']['geometry'] if {p['near'],p['far']}=={near,far}),None)
+        for j,(title,relation) in enumerate((('Recorded order on matched planes',pair),('Geometry ordering',old),('Relative-depth ordering',pair))):
+            x=34+j*507
+            text(pen,x,1655,title,21,True)
+            view=im.copy()
+            d=ImageDraw.Draw(view)
+            for a in (near,far):
+                color=('#35fff0' if relation['near']==a else '#ffd055') if relation else '#eeeeee'
+                poly(d,by_id[a]['quad'],color,4,True)
+            panel(canvas,view,crop,x,1705,492,236)
+            if j:
+                text(pen,x,1956,'No comparable depths' if relation is None else
+                     ('Matches recorded order' if relation['near']==near else 'Order reversed'),18)
+        regions.append(dict(image=row['id'],floor=row['floor'],region_xyxy=crop,stage='order'))
+        break
+    else:
+        text(pen,34,1620,'No automatic relationship matched a measurable occlusion boundary.',20)
     canvas.save(out/'comparison.jpg',quality=94,subsampling=0)
     save(out/'review-regions.json',regions)

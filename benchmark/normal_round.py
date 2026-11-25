@@ -10,7 +10,7 @@ import sys
 import numpy as np
 from PIL import __version__ as pillow_version
 
-from benchmark.camera_round import ROOT, fixture_digest, read, revision, save
+from benchmark.camera_round import ROOT, digest, fixture_digest, read, revision, save
 from benchmark.depth_probe_score import occlusion_pairs
 from benchmark.exterior_set import Capture, check_capture_conditions, load_suite
 from benchmark.normal_fields import fields
@@ -212,6 +212,11 @@ def main():
     out=(args.out or ROOT/'runs'/('normals-'+stamp)).resolve()
     out.mkdir(parents=True,exist_ok=False)
     cohorts,suite,hashes=groups()
+    archive_dir=ROOT/'benchmark/worlds/normal-confirm-v1'
+    world_index=read(archive_dir/'world-index.json')
+    world=world_index['worlds'][0]
+    if digest(archive_dir/world['archive'])!=world['sha256'] or world['clock_ticks']!=6000 or world['raining'] or world['thundering']:
+        raise ValueError('Frozen clear-noon confirmation world differs from its index.')
     rows=[]
     code=revision()
     with ProcessPoolExecutor(max_workers=args.workers) as pool:
@@ -248,6 +253,7 @@ def main():
     from engine.normal_regions import SETTINGS as regions
     manifest=dict(run_id=out.name,suite='normal-round',code=code,version=suite['version'],client_sha256=suite['client_sha256'],
        capture=suite['capture_conditions'],fixtures=hashes,split={k:sorted({c.frame['layout'] for c in cs}) for k,cs in cohorts.items()},
+       blind_world=dict(path=artifact_path(archive_dir/world['archive'],out),sha256=world['sha256']),
        methods=dict(outlines=list(METHODS),pitch=['repeat'],order=['geometry','depth-anything'],lift='shared-edges-v1'),
        selected_on_development=winner,recommended_outlines=adopted,recommended_depth_order=adopted_order,
        selection_rule=RULE,adoption_rule=ADOPTION,order_rule=ORDER_RULE,

@@ -5,6 +5,7 @@ import json
 import os
 from pathlib import Path
 from tempfile import NamedTemporaryFile
+from functools import lru_cache
 
 import numpy as np
 from PIL import Image
@@ -12,9 +13,11 @@ from benchmark.camera_round import ROOT, digest, read
 from engine.surface_fields import MODELS, SETTINGS, infer
 
 
-def signature(key):
+@lru_cache(maxsize=1)
+def inference_signature():
     import onnxruntime, PIL
-    return hashlib.sha256(json.dumps([key,MODELS,SETTINGS,onnxruntime.__version__,PIL.__version__,np.__version__],
+    code=[digest(ROOT/p) for p in ('engine/surface_fields.py','benchmark/depth_probe.py')]
+    return hashlib.sha256(json.dumps([code,MODELS,SETTINGS,onnxruntime.__version__,PIL.__version__,np.__version__],
                             sort_keys=True).encode()).hexdigest()
 
 
@@ -23,7 +26,7 @@ def fields(source,sha,cache):
         raise ValueError(f'Source digest mismatch: {source}')
     cache.mkdir(parents=True,exist_ok=True)
     file=cache/(sha+'.npz')
-    fingerprint=signature(sha)
+    fingerprint=sha+':'+inference_signature()
     if file.exists():
         with np.load(file,allow_pickle=False) as old:
             if str(old['signature'])==fingerprint:
