@@ -43,23 +43,28 @@ def candidate_manifest(surfaces):
     if not file.is_file():
         return None
     manifest = read(file)
-    if manifest.get('artifact') != surfaces.name or manifest.get('through') != 'surfaces':
+    named = manifest.get('artifacts', {}).get('surfaces', manifest.get('artifact'))
+    if named != surfaces.name or manifest.get('through') not in ('surfaces', 'counts'):
         raise ValueError('The adjacent build manifest does not identify this surface prediction.')
     if manifest.get('version') != '26.3' or not manifest.get('image_sha256'):
         raise ValueError('The build manifest must identify the source screenshot and Minecraft Java 26.3.')
     return manifest
 
 
-def score_case(run, row, planes=None):
+def score_case(run, row, planes=None, *, use_masks=False):
     from benchmark.surface_reference import recorded, review_case
 
     archived = planes is None
     if archived:
         with gzip.open(run / row['prediction'], 'rt', encoding='utf-8') as source:
             planes = json.load(source)[METHOD]['model']['planes']
-    if not isinstance(planes, list) or any(not isinstance(p, dict) or 'quad' not in p for p in planes):
-        raise ValueError('Expected a list of planes, each with four image corners in quad.')
+    field = 'support' if use_masks else 'quad'
+    if not isinstance(planes, list) or any(not isinstance(p, dict) or field not in p for p in planes):
+        raise ValueError(f'Expected a list of planes, each with {field}.')
     _, reference = recorded(review_case(run, row))
+    if use_masks:
+        from benchmark.mask_metrics import measure
+        return measure(planes, reference, use_mask=True)[0]
     score = score_planes(reference, planes)
     if archived:
         saved = row['methods'][METHOD]['outlines']
@@ -96,12 +101,14 @@ def main():
             manifest = candidate_manifest(args.surfaces) if args.surfaces is not None else None
             row = select_case(ROUND, cases, args.image, manifest)
             planes = None
+            use_masks = False
             if args.surfaces is not None:
                 model = read(args.surfaces)
                 if not isinstance(model, dict) or not isinstance(model.get('planes'), list):
                     raise ValueError('The candidate JSON must contain a planes list.')
                 planes = model['planes']
-            result = score_case(ROUND, row, planes)
+                use_masks = model.get('footprint') == 'support'
+            result = score_case(ROUND, row, planes, use_masks=use_masks)
             print(f"Screenshot  {row['key']}")
             print(f"Found {result['matched']} of {result['eligible']} counted surfaces. "
                   f"Missed {result['eligible'] - result['matched']}. "

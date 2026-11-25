@@ -177,7 +177,15 @@ def assemble(proposals, pitches, size, diagnostic_K=None):
                 shared_edges=[edge[-1] for edge in edges])
 
 
-def proposals_for(image, version, method, normals=None):
+def proposals_for(image, version, method, normals=None, depth=None):
+    if method == 'mask-first':
+        from engine.mask_first import regions
+        from engine.surface_fields import infer
+        if normals is None:
+            normals = infer(image, 'normal')
+        if depth is None:
+            depth = infer(image, 'depth')
+        return regions(image, normals, depth, version)
     if method == 'contact':
         from engine.camera_grid import predict
         parts = predict(image, version, 'seam-fit')['planes']
@@ -211,34 +219,117 @@ def proposals_for(image, version, method, normals=None):
     return parts
 
 
-def build(image_path, version, out, *, outlines=None, order_method=None):
+def _count_regions(image, planes, version, method, atlas, out):
+    from engine.surface_sample import sample_surface
+    from engine.surface_dimensions import dimensions
+
+    if method not in ('legacy-repeat', 'masked-repeat', 'atlas-repeat'):
+        raise ValueError(f'Unknown Block Counter method {method}')
+    measurements = []
+    samples_dir = out / 'samples'
+    samples_dir.mkdir(exist_ok=True)
+    for i, plane in enumerate(planes):
+        sample = sample_surface(image, plane)
+        row = dict(id=plane['id'], method=method)
+        if sample is None:
+            row.update(counts=[None, None], phase=[None, None], reason='No usable sampling chart',
+                       dimensions=dict(spans=[None, None], blocks=[None, None]))
+        else:
+            rectified = Image.fromarray(np.asarray(sample['rgb'], dtype=np.uint8))
+            rectified.putalpha(Image.fromarray(np.asarray(sample['mask'], dtype=np.uint8)*255))
+            path = samples_dir / f'surface-{i:03}.png'
+            rectified.save(path)
+            row.update(quad=np.asarray(sample['quad']).tolist(), sample=path.relative_to(out).as_posix())
+            if method == 'atlas-repeat':
+                from engine.atlas_count import count
+                result = count(sample, atlas, version=version)
+            elif method == 'legacy-repeat':
+                from engine.legacy_count import count
+                result = count(sample, version=version)
+            else:
+                from engine.masked_count import count
+                result = count(sample, version=version)
+            row.update(result)
+            row['dimensions'] = dimensions(plane, sample['quad'], image.size, result['counts'])
+            if atlas is not None:
+                from engine.atlas_count import rank_tile
+                from engine.surface_tiles import visible_tiles
+                row['visible_cells'] = [
+                    dict(cell=tile['cell'], quad=np.asarray(tile['quad']).tolist(),
+                         material=rank_tile(tile, atlas, version=version))
+                    for tile in visible_tiles(sample, result)]
+                if not row['visible_cells']:
+                    row['material_status'] = 'No complete cell has a supported position inside this mask.'
+        measurements.append(row)
+    return dict(version=version, units='blocks across and down the rectified sampling chart',
+                shape_artifact='surfaces.json', surfaces=measurements)
+
+
+def build(image_path, version, out, *, outlines=None, order_method=None, through='surfaces',
+          counter=None, atlas_path=None, material_match=None):
     from engine.atlas import digest
+    from engine.surface_fields import MODELS, SETTINGS as inference, infer
     if version != '26.3':
         raise ValueError('The surface methods support Java 26.3.')
-    methods = json.loads(DEFAULTS.read_text())
-    if outlines is not None:
-        methods['outlines'] = outlines
-    if order_method is not None:
-        methods['order'] = order_method
+    if through not in ('surfaces', 'counts'):
+        raise ValueError(f'Unknown surface stage {through}')
+    defaults = json.loads(DEFAULTS.read_text())
+    outlines = outlines or defaults['outlines']
+    mask_first = outlines == 'mask-first'
+    if order_method is None and not mask_first:
+        order_method = defaults['order']
     with Image.open(image_path) as src:
-        image = src.convert('RGB')
-    patches = proposals_for(image, version, methods['outlines'])
-    model = assemble(patches,[pitch(image,p['quad'],version,methods['pitch']) for p in patches],image.size)
-    if 'order' in methods:
+        image = Image.fromarray(np.asarray(src.convert('RGB')))
+    fields = {}
+    if mask_first or outlines.startswith('normal-'):
+        fields['normal'] = infer(image, 'normal')
+    if mask_first or order_method == 'depth-anything':
+        fields['depth'] = infer(image, 'depth')
+    patches = proposals_for(image, version, outlines, fields.get('normal'), fields.get('depth'))
+    methods = dict(outlines=outlines)
+    if mask_first:
+        # The region itself is authoritative. Its optional quad only describes the sampling transform.
+        model = dict(footprint='support', image_size=list(image.size), planes=patches)
+        if order_method == 'geometry':
+            charted = [p for p in patches if 'quad' in p]
+            lifted = assemble(charted, [dict(counts=None) for p in charted], image.size)
+            by_id = {p['id']: p for p in lifted.pop('planes')}
+            model.update(lifted, planes=[by_id.get(p['id'], p) for p in patches])
+            methods.update(lens=lifted['lens_source'], lift='shared-edges-v1')
+    else:
+        pitches = [pitch(image, p['quad'], version, defaults['pitch']) for p in patches]
+        model = assemble(patches, pitches, image.size)
+        methods.update(pitch=defaults['pitch'], lens=model['lens_source'], lift='shared-edges-v1')
+    if order_method is not None:
         from engine.surface_order import order
-        field=None
-        if methods['order']=='depth-anything':
-            from engine.surface_fields import infer
-            field=infer(image,'depth')
-        model['relative_depth_order']=order(model['planes'],image.size,field)
+        methods['order'] = order_method
+        field = fields['depth'] if order_method == 'depth-anything' else None
+        model['relative_depth_order'] = order(model['planes'], image.size, field, use_masks=mask_first)
     out.mkdir(parents=True,exist_ok=True)
     (out/'surfaces.json').write_text(json.dumps(model, allow_nan=False, indent=2))
-    manifest = dict(version=version, through='surfaces', image_sha256=digest(image_path),
-                    stages=dict(**methods, lens=model['lens_source'], lift='shared-edges-v1'),
-                    settings=SETTINGS, artifact='surfaces.json')
-    if methods['outlines'].startswith('normal-') or methods.get('order')=='depth-anything':
-        from engine.surface_fields import MODELS, SETTINGS as inference
-        fields=(['normal'] if methods['outlines'].startswith('normal-') else [])+(['depth'] if methods.get('order')=='depth-anything' else [])
-        manifest['model_sha256']={k:MODELS[k][2] for k in fields}
-        manifest['inference_settings']=inference
+    manifest = dict(version=version, through=through, image_sha256=digest(image_path), stages=methods,
+                    artifact='surfaces.json', artifacts=dict(surfaces='surfaces.json'))
+    if 'lift' in methods:
+        manifest['settings'] = SETTINGS
+    if fields:
+        manifest['model_sha256'] = {k: MODELS[k][2] for k in fields}
+        manifest['inference_settings'] = inference
+    if mask_first:
+        from engine.mask_first import SETTINGS as finder_settings
+        manifest['surface_finder'] = dict(name='Surface Finder', method='Regions First',
+                                          directions='MoGe-2', relative_depth='Depth Anything V2',
+                                          settings=finder_settings)
+    if through == 'counts':
+        counter = counter or defaults['block_count']
+        atlas = None
+        if counter == 'atlas-repeat' or atlas_path is not None or material_match == 'atlas':
+            from engine.atlas_count import load_atlas
+            atlas = load_atlas(atlas_path, version=version)
+            manifest['atlas'] = atlas.provenance
+            methods['material_matching'] = 'atlas'
+        counts = _count_regions(image, patches, version, counter, atlas, out)
+        (out/'counts.json').write_text(json.dumps(counts, allow_nan=False, indent=2))
+        manifest['artifact'] = 'counts.json'
+        manifest['artifacts'].update(counts='counts.json', samples='samples/')
+        methods['block_count'] = counter
     (out/'build-manifest.json').write_text(json.dumps(manifest, indent=2))

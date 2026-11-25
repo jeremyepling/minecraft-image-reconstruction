@@ -94,16 +94,20 @@ def main():
     p.add_argument('--out',type=Path,required=True)
     for key in ('minecraft-dir','manifest','java-home'): p.add_argument('--'+key,type=Path)
     p=cmds.add_parser('build')
-    p.add_argument('--through',choices=['camera','surfaces','assembly'],default='assembly',
-                   help='Fit the camera, recover visible surface outlines, or build a datapack')
-    p.add_argument('--surface-outlines',choices=['edges+shade','normal-rank','normal-regions'],
+    p.add_argument('--through',choices=['camera','surfaces','counts','assembly'],default='assembly',
+                   help='Fit the camera, find visible surfaces, measure block counts, or build a datapack')
+    p.add_argument('--surface-outlines',choices=['mask-first','edges+shade','normal-rank','normal-regions'],
                    help='Replay an outline method from the visible-plane comparison')
     p.add_argument('--surface-order',choices=['geometry','depth-anything'],
                    help='Select the relative depth ordering method for a surface build')
-    p.add_argument('--version',help='Target Java version (required for a camera-only build)')
+    p.add_argument('--block-counter', choices=['legacy-repeat','masked-repeat','atlas-repeat'],
+                   help='Select the measuring method for --through counts')
+    p.add_argument('--material-match', choices=['atlas'],
+                   help='Identify complete visible cells against the versioned atlas with --through counts')
+    p.add_argument('--version',help='Target Java version')
     p.add_argument('--geometry-method',choices=['baseline','texel','remap','cube'],default='baseline')
     p.add_argument('image',type=Path)
-    p.add_argument('--atlas',type=Path,help='Versioned atlas for assembly')
+    p.add_argument('--atlas',type=Path,help='Versioned atlas directory for assembly or counting with material matching')
     p.add_argument('--out',type=Path,required=True)
     shape=p.add_mutually_exclusive_group()
     shape.add_argument('--scene',type=Path)
@@ -126,9 +130,11 @@ def main():
 
 @image_only()
 def run_image_command(parser,args):
-    if (args.command=='build' and args.through!='surfaces'
+    if (args.command=='build' and args.through not in ('surfaces','counts')
             and (args.surface_outlines is not None or args.surface_order is not None)):
-        parser.error('Use --through surfaces when choosing a surface method')
+        parser.error('Choose --through surfaces or counts when selecting a surface method')
+    if args.command=='build' and args.through!='counts' and (args.block_counter or args.material_match):
+        parser.error('--block-counter and --material-match apply to --through counts')
     if args.command=='fit-voxels':
         from engine.voxel_fit import fit
         fit(args.image,args.method,args.out,args.atlas,args.relative)
@@ -144,18 +150,20 @@ def run_image_command(parser,args):
         print(f"{args.version}: {len(info['choices']['south'])} placeable south-face textures")
     elif args.command=='analyze':
         analyze(args.image,args.scene,args.out,args.geometry_method)
-    elif args.through in ('camera', 'surfaces'):
+    elif args.through in ('camera', 'surfaces', 'counts'):
         if not args.version:
             parser.error('Camera and surface builds need --version')
         if (args.scene or args.geometry or args.geometry_method!='baseline' or args.depth is not None
-                or args.library or args.atlas or args.match_exposure or args.white_balance or args.match_appearance):
-            parser.error('Camera and surface builds take the image, --version and --out')
+                or args.library or (args.atlas and args.through!='counts') or args.match_exposure
+                or args.white_balance or args.match_appearance):
+            parser.error('Choose assembly for the supplied geometry or material placement options')
         if args.through == 'camera':
             from engine.camera_grid import build_camera
             build_camera(args.image,args.version,args.out)
         else:
             from engine.surface_model import build
-            build(args.image,args.version,args.out,outlines=args.surface_outlines,order_method=args.surface_order)
+            build(args.image,args.version,args.out,outlines=args.surface_outlines,order_method=args.surface_order,
+                  through=args.through,counter=args.block_counter,atlas_path=args.atlas,material_match=args.material_match)
     else:
         if not args.atlas:
             parser.error('An assembly build needs --atlas')

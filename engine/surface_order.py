@@ -8,19 +8,31 @@ from PIL import Image, ImageDraw
 SETTINGS = dict(stride_px=4,max_intervening_px=12,min_samples=4,min_agreement=.7)
 
 
-def order(planes,size,depth=None):
+def order(planes,size,depth=None,*,use_masks=False):
     """Compare opposing samples across observed patches along scanlines in both directions."""
     stride=SETTINGS['stride_px']
     w,h=((n+stride-1)//stride for n in size)
-    ids=Image.new('I',(w,h))
-    pen=ImageDraw.Draw(ids)
-    # The smaller footprint takes precedence where two projected charts overlap.
-    def area(idx):
-        x,y=np.array(planes[idx]['quad']).T
-        return abs(x@np.roll(y,1)-y@np.roll(x,1))
-    for i in sorted(range(len(planes)),key=area,reverse=True):
-        pen.polygon([tuple(pt) for pt in np.array(planes[i]['quad'])/stride],fill=i+1)
-    ids=np.asarray(ids)
+    if use_masks:
+        ids = np.zeros((h, w), dtype=np.int32)
+        for i, plane in enumerate(planes, 1):
+            support = plane['support']
+            sw, sh = support['size']
+            raw = np.zeros((sh, sw), dtype=bool)
+            for y, x0, x1 in support['runs']:
+                raw[y, x0:x1] = True
+            x = np.minimum(((np.arange(w)+.5)*stride*sw/size[0]).astype(int), sw-1)
+            y = np.minimum(((np.arange(h)+.5)*stride*sh/size[1]).astype(int), sh-1)
+            ids[raw[np.ix_(y,x)]] = i
+    else:
+        ids=Image.new('I',(w,h))
+        pen=ImageDraw.Draw(ids)
+        # The smaller footprint takes precedence where two projected charts overlap.
+        def area(idx):
+            x,y=np.array(planes[idx]['quad']).T
+            return abs(x@np.roll(y,1)-y@np.roll(x,1))
+        for i in sorted(range(len(planes)),key=area,reverse=True):
+            pen.polygon([tuple(pt) for pt in np.array(planes[i]['quad'])/stride],fill=i+1)
+        ids=np.asarray(ids)
     field=None if depth is None else np.array(Image.fromarray(depth).resize((w,h),Image.Resampling.BILINEAR))
     samples=defaultdict(list)
     for axis in (0,1):
