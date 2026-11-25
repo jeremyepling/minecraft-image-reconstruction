@@ -14,6 +14,7 @@ from engine.atlas import digest, discover
 
 
 VERSION = "26.3"
+FLOORS = ("smooth_stone", "light_gray_concrete")
 PALETTES = {
     "masonry": ("stone_bricks", "tuff", "polished_andesite"),
     "plaster": ("white_concrete", "cobblestone", "spruce_planks"),
@@ -80,14 +81,16 @@ def poses(b, shape, lo, hi):
                    x=b.origin + x, z=wall_z + 3.9, feetY=GROUND + 1 + 4 - 1.62)
 
 
-def stage(root, jar):
+def stage(root, jar, floor="smooth_stone"):
+    if floor not in FLOORS:
+        raise ValueError(f"Unknown fixture floor: {floor}")
     with ZipFile(jar) as archive:
         meta = json.loads(archive.read("version.json"))
     if meta["id"] != VERSION:
         raise ValueError(f"Expected Java {VERSION}, found {meta['id']}")
     root.mkdir(parents=True, exist_ok=False)
     world = root / "fixture/saves/Palette Lab"
-    create_world(world, meta, {"minecraft:random_tick_speed": 0}, level_name="Exterior fixture")
+    create_world(world, meta, {"minecraft:random_tick_speed": 0}, level_name="Exterior fixture", floor=floor)
     (world / "datapacks").mkdir()
     blocks, views, layouts = [], [], []
     with ZipFile(world / "datapacks" / PACK, "w", ZIP_DEFLATED) as pack:
@@ -104,6 +107,10 @@ def stage(root, jar):
                 common = dict(page=page, split=split, layout=shape.__name__, palette=palette_name)
                 layouts.append(dict(**common, bounds=b.data["bounds"], planes=b.data["planes"]))
                 commands = []
+                # Read untouched worldgen surface blocks below the approaches to each view.
+                for x, z in ((-4, 18), (8, 12), (21, 16)):
+                    blocks.append(dict(page=page, x=b.origin + x, y=GROUND, z=z,
+                                       block_id=floor, role="floor_probe"))
                 for pos in product(*(range(a, z) for a, z in zip(lo, hi))):
                     material, role = b.cells.get(pos, ("air", "open"))
                     x, y, z = b.xyz(pos)
@@ -114,7 +121,7 @@ def stage(root, jar):
                 for view in poses(b, shape, lo, hi):
                     view_id = f"{split}-{shape.__name__}-{palette_name}-{view['angle']}"
                     views.append(dict(**common, id=view_id, **view))
-    write(root / "layout.json", dict(version=VERSION, client_sha256=digest(jar), ground_y=GROUND,
+    write(root / "layout.json", dict(version=VERSION, client_sha256=digest(jar), ground_y=GROUND, floor=floor,
                                      blocks=blocks))
     write(root / "buildings.json", layouts)
     write(root / "views.json", views)
@@ -125,7 +132,9 @@ def main():
     parser.add_argument("--out", type=Path, required=True)
     parser.add_argument("--jar", type=Path)
     parser.add_argument("--minecraft-dir", type=Path)
+    parser.add_argument("--floor", choices=FLOORS, default="smooth_stone", help="Superflat surface block")
     parser.add_argument("--labels-only", action="store_true", help="Verify and label an existing capture")
+    parser.add_argument("--paired-with", type=Path, help="Audit this capture against a matched reference fixture")
     args = parser.parse_args()
     root = args.out.resolve()
     if not args.labels_only:
@@ -133,14 +142,16 @@ def main():
         if jar is None and args.minecraft_dir:
             jar = args.minecraft_dir / "versions" / VERSION / f"{VERSION}.jar"
         jar = (jar or discover(VERSION)).resolve()
-        stage(root, jar)
+        stage(root, jar, args.floor)
         command = [sys.executable, "-m", "runtime.capture", "capture", "--version", VERSION,
                    "--run", str(root), "--jar", str(jar)]
         if args.minecraft_dir:
             command.extend(["--minecraft-dir", str(args.minecraft_dir)])
         subprocess.run(command, check=True)
-    from benchmark.camera_labels import label_capture
+    from benchmark.camera_labels import label_capture, verify_pair
     label_capture(root)
+    if args.paired_with:
+        verify_pair(args.paired_with, root)
 
 
 if __name__ == "__main__":

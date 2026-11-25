@@ -1,5 +1,6 @@
 """Evaluation-only face and grid labels from the recorded renderer and server state."""
 import json
+import gzip
 from collections import Counter
 
 import numpy as np
@@ -9,6 +10,7 @@ from benchmark.camera_fixture import VERSION, write
 from benchmark.textures import clear_rays
 from calibration.world import GROUND
 from engine.atlas import digest
+from engine.nbt import read_nbt
 
 
 DIRECTIONS = (("west", "east"), ("down", "up"), ("north", "south"))
@@ -119,7 +121,8 @@ def label_capture(root):
         point = tuple(part[axis] for axis in "xyz")
         pages.setdefault(part["page"], {})[point] = part
     (root / "labels").mkdir(exist_ok=True)
-    frames, readbacks, faces_total = [], 0, 0
+    frames, readbacks, floor_readbacks, faces_total = [], 0, 0, 0
+    floor = layout.get("floor", "smooth_stone")
     for v in views:
         stem = "captures/" + v["id"]
         pose_path, image, states_file = stem + ".json", stem + ".png", stem + "-blocks.json"
@@ -137,18 +140,89 @@ def label_capture(root):
             or any(b["block_id"] != expected[p]["block_id"]
                    or b["state"] != "Block{minecraft:" + b["block_id"] + "}" for p, b in actual.items())):
             raise ValueError(f"Server state disagrees with staged world in {states_file}")
-        faces = face_labels(pose, actual, {p: b["role"] for p, b in expected.items()})
+        floor_sites = {p for p, b in expected.items() if b["role"] == "floor_probe"}
+        if "floor" in layout and (not floor_sites or
+                any(actual[p]["block_id"] != floor or p[1] != GROUND for p in floor_sites)):
+            raise ValueError(f"Unverified {floor} floor in {states_file}")
+        floor_readbacks += len(floor_sites)
+        building = {p: b for p, b in actual.items() if p not in floor_sites}
+        faces = face_labels(pose, building, {p: b["role"] for p, b in expected.items()})
         labels = f"labels/{v['id']}.json"
         write(root / labels, dict(id=v["id"], faces=faces))
         readbacks += len(rows)
         faces_total += len(faces)
         frame = {k: v[k] for k in ("id", "layout", "split", "palette", "angle", "condition")}
-        frames.append(dict(**frame, image=image, pose=pose_path, states=states_file, labels=labels,
+        frames.append(dict(**frame, floor=floor, image=image, pose=pose_path, states=states_file, labels=labels,
                            image_sha256=digest(root/image), label_sha256=digest(root/labels)))
-    library = dict(version=VERSION, client_sha256=layout["client_sha256"], ground_y=GROUND,
+    library = dict(version=VERSION, client_sha256=layout["client_sha256"], ground_y=GROUND, floor=floor,
                    layout="layout.json", buildings="buildings.json", views="views.json", frames=frames,
                    visibility="Frame-clipped, occlusion-tested native pixel-center count divided by full-face pixel count (continuous projected area for clipped faces). Only faces owning a pixel are listed.",
                    verified=dict(frames=len(frames), state_readbacks=readbacks, visible_faces=faces_total,
+                                 floor_readbacks=floor_readbacks,
                                  by_split=dict(Counter(v["split"] for v in frames))))
     write(root / "index.json", library)
     print(f"Verified {len(frames)} frames, {readbacks} server state readbacks, {faces_total} visible faces.", flush=True)
+
+
+def floor_evidence(root, index):
+    floor = index.get("floor", "smooth_stone")
+    result = dict(block_id="minecraft:"+floor, floor_readbacks=index["verified"].get("floor_readbacks", 0))
+    cfg = root / "client/saves/Palette Lab/data/minecraft/world_gen_settings.dat"
+    if cfg.is_file():
+        dim = read_nbt(gzip.decompress(cfg.read_bytes()))["data"]["dimensions"]["minecraft:overworld"]
+        layers = dim["generator"]["settings"]["layers"]
+        if layers[-1] != dict(block=result["block_id"], height=1):
+            raise ValueError("Saved superflat surface disagrees with the expected material")
+        result.update(saved_worldgen_layers=layers, saved_worldgen_sha256=digest(cfg))
+    return result
+
+
+def verify_pair(reference, alternate):
+    """Compare checked server state, native cameras, labels and sampled face pixels."""
+    left, right = (load(p / "index.json") for p in (reference, alternate))
+    reference_frames = {f["id"]: f for f in left["frames"]}
+    if (reference_frames.keys() != {f["id"] for f in right["frames"]}
+        or left["client_sha256"] != right["client_sha256"]):
+        raise ValueError("Paired captures require the same view set and Java client")
+    for key in ("buildings", "views"):
+        if load(reference / left[key]) != load(alternate / right[key]):
+            raise ValueError(f"Paired {key} differ")
+    expected_blocks = []
+    for root, index in ((reference, left), (alternate, right)):
+        layout = load(root / index["layout"])
+        expected_blocks.append([b for b in layout["blocks"] if b["role"] != "floor_probe"])
+    if expected_blocks[0] != expected_blocks[1]:
+        raise ValueError("Paired building layouts differ")
+    rows = []
+    for frame in right["frames"]:
+        old = reference_frames[frame["id"]]
+        views = ((reference, old), (alternate, frame))
+        for field in ("id", "split", "layout", "palette", "condition", "angle"):
+            if old[field] != frame[field]:
+                raise ValueError(f"{field} differs for {frame['id']}")
+        files = [(load(root/v["pose"]), load(root/v["labels"]),
+                  [b for b in load(root/v["states"]) if b["y"] > GROUND]) for root, v in views]
+        if files[0] != files[1]:
+            raise ValueError(f"Paired camera, conditions, projected visible faces or server state differ for {frame['id']}")
+        _, labels, states = files[1]
+        images = []
+        for root, v in views:
+            with Image.open(root/v["image"]) as im:
+                images.append(np.asarray(im.convert("RGB")))
+        a, b = images
+        diff = np.any(a != b, axis=2)
+        # Fully visible face centers avoid seams, sky, neighboring cells and ground.
+        xy = np.array([np.mean(f["image_corners"], axis=0) for f in labels["faces"]
+                       if f["visible_fraction"] == 1 and f["visible_pixels"] >= 16])
+        x, y = np.floor(xy).astype(int).T
+        rows.append(dict(id=frame["id"], matching_building_readbacks=len(states),
+                         matching_face_labels=len(labels["faces"]), matching_pose_and_conditions=True,
+                         changed_rgb_pixels=int(diff.sum()), face_center_samples=len(x),
+                         changed_face_center_samples=int(diff[y, x].sum())))
+    report = dict(game_version=right["version"], reference_index_sha256=digest(reference/"index.json"),
+                  alternate_index_sha256=digest(alternate/"index.json"),
+                  reference_floor=floor_evidence(reference, left), alternate_floor=floor_evidence(alternate, right),
+                  checked="Native pose and projection, HUD, weather, clock, resource packs, frame resolution, layout cells, block states and light levels, projected faces, visible fractions and corner visibility.",
+                  frames=rows)
+    write(alternate / "pair-verification.json", report)
+    return report

@@ -1,14 +1,47 @@
+import gzip
+import json
 import unittest
+from pathlib import Path
+from tempfile import TemporaryDirectory
+from zipfile import ZipFile
 
 import numpy as np
 
-from benchmark.camera_fixture import LAYOUTS, PALETTES
+from benchmark.camera_fixture import LAYOUTS, PALETTES, stage
 from benchmark.camera_labels import face_labels, rasterize
 from benchmark.fixtures import Building
-from calibration.world import GROUND
+from calibration.world import GROUND, PACK
+from engine.nbt import read_nbt
 
 
 class CameraFixtureTest(unittest.TestCase):
+    def test_worldgen_floor_changes_readbacks_but_preserves_structure_and_poses(self):
+        with TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            jar = root/"meta.jar"
+            with ZipFile(jar, "w") as z:
+                z.writestr("version.json", json.dumps(dict(id="26.3", world_version=1,
+                           pack_version=dict(data_major=1, data_minor=0))))
+            stage(root/"default", jar)
+            stage(root/"concrete", jar, "light_gray_concrete")
+            controls = []
+            for name, floor in (("default", "smooth_stone"), ("concrete", "light_gray_concrete")):
+                out = root/name
+                world = out/"fixture/saves/Palette Lab"
+                settings = world/"data/minecraft/world_gen_settings.dat"
+                dim = read_nbt(gzip.decompress(settings.read_bytes()))["data"]["dimensions"]["minecraft:overworld"]
+                self.assertEqual(dim["generator"]["settings"]["layers"][-1], dict(block="minecraft:"+floor, height=1))
+                layout = json.loads((out/"layout.json").read_text())
+                self.assertEqual(layout["floor"], floor)
+                probes = [b for b in layout["blocks"] if b["role"] == "floor_probe"]
+                self.assertEqual(len(probes), 24)
+                self.assertTrue(all(b["y"] == GROUND and b["block_id"] == floor for b in probes))
+                with ZipFile(world/"datapacks"/PACK) as pack:
+                    commands = [pack.read(n) for n in pack.namelist() if n.endswith(".mcfunction")]
+                controls.append(((out/"views.json").read_bytes(), (out/"buildings.json").read_bytes(), commands,
+                                 [b for b in layout["blocks"] if b["role"] != "floor_probe"]))
+            self.assertEqual(controls[0], controls[1])
+
     def test_palettes_preserve_geometry_and_layouts_never_cross_splits(self):
         seen = set()
         for split, shape in LAYOUTS:
