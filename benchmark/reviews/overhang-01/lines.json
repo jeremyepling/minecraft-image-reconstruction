@@ -1,0 +1,3115 @@
+{
+  "source_manifest_sha256": "7289b45331a25d1e3c9ec976614c604eef34c512b8924a7a3475d36e08c8f39c",
+  "fixtures": {
+    "smooth_stone": "660d1e535ae134452bca903a9d7cbe8d37953927fa118d9ffb327afad0885bc2",
+    "light_gray_concrete": "321505e15563f8efc0da868baa27409837aaa474410a61f3513b3dac0030f066",
+    "surface_confirm_v1": "0a479a8264f2c0f714284928354ff6ff5f9729491709676f07e2033d25e48fc3",
+    "normal_confirm_v1": "61bdf3a89a505a8be3757efe480185bec9c1888a1c72ffb69ef0093623e27dda"
+  },
+  "reference_archive_sha256": "91efa6d3e992b1a68672eae1fdd6d380e87724742a1a4b6cbe5f84d284f731a1",
+  "line_manifests": {
+    "scalelsd": "99f5bfb88a78ec67a377cf8f564ad67b746b99e1ac3115d3149e6d38cb08aba9",
+    "deeplsd": "dd8596cd8963a14b99eaf17bdd9aa76bf0f7e25dd4f214cfef30ef79b0f6113c"
+  },
+  "tolerance_px": 3,
+  "parallel_tolerance_deg": 15,
+  "tangent_radius_px": 6,
+  "units": "Native horizontal/vertical pixel interfaces; count shared seams with another visible building surface, excluding background. Local PCA retains sufficiently straight stretches. At each tested midpoint an aligned segment from either detector may vote.",
+  "negative_control": "Approximately two-pixel samples along emitted source lines on the building. line_interior=[samples with no boundary pixel within a 5-pixel square radius, all on-building samples].",
+  "frames": [
+    {
+      "frame": "smooth_stone/dev-shopfront-masonry-high-right",
+      "layout": "shopfront",
+      "sha256": "f15cd0e471a9a2e375c9f801df171bb8f5ee44d95374f02f1174c7938a94cc79",
+      "undersides": [],
+      "line_interior": {
+        "scalelsd": [
+          867,
+          3081
+        ],
+        "deeplsd": [
+          1822,
+          3257
+        ]
+      }
+    },
+    {
+      "frame": "light_gray_concrete/dev-shopfront-masonry-high-right",
+      "layout": "shopfront",
+      "sha256": "bb588b0b0d1cdb05b720ff5bc3b515479426c7772fd98fb7fadb8a55b79ca9db",
+      "undersides": [],
+      "line_interior": {
+        "scalelsd": [
+          1434,
+          4836
+        ],
+        "deeplsd": [
+          1847,
+          3542
+        ]
+      }
+    },
+    {
+      "frame": "smooth_stone/dev-shopfront-masonry-low-left",
+      "layout": "shopfront",
+      "sha256": "17691e7909ee0e9384db83c3a729f8763e21a281eb89b8dcebe61fc7675d1405",
+      "undersides": [
+        {
+          "reference": 7,
+          "status": "small",
+          "pixels": 306,
+          "reason": null,
+          "neighbors": [
+            {
+              "id": 2,
+              "all_samples": 15,
+              "tested": 14,
+              "scalelsd": 10,
+              "deeplsd": 0,
+              "either": 10
+            },
+            {
+              "id": 11,
+              "all_samples": 73,
+              "tested": 73,
+              "scalelsd": 0,
+              "deeplsd": 6,
+              "either": 6
+            },
+            {
+              "id": 12,
+              "all_samples": 90,
+              "tested": 84,
+              "scalelsd": 84,
+              "deeplsd": 84,
+              "either": 84
+            }
+          ]
+        },
+        {
+          "reference": 8,
+          "status": "found",
+          "pixels": 4010,
+          "reason": null,
+          "neighbors": [
+            {
+              "id": 4,
+              "all_samples": 61,
+              "tested": 60,
+              "scalelsd": 0,
+              "deeplsd": 24,
+              "either": 24
+            },
+            {
+              "id": 5,
+              "all_samples": 32,
+              "tested": 31,
+              "scalelsd": 0,
+              "deeplsd": 2,
+              "either": 2
+            },
+            {
+              "id": 6,
+              "all_samples": 47,
+              "tested": 46,
+              "scalelsd": 13,
+              "deeplsd": 0,
+              "either": 13
+            },
+            {
+              "id": 9,
+              "all_samples": 15,
+              "tested": 14,
+              "scalelsd": 0,
+              "deeplsd": 0,
+              "either": 0
+            },
+            {
+              "id": 10,
+              "all_samples": 17,
+              "tested": 17,
+              "scalelsd": 0,
+              "deeplsd": 0,
+              "either": 0
+            },
+            {
+              "id": 12,
+              "all_samples": 15,
+              "tested": 15,
+              "scalelsd": 0,
+              "deeplsd": 0,
+              "either": 0
+            },
+            {
+              "id": 13,
+              "all_samples": 95,
+              "tested": 87,
+              "scalelsd": 2,
+              "deeplsd": 61,
+              "either": 62
+            },
+            {
+              "id": 14,
+              "all_samples": 60,
+              "tested": 56,
+              "scalelsd": 0,
+              "deeplsd": 3,
+              "either": 3
+            },
+            {
+              "id": 15,
+              "all_samples": 33,
+              "tested": 33,
+              "scalelsd": 24,
+              "deeplsd": 4,
+              "either": 28
+            },
+            {
+              "id": 3,
+              "all_samples": 46,
+              "tested": 40,
+              "scalelsd": 0,
+              "deeplsd": 0,
+              "either": 0
+            },
+            {
+              "id": 16,
+              "all_samples": 355,
+              "tested": 355,
+              "scalelsd": 259,
+              "deeplsd": 261,
+              "either": 346
+            }
+          ]
+        }
+      ],
+      "line_interior": {
+        "scalelsd": [
+          1243,
+          3240
+        ],
+        "deeplsd": [
+          1922,
+          3838
+        ]
+      }
+    },
+    {
+      "frame": "light_gray_concrete/dev-shopfront-masonry-low-left",
+      "layout": "shopfront",
+      "sha256": "0359c24dea1b318ec9cd002a1523ae8fc0d7d59fc9d7418972cf9ce9af8d4d57",
+      "undersides": [
+        {
+          "reference": 7,
+          "status": "small",
+          "pixels": 306,
+          "reason": null,
+          "neighbors": [
+            {
+              "id": 2,
+              "all_samples": 15,
+              "tested": 14,
+              "scalelsd": 2,
+              "deeplsd": 0,
+              "either": 2
+            },
+            {
+              "id": 11,
+              "all_samples": 73,
+              "tested": 73,
+              "scalelsd": 0,
+              "deeplsd": 6,
+              "either": 6
+            },
+            {
+              "id": 12,
+              "all_samples": 90,
+              "tested": 84,
+              "scalelsd": 68,
+              "deeplsd": 84,
+              "either": 84
+            }
+          ]
+        },
+        {
+          "reference": 8,
+          "status": "found",
+          "pixels": 4010,
+          "reason": null,
+          "neighbors": [
+            {
+              "id": 4,
+              "all_samples": 61,
+              "tested": 60,
+              "scalelsd": 0,
+              "deeplsd": 24,
+              "either": 24
+            },
+            {
+              "id": 5,
+              "all_samples": 32,
+              "tested": 31,
+              "scalelsd": 0,
+              "deeplsd": 2,
+              "either": 2
+            },
+            {
+              "id": 6,
+              "all_samples": 47,
+              "tested": 46,
+              "scalelsd": 0,
+              "deeplsd": 0,
+              "either": 0
+            },
+            {
+              "id": 9,
+              "all_samples": 15,
+              "tested": 14,
+              "scalelsd": 0,
+              "deeplsd": 0,
+              "either": 0
+            },
+            {
+              "id": 10,
+              "all_samples": 17,
+              "tested": 17,
+              "scalelsd": 0,
+              "deeplsd": 0,
+              "either": 0
+            },
+            {
+              "id": 12,
+              "all_samples": 15,
+              "tested": 15,
+              "scalelsd": 0,
+              "deeplsd": 0,
+              "either": 0
+            },
+            {
+              "id": 13,
+              "all_samples": 95,
+              "tested": 87,
+              "scalelsd": 2,
+              "deeplsd": 61,
+              "either": 62
+            },
+            {
+              "id": 14,
+              "all_samples": 60,
+              "tested": 56,
+              "scalelsd": 0,
+              "deeplsd": 3,
+              "either": 3
+            },
+            {
+              "id": 15,
+              "all_samples": 33,
+              "tested": 33,
+              "scalelsd": 0,
+              "deeplsd": 4,
+              "either": 4
+            },
+            {
+              "id": 3,
+              "all_samples": 46,
+              "tested": 40,
+              "scalelsd": 0,
+              "deeplsd": 0,
+              "either": 0
+            },
+            {
+              "id": 16,
+              "all_samples": 355,
+              "tested": 355,
+              "scalelsd": 239,
+              "deeplsd": 261,
+              "either": 340
+            }
+          ]
+        }
+      ],
+      "line_interior": {
+        "scalelsd": [
+          1363,
+          3798
+        ],
+        "deeplsd": [
+          1923,
+          3851
+        ]
+      }
+    },
+    {
+      "frame": "smooth_stone/dev-shopfront-plaster-high-right",
+      "layout": "shopfront",
+      "sha256": "ae58f28554348d924798e23bd492b88db06c2a099f590e325c514ecc5c8f9c7e",
+      "undersides": [],
+      "line_interior": {
+        "scalelsd": [
+          130,
+          3974
+        ],
+        "deeplsd": [
+          1308,
+          3296
+        ]
+      }
+    },
+    {
+      "frame": "light_gray_concrete/dev-shopfront-plaster-high-right",
+      "layout": "shopfront",
+      "sha256": "4cc1d5687db72eef74f23fc291fb7916b3f481ed4998d9e1c850024039d38cce",
+      "undersides": [],
+      "line_interior": {
+        "scalelsd": [
+          194,
+          9563
+        ],
+        "deeplsd": [
+          1309,
+          3318
+        ]
+      }
+    },
+    {
+      "frame": "smooth_stone/dev-shopfront-plaster-low-left",
+      "layout": "shopfront",
+      "sha256": "5d0c9120de4ca16f35758f90a31e176e50a3cf166358dd9833ee2213d1ff2f72",
+      "undersides": [
+        {
+          "reference": 7,
+          "status": "small",
+          "pixels": 306,
+          "reason": null,
+          "neighbors": [
+            {
+              "id": 2,
+              "all_samples": 15,
+              "tested": 14,
+              "scalelsd": 1,
+              "deeplsd": 3,
+              "either": 3
+            },
+            {
+              "id": 11,
+              "all_samples": 73,
+              "tested": 73,
+              "scalelsd": 0,
+              "deeplsd": 41,
+              "either": 41
+            },
+            {
+              "id": 12,
+              "all_samples": 90,
+              "tested": 84,
+              "scalelsd": 84,
+              "deeplsd": 84,
+              "either": 84
+            }
+          ]
+        },
+        {
+          "reference": 8,
+          "status": "missed",
+          "pixels": 4010,
+          "reason": "overlap below the one-to-one match threshold",
+          "neighbors": [
+            {
+              "id": 4,
+              "all_samples": 61,
+              "tested": 60,
+              "scalelsd": 11,
+              "deeplsd": 60,
+              "either": 60
+            },
+            {
+              "id": 5,
+              "all_samples": 32,
+              "tested": 31,
+              "scalelsd": 10,
+              "deeplsd": 0,
+              "either": 10
+            },
+            {
+              "id": 6,
+              "all_samples": 47,
+              "tested": 46,
+              "scalelsd": 22,
+              "deeplsd": 46,
+              "either": 46
+            },
+            {
+              "id": 9,
+              "all_samples": 15,
+              "tested": 14,
+              "scalelsd": 0,
+              "deeplsd": 12,
+              "either": 12
+            },
+            {
+              "id": 10,
+              "all_samples": 17,
+              "tested": 17,
+              "scalelsd": 0,
+              "deeplsd": 16,
+              "either": 16
+            },
+            {
+              "id": 12,
+              "all_samples": 15,
+              "tested": 15,
+              "scalelsd": 15,
+              "deeplsd": 0,
+              "either": 15
+            },
+            {
+              "id": 13,
+              "all_samples": 95,
+              "tested": 87,
+              "scalelsd": 85,
+              "deeplsd": 85,
+              "either": 85
+            },
+            {
+              "id": 14,
+              "all_samples": 60,
+              "tested": 56,
+              "scalelsd": 10,
+              "deeplsd": 3,
+              "either": 10
+            },
+            {
+              "id": 15,
+              "all_samples": 33,
+              "tested": 33,
+              "scalelsd": 15,
+              "deeplsd": 0,
+              "either": 15
+            },
+            {
+              "id": 3,
+              "all_samples": 46,
+              "tested": 40,
+              "scalelsd": 13,
+              "deeplsd": 0,
+              "either": 13
+            },
+            {
+              "id": 16,
+              "all_samples": 355,
+              "tested": 355,
+              "scalelsd": 30,
+              "deeplsd": 355,
+              "either": 355
+            }
+          ]
+        }
+      ],
+      "line_interior": {
+        "scalelsd": [
+          174,
+          2486
+        ],
+        "deeplsd": [
+          973,
+          2705
+        ]
+      }
+    },
+    {
+      "frame": "light_gray_concrete/dev-shopfront-plaster-low-left",
+      "layout": "shopfront",
+      "sha256": "299e0228de74d2cc7d3a18deaba9f61c82560a0ddd0b8557e5c91728c964a993",
+      "undersides": [
+        {
+          "reference": 7,
+          "status": "small",
+          "pixels": 306,
+          "reason": null,
+          "neighbors": [
+            {
+              "id": 2,
+              "all_samples": 15,
+              "tested": 14,
+              "scalelsd": 1,
+              "deeplsd": 3,
+              "either": 3
+            },
+            {
+              "id": 11,
+              "all_samples": 73,
+              "tested": 73,
+              "scalelsd": 0,
+              "deeplsd": 41,
+              "either": 41
+            },
+            {
+              "id": 12,
+              "all_samples": 90,
+              "tested": 84,
+              "scalelsd": 84,
+              "deeplsd": 84,
+              "either": 84
+            }
+          ]
+        },
+        {
+          "reference": 8,
+          "status": "missed",
+          "pixels": 4010,
+          "reason": "overlap below the one-to-one match threshold",
+          "neighbors": [
+            {
+              "id": 4,
+              "all_samples": 61,
+              "tested": 60,
+              "scalelsd": 11,
+              "deeplsd": 60,
+              "either": 60
+            },
+            {
+              "id": 5,
+              "all_samples": 32,
+              "tested": 31,
+              "scalelsd": 0,
+              "deeplsd": 0,
+              "either": 0
+            },
+            {
+              "id": 6,
+              "all_samples": 47,
+              "tested": 46,
+              "scalelsd": 22,
+              "deeplsd": 46,
+              "either": 46
+            },
+            {
+              "id": 9,
+              "all_samples": 15,
+              "tested": 14,
+              "scalelsd": 0,
+              "deeplsd": 12,
+              "either": 12
+            },
+            {
+              "id": 10,
+              "all_samples": 17,
+              "tested": 17,
+              "scalelsd": 0,
+              "deeplsd": 16,
+              "either": 16
+            },
+            {
+              "id": 12,
+              "all_samples": 15,
+              "tested": 15,
+              "scalelsd": 0,
+              "deeplsd": 0,
+              "either": 0
+            },
+            {
+              "id": 13,
+              "all_samples": 95,
+              "tested": 87,
+              "scalelsd": 85,
+              "deeplsd": 85,
+              "either": 85
+            },
+            {
+              "id": 14,
+              "all_samples": 60,
+              "tested": 56,
+              "scalelsd": 0,
+              "deeplsd": 3,
+              "either": 3
+            },
+            {
+              "id": 15,
+              "all_samples": 33,
+              "tested": 33,
+              "scalelsd": 0,
+              "deeplsd": 0,
+              "either": 0
+            },
+            {
+              "id": 3,
+              "all_samples": 46,
+              "tested": 40,
+              "scalelsd": 0,
+              "deeplsd": 0,
+              "either": 0
+            },
+            {
+              "id": 16,
+              "all_samples": 355,
+              "tested": 355,
+              "scalelsd": 30,
+              "deeplsd": 355,
+              "either": 355
+            }
+          ]
+        }
+      ],
+      "line_interior": {
+        "scalelsd": [
+          280,
+          2906
+        ],
+        "deeplsd": [
+          953,
+          2761
+        ]
+      }
+    },
+    {
+      "frame": "smooth_stone/dev-wing-masonry-close-front",
+      "layout": "wing",
+      "sha256": "9ce65a1c07694c1d3e57019c07b422d7a6a0771ed0d46f579891eae8a61463a9",
+      "undersides": [],
+      "line_interior": {
+        "scalelsd": [
+          5900,
+          5900
+        ],
+        "deeplsd": [
+          31341,
+          31341
+        ]
+      }
+    },
+    {
+      "frame": "light_gray_concrete/dev-wing-masonry-close-front",
+      "layout": "wing",
+      "sha256": "9ce65a1c07694c1d3e57019c07b422d7a6a0771ed0d46f579891eae8a61463a9",
+      "undersides": [],
+      "line_interior": {
+        "scalelsd": [
+          5900,
+          5900
+        ],
+        "deeplsd": [
+          31341,
+          31341
+        ]
+      }
+    },
+    {
+      "frame": "smooth_stone/dev-wing-masonry-high-right",
+      "layout": "wing",
+      "sha256": "8cd9e20f608db25df6d141941051d30afcbf80733ea4c6f2058874c02019bf9f",
+      "undersides": [],
+      "line_interior": {
+        "scalelsd": [
+          2020,
+          3117
+        ],
+        "deeplsd": [
+          4527,
+          5286
+        ]
+      }
+    },
+    {
+      "frame": "light_gray_concrete/dev-wing-masonry-high-right",
+      "layout": "wing",
+      "sha256": "5ccd9115fd2a70784e0e1ab6819d37fc5c4af54cf965605143b3817e1f3a3efd",
+      "undersides": [],
+      "line_interior": {
+        "scalelsd": [
+          2147,
+          3975
+        ],
+        "deeplsd": [
+          4460,
+          5249
+        ]
+      }
+    },
+    {
+      "frame": "smooth_stone/dev-wing-masonry-low-left",
+      "layout": "wing",
+      "sha256": "0c7bc49ce3c736391d7954a9c069aee29586f03fd33a2a88926b40257ccae6ce",
+      "undersides": [],
+      "line_interior": {
+        "scalelsd": [
+          3128,
+          3836
+        ],
+        "deeplsd": [
+          4393,
+          5118
+        ]
+      }
+    },
+    {
+      "frame": "light_gray_concrete/dev-wing-masonry-low-left",
+      "layout": "wing",
+      "sha256": "4e8817361e24c3f05e835d7af6c8bab3da96d50c8821828144f33bb1ea0e87d3",
+      "undersides": [],
+      "line_interior": {
+        "scalelsd": [
+          4030,
+          4890
+        ],
+        "deeplsd": [
+          4472,
+          5201
+        ]
+      }
+    },
+    {
+      "frame": "smooth_stone/dev-wing-plaster-close-front",
+      "layout": "wing",
+      "sha256": "b3154136e855e9d005a993b8afdb3989e3fb156b102aed46ce0d99e761d2f2b8",
+      "undersides": [],
+      "line_interior": {
+        "scalelsd": [
+          3975,
+          3975
+        ],
+        "deeplsd": [
+          0,
+          0
+        ]
+      }
+    },
+    {
+      "frame": "light_gray_concrete/dev-wing-plaster-close-front",
+      "layout": "wing",
+      "sha256": "b3154136e855e9d005a993b8afdb3989e3fb156b102aed46ce0d99e761d2f2b8",
+      "undersides": [],
+      "line_interior": {
+        "scalelsd": [
+          3975,
+          3975
+        ],
+        "deeplsd": [
+          0,
+          0
+        ]
+      }
+    },
+    {
+      "frame": "smooth_stone/dev-wing-plaster-high-right",
+      "layout": "wing",
+      "sha256": "49832e903f4455c88c44f51da20abc550516d208783af9e3d05edc85ff4116a9",
+      "undersides": [],
+      "line_interior": {
+        "scalelsd": [
+          90,
+          2033
+        ],
+        "deeplsd": [
+          2452,
+          3202
+        ]
+      }
+    },
+    {
+      "frame": "light_gray_concrete/dev-wing-plaster-high-right",
+      "layout": "wing",
+      "sha256": "64d4fec367d669912de294146c1fa3e0bf871816ec4f52e57213e35db2968564",
+      "undersides": [],
+      "line_interior": {
+        "scalelsd": [
+          1975,
+          5294
+        ],
+        "deeplsd": [
+          2381,
+          3202
+        ]
+      }
+    },
+    {
+      "frame": "smooth_stone/dev-wing-plaster-low-left",
+      "layout": "wing",
+      "sha256": "b564e5c3bb2def9511c27cf483dbb01dbe760b1bce8b6060be578c97b2083019",
+      "undersides": [],
+      "line_interior": {
+        "scalelsd": [
+          34,
+          1183
+        ],
+        "deeplsd": [
+          934,
+          1641
+        ]
+      }
+    },
+    {
+      "frame": "light_gray_concrete/dev-wing-plaster-low-left",
+      "layout": "wing",
+      "sha256": "b1aa96442f2858b5435fc9af424de374ffafbade3cc74d059b85b6c1bfd7e13c",
+      "undersides": [],
+      "line_interior": {
+        "scalelsd": [
+          968,
+          3332
+        ],
+        "deeplsd": [
+          935,
+          1761
+        ]
+      }
+    },
+    {
+      "frame": "smooth_stone/holdout-courtyard-masonry-close-front",
+      "layout": "courtyard",
+      "sha256": "655531c2d8fecce752ea93fac3aa6a6e4429bb7ce8a629cb409532583694c678",
+      "undersides": [
+        {
+          "reference": 1,
+          "status": "small",
+          "pixels": 352,
+          "reason": null,
+          "neighbors": [
+            {
+              "id": 2,
+              "all_samples": 56,
+              "tested": 56,
+              "scalelsd": 0,
+              "deeplsd": 47,
+              "either": 47
+            },
+            {
+              "id": 3,
+              "all_samples": 15,
+              "tested": 15,
+              "scalelsd": 0,
+              "deeplsd": 0,
+              "either": 0
+            }
+          ]
+        }
+      ],
+      "line_interior": {
+        "scalelsd": [
+          5950,
+          5950
+        ],
+        "deeplsd": [
+          30944,
+          30974
+        ]
+      }
+    },
+    {
+      "frame": "light_gray_concrete/holdout-courtyard-masonry-close-front",
+      "layout": "courtyard",
+      "sha256": "655531c2d8fecce752ea93fac3aa6a6e4429bb7ce8a629cb409532583694c678",
+      "undersides": [
+        {
+          "reference": 1,
+          "status": "small",
+          "pixels": 352,
+          "reason": null,
+          "neighbors": [
+            {
+              "id": 2,
+              "all_samples": 56,
+              "tested": 56,
+              "scalelsd": 0,
+              "deeplsd": 47,
+              "either": 47
+            },
+            {
+              "id": 3,
+              "all_samples": 15,
+              "tested": 15,
+              "scalelsd": 0,
+              "deeplsd": 0,
+              "either": 0
+            }
+          ]
+        }
+      ],
+      "line_interior": {
+        "scalelsd": [
+          5950,
+          5950
+        ],
+        "deeplsd": [
+          30944,
+          30974
+        ]
+      }
+    },
+    {
+      "frame": "smooth_stone/holdout-courtyard-masonry-high-right",
+      "layout": "courtyard",
+      "sha256": "252fa7c481e990bbbada46717d6e10c6b66c4f9c65846b94a94cd1b40cea0fcd",
+      "undersides": [],
+      "line_interior": {
+        "scalelsd": [
+          1246,
+          3331
+        ],
+        "deeplsd": [
+          3666,
+          4772
+        ]
+      }
+    },
+    {
+      "frame": "light_gray_concrete/holdout-courtyard-masonry-high-right",
+      "layout": "courtyard",
+      "sha256": "b5b2bb5300687da8d904fb129043b5d2df0ae56e9ba4e14afb932b3e6d44dd3b",
+      "undersides": [],
+      "line_interior": {
+        "scalelsd": [
+          1780,
+          4122
+        ],
+        "deeplsd": [
+          3659,
+          4879
+        ]
+      }
+    },
+    {
+      "frame": "smooth_stone/holdout-courtyard-masonry-low-left",
+      "layout": "courtyard",
+      "sha256": "c80356e1b7d96bdc796ed982f09ed908059399d23fe98c873eecbb6e623a4216",
+      "undersides": [
+        {
+          "reference": 3,
+          "status": "small",
+          "pixels": 331,
+          "reason": null,
+          "neighbors": [
+            {
+              "id": 5,
+              "all_samples": 53,
+              "tested": 53,
+              "scalelsd": 0,
+              "deeplsd": 0,
+              "either": 0
+            },
+            {
+              "id": 7,
+              "all_samples": 59,
+              "tested": 53,
+              "scalelsd": 0,
+              "deeplsd": 40,
+              "either": 40
+            }
+          ]
+        }
+      ],
+      "line_interior": {
+        "scalelsd": [
+          1099,
+          2431
+        ],
+        "deeplsd": [
+          2697,
+          3464
+        ]
+      }
+    },
+    {
+      "frame": "light_gray_concrete/holdout-courtyard-masonry-low-left",
+      "layout": "courtyard",
+      "sha256": "5b0b16edd7e5207c275e3277db0d65620891c50024735061783d4a175957ff9a",
+      "undersides": [
+        {
+          "reference": 3,
+          "status": "small",
+          "pixels": 331,
+          "reason": null,
+          "neighbors": [
+            {
+              "id": 5,
+              "all_samples": 53,
+              "tested": 53,
+              "scalelsd": 0,
+              "deeplsd": 0,
+              "either": 0
+            },
+            {
+              "id": 7,
+              "all_samples": 59,
+              "tested": 53,
+              "scalelsd": 0,
+              "deeplsd": 40,
+              "either": 40
+            }
+          ]
+        }
+      ],
+      "line_interior": {
+        "scalelsd": [
+          911,
+          2129
+        ],
+        "deeplsd": [
+          2548,
+          3322
+        ]
+      }
+    },
+    {
+      "frame": "smooth_stone/holdout-courtyard-plaster-close-front",
+      "layout": "courtyard",
+      "sha256": "319503ad2c8fbdc7f33f283d4e35b0f3abe43684bdd8341ace1ac1745696abee",
+      "undersides": [
+        {
+          "reference": 1,
+          "status": "small",
+          "pixels": 352,
+          "reason": null,
+          "neighbors": [
+            {
+              "id": 2,
+              "all_samples": 56,
+              "tested": 56,
+              "scalelsd": 0,
+              "deeplsd": 56,
+              "either": 56
+            },
+            {
+              "id": 3,
+              "all_samples": 15,
+              "tested": 15,
+              "scalelsd": 0,
+              "deeplsd": 0,
+              "either": 0
+            }
+          ]
+        }
+      ],
+      "line_interior": {
+        "scalelsd": [
+          3293,
+          3293
+        ],
+        "deeplsd": [
+          0,
+          26
+        ]
+      }
+    },
+    {
+      "frame": "light_gray_concrete/holdout-courtyard-plaster-close-front",
+      "layout": "courtyard",
+      "sha256": "319503ad2c8fbdc7f33f283d4e35b0f3abe43684bdd8341ace1ac1745696abee",
+      "undersides": [
+        {
+          "reference": 1,
+          "status": "small",
+          "pixels": 352,
+          "reason": null,
+          "neighbors": [
+            {
+              "id": 2,
+              "all_samples": 56,
+              "tested": 56,
+              "scalelsd": 0,
+              "deeplsd": 56,
+              "either": 56
+            },
+            {
+              "id": 3,
+              "all_samples": 15,
+              "tested": 15,
+              "scalelsd": 0,
+              "deeplsd": 0,
+              "either": 0
+            }
+          ]
+        }
+      ],
+      "line_interior": {
+        "scalelsd": [
+          3293,
+          3293
+        ],
+        "deeplsd": [
+          0,
+          26
+        ]
+      }
+    },
+    {
+      "frame": "smooth_stone/holdout-courtyard-plaster-high-right",
+      "layout": "courtyard",
+      "sha256": "7152899302d1721578a01412063a0cafc072986ba9a4acb5c03aa5ecbdde05f1",
+      "undersides": [],
+      "line_interior": {
+        "scalelsd": [
+          1318,
+          4540
+        ],
+        "deeplsd": [
+          3117,
+          4182
+        ]
+      }
+    },
+    {
+      "frame": "light_gray_concrete/holdout-courtyard-plaster-high-right",
+      "layout": "courtyard",
+      "sha256": "de9e33d3bdb1f64318fbc1dec03fef52cde19a331c90fd1f7bb0b7a322b3bd94",
+      "undersides": [],
+      "line_interior": {
+        "scalelsd": [
+          2010,
+          6171
+        ],
+        "deeplsd": [
+          3063,
+          4138
+        ]
+      }
+    },
+    {
+      "frame": "smooth_stone/holdout-courtyard-plaster-low-left",
+      "layout": "courtyard",
+      "sha256": "c8129500a7c473e23666de5470d535f650fb1ac61ae8dcb702f09707ba68949f",
+      "undersides": [
+        {
+          "reference": 3,
+          "status": "small",
+          "pixels": 331,
+          "reason": null,
+          "neighbors": [
+            {
+              "id": 5,
+              "all_samples": 53,
+              "tested": 53,
+              "scalelsd": 53,
+              "deeplsd": 53,
+              "either": 53
+            },
+            {
+              "id": 7,
+              "all_samples": 59,
+              "tested": 53,
+              "scalelsd": 43,
+              "deeplsd": 40,
+              "either": 43
+            }
+          ]
+        }
+      ],
+      "line_interior": {
+        "scalelsd": [
+          646,
+          2564
+        ],
+        "deeplsd": [
+          2883,
+          3883
+        ]
+      }
+    },
+    {
+      "frame": "light_gray_concrete/holdout-courtyard-plaster-low-left",
+      "layout": "courtyard",
+      "sha256": "1995d3af4ecbdd7b22bc4ada179009147a5b389379edd6142b99dcaa6446d9c0",
+      "undersides": [
+        {
+          "reference": 3,
+          "status": "small",
+          "pixels": 331,
+          "reason": null,
+          "neighbors": [
+            {
+              "id": 5,
+              "all_samples": 53,
+              "tested": 53,
+              "scalelsd": 52,
+              "deeplsd": 53,
+              "either": 53
+            },
+            {
+              "id": 7,
+              "all_samples": 59,
+              "tested": 53,
+              "scalelsd": 43,
+              "deeplsd": 40,
+              "either": 43
+            }
+          ]
+        }
+      ],
+      "line_interior": {
+        "scalelsd": [
+          1137,
+          3708
+        ],
+        "deeplsd": [
+          2882,
+          3917
+        ]
+      }
+    },
+    {
+      "frame": "smooth_stone/holdout-portico-masonry-high-right",
+      "layout": "portico",
+      "sha256": "54819d55b59d36a91e891bf2ff6148104d917d5ca59084f4f73edc43d623e390",
+      "undersides": [],
+      "line_interior": {
+        "scalelsd": [
+          532,
+          2773
+        ],
+        "deeplsd": [
+          1730,
+          3121
+        ]
+      }
+    },
+    {
+      "frame": "light_gray_concrete/holdout-portico-masonry-high-right",
+      "layout": "portico",
+      "sha256": "f6c57a6cca3c952e2134e27f6ca75816487c4817800f504acaa6aa0240a24329",
+      "undersides": [],
+      "line_interior": {
+        "scalelsd": [
+          447,
+          3515
+        ],
+        "deeplsd": [
+          1792,
+          3088
+        ]
+      }
+    },
+    {
+      "frame": "smooth_stone/holdout-portico-masonry-low-left",
+      "layout": "portico",
+      "sha256": "eb35fef82a3ed8b7f34c39d7be768ae94123884428038310ea19e578228d83be",
+      "undersides": [
+        {
+          "reference": 9,
+          "status": "found",
+          "pixels": 6847,
+          "reason": null,
+          "neighbors": [
+            {
+              "id": 2,
+              "all_samples": 5,
+              "tested": 0,
+              "scalelsd": 0,
+              "deeplsd": 0,
+              "either": 0
+            },
+            {
+              "id": 3,
+              "all_samples": 25,
+              "tested": 24,
+              "scalelsd": 0,
+              "deeplsd": 0,
+              "either": 0
+            },
+            {
+              "id": 5,
+              "all_samples": 30,
+              "tested": 27,
+              "scalelsd": 0,
+              "deeplsd": 0,
+              "either": 0
+            },
+            {
+              "id": 6,
+              "all_samples": 32,
+              "tested": 31,
+              "scalelsd": 0,
+              "deeplsd": 0,
+              "either": 0
+            },
+            {
+              "id": 7,
+              "all_samples": 50,
+              "tested": 48,
+              "scalelsd": 0,
+              "deeplsd": 48,
+              "either": 48
+            },
+            {
+              "id": 8,
+              "all_samples": 25,
+              "tested": 25,
+              "scalelsd": 0,
+              "deeplsd": 0,
+              "either": 0
+            },
+            {
+              "id": 10,
+              "all_samples": 34,
+              "tested": 34,
+              "scalelsd": 0,
+              "deeplsd": 0,
+              "either": 0
+            },
+            {
+              "id": 11,
+              "all_samples": 105,
+              "tested": 103,
+              "scalelsd": 0,
+              "deeplsd": 100,
+              "either": 100
+            },
+            {
+              "id": 12,
+              "all_samples": 83,
+              "tested": 83,
+              "scalelsd": 0,
+              "deeplsd": 72,
+              "either": 72
+            },
+            {
+              "id": 14,
+              "all_samples": 20,
+              "tested": 20,
+              "scalelsd": 0,
+              "deeplsd": 6,
+              "either": 6
+            },
+            {
+              "id": 15,
+              "all_samples": 35,
+              "tested": 34,
+              "scalelsd": 0,
+              "deeplsd": 0,
+              "either": 0
+            },
+            {
+              "id": 16,
+              "all_samples": 60,
+              "tested": 56,
+              "scalelsd": 0,
+              "deeplsd": 0,
+              "either": 0
+            },
+            {
+              "id": 17,
+              "all_samples": 52,
+              "tested": 48,
+              "scalelsd": 5,
+              "deeplsd": 0,
+              "either": 5
+            },
+            {
+              "id": 18,
+              "all_samples": 45,
+              "tested": 44,
+              "scalelsd": 6,
+              "deeplsd": 1,
+              "either": 6
+            },
+            {
+              "id": 19,
+              "all_samples": 32,
+              "tested": 26,
+              "scalelsd": 0,
+              "deeplsd": 8,
+              "either": 8
+            },
+            {
+              "id": 1,
+              "all_samples": 60,
+              "tested": 59,
+              "scalelsd": 0,
+              "deeplsd": 0,
+              "either": 0
+            },
+            {
+              "id": 20,
+              "all_samples": 607,
+              "tested": 607,
+              "scalelsd": 544,
+              "deeplsd": 601,
+              "either": 607
+            }
+          ]
+        }
+      ],
+      "line_interior": {
+        "scalelsd": [
+          276,
+          1958
+        ],
+        "deeplsd": [
+          1478,
+          2868
+        ]
+      }
+    },
+    {
+      "frame": "light_gray_concrete/holdout-portico-masonry-low-left",
+      "layout": "portico",
+      "sha256": "00daa00ce6d344d9c00205a65b67ed60af6e0f908e1993e842417450928e55b5",
+      "undersides": [
+        {
+          "reference": 9,
+          "status": "found",
+          "pixels": 6847,
+          "reason": null,
+          "neighbors": [
+            {
+              "id": 2,
+              "all_samples": 5,
+              "tested": 0,
+              "scalelsd": 0,
+              "deeplsd": 0,
+              "either": 0
+            },
+            {
+              "id": 3,
+              "all_samples": 25,
+              "tested": 24,
+              "scalelsd": 0,
+              "deeplsd": 0,
+              "either": 0
+            },
+            {
+              "id": 5,
+              "all_samples": 30,
+              "tested": 27,
+              "scalelsd": 0,
+              "deeplsd": 0,
+              "either": 0
+            },
+            {
+              "id": 6,
+              "all_samples": 32,
+              "tested": 31,
+              "scalelsd": 0,
+              "deeplsd": 0,
+              "either": 0
+            },
+            {
+              "id": 7,
+              "all_samples": 50,
+              "tested": 48,
+              "scalelsd": 0,
+              "deeplsd": 48,
+              "either": 48
+            },
+            {
+              "id": 8,
+              "all_samples": 25,
+              "tested": 25,
+              "scalelsd": 0,
+              "deeplsd": 0,
+              "either": 0
+            },
+            {
+              "id": 10,
+              "all_samples": 34,
+              "tested": 34,
+              "scalelsd": 0,
+              "deeplsd": 0,
+              "either": 0
+            },
+            {
+              "id": 11,
+              "all_samples": 105,
+              "tested": 103,
+              "scalelsd": 0,
+              "deeplsd": 100,
+              "either": 100
+            },
+            {
+              "id": 12,
+              "all_samples": 83,
+              "tested": 83,
+              "scalelsd": 0,
+              "deeplsd": 72,
+              "either": 72
+            },
+            {
+              "id": 14,
+              "all_samples": 20,
+              "tested": 20,
+              "scalelsd": 0,
+              "deeplsd": 6,
+              "either": 6
+            },
+            {
+              "id": 15,
+              "all_samples": 35,
+              "tested": 34,
+              "scalelsd": 0,
+              "deeplsd": 0,
+              "either": 0
+            },
+            {
+              "id": 16,
+              "all_samples": 60,
+              "tested": 56,
+              "scalelsd": 0,
+              "deeplsd": 0,
+              "either": 0
+            },
+            {
+              "id": 17,
+              "all_samples": 52,
+              "tested": 48,
+              "scalelsd": 5,
+              "deeplsd": 0,
+              "either": 5
+            },
+            {
+              "id": 18,
+              "all_samples": 45,
+              "tested": 44,
+              "scalelsd": 4,
+              "deeplsd": 1,
+              "either": 4
+            },
+            {
+              "id": 19,
+              "all_samples": 32,
+              "tested": 26,
+              "scalelsd": 0,
+              "deeplsd": 8,
+              "either": 8
+            },
+            {
+              "id": 1,
+              "all_samples": 60,
+              "tested": 59,
+              "scalelsd": 0,
+              "deeplsd": 0,
+              "either": 0
+            },
+            {
+              "id": 20,
+              "all_samples": 607,
+              "tested": 607,
+              "scalelsd": 539,
+              "deeplsd": 601,
+              "either": 607
+            }
+          ]
+        }
+      ],
+      "line_interior": {
+        "scalelsd": [
+          550,
+          2127
+        ],
+        "deeplsd": [
+          1499,
+          2883
+        ]
+      }
+    },
+    {
+      "frame": "smooth_stone/holdout-portico-plaster-high-right",
+      "layout": "portico",
+      "sha256": "fb687c20c5df87e79d9dd17ce48566c7f9fca2a092234bedff15fbe3f83b2e8c",
+      "undersides": [],
+      "line_interior": {
+        "scalelsd": [
+          298,
+          3555
+        ],
+        "deeplsd": [
+          1488,
+          2733
+        ]
+      }
+    },
+    {
+      "frame": "light_gray_concrete/holdout-portico-plaster-high-right",
+      "layout": "portico",
+      "sha256": "fbe284f3ab8d1e0d517c81853c4a6121d359eb023c6f9882769d27605edb9b84",
+      "undersides": [],
+      "line_interior": {
+        "scalelsd": [
+          786,
+          5551
+        ],
+        "deeplsd": [
+          1557,
+          2819
+        ]
+      }
+    },
+    {
+      "frame": "smooth_stone/holdout-portico-plaster-low-left",
+      "layout": "portico",
+      "sha256": "8f7b6cf572ea617a0efa47c002f4f9221df201dcde9d20595a10fb2915228445",
+      "undersides": [
+        {
+          "reference": 9,
+          "status": "missed",
+          "pixels": 6847,
+          "reason": "overlap below the one-to-one match threshold",
+          "neighbors": [
+            {
+              "id": 2,
+              "all_samples": 5,
+              "tested": 0,
+              "scalelsd": 0,
+              "deeplsd": 0,
+              "either": 0
+            },
+            {
+              "id": 3,
+              "all_samples": 25,
+              "tested": 24,
+              "scalelsd": 3,
+              "deeplsd": 0,
+              "either": 3
+            },
+            {
+              "id": 5,
+              "all_samples": 30,
+              "tested": 27,
+              "scalelsd": 4,
+              "deeplsd": 0,
+              "either": 4
+            },
+            {
+              "id": 6,
+              "all_samples": 32,
+              "tested": 31,
+              "scalelsd": 4,
+              "deeplsd": 0,
+              "either": 4
+            },
+            {
+              "id": 7,
+              "all_samples": 50,
+              "tested": 48,
+              "scalelsd": 48,
+              "deeplsd": 48,
+              "either": 48
+            },
+            {
+              "id": 8,
+              "all_samples": 25,
+              "tested": 25,
+              "scalelsd": 24,
+              "deeplsd": 4,
+              "either": 24
+            },
+            {
+              "id": 10,
+              "all_samples": 34,
+              "tested": 34,
+              "scalelsd": 34,
+              "deeplsd": 34,
+              "either": 34
+            },
+            {
+              "id": 11,
+              "all_samples": 105,
+              "tested": 103,
+              "scalelsd": 103,
+              "deeplsd": 103,
+              "either": 103
+            },
+            {
+              "id": 12,
+              "all_samples": 83,
+              "tested": 83,
+              "scalelsd": 83,
+              "deeplsd": 82,
+              "either": 83
+            },
+            {
+              "id": 14,
+              "all_samples": 20,
+              "tested": 20,
+              "scalelsd": 20,
+              "deeplsd": 20,
+              "either": 20
+            },
+            {
+              "id": 15,
+              "all_samples": 35,
+              "tested": 34,
+              "scalelsd": 32,
+              "deeplsd": 28,
+              "either": 32
+            },
+            {
+              "id": 16,
+              "all_samples": 60,
+              "tested": 56,
+              "scalelsd": 0,
+              "deeplsd": 0,
+              "either": 0
+            },
+            {
+              "id": 17,
+              "all_samples": 52,
+              "tested": 48,
+              "scalelsd": 0,
+              "deeplsd": 0,
+              "either": 0
+            },
+            {
+              "id": 18,
+              "all_samples": 45,
+              "tested": 44,
+              "scalelsd": 5,
+              "deeplsd": 0,
+              "either": 5
+            },
+            {
+              "id": 19,
+              "all_samples": 32,
+              "tested": 26,
+              "scalelsd": 5,
+              "deeplsd": 0,
+              "either": 5
+            },
+            {
+              "id": 1,
+              "all_samples": 60,
+              "tested": 59,
+              "scalelsd": 0,
+              "deeplsd": 0,
+              "either": 0
+            },
+            {
+              "id": 20,
+              "all_samples": 607,
+              "tested": 607,
+              "scalelsd": 433,
+              "deeplsd": 607,
+              "either": 607
+            }
+          ]
+        }
+      ],
+      "line_interior": {
+        "scalelsd": [
+          260,
+          3429
+        ],
+        "deeplsd": [
+          1433,
+          2995
+        ]
+      }
+    },
+    {
+      "frame": "light_gray_concrete/holdout-portico-plaster-low-left",
+      "layout": "portico",
+      "sha256": "318e6e654ece8e6ab93aea0fa5c0cccecdb727faf743b5fbb5eb31da2f2b05f2",
+      "undersides": [
+        {
+          "reference": 9,
+          "status": "missed",
+          "pixels": 6847,
+          "reason": "overlap below the one-to-one match threshold",
+          "neighbors": [
+            {
+              "id": 2,
+              "all_samples": 5,
+              "tested": 0,
+              "scalelsd": 0,
+              "deeplsd": 0,
+              "either": 0
+            },
+            {
+              "id": 3,
+              "all_samples": 25,
+              "tested": 24,
+              "scalelsd": 0,
+              "deeplsd": 0,
+              "either": 0
+            },
+            {
+              "id": 5,
+              "all_samples": 30,
+              "tested": 27,
+              "scalelsd": 4,
+              "deeplsd": 0,
+              "either": 4
+            },
+            {
+              "id": 6,
+              "all_samples": 32,
+              "tested": 31,
+              "scalelsd": 5,
+              "deeplsd": 0,
+              "either": 5
+            },
+            {
+              "id": 7,
+              "all_samples": 50,
+              "tested": 48,
+              "scalelsd": 48,
+              "deeplsd": 48,
+              "either": 48
+            },
+            {
+              "id": 8,
+              "all_samples": 25,
+              "tested": 25,
+              "scalelsd": 11,
+              "deeplsd": 4,
+              "either": 15
+            },
+            {
+              "id": 10,
+              "all_samples": 34,
+              "tested": 34,
+              "scalelsd": 34,
+              "deeplsd": 34,
+              "either": 34
+            },
+            {
+              "id": 11,
+              "all_samples": 105,
+              "tested": 103,
+              "scalelsd": 103,
+              "deeplsd": 103,
+              "either": 103
+            },
+            {
+              "id": 12,
+              "all_samples": 83,
+              "tested": 83,
+              "scalelsd": 83,
+              "deeplsd": 82,
+              "either": 83
+            },
+            {
+              "id": 14,
+              "all_samples": 20,
+              "tested": 20,
+              "scalelsd": 6,
+              "deeplsd": 20,
+              "either": 20
+            },
+            {
+              "id": 15,
+              "all_samples": 35,
+              "tested": 34,
+              "scalelsd": 32,
+              "deeplsd": 28,
+              "either": 32
+            },
+            {
+              "id": 16,
+              "all_samples": 60,
+              "tested": 56,
+              "scalelsd": 0,
+              "deeplsd": 0,
+              "either": 0
+            },
+            {
+              "id": 17,
+              "all_samples": 52,
+              "tested": 48,
+              "scalelsd": 1,
+              "deeplsd": 0,
+              "either": 1
+            },
+            {
+              "id": 18,
+              "all_samples": 45,
+              "tested": 44,
+              "scalelsd": 19,
+              "deeplsd": 0,
+              "either": 19
+            },
+            {
+              "id": 19,
+              "all_samples": 32,
+              "tested": 26,
+              "scalelsd": 0,
+              "deeplsd": 0,
+              "either": 0
+            },
+            {
+              "id": 1,
+              "all_samples": 60,
+              "tested": 59,
+              "scalelsd": 0,
+              "deeplsd": 0,
+              "either": 0
+            },
+            {
+              "id": 20,
+              "all_samples": 607,
+              "tested": 607,
+              "scalelsd": 378,
+              "deeplsd": 607,
+              "either": 607
+            }
+          ]
+        }
+      ],
+      "line_interior": {
+        "scalelsd": [
+          432,
+          3736
+        ],
+        "deeplsd": [
+          1433,
+          3003
+        ]
+      }
+    },
+    {
+      "frame": "light_gray_concrete/holdout-workshop-masonry-low-left",
+      "layout": "workshop",
+      "sha256": "ae86fd9911640c7397bc929d3e0ca1076d84312b5500712cf2c4ec25e7c9112f",
+      "undersides": [
+        {
+          "reference": 8,
+          "status": "missed",
+          "pixels": 596,
+          "reason": "overlap below the one-to-one match threshold",
+          "neighbors": [
+            {
+              "id": 7,
+              "all_samples": 57,
+              "tested": 57,
+              "scalelsd": 8,
+              "deeplsd": 29,
+              "either": 29
+            },
+            {
+              "id": 11,
+              "all_samples": 76,
+              "tested": 76,
+              "scalelsd": 25,
+              "deeplsd": 75,
+              "either": 75
+            },
+            {
+              "id": 14,
+              "all_samples": 139,
+              "tested": 132,
+              "scalelsd": 118,
+              "deeplsd": 130,
+              "either": 130
+            }
+          ]
+        },
+        {
+          "reference": 9,
+          "status": "small",
+          "pixels": 149,
+          "reason": null,
+          "neighbors": [
+            {
+              "id": 12,
+              "all_samples": 63,
+              "tested": 63,
+              "scalelsd": 56,
+              "deeplsd": 63,
+              "either": 63
+            },
+            {
+              "id": 13,
+              "all_samples": 100,
+              "tested": 99,
+              "scalelsd": 99,
+              "deeplsd": 99,
+              "either": 99
+            },
+            {
+              "id": 14,
+              "all_samples": 2,
+              "tested": 0,
+              "scalelsd": 0,
+              "deeplsd": 0,
+              "either": 0
+            }
+          ]
+        },
+        {
+          "reference": 10,
+          "status": "missed",
+          "pixels": 3979,
+          "reason": "overlap below the one-to-one match threshold",
+          "neighbors": [
+            {
+              "id": 2,
+              "all_samples": 116,
+              "tested": 116,
+              "scalelsd": 109,
+              "deeplsd": 0,
+              "either": 109
+            },
+            {
+              "id": 14,
+              "all_samples": 391,
+              "tested": 390,
+              "scalelsd": 374,
+              "deeplsd": 382,
+              "either": 382
+            },
+            {
+              "id": 1,
+              "all_samples": 135,
+              "tested": 135,
+              "scalelsd": 0,
+              "deeplsd": 0,
+              "either": 0
+            },
+            {
+              "id": 15,
+              "all_samples": 463,
+              "tested": 462,
+              "scalelsd": 71,
+              "deeplsd": 436,
+              "either": 454
+            }
+          ]
+        }
+      ],
+      "line_interior": {
+        "scalelsd": [
+          1793,
+          3548
+        ],
+        "deeplsd": [
+          2274,
+          3460
+        ]
+      }
+    },
+    {
+      "frame": "light_gray_concrete/holdout-workshop-masonry-high-right",
+      "layout": "workshop",
+      "sha256": "3aefcb242fdda8a6d4c40adb9a7d2632c8de998b076b1d4ec09a100db95119d4",
+      "undersides": [],
+      "line_interior": {
+        "scalelsd": [
+          1391,
+          3753
+        ],
+        "deeplsd": [
+          2131,
+          3069
+        ]
+      }
+    },
+    {
+      "frame": "light_gray_concrete/holdout-workshop-plaster-low-left",
+      "layout": "workshop",
+      "sha256": "91c686215bb3105c779a45302ed5b43bf16a2faa32fbfe1f0f2be10f0e161c42",
+      "undersides": [
+        {
+          "reference": 8,
+          "status": "missed",
+          "pixels": 596,
+          "reason": "overlapping proposal matched a different surface",
+          "neighbors": [
+            {
+              "id": 7,
+              "all_samples": 57,
+              "tested": 57,
+              "scalelsd": 29,
+              "deeplsd": 42,
+              "either": 42
+            },
+            {
+              "id": 11,
+              "all_samples": 76,
+              "tested": 76,
+              "scalelsd": 0,
+              "deeplsd": 6,
+              "either": 6
+            },
+            {
+              "id": 14,
+              "all_samples": 139,
+              "tested": 132,
+              "scalelsd": 130,
+              "deeplsd": 126,
+              "either": 130
+            }
+          ]
+        },
+        {
+          "reference": 9,
+          "status": "small",
+          "pixels": 149,
+          "reason": null,
+          "neighbors": [
+            {
+              "id": 12,
+              "all_samples": 63,
+              "tested": 63,
+              "scalelsd": 63,
+              "deeplsd": 61,
+              "either": 63
+            },
+            {
+              "id": 13,
+              "all_samples": 100,
+              "tested": 99,
+              "scalelsd": 99,
+              "deeplsd": 95,
+              "either": 99
+            },
+            {
+              "id": 14,
+              "all_samples": 2,
+              "tested": 0,
+              "scalelsd": 0,
+              "deeplsd": 0,
+              "either": 0
+            }
+          ]
+        },
+        {
+          "reference": 10,
+          "status": "missed",
+          "pixels": 3979,
+          "reason": "overlap below the one-to-one match threshold",
+          "neighbors": [
+            {
+              "id": 2,
+              "all_samples": 116,
+              "tested": 116,
+              "scalelsd": 109,
+              "deeplsd": 0,
+              "either": 109
+            },
+            {
+              "id": 14,
+              "all_samples": 391,
+              "tested": 390,
+              "scalelsd": 383,
+              "deeplsd": 0,
+              "either": 383
+            },
+            {
+              "id": 1,
+              "all_samples": 135,
+              "tested": 135,
+              "scalelsd": 0,
+              "deeplsd": 0,
+              "either": 0
+            },
+            {
+              "id": 15,
+              "all_samples": 463,
+              "tested": 462,
+              "scalelsd": 462,
+              "deeplsd": 442,
+              "either": 462
+            }
+          ]
+        }
+      ],
+      "line_interior": {
+        "scalelsd": [
+          1226,
+          5842
+        ],
+        "deeplsd": [
+          816,
+          1779
+        ]
+      }
+    },
+    {
+      "frame": "light_gray_concrete/holdout-workshop-plaster-high-right",
+      "layout": "workshop",
+      "sha256": "d35ab308820f92501ec898cafb1f50939f3f0ed1141e3d9ee38a00eae1199aa0",
+      "undersides": [],
+      "line_interior": {
+        "scalelsd": [
+          2518,
+          7300
+        ],
+        "deeplsd": [
+          611,
+          1609
+        ]
+      }
+    },
+    {
+      "frame": "light_gray_concrete/holdout-crossing-masonry-low-left",
+      "layout": "crossing",
+      "sha256": "93c9a45dbb4d6bc59edc6c18ac8007ad4f99ac340844cb0ed8f171640936fa88",
+      "undersides": [
+        {
+          "reference": 7,
+          "status": "found",
+          "pixels": 7505,
+          "reason": null,
+          "neighbors": [
+            {
+              "id": 3,
+              "all_samples": 1,
+              "tested": 0,
+              "scalelsd": 0,
+              "deeplsd": 0,
+              "either": 0
+            },
+            {
+              "id": 5,
+              "all_samples": 90,
+              "tested": 90,
+              "scalelsd": 90,
+              "deeplsd": 70,
+              "either": 90
+            },
+            {
+              "id": 8,
+              "all_samples": 79,
+              "tested": 78,
+              "scalelsd": 2,
+              "deeplsd": 77,
+              "either": 77
+            },
+            {
+              "id": 9,
+              "all_samples": 96,
+              "tested": 96,
+              "scalelsd": 88,
+              "deeplsd": 46,
+              "either": 88
+            },
+            {
+              "id": 11,
+              "all_samples": 58,
+              "tested": 54,
+              "scalelsd": 38,
+              "deeplsd": 34,
+              "either": 38
+            },
+            {
+              "id": 2,
+              "all_samples": 47,
+              "tested": 46,
+              "scalelsd": 5,
+              "deeplsd": 1,
+              "either": 5
+            },
+            {
+              "id": 14,
+              "all_samples": 392,
+              "tested": 392,
+              "scalelsd": 283,
+              "deeplsd": 389,
+              "either": 389
+            }
+          ]
+        }
+      ],
+      "line_interior": {
+        "scalelsd": [
+          2780,
+          4818
+        ],
+        "deeplsd": [
+          3340,
+          4651
+        ]
+      }
+    },
+    {
+      "frame": "light_gray_concrete/holdout-crossing-masonry-high-right",
+      "layout": "crossing",
+      "sha256": "7ea5b36aa3c25b3ab4c58dcb773d8c3476c5f2d28048fd72a62970888be31320",
+      "undersides": [],
+      "line_interior": {
+        "scalelsd": [
+          1764,
+          4411
+        ],
+        "deeplsd": [
+          2921,
+          4226
+        ]
+      }
+    },
+    {
+      "frame": "light_gray_concrete/holdout-crossing-plaster-low-left",
+      "layout": "crossing",
+      "sha256": "d348ddef0010267fdffc0d628654ef6ce256329400dec3e1cfd271bfaf764144",
+      "undersides": [
+        {
+          "reference": 7,
+          "status": "found",
+          "pixels": 7505,
+          "reason": null,
+          "neighbors": [
+            {
+              "id": 3,
+              "all_samples": 1,
+              "tested": 0,
+              "scalelsd": 0,
+              "deeplsd": 0,
+              "either": 0
+            },
+            {
+              "id": 5,
+              "all_samples": 90,
+              "tested": 90,
+              "scalelsd": 74,
+              "deeplsd": 3,
+              "either": 74
+            },
+            {
+              "id": 8,
+              "all_samples": 79,
+              "tested": 78,
+              "scalelsd": 78,
+              "deeplsd": 78,
+              "either": 78
+            },
+            {
+              "id": 9,
+              "all_samples": 96,
+              "tested": 96,
+              "scalelsd": 86,
+              "deeplsd": 54,
+              "either": 86
+            },
+            {
+              "id": 11,
+              "all_samples": 58,
+              "tested": 54,
+              "scalelsd": 37,
+              "deeplsd": 34,
+              "either": 37
+            },
+            {
+              "id": 2,
+              "all_samples": 47,
+              "tested": 46,
+              "scalelsd": 5,
+              "deeplsd": 4,
+              "either": 7
+            },
+            {
+              "id": 14,
+              "all_samples": 392,
+              "tested": 392,
+              "scalelsd": 117,
+              "deeplsd": 392,
+              "either": 392
+            }
+          ]
+        }
+      ],
+      "line_interior": {
+        "scalelsd": [
+          782,
+          3028
+        ],
+        "deeplsd": [
+          2439,
+          3620
+        ]
+      }
+    },
+    {
+      "frame": "light_gray_concrete/holdout-crossing-plaster-high-right",
+      "layout": "crossing",
+      "sha256": "a7e9cd44bd97237bd3cbf88b11fdfa3575deee7473ef820b30e19bc5fe37698e",
+      "undersides": [],
+      "line_interior": {
+        "scalelsd": [
+          2216,
+          6429
+        ],
+        "deeplsd": [
+          2958,
+          4249
+        ]
+      }
+    },
+    {
+      "frame": "light_gray_concrete/holdout-registry-masonry-low-left",
+      "layout": "registry",
+      "sha256": "3f7e9e1b5d577667b157664dd3f37a40e8c7e64a3db0d60ac6c30b294d2ba9e6",
+      "undersides": [],
+      "line_interior": {
+        "scalelsd": [
+          2646,
+          4041
+        ],
+        "deeplsd": [
+          4586,
+          5670
+        ]
+      }
+    },
+    {
+      "frame": "light_gray_concrete/holdout-registry-masonry-high-right",
+      "layout": "registry",
+      "sha256": "e20bfd5e2588ed117375acb3e2f7c42cebb2fdd1ab7167caf35b0b4298a98e19",
+      "undersides": [],
+      "line_interior": {
+        "scalelsd": [
+          3123,
+          6060
+        ],
+        "deeplsd": [
+          4479,
+          5332
+        ]
+      }
+    },
+    {
+      "frame": "light_gray_concrete/holdout-registry-plaster-low-left",
+      "layout": "registry",
+      "sha256": "23e91937ee67563c1c4a463676a43c7d4800f82581a3188aa7125e32001be5e9",
+      "undersides": [],
+      "line_interior": {
+        "scalelsd": [
+          2977,
+          4985
+        ],
+        "deeplsd": [
+          3542,
+          4650
+        ]
+      }
+    },
+    {
+      "frame": "light_gray_concrete/holdout-registry-plaster-high-right",
+      "layout": "registry",
+      "sha256": "8634b14394486c2fb709ea678008fbaf2314344280b5a13d3582d433125d589d",
+      "undersides": [],
+      "line_interior": {
+        "scalelsd": [
+          2579,
+          7041
+        ],
+        "deeplsd": [
+          3523,
+          4550
+        ]
+      }
+    },
+    {
+      "frame": "light_gray_concrete/holdout-galleries-masonry-low-left",
+      "layout": "galleries",
+      "sha256": "d0fba67900a91a20d0120f298c8783829953bc21c7d45fb4413a8cb829cfddc3",
+      "undersides": [
+        {
+          "reference": 13,
+          "status": "missed",
+          "pixels": 2559,
+          "reason": "overlap below the one-to-one match threshold",
+          "neighbors": [
+            {
+              "id": 2,
+              "all_samples": 9,
+              "tested": 8,
+              "scalelsd": 0,
+              "deeplsd": 5,
+              "either": 5
+            },
+            {
+              "id": 3,
+              "all_samples": 17,
+              "tested": 15,
+              "scalelsd": 0,
+              "deeplsd": 6,
+              "either": 6
+            },
+            {
+              "id": 7,
+              "all_samples": 9,
+              "tested": 9,
+              "scalelsd": 0,
+              "deeplsd": 0,
+              "either": 0
+            },
+            {
+              "id": 8,
+              "all_samples": 34,
+              "tested": 34,
+              "scalelsd": 10,
+              "deeplsd": 26,
+              "either": 26
+            },
+            {
+              "id": 11,
+              "all_samples": 29,
+              "tested": 29,
+              "scalelsd": 0,
+              "deeplsd": 4,
+              "either": 4
+            },
+            {
+              "id": 12,
+              "all_samples": 46,
+              "tested": 45,
+              "scalelsd": 44,
+              "deeplsd": 33,
+              "either": 44
+            },
+            {
+              "id": 14,
+              "all_samples": 18,
+              "tested": 18,
+              "scalelsd": 0,
+              "deeplsd": 18,
+              "either": 18
+            },
+            {
+              "id": 15,
+              "all_samples": 1,
+              "tested": 0,
+              "scalelsd": 0,
+              "deeplsd": 0,
+              "either": 0
+            },
+            {
+              "id": 19,
+              "all_samples": 70,
+              "tested": 70,
+              "scalelsd": 0,
+              "deeplsd": 0,
+              "either": 0
+            },
+            {
+              "id": 21,
+              "all_samples": 18,
+              "tested": 18,
+              "scalelsd": 0,
+              "deeplsd": 0,
+              "either": 0
+            },
+            {
+              "id": 22,
+              "all_samples": 46,
+              "tested": 46,
+              "scalelsd": 0,
+              "deeplsd": 0,
+              "either": 0
+            },
+            {
+              "id": 23,
+              "all_samples": 49,
+              "tested": 49,
+              "scalelsd": 16,
+              "deeplsd": 3,
+              "either": 16
+            },
+            {
+              "id": 27,
+              "all_samples": 94,
+              "tested": 88,
+              "scalelsd": 33,
+              "deeplsd": 83,
+              "either": 83
+            },
+            {
+              "id": 28,
+              "all_samples": 76,
+              "tested": 69,
+              "scalelsd": 57,
+              "deeplsd": 67,
+              "either": 67
+            },
+            {
+              "id": 29,
+              "all_samples": 57,
+              "tested": 57,
+              "scalelsd": 57,
+              "deeplsd": 57,
+              "either": 57
+            },
+            {
+              "id": 1,
+              "all_samples": 40,
+              "tested": 39,
+              "scalelsd": 3,
+              "deeplsd": 6,
+              "either": 6
+            },
+            {
+              "id": 30,
+              "all_samples": 606,
+              "tested": 606,
+              "scalelsd": 588,
+              "deeplsd": 606,
+              "either": 606
+            }
+          ]
+        },
+        {
+          "reference": 14,
+          "status": "small",
+          "pixels": 18,
+          "reason": null,
+          "neighbors": [
+            {
+              "id": 13,
+              "all_samples": 18,
+              "tested": 18,
+              "scalelsd": 0,
+              "deeplsd": 18,
+              "either": 18
+            },
+            {
+              "id": 11,
+              "all_samples": 1,
+              "tested": 0,
+              "scalelsd": 0,
+              "deeplsd": 0,
+              "either": 0
+            },
+            {
+              "id": 28,
+              "all_samples": 1,
+              "tested": 0,
+              "scalelsd": 0,
+              "deeplsd": 0,
+              "either": 0
+            }
+          ]
+        },
+        {
+          "reference": 15,
+          "status": "small",
+          "pixels": 1,
+          "reason": null,
+          "neighbors": [
+            {
+              "id": 13,
+              "all_samples": 1,
+              "tested": 0,
+              "scalelsd": 0,
+              "deeplsd": 0,
+              "either": 0
+            },
+            {
+              "id": 23,
+              "all_samples": 1,
+              "tested": 0,
+              "scalelsd": 0,
+              "deeplsd": 0,
+              "either": 0
+            }
+          ]
+        },
+        {
+          "reference": 16,
+          "status": "found",
+          "pixels": 9580,
+          "reason": null,
+          "neighbors": [
+            {
+              "id": 5,
+              "all_samples": 9,
+              "tested": 9,
+              "scalelsd": 0,
+              "deeplsd": 0,
+              "either": 0
+            },
+            {
+              "id": 6,
+              "all_samples": 46,
+              "tested": 46,
+              "scalelsd": 0,
+              "deeplsd": 0,
+              "either": 0
+            },
+            {
+              "id": 9,
+              "all_samples": 57,
+              "tested": 57,
+              "scalelsd": 0,
+              "deeplsd": 0,
+              "either": 0
+            },
+            {
+              "id": 18,
+              "all_samples": 21,
+              "tested": 21,
+              "scalelsd": 0,
+              "deeplsd": 0,
+              "either": 0
+            },
+            {
+              "id": 20,
+              "all_samples": 173,
+              "tested": 172,
+              "scalelsd": 172,
+              "deeplsd": 159,
+              "either": 172
+            },
+            {
+              "id": 24,
+              "all_samples": 109,
+              "tested": 105,
+              "scalelsd": 0,
+              "deeplsd": 88,
+              "either": 88
+            },
+            {
+              "id": 25,
+              "all_samples": 71,
+              "tested": 67,
+              "scalelsd": 4,
+              "deeplsd": 59,
+              "either": 62
+            },
+            {
+              "id": 4,
+              "all_samples": 82,
+              "tested": 82,
+              "scalelsd": 0,
+              "deeplsd": 71,
+              "either": 71
+            },
+            {
+              "id": 26,
+              "all_samples": 435,
+              "tested": 435,
+              "scalelsd": 405,
+              "deeplsd": 431,
+              "either": 435
+            }
+          ]
+        }
+      ],
+      "line_interior": {
+        "scalelsd": [
+          508,
+          3487
+        ],
+        "deeplsd": [
+          1091,
+          3064
+        ]
+      }
+    },
+    {
+      "frame": "light_gray_concrete/holdout-galleries-masonry-high-right",
+      "layout": "galleries",
+      "sha256": "21916862012e6b47e6dbe426fd7a8930bd7fdd51651238d8ad4d3e8860f57a7b",
+      "undersides": [],
+      "line_interior": {
+        "scalelsd": [
+          436,
+          3950
+        ],
+        "deeplsd": [
+          1127,
+          2707
+        ]
+      }
+    },
+    {
+      "frame": "light_gray_concrete/holdout-galleries-plaster-low-left",
+      "layout": "galleries",
+      "sha256": "0fec6765b63937520e2a731a9171eef73e631ce1d47734e3925e2165b64a26c0",
+      "undersides": [
+        {
+          "reference": 13,
+          "status": "missed",
+          "pixels": 2559,
+          "reason": "overlap below the one-to-one match threshold",
+          "neighbors": [
+            {
+              "id": 2,
+              "all_samples": 9,
+              "tested": 8,
+              "scalelsd": 8,
+              "deeplsd": 7,
+              "either": 8
+            },
+            {
+              "id": 3,
+              "all_samples": 17,
+              "tested": 15,
+              "scalelsd": 0,
+              "deeplsd": 2,
+              "either": 2
+            },
+            {
+              "id": 7,
+              "all_samples": 9,
+              "tested": 9,
+              "scalelsd": 0,
+              "deeplsd": 0,
+              "either": 0
+            },
+            {
+              "id": 8,
+              "all_samples": 34,
+              "tested": 34,
+              "scalelsd": 15,
+              "deeplsd": 11,
+              "either": 26
+            },
+            {
+              "id": 11,
+              "all_samples": 29,
+              "tested": 29,
+              "scalelsd": 29,
+              "deeplsd": 4,
+              "either": 29
+            },
+            {
+              "id": 12,
+              "all_samples": 46,
+              "tested": 45,
+              "scalelsd": 44,
+              "deeplsd": 26,
+              "either": 44
+            },
+            {
+              "id": 14,
+              "all_samples": 18,
+              "tested": 18,
+              "scalelsd": 18,
+              "deeplsd": 18,
+              "either": 18
+            },
+            {
+              "id": 15,
+              "all_samples": 1,
+              "tested": 0,
+              "scalelsd": 0,
+              "deeplsd": 0,
+              "either": 0
+            },
+            {
+              "id": 19,
+              "all_samples": 70,
+              "tested": 70,
+              "scalelsd": 0,
+              "deeplsd": 68,
+              "either": 68
+            },
+            {
+              "id": 21,
+              "all_samples": 18,
+              "tested": 18,
+              "scalelsd": 18,
+              "deeplsd": 0,
+              "either": 18
+            },
+            {
+              "id": 22,
+              "all_samples": 46,
+              "tested": 46,
+              "scalelsd": 45,
+              "deeplsd": 0,
+              "either": 45
+            },
+            {
+              "id": 23,
+              "all_samples": 49,
+              "tested": 49,
+              "scalelsd": 49,
+              "deeplsd": 15,
+              "either": 49
+            },
+            {
+              "id": 27,
+              "all_samples": 94,
+              "tested": 88,
+              "scalelsd": 52,
+              "deeplsd": 83,
+              "either": 86
+            },
+            {
+              "id": 28,
+              "all_samples": 76,
+              "tested": 69,
+              "scalelsd": 1,
+              "deeplsd": 67,
+              "either": 67
+            },
+            {
+              "id": 29,
+              "all_samples": 57,
+              "tested": 57,
+              "scalelsd": 57,
+              "deeplsd": 57,
+              "either": 57
+            },
+            {
+              "id": 1,
+              "all_samples": 40,
+              "tested": 39,
+              "scalelsd": 2,
+              "deeplsd": 7,
+              "either": 7
+            },
+            {
+              "id": 30,
+              "all_samples": 606,
+              "tested": 606,
+              "scalelsd": 173,
+              "deeplsd": 606,
+              "either": 606
+            }
+          ]
+        },
+        {
+          "reference": 14,
+          "status": "small",
+          "pixels": 18,
+          "reason": null,
+          "neighbors": [
+            {
+              "id": 13,
+              "all_samples": 18,
+              "tested": 18,
+              "scalelsd": 18,
+              "deeplsd": 18,
+              "either": 18
+            },
+            {
+              "id": 11,
+              "all_samples": 1,
+              "tested": 0,
+              "scalelsd": 0,
+              "deeplsd": 0,
+              "either": 0
+            },
+            {
+              "id": 28,
+              "all_samples": 1,
+              "tested": 0,
+              "scalelsd": 0,
+              "deeplsd": 0,
+              "either": 0
+            }
+          ]
+        },
+        {
+          "reference": 15,
+          "status": "small",
+          "pixels": 1,
+          "reason": null,
+          "neighbors": [
+            {
+              "id": 13,
+              "all_samples": 1,
+              "tested": 0,
+              "scalelsd": 0,
+              "deeplsd": 0,
+              "either": 0
+            },
+            {
+              "id": 23,
+              "all_samples": 1,
+              "tested": 0,
+              "scalelsd": 0,
+              "deeplsd": 0,
+              "either": 0
+            }
+          ]
+        },
+        {
+          "reference": 16,
+          "status": "found",
+          "pixels": 9580,
+          "reason": null,
+          "neighbors": [
+            {
+              "id": 5,
+              "all_samples": 9,
+              "tested": 9,
+              "scalelsd": 0,
+              "deeplsd": 0,
+              "either": 0
+            },
+            {
+              "id": 6,
+              "all_samples": 46,
+              "tested": 46,
+              "scalelsd": 0,
+              "deeplsd": 16,
+              "either": 16
+            },
+            {
+              "id": 9,
+              "all_samples": 57,
+              "tested": 57,
+              "scalelsd": 51,
+              "deeplsd": 38,
+              "either": 51
+            },
+            {
+              "id": 18,
+              "all_samples": 21,
+              "tested": 21,
+              "scalelsd": 0,
+              "deeplsd": 0,
+              "either": 0
+            },
+            {
+              "id": 20,
+              "all_samples": 173,
+              "tested": 172,
+              "scalelsd": 172,
+              "deeplsd": 111,
+              "either": 172
+            },
+            {
+              "id": 24,
+              "all_samples": 109,
+              "tested": 105,
+              "scalelsd": 102,
+              "deeplsd": 102,
+              "either": 102
+            },
+            {
+              "id": 25,
+              "all_samples": 71,
+              "tested": 67,
+              "scalelsd": 62,
+              "deeplsd": 59,
+              "either": 63
+            },
+            {
+              "id": 4,
+              "all_samples": 82,
+              "tested": 82,
+              "scalelsd": 0,
+              "deeplsd": 71,
+              "either": 71
+            },
+            {
+              "id": 26,
+              "all_samples": 435,
+              "tested": 435,
+              "scalelsd": 5,
+              "deeplsd": 435,
+              "either": 435
+            }
+          ]
+        }
+      ],
+      "line_interior": {
+        "scalelsd": [
+          56,
+          4249
+        ],
+        "deeplsd": [
+          2617,
+          4452
+        ]
+      }
+    },
+    {
+      "frame": "light_gray_concrete/holdout-galleries-plaster-high-right",
+      "layout": "galleries",
+      "sha256": "a40a75765e0d99508a283686b4484a510d8ca0404656939017fb6d4a85f49832",
+      "undersides": [],
+      "line_interior": {
+        "scalelsd": [
+          373,
+          5139
+        ],
+        "deeplsd": [
+          2502,
+          4331
+        ]
+      }
+    }
+  ]
+}

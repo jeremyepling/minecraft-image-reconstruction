@@ -1,0 +1,2287 @@
+{
+  "schema": 1,
+  "run": "perimeters-01",
+  "method": "color-edges",
+  "frames": 8,
+  "archive_sha256": "91efa6d3e992b1a68672eae1fdd6d380e87724742a1a4b6cbe5f84d284f731a1",
+  "case_sha256": "b5fb9d1adce05c83b6191ca48be9046b713e074036b55ac57a58716510d937c6",
+  "summary": {
+    "small:vertical": 9,
+    "found:vertical": 64,
+    "missed:vertical": 29,
+    "small_found:top": 2,
+    "found:top": 9,
+    "small:top": 12,
+    "missed:top": 2,
+    "found:underside": 2,
+    "missed:underside": 1,
+    "small:underside": 2
+  },
+  "miss_types": {
+    "matched other": 15,
+    "coverage>=50%": 31,
+    "own>=50%,same proposal >=50% second scored surface": 28,
+    "own>=50%,same proposal >=50% parallel second scored surface at another depth": 23,
+    "own>=50%,same proposal >=50% parallel second scored surface at same depth": 11,
+    "unmatched": 17
+  },
+  "notes": "Other half-covered references are eligible and cover >=50% of that reference, evaluated on the primary stride-4 grid. Threshold is an explanatory diagnostic. Raw normal angles are signed and reference-conditioned. Brightness steps are native RGB luminance sampled four pixels apart (inside minus neighboring surface).",
+  "references": [
+    {
+      "frame": "light_gray_concrete/dev-shopfront-masonry-high-right",
+      "layout": "shopfront",
+      "ref": 6,
+      "kind": "vertical",
+      "status": "missed",
+      "normal": [
+        0,
+        0,
+        1
+      ],
+      "offset": 3,
+      "pixels": 5125,
+      "samples": 319,
+      "proposal": 1,
+      "other": 8,
+      "coverage": 0.8025078369905956,
+      "iou": 0.130879345603272,
+      "others_half_covered": [
+        {
+          "ref": 7,
+          "coverage": 0.8061889250814332,
+          "normal": [
+            0,
+            0,
+            1
+          ],
+          "offset": 3
+        },
+        {
+          "ref": 8,
+          "coverage": 0.9315068493150684,
+          "normal": [
+            0,
+            0,
+            1
+          ],
+          "offset": 4
+        }
+      ],
+      "signed_normal_angle_median": 19.690343182457102,
+      "normal_within_30": 0.6959247648902821,
+      "native_brightness_steps_4px": {
+        "15": {
+          "n": 46,
+          "median_signed": 18.112125000000002,
+          "median_abs": 18.177100000000003
+        },
+        "3": {
+          "n": 23,
+          "median_signed": 35.58524999999999,
+          "median_abs": 35.58524999999999
+        },
+        "4": {
+          "n": 9,
+          "median_signed": 12.032499999999999,
+          "median_abs": 12.599899999999984
+        },
+        "8": {
+          "n": 9,
+          "median_signed": -15.078500000000005,
+          "median_abs": 15.078500000000005
+        },
+        "9": {
+          "n": 3,
+          "median_signed": -10.041200000000003,
+          "median_abs": 10.041200000000003
+        },
+        "14": {
+          "n": 3,
+          "median_signed": 29.980250000000012,
+          "median_abs": 29.980250000000012
+        }
+      }
+    },
+    {
+      "frame": "light_gray_concrete/dev-shopfront-masonry-high-right",
+      "layout": "shopfront",
+      "ref": 7,
+      "kind": "vertical",
+      "status": "missed",
+      "normal": [
+        0,
+        0,
+        1
+      ],
+      "offset": 3,
+      "pixels": 9856,
+      "samples": 614,
+      "proposal": 1,
+      "other": 8,
+      "coverage": 0.8061889250814332,
+      "iou": 0.24602385685884692,
+      "others_half_covered": [
+        {
+          "ref": 6,
+          "coverage": 0.8025078369905956,
+          "normal": [
+            0,
+            0,
+            1
+          ],
+          "offset": 3
+        },
+        {
+          "ref": 8,
+          "coverage": 0.9315068493150684,
+          "normal": [
+            0,
+            0,
+            1
+          ],
+          "offset": 4
+        }
+      ],
+      "signed_normal_angle_median": 15.625586304831167,
+      "normal_within_30": 0.7019543973941368,
+      "native_brightness_steps_4px": {
+        "18": {
+          "n": 58,
+          "median_signed": 14.047800000000006,
+          "median_abs": 14.047800000000006
+        },
+        "2": {
+          "n": 28,
+          "median_signed": 33.202525,
+          "median_abs": 33.202525
+        },
+        "8": {
+          "n": 14,
+          "median_signed": -26.0775,
+          "median_abs": 26.0775
+        },
+        "5": {
+          "n": 10,
+          "median_signed": 15.026325,
+          "median_abs": 15.026325
+        },
+        "11": {
+          "n": 7,
+          "median_signed": 7.369249999999994,
+          "median_abs": 14.513949999999994
+        }
+      }
+    },
+    {
+      "frame": "light_gray_concrete/holdout-courtyard-masonry-high-right",
+      "layout": "courtyard",
+      "ref": 5,
+      "kind": "top",
+      "status": "missed",
+      "normal": [
+        0,
+        1,
+        0
+      ],
+      "offset": 72,
+      "pixels": 1624,
+      "samples": 107,
+      "proposal": 7,
+      "other": null,
+      "coverage": 0.8598130841121495,
+      "iou": 0.39316239316239315,
+      "others_half_covered": [],
+      "signed_normal_angle_median": 20.739305324549978,
+      "normal_within_30": 0.7383177570093458,
+      "native_brightness_steps_4px": {
+        "3": {
+          "n": 31,
+          "median_signed": 12.607600000000005,
+          "median_abs": 12.607600000000005
+        },
+        "11": {
+          "n": 31,
+          "median_signed": 27.251599999999996,
+          "median_abs": 27.251599999999996
+        },
+        "1": {
+          "n": 24,
+          "median_signed": 50.936375000000005,
+          "median_abs": 50.936375000000005
+        }
+      }
+    },
+    {
+      "frame": "light_gray_concrete/holdout-courtyard-masonry-high-right",
+      "layout": "courtyard",
+      "ref": 11,
+      "kind": "vertical",
+      "status": "missed",
+      "normal": [
+        1,
+        0,
+        0
+      ],
+      "offset": 1029,
+      "pixels": 4799,
+      "samples": 296,
+      "proposal": 3,
+      "other": 10,
+      "coverage": 0.9628378378378378,
+      "iou": 0.14812889812889812,
+      "others_half_covered": [
+        {
+          "ref": 10,
+          "coverage": 0.9821867321867321,
+          "normal": [
+            1,
+            0,
+            0
+          ],
+          "offset": 1028
+        }
+      ],
+      "signed_normal_angle_median": 5.55313791862077,
+      "normal_within_30": 0.9087837837837838,
+      "native_brightness_steps_4px": {
+        "10": {
+          "n": 31,
+          "median_signed": 18.55355,
+          "median_abs": 18.55355
+        },
+        "5": {
+          "n": 31,
+          "median_signed": -27.251599999999996,
+          "median_abs": 27.251599999999996
+        },
+        "1": {
+          "n": 19,
+          "median_signed": -24.071199999999997,
+          "median_abs": 24.071199999999997
+        },
+        "3": {
+          "n": 9,
+          "median_signed": -18.60629999999999,
+          "median_abs": 18.60629999999999
+        }
+      }
+    },
+    {
+      "frame": "smooth_stone/holdout-portico-masonry-high-right",
+      "layout": "portico",
+      "ref": 5,
+      "kind": "vertical",
+      "status": "missed",
+      "normal": [
+        0,
+        0,
+        1
+      ],
+      "offset": 2,
+      "pixels": 2798,
+      "samples": 176,
+      "proposal": 1,
+      "other": 9,
+      "coverage": 0.8977272727272727,
+      "iou": 0.07159039420027186,
+      "others_half_covered": [
+        {
+          "ref": 6,
+          "coverage": 0.8227272727272728,
+          "normal": [
+            0,
+            0,
+            1
+          ],
+          "offset": 2
+        },
+        {
+          "ref": 7,
+          "coverage": 0.8194444444444444,
+          "normal": [
+            0,
+            0,
+            1
+          ],
+          "offset": 2
+        },
+        {
+          "ref": 8,
+          "coverage": 0.8769633507853403,
+          "normal": [
+            0,
+            0,
+            1
+          ],
+          "offset": 2
+        },
+        {
+          "ref": 9,
+          "coverage": 0.9519615692554043,
+          "normal": [
+            0,
+            0,
+            1
+          ],
+          "offset": 3
+        }
+      ],
+      "signed_normal_angle_median": 22.952718236205236,
+      "normal_within_30": 0.6704545454545454,
+      "native_brightness_steps_4px": {
+        "11": {
+          "n": 37,
+          "median_signed": 18.21589999999999,
+          "median_abs": 18.21589999999999
+        },
+        "9": {
+          "n": 6,
+          "median_signed": -24.21625,
+          "median_abs": 27.177500000000002
+        }
+      }
+    },
+    {
+      "frame": "smooth_stone/holdout-portico-masonry-high-right",
+      "layout": "portico",
+      "ref": 6,
+      "kind": "vertical",
+      "status": "missed",
+      "normal": [
+        0,
+        0,
+        1
+      ],
+      "offset": 2,
+      "pixels": 3553,
+      "samples": 220,
+      "proposal": 1,
+      "other": 9,
+      "coverage": 0.8227272727272728,
+      "iou": 0.08123877917414722,
+      "others_half_covered": [
+        {
+          "ref": 5,
+          "coverage": 0.8977272727272727,
+          "normal": [
+            0,
+            0,
+            1
+          ],
+          "offset": 2
+        },
+        {
+          "ref": 7,
+          "coverage": 0.8194444444444444,
+          "normal": [
+            0,
+            0,
+            1
+          ],
+          "offset": 2
+        },
+        {
+          "ref": 8,
+          "coverage": 0.8769633507853403,
+          "normal": [
+            0,
+            0,
+            1
+          ],
+          "offset": 2
+        },
+        {
+          "ref": 9,
+          "coverage": 0.9519615692554043,
+          "normal": [
+            0,
+            0,
+            1
+          ],
+          "offset": 3
+        }
+      ],
+      "signed_normal_angle_median": 22.82930111471121,
+      "normal_within_30": 0.6454545454545455,
+      "native_brightness_steps_4px": {
+        "12": {
+          "n": 39,
+          "median_signed": 15.324499999999986,
+          "median_abs": 15.324499999999986
+        },
+        "9": {
+          "n": 7,
+          "median_signed": -35.23495,
+          "median_abs": 35.23495
+        }
+      }
+    },
+    {
+      "frame": "smooth_stone/holdout-portico-masonry-high-right",
+      "layout": "portico",
+      "ref": 7,
+      "kind": "vertical",
+      "status": "missed",
+      "normal": [
+        0,
+        0,
+        1
+      ],
+      "offset": 2,
+      "pixels": 4571,
+      "samples": 288,
+      "proposal": 1,
+      "other": 9,
+      "coverage": 0.8194444444444444,
+      "iou": 0.10531012940651495,
+      "others_half_covered": [
+        {
+          "ref": 5,
+          "coverage": 0.8977272727272727,
+          "normal": [
+            0,
+            0,
+            1
+          ],
+          "offset": 2
+        },
+        {
+          "ref": 6,
+          "coverage": 0.8227272727272728,
+          "normal": [
+            0,
+            0,
+            1
+          ],
+          "offset": 2
+        },
+        {
+          "ref": 8,
+          "coverage": 0.8769633507853403,
+          "normal": [
+            0,
+            0,
+            1
+          ],
+          "offset": 2
+        },
+        {
+          "ref": 9,
+          "coverage": 0.9519615692554043,
+          "normal": [
+            0,
+            0,
+            1
+          ],
+          "offset": 3
+        }
+      ],
+      "signed_normal_angle_median": 14.743397590710419,
+      "normal_within_30": 0.75,
+      "native_brightness_steps_4px": {
+        "14": {
+          "n": 43,
+          "median_signed": 8.104599999999998,
+          "median_abs": 11.251299999999993
+        },
+        "1": {
+          "n": 25,
+          "median_signed": 3.414049999999989,
+          "median_abs": 7.7704499999999825
+        },
+        "9": {
+          "n": 7,
+          "median_signed": -46.96750000000001,
+          "median_abs": 46.96750000000001
+        }
+      }
+    },
+    {
+      "frame": "smooth_stone/holdout-portico-masonry-high-right",
+      "layout": "portico",
+      "ref": 8,
+      "kind": "vertical",
+      "status": "missed",
+      "normal": [
+        0,
+        0,
+        1
+      ],
+      "offset": 2,
+      "pixels": 6074,
+      "samples": 382,
+      "proposal": 1,
+      "other": 9,
+      "coverage": 0.8769633507853403,
+      "iou": 0.14982110912343471,
+      "others_half_covered": [
+        {
+          "ref": 5,
+          "coverage": 0.8977272727272727,
+          "normal": [
+            0,
+            0,
+            1
+          ],
+          "offset": 2
+        },
+        {
+          "ref": 6,
+          "coverage": 0.8227272727272728,
+          "normal": [
+            0,
+            0,
+            1
+          ],
+          "offset": 2
+        },
+        {
+          "ref": 7,
+          "coverage": 0.8194444444444444,
+          "normal": [
+            0,
+            0,
+            1
+          ],
+          "offset": 2
+        },
+        {
+          "ref": 9,
+          "coverage": 0.9519615692554043,
+          "normal": [
+            0,
+            0,
+            1
+          ],
+          "offset": 3
+        }
+      ],
+      "signed_normal_angle_median": 10.22164054201388,
+      "normal_within_30": 0.8298429319371727,
+      "native_brightness_steps_4px": {
+        "15": {
+          "n": 45,
+          "median_signed": 18.516350000000003,
+          "median_abs": 19.752299999999977
+        },
+        "2": {
+          "n": 27,
+          "median_signed": 20.44245,
+          "median_abs": 20.44245
+        },
+        "9": {
+          "n": 9,
+          "median_signed": -37.326499999999996,
+          "median_abs": 37.326499999999996
+        }
+      }
+    },
+    {
+      "frame": "smooth_stone/holdout-portico-masonry-high-right",
+      "layout": "portico",
+      "ref": 17,
+      "kind": "vertical",
+      "status": "missed",
+      "normal": [
+        1,
+        0,
+        0
+      ],
+      "offset": 1553,
+      "pixels": 3222,
+      "samples": 201,
+      "proposal": 5,
+      "other": 16,
+      "coverage": 0.9900497512437811,
+      "iou": 0.26855600539811064,
+      "others_half_covered": [
+        {
+          "ref": 16,
+          "coverage": 0.972972972972973,
+          "normal": [
+            1,
+            0,
+            0
+          ],
+          "offset": 1552
+        }
+      ],
+      "signed_normal_angle_median": 3.9224294867207345,
+      "normal_within_30": 0.9751243781094527,
+      "native_brightness_steps_4px": {
+        "10": {
+          "n": 26,
+          "median_signed": -30.32765,
+          "median_abs": 30.32765
+        },
+        "16": {
+          "n": 18,
+          "median_signed": 1.4848999999999961,
+          "median_abs": 4.26724999999999
+        },
+        "9": {
+          "n": 11,
+          "median_signed": 4.300849999999997,
+          "median_abs": 6.2323499999999825
+        }
+      }
+    },
+    {
+      "frame": "light_gray_concrete/holdout-workshop-plaster-high-right",
+      "layout": "workshop",
+      "ref": 3,
+      "kind": "vertical",
+      "status": "missed",
+      "normal": [
+        0,
+        0,
+        1
+      ],
+      "offset": 0,
+      "pixels": 7642,
+      "samples": 471,
+      "proposal": 2,
+      "other": 2,
+      "coverage": 0.8959660297239915,
+      "iou": 0.2414187643020595,
+      "others_half_covered": [
+        {
+          "ref": 2,
+          "coverage": 0.9327794561933535,
+          "normal": [
+            0,
+            0,
+            1
+          ],
+          "offset": -1
+        }
+      ],
+      "signed_normal_angle_median": 6.358032781614547,
+      "normal_within_30": 0.8152866242038217,
+      "native_brightness_steps_4px": {
+        "6": {
+          "n": 56,
+          "median_signed": -8.73122500000001,
+          "median_abs": 8.73122500000001
+        },
+        "2": {
+          "n": 47,
+          "median_signed": -36.923799999999986,
+          "median_abs": 36.923799999999986
+        },
+        "15": {
+          "n": 12,
+          "median_signed": -22.59269999999999,
+          "median_abs": 22.59269999999999
+        },
+        "19": {
+          "n": 9,
+          "median_signed": 14.147849999999998,
+          "median_abs": 15.96575
+        },
+        "18": {
+          "n": 5,
+          "median_signed": -45.80860000000001,
+          "median_abs": 45.80860000000001
+        }
+      }
+    },
+    {
+      "frame": "light_gray_concrete/holdout-workshop-plaster-high-right",
+      "layout": "workshop",
+      "ref": 4,
+      "kind": "vertical",
+      "status": "missed",
+      "normal": [
+        0,
+        0,
+        1
+      ],
+      "offset": 1,
+      "pixels": 50016,
+      "samples": 3137,
+      "proposal": 1,
+      "other": 5,
+      "coverage": 0.8986292636276697,
+      "iou": 0.45010378412901164,
+      "others_half_covered": [
+        {
+          "ref": 5,
+          "coverage": 0.9707086614173228,
+          "normal": [
+            0,
+            0,
+            1
+          ],
+          "offset": 2
+        }
+      ],
+      "signed_normal_angle_median": 2.303378822687361,
+      "normal_within_30": 0.9862926362766975,
+      "native_brightness_steps_4px": {
+        "5": {
+          "n": 89,
+          "median_signed": 5.592849999999984,
+          "median_abs": 14.077100000000002
+        },
+        "15": {
+          "n": 52,
+          "median_signed": 20.821849999999998,
+          "median_abs": 20.821849999999998
+        },
+        "11": {
+          "n": 45,
+          "median_signed": 42.68109999999997,
+          "median_abs": 42.68109999999997
+        },
+        "1": {
+          "n": 37,
+          "median_signed": 106.63585,
+          "median_abs": 106.63585
+        }
+      }
+    },
+    {
+      "frame": "light_gray_concrete/holdout-workshop-plaster-high-right",
+      "layout": "workshop",
+      "ref": 15,
+      "kind": "vertical",
+      "status": "missed",
+      "normal": [
+        1,
+        0,
+        0
+      ],
+      "offset": 268,
+      "pixels": 4489,
+      "samples": 280,
+      "proposal": 4,
+      "other": null,
+      "coverage": 0.8107142857142857,
+      "iou": 0.4924078091106291,
+      "others_half_covered": [
+        {
+          "ref": 17,
+          "coverage": 0.954248366013072,
+          "normal": [
+            1,
+            0,
+            0
+          ],
+          "offset": 269
+        }
+      ],
+      "signed_normal_angle_median": 11.13568165418954,
+      "normal_within_30": 0.775,
+      "native_brightness_steps_4px": {
+        "4": {
+          "n": 52,
+          "median_signed": -20.821849999999998,
+          "median_abs": 20.821849999999998
+        },
+        "2": {
+          "n": 31,
+          "median_signed": -15.572500000000005,
+          "median_abs": 15.572500000000005
+        },
+        "6": {
+          "n": 19,
+          "median_signed": 1.5991500000000087,
+          "median_abs": 4.183800000000005
+        },
+        "17": {
+          "n": 13,
+          "median_signed": -0.9081500000000062,
+          "median_abs": 2.1739000000000033
+        },
+        "3": {
+          "n": 12,
+          "median_signed": 22.59269999999999,
+          "median_abs": 22.59269999999999
+        },
+        "5": {
+          "n": 8,
+          "median_signed": -8.730150000000002,
+          "median_abs": 8.730150000000002
+        }
+      }
+    },
+    {
+      "frame": "light_gray_concrete/holdout-workshop-plaster-high-right",
+      "layout": "workshop",
+      "ref": 17,
+      "kind": "vertical",
+      "status": "missed",
+      "normal": [
+        1,
+        0,
+        0
+      ],
+      "offset": 269,
+      "pixels": 2472,
+      "samples": 153,
+      "proposal": 4,
+      "other": null,
+      "coverage": 0.954248366013072,
+      "iou": 0.35180722891566263,
+      "others_half_covered": [
+        {
+          "ref": 15,
+          "coverage": 0.8107142857142857,
+          "normal": [
+            1,
+            0,
+            0
+          ],
+          "offset": 268
+        }
+      ],
+      "signed_normal_angle_median": 3.539934696706415,
+      "normal_within_30": 0.869281045751634,
+      "native_brightness_steps_4px": {
+        "8": {
+          "n": 19,
+          "median_signed": -29.838250000000002,
+          "median_abs": 29.838250000000002
+        },
+        "15": {
+          "n": 13,
+          "median_signed": 0.9081500000000062,
+          "median_abs": 2.1739000000000033
+        },
+        "5": {
+          "n": 9,
+          "median_signed": -23.071200000000005,
+          "median_abs": 23.071200000000005
+        }
+      }
+    },
+    {
+      "frame": "light_gray_concrete/holdout-workshop-plaster-high-right",
+      "layout": "workshop",
+      "ref": 18,
+      "kind": "vertical",
+      "status": "missed",
+      "normal": [
+        1,
+        0,
+        0
+      ],
+      "offset": 273,
+      "pixels": 2283,
+      "samples": 140,
+      "proposal": 12,
+      "other": null,
+      "coverage": 0.6928571428571428,
+      "iou": 0.4898989898989899,
+      "others_half_covered": [
+        {
+          "ref": 19,
+          "coverage": 0.7435897435897436,
+          "normal": [
+            1,
+            0,
+            0
+          ],
+          "offset": 274
+        }
+      ],
+      "signed_normal_angle_median": 6.3944234860128475,
+      "normal_within_30": 0.8785714285714286,
+      "native_brightness_steps_4px": {
+        "2": {
+          "n": 31,
+          "median_signed": -37.41175,
+          "median_abs": 37.41175
+        },
+        "3": {
+          "n": 5,
+          "median_signed": 45.80860000000001,
+          "median_abs": 45.80860000000001
+        }
+      }
+    },
+    {
+      "frame": "light_gray_concrete/holdout-workshop-plaster-high-right",
+      "layout": "workshop",
+      "ref": 19,
+      "kind": "vertical",
+      "status": "missed",
+      "normal": [
+        1,
+        0,
+        0
+      ],
+      "offset": 274,
+      "pixels": 612,
+      "samples": 39,
+      "proposal": 12,
+      "other": null,
+      "coverage": 0.7435897435897436,
+      "iou": 0.17575757575757575,
+      "others_half_covered": [
+        {
+          "ref": 18,
+          "coverage": 0.6928571428571428,
+          "normal": [
+            1,
+            0,
+            0
+          ],
+          "offset": 273
+        }
+      ],
+      "signed_normal_angle_median": 22.892576155080565,
+      "normal_within_30": 0.6410256410256411,
+      "native_brightness_steps_4px": {
+        "6": {
+          "n": 13,
+          "median_signed": -23.0884,
+          "median_abs": 23.0884
+        },
+        "3": {
+          "n": 9,
+          "median_signed": -14.147849999999998,
+          "median_abs": 15.96575
+        }
+      }
+    },
+    {
+      "frame": "light_gray_concrete/holdout-crossing-masonry-low-left",
+      "layout": "crossing",
+      "ref": 4,
+      "kind": "vertical",
+      "status": "missed",
+      "normal": [
+        -1,
+        0,
+        0
+      ],
+      "offset": 521,
+      "pixels": 5605,
+      "samples": 354,
+      "proposal": 5,
+      "other": null,
+      "coverage": 0.9717514124293786,
+      "iou": 0.4508519003931848,
+      "others_half_covered": [
+        {
+          "ref": 5,
+          "coverage": 0.963276836158192,
+          "normal": [
+            -1,
+            0,
+            0
+          ],
+          "offset": 524
+        }
+      ],
+      "signed_normal_angle_median": 4.461120366977214,
+      "normal_within_30": 0.9491525423728814,
+      "native_brightness_steps_4px": {
+        "5": {
+          "n": 29,
+          "median_signed": 13.4649,
+          "median_abs": 13.4649
+        },
+        "12": {
+          "n": 14,
+          "median_signed": -7.8932,
+          "median_abs": 10.302299999999999
+        },
+        "13": {
+          "n": 10,
+          "median_signed": -18.8788,
+          "median_abs": 18.8788
+        },
+        "15": {
+          "n": 10,
+          "median_signed": -24.6283,
+          "median_abs": 24.6283
+        },
+        "16": {
+          "n": 7,
+          "median_signed": -21.172800000000002,
+          "median_abs": 21.172800000000002
+        },
+        "17": {
+          "n": 2,
+          "median_signed": -7.19370000000001,
+          "median_abs": 7.19370000000001
+        }
+      }
+    },
+    {
+      "frame": "light_gray_concrete/holdout-crossing-masonry-low-left",
+      "layout": "crossing",
+      "ref": 5,
+      "kind": "vertical",
+      "status": "missed",
+      "normal": [
+        -1,
+        0,
+        0
+      ],
+      "offset": 524,
+      "pixels": 5437,
+      "samples": 354,
+      "proposal": 5,
+      "other": null,
+      "coverage": 0.963276836158192,
+      "iou": 0.4451697127937337,
+      "others_half_covered": [
+        {
+          "ref": 4,
+          "coverage": 0.9717514124293786,
+          "normal": [
+            -1,
+            0,
+            0
+          ],
+          "offset": 521
+        }
+      ],
+      "signed_normal_angle_median": 6.074303615261869,
+      "normal_within_30": 0.9152542372881356,
+      "native_brightness_steps_4px": {
+        "8": {
+          "n": 38,
+          "median_signed": -14.73115,
+          "median_abs": 14.73115
+        },
+        "4": {
+          "n": 29,
+          "median_signed": -13.4649,
+          "median_abs": 13.4649
+        },
+        "7": {
+          "n": 23,
+          "median_signed": -9.876650000000005,
+          "median_abs": 9.876650000000005
+        },
+        "9": {
+          "n": 17,
+          "median_signed": -18.752299999999998,
+          "median_abs": 18.752299999999998
+        },
+        "12": {
+          "n": 14,
+          "median_signed": -28.526225000000007,
+          "median_abs": 28.526225000000007
+        }
+      }
+    },
+    {
+      "frame": "light_gray_concrete/holdout-crossing-masonry-low-left",
+      "layout": "crossing",
+      "ref": 7,
+      "kind": "underside",
+      "status": "found",
+      "normal": [
+        0,
+        -1,
+        0
+      ],
+      "offset": 70,
+      "pixels": 7505,
+      "samples": 466,
+      "proposal": 7,
+      "other": 7,
+      "coverage": 0.9527896995708155,
+      "iou": 0.882703777335984,
+      "others_half_covered": [],
+      "signed_normal_angle_median": 8.907763699638071,
+      "normal_within_30": 0.8905579399141631,
+      "native_brightness_steps_4px": {
+        "14": {
+          "n": 96,
+          "median_signed": -22.445849999999993,
+          "median_abs": 22.445849999999993
+        },
+        "9": {
+          "n": 24,
+          "median_signed": -3.365475,
+          "median_abs": 9.05265
+        },
+        "5": {
+          "n": 23,
+          "median_signed": 9.876650000000005,
+          "median_abs": 9.876650000000005
+        },
+        "8": {
+          "n": 19,
+          "median_signed": -4.605000000000004,
+          "median_abs": 5.819900000000004
+        },
+        "11": {
+          "n": 14,
+          "median_signed": 1.8758000000000017,
+          "median_abs": 17.241624999999996
+        },
+        "2": {
+          "n": 11,
+          "median_signed": -1.6056000000000026,
+          "median_abs": 7.250699999999995
+        },
+        "3": {
+          "n": 2,
+          "median_signed": -32.824099999999994,
+          "median_abs": 42.91495
+        }
+      }
+    },
+    {
+      "frame": "light_gray_concrete/holdout-crossing-masonry-low-left",
+      "layout": "crossing",
+      "ref": 10,
+      "kind": "vertical",
+      "status": "missed",
+      "normal": [
+        0,
+        0,
+        1
+      ],
+      "offset": 0,
+      "pixels": 2862,
+      "samples": 183,
+      "proposal": 2,
+      "other": 14,
+      "coverage": 0.9672131147540983,
+      "iou": 0.05953582240161453,
+      "others_half_covered": [
+        {
+          "ref": 14,
+          "coverage": 0.9911797133406836,
+          "normal": [
+            0,
+            0,
+            1
+          ],
+          "offset": 3
+        }
+      ],
+      "signed_normal_angle_median": 17.530357230066215,
+      "normal_within_30": 0.912568306010929,
+      "native_brightness_steps_4px": {
+        "14": {
+          "n": 27,
+          "median_signed": -20.51514999999999,
+          "median_abs": 20.51514999999999
+        },
+        "6": {
+          "n": 8,
+          "median_signed": 26.691975000000014,
+          "median_abs": 29.039750000000005
+        }
+      }
+    },
+    {
+      "frame": "light_gray_concrete/holdout-galleries-masonry-low-left",
+      "layout": "galleries",
+      "ref": 2,
+      "kind": "vertical",
+      "status": "missed",
+      "normal": [
+        -1,
+        0,
+        0
+      ],
+      "offset": 512,
+      "pixels": 953,
+      "samples": 57,
+      "proposal": 11,
+      "other": null,
+      "coverage": 0.9649122807017544,
+      "iou": 0.22357723577235772,
+      "others_half_covered": [
+        {
+          "ref": 3,
+          "coverage": 0.773109243697479,
+          "normal": [
+            -1,
+            0,
+            0
+          ],
+          "offset": 512
+        },
+        {
+          "ref": 21,
+          "coverage": 0.5212121212121212,
+          "normal": [
+            0,
+            0,
+            1
+          ],
+          "offset": -4
+        }
+      ],
+      "signed_normal_angle_median": 35.16667286525174,
+      "normal_within_30": 0.22807017543859648,
+      "native_brightness_steps_4px": {
+        "21": {
+          "n": 34,
+          "median_signed": -12.590400000000002,
+          "median_abs": 12.590400000000002
+        },
+        "13": {
+          "n": 1,
+          "median_signed": 0.44555000000000433,
+          "median_abs": 0.44555000000000433
+        }
+      }
+    },
+    {
+      "frame": "light_gray_concrete/holdout-galleries-masonry-low-left",
+      "layout": "galleries",
+      "ref": 3,
+      "kind": "vertical",
+      "status": "missed",
+      "normal": [
+        -1,
+        0,
+        0
+      ],
+      "offset": 512,
+      "pixels": 1941,
+      "samples": 119,
+      "proposal": 11,
+      "other": null,
+      "coverage": 0.773109243697479,
+      "iou": 0.33948339483394835,
+      "others_half_covered": [
+        {
+          "ref": 2,
+          "coverage": 0.9649122807017544,
+          "normal": [
+            -1,
+            0,
+            0
+          ],
+          "offset": 512
+        },
+        {
+          "ref": 21,
+          "coverage": 0.5212121212121212,
+          "normal": [
+            0,
+            0,
+            1
+          ],
+          "offset": -4
+        }
+      ],
+      "signed_normal_angle_median": 24.025063723925683,
+      "normal_within_30": 0.6386554621848739,
+      "native_brightness_steps_4px": {
+        "27": {
+          "n": 45,
+          "median_signed": -13.435100000000006,
+          "median_abs": 15.632650000000012
+        },
+        "21": {
+          "n": 36,
+          "median_signed": -8.436475000000009,
+          "median_abs": 11.578425000000003
+        },
+        "30": {
+          "n": 3,
+          "median_signed": -44.46819999999999,
+          "median_abs": 44.46819999999999
+        },
+        "13": {
+          "n": 1,
+          "median_signed": -7.7677499999999995,
+          "median_abs": 7.7677499999999995
+        }
+      }
+    },
+    {
+      "frame": "light_gray_concrete/holdout-galleries-masonry-low-left",
+      "layout": "galleries",
+      "ref": 6,
+      "kind": "vertical",
+      "status": "missed",
+      "normal": [
+        -1,
+        0,
+        0
+      ],
+      "offset": 514,
+      "pixels": 1493,
+      "samples": 98,
+      "proposal": 13,
+      "other": null,
+      "coverage": 0.6224489795918368,
+      "iou": 0.2747747747747748,
+      "others_half_covered": [],
+      "signed_normal_angle_median": 28.46779062218799,
+      "normal_within_30": 0.5306122448979592,
+      "native_brightness_steps_4px": {
+        "24": {
+          "n": 26,
+          "median_signed": -23.794124999999994,
+          "median_abs": 23.794124999999994
+        },
+        "18": {
+          "n": 19,
+          "median_signed": -6.746000000000009,
+          "median_abs": 12.407350000000001
+        },
+        "16": {
+          "n": 11,
+          "median_signed": 6.391100000000002,
+          "median_abs": 8.41205
+        },
+        "30": {
+          "n": 4,
+          "median_signed": -68.51750000000001,
+          "median_abs": 68.51750000000001
+        }
+      }
+    },
+    {
+      "frame": "light_gray_concrete/holdout-galleries-masonry-low-left",
+      "layout": "galleries",
+      "ref": 7,
+      "kind": "vertical",
+      "status": "missed",
+      "normal": [
+        -1,
+        0,
+        0
+      ],
+      "offset": 518,
+      "pixels": 1176,
+      "samples": 62,
+      "proposal": 3,
+      "other": 19,
+      "coverage": 0.5483870967741935,
+      "iou": 0.04171779141104295,
+      "others_half_covered": [
+        {
+          "ref": 19,
+          "coverage": 0.9982078853046595,
+          "normal": [
+            0,
+            0,
+            1
+          ],
+          "offset": -5
+        }
+      ],
+      "signed_normal_angle_median": 52.38175031993788,
+      "normal_within_30": 0.0,
+      "native_brightness_steps_4px": {
+        "22": {
+          "n": 31,
+          "median_signed": -18.860599999999998,
+          "median_abs": 18.860599999999998
+        },
+        "19": {
+          "n": 31,
+          "median_signed": 0.4288000000000025,
+          "median_abs": 2.196549999999995
+        },
+        "13": {
+          "n": 2,
+          "median_signed": -23.473924999999998,
+          "median_abs": 23.473924999999998
+        }
+      }
+    },
+    {
+      "frame": "light_gray_concrete/holdout-galleries-masonry-low-left",
+      "layout": "galleries",
+      "ref": 13,
+      "kind": "underside",
+      "status": "missed",
+      "normal": [
+        0,
+        -1,
+        0
+      ],
+      "offset": 69,
+      "pixels": 2559,
+      "samples": 144,
+      "proposal": 1,
+      "other": null,
+      "coverage": 0.5208333333333334,
+      "iou": 0.019430051813471502,
+      "others_half_covered": [
+        {
+          "ref": 27,
+          "coverage": 0.9936034115138592,
+          "normal": [
+            0,
+            0,
+            1
+          ],
+          "offset": 2
+        },
+        {
+          "ref": 28,
+          "coverage": 0.9847560975609756,
+          "normal": [
+            0,
+            0,
+            1
+          ],
+          "offset": 2
+        },
+        {
+          "ref": 29,
+          "coverage": 0.9453781512605042,
+          "normal": [
+            0,
+            0,
+            1
+          ],
+          "offset": 2
+        },
+        {
+          "ref": 30,
+          "coverage": 0.9960912052117263,
+          "normal": [
+            0,
+            0,
+            1
+          ],
+          "offset": 3
+        }
+      ],
+      "signed_normal_angle_median": 58.78937750147014,
+      "normal_within_30": 0.0,
+      "native_brightness_steps_4px": {
+        "30": {
+          "n": 101,
+          "median_signed": -33.23625,
+          "median_abs": 33.44814999999999
+        },
+        "19": {
+          "n": 18,
+          "median_signed": 8.420575000000003,
+          "median_abs": 8.420575000000003
+        },
+        "22": {
+          "n": 12,
+          "median_signed": 8.562674999999999,
+          "median_abs": 8.562674999999999
+        },
+        "23": {
+          "n": 12,
+          "median_signed": 8.286599999999996,
+          "median_abs": 8.286599999999996
+        },
+        "8": {
+          "n": 8,
+          "median_signed": 28.127799999999997,
+          "median_abs": 28.127799999999997
+        },
+        "12": {
+          "n": 8,
+          "median_signed": 8.037099999999992,
+          "median_abs": 8.037099999999992
+        },
+        "28": {
+          "n": 8,
+          "median_signed": 17.545125000000002,
+          "median_abs": 17.545125000000002
+        },
+        "1": {
+          "n": 8,
+          "median_signed": -5.519700000000007,
+          "median_abs": 7.1870250000000055
+        },
+        "21": {
+          "n": 6,
+          "median_signed": 1.0977749999999986,
+          "median_abs": 1.7956249999999976
+        },
+        "11": {
+          "n": 5,
+          "median_signed": 13.178800000000003,
+          "median_abs": 13.178800000000003
+        },
+        "7": {
+          "n": 2,
+          "median_signed": 23.473924999999998,
+          "median_abs": 23.473924999999998
+        },
+        "29": {
+          "n": 2,
+          "median_signed": 1.151724999999999,
+          "median_abs": 1.5621750000000034
+        },
+        "27": {
+          "n": 2,
+          "median_signed": -3.9264500000000027,
+          "median_abs": 6.9833
+        },
+        "2": {
+          "n": 1,
+          "median_signed": -0.44555000000000433,
+          "median_abs": 0.44555000000000433
+        },
+        "3": {
+          "n": 1,
+          "median_signed": 7.7677499999999995,
+          "median_abs": 7.7677499999999995
+        }
+      }
+    },
+    {
+      "frame": "light_gray_concrete/holdout-galleries-masonry-low-left",
+      "layout": "galleries",
+      "ref": 14,
+      "kind": "underside",
+      "status": "small",
+      "normal": [
+        0,
+        -1,
+        0
+      ],
+      "offset": 69,
+      "pixels": 18,
+      "samples": 0,
+      "proposal": 1,
+      "other": null,
+      "coverage": 0.7777777777777778,
+      "iou": 0.00023125206475057812,
+      "others_half_covered": [],
+      "signed_normal_angle_median": null,
+      "normal_within_30": null,
+      "native_brightness_steps_4px": {}
+    },
+    {
+      "frame": "light_gray_concrete/holdout-galleries-masonry-low-left",
+      "layout": "galleries",
+      "ref": 15,
+      "kind": "underside",
+      "status": "small",
+      "normal": [
+        0,
+        -1,
+        0
+      ],
+      "offset": 69,
+      "pixels": 1,
+      "samples": 0,
+      "proposal": 10,
+      "other": 23,
+      "coverage": 1.0,
+      "iou": 0.00019142419601837673,
+      "others_half_covered": [],
+      "signed_normal_angle_median": null,
+      "normal_within_30": null,
+      "native_brightness_steps_4px": {}
+    },
+    {
+      "frame": "light_gray_concrete/holdout-galleries-masonry-low-left",
+      "layout": "galleries",
+      "ref": 16,
+      "kind": "underside",
+      "status": "found",
+      "normal": [
+        0,
+        -1,
+        0
+      ],
+      "offset": 73,
+      "pixels": 9580,
+      "samples": 591,
+      "proposal": 5,
+      "other": 16,
+      "coverage": 0.9407783417935702,
+      "iou": 0.8462709284627092,
+      "others_half_covered": [],
+      "signed_normal_angle_median": 6.806762307442252,
+      "normal_within_30": 0.8663282571912013,
+      "native_brightness_steps_4px": {
+        "26": {
+          "n": 108,
+          "median_signed": -27.119274999999995,
+          "median_abs": 27.119274999999995
+        },
+        "20": {
+          "n": 43,
+          "median_signed": -0.25099999999999767,
+          "median_abs": 4.10629999999999
+        },
+        "24": {
+          "n": 29,
+          "median_signed": -12.532500000000006,
+          "median_abs": 12.532500000000006
+        },
+        "4": {
+          "n": 20,
+          "median_signed": 2.2281500000000065,
+          "median_abs": 3.6932000000000045
+        },
+        "25": {
+          "n": 17,
+          "median_signed": -12.944250000000004,
+          "median_abs": 12.944250000000004
+        },
+        "9": {
+          "n": 14,
+          "median_signed": 1.3853250000000017,
+          "median_abs": 6.721624999999996
+        },
+        "6": {
+          "n": 11,
+          "median_signed": -6.391100000000002,
+          "median_abs": 8.41205
+        },
+        "18": {
+          "n": 4,
+          "median_signed": 9.242324999999997,
+          "median_abs": 9.242324999999997
+        },
+        "5": {
+          "n": 3,
+          "median_signed": 2.076499999999996,
+          "median_abs": 2.076499999999996
+        }
+      }
+    },
+    {
+      "frame": "light_gray_concrete/holdout-galleries-masonry-low-left",
+      "layout": "galleries",
+      "ref": 21,
+      "kind": "vertical",
+      "status": "missed",
+      "normal": [
+        0,
+        0,
+        1
+      ],
+      "offset": -4,
+      "pixels": 2454,
+      "samples": 165,
+      "proposal": 11,
+      "other": null,
+      "coverage": 0.5212121212121212,
+      "iou": 0.26625386996904027,
+      "others_half_covered": [
+        {
+          "ref": 2,
+          "coverage": 0.9649122807017544,
+          "normal": [
+            -1,
+            0,
+            0
+          ],
+          "offset": 512
+        },
+        {
+          "ref": 3,
+          "coverage": 0.773109243697479,
+          "normal": [
+            -1,
+            0,
+            0
+          ],
+          "offset": 512
+        }
+      ],
+      "signed_normal_angle_median": 47.74266897295633,
+      "normal_within_30": 0.0,
+      "native_brightness_steps_4px": {
+        "3": {
+          "n": 36,
+          "median_signed": 8.436475000000009,
+          "median_abs": 11.578425000000003
+        },
+        "2": {
+          "n": 34,
+          "median_signed": 12.590400000000002,
+          "median_abs": 12.590400000000002
+        },
+        "13": {
+          "n": 6,
+          "median_signed": -1.0977749999999986,
+          "median_abs": 1.7956249999999976
+        }
+      }
+    },
+    {
+      "frame": "light_gray_concrete/holdout-galleries-masonry-low-left",
+      "layout": "galleries",
+      "ref": 22,
+      "kind": "vertical",
+      "status": "missed",
+      "normal": [
+        0,
+        0,
+        1
+      ],
+      "offset": -4,
+      "pixels": 5724,
+      "samples": 372,
+      "proposal": 3,
+      "other": 19,
+      "coverage": 0.4838709677419355,
+      "iou": 0.18386108273748722,
+      "others_half_covered": [
+        {
+          "ref": 7,
+          "coverage": 0.5483870967741935,
+          "normal": [
+            -1,
+            0,
+            0
+          ],
+          "offset": 518
+        },
+        {
+          "ref": 19,
+          "coverage": 0.9982078853046595,
+          "normal": [
+            0,
+            0,
+            1
+          ],
+          "offset": -5
+        }
+      ],
+      "signed_normal_angle_median": 44.41071114332162,
+      "normal_within_30": 0.1881720430107527,
+      "native_brightness_steps_4px": {
+        "8": {
+          "n": 31,
+          "median_signed": 1.69585,
+          "median_abs": 5.449149999999996
+        },
+        "7": {
+          "n": 31,
+          "median_signed": 18.860599999999998,
+          "median_abs": 18.860599999999998
+        },
+        "13": {
+          "n": 12,
+          "median_signed": -8.562674999999999,
+          "median_abs": 8.562674999999999
+        }
+      }
+    },
+    {
+      "frame": "light_gray_concrete/holdout-galleries-masonry-low-left",
+      "layout": "galleries",
+      "ref": 27,
+      "kind": "vertical",
+      "status": "missed",
+      "normal": [
+        0,
+        0,
+        1
+      ],
+      "offset": 2,
+      "pixels": 14998,
+      "samples": 938,
+      "proposal": 1,
+      "other": null,
+      "coverage": 0.9936034115138592,
+      "iou": 0.24545693968922833,
+      "others_half_covered": [
+        {
+          "ref": 13,
+          "coverage": 0.5208333333333334,
+          "normal": [
+            0,
+            -1,
+            0
+          ],
+          "offset": 69
+        },
+        {
+          "ref": 28,
+          "coverage": 0.9847560975609756,
+          "normal": [
+            0,
+            0,
+            1
+          ],
+          "offset": 2
+        },
+        {
+          "ref": 29,
+          "coverage": 0.9453781512605042,
+          "normal": [
+            0,
+            0,
+            1
+          ],
+          "offset": 2
+        },
+        {
+          "ref": 30,
+          "coverage": 0.9960912052117263,
+          "normal": [
+            0,
+            0,
+            1
+          ],
+          "offset": 3
+        }
+      ],
+      "signed_normal_angle_median": 4.244558427987258,
+      "normal_within_30": 0.9786780383795309,
+      "native_brightness_steps_4px": {
+        "3": {
+          "n": 45,
+          "median_signed": 13.435100000000006,
+          "median_abs": 15.632650000000012
+        },
+        "19": {
+          "n": 31,
+          "median_signed": 24.282700000000006,
+          "median_abs": 24.282700000000006
+        },
+        "30": {
+          "n": 21,
+          "median_signed": -32.07680000000001,
+          "median_abs": 32.07680000000001
+        },
+        "13": {
+          "n": 2,
+          "median_signed": 3.9264500000000027,
+          "median_abs": 6.9833
+        }
+      }
+    },
+    {
+      "frame": "light_gray_concrete/holdout-galleries-masonry-low-left",
+      "layout": "galleries",
+      "ref": 28,
+      "kind": "vertical",
+      "status": "missed",
+      "normal": [
+        0,
+        0,
+        1
+      ],
+      "offset": 2,
+      "pixels": 10801,
+      "samples": 656,
+      "proposal": 1,
+      "other": null,
+      "coverage": 0.9847560975609756,
+      "iou": 0.1699552749276506,
+      "others_half_covered": [
+        {
+          "ref": 13,
+          "coverage": 0.5208333333333334,
+          "normal": [
+            0,
+            -1,
+            0
+          ],
+          "offset": 69
+        },
+        {
+          "ref": 27,
+          "coverage": 0.9936034115138592,
+          "normal": [
+            0,
+            0,
+            1
+          ],
+          "offset": 2
+        },
+        {
+          "ref": 29,
+          "coverage": 0.9453781512605042,
+          "normal": [
+            0,
+            0,
+            1
+          ],
+          "offset": 2
+        },
+        {
+          "ref": 30,
+          "coverage": 0.9960912052117263,
+          "normal": [
+            0,
+            0,
+            1
+          ],
+          "offset": 3
+        }
+      ],
+      "signed_normal_angle_median": 3.1908637011915273,
+      "normal_within_30": 0.9695121951219512,
+      "native_brightness_steps_4px": {
+        "8": {
+          "n": 39,
+          "median_signed": 22.96589999999999,
+          "median_abs": 22.96589999999999
+        },
+        "30": {
+          "n": 10,
+          "median_signed": -19.6641,
+          "median_abs": 19.6641
+        },
+        "13": {
+          "n": 8,
+          "median_signed": -17.545125000000002,
+          "median_abs": 17.545125000000002
+        }
+      }
+    },
+    {
+      "frame": "light_gray_concrete/holdout-galleries-masonry-low-left",
+      "layout": "galleries",
+      "ref": 29,
+      "kind": "vertical",
+      "status": "missed",
+      "normal": [
+        0,
+        0,
+        1
+      ],
+      "offset": 2,
+      "pixels": 7623,
+      "samples": 476,
+      "proposal": 1,
+      "other": null,
+      "coverage": 0.9453781512605042,
+      "iou": 0.11789363374377784,
+      "others_half_covered": [
+        {
+          "ref": 13,
+          "coverage": 0.5208333333333334,
+          "normal": [
+            0,
+            -1,
+            0
+          ],
+          "offset": 69
+        },
+        {
+          "ref": 27,
+          "coverage": 0.9936034115138592,
+          "normal": [
+            0,
+            0,
+            1
+          ],
+          "offset": 2
+        },
+        {
+          "ref": 28,
+          "coverage": 0.9847560975609756,
+          "normal": [
+            0,
+            0,
+            1
+          ],
+          "offset": 2
+        },
+        {
+          "ref": 30,
+          "coverage": 0.9960912052117263,
+          "normal": [
+            0,
+            0,
+            1
+          ],
+          "offset": 3
+        }
+      ],
+      "signed_normal_angle_median": 3.665555698492799,
+      "normal_within_30": 0.8970588235294118,
+      "native_brightness_steps_4px": {
+        "12": {
+          "n": 35,
+          "median_signed": 21.49799999999999,
+          "median_abs": 21.49799999999999
+        },
+        "30": {
+          "n": 12,
+          "median_signed": -52.190974999999995,
+          "median_abs": 52.190974999999995
+        },
+        "13": {
+          "n": 2,
+          "median_signed": -1.151724999999999,
+          "median_abs": 1.5621750000000034
+        }
+      }
+    },
+    {
+      "frame": "light_gray_concrete/holdout-galleries-masonry-low-left",
+      "layout": "galleries",
+      "ref": 30,
+      "kind": "vertical",
+      "status": "missed",
+      "normal": [
+        0,
+        0,
+        1
+      ],
+      "offset": 3,
+      "pixels": 24627,
+      "samples": 1535,
+      "proposal": 1,
+      "other": null,
+      "coverage": 0.9960912052117263,
+      "iou": 0.4026863313141954,
+      "others_half_covered": [
+        {
+          "ref": 13,
+          "coverage": 0.5208333333333334,
+          "normal": [
+            0,
+            -1,
+            0
+          ],
+          "offset": 69
+        },
+        {
+          "ref": 27,
+          "coverage": 0.9936034115138592,
+          "normal": [
+            0,
+            0,
+            1
+          ],
+          "offset": 2
+        },
+        {
+          "ref": 28,
+          "coverage": 0.9847560975609756,
+          "normal": [
+            0,
+            0,
+            1
+          ],
+          "offset": 2
+        },
+        {
+          "ref": 29,
+          "coverage": 0.9453781512605042,
+          "normal": [
+            0,
+            0,
+            1
+          ],
+          "offset": 2
+        }
+      ],
+      "signed_normal_angle_median": 4.361830031431627,
+      "normal_within_30": 0.9863192182410423,
+      "native_brightness_steps_4px": {
+        "13": {
+          "n": 101,
+          "median_signed": 33.23625,
+          "median_abs": 33.44814999999999
+        },
+        "20": {
+          "n": 43,
+          "median_signed": 58.44125,
+          "median_abs": 58.44125
+        },
+        "27": {
+          "n": 21,
+          "median_signed": 32.07680000000001,
+          "median_abs": 32.07680000000001
+        },
+        "24": {
+          "n": 18,
+          "median_signed": 66.88815000000001,
+          "median_abs": 66.88815000000001
+        },
+        "25": {
+          "n": 14,
+          "median_signed": 64.26395,
+          "median_abs": 64.26395
+        },
+        "1": {
+          "n": 13,
+          "median_signed": 1.2703500000000076,
+          "median_abs": 21.535099999999993
+        },
+        "29": {
+          "n": 12,
+          "median_signed": 52.190974999999995,
+          "median_abs": 52.190974999999995
+        },
+        "28": {
+          "n": 10,
+          "median_signed": 19.6641,
+          "median_abs": 19.6641
+        },
+        "9": {
+          "n": 8,
+          "median_signed": 69.44645,
+          "median_abs": 69.44645
+        },
+        "18": {
+          "n": 5,
+          "median_signed": 3.8596000000000004,
+          "median_abs": 9.722950000000012
+        },
+        "12": {
+          "n": 4,
+          "median_signed": 50.067125000000004,
+          "median_abs": 50.067125000000004
+        },
+        "6": {
+          "n": 4,
+          "median_signed": 68.51750000000001,
+          "median_abs": 68.51750000000001
+        },
+        "3": {
+          "n": 3,
+          "median_signed": 44.46819999999999,
+          "median_abs": 44.46819999999999
+        },
+        "5": {
+          "n": 2,
+          "median_signed": 35.953700000000005,
+          "median_abs": 36.68005
+        }
+      }
+    },
+    {
+      "frame": "light_gray_concrete/holdout-registry-masonry-high-right",
+      "layout": "registry",
+      "ref": 1,
+      "kind": "vertical",
+      "status": "missed",
+      "normal": [
+        0,
+        0,
+        1
+      ],
+      "offset": -2,
+      "pixels": 19578,
+      "samples": 1228,
+      "proposal": 1,
+      "other": 2,
+      "coverage": 0.990228013029316,
+      "iou": 0.18946712371455282,
+      "others_half_covered": [
+        {
+          "ref": 2,
+          "coverage": 0.9801450935471554,
+          "normal": [
+            0,
+            0,
+            1
+          ],
+          "offset": -1
+        }
+      ],
+      "signed_normal_angle_median": 3.4589954402359258,
+      "normal_within_30": 0.9828990228013029,
+      "native_brightness_steps_4px": {
+        "2": {
+          "n": 69,
+          "median_signed": -6.124349999999993,
+          "median_abs": 7.389099999999999
+        },
+        "9": {
+          "n": 24,
+          "median_signed": 5.12084999999999,
+          "median_abs": 6.383525000000013
+        },
+        "8": {
+          "n": 20,
+          "median_signed": 26.15974999999999,
+          "median_abs": 26.15974999999999
+        }
+      }
+    },
+    {
+      "frame": "light_gray_concrete/holdout-registry-masonry-high-right",
+      "layout": "registry",
+      "ref": 6,
+      "kind": "top",
+      "status": "missed",
+      "normal": [
+        0,
+        1,
+        0
+      ],
+      "offset": 73,
+      "pixels": 1877,
+      "samples": 115,
+      "proposal": 7,
+      "other": null,
+      "coverage": 0.8260869565217391,
+      "iou": 0.35315985130111527,
+      "others_half_covered": [],
+      "signed_normal_angle_median": 13.940173763825872,
+      "normal_within_30": 0.7739130434782608,
+      "native_brightness_steps_4px": {
+        "3": {
+          "n": 35,
+          "median_signed": 25.24300000000001,
+          "median_abs": 25.24300000000001
+        },
+        "8": {
+          "n": 10,
+          "median_signed": 36.70820000000001,
+          "median_abs": 36.70820000000001
+        },
+        "2": {
+          "n": 6,
+          "median_signed": 12.944999999999993,
+          "median_abs": 12.944999999999993
+        }
+      }
+    },
+    {
+      "frame": "light_gray_concrete/holdout-registry-masonry-high-right",
+      "layout": "registry",
+      "ref": 9,
+      "kind": "vertical",
+      "status": "missed",
+      "normal": [
+        1,
+        0,
+        0
+      ],
+      "offset": 16,
+      "pixels": 6608,
+      "samples": 411,
+      "proposal": 2,
+      "other": 10,
+      "coverage": 0.9610705596107056,
+      "iou": 0.15806322529011604,
+      "others_half_covered": [
+        {
+          "ref": 10,
+          "coverage": 0.9974886991461577,
+          "normal": [
+            1,
+            0,
+            0
+          ],
+          "offset": 17
+        }
+      ],
+      "signed_normal_angle_median": 3.0153657737871886,
+      "normal_within_30": 0.9513381995133819,
+      "native_brightness_steps_4px": {
+        "10": {
+          "n": 27,
+          "median_signed": 5.340549999999993,
+          "median_abs": 5.340549999999993
+        },
+        "1": {
+          "n": 24,
+          "median_signed": -5.12084999999999,
+          "median_abs": 6.383525000000013
+        },
+        "2": {
+          "n": 5,
+          "median_signed": -17.982250000000008,
+          "median_abs": 17.982250000000008
+        }
+      }
+    }
+  ]
+}
