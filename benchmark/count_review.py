@@ -11,6 +11,7 @@ from benchmark.camera_round import read, save
 from benchmark.normal_building_sheet import selected_views
 from benchmark.surface_reference import recorded
 from benchmark.surface_sheet import scene_box,text
+from engine.surface_perimeter import draw_outline
 from engine.surface_tiles import tile_sample
 
 
@@ -40,10 +41,11 @@ def sheet(out,results,inputs,lookup,atlas,frozen,selected):
     canvas=Image.new('RGB',(1660,136+len(displayed)*232),PAPER)
     pen=ImageDraw.Draw(canvas)
     text(pen,25,16,'Can we count the blocks in a visible surface?',36,True)
-    text(pen,25,66,'Cyan marks the measured surface. Dark pixels are excluded. Counts read across × down; ? means unknown.',21)
+    text(pen,25,66,'Cyan follows the detected perimeter. Dark pixels are excluded from the sample. Counts read across × down. ? means unknown.',21)
     for x,title in [(25,'Source and surface'),(445,'Straightened surface'),(817,'Whole surface in blocks'),(1241,'One block and atlas match')]:
         text(pen,x,105,title,22,True)
     regions=[]
+    examples=[]
     for j,key in enumerate(displayed):
         y=145+j*232
         row=by_key[key]
@@ -69,8 +71,10 @@ def sheet(out,results,inputs,lookup,atlas,frozen,selected):
         surface=image.copy()
         surface.paste('#2ce4ed',(0,0,*image.size),Image.fromarray(raw).resize(image.size,Image.Resampling.NEAREST))
         q=np.asarray(rec['quad'])
-        ImageDraw.Draw(surface).line([*map(tuple,q),tuple(q[0])],fill='#49ffff',width=3)
+        draw_outline(surface,part,color='#49ffff',width=3)
         box=scene_box(ref,image)
+        examples.append(dict(layout=row['layout'],key=key,image=image,part=part,box=box,margin=8,
+                             source=case.path('image').name,expected=rec['expected'],finder='regions-first',counter=selected))
         fit_panel(canvas,surface.crop(box),25,y+28,385,180)
         rgb=np.asarray(sample['rgb']).copy()
         rgb[~sample['mask']]=[42,48,51]
@@ -101,7 +105,9 @@ def sheet(out,results,inputs,lookup,atlas,frozen,selected):
         regions.append(dict(frame=key,stage='block-count',proposal=part['id'],chart_xy=q.tolist(),
                             region_xyxy=list(map(int,box)),sampling_selection='largest matched charted surface'))
         pen.line((25,y+222,1634,y+222),fill='#d4d9d5',width=1)
-    canvas.save(out/'comparison.jpg',quality=91,subsampling=0)
+    canvas.save(out/'counter-comparison.jpg',quality=91,subsampling=0)
+    from benchmark.surface_pipeline_sheet import stage_sheet
+    stage_sheet(out,examples,atlas)
     save(out/'review-regions.json',regions)
 
 
@@ -174,7 +180,7 @@ def review(out,results,rows,lookup,atlas,frozen,selected):
         return table(['Counter','Both right','Wrong pair','No pair','Eligible','Across right','Down right','Other proposals with a pair'],items)
     parts=['<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">',
         '<title>How many blocks across and down?</title><style>body{max-width:1100px;margin:2rem auto;padding:0 1rem;background:#faf9f4;color:#163238;font:16px/1.5 system-ui}table{border-collapse:collapse}td,th{padding:.35rem .65rem;text-align:left;border-bottom:1px solid #cbd1cd}details{margin:.6rem 0}summary{cursor:pointer}a{color:#126574}h2{margin-top:2rem}</style>',
-        '<h1>How many blocks across and down?</h1><p><a href="comparison.jpg">Eight-building picture sheet</a> · <a href="manifest.json">Run manifest</a> · <a href="cases.json">All surface measurements</a></p>',
+        '<h1>How many blocks across and down?</h1><p><a href="comparison.jpg">Eight-building pipeline sheet</a> · <a href="counter-comparison.jpg">Three counters side by side</a> · <a href="manifest.json">Run manifest</a> · <a href="cases.json">All surface measurements</a></p>',
         '<p>Each counter received the same Surface Finder masks. A correct pair gives the recorded number of visible block columns and rows. A mask can include a doorway; the dimensions describe its outside span. Cropped surfaces can include partial edge blocks. Across and down follow the two surface directions as seen in the picture. All views count separately.</p>',
         '<h2>Whole visible surfaces</h2>',summary_table(scores['all'],'surface'),
         '<p>The first three result columns add to the eligible surface count. No pair includes missed surfaces and counters that could only read one direction. A wrong pair has a count on both axes with at least one error. Other proposals do not match a scored surface.</p>',

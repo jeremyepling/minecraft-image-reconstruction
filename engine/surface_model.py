@@ -266,7 +266,7 @@ def _count_regions(image, planes, version, method, atlas, out):
 
 
 def build(image_path, version, out, *, outlines=None, order_method=None, through='surfaces',
-          counter=None, atlas_path=None, material_match=None, context_px=None):
+          counter=None, atlas_path=None, material_match=None, context_px=None, boundary=None):
     from engine.atlas import digest
     from engine.surface_fields import MODELS, SETTINGS as inference, infer
     if version != '26.3':
@@ -276,6 +276,8 @@ def build(image_path, version, out, *, outlines=None, order_method=None, through
     defaults = json.loads(DEFAULTS.read_text())
     outlines = outlines or defaults['outlines']
     mask_first = outlines == 'mask-first'
+    if boundary is not None and (not mask_first or boundary not in ('regions-first','color-edges','depth-split')):
+        raise ValueError('Select a Regions First boundary method for a mask-first surface build.')
     if context_px is not None and (not mask_first or not isinstance(context_px, int) or context_px < 0):
         raise ValueError('Surface context requires Regions First and a nonnegative whole number of pixels.')
     if order_method is None and not mask_first:
@@ -291,6 +293,15 @@ def build(image_path, version, out, *, outlines=None, order_method=None, through
     methods = dict(outlines=outlines)
     if mask_first:
         from engine.surface_perimeter import DEFAULT_CONTEXT_PX, context_crop, masked_crop, with_outline
+        boundary = boundary or defaults['boundary']
+        boundary_settings = {}
+        if boundary=='color-edges':
+            from engine.surface_boundary_refine import SETTINGS as boundary_settings, refine
+            patches=refine(image,patches,version)
+        elif boundary=='depth-split':
+            from engine.surface_depth_split import SETTINGS as boundary_settings, split
+            patches=split(image,patches,fields['depth'],version)
+        methods['surface_boundary']=boundary
         context_px = DEFAULT_CONTEXT_PX if context_px is None else context_px
         patches = [with_outline(part) for part in patches]
         crop_dir = out/'surface-crops'
@@ -339,7 +350,8 @@ def build(image_path, version, out, *, outlines=None, order_method=None, through
         from engine.mask_first import SETTINGS as finder_settings
         manifest['surface_finder'] = dict(name='Surface Finder', method='Regions First',
                                           directions='MoGe-2', relative_depth='Depth Anything V2',
-                                          settings=finder_settings, outline='exact-support-perimeter')
+                                          settings=finder_settings, boundary=boundary, boundary_settings=boundary_settings,
+                                          outline='exact-support-perimeter')
         manifest['artifacts']['source_crops'] = 'surface-crops/'
         manifest['surface_finder']['context_crop'] = dict(margin_px=context_px, coordinates='source image pixels',
                                                          purpose='context only; support and counting input unchanged')

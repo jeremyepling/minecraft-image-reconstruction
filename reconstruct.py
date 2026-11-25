@@ -100,6 +100,8 @@ def main():
                    help='Replay an outline method from the visible-plane comparison')
     p.add_argument('--surface-context-px', type=int,
                    help='Include this many neighboring source pixels per side in Regions First context crops (default 8)')
+    p.add_argument('--surface-boundary', choices=['regions-first','color-edges','depth-split'],
+                   help='Choose how Surface Finder refines its preserved regions')
     p.add_argument('--surface-order',choices=['geometry','depth-anything'],
                    help='Select the relative depth ordering method for a surface build')
     p.add_argument('--block-counter', choices=['legacy-repeat','masked-repeat','atlas-repeat'],
@@ -133,7 +135,7 @@ def main():
 @image_only()
 def run_image_command(parser,args):
     if (args.command=='build' and args.through not in ('surfaces','counts')
-            and (args.surface_outlines is not None or args.surface_order is not None or args.surface_context_px is not None)):
+            and any(v is not None for v in (args.surface_outlines,args.surface_order,args.surface_context_px,args.surface_boundary))):
         parser.error('Choose --through surfaces or counts when selecting a surface method')
     if args.command=='build' and args.surface_context_px is not None and (
             args.surface_context_px < 0 or args.surface_outlines not in (None, 'mask-first')):
@@ -169,7 +171,7 @@ def run_image_command(parser,args):
             from engine.surface_model import build
             build(args.image,args.version,args.out,outlines=args.surface_outlines,order_method=args.surface_order,
                   through=args.through,counter=args.block_counter,atlas_path=args.atlas,material_match=args.material_match,
-                  context_px=args.surface_context_px)
+                  context_px=args.surface_context_px,boundary=args.surface_boundary)
     else:
         if not args.atlas:
             parser.error('An assembly build needs --atlas')

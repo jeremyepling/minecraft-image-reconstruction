@@ -1,6 +1,6 @@
 [CmdletBinding()]
 param([string] $Python, [string] $Out, [int] $Workers = 3,
-      [ValidateSet('surfaces', 'normals', 'saved', 'building-sheet', 'candidate', 'compare')] [string] $Round = 'surfaces',
+      [ValidateSet('surfaces', 'normals', 'saved', 'building-sheet', 'candidate', 'compare', 'perimeters')] [string] $Round = 'surfaces',
       [string] $Name = 'candidate', [string] $Outlines, [string] $Pitch, [string] $Order,
       [string] $Split, [string] $Fields, [string[]] $Runs)
 
@@ -26,8 +26,12 @@ try {
         'building-sheet' = 'benchmark.normal_building_sheet'
         candidate = 'benchmark.compare_surface_methods'
         compare = 'benchmark.compare_surface_methods'
+        perimeters = 'benchmark.perimeter_round'
     }[$Round]
     $imports = 'import numpy, PIL'
+    if ($Round -eq 'perimeters') {
+        $imports = "import sys,numpy,PIL; sys.exit(0 if (numpy.__version__,PIL.__version__)==('2.3.5','13.0.0') else 1)"
+    }
     $needsInference = $Round -eq 'normals'
     if ($Round -eq 'candidate' -and -not $Fields) {
         $defaults = Get-Content -LiteralPath 'engine/surface_defaults.json' -Raw | ConvertFrom-Json
@@ -52,6 +56,7 @@ try {
                 if ($LASTEXITCODE -ne 0) { throw 'Failed to prepare the pinned local model files.' }
             }
             $arguments = @('-m', $module)
+            if ($Round -eq 'perimeters' -and $Fields) { $arguments += @('--fields', $Fields) }
             if ($Round -in 'surfaces', 'normals') { $arguments += @('--workers', $Workers) }
             if ($Round -eq 'candidate') {
                 $arguments += @('run', '--name', $Name)

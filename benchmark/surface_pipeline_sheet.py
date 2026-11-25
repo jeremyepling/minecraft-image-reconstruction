@@ -121,7 +121,16 @@ def _row(page, row_y, example, atlas):
         status['context'] = dict(native_xyxy=list(bounds),tight_xyxy_local=list(tight),margin_px=margin)
 
     sample = sample_surface(image,part)
-    result = masked_count.count(sample,version=version)
+    method = example.get('counter','masked-repeat')
+    if method=='atlas-repeat':
+        result = atlas_count.count(sample,atlas,version=version) if sample is not None else dict(counts=[None,None],phase=[None,None])
+    elif method=='legacy-repeat':
+        from engine.legacy_count import count
+        result=count(sample,version=version)
+    elif method=='masked-repeat':
+        result=masked_count.count(sample,version=version)
+    else:
+        raise ValueError(f'Unknown Block Counter method {method}')
     q = None if sample is None else sample['quad']
     dims = dimensions(part,q,image.size,result['counts'])['blocks']
     ntiles = 0
@@ -145,7 +154,7 @@ def _row(page, row_y, example, atlas):
         text(draw,x[3],captions_y,f'{mask.mean():.0%} of straightened image sampled',16,fill=MUTED)
     for axis,word in enumerate(('Across','Down')):
         text(draw,x[4],captions_y+22*axis,word+'   '+_axis_status(dims[axis],result['phase'][axis]),16)
-    status['counter'] = dict(method=COUNT,chart_spans_blocks=result['counts'],phase_blocks=result['phase'],
+    status['counter'] = dict(method=method,chart_spans_blocks=result['counts'],phase_blocks=result['phase'],
                              whole_surface_blocks=dims,visible_grid_lines_uv=lines)
     if example.get('expected') is not None:
         across,down = example['expected']
@@ -172,9 +181,6 @@ def _row(page, row_y, example, atlas):
                                   texture=texture,ranked_ids=ranked['ranked_ids'])
     draw.line((MARGIN,row_y+ROW-12,page.width-MARGIN,row_y+ROW-12),fill=BORDER)
     return status
-
-
-COUNT = 'masked-repeat'
 
 
 def build(examples, atlas):
