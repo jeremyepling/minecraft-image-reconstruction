@@ -40,9 +40,12 @@ try {
             }
             $arguments = @('-m', $module)
             if ($Round -in 'surfaces', 'normals') { $arguments += @('--workers', $Workers) }
-            if ($Round -eq 'saved' -and $Out) { throw 'Saved scoring prints the per-building results to the terminal.' }
-            if ($Out) { $arguments += @('--out', $Out) }
-            & $exe.Source @arguments
+            if ($Round -eq 'saved' -and $Out) {
+                & $exe.Source @arguments | Tee-Object -FilePath $Out
+            } else {
+                if ($Out) { $arguments += @('--out', $Out) }
+                & $exe.Source @arguments
+            }
             if ($LASTEXITCODE -ne 0) { throw "The surface round exited with code $LASTEXITCODE" }
             return
         }

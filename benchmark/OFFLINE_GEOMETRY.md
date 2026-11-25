@@ -8,6 +8,10 @@ To score the existing predictions from disk, run this from the checkout. It read
 python -m benchmark.score_saved_planes
 ```
 
+On this PC, `.\Invoke-SurfaceRound.ps1 -Round saved` finds the installed Python and runs the same check. To score a new prediction, use `python -m benchmark.score_saved_planes --surfaces OUTPUT/surfaces.json`. Its build manifest identifies the screenshot. For a prediction without a manifest, also pass `--image PATH/TO/FROZEN.png`. This scores the visible outlines on that one image and reports the surfaces found, the ones missed and the extra outlines.
+
+To make the [eight-building sheet](reviews/normals-01/buildings-b.jpg) from the archived pictures, model colors and scores, use `.\Invoke-SurfaceRound.ps1 -Round building-sheet`. Its eight camera views stay fixed to the original review. The saved color previews are for display. Future methods can make their own predictions from the original screenshots.
+
 The saved map labels every fourth pixel in each direction. At the benchmark's 1440 × 900 resolution that gives a 360 × 225 grid. Zero is background. Every other number refers to a connected flat surface. Each surface has its direction, world plane, visible block corners, extent in the picture, and whether it meets the size threshold for scoring. The camera and individual block faces remain in the original fixture files. The map can be used for outline, block-spacing and depth comparisons.
 
 The ZIP contains a JSON file per screenshot, keyed by floor and frame ID. Its index records the generating code fingerprint and hashes for the original screenshot, camera, face labels, block states and derived map. A checksum mismatch on a known frame raises an error. For a new fixture without a saved reference, the scorer can still compute the surface map from its local labels.
