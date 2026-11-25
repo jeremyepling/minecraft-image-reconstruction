@@ -46,6 +46,8 @@ Dimensions are a separate **output and measurement concern** within `analyze`. T
 
 ### Research path for angled openings
 
+The user-facing diagnostic is `reconstruct.py inspect-openings IMAGE --out REVIEW`. It loads a fixed entrance policy, rectifies the facade, proposes opening outlines, then estimates depth from local texture scale. The JSON distinguishes a supported depth, a flush surface, an unresolved measurement and an extra outline for review. The review image labels each outline. The selection benchmark compares these decisions against known Minecraft worlds. The build command and the atlas matcher run independently of this diagnostic. [Selection rule, live results and limitations](benchmark/ENTRANCES.md)
+
 `python -m benchmark.oblique_recess --image IMAGE --out result.json` runs the pavement-based oblique rectification, proposes dark opening rims, projects alternative back edges, and checks the local wall texture to reject flush inlays. Back-corner experiments compare competing depth estimates on those same candidates. World geometry and recorded camera poses are used for scoring after prediction. These experiments have no call path into normal block placement. The frontal depth estimator in `remap` is wired into placement. [Frontal and oblique experiments](benchmark/RECESSES.md)
 
 ### Two ways to follow a run

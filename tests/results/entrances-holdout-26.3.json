@@ -1,0 +1,5928 @@
+{
+  "selected": "regions",
+  "metrics": {
+    "dark": {
+      "real": 14,
+      "candidates": 26,
+      "localized": 13,
+      "exact": 9,
+      "wrong_depth": 2,
+      "false_recess": 0,
+      "other_proposals": 13,
+      "unresolved": 3
+    },
+    "regions": {
+      "real": 14,
+      "candidates": 29,
+      "localized": 11,
+      "exact": 8,
+      "wrong_depth": 2,
+      "false_recess": 2,
+      "other_proposals": 18,
+      "unresolved": 4
+    },
+    "edges": {
+      "real": 14,
+      "candidates": 13,
+      "localized": 12,
+      "exact": 8,
+      "wrong_depth": 3,
+      "false_recess": 0,
+      "other_proposals": 1,
+      "unresolved": 3
+    },
+    "combined": {
+      "real": 14,
+      "candidates": 31,
+      "localized": 12,
+      "exact": 8,
+      "wrong_depth": 2,
+      "false_recess": 2,
+      "other_proposals": 19,
+      "unresolved": 4
+    },
+    "corroborated_additions": {
+      "real": 14,
+      "candidates": 26,
+      "localized": 13,
+      "exact": 9,
+      "wrong_depth": 2,
+      "false_recess": 0,
+      "other_proposals": 13,
+      "unresolved": 3
+    }
+  },
+  "views": {
+    "heldout-facade-oblique-left": {
+      "dark": {
+        "counts": {
+          "real": 7,
+          "candidates": 8,
+          "localized": 7,
+          "exact": 5,
+          "wrong_depth": 2,
+          "false_recess": 0,
+          "other_proposals": 1,
+          "unresolved": 0
+        },
+        "report": {
+          "policy": "dark",
+          "status": "candidates_evaluated",
+          "grid": [
+            26,
+            11
+          ],
+          "calibration": {
+            "horizon": 321.0,
+            "vps": [
+              194.42312411757155,
+              2176.1879296624306
+            ],
+            "focal": 865.2731954531365,
+            "height": 10.009717498173103
+          },
+          "candidates": [
+            {
+              "rim": [
+                [
+                  949.653,
+                  321.263
+                ],
+                [
+                  1005.067,
+                  321.251
+                ],
+                [
+                  1002.603,
+                  372.534
+                ],
+                [
+                  947.575,
+                  374.95
+                ]
+              ],
+              "local_spacing": [
+                {
+                  "ratio": 0.9949999999999999,
+                  "correlation": 0.9,
+                  "pairs": 3702
+                },
+                {
+                  "ratio": 1.0,
+                  "correlation": 0.871,
+                  "pairs": 4173
+                }
+              ],
+              "depth": 2,
+              "texture_score": 0.6715984714405703,
+              "score_margin": 0.2727884019800911,
+              "status": "depth_supported",
+              "reason": "distinct texture scale at the proposed back plane",
+              "target": "aperture-8",
+              "truth_depth": 3,
+              "rim_iou": 0.964
+            },
+            {
+              "rim": [
+                [
+                  386.676,
+                  360.693
+                ],
+                [
+                  465.006,
+                  358.956
+                ],
+                [
+                  468.197,
+                  432.72
+                ],
+                [
+                  391.035,
+                  437.768
+                ]
+              ],
+              "local_spacing": [
+                {
+                  "ratio": 1.0,
+                  "correlation": 0.97,
+                  "pairs": 5975
+                },
+                {
+                  "ratio": 1.0,
+                  "correlation": 0.944,
+                  "pairs": 5555
+                }
+              ],
+              "depth": 1,
+              "texture_score": 0.8926286987448926,
+              "score_margin": 0.24155415875449926,
+              "status": "depth_supported",
+              "reason": "distinct texture scale at the proposed back plane",
+              "target": "aperture-2",
+              "truth_depth": 1,
+              "rim_iou": 0.974
+            },
+            {
+              "rim": [
+                [
+                  719.972,
+                  353.3
+                ],
+                [
+                  844.03,
+                  350.548
+                ],
+                [
+                  842.818,
+                  408.216
+                ],
+                [
+                  719.973,
+                  416.252
+                ]
+              ],
+              "local_spacing": [
+                {
+                  "ratio": 1.0,
+                  "correlation": 0.94,
+                  "pairs": 9114
+                },
+                {
+                  "ratio": 1.0,
+                  "correlation": 0.941,
+                  "pairs": 7781
+                }
+              ],
+              "depth": 2,
+              "texture_score": 0.9315999139320481,
+              "score_margin": 0.26000630364077626,
+              "status": "depth_supported",
+              "reason": "distinct texture scale at the proposed back plane",
+              "target": "aperture-5",
+              "truth_depth": 2,
+              "rim_iou": 0.975
+            },
+            {
+              "rim": [
+                [
+                  540.044,
+                  462.823
+                ],
+                [
+                  664.561,
+                  452.029
+                ],
+                [
+                  665.462,
+                  546.34
+                ],
+                [
+                  543.206,
+                  564.576
+                ]
+              ],
+              "local_spacing": [
+                {
+                  "ratio": 1.0,
+                  "correlation": 0.961,
+                  "pairs": 8149
+                },
+                {
+                  "ratio": 1.0,
+                  "correlation": 0.965,
+                  "pairs": 7491
+                }
+              ],
+              "depth": 1,
+              "texture_score": 0.9519625513103608,
+              "score_margin": 0.47772251719056325,
+              "status": "depth_supported",
+              "reason": "distinct texture scale at the proposed back plane",
+              "target": "aperture-3",
+              "truth_depth": 1,
+              "rim_iou": 0.985
+            },
+            {
+              "rim": [
+                [
+                  842.221,
+                  436.63
+                ],
+                [
+                  885.56,
+                  432.873
+                ],
+                [
+                  882.503,
+                  540.349
+                ],
+                [
+                  839.89,
+                  547.574
+                ]
+              ],
+              "local_spacing": [
+                {
+                  "ratio": 1.0,
+                  "correlation": 0.818,
+                  "pairs": 7347
+                },
+                {
+                  "ratio": 1.0,
+                  "correlation": 0.82,
+                  "pairs": 7312
+                }
+              ],
+              "depth": 0,
+              "texture_score": 0.8920557625582397,
+              "score_margin": 0.6214391663939739,
+              "status": "flush_supported",
+              "reason": "texture repeat supports the facade plane",
+              "target": "aperture-6",
+              "truth_depth": 0,
+              "rim_iou": 0.986
+            },
+            {
+              "rim": [
+                [
+                  945.534,
+                  427.674
+                ],
+                [
+                  1000.181,
+                  422.938
+                ],
+                [
+                  993.158,
+                  569.095
+                ],
+                [
+                  939.625,
+                  580.321
+                ]
+              ],
+              "local_spacing": [
+                {
+                  "ratio": 0.9949999999999999,
+                  "correlation": 0.678,
+                  "pairs": 3738
+                },
+                {
+                  "ratio": 0.9949999999999999,
+                  "correlation": 0.648,
+                  "pairs": 5374
+                }
+              ],
+              "depth": 2,
+              "texture_score": 0.9462073355489454,
+              "score_margin": 0.6137690782318659,
+              "status": "depth_supported",
+              "reason": "distinct texture scale at the proposed back plane",
+              "target": "aperture-7",
+              "truth_depth": 2,
+              "rim_iou": 0.741
+            },
+            {
+              "rim": [
+                [
+                  354.668,
+                  517.227
+                ],
+                [
+                  471.309,
+                  504.662
+                ],
+                [
+                  477.308,
+                  643.339
+                ],
+                [
+                  364.067,
+                  664.825
+                ]
+              ],
+              "local_spacing": [
+                {
+                  "ratio": 1.0,
+                  "correlation": 0.917,
+                  "pairs": 4622
+                },
+                {
+                  "ratio": 1.0,
+                  "correlation": 0.968,
+                  "pairs": 4223
+                }
+              ],
+              "depth": 2,
+              "texture_score": 0.9661996120544369,
+              "score_margin": 0.3305046649638188,
+              "status": "depth_supported",
+              "reason": "distinct texture scale at the proposed back plane",
+              "target": "aperture-1",
+              "truth_depth": 2,
+              "rim_iou": 0.791
+            },
+            {
+              "rim": [
+                [
+                  693.075,
+                  511.658
+                ],
+                [
+                  745.913,
+                  504.865
+                ],
+                [
+                  745.389,
+                  621.055
+                ],
+                [
+                  693.639,
+                  631.907
+                ]
+              ],
+              "local_spacing": [
+                {
+                  "ratio": 1.0,
+                  "correlation": 0.96,
+                  "pairs": 5549
+                },
+                {
+                  "ratio": 1.0,
+                  "correlation": 0.954,
+                  "pairs": 4710
+                }
+              ],
+              "depth": 2,
+              "texture_score": 0.6455974031073302,
+              "score_margin": 0.3707479550515129,
+              "status": "depth_supported",
+              "reason": "distinct texture scale at the proposed back plane",
+              "target": "aperture-4",
+              "truth_depth": 3,
+              "rim_iou": 0.987
+            }
+          ]
+        }
+      },
+      "regions": {
+        "counts": {
+          "real": 7,
+          "candidates": 8,
+          "localized": 7,
+          "exact": 5,
+          "wrong_depth": 2,
+          "false_recess": 0,
+          "other_proposals": 1,
+          "unresolved": 0
+        },
+        "report": {
+          "policy": "regions",
+          "status": "candidates_evaluated",
+          "grid": [
+            26,
+            11
+          ],
+          "calibration": {
+            "horizon": 321.0,
+            "vps": [
+              194.42312411757155,
+              2176.1879296624306
+            ],
+            "focal": 865.2731954531365,
+            "height": 10.009717498173103
+          },
+          "candidates": [
+            {
+              "rim": [
+                [
+                  949.653,
+                  321.263
+                ],
+                [
+                  1005.067,
+                  321.251
+                ],
+                [
+                  1002.603,
+                  372.534
+                ],
+                [
+                  947.575,
+                  374.95
+                ]
+              ],
+              "local_spacing": [
+                {
+                  "ratio": 1.0,
+                  "correlation": 0.921,
+                  "pairs": 3576
+                },
+                {
+                  "ratio": 1.0,
+                  "correlation": 0.952,
+                  "pairs": 3798
+                }
+              ],
+              "depth": 2,
+              "texture_score": 0.671403905847942,
+              "score_margin": 0.2723337100904228,
+              "status": "depth_supported",
+              "reason": "distinct texture scale at the proposed back plane",
+              "target": "aperture-8",
+              "truth_depth": 3,
+              "rim_iou": 0.964
+            },
+            {
+              "rim": [
+                [
+                  386.676,
+                  360.693
+                ],
+                [
+                  465.006,
+                  358.956
+                ],
+                [
+                  468.197,
+                  432.72
+                ],
+                [
+                  391.035,
+                  437.768
+                ]
+              ],
+              "local_spacing": [
+                {
+                  "ratio": 1.0,
+                  "correlation": 0.97,
+                  "pairs": 5975
+                },
+                {
+                  "ratio": 1.0,
+                  "correlation": 0.944,
+                  "pairs": 5555
+                }
+              ],
+              "depth": 1,
+              "texture_score": 0.8926286987448926,
+              "score_margin": 0.24155415875449926,
+              "status": "depth_supported",
+              "reason": "distinct texture scale at the proposed back plane",
+              "target": "aperture-2",
+              "truth_depth": 1,
+              "rim_iou": 0.974
+            },
+            {
+              "rim": [
+                [
+                  719.972,
+                  353.3
+                ],
+                [
+                  844.03,
+                  350.548
+                ],
+                [
+                  842.818,
+                  408.216
+                ],
+                [
+                  719.973,
+                  416.252
+                ]
+              ],
+              "local_spacing": [
+                {
+                  "ratio": 1.0,
+                  "correlation": 0.94,
+                  "pairs": 9114
+                },
+                {
+                  "ratio": 1.0,
+                  "correlation": 0.941,
+                  "pairs": 7781
+                }
+              ],
+              "depth": 2,
+              "texture_score": 0.9315999139320481,
+              "score_margin": 0.26000630364077626,
+              "status": "depth_supported",
+              "reason": "distinct texture scale at the proposed back plane",
+              "target": "aperture-5",
+              "truth_depth": 2,
+              "rim_iou": 0.975
+            },
+            {
+              "rim": [
+                [
+                  540.044,
+                  462.823
+                ],
+                [
+                  664.561,
+                  452.029
+                ],
+                [
+                  665.462,
+                  546.34
+                ],
+                [
+                  543.206,
+                  564.576
+                ]
+              ],
+              "local_spacing": [
+                {
+                  "ratio": 1.0,
+                  "correlation": 0.961,
+                  "pairs": 8149
+                },
+                {
+                  "ratio": 1.0,
+                  "correlation": 0.965,
+                  "pairs": 7491
+                }
+              ],
+              "depth": 1,
+              "texture_score": 0.9519625513103608,
+              "score_margin": 0.47772251719056325,
+              "status": "depth_supported",
+              "reason": "distinct texture scale at the proposed back plane",
+              "target": "aperture-3",
+              "truth_depth": 1,
+              "rim_iou": 0.985
+            },
+            {
+              "rim": [
+                [
+                  842.221,
+                  436.63
+                ],
+                [
+                  885.56,
+                  432.873
+                ],
+                [
+                  882.503,
+                  540.349
+                ],
+                [
+                  839.89,
+                  547.574
+                ]
+              ],
+              "local_spacing": [
+                {
+                  "ratio": 1.0,
+                  "correlation": 0.951,
+                  "pairs": 6147
+                },
+                {
+                  "ratio": 1.0,
+                  "correlation": 0.943,
+                  "pairs": 6524
+                }
+              ],
+              "depth": 0,
+              "texture_score": 0.8920557625582397,
+              "score_margin": 0.6214391663939739,
+              "status": "flush_supported",
+              "reason": "texture repeat supports the facade plane",
+              "target": "aperture-6",
+              "truth_depth": 0,
+              "rim_iou": 0.986
+            },
+            {
+              "rim": [
+                [
+                  926.172,
+                  429.353
+                ],
+                [
+                  1000.181,
+                  422.938
+                ],
+                [
+                  993.158,
+                  569.095
+                ],
+                [
+                  920.687,
+                  584.293
+                ]
+              ],
+              "local_spacing": [
+                {
+                  "ratio": 0.9949999999999999,
+                  "correlation": 0.944,
+                  "pairs": 3706
+                },
+                {
+                  "ratio": 1.0,
+                  "correlation": 0.958,
+                  "pairs": 4955
+                }
+              ],
+              "depth": 2,
+              "texture_score": 0.9307165398397219,
+              "score_margin": 0.4739676323240347,
+              "status": "depth_supported",
+              "reason": "distinct texture scale at the proposed back plane",
+              "target": "aperture-7",
+              "truth_depth": 2,
+              "rim_iou": 0.988
+            },
+            {
+              "rim": [
+                [
+                  354.668,
+                  517.227
+                ],
+                [
+                  471.309,
+                  504.662
+                ],
+                [
+                  477.308,
+                  643.339
+                ],
+                [
+                  364.067,
+                  664.825
+                ]
+              ],
+              "local_spacing": [
+                {
+                  "ratio": 1.0,
+                  "correlation": 0.917,
+                  "pairs": 4622
+                },
+                {
+                  "ratio": 1.0,
+                  "correlation": 0.968,
+                  "pairs": 4223
+                }
+              ],
+              "depth": 2,
+              "texture_score": 0.9661996120544369,
+              "score_margin": 0.3305046649638188,
+              "status": "depth_supported",
+              "reason": "distinct texture scale at the proposed back plane",
+              "target": "aperture-1",
+              "truth_depth": 2,
+              "rim_iou": 0.791
+            },
+            {
+              "rim": [
+                [
+                  693.075,
+                  511.658
+                ],
+                [
+                  745.913,
+                  504.865
+                ],
+                [
+                  745.389,
+                  621.055
+                ],
+                [
+                  693.639,
+                  631.907
+                ]
+              ],
+              "local_spacing": [
+                {
+                  "ratio": 1.0,
+                  "correlation": 0.96,
+                  "pairs": 5549
+                },
+                {
+                  "ratio": 1.0,
+                  "correlation": 0.954,
+                  "pairs": 4710
+                }
+              ],
+              "depth": 2,
+              "texture_score": 0.6455974031073302,
+              "score_margin": 0.3707479550515129,
+              "status": "depth_supported",
+              "reason": "distinct texture scale at the proposed back plane",
+              "target": "aperture-4",
+              "truth_depth": 3,
+              "rim_iou": 0.987
+            }
+          ]
+        }
+      },
+      "edges": {
+        "counts": {
+          "real": 7,
+          "candidates": 6,
+          "localized": 6,
+          "exact": 4,
+          "wrong_depth": 2,
+          "false_recess": 0,
+          "other_proposals": 0,
+          "unresolved": 1
+        },
+        "report": {
+          "policy": "edges",
+          "status": "candidates_evaluated",
+          "grid": [
+            26,
+            11
+          ],
+          "calibration": {
+            "horizon": 321.0,
+            "vps": [
+              194.42312411757155,
+              2176.1879296624306
+            ],
+            "focal": 865.2731954531365,
+            "height": 10.009717498173103
+          },
+          "candidates": [
+            {
+              "rim": [
+                [
+                  949.115,
+                  321.263
+                ],
+                [
+                  1004.577,
+                  321.251
+                ],
+                [
+                  1002.15,
+                  371.849
+                ],
+                [
+                  947.07,
+                  374.234
+                ]
+              ],
+              "local_spacing": [
+                {
+                  "ratio": 1.0,
+                  "correlation": 0.907,
+                  "pairs": 3702
+                },
+                {
+                  "ratio": 1.0,
+                  "correlation": 0.868,
+                  "pairs": 4252
+                }
+              ],
+              "depth": 2,
+              "texture_score": 0.695247359277389,
+              "score_margin": 0.3013454787958079,
+              "status": "depth_supported",
+              "reason": "distinct texture scale at the proposed back plane",
+              "target": "aperture-8",
+              "truth_depth": 3,
+              "rim_iou": 0.945
+            },
+            {
+              "rim": [
+                [
+                  693.075,
+                  511.658
+                ],
+                [
+                  745.205,
+                  504.956
+                ],
+                [
+                  744.695,
+                  621.2
+                ],
+                [
+                  693.639,
+                  631.907
+                ]
+              ],
+              "local_spacing": [
+                {
+                  "ratio": 1.0,
+                  "correlation": 0.96,
+                  "pairs": 5636
+                },
+                {
+                  "ratio": 1.0,
+                  "correlation": 0.955,
+                  "pairs": 4822
+                }
+              ],
+              "depth": 2,
+              "texture_score": 0.6455974031073302,
+              "score_margin": 0.3707479550515129,
+              "status": "depth_supported",
+              "reason": "distinct texture scale at the proposed back plane",
+              "target": "aperture-4",
+              "truth_depth": 3,
+              "rim_iou": 0.973
+            },
+            {
+              "rim": [
+                [
+                  354.601,
+                  516.175
+                ],
+                [
+                  471.266,
+                  503.675
+                ],
+                [
+                  478.763,
+                  676.969
+                ],
+                [
+                  366.342,
+                  700.545
+                ]
+              ],
+              "local_spacing": [
+                {
+                  "ratio": 1.0,
+                  "correlation": 0.965,
+                  "pairs": 4252
+                },
+                {
+                  "ratio": 1.0,
+                  "correlation": 0.96,
+                  "pairs": 4288
+                }
+              ],
+              "depth": 2,
+              "texture_score": 0.9601807166740084,
+              "score_margin": 0.43586776724811316,
+              "status": "depth_supported",
+              "reason": "distinct texture scale at the proposed back plane",
+              "target": "aperture-1",
+              "truth_depth": 2,
+              "rim_iou": 0.984
+            },
+            {
+              "rim": [
+                [
+                  719.972,
+                  353.3
+                ],
+                [
+                  844.03,
+                  350.548
+                ],
+                [
+                  842.885,
+                  405.042
+                ],
+                [
+                  719.973,
+                  412.79
+                ]
+              ],
+              "local_spacing": [
+                {
+                  "ratio": 1.0,
+                  "correlation": 0.929,
+                  "pairs": 9390
+                },
+                {
+                  "ratio": 1.0,
+                  "correlation": 0.924,
+                  "pairs": 7992
+                }
+              ],
+              "depth": 2,
+              "texture_score": 0.926415286508742,
+              "score_margin": 0.24308393201016565,
+              "status": "depth_supported",
+              "reason": "distinct texture scale at the proposed back plane",
+              "target": "aperture-5",
+              "truth_depth": 2,
+              "rim_iou": 0.92
+            },
+            {
+              "rim": [
+                [
+                  540.044,
+                  462.823
+                ],
+                [
+                  663.762,
+                  452.099
+                ],
+                [
+                  664.66,
+                  544.738
+                ],
+                [
+                  543.149,
+                  562.724
+                ]
+              ],
+              "local_spacing": [
+                {
+                  "ratio": 1.0,
+                  "correlation": 0.963,
+                  "pairs": 8205
+                },
+                {
+                  "ratio": 1.0,
+                  "correlation": 0.964,
+                  "pairs": 7663
+                }
+              ],
+              "depth": 1,
+              "texture_score": 0.9518116941570443,
+              "score_margin": 0.459984366194625,
+              "status": "depth_supported",
+              "reason": "distinct texture scale at the proposed back plane",
+              "target": "aperture-3",
+              "truth_depth": 1,
+              "rim_iou": 0.96
+            },
+            {
+              "rim": [
+                [
+                  948.176,
+                  427.445
+                ],
+                [
+                  999.697,
+                  422.979
+                ],
+                [
+                  992.81,
+                  566.553
+                ],
+                [
+                  942.318,
+                  577.031
+                ]
+              ],
+              "local_spacing": [
+                {
+                  "ratio": 0.9949999999999999,
+                  "correlation": 0.621,
+                  "pairs": 3661
+                },
+                {
+                  "ratio": 0.9949999999999999,
+                  "correlation": 0.616,
+                  "pairs": 5239
+                }
+              ],
+              "depth": 2,
+              "texture_score": 0.9432525402743649,
+              "score_margin": 0.5917540735606925,
+              "status": "depth_supported",
+              "reason": "distinct texture scale at the proposed back plane",
+              "target": "aperture-7",
+              "truth_depth": 2,
+              "rim_iou": 0.691
+            }
+          ]
+        }
+      },
+      "combined": {
+        "counts": {
+          "real": 7,
+          "candidates": 8,
+          "localized": 7,
+          "exact": 5,
+          "wrong_depth": 2,
+          "false_recess": 0,
+          "other_proposals": 1,
+          "unresolved": 0
+        },
+        "report": {
+          "policy": "combined",
+          "status": "candidates_evaluated",
+          "grid": [
+            26,
+            11
+          ],
+          "calibration": {
+            "horizon": 321.0,
+            "vps": [
+              194.42312411757155,
+              2176.1879296624306
+            ],
+            "focal": 865.2731954531365,
+            "height": 10.009717498173103
+          },
+          "candidates": [
+            {
+              "rim": [
+                [
+                  949.653,
+                  321.263
+                ],
+                [
+                  1005.067,
+                  321.251
+                ],
+                [
+                  1002.603,
+                  372.534
+                ],
+                [
+                  947.575,
+                  374.95
+                ]
+              ],
+              "local_spacing": [
+                {
+                  "ratio": 1.0,
+                  "correlation": 0.921,
+                  "pairs": 3576
+                },
+                {
+                  "ratio": 1.0,
+                  "correlation": 0.952,
+                  "pairs": 3798
+                }
+              ],
+              "depth": 2,
+              "texture_score": 0.671403905847942,
+              "score_margin": 0.2723337100904228,
+              "status": "depth_supported",
+              "reason": "distinct texture scale at the proposed back plane",
+              "target": "aperture-8",
+              "truth_depth": 3,
+              "rim_iou": 0.964
+            },
+            {
+              "rim": [
+                [
+                  386.676,
+                  360.693
+                ],
+                [
+                  465.006,
+                  358.956
+                ],
+                [
+                  468.197,
+                  432.72
+                ],
+                [
+                  391.035,
+                  437.768
+                ]
+              ],
+              "local_spacing": [
+                {
+                  "ratio": 1.0,
+                  "correlation": 0.97,
+                  "pairs": 5975
+                },
+                {
+                  "ratio": 1.0,
+                  "correlation": 0.944,
+                  "pairs": 5555
+                }
+              ],
+              "depth": 1,
+              "texture_score": 0.8926286987448926,
+              "score_margin": 0.24155415875449926,
+              "status": "depth_supported",
+              "reason": "distinct texture scale at the proposed back plane",
+              "target": "aperture-2",
+              "truth_depth": 1,
+              "rim_iou": 0.974
+            },
+            {
+              "rim": [
+                [
+                  719.972,
+                  353.3
+                ],
+                [
+                  844.03,
+                  350.548
+                ],
+                [
+                  842.818,
+                  408.216
+                ],
+                [
+                  719.973,
+                  416.252
+                ]
+              ],
+              "local_spacing": [
+                {
+                  "ratio": 1.0,
+                  "correlation": 0.94,
+                  "pairs": 9114
+                },
+                {
+                  "ratio": 1.0,
+                  "correlation": 0.941,
+                  "pairs": 7781
+                }
+              ],
+              "depth": 2,
+              "texture_score": 0.9315999139320481,
+              "score_margin": 0.26000630364077626,
+              "status": "depth_supported",
+              "reason": "distinct texture scale at the proposed back plane",
+              "target": "aperture-5",
+              "truth_depth": 2,
+              "rim_iou": 0.975
+            },
+            {
+              "rim": [
+                [
+                  540.044,
+                  462.823
+                ],
+                [
+                  664.561,
+                  452.029
+                ],
+                [
+                  665.462,
+                  546.34
+                ],
+                [
+                  543.206,
+                  564.576
+                ]
+              ],
+              "local_spacing": [
+                {
+                  "ratio": 1.0,
+                  "correlation": 0.961,
+                  "pairs": 8149
+                },
+                {
+                  "ratio": 1.0,
+                  "correlation": 0.965,
+                  "pairs": 7491
+                }
+              ],
+              "depth": 1,
+              "texture_score": 0.9519625513103608,
+              "score_margin": 0.47772251719056325,
+              "status": "depth_supported",
+              "reason": "distinct texture scale at the proposed back plane",
+              "target": "aperture-3",
+              "truth_depth": 1,
+              "rim_iou": 0.985
+            },
+            {
+              "rim": [
+                [
+                  842.221,
+                  436.63
+                ],
+                [
+                  885.56,
+                  432.873
+                ],
+                [
+                  882.503,
+                  540.349
+                ],
+                [
+                  839.89,
+                  547.574
+                ]
+              ],
+              "local_spacing": [
+                {
+                  "ratio": 1.0,
+                  "correlation": 0.951,
+                  "pairs": 6147
+                },
+                {
+                  "ratio": 1.0,
+                  "correlation": 0.943,
+                  "pairs": 6524
+                }
+              ],
+              "depth": 0,
+              "texture_score": 0.8920557625582397,
+              "score_margin": 0.6214391663939739,
+              "status": "flush_supported",
+              "reason": "texture repeat supports the facade plane",
+              "target": "aperture-6",
+              "truth_depth": 0,
+              "rim_iou": 0.986
+            },
+            {
+              "rim": [
+                [
+                  926.172,
+                  429.353
+                ],
+                [
+                  1000.181,
+                  422.938
+                ],
+                [
+                  993.158,
+                  569.095
+                ],
+                [
+                  920.687,
+                  584.293
+                ]
+              ],
+              "local_spacing": [
+                {
+                  "ratio": 0.9949999999999999,
+                  "correlation": 0.944,
+                  "pairs": 3706
+                },
+                {
+                  "ratio": 1.0,
+                  "correlation": 0.958,
+                  "pairs": 4955
+                }
+              ],
+              "depth": 2,
+              "texture_score": 0.9307165398397219,
+              "score_margin": 0.4739676323240347,
+              "status": "depth_supported",
+              "reason": "distinct texture scale at the proposed back plane",
+              "target": "aperture-7",
+              "truth_depth": 2,
+              "rim_iou": 0.988
+            },
+            {
+              "rim": [
+                [
+                  354.668,
+                  517.227
+                ],
+                [
+                  471.309,
+                  504.662
+                ],
+                [
+                  477.308,
+                  643.339
+                ],
+                [
+                  364.067,
+                  664.825
+                ]
+              ],
+              "local_spacing": [
+                {
+                  "ratio": 1.0,
+                  "correlation": 0.917,
+                  "pairs": 4622
+                },
+                {
+                  "ratio": 1.0,
+                  "correlation": 0.968,
+                  "pairs": 4223
+                }
+              ],
+              "depth": 2,
+              "texture_score": 0.9661996120544369,
+              "score_margin": 0.3305046649638188,
+              "status": "depth_supported",
+              "reason": "distinct texture scale at the proposed back plane",
+              "target": "aperture-1",
+              "truth_depth": 2,
+              "rim_iou": 0.791
+            },
+            {
+              "rim": [
+                [
+                  693.075,
+                  511.658
+                ],
+                [
+                  745.913,
+                  504.865
+                ],
+                [
+                  745.389,
+                  621.055
+                ],
+                [
+                  693.639,
+                  631.907
+                ]
+              ],
+              "local_spacing": [
+                {
+                  "ratio": 1.0,
+                  "correlation": 0.96,
+                  "pairs": 5549
+                },
+                {
+                  "ratio": 1.0,
+                  "correlation": 0.954,
+                  "pairs": 4710
+                }
+              ],
+              "depth": 2,
+              "texture_score": 0.6455974031073302,
+              "score_margin": 0.3707479550515129,
+              "status": "depth_supported",
+              "reason": "distinct texture scale at the proposed back plane",
+              "target": "aperture-4",
+              "truth_depth": 3,
+              "rim_iou": 0.987
+            }
+          ]
+        }
+      },
+      "corroborated_additions": {
+        "counts": {
+          "real": 7,
+          "candidates": 8,
+          "localized": 7,
+          "exact": 5,
+          "wrong_depth": 2,
+          "false_recess": 0,
+          "other_proposals": 1,
+          "unresolved": 0
+        },
+        "report": {
+          "policy": "corroborated_additions",
+          "status": "candidates_evaluated",
+          "grid": [
+            26,
+            11
+          ],
+          "calibration": {
+            "horizon": 321.0,
+            "vps": [
+              194.42312411757155,
+              2176.1879296624306
+            ],
+            "focal": 865.2731954531365,
+            "height": 10.009717498173103
+          },
+          "candidates": [
+            {
+              "rim": [
+                [
+                  949.653,
+                  321.263
+                ],
+                [
+                  1005.067,
+                  321.251
+                ],
+                [
+                  1002.603,
+                  372.534
+                ],
+                [
+                  947.575,
+                  374.95
+                ]
+              ],
+              "local_spacing": [
+                {
+                  "ratio": 0.9949999999999999,
+                  "correlation": 0.9,
+                  "pairs": 3702
+                },
+                {
+                  "ratio": 1.0,
+                  "correlation": 0.871,
+                  "pairs": 4173
+                }
+              ],
+              "depth": 2,
+              "texture_score": 0.6715984714405703,
+              "score_margin": 0.2727884019800911,
+              "status": "depth_supported",
+              "reason": "distinct texture scale at the proposed back plane",
+              "target": "aperture-8",
+              "truth_depth": 3,
+              "rim_iou": 0.964
+            },
+            {
+              "rim": [
+                [
+                  386.676,
+                  360.693
+                ],
+                [
+                  465.006,
+                  358.956
+                ],
+                [
+                  468.197,
+                  432.72
+                ],
+                [
+                  391.035,
+                  437.768
+                ]
+              ],
+              "local_spacing": [
+                {
+                  "ratio": 1.0,
+                  "correlation": 0.97,
+                  "pairs": 5975
+                },
+                {
+                  "ratio": 1.0,
+                  "correlation": 0.944,
+                  "pairs": 5555
+                }
+              ],
+              "depth": 1,
+              "texture_score": 0.8926286987448926,
+              "score_margin": 0.24155415875449926,
+              "status": "depth_supported",
+              "reason": "distinct texture scale at the proposed back plane",
+              "target": "aperture-2",
+              "truth_depth": 1,
+              "rim_iou": 0.974
+            },
+            {
+              "rim": [
+                [
+                  719.972,
+                  353.3
+                ],
+                [
+                  844.03,
+                  350.548
+                ],
+                [
+                  842.818,
+                  408.216
+                ],
+                [
+                  719.973,
+                  416.252
+                ]
+              ],
+              "local_spacing": [
+                {
+                  "ratio": 1.0,
+                  "correlation": 0.94,
+                  "pairs": 9114
+                },
+                {
+                  "ratio": 1.0,
+                  "correlation": 0.941,
+                  "pairs": 7781
+                }
+              ],
+              "depth": 2,
+              "texture_score": 0.9315999139320481,
+              "score_margin": 0.26000630364077626,
+              "status": "depth_supported",
+              "reason": "distinct texture scale at the proposed back plane",
+              "target": "aperture-5",
+              "truth_depth": 2,
+              "rim_iou": 0.975
+            },
+            {
+              "rim": [
+                [
+                  540.044,
+                  462.823
+                ],
+                [
+                  664.561,
+                  452.029
+                ],
+                [
+                  665.462,
+                  546.34
+                ],
+                [
+                  543.206,
+                  564.576
+                ]
+              ],
+              "local_spacing": [
+                {
+                  "ratio": 1.0,
+                  "correlation": 0.961,
+                  "pairs": 8149
+                },
+                {
+                  "ratio": 1.0,
+                  "correlation": 0.965,
+                  "pairs": 7491
+                }
+              ],
+              "depth": 1,
+              "texture_score": 0.9519625513103608,
+              "score_margin": 0.47772251719056325,
+              "status": "depth_supported",
+              "reason": "distinct texture scale at the proposed back plane",
+              "target": "aperture-3",
+              "truth_depth": 1,
+              "rim_iou": 0.985
+            },
+            {
+              "rim": [
+                [
+                  842.221,
+                  436.63
+                ],
+                [
+                  885.56,
+                  432.873
+                ],
+                [
+                  882.503,
+                  540.349
+                ],
+                [
+                  839.89,
+                  547.574
+                ]
+              ],
+              "local_spacing": [
+                {
+                  "ratio": 1.0,
+                  "correlation": 0.818,
+                  "pairs": 7347
+                },
+                {
+                  "ratio": 1.0,
+                  "correlation": 0.82,
+                  "pairs": 7312
+                }
+              ],
+              "depth": 0,
+              "texture_score": 0.8920557625582397,
+              "score_margin": 0.6214391663939739,
+              "status": "flush_supported",
+              "reason": "texture repeat supports the facade plane",
+              "target": "aperture-6",
+              "truth_depth": 0,
+              "rim_iou": 0.986
+            },
+            {
+              "rim": [
+                [
+                  945.534,
+                  427.674
+                ],
+                [
+                  1000.181,
+                  422.938
+                ],
+                [
+                  993.158,
+                  569.095
+                ],
+                [
+                  939.625,
+                  580.321
+                ]
+              ],
+              "local_spacing": [
+                {
+                  "ratio": 0.9949999999999999,
+                  "correlation": 0.678,
+                  "pairs": 3738
+                },
+                {
+                  "ratio": 0.9949999999999999,
+                  "correlation": 0.648,
+                  "pairs": 5374
+                }
+              ],
+              "depth": 2,
+              "texture_score": 0.9462073355489454,
+              "score_margin": 0.6137690782318659,
+              "status": "depth_supported",
+              "reason": "distinct texture scale at the proposed back plane",
+              "target": "aperture-7",
+              "truth_depth": 2,
+              "rim_iou": 0.741
+            },
+            {
+              "rim": [
+                [
+                  354.668,
+                  517.227
+                ],
+                [
+                  471.309,
+                  504.662
+                ],
+                [
+                  477.308,
+                  643.339
+                ],
+                [
+                  364.067,
+                  664.825
+                ]
+              ],
+              "local_spacing": [
+                {
+                  "ratio": 1.0,
+                  "correlation": 0.917,
+                  "pairs": 4622
+                },
+                {
+                  "ratio": 1.0,
+                  "correlation": 0.968,
+                  "pairs": 4223
+                }
+              ],
+              "depth": 2,
+              "texture_score": 0.9661996120544369,
+              "score_margin": 0.3305046649638188,
+              "status": "depth_supported",
+              "reason": "distinct texture scale at the proposed back plane",
+              "target": "aperture-1",
+              "truth_depth": 2,
+              "rim_iou": 0.791
+            },
+            {
+              "rim": [
+                [
+                  693.075,
+                  511.658
+                ],
+                [
+                  745.913,
+                  504.865
+                ],
+                [
+                  745.389,
+                  621.055
+                ],
+                [
+                  693.639,
+                  631.907
+                ]
+              ],
+              "local_spacing": [
+                {
+                  "ratio": 1.0,
+                  "correlation": 0.96,
+                  "pairs": 5549
+                },
+                {
+                  "ratio": 1.0,
+                  "correlation": 0.954,
+                  "pairs": 4710
+                }
+              ],
+              "depth": 2,
+              "texture_score": 0.6455974031073302,
+              "score_margin": 0.3707479550515129,
+              "status": "depth_supported",
+              "reason": "distinct texture scale at the proposed back plane",
+              "target": "aperture-4",
+              "truth_depth": 3,
+              "rim_iou": 0.987
+            }
+          ]
+        }
+      }
+    },
+    "heldout-facade-oblique-right": {
+      "dark": {
+        "counts": {
+          "real": 7,
+          "candidates": 7,
+          "localized": 6,
+          "exact": 4,
+          "wrong_depth": 0,
+          "false_recess": 0,
+          "other_proposals": 1,
+          "unresolved": 3
+        },
+        "report": {
+          "policy": "dark",
+          "status": "candidates_evaluated",
+          "grid": [
+            25,
+            11
+          ],
+          "calibration": {
+            "horizon": 322.0,
+            "vps": [
+              -854.6076549865224,
+              1203.7769734308815
+            ],
+            "focal": 863.350986372563,
+            "height": 9.990214431112005
+          },
+          "candidates": [
+            {
+              "rim": [
+                [
+                  1055.23,
+                  321.603
+                ],
+                [
+                  935.509,
+                  321.628
+                ],
+                [
+                  932.79,
+                  396.732
+                ],
+                [
+                  1050.721,
+                  401.663
+                ]
+              ],
+              "local_spacing": [
+                {
+                  "ratio": 0.955,
+                  "correlation": 0.844,
+                  "pairs": 4920
+                },
+                {
+                  "ratio": 0.96,
+                  "correlation": 0.726,
+                  "pairs": 4350
+                }
+              ],
+              "depth": 3,
+              "texture_score": 0.8646860236627731,
+              "score_margin": 0.3786758827938737,
+              "status": "depth_supported",
+              "reason": "distinct texture scale at the proposed back plane",
+              "target": "aperture-8",
+              "truth_depth": 3,
+              "rim_iou": 0.835
+            },
+            {
+              "rim": [
+                [
+                  796.975,
+                  356.549
+                ],
+                [
+                  626.601,
+                  352.985
+                ],
+                [
+                  627.573,
+                  414.594
+                ],
+                [
+                  796.083,
+                  425.121
+                ]
+              ],
+              "local_spacing": [
+                {
+                  "ratio": 0.96,
+                  "correlation": 0.889,
+                  "pairs": 9239
+                },
+                {
+                  "ratio": 0.96,
+                  "correlation": 0.905,
+                  "pairs": 7444
+                }
+              ],
+              "depth": 2,
+              "texture_score": 0.71129131831087,
+              "score_margin": 0.2623949476312114,
+              "status": "depth_supported",
+              "reason": "distinct texture scale at the proposed back plane",
+              "target": "aperture-5",
+              "truth_depth": 2,
+              "rim_iou": 0.746
+            },
+            {
+              "rim": [
+                [
+                  467.486,
+                  349.657
+                ],
+                [
+                  428.116,
+                  348.833
+                ],
+                [
+                  430.75,
+                  402.298
+                ],
+                [
+                  469.834,
+                  404.74
+                ]
+              ],
+              "local_spacing": [
+                {
+                  "ratio": 0.96,
+                  "correlation": 0.792,
+                  "pairs": 4804
+                },
+                {
+                  "ratio": 0.96,
+                  "correlation": 0.836,
+                  "pairs": 5175
+                }
+              ],
+              "depth": 1,
+              "texture_score": 0.8337537682880712,
+              "score_margin": 0.527585780389233,
+              "status": "depth_supported",
+              "reason": "distinct texture scale at the proposed back plane",
+              "target": "aperture-2",
+              "truth_depth": 1,
+              "rim_iou": 0.882
+            },
+            {
+              "rim": [
+                [
+                  860.258,
+                  464.171
+                ],
+                [
+                  765.13,
+                  456.284
+                ],
+                [
+                  764.132,
+                  584.95
+                ],
+                [
+                  856.978,
+                  600.032
+                ]
+              ],
+              "local_spacing": [
+                {
+                  "ratio": 0.96,
+                  "correlation": 0.946,
+                  "pairs": 5120
+                },
+                {
+                  "ratio": 0.96,
+                  "correlation": 0.957,
+                  "pairs": 4457
+                }
+              ],
+              "depth": null,
+              "texture_score": 0.706105374779339,
+              "score_margin": 0.03506733283853025,
+              "status": "unresolved",
+              "reason": "depth hypotheses are too close or weak",
+              "target": "aperture-6",
+              "truth_depth": 0,
+              "rim_iou": 0.574
+            },
+            {
+              "rim": [
+                [
+                  603.374,
+                  442.874
+                ],
+                [
+                  512.364,
+                  435.329
+                ],
+                [
+                  515.295,
+                  517.732
+                ],
+                [
+                  605.128,
+                  530.567
+                ]
+              ],
+              "local_spacing": [
+                {
+                  "ratio": 0.96,
+                  "correlation": 0.921,
+                  "pairs": 6870
+                },
+                {
+                  "ratio": 0.96,
+                  "correlation": 0.942,
+                  "pairs": 5714
+                }
+              ],
+              "depth": 1,
+              "texture_score": 0.8431766489802366,
+              "score_margin": 0.29173075445434915,
+              "status": "depth_supported",
+              "reason": "distinct texture scale at the proposed back plane",
+              "target": "aperture-3",
+              "truth_depth": 1,
+              "rim_iou": 0.803
+            },
+            {
+              "rim": [
+                [
+                  472.139,
+                  458.808
+                ],
+                [
+                  396.741,
+                  451.033
+                ],
+                [
+                  403.614,
+                  574.827
+                ],
+                [
+                  477.719,
+                  589.717
+                ]
+              ],
+              "local_spacing": [
+                {
+                  "ratio": 0.96,
+                  "correlation": 0.911,
+                  "pairs": 2865
+                },
+                {
+                  "ratio": 0.96,
+                  "correlation": 0.948,
+                  "pairs": 2885
+                }
+              ],
+              "depth": null,
+              "texture_score": 0.45197708579086354,
+              "score_margin": 0.12250266277333427,
+              "status": "unresolved",
+              "reason": "depth hypotheses are too close or weak",
+              "target": "aperture-1",
+              "truth_depth": 2,
+              "rim_iou": 0.639
+            },
+            {
+              "rim": [
+                [
+                  680.425,
+                  510.971
+                ],
+                [
+                  628.994,
+                  504.64
+                ],
+                [
+                  630.371,
+                  591.96
+                ],
+                [
+                  681.045,
+                  601.172
+                ]
+              ],
+              "local_spacing": [
+                {
+                  "ratio": 0.96,
+                  "correlation": 0.922,
+                  "pairs": 4221
+                },
+                {
+                  "ratio": 0.96,
+                  "correlation": 0.938,
+                  "pairs": 3727
+                }
+              ],
+              "depth": null,
+              "texture_score": 0.6564544540817423,
+              "score_margin": 0.1668707216575902,
+              "status": "unresolved",
+              "reason": "interior repeat favors the front plane over proposed depth",
+              "target": "aperture-4",
+              "truth_depth": 3,
+              "rim_iou": 0.585
+            }
+          ]
+        }
+      },
+      "regions": {
+        "counts": {
+          "real": 7,
+          "candidates": 9,
+          "localized": 4,
+          "exact": 3,
+          "wrong_depth": 0,
+          "false_recess": 2,
+          "other_proposals": 5,
+          "unresolved": 4
+        },
+        "report": {
+          "policy": "regions",
+          "status": "candidates_evaluated",
+          "grid": [
+            25,
+            11
+          ],
+          "calibration": {
+            "horizon": 322.0,
+            "vps": [
+              -854.6076549865224,
+              1203.7769734308815
+            ],
+            "focal": 863.350986372563,
+            "height": 9.990214431112005
+          },
+          "candidates": [
+            {
+              "rim": [
+                [
+                  1055.23,
+                  321.603
+                ],
+                [
+                  935.509,
+                  321.628
+                ],
+                [
+                  932.79,
+                  396.732
+                ],
+                [
+                  1050.721,
+                  401.663
+                ]
+              ],
+              "local_spacing": [
+                {
+                  "ratio": 0.955,
+                  "correlation": 0.855,
+                  "pairs": 4827
+                },
+                {
+                  "ratio": 0.96,
+                  "correlation": 0.735,
+                  "pairs": 4246
+                }
+              ],
+              "depth": 3,
+              "texture_score": 0.8646860236627731,
+              "score_margin": 0.3786758827938737,
+              "status": "depth_supported",
+              "reason": "distinct texture scale at the proposed back plane",
+              "target": "aperture-8",
+              "truth_depth": 3,
+              "rim_iou": 0.835
+            },
+            {
+              "rim": [
+                [
+                  796.975,
+                  356.549
+                ],
+                [
+                  652.513,
+                  353.527
+                ],
+                [
+                  652.872,
+                  385.029
+                ],
+                [
+                  796.527,
+                  391.035
+                ]
+              ],
+              "local_spacing": [
+                {
+                  "ratio": 0.96,
+                  "correlation": 0.867,
+                  "pairs": 6526
+                },
+                {
+                  "ratio": 0.96,
+                  "correlation": 0.888,
+                  "pairs": 5181
+                }
+              ],
+              "depth": 2,
+              "texture_score": 0.7784201354195538,
+              "score_margin": 0.29105459957813745,
+              "status": "depth_supported",
+              "reason": "distinct texture scale at the proposed back plane",
+              "target": null,
+              "truth_depth": null,
+              "rim_iou": 0.0
+            },
+            {
+              "rim": [
+                [
+                  765.646,
+                  389.744
+                ],
+                [
+                  679.568,
+                  386.145
+                ],
+                [
+                  680.425,
+                  510.971
+                ],
+                [
+                  764.625,
+                  521.337
+                ]
+              ],
+              "local_spacing": [
+                {
+                  "ratio": 0.96,
+                  "correlation": 0.949,
+                  "pairs": 5435
+                },
+                {
+                  "ratio": 0.96,
+                  "correlation": 0.933,
+                  "pairs": 4055
+                }
+              ],
+              "depth": 0,
+              "texture_score": 0.7477011368535548,
+              "score_margin": 0.31813541196098605,
+              "status": "flush_supported",
+              "reason": "texture repeat supports the facade plane",
+              "target": null,
+              "truth_depth": null,
+              "rim_iou": 0.0
+            },
+            {
+              "rim": [
+                [
+                  967.258,
+                  473.042
+                ],
+                [
+                  894.501,
+                  467.01
+                ],
+                [
+                  888.333,
+                  672.226
+                ],
+                [
+                  958.169,
+                  686.259
+                ]
+              ],
+              "local_spacing": [
+                {
+                  "ratio": 0.95,
+                  "correlation": 0.554,
+                  "pairs": 4355
+                },
+                {
+                  "ratio": 0.95,
+                  "correlation": 0.388,
+                  "pairs": 4430
+                }
+              ],
+              "depth": 2,
+              "texture_score": 0.685220361790347,
+              "score_margin": 0.2703415679237329,
+              "status": "depth_supported",
+              "reason": "distinct texture scale at the proposed back plane",
+              "target": null,
+              "truth_depth": null,
+              "rim_iou": 0.0
+            },
+            {
+              "rim": [
+                [
+                  860.258,
+                  464.171
+                ],
+                [
+                  765.13,
+                  456.284
+                ],
+                [
+                  764.132,
+                  584.95
+                ],
+                [
+                  856.978,
+                  600.032
+                ]
+              ],
+              "local_spacing": [
+                {
+                  "ratio": 0.96,
+                  "correlation": 0.947,
+                  "pairs": 3453
+                },
+                {
+                  "ratio": 0.96,
+                  "correlation": 0.956,
+                  "pairs": 2769
+                }
+              ],
+              "depth": null,
+              "texture_score": 0.706105374779339,
+              "score_margin": 0.03506733283853025,
+              "status": "unresolved",
+              "reason": "depth hypotheses are too close or weak",
+              "target": "aperture-6",
+              "truth_depth": 0,
+              "rim_iou": 0.574
+            },
+            {
+              "rim": [
+                [
+                  603.374,
+                  442.874
+                ],
+                [
+                  512.364,
+                  435.329
+                ],
+                [
+                  515.295,
+                  517.732
+                ],
+                [
+                  605.128,
+                  530.567
+                ]
+              ],
+              "local_spacing": [
+                {
+                  "ratio": 0.96,
+                  "correlation": 0.912,
+                  "pairs": 7201
+                },
+                {
+                  "ratio": 0.96,
+                  "correlation": 0.942,
+                  "pairs": 5724
+                }
+              ],
+              "depth": 1,
+              "texture_score": 0.8431766489802366,
+              "score_margin": 0.29173075445434915,
+              "status": "depth_supported",
+              "reason": "distinct texture scale at the proposed back plane",
+              "target": "aperture-3",
+              "truth_depth": 1,
+              "rim_iou": 0.803
+            },
+            {
+              "rim": [
+                [
+                  472.139,
+                  458.808
+                ],
+                [
+                  414.775,
+                  452.893
+                ],
+                [
+                  420.063,
+                  553.727
+                ],
+                [
+                  476.623,
+                  564.009
+                ]
+              ],
+              "local_spacing": [
+                {
+                  "ratio": 0.96,
+                  "correlation": 0.91,
+                  "pairs": 2937
+                },
+                {
+                  "ratio": 0.96,
+                  "correlation": 0.901,
+                  "pairs": 3490
+                }
+              ],
+              "depth": 2,
+              "texture_score": 0.9761259056785356,
+              "score_margin": 0.7489941728041729,
+              "status": "depth_supported",
+              "reason": "distinct texture scale at the proposed back plane",
+              "target": "aperture-1",
+              "truth_depth": 2,
+              "rim_iou": 0.799
+            },
+            {
+              "rim": [
+                [
+                  680.425,
+                  510.971
+                ],
+                [
+                  628.994,
+                  504.64
+                ],
+                [
+                  630.371,
+                  591.96
+                ],
+                [
+                  681.045,
+                  601.172
+                ]
+              ],
+              "local_spacing": [
+                {
+                  "ratio": 0.955,
+                  "correlation": 0.913,
+                  "pairs": 2787
+                },
+                {
+                  "ratio": 0.96,
+                  "correlation": 0.931,
+                  "pairs": 2334
+                }
+              ],
+              "depth": null,
+              "texture_score": 0.6587920722314532,
+              "score_margin": 0.16854725020765987,
+              "status": "unresolved",
+              "reason": "interior repeat favors the front plane over proposed depth",
+              "target": "aperture-4",
+              "truth_depth": 3,
+              "rim_iou": 0.585
+            },
+            {
+              "rim": [
+                [
+                  582.935,
+                  583.336
+                ],
+                [
+                  476.623,
+                  564.009
+                ],
+                [
+                  477.719,
+                  589.717
+                ],
+                [
+                  583.601,
+                  610.993
+                ]
+              ],
+              "local_spacing": [
+                {
+                  "ratio": 0.96,
+                  "correlation": 0.91,
+                  "pairs": 2228
+                },
+                {
+                  "ratio": 0.96,
+                  "correlation": 0.923,
+                  "pairs": 1267
+                }
+              ],
+              "depth": 0,
+              "texture_score": 0.9170302578839586,
+              "score_margin": 0.23783309447839418,
+              "status": "flush_supported",
+              "reason": "texture repeat supports the facade plane",
+              "target": null,
+              "truth_depth": null,
+              "rim_iou": 0.0
+            }
+          ]
+        }
+      },
+      "edges": {
+        "counts": {
+          "real": 7,
+          "candidates": 6,
+          "localized": 6,
+          "exact": 4,
+          "wrong_depth": 1,
+          "false_recess": 0,
+          "other_proposals": 0,
+          "unresolved": 2
+        },
+        "report": {
+          "policy": "edges",
+          "status": "candidates_evaluated",
+          "grid": [
+            25,
+            11
+          ],
+          "calibration": {
+            "horizon": 322.0,
+            "vps": [
+              -854.6076549865224,
+              1203.7769734308815
+            ],
+            "focal": 863.350986372563,
+            "height": 9.990214431112005
+          },
+          "candidates": [
+            {
+              "rim": [
+                [
+                  1061.227,
+                  320.471
+                ],
+                [
+                  946.001,
+                  320.563
+                ],
+                [
+                  943.211,
+                  394.054
+                ],
+                [
+                  1056.748,
+                  398.604
+                ]
+              ],
+              "local_spacing": [
+                {
+                  "ratio": 0.955,
+                  "correlation": 0.849,
+                  "pairs": 4781
+                },
+                {
+                  "ratio": 0.96,
+                  "correlation": 0.729,
+                  "pairs": 4177
+                }
+              ],
+              "depth": 3,
+              "texture_score": 0.902181219274087,
+              "score_margin": 0.37792738130825065,
+              "status": "depth_supported",
+              "reason": "distinct texture scale at the proposed back plane",
+              "target": "aperture-8",
+              "truth_depth": 3,
+              "rim_iou": 0.969
+            },
+            {
+              "rim": [
+                [
+                  780.452,
+                  354.294
+                ],
+                [
+                  644.477,
+                  351.609
+                ],
+                [
+                  645.24,
+                  411.414
+                ],
+                [
+                  779.786,
+                  419.435
+                ]
+              ],
+              "local_spacing": [
+                {
+                  "ratio": 0.96,
+                  "correlation": 0.88,
+                  "pairs": 8284
+                },
+                {
+                  "ratio": 0.96,
+                  "correlation": 0.897,
+                  "pairs": 6549
+                }
+              ],
+              "depth": 2,
+              "texture_score": 0.93496181079217,
+              "score_margin": 0.4106898038669653,
+              "status": "depth_supported",
+              "reason": "distinct texture scale at the proposed back plane",
+              "target": "aperture-5",
+              "truth_depth": 2,
+              "rim_iou": 0.969
+            },
+            {
+              "rim": [
+                [
+                  670.805,
+                  501.35
+                ],
+                [
+                  622.668,
+                  495.69
+                ],
+                [
+                  624.591,
+                  609.823
+                ],
+                [
+                  671.808,
+                  619.01
+                ]
+              ],
+              "local_spacing": [
+                {
+                  "ratio": 0.96,
+                  "correlation": 0.953,
+                  "pairs": 4099
+                },
+                {
+                  "ratio": 0.96,
+                  "correlation": 0.946,
+                  "pairs": 3628
+                }
+              ],
+              "depth": 2,
+              "texture_score": 0.633077099491798,
+              "score_margin": 0.33875499395985514,
+              "status": "depth_supported",
+              "reason": "distinct texture scale at the proposed back plane",
+              "target": "aperture-4",
+              "truth_depth": 3,
+              "rim_iou": 0.958
+            },
+            {
+              "rim": [
+                [
+                  472.44,
+                  452.904
+                ],
+                [
+                  417.535,
+                  447.488
+                ],
+                [
+                  424.362,
+                  578.996
+                ],
+                [
+                  478.264,
+                  589.827
+                ]
+              ],
+              "local_spacing": [
+                {
+                  "ratio": 0.955,
+                  "correlation": 0.941,
+                  "pairs": 2828
+                },
+                {
+                  "ratio": 0.96,
+                  "correlation": 0.939,
+                  "pairs": 3647
+                }
+              ],
+              "depth": 2,
+              "texture_score": 0.8740236877269695,
+              "score_margin": 0.6731784826374579,
+              "status": "depth_supported",
+              "reason": "distinct texture scale at the proposed back plane",
+              "target": "aperture-1",
+              "truth_depth": 2,
+              "rim_iou": 0.904
+            },
+            {
+              "rim": [
+                [
+                  597.88,
+                  436.673
+                ],
+                [
+                  510.987,
+                  429.813
+                ],
+                [
+                  513.829,
+                  509.285
+                ],
+                [
+                  599.645,
+                  521.03
+                ]
+              ],
+              "local_spacing": [
+                {
+                  "ratio": 0.96,
+                  "correlation": 0.942,
+                  "pairs": 7014
+                },
+                {
+                  "ratio": 0.96,
+                  "correlation": 0.946,
+                  "pairs": 5853
+                }
+              ],
+              "depth": 1,
+              "texture_score": 0.9328981836002701,
+              "score_margin": 0.2758844531106429,
+              "status": "depth_supported",
+              "reason": "distinct texture scale at the proposed back plane",
+              "target": "aperture-3",
+              "truth_depth": 1,
+              "rim_iou": 0.969
+            },
+            {
+              "rim": [
+                [
+                  452.373,
+                  347.815
+                ],
+                [
+                  430.168,
+                  347.376
+                ],
+                [
+                  432.681,
+                  398.742
+                ],
+                [
+                  454.733,
+                  400.057
+                ]
+              ],
+              "local_spacing": [
+                {
+                  "ratio": 0.965,
+                  "correlation": 0.786,
+                  "pairs": 4143
+                },
+                {
+                  "ratio": 0.96,
+                  "correlation": 0.833,
+                  "pairs": 4996
+                }
+              ],
+              "depth": null,
+              "texture_score": 0.5804196911966153,
+              "score_margin": -0.4195803088033847,
+              "status": "unresolved",
+              "reason": "depth hypotheses are too close or weak",
+              "target": "aperture-2",
+              "truth_depth": 1,
+              "rim_iou": 0.58
+            }
+          ]
+        }
+      },
+      "combined": {
+        "counts": {
+          "real": 7,
+          "candidates": 10,
+          "localized": 5,
+          "exact": 3,
+          "wrong_depth": 0,
+          "false_recess": 2,
+          "other_proposals": 5,
+          "unresolved": 4
+        },
+        "report": {
+          "policy": "combined",
+          "status": "candidates_evaluated",
+          "grid": [
+            25,
+            11
+          ],
+          "calibration": {
+            "horizon": 322.0,
+            "vps": [
+              -854.6076549865224,
+              1203.7769734308815
+            ],
+            "focal": 863.350986372563,
+            "height": 9.990214431112005
+          },
+          "candidates": [
+            {
+              "rim": [
+                [
+                  1055.23,
+                  321.603
+                ],
+                [
+                  935.509,
+                  321.628
+                ],
+                [
+                  932.79,
+                  396.732
+                ],
+                [
+                  1050.721,
+                  401.663
+                ]
+              ],
+              "local_spacing": [
+                {
+                  "ratio": 0.955,
+                  "correlation": 0.855,
+                  "pairs": 4827
+                },
+                {
+                  "ratio": 0.96,
+                  "correlation": 0.735,
+                  "pairs": 4246
+                }
+              ],
+              "depth": 3,
+              "texture_score": 0.8646860236627731,
+              "score_margin": 0.3786758827938737,
+              "status": "depth_supported",
+              "reason": "distinct texture scale at the proposed back plane",
+              "target": "aperture-8",
+              "truth_depth": 3,
+              "rim_iou": 0.835
+            },
+            {
+              "rim": [
+                [
+                  796.975,
+                  356.549
+                ],
+                [
+                  652.513,
+                  353.527
+                ],
+                [
+                  652.872,
+                  385.029
+                ],
+                [
+                  796.527,
+                  391.035
+                ]
+              ],
+              "local_spacing": [
+                {
+                  "ratio": 0.96,
+                  "correlation": 0.867,
+                  "pairs": 6526
+                },
+                {
+                  "ratio": 0.96,
+                  "correlation": 0.888,
+                  "pairs": 5181
+                }
+              ],
+              "depth": 2,
+              "texture_score": 0.7784201354195538,
+              "score_margin": 0.29105459957813745,
+              "status": "depth_supported",
+              "reason": "distinct texture scale at the proposed back plane",
+              "target": null,
+              "truth_depth": null,
+              "rim_iou": 0.0
+            },
+            {
+              "rim": [
+                [
+                  765.646,
+                  389.744
+                ],
+                [
+                  679.568,
+                  386.145
+                ],
+                [
+                  680.425,
+                  510.971
+                ],
+                [
+                  764.625,
+                  521.337
+                ]
+              ],
+              "local_spacing": [
+                {
+                  "ratio": 0.96,
+                  "correlation": 0.949,
+                  "pairs": 5435
+                },
+                {
+                  "ratio": 0.96,
+                  "correlation": 0.933,
+                  "pairs": 4055
+                }
+              ],
+              "depth": 0,
+              "texture_score": 0.7477011368535548,
+              "score_margin": 0.31813541196098605,
+              "status": "flush_supported",
+              "reason": "texture repeat supports the facade plane",
+              "target": null,
+              "truth_depth": null,
+              "rim_iou": 0.0
+            },
+            {
+              "rim": [
+                [
+                  967.258,
+                  473.042
+                ],
+                [
+                  894.501,
+                  467.01
+                ],
+                [
+                  888.333,
+                  672.226
+                ],
+                [
+                  958.169,
+                  686.259
+                ]
+              ],
+              "local_spacing": [
+                {
+                  "ratio": 0.95,
+                  "correlation": 0.554,
+                  "pairs": 4355
+                },
+                {
+                  "ratio": 0.95,
+                  "correlation": 0.388,
+                  "pairs": 4430
+                }
+              ],
+              "depth": 2,
+              "texture_score": 0.685220361790347,
+              "score_margin": 0.2703415679237329,
+              "status": "depth_supported",
+              "reason": "distinct texture scale at the proposed back plane",
+              "target": null,
+              "truth_depth": null,
+              "rim_iou": 0.0
+            },
+            {
+              "rim": [
+                [
+                  860.258,
+                  464.171
+                ],
+                [
+                  765.13,
+                  456.284
+                ],
+                [
+                  764.132,
+                  584.95
+                ],
+                [
+                  856.978,
+                  600.032
+                ]
+              ],
+              "local_spacing": [
+                {
+                  "ratio": 0.96,
+                  "correlation": 0.947,
+                  "pairs": 3453
+                },
+                {
+                  "ratio": 0.96,
+                  "correlation": 0.956,
+                  "pairs": 2769
+                }
+              ],
+              "depth": null,
+              "texture_score": 0.706105374779339,
+              "score_margin": 0.03506733283853025,
+              "status": "unresolved",
+              "reason": "depth hypotheses are too close or weak",
+              "target": "aperture-6",
+              "truth_depth": 0,
+              "rim_iou": 0.574
+            },
+            {
+              "rim": [
+                [
+                  603.374,
+                  442.874
+                ],
+                [
+                  512.364,
+                  435.329
+                ],
+                [
+                  515.295,
+                  517.732
+                ],
+                [
+                  605.128,
+                  530.567
+                ]
+              ],
+              "local_spacing": [
+                {
+                  "ratio": 0.96,
+                  "correlation": 0.917,
+                  "pairs": 7161
+                },
+                {
+                  "ratio": 0.96,
+                  "correlation": 0.942,
+                  "pairs": 5724
+                }
+              ],
+              "depth": 1,
+              "texture_score": 0.8431766489802366,
+              "score_margin": 0.29173075445434915,
+              "status": "depth_supported",
+              "reason": "distinct texture scale at the proposed back plane",
+              "target": "aperture-3",
+              "truth_depth": 1,
+              "rim_iou": 0.803
+            },
+            {
+              "rim": [
+                [
+                  472.139,
+                  458.808
+                ],
+                [
+                  414.775,
+                  452.893
+                ],
+                [
+                  420.063,
+                  553.727
+                ],
+                [
+                  476.623,
+                  564.009
+                ]
+              ],
+              "local_spacing": [
+                {
+                  "ratio": 0.96,
+                  "correlation": 0.91,
+                  "pairs": 2937
+                },
+                {
+                  "ratio": 0.96,
+                  "correlation": 0.901,
+                  "pairs": 3490
+                }
+              ],
+              "depth": 2,
+              "texture_score": 0.9761259056785356,
+              "score_margin": 0.7489941728041729,
+              "status": "depth_supported",
+              "reason": "distinct texture scale at the proposed back plane",
+              "target": "aperture-1",
+              "truth_depth": 2,
+              "rim_iou": 0.799
+            },
+            {
+              "rim": [
+                [
+                  680.425,
+                  510.971
+                ],
+                [
+                  628.994,
+                  504.64
+                ],
+                [
+                  630.371,
+                  591.96
+                ],
+                [
+                  681.045,
+                  601.172
+                ]
+              ],
+              "local_spacing": [
+                {
+                  "ratio": 0.955,
+                  "correlation": 0.913,
+                  "pairs": 2787
+                },
+                {
+                  "ratio": 0.96,
+                  "correlation": 0.931,
+                  "pairs": 2334
+                }
+              ],
+              "depth": null,
+              "texture_score": 0.6587920722314532,
+              "score_margin": 0.16854725020765987,
+              "status": "unresolved",
+              "reason": "interior repeat favors the front plane over proposed depth",
+              "target": "aperture-4",
+              "truth_depth": 3,
+              "rim_iou": 0.585
+            },
+            {
+              "rim": [
+                [
+                  582.935,
+                  583.336
+                ],
+                [
+                  476.623,
+                  564.009
+                ],
+                [
+                  477.719,
+                  589.717
+                ],
+                [
+                  583.601,
+                  610.993
+                ]
+              ],
+              "local_spacing": [
+                {
+                  "ratio": 0.96,
+                  "correlation": 0.91,
+                  "pairs": 2228
+                },
+                {
+                  "ratio": 0.96,
+                  "correlation": 0.923,
+                  "pairs": 1267
+                }
+              ],
+              "depth": 0,
+              "texture_score": 0.9170302578839586,
+              "score_margin": 0.23783309447839418,
+              "status": "flush_supported",
+              "reason": "texture repeat supports the facade plane",
+              "target": null,
+              "truth_depth": null,
+              "rim_iou": 0.0
+            },
+            {
+              "rim": [
+                [
+                  452.373,
+                  347.815
+                ],
+                [
+                  430.168,
+                  347.376
+                ],
+                [
+                  432.681,
+                  398.742
+                ],
+                [
+                  454.733,
+                  400.057
+                ]
+              ],
+              "local_spacing": [
+                {
+                  "ratio": 0.965,
+                  "correlation": 0.777,
+                  "pairs": 4321
+                },
+                {
+                  "ratio": 0.96,
+                  "correlation": 0.837,
+                  "pairs": 5103
+                }
+              ],
+              "depth": null,
+              "texture_score": 0.5804196911966153,
+              "score_margin": -0.4195803088033847,
+              "status": "unresolved",
+              "reason": "depth hypotheses are too close or weak",
+              "target": "aperture-2",
+              "truth_depth": 1,
+              "rim_iou": 0.58
+            }
+          ]
+        }
+      },
+      "corroborated_additions": {
+        "counts": {
+          "real": 7,
+          "candidates": 7,
+          "localized": 6,
+          "exact": 4,
+          "wrong_depth": 0,
+          "false_recess": 0,
+          "other_proposals": 1,
+          "unresolved": 3
+        },
+        "report": {
+          "policy": "corroborated_additions",
+          "status": "candidates_evaluated",
+          "grid": [
+            25,
+            11
+          ],
+          "calibration": {
+            "horizon": 322.0,
+            "vps": [
+              -854.6076549865224,
+              1203.7769734308815
+            ],
+            "focal": 863.350986372563,
+            "height": 9.990214431112005
+          },
+          "candidates": [
+            {
+              "rim": [
+                [
+                  1055.23,
+                  321.603
+                ],
+                [
+                  935.509,
+                  321.628
+                ],
+                [
+                  932.79,
+                  396.732
+                ],
+                [
+                  1050.721,
+                  401.663
+                ]
+              ],
+              "local_spacing": [
+                {
+                  "ratio": 0.955,
+                  "correlation": 0.844,
+                  "pairs": 4920
+                },
+                {
+                  "ratio": 0.96,
+                  "correlation": 0.726,
+                  "pairs": 4350
+                }
+              ],
+              "depth": 3,
+              "texture_score": 0.8646860236627731,
+              "score_margin": 0.3786758827938737,
+              "status": "depth_supported",
+              "reason": "distinct texture scale at the proposed back plane",
+              "target": "aperture-8",
+              "truth_depth": 3,
+              "rim_iou": 0.835
+            },
+            {
+              "rim": [
+                [
+                  796.975,
+                  356.549
+                ],
+                [
+                  626.601,
+                  352.985
+                ],
+                [
+                  627.573,
+                  414.594
+                ],
+                [
+                  796.083,
+                  425.121
+                ]
+              ],
+              "local_spacing": [
+                {
+                  "ratio": 0.96,
+                  "correlation": 0.889,
+                  "pairs": 9239
+                },
+                {
+                  "ratio": 0.96,
+                  "correlation": 0.905,
+                  "pairs": 7444
+                }
+              ],
+              "depth": 2,
+              "texture_score": 0.71129131831087,
+              "score_margin": 0.2623949476312114,
+              "status": "depth_supported",
+              "reason": "distinct texture scale at the proposed back plane",
+              "target": "aperture-5",
+              "truth_depth": 2,
+              "rim_iou": 0.746
+            },
+            {
+              "rim": [
+                [
+                  467.486,
+                  349.657
+                ],
+                [
+                  428.116,
+                  348.833
+                ],
+                [
+                  430.75,
+                  402.298
+                ],
+                [
+                  469.834,
+                  404.74
+                ]
+              ],
+              "local_spacing": [
+                {
+                  "ratio": 0.96,
+                  "correlation": 0.792,
+                  "pairs": 4804
+                },
+                {
+                  "ratio": 0.96,
+                  "correlation": 0.836,
+                  "pairs": 5175
+                }
+              ],
+              "depth": 1,
+              "texture_score": 0.8337537682880712,
+              "score_margin": 0.527585780389233,
+              "status": "depth_supported",
+              "reason": "distinct texture scale at the proposed back plane",
+              "target": "aperture-2",
+              "truth_depth": 1,
+              "rim_iou": 0.882
+            },
+            {
+              "rim": [
+                [
+                  860.258,
+                  464.171
+                ],
+                [
+                  765.13,
+                  456.284
+                ],
+                [
+                  764.132,
+                  584.95
+                ],
+                [
+                  856.978,
+                  600.032
+                ]
+              ],
+              "local_spacing": [
+                {
+                  "ratio": 0.96,
+                  "correlation": 0.946,
+                  "pairs": 5120
+                },
+                {
+                  "ratio": 0.96,
+                  "correlation": 0.957,
+                  "pairs": 4457
+                }
+              ],
+              "depth": null,
+              "texture_score": 0.706105374779339,
+              "score_margin": 0.03506733283853025,
+              "status": "unresolved",
+              "reason": "depth hypotheses are too close or weak",
+              "target": "aperture-6",
+              "truth_depth": 0,
+              "rim_iou": 0.574
+            },
+            {
+              "rim": [
+                [
+                  603.374,
+                  442.874
+                ],
+                [
+                  512.364,
+                  435.329
+                ],
+                [
+                  515.295,
+                  517.732
+                ],
+                [
+                  605.128,
+                  530.567
+                ]
+              ],
+              "local_spacing": [
+                {
+                  "ratio": 0.96,
+                  "correlation": 0.921,
+                  "pairs": 6870
+                },
+                {
+                  "ratio": 0.96,
+                  "correlation": 0.942,
+                  "pairs": 5714
+                }
+              ],
+              "depth": 1,
+              "texture_score": 0.8431766489802366,
+              "score_margin": 0.29173075445434915,
+              "status": "depth_supported",
+              "reason": "distinct texture scale at the proposed back plane",
+              "target": "aperture-3",
+              "truth_depth": 1,
+              "rim_iou": 0.803
+            },
+            {
+              "rim": [
+                [
+                  472.139,
+                  458.808
+                ],
+                [
+                  396.741,
+                  451.033
+                ],
+                [
+                  403.614,
+                  574.827
+                ],
+                [
+                  477.719,
+                  589.717
+                ]
+              ],
+              "local_spacing": [
+                {
+                  "ratio": 0.96,
+                  "correlation": 0.911,
+                  "pairs": 2865
+                },
+                {
+                  "ratio": 0.96,
+                  "correlation": 0.948,
+                  "pairs": 2885
+                }
+              ],
+              "depth": null,
+              "texture_score": 0.45197708579086354,
+              "score_margin": 0.12250266277333427,
+              "status": "unresolved",
+              "reason": "depth hypotheses are too close or weak",
+              "target": "aperture-1",
+              "truth_depth": 2,
+              "rim_iou": 0.639
+            },
+            {
+              "rim": [
+                [
+                  680.425,
+                  510.971
+                ],
+                [
+                  628.994,
+                  504.64
+                ],
+                [
+                  630.371,
+                  591.96
+                ],
+                [
+                  681.045,
+                  601.172
+                ]
+              ],
+              "local_spacing": [
+                {
+                  "ratio": 0.96,
+                  "correlation": 0.922,
+                  "pairs": 4221
+                },
+                {
+                  "ratio": 0.96,
+                  "correlation": 0.938,
+                  "pairs": 3727
+                }
+              ],
+              "depth": null,
+              "texture_score": 0.6564544540817423,
+              "score_margin": 0.1668707216575902,
+              "status": "unresolved",
+              "reason": "interior repeat favors the front plane over proposed depth",
+              "target": "aperture-4",
+              "truth_depth": 3,
+              "rim_iou": 0.585
+            }
+          ]
+        }
+      }
+    },
+    "dark-inlay-oblique-left": {
+      "dark": {
+        "counts": {
+          "real": 0,
+          "candidates": 6,
+          "localized": 0,
+          "exact": 0,
+          "wrong_depth": 0,
+          "false_recess": 0,
+          "other_proposals": 6,
+          "unresolved": 0
+        },
+        "report": {
+          "policy": "dark",
+          "status": "candidates_evaluated",
+          "grid": [
+            23,
+            8
+          ],
+          "calibration": {
+            "horizon": 321.0,
+            "vps": [
+              193.24449697148782,
+              2175.063954582867
+            ],
+            "focal": 865.9225977735853,
+            "height": 8.511907592351044
+          },
+          "candidates": [
+            {
+              "rim": [
+                [
+                  550.7,
+                  413.908
+                ],
+                [
+                  649.308,
+                  408.268
+                ],
+                [
+                  650.527,
+                  509.192
+                ],
+                [
+                  553.803,
+                  521.131
+                ]
+              ],
+              "local_spacing": [
+                {
+                  "ratio": 0.955,
+                  "correlation": 0.962,
+                  "pairs": 5204
+                },
+                {
+                  "ratio": 0.955,
+                  "correlation": 0.918,
+                  "pairs": 3964
+                }
+              ],
+              "depth": 0,
+              "texture_score": 0.843715271986371,
+              "score_margin": 0.3534237996115247,
+              "status": "flush_supported",
+              "reason": "texture repeat supports the facade plane",
+              "target": null,
+              "truth_depth": null,
+              "rim_iou": 0.0
+            },
+            {
+              "rim": [
+                [
+                  763.558,
+                  401.733
+                ],
+                [
+                  838.613,
+                  397.44
+                ],
+                [
+                  836.818,
+                  486.195
+                ],
+                [
+                  762.862,
+                  495.325
+                ]
+              ],
+              "local_spacing": [
+                {
+                  "ratio": 0.955,
+                  "correlation": 0.949,
+                  "pairs": 5204
+                },
+                {
+                  "ratio": 0.955,
+                  "correlation": 0.881,
+                  "pairs": 3981
+                }
+              ],
+              "depth": 0,
+              "texture_score": 0.8099120665837931,
+              "score_margin": 0.06674989575391221,
+              "status": "flush_supported",
+              "reason": "texture repeat supports the facade plane",
+              "target": null,
+              "truth_depth": null,
+              "rim_iou": 0.0
+            },
+            {
+              "rim": [
+                [
+                  947.412,
+                  391.217
+                ],
+                [
+                  1004.584,
+                  387.947
+                ],
+                [
+                  1000.806,
+                  465.953
+                ],
+                [
+                  944.247,
+                  472.934
+                ]
+              ],
+              "local_spacing": [
+                {
+                  "ratio": 0.955,
+                  "correlation": 0.903,
+                  "pairs": 4130
+                },
+                {
+                  "ratio": 0.955,
+                  "correlation": 0.88,
+                  "pairs": 4172
+                }
+              ],
+              "depth": 0,
+              "texture_score": 0.8418765288210925,
+              "score_margin": 0.29023851976940895,
+              "status": "flush_supported",
+              "reason": "texture repeat supports the facade plane",
+              "target": null,
+              "truth_depth": null,
+              "rim_iou": 0.0
+            },
+            {
+              "rim": [
+                [
+                  399.706,
+                  462.182
+                ],
+                [
+                  516.232,
+                  452.916
+                ],
+                [
+                  522.475,
+                  630.931
+                ],
+                [
+                  410.187,
+                  651.989
+                ]
+              ],
+              "local_spacing": [
+                {
+                  "ratio": 0.955,
+                  "correlation": 0.94,
+                  "pairs": 3504
+                },
+                {
+                  "ratio": 0.955,
+                  "correlation": 0.923,
+                  "pairs": 2468
+                }
+              ],
+              "depth": 0,
+              "texture_score": 0.8507311979380218,
+              "score_margin": 0.4230479943620058,
+              "status": "flush_supported",
+              "reason": "texture repeat supports the facade plane",
+              "target": null,
+              "truth_depth": null,
+              "rim_iou": 0.0
+            },
+            {
+              "rim": [
+                [
+                  649.719,
+                  442.3
+                ],
+                [
+                  763.323,
+                  433.266
+                ],
+                [
+                  762.188,
+                  585.974
+                ],
+                [
+                  651.704,
+                  606.695
+                ]
+              ],
+              "local_spacing": [
+                {
+                  "ratio": 0.955,
+                  "correlation": 0.952,
+                  "pairs": 5149
+                },
+                {
+                  "ratio": 0.955,
+                  "correlation": 0.938,
+                  "pairs": 2807
+                }
+              ],
+              "depth": 0,
+              "texture_score": 0.7794482943062653,
+              "score_margin": 0.48425756288175403,
+              "status": "flush_supported",
+              "reason": "texture repeat supports the facade plane",
+              "target": null,
+              "truth_depth": null,
+              "rim_iou": 0.0
+            },
+            {
+              "rim": [
+                [
+                  861.178,
+                  425.484
+                ],
+                [
+                  926.107,
+                  420.321
+                ],
+                [
+                  921.316,
+                  556.131
+                ],
+                [
+                  857.73,
+                  568.056
+                ]
+              ],
+              "local_spacing": [
+                {
+                  "ratio": 0.955,
+                  "correlation": 0.929,
+                  "pairs": 5126
+                },
+                {
+                  "ratio": 0.955,
+                  "correlation": 0.905,
+                  "pairs": 4077
+                }
+              ],
+              "depth": 0,
+              "texture_score": 0.8186066780100936,
+              "score_margin": 0.5084977942379734,
+              "status": "flush_supported",
+              "reason": "texture repeat supports the facade plane",
+              "target": null,
+              "truth_depth": null,
+              "rim_iou": 0.0
+            }
+          ]
+        }
+      },
+      "regions": {
+        "counts": {
+          "real": 0,
+          "candidates": 6,
+          "localized": 0,
+          "exact": 0,
+          "wrong_depth": 0,
+          "false_recess": 0,
+          "other_proposals": 6,
+          "unresolved": 0
+        },
+        "report": {
+          "policy": "regions",
+          "status": "candidates_evaluated",
+          "grid": [
+            23,
+            8
+          ],
+          "calibration": {
+            "horizon": 321.0,
+            "vps": [
+              193.24449697148782,
+              2175.063954582867
+            ],
+            "focal": 865.9225977735853,
+            "height": 8.511907592351044
+          },
+          "candidates": [
+            {
+              "rim": [
+                [
+                  550.7,
+                  413.908
+                ],
+                [
+                  649.308,
+                  408.268
+                ],
+                [
+                  650.527,
+                  509.192
+                ],
+                [
+                  553.803,
+                  521.131
+                ]
+              ],
+              "local_spacing": [
+                {
+                  "ratio": 0.955,
+                  "correlation": 0.962,
+                  "pairs": 5204
+                },
+                {
+                  "ratio": 0.955,
+                  "correlation": 0.918,
+                  "pairs": 3964
+                }
+              ],
+              "depth": 0,
+              "texture_score": 0.843715271986371,
+              "score_margin": 0.3534237996115247,
+              "status": "flush_supported",
+              "reason": "texture repeat supports the facade plane",
+              "target": null,
+              "truth_depth": null,
+              "rim_iou": 0.0
+            },
+            {
+              "rim": [
+                [
+                  763.558,
+                  401.733
+                ],
+                [
+                  838.613,
+                  397.44
+                ],
+                [
+                  836.818,
+                  486.195
+                ],
+                [
+                  762.862,
+                  495.325
+                ]
+              ],
+              "local_spacing": [
+                {
+                  "ratio": 0.955,
+                  "correlation": 0.947,
+                  "pairs": 5370
+                },
+                {
+                  "ratio": 0.955,
+                  "correlation": 0.87,
+                  "pairs": 4355
+                }
+              ],
+              "depth": 0,
+              "texture_score": 0.8099120665837931,
+              "score_margin": 0.06674989575391221,
+              "status": "flush_supported",
+              "reason": "texture repeat supports the facade plane",
+              "target": null,
+              "truth_depth": null,
+              "rim_iou": 0.0
+            },
+            {
+              "rim": [
+                [
+                  947.412,
+                  391.217
+                ],
+                [
+                  1004.584,
+                  387.947
+                ],
+                [
+                  997.126,
+                  541.913
+                ],
+                [
+                  941.169,
+                  552.408
+                ]
+              ],
+              "local_spacing": [
+                {
+                  "ratio": 0.955,
+                  "correlation": 0.892,
+                  "pairs": 2338
+                },
+                {
+                  "ratio": 0.955,
+                  "correlation": 0.877,
+                  "pairs": 3098
+                }
+              ],
+              "depth": 0,
+              "texture_score": 0.7758083658498474,
+              "score_margin": 0.338931425607559,
+              "status": "flush_supported",
+              "reason": "texture repeat supports the facade plane",
+              "target": null,
+              "truth_depth": null,
+              "rim_iou": 0.0
+            },
+            {
+              "rim": [
+                [
+                  399.706,
+                  462.182
+                ],
+                [
+                  516.232,
+                  452.916
+                ],
+                [
+                  522.475,
+                  630.931
+                ],
+                [
+                  410.187,
+                  651.989
+                ]
+              ],
+              "local_spacing": [
+                {
+                  "ratio": 0.955,
+                  "correlation": 0.94,
+                  "pairs": 3504
+                },
+                {
+                  "ratio": 0.955,
+                  "correlation": 0.923,
+                  "pairs": 2468
+                }
+              ],
+              "depth": 0,
+              "texture_score": 0.8507311979380218,
+              "score_margin": 0.4230479943620058,
+              "status": "flush_supported",
+              "reason": "texture repeat supports the facade plane",
+              "target": null,
+              "truth_depth": null,
+              "rim_iou": 0.0
+            },
+            {
+              "rim": [
+                [
+                  649.719,
+                  442.3
+                ],
+                [
+                  736.539,
+                  435.396
+                ],
+                [
+                  736.098,
+                  590.867
+                ],
+                [
+                  651.704,
+                  606.695
+                ]
+              ],
+              "local_spacing": [
+                {
+                  "ratio": 0.955,
+                  "correlation": 0.937,
+                  "pairs": 4560
+                },
+                {
+                  "ratio": 0.955,
+                  "correlation": 0.919,
+                  "pairs": 2822
+                }
+              ],
+              "depth": 0,
+              "texture_score": 0.7937698067431445,
+              "score_margin": 0.15046096887171445,
+              "status": "flush_supported",
+              "reason": "texture repeat supports the facade plane",
+              "target": null,
+              "truth_depth": null,
+              "rim_iou": 0.0
+            },
+            {
+              "rim": [
+                [
+                  861.178,
+                  425.484
+                ],
+                [
+                  926.107,
+                  420.321
+                ],
+                [
+                  921.316,
+                  556.131
+                ],
+                [
+                  857.73,
+                  568.056
+                ]
+              ],
+              "local_spacing": [
+                {
+                  "ratio": 0.955,
+                  "correlation": 0.939,
+                  "pairs": 3784
+                },
+                {
+                  "ratio": 0.955,
+                  "correlation": 0.904,
+                  "pairs": 3537
+                }
+              ],
+              "depth": 0,
+              "texture_score": 0.8186066780100936,
+              "score_margin": 0.5084977942379734,
+              "status": "flush_supported",
+              "reason": "texture repeat supports the facade plane",
+              "target": null,
+              "truth_depth": null,
+              "rim_iou": 0.0
+            }
+          ]
+        }
+      },
+      "edges": {
+        "counts": {
+          "real": 0,
+          "candidates": 0,
+          "localized": 0,
+          "exact": 0,
+          "wrong_depth": 0,
+          "false_recess": 0,
+          "other_proposals": 0,
+          "unresolved": 0
+        },
+        "report": {
+          "policy": "edges",
+          "status": "no_candidates",
+          "grid": [
+            23,
+            8
+          ],
+          "calibration": {
+            "horizon": 321.0,
+            "vps": [
+              193.24449697148782,
+              2175.063954582867
+            ],
+            "focal": 865.9225977735853,
+            "height": 8.511907592351044
+          },
+          "candidates": []
+        }
+      },
+      "combined": {
+        "counts": {
+          "real": 0,
+          "candidates": 6,
+          "localized": 0,
+          "exact": 0,
+          "wrong_depth": 0,
+          "false_recess": 0,
+          "other_proposals": 6,
+          "unresolved": 0
+        },
+        "report": {
+          "policy": "combined",
+          "status": "candidates_evaluated",
+          "grid": [
+            23,
+            8
+          ],
+          "calibration": {
+            "horizon": 321.0,
+            "vps": [
+              193.24449697148782,
+              2175.063954582867
+            ],
+            "focal": 865.9225977735853,
+            "height": 8.511907592351044
+          },
+          "candidates": [
+            {
+              "rim": [
+                [
+                  550.7,
+                  413.908
+                ],
+                [
+                  649.308,
+                  408.268
+                ],
+                [
+                  650.527,
+                  509.192
+                ],
+                [
+                  553.803,
+                  521.131
+                ]
+              ],
+              "local_spacing": [
+                {
+                  "ratio": 0.955,
+                  "correlation": 0.962,
+                  "pairs": 5204
+                },
+                {
+                  "ratio": 0.955,
+                  "correlation": 0.918,
+                  "pairs": 3964
+                }
+              ],
+              "depth": 0,
+              "texture_score": 0.843715271986371,
+              "score_margin": 0.3534237996115247,
+              "status": "flush_supported",
+              "reason": "texture repeat supports the facade plane",
+              "target": null,
+              "truth_depth": null,
+              "rim_iou": 0.0
+            },
+            {
+              "rim": [
+                [
+                  763.558,
+                  401.733
+                ],
+                [
+                  838.613,
+                  397.44
+                ],
+                [
+                  836.818,
+                  486.195
+                ],
+                [
+                  762.862,
+                  495.325
+                ]
+              ],
+              "local_spacing": [
+                {
+                  "ratio": 0.955,
+                  "correlation": 0.947,
+                  "pairs": 5370
+                },
+                {
+                  "ratio": 0.955,
+                  "correlation": 0.87,
+                  "pairs": 4355
+                }
+              ],
+              "depth": 0,
+              "texture_score": 0.8099120665837931,
+              "score_margin": 0.06674989575391221,
+              "status": "flush_supported",
+              "reason": "texture repeat supports the facade plane",
+              "target": null,
+              "truth_depth": null,
+              "rim_iou": 0.0
+            },
+            {
+              "rim": [
+                [
+                  947.412,
+                  391.217
+                ],
+                [
+                  1004.584,
+                  387.947
+                ],
+                [
+                  997.126,
+                  541.913
+                ],
+                [
+                  941.169,
+                  552.408
+                ]
+              ],
+              "local_spacing": [
+                {
+                  "ratio": 0.955,
+                  "correlation": 0.892,
+                  "pairs": 2338
+                },
+                {
+                  "ratio": 0.955,
+                  "correlation": 0.877,
+                  "pairs": 3098
+                }
+              ],
+              "depth": 0,
+              "texture_score": 0.7758083658498474,
+              "score_margin": 0.338931425607559,
+              "status": "flush_supported",
+              "reason": "texture repeat supports the facade plane",
+              "target": null,
+              "truth_depth": null,
+              "rim_iou": 0.0
+            },
+            {
+              "rim": [
+                [
+                  399.706,
+                  462.182
+                ],
+                [
+                  516.232,
+                  452.916
+                ],
+                [
+                  522.475,
+                  630.931
+                ],
+                [
+                  410.187,
+                  651.989
+                ]
+              ],
+              "local_spacing": [
+                {
+                  "ratio": 0.955,
+                  "correlation": 0.94,
+                  "pairs": 3504
+                },
+                {
+                  "ratio": 0.955,
+                  "correlation": 0.923,
+                  "pairs": 2468
+                }
+              ],
+              "depth": 0,
+              "texture_score": 0.8507311979380218,
+              "score_margin": 0.4230479943620058,
+              "status": "flush_supported",
+              "reason": "texture repeat supports the facade plane",
+              "target": null,
+              "truth_depth": null,
+              "rim_iou": 0.0
+            },
+            {
+              "rim": [
+                [
+                  649.719,
+                  442.3
+                ],
+                [
+                  736.539,
+                  435.396
+                ],
+                [
+                  736.098,
+                  590.867
+                ],
+                [
+                  651.704,
+                  606.695
+                ]
+              ],
+              "local_spacing": [
+                {
+                  "ratio": 0.955,
+                  "correlation": 0.937,
+                  "pairs": 4560
+                },
+                {
+                  "ratio": 0.955,
+                  "correlation": 0.919,
+                  "pairs": 2822
+                }
+              ],
+              "depth": 0,
+              "texture_score": 0.7937698067431445,
+              "score_margin": 0.15046096887171445,
+              "status": "flush_supported",
+              "reason": "texture repeat supports the facade plane",
+              "target": null,
+              "truth_depth": null,
+              "rim_iou": 0.0
+            },
+            {
+              "rim": [
+                [
+                  861.178,
+                  425.484
+                ],
+                [
+                  926.107,
+                  420.321
+                ],
+                [
+                  921.316,
+                  556.131
+                ],
+                [
+                  857.73,
+                  568.056
+                ]
+              ],
+              "local_spacing": [
+                {
+                  "ratio": 0.955,
+                  "correlation": 0.939,
+                  "pairs": 3784
+                },
+                {
+                  "ratio": 0.955,
+                  "correlation": 0.904,
+                  "pairs": 3537
+                }
+              ],
+              "depth": 0,
+              "texture_score": 0.8186066780100936,
+              "score_margin": 0.5084977942379734,
+              "status": "flush_supported",
+              "reason": "texture repeat supports the facade plane",
+              "target": null,
+              "truth_depth": null,
+              "rim_iou": 0.0
+            }
+          ]
+        }
+      },
+      "corroborated_additions": {
+        "counts": {
+          "real": 0,
+          "candidates": 6,
+          "localized": 0,
+          "exact": 0,
+          "wrong_depth": 0,
+          "false_recess": 0,
+          "other_proposals": 6,
+          "unresolved": 0
+        },
+        "report": {
+          "policy": "corroborated_additions",
+          "status": "candidates_evaluated",
+          "grid": [
+            23,
+            8
+          ],
+          "calibration": {
+            "horizon": 321.0,
+            "vps": [
+              193.24449697148782,
+              2175.063954582867
+            ],
+            "focal": 865.9225977735853,
+            "height": 8.511907592351044
+          },
+          "candidates": [
+            {
+              "rim": [
+                [
+                  550.7,
+                  413.908
+                ],
+                [
+                  649.308,
+                  408.268
+                ],
+                [
+                  650.527,
+                  509.192
+                ],
+                [
+                  553.803,
+                  521.131
+                ]
+              ],
+              "local_spacing": [
+                {
+                  "ratio": 0.955,
+                  "correlation": 0.962,
+                  "pairs": 5204
+                },
+                {
+                  "ratio": 0.955,
+                  "correlation": 0.918,
+                  "pairs": 3964
+                }
+              ],
+              "depth": 0,
+              "texture_score": 0.843715271986371,
+              "score_margin": 0.3534237996115247,
+              "status": "flush_supported",
+              "reason": "texture repeat supports the facade plane",
+              "target": null,
+              "truth_depth": null,
+              "rim_iou": 0.0
+            },
+            {
+              "rim": [
+                [
+                  763.558,
+                  401.733
+                ],
+                [
+                  838.613,
+                  397.44
+                ],
+                [
+                  836.818,
+                  486.195
+                ],
+                [
+                  762.862,
+                  495.325
+                ]
+              ],
+              "local_spacing": [
+                {
+                  "ratio": 0.955,
+                  "correlation": 0.949,
+                  "pairs": 5204
+                },
+                {
+                  "ratio": 0.955,
+                  "correlation": 0.881,
+                  "pairs": 3981
+                }
+              ],
+              "depth": 0,
+              "texture_score": 0.8099120665837931,
+              "score_margin": 0.06674989575391221,
+              "status": "flush_supported",
+              "reason": "texture repeat supports the facade plane",
+              "target": null,
+              "truth_depth": null,
+              "rim_iou": 0.0
+            },
+            {
+              "rim": [
+                [
+                  947.412,
+                  391.217
+                ],
+                [
+                  1004.584,
+                  387.947
+                ],
+                [
+                  1000.806,
+                  465.953
+                ],
+                [
+                  944.247,
+                  472.934
+                ]
+              ],
+              "local_spacing": [
+                {
+                  "ratio": 0.955,
+                  "correlation": 0.903,
+                  "pairs": 4130
+                },
+                {
+                  "ratio": 0.955,
+                  "correlation": 0.88,
+                  "pairs": 4172
+                }
+              ],
+              "depth": 0,
+              "texture_score": 0.8418765288210925,
+              "score_margin": 0.29023851976940895,
+              "status": "flush_supported",
+              "reason": "texture repeat supports the facade plane",
+              "target": null,
+              "truth_depth": null,
+              "rim_iou": 0.0
+            },
+            {
+              "rim": [
+                [
+                  399.706,
+                  462.182
+                ],
+                [
+                  516.232,
+                  452.916
+                ],
+                [
+                  522.475,
+                  630.931
+                ],
+                [
+                  410.187,
+                  651.989
+                ]
+              ],
+              "local_spacing": [
+                {
+                  "ratio": 0.955,
+                  "correlation": 0.94,
+                  "pairs": 3504
+                },
+                {
+                  "ratio": 0.955,
+                  "correlation": 0.923,
+                  "pairs": 2468
+                }
+              ],
+              "depth": 0,
+              "texture_score": 0.8507311979380218,
+              "score_margin": 0.4230479943620058,
+              "status": "flush_supported",
+              "reason": "texture repeat supports the facade plane",
+              "target": null,
+              "truth_depth": null,
+              "rim_iou": 0.0
+            },
+            {
+              "rim": [
+                [
+                  649.719,
+                  442.3
+                ],
+                [
+                  763.323,
+                  433.266
+                ],
+                [
+                  762.188,
+                  585.974
+                ],
+                [
+                  651.704,
+                  606.695
+                ]
+              ],
+              "local_spacing": [
+                {
+                  "ratio": 0.955,
+                  "correlation": 0.952,
+                  "pairs": 5149
+                },
+                {
+                  "ratio": 0.955,
+                  "correlation": 0.938,
+                  "pairs": 2807
+                }
+              ],
+              "depth": 0,
+              "texture_score": 0.7794482943062653,
+              "score_margin": 0.48425756288175403,
+              "status": "flush_supported",
+              "reason": "texture repeat supports the facade plane",
+              "target": null,
+              "truth_depth": null,
+              "rim_iou": 0.0
+            },
+            {
+              "rim": [
+                [
+                  861.178,
+                  425.484
+                ],
+                [
+                  926.107,
+                  420.321
+                ],
+                [
+                  921.316,
+                  556.131
+                ],
+                [
+                  857.73,
+                  568.056
+                ]
+              ],
+              "local_spacing": [
+                {
+                  "ratio": 0.955,
+                  "correlation": 0.929,
+                  "pairs": 5126
+                },
+                {
+                  "ratio": 0.955,
+                  "correlation": 0.905,
+                  "pairs": 4077
+                }
+              ],
+              "depth": 0,
+              "texture_score": 0.8186066780100936,
+              "score_margin": 0.5084977942379734,
+              "status": "flush_supported",
+              "reason": "texture repeat supports the facade plane",
+              "target": null,
+              "truth_depth": null,
+              "rim_iou": 0.0
+            }
+          ]
+        }
+      }
+    },
+    "dark-inlay-oblique-right": {
+      "dark": {
+        "counts": {
+          "real": 0,
+          "candidates": 5,
+          "localized": 0,
+          "exact": 0,
+          "wrong_depth": 0,
+          "false_recess": 0,
+          "other_proposals": 5,
+          "unresolved": 0
+        },
+        "report": {
+          "policy": "dark",
+          "status": "candidates_evaluated",
+          "grid": [
+            24,
+            8
+          ],
+          "calibration": {
+            "horizon": 319.0,
+            "vps": [
+              -866.081090686533,
+              1206.8010214633941
+            ],
+            "focal": 868.8756499465148,
+            "height": 8.545898730460351
+          },
+          "candidates": [
+            {
+              "rim": [
+                [
+                  1050.262,
+                  420.816
+                ],
+                [
+                  932.579,
+                  414.563
+                ],
+                [
+                  928.594,
+                  523.269
+                ],
+                [
+                  1043.673,
+                  536.367
+                ]
+              ],
+              "local_spacing": [
+                {
+                  "ratio": 0.955,
+                  "correlation": 0.945,
+                  "pairs": 4877
+                },
+                {
+                  "ratio": 0.955,
+                  "correlation": 0.908,
+                  "pairs": 4323
+                }
+              ],
+              "depth": 0,
+              "texture_score": 0.8440279768837892,
+              "score_margin": 0.40771301823855377,
+              "status": "flush_supported",
+              "reason": "texture repeat supports the facade plane",
+              "target": null,
+              "truth_depth": null,
+              "rim_iou": 0.0
+            },
+            {
+              "rim": [
+                [
+                  577.883,
+                  395.718
+                ],
+                [
+                  510.04,
+                  392.114
+                ],
+                [
+                  513.065,
+                  475.974
+                ],
+                [
+                  580.03,
+                  483.596
+                ]
+              ],
+              "local_spacing": [
+                {
+                  "ratio": 0.955,
+                  "correlation": 0.952,
+                  "pairs": 5694
+                },
+                {
+                  "ratio": 0.955,
+                  "correlation": 0.913,
+                  "pairs": 4873
+                }
+              ],
+              "depth": 0,
+              "texture_score": 0.8639851688430416,
+              "score_margin": 0.14308073699646184,
+              "status": "flush_supported",
+              "reason": "texture repeat supports the facade plane",
+              "target": null,
+              "truth_depth": null,
+              "rim_iou": 0.0
+            },
+            {
+              "rim": [
+                [
+                  895.404,
+                  448.621
+                ],
+                [
+                  796.003,
+                  441.306
+                ],
+                [
+                  793.842,
+                  605.387
+                ],
+                [
+                  890.128,
+                  622.0
+                ]
+              ],
+              "local_spacing": [
+                {
+                  "ratio": 0.955,
+                  "correlation": 0.959,
+                  "pairs": 5124
+                },
+                {
+                  "ratio": 0.955,
+                  "correlation": 0.892,
+                  "pairs": 3888
+                }
+              ],
+              "depth": 0,
+              "texture_score": 0.8005883813332162,
+              "score_margin": 0.34134290142045526,
+              "status": "flush_supported",
+              "reason": "texture repeat supports the facade plane",
+              "target": null,
+              "truth_depth": null,
+              "rim_iou": 0.0
+            },
+            {
+              "rim": [
+                [
+                  679.698,
+                  432.748
+                ],
+                [
+                  602.619,
+                  427.076
+                ],
+                [
+                  605.577,
+                  572.906
+                ],
+                [
+                  680.766,
+                  585.878
+                ]
+              ],
+              "local_spacing": [
+                {
+                  "ratio": 0.955,
+                  "correlation": 0.933,
+                  "pairs": 5087
+                },
+                {
+                  "ratio": 0.955,
+                  "correlation": 0.901,
+                  "pairs": 3928
+                }
+              ],
+              "depth": 0,
+              "texture_score": 0.8525043887443957,
+              "score_margin": 0.06254656066654685,
+              "status": "flush_supported",
+              "reason": "texture repeat supports the facade plane",
+              "target": null,
+              "truth_depth": null,
+              "rim_iou": 0.0
+            },
+            {
+              "rim": [
+                [
+                  489.924,
+                  418.783
+                ],
+                [
+                  430.243,
+                  414.391
+                ],
+                [
+                  436.709,
+                  543.771
+                ],
+                [
+                  495.289,
+                  553.878
+                ]
+              ],
+              "local_spacing": [
+                {
+                  "ratio": 0.95,
+                  "correlation": 0.921,
+                  "pairs": 3029
+                },
+                {
+                  "ratio": 0.955,
+                  "correlation": 0.883,
+                  "pairs": 3448
+                }
+              ],
+              "depth": 0,
+              "texture_score": 0.8472157312399831,
+              "score_margin": 0.45401371750398833,
+              "status": "flush_supported",
+              "reason": "texture repeat supports the facade plane",
+              "target": null,
+              "truth_depth": null,
+              "rim_iou": 0.0
+            }
+          ]
+        }
+      },
+      "regions": {
+        "counts": {
+          "real": 0,
+          "candidates": 6,
+          "localized": 0,
+          "exact": 0,
+          "wrong_depth": 0,
+          "false_recess": 0,
+          "other_proposals": 6,
+          "unresolved": 0
+        },
+        "report": {
+          "policy": "regions",
+          "status": "candidates_evaluated",
+          "grid": [
+            24,
+            8
+          ],
+          "calibration": {
+            "horizon": 319.0,
+            "vps": [
+              -866.081090686533,
+              1206.8010214633941
+            ],
+            "focal": 868.8756499465148,
+            "height": 8.545898730460351
+          },
+          "candidates": [
+            {
+              "rim": [
+                [
+                  1050.262,
+                  420.816
+                ],
+                [
+                  932.579,
+                  414.563
+                ],
+                [
+                  928.594,
+                  523.269
+                ],
+                [
+                  1043.673,
+                  536.367
+                ]
+              ],
+              "local_spacing": [
+                {
+                  "ratio": 0.955,
+                  "correlation": 0.945,
+                  "pairs": 4877
+                },
+                {
+                  "ratio": 0.955,
+                  "correlation": 0.908,
+                  "pairs": 4323
+                }
+              ],
+              "depth": 0,
+              "texture_score": 0.8440279768837892,
+              "score_margin": 0.40771301823855377,
+              "status": "flush_supported",
+              "reason": "texture repeat supports the facade plane",
+              "target": null,
+              "truth_depth": null,
+              "rim_iou": 0.0
+            },
+            {
+              "rim": [
+                [
+                  796.45,
+                  407.331
+                ],
+                [
+                  707.15,
+                  402.586
+                ],
+                [
+                  707.43,
+                  529.229
+                ],
+                [
+                  794.692,
+                  540.887
+                ]
+              ],
+              "local_spacing": [
+                {
+                  "ratio": 0.955,
+                  "correlation": 0.963,
+                  "pairs": 4617
+                },
+                {
+                  "ratio": 0.955,
+                  "correlation": 0.891,
+                  "pairs": 2989
+                }
+              ],
+              "depth": null,
+              "texture_score": 0.7797816202302086,
+              "score_margin": 0.04584284856231369,
+              "status": "unresolved",
+              "reason": "depth hypotheses are too close or weak",
+              "target": null,
+              "truth_depth": null,
+              "rim_iou": 0.0
+            },
+            {
+              "rim": [
+                [
+                  577.883,
+                  395.718
+                ],
+                [
+                  510.04,
+                  392.114
+                ],
+                [
+                  513.065,
+                  475.974
+                ],
+                [
+                  580.03,
+                  483.596
+                ]
+              ],
+              "local_spacing": [
+                {
+                  "ratio": 0.955,
+                  "correlation": 0.952,
+                  "pairs": 5694
+                },
+                {
+                  "ratio": 0.955,
+                  "correlation": 0.913,
+                  "pairs": 4873
+                }
+              ],
+              "depth": 0,
+              "texture_score": 0.8639851688430416,
+              "score_margin": 0.14308073699646184,
+              "status": "flush_supported",
+              "reason": "texture repeat supports the facade plane",
+              "target": null,
+              "truth_depth": null,
+              "rim_iou": 0.0
+            },
+            {
+              "rim": [
+                [
+                  895.404,
+                  448.621
+                ],
+                [
+                  796.003,
+                  441.306
+                ],
+                [
+                  793.842,
+                  605.387
+                ],
+                [
+                  890.128,
+                  622.0
+                ]
+              ],
+              "local_spacing": [
+                {
+                  "ratio": 0.955,
+                  "correlation": 0.965,
+                  "pairs": 4443
+                },
+                {
+                  "ratio": 0.955,
+                  "correlation": 0.908,
+                  "pairs": 2851
+                }
+              ],
+              "depth": 0,
+              "texture_score": 0.8005883813332162,
+              "score_margin": 0.34134290142045526,
+              "status": "flush_supported",
+              "reason": "texture repeat supports the facade plane",
+              "target": null,
+              "truth_depth": null,
+              "rim_iou": 0.0
+            },
+            {
+              "rim": [
+                [
+                  679.698,
+                  432.748
+                ],
+                [
+                  602.619,
+                  427.076
+                ],
+                [
+                  605.577,
+                  572.906
+                ],
+                [
+                  680.766,
+                  585.878
+                ]
+              ],
+              "local_spacing": [
+                {
+                  "ratio": 0.955,
+                  "correlation": 0.934,
+                  "pairs": 4751
+                },
+                {
+                  "ratio": 0.955,
+                  "correlation": 0.896,
+                  "pairs": 3438
+                }
+              ],
+              "depth": 0,
+              "texture_score": 0.8525043887443957,
+              "score_margin": 0.06254656066654685,
+              "status": "flush_supported",
+              "reason": "texture repeat supports the facade plane",
+              "target": null,
+              "truth_depth": null,
+              "rim_iou": 0.0
+            },
+            {
+              "rim": [
+                [
+                  489.924,
+                  418.783
+                ],
+                [
+                  430.243,
+                  414.391
+                ],
+                [
+                  436.709,
+                  543.771
+                ],
+                [
+                  495.289,
+                  553.878
+                ]
+              ],
+              "local_spacing": [
+                {
+                  "ratio": 0.95,
+                  "correlation": 0.921,
+                  "pairs": 3029
+                },
+                {
+                  "ratio": 0.955,
+                  "correlation": 0.883,
+                  "pairs": 3448
+                }
+              ],
+              "depth": 0,
+              "texture_score": 0.8472157312399831,
+              "score_margin": 0.45401371750398833,
+              "status": "flush_supported",
+              "reason": "texture repeat supports the facade plane",
+              "target": null,
+              "truth_depth": null,
+              "rim_iou": 0.0
+            }
+          ]
+        }
+      },
+      "edges": {
+        "counts": {
+          "real": 0,
+          "candidates": 1,
+          "localized": 0,
+          "exact": 0,
+          "wrong_depth": 0,
+          "false_recess": 0,
+          "other_proposals": 1,
+          "unresolved": 0
+        },
+        "report": {
+          "policy": "edges",
+          "status": "candidates_evaluated",
+          "grid": [
+            24,
+            8
+          ],
+          "calibration": {
+            "horizon": 319.0,
+            "vps": [
+              -866.081090686533,
+              1206.8010214633941
+            ],
+            "focal": 868.8756499465148,
+            "height": 8.545898730460351
+          },
+          "candidates": [
+            {
+              "rim": [
+                [
+                  441.965,
+                  335.599
+                ],
+                [
+                  407.359,
+                  335.16
+                ],
+                [
+                  408.582,
+                  358.144
+                ],
+                [
+                  443.082,
+                  359.203
+                ]
+              ],
+              "local_spacing": [
+                {
+                  "ratio": 0.95,
+                  "correlation": 0.911,
+                  "pairs": 1561
+                },
+                {
+                  "ratio": 0.955,
+                  "correlation": 0.865,
+                  "pairs": 1593
+                }
+              ],
+              "depth": null,
+              "texture_score": 0.6087344941312155,
+              "score_margin": -0.3912655058687845,
+              "status": "unresolved",
+              "reason": "depth hypotheses are too close or weak",
+              "target": null,
+              "truth_depth": null,
+              "rim_iou": 0.0
+            }
+          ]
+        }
+      },
+      "combined": {
+        "counts": {
+          "real": 0,
+          "candidates": 7,
+          "localized": 0,
+          "exact": 0,
+          "wrong_depth": 0,
+          "false_recess": 0,
+          "other_proposals": 7,
+          "unresolved": 0
+        },
+        "report": {
+          "policy": "combined",
+          "status": "candidates_evaluated",
+          "grid": [
+            24,
+            8
+          ],
+          "calibration": {
+            "horizon": 319.0,
+            "vps": [
+              -866.081090686533,
+              1206.8010214633941
+            ],
+            "focal": 868.8756499465148,
+            "height": 8.545898730460351
+          },
+          "candidates": [
+            {
+              "rim": [
+                [
+                  1050.262,
+                  420.816
+                ],
+                [
+                  932.579,
+                  414.563
+                ],
+                [
+                  928.594,
+                  523.269
+                ],
+                [
+                  1043.673,
+                  536.367
+                ]
+              ],
+              "local_spacing": [
+                {
+                  "ratio": 0.955,
+                  "correlation": 0.945,
+                  "pairs": 4877
+                },
+                {
+                  "ratio": 0.955,
+                  "correlation": 0.908,
+                  "pairs": 4323
+                }
+              ],
+              "depth": 0,
+              "texture_score": 0.8440279768837892,
+              "score_margin": 0.40771301823855377,
+              "status": "flush_supported",
+              "reason": "texture repeat supports the facade plane",
+              "target": null,
+              "truth_depth": null,
+              "rim_iou": 0.0
+            },
+            {
+              "rim": [
+                [
+                  796.45,
+                  407.331
+                ],
+                [
+                  707.15,
+                  402.586
+                ],
+                [
+                  707.43,
+                  529.229
+                ],
+                [
+                  794.692,
+                  540.887
+                ]
+              ],
+              "local_spacing": [
+                {
+                  "ratio": 0.955,
+                  "correlation": 0.963,
+                  "pairs": 4617
+                },
+                {
+                  "ratio": 0.955,
+                  "correlation": 0.891,
+                  "pairs": 2989
+                }
+              ],
+              "depth": null,
+              "texture_score": 0.7797816202302086,
+              "score_margin": 0.04584284856231369,
+              "status": "unresolved",
+              "reason": "depth hypotheses are too close or weak",
+              "target": null,
+              "truth_depth": null,
+              "rim_iou": 0.0
+            },
+            {
+              "rim": [
+                [
+                  577.883,
+                  395.718
+                ],
+                [
+                  510.04,
+                  392.114
+                ],
+                [
+                  513.065,
+                  475.974
+                ],
+                [
+                  580.03,
+                  483.596
+                ]
+              ],
+              "local_spacing": [
+                {
+                  "ratio": 0.955,
+                  "correlation": 0.951,
+                  "pairs": 5582
+                },
+                {
+                  "ratio": 0.955,
+                  "correlation": 0.913,
+                  "pairs": 4873
+                }
+              ],
+              "depth": 0,
+              "texture_score": 0.8639851688430416,
+              "score_margin": 0.14308073699646184,
+              "status": "flush_supported",
+              "reason": "texture repeat supports the facade plane",
+              "target": null,
+              "truth_depth": null,
+              "rim_iou": 0.0
+            },
+            {
+              "rim": [
+                [
+                  895.404,
+                  448.621
+                ],
+                [
+                  796.003,
+                  441.306
+                ],
+                [
+                  793.842,
+                  605.387
+                ],
+                [
+                  890.128,
+                  622.0
+                ]
+              ],
+              "local_spacing": [
+                {
+                  "ratio": 0.955,
+                  "correlation": 0.965,
+                  "pairs": 4443
+                },
+                {
+                  "ratio": 0.955,
+                  "correlation": 0.908,
+                  "pairs": 2851
+                }
+              ],
+              "depth": 0,
+              "texture_score": 0.8005883813332162,
+              "score_margin": 0.34134290142045526,
+              "status": "flush_supported",
+              "reason": "texture repeat supports the facade plane",
+              "target": null,
+              "truth_depth": null,
+              "rim_iou": 0.0
+            },
+            {
+              "rim": [
+                [
+                  679.698,
+                  432.748
+                ],
+                [
+                  602.619,
+                  427.076
+                ],
+                [
+                  605.577,
+                  572.906
+                ],
+                [
+                  680.766,
+                  585.878
+                ]
+              ],
+              "local_spacing": [
+                {
+                  "ratio": 0.955,
+                  "correlation": 0.934,
+                  "pairs": 4751
+                },
+                {
+                  "ratio": 0.955,
+                  "correlation": 0.896,
+                  "pairs": 3438
+                }
+              ],
+              "depth": 0,
+              "texture_score": 0.8525043887443957,
+              "score_margin": 0.06254656066654685,
+              "status": "flush_supported",
+              "reason": "texture repeat supports the facade plane",
+              "target": null,
+              "truth_depth": null,
+              "rim_iou": 0.0
+            },
+            {
+              "rim": [
+                [
+                  489.924,
+                  418.783
+                ],
+                [
+                  430.243,
+                  414.391
+                ],
+                [
+                  436.709,
+                  543.771
+                ],
+                [
+                  495.289,
+                  553.878
+                ]
+              ],
+              "local_spacing": [
+                {
+                  "ratio": 0.95,
+                  "correlation": 0.935,
+                  "pairs": 2811
+                },
+                {
+                  "ratio": 0.955,
+                  "correlation": 0.895,
+                  "pairs": 3239
+                }
+              ],
+              "depth": 0,
+              "texture_score": 0.8472157312399831,
+              "score_margin": 0.45401371750398833,
+              "status": "flush_supported",
+              "reason": "texture repeat supports the facade plane",
+              "target": null,
+              "truth_depth": null,
+              "rim_iou": 0.0
+            },
+            {
+              "rim": [
+                [
+                  441.965,
+                  335.599
+                ],
+                [
+                  407.359,
+                  335.16
+                ],
+                [
+                  408.582,
+                  358.144
+                ],
+                [
+                  443.082,
+                  359.203
+                ]
+              ],
+              "local_spacing": [
+                {
+                  "ratio": 0.95,
+                  "correlation": 0.939,
+                  "pairs": 1469
+                },
+                {
+                  "ratio": 0.955,
+                  "correlation": 0.866,
+                  "pairs": 1454
+                }
+              ],
+              "depth": null,
+              "texture_score": 0.6087344941312155,
+              "score_margin": -0.3912655058687845,
+              "status": "unresolved",
+              "reason": "depth hypotheses are too close or weak",
+              "target": null,
+              "truth_depth": null,
+              "rim_iou": 0.0
+            }
+          ]
+        }
+      },
+      "corroborated_additions": {
+        "counts": {
+          "real": 0,
+          "candidates": 5,
+          "localized": 0,
+          "exact": 0,
+          "wrong_depth": 0,
+          "false_recess": 0,
+          "other_proposals": 5,
+          "unresolved": 0
+        },
+        "report": {
+          "policy": "corroborated_additions",
+          "status": "candidates_evaluated",
+          "grid": [
+            24,
+            8
+          ],
+          "calibration": {
+            "horizon": 319.0,
+            "vps": [
+              -866.081090686533,
+              1206.8010214633941
+            ],
+            "focal": 868.8756499465148,
+            "height": 8.545898730460351
+          },
+          "candidates": [
+            {
+              "rim": [
+                [
+                  1050.262,
+                  420.816
+                ],
+                [
+                  932.579,
+                  414.563
+                ],
+                [
+                  928.594,
+                  523.269
+                ],
+                [
+                  1043.673,
+                  536.367
+                ]
+              ],
+              "local_spacing": [
+                {
+                  "ratio": 0.955,
+                  "correlation": 0.945,
+                  "pairs": 4877
+                },
+                {
+                  "ratio": 0.955,
+                  "correlation": 0.908,
+                  "pairs": 4323
+                }
+              ],
+              "depth": 0,
+              "texture_score": 0.8440279768837892,
+              "score_margin": 0.40771301823855377,
+              "status": "flush_supported",
+              "reason": "texture repeat supports the facade plane",
+              "target": null,
+              "truth_depth": null,
+              "rim_iou": 0.0
+            },
+            {
+              "rim": [
+                [
+                  577.883,
+                  395.718
+                ],
+                [
+                  510.04,
+                  392.114
+                ],
+                [
+                  513.065,
+                  475.974
+                ],
+                [
+                  580.03,
+                  483.596
+                ]
+              ],
+              "local_spacing": [
+                {
+                  "ratio": 0.955,
+                  "correlation": 0.952,
+                  "pairs": 5694
+                },
+                {
+                  "ratio": 0.955,
+                  "correlation": 0.913,
+                  "pairs": 4873
+                }
+              ],
+              "depth": 0,
+              "texture_score": 0.8639851688430416,
+              "score_margin": 0.14308073699646184,
+              "status": "flush_supported",
+              "reason": "texture repeat supports the facade plane",
+              "target": null,
+              "truth_depth": null,
+              "rim_iou": 0.0
+            },
+            {
+              "rim": [
+                [
+                  895.404,
+                  448.621
+                ],
+                [
+                  796.003,
+                  441.306
+                ],
+                [
+                  793.842,
+                  605.387
+                ],
+                [
+                  890.128,
+                  622.0
+                ]
+              ],
+              "local_spacing": [
+                {
+                  "ratio": 0.955,
+                  "correlation": 0.959,
+                  "pairs": 5124
+                },
+                {
+                  "ratio": 0.955,
+                  "correlation": 0.892,
+                  "pairs": 3888
+                }
+              ],
+              "depth": 0,
+              "texture_score": 0.8005883813332162,
+              "score_margin": 0.34134290142045526,
+              "status": "flush_supported",
+              "reason": "texture repeat supports the facade plane",
+              "target": null,
+              "truth_depth": null,
+              "rim_iou": 0.0
+            },
+            {
+              "rim": [
+                [
+                  679.698,
+                  432.748
+                ],
+                [
+                  602.619,
+                  427.076
+                ],
+                [
+                  605.577,
+                  572.906
+                ],
+                [
+                  680.766,
+                  585.878
+                ]
+              ],
+              "local_spacing": [
+                {
+                  "ratio": 0.955,
+                  "correlation": 0.933,
+                  "pairs": 5087
+                },
+                {
+                  "ratio": 0.955,
+                  "correlation": 0.901,
+                  "pairs": 3928
+                }
+              ],
+              "depth": 0,
+              "texture_score": 0.8525043887443957,
+              "score_margin": 0.06254656066654685,
+              "status": "flush_supported",
+              "reason": "texture repeat supports the facade plane",
+              "target": null,
+              "truth_depth": null,
+              "rim_iou": 0.0
+            },
+            {
+              "rim": [
+                [
+                  489.924,
+                  418.783
+                ],
+                [
+                  430.243,
+                  414.391
+                ],
+                [
+                  436.709,
+                  543.771
+                ],
+                [
+                  495.289,
+                  553.878
+                ]
+              ],
+              "local_spacing": [
+                {
+                  "ratio": 0.95,
+                  "correlation": 0.921,
+                  "pairs": 3029
+                },
+                {
+                  "ratio": 0.955,
+                  "correlation": 0.883,
+                  "pairs": 3448
+                }
+              ],
+              "depth": 0,
+              "texture_score": 0.8472157312399831,
+              "score_margin": 0.45401371750398833,
+              "status": "flush_supported",
+              "reason": "texture repeat supports the facade plane",
+              "target": null,
+              "truth_depth": null,
+              "rim_iou": 0.0
+            }
+          ]
+        }
+      }
+    },
+    "physical-shade-oblique-left": {
+      "dark": {
+        "counts": {
+          "real": 0,
+          "candidates": 0,
+          "localized": 0,
+          "exact": 0,
+          "wrong_depth": 0,
+          "false_recess": 0,
+          "other_proposals": 0,
+          "unresolved": 0
+        },
+        "report": {
+          "policy": "dark",
+          "status": "unresolved",
+          "reason": "non-planar base",
+          "candidates": []
+        }
+      },
+      "regions": {
+        "counts": {
+          "real": 0,
+          "candidates": 0,
+          "localized": 0,
+          "exact": 0,
+          "wrong_depth": 0,
+          "false_recess": 0,
+          "other_proposals": 0,
+          "unresolved": 0
+        },
+        "report": {
+          "policy": "regions",
+          "status": "unresolved",
+          "reason": "non-planar base",
+          "candidates": []
+        }
+      },
+      "edges": {
+        "counts": {
+          "real": 0,
+          "candidates": 0,
+          "localized": 0,
+          "exact": 0,
+          "wrong_depth": 0,
+          "false_recess": 0,
+          "other_proposals": 0,
+          "unresolved": 0
+        },
+        "report": {
+          "policy": "edges",
+          "status": "unresolved",
+          "reason": "non-planar base",
+          "candidates": []
+        }
+      },
+      "combined": {
+        "counts": {
+          "real": 0,
+          "candidates": 0,
+          "localized": 0,
+          "exact": 0,
+          "wrong_depth": 0,
+          "false_recess": 0,
+          "other_proposals": 0,
+          "unresolved": 0
+        },
+        "report": {
+          "policy": "combined",
+          "status": "unresolved",
+          "reason": "non-planar base",
+          "candidates": []
+        }
+      },
+      "corroborated_additions": {
+        "counts": {
+          "real": 0,
+          "candidates": 0,
+          "localized": 0,
+          "exact": 0,
+          "wrong_depth": 0,
+          "false_recess": 0,
+          "other_proposals": 0,
+          "unresolved": 0
+        },
+        "report": {
+          "policy": "corroborated_additions",
+          "status": "unresolved",
+          "reason": "non-planar base",
+          "candidates": []
+        }
+      }
+    },
+    "physical-shade-oblique-right": {
+      "dark": {
+        "counts": {
+          "real": 0,
+          "candidates": 0,
+          "localized": 0,
+          "exact": 0,
+          "wrong_depth": 0,
+          "false_recess": 0,
+          "other_proposals": 0,
+          "unresolved": 0
+        },
+        "report": {
+          "policy": "dark",
+          "status": "no_candidates",
+          "grid": [
+            14,
+            8
+          ],
+          "calibration": {
+            "horizon": 319.0,
+            "vps": [
+              -866.081090686533,
+              1206.8010214633941
+            ],
+            "focal": 868.8756499465148,
+            "height": 8.545898730460351
+          },
+          "candidates": []
+        }
+      },
+      "regions": {
+        "counts": {
+          "real": 0,
+          "candidates": 0,
+          "localized": 0,
+          "exact": 0,
+          "wrong_depth": 0,
+          "false_recess": 0,
+          "other_proposals": 0,
+          "unresolved": 0
+        },
+        "report": {
+          "policy": "regions",
+          "status": "no_candidates",
+          "grid": [
+            14,
+            8
+          ],
+          "calibration": {
+            "horizon": 319.0,
+            "vps": [
+              -866.081090686533,
+              1206.8010214633941
+            ],
+            "focal": 868.8756499465148,
+            "height": 8.545898730460351
+          },
+          "candidates": []
+        }
+      },
+      "edges": {
+        "counts": {
+          "real": 0,
+          "candidates": 0,
+          "localized": 0,
+          "exact": 0,
+          "wrong_depth": 0,
+          "false_recess": 0,
+          "other_proposals": 0,
+          "unresolved": 0
+        },
+        "report": {
+          "policy": "edges",
+          "status": "no_candidates",
+          "grid": [
+            14,
+            8
+          ],
+          "calibration": {
+            "horizon": 319.0,
+            "vps": [
+              -866.081090686533,
+              1206.8010214633941
+            ],
+            "focal": 868.8756499465148,
+            "height": 8.545898730460351
+          },
+          "candidates": []
+        }
+      },
+      "combined": {
+        "counts": {
+          "real": 0,
+          "candidates": 0,
+          "localized": 0,
+          "exact": 0,
+          "wrong_depth": 0,
+          "false_recess": 0,
+          "other_proposals": 0,
+          "unresolved": 0
+        },
+        "report": {
+          "policy": "combined",
+          "status": "no_candidates",
+          "grid": [
+            14,
+            8
+          ],
+          "calibration": {
+            "horizon": 319.0,
+            "vps": [
+              -866.081090686533,
+              1206.8010214633941
+            ],
+            "focal": 868.8756499465148,
+            "height": 8.545898730460351
+          },
+          "candidates": []
+        }
+      },
+      "corroborated_additions": {
+        "counts": {
+          "real": 0,
+          "candidates": 0,
+          "localized": 0,
+          "exact": 0,
+          "wrong_depth": 0,
+          "false_recess": 0,
+          "other_proposals": 0,
+          "unresolved": 0
+        },
+        "report": {
+          "policy": "corroborated_additions",
+          "status": "no_candidates",
+          "grid": [
+            14,
+            8
+          ],
+          "calibration": {
+            "horizon": 319.0,
+            "vps": [
+              -866.081090686533,
+              1206.8010214633941
+            ],
+            "focal": 868.8756499465148,
+            "height": 8.545898730460351
+          },
+          "candidates": []
+        }
+      }
+    }
+  }
+}

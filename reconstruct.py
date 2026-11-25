@@ -67,6 +67,9 @@ def main():
             for key in ('minecraft-dir','manifest','java-home','install-dir'): p.add_argument('--'+key,type=Path)
         else:
             p.add_argument('--registry',type=Path,help='Include default-state faces from a matching runtime registry')
+    p=cmds.add_parser('inspect-openings',help='Run the experimental entrance check and write its decisions and review overlay')
+    p.add_argument('image',type=Path)
+    p.add_argument('--out',type=Path,required=True)
     p=cmds.add_parser('analyze')
     p.add_argument('--geometry-method',choices=['baseline','texel','remap'],default='baseline')
     p.add_argument('image',type=Path)
@@ -91,7 +94,10 @@ def main():
     p.add_argument('--library',type=Path,help='Calibrated face_textures/softened-library.npz')
     p.add_argument('--depth',type=int,help='Extrapolate a hollow shell behind one visible wall')
     args=parser.parse_args()
-    if args.command=='atlas':
+    if args.command=='inspect-openings':
+        from benchmark.entrances import inspect_to_folder
+        inspect_to_folder(args.image,args.out)
+    elif args.command=='atlas':
         defaults=json.loads(args.registry.read_text()) if args.registry else None
         info=catalog.build(args.version,args.out,args.jar,defaults)
         print(f"{args.version}: {len(info['choices']['south'])} placeable south-face textures")

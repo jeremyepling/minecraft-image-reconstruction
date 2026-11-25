@@ -155,7 +155,7 @@ def internal_repeat(field,lo,hi,vp,distance,depth,pitch,spacing=(1.,1.)):
                 veto=zero>.50 and zero>inset+.05)
 
 
-def infer(image, on_candidate=None):
+def rectify_wall(image):
     rgb=np.array(image.convert('RGB')); mask=structure_mask(image)
     cal=pavement(rgb)
     if not cal:return dict(reason='no stable pavement calibration',candidates=[])
@@ -193,13 +193,23 @@ def infer(image, on_candidate=None):
     rect=bilinear(rgb,source_xy).astype(np.uint8)
     mean=rect.reshape(ny,scale,nx,scale,3)[:,6:-6,:,6:-6].mean(axis=(1,3,4))
     seeds=mean<np.quantile(mean,.75,axis=1,keepdims=True)*.91
-    G=np.diag([scale,scale,1.]); vp_grid=np.linalg.solve(H,K@forward)
+    vp_grid=np.linalg.solve(H,K@forward)
     vp=vp_grid[:2]/vp_grid[2]*scale
-    # Rectification makes all back planes shrink toward one finite epipole.
-    ratio=abs(z); out=[]
-    boxes=dark_boxes(seeds.copy())
     front=(bilinear(mask[:,:,None],source_xy)[:,:,0]>.99)
-    front &= ~seeds.repeat(scale,axis=0).repeat(scale,axis=1)
+    return dict(rect=rect,seeds=seeds,front=front,H=H,vp=vp,distance=abs(z),pitch=scale,
+                calibration=info,grid=[int(nx),int(ny)])
+
+
+def infer(image, on_candidate=None):
+    wall=rectify_wall(image)
+    if 'rect' not in wall:
+        return wall
+    rect,seeds,H,vp,ratio,scale=(wall[k] for k in ('rect','seeds','H','vp','distance','pitch'))
+    nx,ny=wall['grid']
+    G=np.diag([scale,scale,1.])
+    out=[]
+    boxes=dark_boxes(seeds.copy())
+    front=wall['front'] & ~seeds.repeat(scale,axis=0).repeat(scale,axis=1)
     for a,b in boxes:
         low=np.maximum(0,a*scale-4); high=b*scale+4
         front[low[1]:high[1],low[0]:high[0]]=False
@@ -222,7 +232,7 @@ def infer(image, on_candidate=None):
                         initial_depth=base_depth,internal_repeat=test,
                         rim_size=(b-a).tolist(),
                         rim=project(H,q/scale).tolist()))
-    return dict(calibration=info,grid=[int(nx),int(ny)],candidates=out)
+    return dict(calibration=wall['calibration'],grid=wall['grid'],candidates=out)
 
 
 def run(source,controls,out,split=None,positive=None):
