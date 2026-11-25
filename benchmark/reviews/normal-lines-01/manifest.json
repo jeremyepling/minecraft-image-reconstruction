@@ -1,0 +1,292 @@
+{
+  "run": "normal-lines-01",
+  "version": "Java 26.3",
+  "round_type": "fixed ancillary diagnostic",
+  "methods_revision": "29b50e6fbfe2162f1258e58e57cc03be0f3e9412",
+  "code_sha256_lf": {
+    "engine/structural_lines.py": "a58281608fe8972585196428c3e544000ebf336662ebb1c43f5c7a401a876642",
+    "benchmark/mlsd_probe.py": "b533aaf0029bc5379a51ec9daa477ef64dd48eff825621dad544501333dba8e5",
+    "benchmark/mlsd_boundary_score.py": "790ababfa74ff1bb3e73f1b1cbaa945b4001e9cc251ad38c5f883d5b2fbbecbf",
+    "benchmark/normal_line_round.py": "b96384dd687663c2b9b538d64bd4774a72ab3afba5843228359dfaaeb19e782e"
+  },
+  "cases": "benchmark/reviews/surfaces-01/cases.json",
+  "cases_json_sha256": "342eb56c8f14f1c5313f35a1fabb153dd6c1e6c92497abde4ca27e4199def289",
+  "fixture_splits": {
+    "confirmation": 8,
+    "dev": 20,
+    "regression": 20
+  },
+  "runtime": {
+    "numpy": "2.3.5",
+    "pillow": "13.0.0",
+    "ai-edge-litert": "2.4.0"
+  },
+  "methods": {
+    "mlsd-tiny-512-fp16": {
+      "checkpoint": "M-LSD_512_tiny_fp16.tflite",
+      "sha256": "e869f90601ffa263f21ac47e09ff0d65dc936d1aeb47126b8499d5504adfb100",
+      "source": "https://huggingface.co/spaces/navervision/MLSD/blob/main/tflite_models/M-LSD_512_tiny_fp16.tflite",
+      "input": "512 square BOX, RGB + constant 1 as float32",
+      "score_greater_than": 0.1,
+      "min_output_length_exclusive": 20,
+      "cpu_threads": 1
+    },
+    "structural_lines.detect": {
+      "entry": "engine.structural_lines.detect",
+      "settings": "all defaults",
+      "passes": [
+        [
+          460,
+          1.75,
+          0.055
+        ],
+        [
+          820,
+          1.05,
+          0.017
+        ]
+      ],
+      "pass_settings": [
+        "max analysis dimension",
+        "Gaussian blur px",
+        "minimum length fraction"
+      ]
+    }
+  },
+  "truth": "Foreground pixel adjacent (4-neighborhood) to another visible face normal/plane offset or air, at native resolution. Coplanar block seams excluded.",
+  "tolerance_native_px": 5,
+  "roi": "Foreground plus five native pixels. Unique raster pixels within each frame.",
+  "original_result_reproduced": "0359c24dea1b318ec9cd002a1523ae8fc0d7d59fc9d7418972cf9ce9af8d4d57",
+  "summary": {
+    "all": {
+      "frames": 48,
+      "results": {
+        "mlsd-tiny-512-fp16": {
+          "segments": 2992,
+          "all_line_px": 977832,
+          "evaluated_line_px": 437214,
+          "line_px_within_tolerance": 150327,
+          "truth_boundary_px": 281776,
+          "recovered_boundary_px": 204889,
+          "line_precision": 0.3438293375783941,
+          "boundary_recall": 0.7271343194594287
+        },
+        "structural_lines.detect": {
+          "segments": 30427,
+          "all_line_px": 1870556,
+          "evaluated_line_px": 736921,
+          "line_px_within_tolerance": 249195,
+          "truth_boundary_px": 281776,
+          "recovered_boundary_px": 256046,
+          "line_precision": 0.33815700733185783,
+          "boundary_recall": 0.9086863324058827
+        }
+      }
+    },
+    "courtyard": {
+      "frames": 12,
+      "results": {
+        "mlsd-tiny-512-fp16": {
+          "segments": 904,
+          "all_line_px": 291040,
+          "evaluated_line_px": 165060,
+          "line_px_within_tolerance": 25513,
+          "truth_boundary_px": 40968,
+          "recovered_boundary_px": 34011,
+          "line_precision": 0.1545680358657458,
+          "boundary_recall": 0.8301845342706503
+        },
+        "structural_lines.detect": {
+          "segments": 6656,
+          "all_line_px": 422383,
+          "evaluated_line_px": 189844,
+          "line_px_within_tolerance": 40154,
+          "truth_boundary_px": 40968,
+          "recovered_boundary_px": 38545,
+          "line_precision": 0.21151050336065402,
+          "boundary_recall": 0.9408562780706893
+        }
+      }
+    },
+    "crossing": {
+      "frames": 4,
+      "results": {
+        "mlsd-tiny-512-fp16": {
+          "segments": 206,
+          "all_line_px": 46299,
+          "evaluated_line_px": 24840,
+          "line_px_within_tolerance": 17480,
+          "truth_boundary_px": 32444,
+          "recovered_boundary_px": 22825,
+          "line_precision": 0.7037037037037037,
+          "boundary_recall": 0.7035199112316607
+        },
+        "structural_lines.detect": {
+          "segments": 2834,
+          "all_line_px": 153944,
+          "evaluated_line_px": 72832,
+          "line_px_within_tolerance": 30103,
+          "truth_boundary_px": 32444,
+          "recovered_boundary_px": 29942,
+          "line_precision": 0.4133210676625659,
+          "boundary_recall": 0.9228825052397978
+        }
+      }
+    },
+    "portico": {
+      "frames": 8,
+      "results": {
+        "mlsd-tiny-512-fp16": {
+          "segments": 497,
+          "all_line_px": 173731,
+          "evaluated_line_px": 42012,
+          "line_px_within_tolerance": 33998,
+          "truth_boundary_px": 69144,
+          "recovered_boundary_px": 49462,
+          "line_precision": 0.8092449776254403,
+          "boundary_recall": 0.715347680203633
+        },
+        "structural_lines.detect": {
+          "segments": 5760,
+          "all_line_px": 336272,
+          "evaluated_line_px": 85253,
+          "line_px_within_tolerance": 55235,
+          "truth_boundary_px": 69144,
+          "recovered_boundary_px": 60463,
+          "line_precision": 0.6478950887358803,
+          "boundary_recall": 0.8744504223070693
+        }
+      }
+    },
+    "shopfront": {
+      "frames": 8,
+      "results": {
+        "mlsd-tiny-512-fp16": {
+          "segments": 539,
+          "all_line_px": 190081,
+          "evaluated_line_px": 51677,
+          "line_px_within_tolerance": 42137,
+          "truth_boundary_px": 81536,
+          "recovered_boundary_px": 57235,
+          "line_precision": 0.8153917603576059,
+          "boundary_recall": 0.7019598704866562
+        },
+        "structural_lines.detect": {
+          "segments": 5760,
+          "all_line_px": 351352,
+          "evaluated_line_px": 115531,
+          "line_px_within_tolerance": 65684,
+          "truth_boundary_px": 81536,
+          "recovered_boundary_px": 73154,
+          "line_precision": 0.5685400455289057,
+          "boundary_recall": 0.8971987833594977
+        }
+      }
+    },
+    "wing": {
+      "frames": 12,
+      "results": {
+        "mlsd-tiny-512-fp16": {
+          "segments": 709,
+          "all_line_px": 246873,
+          "evaluated_line_px": 138599,
+          "line_px_within_tolerance": 21338,
+          "truth_boundary_px": 28336,
+          "recovered_boundary_px": 24521,
+          "line_precision": 0.15395493473978888,
+          "boundary_recall": 0.8653656126482213
+        },
+        "structural_lines.detect": {
+          "segments": 6537,
+          "all_line_px": 443881,
+          "evaluated_line_px": 202822,
+          "line_px_within_tolerance": 31154,
+          "truth_boundary_px": 28336,
+          "recovered_boundary_px": 27436,
+          "line_precision": 0.15360266637741468,
+          "boundary_recall": 0.9682382834556748
+        }
+      }
+    },
+    "workshop": {
+      "frames": 4,
+      "results": {
+        "mlsd-tiny-512-fp16": {
+          "segments": 137,
+          "all_line_px": 29808,
+          "evaluated_line_px": 15026,
+          "line_px_within_tolerance": 9861,
+          "truth_boundary_px": 29348,
+          "recovered_boundary_px": 16835,
+          "line_precision": 0.6562624783708239,
+          "boundary_recall": 0.5736336377265913
+        },
+        "structural_lines.detect": {
+          "segments": 2880,
+          "all_line_px": 162724,
+          "evaluated_line_px": 70639,
+          "line_px_within_tolerance": 26865,
+          "truth_boundary_px": 29348,
+          "recovered_boundary_px": 26506,
+          "line_precision": 0.3803139908549102,
+          "boundary_recall": 0.9031620553359684
+        }
+      }
+    },
+    "light_gray_concrete": {
+      "frames": 28,
+      "results": {
+        "mlsd-tiny-512-fp16": {
+          "segments": 1440,
+          "all_line_px": 405015,
+          "evaluated_line_px": 238956,
+          "line_px_within_tolerance": 88951,
+          "truth_boundary_px": 171784,
+          "recovered_boundary_px": 122400,
+          "line_precision": 0.37224844741291285,
+          "boundary_recall": 0.71252270292926
+        },
+        "structural_lines.detect": {
+          "segments": 17912,
+          "all_line_px": 1027665,
+          "evaluated_line_px": 508931,
+          "line_px_within_tolerance": 169691,
+          "truth_boundary_px": 171784,
+          "recovered_boundary_px": 161119,
+          "line_precision": 0.3334263387374713,
+          "boundary_recall": 0.9379162203697666
+        }
+      }
+    },
+    "smooth_stone": {
+      "frames": 20,
+      "results": {
+        "mlsd-tiny-512-fp16": {
+          "segments": 1552,
+          "all_line_px": 572817,
+          "evaluated_line_px": 198258,
+          "line_px_within_tolerance": 61376,
+          "truth_boundary_px": 109992,
+          "recovered_boundary_px": 82489,
+          "line_precision": 0.3095764105357665,
+          "boundary_recall": 0.7499545421485199
+        },
+        "structural_lines.detect": {
+          "segments": 12515,
+          "all_line_px": 842891,
+          "evaluated_line_px": 227990,
+          "line_px_within_tolerance": 79504,
+          "truth_boundary_px": 109992,
+          "recovered_boundary_px": 94927,
+          "line_precision": 0.3487170489933769,
+          "boundary_recall": 0.8630354934904356
+        }
+      }
+    }
+  },
+  "artifacts": [
+    "frames.json",
+    "README.md"
+  ],
+  "reproduce": "& 'C:/Users/jerem/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/python.exe' -m benchmark.normal_line_round --runtime-dir ../surface-round/runs/mlsd-probe/lib --checkpoint ../surface-round/runs/mlsd-probe/M-LSD_512_tiny_fp16.tflite --out runs/normal-lines-01"
+}
