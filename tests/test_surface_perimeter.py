@@ -3,7 +3,7 @@ import unittest
 import numpy as np
 from PIL import Image
 
-from engine.surface_perimeter import draw_outline, masked_crop, outline, with_outline
+from engine.surface_perimeter import context_crop, draw_outline, masked_crop, outline, with_outline
 
 
 def support(mask):
@@ -74,3 +74,24 @@ class SurfacePerimeterTests(unittest.TestCase):
         part = dict(support=dict(size=[4, 5], runs=[]))
         self.assertEqual(outline(part['support'])['rings'], [])
         self.assertIsNone(masked_crop(Image.new('RGB', (13, 7)), part))
+        self.assertIsNone(context_crop(Image.new('RGB', (13, 7)), part))
+
+    def test_context_preserves_real_neighbors_and_clips_margin_to_frame(self):
+        mask = np.zeros((9, 12), bool)
+        mask[1:6, :7] = True
+        mask[3, 3] = False
+        rgb = np.arange(12*9*3, dtype=np.uint8).reshape(9, 12, 3)
+        image = Image.fromarray(rgb)
+        part = dict(support=support(mask))
+        tight, box = masked_crop(image, part)
+        for margin in (0, 4, 8, 16):
+            with self.subTest(margin=margin):
+                context, window, local = context_crop(image, part, margin)
+                self.assertEqual(window, (0,max(0, 1-margin),min(12,7+margin),min(9,6+margin)))
+                self.assertEqual(local, (0,box[1]-window[1],7,box[3]-window[1]))
+                self.assertEqual(context.mode, 'RGB')
+                self.assertEqual(context.tobytes(), image.crop(window).tobytes())
+                self.assertEqual(context.crop(local).tobytes(), tight.convert('RGB').tobytes())
+                self.assertEqual(tight.getpixel((3,2))[3], 0)
+        with self.assertRaises(ValueError):
+            context_crop(image, part, -1)

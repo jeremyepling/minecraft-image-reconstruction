@@ -36,6 +36,12 @@ class SurfaceFinderTests(unittest.TestCase):
             with Image.open(Path(temp)/plane['source_crop']['path']) as crop:
                 self.assertEqual(crop.mode, 'RGBA')
                 self.assertEqual(crop.getpixel((30, 15))[3], 0)
+            context = plane['context_crop']
+            with Image.open(Path(temp)/context['path']) as crop:
+                self.assertEqual((crop.mode, crop.size), ('RGB', (64, 29)))
+            self.assertEqual(context['mask_xyxy_in_crop'], [0, 0, 64, 21])
+            self.assertEqual(context['margins_ltrb_px'], [0, 0, 0, 8])
+            self.assertEqual(context['requested_margin_px'], 8)
         self.assertEqual(model['footprint'], 'support')
         self.assertEqual({k: plane[k] for k in wall}, wall)
         self.assertIsNone(plane['sampling_chart'])
