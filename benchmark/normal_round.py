@@ -23,6 +23,7 @@ from engine.geometry import bilinear
 from engine.surface_fields import MODELS, SETTINGS as INFERENCE
 from engine.surface_model import assemble, intrinsic, pitch, proposals_for
 from engine.surface_order import order, SETTINGS as ORDER_SETTINGS
+from runtime.mode import image_only, mark_image_only
 
 
 METHODS=('edges+shade','normal-rank','normal-regions')
@@ -203,6 +204,7 @@ def layout_means(rows):
     return {m:float(np.mean([s['methods'][m]['outlines']['f1'] for s in by_layout])) for m in METHODS}
 
 
+@image_only()
 def main():
     ap=argparse.ArgumentParser(description=__doc__)
     ap.add_argument('--out',type=Path)
@@ -220,7 +222,7 @@ def main():
         raise ValueError('Frozen clear-noon confirmation world differs from its index.')
     rows=[]
     code=revision()
-    with ProcessPoolExecutor(max_workers=args.workers) as pool:
+    with ProcessPoolExecutor(max_workers=args.workers, initializer=mark_image_only) as pool:
         for cohort,cases in cohorts.items():
             print(f'{cohort}: evaluating {len(cases)} single-frame cases',flush=True)
             batch=list(pool.map(evaluate,[(c,cohort,args.cache,out) for c in cases]))

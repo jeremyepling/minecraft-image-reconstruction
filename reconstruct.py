@@ -7,6 +7,7 @@ import sys
 
 from engine import catalog
 from engine.reconstruction import reconstruct, analyze
+from runtime.mode import image_only, require_game_runtime
 
 ROOT=Path(__file__).resolve().parent
 
@@ -20,6 +21,7 @@ def runtime_options(args,jar):
 
 
 def calibrate(args):
+    require_game_runtime('live calibration')
     from calibration.fixture import make_fixture
     from calibration.evaluate import evaluate
     run=args.out.resolve()
@@ -112,6 +114,18 @@ def main():
     p.add_argument('--library',type=Path,help='Calibrated face_textures/softened-library.npz')
     p.add_argument('--depth',type=int,help='Extrapolate a hollow shell behind one visible wall')
     args=parser.parse_args()
+    if args.command=='calibrate':
+        return calibrate(args)
+    if args.command=='verify-build':
+        from calibration.verify_build import verify
+        require_game_runtime('placement verification')
+        jar=args.jar or catalog.discover(args.version)
+        return verify(args.build,jar,args.out,runtime_options(args,jar))
+    run_image_command(parser,args)
+
+
+@image_only()
+def run_image_command(parser,args):
     if (args.command=='build' and args.through!='surfaces'
             and (args.surface_outlines is not None or args.surface_order is not None)):
         parser.error('Use --through surfaces when choosing a surface method')
@@ -128,14 +142,8 @@ def main():
         defaults=json.loads(args.registry.read_text()) if args.registry else None
         info=catalog.build(args.version,args.out,args.jar,defaults)
         print(f"{args.version}: {len(info['choices']['south'])} placeable south-face textures")
-    elif args.command=='calibrate':
-        calibrate(args)
     elif args.command=='analyze':
         analyze(args.image,args.scene,args.out,args.geometry_method)
-    elif args.command=='verify-build':
-        from calibration.verify_build import verify
-        jar=args.jar or catalog.discover(args.version)
-        verify(args.build,jar,args.out,runtime_options(args,jar))
     elif args.through in ('camera', 'surfaces'):
         if not args.version:
             parser.error('Camera and surface builds need --version')

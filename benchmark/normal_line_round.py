@@ -13,6 +13,7 @@ from tempfile import TemporaryDirectory
 from benchmark.camera_round import ROOT, read, save
 from benchmark.mlsd_boundary_score import run as evaluate_boundaries
 from benchmark.mlsd_probe import probe, sha256 as file_hash
+from runtime.mode import image_only, mark_image_only
 
 
 CASES = ROOT/'benchmark/reviews/surfaces-01/cases.json'
@@ -112,6 +113,7 @@ def report(path, summary):
     path.write_text('\n'.join(lines), encoding='utf-8')
 
 
+@image_only()
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--checkpoint', type=Path, required=True)
@@ -125,7 +127,7 @@ def main():
     if json_hash(cases) != CASES_HASH or file_hash(args.checkpoint) != WEIGHTS_HASH:
         raise ValueError('Expected the frozen 48-frame cases file and pinned M-LSD Tiny FP16 checkpoint.')
     jobs = [(c, args.checkpoint.resolve(), runtime) for c in cases]
-    with ProcessPoolExecutor(max_workers=args.workers) as pool:
+    with ProcessPoolExecutor(max_workers=args.workers, initializer=mark_image_only) as pool:
         rows = list(pool.map(evaluate, jobs))
     previous = read(ROOT/'benchmark/reviews/local-models-01/measurements.json')['physical_boundaries']
     repeat, = [r for r in rows if r['image_sha256'] == previous['image_sha256']]

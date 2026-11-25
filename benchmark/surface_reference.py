@@ -16,6 +16,7 @@ from benchmark.camera_metrics import truth_camera
 from benchmark.camera_round import ROOT, digest, read
 from benchmark.exterior_set import Capture
 from engine.geometry import UNIT, project
+from runtime.mode import image_only
 
 
 ARCHIVE = ROOT / 'benchmark/data/visible-geometry-v1.zip'
@@ -138,7 +139,8 @@ def verify(cases, archive=ARCHIVE):
         recorded(case, archive)
 
 
-if __name__ == '__main__':
+@image_only()
+def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--rebuild', action='store_true', help='Regenerate all maps from the frozen local labels')
     args = parser.parse_args()
@@ -149,3 +151,7 @@ if __name__ == '__main__':
         build(cases)
     verify(cases)
     print(f'Verified {len(cases)} saved reference maps in {ARCHIVE}')
+
+
+if __name__ == '__main__':
+    main()
