@@ -10,14 +10,19 @@ from benchmark.camera_round import read
 def record(run, image_id, box, preferred, note, floor=None, stage=None):
     manifest = read(run / 'manifest.json')
     fixture = manifest.get('fixture', {})
-    if 'cases' in manifest['artifacts']:
+    cases_path = manifest['artifacts'].get('cases') or manifest['artifacts'].get('per_picture')
+    if cases_path:
         from PIL import Image
-        case = next((c for c in read(run / manifest['artifacts']['cases'])
+        case = next((c for c in read(run / cases_path)
                      if c['id'] == image_id and c['floor'] == floor), None)
-        choices = {'lift':['shared-edges-v1','no-preference'],
-                   **{k:[*manifest['methods'][k],'no-preference'] for k in ('pitch','outlines')}}
-        if 'order' in manifest['methods']:
-            choices['order']=[*manifest['methods']['order'],'no-preference']
+        if isinstance(manifest['methods'],list):
+            choices = {'regions':[*manifest['methods'],'no-preference'],
+                       'block-placement':['current-b',manifest['selection']['selected'],'no-preference']}
+        else:
+            choices = {'lift':['shared-edges-v1','no-preference'],
+                       **{k:[*manifest['methods'][k],'no-preference'] for k in ('pitch','outlines')}}
+            if 'order' in manifest['methods']:
+                choices['order']=[*manifest['methods']['order'],'no-preference']
         if not case or preferred not in choices.get(stage, []):
             raise ValueError('Choose a recorded image, floor, stage and method from this surface run.')
         with Image.open(run / case['source']) as src:
@@ -31,7 +36,7 @@ def record(run, image_id, box, preferred, note, floor=None, stage=None):
         if floor is not None:
             raise ValueError('This historical run has a single fixture index.')
         index_path = run / fixture['index']
-    if 'cases' not in manifest['artifacts']:
+    if not cases_path:
         if stage is not None and stage != manifest['stage']:
             raise ValueError('Stage does not match this run.')
         stage = manifest['stage']
@@ -48,7 +53,7 @@ def record(run, image_id, box, preferred, note, floor=None, stage=None):
                 preferred=preferred, note=note, recorded_at=datetime.now(timezone.utc).isoformat())
     if floor is not None:
         item.update(floor=floor, suite=manifest.get('suite','surface-round'), image_sha256=frame['image_sha256'])
-    with (run / manifest['artifacts']['visual_feedback']).open('a', encoding='utf8') as out:
+    with (run / manifest['artifacts'].get('visual_feedback','feedback.jsonl')).open('a', encoding='utf8') as out:
         out.write(json.dumps(item, ensure_ascii=False) + '\n')
 
 

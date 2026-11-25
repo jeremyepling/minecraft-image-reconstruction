@@ -44,6 +44,21 @@ def reference_view(source,reference):
     return img
 
 
+def moved_samples(original,refined):
+    """Changed ownership at the original mask resolution for enlarged challenger panels."""
+    if not original:
+        return None
+    size=original[0]['support']['size']
+    grids=[]
+    for parts in (original,refined):
+        ids=np.zeros(size[::-1],np.int32)
+        for i,part in enumerate(parts,1):
+            for y,a,b in part['support']['runs']:
+                ids[y,a:b]=i
+        grids.append(ids)
+    return Image.fromarray(grids[0]!=grids[1])
+
+
 def framed(box,size,detail):
     x0,y0,x1,y1=box
     x,y=(x0+x1)/2,(y0+y1)/2
@@ -86,7 +101,15 @@ def render(out,rows,methods):
                 predictions=json.load(f)
             with Image.open(BytesIO(previews.read(row['sha256']+'.png'))) as colors:
                 directions=colors.convert('RGB').resize(source.size,Image.Resampling.BILINEAR)
-            images=[source]+[region_view(source,predictions[m],m!='current-b') for m in methods]+[directions,reference_view(source,reference)]
+            overlays=[]
+            for m in methods:
+                overlay=region_view(source,predictions[m],m!='current-b')
+                if detail and m in ('scalelsd','deeplsd'):
+                    delta=moved_samples(predictions['mask-first'],predictions[m])
+                    if delta is not None:
+                        overlay.paste('#ff307f',(0,0,*source.size),delta.resize(source.size,Image.Resampling.NEAREST))
+                overlays.append(overlay)
+            images=[source]+overlays+[directions,reference_view(source,reference)]
             crop=framed(scene_box(reference,source),source.size,detail)
             title=detail_title+'  /  '+row['layout'].title() if detail else row['layout'].title()
             text(pen,margin,y+3,title,26,True)
@@ -97,7 +120,7 @@ def render(out,rows,methods):
                     s=row['scores'][methods[j-1]]
                     caption=f"{s['matched']} of {s['eligible']} found   /   {s['proposed']-s['matched']} extra"
                     if detail:
-                        caption='Enlarged region'
+                        caption='Pink = pixels moved by lines' if methods[j-1] in ('scalelsd','deeplsd') else 'Enlarged region'
                     text(pen,x,y+315,caption,19)
             crops.append(dict(key=row['key'],native_xyxy=crop,detail=detail_title))
     canvas.save(out/'comparison.jpg',quality=92,subsampling=0)

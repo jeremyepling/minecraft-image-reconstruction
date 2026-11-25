@@ -151,6 +151,26 @@ def exported_blocks(out, data, cohorts, selected):
          note='Correct visible coordinates after decoding exported pack NBT. In-game placement was not run.'))
 
 
+def recovered_at_each_stage(out,data):
+    with gzip.open(out/'loss-trace/surfaces.json.gz','rt',encoding='utf8') as f:
+        diagnosed={row['frame']:row['surfaces'] for row in json.load(f)}
+    buckets={}
+    for row in data:
+        assignment={m:{v['recorded_surface'] for v in pairs} for m,pairs in row['matched_regions'].items()}
+        breakdown={}
+        for surface in diagnosed[row['key']]:
+            loss=surface['loss']
+            if loss not in breakdown:
+                breakdown[loss]=dict(reference=0,**{m:0 for m in assignment})
+            breakdown[loss]['reference']+=1
+            for m in assignment:
+                breakdown[loss][m]+=int(surface['patch'] in assignment[m])
+        row['recovered_by_B_loss_stage']=breakdown
+        for loss,scores in breakdown.items():
+            buckets.setdefault(loss,Counter()).update(scores)
+    save(out/'recovered-by-stage.json',buckets)
+
+
 def run(args):
     from engine.mask_first import SETTINGS as region_settings
     cohorts,suite,fixture_hashes=groups()
@@ -175,8 +195,10 @@ def run(args):
             file.write_bytes(gzip.compress(json.dumps(predictions,separators=(',',':'),allow_nan=False).encode(),mtime=0))
             _,reference=recorded(case)
             scores={}
+            matched={}
             for method,parts in predictions.items():
-                scores[method],_=measure(parts,reference,use_mask=method!='current-b')
+                scores[method],pairs=measure(parts,reference,use_mask=method!='current-b')
+                matched[method]=[dict(proposal=parts[i]['id'],recorded_surface=int(pid)) for i,pid in sorted(pairs)]
             for k in ('matched','eligible','proposed'):
                 if scores['current-b'][k]!=row['methods']['normal-regions']['outlines'][k]:
                     raise ValueError(f'Published B counts differ: {key} {k}')
@@ -185,7 +207,7 @@ def run(args):
                              historical_cohort=cohort,source=artifact_path(case.path('image'),out),
                              predictions=artifact_path(file,out),timing_seconds=timing,baseline_replay_agrees=same_b,
                              line_changed_region_pixels={m:sum(p.get('line_changed_pixels',0) for p in predictions[m])//2
-                                                         for m in model_manifests},scores=scores))
+                                                         for m in model_manifests},scores=scores,matched_regions=matched))
         print(f'{cohort}: {len(cases)} images',flush=True)
         if cohort=='development':
             decision=select(data)
@@ -201,7 +223,7 @@ def run(args):
     save(out/'scores.json',summary)
     methods=list(data[0]['scores'])
     baseline=read(REFERENCE/'manifest.json')
-    manifest=dict(run_id=out.name,phase=args.phase,code=code,version=suite['version'],fixtures=fixture_hashes,
+    manifest=dict(run_id=out.name,suite='mask-round',phase=args.phase,code=code,version=suite['version'],fixtures=fixture_hashes,
                   client_sha256=baseline['client_sha256'],capture=baseline['capture'],baseline_revision=baseline['code'],
                   reference_sha256=digest(ARCHIVE),previous_b_run_sha256=digest(REFERENCE/'manifest.json'),
                   shared_models={k:dict(sha256=v[2],pinned_source=SOURCES[k][1]) for k,v in MODELS.items()},
@@ -213,20 +235,28 @@ def run(args):
                   frames=[dict(key=r['key'],sha256=r['sha256']) for r in data],
                   environment=dict(numpy=np.__version__,pillow=pillow_version,python=platform.python_version(),platform=platform.platform()),
                   artifacts=dict(scores='scores.json',per_picture='cases.json',predictions='predictions/',selection='selection.json',
-                                 sheet='comparison.jpg'))
+                                 sheet='comparison.jpg',visual_feedback='feedback.jsonl',review_regions='review-regions.json'))
     if args.phase=='full':
         from benchmark.mask_blocks import SETTINGS as block_settings
         from engine.mask_line_refine import SETTINGS as line_settings
         manifest['settings']['line_refinement']=line_settings
         manifest['settings']['block_export']=block_settings
         manifest['line_models']=model_manifests
+        timing_file=ROOT/'benchmark/data/mask-field-timing-v1.json'
+        timing=read(timing_file)
+        manifest['shared_field_inference']=dict(cached_during_comparison=True,
+            unique_images=timing['unique_images'],separate_timed_replay_seconds=timing['seconds'],
+            per_image_file=artifact_path(timing_file,out),timing_file_sha256=digest(timing_file))
         unique={r['sha256']:r for r in data}.values()
         manifest['unique_line_inference_seconds']={m:sum(r['timing_seconds'][m+'_inference_recorded'] for r in unique)
                                                    for m in model_manifests}
         subprocess.run([sys.executable,'-m','benchmark.mask_loss_trace','--fields',str(args.fields.resolve()),
                         '--out',str(out/'loss-trace')],cwd=ROOT,check=True)
+        recovered_at_each_stage(out,data)
+        save(out/'cases.json',data)
         manifest['artifacts'].update(report='report.html',block_scores='blocks.json',exported_packs='block-packs.zip',
-                                     loss_trace='loss-trace/manifest.json',loss_sheet='loss-trace/stages.jpg')
+                                     loss_trace='loss-trace/manifest.json',loss_sheet='loss-trace/stages.jpg',
+                                     recovered_by_stage='recovered-by-stage.json')
     from benchmark.mask_sheet import render
     render(out,data,methods)
     if args.phase=='full':
