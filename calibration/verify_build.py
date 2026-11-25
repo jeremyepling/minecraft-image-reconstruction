@@ -6,11 +6,13 @@ import sys
 from zipfile import ZipFile, ZIP_DEFLATED
 
 from calibration.world import create_world, GROUND, PACK
+from runtime.mode import require_game_runtime
 
 ROOT=Path(__file__).resolve().parents[1]
 
 
 def verify(build, jar, run, runtime_args):
+    require_game_runtime('placement verification')
     placements=json.loads((build/'placements.json').read_text())
     with ZipFile(jar) as z:
         release=json.loads(z.read('version.json'))

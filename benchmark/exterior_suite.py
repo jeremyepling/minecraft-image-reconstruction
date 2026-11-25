@@ -13,6 +13,7 @@ from benchmark import camera_metrics, ratio_metrics
 from benchmark.camera_round import ROOT, digest, infer, read, revision, save
 from benchmark.exterior_set import RELEASE, load_suite
 from engine.camera_grid import DEFAULT, METHODS
+from runtime.mode import image_only, mark_image_only
 
 
 PROTOCOL = 'camera-floor-ratios-v1'
@@ -75,6 +76,7 @@ def compare(reference, scores, suite, split, out):
                 suite=suite['id'], current_minus_reference=deltas)
 
 
+@image_only()
 def run(out, method=DEFAULT, floor=None, split='all', workers=3):
     suite, pairs = load_suite()
     floors = [floor] if floor else list(suite['conditions'])
@@ -88,7 +90,7 @@ def run(out, method=DEFAULT, floor=None, split='all', workers=3):
     for f in floors:
         (out / 'predictions' / f).mkdir(parents=True)
     jobs = [(c.path('image'), suite['version'], method, prediction_path(c)) for c in chosen]
-    with ProcessPoolExecutor(max_workers=workers) as pool:
+    with ProcessPoolExecutor(max_workers=workers, initializer=mark_image_only) as pool:
         list(pool.map(infer, jobs))
     rows, examples = [], {}
     cases_dir = out / 'scores'

@@ -17,6 +17,7 @@ from benchmark.surface_fixture import FROZEN, FROZEN_SHA256
 from benchmark.surface_metrics import score_planes, score_pitch
 from benchmark.surface_reference import recorded
 from engine.surface_model import assemble, intrinsic, pitch, proposals_for, SETTINGS
+from runtime.mode import image_only, mark_image_only
 
 
 OUTLINES = ('contact', 'edges', 'edges+shade')
@@ -143,6 +144,7 @@ def summaries(cases, out, with_scale):
     return summary
 
 
+@image_only()
 def main():
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument('--out',type=Path)
@@ -175,7 +177,7 @@ def main():
     stages = {}
     summary = {}
     code = revision()
-    with ProcessPoolExecutor(max_workers=args.workers) as pool:
+    with ProcessPoolExecutor(max_workers=args.workers, initializer=mark_image_only) as pool:
         for cohort in ('dev','regression','confirmation'):
             cases = groups[cohort]
             print(f'{cohort}: scoring three outline methods on {len(cases)} images',flush=True)

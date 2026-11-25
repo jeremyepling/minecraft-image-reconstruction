@@ -13,6 +13,11 @@ import tempfile
 import uuid
 from zipfile import ZipFile
 
+if __package__:
+    from .mode import require_game_runtime
+else:  # Preserve the standalone runtime/capture.py entry point.
+    from mode import require_game_runtime
+
 HERE = Path(__file__).resolve().parent
 
 
@@ -120,6 +125,8 @@ def main():
             mode.add_argument("--resolution",nargs=2,type=int,metavar=("WIDTH","HEIGHT"),default=(1440,900))
             mode.add_argument("--resource-pack",type=Path,help="Local resource pack to enable in this private client")
     args=parser.parse_args()
+    if args.action in ('capture', 'registry'):
+        require_game_runtime(args.action)
     cp,meta,index,assets=classpath(args)
     java=str(args.java_home/"bin/java") if args.java_home else "java"
     javac=str(args.java_home/"bin/javac") if args.java_home else "javac"

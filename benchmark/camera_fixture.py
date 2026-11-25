@@ -11,6 +11,7 @@ from zipfile import ZIP_DEFLATED, ZipFile
 from benchmark.fixtures import Building
 from calibration.world import GROUND, PACK, create_world
 from engine.atlas import digest, discover
+from runtime.mode import require_game_runtime
 
 
 VERSION = "26.3"
@@ -128,6 +129,7 @@ def stage(root, jar, floor="smooth_stone", *, shape_groups=LAYOUTS, viewpoints=p
 
 
 def capture(root, floor, jar=None, minecraft_dir=None, **stage_options):
+    require_game_runtime('fixture capture')
     if jar is None and minecraft_dir:
         jar = minecraft_dir / "versions" / VERSION / f"{VERSION}.jar"
     jar = (jar or discover(VERSION)).resolve()

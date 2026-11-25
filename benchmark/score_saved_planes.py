@@ -8,6 +8,7 @@ from time import perf_counter
 
 from benchmark.camera_round import ROOT, digest, read
 from benchmark.surface_metrics import score_planes
+from runtime.mode import image_only
 
 
 ROUND = ROOT / 'benchmark/reviews/normals-01'
@@ -82,6 +83,7 @@ def print_results(rows):
         print(f'{layout.title():<12}{len(group):>5}{per_image:>21}{found:>32}{proposed - matched:>17}')
 
 
+@image_only()
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--image', type=Path, help='Score a single frozen screenshot')

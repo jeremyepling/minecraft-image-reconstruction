@@ -14,6 +14,7 @@ from PIL import Image, __version__ as pillow_version
 
 from benchmark.camera_metrics import score, summarize
 from engine.camera_grid import METHODS, predict
+from runtime.mode import image_only, mark_image_only
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -71,7 +72,7 @@ def evaluate(fixture, out, frames, version, split, workers):
         dest = out / 'predictions' / method
         dest.mkdir(exist_ok=True, parents=True)
         jobs.extend((fixture / f['image'], version, method, dest / (f['id'] + '.json')) for f in frames)
-    with ProcessPoolExecutor(max_workers=workers) as pool:
+    with ProcessPoolExecutor(max_workers=workers, initializer=mark_image_only) as pool:
         list(pool.map(infer, jobs))
     for f in frames:
         labels = read(fixture / f['labels'])['faces']
@@ -101,6 +102,7 @@ def validate(fixture):
     return index, layouts
 
 
+@image_only()
 def run(fixture, out, workers=3, dev_only=False):
     out.mkdir(parents=True, exist_ok=False)
     fixture = (fixture or FROZEN).resolve()

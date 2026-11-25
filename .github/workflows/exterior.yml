@@ -22,6 +22,8 @@ on:
   workflow_dispatch:
 permissions:
   contents: read
+env:
+  MCIR_IMAGE_ONLY: '1'
 jobs:
   visible-planes:
     runs-on: ubuntu-latest
