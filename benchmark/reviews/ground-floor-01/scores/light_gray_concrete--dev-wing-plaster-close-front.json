@@ -1,0 +1,195 @@
+{
+  "id": "dev-wing-plaster-close-front",
+  "floor": "light_gray_concrete",
+  "layout": "wing",
+  "split": "dev",
+  "condition": "limited-ground",
+  "metric": false,
+  "vertices": 35,
+  "spans": 12,
+  "within_2px": 0,
+  "projected": 0,
+  "measured_spans": 0,
+  "mean_px": null,
+  "p90_px": null,
+  "span_mae": null,
+  "relative_span_error": null,
+  "axis_mae_deg": null,
+  "fov_error_deg": null,
+  "charts": [
+    {
+      "axis": 2,
+      "plane": 1,
+      "expected": [
+        6,
+        4
+      ]
+    }
+  ],
+  "hit_rate": 0.0,
+  "endpoint_diagnostic": {
+    "total": 4,
+    "measured": 0,
+    "abstained": 4,
+    "mean_abs_error_pct": null,
+    "cases": [
+      {
+        "corner_xyz": [
+          260,
+          67,
+          1
+        ],
+        "normal_axis": 2,
+        "width_end_xyz": [
+          266,
+          67,
+          1
+        ],
+        "height_end_xyz": [
+          260,
+          71,
+          1
+        ],
+        "corner_px": [
+          55.044960578002375,
+          893.303476549627
+        ],
+        "width_end_px": [
+          1384.9555205780669,
+          893.3035957952435
+        ],
+        "height_end_px": [
+          55.044960578002375,
+          6.696472718311153
+        ],
+        "axis_indices": null,
+        "expected_ratio": 1.5,
+        "predicted_ratio": null,
+        "abs_error_pct": null,
+        "reason": "missing_vanishing_axes"
+      },
+      {
+        "corner_xyz": [
+          260,
+          71,
+          1
+        ],
+        "normal_axis": 2,
+        "width_end_xyz": [
+          266,
+          71,
+          1
+        ],
+        "height_end_xyz": [
+          260,
+          67,
+          1
+        ],
+        "corner_px": [
+          55.044960578002375,
+          6.696472718311153
+        ],
+        "width_end_px": [
+          1384.9555205780669,
+          6.696353472681208
+        ],
+        "height_end_px": [
+          55.044960578002375,
+          893.303476549627
+        ],
+        "axis_indices": null,
+        "expected_ratio": 1.5,
+        "predicted_ratio": null,
+        "abs_error_pct": null,
+        "reason": "missing_vanishing_axes"
+      },
+      {
+        "corner_xyz": [
+          266,
+          67,
+          1
+        ],
+        "normal_axis": 2,
+        "width_end_xyz": [
+          260,
+          67,
+          1
+        ],
+        "height_end_xyz": [
+          266,
+          71,
+          1
+        ],
+        "corner_px": [
+          1384.9555205780669,
+          893.3035957952435
+        ],
+        "width_end_px": [
+          55.044960578002375,
+          893.303476549627
+        ],
+        "height_end_px": [
+          1384.9555205780669,
+          6.696353472681208
+        ],
+        "axis_indices": null,
+        "expected_ratio": 1.5,
+        "predicted_ratio": null,
+        "abs_error_pct": null,
+        "reason": "missing_vanishing_axes"
+      },
+      {
+        "corner_xyz": [
+          266,
+          71,
+          1
+        ],
+        "normal_axis": 2,
+        "width_end_xyz": [
+          260,
+          71,
+          1
+        ],
+        "height_end_xyz": [
+          266,
+          67,
+          1
+        ],
+        "corner_px": [
+          1384.9555205780669,
+          6.696353472681208
+        ],
+        "width_end_px": [
+          55.044960578002375,
+          6.696472718311153
+        ],
+        "height_end_px": [
+          1384.9555205780669,
+          893.3035957952435
+        ],
+        "axis_indices": null,
+        "expected_ratio": 1.5,
+        "predicted_ratio": null,
+        "abs_error_pct": null,
+        "reason": "missing_vanishing_axes"
+      }
+    ]
+  },
+  "automatic_charts": {
+    "total": 1,
+    "measured": 0,
+    "abstained": 1,
+    "mean_abs_error_pct": null,
+    "cases": [
+      {
+        "axis": 2,
+        "plane": 1,
+        "plane_error_blocks": null,
+        "expected_ratio": 1.5,
+        "predicted_ratio": null,
+        "abs_error_pct": null,
+        "reason": "no_automatic_chart"
+      }
+    ]
+  }
+}

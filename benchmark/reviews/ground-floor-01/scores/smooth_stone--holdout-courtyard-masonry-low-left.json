@@ -1,0 +1,768 @@
+{
+  "id": "holdout-courtyard-masonry-low-left",
+  "floor": "smooth_stone",
+  "layout": "courtyard",
+  "split": "holdout",
+  "condition": "ground-visible",
+  "metric": true,
+  "vertices": 223,
+  "spans": 67,
+  "within_2px": 223,
+  "projected": 223,
+  "measured_spans": 67,
+  "mean_px": 0.3350187296556322,
+  "p90_px": 0.4294721520995748,
+  "span_mae": 0.010664853207814785,
+  "relative_span_error": 0.0013982189157553744,
+  "axis_mae_deg": 0.021088405518994876,
+  "fov_error_deg": 0.05142640961738465,
+  "charts": [
+    {
+      "axis": 0,
+      "plane": 1024,
+      "expected": [
+        8,
+        8
+      ],
+      "predicted": [
+        3.0,
+        14.0
+      ],
+      "plane_error_blocks": 4.0,
+      "extent_mae_blocks": 5.5
+    },
+    {
+      "axis": 2,
+      "plane": -4,
+      "expected": [
+        16,
+        8
+      ],
+      "predicted": [
+        12.0,
+        8.0
+      ],
+      "plane_error_blocks": 1.0,
+      "extent_mae_blocks": 2.0
+    }
+  ],
+  "hit_rate": 1.0,
+  "endpoint_diagnostic": {
+    "total": 18,
+    "measured": 18,
+    "abstained": 0,
+    "mean_abs_error_pct": 0.06469735910396691,
+    "cases": [
+      {
+        "corner_xyz": [
+          1024,
+          65,
+          -6
+        ],
+        "normal_axis": 0,
+        "width_end_xyz": [
+          1024,
+          65,
+          2
+        ],
+        "height_end_xyz": [
+          1024,
+          73,
+          -6
+        ],
+        "corner_px": [
+          399.4651146930509,
+          593.1636462646807
+        ],
+        "width_end_px": [
+          449.84611831058197,
+          639.7528544165777
+        ],
+        "height_end_px": [
+          403.3489402263028,
+          308.3932232440488
+        ],
+        "axis_indices": [
+          0,
+          1
+        ],
+        "expected_ratio": 1.0,
+        "predicted_ratio": 1.0023663474643003,
+        "abs_error_pct": 0.23663474643003113,
+        "reason": null
+      },
+      {
+        "corner_xyz": [
+          1024,
+          65,
+          2
+        ],
+        "normal_axis": 0,
+        "width_end_xyz": [
+          1024,
+          65,
+          -6
+        ],
+        "height_end_xyz": [
+          1024,
+          72,
+          2
+        ],
+        "corner_px": [
+          449.84611831058197,
+          639.7528544165777
+        ],
+        "width_end_px": [
+          399.4651146930509,
+          593.1636462646807
+        ],
+        "height_end_px": [
+          453.89874585008357,
+          286.4915970071613
+        ],
+        "axis_indices": [
+          0,
+          1
+        ],
+        "expected_ratio": 1.1428571428571428,
+        "predicted_ratio": 1.1473561207382386,
+        "abs_error_pct": 0.39366056459588794,
+        "reason": null
+      },
+      {
+        "corner_xyz": [
+          1024,
+          72,
+          2
+        ],
+        "normal_axis": 0,
+        "width_end_xyz": [
+          1024,
+          72,
+          -6
+        ],
+        "height_end_xyz": [
+          1024,
+          65,
+          2
+        ],
+        "corner_px": [
+          453.89874585008357,
+          286.4915970071613
+        ],
+        "width_end_px": [
+          402.86861693724984,
+          343.61155760000173
+        ],
+        "height_end_px": [
+          449.84611831058197,
+          639.7528544165777
+        ],
+        "axis_indices": [
+          0,
+          1
+        ],
+        "expected_ratio": 1.1428571428571428,
+        "predicted_ratio": 1.1476027255519026,
+        "abs_error_pct": 0.41523848579148037,
+        "reason": null
+      },
+      {
+        "corner_xyz": [
+          1036,
+          65,
+          -4
+        ],
+        "normal_axis": 0,
+        "width_end_xyz": [
+          1036,
+          65,
+          0
+        ],
+        "height_end_xyz": [
+          1036,
+          70,
+          -4
+        ],
+        "corner_px": [
+          802.6366327069253,
+          578.5053498290937
+        ],
+        "width_end_px": [
+          879.5940001857316,
+          592.6965215040947
+        ],
+        "height_end_px": [
+          802.0903150681552,
+          423.22656320231437
+        ],
+        "axis_indices": [
+          0,
+          1
+        ],
+        "expected_ratio": 0.8,
+        "predicted_ratio": 0.7999049077419335,
+        "abs_error_pct": 0.011886532258320592,
+        "reason": null
+      },
+      {
+        "corner_xyz": [
+          1036,
+          65,
+          0
+        ],
+        "normal_axis": 0,
+        "width_end_xyz": [
+          1036,
+          65,
+          -4
+        ],
+        "height_end_xyz": [
+          1036,
+          70,
+          0
+        ],
+        "corner_px": [
+          879.5940001857316,
+          592.6965215040947
+        ],
+        "width_end_px": [
+          802.6366327069253,
+          578.5053498290937
+        ],
+        "height_end_px": [
+          878.3849507677635,
+          414.651706594598
+        ],
+        "axis_indices": [
+          0,
+          1
+        ],
+        "expected_ratio": 0.8,
+        "predicted_ratio": 0.8000285962140073,
+        "abs_error_pct": 0.0035745267509046386,
+        "reason": null
+      },
+      {
+        "corner_xyz": [
+          1036,
+          70,
+          -4
+        ],
+        "normal_axis": 0,
+        "width_end_xyz": [
+          1036,
+          70,
+          0
+        ],
+        "height_end_xyz": [
+          1036,
+          65,
+          -4
+        ],
+        "corner_px": [
+          802.0903150681552,
+          423.22656320231437
+        ],
+        "width_end_px": [
+          878.3849507677635,
+          414.651706594598
+        ],
+        "height_end_px": [
+          802.6366327069253,
+          578.5053498290937
+        ],
+        "axis_indices": [
+          0,
+          1
+        ],
+        "expected_ratio": 0.8,
+        "predicted_ratio": 0.7999295551692751,
+        "abs_error_pct": 0.008805603840611465,
+        "reason": null
+      },
+      {
+        "corner_xyz": [
+          1036,
+          70,
+          0
+        ],
+        "normal_axis": 0,
+        "width_end_xyz": [
+          1036,
+          70,
+          -4
+        ],
+        "height_end_xyz": [
+          1036,
+          65,
+          0
+        ],
+        "corner_px": [
+          878.3849507677635,
+          414.651706594598
+        ],
+        "width_end_px": [
+          802.0903150681552,
+          423.22656320231437
+        ],
+        "height_end_px": [
+          879.5940001857316,
+          592.6965215040947
+        ],
+        "axis_indices": [
+          0,
+          1
+        ],
+        "expected_ratio": 0.8,
+        "predicted_ratio": 0.8000532474525555,
+        "abs_error_pct": 0.0066559315694325605,
+        "reason": null
+      },
+      {
+        "corner_xyz": [
+          1024,
+          65,
+          2
+        ],
+        "normal_axis": 2,
+        "width_end_xyz": [
+          1028,
+          65,
+          2
+        ],
+        "height_end_xyz": [
+          1024,
+          72,
+          2
+        ],
+        "corner_px": [
+          449.84611831058197,
+          639.7528544165777
+        ],
+        "width_end_px": [
+          639.6753774095372,
+          624.5344299031294
+        ],
+        "height_end_px": [
+          453.89874585008357,
+          286.4915970071613
+        ],
+        "axis_indices": [
+          2,
+          1
+        ],
+        "expected_ratio": 0.5714285714285714,
+        "predicted_ratio": 0.5713467611572864,
+        "abs_error_pct": 0.014316797474867027,
+        "reason": null
+      },
+      {
+        "corner_xyz": [
+          1024,
+          72,
+          2
+        ],
+        "normal_axis": 2,
+        "width_end_xyz": [
+          1029,
+          72,
+          2
+        ],
+        "height_end_xyz": [
+          1024,
+          65,
+          2
+        ],
+        "corner_px": [
+          453.89874585008357,
+          286.4915970071613
+        ],
+        "width_end_px": [
+          682.0548931033762,
+          309.2045013993669
+        ],
+        "height_end_px": [
+          449.84611831058197,
+          639.7528544165777
+        ],
+        "axis_indices": [
+          2,
+          1
+        ],
+        "expected_ratio": 0.7142857142857143,
+        "predicted_ratio": 0.7142472082034435,
+        "abs_error_pct": 0.00539085151791685,
+        "reason": null
+      },
+      {
+        "corner_xyz": [
+          1028,
+          65,
+          2
+        ],
+        "normal_axis": 2,
+        "width_end_xyz": [
+          1024,
+          65,
+          2
+        ],
+        "height_end_xyz": [
+          1028,
+          72,
+          2
+        ],
+        "corner_px": [
+          639.6753774095372,
+          624.5344299031294
+        ],
+        "width_end_px": [
+          449.84611831058197,
+          639.7528544165777
+        ],
+        "height_end_px": [
+          640.7656838276741,
+          305.0941678668337
+        ],
+        "axis_indices": [
+          2,
+          1
+        ],
+        "expected_ratio": 0.5714285714285714,
+        "predicted_ratio": 0.5713074647250362,
+        "abs_error_pct": 0.02119367311865794,
+        "reason": null
+      },
+      {
+        "corner_xyz": [
+          1031,
+          65,
+          -4
+        ],
+        "normal_axis": 2,
+        "width_end_xyz": [
+          1036,
+          65,
+          -4
+        ],
+        "height_end_xyz": [
+          1031,
+          71,
+          -4
+        ],
+        "corner_px": [
+          659.0527251591622,
+          587.085719678401
+        ],
+        "width_end_px": [
+          802.6366327069253,
+          578.5053498290937
+        ],
+        "height_end_px": [
+          659.578157936424,
+          384.5223034348394
+        ],
+        "axis_indices": [
+          2,
+          1
+        ],
+        "expected_ratio": 0.8333333333333334,
+        "predicted_ratio": 0.8332889055081841,
+        "abs_error_pct": 0.005331339017911052,
+        "reason": null
+      },
+      {
+        "corner_xyz": [
+          1031,
+          71,
+          -4
+        ],
+        "normal_axis": 2,
+        "width_end_xyz": [
+          1040,
+          71,
+          -4
+        ],
+        "height_end_xyz": [
+          1031,
+          65,
+          -4
+        ],
+        "corner_px": [
+          659.578157936424,
+          384.5223034348394
+        ],
+        "width_end_px": [
+          900.3063963867504,
+          397.8677484088637
+        ],
+        "height_end_px": [
+          659.0527251591622,
+          587.085719678401
+        ],
+        "axis_indices": [
+          2,
+          1
+        ],
+        "expected_ratio": 1.5,
+        "predicted_ratio": 1.5000662412002554,
+        "abs_error_pct": 0.004416080017022317,
+        "reason": null
+      },
+      {
+        "corner_xyz": [
+          1032,
+          73,
+          -4
+        ],
+        "normal_axis": 2,
+        "width_end_xyz": [
+          1040,
+          73,
+          -4
+        ],
+        "height_end_xyz": [
+          1032,
+          65,
+          -4
+        ],
+        "corner_px": [
+          690.1166396805382,
+          320.61155722760617
+        ],
+        "width_end_px": [
+          899.8603016024297,
+          340.20403980340836
+        ],
+        "height_end_px": [
+          689.7762022413564,
+          585.2497284386845
+        ],
+        "axis_indices": [
+          2,
+          1
+        ],
+        "expected_ratio": 1.0,
+        "predicted_ratio": 1.00004416486379,
+        "abs_error_pct": 0.00441648637901082,
+        "reason": null
+      },
+      {
+        "corner_xyz": [
+          1036,
+          65,
+          -4
+        ],
+        "normal_axis": 2,
+        "width_end_xyz": [
+          1031,
+          65,
+          -4
+        ],
+        "height_end_xyz": [
+          1036,
+          73,
+          -4
+        ],
+        "corner_px": [
+          802.6366327069253,
+          578.5053498290937
+        ],
+        "width_end_px": [
+          659.0527251591622,
+          587.085719678401
+        ],
+        "height_end_px": [
+          801.7659780669534,
+          331.04089605430363
+        ],
+        "axis_indices": [
+          2,
+          1
+        ],
+        "expected_ratio": 0.625,
+        "predicted_ratio": 0.6249169580121987,
+        "abs_error_pct": 0.013286718048211021,
+        "reason": null
+      },
+      {
+        "corner_xyz": [
+          1036,
+          65,
+          0
+        ],
+        "normal_axis": 2,
+        "width_end_xyz": [
+          1040,
+          65,
+          0
+        ],
+        "height_end_xyz": [
+          1036,
+          70,
+          0
+        ],
+        "corner_px": [
+          879.5940001857316,
+          592.6965215040947
+        ],
+        "width_end_px": [
+          986.7966449249415,
+          584.9806398495442
+        ],
+        "height_end_px": [
+          878.3849507677635,
+          414.651706594598
+        ],
+        "axis_indices": [
+          2,
+          1
+        ],
+        "expected_ratio": 0.8,
+        "predicted_ratio": 0.800041966853656,
+        "abs_error_pct": 0.0052458567070035045,
+        "reason": null
+      },
+      {
+        "corner_xyz": [
+          1036,
+          70,
+          0
+        ],
+        "normal_axis": 2,
+        "width_end_xyz": [
+          1040,
+          70,
+          0
+        ],
+        "height_end_xyz": [
+          1036,
+          65,
+          0
+        ],
+        "corner_px": [
+          878.3849507677635,
+          414.651706594598
+        ],
+        "width_end_px": [
+          984.9153288478877,
+          419.3118747480026
+        ],
+        "height_end_px": [
+          879.5940001857316,
+          592.6965215040947
+        ],
+        "axis_indices": [
+          2,
+          1
+        ],
+        "expected_ratio": 0.8,
+        "predicted_ratio": 0.8000789776518586,
+        "abs_error_pct": 0.00987220648231979,
+        "reason": null
+      },
+      {
+        "corner_xyz": [
+          1040,
+          65,
+          0
+        ],
+        "normal_axis": 2,
+        "width_end_xyz": [
+          1036,
+          65,
+          0
+        ],
+        "height_end_xyz": [
+          1040,
+          70,
+          0
+        ],
+        "corner_px": [
+          986.7966449249415,
+          584.9806398495442
+        ],
+        "width_end_px": [
+          879.5940001857316,
+          592.6965215040947
+        ],
+        "height_end_px": [
+          984.9153288478877,
+          419.3118747480026
+        ],
+        "axis_indices": [
+          2,
+          1
+        ],
+        "expected_ratio": 0.8,
+        "predicted_ratio": 0.7999925251078429,
+        "abs_error_pct": 0.0009343615196444333,
+        "reason": null
+      },
+      {
+        "corner_xyz": [
+          1040,
+          70,
+          0
+        ],
+        "normal_axis": 2,
+        "width_end_xyz": [
+          1036,
+          70,
+          0
+        ],
+        "height_end_xyz": [
+          1040,
+          65,
+          0
+        ],
+        "corner_px": [
+          984.9153288478877,
+          419.3118747480026
+        ],
+        "width_end_px": [
+          878.3849507677635,
+          414.651706594598
+        ],
+        "height_end_px": [
+          986.7966449249415,
+          584.9806398495442
+        ],
+        "axis_indices": [
+          2,
+          1
+        ],
+        "expected_ratio": 0.8,
+        "predicted_ratio": 0.8000295336188175,
+        "abs_error_pct": 0.003691702352170978,
+        "reason": null
+      }
+    ]
+  },
+  "automatic_charts": {
+    "total": 2,
+    "measured": 2,
+    "abstained": 0,
+    "mean_abs_error_pct": 195.83333333333334,
+    "cases": [
+      {
+        "axis": 0,
+        "plane": 1024,
+        "plane_error_blocks": 4.0,
+        "expected_ratio": 1.0,
+        "predicted_ratio": 4.666666666666667,
+        "abs_error_pct": 366.6666666666667,
+        "reason": null
+      },
+      {
+        "axis": 2,
+        "plane": -4,
+        "plane_error_blocks": 1.0,
+        "expected_ratio": 2.0,
+        "predicted_ratio": 1.5,
+        "abs_error_pct": 25.0,
+        "reason": null
+      }
+    ]
+  }
+}
