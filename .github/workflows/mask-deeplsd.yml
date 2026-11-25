@@ -1,0 +1,37 @@
+name: Freeze DeepLSD MegaDepth evidence
+on:
+  push:
+    branches: [feature/mask-deeplsd]
+    paths: ['benchmark/mask_deeplsd.py', '.github/workflows/mask-deeplsd.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  lines:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+      - name: Install the official quickstart's inference dependencies
+        run: |
+          python -m pip install 'pip<25' 'setuptools<76' wheel 'cmake==3.31.6'
+          python -m pip install --index-url https://download.pytorch.org/whl/cpu 'torch==2.5.1'
+          python -m pip install numpy==1.26.4 scipy==1.13.1 opencv-python-headless==4.10.0.84 scikit-image==0.24.0 omegaconf==2.3.0
+          git clone https://github.com/cvg/DeepLSD.git runs/upstream-deeplsd
+          git -C runs/upstream-deeplsd checkout --detach f7d9d6258c0cd25d4f6eea882853565403d289be
+          git -C runs/upstream-deeplsd submodule update --init --recursive -- third_party/pytlsd
+          python -m pip install --no-build-isolation runs/upstream-deeplsd/third_party/pytlsd
+      - name: Run all frozen screenshots through the official MegaDepth checkpoint
+        env:
+          OPENBLAS_NUM_THREADS: '1'
+        run: |
+          curl --fail --retry 3 --location https://cvg-data.inf.ethz.ch/DeepLSD/deeplsd_md.tar --output runs/deeplsd_md.tar
+          python -m benchmark.mask_deeplsd --upstream runs/upstream-deeplsd --checkpoint runs/deeplsd_md.tar
+      - uses: actions/upload-artifact@v4
+        with:
+          name: frozen-deeplsd
+          path: benchmark/data/mask-lines-v1/deeplsd
+          if-no-files-found: error
