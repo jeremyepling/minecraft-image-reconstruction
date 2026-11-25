@@ -9,7 +9,7 @@ from PIL import Image, ImageDraw, ImageFilter, ImageOps
 
 from benchmark.camera_round import ROOT, digest, read, save
 from benchmark.camera_sheet import font, label
-from benchmark.mask_metrics import footprint
+from benchmark.mask_metrics import footprint, measure
 from benchmark.overhang_review import detail_box
 from benchmark.surface_detection_maps import detection_maps
 from benchmark.surface_detection_sheet import BG, COLORS, INK, MUTED, PAPER, paint
@@ -99,7 +99,123 @@ def _detail(rgb, part, box):
     return paint(crop, (np.asarray(mask)>0).astype(np.uint8), {1:COLORS['finder']}), bool(mask.getbbox())
 
 
-def render(out, cases, lookup, selected):
+def _underside_selection(source, cases, lookup, strip):
+    """One illustration per building. True underside identities enter only after prediction."""
+    choices, totals = {}, {}
+    for row in cases:
+        key, layout = row['key'], row['layout']
+        scopes = row['scopes']
+        base, new = scopes['current']['undersides'], scopes[strip]['undersides']
+        n = scopes['current']['underside_total']
+        totals.setdefault(layout, Counter()).update(eligible=n,current=len(base),challenger=len(new),
+                                                    gained=len(set(new)-set(base)),lost=len(set(base)-set(new)))
+        if not n:
+            continue
+        _, ref = recorded(lookup[key])
+        ids = [i for i,p in ref['patches'].items() if p['eligible'] and p['normal'][1]==-1]
+        if len(ids)!=n:
+            raise ValueError(f'Underside count changed for {key}')
+        with gzip.open(source/row['predictions'], 'rt', encoding='utf8') as f:
+            parts = json.load(f)
+        checks = {}
+        for m in ('current',strip):
+            _, pairs = measure(parts[m],ref,use_mask=True)
+            assigned = {rid:i+1 for i,rid in pairs}
+            if set(ids)&set(assigned)!=set(scopes[m]['undersides']):
+                raise ValueError(f'Underside matches changed for {key}/{m}')
+            refs = [dict(id=i,eligible=True,prediction=assigned.get(i),status='found' if i in assigned else 'missed') for i in ids]
+            checks[m] = _lookup_scores(parts[m],ref,refs)
+        for rid in ids:
+            before, after = checks['current'][rid], checks[strip][rid]
+            if after['found'] and not before['found']:
+                priority, role = (2, after['overlap']-before['overlap']), 'Recovered underside'
+            elif not after['found']:
+                priority, role = (1, -after['overlap']), 'Lost underside' if before['found'] else 'Still missed'
+            else:
+                priority, role = (0, after['overlap']), 'Already found'
+            priority += (ref['patches'][rid]['support_px'],key,-rid)
+            if layout not in choices or priority>choices[layout][0]:
+                choices[layout] = (priority, dict(frame=key,reference=rid,role=role,sha256=row['sha256'],
+                                                 methods={m:c[rid] for m,c in checks.items()}))
+    return {layout:value for layout,(_,value) in choices.items()},totals
+
+
+def _low_angle_section(page, top, source, cases, lookup, sample, strip):
+    choices, totals = _underside_selection(source,cases,lookup,strip)
+    suite = Counter()
+    for counts in totals.values():
+        suite.update(counts)
+    rows = {r['key']:r for r in cases}
+    draw = ImageDraw.Draw(page)
+    draw.rectangle((0,top,page.width,top+105),fill='#e2ebe4')
+    label(draw,(18,top+16),'Where did the underside test help?',34,bold=True)
+    label(draw,(19,top+65),
+          f"Across {len(cases)} suite pictures the finder went from {suite['current']} to {suite['challenger']} of {suite['eligible']} scored undersides. "
+          "The low-angle examples below are chosen after scoring. The totals above cover only the original eight views.",20)
+    start = top+210
+    yvals = [start+285*i for i in range(5)]
+    for y,title,note in zip(yvals,('Source location','Original pixels','Recorded underside','Current finder','Underside test'),
+                            ('White box locates the crop.', 'Same crop for all four detail rows.',
+                             'Recorded geometry for scoring.', 'Original predicted outline.', NAMES[strip])):
+        draw.line((15,y,page.width-15,y),fill='#bdcdc7',width=2)
+        label(draw,(15,y+23),title,21,bold=True)
+        for j,line in enumerate(textwrap.wrap(note,width=23)):
+            label(draw,(15,y+60+j*23),line,16,fill=MUTED)
+    views = []
+    for col, view in enumerate(sample):
+        layout=view['layout']
+        x=LEFT+col*(COL+GAP)
+        count=totals[layout]
+        label(draw,(x,top+127),layout.title(),25,bold=True)
+        label(draw,(x,top+167),f"{count['current']} → {count['challenger']} of {count['eligible']} scored undersides",18)
+        if layout not in choices:
+            draw.rectangle((x,start+14,x+COL-1,start+211),fill=BG)
+            label(draw,(x+14,start+75),'No scored underside',21,bold=True)
+            label(draw,(x+14,start+112),'No miss is counted for this building.',17)
+            views.append(dict(layout=layout,frame=None,reference=None,role='No scored underside',suite_counts=count))
+            continue
+        item=choices[layout]
+        key,rid=item['frame'],item['reference']
+        case,row=lookup[key],rows[key]
+        if digest(case.path('image'))!=item['sha256']:
+            raise ValueError(f'Changed low-angle screenshot for {key}')
+        with Image.open(case.path('image')) as opened:
+            rgb=opened.convert('RGB')
+        with gzip.open(source/row['predictions'],'rt', encoding='utf8') as stream:
+            parts=json.load(stream)
+        native,_,report=detection_maps(case,parts[strip],row['scores'][strip])
+        ref=next(r for r in report['references'] if r['id']==rid)
+        box=detail_box(native,rid,rgb.size)
+        yy,xx=np.where(native>0)
+        scene=[max(0,int(xx.min())-30),max(0,int(yy.min())-30),
+               min(rgb.width,int(xx.max())+31),min(rgb.height,int(yy.max())+31)]
+        overview=rgb.copy()
+        locator=ImageDraw.Draw(overview)
+        locator.rectangle(box,outline=INK,width=5)
+        locator.rectangle(box,outline='white',width=2)
+        short_key=key.split('/')[-1].split(layout+'-')[-1].replace('-',' ')
+        height=200
+        _tile(page,x,yvals[0],height,overview.crop(scene),short_key,key.split('/')[0].replace('_',' ')+' floor')
+        _tile(page,x,yvals[1],height,rgb.crop(box),item['role'],f'One underside in {layout.title()}')
+        _tile(page,x,yvals[2],height,paint(rgb,native,{rid:COLORS[ref['status']]}).crop(box),
+              f"R{rid}   ·   {ref['pixels']:,} visible pixels",'Full-surface overlap is scored below.')
+        for j,m in enumerate(('current',strip)):
+            chosen=item['methods'][m]
+            pi=chosen['index']
+            crop,in_box=_detail(rgb,parts[m][pi-1] if pi else None,box)
+            status='Found' if chosen['found'] else 'Missed'
+            if m==strip and item['role']=='Recovered underside':
+                status='New match'
+            info=(f'P{pi} matches R{rid}.' if chosen['found'] else f'P{pi} is the closest guess.' if pi and in_box
+                  else 'Closest guess falls outside this crop.' if pi else 'No guess touches this surface.')
+            _tile(page,x,yvals[3+j],height,crop,f"{status}   ·   {chosen['overlap']:.1%} whole-surface overlap",info)
+        views.append(dict(**item, layout=layout, suite_counts=count, focus_native_xyxy=list(box), scene_xyxy=scene))
+    return dict(methods=['current',strip], suite_counts=suite, views=views, suite_frames=len(cases),
+                selection='Per building, prefer a newly found underside with the largest overlap improvement, then the least-overlapping miss, then the strongest retained match. No scored underside is a separate status.')
+
+
+def render(out, cases, lookup, selected, *, source=None):
+    source = out if source is None else source
     methods = ('current', selected['wall'], selected['strip'])
     recommended = selected['recommended']
     short = dict(zip(methods, ('Current finder', 'Wall split', 'Underside test')))
@@ -121,7 +237,8 @@ def render(out, cases, lookup, selected):
     for _, _, _, height in stages:
         tops.append(cursor)
         cursor += height+84
-    page = Image.new('RGB', (LEFT+len(sample)*(COL+GAP)+GAP,cursor+10), PAPER)
+    supplemental_top=cursor+35
+    page = Image.new('RGB', (LEFT+len(sample)*(COL+GAP)+GAP,supplemental_top+210+5*285+10), PAPER)
     draw = ImageDraw.Draw(page)
     label(draw, (19,16), 'Which surface splits helped?', 39, bold=True)
     label(draw, (20,72), 'Same eight building views. Each experiment starts from the current finder. A match needs at least 50% overlap with one recorded surface.', 21)
@@ -147,9 +264,9 @@ def render(out, cases, lookup, selected):
         if sha!=row['sha256'] or sha!=view['image_sha256'] or sha!=previous[key]['sha256']:
             raise ValueError(f'Surface review screenshot changed for {key}')
         scene = view['scene_xyxy']
-        with Image.open(case.path('image')) as source:
-            rgb = source.convert('RGB')
-        with gzip.open(out/row['predictions'], 'rt', encoding='utf8') as f:
+        with Image.open(case.path('image')) as opened:
+            rgb = opened.convert('RGB')
+        with gzip.open(source/row['predictions'], 'rt', encoding='utf8') as f:
             parts = json.load(f)
         _, reference = recorded(case)
         predictions, reports_by_method, scored = {}, {}, {}
@@ -215,6 +332,8 @@ def render(out, cases, lookup, selected):
     label(draw, (15,180), 'SURFACES IN EACH VIEW', 16, bold=True)
     label(draw, (page.width-1240,25), summary+'   ·   eight pictures shown', 23, bold=True)
     label(draw, (page.width-1240,65), 'Compared here: '+NAMES[methods[1]]+' and '+NAMES[methods[2]]+'.', 19)
+    supplemental = _low_angle_section(page,supplemental_top,source,cases,lookup,sample,selected['strip'])
     page.save(out/'comparison.jpg', quality=94, subsampling=0)
     save(out/'sheet-views.json',dict(selected=selected, methods=list(methods), totals=totals, views=reports,
+         supplemental_undersides=supplemental,
          focus_rule='Prefer changed scored matches, especially undersides, then overlap changes of at least ten points. Otherwise retain the previous overhang review focus.'))
