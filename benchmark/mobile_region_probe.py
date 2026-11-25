@@ -81,7 +81,9 @@ def make_proposals(predictor, image, parts):
             if predictor.device.type=='cuda':
                 torch.cuda.synchronize(predictor.device)
             model_time+=perf_counter()-model_start
-            samples=native[:,:,DOWNSAMPLE//2::DOWNSAMPLE,DOWNSAMPLE//2::DOWNSAMPLE].contiguous()
+            center=DOWNSAMPLE//2
+            samples=native[:,:,center:center+union.shape[0]*DOWNSAMPLE:DOWNSAMPLE,
+                            center:center+union.shape[1]*DOWNSAMPLE:DOWNSAMPLE].contiguous()
             stable=(samples>1).sum((-1,-2))/(samples>-1).sum((-1,-2)).clamp_min(1)
             grid=(samples>0).cpu().numpy()
             qualities=qualities.cpu().numpy()

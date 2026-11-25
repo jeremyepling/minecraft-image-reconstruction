@@ -1,0 +1,27 @@
+{
+  "method": "junction-then-underside + MobileSAM wall parts",
+  "run_id": "mobile-combined-01",
+  "split": "development",
+  "settings": {
+    "maximum_vertical_normal_y": 0.5,
+    "minimum_containment": 0.6,
+    "minimum_parent_share": 0.1,
+    "minimum_samples": 32,
+    "maximum_overlap_with_smaller": 0.05,
+    "minimum_explained": 0.8
+  },
+  "fixtures": {
+    "smooth_stone": "660d1e535ae134452bca903a9d7cbe8d37953927fa118d9ffb327afad0885bc2",
+    "light_gray_concrete": "321505e15563f8efc0da868baa27409837aaa474410a61f3513b3dac0030f066",
+    "surface_confirm_v1": "0a479a8264f2c0f714284928354ff6ff5f9729491709676f07e2033d25e48fc3",
+    "normal_confirm_v1": "61bdf3a89a505a8be3757efe480185bec9c1888a1c72ffb69ef0093623e27dda"
+  },
+  "baseline_manifest": "0b4f33016d9222d0fd7affbf98cd4ad0e04eb7316ddb0fe70b7bc74e2a1b64fa",
+  "probe_manifest": "46a62cf9ec80de7c308dee379672528ecad6c07faee98856c9f3a9c0087363da",
+  "code_revision": "5ce0e14ab9127227b646a228fcf0226648a6c458",
+  "runner_sha256": "adaa9dfc8089d6ffd7938862f112dad64f73ca08538158ce9a64cd2f0fc3269f",
+  "artifacts": {
+    "cases.json": "9782eeba9be072b9165bf2f0a92dd7b09fb38b06d390dab53972bd0400158224",
+    "scores.json": "e0ca1b6366be9ee0a6bc2bc3e23bb8a6890c97243f9a641744181a2455bae47d"
+  }
+}
