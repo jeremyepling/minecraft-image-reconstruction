@@ -6,6 +6,8 @@ Reconstruct a Minecraft Java build from a screenshot and place it in a real worl
 
 ## Single-image exterior benchmark
 
+Run the shared regression suite with `python -m benchmark.exterior_suite`. It replays 40 original screenshots from two clear-noon worlds, pairs tiled and weakly marked floors at the same pose, and compares the results with the recorded camera reference. [Suite, worlds and review](benchmark/EXTERIOR_SUITE.md)
+
 Round one measures the projected camera and block grid on newly captured vanilla Java 26.3 exteriors. To reproduce the experiment on its frozen inputs, run `python -m benchmark.camera_round` from this checkout. To use the selected camera on a single screenshot, run `python reconstruct.py build IMAGE --through camera --version 26.3 --out runs/camera-build`. [Round design and review](benchmark/CAMERA_ROUND.md)
 
 ## Start with a version
