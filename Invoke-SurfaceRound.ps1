@@ -14,7 +14,7 @@ if (-not $Python) {
 Push-Location -LiteralPath $PSScriptRoot
 try {
     foreach ($candidate in $options) {
-        $exe = Get-Command $candidate -CommandType Application -ErrorAction SilentlyContinue
+        $exe = Get-Command $candidate -CommandType Application -ErrorAction SilentlyContinue -TotalCount 1
         if (-not $exe) { continue }
         & $exe.Source -c 'import numpy, PIL' 2>$null
         if ($LASTEXITCODE -eq 0) {
