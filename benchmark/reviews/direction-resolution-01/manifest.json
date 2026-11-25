@@ -1,0 +1,1664 @@
+{
+  "run_id": "direction-resolution-01",
+  "code": {
+    "commit": "aee0086a92430748bf63a9e72ebf47f364a54dab",
+    "predictor_and_runner_sha256": "33c513f26de3c6cb8f9b89dc77fbf4bf5de249a9a449b7deeaf8152dc1fe314a",
+    "source_dirty": false
+  },
+  "version": "26.3",
+  "fixtures": {
+    "smooth_stone": "660d1e535ae134452bca903a9d7cbe8d37953927fa118d9ffb327afad0885bc2",
+    "light_gray_concrete": "321505e15563f8efc0da868baa27409837aaa474410a61f3513b3dac0030f066",
+    "surface_confirm_v1": "0a479a8264f2c0f714284928354ff6ff5f9729491709676f07e2033d25e48fc3",
+    "normal_confirm_v1": "61bdf3a89a505a8be3757efe480185bec9c1888a1c72ffb69ef0093623e27dda"
+  },
+  "split": "20 development pictures of Shopfront and Wing; 36 regression pictures of six previously reviewed layouts.",
+  "capture": {
+    "clock_ticks": 6000,
+    "raining": false,
+    "thundering": false,
+    "resource_packs": [
+      "vanilla"
+    ],
+    "hud_hidden": true,
+    "image_size": [
+      1440,
+      900
+    ]
+  },
+  "fixed_before_development": true,
+  "method": "Archived Wall Separator followed by frozen strip-mlsd. Only the final normal token count changes.",
+  "normal_tokens": [
+    1200,
+    2400
+  ],
+  "inference_settings": {
+    "provider": "CPUExecutionProvider",
+    "normal_max_side": 720,
+    "normal_tokens": 1200,
+    "depth_size": 518,
+    "threads": 4,
+    "normal_resize": "Lanczos",
+    "depth_resize": "DPT aspect-preserving, bicubic"
+  },
+  "underside_settings": {
+    "min_length": 15,
+    "maximum_slope": 0.75,
+    "minimum_width": 18,
+    "minimum_area": 48,
+    "minimum_aspect": 3.5,
+    "direction_cosine": 0.43,
+    "line_radius": 2,
+    "boundary_coverage": 0.3,
+    "shadow_step": 6.0,
+    "depth_step": 0.006,
+    "max_band_thickness": 16,
+    "parallel_tolerance": 0.14,
+    "pair_relative_darkening": 0.08,
+    "redundant_iou": 0.65,
+    "min_flank_disagreement": 0.2,
+    "min_pair_turn": 0.15,
+    "min_turn_gain": 0.1,
+    "min_pair_occupied": 0.88,
+    "min_dark_flat_fraction": 0.65,
+    "internal_down_cosine": 0.3,
+    "internal_turn_gain": 0.25,
+    "existing_down_cosine": 0.7,
+    "existing_purity": 0.8,
+    "absorb_coverage": 0.65,
+    "units": "Surface-mask pixels, normalized within-image inverse depth; native RGB on 0-255"
+  },
+  "provider": "CPUExecutionProvider",
+  "workers": 2,
+  "runtime": "1.23.2",
+  "pillow": "13.0.0",
+  "numpy": "2.3.5",
+  "normal_checkpoint": [
+    "moge-2-vits.onnx",
+    "24eacb5dc7a2c54c7bc98f7de085ffbed79ad006ea5b664c2c2cdc02ff3a52f0"
+  ],
+  "depth_checkpoint": [
+    "depth-v2-small-uint8.onnx",
+    "fcf51f1b230362b28690bb9d1809bf0431f29cad20534e3f589bd7285547f20d"
+  ],
+  "line_archive_sha256": "6d6b3056711c19bebc530e600d79b226f1610209ce4e599ee3adc7bd9c9e4544",
+  "reference_sha256": "91efa6d3e992b1a68672eae1fdd6d380e87724742a1a4b6cbe5f84d284f731a1",
+  "wall_manifest_sha256": "28f694e90b2733c23e5c25c84c8b6d300a5849a360ea5640fb68997fcc2527e1",
+  "frames": "frames.json.gz",
+  "frames_sha256": "a99b2dc694f4540e13d35e17ea4e118ceafdd8ae2b873312e304cf5b37502ba9",
+  "high_detail_fields": "runs/direction-resolution-01/<image-sha256>.npy",
+  "control": "Fresh 1200-token fields compared byte-for-byte with the signed per-image cache.",
+  "inference_timing": "Per unique image, net.run only, two conditions in order; simultaneous jobs may contend.",
+  "per_image": {
+    "f15cd0e471a9a2e375c9f801df171bb8f5ee44d95374f02f1174c7938a94cc79": {
+      "inference_seconds": {
+        "1200": 1.8769180000235792,
+        "2400": 4.254331700009061
+      },
+      "array_sha256": {
+        "1200": "b20ef4242afb80b6db46fc046a673308dedde619859afc3946b8b9b4d48c6545",
+        "2400": "2c28199af4fb6e696c19ded2cda1861ec63a088e3bb71b85dd8d7a3e3b666219"
+      }
+    },
+    "bb588b0b0d1cdb05b720ff5bc3b515479426c7772fd98fb7fadb8a55b79ca9db": {
+      "inference_seconds": {
+        "1200": 1.8557244000257924,
+        "2400": 4.022935599990888
+      },
+      "array_sha256": {
+        "1200": "22f57353de40bf87f54be4c80a4d0b48ad251d279c35b35f6b3323d17a8ed14c",
+        "2400": "7ed269a3bb2639a385c1ca149843b2446098a19e6f748b77d7c820be96a1bfd8"
+      }
+    },
+    "17691e7909ee0e9384db83c3a729f8763e21a281eb89b8dcebe61fc7675d1405": {
+      "inference_seconds": {
+        "1200": 1.8024998999899253,
+        "2400": 4.043661600007908
+      },
+      "array_sha256": {
+        "1200": "24fbd60b5f71ac149e0123bcf64104ad4ff169b370ec7c767b122576132674b7",
+        "2400": "e24e99aa804e051f13e45d7e38a9a01936562ce37ab24e058b314dc4730306b9"
+      }
+    },
+    "0359c24dea1b318ec9cd002a1523ae8fc0d7d59fc9d7418972cf9ce9af8d4d57": {
+      "inference_seconds": {
+        "1200": 1.7389494999952149,
+        "2400": 3.9973317999974824
+      },
+      "array_sha256": {
+        "1200": "2b282f80fd9fb8535b5635a03b8fbdec1f6de7f7b1fcba79a9ae1358d07c3077",
+        "2400": "06605bcd7a58add6195629b26a2da3a14e0ad99bbd2e70b84fa9fcf0af959e54"
+      }
+    },
+    "ae58f28554348d924798e23bd492b88db06c2a099f590e325c514ecc5c8f9c7e": {
+      "inference_seconds": {
+        "1200": 1.7699758000089787,
+        "2400": 4.182655999989947
+      },
+      "array_sha256": {
+        "1200": "746628fa1a66ae987f73504bcc9b29e330169e553d663f93e402fcaaaae13185",
+        "2400": "7becdc0c48c78ce88e1416aa9b5530f2daee962dfbe11bd118e8a2921b228969"
+      }
+    },
+    "4cc1d5687db72eef74f23fc291fb7916b3f481ed4998d9e1c850024039d38cce": {
+      "inference_seconds": {
+        "1200": 1.757822399988072,
+        "2400": 4.365093199972762
+      },
+      "array_sha256": {
+        "1200": "ded92ec5a46ec07ce8b7a50de5612a3c41ff08f4bdd4060a70e02221f4e2973f",
+        "2400": "62f6790f970c6e2b8a1c588390a6ee5dd368e9a93725c359b8639a445f3bc230"
+      }
+    },
+    "5d0c9120de4ca16f35758f90a31e176e50a3cf166358dd9833ee2213d1ff2f72": {
+      "inference_seconds": {
+        "1200": 1.8226385000161827,
+        "2400": 4.188574799976777
+      },
+      "array_sha256": {
+        "1200": "28f4b931a8f401debf54e7fc2b5defe58a5b7390ad9f82b3a3db8fcc94a8e568",
+        "2400": "c2f722943900deed39952f3bcd1ee1094b1b9d49240d01d14fef30ac5ba21196"
+      }
+    },
+    "299e0228de74d2cc7d3a18deaba9f61c82560a0ddd0b8557e5c91728c964a993": {
+      "inference_seconds": {
+        "1200": 1.8326043999986723,
+        "2400": 4.179569200001424
+      },
+      "array_sha256": {
+        "1200": "1440fad7a4b71724148d2ccda0d1ea4b2be4da360a50c314ea9d44f54d65e72b",
+        "2400": "4cce9573a5ce7a087f706d8e4e9971c63a72d44d0b5718e9ac57a69a63cb37c4"
+      }
+    },
+    "9ce65a1c07694c1d3e57019c07b422d7a6a0771ed0d46f579891eae8a61463a9": {
+      "inference_seconds": {
+        "1200": 1.879089499998372,
+        "2400": 4.24067389999982
+      },
+      "array_sha256": {
+        "1200": "b2c6d98574792ec8888ea554cfbbe4e1fd9c3ef4e4818f941405e3c334780417",
+        "2400": "1128ae6ba3bdd2b8b189dd7870497aac6aee890b2a38367a20642ed800423f5f"
+      }
+    },
+    "8cd9e20f608db25df6d141941051d30afcbf80733ea4c6f2058874c02019bf9f": {
+      "inference_seconds": {
+        "1200": 1.7941313000046648,
+        "2400": 4.276968199992552
+      },
+      "array_sha256": {
+        "1200": "7e0f749c77ea9e3adfe889edfb6968b492f0a25ac6bbf1e59ab8e84853daf213",
+        "2400": "b9ce639fa2ace6abd12706c0b85086809c334345ce4ce37f6306548c2f2f2a02"
+      }
+    },
+    "5ccd9115fd2a70784e0e1ab6819d37fc5c4af54cf965605143b3817e1f3a3efd": {
+      "inference_seconds": {
+        "1200": 1.8319306999910623,
+        "2400": 4.263101999997161
+      },
+      "array_sha256": {
+        "1200": "1d7f8ca65495a8e51632515b55e038ff4223264722775aa0055620396e82f746",
+        "2400": "6341ff1112f5e8d8627c4da5d21811071590c03cfa483b25e86d6dee25a73ca4"
+      }
+    },
+    "0c7bc49ce3c736391d7954a9c069aee29586f03fd33a2a88926b40257ccae6ce": {
+      "inference_seconds": {
+        "1200": 1.7968508999911137,
+        "2400": 4.26880419999361
+      },
+      "array_sha256": {
+        "1200": "42b4e3fb7757b4a0fdb6e2eca1d08f52c69f83895e9fecefb7155877cc0a5302",
+        "2400": "9e52f31de7012ba0f4bb424f440d57f338828ed9dcbfdff5a98bb31a7dd12fcc"
+      }
+    },
+    "4e8817361e24c3f05e835d7af6c8bab3da96d50c8821828144f33bb1ea0e87d3": {
+      "inference_seconds": {
+        "1200": 1.8769302000000607,
+        "2400": 4.240620199998375
+      },
+      "array_sha256": {
+        "1200": "445eeff29bc83074a2313e46877c20e41353fc6530a6e0ade51f783858b1971e",
+        "2400": "c75c0f3365a353898ad88f9fbcb7c5093dca9bbd74ff7dde07dceaa58f943475"
+      }
+    },
+    "b3154136e855e9d005a993b8afdb3989e3fb156b102aed46ce0d99e761d2f2b8": {
+      "inference_seconds": {
+        "1200": 1.9178025999863166,
+        "2400": 4.279925700015156
+      },
+      "array_sha256": {
+        "1200": "7427a64af73c5bab304a4902e70edb6ffffe9496f5cc00b8aedcad8992c327e4",
+        "2400": "31b1242d95dd339e8cb224f63c1b4702ff72da99464b5b70d56d2e7b1dc33d4c"
+      }
+    },
+    "49832e903f4455c88c44f51da20abc550516d208783af9e3d05edc85ff4116a9": {
+      "inference_seconds": {
+        "1200": 1.8623862000240479,
+        "2400": 4.4820571999880485
+      },
+      "array_sha256": {
+        "1200": "322b2669ef3bbf109a49087793d9973c6581986718d01caec4b8499b2f216844",
+        "2400": "4c8005b47bd983a696687fc65fa00ce674d3ad5b09107b144b8a69b78d23b823"
+      }
+    },
+    "64d4fec367d669912de294146c1fa3e0bf871816ec4f52e57213e35db2968564": {
+      "inference_seconds": {
+        "1200": 1.8953097000194248,
+        "2400": 4.287682299996959
+      },
+      "array_sha256": {
+        "1200": "55b5ff2a23354821a6305d3e5fd1800c2c9b2971f18e5ed5c8028c77491102c8",
+        "2400": "cdc5d753b5676eb30c78866a5953507ff94171c285074558b8b0af1680fc14ab"
+      }
+    },
+    "b564e5c3bb2def9511c27cf483dbb01dbe760b1bce8b6060be578c97b2083019": {
+      "inference_seconds": {
+        "1200": 1.8922898000164423,
+        "2400": 4.500741999974707
+      },
+      "array_sha256": {
+        "1200": "3edec0d74c7ab72db0f2ddd19939c6cf0cde2aa1c8469052b7eb1eb9659dbbd0",
+        "2400": "7cf420823b1dba1d5f1c8d36928ef5588008ae9af223ad303f7790c2d6973cf2"
+      }
+    },
+    "b1aa96442f2858b5435fc9af424de374ffafbade3cc74d059b85b6c1bfd7e13c": {
+      "inference_seconds": {
+        "1200": 1.9244762000162154,
+        "2400": 4.42080839999835
+      },
+      "array_sha256": {
+        "1200": "794bbf15574a651adfc05f6585c2cece5f2d6287246ca855ba3395f47aa0515d",
+        "2400": "ee5b9556ce7eed16142225062181481faebf37cbf1a7bfbfb5e1207f9d263485"
+      }
+    },
+    "655531c2d8fecce752ea93fac3aa6a6e4429bb7ce8a629cb409532583694c678": {
+      "inference_seconds": {
+        "1200": 1.9561259000038262,
+        "2400": 4.488839099998586
+      },
+      "array_sha256": {
+        "1200": "084a296baf9c1f6e92d971e5788a1d4a4d124b789872ec7487c59711e62cf74d",
+        "2400": "c59f22cfbaa5bcd933c36f3e19c4bf292f0ce6082905c1bc546b0754dc22f1f3"
+      }
+    },
+    "252fa7c481e990bbbada46717d6e10c6b66c4f9c65846b94a94cd1b40cea0fcd": {
+      "inference_seconds": {
+        "1200": 1.9681994000275154,
+        "2400": 4.4671481999976095
+      },
+      "array_sha256": {
+        "1200": "05aebff74ceb4b6958d7c1f658684c62dc68b53b5e4abf57c2cc7d699d24d98c",
+        "2400": "b0941b7a75bf42e5f10acb049823b0659267b8803c90b6d744d51d4851e93075"
+      }
+    },
+    "b5b2bb5300687da8d904fb129043b5d2df0ae56e9ba4e14afb932b3e6d44dd3b": {
+      "inference_seconds": {
+        "1200": 1.9477918000193313,
+        "2400": 4.3916127999837045
+      },
+      "array_sha256": {
+        "1200": "e486cc1df3e1b287a183be8051bfbcfa8f18fa8f3d9088793d1ae840df341ca7",
+        "2400": "5a7e9db9fc7f18cdc294e6fbcacf1a0a89f24c87ed8a2a16b9a56cfb2b8ca6c4"
+      }
+    },
+    "c80356e1b7d96bdc796ed982f09ed908059399d23fe98c873eecbb6e623a4216": {
+      "inference_seconds": {
+        "1200": 1.9096114999847487,
+        "2400": 4.460918199998559
+      },
+      "array_sha256": {
+        "1200": "c4daa444b903ecff34bce415c293c602d8bb6e1ae97d96315df9bd2ccf20a972",
+        "2400": "017d8984e60ca3d12c44e48232a5115249b1400eadc1e549231c3283e42a3e4b"
+      }
+    },
+    "5b0b16edd7e5207c275e3277db0d65620891c50024735061783d4a175957ff9a": {
+      "inference_seconds": {
+        "1200": 1.9786129999847617,
+        "2400": 4.577742399997078
+      },
+      "array_sha256": {
+        "1200": "f86ddac9c819e882681069edbf888a76e715522d347c2eb18329ffc1abbbf6d5",
+        "2400": "40bd35c97fd95e99ec86a64e2443f74caf3208310667954564940d5ffa819f72"
+      }
+    },
+    "319503ad2c8fbdc7f33f283d4e35b0f3abe43684bdd8341ace1ac1745696abee": {
+      "inference_seconds": {
+        "1200": 1.969760599982692,
+        "2400": 4.547402899974259
+      },
+      "array_sha256": {
+        "1200": "8bd665d82bc011325dc0972f107b77f0d48f549b6d23f9fdaada533b44b11133",
+        "2400": "00d244a61222634047fdbf0c0ebfbc3403ea9f0b45637134e00a1f6c889c93a3"
+      }
+    },
+    "7152899302d1721578a01412063a0cafc072986ba9a4acb5c03aa5ecbdde05f1": {
+      "inference_seconds": {
+        "1200": 2.0159681999939494,
+        "2400": 4.7731497999920975
+      },
+      "array_sha256": {
+        "1200": "bcbf8ed2fb80a24eddcb2cac8672f30601cd9b5cf8b7de1b05b772a1293b4a93",
+        "2400": "7be9eb9d54ae7f8cea6a79685cc5cb7c42d803e4de7f1876ce56f21777b9d81d"
+      }
+    },
+    "de9e33d3bdb1f64318fbc1dec03fef52cde19a331c90fd1f7bb0b7a322b3bd94": {
+      "inference_seconds": {
+        "1200": 2.0055330999894068,
+        "2400": 4.766526199993677
+      },
+      "array_sha256": {
+        "1200": "57995c3ab38e820b4af249b38b89bf15c3ea0f8b2b5aa1a75d38d0ab3423f7b7",
+        "2400": "920b2abbc17027b763839647eafbb38c984c183b9504ffa999808f4ba27a2ccf"
+      }
+    },
+    "c8129500a7c473e23666de5470d535f650fb1ac61ae8dcb702f09707ba68949f": {
+      "inference_seconds": {
+        "1200": 1.9390849000192247,
+        "2400": 4.484938600013265
+      },
+      "array_sha256": {
+        "1200": "a72bc307b7f3565a8c4b7f891fd86c4cbd6426482012fe82d10a282e207ef1f9",
+        "2400": "28dde68c48ff9856f685a98d723cd96feeee4122370d3b287bc8227c03e0808b"
+      }
+    },
+    "1995d3af4ecbdd7b22bc4ada179009147a5b389379edd6142b99dcaa6446d9c0": {
+      "inference_seconds": {
+        "1200": 1.9308178000210319,
+        "2400": 4.446658700006083
+      },
+      "array_sha256": {
+        "1200": "1cd5091f0442bbdc3481050dae52556a618a4bea19a031d6feb904530b8ed85d",
+        "2400": "a87d82634335862032f3c53d9ae59d223b04868c1df9e13eea0834ea9c2b651a"
+      }
+    },
+    "54819d55b59d36a91e891bf2ff6148104d917d5ca59084f4f73edc43d623e390": {
+      "inference_seconds": {
+        "1200": 1.8211032999970485,
+        "2400": 4.290949499991257
+      },
+      "array_sha256": {
+        "1200": "951f69a8b926a7c195c5023c12adf99004eb4a44383af74edbb60fd5ff8dbaba",
+        "2400": "f2ead787144c473c6c2f9143365511321d441fd9a01670297676dfddda8a63e7"
+      }
+    },
+    "f6c57a6cca3c952e2134e27f6ca75816487c4817800f504acaa6aa0240a24329": {
+      "inference_seconds": {
+        "1200": 1.8651674999855459,
+        "2400": 4.26143630000297
+      },
+      "array_sha256": {
+        "1200": "4ba9d642b86682ad2c7b0ab828baa3469dc38cea8ccb16b52b1192adf93f314f",
+        "2400": "19e9f255719e780004795f70cf6fa2be8ff1a991194328bebd98ecb86b711be5"
+      }
+    },
+    "eb35fef82a3ed8b7f34c39d7be768ae94123884428038310ea19e578228d83be": {
+      "inference_seconds": {
+        "1200": 1.8528857000055723,
+        "2400": 4.331777999992482
+      },
+      "array_sha256": {
+        "1200": "91a0104d75aca85ecf80a71d6e29feca19a39aa68b524a969ab2cd20d87e5e22",
+        "2400": "90bb8c7d9f0390e97a1c7f1ad3f6653a13a6a571ea85509805e3d56282ed4921"
+      }
+    },
+    "00daa00ce6d344d9c00205a65b67ed60af6e0f908e1993e842417450928e55b5": {
+      "inference_seconds": {
+        "1200": 1.876748000009684,
+        "2400": 4.411076399992453
+      },
+      "array_sha256": {
+        "1200": "6bfc8834d4339553195650e1e85fded9e07721d9713ba15330e9ddd8025e7aca",
+        "2400": "196502c338f51e4aac7039612c60cacaed0322150e7bc6883449d254517af731"
+      }
+    },
+    "fb687c20c5df87e79d9dd17ce48566c7f9fca2a092234bedff15fbe3f83b2e8c": {
+      "inference_seconds": {
+        "1200": 1.8842832999944221,
+        "2400": 4.517202200018801
+      },
+      "array_sha256": {
+        "1200": "9a2588b024c99df29169a3705dc938c8b9328297930fdbd526da8b6e9b90efe0",
+        "2400": "d65ff3617041c9b8447120fd242f9ac9cab48801e3c2de25aef6ca6bfceceebb"
+      }
+    },
+    "fbe284f3ab8d1e0d517c81853c4a6121d359eb023c6f9882769d27605edb9b84": {
+      "inference_seconds": {
+        "1200": 1.8366802000091411,
+        "2400": 4.426622999977553
+      },
+      "array_sha256": {
+        "1200": "3e8c5ff2c37e8b52cb62e2c17e7006100ced3953645f5181c86e081b0722e1ee",
+        "2400": "45def9cda0dc1b7f127e0ded40b8c705443ce07226141133a5e3d5a20030de73"
+      }
+    },
+    "8f7b6cf572ea617a0efa47c002f4f9221df201dcde9d20595a10fb2915228445": {
+      "inference_seconds": {
+        "1200": 1.771732500026701,
+        "2400": 4.113369099999545
+      },
+      "array_sha256": {
+        "1200": "c0a402d776399f3c66b6069a4019abd38419383efef3f1b48d29f799ec853967",
+        "2400": "473bfb679eb6acf9c759e9a7e2c506dd35a89b2d4a34b1256b9d2b3361780db4"
+      }
+    },
+    "318e6e654ece8e6ab93aea0fa5c0cccecdb727faf743b5fbb5eb31da2f2b05f2": {
+      "inference_seconds": {
+        "1200": 1.8986010999942664,
+        "2400": 4.218521400005557
+      },
+      "array_sha256": {
+        "1200": "34e7a150d17a16dd85910ce1020bf6875abe299fff6a4140cc508be6c7cf1a4e",
+        "2400": "6e112146873dae94cd42b8eb9c980463020093ccafc0273c56b4eab431ddeade"
+      }
+    },
+    "ae86fd9911640c7397bc929d3e0ca1076d84312b5500712cf2c4ec25e7c9112f": {
+      "inference_seconds": {
+        "1200": 1.7197491999831982,
+        "2400": 4.273969700007001
+      },
+      "array_sha256": {
+        "1200": "ebdd448a417b0196db1ebf06b37f5960d69234d36fde06d6c9573e86c33373c3",
+        "2400": "f26bed48071934fa50946619522a979f24930ed6f829a43bd344f8dbb4b5d3ed"
+      }
+    },
+    "3aefcb242fdda8a6d4c40adb9a7d2632c8de998b076b1d4ec09a100db95119d4": {
+      "inference_seconds": {
+        "1200": 1.8062263999891002,
+        "2400": 4.441600599995581
+      },
+      "array_sha256": {
+        "1200": "e31d3e2141b066409039e8a0ba2281f44e5943c8be19955847605334e3eadda8",
+        "2400": "0bd1494de39cef233068867bf1f50d31bde13409b760df57f50e79e020a1474b"
+      }
+    },
+    "91c686215bb3105c779a45302ed5b43bf16a2faa32fbfe1f0f2be10f0e161c42": {
+      "inference_seconds": {
+        "1200": 1.9661024000088219,
+        "2400": 4.26427829999011
+      },
+      "array_sha256": {
+        "1200": "e4ca42efe93414bf5f4a11e1c3f00e9007f26a165d7db98a613a91c6ebc0ba9a",
+        "2400": "c7a445393207e3a3a3887bcea7804c836245d462e796783006862b99e92f7ac3"
+      }
+    },
+    "d35ab308820f92501ec898cafb1f50939f3f0ed1141e3d9ee38a00eae1199aa0": {
+      "inference_seconds": {
+        "1200": 1.9451387000153773,
+        "2400": 4.226008899975568
+      },
+      "array_sha256": {
+        "1200": "b537bc9f9fed0b5afa17fcf8f16a7490d9f1126a66ca181417e1c325fe00b28b",
+        "2400": "dabf52d95f08ffab8ada60f0a2d2cada290613532e959acbfcbc7765e23274b2"
+      }
+    },
+    "93c9a45dbb4d6bc59edc6c18ac8007ad4f99ac340844cb0ed8f171640936fa88": {
+      "inference_seconds": {
+        "1200": 1.825348100013798,
+        "2400": 4.220327000017278
+      },
+      "array_sha256": {
+        "1200": "024938035d35c258b5aec1a69d9f3faae3b3a18c4133b163f5e55f71cfb5a9a0",
+        "2400": "0a35b52ebae284b0fdce856bb6d18ced7fb55b158d5728c632ea31af81c8943c"
+      }
+    },
+    "7ea5b36aa3c25b3ab4c58dcb773d8c3476c5f2d28048fd72a62970888be31320": {
+      "inference_seconds": {
+        "1200": 1.8515302000159863,
+        "2400": 4.268495800002711
+      },
+      "array_sha256": {
+        "1200": "d95f891660b257358084bbab533c65c16ad0b523cbe9631cfd7733e711f3b642",
+        "2400": "bcb3dd38c387126a601108d8ee3ae0fc0a489ee9b4ecf29adaa4338ee3ce4ddf"
+      }
+    },
+    "d348ddef0010267fdffc0d628654ef6ce256329400dec3e1cfd271bfaf764144": {
+      "inference_seconds": {
+        "1200": 1.8507096999965142,
+        "2400": 4.363647999998648
+      },
+      "array_sha256": {
+        "1200": "616e77e2f4941ec46ddab1d7dbd4f78280568a89c86f7c6dd4312a5a26a8cfbd",
+        "2400": "0ecb332f07662c7618f0f342fa0572ec1029c00542c3590a4fdf7a506e00925b"
+      }
+    },
+    "a7e9cd44bd97237bd3cbf88b11fdfa3575deee7473ef820b30e19bc5fe37698e": {
+      "inference_seconds": {
+        "1200": 1.8740224000066519,
+        "2400": 4.298178199998802
+      },
+      "array_sha256": {
+        "1200": "d9ce94d7fce8e347657c907e888c717651a2b6bfd69e071e20d9dcd324af9f20",
+        "2400": "47e2993a9a54be64e821ba29910d845ec59c6569324a68f634091eaff1ca0261"
+      }
+    },
+    "3f7e9e1b5d577667b157664dd3f37a40e8c7e64a3db0d60ac6c30b294d2ba9e6": {
+      "inference_seconds": {
+        "1200": 1.8201614000136033,
+        "2400": 4.278980600007344
+      },
+      "array_sha256": {
+        "1200": "3e36a3dae43738d1b0e9e3a7ef44b05b28b0d33180b0835ccb2b90ba482b4315",
+        "2400": "51b04aab8c6678cda6a5ece0dff1194ec591a79ba7a8a8232fc5a3abe86abcab"
+      }
+    },
+    "e20bfd5e2588ed117375acb3e2f7c42cebb2fdd1ab7167caf35b0b4298a98e19": {
+      "inference_seconds": {
+        "1200": 1.8559331999858841,
+        "2400": 4.181326599995373
+      },
+      "array_sha256": {
+        "1200": "13b62486721e558031a5ed50ec977933e14b0d16e22ab80d28b7789c332e72b9",
+        "2400": "97e5345299780a3f625fc0af8d33a4db432966376108a150bffc85c241da2b19"
+      }
+    },
+    "23e91937ee67563c1c4a463676a43c7d4800f82581a3188aa7125e32001be5e9": {
+      "inference_seconds": {
+        "1200": 1.8029902999987826,
+        "2400": 4.289718200016068
+      },
+      "array_sha256": {
+        "1200": "d59a4778efe0f31c1c0da93c3246cd339165094373979d509193e6de94b6e59d",
+        "2400": "c776f5bd5e3e18d658f675fcaecb323f3a449a55c3fda39cdf8b2f2c93acff20"
+      }
+    },
+    "8634b14394486c2fb709ea678008fbaf2314344280b5a13d3582d433125d589d": {
+      "inference_seconds": {
+        "1200": 1.7496492000063881,
+        "2400": 4.335187199991196
+      },
+      "array_sha256": {
+        "1200": "1b9d4a7e72d5283ebe104b03e1f0bd19bdab1877e85bb9098c74435c4c3d2c2c",
+        "2400": "b223b8d71ecac5bd2bded59f19a3f42fe6f331f6bde016b6bbfa501fe362b3af"
+      }
+    },
+    "d0fba67900a91a20d0120f298c8783829953bc21c7d45fb4413a8cb829cfddc3": {
+      "inference_seconds": {
+        "1200": 1.7970746000064537,
+        "2400": 4.10371289998875
+      },
+      "array_sha256": {
+        "1200": "d9ade2da889f5f3b55c2f76ad82653f8ddb1337529abcbd7e8f08cef8e37e3a5",
+        "2400": "fe76d5eed70a0ccdc6d1a0ff534d5c9281a6dd9134e5cfeba7d3e4f148684153"
+      }
+    },
+    "21916862012e6b47e6dbe426fd7a8930bd7fdd51651238d8ad4d3e8860f57a7b": {
+      "inference_seconds": {
+        "1200": 1.7945594000048004,
+        "2400": 4.051993400003994
+      },
+      "array_sha256": {
+        "1200": "34d5cc659c1b6561ef8c0ce404dcf57c4dfeae5437a1c8a038060a4b154b1979",
+        "2400": "01dc2a2f4ded08d75fb47322933f4eded589deb42028008f6e7f1dcc16baa745"
+      }
+    },
+    "0fec6765b63937520e2a731a9171eef73e631ce1d47734e3925e2165b64a26c0": {
+      "inference_seconds": {
+        "1200": 1.8715420000080485,
+        "2400": 4.33168730000034
+      },
+      "array_sha256": {
+        "1200": "ffa5e8b732fc0a1dff4369ece886ab028a6672ac06704bfed1b9970e663b4ef9",
+        "2400": "32f98835f5eeced1379d4c7d3bad190cab818d76c82c4a5a1a010221972105ee"
+      }
+    },
+    "a40a75765e0d99508a283686b4484a510d8ca0404656939017fb6d4a85f49832": {
+      "inference_seconds": {
+        "1200": 1.7432034999947064,
+        "2400": 4.462413999979617
+      },
+      "array_sha256": {
+        "1200": "c85b805f541646b9186ef5b256e70567ebb42859e1b678e2748bfc9ec5f0802a",
+        "2400": "da167b6e9b8678bc72a612f1a931df03cee65ade52aef0bf82bb17c522c2472a"
+      }
+    }
+  },
+  "all": {
+    "frames": 56,
+    "methods": {
+      "1200": {
+        "eligible": 598,
+        "proposed": 625,
+        "matched": 430,
+        "unmatched_overlaps_small_surface": 21,
+        "unmatched_mostly_background": 86,
+        "unmatched_fragment_or_mixed": 88,
+        "eligible_pixels": 1132348,
+        "correct_pixels": 997547,
+        "wrong_plane_pixels": 109056,
+        "unclaimed_pixels": 25745,
+        "background_claimed": 12637,
+        "opening_pixels": 16630,
+        "opening_filled": 601,
+        "gaps": 98,
+        "gaps_half_filled": 12,
+        "real_connections": 606,
+        "proposed_connections": 900,
+        "correct_connections": 329,
+        "edge_true": 78006,
+        "edge_proposed": 82378,
+        "edge_distance_sum": 722158.0628878723,
+        "edge_distance_count": 120326,
+        "edge_true_near": 55315,
+        "edge_proposed_near": 55478,
+        "corner_true": 2824,
+        "corner_proposed": 3951,
+        "corner_distance_sum": 79395.4101813762,
+        "corner_distance_count": 4679,
+        "corner_true_near": 1786,
+        "corner_proposed_near": 1890,
+        "f1": 0.7031888798037612,
+        "assigned_fraction": 0.8809544415674333,
+        "opening_fill": 0.03613950691521347,
+        "edge_error_px": 6.001679295313335,
+        "edge_recall": 0.7091121195805451,
+        "edge_precision": 0.6734565053776493,
+        "corner_error_px": 16.968456974006454,
+        "corner_recall": 0.6324362606232294,
+        "corner_precision": 0.4783599088838269,
+        "underside_found": 14,
+        "underside_eligible": 18,
+        "refinement_seconds": 3.336951599980239
+      },
+      "2400": {
+        "eligible": 598,
+        "proposed": 628,
+        "matched": 429,
+        "unmatched_overlaps_small_surface": 21,
+        "unmatched_mostly_background": 86,
+        "unmatched_fragment_or_mixed": 92,
+        "eligible_pixels": 1132348,
+        "correct_pixels": 997213,
+        "wrong_plane_pixels": 109390,
+        "unclaimed_pixels": 25745,
+        "background_claimed": 12637,
+        "opening_pixels": 16630,
+        "opening_filled": 601,
+        "gaps": 98,
+        "gaps_half_filled": 12,
+        "real_connections": 606,
+        "proposed_connections": 906,
+        "correct_connections": 322,
+        "edge_true": 78006,
+        "edge_proposed": 82445,
+        "edge_distance_sum": 720904.918194092,
+        "edge_distance_count": 119806,
+        "edge_true_near": 55039,
+        "edge_proposed_near": 55252,
+        "corner_true": 2824,
+        "corner_proposed": 3950,
+        "corner_distance_sum": 78838.90986516881,
+        "corner_distance_count": 4646,
+        "corner_true_near": 1780,
+        "corner_proposed_near": 1882,
+        "f1": 0.6998368678629691,
+        "assigned_fraction": 0.880659479241364,
+        "opening_fill": 0.03613950691521347,
+        "edge_error_px": 6.017268903010634,
+        "edge_recall": 0.7055739302104966,
+        "edge_precision": 0.6701679907817333,
+        "corner_error_px": 16.969201434603704,
+        "corner_recall": 0.6303116147308782,
+        "corner_precision": 0.47645569620253164,
+        "underside_found": 13,
+        "underside_eligible": 18,
+        "refinement_seconds": 3.4060807000496425
+      }
+    },
+    "gained": 0,
+    "lost": 1
+  },
+  "by_split": {
+    "development": {
+      "frames": 20,
+      "methods": {
+        "1200": {
+          "eligible": 156,
+          "proposed": 170,
+          "matched": 117,
+          "unmatched_overlaps_small_surface": 8,
+          "unmatched_mostly_background": 16,
+          "unmatched_fragment_or_mixed": 29,
+          "eligible_pixels": 488232,
+          "correct_pixels": 445329,
+          "wrong_plane_pixels": 29006,
+          "unclaimed_pixels": 13897,
+          "background_claimed": 3047,
+          "opening_pixels": 1084,
+          "opening_filled": 33,
+          "gaps": 24,
+          "gaps_half_filled": 4,
+          "real_connections": 184,
+          "proposed_connections": 247,
+          "correct_connections": 97,
+          "edge_true": 24832,
+          "edge_proposed": 26446,
+          "edge_distance_sum": 317540.1284784018,
+          "edge_distance_count": 39044,
+          "edge_true_near": 17433,
+          "edge_proposed_near": 17498,
+          "corner_true": 756,
+          "corner_proposed": 1114,
+          "corner_distance_sum": 23300.286227377543,
+          "corner_distance_count": 1280,
+          "corner_true_near": 486,
+          "corner_proposed_near": 521,
+          "f1": 0.7177914110429447,
+          "assigned_fraction": 0.9121257926559504,
+          "opening_fill": 0.03044280442804428,
+          "edge_error_px": 8.132879020551218,
+          "edge_recall": 0.702037693298969,
+          "edge_precision": 0.6616501550328973,
+          "corner_error_px": 18.203348615138705,
+          "corner_recall": 0.6428571428571429,
+          "corner_precision": 0.46768402154398564,
+          "underside_found": 4,
+          "underside_eligible": 4,
+          "refinement_seconds": 1.2424175000051036
+        },
+        "2400": {
+          "eligible": 156,
+          "proposed": 171,
+          "matched": 117,
+          "unmatched_overlaps_small_surface": 8,
+          "unmatched_mostly_background": 16,
+          "unmatched_fragment_or_mixed": 30,
+          "eligible_pixels": 488232,
+          "correct_pixels": 445414,
+          "wrong_plane_pixels": 28921,
+          "unclaimed_pixels": 13897,
+          "background_claimed": 3047,
+          "opening_pixels": 1084,
+          "opening_filled": 33,
+          "gaps": 24,
+          "gaps_half_filled": 4,
+          "real_connections": 184,
+          "proposed_connections": 249,
+          "correct_connections": 98,
+          "edge_true": 24832,
+          "edge_proposed": 26478,
+          "edge_distance_sum": 317142.28136799287,
+          "edge_distance_count": 39065,
+          "edge_true_near": 17417,
+          "edge_proposed_near": 17543,
+          "corner_true": 756,
+          "corner_proposed": 1119,
+          "corner_distance_sum": 23112.254341354535,
+          "corner_distance_count": 1281,
+          "corner_true_near": 489,
+          "corner_proposed_near": 523,
+          "f1": 0.7155963302752294,
+          "assigned_fraction": 0.9122998902161268,
+          "opening_fill": 0.03044280442804428,
+          "edge_error_px": 8.118322830359475,
+          "edge_recall": 0.7013933634020618,
+          "edge_precision": 0.6625500415439233,
+          "corner_error_px": 18.042353115811505,
+          "corner_recall": 0.6468253968253969,
+          "corner_precision": 0.4673815907059875,
+          "underside_found": 4,
+          "underside_eligible": 4,
+          "refinement_seconds": 1.3086652999627404
+        }
+      },
+      "gained": 0,
+      "lost": 0
+    },
+    "previously_reviewed_regression": {
+      "frames": 36,
+      "methods": {
+        "1200": {
+          "eligible": 442,
+          "proposed": 455,
+          "matched": 313,
+          "unmatched_overlaps_small_surface": 13,
+          "unmatched_mostly_background": 70,
+          "unmatched_fragment_or_mixed": 59,
+          "eligible_pixels": 644116,
+          "correct_pixels": 552218,
+          "wrong_plane_pixels": 80050,
+          "unclaimed_pixels": 11848,
+          "background_claimed": 9590,
+          "opening_pixels": 15546,
+          "opening_filled": 568,
+          "gaps": 74,
+          "gaps_half_filled": 8,
+          "real_connections": 422,
+          "proposed_connections": 653,
+          "correct_connections": 232,
+          "edge_true": 53174,
+          "edge_proposed": 55932,
+          "edge_distance_sum": 404617.93440947053,
+          "edge_distance_count": 81282,
+          "edge_true_near": 37882,
+          "edge_proposed_near": 37980,
+          "corner_true": 2068,
+          "corner_proposed": 2837,
+          "corner_distance_sum": 56095.12395399865,
+          "corner_distance_count": 3399,
+          "corner_true_near": 1300,
+          "corner_proposed_near": 1369,
+          "f1": 0.6978818283166109,
+          "assigned_fraction": 0.8573269411099864,
+          "opening_fill": 0.03653672970539045,
+          "edge_error_px": 4.977952491443007,
+          "edge_recall": 0.7124158423289577,
+          "edge_precision": 0.6790388328684832,
+          "corner_error_px": 16.503419815827787,
+          "corner_recall": 0.6286266924564797,
+          "corner_precision": 0.48255199154035955,
+          "underside_found": 10,
+          "underside_eligible": 14,
+          "refinement_seconds": 2.094534099975135
+        },
+        "2400": {
+          "eligible": 442,
+          "proposed": 457,
+          "matched": 312,
+          "unmatched_overlaps_small_surface": 13,
+          "unmatched_mostly_background": 70,
+          "unmatched_fragment_or_mixed": 62,
+          "eligible_pixels": 644116,
+          "correct_pixels": 551799,
+          "wrong_plane_pixels": 80469,
+          "unclaimed_pixels": 11848,
+          "background_claimed": 9590,
+          "opening_pixels": 15546,
+          "opening_filled": 568,
+          "gaps": 74,
+          "gaps_half_filled": 8,
+          "real_connections": 422,
+          "proposed_connections": 657,
+          "correct_connections": 224,
+          "edge_true": 53174,
+          "edge_proposed": 55967,
+          "edge_distance_sum": 403762.63682609913,
+          "edge_distance_count": 80741,
+          "edge_true_near": 37622,
+          "edge_proposed_near": 37709,
+          "corner_true": 2068,
+          "corner_proposed": 2831,
+          "corner_distance_sum": 55726.65552381427,
+          "corner_distance_count": 3365,
+          "corner_true_near": 1291,
+          "corner_proposed_near": 1359,
+          "f1": 0.6941045606229144,
+          "assigned_fraction": 0.8566764371634923,
+          "opening_fill": 0.03653672970539045,
+          "edge_error_px": 5.000713848306302,
+          "edge_recall": 0.707526234625945,
+          "edge_precision": 0.673772044240356,
+          "corner_error_px": 16.560670289395027,
+          "corner_recall": 0.624274661508704,
+          "corner_precision": 0.4800423878488167,
+          "underside_found": 9,
+          "underside_eligible": 14,
+          "refinement_seconds": 2.097415400086902
+        }
+      },
+      "gained": 0,
+      "lost": 1
+    }
+  },
+  "by_layout": {
+    "courtyard": {
+      "frames": 12,
+      "methods": {
+        "1200": {
+          "eligible": 56,
+          "proposed": 64,
+          "matched": 48,
+          "unmatched_overlaps_small_surface": 0,
+          "unmatched_mostly_background": 9,
+          "unmatched_fragment_or_mixed": 7,
+          "eligible_pixels": 408264,
+          "correct_pixels": 392163,
+          "wrong_plane_pixels": 12303,
+          "unclaimed_pixels": 3798,
+          "background_claimed": 1368,
+          "opening_pixels": 2584,
+          "opening_filled": 21,
+          "gaps": 8,
+          "gaps_half_filled": 0,
+          "real_connections": 60,
+          "proposed_connections": 79,
+          "correct_connections": 42,
+          "edge_true": 9280,
+          "edge_proposed": 10486,
+          "edge_distance_sum": 69535.73333103802,
+          "edge_distance_count": 16227,
+          "edge_true_near": 7647,
+          "edge_proposed_near": 7702,
+          "corner_true": 276,
+          "corner_proposed": 419,
+          "corner_distance_sum": 5754.868789006457,
+          "corner_distance_count": 549,
+          "corner_true_near": 213,
+          "corner_proposed_near": 221,
+          "f1": 0.8,
+          "assigned_fraction": 0.9605622832284992,
+          "opening_fill": 0.008126934984520124,
+          "edge_error_px": 4.285187239233254,
+          "edge_recall": 0.8240301724137931,
+          "edge_precision": 0.7345031470532138,
+          "corner_error_px": 10.482456810576423,
+          "corner_recall": 0.7717391304347826,
+          "corner_precision": 0.5274463007159904,
+          "underside_found": 0,
+          "underside_eligible": 0,
+          "refinement_seconds": 0.7194662000110839
+        },
+        "2400": {
+          "eligible": 56,
+          "proposed": 65,
+          "matched": 48,
+          "unmatched_overlaps_small_surface": 0,
+          "unmatched_mostly_background": 9,
+          "unmatched_fragment_or_mixed": 8,
+          "eligible_pixels": 408264,
+          "correct_pixels": 392152,
+          "wrong_plane_pixels": 12314,
+          "unclaimed_pixels": 3798,
+          "background_claimed": 1368,
+          "opening_pixels": 2584,
+          "opening_filled": 21,
+          "gaps": 8,
+          "gaps_half_filled": 0,
+          "real_connections": 60,
+          "proposed_connections": 81,
+          "correct_connections": 42,
+          "edge_true": 9280,
+          "edge_proposed": 10497,
+          "edge_distance_sum": 69660.50724982488,
+          "edge_distance_count": 16214,
+          "edge_true_near": 7641,
+          "edge_proposed_near": 7690,
+          "corner_true": 276,
+          "corner_proposed": 422,
+          "corner_distance_sum": 5759.153060253919,
+          "corner_distance_count": 548,
+          "corner_true_near": 212,
+          "corner_proposed_near": 220,
+          "f1": 0.7933884297520661,
+          "assigned_fraction": 0.9605353398781181,
+          "opening_fill": 0.008126934984520124,
+          "edge_error_px": 4.296318443926538,
+          "edge_recall": 0.8233836206896552,
+          "edge_precision": 0.7325902638849195,
+          "corner_error_px": 10.50940339462394,
+          "corner_recall": 0.7681159420289855,
+          "corner_precision": 0.5213270142180095,
+          "underside_found": 0,
+          "underside_eligible": 0,
+          "refinement_seconds": 0.7452223000291269
+        }
+      },
+      "gained": 0,
+      "lost": 0
+    },
+    "crossing": {
+      "frames": 4,
+      "methods": {
+        "1200": {
+          "eligible": 46,
+          "proposed": 62,
+          "matched": 34,
+          "unmatched_overlaps_small_surface": 11,
+          "unmatched_mostly_background": 8,
+          "unmatched_fragment_or_mixed": 9,
+          "eligible_pixels": 41826,
+          "correct_pixels": 35578,
+          "wrong_plane_pixels": 5247,
+          "unclaimed_pixels": 1001,
+          "background_claimed": 829,
+          "opening_pixels": 3508,
+          "opening_filled": 88,
+          "gaps": 6,
+          "gaps_half_filled": 0,
+          "real_connections": 40,
+          "proposed_connections": 81,
+          "correct_connections": 28,
+          "edge_true": 6036,
+          "edge_proposed": 7052,
+          "edge_distance_sum": 61406.67103801785,
+          "edge_distance_count": 10527,
+          "edge_true_near": 4723,
+          "edge_proposed_near": 4703,
+          "corner_true": 232,
+          "corner_proposed": 354,
+          "corner_distance_sum": 7405.557118300676,
+          "corner_distance_count": 401,
+          "corner_true_near": 133,
+          "corner_proposed_near": 140,
+          "f1": 0.6296296296296297,
+          "assigned_fraction": 0.8506192320566155,
+          "opening_fill": 0.02508551881413911,
+          "edge_error_px": 5.833254587063537,
+          "edge_recall": 0.7824718356527501,
+          "edge_precision": 0.6669030062393647,
+          "corner_error_px": 18.467723487034103,
+          "corner_recall": 0.5732758620689655,
+          "corner_precision": 0.3954802259887006,
+          "underside_found": 2,
+          "underside_eligible": 2,
+          "refinement_seconds": 0.18645830001332797
+        },
+        "2400": {
+          "eligible": 46,
+          "proposed": 62,
+          "matched": 34,
+          "unmatched_overlaps_small_surface": 11,
+          "unmatched_mostly_background": 8,
+          "unmatched_fragment_or_mixed": 9,
+          "eligible_pixels": 41826,
+          "correct_pixels": 35578,
+          "wrong_plane_pixels": 5247,
+          "unclaimed_pixels": 1001,
+          "background_claimed": 829,
+          "opening_pixels": 3508,
+          "opening_filled": 88,
+          "gaps": 6,
+          "gaps_half_filled": 0,
+          "real_connections": 40,
+          "proposed_connections": 81,
+          "correct_connections": 28,
+          "edge_true": 6036,
+          "edge_proposed": 7052,
+          "edge_distance_sum": 61406.67103801785,
+          "edge_distance_count": 10527,
+          "edge_true_near": 4723,
+          "edge_proposed_near": 4703,
+          "corner_true": 232,
+          "corner_proposed": 354,
+          "corner_distance_sum": 7405.557118300676,
+          "corner_distance_count": 401,
+          "corner_true_near": 133,
+          "corner_proposed_near": 140,
+          "f1": 0.6296296296296297,
+          "assigned_fraction": 0.8506192320566155,
+          "opening_fill": 0.02508551881413911,
+          "edge_error_px": 5.833254587063537,
+          "edge_recall": 0.7824718356527501,
+          "edge_precision": 0.6669030062393647,
+          "corner_error_px": 18.467723487034103,
+          "corner_recall": 0.5732758620689655,
+          "corner_precision": 0.3954802259887006,
+          "underside_found": 2,
+          "underside_eligible": 2,
+          "refinement_seconds": 0.19753110001329333
+        }
+      },
+      "gained": 0,
+      "lost": 0
+    },
+    "galleries": {
+      "frames": 4,
+      "methods": {
+        "1200": {
+          "eligible": 98,
+          "proposed": 89,
+          "matched": 68,
+          "unmatched_overlaps_small_surface": 2,
+          "unmatched_mostly_background": 8,
+          "unmatched_fragment_or_mixed": 11,
+          "eligible_pixels": 39134,
+          "correct_pixels": 26269,
+          "wrong_plane_pixels": 11533,
+          "unclaimed_pixels": 1332,
+          "background_claimed": 1025,
+          "opening_pixels": 2976,
+          "opening_filled": 274,
+          "gaps": 16,
+          "gaps_half_filled": 6,
+          "real_connections": 86,
+          "proposed_connections": 160,
+          "correct_connections": 45,
+          "edge_true": 9486,
+          "edge_proposed": 9428,
+          "edge_distance_sum": 48623.917949210416,
+          "edge_distance_count": 13761,
+          "edge_true_near": 6487,
+          "edge_proposed_near": 6513,
+          "corner_true": 438,
+          "corner_proposed": 549,
+          "corner_distance_sum": 8089.2057953474105,
+          "corner_distance_count": 729,
+          "corner_true_near": 289,
+          "corner_proposed_near": 304,
+          "f1": 0.7272727272727273,
+          "assigned_fraction": 0.6712577298512802,
+          "opening_fill": 0.09206989247311828,
+          "edge_error_px": 3.533458175220581,
+          "edge_recall": 0.6838498840396373,
+          "edge_precision": 0.6908145948239287,
+          "corner_error_px": 11.096304246018395,
+          "corner_recall": 0.6598173515981736,
+          "corner_precision": 0.5537340619307832,
+          "underside_found": 2,
+          "underside_eligible": 4,
+          "refinement_seconds": 0.2401753999874927
+        },
+        "2400": {
+          "eligible": 98,
+          "proposed": 89,
+          "matched": 68,
+          "unmatched_overlaps_small_surface": 2,
+          "unmatched_mostly_background": 8,
+          "unmatched_fragment_or_mixed": 11,
+          "eligible_pixels": 39134,
+          "correct_pixels": 26258,
+          "wrong_plane_pixels": 11544,
+          "unclaimed_pixels": 1332,
+          "background_claimed": 1025,
+          "opening_pixels": 2976,
+          "opening_filled": 274,
+          "gaps": 16,
+          "gaps_half_filled": 6,
+          "real_connections": 86,
+          "proposed_connections": 159,
+          "correct_connections": 45,
+          "edge_true": 9486,
+          "edge_proposed": 9425,
+          "edge_distance_sum": 48668.18785156436,
+          "edge_distance_count": 13756,
+          "edge_true_near": 6488,
+          "edge_proposed_near": 6509,
+          "corner_true": 438,
+          "corner_proposed": 540,
+          "corner_distance_sum": 8114.753224038077,
+          "corner_distance_count": 731,
+          "corner_true_near": 289,
+          "corner_proposed_near": 305,
+          "f1": 0.7272727272727273,
+          "assigned_fraction": 0.6709766443501815,
+          "opening_fill": 0.09206989247311828,
+          "edge_error_px": 3.537960733611832,
+          "edge_recall": 0.683955302551128,
+          "edge_precision": 0.6906100795755968,
+          "corner_error_px": 11.100893603335262,
+          "corner_recall": 0.6598173515981736,
+          "corner_precision": 0.5648148148148148,
+          "underside_found": 2,
+          "underside_eligible": 4,
+          "refinement_seconds": 0.2386463000148069
+        }
+      },
+      "gained": 0,
+      "lost": 0
+    },
+    "portico": {
+      "frames": 8,
+      "methods": {
+        "1200": {
+          "eligible": 148,
+          "proposed": 142,
+          "matched": 111,
+          "unmatched_overlaps_small_surface": 0,
+          "unmatched_mostly_background": 17,
+          "unmatched_fragment_or_mixed": 14,
+          "eligible_pixels": 63092,
+          "correct_pixels": 48777,
+          "wrong_plane_pixels": 11831,
+          "unclaimed_pixels": 2484,
+          "background_claimed": 1654,
+          "opening_pixels": 4912,
+          "opening_filled": 174,
+          "gaps": 32,
+          "gaps_half_filled": 0,
+          "real_connections": 140,
+          "proposed_connections": 204,
+          "correct_connections": 80,
+          "edge_true": 16408,
+          "edge_proposed": 16307,
+          "edge_distance_sum": 163592.47379750985,
+          "edge_distance_count": 26708,
+          "edge_true_near": 12620,
+          "edge_proposed_near": 12508,
+          "corner_true": 640,
+          "corner_proposed": 769,
+          "corner_distance_sum": 25960.57061848414,
+          "corner_distance_count": 1124,
+          "corner_true_near": 447,
+          "corner_proposed_near": 462,
+          "f1": 0.7655172413793103,
+          "assigned_fraction": 0.7731091105052939,
+          "opening_fill": 0.035423452768729644,
+          "edge_error_px": 6.125223670717008,
+          "edge_recall": 0.7691370063383716,
+          "edge_precision": 0.7670325627031336,
+          "corner_error_px": 23.096593076943186,
+          "corner_recall": 0.6984375,
+          "corner_precision": 0.6007802340702211,
+          "underside_found": 4,
+          "underside_eligible": 4,
+          "refinement_seconds": 0.5039265000086743
+        },
+        "2400": {
+          "eligible": 148,
+          "proposed": 143,
+          "matched": 110,
+          "unmatched_overlaps_small_surface": 0,
+          "unmatched_mostly_background": 17,
+          "unmatched_fragment_or_mixed": 16,
+          "eligible_pixels": 63092,
+          "correct_pixels": 48395,
+          "wrong_plane_pixels": 12213,
+          "unclaimed_pixels": 2484,
+          "background_claimed": 1654,
+          "opening_pixels": 4912,
+          "opening_filled": 174,
+          "gaps": 32,
+          "gaps_half_filled": 0,
+          "real_connections": 140,
+          "proposed_connections": 207,
+          "correct_connections": 72,
+          "edge_true": 16408,
+          "edge_proposed": 16372,
+          "edge_distance_sum": 162638.47553874817,
+          "edge_distance_count": 26219,
+          "edge_true_near": 12365,
+          "edge_proposed_near": 12287,
+          "corner_true": 640,
+          "corner_proposed": 769,
+          "corner_distance_sum": 25159.89991497645,
+          "corner_distance_count": 1088,
+          "corner_true_near": 440,
+          "corner_proposed_near": 457,
+          "f1": 0.7560137457044673,
+          "assigned_fraction": 0.7670544601534267,
+          "opening_fill": 0.035423452768729644,
+          "edge_error_px": 6.203076987632945,
+          "edge_recall": 0.753595806923452,
+          "edge_precision": 0.7504886391399951,
+          "corner_error_px": 23.12490801008865,
+          "corner_recall": 0.6875,
+          "corner_precision": 0.5942782834850455,
+          "underside_found": 3,
+          "underside_eligible": 4,
+          "refinement_seconds": 0.48550199999590404
+        }
+      },
+      "gained": 0,
+      "lost": 1
+    },
+    "registry": {
+      "frames": 4,
+      "methods": {
+        "1200": {
+          "eligible": 34,
+          "proposed": 32,
+          "matched": 23,
+          "unmatched_overlaps_small_surface": 0,
+          "unmatched_mostly_background": 5,
+          "unmatched_fragment_or_mixed": 4,
+          "eligible_pixels": 48940,
+          "correct_pixels": 32560,
+          "wrong_plane_pixels": 14399,
+          "unclaimed_pixels": 1981,
+          "background_claimed": 784,
+          "opening_pixels": 1046,
+          "opening_filled": 0,
+          "gaps": 4,
+          "gaps_half_filled": 0,
+          "real_connections": 32,
+          "proposed_connections": 40,
+          "correct_connections": 20,
+          "edge_true": 5232,
+          "edge_proposed": 5144,
+          "edge_distance_sum": 41893.701183103156,
+          "edge_distance_count": 7499,
+          "edge_true_near": 3378,
+          "edge_proposed_near": 3461,
+          "corner_true": 152,
+          "corner_proposed": 219,
+          "corner_distance_sum": 3668.4383746508925,
+          "corner_distance_count": 266,
+          "corner_true_near": 97,
+          "corner_proposed_near": 109,
+          "f1": 0.696969696969697,
+          "assigned_fraction": 0.6653044544340008,
+          "opening_fill": 0.0,
+          "edge_error_px": 5.586571700640506,
+          "edge_recall": 0.6456422018348624,
+          "edge_precision": 0.6728227060653188,
+          "corner_error_px": 13.791121709213881,
+          "corner_recall": 0.6381578947368421,
+          "corner_precision": 0.4977168949771689,
+          "underside_found": 0,
+          "underside_eligible": 0,
+          "refinement_seconds": 0.19471909996354952
+        },
+        "2400": {
+          "eligible": 34,
+          "proposed": 32,
+          "matched": 23,
+          "unmatched_overlaps_small_surface": 0,
+          "unmatched_mostly_background": 5,
+          "unmatched_fragment_or_mixed": 4,
+          "eligible_pixels": 48940,
+          "correct_pixels": 32560,
+          "wrong_plane_pixels": 14399,
+          "unclaimed_pixels": 1981,
+          "background_claimed": 784,
+          "opening_pixels": 1046,
+          "opening_filled": 0,
+          "gaps": 4,
+          "gaps_half_filled": 0,
+          "real_connections": 32,
+          "proposed_connections": 40,
+          "correct_connections": 20,
+          "edge_true": 5232,
+          "edge_proposed": 5144,
+          "edge_distance_sum": 41893.701183103156,
+          "edge_distance_count": 7499,
+          "edge_true_near": 3378,
+          "edge_proposed_near": 3461,
+          "corner_true": 152,
+          "corner_proposed": 219,
+          "corner_distance_sum": 3668.4383746508925,
+          "corner_distance_count": 266,
+          "corner_true_near": 97,
+          "corner_proposed_near": 109,
+          "f1": 0.696969696969697,
+          "assigned_fraction": 0.6653044544340008,
+          "opening_fill": 0.0,
+          "edge_error_px": 5.586571700640506,
+          "edge_recall": 0.6456422018348624,
+          "edge_precision": 0.6728227060653188,
+          "corner_error_px": 13.791121709213881,
+          "corner_recall": 0.6381578947368421,
+          "corner_precision": 0.4977168949771689,
+          "underside_found": 0,
+          "underside_eligible": 0,
+          "refinement_seconds": 0.18641670001670718
+        }
+      },
+      "gained": 0,
+      "lost": 0
+    },
+    "shopfront": {
+      "frames": 8,
+      "methods": {
+        "1200": {
+          "eligible": 120,
+          "proposed": 125,
+          "matched": 85,
+          "unmatched_overlaps_small_surface": 8,
+          "unmatched_mostly_background": 9,
+          "unmatched_fragment_or_mixed": 23,
+          "eligible_pixels": 79616,
+          "correct_pixels": 49458,
+          "wrong_plane_pixels": 25295,
+          "unclaimed_pixels": 4863,
+          "background_claimed": 2104,
+          "opening_pixels": 952,
+          "opening_filled": 28,
+          "gaps": 16,
+          "gaps_half_filled": 0,
+          "real_connections": 156,
+          "proposed_connections": 204,
+          "correct_connections": 73,
+          "edge_true": 18564,
+          "edge_proposed": 18779,
+          "edge_distance_sum": 268770.19428066537,
+          "edge_distance_count": 27228,
+          "edge_true_near": 12000,
+          "edge_proposed_near": 11920,
+          "corner_true": 620,
+          "corner_proposed": 864,
+          "corner_distance_sum": 19919.778249934046,
+          "corner_distance_count": 1003,
+          "corner_true_near": 372,
+          "corner_proposed_near": 405,
+          "f1": 0.6938775510204082,
+          "assigned_fraction": 0.6212067926045016,
+          "opening_fill": 0.029411764705882353,
+          "edge_error_px": 9.87109572060619,
+          "edge_recall": 0.6464124111182935,
+          "edge_precision": 0.634751584216412,
+          "corner_error_px": 19.860197656963155,
+          "corner_recall": 0.6,
+          "corner_precision": 0.46875,
+          "underside_found": 4,
+          "underside_eligible": 4,
+          "refinement_seconds": 0.5007908999687061
+        },
+        "2400": {
+          "eligible": 120,
+          "proposed": 126,
+          "matched": 85,
+          "unmatched_overlaps_small_surface": 8,
+          "unmatched_mostly_background": 9,
+          "unmatched_fragment_or_mixed": 24,
+          "eligible_pixels": 79616,
+          "correct_pixels": 49543,
+          "wrong_plane_pixels": 25210,
+          "unclaimed_pixels": 4863,
+          "background_claimed": 2104,
+          "opening_pixels": 952,
+          "opening_filled": 28,
+          "gaps": 16,
+          "gaps_half_filled": 0,
+          "real_connections": 156,
+          "proposed_connections": 206,
+          "correct_connections": 74,
+          "edge_true": 18564,
+          "edge_proposed": 18811,
+          "edge_distance_sum": 268372.34717025637,
+          "edge_distance_count": 27249,
+          "edge_true_near": 11984,
+          "edge_proposed_near": 11965,
+          "corner_true": 620,
+          "corner_proposed": 869,
+          "corner_distance_sum": 19731.746363911036,
+          "corner_distance_count": 1004,
+          "corner_true_near": 375,
+          "corner_proposed_near": 407,
+          "f1": 0.6910569105691057,
+          "assigned_fraction": 0.6222744172025724,
+          "opening_fill": 0.029411764705882353,
+          "edge_error_px": 9.848887928740737,
+          "edge_recall": 0.6455505279034691,
+          "edge_precision": 0.636064005103397,
+          "corner_error_px": 19.653133828596648,
+          "corner_recall": 0.6048387096774194,
+          "corner_precision": 0.46835443037974683,
+          "underside_found": 4,
+          "underside_eligible": 4,
+          "refinement_seconds": 0.5629250000347383
+        }
+      },
+      "gained": 0,
+      "lost": 0
+    },
+    "wing": {
+      "frames": 12,
+      "methods": {
+        "1200": {
+          "eligible": 36,
+          "proposed": 45,
+          "matched": 32,
+          "unmatched_overlaps_small_surface": 0,
+          "unmatched_mostly_background": 7,
+          "unmatched_fragment_or_mixed": 6,
+          "eligible_pixels": 408616,
+          "correct_pixels": 395871,
+          "wrong_plane_pixels": 3711,
+          "unclaimed_pixels": 9034,
+          "background_claimed": 943,
+          "opening_pixels": 132,
+          "opening_filled": 5,
+          "gaps": 8,
+          "gaps_half_filled": 4,
+          "real_connections": 28,
+          "proposed_connections": 43,
+          "correct_connections": 24,
+          "edge_true": 6268,
+          "edge_proposed": 7667,
+          "edge_distance_sum": 48769.93419773645,
+          "edge_distance_count": 11816,
+          "edge_true_near": 5433,
+          "edge_proposed_near": 5578,
+          "corner_true": 136,
+          "corner_proposed": 250,
+          "corner_distance_sum": 3380.507977443499,
+          "corner_distance_count": 277,
+          "corner_true_near": 114,
+          "corner_proposed_near": 116,
+          "f1": 0.7901234567901234,
+          "assigned_fraction": 0.9688093466726707,
+          "opening_fill": 0.03787878787878788,
+          "edge_error_px": 4.127448730343302,
+          "edge_recall": 0.8667836630504148,
+          "edge_precision": 0.7275335854962828,
+          "corner_error_px": 12.203999918568588,
+          "corner_recall": 0.8382352941176471,
+          "corner_precision": 0.464,
+          "underside_found": 0,
+          "underside_eligible": 0,
+          "refinement_seconds": 0.7416266000363976
+        },
+        "2400": {
+          "eligible": 36,
+          "proposed": 45,
+          "matched": 32,
+          "unmatched_overlaps_small_surface": 0,
+          "unmatched_mostly_background": 7,
+          "unmatched_fragment_or_mixed": 6,
+          "eligible_pixels": 408616,
+          "correct_pixels": 395871,
+          "wrong_plane_pixels": 3711,
+          "unclaimed_pixels": 9034,
+          "background_claimed": 943,
+          "opening_pixels": 132,
+          "opening_filled": 5,
+          "gaps": 8,
+          "gaps_half_filled": 4,
+          "real_connections": 28,
+          "proposed_connections": 43,
+          "correct_connections": 24,
+          "edge_true": 6268,
+          "edge_proposed": 7667,
+          "edge_distance_sum": 48769.93419773645,
+          "edge_distance_count": 11816,
+          "edge_true_near": 5433,
+          "edge_proposed_near": 5578,
+          "corner_true": 136,
+          "corner_proposed": 250,
+          "corner_distance_sum": 3380.507977443499,
+          "corner_distance_count": 277,
+          "corner_true_near": 114,
+          "corner_proposed_near": 116,
+          "f1": 0.7901234567901234,
+          "assigned_fraction": 0.9688093466726707,
+          "opening_fill": 0.03787878787878788,
+          "edge_error_px": 4.127448730343302,
+          "edge_recall": 0.8667836630504148,
+          "edge_precision": 0.7275335854962828,
+          "corner_error_px": 12.203999918568588,
+          "corner_recall": 0.8382352941176471,
+          "corner_precision": 0.464,
+          "underside_found": 0,
+          "underside_eligible": 0,
+          "refinement_seconds": 0.7457402999280021
+        }
+      },
+      "gained": 0,
+      "lost": 0
+    },
+    "workshop": {
+      "frames": 4,
+      "methods": {
+        "1200": {
+          "eligible": 60,
+          "proposed": 66,
+          "matched": 29,
+          "unmatched_overlaps_small_surface": 0,
+          "unmatched_mostly_background": 23,
+          "unmatched_fragment_or_mixed": 14,
+          "eligible_pixels": 42860,
+          "correct_pixels": 16871,
+          "wrong_plane_pixels": 24737,
+          "unclaimed_pixels": 1252,
+          "background_claimed": 3930,
+          "opening_pixels": 520,
+          "opening_filled": 11,
+          "gaps": 8,
+          "gaps_half_filled": 2,
+          "real_connections": 64,
+          "proposed_connections": 89,
+          "correct_connections": 17,
+          "edge_true": 6732,
+          "edge_proposed": 7515,
+          "edge_distance_sum": 19565.43711059124,
+          "edge_distance_count": 6560,
+          "edge_true_near": 3027,
+          "edge_proposed_near": 3093,
+          "corner_true": 330,
+          "corner_proposed": 527,
+          "corner_distance_sum": 5216.483258209073,
+          "corner_distance_count": 330,
+          "corner_true_near": 121,
+          "corner_proposed_near": 133,
+          "f1": 0.4603174603174603,
+          "assigned_fraction": 0.39363042463835746,
+          "opening_fill": 0.021153846153846155,
+          "edge_error_px": 2.982536144907201,
+          "edge_recall": 0.4496434937611408,
+          "edge_precision": 0.4115768463073852,
+          "corner_error_px": 15.807525024875979,
+          "corner_recall": 0.36666666666666664,
+          "corner_precision": 0.2523719165085389,
+          "underside_found": 2,
+          "underside_eligible": 4,
+          "refinement_seconds": 0.24978859999100678
+        },
+        "2400": {
+          "eligible": 60,
+          "proposed": 66,
+          "matched": 29,
+          "unmatched_overlaps_small_surface": 0,
+          "unmatched_mostly_background": 23,
+          "unmatched_fragment_or_mixed": 14,
+          "eligible_pixels": 42860,
+          "correct_pixels": 16856,
+          "wrong_plane_pixels": 24752,
+          "unclaimed_pixels": 1252,
+          "background_claimed": 3930,
+          "opening_pixels": 520,
+          "opening_filled": 11,
+          "gaps": 8,
+          "gaps_half_filled": 2,
+          "real_connections": 64,
+          "proposed_connections": 89,
+          "correct_connections": 17,
+          "edge_true": 6732,
+          "edge_proposed": 7477,
+          "edge_distance_sum": 19495.09396484073,
+          "edge_distance_count": 6526,
+          "edge_true_near": 3027,
+          "edge_proposed_near": 3059,
+          "corner_true": 330,
+          "corner_proposed": 527,
+          "corner_distance_sum": 5618.853831594255,
+          "corner_distance_count": 331,
+          "corner_true_near": 120,
+          "corner_proposed_near": 128,
+          "f1": 0.4603174603174603,
+          "assigned_fraction": 0.39328044797013534,
+          "opening_fill": 0.021153846153846155,
+          "edge_error_px": 2.987296041195331,
+          "edge_recall": 0.4496434937611408,
+          "edge_precision": 0.40912130533636487,
+          "corner_error_px": 16.975389219317993,
+          "corner_recall": 0.36363636363636365,
+          "corner_precision": 0.2428842504743833,
+          "underside_found": 2,
+          "underside_eligible": 4,
+          "refinement_seconds": 0.2440970000170637
+        }
+      },
+      "gained": 0,
+      "lost": 0
+    }
+  },
+  "reproduce": "python -m benchmark.direction_resolution_probe"
+}
