@@ -64,3 +64,5 @@ The gallery color experiment compares fixed geometry with three material matcher
 Use `--geometry-method remap` to estimate a common elevation grid from texture repetition and test visible openings for depth. The measured front view recovered five recess depths on a freshly arranged wall and left a flush section in place. [How the engine uses shadow, angled edges and projected rims](benchmark/RECESSES.md)
 
 For an angled wall, `python reconstruct.py inspect-openings IMAGE --out REVIEW` writes an annotated image and the evidence for each depth decision. This experimental command is separate from export. [How a setting earns adoption, and what happened on two new walls](benchmark/ENTRANCES.md)
+
+To trace the general form first, run `python reconstruct.py inspect-form IMAGE --out REVIEW`. It draws the visible outline and major edges, then inspects smaller line junctions for inward and outward relief. It also works on images without visible pavement. [Line tracing, screenshot comparison and measured accuracy](benchmark/LINE_FORM.md)
