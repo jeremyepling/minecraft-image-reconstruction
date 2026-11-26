@@ -8,9 +8,11 @@ from PIL import Image, ImageOps
 from benchmark.camera_round import digest
 from benchmark.ledge_join_sheet import render_comparison
 from benchmark.surface_detection_sheet import paint
+from benchmark.surface_reference import recorded
+from benchmark.planarity_afterpass import raw_diagnostic
 
 
-NAMES = {'current':'Current finder', 'planarity':'Pixel-wise Planarity', 'ect':'ECT edge model'}
+NAMES = {'current':'Previous finder', 'planarity':'Pixel-wise Planarity', 'ect':'ECT edge model'}
 RAW = {
     'planarity': [
         ('planes', 'Plane proposals', 'Each color identifies a plane in the raw model segmentation.'),
@@ -20,6 +22,33 @@ RAW = {
         ('appearance-edges', 'Texture and light', 'Brighter purple marks stronger evidence for a material or lighting change.'),
     ],
 }
+
+
+def redraw(run, out):
+    from benchmark.afterpass_round import FIELDS, validate_fields
+    from benchmark.camera_round import read
+    from benchmark.normal_round import groups
+    from benchmark.surface_reference import ARCHIVE
+    from benchmark.wall_join_test import checked
+    manifest = read(run/'manifest.json')
+    checked(ARCHIVE, manifest['reference_sha256'])
+    cohorts, _, fixtures = groups()
+    if manifest['fixtures'] != fixtures:
+        raise ValueError('Different fixture set')
+    captures = {f'{c.floor}/{c.id}':c for entries in cohorts.values() for c in entries}
+    rows = read(checked(run/'cases.json', manifest['artifacts']['cases.json']))
+    scores = read(checked(run/'scores.json', manifest['artifacts']['scores.json']))
+    for row in rows:
+        checked(run/row['predictions'], manifest['artifacts'][row['predictions']])
+    roster = {r['key']:r['sha256'] for r in rows}
+    paths = {m:FIELDS/m for m in manifest['candidates']}
+    for m, path in paths.items():
+        checked(path/'manifest.json', manifest['candidates'][m]['fields_manifest_sha256'])
+        validate_fields(path, fixtures, roster)
+    winner = run/'candidate-runs/planarity/manifest.json'
+    meta = read(checked(winner, manifest['candidates']['planarity']['manifest_sha256']))
+    out.mkdir(parents=True, exist_ok=False)
+    return render(out, rows, captures, scores, fields=paths, labels_key=meta['sheet_labels_key'], source=run)
 
 
 def plane_overlay(photo, labels):
@@ -50,7 +79,7 @@ def edge_overlay(photo, a, b, color):
     return Image.composite(Image.new('RGB', photo.size, color), backdrop, strength)
 
 
-def render(out, rows, captures, table, *, fields=None, labels_key='labels'):
+def render(out, rows, captures, table, *, fields=None, labels_key='labels', source=None):
     """Field directories contain source-aligned <image sha256>.npz files.
 
     The planarity candidate manifest may specify sheet_labels_key for its chosen segmentation.
@@ -75,7 +104,7 @@ def render(out, rows, captures, table, *, fields=None, labels_key='labels'):
             raise ValueError(f'Missing field directory: {path}')
         paths[m] = path
         stages.extend(RAW[m])
-    def draw_fields(put, photo, row, box, prefix):
+    def draw_fields(put, photo, row, box, prefix, focus=None):
         sha = row['sha256']
         used = {}
         for m, directory in paths.items():
@@ -84,7 +113,12 @@ def render(out, rows, captures, table, *, fields=None, labels_key='labels'):
                 if m == 'planarity':
                     labels = arrays[labels_key]
                     overlay = plane_overlay(photo, labels)
-                    put(prefix+'planes', overlay.crop(box), 'Raw plane regions', 'Colors identify separate proposals')
+                    caption = 'Colors identify separate proposals'
+                    if focus is not None:
+                        _, ref = recorded(captures[row['key']])
+                        best, = raw_diagnostic(labels, ref, [focus])
+                        caption = f"Best raw outline for R{focus}: {best['best_iou']:.0%} overlap"
+                    put(prefix+'planes', overlay.crop(box), 'Raw plane regions', caption)
                     shape = labels.shape
                     keys = [labels_key]
                 else:
@@ -104,4 +138,4 @@ def render(out, rows, captures, table, *, fields=None, labels_key='labels'):
         return used
 
     return render_comparison(out, rows, captures, table, names, 'Which second pass recovers the missing surfaces?',
-                             raw_stages=stages, raw_panels=draw_fields if paths else None)
+                             raw_stages=stages, raw_panels=draw_fields if paths else None, source=source)

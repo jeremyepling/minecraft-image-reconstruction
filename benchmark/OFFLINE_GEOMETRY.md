@@ -1,6 +1,6 @@
 # Reusing the same buildings without starting Minecraft
 
-For surface-matching reviews, `.\Invoke-SurfaceRound.ps1 -Round detection-sheet` redraws the latest comparison. Use `-Round single-wall` to predict, regrade and count all 56 saved pictures with the same candidate outlines and depth samples. All required numerical fields are archived. Use `-Round detection-sheet -SourceRun benchmark/reviews/recovery-overview-01` for the earlier six-way review. [Current sheet](reviews/single-wall-depth-01/comparison.jpg) · [Experiment and default](SINGLE_WALL_DEPTH.md)
+For surface-matching reviews, `.\Invoke-SurfaceRound.ps1 -Round detection-sheet` redraws the latest comparison from its saved predictions. Use `-Round afterpass` to rebuild predictions from archived Planarity and ECT fields, score all 56 pictures, and run the ordinary Block Counter. Use `-Round single-wall` for the earlier depth-voting experiment. [Current sheet](reviews/afterpass-models-01/comparison.jpg) · [Experiment and default](AFTERPASS_MODELS.md)
 
 Use `.\Invoke-SurfaceRound.ps1 -Round separation` to repeat the wall and underside comparisons and the downstream dimension check on all 56 pictures. It runs picture jobs in parallel and reuses frozen model evidence by screenshot hash. [Inputs, selection and scores](SEPARATION_ROUND.md)
 

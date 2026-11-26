@@ -255,14 +255,17 @@ if __name__=='__main__':
     from runtime.mode import image_only
 
     parser=argparse.ArgumentParser(description='Rebuild the surface-matching sheet from a saved surface round.')
-    parser.add_argument('--run',type=Path,default=ROOT/'benchmark/reviews/single-wall-depth-01',
+    parser.add_argument('--run',type=Path,default=ROOT/'benchmark/reviews/afterpass-models-01',
                         help='Saved surface review to redraw.')
     parser.add_argument('--out',type=Path,help='New directory for the sheet and per-surface pairings')
     args=parser.parse_args()
     out=args.out or ROOT/'runs'/f'surface-detection-{uuid4().hex[:12]}'
     with image_only():
         run_manifest=read(args.run/'manifest.json')
-        if 'single-v2' in run_manifest.get('methods',{}):
+        if 'planarity' in run_manifest.get('methods',{}):
+            from benchmark.afterpass_sheet import redraw
+            print(redraw(args.run,out).resolve())
+        elif 'single-v2' in run_manifest.get('methods',{}):
             from benchmark.single_wall_sheet import render
             print(render(out,args.run).resolve())
         elif run_manifest.get('run_id')=='recovery-overview-01':

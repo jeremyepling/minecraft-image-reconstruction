@@ -16,7 +16,7 @@ from benchmark.surface_reference import ARCHIVE
 from runtime.mode import image_only, mark_image_only
 
 
-NAMES = {'current':'Current Surface Finder', 'planarity':'Pixel-wise Planarity', 'ect':'ECT'}
+NAMES = {'current':'Previous Surface Finder', 'planarity':'Pixel-wise Planarity', 'ect':'ECT'}
 FIELDS = ROOT/'benchmark/reviews/afterpass-fields-01'
 MODULES = {'planarity':'benchmark.planarity_afterpass', 'ect':'benchmark.ect_afterpass'}
 COHORTS = ('development', 'previously_reviewed_regression')

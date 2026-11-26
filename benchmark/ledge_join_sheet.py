@@ -84,7 +84,7 @@ def choose_target(data, row):
     return rid, 'Current miss' if rid not in data['current']['found'] else 'Matched example'
 
 
-def overview_panels(put, full, row, view):
+def overview_panels(put, full, row, view, base_name):
     photo, ref, native, graded = full
     scene = tuple(view['scene_xyxy'])
     eligible = {i for i, patch in ref['patches'].items() if patch['eligible']}
@@ -100,13 +100,14 @@ def overview_panels(put, full, row, view):
             f'{len(found)} found / {len(eligible)} scored', f'{counts["proposed"]} guesses · {counts["unpaired"]} extra')
         truth = paint(photo, native, {p['id']: COLORS[p['status']] for p in result['grading']['references']})
         base = graded['current']['found']
-        change = 'Current finder' if m == 'current' else f'{len(found-base)} gained · {len(base-found)} lost vs current'
+        comparison = 'current' if base_name == 'Current finder' else 'previous'
+        change = base_name if m == 'current' else f'{len(found-base)} gained · {len(base-found)} lost vs {comparison}'
         put('grade-' + m, truth.crop(scene), f'{len(eligible - found)} missed in this view', change)
         summary[m] = dict(found=sorted(found), missed=sorted(eligible - found), counts=counts)
     return dict(frame=row['key'], sha256=row['sha256'], scene_xyxy=scene, methods=summary)
 
 
-def detail_panels(put, full, row, overview, pinned, raw_detail=False):
+def detail_panels(put, full, row, overview, pinned, raw_detail=False, base_name='Current finder'):
     photo, _, native, graded = full
     if pinned:
         if pinned['sha256'] != row['sha256'] or pinned['frame'] != row['key']:
@@ -132,7 +133,7 @@ def detail_panels(put, full, row, overview, pinned, raw_detail=False):
         image, shown = _detail(photo, result['parts'][i - 1] if i else None, box)
         found = near['found']
         state = 'Found' if found else 'Missed'
-        comparison = ('Current finder' if m == 'current' else
+        comparison = (base_name if m == 'current' else
                       'Newly found' if found and not base_found else 'Match lost' if base_found and not found else
                       'Still found' if found else 'Still missed')
         put('detail-' + m, image, f'{state} R{rid} · {near["overlap"]:.0%} overlap', comparison)
@@ -147,11 +148,12 @@ def render(out, rows, captures, table):
 
 
 @image_only()
-def render_comparison(out, rows, captures, table, names, title, raw_stages=(), raw_panels=None):
+def render_comparison(out, rows, captures, table, names, title, raw_stages=(), raw_panels=None, source=None):
     methods = tuple(names)
     if not methods or methods[0] != 'current':
         raise ValueError('The first column method must be the current finder')
     out = Path(out)
+    source = out if source is None else Path(source)
     reviews = ROOT / 'benchmark/reviews'
     roster_file = reviews / 'recovery-01/sheet-views.json'
     misses_file = reviews / 'current-misses-01/manifest.json'
@@ -203,18 +205,20 @@ def render_comparison(out, rows, captures, table, names, title, raw_stages=(), r
         def put(key, image, first, second):
             y, h = starts[key]
             tile(page, x, y, h, image, first, second)
-        data = picture(out, row, captures[key], methods)
-        scene = overview_panels(put, data, row, view)
+        data = picture(source, row, captures[key], methods)
+        scene = overview_panels(put, data, row, view, names['current'])
         if raw_panels:
             scene['raw_fields'] = raw_panels(put, data[0], row, scene['scene_xyxy'], '')
         pin = pinned.get(layout)
         detail = (by_key[pin['frame']] if pin else
                   choose_detail([r for r in rows if r['layout'] == layout], key, methods))
         if detail['key'] != key:
-            data = picture(out, detail, captures[detail['key']], methods)
-        selection = detail_panels(put, data, detail, key, pin, raw_detail=bool(raw_stages) or len(methods) != 3)
+            data = picture(source, detail, captures[detail['key']], methods)
+        selection = detail_panels(put, data, detail, key, pin, raw_detail=bool(raw_stages) or len(methods) != 3,
+                                  base_name=names['current'])
         if raw_panels:
-            selection['raw_fields'] = raw_panels(put, data[0], detail, selection['crop_xyxy'], 'raw-detail-')
+            selection['raw_fields'] = raw_panels(put, data[0], detail, selection['crop_xyxy'], 'raw-detail-',
+                                                 focus=selection['focus_reference'])
         views.append(dict(layout=layout, cohort=row['cohort'], overview=scene, close_up=selection))
     path = out / 'comparison.jpg'
     page.save(path, quality=93, subsampling=0, optimize=True)
