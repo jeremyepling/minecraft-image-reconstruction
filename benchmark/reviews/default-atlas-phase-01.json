@@ -144,5 +144,35 @@
     "offsets_added": 20,
     "surfaces_with_new_offsets": 10
   },
-  "per_frame_changes_unit": "additional exact visible face IDs; all losses and changes in wrong IDs were zero"
+  "per_frame_changes_unit": "additional exact visible face IDs; all losses and changes in wrong IDs were zero",
+  "single_image_cli": {
+    "revision": "a84379a",
+    "wrapper": "Invoke-WallRecovery.ps1",
+    "through": "placement",
+    "material_match": "shape",
+    "screenshot": "smooth_stone/holdout-portico-masonry-low-left",
+    "placed_blocks": 143,
+    "identical_datapack_entries": true,
+    "fallback_counts_equal_geometry_only": true,
+    "healthy_stone_brick_faces": 5,
+    "atlas_phase": {
+      "healthy": {
+        "status": "enabled",
+        "offsets_added": 4,
+        "surface_errors": 0
+      },
+      "missing": {
+        "status": "unavailable",
+        "requested_matcher": "shape",
+        "reason": "FileNotFoundError: Prepare an atlas with python reconstruct.py atlas --version 26.3 --out runs/26.3/atlas",
+        "offsets_added": 0
+      },
+      "corrupt": {
+        "status": "unavailable",
+        "requested_matcher": "shape",
+        "reason": "ValueError: Atlas art, target version and placement index must agree",
+        "offsets_added": 0
+      }
+    }
+  }
 }
