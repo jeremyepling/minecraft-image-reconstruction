@@ -1,6 +1,6 @@
 """Draw matched surface outlines and the texture grids downstream of the same proposals."""
 import numpy as np
-from PIL import Image
+from PIL import Image, ImageChops, ImageFilter
 
 from benchmark.afterpass_sheet import plane_overlay
 from benchmark.camera_round import digest, read
@@ -16,6 +16,7 @@ from benchmark.surface_topology import opening_mask
 from benchmark.wall_join_test import checked, read_gzip
 from engine.masked_count import count
 from engine.surface_dimensions import dimensions
+from engine.surface_perimeter import _native_alpha
 from engine.surface_sample import sample_surface
 
 
@@ -85,11 +86,24 @@ def render_crop_split(out, rows, captures, table):
                               opening_details=opening_details, detail_targets=targets)
 
 
+def render_contained(out, rows, captures, table):
+    prior = BASE.parent/'guard-zoom-01'
+    sheet = checked(prior/'sheet-views.json', read(prior/'manifest.json')['artifacts']['sheet-views.json'])
+    openings = {v['layout']:v['close_up']['downstream']['openings'] for v in read(sheet)['views']}
+    return render_zoom_review(out, rows, captures, table, prior/'candidate-runs/zoom',
+                              {'current':'Split-only zoom', 'contained':'One-wall split'},
+                              'Can one wall be split without cutting its neighbor?', sheet,
+                              opening_details=openings, guard_inputs=prior)
+
+
 def render_zoom_review(out, rows, captures, table, zoom, names, title, prior_sheet, *,
-                       opening_details=None, detail_targets=None):
+                       opening_details=None, detail_targets=None, guard_inputs=None):
     from benchmark.zoom_plane_fields import render_crop_proposals
     raw_stages = [('whole', 'Whole-image planes', 'Colored outlines show regions from the original Planarity pass.'),
                   ('crops', 'Closer-view planes', 'Outlines come from the same checkpoint on overlapping crops.')]
+    if guard_inputs:
+        guard_hashes = read(guard_inputs/'manifest.json')['artifacts']
+        raw_stages.append(('guard', 'Proposed cuts', 'White outlines are earlier protected-edge proposals considered for a split.'))
     downstream = []
     for method, name in names.items():
         downstream.extend([
@@ -102,7 +116,8 @@ def render_zoom_review(out, rows, captures, table, zoom, names, title, prior_she
         ('opening-truth', 'Open space', 'Scored reference', 'Gold marks background between or beneath building surfaces.', 210)])
     downstream.extend(('opening-'+m, title, 'Scored prediction', 'Pink marks predicted surface pixels inside a scored opening.', 210)
                       for m, title in names.items())
-    if opening_details:
+    historical_openings = opening_details and not guard_inputs
+    if historical_openings:
         prior = prior_sheet.parent
         prior_artifacts = read(prior/'manifest.json')['artifacts']
         downstream.append(('opening-previous_zoom', 'Previous zoom', 'Archived comparison',
@@ -130,7 +145,23 @@ def render_zoom_review(out, rows, captures, table, zoom, names, title, prior_she
         crop_field = zoom / 'crop-fields' / 'fields' / (row['sha256'] + '.npz')
         crop_overlay = render_crop_proposals(photo, crop_field, box=box)
         put(prefix+'crops', crop_overlay, 'Crop predictions in source coordinates', 'Same original pixels and checkpoint')
-        return {'whole_image_fields_sha256': digest(field), 'crop_fields_sha256': digest(crop_field)}
+        sources = {'whole_image_fields_sha256': digest(field), 'crop_fields_sha256': digest(crop_field)}
+        if guard_inputs:
+            path = row['predictions']
+            guard = read_gzip(checked(guard_inputs/path, guard_hashes[path]))['guard']
+            candidates = [p for p in guard if p['id'].startswith('plane-consensus-')]
+            img = photo.crop(box)
+            for part in candidates:
+                native = _native_alpha(part['support'], photo.size)
+                if native:
+                    alpha, bounds = native
+                    registered = Image.new('L', img.size)
+                    registered.paste(alpha, (bounds[0]-box[0], bounds[1]-box[1]))
+                    edge = ImageChops.subtract(registered, registered.filter(ImageFilter.MinFilter(5)))
+                    img.paste('white', mask=edge)
+            put(prefix+'guard', img, 'Protected-edge proposals', f'{len(candidates)} proposed outlines in the full view')
+            sources['guard_predictions_sha256'] = guard_hashes[path]
+        return sources
 
     def extra_details(put, data, row, selection):
         photo, ref, _, grades = data
@@ -159,7 +190,7 @@ def render_zoom_review(out, rows, captures, table, zoom, names, title, prior_she
         opening = opening_views[row['layout']]
         box = opening_details[row['layout']]['crop_xyxy'] if opening_details else None
         historical = None
-        if opening_details:
+        if historical_openings:
             path = opening['predictions']
             old_parts = read_gzip(checked(prior/path, prior_artifacts[path]))['zoom']
             historical = old_parts, opening_details[row['layout']]['filled_samples']['zoom']
