@@ -1,0 +1,7237 @@
+[
+  {
+    "frame": "test-twinspire1-cool-high-right",
+    "image_sha256": "02e58fb693b6a95ffc35c2ba212ec4b150d2670c0b016c747e287afce5723cdf",
+    "surfaces_sha256": "fb9987fa7304ed77c01920857de0402cb0d6562b1c05e3979907546d798c8a96",
+    "build_manifest_sha256": "e923dcf8a1c6777b2b9b7212f6097129d504ff3684533933fa902299347fb155",
+    "models": {
+      "normal": "24eacb5dc7a2c54c7bc98f7de085ffbed79ad006ea5b664c2c2cdc02ff3a52f0",
+      "depth": "fcf51f1b230362b28690bb9d1809bf0431f29cad20534e3f589bd7285547f20d",
+      "mlsd": "e869f90601ffa263f21ac47e09ff0d65dc936d1aeb47126b8499d5504adfb100",
+      "scalelsd": "d0a7333c4de518a70af7d6ea4a283aa0ce9ffe1047525373b94070b1d1d4003f",
+      "mobilesam": "6dbb90523a35330fedd7f1d3dfc66f995213d81b29a5ca8108dbcdd4e37d6c2f",
+      "pixelwise_planarity": "305325096a80f541e430ccbb1b6581af67b3ef9d3c92f8d9384dc7aaae9f3952"
+    },
+    "stages": {
+      "outlines": "mask-first",
+      "initial_boundary": "color-edges",
+      "split_hints": "rectangle-finder",
+      "split_depth": "depth-anything-v2",
+      "junction_line_detector": "ScaleLSD v2",
+      "wall_partition_model": "MobileSAM TinyViT",
+      "line_detector": "NAVER M-LSD Tiny 512 FP16",
+      "boundary_sequence": [
+        "color-edges",
+        "wall-depth-anything",
+        "junction-cuts",
+        "strip-mlsd",
+        "mobile-wall-split",
+        "single-wall-split",
+        "plane-recovery",
+        "plane-recovery-crop-splits",
+        "clear-noon-sky",
+        "row-sky-with-horizon",
+        "neighbor-supported-strip"
+      ],
+      "single_wall_depth": "depth-anything-v2",
+      "plane_model": "Pixel-wise Planarity",
+      "plane_fusion": "relaxed-add-split",
+      "surface_boundary": "plane-recovery-crop-splits",
+      "background_filter": "clear-noon-sky",
+      "opening_sky_filter": "row-sky-with-horizon",
+      "strip_cleanup": "neighbor-supported-strip"
+    },
+    "proposed_surfaces": 17,
+    "matched_surfaces": 14,
+    "eligible_surfaces": 15,
+    "fully_visible_faces": 213,
+    "camera": "uncertain",
+    "rows": [
+      {
+        "id": "mask-0",
+        "quad": [
+          [
+            697.63,
+            343.01
+          ],
+          [
+            872.55,
+            356.13
+          ],
+          [
+            857.84,
+            800.3
+          ],
+          [
+            701.77,
+            747.8
+          ]
+        ],
+        "readings": {
+          "baseline": {
+            "counts": [
+              3.956580876441512,
+              9.009740319790264
+            ],
+            "phase": [
+              null,
+              0.875
+            ],
+            "blocks": [
+              4,
+              9
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "boundaries": {
+            "counts": [
+              3.956580876441512,
+              9.009740319790264
+            ],
+            "phase": [
+              null,
+              0.875
+            ],
+            "blocks": [
+              4,
+              9
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "learned": {
+            "counts": [
+              3.956580876441512,
+              9.009740319790264
+            ],
+            "phase": [
+              null,
+              0.875
+            ],
+            "blocks": [
+              4,
+              9
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "template": {
+            "counts": [
+              3.956580876441512,
+              9.009740319790264
+            ],
+            "phase": [
+              null,
+              0.875
+            ],
+            "blocks": [
+              4,
+              9
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          }
+        },
+        "reference": 5,
+        "expected": [
+          4,
+          9
+        ]
+      },
+      {
+        "id": "mask-1",
+        "quad": [
+          [
+            872.67,
+            355.95
+          ],
+          [
+            1002.67,
+            343.13
+          ],
+          [
+            979.89,
+            680.2
+          ],
+          [
+            858.08,
+            803.99
+          ]
+        ],
+        "readings": {
+          "baseline": {
+            "counts": [
+              7.090204629859293,
+              8.915645796578108
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              7,
+              9
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "boundaries": {
+            "counts": [
+              7.090204629859293,
+              8.915645796578108
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              7,
+              9
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "learned": {
+            "counts": [
+              7.090204629859293,
+              8.915645796578108
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              7,
+              9
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "template": {
+            "counts": [
+              7.090204629859293,
+              8.915645796578108
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              7,
+              9
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          }
+        },
+        "reference": 19,
+        "expected": [
+          7,
+          9
+        ]
+      },
+      {
+        "id": "mask-2",
+        "quad": [
+          [
+            561.51,
+            390.37
+          ],
+          [
+            697.56,
+            366.9
+          ],
+          [
+            699.85,
+            630.41
+          ],
+          [
+            576.95,
+            694.58
+          ]
+        ],
+        "readings": {
+          "baseline": {
+            "counts": [
+              5.134504288639946,
+              7.842788677971897
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              5,
+              8
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "boundaries": {
+            "counts": [
+              5.134504288639946,
+              7.842788677971897
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              5,
+              8
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "learned": {
+            "counts": [
+              5.134504288639946,
+              7.842788677971897
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              5,
+              8
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "template": {
+            "counts": [
+              5.134504288639946,
+              7.842788677971897
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              5,
+              8
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          }
+        },
+        "reference": 16,
+        "expected": [
+          6,
+          7
+        ]
+      },
+      {
+        "id": "mask-3",
+        "quad": [
+          [
+            460.88,
+            414.54
+          ],
+          [
+            564.24,
+            430.61
+          ],
+          [
+            576.09,
+            700.42
+          ],
+          [
+            471.87,
+            652.77
+          ]
+        ],
+        "readings": {
+          "baseline": {
+            "counts": [
+              4.0295343617977535,
+              6.834528259982733
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              4,
+              7
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "boundaries": {
+            "counts": [
+              4.0295343617977535,
+              6.834528259982733
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              4,
+              7
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "learned": {
+            "counts": [
+              4.0295343617977535,
+              6.834528259982733
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              4,
+              7
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "template": {
+            "counts": [
+              4.0295343617977535,
+              6.834528259982733
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              4,
+              7
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          }
+        },
+        "reference": 4,
+        "expected": [
+          4,
+          7
+        ]
+      },
+      {
+        "id": "mask-4",
+        "quad": [
+          [
+            628.73,
+            294.41
+          ],
+          [
+            907.94,
+            297.95
+          ],
+          [
+            874.54,
+            353.42
+          ],
+          [
+            632.62,
+            342.09
+          ]
+        ],
+        "readings": {
+          "baseline": {
+            "counts": [
+              null,
+              null
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              null,
+              null
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "boundaries": {
+            "counts": [
+              null,
+              null
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              null,
+              null
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "learned": {
+            "counts": [
+              null,
+              null
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              null,
+              null
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "template": {
+            "counts": [
+              null,
+              null
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              null,
+              null
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          }
+        },
+        "reference": 7,
+        "expected": [
+          6,
+          1
+        ]
+      },
+      {
+        "id": "mask-5",
+        "quad": [
+          [
+            853.668799863668,
+            140.60916497312255
+          ],
+          [
+            954.3451693173515,
+            208.9126244666775
+          ],
+          [
+            948.3863658195879,
+            307.77056856501616
+          ],
+          [
+            848.5237370679451,
+            292.885632199052
+          ]
+        ],
+        "readings": {
+          "baseline": {
+            "counts": [
+              28.638750783463163,
+              10.218225857704093
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              29,
+              10
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "boundaries": {
+            "counts": [
+              28.638750783463163,
+              10.218225857704093
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              29,
+              10
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "learned": {
+            "counts": [
+              28.638750783463163,
+              10.218225857704093
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              29,
+              10
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "template": {
+            "counts": [
+              28.638750783463163,
+              10.218225857704093
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              29,
+              10
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          }
+        },
+        "reference": 18,
+        "expected": [
+          5,
+          2
+        ]
+      },
+      {
+        "id": "mask-6",
+        "quad": [
+          [
+            766.5293915518,
+            194.6029940148919
+          ],
+          [
+            857.8641056246753,
+            182.28380154345476
+          ],
+          [
+            853.8639988179361,
+            295.8615747422501
+          ],
+          [
+            765.2841417274694,
+            299.0348908137453
+          ]
+        ],
+        "readings": {
+          "baseline": {
+            "counts": [
+              2.0546875,
+              2.112387980928688
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              2,
+              2
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "boundaries": {
+            "counts": [
+              2.0546875,
+              2.112387980928688
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              2,
+              2
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "learned": {
+            "counts": [
+              2.0546875,
+              2.112387980928688
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              2,
+              2
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "template": {
+            "counts": [
+              2.0546875,
+              2.112387980928688
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              2,
+              2
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          }
+        },
+        "reference": 3,
+        "expected": [
+          2,
+          2
+        ]
+      },
+      {
+        "id": "mask-7",
+        "quad": null,
+        "readings": {
+          "baseline": {
+            "counts": [
+              null,
+              null
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              null,
+              null
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "boundaries": {
+            "counts": [
+              null,
+              null
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              null,
+              null
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "learned": {
+            "counts": [
+              null,
+              null
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              null,
+              null
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "template": {
+            "counts": [
+              null,
+              null
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              null,
+              null
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          }
+        },
+        "reference": 20,
+        "expected": [
+          9,
+          1
+        ]
+      },
+      {
+        "id": "mask-8",
+        "quad": [
+          [
+            396.19,
+            370.49
+          ],
+          [
+            560.29,
+            386.27
+          ],
+          [
+            562.5,
+            428.97
+          ],
+          [
+            407.31,
+            406.74
+          ]
+        ],
+        "readings": {
+          "baseline": {
+            "counts": [
+              5.958457890716186,
+              0.965975109156101
+            ],
+            "phase": [
+              0.020833333333333332,
+              null
+            ],
+            "blocks": [
+              6,
+              1
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "boundaries": {
+            "counts": [
+              5.958457890716186,
+              0.965975109156101
+            ],
+            "phase": [
+              0.020833333333333332,
+              null
+            ],
+            "blocks": [
+              6,
+              1
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "learned": {
+            "counts": [
+              5.958457890716186,
+              0.965975109156101
+            ],
+            "phase": [
+              0.020833333333333332,
+              null
+            ],
+            "blocks": [
+              6,
+              1
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "template": {
+            "counts": [
+              5.958457890716186,
+              0.965975109156101
+            ],
+            "phase": [
+              0.020833333333333332,
+              null
+            ],
+            "blocks": [
+              6,
+              1
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          }
+        },
+        "reference": 6,
+        "expected": [
+          6,
+          1
+        ]
+      },
+      {
+        "id": "mask-9",
+        "quad": [
+          [
+            560.4509169374683,
+            287.25986759619565
+          ],
+          [
+            693.614981414873,
+            298.575777848026
+          ],
+          [
+            694.0835756155114,
+            366.030882818463
+          ],
+          [
+            564.1053469866645,
+            374.5153307040169
+          ]
+        ],
+        "readings": {
+          "baseline": {
+            "counts": [
+              11.301954676633208,
+              4.255649536254815
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              11,
+              4
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "boundaries": {
+            "counts": [
+              11.301954676633208,
+              4.255649536254815
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              11,
+              4
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "learned": {
+            "counts": [
+              11.301954676633208,
+              4.255649536254815
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              11,
+              4
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "template": {
+            "counts": [
+              11.301954676633208,
+              4.255649536254815
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              11,
+              4
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          }
+        },
+        "reference": 15,
+        "expected": [
+          5,
+          2
+        ]
+      },
+      {
+        "id": "mask-10",
+        "quad": [
+          [
+            621.85,
+            483.68
+          ],
+          [
+            697.93,
+            492.0
+          ],
+          [
+            701.14,
+            578.31
+          ],
+          [
+            627.81,
+            561.29
+          ]
+        ],
+        "readings": {
+          "baseline": {
+            "counts": [
+              2.477513940241498,
+              2.1668552734424673
+            ],
+            "phase": [
+              0.9791666666666666,
+              0.11458333333333333
+            ],
+            "blocks": [
+              3,
+              2
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "boundaries": {
+            "counts": [
+              2.477513940241498,
+              2.1668552734424673
+            ],
+            "phase": [
+              0.9791666666666666,
+              0.11458333333333333
+            ],
+            "blocks": [
+              3,
+              2
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "learned": {
+            "counts": [
+              2.477513940241498,
+              2.1668552734424673
+            ],
+            "phase": [
+              0.9791666666666666,
+              0.11458333333333333
+            ],
+            "blocks": [
+              3,
+              2
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "template": {
+            "counts": [
+              2.477513940241498,
+              2.1668552734424673
+            ],
+            "phase": [
+              0.9791666666666666,
+              0.11458333333333333
+            ],
+            "blocks": [
+              3,
+              2
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          }
+        },
+        "reference": 1,
+        "expected": [
+          3,
+          2
+        ]
+      },
+      {
+        "id": "mask-11",
+        "quad": [
+          [
+            507.9363573449835,
+            293.1132196495318
+          ],
+          [
+            565.8354464490554,
+            289.9366451778616
+          ],
+          [
+            569.2894067531176,
+            375.22600038432336
+          ],
+          [
+            512.3718114500466,
+            372.6689278049294
+          ]
+        ],
+        "readings": {
+          "baseline": {
+            "counts": [
+              2.1567642824945557,
+              2.099569791866705
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              2,
+              2
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "boundaries": {
+            "counts": [
+              2.1567642824945557,
+              2.099569791866705
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              2,
+              2
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "learned": {
+            "counts": [
+              2.1567642824945557,
+              2.099569791866705
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              2,
+              2
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "template": {
+            "counts": [
+              2.1567642824945557,
+              2.099569791866705
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              2,
+              2
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          }
+        },
+        "reference": 2,
+        "expected": [
+          2,
+          2
+        ]
+      },
+      {
+        "id": "mask-12",
+        "quad": null,
+        "readings": {
+          "baseline": {
+            "counts": [
+              null,
+              null
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              null,
+              null
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "boundaries": {
+            "counts": [
+              null,
+              null
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              null,
+              null
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "learned": {
+            "counts": [
+              null,
+              null
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              null,
+              null
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "template": {
+            "counts": [
+              null,
+              null
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              null,
+              null
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          }
+        },
+        "reference": 9,
+        "expected": [
+          6,
+          9
+        ]
+      },
+      {
+        "id": "mask-13",
+        "quad": null,
+        "readings": {
+          "baseline": {
+            "counts": [
+              null,
+              null
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              null,
+              null
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "boundaries": {
+            "counts": [
+              null,
+              null
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              null,
+              null
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "learned": {
+            "counts": [
+              null,
+              null
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              null,
+              null
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "template": {
+            "counts": [
+              null,
+              null
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              null,
+              null
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          }
+        },
+        "reference": 8,
+        "expected": [
+          3,
+          4
+        ]
+      },
+      {
+        "id": "mask-14",
+        "quad": null,
+        "readings": {
+          "baseline": {
+            "counts": [
+              null,
+              null
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              null,
+              null
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "boundaries": {
+            "counts": [
+              null,
+              null
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              null,
+              null
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "learned": {
+            "counts": [
+              null,
+              null
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              null,
+              null
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "template": {
+            "counts": [
+              null,
+              null
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              null,
+              null
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          }
+        },
+        "reference": null,
+        "expected": null
+      },
+      {
+        "id": "mask-15",
+        "quad": null,
+        "readings": {
+          "baseline": {
+            "counts": [
+              null,
+              null
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              null,
+              null
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "boundaries": {
+            "counts": [
+              null,
+              null
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              null,
+              null
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "learned": {
+            "counts": [
+              null,
+              null
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              null,
+              null
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "template": {
+            "counts": [
+              null,
+              null
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              null,
+              null
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          }
+        },
+        "reference": null,
+        "expected": null
+      },
+      {
+        "id": "underside-0",
+        "quad": [
+          [
+            710.85,
+            345.96
+          ],
+          [
+            813.0,
+            348.0
+          ],
+          [
+            819.57,
+            349.88
+          ],
+          [
+            706.71,
+            348.03
+          ]
+        ],
+        "readings": {
+          "baseline": {
+            "counts": [
+              null,
+              null
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              null,
+              null
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "boundaries": {
+            "counts": [
+              null,
+              null
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              null,
+              null
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "learned": {
+            "counts": [
+              null,
+              null
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              null,
+              null
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "template": {
+            "counts": [
+              null,
+              null
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              null,
+              null
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          }
+        },
+        "reference": null,
+        "expected": null
+      }
+    ],
+    "totals": {
+      "baseline": {
+        "correct": 7,
+        "incorrect": 3,
+        "unmatched_returned": 0,
+        "proposed_faces": 0,
+        "iou_matches": 0,
+        "aligned": 0,
+        "missing": 5,
+        "unaligned_faces": 0,
+        "serialized": 0,
+        "visible_truth": 226,
+        "correct_visible": 0,
+        "extra": 0,
+        "missed": 226
+      },
+      "boundaries": {
+        "correct": 7,
+        "incorrect": 3,
+        "unmatched_returned": 0,
+        "proposed_faces": 0,
+        "iou_matches": 0,
+        "aligned": 0,
+        "missing": 5,
+        "unaligned_faces": 0,
+        "serialized": 0,
+        "visible_truth": 226,
+        "correct_visible": 0,
+        "extra": 0,
+        "missed": 226
+      },
+      "learned": {
+        "correct": 7,
+        "incorrect": 3,
+        "unmatched_returned": 0,
+        "proposed_faces": 0,
+        "iou_matches": 0,
+        "aligned": 0,
+        "missing": 5,
+        "unaligned_faces": 0,
+        "serialized": 0,
+        "visible_truth": 226,
+        "correct_visible": 0,
+        "extra": 0,
+        "missed": 226
+      },
+      "template": {
+        "correct": 7,
+        "incorrect": 3,
+        "unmatched_returned": 0,
+        "proposed_faces": 0,
+        "iou_matches": 0,
+        "aligned": 0,
+        "missing": 5,
+        "unaligned_faces": 0,
+        "serialized": 0,
+        "visible_truth": 226,
+        "correct_visible": 0,
+        "extra": 0,
+        "missed": 226
+      }
+    }
+  },
+  {
+    "frame": "test-twinspire1-cool-low-left",
+    "image_sha256": "042ce5059691039efe691a2cf61d174f6f46eaed1196d21c9d76516f9956ef73",
+    "surfaces_sha256": "3924ffa14cf68667d5b7bb638c3830077de86af41cf6113b93a9ef429f550d72",
+    "build_manifest_sha256": "9564f5a3c30fb495e8a86a98e58ea7fadaad58cd69688b33979f513d51aca45b",
+    "models": {
+      "normal": "24eacb5dc7a2c54c7bc98f7de085ffbed79ad006ea5b664c2c2cdc02ff3a52f0",
+      "depth": "fcf51f1b230362b28690bb9d1809bf0431f29cad20534e3f589bd7285547f20d",
+      "mlsd": "e869f90601ffa263f21ac47e09ff0d65dc936d1aeb47126b8499d5504adfb100",
+      "scalelsd": "d0a7333c4de518a70af7d6ea4a283aa0ce9ffe1047525373b94070b1d1d4003f",
+      "mobilesam": "6dbb90523a35330fedd7f1d3dfc66f995213d81b29a5ca8108dbcdd4e37d6c2f",
+      "pixelwise_planarity": "305325096a80f541e430ccbb1b6581af67b3ef9d3c92f8d9384dc7aaae9f3952"
+    },
+    "stages": {
+      "outlines": "mask-first",
+      "initial_boundary": "color-edges",
+      "split_hints": "rectangle-finder",
+      "split_depth": "depth-anything-v2",
+      "junction_line_detector": "ScaleLSD v2",
+      "wall_partition_model": "MobileSAM TinyViT",
+      "line_detector": "NAVER M-LSD Tiny 512 FP16",
+      "boundary_sequence": [
+        "color-edges",
+        "wall-depth-anything",
+        "junction-cuts",
+        "strip-mlsd",
+        "mobile-wall-split",
+        "single-wall-split",
+        "plane-recovery",
+        "plane-recovery-crop-splits",
+        "clear-noon-sky",
+        "row-sky-with-horizon",
+        "neighbor-supported-strip"
+      ],
+      "single_wall_depth": "depth-anything-v2",
+      "plane_model": "Pixel-wise Planarity",
+      "plane_fusion": "relaxed-add-split",
+      "surface_boundary": "plane-recovery-crop-splits",
+      "background_filter": "clear-noon-sky",
+      "opening_sky_filter": "row-sky-with-horizon",
+      "strip_cleanup": "neighbor-supported-strip"
+    },
+    "proposed_surfaces": 17,
+    "matched_surfaces": 15,
+    "eligible_surfaces": 15,
+    "fully_visible_faces": 199,
+    "camera": "uncertain",
+    "rows": [
+      {
+        "id": "mask-0",
+        "quad": [
+          [
+            551.12,
+            348.33
+          ],
+          [
+            728.45,
+            377.34
+          ],
+          [
+            727.41,
+            718.39
+          ],
+          [
+            538.13,
+            741.69
+          ]
+        ],
+        "readings": {
+          "baseline": {
+            "counts": [
+              3.9926924282126905,
+              7.108575124858007
+            ],
+            "phase": [
+              null,
+              0.041666666666666664
+            ],
+            "blocks": [
+              4,
+              7
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "boundaries": {
+            "counts": [
+              3.9926924282126905,
+              7.108575124858007
+            ],
+            "phase": [
+              null,
+              0.041666666666666664
+            ],
+            "blocks": [
+              4,
+              7
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "learned": {
+            "counts": [
+              3.9926924282126905,
+              7.108575124858007
+            ],
+            "phase": [
+              null,
+              0.041666666666666664
+            ],
+            "blocks": [
+              4,
+              7
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "template": {
+            "counts": [
+              3.9926924282126905,
+              7.108575124858007
+            ],
+            "phase": [
+              null,
+              0.041666666666666664
+            ],
+            "blocks": [
+              4,
+              7
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          }
+        },
+        "reference": 13,
+        "expected": [
+          4,
+          7
+        ]
+      },
+      {
+        "id": "mask-1",
+        "quad": [
+          [
+            870.12,
+            311.29
+          ],
+          [
+            985.88,
+            336.34
+          ],
+          [
+            995.95,
+            690.09
+          ],
+          [
+            875.92,
+            703.13
+          ]
+        ],
+        "readings": {
+          "baseline": {
+            "counts": [
+              4.027175400006634,
+              9.131241084397214
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              4,
+              9
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "boundaries": {
+            "counts": [
+              4.027175400006634,
+              9.131241084397214
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              4,
+              9
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "learned": {
+            "counts": [
+              4.027175400006634,
+              9.131241084397214
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              4,
+              9
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "template": {
+            "counts": [
+              4.027175400006634,
+              9.131241084397214
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              4,
+              9
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          }
+        },
+        "reference": 14,
+        "expected": [
+          4,
+          9
+        ]
+      },
+      {
+        "id": "mask-2",
+        "quad": [
+          [
+            728.1,
+            399.83
+          ],
+          [
+            869.74,
+            316.49
+          ],
+          [
+            875.91,
+            701.22
+          ],
+          [
+            728.08,
+            673.95
+          ]
+        ],
+        "readings": {
+          "baseline": {
+            "counts": [
+              null,
+              null
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              null,
+              null
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "boundaries": {
+            "counts": [
+              null,
+              null
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              null,
+              null
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "learned": {
+            "counts": [
+              null,
+              null
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              null,
+              null
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "template": {
+            "counts": [
+              null,
+              null
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              null,
+              null
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          }
+        },
+        "reference": 5,
+        "expected": [
+          7,
+          9
+        ]
+      },
+      {
+        "id": "mask-3",
+        "quad": [
+          [
+            445.1,
+            410.44
+          ],
+          [
+            551.0,
+            350.44
+          ],
+          [
+            537.66,
+            733.88
+          ],
+          [
+            440.24,
+            698.12
+          ]
+        ],
+        "readings": {
+          "baseline": {
+            "counts": [
+              7.087239600416239,
+              null
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              7,
+              null
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "boundaries": {
+            "counts": [
+              7.087239600416239,
+              null
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              7,
+              null
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "learned": {
+            "counts": [
+              7.087239600416239,
+              null
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              7,
+              null
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "template": {
+            "counts": [
+              7.087239600416239,
+              null
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              7,
+              null
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          }
+        },
+        "reference": 2,
+        "expected": [
+          7,
+          7
+        ]
+      },
+      {
+        "id": "mask-4",
+        "quad": [
+          [
+            516.521858438047,
+            275.87250669299436
+          ],
+          [
+            791.9062035039748,
+            325.76674630307366
+          ],
+          [
+            792.6664555874881,
+            376.2893597371607
+          ],
+          [
+            513.8488770144103,
+            337.9900503820844
+          ]
+        ],
+        "readings": {
+          "baseline": {
+            "counts": [
+              5.983759229750753,
+              1.1015625
+            ],
+            "phase": [
+              0.9479166666666666,
+              null
+            ],
+            "blocks": [
+              6,
+              1
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "boundaries": {
+            "counts": [
+              5.983759229750753,
+              1.1015625
+            ],
+            "phase": [
+              0.9479166666666666,
+              null
+            ],
+            "blocks": [
+              6,
+              1
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "learned": {
+            "counts": [
+              5.983759229750753,
+              1.1015625
+            ],
+            "phase": [
+              0.9479166666666666,
+              null
+            ],
+            "blocks": [
+              6,
+              1
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "template": {
+            "counts": [
+              5.983759229750753,
+              1.1015625
+            ],
+            "phase": [
+              0.9479166666666666,
+              null
+            ],
+            "blocks": [
+              6,
+              1
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          }
+        },
+        "reference": 15,
+        "expected": [
+          6,
+          1
+        ]
+      },
+      {
+        "id": "mask-5",
+        "quad": null,
+        "readings": {
+          "baseline": {
+            "counts": [
+              null,
+              null
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              null,
+              null
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "boundaries": {
+            "counts": [
+              null,
+              null
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              null,
+              null
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "learned": {
+            "counts": [
+              null,
+              null
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              null,
+              null
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "template": {
+            "counts": [
+              null,
+              null
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              null,
+              null
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          }
+        },
+        "reference": 7,
+        "expected": [
+          6,
+          9
+        ]
+      },
+      {
+        "id": "mask-6",
+        "quad": [
+          [
+            729.34,
+            482.64
+          ],
+          [
+            817.12,
+            488.4
+          ],
+          [
+            815.32,
+            566.16
+          ],
+          [
+            729.39,
+            565.67
+          ]
+        ],
+        "readings": {
+          "baseline": {
+            "counts": [
+              2.583487059206638,
+              1.949940158782426
+            ],
+            "phase": [
+              0.6354166666666666,
+              0.9270833333333334
+            ],
+            "blocks": [
+              3,
+              2
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "boundaries": {
+            "counts": [
+              2.583487059206638,
+              1.949940158782426
+            ],
+            "phase": [
+              0.6354166666666666,
+              0.9270833333333334
+            ],
+            "blocks": [
+              3,
+              2
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "learned": {
+            "counts": [
+              2.583487059206638,
+              1.949940158782426
+            ],
+            "phase": [
+              0.6354166666666666,
+              0.9270833333333334
+            ],
+            "blocks": [
+              3,
+              2
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "template": {
+            "counts": [
+              2.583487059206638,
+              1.949940158782426
+            ],
+            "phase": [
+              0.6354166666666666,
+              0.9270833333333334
+            ],
+            "blocks": [
+              3,
+              2
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          }
+        },
+        "reference": 10,
+        "expected": [
+          3,
+          2
+        ]
+      },
+      {
+        "id": "mask-7",
+        "quad": [
+          [
+            862.5914122229326,
+            249.54823986394842
+          ],
+          [
+            1037.237520784272,
+            295.58735065122664
+          ],
+          [
+            1039.9880277373065,
+            336.7564353145709
+          ],
+          [
+            864.0686708055346,
+            298.26459425459285
+          ]
+        ],
+        "readings": {
+          "baseline": {
+            "counts": [
+              6.03508853379956,
+              1.1462964576718366
+            ],
+            "phase": [
+              0.9479166666666666,
+              null
+            ],
+            "blocks": [
+              6,
+              1
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "boundaries": {
+            "counts": [
+              6.03508853379956,
+              1.1462964576718366
+            ],
+            "phase": [
+              0.9479166666666666,
+              null
+            ],
+            "blocks": [
+              6,
+              1
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "learned": {
+            "counts": [
+              6.03508853379956,
+              1.1462964576718366
+            ],
+            "phase": [
+              0.9479166666666666,
+              null
+            ],
+            "blocks": [
+              6,
+              1
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "template": {
+            "counts": [
+              6.03508853379956,
+              1.1462964576718366
+            ],
+            "phase": [
+              0.9479166666666666,
+              null
+            ],
+            "blocks": [
+              6,
+              1
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          }
+        },
+        "reference": 16,
+        "expected": [
+          6,
+          1
+        ]
+      },
+      {
+        "id": "mask-8",
+        "quad": [
+          [
+            575.8397104597323,
+            228.2627642040508
+          ],
+          [
+            665.4717394449999,
+            248.32949152739442
+          ],
+          [
+            664.7763217428623,
+            308.2841801729364
+          ],
+          [
+            573.8703853494618,
+            292.2087171385284
+          ]
+        ],
+        "readings": {
+          "baseline": {
+            "counts": [
+              2.121901152291758,
+              1.4559424154041358
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              2,
+              1
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "boundaries": {
+            "counts": [
+              2.121901152291758,
+              1.4559424154041358
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              2,
+              1
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "learned": {
+            "counts": [
+              2.121901152291758,
+              1.4559424154041358
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              2,
+              1
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "template": {
+            "counts": [
+              2.121901152291758,
+              1.4559424154041358
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              2,
+              1
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          }
+        },
+        "reference": 11,
+        "expected": [
+          2,
+          2
+        ]
+      },
+      {
+        "id": "mask-9",
+        "quad": null,
+        "readings": {
+          "baseline": {
+            "counts": [
+              null,
+              null
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              null,
+              null
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "boundaries": {
+            "counts": [
+              null,
+              null
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              null,
+              null
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "learned": {
+            "counts": [
+              null,
+              null
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              null,
+              null
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "template": {
+            "counts": [
+              null,
+              null
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              null,
+              null
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          }
+        },
+        "reference": 1,
+        "expected": [
+          9,
+          1
+        ]
+      },
+      {
+        "id": "mask-10",
+        "quad": null,
+        "readings": {
+          "baseline": {
+            "counts": [
+              null,
+              null
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              null,
+              null
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "boundaries": {
+            "counts": [
+              null,
+              null
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              null,
+              null
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "learned": {
+            "counts": [
+              null,
+              null
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              null,
+              null
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "template": {
+            "counts": [
+              null,
+              null
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              null,
+              null
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          }
+        },
+        "reference": 8,
+        "expected": [
+          6,
+          4
+        ]
+      },
+      {
+        "id": "mask-11",
+        "quad": [
+          [
+            729.16,
+            315.68
+          ],
+          [
+            862.69,
+            257.27
+          ],
+          [
+            863.59,
+            296.07
+          ],
+          [
+            777.85,
+            326.9
+          ]
+        ],
+        "readings": {
+          "baseline": {
+            "counts": [
+              null,
+              null
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              null,
+              null
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "boundaries": {
+            "counts": [
+              null,
+              null
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              null,
+              null
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "learned": {
+            "counts": [
+              null,
+              null
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              null,
+              null
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "template": {
+            "counts": [
+              null,
+              null
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              null,
+              null
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          }
+        },
+        "reference": 4,
+        "expected": [
+          6,
+          1
+        ]
+      },
+      {
+        "id": "mask-12",
+        "quad": [
+          [
+            758.9426397403655,
+            273.03916218004804
+          ],
+          [
+            867.0894722652811,
+            199.20292514159595
+          ],
+          [
+            868.8614850870892,
+            255.2460130497459
+          ],
+          [
+            759.3074287079363,
+            317.3073865211657
+          ]
+        ],
+        "readings": {
+          "baseline": {
+            "counts": [
+              null,
+              2.937499480318486
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              null,
+              3
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "boundaries": {
+            "counts": [
+              null,
+              2.937499480318486
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              null,
+              3
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "learned": {
+            "counts": [
+              null,
+              2.937499480318486
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              null,
+              3
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "template": {
+            "counts": [
+              null,
+              2.937499480318486
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              null,
+              3
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          }
+        },
+        "reference": 6,
+        "expected": [
+          5,
+          2
+        ]
+      },
+      {
+        "id": "mask-13",
+        "quad": [
+          [
+            862.710362665175,
+            215.81125382597727
+          ],
+          [
+            924.3894391640326,
+            233.99949514402005
+          ],
+          [
+            926.1920030631852,
+            275.3333035651132
+          ],
+          [
+            864.0459202164709,
+            259.502217952776
+          ]
+        ],
+        "readings": {
+          "baseline": {
+            "counts": [
+              2.212888960436008,
+              1.2102803286731882
+            ],
+            "phase": [
+              0.6458333333333334,
+              null
+            ],
+            "blocks": [
+              2,
+              1
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "boundaries": {
+            "counts": [
+              2.212888960436008,
+              1.2102803286731882
+            ],
+            "phase": [
+              0.6458333333333334,
+              null
+            ],
+            "blocks": [
+              2,
+              1
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "learned": {
+            "counts": [
+              2.212888960436008,
+              1.2102803286731882
+            ],
+            "phase": [
+              0.6458333333333334,
+              null
+            ],
+            "blocks": [
+              2,
+              1
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "template": {
+            "counts": [
+              2.212888960436008,
+              1.2102803286731882
+            ],
+            "phase": [
+              0.6458333333333334,
+              0.0625
+            ],
+            "blocks": [
+              2,
+              1
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          }
+        },
+        "reference": 12,
+        "expected": [
+          2,
+          2
+        ]
+      },
+      {
+        "id": "mask-14",
+        "quad": [
+          [
+            524.0,
+            276.0
+          ],
+          [
+            583.3631118997171,
+            172.164288242019
+          ],
+          [
+            580.0,
+            286.0
+          ],
+          [
+            520.5833544444552,
+            358.43120738701026
+          ]
+        ],
+        "readings": {
+          "baseline": {
+            "counts": [
+              null,
+              null
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              null,
+              null
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "boundaries": {
+            "counts": [
+              null,
+              null
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              null,
+              null
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "learned": {
+            "counts": [
+              null,
+              null
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              null,
+              null
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "template": {
+            "counts": [
+              null,
+              null
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              null,
+              null
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          }
+        },
+        "reference": 3,
+        "expected": [
+          4,
+          2
+        ]
+      },
+      {
+        "id": "mask-16",
+        "quad": null,
+        "readings": {
+          "baseline": {
+            "counts": [
+              null,
+              null
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              null,
+              null
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "boundaries": {
+            "counts": [
+              null,
+              null
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              null,
+              null
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "learned": {
+            "counts": [
+              null,
+              null
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              null,
+              null
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "template": {
+            "counts": [
+              null,
+              null
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              null,
+              null
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          }
+        },
+        "reference": null,
+        "expected": null
+      },
+      {
+        "id": "mask-17",
+        "quad": [
+          [
+            538.0000000000001,
+            265.0
+          ],
+          [
+            581.3492570943953,
+            192.7925069181765
+          ],
+          [
+            580.0,
+            237.99999999999994
+          ],
+          [
+            536.6063057180047,
+            301.1270506419522
+          ]
+        ],
+        "readings": {
+          "baseline": {
+            "counts": [
+              null,
+              null
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              null,
+              null
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "boundaries": {
+            "counts": [
+              null,
+              null
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              null,
+              null
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "learned": {
+            "counts": [
+              null,
+              null
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              null,
+              null
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "template": {
+            "counts": [
+              null,
+              null
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              null,
+              null
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          }
+        },
+        "reference": null,
+        "expected": null
+      }
+    ],
+    "totals": {
+      "baseline": {
+        "correct": 5,
+        "incorrect": 2,
+        "unmatched_returned": 0,
+        "proposed_faces": 0,
+        "iou_matches": 0,
+        "aligned": 0,
+        "missing": 8,
+        "unaligned_faces": 0,
+        "serialized": 0,
+        "visible_truth": 200,
+        "correct_visible": 0,
+        "extra": 0,
+        "missed": 200
+      },
+      "boundaries": {
+        "correct": 5,
+        "incorrect": 2,
+        "unmatched_returned": 0,
+        "proposed_faces": 0,
+        "iou_matches": 0,
+        "aligned": 0,
+        "missing": 8,
+        "unaligned_faces": 0,
+        "serialized": 0,
+        "visible_truth": 200,
+        "correct_visible": 0,
+        "extra": 0,
+        "missed": 200
+      },
+      "learned": {
+        "correct": 5,
+        "incorrect": 2,
+        "unmatched_returned": 0,
+        "proposed_faces": 0,
+        "iou_matches": 0,
+        "aligned": 0,
+        "missing": 8,
+        "unaligned_faces": 0,
+        "serialized": 0,
+        "visible_truth": 200,
+        "correct_visible": 0,
+        "extra": 0,
+        "missed": 200
+      },
+      "template": {
+        "correct": 5,
+        "incorrect": 2,
+        "unmatched_returned": 0,
+        "proposed_faces": 0,
+        "iou_matches": 0,
+        "aligned": 0,
+        "missing": 8,
+        "unaligned_faces": 0,
+        "serialized": 0,
+        "visible_truth": 200,
+        "correct_visible": 0,
+        "extra": 0,
+        "missed": 200
+      }
+    }
+  },
+  {
+    "frame": "test-twinspire1-earth-high-right",
+    "image_sha256": "45c87bd2a1d91d4f1d7bedbbf238cef410c3f762a55a453fd18959b8bff68a55",
+    "surfaces_sha256": "c2b54d51292173b1d23778c3f709a64985f0f46aac25a66056a59ba27425e49a",
+    "build_manifest_sha256": "778d77a7c39fb3371ea3ebefe6fbc3b260e78e186861d9d4c1244254656c6708",
+    "models": {
+      "normal": "24eacb5dc7a2c54c7bc98f7de085ffbed79ad006ea5b664c2c2cdc02ff3a52f0",
+      "depth": "fcf51f1b230362b28690bb9d1809bf0431f29cad20534e3f589bd7285547f20d",
+      "mlsd": "e869f90601ffa263f21ac47e09ff0d65dc936d1aeb47126b8499d5504adfb100",
+      "scalelsd": "d0a7333c4de518a70af7d6ea4a283aa0ce9ffe1047525373b94070b1d1d4003f",
+      "mobilesam": "6dbb90523a35330fedd7f1d3dfc66f995213d81b29a5ca8108dbcdd4e37d6c2f",
+      "pixelwise_planarity": "305325096a80f541e430ccbb1b6581af67b3ef9d3c92f8d9384dc7aaae9f3952"
+    },
+    "stages": {
+      "outlines": "mask-first",
+      "initial_boundary": "color-edges",
+      "split_hints": "rectangle-finder",
+      "split_depth": "depth-anything-v2",
+      "junction_line_detector": "ScaleLSD v2",
+      "wall_partition_model": "MobileSAM TinyViT",
+      "line_detector": "NAVER M-LSD Tiny 512 FP16",
+      "boundary_sequence": [
+        "color-edges",
+        "wall-depth-anything",
+        "junction-cuts",
+        "strip-mlsd",
+        "mobile-wall-split",
+        "single-wall-split",
+        "plane-recovery",
+        "plane-recovery-crop-splits",
+        "clear-noon-sky",
+        "row-sky-with-horizon",
+        "neighbor-supported-strip"
+      ],
+      "single_wall_depth": "depth-anything-v2",
+      "plane_model": "Pixel-wise Planarity",
+      "plane_fusion": "relaxed-add-split",
+      "surface_boundary": "plane-recovery-crop-splits",
+      "background_filter": "clear-noon-sky",
+      "opening_sky_filter": "row-sky-with-horizon",
+      "strip_cleanup": "neighbor-supported-strip"
+    },
+    "proposed_surfaces": 15,
+    "matched_surfaces": 14,
+    "eligible_surfaces": 15,
+    "fully_visible_faces": 213,
+    "camera": "uncertain",
+    "rows": [
+      {
+        "id": "mask-0-wall-0",
+        "quad": [
+          [
+            629.66,
+            294.44
+          ],
+          [
+            905.69,
+            301.68
+          ],
+          [
+            902.52,
+            348.65
+          ],
+          [
+            661.28,
+            345.33
+          ]
+        ],
+        "readings": {
+          "baseline": {
+            "counts": [
+              null,
+              null
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              null,
+              null
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "boundaries": {
+            "counts": [
+              null,
+              null
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              null,
+              null
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "learned": {
+            "counts": [
+              null,
+              null
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              null,
+              null
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "template": {
+            "counts": [
+              null,
+              null
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              null,
+              null
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          }
+        },
+        "reference": 7,
+        "expected": [
+          6,
+          1
+        ]
+      },
+      {
+        "id": "mask-0-wall-1",
+        "quad": [
+          [
+            698.99,
+            346.12
+          ],
+          [
+            880.62,
+            348.22
+          ],
+          [
+            855.87,
+            802.28
+          ],
+          [
+            700.71,
+            740.07
+          ]
+        ],
+        "readings": {
+          "baseline": {
+            "counts": [
+              4.013533780372221,
+              9.034387634971624
+            ],
+            "phase": [
+              null,
+              0.08333333333333333
+            ],
+            "blocks": [
+              5,
+              9
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "boundaries": {
+            "counts": [
+              4.013533780372221,
+              9.034387634971624
+            ],
+            "phase": [
+              null,
+              0.08333333333333333
+            ],
+            "blocks": [
+              5,
+              9
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "learned": {
+            "counts": [
+              4.013533780372221,
+              9.034387634971624
+            ],
+            "phase": [
+              null,
+              0.08333333333333333
+            ],
+            "blocks": [
+              5,
+              9
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "template": {
+            "counts": [
+              4.013533780372221,
+              9.034387634971624
+            ],
+            "phase": [
+              null,
+              0.08333333333333333
+            ],
+            "blocks": [
+              5,
+              9
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          }
+        },
+        "reference": 5,
+        "expected": [
+          4,
+          9
+        ]
+      },
+      {
+        "id": "mask-1",
+        "quad": [
+          [
+            873.71,
+            355.53
+          ],
+          [
+            1001.71,
+            372.72
+          ],
+          [
+            980.49,
+            676.38
+          ],
+          [
+            859.71,
+            788.53
+          ]
+        ],
+        "readings": {
+          "baseline": {
+            "counts": [
+              null,
+              8.353476928916503
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              null,
+              9
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "boundaries": {
+            "counts": [
+              null,
+              8.353476928916503
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              null,
+              9
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "learned": {
+            "counts": [
+              null,
+              8.353476928916503
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              null,
+              9
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "template": {
+            "counts": [
+              null,
+              8.353476928916503
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              null,
+              9
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          }
+        },
+        "reference": 19,
+        "expected": [
+          7,
+          9
+        ]
+      },
+      {
+        "id": "mask-2-wall-0",
+        "quad": [
+          [
+            397.9,
+            374.17
+          ],
+          [
+            554.73,
+            387.73
+          ],
+          [
+            567.39,
+            432.82
+          ],
+          [
+            421.46,
+            411.54
+          ]
+        ],
+        "readings": {
+          "baseline": {
+            "counts": [
+              5.616327796152264,
+              null
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              7,
+              null
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "boundaries": {
+            "counts": [
+              5.616327796152264,
+              null
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              7,
+              null
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "learned": {
+            "counts": [
+              5.616327796152264,
+              null
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              7,
+              null
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "template": {
+            "counts": [
+              5.616327796152264,
+              null
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              7,
+              null
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          }
+        },
+        "reference": 6,
+        "expected": [
+          6,
+          1
+        ]
+      },
+      {
+        "id": "mask-2-wall-1",
+        "quad": [
+          [
+            458.33,
+            416.56
+          ],
+          [
+            565.51,
+            433.07
+          ],
+          [
+            575.84,
+            693.23
+          ],
+          [
+            473.53,
+            653.7
+          ]
+        ],
+        "readings": {
+          "baseline": {
+            "counts": [
+              4.040434957726305,
+              6.699255927908419
+            ],
+            "phase": [
+              null,
+              0.90625
+            ],
+            "blocks": [
+              4,
+              7
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "boundaries": {
+            "counts": [
+              4.040434957726305,
+              6.699255927908419
+            ],
+            "phase": [
+              null,
+              0.90625
+            ],
+            "blocks": [
+              4,
+              7
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "learned": {
+            "counts": [
+              4.040434957726305,
+              6.699255927908419
+            ],
+            "phase": [
+              null,
+              0.90625
+            ],
+            "blocks": [
+              4,
+              7
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "template": {
+            "counts": [
+              4.040434957726305,
+              6.699255927908419
+            ],
+            "phase": [
+              null,
+              0.90625
+            ],
+            "blocks": [
+              4,
+              7
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          }
+        },
+        "reference": 4,
+        "expected": [
+          4,
+          7
+        ]
+      },
+      {
+        "id": "mask-3",
+        "quad": [
+          [
+            563.85,
+            388.6
+          ],
+          [
+            699.36,
+            368.43
+          ],
+          [
+            699.94,
+            633.48
+          ],
+          [
+            576.3,
+            695.74
+          ]
+        ],
+        "readings": {
+          "baseline": {
+            "counts": [
+              5.165696268687553,
+              7.902399755913117
+            ],
+            "phase": [
+              null,
+              0.9479166666666666
+            ],
+            "blocks": [
+              5,
+              8
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "boundaries": {
+            "counts": [
+              5.165696268687553,
+              7.902399755913117
+            ],
+            "phase": [
+              null,
+              0.9479166666666666
+            ],
+            "blocks": [
+              5,
+              8
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "learned": {
+            "counts": [
+              5.165696268687553,
+              7.902399755913117
+            ],
+            "phase": [
+              null,
+              0.9479166666666666
+            ],
+            "blocks": [
+              5,
+              8
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "template": {
+            "counts": [
+              5.165696268687553,
+              7.902399755913117
+            ],
+            "phase": [
+              null,
+              0.9479166666666666
+            ],
+            "blocks": [
+              5,
+              8
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          }
+        },
+        "reference": 16,
+        "expected": [
+          6,
+          7
+        ]
+      },
+      {
+        "id": "mask-4",
+        "quad": [
+          [
+            855.3470498804646,
+            152.4277718561564
+          ],
+          [
+            954.5487503140045,
+            208.8813610411396
+          ],
+          [
+            948.3990339876882,
+            306.38268356296385
+          ],
+          [
+            850.222932529754,
+            295.35084317576906
+          ]
+        ],
+        "readings": {
+          "baseline": {
+            "counts": [
+              null,
+              null
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              null,
+              null
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "boundaries": {
+            "counts": [
+              null,
+              null
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              null,
+              null
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "learned": {
+            "counts": [
+              null,
+              null
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              null,
+              null
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "template": {
+            "counts": [
+              null,
+              null
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              null,
+              null
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          }
+        },
+        "reference": 18,
+        "expected": [
+          5,
+          2
+        ]
+      },
+      {
+        "id": "mask-5",
+        "quad": [
+          [
+            767.74,
+            195.31
+          ],
+          [
+            854.0,
+            188.02
+          ],
+          [
+            854.0,
+            302.18
+          ],
+          [
+            764.53,
+            297.65
+          ]
+        ],
+        "readings": {
+          "baseline": {
+            "counts": [
+              2.006506035688945,
+              null
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              2,
+              null
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "boundaries": {
+            "counts": [
+              2.006506035688945,
+              null
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              2,
+              null
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "learned": {
+            "counts": [
+              2.006506035688945,
+              null
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              2,
+              null
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "template": {
+            "counts": [
+              2.006506035688945,
+              null
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              2,
+              null
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          }
+        },
+        "reference": 3,
+        "expected": [
+          2,
+          2
+        ]
+      },
+      {
+        "id": "mask-6",
+        "quad": null,
+        "readings": {
+          "baseline": {
+            "counts": [
+              null,
+              null
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              null,
+              null
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "boundaries": {
+            "counts": [
+              null,
+              null
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              null,
+              null
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "learned": {
+            "counts": [
+              null,
+              null
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              null,
+              null
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "template": {
+            "counts": [
+              null,
+              null
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              null,
+              null
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          }
+        },
+        "reference": 20,
+        "expected": [
+          9,
+          1
+        ]
+      },
+      {
+        "id": "mask-7",
+        "quad": [
+          [
+            565.0,
+            294.01
+          ],
+          [
+            617.16,
+            294.84
+          ],
+          [
+            701.97,
+            356.53
+          ],
+          [
+            565.0,
+            380.95
+          ]
+        ],
+        "readings": {
+          "baseline": {
+            "counts": [
+              null,
+              null
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              null,
+              null
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "boundaries": {
+            "counts": [
+              null,
+              null
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              null,
+              null
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "learned": {
+            "counts": [
+              null,
+              null
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              null,
+              null
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "template": {
+            "counts": [
+              null,
+              null
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              null,
+              null
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          }
+        },
+        "reference": 15,
+        "expected": [
+          5,
+          2
+        ]
+      },
+      {
+        "id": "mask-8",
+        "quad": [
+          [
+            625.0,
+            490.91
+          ],
+          [
+            701.29,
+            504.28
+          ],
+          [
+            698.46,
+            579.48
+          ],
+          [
+            625.0,
+            560.53
+          ]
+        ],
+        "readings": {
+          "baseline": {
+            "counts": [
+              2.485429984746199,
+              1.9261416280771047
+            ],
+            "phase": [
+              null,
+              0.07291666666666667
+            ],
+            "blocks": [
+              3,
+              2
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "boundaries": {
+            "counts": [
+              2.485429984746199,
+              1.9261416280771047
+            ],
+            "phase": [
+              null,
+              0.07291666666666667
+            ],
+            "blocks": [
+              3,
+              2
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "learned": {
+            "counts": [
+              2.485429984746199,
+              1.9261416280771047
+            ],
+            "phase": [
+              null,
+              0.07291666666666667
+            ],
+            "blocks": [
+              3,
+              2
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "template": {
+            "counts": [
+              2.485429984746199,
+              1.9261416280771047
+            ],
+            "phase": [
+              null,
+              0.07291666666666667
+            ],
+            "blocks": [
+              3,
+              2
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          }
+        },
+        "reference": 1,
+        "expected": [
+          3,
+          2
+        ]
+      },
+      {
+        "id": "mask-9",
+        "quad": [
+          [
+            505.84068537768036,
+            293.41922108503314
+          ],
+          [
+            563.8471101646435,
+            290.43888297286304
+          ],
+          [
+            567.475780699486,
+            374.9580427807591
+          ],
+          [
+            510.46156548696825,
+            371.8324566782393
+          ]
+        ],
+        "readings": {
+          "baseline": {
+            "counts": [
+              2.147268831207701,
+              2.0807051239446164
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              2,
+              2
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "boundaries": {
+            "counts": [
+              2.147268831207701,
+              2.0807051239446164
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              2,
+              2
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "learned": {
+            "counts": [
+              2.147268831207701,
+              2.0807051239446164
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              2,
+              2
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "template": {
+            "counts": [
+              2.147268831207701,
+              2.0807051239446164
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              2,
+              2
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          }
+        },
+        "reference": 2,
+        "expected": [
+          2,
+          2
+        ]
+      },
+      {
+        "id": "mask-10",
+        "quad": [
+          [
+            507.0,
+            358.0
+          ],
+          [
+            697.0,
+            358.0
+          ],
+          [
+            579.0,
+            386.0
+          ],
+          [
+            401.0,
+            386.0
+          ]
+        ],
+        "readings": {
+          "baseline": {
+            "counts": [
+              null,
+              null
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              null,
+              null
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "boundaries": {
+            "counts": [
+              null,
+              null
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              null,
+              null
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "learned": {
+            "counts": [
+              null,
+              null
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              null,
+              null
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "template": {
+            "counts": [
+              null,
+              null
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              null,
+              null
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          }
+        },
+        "reference": 9,
+        "expected": [
+          6,
+          9
+        ]
+      },
+      {
+        "id": "mask-11",
+        "quad": null,
+        "readings": {
+          "baseline": {
+            "counts": [
+              null,
+              null
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              null,
+              null
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "boundaries": {
+            "counts": [
+              null,
+              null
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              null,
+              null
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "learned": {
+            "counts": [
+              null,
+              null
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              null,
+              null
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "template": {
+            "counts": [
+              null,
+              null
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              null,
+              null
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          }
+        },
+        "reference": 8,
+        "expected": [
+          3,
+          4
+        ]
+      },
+      {
+        "id": "mask-12",
+        "quad": [
+          [
+            563.496314514107,
+            288.2875071794823
+          ],
+          [
+            630.0,
+            293.00000000000006
+          ],
+          [
+            630.3245917785941,
+            306.10831122755377
+          ],
+          [
+            564.1300472837175,
+            303.02406545260766
+          ]
+        ],
+        "readings": {
+          "baseline": {
+            "counts": [
+              null,
+              null
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              null,
+              null
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "boundaries": {
+            "counts": [
+              null,
+              null
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              null,
+              null
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "learned": {
+            "counts": [
+              null,
+              null
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              null,
+              null
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "template": {
+            "counts": [
+              null,
+              null
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              null,
+              null
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          }
+        },
+        "reference": null,
+        "expected": null
+      }
+    ],
+    "totals": {
+      "baseline": {
+        "correct": 3,
+        "incorrect": 2,
+        "unmatched_returned": 0,
+        "proposed_faces": 0,
+        "iou_matches": 0,
+        "aligned": 0,
+        "missing": 10,
+        "unaligned_faces": 0,
+        "serialized": 0,
+        "visible_truth": 226,
+        "correct_visible": 0,
+        "extra": 0,
+        "missed": 226
+      },
+      "boundaries": {
+        "correct": 3,
+        "incorrect": 2,
+        "unmatched_returned": 0,
+        "proposed_faces": 0,
+        "iou_matches": 0,
+        "aligned": 0,
+        "missing": 10,
+        "unaligned_faces": 0,
+        "serialized": 0,
+        "visible_truth": 226,
+        "correct_visible": 0,
+        "extra": 0,
+        "missed": 226
+      },
+      "learned": {
+        "correct": 3,
+        "incorrect": 2,
+        "unmatched_returned": 0,
+        "proposed_faces": 0,
+        "iou_matches": 0,
+        "aligned": 0,
+        "missing": 10,
+        "unaligned_faces": 0,
+        "serialized": 0,
+        "visible_truth": 226,
+        "correct_visible": 0,
+        "extra": 0,
+        "missed": 226
+      },
+      "template": {
+        "correct": 3,
+        "incorrect": 2,
+        "unmatched_returned": 0,
+        "proposed_faces": 0,
+        "iou_matches": 0,
+        "aligned": 0,
+        "missing": 10,
+        "unaligned_faces": 0,
+        "serialized": 0,
+        "visible_truth": 226,
+        "correct_visible": 0,
+        "extra": 0,
+        "missed": 226
+      }
+    }
+  },
+  {
+    "frame": "test-twinspire1-earth-low-left",
+    "image_sha256": "c5d7e3dda67c0ce99472bbad4d84bdd7adf03c1ef9b4c3aa07961ddd12a6b235",
+    "surfaces_sha256": "932c660152432ece2ebc748ef8fc833d9c341519bc51d985abfab667aa17f2b1",
+    "build_manifest_sha256": "daaf5c9cc99109674357e5930535ef2a1d8416de5191ee1b5c4aede2ece154ca",
+    "models": {
+      "normal": "24eacb5dc7a2c54c7bc98f7de085ffbed79ad006ea5b664c2c2cdc02ff3a52f0",
+      "depth": "fcf51f1b230362b28690bb9d1809bf0431f29cad20534e3f589bd7285547f20d",
+      "mlsd": "e869f90601ffa263f21ac47e09ff0d65dc936d1aeb47126b8499d5504adfb100",
+      "scalelsd": "d0a7333c4de518a70af7d6ea4a283aa0ce9ffe1047525373b94070b1d1d4003f",
+      "mobilesam": "6dbb90523a35330fedd7f1d3dfc66f995213d81b29a5ca8108dbcdd4e37d6c2f",
+      "pixelwise_planarity": "305325096a80f541e430ccbb1b6581af67b3ef9d3c92f8d9384dc7aaae9f3952"
+    },
+    "stages": {
+      "outlines": "mask-first",
+      "initial_boundary": "color-edges",
+      "split_hints": "rectangle-finder",
+      "split_depth": "depth-anything-v2",
+      "junction_line_detector": "ScaleLSD v2",
+      "wall_partition_model": "MobileSAM TinyViT",
+      "line_detector": "NAVER M-LSD Tiny 512 FP16",
+      "boundary_sequence": [
+        "color-edges",
+        "wall-depth-anything",
+        "junction-cuts",
+        "strip-mlsd",
+        "mobile-wall-split",
+        "single-wall-split",
+        "plane-recovery",
+        "plane-recovery-crop-splits",
+        "clear-noon-sky",
+        "row-sky-with-horizon",
+        "neighbor-supported-strip"
+      ],
+      "single_wall_depth": "depth-anything-v2",
+      "plane_model": "Pixel-wise Planarity",
+      "plane_fusion": "relaxed-add-split",
+      "surface_boundary": "plane-recovery-crop-splits",
+      "background_filter": "clear-noon-sky",
+      "opening_sky_filter": "row-sky-with-horizon",
+      "strip_cleanup": "neighbor-supported-strip"
+    },
+    "proposed_surfaces": 19,
+    "matched_surfaces": 15,
+    "eligible_surfaces": 15,
+    "fully_visible_faces": 199,
+    "camera": "uncertain",
+    "rows": [
+      {
+        "id": "mask-0",
+        "quad": [
+          [
+            548.68,
+            356.44
+          ],
+          [
+            725.51,
+            378.27
+          ],
+          [
+            730.01,
+            722.42
+          ],
+          [
+            538.54,
+            746.34
+          ]
+        ],
+        "readings": {
+          "baseline": {
+            "counts": [
+              3.9967931268462076,
+              7.096278495352801
+            ],
+            "phase": [
+              null,
+              0.17708333333333334
+            ],
+            "blocks": [
+              4,
+              7
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "boundaries": {
+            "counts": [
+              3.9967931268462076,
+              7.096278495352801
+            ],
+            "phase": [
+              null,
+              0.17708333333333334
+            ],
+            "blocks": [
+              4,
+              7
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "learned": {
+            "counts": [
+              3.9967931268462076,
+              7.096278495352801
+            ],
+            "phase": [
+              null,
+              0.17708333333333334
+            ],
+            "blocks": [
+              4,
+              7
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "template": {
+            "counts": [
+              3.9967931268462076,
+              7.096278495352801
+            ],
+            "phase": [
+              null,
+              0.17708333333333334
+            ],
+            "blocks": [
+              4,
+              7
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          }
+        },
+        "reference": 13,
+        "expected": [
+          4,
+          7
+        ]
+      },
+      {
+        "id": "mask-1",
+        "quad": [
+          [
+            868.74,
+            313.39
+          ],
+          [
+            983.53,
+            341.44
+          ],
+          [
+            995.18,
+            693.17
+          ],
+          [
+            875.71,
+            706.8
+          ]
+        ],
+        "readings": {
+          "baseline": {
+            "counts": [
+              3.9957363770460845,
+              9.11571737397855
+            ],
+            "phase": [
+              null,
+              0.14583333333333334
+            ],
+            "blocks": [
+              4,
+              9
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "boundaries": {
+            "counts": [
+              3.9957363770460845,
+              9.11571737397855
+            ],
+            "phase": [
+              null,
+              0.14583333333333334
+            ],
+            "blocks": [
+              4,
+              9
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "learned": {
+            "counts": [
+              3.9957363770460845,
+              9.11571737397855
+            ],
+            "phase": [
+              null,
+              0.14583333333333334
+            ],
+            "blocks": [
+              4,
+              9
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "template": {
+            "counts": [
+              3.9957363770460845,
+              9.11571737397855
+            ],
+            "phase": [
+              null,
+              0.14583333333333334
+            ],
+            "blocks": [
+              4,
+              9
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          }
+        },
+        "reference": 14,
+        "expected": [
+          4,
+          9
+        ]
+      },
+      {
+        "id": "mask-2",
+        "quad": [
+          [
+            727.58,
+            402.18
+          ],
+          [
+            868.72,
+            314.45
+          ],
+          [
+            875.56,
+            705.55
+          ],
+          [
+            728.11,
+            675.49
+          ]
+        ],
+        "readings": {
+          "baseline": {
+            "counts": [
+              null,
+              null
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              null,
+              null
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "boundaries": {
+            "counts": [
+              null,
+              null
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              null,
+              null
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "learned": {
+            "counts": [
+              null,
+              null
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              null,
+              null
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "template": {
+            "counts": [
+              null,
+              null
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              null,
+              null
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          }
+        },
+        "reference": 5,
+        "expected": [
+          7,
+          9
+        ]
+      },
+      {
+        "id": "mask-3",
+        "quad": [
+          [
+            446.68,
+            414.31
+          ],
+          [
+            548.78,
+            353.39
+          ],
+          [
+            538.33,
+            742.51
+          ],
+          [
+            439.2,
+            692.5
+          ]
+        ],
+        "readings": {
+          "baseline": {
+            "counts": [
+              7.121646511477758,
+              7.074181752294309
+            ],
+            "phase": [
+              null,
+              0.09375
+            ],
+            "blocks": [
+              7,
+              7
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "boundaries": {
+            "counts": [
+              7.121646511477758,
+              7.074181752294309
+            ],
+            "phase": [
+              null,
+              0.09375
+            ],
+            "blocks": [
+              7,
+              7
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "learned": {
+            "counts": [
+              7.121646511477758,
+              7.074181752294309
+            ],
+            "phase": [
+              null,
+              0.09375
+            ],
+            "blocks": [
+              7,
+              7
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "template": {
+            "counts": [
+              7.121646511477758,
+              7.074181752294309
+            ],
+            "phase": [
+              null,
+              0.09375
+            ],
+            "blocks": [
+              7,
+              7
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          }
+        },
+        "reference": 2,
+        "expected": [
+          7,
+          7
+        ]
+      },
+      {
+        "id": "mask-4",
+        "quad": null,
+        "readings": {
+          "baseline": {
+            "counts": [
+              null,
+              null
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              null,
+              null
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "boundaries": {
+            "counts": [
+              null,
+              null
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              null,
+              null
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "learned": {
+            "counts": [
+              null,
+              null
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              null,
+              null
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "template": {
+            "counts": [
+              null,
+              null
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              null,
+              null
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          }
+        },
+        "reference": null,
+        "expected": null
+      },
+      {
+        "id": "mask-6",
+        "quad": [
+          [
+            516.1659763727449,
+            275.78419300906864
+          ],
+          [
+            793.8449494596929,
+            325.02575584606484
+          ],
+          [
+            794.5970891505967,
+            378.26107246924147
+          ],
+          [
+            513.5777055630172,
+            341.52638265702774
+          ]
+        ],
+        "readings": {
+          "baseline": {
+            "counts": [
+              6.036699048342411,
+              1.1640625
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              6,
+              1
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "boundaries": {
+            "counts": [
+              6.036699048342411,
+              1.1640625
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              6,
+              1
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "learned": {
+            "counts": [
+              6.036699048342411,
+              1.1640625
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              6,
+              1
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "template": {
+            "counts": [
+              6.036699048342411,
+              1.1640625
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              6,
+              1
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          }
+        },
+        "reference": 15,
+        "expected": [
+          6,
+          1
+        ]
+      },
+      {
+        "id": "mask-7",
+        "quad": null,
+        "readings": {
+          "baseline": {
+            "counts": [
+              null,
+              null
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              null,
+              null
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "boundaries": {
+            "counts": [
+              null,
+              null
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              null,
+              null
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "learned": {
+            "counts": [
+              null,
+              null
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              null,
+              null
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "template": {
+            "counts": [
+              null,
+              null
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              null,
+              null
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          }
+        },
+        "reference": 7,
+        "expected": [
+          6,
+          9
+        ]
+      },
+      {
+        "id": "mask-8",
+        "quad": [
+          [
+            727.0,
+            487.53
+          ],
+          [
+            817.98,
+            491.16
+          ],
+          [
+            820.85,
+            568.83
+          ],
+          [
+            727.0,
+            569.08
+          ]
+        ],
+        "readings": {
+          "baseline": {
+            "counts": [
+              2.7601331977232855,
+              1.9319680015275416
+            ],
+            "phase": [
+              null,
+              0.07291666666666667
+            ],
+            "blocks": [
+              3,
+              2
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "boundaries": {
+            "counts": [
+              2.7601331977232855,
+              1.9319680015275416
+            ],
+            "phase": [
+              null,
+              0.07291666666666667
+            ],
+            "blocks": [
+              3,
+              2
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "learned": {
+            "counts": [
+              2.7601331977232855,
+              1.9319680015275416
+            ],
+            "phase": [
+              null,
+              0.07291666666666667
+            ],
+            "blocks": [
+              3,
+              2
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "template": {
+            "counts": [
+              2.7601331977232855,
+              1.9319680015275416
+            ],
+            "phase": [
+              null,
+              0.07291666666666667
+            ],
+            "blocks": [
+              3,
+              2
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          }
+        },
+        "reference": 10,
+        "expected": [
+          3,
+          2
+        ]
+      },
+      {
+        "id": "mask-9",
+        "quad": [
+          [
+            864.7227914466749,
+            252.51380290463598
+          ],
+          [
+            1037.3816996509697,
+            296.8726899018106
+          ],
+          [
+            1039.8902597483975,
+            337.96108010963815
+          ],
+          [
+            866.0890713151018,
+            301.1721643138989
+          ]
+        ],
+        "readings": {
+          "baseline": {
+            "counts": [
+              5.9710710695942675,
+              1.125
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              6,
+              1
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "boundaries": {
+            "counts": [
+              5.9710710695942675,
+              1.125
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              6,
+              1
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "learned": {
+            "counts": [
+              5.9710710695942675,
+              1.125
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              6,
+              1
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "template": {
+            "counts": [
+              5.9710710695942675,
+              1.125
+            ],
+            "phase": [
+              0.9375,
+              0.0625
+            ],
+            "blocks": [
+              6,
+              1
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          }
+        },
+        "reference": 16,
+        "expected": [
+          6,
+          1
+        ]
+      },
+      {
+        "id": "mask-10",
+        "quad": null,
+        "readings": {
+          "baseline": {
+            "counts": [
+              null,
+              null
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              null,
+              null
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "boundaries": {
+            "counts": [
+              null,
+              null
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              null,
+              null
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "learned": {
+            "counts": [
+              null,
+              null
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              null,
+              null
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "template": {
+            "counts": [
+              null,
+              null
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              null,
+              null
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          }
+        },
+        "reference": 1,
+        "expected": [
+          9,
+          1
+        ]
+      },
+      {
+        "id": "mask-11",
+        "quad": [
+          [
+            580.0126963109371,
+            229.5346249974147
+          ],
+          [
+            665.4311044869235,
+            248.31464137861545
+          ],
+          [
+            664.7991199567751,
+            307.9579947469535
+          ],
+          [
+            578.2809125134779,
+            293.0120314040926
+          ]
+        ],
+        "readings": {
+          "baseline": {
+            "counts": [
+              2.0250862647407457,
+              1.359375
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              2,
+              1
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "boundaries": {
+            "counts": [
+              2.0250862647407457,
+              1.359375
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              2,
+              1
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "learned": {
+            "counts": [
+              2.0250862647407457,
+              1.359375
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              2,
+              1
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "template": {
+            "counts": [
+              2.0250862647407457,
+              1.359375
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              2,
+              1
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          }
+        },
+        "reference": 11,
+        "expected": [
+          2,
+          2
+        ]
+      },
+      {
+        "id": "mask-12",
+        "quad": [
+          [
+            729.9973170046381,
+            314.6001179910714
+          ],
+          [
+            865.3099521591292,
+            233.61385697824937
+          ],
+          [
+            867.2033307983947,
+            300.5254528948367
+          ],
+          [
+            730.0913070113427,
+            363.64042617814505
+          ]
+        ],
+        "readings": {
+          "baseline": {
+            "counts": [
+              null,
+              null
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              null,
+              null
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "boundaries": {
+            "counts": [
+              null,
+              null
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              null,
+              null
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "learned": {
+            "counts": [
+              null,
+              null
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              null,
+              null
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "template": {
+            "counts": [
+              null,
+              null
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              null,
+              null
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          }
+        },
+        "reference": 4,
+        "expected": [
+          6,
+          1
+        ]
+      },
+      {
+        "id": "mask-13",
+        "quad": null,
+        "readings": {
+          "baseline": {
+            "counts": [
+              null,
+              null
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              null,
+              null
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "boundaries": {
+            "counts": [
+              null,
+              null
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              null,
+              null
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "learned": {
+            "counts": [
+              null,
+              null
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              null,
+              null
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "template": {
+            "counts": [
+              null,
+              null
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              null,
+              null
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          }
+        },
+        "reference": 8,
+        "expected": [
+          6,
+          4
+        ]
+      },
+      {
+        "id": "mask-14",
+        "quad": [
+          [
+            759.834787233402,
+            276.52395630868494
+          ],
+          [
+            869.5919233000358,
+            205.06932584948254
+          ],
+          [
+            871.0611926654884,
+            255.22634969146142
+          ],
+          [
+            760.1385834866617,
+            316.01449776387983
+          ]
+        ],
+        "readings": {
+          "baseline": {
+            "counts": [
+              null,
+              null
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              null,
+              null
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "boundaries": {
+            "counts": [
+              null,
+              null
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              null,
+              null
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "learned": {
+            "counts": [
+              null,
+              null
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              null,
+              null
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "template": {
+            "counts": [
+              null,
+              null
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              null,
+              null
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          }
+        },
+        "reference": 6,
+        "expected": [
+          5,
+          2
+        ]
+      },
+      {
+        "id": "mask-17",
+        "quad": [
+          [
+            864.8309258300236,
+            216.6851690223264
+          ],
+          [
+            924.4426743892266,
+            233.99995685528702
+          ],
+          [
+            926.0379814459094,
+            274.0741382510097
+          ],
+          [
+            866.0283677564818,
+            259.0025104431822
+          ]
+        ],
+        "readings": {
+          "baseline": {
+            "counts": [
+              2.1419722463334043,
+              1.165316736168096
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              2,
+              1
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "boundaries": {
+            "counts": [
+              2.1419722463334043,
+              1.165316736168096
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              2,
+              1
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "learned": {
+            "counts": [
+              2.1419722463334043,
+              1.165316736168096
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              2,
+              1
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "template": {
+            "counts": [
+              2.1419722463334043,
+              1.165316736168096
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              2,
+              1
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          }
+        },
+        "reference": 12,
+        "expected": [
+          2,
+          2
+        ]
+      },
+      {
+        "id": "mask-19",
+        "quad": [
+          [
+            526.0,
+            277.99999999999994
+          ],
+          [
+            582.7951322451764,
+            184.38826592033536
+          ],
+          [
+            580.0000000000001,
+            288.0
+          ],
+          [
+            523.1430247461481,
+            354.2784228756578
+          ]
+        ],
+        "readings": {
+          "baseline": {
+            "counts": [
+              null,
+              null
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              null,
+              null
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "boundaries": {
+            "counts": [
+              null,
+              null
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              null,
+              null
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "learned": {
+            "counts": [
+              null,
+              null
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              null,
+              null
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "template": {
+            "counts": [
+              null,
+              null
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              null,
+              null
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          }
+        },
+        "reference": 3,
+        "expected": [
+          4,
+          2
+        ]
+      },
+      {
+        "id": "mask-22",
+        "quad": [
+          [
+            869.8884229247534,
+            218.18881813599964
+          ],
+          [
+            914.0,
+            231.00000000000006
+          ],
+          [
+            914.1907560234149,
+            236.04678369000786
+          ],
+          [
+            870.0421865606895,
+            223.44098287796328
+          ]
+        ],
+        "readings": {
+          "baseline": {
+            "counts": [
+              null,
+              null
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              null,
+              null
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "boundaries": {
+            "counts": [
+              null,
+              null
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              null,
+              null
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "learned": {
+            "counts": [
+              null,
+              null
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              null,
+              null
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "template": {
+            "counts": [
+              null,
+              null
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              null,
+              null
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          }
+        },
+        "reference": null,
+        "expected": null
+      },
+      {
+        "id": "mask-23",
+        "quad": [
+          [
+            758.9200865012515,
+            273.37435541645
+          ],
+          [
+            819.8083603435402,
+            233.14088945558458
+          ],
+          [
+            820.30874496623,
+            258.88372056352085
+          ],
+          [
+            759.0883959307798,
+            295.75350545038043
+          ]
+        ],
+        "readings": {
+          "baseline": {
+            "counts": [
+              null,
+              null
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              null,
+              null
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "boundaries": {
+            "counts": [
+              null,
+              null
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              null,
+              null
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "learned": {
+            "counts": [
+              null,
+              null
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              null,
+              null
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "template": {
+            "counts": [
+              null,
+              null
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              null,
+              null
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          }
+        },
+        "reference": null,
+        "expected": null
+      },
+      {
+        "id": "mask-24",
+        "quad": [
+          [
+            523.0000000000001,
+            277.0
+          ],
+          [
+            581.5777772437433,
+            178.09998442135887
+          ],
+          [
+            580.0,
+            235.99999999999994
+          ],
+          [
+            521.3958982097603,
+            319.1675917510819
+          ]
+        ],
+        "readings": {
+          "baseline": {
+            "counts": [
+              null,
+              null
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              null,
+              null
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "boundaries": {
+            "counts": [
+              null,
+              null
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              null,
+              null
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "learned": {
+            "counts": [
+              null,
+              null
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              null,
+              null
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          },
+          "template": {
+            "counts": [
+              null,
+              null
+            ],
+            "phase": [
+              null,
+              null
+            ],
+            "blocks": [
+              null,
+              null
+            ],
+            "footprints": {
+              "proposed": 0,
+              "iou_matches": 0,
+              "aligned": 0
+            }
+          }
+        },
+        "reference": null,
+        "expected": null
+      }
+    ],
+    "totals": {
+      "baseline": {
+        "correct": 6,
+        "incorrect": 2,
+        "unmatched_returned": 0,
+        "proposed_faces": 0,
+        "iou_matches": 0,
+        "aligned": 0,
+        "missing": 7,
+        "unaligned_faces": 0,
+        "serialized": 0,
+        "visible_truth": 200,
+        "correct_visible": 0,
+        "extra": 0,
+        "missed": 200
+      },
+      "boundaries": {
+        "correct": 6,
+        "incorrect": 2,
+        "unmatched_returned": 0,
+        "proposed_faces": 0,
+        "iou_matches": 0,
+        "aligned": 0,
+        "missing": 7,
+        "unaligned_faces": 0,
+        "serialized": 0,
+        "visible_truth": 200,
+        "correct_visible": 0,
+        "extra": 0,
+        "missed": 200
+      },
+      "learned": {
+        "correct": 6,
+        "incorrect": 2,
+        "unmatched_returned": 0,
+        "proposed_faces": 0,
+        "iou_matches": 0,
+        "aligned": 0,
+        "missing": 7,
+        "unaligned_faces": 0,
+        "serialized": 0,
+        "visible_truth": 200,
+        "correct_visible": 0,
+        "extra": 0,
+        "missed": 200
+      },
+      "template": {
+        "correct": 6,
+        "incorrect": 2,
+        "unmatched_returned": 0,
+        "proposed_faces": 0,
+        "iou_matches": 0,
+        "aligned": 0,
+        "missing": 7,
+        "unaligned_faces": 0,
+        "serialized": 0,
+        "visible_truth": 200,
+        "correct_visible": 0,
+        "extra": 0,
+        "missed": 200
+      }
+    }
+  }
+]

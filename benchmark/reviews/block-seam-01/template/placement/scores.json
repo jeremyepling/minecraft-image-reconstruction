@@ -1,0 +1,155 @@
+{
+  "all": {
+    "frames": 56,
+    "eligible_visible_faces": 10438,
+    "perfect_grid_chooser": {
+      "aligned": 151,
+      "surfaces_with_aligned_face": 21,
+      "exact_size_and_aligned_face": 13,
+      "surfaces_with_exact_size": 95
+    },
+    "supported_cameras": 16,
+    "baseline": {
+      "grids": {
+        "proposed": 101,
+        "iou_matches": 101,
+        "aligned": 100,
+        "no_phase": 682,
+        "surfaces_with_aligned_face": 14,
+        "exact_size_and_aligned_face": 12,
+        "one_axis_phase": 17,
+        "both_axes_phase": 15
+      },
+      "coordinates": {
+        "serialized": 362,
+        "visible_truth": 10626,
+        "correct_visible": 344,
+        "extra": 18,
+        "missed": 10282
+      },
+      "nonempty_packs": 9
+    },
+    "ranker": {
+      "grids": {
+        "proposed": 152,
+        "iou_matches": 152,
+        "aligned": 151,
+        "no_phase": 668,
+        "surfaces_with_aligned_face": 21,
+        "exact_size_and_aligned_face": 13,
+        "one_axis_phase": 20,
+        "both_axes_phase": 26
+      },
+      "coordinates": {
+        "serialized": 362,
+        "visible_truth": 10626,
+        "correct_visible": 344,
+        "extra": 18,
+        "missed": 10282
+      },
+      "nonempty_packs": 9
+    }
+  },
+  "development": {
+    "frames": 20,
+    "eligible_visible_faces": 3072,
+    "perfect_grid_chooser": {
+      "aligned": 34,
+      "surfaces_with_aligned_face": 6,
+      "exact_size_and_aligned_face": 2,
+      "surfaces_with_exact_size": 17
+    },
+    "supported_cameras": 8,
+    "baseline": {
+      "grids": {
+        "proposed": 18,
+        "iou_matches": 18,
+        "aligned": 18,
+        "no_phase": 184,
+        "surfaces_with_aligned_face": 4,
+        "exact_size_and_aligned_face": 2,
+        "one_axis_phase": 4,
+        "both_axes_phase": 4
+      },
+      "coordinates": {
+        "serialized": 222,
+        "visible_truth": 2996,
+        "correct_visible": 222,
+        "extra": 0,
+        "missed": 2774
+      },
+      "nonempty_packs": 5
+    },
+    "ranker": {
+      "grids": {
+        "proposed": 34,
+        "iou_matches": 34,
+        "aligned": 34,
+        "no_phase": 182,
+        "surfaces_with_aligned_face": 6,
+        "exact_size_and_aligned_face": 2,
+        "one_axis_phase": 4,
+        "both_axes_phase": 6
+      },
+      "coordinates": {
+        "serialized": 222,
+        "visible_truth": 2996,
+        "correct_visible": 222,
+        "extra": 0,
+        "missed": 2774
+      },
+      "nonempty_packs": 5
+    }
+  },
+  "regression": {
+    "frames": 36,
+    "eligible_visible_faces": 7366,
+    "perfect_grid_chooser": {
+      "aligned": 117,
+      "surfaces_with_aligned_face": 15,
+      "exact_size_and_aligned_face": 11,
+      "surfaces_with_exact_size": 78
+    },
+    "supported_cameras": 8,
+    "baseline": {
+      "grids": {
+        "proposed": 83,
+        "iou_matches": 83,
+        "aligned": 82,
+        "no_phase": 498,
+        "surfaces_with_aligned_face": 10,
+        "exact_size_and_aligned_face": 10,
+        "both_axes_phase": 11,
+        "one_axis_phase": 13
+      },
+      "coordinates": {
+        "serialized": 140,
+        "visible_truth": 7630,
+        "correct_visible": 122,
+        "extra": 18,
+        "missed": 7508
+      },
+      "nonempty_packs": 4
+    },
+    "ranker": {
+      "grids": {
+        "proposed": 118,
+        "iou_matches": 118,
+        "aligned": 117,
+        "both_axes_phase": 20,
+        "surfaces_with_aligned_face": 15,
+        "exact_size_and_aligned_face": 11,
+        "no_phase": 486,
+        "one_axis_phase": 16
+      },
+      "coordinates": {
+        "serialized": 140,
+        "visible_truth": 7630,
+        "correct_visible": 122,
+        "extra": 18,
+        "missed": 7508
+      },
+      "nonempty_packs": 4
+    }
+  }
+}
