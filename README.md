@@ -12,6 +12,8 @@ Run `.\Invoke-WallRecovery.ps1 .\screenshot.png -Out .\runs\my-build` to use the
 
 The **Surface Finder** uses Pixel-wise Planarity after Wall Recovery to add missed planes and separate merged walls. It found **513 of 598** surfaces across 56 saved views, kept all 501 previous matches and covered the same amount of open space. Run `.\Invoke-SurfaceRound.ps1 -Round afterpass` to reproduce the model comparison. [Zoomable comparison sheet](benchmark/reviews/afterpass-models-01/comparison.jpg) · [Scores by screenshot](benchmark/reviews/afterpass-models-01/pictures.md) · [What worked and what still went missing](benchmark/AFTERPASS_MODELS.md)
 
+Two follow-up tests checked whether to accept more plane outlines. A single-inset rule improved Shopfront, while agreement between Planarity and MobileSAM recovered the Workshop ledge but lost two Crossing walls. The six-model finder remains the ordinary default. [Latest comparison and decision](benchmark/PLANE_ACCEPTANCE.md)
+
 Earlier tests targeted 97 misses in the five-model Wall Recovery baseline. Checking corners on possible ledges tied it at 501. Joining wall pieces fell to 489. [Ledge and wall results](benchmark/LEDGE_JOIN.md) · [Five-model baseline](benchmark/SINGLE_WALL_DEPTH.md)
 
 Run `.\Invoke-SurfaceRound.ps1 -Round single-wall` to repeat both experiments from the frozen model outputs on all 56 original screenshots and regenerate the sheet. Read down a building’s column to see the original picture, predictions, recorded geometry and enlarged edge where each model voted. [Earlier wall, junction and underside tests](benchmark/RECOVERY_ROUND.md)
