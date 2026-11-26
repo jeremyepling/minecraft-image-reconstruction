@@ -343,6 +343,12 @@ def predict_tree(image,version,parts,counts,camera):
     return _predict(image,version,parts,counts,camera,'tree')
 
 
+def predict_exported_tree(image,version,parts,counts,camera):
+    from engine.visible_evidence_filter import filter_cells
+    cells,status=baseline(image,version,parts,counts,camera)
+    return filter_cells(image,parts,camera,cells),status
+
+
 def predict_consensus(image,version,parts,counts,camera):
     return _predict(image,version,parts,counts,camera,'consensus')
 
@@ -452,7 +458,7 @@ def evaluate(args):
                         mask=z['drop']
                 else:
                     mask=rejects(m,row['x'])
-                cells=set(map(tuple,row['xyz'][~mask]))
+                cells=set(map(tuple,row['xyz'][~mask].tolist()))
                 pack=OUT/'packs'/k/row['id']/'reconstruction.zip'
                 pack.parent.mkdir(parents=True,exist_ok=True)
                 if _write_read(pack,cells)!=cells:

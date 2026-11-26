@@ -3,6 +3,7 @@ import numpy as np
 
 from engine.camera_atlas_floor import _atlas
 from engine.surface_model import intrinsic
+from engine.visible_evidence_filter import _texture_agreement
 from engine.visible_raster import SAMPLE_STRIDE, observed_support
 
 
@@ -13,34 +14,6 @@ FEATURES = (
     "matching_neighbors", "surface_ground_contact", "normal_strength", "horizontal_face",
     "edge_contrast", "visible_samples", "atlas_separation",
 )
-
-
-def _texture_agreement(samples, supported, atlas):
-    """Correlate each visible face's sampled light/dark pattern with vanilla art."""
-    scores = np.zeros(len(samples))
-    margin = np.zeros(len(samples))
-    if atlas is None:
-        return scores, margin
-    for i in np.flatnonzero(supported.sum(axis=1) >= 96):
-        keep = supported[i]
-        colors = samples[i,keep]
-        mean = colors.mean(axis=0)
-        gain = np.clip((atlas.means @ mean) / np.maximum(1,(atlas.means**2).sum(1)),.3,1.15)
-        err = np.abs(atlas.means*gain[:,None] - mean).mean(1) + 2*np.abs(np.log(gain/.8))
-        indices = np.argpartition(err, 24)[:24]
-        # Subtract the mean over the observed area of each specific template.
-        templates = atlas.patterns[indices].reshape(-1,256)[:,keep]
-        templates = templates - templates.mean(1,keepdims=True)
-        observed = colors.mean(1)
-        observed -= observed.mean()
-        if observed.std() < 1.:
-            continue
-        value = (templates @ observed) / np.maximum(1.,np.linalg.norm(templates,axis=1)*np.linalg.norm(observed))
-        by_texture = value.reshape(len(indices),8).max(1)
-        best = np.partition(by_texture,-2)[-2:]
-        scores[i] = best[1]
-        margin[i] = best[1] - best[0]
-    return scores,margin
 
 
 def cell_features(image, parts, camera, cells, *, atlas_path=None, masks=None, support_only=False):

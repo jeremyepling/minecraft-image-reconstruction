@@ -4,6 +4,8 @@ These entries cover model inputs, rules around model outputs, and evaluation cha
 
 ### November 26, 2026
 
+- **Experiment — learn when to abstain on a proposed visible coordinate.** A depth-four tree trained on six families removed 490 extras for one lost correct placement on Cloister and 183 extras for 17 losses on Twin Spires. On the separate native 12 it removed 95 extras and lost 110 correct blocks. Keep standalone deployment on seam-camera views experimental and verify any combination with a plane selector on the resulting cells. [Frozen tree, decoded results and competing rules](benchmark/reviews/visible-cell-decisions-01/README.md)
+
 - **Shipped — register floor texels to the vanilla atlas after the seam camera abstains.** Matching a common sprite and block offset on both sides of the image recovered 128 additional cameras on Visible Builds v1. All 144 supported snapshots projected every scored visible corner within two pixels. On 24 held-out screenshots the exporter gained 4,017 correct coordinates and 1,777 extras. A fresh Cloister build reproduced the 169 decoded coordinates in the replay. The 128 gains share a light gray concrete floor. [Camera comparison, remaining errors and replay](benchmark/TEXTURE_CAMERA.md)
 
 - **Experiment — locate adjacent blocks using changing materials on walls and ground.** Distinct atlas entries identified real joints even where neighboring blocks had different art. Wall fits also confused partial faces and shadows with material changes. On high-contrast synthetic floors, separately fitted grids with multiple atlas-identified neighbors recovered four accurate cameras. Similar gray floor materials still caused abstentions. [Paired controls and native results](benchmark/TEXTURE_CAMERA.md)
