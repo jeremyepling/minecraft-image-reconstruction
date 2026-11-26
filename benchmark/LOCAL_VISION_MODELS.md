@@ -43,3 +43,27 @@ moge infer --version v2 --pretrained Ruicheng/moge-2-vits-normal --device cpu -i
 ```
 
 The authors also provide an ONNX forward pass. It produces intermediate points, normals, a mask and a scale value. Reproducing the calibrated point cloud requires the focal-length and shift recovery and reprojection in their full inference code. The normals alone can be tested directly. [Authors' ONNX instructions](https://github.com/microsoft/MoGe/blob/main/docs/onnx.md)
+
+## Models to run after the current Surface Finder
+
+The ordinary Surface Finder finds **501 of 598** visible surfaces. Earlier rounds tested ScaleLSD v2, DeepLSD and M-LSD Tiny. On Workshop R13, ScaleLSD traced 56 pixels of the ledge edge. The last experiment required a corner within 8 pixels of an endpoint, and the nearest qualifying cross-line was 14 pixels away. The joining experiment made ten joins across the suite. On Portico it joined separate faces that shared the same depth and direction. [Previous line comparisons](OVERHANG_REVIEW.md) · [Ledge and join results](LEDGE_JOIN.md)
+
+### How many of the 97 misses can a second pass reach?
+
+I checked the saved numerical masks against the recorded surfaces at the benchmark’s 50% overlap threshold. The table counts missed surface appearances across the 56 original views. Reference geometry selects good candidates here by design. An automatic method still has to pick them from among incorrect guesses.
+
+| Point in the current pipeline | Misses with at least one matching candidate |
+| --- | ---: |
+| All raw MobileSAM outlines | 39 of 97 |
+| After the initial outline filters | 18 of 97 |
+| Outlines offered to the wall-splitting step | 6 of 97 |
+| Offered outlines whose original wall still exists after the default finishes | 2 of 97 |
+
+The audit also applied each of the 26 available cuts individually to the finished baseline, then scored the complete result, including the piece left over. Only Workshop R13 and Registry R4 could become new matches. A separate contrast check fitted one threshold on Shopfront and Wing. On the six reviewed buildings it flagged four of 23 real depth steps and six of 25 lines on flat walls. These checks measure opportunities in an existing list of proposals. A second model that generates its own outlines can reach different surfaces. [Scoring-only diagnostic](reviews/afterpass-headroom-01/summary.json) · [Run manifest and reproduction command](reviews/afterpass-headroom-01/manifest.json)
+
+### Two independent tests worth running
+
+1. **Use Pixel-wise Planarity to propose complete surfaces.** This model takes one RGB image and estimates how likely each pixel is to lie on a plane. It combines that prediction with depth and surface direction, then labels connected regions. The authors release a 1.34 GB MoGe-2 ViT-L checkpoint and a demo for arbitrary images. It needs its own inference pass. Run it on the full screenshot, map its numerical surface labels back to the source pixels, and keep holes. Score its suggestions before filtering. Then test whether automatically accepting a new surface or splitting an existing one recovers the Wing wall or a recessed face while keeping separate Portico pillars. Score thin undersides separately because the region-growing settings require support from nearby pixels. [Model and weights](https://huggingface.co/alpayozkan/pxwplanar-moge2-planarity) · [Single-image demo](https://github.com/alpayozkan/PixelwisePlanarity/blob/main/demo/run_demo.py) · [Region-growing implementation](https://github.com/alpayozkan/PixelwisePlanarity/blob/main/pxwplanar/shared/segmentation/plan2seg.py)
+2. **Use ECT to grade the outlines the first pass nearly threw away.** ECT provides separate maps for edges attributed to depth, surface direction, lighting and reflectance. At a proposed ledge, measure support across its visible rim, including stretches away from its endpoints. A repeated brick seam or shadow on a continuous wall supplies a false-cut control. Test this on the raw MobileSAM outlines before the current filters remove most matching candidates. Use the same deduplicated candidate set for a plain-contrast control, and count false proposals and matches lost as well as gains. The authors publish a trained checkpoint and a dataset evaluation script. A local single-screenshot adapter needs to preserve the original image coordinates. [ECT paper](https://arxiv.org/abs/2308.03092) · [Official weights and evaluation](https://github.com/Daniellli/ECT#reproducing-the-results-reported-in-our-paper)
+
+For both tests, choose settings on the 20 Shopfront and Wing views, then freeze them for the 36 previously reviewed regression views. First count how many of the 97 misses appear anywhere in the new suggestions. Then report how many the automatic second pass actually adds, how many of the 501 it loses, and whether it draws across an opening. Grade each challenger against the same default before considering a combination. Minecraft accuracy for these two new models remains unmeasured.
