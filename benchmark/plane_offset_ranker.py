@@ -23,9 +23,11 @@ def examples(frames):
             yield features(options,row['baseline']), y/y.sum(), min(y.sum()**.5,60.)
 
 
-def fit(frames, lam=.002):
-    items=list(examples(frames))
-    n=len(NAMES)
+def fit_examples(items, lam=.002):
+    items=list(items)
+    if not items:
+        raise ValueError('No visible labeled face samples for fitting')
+    n=items[0][0].shape[1]
     w=np.zeros(n)
     total=sum(a for x,y,a in items)
     for _ in range(20):
@@ -44,6 +46,10 @@ def fit(frames, lam=.002):
         if abs(step).max()<.00001:
             break
     return w
+
+
+def fit(frames, lam=.002):
+    return fit_examples(examples(frames),lam)
 
 
 def select(row,w,margin):
