@@ -122,7 +122,8 @@ def place(image, version, parts, *, counts=None):
     image = image.convert('RGB')
     camera = seam_camera(image, version)
     status = dict(camera_status=camera['scale_status'], reason=camera['reason'], P=camera['P'],
-                  strict_blocks=0, added_blocks=0, placed_blocks=0)
+                  strict_blocks=0, added_blocks=0, placed_blocks=0, duplicate_side_cells=0,
+                  textured_side_cells=0, grounded_side_cells=0, shared_side_cells=0)
     if camera['scale_status'] != 'supported' or camera['P'] is None or not parts:
         return set(), status
     projection = np.asarray(camera['P'])
@@ -144,9 +145,15 @@ def place(image, version, parts, *, counts=None):
         visible = owner[mask]
         sample_counts = np.bincount(visible[visible >= 0], minlength=len(cells))
         accepted.update(cells[i] for i in np.flatnonzero(sample_counts >= MINIMUM_SAMPLES) if cells[i] in evidence)
-    from engine.seam_ownership import duplicate_sides
-    duplicates=duplicate_sides(image,projection,eye,cells,owner,accepted,strict,_sample_face)
-    accepted-=duplicates
-    status.update(strict_blocks=len(strict), added_blocks=len(accepted - strict), placed_blocks=len(accepted),
-                  projected_duplicate_sides=len(duplicates))
+    if accepted - strict:
+        from engine.seam_ownership import textured_side_owners, resolve_side_owners
+        from engine.seam_runs import grounded_side_owners
+        textured = textured_side_owners(image, projection, eye, cells, owner, accepted, strict, _sample_face)
+        grounded = grounded_side_owners(image, accepted, strict, masks, projection, eye, _sample_face)
+        duplicates = resolve_side_owners(textured, grounded, strict)
+        accepted -= duplicates
+        status.update(duplicate_side_cells=len(duplicates), textured_side_cells=len(duplicates & textured.keys()),
+                      grounded_side_cells=len(duplicates & grounded.keys()),
+                      shared_side_cells=len(duplicates & textured.keys() & grounded.keys()))
+    status.update(strict_blocks=len(strict), added_blocks=len(accepted - strict), placed_blocks=len(accepted))
     return accepted, status

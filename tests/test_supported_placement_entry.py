@@ -33,6 +33,8 @@ class SupportedPlacementEntryTest(unittest.TestCase):
             self.assertEqual(manifest['artifact'], 'reconstruction.zip')
             self.assertEqual(manifest['placement']['camera_status'], 'uncertain')
             self.assertEqual(manifest['placement']['placed_blocks'], 0)
+            for key in ('duplicate_side_cells', 'textured_side_cells', 'grounded_side_cells', 'shared_side_cells'):
+                self.assertEqual(manifest['placement'][key], 0)
             outputs = manifest['artifacts']
             self.assertEqual(decoded_pack(out / outputs['datapack']), {})
             placements = json.loads((out / outputs['placements']).read_text())
