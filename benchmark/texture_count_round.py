@@ -108,7 +108,7 @@ def summarize(rows,methods):
 
 
 @image_only()
-def run(out,methods,split,workers):
+def run(out,methods,split,workers,sheet=False):
     manifest=read(SOURCE/'manifest.json')
     rows=read(checked(SOURCE/'cases.json',manifest['artifacts']['cases.json']))
     cohorts,suite,fixtures=groups()
@@ -125,11 +125,21 @@ def run(out,methods,split,workers):
             for k in dict.fromkeys(['all',*[r['cohort'] for r in rows],*[r['layout'] for r in rows]])}
     save(out/'scores.json',scores)
     save(out/'cases.json',results)
-    save(out/'manifest.json',dict(run_id=out.name,code=code,version=suite['version'],fixtures=fixtures,
+    if sheet:
+        from benchmark.texture_count_sheet import render
+        render(out)
+    atlas_source = {}
+    if 'atlas' in methods:
+        from benchmark.portico_atlas import atlas
+        atlas_source = atlas().provenance
+    save(out/'manifest.json',dict(run_id=out.name,atlas=atlas_source,code=code,version=suite['version'],fixtures=fixtures,
          frames=[{k:r[k] for k in ('key','sha256','layout','cohort')} for r in rows],
          source_manifest_sha256=digest(SOURCE/'manifest.json'),source_manifest='benchmark/reviews/detail-01/manifest.json',
          reference_sha256=manifest['reference_sha256'],methods=names,split=split,workers=workers,
          settings={m:getattr(importlib.import_module('benchmark.'+MODULES[m]),'SETTINGS',{}) for m in methods},
+         reproduce='python -m benchmark.texture_count_round '+' '.join('--method '+m for m in methods)
+                   +' --split '+split+' --out runs/my-texture-count'+(' --sheet' if sheet else ''),
+         method_sha256={m:digest(ROOT/'benchmark'/(MODULES[m]+'.py')) for m in methods},
          timing='Per-frame CPU wall time per method. Candidate processing follows the shared baseline.',
          artifacts={p.relative_to(out).as_posix():digest(p) for p in sorted(out.rglob('*')) if p.is_file()}))
     print(scores['all'])
@@ -141,5 +151,8 @@ if __name__=='__main__':
     parser.add_argument('--split',choices=['development','previously_reviewed_regression','all'],default='all')
     parser.add_argument('--out',type=Path,required=True)
     parser.add_argument('--workers',type=int,default=4)
+    parser.add_argument('--sheet',action='store_true')
     args=parser.parse_args()
-    run(args.out.resolve(),args.method,args.split,args.workers)
+    if args.sheet and (set(args.method)!=set(MODULES) or args.split!='all'):
+        parser.error('--sheet needs both methods on all views')
+    run(args.out.resolve(),args.method,args.split,args.workers,args.sheet)
