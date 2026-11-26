@@ -33,7 +33,7 @@ Copy-Item .\benchmark\data\camera-round-01\captures\dev-wing-plaster-high-right.
 python -m benchmark.verify_recovery_build --build runs/plane-proof/build --case smooth_stone/dev-wing-plaster-high-right
 ```
 
-The default build reads one source image, runs six checkpoints and passes the proposed masks to the ordinary Block Counter. The separate verification command compares the finished surfaces with the saved predictions and the recorded building.
+The default build read one renamed Wing image, ran all six checkpoints, found all five scored surfaces and passed eight proposals to the Block Counter. Its predicted masks and stored region properties matched the archived predictions exactly. The separate verification command reads the finished predictions and the recorded building. [Fresh build verification](reviews/plane-recovery-entry-01.json)
 
 ### Reproduce the earlier five-model check
 
