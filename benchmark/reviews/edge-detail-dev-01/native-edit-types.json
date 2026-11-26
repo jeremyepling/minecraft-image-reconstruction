@@ -1,0 +1,472 @@
+{
+  "revision": {
+    "commit": "ccb044730acb982db7f2ed8879f6371279d5d9b2",
+    "predictor_and_runner_sha256": "51ded8074824338f639cf4bf03d9454af93a8c2aaa82d501f60bb92fb114f5a2",
+    "source_dirty": false
+  },
+  "source_sha256": "67fe02ade765f35d5fa6f8eb85d248fd15adf1227717a9ba6209decef67ebe07",
+  "settings": {
+    "native2": {
+      "radius": 2,
+      "blur": 0.7,
+      "color_step": 6.0,
+      "change_cost": 1.5,
+      "iterations": 12,
+      "minimum_boundary_contrast": 10.0,
+      "minimum_contrast_gain": 3.0,
+      "units": "source pixels",
+      "method": "color-guided-boundary"
+    },
+    "native4": {
+      "radius": 4,
+      "blur": 0.7,
+      "color_step": 6.0,
+      "change_cost": 1.5,
+      "iterations": 12,
+      "minimum_boundary_contrast": 10.0,
+      "minimum_contrast_gain": 3.0,
+      "units": "source pixels",
+      "method": "color-guided-boundary"
+    }
+  },
+  "summary": {
+    "native2": {
+      "add_target": 1597,
+      "add_other_plane": 100,
+      "add_background": 3,
+      "drop_target": 261,
+      "drop_other_plane": 1277,
+      "drop_background": 483,
+      "net_correct_edits": 2993
+    },
+    "native4": {
+      "add_target": 6407,
+      "add_other_plane": 1065,
+      "add_background": 104,
+      "drop_target": 558,
+      "drop_other_plane": 4612,
+      "drop_background": 1823,
+      "net_correct_edits": 11115
+    }
+  },
+  "frames": [
+    {
+      "key": "smooth_stone/dev-shopfront-masonry-high-right",
+      "sha256": "f15cd0e471a9a2e375c9f801df171bb8f5ee44d95374f02f1174c7938a94cc79",
+      "layout": "shopfront",
+      "methods": {
+        "native2": {
+          "add_target": 43,
+          "add_other_plane": 9,
+          "add_background": 0,
+          "drop_target": 1,
+          "drop_other_plane": 24,
+          "drop_background": 75
+        },
+        "native4": {
+          "add_target": 439,
+          "add_other_plane": 133,
+          "add_background": 4,
+          "drop_target": 42,
+          "drop_other_plane": 371,
+          "drop_background": 261
+        }
+      }
+    },
+    {
+      "key": "light_gray_concrete/dev-shopfront-masonry-high-right",
+      "sha256": "bb588b0b0d1cdb05b720ff5bc3b515479426c7772fd98fb7fadb8a55b79ca9db",
+      "layout": "shopfront",
+      "methods": {
+        "native2": {
+          "add_target": 43,
+          "add_other_plane": 5,
+          "add_background": 0,
+          "drop_target": 1,
+          "drop_other_plane": 28,
+          "drop_background": 36
+        },
+        "native4": {
+          "add_target": 407,
+          "add_other_plane": 111,
+          "add_background": 0,
+          "drop_target": 12,
+          "drop_other_plane": 438,
+          "drop_background": 227
+        }
+      }
+    },
+    {
+      "key": "smooth_stone/dev-shopfront-masonry-low-left",
+      "sha256": "17691e7909ee0e9384db83c3a729f8763e21a281eb89b8dcebe61fc7675d1405",
+      "layout": "shopfront",
+      "methods": {
+        "native2": {
+          "add_target": 47,
+          "add_other_plane": 0,
+          "add_background": 0,
+          "drop_target": 0,
+          "drop_other_plane": 17,
+          "drop_background": 4
+        },
+        "native4": {
+          "add_target": 629,
+          "add_other_plane": 151,
+          "add_background": 15,
+          "drop_target": 1,
+          "drop_other_plane": 271,
+          "drop_background": 34
+        }
+      }
+    },
+    {
+      "key": "light_gray_concrete/dev-shopfront-masonry-low-left",
+      "sha256": "0359c24dea1b318ec9cd002a1523ae8fc0d7d59fc9d7418972cf9ce9af8d4d57",
+      "layout": "shopfront",
+      "methods": {
+        "native2": {
+          "add_target": 30,
+          "add_other_plane": 1,
+          "add_background": 0,
+          "drop_target": 1,
+          "drop_other_plane": 7,
+          "drop_background": 1
+        },
+        "native4": {
+          "add_target": 282,
+          "add_other_plane": 46,
+          "add_background": 0,
+          "drop_target": 37,
+          "drop_other_plane": 153,
+          "drop_background": 9
+        }
+      }
+    },
+    {
+      "key": "smooth_stone/dev-shopfront-plaster-high-right",
+      "sha256": "ae58f28554348d924798e23bd492b88db06c2a099f590e325c514ecc5c8f9c7e",
+      "layout": "shopfront",
+      "methods": {
+        "native2": {
+          "add_target": 255,
+          "add_other_plane": 9,
+          "add_background": 0,
+          "drop_target": 10,
+          "drop_other_plane": 283,
+          "drop_background": 132
+        },
+        "native4": {
+          "add_target": 624,
+          "add_other_plane": 131,
+          "add_background": 0,
+          "drop_target": 95,
+          "drop_other_plane": 857,
+          "drop_background": 141
+        }
+      }
+    },
+    {
+      "key": "light_gray_concrete/dev-shopfront-plaster-high-right",
+      "sha256": "4cc1d5687db72eef74f23fc291fb7916b3f481ed4998d9e1c850024039d38cce",
+      "layout": "shopfront",
+      "methods": {
+        "native2": {
+          "add_target": 59,
+          "add_other_plane": 31,
+          "add_background": 0,
+          "drop_target": 1,
+          "drop_other_plane": 100,
+          "drop_background": 50
+        },
+        "native4": {
+          "add_target": 312,
+          "add_other_plane": 203,
+          "add_background": 0,
+          "drop_target": 12,
+          "drop_other_plane": 434,
+          "drop_background": 144
+        }
+      }
+    },
+    {
+      "key": "smooth_stone/dev-shopfront-plaster-low-left",
+      "sha256": "5d0c9120de4ca16f35758f90a31e176e50a3cf166358dd9833ee2213d1ff2f72",
+      "layout": "shopfront",
+      "methods": {
+        "native2": {
+          "add_target": 265,
+          "add_other_plane": 0,
+          "add_background": 3,
+          "drop_target": 5,
+          "drop_other_plane": 207,
+          "drop_background": 1
+        },
+        "native4": {
+          "add_target": 876,
+          "add_other_plane": 49,
+          "add_background": 27,
+          "drop_target": 80,
+          "drop_other_plane": 635,
+          "drop_background": 6
+        }
+      }
+    },
+    {
+      "key": "light_gray_concrete/dev-shopfront-plaster-low-left",
+      "sha256": "299e0228de74d2cc7d3a18deaba9f61c82560a0ddd0b8557e5c91728c964a993",
+      "layout": "shopfront",
+      "methods": {
+        "native2": {
+          "add_target": 156,
+          "add_other_plane": 9,
+          "add_background": 0,
+          "drop_target": 9,
+          "drop_other_plane": 153,
+          "drop_background": 0
+        },
+        "native4": {
+          "add_target": 670,
+          "add_other_plane": 26,
+          "add_background": 0,
+          "drop_target": 35,
+          "drop_other_plane": 511,
+          "drop_background": 0
+        }
+      }
+    },
+    {
+      "key": "smooth_stone/dev-wing-masonry-close-front",
+      "sha256": "9ce65a1c07694c1d3e57019c07b422d7a6a0771ed0d46f579891eae8a61463a9",
+      "layout": "wing",
+      "methods": {
+        "native2": {
+          "add_target": 0,
+          "add_other_plane": 0,
+          "add_background": 0,
+          "drop_target": 108,
+          "drop_other_plane": 0,
+          "drop_background": 0
+        },
+        "native4": {}
+      }
+    },
+    {
+      "key": "light_gray_concrete/dev-wing-masonry-close-front",
+      "sha256": "9ce65a1c07694c1d3e57019c07b422d7a6a0771ed0d46f579891eae8a61463a9",
+      "layout": "wing",
+      "methods": {
+        "native2": {
+          "add_target": 0,
+          "add_other_plane": 0,
+          "add_background": 0,
+          "drop_target": 108,
+          "drop_other_plane": 0,
+          "drop_background": 0
+        },
+        "native4": {}
+      }
+    },
+    {
+      "key": "smooth_stone/dev-wing-masonry-high-right",
+      "sha256": "8cd9e20f608db25df6d141941051d30afcbf80733ea4c6f2058874c02019bf9f",
+      "layout": "wing",
+      "methods": {
+        "native2": {
+          "add_target": 37,
+          "add_other_plane": 32,
+          "add_background": 0,
+          "drop_target": 0,
+          "drop_other_plane": 13,
+          "drop_background": 5
+        },
+        "native4": {
+          "add_target": 259,
+          "add_other_plane": 67,
+          "add_background": 5,
+          "drop_target": 6,
+          "drop_other_plane": 104,
+          "drop_background": 129
+        }
+      }
+    },
+    {
+      "key": "light_gray_concrete/dev-wing-masonry-high-right",
+      "sha256": "5ccd9115fd2a70784e0e1ab6819d37fc5c4af54cf965605143b3817e1f3a3efd",
+      "layout": "wing",
+      "methods": {
+        "native2": {
+          "add_target": 39,
+          "add_other_plane": 4,
+          "add_background": 0,
+          "drop_target": 0,
+          "drop_other_plane": 2,
+          "drop_background": 16
+        },
+        "native4": {
+          "add_target": 250,
+          "add_other_plane": 20,
+          "add_background": 0,
+          "drop_target": 0,
+          "drop_other_plane": 59,
+          "drop_background": 151
+        }
+      }
+    },
+    {
+      "key": "smooth_stone/dev-wing-masonry-low-left",
+      "sha256": "0c7bc49ce3c736391d7954a9c069aee29586f03fd33a2a88926b40257ccae6ce",
+      "layout": "wing",
+      "methods": {
+        "native2": {
+          "add_target": 26,
+          "add_other_plane": 0,
+          "add_background": 0,
+          "drop_target": 0,
+          "drop_other_plane": 10,
+          "drop_background": 0
+        },
+        "native4": {
+          "add_target": 278,
+          "add_other_plane": 60,
+          "add_background": 10,
+          "drop_target": 60,
+          "drop_other_plane": 65,
+          "drop_background": 82
+        }
+      }
+    },
+    {
+      "key": "light_gray_concrete/dev-wing-masonry-low-left",
+      "sha256": "4e8817361e24c3f05e835d7af6c8bab3da96d50c8821828144f33bb1ea0e87d3",
+      "layout": "wing",
+      "methods": {
+        "native2": {
+          "add_target": 41,
+          "add_other_plane": 0,
+          "add_background": 0,
+          "drop_target": 0,
+          "drop_other_plane": 20,
+          "drop_background": 27
+        },
+        "native4": {
+          "add_target": 265,
+          "add_other_plane": 60,
+          "add_background": 2,
+          "drop_target": 60,
+          "drop_other_plane": 76,
+          "drop_background": 113
+        }
+      }
+    },
+    {
+      "key": "smooth_stone/dev-wing-plaster-close-front",
+      "sha256": "b3154136e855e9d005a993b8afdb3989e3fb156b102aed46ce0d99e761d2f2b8",
+      "layout": "wing",
+      "methods": {
+        "native2": {},
+        "native4": {}
+      }
+    },
+    {
+      "key": "light_gray_concrete/dev-wing-plaster-close-front",
+      "sha256": "b3154136e855e9d005a993b8afdb3989e3fb156b102aed46ce0d99e761d2f2b8",
+      "layout": "wing",
+      "methods": {
+        "native2": {},
+        "native4": {}
+      }
+    },
+    {
+      "key": "smooth_stone/dev-wing-plaster-high-right",
+      "sha256": "49832e903f4455c88c44f51da20abc550516d208783af9e3d05edc85ff4116a9",
+      "layout": "wing",
+      "methods": {
+        "native2": {
+          "add_target": 111,
+          "add_other_plane": 0,
+          "add_background": 0,
+          "drop_target": 0,
+          "drop_other_plane": 38,
+          "drop_background": 0
+        },
+        "native4": {
+          "add_target": 219,
+          "add_other_plane": 4,
+          "add_background": 0,
+          "drop_target": 4,
+          "drop_other_plane": 54,
+          "drop_background": 90
+        }
+      }
+    },
+    {
+      "key": "light_gray_concrete/dev-wing-plaster-high-right",
+      "sha256": "64d4fec367d669912de294146c1fa3e0bf871816ec4f52e57213e35db2968564",
+      "layout": "wing",
+      "methods": {
+        "native2": {
+          "add_target": 127,
+          "add_other_plane": 0,
+          "add_background": 0,
+          "drop_target": 0,
+          "drop_other_plane": 124,
+          "drop_background": 117
+        },
+        "native4": {
+          "add_target": 312,
+          "add_other_plane": 4,
+          "add_background": 0,
+          "drop_target": 5,
+          "drop_other_plane": 213,
+          "drop_background": 292
+        }
+      }
+    },
+    {
+      "key": "smooth_stone/dev-wing-plaster-low-left",
+      "sha256": "b564e5c3bb2def9511c27cf483dbb01dbe760b1bce8b6060be578c97b2083019",
+      "layout": "wing",
+      "methods": {
+        "native2": {
+          "add_target": 205,
+          "add_other_plane": 0,
+          "add_background": 0,
+          "drop_target": 17,
+          "drop_other_plane": 133,
+          "drop_background": 16
+        },
+        "native4": {
+          "add_target": 329,
+          "add_other_plane": 0,
+          "add_background": 41,
+          "drop_target": 109,
+          "drop_other_plane": 197,
+          "drop_background": 78
+        }
+      }
+    },
+    {
+      "key": "light_gray_concrete/dev-wing-plaster-low-left",
+      "sha256": "b1aa96442f2858b5435fc9af424de374ffafbade3cc74d059b85b6c1bfd7e13c",
+      "layout": "wing",
+      "methods": {
+        "native2": {
+          "add_target": 113,
+          "add_other_plane": 0,
+          "add_background": 0,
+          "drop_target": 0,
+          "drop_other_plane": 118,
+          "drop_background": 3
+        },
+        "native4": {
+          "add_target": 256,
+          "add_other_plane": 0,
+          "add_background": 0,
+          "drop_target": 0,
+          "drop_other_plane": 174,
+          "drop_background": 66
+        }
+      }
+    }
+  ]
+}

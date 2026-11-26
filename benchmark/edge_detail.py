@@ -16,6 +16,10 @@ SETTINGS = {name: dict(BASE, radius=radius, units='source pixels') for name,radi
 SETTINGS['native4-count-guard'] = dict(SETTINGS['native4'], fallback='native2 then original if an existing complete count changes')
 
 
+SETTINGS['native4-stable-counts'] = dict(SETTINGS['native4'],
+    fallback='native2 then original if a complete count changes or appears')
+
+
 def protected_background(labels):
     """Keep empty holes in the original union; exterior can be refined up to the collar."""
     height, width = labels.shape
@@ -29,7 +33,7 @@ def protected_background(labels):
 
 def predict(photo, parts, frame_sha, setting):
     """Use one common label image; freeze overlap pixels already claimed by multiple surfaces."""
-    if setting == 'native4-count-guard':
+    if setting in ('native4-count-guard','native4-stable-counts'):
         from engine.masked_count import count
         from engine.surface_dimensions import dimensions
         from engine.surface_sample import sample_surface
@@ -49,7 +53,11 @@ def predict(photo, parts, frame_sha, setting):
                     continue
                 if index not in known:
                     known[index] = size(before)
-                if None not in known[index] and known[index] != size(after):
+                original = known[index]
+                if None in original and setting == 'native4-count-guard':
+                    continue
+                candidate_size = size(after)
+                if (None not in original or None not in candidate_size) and original != candidate_size:
                     break
             else:
                 return improved
