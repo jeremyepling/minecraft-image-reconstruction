@@ -10,6 +10,7 @@
 | True mask perimeters, holes and review sheets | [Perimeter round](PERIMETER_ROUND.md) |
 | Five-model Wall Recovery, then the 501-surface baseline | [Depth comparison](SINGLE_WALL_DEPTH.md) |
 | Six-model Surface Finder, 513 matched surfaces on 56 views | [Tested default at 1b00db1](https://github.com/jeremyepling/minecraft-image-reconstruction/commit/1b00db13aecdd170e5867601d987987560da0d72) and [Planarity and ECT comparison](AFTERPASS_MODELS.md) |
+| Current Surface Finder, 516 matches on the same 56 views | [Split-only zoom comparison](CROP_SPLIT.md) and [crop review](CROP_REVIEW.md) |
 
 The Planarity, ECT and comparison-sheet experiments were parallel assignments collected on the former `feature/single-wall-depth` branch. Their code and reviews live on `main`. The registered `feature/normal-round` checkout holds the frozen exterior suite on this PC. The `feature/exterior-suite-default` branch is the source of the original fixture pull request. [Fixture pull request](https://github.com/jeremyepling/minecraft-image-reconstruction/pull/1)
 

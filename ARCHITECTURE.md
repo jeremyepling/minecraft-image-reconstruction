@@ -2,7 +2,7 @@
 
 ## Find surfaces and count blocks
 
-The ordinary exterior command on this PC takes one Java 26.3 screenshot. It runs the **Surface Finder**, **Surface Straightener** and **Block Counter** and saves their intermediate results. The selected Surface Finder matched **513 of 598** visible surface appearances across 56 frozen views. The counter got both block dimensions right for **80 of 598**. These scores measure different stages. [Comparison and visual sheet](benchmark/AFTERPASS_MODELS.md)
+The ordinary exterior command on this PC takes one Java 26.3 screenshot. It runs the **Surface Finder**, **Surface Straightener** and **Block Counter** and saves their intermediate results. The selected Surface Finder matched **516 of 598** visible surface appearances across 56 frozen views. The counter got both block dimensions right for **80 of 598**. These scores measure different stages. [Surface comparison](benchmark/CROP_SPLIT.md) · [Crop review](benchmark/CROP_REVIEW.md)
 
 ```powershell
 .\Invoke-WallRecovery.ps1 .\wall.png -Out .\runs\my-build
@@ -15,15 +15,15 @@ The ordinary exterior command on this PC takes one Java 26.3 screenshot. It runs
 | Block Counter | **Masked repetition** measures how often a texture repeats across and down the straightened surface. A supported width or height can be recorded independently. | `counts.json` records the estimated grid and dimensions for each surface. |
 | Material Matcher | When requested with `--material-match atlas` on a counts build, compare complete, supported cell footprints with placeable textures from the versioned atlas. | Inspect the cell-level material results in `counts.json`. |
 
-The Surface Finder’s build IDs are `mask-first` for grouping and `plane-recovery` for refinement. The counter’s ID is `masked-repeat`. Each run writes its actual stages, settings, input digest and checkpoint hashes to `build-manifest.json`. The winner is selected on the fixed suite. The previous methods are available through benchmark replays. [Single-image setup](benchmark/WALL_RECOVERY_BUILD.md) · [Stage guide](benchmark/SURFACE_FINDER.md) · [Method history](benchmark/RECONSTRUCTION_LINEAGE.md)
+The Surface Finder’s build IDs are `mask-first` for grouping and `plane-recovery-crop-splits` for refinement. After the full-image pass, closer views can split a region while preserving its footprint. The counter’s ID is `masked-repeat`. Each run writes its actual stages, settings, input digest and checkpoint hashes to `build-manifest.json`. The winner is selected on the fixed suite. The previous methods are available through benchmark replays. [Single-image setup](benchmark/WALL_RECOVERY_BUILD.md) · [Stage guide](benchmark/SURFACE_FINDER.md) · [Method history](benchmark/RECONSTRUCTION_LINEAGE.md)
 
 ## Verify on the saved pictures
 
 ```powershell
-.\Invoke-SurfaceRound.ps1 -Round afterpass
+.\Invoke-SurfaceRound.ps1 -Round crop-split
 ```
 
-The replay applies the selected rules to saved numerical model outputs, runs the same counter and grades the resulting masks against the recorded geometry. The 56 views cover eight buildings captured in vanilla Java 26.3 at clear noon. Settings were chosen on Shopfront and Wing. The other six buildings measure performance on previously reviewed layouts. Run `build --through camera` with an image, version and output directory for the independent camera and projected-grid estimate. [Replay manifest](benchmark/reviews/afterpass-models-01/manifest.json) · [Camera test](benchmark/CAMERA_ROUND.md)
+The replay applies the selected rules to saved numerical model outputs, runs the same counter and grades the resulting masks against the recorded geometry. The 56 views cover eight buildings captured in vanilla Java 26.3 at clear noon. Settings were chosen on Shopfront and Wing. The other six buildings measure performance on previously reviewed layouts. Run `build --through camera` with an image, version and output directory for the independent camera and projected-grid estimate. [Replay manifest](benchmark/reviews/crop-split-01/manifest.json) · [Camera test](benchmark/CAMERA_ROUND.md)
 
 ## Export blocks and check placement
 

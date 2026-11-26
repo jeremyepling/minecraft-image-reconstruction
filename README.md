@@ -1,6 +1,6 @@
 # Minecraft Image Reconstruction
 
-Use `main` to recover visible surfaces from one Minecraft Java 26.3 screenshot. The ordinary **Surface Finder** uses Regions First, Wall Recovery and Pixel-wise Planarity. It matched **513 of 598** visible surfaces across 56 saved views of eight buildings. It missed 85. This score measures surface outlines. The Block Counter and world placement have separate checks. [Results by screenshot](benchmark/reviews/afterpass-models-01/pictures.md) · [Zoomable comparison sheet](benchmark/reviews/afterpass-models-01/comparison.jpg)
+Use `main` to recover visible surfaces from one Minecraft Java 26.3 screenshot. The ordinary **Surface Finder** uses Regions First, Wall Recovery and Pixel-wise Planarity with split-only zoom. It matched **516 of 598** visible surface appearances across 56 saved views of eight buildings. The Block Counter recovered both dimensions for 80 surfaces. [Surface results by screenshot](benchmark/reviews/crop-split-01/pictures.md) · [Crop and straightening review](benchmark/CROP_REVIEW.md)
 
 ## Build from a screenshot
 
@@ -13,18 +13,16 @@ Read `surfaces.json` for the visible masks and openings, the crops for the **Sur
 ## Reproduce the surface score
 
 ```powershell
-.\Invoke-SurfaceRound.ps1 -Round afterpass
+.\Invoke-SurfaceRound.ps1 -Round crop-split
 ```
 
-This replays the saved comparison on the same clear-noon screenshots with Minecraft closed. The six-model finder recovered 12 surfaces the five-model finder missed and kept all 501 earlier matches. A later rule reached 517 by improving only on the development buildings. A second reached 523 and lost two walls that the default found on Crossing. The selected default remains 513. [Acceptance decision](benchmark/PLANE_ACCEPTANCE.md) · [Offline testing guide](benchmark/OFFLINE_GEOMETRY.md)
+This compares the selected finder with the previous 513-surface default on the same clear-noon screenshots. The selected method checks nine overlapping close-ups for evidence that an existing wall contains multiple faces. It kept all 513 matches and found three more across Shopfront and Workshop. Opening coverage stayed identical in every picture. [Comparison and zoomable sheet](benchmark/CROP_SPLIT.md) · [Offline testing guide](benchmark/OFFLINE_GEOMETRY.md)
 
 Use the benchmark runners to replay older experiments. The stage scores, fixtures and prototype command snapshots are listed in the project history. [Branch and experiment history](benchmark/RECONSTRUCTION_LINEAGE.md) · [Architecture and call paths](ARCHITECTURE.md)
 
 The protected-edge test found 524 surfaces and kept the Workshop ledge, but lost a Crossing wall. Closer views found 516 and covered more open space. Both tests can be replayed from saved model outputs with `.\Invoke-SurfaceRound.ps1 -Round guard-zoom`. [Results and comparison sheet](benchmark/GUARD_ZOOM.md)
 
-Limiting closer views to splitting existing walls retained all 513 original matches and added three across Shopfront and Workshop. Opening coverage and block-size accuracy stayed level in every picture. This 516-surface candidate is recommended for the next default. Run `.\Invoke-SurfaceRound.ps1 -Round crop-split` to replay the comparison. [Results and visual review](benchmark/CROP_SPLIT.md)
-
-The one-wall split test found and counted a 1 × 5 Portico face, kept the Crossing wall, and added six extra guesses. Split-only zoom remains the recommended Surface Finder. Run `.\Invoke-SurfaceRound.ps1 -Round contained` to replay the test. [Comparison sheet and decision](benchmark/CONTAINED.md)
+The one-wall split test found and counted a 1 × 5 Portico face, kept the Crossing wall, and added six extra guesses. Split-only zoom was selected for ordinary builds. Run `.\Invoke-SurfaceRound.ps1 -Round contained` to replay the test. [Comparison sheet and decision](benchmark/CONTAINED.md)
 
 ## Create a calibration world for a new version
 

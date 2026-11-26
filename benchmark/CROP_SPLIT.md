@@ -1,8 +1,8 @@
 # Should close-up planes be allowed to split an existing wall?
 
-**Recommend split-only zoom for Surface Finder.** It found 516 of 598 scored surface appearances across the same 56 pictures and kept every one of the default’s 513 matches. The occupied area in each picture stayed identical to the default. The ordinary build still selects the 513-surface finder pending the decision to switch. [Zoomable comparison sheet](reviews/crop-split-01/comparison.jpg) · [Results by screenshot](reviews/crop-split-01/pictures.md)
+**Split-only zoom was selected as the ordinary Surface Finder.** It found 516 of 598 scored surface appearances across the same 56 pictures and kept every one of the previous default’s 513 matches. The occupied area in each picture stayed identical. [Zoomable comparison sheet](reviews/crop-split-01/comparison.jpg) · [Results by screenshot](reviews/crop-split-01/pictures.md)
 
-| On the 56 saved pictures | Current default | Split-only zoom |
+| On the 56 saved pictures | Previous default | Split-only zoom |
 | --- | ---: | ---: |
 | Surfaces found | 513 | 516 |
 | Extra guesses | 204 | 204 |

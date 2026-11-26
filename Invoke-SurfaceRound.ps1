@@ -1,6 +1,6 @@
 [CmdletBinding()]
 param([string] $Python, [string] $Out, [int] $Workers = 3,
-      [ValidateSet('surfaces', 'normals', 'saved', 'building-sheet', 'candidate', 'compare', 'perimeters', 'detection-sheet', 'separation', 'recovery', 'recovery-summary', 'single-wall', 'ledge-join', 'afterpass', 'acceptance', 'guard-zoom', 'crop-split', 'contained')] [string] $Round = 'surfaces',
+      [ValidateSet('surfaces', 'normals', 'saved', 'building-sheet', 'candidate', 'compare', 'perimeters', 'detection-sheet', 'separation', 'recovery', 'recovery-summary', 'single-wall', 'ledge-join', 'afterpass', 'acceptance', 'guard-zoom', 'crop-split', 'contained', 'crop-review')] [string] $Round = 'surfaces',
       [string] $Name = 'candidate', [string] $Outlines, [string] $Pitch, [string] $Order,
       [string] $Split, [string] $Fields, [string[]] $Runs, [string] $SourceRun)
 
@@ -38,9 +38,10 @@ try {
         'guard-zoom' = 'benchmark.guard_zoom_round'
         'crop-split' = 'benchmark.crop_split_round'
         contained = 'benchmark.contained_round'
+        'crop-review' = 'benchmark.crop_review_sheet'
     }[$Round]
     $imports = 'import numpy, PIL'
-    if ($Round -in 'perimeters', 'detection-sheet', 'separation', 'recovery','recovery-summary','single-wall','ledge-join','afterpass','acceptance','guard-zoom','crop-split','contained') {
+    if ($Round -in 'perimeters', 'detection-sheet', 'separation', 'recovery','recovery-summary','single-wall','ledge-join','afterpass','acceptance','guard-zoom','crop-split','contained','crop-review') {
         $imports = "import sys,numpy,PIL; sys.exit(0 if (numpy.__version__,PIL.__version__)==('2.3.5','13.0.0') else 1)"
     }
     $needsInference = $Round -in 'normals','separation'

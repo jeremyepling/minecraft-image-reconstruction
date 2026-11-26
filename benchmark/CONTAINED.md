@@ -1,6 +1,6 @@
 # Can the finder recover the Workshop ledge and keep the Crossing wall?
 
-**Keep split-only zoom as the recommended Surface Finder.** The one-wall split found one additional surface on Portico, and the Block Counter measured it correctly. It also created six extra guesses. The two Workshop ledge views remained misses. The ordinary build on `main` still uses the 513-surface finder. [Zoomable sheet](reviews/contained-01/comparison.jpg) · [All 56 pictures](reviews/contained-01/pictures.md)
+**Split-only zoom was selected for the ordinary build on `main`.** The one-wall split found one additional surface on Portico, and the Block Counter measured it correctly. It also created six extra guesses. The two Workshop ledge views remained misses. [Zoomable sheet](reviews/contained-01/comparison.jpg) · [All 56 pictures](reviews/contained-01/pictures.md)
 
 | On the same 56 saved pictures | Split-only zoom | One-wall split |
 | --- | ---: | ---: |
