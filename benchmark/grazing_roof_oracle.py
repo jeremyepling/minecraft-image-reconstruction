@@ -39,13 +39,17 @@ def one(f):
     missing=faces.keys()-correct
     all_masks=np.logical_or.reduce([native_support(p['support'],image.size) for p in parts if p.get('support')])
     native=P.copy();native[:2]*=SAMPLE_STRIDE
-    owner=_frontmost_cells(sorted(cells),native,np.linalg.solve(P[:,:3],-P[:,3]),face_ids.shape)
+    eye=np.linalg.solve(P[:,:3],-P[:,3])
+    owner=_frontmost_cells(sorted(cells),native,eye,face_ids.shape)
+    truth_only=_frontmost_cells(sorted(c for c in cells if world(c) in targets),native,eye,face_ids.shape)
     in_mask=np.bincount(face_ids[all_masks],minlength=len(labels['faces'])+1)
     free=np.bincount(face_ids[all_masks&(owner<0)],minlength=len(labels['faces'])+1)
+    cleared=np.bincount(face_ids[all_masks&(truth_only<0)],minlength=len(labels['faces'])+1)
     metrics=dict(visible=len(faces),already_correct=len(set(faces)&correct),missing=len(missing),
                  missing_face_pixels=[faces[p]['visible_pixels'] for p in missing],
                  mask_witnesses_14=sum(int(in_mask[faces[p]['id']]>=14) for p in missing),
-                 unclaimed_witnesses_14=sum(int(free[faces[p]['id']]>=14) for p in missing))
+                 unclaimed_witnesses_14=sum(int(free[faces[p]['id']]>=14) for p in missing),
+                 oracle_correct_geometry_witnesses_14=sum(int(cleared[faces[p]['id']]>=14) for p in missing))
     for method,rows in zip(('mask','union'),opts):
         candidates={world(p):r for p,r in rows.items()}
         metrics[method]=dict(candidate_count=len(rows),missing_top_proposed=len(candidates.keys()&missing),
