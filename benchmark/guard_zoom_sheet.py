@@ -93,7 +93,8 @@ def render_contained(out, rows, captures, table):
     return render_zoom_review(out, rows, captures, table, prior/'candidate-runs/zoom',
                               {'current':'Split-only zoom', 'contained':'One-wall split'},
                               'Can one wall be split without cutting its neighbor?', sheet,
-                              opening_details=openings, guard_inputs=prior)
+                              opening_details=openings, guard_inputs=prior,
+                              detail_targets={'shopfront': ('light_gray_concrete/dev-shopfront-plaster-low-left', 13)})
 
 
 def render_zoom_review(out, rows, captures, table, zoom, names, title, prior_sheet, *,
@@ -159,7 +160,21 @@ def render_zoom_review(out, rows, captures, table, zoom, names, title, prior_she
                     registered.paste(alpha, (bounds[0]-box[0], bounds[1]-box[1]))
                     edge = ImageChops.subtract(registered, registered.filter(ImageFilter.MinFilter(5)))
                     img.paste('white', mask=edge)
-            put(prefix+'guard', img, 'Protected-edge proposals', f'{len(candidates)} proposed outlines in the full view')
+            accepted = [d for d in row['decisions'] if d['reason']=='accepted']
+            note = f'{len(candidates)} proposed · {len(accepted)} accepted in this view'
+            if focus is not None:
+                target = next((d for d in row['reference_diagnostics'] if d['reference']==focus), {})
+                for related in target.get('supporting_decisions', []):
+                    decision = related['decision']
+                    if related['relationship']=='direct protected-edge match' and decision['reason']=='unsupported-seam':
+                        note = 'Edge unconfirmed'
+                        if 'depth_agreement' in decision:
+                            note += f" · {decision['depth_agreement']:.0%} depth agreement"
+                        break
+                if accepted:
+                    n = sum(len(d['children']) for d in accepted)
+                    note = f'{len(accepted)} accepted in view · {n} pieces returned'
+            put(prefix+'guard', img, 'Protected-edge proposals', note)
             sources['guard_predictions_sha256'] = guard_hashes[path]
         return sources
 
