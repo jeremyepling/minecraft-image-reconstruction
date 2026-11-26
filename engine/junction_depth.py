@@ -44,7 +44,7 @@ class JunctionDepth:
         if self.anchors is None:
             self.prepare(P, eye, rays)
         if axis == 1:
-            levels = self.crease_levels(mask, eye, rays) if self.policy in ('creases','single') else ()
+            levels = self.crease_levels(mask, eye, rays) if self.policy in ('creases','single','supported') else ()
         else:
             levels = ()
             if len(self.anchors) >= 2:
@@ -94,12 +94,17 @@ class JunctionDepth:
         previous = next((r for r in rows if r['level'] == before), None)
         if previous is None:
             return before
-        if axis == 1 and self.policy in ('creases','single'):
+        if axis == 1 and self.policy in ('creases','single','supported'):
             votes = self.votes
             if len(votes) == 1:
                 height, anchors = next(iter(votes.items()))
-                if (len({axis for axis,_ in anchors}) == 2 or self.policy == 'single') and previous['atlas'] < .60:
-                    if any(r['level'] == height for r in rows):
+                proposed = next((r for r in rows if r['level'] == height), None)
+                if proposed and previous['atlas'] < .60:
+                    corroborated = len({axis for axis,_ in anchors}) == 2
+                    photo = (proposed['edge'] > max(.05,previous['edge']+.05)
+                             or (proposed['distinct_votes'] >= 2 and proposed['atlas'] > previous['atlas']+.1)
+                             or proposed['boundary'] > max(.55,previous['boundary']+.12))
+                    if corroborated or self.policy == 'single' or (self.policy == 'supported' and photo):
                         return height
         # Outside the usual search window, require several source tiles to fit
         # the calibrated atlas at the same integer plane. The geometric anchor
@@ -116,7 +121,7 @@ class JunctionDepth:
         anchor = self.anchors.get(part['id'])
         if anchor is not None:
             row = next((r for r in rows if r['level'] == anchor[1]), None)
-            weak_art = previous['distinct_votes'] < 2 or (self.policy in ('creases','single') and previous['atlas'] < .60)
+            weak_art = previous['distinct_votes'] < 2 or (self.policy in ('creases','single','supported') and previous['atlas'] < .60)
             if (row is not None and weak_art and row['edge'] > .10
                     and row['edge'] > previous['edge']+.04):
                 return row['level']
@@ -142,3 +147,7 @@ def creases(image,version,parts,counts,camera):
 
 def single(image,version,parts,counts,camera):
     return _run(image,version,parts,counts,camera,'single')
+
+
+def supported(image,version,parts,counts,camera):
+    return _run(image,version,parts,counts,camera,'supported')
