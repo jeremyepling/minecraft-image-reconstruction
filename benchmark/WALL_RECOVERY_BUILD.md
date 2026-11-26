@@ -8,7 +8,7 @@ From this checkout on the Minecraft PC:
 
 This command uses the default Java 26.3 Surface Finder and Block Counter. The input is one ordinary screenshot. Use `-Through surfaces` to stop after surface finding. The build writes `surfaces.json` with visible masks, surface crops, `counts.json` with supported dimensions and `build-manifest.json` with the methods, settings and checkpoint hashes.
 
-The Wall Separator starts with MoGe-2 directions and Depth Anything V2 depth. Its masks supply MobileSAM point prompts. ScaleLSD identifies junction-supported cuts, M-LSD Tiny finds thin undersides, and MobileSAM can partition a wall when the depth evidence supports a step. Pixel-wise Planarity then checks the full screenshot for an adjacent missing surface or a pair of distinct planes inside one wall. The Block Counter receives the resulting masks. The build manifest calls this final refinement `plane-recovery`. [Results on 56 views](AFTERPASS_MODELS.md)
+The Wall Separator starts with MoGe-2 directions and Depth Anything V2 depth. Its masks supply MobileSAM point prompts. ScaleLSD identifies junction-supported cuts, M-LSD Tiny finds thin undersides, and MobileSAM can partition a wall when the depth evidence supports a step. Pixel-wise Planarity checks the full screenshot for an adjacent missing surface or two distinct planes inside one wall. Nine overlapping crops give that model a closer view. Each accepted crop split keeps exactly the original surface area and holes. The Surface Straightener and Block Counter receive those masks. The build manifest calls the selected method `plane-recovery-crop-splits`. [Results on 56 views](CROP_SPLIT.md)
 
 ### Model environments
 
@@ -22,18 +22,18 @@ python reconstruct.py build .\snapshot.png --version 26.3 --through counts --out
 
 For direct CLI use, configure `MCIR_RECOVERY_PYTHON`, `MCIR_SCALELSD_SOURCE`, `MCIR_SCALELSD_CHECKPOINT` and `MCIR_MOBILESAM_SOURCE`, or put the model sources and checkpoints in `.deps`. The ONNX and LiteRT paths follow the existing `MINECRAFT_MOGE_ONNX`, `MINECRAFT_DEPTH_ONNX` and `MINECRAFT_MLSD_TFLITE` settings. The default build method stays in `engine/surface_defaults.json`.
 
-For Pixel-wise Planarity, the wrapper accepts `-PlanaritySource`, `-PlanarityCheckpoint` and `-PlanarityUtils3D`. Their environment variables are `MCIR_PLANARITY_SOURCE`, `MCIR_PLANARITY_CHECKPOINT` and `MCIR_PLANARITY_UTILS3D`. The Torch environment also needs the matching scipy and connected-components-3d packages. Set `MCIR_PLANARITY_PYTHONPATH` to their directory when installed separately. Fresh inference checks the upstream Git revisions and checkpoint digest. An explicitly supplied `-PlanarityFields` directory permits reuse of numeric outputs keyed by screenshot hash. [Pinned sources and versions](reviews/afterpass-fields-01/planarity/manifest.json) · [Authors’ checkpoint](https://huggingface.co/alpayozkan/pxwplanar-moge2-planarity)
+For Pixel-wise Planarity, the wrapper accepts `-PlanaritySource`, `-PlanarityCheckpoint` and `-PlanarityUtils3D`. Their environment variables are `MCIR_PLANARITY_SOURCE`, `MCIR_PLANARITY_CHECKPOINT` and `MCIR_PLANARITY_UTILS3D`. The Torch environment also needs the matching scipy and connected-components-3d packages. Set `MCIR_PLANARITY_PYTHONPATH` to their directory when installed separately. Fresh inference checks the upstream Git revisions and checkpoint digest. Split-only zoom computes whole-image and crop fields together. For a cached replay on the 56 suite pictures, run `.\Invoke-SurfaceRound.ps1 -Round crop-split`. [Pinned sources and versions](reviews/afterpass-fields-01/planarity/manifest.json) · [Authors’ checkpoint](https://huggingface.co/alpayozkan/pxwplanar-moge2-planarity)
 
-### Verify Plane Recovery from a renamed screenshot
+### Verify the default from a renamed screenshot
 
 ```powershell
 New-Item -ItemType Directory -Force .\runs\plane-proof | Out-Null
-Copy-Item .\benchmark\data\camera-round-01\captures\dev-wing-plaster-high-right.png .\runs\plane-proof\source.png
+Copy-Item .\benchmark\data\surface-confirm-v1\captures\holdout-workshop-masonry-low-left.png .\runs\plane-proof\source.png
 .\Invoke-WallRecovery.ps1 .\runs\plane-proof\source.png -Out .\runs\plane-proof\build
-python -m benchmark.verify_recovery_build --build runs/plane-proof/build --case smooth_stone/dev-wing-plaster-high-right
+python -m benchmark.verify_recovery_build --build runs/plane-proof/build --case light_gray_concrete/holdout-workshop-masonry-low-left
 ```
 
-The default build read one renamed Wing image, ran all six checkpoints, found all five scored surfaces and passed eight proposals to the Block Counter. Its predicted masks and stored region properties matched the archived predictions exactly. The separate verification command reads the finished predictions and the recorded building. [Fresh build verification](reviews/plane-recovery-entry-01.json)
+The default build read one renamed Workshop image, ran all six checkpoints, found seven of 14 scored surfaces and passed 28 regions to the Block Counter. Every mask, saved region property and block-count result matched the archived split-only zoom predictions. The separate verification command reads the finished predictions and the recorded building. [Default Workshop build](reviews/default-zoom-workshop-01.json) · [Earlier 513-surface Wing verification](reviews/plane-recovery-entry-01.json)
 
 ### Earlier five-model result
 
