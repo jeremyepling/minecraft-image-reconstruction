@@ -6,7 +6,7 @@ Download the versioned [Visible Builds dataset](training/DATASET.md) for per-fra
 
 Reconstruct only the parts of a build visible in the supplied image or images. Hidden backs, interiors and occluded regions remain unknown and are omitted from the reconstruction. This scope applies to the current pipeline and the [planned learned approach](training/README.md). [Product intent](PRODUCT_INTENT.md)
 
-Use `main` to recover visible surfaces from one Minecraft Java 26.3 screenshot. The ordinary **Surface Finder** uses Regions First, Wall Recovery and Pixel-wise Planarity with split-only zoom. After sky removal, it trims a narrow extension when a second detected surface runs alongside it and matches its colors. It matched **517 of 598** visible surface appearances across 56 saved views of eight buildings. The Block Counter recovered both dimensions for 95 surfaces. [Surface and block counts by screenshot](benchmark/reviews/strip-neighbor-01/cases.json) · [Cleanup examples](benchmark/reviews/strip-neighbor-01/comparison.png) · [Crop and straightening review](benchmark/CROP_REVIEW.md)
+Use `main` to recover visible surfaces from one Minecraft Java 26.3 screenshot. The ordinary **Surface Finder** uses Regions First, Wall Recovery and Pixel-wise Planarity with split-only zoom. After sky removal, it trims a narrow extension when a second detected surface runs alongside it and matches its colors. It then moves outlines to nearby photo edges when the Block Counter preserves its complete estimates. It matched **519 of 598** visible surface appearances across 56 saved views of eight buildings. The Block Counter recovered both dimensions for 95 surfaces. [Surface and block counts by screenshot](benchmark/reviews/edge-detail-stable-01/cases.json) · [Cleanup examples](benchmark/reviews/edge-detail-stable-01/comparison.jpg) · [Counting repeating textures](benchmark/TEXTURE_REPEATS.md) � [Crop and straightening review](benchmark/CROP_REVIEW.md)
 
 ## Build from a screenshot
 
@@ -21,10 +21,10 @@ Read `surfaces.json` for visible masks and openings, and `counts.json` for the *
 ## Reproduce the surface score
 
 ```powershell
-.\Invoke-SurfaceRound.ps1 -Round strip-neighbor -Out runs/my-neighbor-review
+.\Invoke-SurfaceRound.ps1 -Round boundary-detail -Out runs/my-boundary-review
 ```
 
-Use a fresh output directory. This compares the new default with the previous finder and the color-only cleanup on the same 56 clear-noon screenshots. [Comparison and zoomable sheet](benchmark/reviews/strip-neighbor-01/comparison.png) · [Offline testing guide](benchmark/OFFLINE_GEOMETRY.md)
+Use a fresh output directory. This compares the new default with the previous finder and a less restrictive edge adjustment on the same 56 clear-noon screenshots. [Comparison and zoomable sheet](benchmark/reviews/edge-detail-stable-01/comparison.jpg) · [Offline testing guide](benchmark/OFFLINE_GEOMETRY.md)
 
 Use the benchmark runners to replay older experiments. The stage scores, fixtures and prototype command snapshots are listed in the project history. [Branch and experiment history](benchmark/RECONSTRUCTION_LINEAGE.md) · [Architecture and call paths](ARCHITECTURE.md)
 
