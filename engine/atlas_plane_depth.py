@@ -164,11 +164,12 @@ def options(mask, P, eye, rays, axis, baseline, rgb, atlas, scene_distance=None,
 
 
 
-def place_ranked(image, version, parts, counts, camera, *, atlas_path=None, joint_foreground=True):
+def place_ranked(image, version, parts, counts, camera, *, atlas_path=None, joint_foreground=True, refine_faces=True):
     """Place image-supported grid cells and remove cells with no visible ray."""
     from engine.foreground_conflicts import ForegroundConflicts
+    strict = set()
     cells, status = _place(image, version, parts, counts, camera, atlas_path, remove_occluded=True,
-                           scene_policy=ForegroundConflicts() if joint_foreground else None)
+                           scene_policy=ForegroundConflicts() if joint_foreground else None, strict_output=strict)
     if cells and status['foreground_depth']['method'] == 'joint':
         from engine import neighbor_photo_faces, visible_horizontal_faces
         textured = cells | neighbor_photo_faces.recover(image, parts, camera['P'], cells)
@@ -181,7 +182,20 @@ def place_ranked(image, version, parts, counts, camera, *, atlas_path=None, join
             status['second_horizontal_blocks'] = len(recovered) - len(previous)
         status['neighbor_photo_blocks'] = len(textured) - len(cells)
         status['dense_horizontal_blocks'] = len(recovered) - len(textured)
-        status['added_blocks'] += len(recovered) - len(cells)
+        if refine_faces:
+            from engine import nearby_face_decision, thin_atlas_faces
+            adjusted = nearby_face_decision.recover(image, parts, camera, recovered, atlas_path=atlas_path)
+            status['nearby_added'] = len(adjusted - recovered)
+            status['nearby_removed'] = len(recovered - adjusted)
+            atlas = _atlas(version, atlas_path)
+            first = thin_atlas_faces.recover(image, parts, camera, adjusted, atlas, mode='rank75')
+            recovered = first
+            if first != adjusted:
+                recovered = thin_atlas_faces.recover(image, parts, camera, first, atlas, mode='rank75')
+            status['thin_atlas_blocks'] = len(recovered) - len(adjusted)
+            status['second_thin_atlas_blocks'] = len(recovered) - len(first)
+        status['strict_blocks'] = len(recovered & strict)
+        status['added_blocks'] = len(recovered) - status['strict_blocks']
         status['placed_blocks'] = len(recovered)
         cells = recovered
     return cells, status
@@ -194,7 +208,8 @@ def place_ranked_without_ray(image, version, parts, counts, camera, *, atlas_pat
                   scene_policy=ForegroundConflicts() if joint_foreground else None)
 
 
-def _place(image, version, parts, counts, camera, atlas_path, *, remove_occluded, recover_edges=True, scene_policy=None):
+def _place(image, version, parts, counts, camera, atlas_path, *, remove_occluded, recover_edges=True, scene_policy=None,
+           strict_output=None):
     if camera['P'] is None or not parts:
         cells, status = place_with_camera(image, version, parts, counts, camera)
         status['foreground_depth'] = dict(method='unavailable', changed_planes=0, reason='no supported camera or surfaces')
@@ -262,6 +277,7 @@ def _place(image, version, parts, counts, camera, atlas_path, *, remove_occluded
     cells, status = place_with_camera(image, version, parts, counts, camera, select_level,
                                       partial=partial, refine_candidates=refine, remove_occluded=remove_occluded,
                                       walls_first=junction is not None, reconcile=reconcile if scene_policy and junction is not None else None,
+                                      strict_output=strict_output,
                                       recover_edges=recover if recover_edges and junction is not None else None)
     status.update(plane_depth_method='ranked', plane_offsets=decisions, foreground_depth=foreground_status,
                   plane_depth_search='texture-and-contacts' if junction is not None else 'original-window')

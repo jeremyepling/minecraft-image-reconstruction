@@ -6,7 +6,7 @@ from engine.camera_atlas_floor import _atlas
 
 def compose(image, version, parts, counts, camera, *, nearby=True, thin=True):
     # This experiment is pinned to the second-pass placer at 2b436b2.
-    cells, status = place_ranked(image, version, parts, counts, camera)
+    cells, status = place_ranked(image, version, parts, counts, camera, refine_faces=False)
     if not cells or status.get('foreground_depth',{}).get('method') != 'joint':
         return cells,status
     if nearby:
