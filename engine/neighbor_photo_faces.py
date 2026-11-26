@@ -66,6 +66,10 @@ def rows(image, parts, P, original, competing=None):
         joint = cells + sorted(competing)
         lookup = {p:i for i,p in enumerate(joint)}
         source_owner, axes = _frontmost_cells(joint, native, eye, shape, face_axes=True)
+        before = np.bincount(owner[owner >= 0], minlength=len(cells))
+        after = np.bincount(source_owner[source_owner >= 0], minlength=len(joint))
+        if np.any((before > 0) & (after[:len(cells)] == 0)):
+            return []
     support = np.zeros(shape, bool)
     coarse = tuple((n+(SAMPLE_STRIDE-1)//2)//SAMPLE_STRIDE for n in shape)
     for part in parts:
