@@ -174,7 +174,7 @@ def place_ranked_without_ray(image, version, parts, counts, camera, *, atlas_pat
     return _place(image, version, parts, counts, camera, atlas_path, remove_occluded=False)
 
 
-def _place(image, version, parts, counts, camera, atlas_path, *, remove_occluded, recover_edges=True):
+def _place(image, version, parts, counts, camera, atlas_path, *, remove_occluded, recover_edges=True, scene_policy=None):
     if camera['P'] is None or not parts:
         return place_with_camera(image, version, parts, counts, camera)
     weights = frozen_weights()
@@ -203,12 +203,20 @@ def _place(image, version, parts, counts, camera, atlas_path, *, remove_occluded
             level = junction.choose(part, mask, projection, eye, rays, axis, baseline, scene_distance,
                                     rows, weights, chosen_before=level)
             junction.record(part, mask, axis, level, rows)
+        if scene_policy is not None and junction is not None:
+            scene_policy.record(part['id'], mask, eye, rays, axis, baseline, rows, level, repeat_weights)
         decisions.append(dict(id=part['id'], axis=axis, baseline=baseline, level=level))
         return level
 
     from engine.partial_atlas_face import verify
     from engine.secondary_plane_depth import wrap_selector
-    select_level, refine = wrap_selector(select, rgb, atlas)
+    select_level, refine = wrap_selector(select, rgb, atlas, final_levels=scene_policy.levels if scene_policy else None)
+
+    def reconcile(selections):
+        levels = scene_policy.resolve()
+        for row in decisions:
+            row['level'] = levels.get(row['id'], row['level'])
+        return [(i, a, levels.get(parts[i]['id'], l)) for i, a, l in selections]
 
     def partial(mask, projection, cell, axis, sign):
         return verify(rgb, atlas, mask, projection, cell, axis, sign)
@@ -219,7 +227,7 @@ def _place(image, version, parts, counts, camera, atlas_path, *, remove_occluded
 
     cells, status = place_with_camera(image, version, parts, counts, camera, select_level,
                                       partial=partial, refine_candidates=refine, remove_occluded=remove_occluded,
-                                      walls_first=junction is not None,
+                                      walls_first=junction is not None, reconcile=reconcile if scene_policy else None,
                                       recover_edges=recover if recover_edges and junction is not None else None)
     status.update(plane_depth_method='ranked', plane_offsets=decisions,
                   plane_depth_search='texture-and-contacts' if junction is not None else 'original-window')

@@ -70,7 +70,7 @@ def adjust(cells,mask,P,eye,rays,axis,primary,rgb,atlas):
     return cells.difference(remove).union(winners[i][0] for i in live),len(live)
 
 
-def wrap_selector(choose_level, rgb, atlas):
+def wrap_selector(choose_level, rgb, atlas, *, final_levels=None):
     """Refine mask candidates before the common visibility and occlusion checks."""
     if atlas is None:
         return choose_level,None
@@ -84,7 +84,10 @@ def wrap_selector(choose_level, rgb, atlas):
         for i,(part,mask) in enumerate(zip(parts,masks,strict=True)):
             if not candidates[i] or part['id'] not in info:
                 continue
-            candidates[i],n = adjust(candidates[i],mask,P,eye,*info[part['id']],rgb,atlas)
+            rays,axis,level = info[part['id']]
+            if final_levels is not None:
+                level = final_levels.get(part['id'], level)
+            candidates[i],n = adjust(candidates[i],mask,P,eye,rays,axis,level,rgb,atlas)
             if n:
                 events.append(dict(id=part['id'],tiles=n))
         return events
