@@ -23,6 +23,12 @@ Canopy 06 left kept all 29 previously correct positions. The .85 model reduced e
 
 We also tested combining each cell's estimated probability with the median for its touching neighbors on the same horizontal course. On held-out training families the gate removed 445 wrong and 27 correct cells. On the fixed evaluation it removed 570 extras and lost 67 correct, four more losses than the cellwise gate. The small gain changed direction on the newer views. Keep that smoothing experimental. [Neighbor results](neighbors/summary.json) · [Training comparisons](component-train.json)
 
+## Trying the newly exposed pixels
+
+After rejecting cells, the atlas rechecked the original RGB for horizontal faces. A new cell had to own at least four original photo pixels inside a detected structure mask that a rejected cell previously hid. The rejected cells themselves were ineligible. On the 72 development views this recovered 42 correct cells with zero extras, 36 absent from a simple third atlas pass. The horizontal-mask fallback without atlas verification recovered 11 and added two extras. [Development controls](exposed-train.json)
+
+Compared with pruning alone, the frozen exposed-atlas pass recovered 27 correct positions at a cost of two extras on the 104 fixed images. Twenty-two were on three Portico photos. It added two extras and zero correct positions on the 20 alternate views and changed nothing on the four newer images. Roof-to-post and clear-opening results also matched pruning alone. Keep this variant experimental until it transfers to more structures. The .85 pruning gate has the broader standalone gain and merits combined validation. [200-frame comparison](exposed/summary.json) and [decoded outputs](exposed/packs.zip).
+
 ## Replay
 
 Use the trained weights from `experiment/grounded-depth-envelope` and the evaluator from `review/framed-depth-round` in registered worktrees. Restore Visible Builds v2 and the documented native fixtures. The placement adapter uses the installed calibrated Java 26.3 atlas. The optional scoring diagnostics operate only on approved complete-structure frames. The prediction stage uses screenshot-derived inputs. From the evaluator checkout:
@@ -32,3 +38,5 @@ python -m benchmark.framed_depth_eval --candidate-root ../grounded-depth-envelop
 ```
 
 For the .98 comparison use the `conservative` adapter from the same module; for the same-course vote use `neighbors`. To reproduce the training comparisons, use the experiment checkout and run `python -m benchmark.grounded_depth_round features`, `python -m benchmark.grounded_depth_round fit` and `python -m benchmark.grounded_component_trial`. The fit step writes the learned weights in that checkout. The branch exposes experimental callables for combined validation and keeps the ordinary entry point at its baseline.
+
+The post-pruning trial uses the scorer adapter `benchmark.grounded_depth_exposure:apply` with the same arguments. Four focused tests cover missing inputs, missing or damaged weights, excluding rejected cells, and requiring a horizontal face on photographed mask pixels. Run `python -m unittest tests.test_grounded_depth_envelope`.
