@@ -12,7 +12,7 @@ The Wall Separator starts with MoGe-2 directions and Depth Anything V2 depth. It
 
 ### Model environments
 
-On this PC, the script locates the existing inference installations in the reconstruction worktrees. Other installations can pass `-Python` for the NumPy/Pillow/ONNX/LiteRT environment, and `-ModelPython`, `-ScaleSource`, `-ScaleCheckpoint` and `-MobileSource` for the PyTorch environment and official model checkouts. The MobileSAM checkout must contain `weights/mobile_sam.pt`. The wrapper supports `-Device cuda` or `-Device cpu`. The saved build comparison below used CUDA for ScaleLSD and MobileSAM and CPU inference for the other three checkpoints.
+On this PC, the script locates the existing inference installations in the reconstruction worktrees. Other installations can pass `-Python` for the NumPy/Pillow/ONNX/LiteRT environment, and `-ModelPython`, `-ScaleSource`, `-ScaleCheckpoint` and `-MobileSource` for the PyTorch environment and official model checkouts. The MobileSAM checkout must contain `weights/mobile_sam.pt`. The wrapper supports `-Device cuda` or `-Device cpu`. The earlier five-model verification used CUDA for ScaleLSD and MobileSAM and CPU inference for MoGe-2, Depth Anything V2 and M-LSD Tiny.
 
 The same build is available through the normal CLI:
 
@@ -35,13 +35,6 @@ python -m benchmark.verify_recovery_build --build runs/plane-proof/build --case 
 
 The default build read one renamed Wing image, ran all six checkpoints, found all five scored surfaces and passed eight proposals to the Block Counter. Its predicted masks and stored region properties matched the archived predictions exactly. The separate verification command reads the finished predictions and the recorded building. [Fresh build verification](reviews/plane-recovery-entry-01.json)
 
-### Reproduce the earlier five-model check
+### Earlier five-model result
 
-```powershell
-New-Item -ItemType Directory -Force .\runs\single-image-proof | Out-Null
-Copy-Item .\benchmark\data\normal-confirm-v1\captures\holdout-galleries-plaster-low-left.png .\runs\single-image-proof\snapshot-73.png
-.\Invoke-WallRecovery.ps1 .\runs\single-image-proof\snapshot-73.png -SurfaceBoundary wall-recovery -Out .\runs\single-image-proof\build
-python -m benchmark.verify_recovery_build --build runs/single-image-proof/build --case light_gray_concrete/holdout-galleries-plaster-low-left
-```
-
-The build recomputed all five model outputs. The last command then opened the benchmark prediction and reference labels. All 30 predicted region records matched their archived properties, including their outlines' underlying masks, holes, optional sampling charts and IDs. Scoring returned the same 19 of 25 reference surfaces. Four of those matches came from the MobileSAM step. The Block Counter received all 30 proposals. [Saved verification](reviews/wall-recovery-entry-01.json)
+The five-model finder matched 19 of 25 surfaces on the Galleries screenshot and sent 30 regions to the Block Counter. Its original verification contains the exact masks and model hashes. Run `.\Invoke-SurfaceRound.ps1 -Round afterpass` to compare its saved suite-wide predictions against the selected six-model finder. [Five-model verification](reviews/wall-recovery-entry-01.json) · [Suite comparison](AFTERPASS_MODELS.md)

@@ -1,8 +1,5 @@
 name: Freeze DeepLSD MegaDepth evidence
 on:
-  push:
-    branches: [feature/mask-deeplsd]
-    paths: ['benchmark/mask_deeplsd.py', '.github/workflows/mask-deeplsd.yml']
   workflow_dispatch:
 permissions:
   contents: read

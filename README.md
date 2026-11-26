@@ -1,40 +1,24 @@
 # Minecraft Image Reconstruction
 
-Reconstruct a Minecraft Java build from a screenshot and place it in a real world. The project measures the visible block grid independently of material identification. A version calibration ties the atlas, in-game examples, scoring benchmarks and structure exporter to a specific vanilla client.
+Use `main` to recover visible surfaces from one Minecraft Java 26.3 screenshot. The ordinary **Surface Finder** uses Regions First, Wall Recovery and Pixel-wise Planarity. It matched **513 of 598** visible surfaces across 56 saved views of eight buildings. It missed 85. This score measures surface outlines. The Block Counter and world placement have separate checks. [Results by screenshot](benchmark/reviews/afterpass-models-01/pictures.md) · [Zoomable comparison sheet](benchmark/reviews/afterpass-models-01/comparison.jpg)
 
-[Architecture, call paths, defaults and experimental modes](ARCHITECTURE.md)
+## Build from a screenshot
 
-Use `main` for the integrated reconstruction pipeline. The original camera, grid, face, depth and material experiments are preserved in Git and their saved reviews. The named stages are **Surface Finder**, **Surface Straightener**, **Block Counter** and **Material Matcher**. The archived label **B** means **Rectangle Finder**. [Branch and experiment history](benchmark/RECONSTRUCTION_LINEAGE.md)
+```powershell
+.\Invoke-WallRecovery.ps1 .\screenshot.png -Out .\runs\my-build
+```
 
-## Single-image exterior benchmark
+Read `surfaces.json` for the visible masks and openings, the crops for the **Surface Straightener**’s input, and `counts.json` for the **Block Counter**’s estimates across and down each surface. The **Material Matcher** can compare supported cells with the vanilla atlas. Each build records the methods and model hashes it used in `build-manifest.json`. [Setup and single-image verification](benchmark/WALL_RECOVERY_BUILD.md) · [Stage names and outputs](benchmark/SURFACE_FINDER.md) · [Illustrated pipeline](benchmark/reviews/perimeters-01/comparison.jpg)
 
-Run `.\Invoke-WallRecovery.ps1 .\screenshot.png -Out .\runs\my-build` to use the full surface-recovery sequence on a new image. It writes the outlines, crops and block count estimates and records which models ran. [Single-image build and local models](benchmark/WALL_RECOVERY_BUILD.md)
+## Reproduce the surface score
 
-The **Surface Finder** uses Pixel-wise Planarity after Wall Recovery to add missed planes and separate merged walls. It found **513 of 598** surfaces across 56 saved views, kept all 501 previous matches and covered the same amount of open space. Run `.\Invoke-SurfaceRound.ps1 -Round afterpass` to reproduce the model comparison. [Zoomable comparison sheet](benchmark/reviews/afterpass-models-01/comparison.jpg) · [Scores by screenshot](benchmark/reviews/afterpass-models-01/pictures.md) · [What worked and what still went missing](benchmark/AFTERPASS_MODELS.md)
+```powershell
+.\Invoke-SurfaceRound.ps1 -Round afterpass
+```
 
-Two follow-up tests checked whether to accept more plane outlines. A single-inset rule improved Shopfront, while agreement between Planarity and MobileSAM recovered the Workshop ledge but lost two Crossing walls. The six-model finder remains the ordinary default. [Latest comparison and decision](benchmark/PLANE_ACCEPTANCE.md)
+This replays the saved comparison on the same clear-noon screenshots with Minecraft closed. The six-model finder recovered 12 surfaces the five-model finder missed and kept all 501 earlier matches. A later rule reached 517 by improving only on the development buildings. A second reached 523 and lost two walls that the default found on Crossing. The selected default remains 513. [Acceptance decision](benchmark/PLANE_ACCEPTANCE.md) · [Offline testing guide](benchmark/OFFLINE_GEOMETRY.md)
 
-Earlier tests targeted 97 misses in the five-model Wall Recovery baseline. Checking corners on possible ledges tied it at 501. Joining wall pieces fell to 489. [Ledge and wall results](benchmark/LEDGE_JOIN.md) · [Five-model baseline](benchmark/SINGLE_WALL_DEPTH.md)
-
-Run `.\Invoke-SurfaceRound.ps1 -Round single-wall` to repeat both experiments from the frozen model outputs on all 56 original screenshots and regenerate the sheet. Read down a building’s column to see the original picture, predictions, recorded geometry and enlarged edge where each model voted. [Earlier wall, junction and underside tests](benchmark/RECOVERY_ROUND.md)
-
-Open the [pipeline comparison](benchmark/reviews/perimeters-01/comparison.jpg) to follow the same surface through the original photograph, Surface Finder outline, context crop, perspective correction, block-grid overlay and texture match. The [three close-ups](benchmark/reviews/perimeters-01/edge-closeups.jpg) show why the old courtyard, workshop and registry diagonals were misleading. Reproduce the review with `.\Invoke-SurfaceRound.ps1 -Round perimeters`. [Surface and crop results](benchmark/PERIMETER_ROUND.md)
-
-Regions First supplies the visible outlines in the **Surface Finder**. The **Surface Straightener** then removes perspective from each masked surface. The **Block Counter** measures repeated textures across and down, and the **Material Matcher** compares individual cells with the vanilla atlas. Run `.\Invoke-BlockCountRound.ps1` to grade the saved screenshots. [Stage names and the legacy Rectangle Finder](benchmark/SURFACE_FINDER.md) · [Block-count comparison](benchmark/COUNT_ROUND.md) · [Per-picture report](benchmark/reviews/count-01/report.html)
-
-Run `.\Invoke-MaskRound.ps1` for the four-way comparison on the 56 saved views. It compares the Rectangle Finder, preserved regions, and the same regions refined with ScaleLSD v2 or DeepLSD. The review shows each building from the same angle, with the recorded geometry in its own column. [Comparison sheet](benchmark/reviews/mask-four-01/comparison.jpg) · [Per-picture results](benchmark/reviews/mask-four-01/report.html) · [How the experiment works](benchmark/MASK_ROUND.md)
-
-Use the same 56 saved screenshots and their geometry whenever you test a new surface method. Change the method, run it on the images, then compare its outlines against the same Minecraft surfaces. A coordinator in one chat can give the baseline and each challenger to a different agent, run them in parallel and return one comparison. [How to run a new combination](benchmark/OFFLINE_GEOMETRY.md)
-
-Open the [eight-building picture sheet](benchmark/reviews/normals-01/buildings-b.jpg) to see each original screenshot beside the MoGe-2 surface directions and the Rectangle Finder’s checked outlines. Run `.\Invoke-SurfaceRound.ps1 -Round saved` to compare the Rectangle Finder’s saved outlines against the recorded buildings entirely offline. [Saved geometry and replay commands](benchmark/OFFLINE_GEOMETRY.md)
-
-The visible-plane experiment compares the deterministic outline method with two local vision alternatives on eight Minecraft structures. The review includes clean source screenshots, the effects on openings, block scale and relative depth, and one command to reproduce it. [Measured results and execution path](benchmark/NORMAL_ROUND.md)
-
-Two Windows runs produced identical predictions for all 56 frames. Two independent Linux replays reproduced every plane match count and the default selection. The experimental relative-depth pass varied across runners. Using normal regions on the original six layouts, Windows proposed 274 near/far relations and the final Linux replay proposed 277. Both verified 41 correct relations there and 14 on the blind buildings. [Windows run manifest](benchmark/reviews/normals-01/manifest.json) · [First Linux replay](https://github.com/jeremyepling/minecraft-image-reconstruction/actions/runs/45600701874) · [Final Linux replay](https://github.com/jeremyepling/minecraft-image-reconstruction/actions/runs/45601327150)
-
-Run the shared regression suite with `python -m benchmark.exterior_suite`. It replays 40 original screenshots from two clear-noon worlds, pairs tiled and weakly marked floors at the same pose, and compares the results with the recorded camera reference. [Suite, worlds and review](benchmark/EXTERIOR_SUITE.md)
-
-Round one measures the projected camera and block grid on newly captured vanilla Java 26.3 exteriors. To reproduce the experiment on its frozen inputs, run `python -m benchmark.camera_round` from this checkout. To use the selected camera on a single screenshot, run `python reconstruct.py build IMAGE --through camera --version 26.3 --out runs/camera-build`. [Round design and review](benchmark/CAMERA_ROUND.md)
+Use the benchmark runners to replay older experiments. The stage scores, fixtures and prototype command snapshots are listed in the project history. [Branch and experiment history](benchmark/RECONSTRUCTION_LINEAGE.md) · [Architecture and call paths](ARCHITECTURE.md)
 
 ## Create a calibration world for a new version
 
@@ -51,7 +35,7 @@ For a new release, substitute its Java Edition version ID. If the client is miss
 
 For an offline atlas and a first reconstruction without launching Minecraft, run `python reconstruct.py atlas --version 26.3 --out runs/26.3/atlas` and omit `--library` below. Use `--jar PATH` for a client outside the usual installation or Gradle cache. The generated atlas PNG, texture metadata, and direction-specific placement index stay on your machine.
 
-## Reconstruct an image
+## Export blocks from a measured facade
 
 ```console
 python reconstruct.py analyze examples/repair-wall/wall-only.png --out runs/wall-grid
@@ -86,18 +70,6 @@ Minecraft can drop sand, gravel and concrete powder when a reconstructed face ha
 
 The contiguous-wall benchmark supplies a coarse wall outline and grid seed, then tests the fit against independent camera-projected seams. All 448 tested seams per version were within one tenth of a block. The independent automatic case is a cropped in-game wall with nine masonry materials. The versioned packs also passed live readback on a 36-block reconstruction from an oblique view. Whole-building accuracy on arbitrary scenes remains unmeasured. [Detailed client results](tests/results/client-validation.json)
 
-The Java 26.3 building benchmark adds canopies, stepped towers, recessed openings, and flat seams beside real corners. The experimental `--geometry-method texel` improved mean silhouette overlap from 0.195 to 0.829 across 60 held-out views. The optional `--match-exposure` improved material accuracy on aligned faces from 61.2% to 75.2%. Combining the options reduced end-to-end accuracy on adjacent-material panels. [Four-family benchmark, screenshots and reproduction steps](benchmark/README.md)
-
-Run `python -m unittest discover -s tests` for the release-format and geometry regressions. The client JARs, vanilla texture sheets, trained libraries, generated worlds and runtime data are produced locally.
-
-The gallery color experiment compares fixed geometry with three material matchers in fresh Minecraft worlds. Searching for repeated atlas details recovered 1,147 of 1,479 material observations on four previously seen views. Sharing a palette produced the closest rendered colors. [In-game comparison and material options](benchmark/COLOR.md)
+Run `python -m unittest discover -s tests` for the release-format and geometry checks. [Four-family building benchmark](benchmark/README.md) · [Material tests and in-game comparisons](benchmark/COLOR.md)
 
 For a wall where shader lighting changes the apparent color of masonry, add `--match-appearance context` to a build with a calibrated `--library`. This matcher checks neighboring faces for repeating mortar courses and staggered joints. Reuse `--geometry` to compare material choices at identical block positions. Each accepted override records its evidence in `matches.json`. [Context matching and limitations](benchmark/COLOR.md#matching-mortar-across-block-faces)
-
-Use `--geometry-method remap` to estimate a common elevation grid from texture repetition and test visible openings for depth. The measured front view recovered five recess depths on a freshly arranged wall and left a flush section in place. [How the engine uses shadow, angled edges and projected rims](benchmark/RECESSES.md)
-
-For an angled wall, `python reconstruct.py inspect-openings IMAGE --out REVIEW` writes an annotated image and the evidence for each depth decision. This experimental command is separate from export. [How a setting earns adoption, and what happened on two new walls](benchmark/ENTRANCES.md)
-
-To trace the general form first, run `python reconstruct.py inspect-form IMAGE --out REVIEW`. It draws the visible outline and major edges, then inspects smaller line junctions for inward and outward relief. It also works on images without visible pavement. [Line tracing, screenshot comparison and measured accuracy](benchmark/LINE_FORM.md)
-
-Add `--cube-turns` to fit three mutually perpendicular world directions to the image. The preview marks supported outline turns and shows how the same axis projects differently across the frame. Use `--geometry-method cube` with `analyze` or `build` to use the corrected silhouette for block occupancy. [Projected block directions and test results](benchmark/CUBE_TURNS.md)
