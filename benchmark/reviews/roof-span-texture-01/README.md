@@ -32,6 +32,12 @@ For this diagnostic, every new candidate is scored against the same two-post ali
 
 On Canopy 06 left, seven correctly located roof cells failed only because they would obscure the last pixel of 16 distinct earlier placements. All 16 earlier placements were wrong under the common post alignment. Source labels establish this retrospective result. A subsequent experiment could compare the two texture hypotheses on the exact contested pixels before authorizing a replacement.
 
+## Paired replacement experiment
+
+The diagnostic above prompted a separate experimental entry, `engine.roof_span_occlusion:recover`, frozen at `18ac4ac`. Its input is the conservative set of proposed roof strips. A contested ray compares the incoming roof's sampled sprite against a fresh atlas fit using the previous face's projected texture coordinates. The new block must win on each disappearing cell's original pixels. An earlier cell can only be removed once it has no visible pixel left. These decisions are made entirely from the camera estimated from the photograph, the calibrated atlas, the exported positions and the photograph.
+
+Across the 72 development images the conservative guard had rejected eight correct and five extra positions. The same-ray comparison recovered none of them with either tested cutoff. Both reproduced the conservative result exactly. The stricter setting requires a correlation of at least 0.78 and an advantage of at least 0.18 over the previous geometry. The looser cutoff used 0.65 and 0.12. Canopy 06 had already been inspected when proposing this experiment and counts as a regression fixture for it. [Per-image comparison](paired-development.json)
+
 ## Replay
 
 Use the Visible Builds v2 data, frozen camera, surface and count measurements, and the calibrated Java 26.3 atlas described in the [baseline](../framed-depth-01/README.md).
@@ -39,5 +45,6 @@ Use the Visible Builds v2 data, frozen camera, surface and count measurements, a
 ```powershell
 python -m benchmark.roof_span_texture_dev --out runs/roof-texture-development --workers 4
 python -m benchmark.roof_span_texture_limits --out runs/roof-texture-canopy.json --workers 4
+python -m benchmark.roof_span_pair_dev --out runs/roof-texture-pair --workers 4
 python -m unittest tests.test_roof_span_texture
 ```
