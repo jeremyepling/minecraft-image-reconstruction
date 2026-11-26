@@ -55,3 +55,12 @@ def facade_repeat(image, parts, counts, camera, prior):
             break
         current = checked
     return current, dict(verified_per_pass=increments)
+
+
+def facade_strict(image, parts, counts, camera, prior):
+    """Require a 0.95 score from the existing vertical-face model on the extra pass."""
+    if not prior or camera.get('P') is None:
+        return prior, dict(verified_after_roof=0)
+    atlas = _atlas('26.3', ATLAS)
+    cells = vertical_atlas_faces.recover(image, parts, camera, prior, atlas, mode=.95)
+    return cells, dict(verified_after_roof=len(cells-prior))
