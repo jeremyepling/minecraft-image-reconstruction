@@ -10,6 +10,48 @@ from engine.visible_placement import _frontmost_cells
 from engine.visible_raster import SAMPLE_STRIDE
 
 
+def observed_tops(parts,size,rotation,P,eye,prior):
+    """Locate upper ends of vertical runs visible on a photographed support."""
+    cells=sorted(prior)
+    owner,axes=_frontmost_cells(cells,P,eye,((size[1]+3)//4,(size[0]+3)//4),face_axes=True)
+    tips={}
+    for part in parts:
+        normal=part.get('normal_camera')
+        if normal is None or not part.get('support'):
+            continue
+        axis=int(np.argmax(abs(rotation.T @ normal)))
+        if axis==1:
+            continue
+        support=part['support']
+        width,height=support['size']
+        mask=np.zeros((height,width),bool)
+        for yy,left,right in support['runs']:
+            mask[yy,left:right]=True
+        ys=((4*np.arange(owner.shape[0])+2)*height//size[1]).clip(max=height-1)
+        xs=((4*np.arange(owner.shape[1])+2)*width//size[0]).clip(max=width-1)
+        hits=owner[(owner>=0)&(axes==axis)&mask[np.ix_(ys,xs)]]
+        visible={cells[i] for i in np.flatnonzero(np.bincount(hits,minlength=len(cells))>=4)}
+        for x,y,z in visible:
+            if (x,y-1,z) in visible and (x,y+1,z) not in visible:
+                tips.setdefault(y+1,set()).add((x,z))
+    return tips
+
+
+def support_span(rays,eye,h,tips):
+    """A nearby post must touch this surface in the inferred horizontal grid."""
+    sample=rays[np.linspace(0,len(rays)-1,min(900,len(rays)),dtype=int)]
+    footprint=set(map(tuple,np.floor(coords(eye,sample,h)).astype(int).tolist()))
+    block_y=h-int(eye[1]>h)
+    # A top course touches the wall below it; an exposed wall can also terminate
+    # flush with the top surface of a taller build.
+    sites=tips.get(block_y,set()) | tips.get(h,set())
+    contacts=[(x,z) for x,z in sites if any((x+dx,z+dz) in footprint
+              for dx,dz in ((0,0),(1,0),(-1,0),(0,1),(0,-1)))]
+    if len(contacts)<2:
+        return 0
+    return int(np.ptp(np.asarray(contacts),axis=0).max())
+
+
 def horizontal_pixels(part, size, rotation):
     normal=part.get('normal_camera')
     if not part.get('support') or normal is None or np.argmax(abs(rotation.T @ normal))!=1:
@@ -170,6 +212,7 @@ def recover(image,parts,counts,camera,prior,*,atlas_path=None,mode='loose',cours
     focal=np.linalg.norm(P[0,:3]-.5*image.width*P[2,:3])
     rotation=np.linalg.solve(intrinsic(image.size,focal),P[:,:3])
     maps=None
+    tips=None
     heights=range(1,min(64,max(p[1] for p in prior)+6)+1)
     rgb=np.asarray(image.convert('RGB'))
     witnesses={}
@@ -193,6 +236,17 @@ def recover(image,parts,counts,camera,prior,*,atlas_path=None,mode='loose',cours
         gap=best['value']-ranked[1]['value'] if len(ranked)>1 else best['value']
         accepted=(best['value']>=(.49 if strict else .38) and gap>=(.13 if strict else .08)
                   and best['phase']>.06 and best['color']<14 and best['texels']>=16)
+        span=0
+        fallback=False
+        if not accepted and mode in ('supported','supported_wide'):
+            wide=mode=='supported_wide'
+            if (best['value']>=(.16 if wide else .25) and gap>=(.05 if wide else .08)
+                    and best['phase']>.04 and best['color']<16 and best['texels']>=16):
+                if tips is None:
+                    tips=observed_tops(parts,image.size,rotation,P,eye,prior)
+                span=support_span(rays,eye,h,tips)
+                fallback=span>=3
+                accepted=fallback
         if course_override is not None:
             # Keep the experimental patch-admission gate identical. Only the
             # physical plane used to index its native texels and emit cells changes.
@@ -206,6 +260,8 @@ def recover(image,parts,counts,camera,prior,*,atlas_path=None,mode='loose',cours
         row=dict(part=part['id'],plane_y=h,block_y=h-int(eye[1]>h),normal_y=1 if eye[1]>h else -1,
                  area=len(x),accepted=bool(accepted),margin=round(gap,4),pixel_corr=best['pixel_corr'],
                  hypotheses=[[b['plane_y'],b['value']] for b in ranked])
+        if mode in ('supported','supported_wide'):
+            row.update(support_fallback=bool(fallback),support_span=span)
         status['height_decisions'].append(row)
         if accepted:
             # A block observed by two independent patches can use both witnesses.
@@ -237,3 +293,7 @@ def tallest(image,parts,counts,camera,prior):
         level=max(p[1] for p in existing)
         return level+int(eye[1]>level+1)
     return recover(image,parts,counts,camera,prior,course_override=course)
+
+
+def supported(image,parts,counts,camera,prior):
+    return recover(image,parts,counts,camera,prior,mode='supported_wide')
