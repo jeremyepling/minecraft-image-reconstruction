@@ -2,6 +2,7 @@
 import numpy as np
 
 from engine.atlas_plane_depth import _coefficients, _patch_scores
+from engine.visible_placement import _sample_face
 
 
 def coordinates(uv,axis,level,eye):
@@ -11,10 +12,22 @@ def coordinates(uv,axis,level,eye):
     return list(map(tuple,xyz.tolist()))
 
 
+def supported_face(cell,axis,level,eye,P,mask):
+    if cell[1]<0:
+        return False
+    hit=_sample_face(P,cell,axis,1 if eye[axis]>level else -1,mask.shape)
+    if hit is None:
+        return False
+    box,pixels,*_=hit
+    return pixels.sum()>=4 and mask[box][pixels].all()
+
+
 def adjust(cells,mask,P,eye,rays,axis,primary,rgb,atlas):
+    if atlas is None or not np.isfinite(P).all() or not np.isfinite(eye).all():
+        return cells,0
     free=[a for a in range(3) if a!=axis]
     coeff=_coefficients(rays[mask],axis,free)
-    if len(coeff)<40 or not np.isfinite(coeff).all():
+    if len(coeff)<40 or not np.isfinite(coeff).all() or abs(coeff).max()>1.e5:
         return cells,0
     def sample(level):
         uv=eye[free]+coeff*(level-eye[axis])
@@ -43,10 +56,13 @@ def adjust(cells,mask,P,eye,rays,axis,primary,rgb,atlas):
         for (a,b),(n,q) in viable.items():
             if not any(x in viable for x in ((a+1,b),(a-1,b),(a,b+1),(a,b-1))):
                 continue
+            cell=coordinates(np.array([[a,b]]),axis,level,eye)[0]
+            if not supported_face(cell,axis,level,eye,P,mask):
+                continue
             rows=(idx==n)&(q>best)
             owner[rows]=len(winners)
             best[rows]=q
-            winners.append((coordinates(np.array([[a,b]]),axis,level,eye)[0],counts[n]))
+            winners.append((cell,counts[n]))
     live={i for i,(cell,n) in enumerate(winners) if (owner==i).sum()>=.65*n}
     if not live:
         return cells,0
@@ -58,6 +74,8 @@ def adjust(cells,mask,P,eye,rays,axis,primary,rgb,atlas):
 
 def wrap_selector(choose_level, rgb, atlas):
     """Refine mask candidates before the common visibility and occlusion checks."""
+    if atlas is None:
+        return choose_level,None
     info = {}
     def select(part,mask,P,eye,rays,axis,baseline,scene):
         level = choose_level(part,mask,P,eye,rays,axis,baseline,scene)
@@ -73,5 +91,3 @@ def wrap_selector(choose_level, rgb, atlas):
                 events.append(dict(id=part['id'],tiles=n))
         return events
     return select,refine
-
-
