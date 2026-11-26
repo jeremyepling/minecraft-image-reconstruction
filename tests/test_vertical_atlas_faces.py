@@ -25,3 +25,22 @@ class VerticalAtlasTests(unittest.TestCase):
                         model.write_text(text)
                     with patch.object(faces,'observations',side_effect=AssertionError):
                         self.assertEqual(faces.recover(None,[],{},prior,None),prior)
+
+    def test_final_verifier_rechecks_only_after_a_change(self):
+        first = {(0, 0, 0)}
+        second = first | {(0, 1, 0)}
+        with patch.object(faces, 'recover', side_effect=(second, second)) as checked:
+            self.assertEqual(faces.confirm_after_roof(None, [{}], {'P': 1}, first, object()), second)
+        self.assertEqual([c.args[3] for c in checked.call_args_list], [first, second])
+        self.assertTrue(all(c.kwargs['mode'] == .95 for c in checked.call_args_list))
+
+    def test_final_verifier_preserves_missing_inputs_and_caps_iterations(self):
+        prior = {(0, 0, 0)}
+        with patch.object(faces, 'recover', side_effect=AssertionError):
+            self.assertEqual(faces.confirm_after_roof(None, [{}], {'P': 1}, prior, None), prior)
+            self.assertEqual(faces.confirm_after_roof(None, [{}], {'P': None}, prior, object()), prior)
+        def grow(image, parts, camera, cells, atlas, mode):
+            return cells | {(0, len(cells), 0)}
+        with patch.object(faces, 'recover', side_effect=grow) as checked:
+            self.assertEqual(len(faces.confirm_after_roof(None, [{}], {'P': 1}, prior, object())), 4)
+            self.assertEqual(checked.call_count, 3)

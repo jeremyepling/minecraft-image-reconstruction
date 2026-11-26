@@ -23,7 +23,7 @@ def facade_first(image, parts, counts, camera, prior):
         added.append(len(checked - provisional))
         return proposals | (checked - provisional)
 
-    def skip_late(photo, surfaces, projection, cells, atlas):
+    def skip_late(photo, surfaces, projection, cells, atlas, mode=.80):
         return cells
 
     with patch.object(neighbor_photo_faces, 'recover', verify_after_neighbors), \

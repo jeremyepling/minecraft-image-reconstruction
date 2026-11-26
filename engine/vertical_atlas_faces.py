@@ -167,3 +167,16 @@ def recover(image, parts, camera, prior, atlas, mode=.80):
             return prior
     ctx, rows = observations(image,parts,camera,prior,atlas)
     return select(ctx,rows,prior,mode)
+
+
+def confirm_after_roof(image, parts, camera, prior, atlas):
+    """Check vertical faces exposed by the final roof and depth decisions."""
+    if not prior or not parts or camera.get('P') is None or atlas is None:
+        return prior
+    current = prior
+    for _ in range(3):
+        confirmed = recover(image, parts, camera, current, atlas, mode=.95)
+        if confirmed == current:
+            break
+        current = confirmed
+    return current
