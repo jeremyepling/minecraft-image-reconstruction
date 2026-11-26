@@ -35,7 +35,7 @@ Copy-Item .\benchmark\data\camera-gray-concrete-v1\captures\holdout-courtyard-ma
 python -m benchmark.verify_recovery_build --build runs/plane-proof/build --case light_gray_concrete/holdout-courtyard-masonry-high-right
 ```
 
-On Courtyard, check the final `neighbor-supported-strip` entry in the build manifest. The beam should lose 208 stray pixels before straightening. [Default verification](reviews/default-strip-neighbor-01/)
+On Courtyard, check the `neighbor-supported-strip` entry before the final photo-edge adjustment in the build manifest. The beam should lose 208 stray pixels before straightening. [Default verification](reviews/default-strip-neighbor-01/)
 
 The earlier sky-filtered Workshop build passed 13 regions to the Block Counter, down from 28 before the filter. Every saved region and block-count result matched the offline replay. The separate verification command reads the finished predictions and recorded building. [Earlier Workshop build](reviews/sky-entry-01/fresh-workshop.json) · [Earlier split-only zoom verification](reviews/default-zoom-workshop-01.json)
 

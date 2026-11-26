@@ -45,6 +45,9 @@ def render(out,finder='neighbor'):
     width,height,left,top=392,210,230,141
     stages=['Source','Recorded surface','Vanilla tile','Finder crop','Shipped counter','Crop-only trial',
             'Atlas-assisted trial','Recorded crop','Recorded grid','Same counter on\nrecorded crop']
+    with_refit='rectify' in read(out/'scores.json')['all']
+    if with_refit:
+        stages.insert(stages.index('Recorded crop'),'Refit crop + repeats')
     page=Image.new('RGB',(left+width*len(EXAMPLES),top+height*len(stages)+8),'#f8f7f1')
     pen=ImageDraw.Draw(page)
     label(pen,(16,12),'Can the same texture tell us how many blocks we see?',31,bold=True)
@@ -92,6 +95,13 @@ def render(out,finder='neighbor'):
             guess=measured(sample,part,photo,res)
             cells.append((_straight_photo(sample,res)[1],'Counter '+size_text(guess)+'   |   Actual '+size_text(actual)))
             guesses[method]=guess
+        if with_refit:
+            from benchmark.repeat_rectify import predict_surface
+            candidate=predict_surface(photo,part,sample,base)
+            fitted=sample_surface(photo,dict(part,quad=candidate['quad'])) if 'quad' in candidate else sample
+            guess=measured(fitted,part,photo,candidate)
+            guesses['rectify']=guess
+            cells.append((_straight_photo(fitted,candidate)[1],'Counter '+size_text(guess)+'   |   Actual '+size_text(actual)))
         diag=count(correct_sample)
         known=measured(correct_sample,recorded_part,photo,diag)
         clean,grid,_=_straight_photo(correct_sample,diag)
