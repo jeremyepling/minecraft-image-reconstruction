@@ -10,9 +10,9 @@ from engine import roof_height_rim as model
 
 
 def example(job):
-    split,f,prior,base,out,exchange=job
+    split,f,prior,base,out,exchange,expected=job
     image,parts,counts,camera=ev.photo(split,f,prior)
-    before=set(decoded_pack(base/split/f['id']/'reconstruction.zip'))
+    before=set(decoded_pack(ev.checked(base/split/f['id']/'reconstruction.zip',expected)))
     if exchange=='band':
         from engine import roof_height_rim_band as candidate
     elif exchange:
@@ -40,7 +40,11 @@ if __name__=='__main__':
     p.add_argument('--band',action='store_true')
     a=p.parse_args()
     a.out.mkdir(parents=True,exist_ok=True)
-    jobs=[(*j,a.base,a.out,'band' if a.band else a.exchange) for j in ev.cases(['train'])]
+    compare=ev.read(a.base/'summary.json')
+    previous=ev.read(ev.checked(a.base/'cases.json',compare['cases_sha256']))
+    index={r['id']:r['pack_sha256'] for r in previous if r['split']=='train'}
+    jobs=[(*j,a.base,a.out,'band' if a.band else a.exchange,index[j[1]['id']]) for j in ev.cases(['train'])]
+    assert len(jobs)==len(index)==72
     with ProcessPoolExecutor(a.workers) as pool:
         rows=list(pool.map(example,jobs))
     ev.save(a.out/'cases.json',rows)
