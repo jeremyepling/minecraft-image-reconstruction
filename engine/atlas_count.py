@@ -60,11 +60,11 @@ def _prepare(tiles, labels, ids, provenance):
                  np.stack(profiles,axis=1), provenance)
 
 
-def prepared_atlas_path(version):
+def prepared_atlas_paths(version):
     workspace_atlas = Path('workspace/builds/mcir-port-validation') / ('final-cli-' + version) / 'atlas'
     paths = [ROOT/'runs'/version/'atlas', ROOT/'runs'/'atlas',
              ROOT.parent/workspace_atlas, ROOT.parent.parent/workspace_atlas]
-    return next((p for p in paths if (p/'atlas.json').is_file()), None)
+    return [p for p in paths if (p/'atlas.json').is_file()]
 
 
 def _verify_material_index(local, calibrated):
@@ -84,7 +84,7 @@ def _verify_material_index(local, calibrated):
 def load_atlas(path=None, version='26.3', *, verify_material_index=False):
     """Load local vanilla art and the frozen full-block index for the measured game release."""
     if path is None:
-        path = prepared_atlas_path(version)
+        path = next(iter(prepared_atlas_paths(version)), None)
         if path is None and version=='26.3':
             path=ROOT/'runs'/version/'atlas'
             make_atlas(discover(version),path,version)

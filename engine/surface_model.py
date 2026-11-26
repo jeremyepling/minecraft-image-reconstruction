@@ -348,6 +348,30 @@ def _count_regions(image, planes, version, method, atlas, out, shape_matcher=Non
     return report
 
 
+def _material_assets(version, counter, matcher, explicit_path):
+    """Use the requested directory or the first usable installation, in search order."""
+    from engine.atlas_count import load_atlas, prepared_atlas_paths
+
+    paths = [explicit_path] if explicit_path is not None else prepared_atlas_paths(version)
+    required = counter == 'atlas-repeat'
+    if required and not paths:
+        paths = [None]  # The explicit atlas-based counter also supports local generation.
+    failures = []
+    for path in paths:
+        try:
+            atlas = load_atlas(path, version=version, verify_material_index=matcher in ('shape', 'shape-shadow', 'exposure'))
+            shape_matcher = None
+            if matcher in ('shape', 'shape-shadow'):
+                from engine.blocker_shape import ShapeMatcher
+                shape_matcher = ShapeMatcher(path, catalog=atlas.material_index)
+            return atlas, shape_matcher, path, failures
+        except Exception as exc:
+            if required:
+                raise
+            failures.append(dict(path=str(path), reason=f'{type(exc).__name__}: {exc}'))
+    return None, None, None, failures
+
+
 def build(image_path, version, out, *, outlines=None, order_method=None, through='surfaces',
           counter=None, atlas_path=None, material_match=None, context_px=None, boundary=None, library=None):
     from engine.atlas import digest
@@ -555,30 +579,18 @@ def build(image_path, version, out, *, outlines=None, order_method=None, through
         shadow_field = None
         atlas_error = None
         if atlas_path is not None or material_match or counter == 'atlas-repeat':
-            from engine.atlas_count import load_atlas, prepared_atlas_path
             material_match = material_match or 'atlas'
-            try:
-                if atlas_path is None and counter != 'atlas-repeat':
-                    atlas_path = prepared_atlas_path(version)
-                    if atlas_path is None:
-                        raise FileNotFoundError(f'No prepared Java {version} texture atlas found')
-                atlas = load_atlas(atlas_path, version=version,
-                                   verify_material_index=material_match in ('shape', 'shape-shadow', 'exposure'))
-                if material_match in ('shape', 'shape-shadow'):
-                    from engine.blocker_shape import ShapeMatcher
-                    shape_matcher = ShapeMatcher(atlas_path, catalog=atlas.material_index)
-            except Exception as exc:
-                if counter == 'atlas-repeat':
-                    raise  # This explicitly selected counter requires the atlas to measure spacing.
-                atlas = None
+            atlas, shape_matcher, atlas_path, failures = _material_assets(version, counter, material_match, atlas_path)
+            if failures:
+                manifest['atlas_search_errors'] = failures
+            if atlas is None:
+                reason = failures[-1]['reason'] if failures else f'No prepared Java {version} texture atlas found'
                 atlas_error = dict(status='unavailable', requested_matcher=material_match,
-                                   reason=f'{type(exc).__name__}: {exc}', offsets_added=0)
-                if atlas_path is not None:
-                    atlas_error['path'] = str(atlas_path)
-                logging.getLogger(__name__).warning('Using measured grids without material IDs: %s', exc)
+                                   reason=reason, offsets_added=0)
+                logging.getLogger(__name__).warning('Using measured grids without material IDs: %s', reason)
                 methods['material_matching'] = 'unavailable'
             else:
-                manifest['atlas'] = atlas.provenance
+                manifest['atlas'] = dict(atlas.provenance, directory=str(atlas_path) if atlas_path else None)
                 methods['material_matching'] = material_match
         if atlas is not None and material_match == 'shape-shadow':
             from engine.blocker_shadow import surface_shadow_map

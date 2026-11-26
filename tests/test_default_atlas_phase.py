@@ -117,7 +117,7 @@ class AtlasFallbackBuildTests(unittest.TestCase):
                 self.assertEqual(manifest['atlas_phase']['status'], 'unavailable')
 
     def test_shape_without_a_prepared_atlas_preserves_the_ordinary_result(self):
-        with patch('engine.atlas_count.prepared_atlas_path', return_value=None), \
+        with patch('engine.atlas_count.prepared_atlas_paths', return_value=[]), \
                 patch('engine.atlas_count.make_atlas') as regenerate:
             _, counts, manifest = self.run_build('no-prepared-atlas', material_match='shape')
         regenerate.assert_not_called()
@@ -139,6 +139,15 @@ class AtlasFallbackBuildTests(unittest.TestCase):
         self.assertTrue(first['visible_cells'])
         self.assertTrue(all(cell['material']['block_id'] == 'minecraft:stone' for cell in first['visible_cells']))
         self.assertEqual(manifest['atlas_phase']['offsets_added'], 1)
+
+    def test_discovery_skips_damaged_copy_and_uses_next_prepared_atlas(self):
+        dirs = [self.root/'incomplete', self.root/'calibrated']
+        with patch('engine.atlas_count.prepared_atlas_paths', return_value=dirs), \
+                patch('engine.atlas_count.load_atlas', side_effect=[ValueError('damaged atlas'), example_atlas()]):
+            _, counts, manifest = self.run_build('search', material_match='atlas')
+        self.assertEqual(manifest['atlas']['directory'], str(dirs[1]))
+        self.assertEqual(manifest['atlas_search_errors'][0]['path'], str(dirs[0]))
+        self.assertEqual(counts['atlas_phase']['status'], 'enabled')
 
     def test_registration_exception_preserves_counter_and_working_material_matcher(self):
         atlas = example_atlas()
