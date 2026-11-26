@@ -121,6 +121,14 @@ def verify(build, key, source_run=None, data=None):
             approved=read_gzip(checked(EXTERIOR/pred,read(EXTERIOR/'manifest.json')['artifacts'][pred]))
             with Image.open(case.path('image')) as src:
                 result['promoted_counts']=compare(src.convert('RGB'),predicted,counts,approved,scored,'self_repeat',build)
+            result['through']=manifest['through']
+            result['count_settings']=manifest['block_counter']
+            result['fallback_rows']=[dict(proposal=c['id'],reference=assignments.get(c['id']),
+                                          estimate=c['dimensions']['blocks'],actual=s.get('actual'))
+                                     for c,s in zip(counts,scored['surfaces'],strict=True)
+                                     if c['method']=='texture-guided-repeat']
+            result['verified_artifacts']={name:digest(build/manifest['artifacts'][name])
+                                          for name in ('counts','placements','datapack') if name in manifest['artifacts']}
         else:
             from benchmark.perimeter_round import downstream_counts
             with Image.open(case.path('image')) as src:
