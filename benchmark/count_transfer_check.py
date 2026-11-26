@@ -71,7 +71,10 @@ def grade_transfer(transfer,rid,did,ref,targets):
     if did is None or rid is None:
         return data
     source,target = (ref['patches'][i] for i in (did,rid))
-    data['correct_plane'] = source['normal']==target['normal'] and source['offset']==target['offset']
+    data['parallel'] = source['normal']==target['normal']
+    data['correct_plane'] = data['parallel'] and source['offset']==target['offset']
+    if data['parallel']:
+        data['plane_offset_difference_blocks'] = target['offset']-source['offset']
     data['donor_and_recipient_materials'] = [
         sorted({f['block_id'] for f in targets[i]['faces'].values()}) for i in (did,rid)]
     if data['correct_plane']:
