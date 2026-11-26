@@ -54,6 +54,8 @@ def _texel_samples(mask, rgb, inv, axis, free):
 def _edge_score(samples, eye_uv, distance):
     correlations = []
     for a,b,observed in samples:
+        valid = np.isfinite(a).all(1) & np.isfinite(b).all(1)
+        a,b,observed = a[valid],b[valid],observed[valid]
         if len(observed)<32 or not .001 < observed.mean() < .999:
             continue
         crossed = np.any(np.floor(16*(eye_uv+a*distance)) != np.floor(16*(eye_uv+b*distance)), axis=1)
@@ -66,6 +68,7 @@ def _edge_score(samples, eye_uv, distance):
 def _patch_scores(mask, origins, axis, free, level, P, rgb, atlas):
     if atlas is None:
         return []
+    origins = origins[np.isfinite(origins).all(1)]
     cells = np.unique(np.floor(origins).astype(int), axis=0)
     cells = _sample(cells, 30)
     if not len(cells):
@@ -105,7 +108,9 @@ def options(mask, P, eye, rays, axis, baseline, rgb, atlas, scene_distance=None,
     inv = np.linalg.inv(P[:,:3])
     boundary = _boundary(mask,inv,axis,free)
     samples = _texel_samples(mask,rgb,inv,axis,free)
-    anchors = _coefficients(_sample(rays[mask],180),axis,free)
+    anchor_rays = _sample(rays[mask],180)
+    anchors = _coefficients(anchor_rays,axis,free)
+    boundary = boundary[np.isfinite(boundary).all(1)]
     uv = eye[free]
     rows = []
     levels=set(range(baseline-radius,baseline+radius+1))
@@ -122,6 +127,7 @@ def options(mask, P, eye, rays, axis, baseline, rgb, atlas, scene_distance=None,
         scores = _patch_scores(mask,uv+anchors*distance,axis,free,level,P,rgb,atlas)
         rows.append(dict(level=level,boundary=boundary_score,edge=_edge_score(samples,uv,distance),
                          atlas=float(np.mean(scores[:5])) if scores else 0.,tiles=len(scores),
+                         # Votes count distinct observed cell locations; materials may repeat.
                          distinct_votes=sum(v>.55 for v in scores),scene_delta=abs(level-scene_level)))
     return rows
 
@@ -148,15 +154,24 @@ def choose(rows, baseline, method):
 
 
 def place(image,version,parts,counts,camera,method,atlas_path=None,weights=None):
-    rgb = np.asarray(image.convert('RGB'))
+    if camera['P'] is None or not parts:
+        return place_with_camera(image,version,parts,counts,camera)
     atlas = _atlas(version,atlas_path) if method in ('atlas','combined','ranked') else None
+    if method in ('atlas','combined','ranked') and atlas is None:
+        cells,status=place_with_camera(image,version,parts,counts,camera)
+        status['plane_depth_reason']='calibrated atlas unavailable'
+        return cells,status
+    rgb = np.asarray(image.convert('RGB'))
+    decisions = []
     def select(part,mask,P,eye,rays,axis,baseline,scene_distance):
         rows = options(mask,P,eye,rays,axis,baseline,rgb,atlas,
                        scene_distance if method in ('combined','ranked') else None)
-        if method=='ranked':
-            return ranked_choice(rows,baseline,weights)
-        return choose(rows,baseline,method)
-    return place_with_camera(image,version,parts,counts,camera,select)
+        level=(ranked_choice(rows,baseline,weights) if method=='ranked' else choose(rows,baseline,method))
+        decisions.append(dict(id=part['id'],axis=axis,baseline=baseline,level=level))
+        return level
+    cells,status=place_with_camera(image,version,parts,counts,camera,select)
+    status.update(plane_depth_method=method,plane_offsets=decisions)
+    return cells,status
 
 
 def predict(image,version,parts,counts,camera):
