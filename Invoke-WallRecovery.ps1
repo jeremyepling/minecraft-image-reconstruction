@@ -10,7 +10,11 @@ param(
     [string] $MobileSource,
     [string] $DepthProSource,
     [string] $DepthProCheckpoint,
-    [ValidateSet('wall-recovery','wall-recovery-single-v2','wall-recovery-single-pro')][string] $SurfaceBoundary,
+    [string] $PlanaritySource,
+    [string] $PlanarityCheckpoint,
+    [string] $PlanarityUtils3D,
+    [string] $PlanarityFields,
+    [ValidateSet('wall-recovery','wall-recovery-single-v2','wall-recovery-single-pro','plane-recovery')][string] $SurfaceBoundary,
     [ValidateSet('cuda','cpu')][string] $Device
 )
 
@@ -51,6 +55,12 @@ try {
     $depthProDeps=Join-Path $PSScriptRoot '../surface-one-depth-pro/.deps'
     Set-ModelOption 'MCIR_DEPTH_PRO_SOURCE' $DepthProSource @((Join-Path $localDeps 'ml-depth-pro'), (Join-Path $depthProDeps 'ml-depth-pro'))
     Set-ModelOption 'MCIR_DEPTH_PRO_CHECKPOINT' $DepthProCheckpoint @((Join-Path $localDeps 'depth_pro.pt'), (Join-Path $depthProDeps 'depth_pro.pt'))
+    $planeDeps = Join-Path $PSScriptRoot '../afterpass-planarity/runs/assets'
+    Set-ModelOption 'MCIR_PLANARITY_SOURCE' $PlanaritySource @((Join-Path $localDeps 'PixelwisePlanarity'), (Join-Path $planeDeps 'PixelwisePlanarity'))
+    Set-ModelOption 'MCIR_PLANARITY_UTILS3D' $PlanarityUtils3D @((Join-Path $localDeps 'utils3d'), (Join-Path $planeDeps 'utils3d'))
+    Set-ModelOption 'MCIR_PLANARITY_CHECKPOINT' $PlanarityCheckpoint @((Join-Path $localDeps 'pixelwise-planarity.pt'), (Join-Path $planeDeps 'model.pt'))
+    Set-ModelOption 'MCIR_PLANARITY_PYTHONPATH' '' @((Join-Path $localDeps 'planarity-packages'), (Join-Path $planeDeps 'deps'))
+    Set-ModelOption 'MCIR_PLANARITY_FIELDS' $PlanarityFields @()
     Set-ModelOption 'MCIR_RECOVERY_DEVICE' $Device @()
     foreach ($model in @{
         MINECRAFT_MOGE_ONNX='moge-2-vits.onnx'

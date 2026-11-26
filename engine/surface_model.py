@@ -6,11 +6,12 @@ import numpy as np
 from PIL import Image
 
 from engine.geometry import UNIT, transform
+from engine.planarity_entry import METHOD as PLANE_RECOVERY
 
 
 DEFAULTS = Path(__file__).with_name('surface_defaults.json')
 SINGLE_WALL_DEPTH = {'wall-recovery-single-v2':'depth-anything-v2','wall-recovery-single-pro':'depth-pro'}
-RECOVERY_METHODS = ('wall-recovery', *SINGLE_WALL_DEPTH)
+RECOVERY_METHODS = ('wall-recovery', *SINGLE_WALL_DEPTH, PLANE_RECOVERY)
 BOUNDARY_METHODS = ('regions-first','color-edges','depth-split','wall-depth-anything','strip-mlsd',
                     'wall-and-underside', *RECOVERY_METHODS)
 SETTINGS = dict(assumed_vertical_fov_degrees=70, shared_edge_tolerance_px=5,
@@ -347,10 +348,10 @@ def build(image_path, version, out, *, outlines=None, order_method=None, through
                 patches, events = mobile_split(image, patches, mobile_masks, recovery['records'], recovery['selected'])
                 methods['boundary_sequence'] = ['color-edges','wall-depth-anything','junction-cuts','strip-mlsd','mobile-wall-split']
                 boundary_settings.update(mobile_split=mobile_settings, mobile_splits=events)
-                if boundary in SINGLE_WALL_DEPTH:
+                if boundary in SINGLE_WALL_DEPTH or boundary==PLANE_RECOVERY:
                     from engine import single_wall_gate
                     inventory = single_wall_gate.prepare(image,patches,mobile_masks,recovery['records'],recovery['selected'])
-                    depth_name = SINGLE_WALL_DEPTH[boundary]
+                    depth_name = SINGLE_WALL_DEPTH.get(boundary,'depth-anything-v2')
                     if depth_name=='depth-pro':
                         from engine.recovery_evidence import depth_pro
                         vote_field, provenance = depth_pro(image_path,recovery['provenance']['device'])
@@ -361,6 +362,15 @@ def build(image_path, version, out, *, outlines=None, order_method=None, through
                     methods['boundary_sequence'].append('single-wall-split')
                     methods['single_wall_depth'] = depth_name
                     boundary_settings.update(single_wall_rule=single_wall_gate.SETTINGS,single_wall_votes=decisions)
+                if boundary==PLANE_RECOVERY:
+                    from engine import planarity_entry, planarity_fusion
+                    evidence, provenance = planarity_entry.infer(image_path,recovery['provenance']['device'])
+                    initial_count = len(patches)
+                    patches, events = planarity_fusion.predict(image,patches,evidence,planarity_entry.PRESET)
+                    methods.update(plane_model='Pixel-wise Planarity',plane_fusion=planarity_entry.PRESET)
+                    methods['boundary_sequence'].append(PLANE_RECOVERY)
+                    boundary_settings.update(planarity=dict(inference=provenance,rule=planarity_fusion.SETTINGS,
+                                             input_surfaces=initial_count,output_surfaces=len(patches),events=events))
         elif boundary=='depth-split':
             from engine.surface_depth_split import SETTINGS as boundary_settings, split
             patches=split(image,patches,fields['depth'],version)
@@ -416,6 +426,8 @@ def build(image_path, version, out, *, outlines=None, order_method=None, through
                                              for name in ('scalelsd', 'mobilesam')})
             if methods.get('single_wall_depth')=='depth-pro':
                 manifest['model_sha256']['depth_pro']=boundary_settings['depth_pro_inference']['checkpoint_sha256']
+            if boundary==PLANE_RECOVERY:
+                manifest['model_sha256']['pixelwise_planarity']=boundary_settings['planarity']['inference']['checkpoint_sha256']
     if mask_first:
         from engine.mask_first import SETTINGS as finder_settings
         manifest['surface_finder'] = dict(name='Surface Finder', method='Regions First',
