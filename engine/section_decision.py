@@ -1,6 +1,7 @@
 """Select atlas-registered section changes with a cell-visibility classifier."""
 from collections import Counter, defaultdict
 from functools import lru_cache
+from hashlib import sha256
 from pathlib import Path
 import json
 
@@ -12,6 +13,7 @@ from engine.visible_horizontal_faces import _keep_prior_visible
 from engine.visible_placement import _frontmost_cells, _sample_face
 
 WEIGHTS=Path(__file__).with_name('section-decision-weights.json')
+MODEL_SHA='e222ede53dfa557ffabd310837dc1341c38ee00c43d4cc99cc84be770eb8793a'
 STEPS=((1,0,0),(-1,0,0),(0,1,0),(0,-1,0),(0,0,1),(0,0,-1))
 
 
@@ -52,12 +54,12 @@ def observations(data):
         sign=1 if eye[primary]>c[primary] else -1
         face=_sample_face(P,c,primary,sign,owner.shape)
         area=face[1].sum() if face is not None else 0
-        years=own[index[c]] if exists else 0
+        previous_rays=own[index[c]] if exists else 0
         peak=sample[:,7].max()
         margin=sample[:,8].mean()
         bands=np.unique(sample[:,:2].astype(int)//28,axis=0)
-        f=[len(ids),len(supporting[c]),len(oppose[c]),len(by_target.get(c,[])),years,area,
-           len(ids)/max(1,years),len(ids)/max(1,area),close,sum(n>=3 for n in neighbor),
+        f=[len(ids),len(supporting[c]),len(oppose[c]),len(by_target.get(c,[])),previous_rays,area,
+           len(ids)/max(1,previous_rays),len(ids)/max(1,area),close,sum(n>=3 for n in neighbor),
            sum(n>=10 for n in neighbor),max(neighbor),len(bands),peak,sample[:,7].mean(),margin,
            sample[:,8].max(),sample[:,9].mean(),sum(sample[:,7]>.85),sum(sample[:,8]>.15),
            axis.max()/len(ids),primary==1,c[1],dist,len(set(partners)),np.median(displacement),
@@ -68,8 +70,10 @@ def observations(data):
 
 
 @lru_cache(maxsize=2)
-def read_model(path, mtime):
-    return json.loads(path.read_bytes())
+def read_model(raw):
+    if sha256(raw.replace(b'\r\n',b'\n')).hexdigest()!=MODEL_SHA:
+        return None
+    return json.loads(raw)
 
 
 def choose(obs,models,add,remove):
@@ -116,13 +120,64 @@ def apply(image,prior,evidence,decisions):
     return prior
 
 
-def recover(image,parts,camera,prior,*,atlas_path=None):
+def deeper_cells(image, prior, candidates, P, eye):
+    """Allow placement only behind the old nearest surface on every native pixel."""
+    if not candidates:
+        return set()
+    native=P.copy()
+    native[:2]*=4
+    points=np.asarray(sorted(prior))
+    shape=image.size[::-1]
+    owner,axes=_frontmost_cells(list(map(tuple,points)),native,eye,shape,face_axes=True)
+    y,x=np.nonzero(owner>=0)
+    inv_depth=np.zeros(shape)
+    rays=np.column_stack((x+.5,y+.5,np.ones(len(y))))@np.linalg.inv(P[:,:3]).T
+    a=axes[y,x]
+    level=points[owner[y,x],a]
+    plane=level+(eye[a]>level+1)
+    inv_depth[y,x]=rays[np.arange(len(y)),a]/(plane-eye[a])
+    accepted=set()
+    for cell in candidates:
+        samples=0
+        for axis in range(3):
+            if cell[axis]<=eye[axis]<=cell[axis]+1:
+                continue
+            face=_sample_face(native,cell,axis,1 if eye[axis]>cell[axis] else -1,shape)
+            if face is None:
+                continue
+            box,mask,depth,_,_=face
+            if np.any(mask & (depth>inv_depth[box]+1e-8)):
+                break
+            samples+=mask.sum()
+        else:
+            if samples:
+                accepted.add(cell)
+    return accepted
+
+
+def recover(image,parts,camera,prior,*,atlas_path=None,mode='joint'):
     if not prior:
         return prior
     try:
-        model=read_model(WEIGHTS,WEIGHTS.stat().st_mtime_ns)
-    except (KeyError,ValueError,OSError):
+        model=read_model(WEIGHTS.read_bytes())
+    except OSError:
+        return prior
+    if model is None:
         return prior
     data=sections(image,parts,camera,prior,atlas_path=atlas_path)
     obs=observations(data)
-    return apply(image,prior,data,choose(obs,model,model['add_threshold'],model['remove_threshold']))
+    if not obs:
+        return prior
+    add,remove=choose(obs,model,model['add_threshold'],model['remove_threshold'])
+    if mode=='joint':
+        return apply(image,prior,data,(add,remove))
+    if mode=='trim':
+        return prior & apply(image,prior,data,(add,remove))
+    if mode!='deeper':
+        raise ValueError(f'Unknown section relocation rule {mode}')
+    # At .90 the deletion head attained >=98% precision in each individually
+    # held-out training family even before a destination was accepted.
+    _,high_confidence=choose(obs,model,1.1,.90)
+    allowed=deeper_cells(image,prior,add,data[2],data[3])
+    result=apply(image,prior,data,(allowed,remove))
+    return result-high_confidence
