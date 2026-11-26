@@ -28,7 +28,8 @@ from engine.planarity_source import SETTINGS as MODEL_SETTINGS
 from runtime.mode import image_only, mark_image_only
 
 
-NAMES = dict(current='513-surface baseline', zoom='Overlapping close views')
+NAMES = dict(current='513-surface baseline', zoom='Overlapping close views',
+             repeat_full='Diagnostic, full frame once more', repeat_full_nine='Diagnostic, full frame reused nine times')
 METHODS = tuple(NAMES)
 
 
@@ -115,17 +116,27 @@ def evaluate(job):
     start = perf_counter()
     zoom, events = predict(photo, parts, registered_tiles(fields))
     elapsed = perf_counter() - start
+    # A full field has no artificial crop edge. The same fusion functions still exclude
+    # genuine image-border labels for additions and allow supported splits at the image rim.
+    with np.load(checked(PLANES/name, hashes['full']), allow_pickle=False) as archive:
+        labels = archive[LABELS]
+        full = (labels, archive[LABELS+'_normals'], archive[LABELS+'_centers'])
+    timing = dict(current=0., zoom=elapsed)
     predictions = dict(current=parts, zoom=zoom)
-    result = save_and_score(capture, row, predictions, dict(current=0., zoom=elapsed), out, 'planarity')
+    for method, repeats in (('repeat_full', 1), ('repeat_full_nine', len(fields['boxes']))):
+        start = perf_counter()
+        predictions[method], _ = predict(photo, parts, ((i, *full) for i in range(repeats)))
+        timing[method] = perf_counter()-start
+    identical = predictions['repeat_full'] == predictions['repeat_full_nine']
+    result = save_and_score(capture, row, predictions, timing, out, 'planarity')
     score_dimensions(capture, row, predictions, result, baseline_method='planarity')
     _, ref = recorded(capture)
     matched = set(result['scopes']['current']['matched'])
     missed = {i for i, part in ref['patches'].items() if part['eligible']} - matched
-    with np.load(checked(PLANES/name, hashes['full']), allow_pickle=False) as source:
-        evidence = raw_scores(source[LABELS], fields, ref, missed)
+    evidence = raw_scores(labels, fields, ref, missed)
     for item in evidence:
         item['recovered'] = item['patch'] in result['scopes']['zoom']['matched']
-    result.update(events=events, raw_baseline_misses=evidence)
+    result.update(events=events, raw_baseline_misses=evidence, repeated_full_predictions_identical=identical)
     return result
 
 
@@ -208,6 +219,9 @@ def run(out, workers, fields=None, device='cuda'):
         capture=base['capture'], methods=NAMES, baseline='plane-recovery',selected=freeze['selected'],
         settings=freeze, stages=dict(outlines='Regions First + Wall Recovery + full-frame and crop Planarity',
                                      counter='masked-repeat',crop_fusion_preset=PRESET),
+        diagnostics=dict(repeat_full='Reuse global regions against 513 masks with exactly the same acceptance function',
+                         repeat_full_nine='Repeat the global evidence in each of the nine crop slots',
+                         repeat_full_identical_frames=sum(r['repeated_full_predictions_identical'] for r in results)),
         model=RELEASE,checkpoint_sha256=RELEASE['checkpoint_sha256'], fields_root=os.path.relpath(fields,out).replace(os.sep,'/'),
         fields_manifest_sha256=digest(fields/'manifest.json'), full_fields_manifest_sha256=digest(PLANES/'manifest.json'),
         upstream_manifest_sha256=digest(BASE/'manifest.json'), unique_frames=52, crop_forwards=468, full_geometry_forwards=52,
@@ -228,3 +242,4 @@ if __name__ == '__main__':
     parser.add_argument('--device',choices=['cpu','cuda'],default='cuda')
     opt = parser.parse_args()
     run(opt.out.resolve(),opt.workers,opt.fields.resolve() if opt.fields else None,opt.device)
+
