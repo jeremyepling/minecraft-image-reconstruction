@@ -1,5 +1,7 @@
 # Ten lowest-scoring structures
 
+Open the [overlay viewer](viewer.html) from a local checkout to switch between the source photograph, surfaces, measured grid, reconstruction, visible reference and placement errors at full resolution. The opacity slider reveals the source pixels under each overlay.
+
 Each of the 104 fixed, whole-structure views contributes its visible-block counts. For each distinct layout, we pooled true positives, extras and misses over all of its views and ranked by relative geometry F1. The 40 layout identities come from full occupancy after accounting for translations, rotations, horizontal reflections and palette changes. All parts of a predicted build receive one common translation during scoring. Each column shows its layout’s lowest-scoring view. [Zoomable stage map](comparison.jpg) · [All ten layouts and individual frame scores](ranking.json) · [Measured stages and source hashes](stage-traces.json)
 
 | Rank | Layout and stage sheet | Views | Layout F1 | Shown view F1 | Correct / visible | Extras |

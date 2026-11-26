@@ -4,6 +4,8 @@ These entries cover model inputs, rules around model outputs, and evaluation cha
 
 ### November 26, 2026
 
+- **Shipped strict atlas verification of roof strips.** Two or more adjacent texture-confirmed blocks at an observed roof or post contact recovered 38 visible positions for one extra on 104 fixed views. Roof cells at the correct offsets from both front posts rose from 293 to 296 of 459. A more permissive texture rule gained 146 positions but introduced 12 placements at hidden source coordinates. The post-contact boundary fit and contested-pixel replacement remain experimental. [Candidate scores and diagnosis](benchmark/reviews/roof-span-01/README.md) · [Ten full stage maps](benchmark/reviews/roof-span-01/worst/README.md)
+
 - **Shipped depth corrections for whole-structure photos.** Checking floor contacts, jointly moving visible surface sections and verifying wall and thin horizontal faces against the atlas raised fixed relative F1 from 88.22% to 90.01%. This recovered 170 net visible positions and removed 703 net extras. All four new photos improved, from 77.61% to 82.41% pooled, with one additional hidden placement. An unrestricted section move blocked four clear sightlines and remains experimental. [Experiments, tradeoffs and remaining errors](benchmark/reviews/framed-depth-01/README.md)
 
 - **Training data.** Visible Builds v2 keeps 144 well-framed views and removes the eight wall close-ups from the regression archive. All 72 training, 12 validation and 12 test images passed. Packaging and verification check the entire building against all image edges. [Release contract and audit](training/DATASET.md#whole-structure-admission)
