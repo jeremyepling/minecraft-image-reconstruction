@@ -55,10 +55,10 @@ def _edge_contrast(colors, labels, radius):
     return window_sum(strength)/np.maximum(1,window_sum(length))
 
 
-def _candidate(rgb, labels):
+def _candidate(rgb, labels, settings=SETTINGS):
     height,width = labels.shape
     padded = np.pad(labels,1,mode='edge')
-    radius = SETTINGS['radius']
+    radius = settings['radius']
     contact = np.zeros(labels.shape, bool)
     for i in ADJACENT:
         dy,dx = RING[i]
@@ -68,7 +68,7 @@ def _candidate(rgb, labels):
     # Only refit a narrow collar. Interior labels and the distant background are fixed seeds.
     mask = np.asarray(Image.fromarray(contact).filter(ImageFilter.MaxFilter(2*radius-1)))
     y,x = np.nonzero(mask)
-    colors = np.asarray(rgb.filter(ImageFilter.GaussianBlur(SETTINGS['blur'])),np.float32)
+    colors = np.asarray(rgb.filter(ImageFilter.GaussianBlur(settings['blur'])),np.float32)
     distances = np.zeros(labels.shape,np.float32)
     distances[mask] = 3*radius
     owner = labels.copy()
@@ -78,14 +78,14 @@ def _candidate(rgb, labels):
         ny = (y+dy).clip(0,height-1)
         nx = (x+dx).clip(0,width-1)
         edge = abs(colors[y,x]-colors[ny,nx]).mean(axis=1)
-        neighbors.append((ny,nx,1.+edge/SETTINGS['color_step']))
+        neighbors.append((ny,nx,1.+edge/settings['color_step']))
     initial = labels[y,x]
-    for _ in range(SETTINGS['iterations']):
+    for _ in range(settings['iterations']):
         costs = distances[y,x].copy()
         winners = owner[y,x].copy()
         for ny,nx,edge in neighbors:
             candidate = owner[ny,nx]
-            cost = distances[ny,nx]+edge+SETTINGS['change_cost']*(candidate!=initial)
+            cost = distances[ny,nx]+edge+settings['change_cost']*(candidate!=initial)
             better = (cost<costs-1.e-5) | ((abs(cost-costs)<1.e-5) & (candidate==initial))
             winners[better] = candidate[better]
             costs[better] = cost[better]
@@ -94,12 +94,12 @@ def _candidate(rgb, labels):
         distances[y,x],owner[y,x] = costs,winners
     old_edge = _edge_contrast(colors,labels,radius+1)
     new_edge = _edge_contrast(colors,owner,radius+1)
-    supported = (new_edge>=SETTINGS['minimum_boundary_contrast']) & (
-        new_edge>=old_edge+SETTINGS['minimum_contrast_gain'])
+    supported = (new_edge>=settings['minimum_boundary_contrast']) & (
+        new_edge>=old_edge+settings['minimum_contrast_gain'])
     return np.where(supported,owner,labels)
 
 
-def _retain_topology(labels, target):
+def _retain_topology(labels, target, settings=SETTINGS):
     out = np.pad(labels,1,mode='edge')
     y,x = np.nonzero(labels!=target)
     goal = target[y,x]
@@ -110,7 +110,7 @@ def _retain_topology(labels, target):
     for iy,ix in ((0,0),(0,1),(1,0),(1,1)):
         group = (y%2==iy)&(x%2==ix)
         groups.append((y[group],x[group],goal[group]))
-    for _ in range(SETTINGS['radius']+1):
+    for _ in range(settings['radius']+1):
         changed = False
         # No two centers in a group occur in one another's 3x3 neighborhood.
         for yy,xx,to in groups:
