@@ -19,6 +19,14 @@ class TextureGuidedCountTests(unittest.TestCase):
         self.assertIs(result, baseline)
         self.assertIs(chart, sample)
 
+    def test_unmasked_legacy_rectangle_does_not_expand_into_unobserved_pixels(self):
+        baseline = dict(method='masked-repeat', counts=[4, None], phase=[None, None])
+        sample = dict()
+        with patch.object(guided, 'chart_options', side_effect=AssertionError('no visible mask')):
+            result, chart = guided.count_surface(None, {}, sample, baseline)
+        self.assertIs(result, baseline)
+        self.assertIs(chart, sample)
+
     def test_saved_crop_and_cell_footprint_follow_selected_chart(self):
         photo = Image.new('RGB', (80, 50))
         plane = dict(id='wall', quad=[[2, 2], [22, 2], [22, 22], [2, 22]])

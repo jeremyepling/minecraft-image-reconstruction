@@ -21,8 +21,10 @@ def chart_options(photo, part, sample, axis):
     if fitted is not None and quality >= SETTINGS['envelope_min_iou']:
         for weight in SETTINGS['envelope_weights']:
             quad = corners + weight*(np.asarray(fitted)-corners)
-            seeds.append((f'envelope-{weight}', quad))
-            yield seeds[-1][0], sample_surface(photo, dict(part, quad=quad))
+            fitted_sample = sample_surface(photo, dict(part, quad=quad))
+            if fitted_sample is not None:
+                seeds.append((f'envelope-{weight}', quad))
+                yield seeds[-1][0], fitted_sample
     for name, seed in (seeds[0], seeds[-1]) if len(seeds)>1 else seeds:
         h = transform(seed)
         for slope in SETTINGS['slope_changes']:
@@ -90,7 +92,7 @@ def count_surface(photo, part, sample, baseline=None, version='26.3'):
     """Return the reading and the corresponding full supported chart for later stages."""
     if baseline is None:
         baseline=count(sample,version=version)
-    if sample is None or None not in baseline['counts']:
+    if sample is None or None not in baseline['counts'] or not part.get('support'):
         return baseline,sample
     axis=int(sample['mask'].shape[0]>sample['mask'].shape[1])
     inverse=np.linalg.inv(transform(sample['quad']))
