@@ -55,7 +55,7 @@ def _frontmost_cells(cells, projection, eye, shape, *, face_axes=False):
     return (owner, axes) if face_axes else owner
 
 
-def _estimate_plane_cells(image, parts, masks, projection, eye, select_level=None, *, partial=None, axes=None, walls_first=False):
+def _estimate_plane_cells(image, parts, masks, projection, eye, select_level=None, *, partial=None, axes=None, walls_first=False, reconcile=None):
     """Fit provisional grid planes using floor contacts and relative surface depths."""
     focal = np.linalg.norm(projection[0, :3] - image.width / 2 * projection[2, :3])
     rotation = np.linalg.solve(intrinsic(image.size, focal), projection[:, :3])
@@ -77,6 +77,7 @@ def _estimate_plane_cells(image, parts, masks, projection, eye, select_level=Non
         # Horizontal heights can use the independently observed wall levels.
         indices = sorted(indices, key=lambda i: parts[i].get('normal_camera') is not None
                          and np.argmax(abs(rotation.T @ parts[i]['normal_camera'])) == 1)
+    selections = []
     for index in indices:
         part, mask, cells = parts[index], masks[index], candidates[index]
         if not mask.any() or part.get('normal_camera') is None:
@@ -94,6 +95,11 @@ def _estimate_plane_cells(image, parts, masks, projection, eye, select_level=Non
             level = int(np.rint(eye[axis] + np.median(rays[mask, axis]) * depth))
         if select_level is not None:
             level = select_level(part, mask, projection, eye, rays, axis, level, distance)
+        selections.append((index, axis, level))
+    if reconcile is not None:
+        selections = reconcile(selections)
+    for index, axis, level in selections:
+        mask, cells = masks[index], candidates[index]
         depth = np.divide(level - eye[axis], rays[:, :, axis], out=np.zeros(shape), where=abs(rays[:, :, axis]) > 1e-7)
         inside = mask & (depth > 1.5) & (depth < 150)
         if inside.sum() < MINIMUM_SAMPLES:
@@ -140,7 +146,7 @@ def place(image, version, parts, *, counts=None, atlas_path=None):
 
 
 def place_with_camera(image, version, parts, counts, camera, select_level=None, *,
-                      partial=None, refine_candidates=None, remove_occluded=False, walls_first=False, recover_edges=None):
+                      partial=None, refine_candidates=None, remove_occluded=False, walls_first=False, recover_edges=None, reconcile=None):
     status = dict(camera_status=camera['scale_status'], reason=camera['reason'], P=camera['P'],
                   strict_blocks=0, added_blocks=0, placed_blocks=0, duplicate_side_cells=0,
                   textured_side_cells=0, grounded_side_cells=0, shared_side_cells=0)
@@ -160,7 +166,7 @@ def place_with_camera(image, version, parts, counts, camera, select_level=None, 
     eye = np.linalg.solve(projection[:, :3], -projection[:, 3])
     axes = [-1] * len(parts) if partial is not None else None
     candidates = _estimate_plane_cells(image, parts, masks, projection, eye, select_level,
-                                       partial=partial, axes=axes, walls_first=walls_first)
+                                       partial=partial, axes=axes, walls_first=walls_first, reconcile=reconcile)
     if refine_candidates is not None:
         status['secondary_depths'] = refine_candidates(parts, masks, projection, eye, candidates)
     cells = sorted(strict.union(*candidates))
