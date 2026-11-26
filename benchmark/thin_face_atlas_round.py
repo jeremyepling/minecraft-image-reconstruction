@@ -11,6 +11,7 @@ from benchmark.camera_metrics import registration
 from benchmark.mask_blocks import _write_read, decoded_pack, registered
 from benchmark.relative_geometry import placement_scores
 from benchmark.visible_depth_transfer import structure
+from benchmark.visible_depth_transfer import rgb_path as transfer_rgb
 from engine.camera_atlas_floor import _atlas
 from engine import thin_atlas_faces as strips
 from engine.thin_atlas_faces import StripEvidence, choose, recover
@@ -38,17 +39,17 @@ def choose_trial(rows,method,context=None):
     return choose(rows,method,context)
 
 
-def fixture(split):
+def fixture(split,extra=EXTRA):
     if split=='old': return STABLE/'runs/visible-depth-rounds/transfer'
     if split=='fresh': return STABLE/'runs/canopy-placement/confirmation'
-    if split=='extra': return EXTRA
+    if split=='extra': return extra
     return None
 
 
-def job_list(split,out,modes,count,folds):
-    base = EXTRA/'candidate' if split=='extra' else PREVIOUS/split
+def job_list(split,out,modes,count,folds,previous,extra):
+    base = extra/'candidate' if split=='extra' else previous/split
     baseline = {r['id']:r for r in read(base/'cases.json')}
-    source = fixture(split)
+    source = fixture(split,extra)
     samples = read(source/'screen.json')['selected'] if source else (native.rows() if split=='native' else frames(DATA,split))
     return [(split,f,source,base,baseline[f['id']],out,modes,folds) for f in samples[:count]]
 
@@ -69,9 +70,8 @@ def evaluate(job):
         src = read(checked(STABLE/'runs/visible-depth-rounds/inputs'/(key+'.json'),ref['input_sha256']))
         parts,camera = src['parts'],src['camera']
     if fixture_path or split=='native':
-        stem = f.get('source_id',key)
-        folder = native.BUILDS/f['directory']/'captures'
-        rgb,pose,world = [folder/(stem+s) for s in ('.png','.json','-blocks.json')]
+        rgb = transfer_rgb(f) if fixture_path else native.rgb_path(f)
+        pose,world = rgb.with_suffix('.json'),rgb.with_name(rgb.stem+'-blocks.json')
     else:
         folder = DATA/'data'/split/f['directory']
         rgb,pose,world = [folder/s for s in ('rgb.png','camera.json','world-readback.json')]
@@ -86,6 +86,10 @@ def evaluate(job):
         pool = {c:r for c in ctx.candidates() if (r:=ctx.measure(c)) is not None}
     results = {}
     for mode in modes:
+        if mode=='live':
+            prediction=strips.recover_two_passes(image,parts,camera,prior,atlas)
+            results[mode]=_write_read(dest/'live.zip',prediction)
+            continue
         decision,sep,repeat=mode.partition('x')
         selected = choose_trial(pool,decision)
         if selected:
@@ -136,10 +140,17 @@ def main():
     p.add_argument('--modes',nargs='+',default=['strong','moderate','union'])
     p.add_argument('--workers',type=int,default=4)
     p.add_argument('--limit',type=int)
+    p.add_argument('--ids',nargs='+',help='Select particular screenshot IDs within the specified cohorts')
     p.add_argument('--out',type=Path,required=True)
     p.add_argument('--folds',type=Path)
+    p.add_argument('--baseline',type=Path,default=PREVIOUS,help='Restored train and six-cohort baseline packs')
+    p.add_argument('--extra',type=Path,default=EXTRA,help='Alternate views with screen, upstream and candidate packs')
     args=p.parse_args()
-    jobs=[j for s in args.sets for j in job_list(s,args.out,args.modes,args.limit,args.folds)]
+    jobs=[j for s in args.sets for j in job_list(s,args.out,args.modes,args.limit,args.folds,args.baseline,args.extra)]
+    if args.ids:
+        jobs=[job for job in jobs if job[1]['id'] in args.ids]
+        if {j[1]['id'] for j in jobs}!=set(args.ids):
+            raise ValueError('Unknown screenshot ID in requested cohorts')
     with ProcessPoolExecutor(max_workers=args.workers) as pool:
         rows=list(pool.map(evaluate,jobs))
     for mode in args.modes:
