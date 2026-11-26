@@ -1,0 +1,9 @@
+# Testing a second pass over visible horizontal faces
+
+On `cebbffa`, the first two-pixel pass can supply a measured neighbor for another top or underside. The second pass asks for the same pixel evidence and rerenders competing candidates. Each new block must retain visible evidence, and earlier placements keep their native-pixel witnesses.
+
+We compared three variants on 72 training screenshots. One additional horizontal pass recovered 102 visible positions for 35 extras. Up to four additional horizontal passes recovered 106 for 44 extras. Two additional rounds of both photographic texture and horizontal checks recovered 107 for 39 extras. We froze one additional horizontal pass at `275a94a` for its similar F1, smaller extra count, and lower work. Arcade and watchpost accounted for 94 of its 102 correct additions. The arch bridge accounted for 16 extras and no correct additions. [Training scores](training.json)
+
+On the fixed 112, the single extra pass gained 109 correct positions and 34 extras. No previously matched or hidden coordinate changed status. Relative F1 rose from 85.71% to **85.92%**. Twenty alternate views gained 38 correct positions and 23 extras, moving from 81.94% to **82.27%**. The fixed canopy probes kept all ten opening widths correct, all 137 clear rays open and gained 11 roof positions anchored to both front posts (194 to 205 of 459). Alternate-view anchored roofs increased from 131 to 138 of 398, with the same opening measurements. [Paired scores](summary.json) · [Frozen outputs](packs.zip)
+
+Use the `benchmark.repeat_visible_faces:horizontal_once` adapter at `275a94a` to replay against the earlier default. On this branch after integration, use `benchmark.visible_depth_score:integrated` for the single extra pass. The two-pixel pass runs again only if it added a cell the first time. The final promotion decision also checks the two requested challengers jointly.
