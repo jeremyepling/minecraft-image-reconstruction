@@ -11,6 +11,9 @@ from benchmark.texture_camera_eval import ROOT,read,save
 from benchmark.visible_depth_transfer import rgb_path,OUT
 from engine.camera_atlas_floor import _atlas
 from engine.grazing_faces import proposals
+from engine.visible_edge_faces import native_support
+from engine.visible_placement import _frontmost_cells
+from engine.visible_raster import SAMPLE_STRIDE
 from training.visible_labels import visible_labels
 
 
@@ -25,7 +28,7 @@ def one(f):
     pose=read(png.with_suffix('.json'))
     raw=read(png.with_name(f['source_id']+'-blocks.json'))
     states={tuple(b[k] for k in 'xyz'):b for b in raw}
-    labels,_,_=visible_labels(pose,states,(0,0,0))
+    labels,face_ids,_=visible_labels(pose,states,(0,0,0))
     top=max(b['xyz_world'][1] for b in labels['blocks'])
     targets={tuple(b['xyz_world']) for b in labels['blocks']}
     faces={tuple(b['xyz_world']):b for b in labels['faces'] if b['xyz_world'][1]==top and b['direction']=='up'}
@@ -34,8 +37,15 @@ def one(f):
         return tuple(np.floor(T[:3,:3]@(np.array(p)+.5)+T[:3,3]).astype(int).tolist())
     correct={world(p) for p in cells}
     missing=faces.keys()-correct
+    all_masks=np.logical_or.reduce([native_support(p['support'],image.size) for p in parts if p.get('support')])
+    native=P.copy();native[:2]*=SAMPLE_STRIDE
+    owner=_frontmost_cells(sorted(cells),native,np.linalg.solve(P[:,:3],-P[:,3]),face_ids.shape)
+    in_mask=np.bincount(face_ids[all_masks],minlength=len(labels['faces'])+1)
+    free=np.bincount(face_ids[all_masks&(owner<0)],minlength=len(labels['faces'])+1)
     metrics=dict(visible=len(faces),already_correct=len(set(faces)&correct),missing=len(missing),
-                 missing_face_pixels=[faces[p]['visible_pixels'] for p in missing])
+                 missing_face_pixels=[faces[p]['visible_pixels'] for p in missing],
+                 mask_witnesses_14=sum(int(in_mask[faces[p]['id']]>=14) for p in missing),
+                 unclaimed_witnesses_14=sum(int(free[faces[p]['id']]>=14) for p in missing))
     for method,rows in zip(('mask','union'),opts):
         candidates={world(p):r for p,r in rows.items()}
         metrics[method]=dict(candidate_count=len(rows),missing_top_proposed=len(candidates.keys()&missing),

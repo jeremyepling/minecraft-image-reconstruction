@@ -5,10 +5,10 @@ from engine.grazing_faces import verified
 from engine.visible_ray_filter import fully_occluded_cells
 
 
-def run(image,version,parts,counts,camera,union):
+def run(image,version,parts,counts,camera,union,oriented=False):
     cells,status=with_edges(image,version,parts,counts,camera)
     if offsets:=status.get('plane_offsets'):
-        new=verified(image,parts,camera['P'],cells,offsets,_atlas(version),union=union)
+        new=verified(image,parts,camera['P'],cells,offsets,_atlas(version),union=union,oriented=oriented)
         if new:
             cells=cells|new
             cells-=fully_occluded_cells(image.size,camera['P'],cells)
@@ -21,3 +21,7 @@ def horizontal(image,version,parts,counts,camera):
 
 def union(image,version,parts,counts,camera):
     return run(image,version,parts,counts,camera,True)
+
+
+def oriented(image,version,parts,counts,camera):
+    return run(image,version,parts,counts,camera,True,True)

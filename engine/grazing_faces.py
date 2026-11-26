@@ -39,7 +39,7 @@ def match(colors, uv, atlas):
     return best
 
 
-def proposals(image, parts, P, cells, offsets, atlas, *, union=False):
+def proposals(image, parts, P, cells, offsets, atlas, *, union=False, oriented=False):
     if atlas is None or not offsets or not cells:return {}
     P=np.asarray(P,float)
     eye=np.linalg.solve(P[:,:3],-P[:,3])
@@ -71,7 +71,8 @@ def proposals(image, parts, P, cells, offsets, atlas, *, union=False):
         good=(depth>2)&(depth<65)&(abs(rays[:,1])<.14)
         if good.sum()<14:continue
         y,x=y[good],x[good]
-        uv=eye[[0,2]]+rays[good][:,[0,2]]*depth[good,None]
+        rays,depth=rays[good],depth[good]
+        uv=eye[[0,2]]+rays[:,[0,2]]*depth[:,None]
         xy,inv,counts=np.unique(np.floor(uv).astype(int),axis=0,return_inverse=True,return_counts=True)
         order=np.argsort(inv.ravel(),kind='stable');ends=counts.cumsum()
         height=level-int(eye[1]>level)
@@ -82,15 +83,34 @@ def proposals(image, parts, P, cells, offsets, atlas, *, union=False):
             a,c=xy[i];cell=(int(a),int(height),int(c))
             if cell in cells or abs(anchors-xy[i]).sum(1).min()>8:continue
             group=order[ends[i]-counts[i]:ends[i]]
-            score,phase,tile=match(rgb[y[group],x[group]],uv[group],atlas)
+            colors=rgb[y[group],x[group]]
+            score,phase,tile=match(colors,uv[group],atlas)
+            if oriented and score>.74 and phase>.16:
+                # Project these same source pixels onto intersecting wall masks
+                # and the two visible vertical faces of this proposed cube.
+                rivals={(k,cell[k]+int(eye[k]>cell[k])) for k in (0,2)}
+                for row in offsets:
+                    if row['axis']!=1 and row['id'] in mask_by_id:
+                        in_wall=mask_by_id[row['id']][y[group],x[group]]
+                        if in_wall.mean()>=.20:rivals.add((row['axis'],row['level']))
+                for k,rival in rivals:
+                    den=rays[group,k]
+                    dep=np.divide(rival-eye[k],den,out=np.zeros(len(den)),where=abs(den)>1e-8)
+                    if dep.min()<=1.5:continue
+                    free=[j for j in range(3) if j!=k]
+                    wall_uv=eye[free]+rays[group][:,free]*dep[:,None]
+                    similarity,_,_=match(colors,wall_uv,atlas)
+                    if similarity>score-.18:
+                        score=0.
+                        break
             out[cell]=dict(score=score,phase=phase,tile=tile,n=len(group),level=level,
                            source_pixels=y[group]*rgb.shape[1]+x[group],
                            mask_pixels=sum(int(m[y[group],x[group]].sum()) for m in masks))
     return out
 
 
-def verified(image,parts,P,cells,offsets,atlas,*,union=False):
-    rows=proposals(image,parts,P,cells,offsets,atlas,union=union)
+def verified(image,parts,P,cells,offsets,atlas,*,union=False,oriented=False):
+    rows=proposals(image,parts,P,cells,offsets,atlas,union=union,oriented=oriented)
     strong={p:r for p,r in rows.items() if r['score']>.74 and r['phase']>.16}
     if not strong:return set()
     # Require a second independently read cell of the same texture close to the candidate.
