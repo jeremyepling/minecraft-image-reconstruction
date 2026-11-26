@@ -1,0 +1,742 @@
+{
+  "mean": [
+    1.706910799704887,
+    1.1535002442998596,
+    0.1632747833688409,
+    0.1529310079488571,
+    0.22233906370399986,
+    1.9247473308244547,
+    1.3205751559422572,
+    0.4728095133961253,
+    0.44519698165212507,
+    0.3053759395010414,
+    1.932243589547536,
+    1.2589991917068104,
+    0.7699160563266672,
+    0.7315363390780971,
+    0.2955218163697295
+  ],
+  "scale": [
+    0.7767104762859842,
+    0.8550712964964664,
+    0.32636397681323254,
+    0.2933192555028575,
+    0.2685189961964667,
+    0.7656423769002957,
+    0.8656547765241986,
+    0.5896099674180206,
+    0.5390560856500408,
+    0.2969382512388835,
+    0.7055656850131793,
+    0.790911535426083,
+    0.7219385606116501,
+    0.6683340508082839,
+    0.2767220171078031
+  ],
+  "coef": [
+    -0.2660487048585501,
+    0.3958426104697018,
+    0.2537782916856389,
+    0.19997275846215395,
+    0.18182911070213711,
+    -0.06023343667678934,
+    0.12794688265152807,
+    0.334306608200346,
+    0.2031654113534655,
+    0.29369061874900904,
+    -0.5807369449091664,
+    -0.08464062373709262,
+    -0.10325050042736669,
+    0.08851222177588691,
+    0.09939298393703279
+  ],
+  "intercept": -1.4623432806025947,
+  "phase_threshold": 0.28,
+  "pitch_threshold": 0.32,
+  "features": [
+    "color_step_1px",
+    "coherent_step_1px",
+    "dark_joint_1px",
+    "bright_joint_1px",
+    "strong_step_fraction_1px",
+    "color_step_2px",
+    "coherent_step_2px",
+    "dark_joint_2px",
+    "bright_joint_2px",
+    "strong_step_fraction_2px",
+    "color_step_4px",
+    "coherent_step_4px",
+    "dark_joint_4px",
+    "bright_joint_4px",
+    "strong_step_fraction_4px"
+  ],
+  "version": "26.3",
+  "source_index_sha256": "a45ba730e3af6448ccd402dd71e6d74aafab58b57efff42edec9f2747e8dc95c",
+  "examples": 75893,
+  "positive_columns": 16405,
+  "calibration_family": "watchpost",
+  "calibration": {
+    "known_pitch": {
+      "axes": 182,
+      "accepted": 18,
+      "correct": 18,
+      "utility": 18
+    },
+    "new_pitch": {
+      "axes": 195,
+      "accepted": 17,
+      "correct": 17,
+      "utility": 17
+    }
+  },
+  "frames": [
+    {
+      "id": "train-arcade1-cool-high-right",
+      "family": "arcade",
+      "files": {
+        "rgb.png": "695a2884d3f7aa5906696f990116c4e9bf404c89db469164c12c5513db04e1fb",
+        "labels.json": "5986412590242a7ba836309361db8b5412cbda141477dc04cd9c1991a6a19e34",
+        "labels.npz": "2e9c0932a475e445d00be26318940db74957c175db4b95a10eb8bdcf419e0ce6"
+      }
+    },
+    {
+      "id": "train-arcade1-cool-low-left",
+      "family": "arcade",
+      "files": {
+        "rgb.png": "99928ba85af18c88584e5cec359ab650af450324e14717565fe5c5ce55c6516a",
+        "labels.json": "fe96955d96ac205cfff1129fc36a067210b770bdd53d07cc39cb180447f9fcfb",
+        "labels.npz": "e60f53fe1267214711ef403b9f2b43991d3b09ca5152c901f9c16d595eb0b2f2"
+      }
+    },
+    {
+      "id": "train-arcade1-earth-high-right",
+      "family": "arcade",
+      "files": {
+        "rgb.png": "67788915ded1869e4990c1b2d896190fa5cb73b0341ee7b20b6dc5ea666cadcd",
+        "labels.json": "492c2bb49523796dea0f63a494acb656c479c17996d8737b094a84c28f51a83c",
+        "labels.npz": "2e9c0932a475e445d00be26318940db74957c175db4b95a10eb8bdcf419e0ce6"
+      }
+    },
+    {
+      "id": "train-arcade1-earth-low-left",
+      "family": "arcade",
+      "files": {
+        "rgb.png": "3ed10af05c21a2dedc45031c54f431d381359f332a7554cfd30c6abe3cd25c21",
+        "labels.json": "1b55fea169908b993bf626ac731dc23fd438fa26dfddf3d291d2b5dee7dff4e0",
+        "labels.npz": "e60f53fe1267214711ef403b9f2b43991d3b09ca5152c901f9c16d595eb0b2f2"
+      }
+    },
+    {
+      "id": "train-arcade2-cool-high-right",
+      "family": "arcade",
+      "files": {
+        "rgb.png": "d8c2b13641240387350e57a4a9cf5f4964e1cc9f941a07b2c3cc09127a3a625c",
+        "labels.json": "00270028d23c2d285fcfd6df8185c88f6b2d9834b873a5c13481873287d53beb",
+        "labels.npz": "9ffe8737b85b3726f22655b7cb05961f25cb8b8b6b1319396ac903f17a40ca80"
+      }
+    },
+    {
+      "id": "train-arcade2-cool-low-left",
+      "family": "arcade",
+      "files": {
+        "rgb.png": "c05ef560bdc2b99147d47759dab0989a28c4f6ecdbed03a915ae6fd6cbbf1fd9",
+        "labels.json": "0ae3ede38492cb6cf3257d0d171e529fae903bbb33f7d9ce05aeeda69a03489c",
+        "labels.npz": "0aa8509f29432bb75ad497f5c736e70e21a75e72305702f9eb15702403242423"
+      }
+    },
+    {
+      "id": "train-arcade2-earth-high-right",
+      "family": "arcade",
+      "files": {
+        "rgb.png": "357061782fe5632e573ba478be0bf20dea387d9f010b25c1d62453af1bb6de06",
+        "labels.json": "982e1a7870f128d8dd112866acfe6897f8406954a1754e21b691758767be9b61",
+        "labels.npz": "9ffe8737b85b3726f22655b7cb05961f25cb8b8b6b1319396ac903f17a40ca80"
+      }
+    },
+    {
+      "id": "train-arcade2-earth-low-left",
+      "family": "arcade",
+      "files": {
+        "rgb.png": "29a9dbbea0aa2ae81db846ec8db57d6f30886a91ef86fed88478b8e7280d6a4a",
+        "labels.json": "13973d9896c625d3de299e9c9225137f5e9312a0d35abb5ac3295e9010f02746",
+        "labels.npz": "0aa8509f29432bb75ad497f5c736e70e21a75e72305702f9eb15702403242423"
+      }
+    },
+    {
+      "id": "train-arcade3-cool-high-right",
+      "family": "arcade",
+      "files": {
+        "rgb.png": "fee596eb65ce299528e2c713f15ef89c924cb7311552c5141f19b11563ba6c34",
+        "labels.json": "2a6d5128f0e58f763a3172b0d0340587d5f440225e61bade7769a82aff9f687f",
+        "labels.npz": "1afa9cd18913e590696be172893a4ce37e3c1a2b9f4a71a153daf470ffb2431a"
+      }
+    },
+    {
+      "id": "train-arcade3-cool-low-left",
+      "family": "arcade",
+      "files": {
+        "rgb.png": "50cb93df831107e825d0f83f557000cbe57e10200c7f871de7668326d1033b20",
+        "labels.json": "e4c61655d33d5a1d57878e8e156eedd4356353376588958264788140ac01b359",
+        "labels.npz": "be6c38a6ba58c3f9aaa15166d2f5d6e2db5a061b74b085aa9c28ea1d70fdfc5d"
+      }
+    },
+    {
+      "id": "train-arcade3-earth-high-right",
+      "family": "arcade",
+      "files": {
+        "rgb.png": "c4eb13b13621f32cd2c61d68ded8e3bdd7cb1ca1a069a0cc7ba485004f27722e",
+        "labels.json": "85a41e0b73e8eb84b9dc8415ac1ef661558392007d6734920bd4493a514b8aaa",
+        "labels.npz": "1afa9cd18913e590696be172893a4ce37e3c1a2b9f4a71a153daf470ffb2431a"
+      }
+    },
+    {
+      "id": "train-arcade3-earth-low-left",
+      "family": "arcade",
+      "files": {
+        "rgb.png": "5de17151fc50374ae0de50883297716e3e82e5f4a9970736baa31b2e8446dad1",
+        "labels.json": "6e6125b8cacae8de2af585e25701fac00e4804522e8353711f4da5183bde3a6d",
+        "labels.npz": "be6c38a6ba58c3f9aaa15166d2f5d6e2db5a061b74b085aa9c28ea1d70fdfc5d"
+      }
+    },
+    {
+      "id": "train-arcbridge1-cool-high-right",
+      "family": "arcbridge",
+      "files": {
+        "rgb.png": "b0b76b7b74db9ae671e8f75852b6fdefed1d143bb627e0e3da1fe3c70e73518c",
+        "labels.json": "ed84c23b814266a76bb66e64aa675db60e185b252e7beed86b16627e51f9a744",
+        "labels.npz": "0318e1bc803e3d66ce305a664702e64def61396a37fbc20b6fbae8c7931ead44"
+      }
+    },
+    {
+      "id": "train-arcbridge1-cool-low-left",
+      "family": "arcbridge",
+      "files": {
+        "rgb.png": "ba71a90d9ae26d95e1eea9451646282e35534ba3f3d9b8b4a6d90e3c2c2fa4b4",
+        "labels.json": "b8875aa0f796c3cce08b0c4106501704167955c62d4e3f321a1e23645b4b2a93",
+        "labels.npz": "179539154e09269428e70285fd0762efc5bfbaec556ce63a042541f6d9cce767"
+      }
+    },
+    {
+      "id": "train-arcbridge1-earth-high-right",
+      "family": "arcbridge",
+      "files": {
+        "rgb.png": "7efa82d7dc8177c85aeea03ab630f8baaec20dd9f73fe24dd4cbe71edf28eb97",
+        "labels.json": "1b2a0f1bb5a3fc62df354749cb837ae7fbddc6f672e3bd6242eed64afb280413",
+        "labels.npz": "0318e1bc803e3d66ce305a664702e64def61396a37fbc20b6fbae8c7931ead44"
+      }
+    },
+    {
+      "id": "train-arcbridge1-earth-low-left",
+      "family": "arcbridge",
+      "files": {
+        "rgb.png": "7aab096a7db6ed1685264c3c89876dc64186b36525ab502198c1e85df074cf22",
+        "labels.json": "6941d8179694d4755af966be57f7412bdc67043d719cccf969f049aa20aa9b4d",
+        "labels.npz": "179539154e09269428e70285fd0762efc5bfbaec556ce63a042541f6d9cce767"
+      }
+    },
+    {
+      "id": "train-arcbridge2-cool-high-right",
+      "family": "arcbridge",
+      "files": {
+        "rgb.png": "af07bd71f5c5bb74e6dcebdadad3565d6a3c562de0b82ca256202aeb17fe4b54",
+        "labels.json": "6f0e7f6e6443743b8483e4510f079cb5b1701bb12cd28b90036f56682d2cdc8d",
+        "labels.npz": "02b76448e051e378d539f830c2c9b2fe79c39e9b8e47bfa2acc977f2b81b2fde"
+      }
+    },
+    {
+      "id": "train-arcbridge2-cool-low-left",
+      "family": "arcbridge",
+      "files": {
+        "rgb.png": "ac8924fd8559cda976de2df2b25de16d7fd2244f160075cfd95513fc84e84506",
+        "labels.json": "1f560b0b0487058338bc2a8fb74db4bc3c276579caf99772371b99b18f9b30a3",
+        "labels.npz": "b9e493da329e8a5e9aa0eef0e2adea25a0f35d09d4388f16521e9d5a224acd82"
+      }
+    },
+    {
+      "id": "train-arcbridge2-earth-high-right",
+      "family": "arcbridge",
+      "files": {
+        "rgb.png": "fb2fd46a7488f6cea1a0a9b4828b9fa815beec4b7fe191b4f5d048a1f9013b39",
+        "labels.json": "c228e82ffca86ad8a47343f1ee1ad96a7c6ccab25db6b2061ee1d3c15726b6e8",
+        "labels.npz": "02b76448e051e378d539f830c2c9b2fe79c39e9b8e47bfa2acc977f2b81b2fde"
+      }
+    },
+    {
+      "id": "train-arcbridge2-earth-low-left",
+      "family": "arcbridge",
+      "files": {
+        "rgb.png": "450bc589aba5351eb29cf8434a91404ed5f3ade68aae8cb4721575205cb30aa7",
+        "labels.json": "2eb1ec0ca77f819a53784bfe902f0f0d203cf61c5d33e8ba197a04f7c0f44c67",
+        "labels.npz": "e8740589bceea4fc6bdbbb5851ae7f9c71f6eaad5921960083e9c987f1e43d07"
+      }
+    },
+    {
+      "id": "train-arcbridge3-cool-high-right",
+      "family": "arcbridge",
+      "files": {
+        "rgb.png": "1b04f97106ab27eb085a106dcb4defc22ec28fcbf5346db5df889216da94cd80",
+        "labels.json": "21040e165ef92c2d4f7189c4050d81a698033acfbeb8e5075633554e0f4024e0",
+        "labels.npz": "7c0f985605ba047bb4aad3e833de5dbcaefa61e6d46b585f167d216bcf85b301"
+      }
+    },
+    {
+      "id": "train-arcbridge3-cool-low-left",
+      "family": "arcbridge",
+      "files": {
+        "rgb.png": "c33dcadc2198d13317c6f4441dca8150a5f912cd4434b706030737d9e83e6bd0",
+        "labels.json": "00e3ba18f4a10631813cc19009fdd51687a06364f36b93a6ec752dc8522c92d9",
+        "labels.npz": "dca9b56e5da8e18e5b38b5e9126c691d7af08f1f06acf3bba4094db1f781488a"
+      }
+    },
+    {
+      "id": "train-arcbridge3-earth-high-right",
+      "family": "arcbridge",
+      "files": {
+        "rgb.png": "27d1936d7ab1f385912dde0f0018bb80dfa0f46d8753c6fffd6cb9dd7e5b9a4c",
+        "labels.json": "559edfe383a47823abb32b361a32da70c437f28da3d427ad852eabde6f1b5ff5",
+        "labels.npz": "7c0f985605ba047bb4aad3e833de5dbcaefa61e6d46b585f167d216bcf85b301"
+      }
+    },
+    {
+      "id": "train-arcbridge3-earth-low-left",
+      "family": "arcbridge",
+      "files": {
+        "rgb.png": "3f0d9e9dc4b2d83e913b4215acaf84e67516457b6329126de04204b36a14662e",
+        "labels.json": "df95db3ce3192b56733162fb64332cdf070235f721a2f1156e6fa3f1fb480908",
+        "labels.npz": "dca9b56e5da8e18e5b38b5e9126c691d7af08f1f06acf3bba4094db1f781488a"
+      }
+    },
+    {
+      "id": "train-sawtooth1-cool-high-right",
+      "family": "sawtooth",
+      "files": {
+        "rgb.png": "9dfa0c81c676423d95c9a2c08fcf40cd8700d844857e4241a7ce428b39375aae",
+        "labels.json": "e4290888466f6085e28a127ce2594de94b0df94a07dfbe66bbc576ab61b1c77a",
+        "labels.npz": "0e7e333f13605ecab4ca0ebcec579e529b6063a06411019d25b54712fbc97995"
+      }
+    },
+    {
+      "id": "train-sawtooth1-cool-low-left",
+      "family": "sawtooth",
+      "files": {
+        "rgb.png": "71fbbc04498feddb0a3f5e283f0df2d0ef6f0cbd627db876dc0a50a57854d822",
+        "labels.json": "66c185c728259bf44d449508aa5fec87fd769af286b4673731c5e3c963df201e",
+        "labels.npz": "80906f18bddd909d42cec3c684ee53ae0e7b61e7e9a1b41e0a93a9bb41cda5c5"
+      }
+    },
+    {
+      "id": "train-sawtooth1-earth-high-right",
+      "family": "sawtooth",
+      "files": {
+        "rgb.png": "bc2fefa295601169bb67bac0433592299fa56da1f300ef97f331fd9edd7b8fce",
+        "labels.json": "c9263fe955f40effe1a36f08fd1b74c0407ec107bbfaed231acee8e51fa91ff0",
+        "labels.npz": "0e7e333f13605ecab4ca0ebcec579e529b6063a06411019d25b54712fbc97995"
+      }
+    },
+    {
+      "id": "train-sawtooth1-earth-low-left",
+      "family": "sawtooth",
+      "files": {
+        "rgb.png": "db9bbf9ed4487be570cb9dd0414218d01956f173d53692b496218abce4fd26fd",
+        "labels.json": "9ec8407e1e94e74f343d3bb49423dd4278122a8e0fb41fff912d038d25d4abf6",
+        "labels.npz": "80906f18bddd909d42cec3c684ee53ae0e7b61e7e9a1b41e0a93a9bb41cda5c5"
+      }
+    },
+    {
+      "id": "train-sawtooth2-cool-high-right",
+      "family": "sawtooth",
+      "files": {
+        "rgb.png": "579cc8cb5f252da44de3ad183cdfda54c4395ed4a489aa02d81243c82b20c7f9",
+        "labels.json": "1ba081845aeb6a67ca3639111ec39c7e0761cebb57882d1d6d174082186a7b89",
+        "labels.npz": "499f32147487e5d6eada9e1384f8d5fb2e242162faaac45ebbded0a24e922de6"
+      }
+    },
+    {
+      "id": "train-sawtooth2-cool-low-left",
+      "family": "sawtooth",
+      "files": {
+        "rgb.png": "990cb9963fd5e3c73d098c5184caedcc7777969b786c923056b88276c1f312a2",
+        "labels.json": "64004066fcde64e5d2602f2fac48eb7b096a574686b25f8a85737c338fa9ba21",
+        "labels.npz": "700a9ea7f023acecfde5f2228c7bfbdaf1e516ac9150cb61c3f0762debf63e10"
+      }
+    },
+    {
+      "id": "train-sawtooth2-earth-high-right",
+      "family": "sawtooth",
+      "files": {
+        "rgb.png": "f1a2631340ba998938ec4581fd4c42c20c925b3d32d495e3027edb36d2b74bf9",
+        "labels.json": "a49d28929c70d6763efc237b22e385018831d8f3992ed7e160fad64e92e38780",
+        "labels.npz": "499f32147487e5d6eada9e1384f8d5fb2e242162faaac45ebbded0a24e922de6"
+      }
+    },
+    {
+      "id": "train-sawtooth2-earth-low-left",
+      "family": "sawtooth",
+      "files": {
+        "rgb.png": "4a1daa63f46a034ffae5c2b66b21bd6cecd7b24a83a57867e4d6d9c8275c1848",
+        "labels.json": "04b20123b7a386249e1afea39f1ea9fe192bd80832eb8b289308d6ab86614a6a",
+        "labels.npz": "700a9ea7f023acecfde5f2228c7bfbdaf1e516ac9150cb61c3f0762debf63e10"
+      }
+    },
+    {
+      "id": "train-sawtooth3-cool-high-right",
+      "family": "sawtooth",
+      "files": {
+        "rgb.png": "42ed6d398b46e36ed30c3b91bf718f42e206874f11eea8b7b763a00629933afb",
+        "labels.json": "e7aef3f958d5ad3fcdf6920dfae026075afe072a54e69c50a6e7fdd12c7654b3",
+        "labels.npz": "55ce38e78a7e3f141c0c65f964792d929bcea482758c66f957d9dc36ddf14e9c"
+      }
+    },
+    {
+      "id": "train-sawtooth3-cool-low-left",
+      "family": "sawtooth",
+      "files": {
+        "rgb.png": "3b9b0627e93c26d55acaccea080e2352ae29b8f2a64e8862d9279fe4d96c251a",
+        "labels.json": "af79cda526dbf2180e434ba319ce9ee5b5e53c496dd36153f72d400413cdbad2",
+        "labels.npz": "96e7759a2589117b6bd0d3237e72c17944bb330bc0d484fbdc35bc9d3dc7bd9c"
+      }
+    },
+    {
+      "id": "train-sawtooth3-earth-high-right",
+      "family": "sawtooth",
+      "files": {
+        "rgb.png": "3591bca86b184ad5b4a09ad94cbecf279600b2e64edd3f2b5e08a81e369854ee",
+        "labels.json": "039b9a107a2ce4f6d3f48b56ee44d10721aaec7da16c9f0cb8f7bc6e4fba61a3",
+        "labels.npz": "55ce38e78a7e3f141c0c65f964792d929bcea482758c66f957d9dc36ddf14e9c"
+      }
+    },
+    {
+      "id": "train-sawtooth3-earth-low-left",
+      "family": "sawtooth",
+      "files": {
+        "rgb.png": "c4b733cf140369288d59940ad6f70fde35ef21707c75b60ce7b62a7385af4ef2",
+        "labels.json": "1be7b15951b2f8d0e945892e7ca44069ffcc7bc7c760a88c74b9b62f3b6c2193",
+        "labels.npz": "96e7759a2589117b6bd0d3237e72c17944bb330bc0d484fbdc35bc9d3dc7bd9c"
+      }
+    },
+    {
+      "id": "train-steppedhall1-cool-high-right",
+      "family": "steppedhall",
+      "files": {
+        "rgb.png": "124c1880915c250c8b8b53765621d9129b81e26178e4aebf9f7c1254b6be46fa",
+        "labels.json": "8cd896c2c2b8994db8775384f98a7c58c392c4adb2cb37bab93138cf84a6ffbf",
+        "labels.npz": "12dec0a7ecb99eaba5092fc893c1ee9989eb65ca2ec81ec2059ce36a10549f05"
+      }
+    },
+    {
+      "id": "train-steppedhall1-cool-low-left",
+      "family": "steppedhall",
+      "files": {
+        "rgb.png": "9708bc11bf01fd5a85ad3366772c239aa8aa23d42bd8ab49aa71dece52e09645",
+        "labels.json": "a58667c4578367710c84766e92d4d509d1973eb10c383775b0db8f8f1bb774f9",
+        "labels.npz": "86bb26182409b8514523e0837c7f8ca2b1f3fb57acd02bbf94606bd83ebda0cd"
+      }
+    },
+    {
+      "id": "train-steppedhall1-earth-high-right",
+      "family": "steppedhall",
+      "files": {
+        "rgb.png": "0bfb2c2cd3fd7f73fb9a2d6188eb208cd6aef5af989b9e512f36629dda3d6bd1",
+        "labels.json": "e820e3931a59fdcdd02025b63611dc92d9302a9021735eb5f1736d484a79dae3",
+        "labels.npz": "12dec0a7ecb99eaba5092fc893c1ee9989eb65ca2ec81ec2059ce36a10549f05"
+      }
+    },
+    {
+      "id": "train-steppedhall1-earth-low-left",
+      "family": "steppedhall",
+      "files": {
+        "rgb.png": "45f87cb6ab6f5e23a67de6ab05b213fa7e64957cf1c57a9937baa903b03e8dc5",
+        "labels.json": "0dd9667a407d7fef2940c9abcb0bddbdfd188ba65413310c0dc4c34976f071c0",
+        "labels.npz": "86bb26182409b8514523e0837c7f8ca2b1f3fb57acd02bbf94606bd83ebda0cd"
+      }
+    },
+    {
+      "id": "train-steppedhall2-cool-high-right",
+      "family": "steppedhall",
+      "files": {
+        "rgb.png": "4873f313f5f2b48591e3f28702c011af5582342864ae2816e14bf7d5db47d881",
+        "labels.json": "099c901a1b9f718d66c9247f8ec15df6cacd07e67b18762725cce2938f3c35e3",
+        "labels.npz": "a35902c72f53e57959073b4a50b1089eabe0de8f547e715163ed98fc4d039718"
+      }
+    },
+    {
+      "id": "train-steppedhall2-cool-low-left",
+      "family": "steppedhall",
+      "files": {
+        "rgb.png": "a4ea0a9a05bf136c8a81d5dfca71cd3cef1cea62ead3d8f5c39b3b58be14d27c",
+        "labels.json": "ce705cc433a74fe1a06538006e909f05578c9bd417751b685971f70f6f69a82c",
+        "labels.npz": "036a2f5515b8c7c5e25ff474aa0bfb1c06bb4ef3b49bb0f3e513d7e901c6acd3"
+      }
+    },
+    {
+      "id": "train-steppedhall2-earth-high-right",
+      "family": "steppedhall",
+      "files": {
+        "rgb.png": "d3c96b99d189d08c934d25147ea6145b63ccc586345006925f6321ec6d34c546",
+        "labels.json": "26491516e072b3fdf0d82ba8971d433c74183bfa6efd9af94e8fd7d811270d6a",
+        "labels.npz": "a35902c72f53e57959073b4a50b1089eabe0de8f547e715163ed98fc4d039718"
+      }
+    },
+    {
+      "id": "train-steppedhall2-earth-low-left",
+      "family": "steppedhall",
+      "files": {
+        "rgb.png": "c641e737d13b9bdf22cc3bdec5fa9255eaf3f9521928f57c761b7f4c1a792573",
+        "labels.json": "659e5e0769cc95a49f8ba3c65c1741930b1348d34fba29ad0566643df2effd95",
+        "labels.npz": "036a2f5515b8c7c5e25ff474aa0bfb1c06bb4ef3b49bb0f3e513d7e901c6acd3"
+      }
+    },
+    {
+      "id": "train-steppedhall3-cool-high-right",
+      "family": "steppedhall",
+      "files": {
+        "rgb.png": "56f16502d4c562afb18448876fb2d9f43cccb9464ef25329c080a04af1771cea",
+        "labels.json": "a52463b6176834fcec696ec2cdd0870265453b2e90bb2617d47102ce556740cd",
+        "labels.npz": "6028494a5efbacf165bf4f7d7a707282d16c2d5db5bae27f3169f22071541ec3"
+      }
+    },
+    {
+      "id": "train-steppedhall3-cool-low-left",
+      "family": "steppedhall",
+      "files": {
+        "rgb.png": "5c14c6bc8e597abc2c70d48233c744c6ddd9b142cb8a26b01d1aa30daa08d1e2",
+        "labels.json": "6418d7f99f8f6cb02a8c60eb1e644eb5984834f6b92cbf0f37b9183116fa79a1",
+        "labels.npz": "c4355aa439bf0caba90ec1361404bb0a8a96f938bf8253e8264edb3168d2b88a"
+      }
+    },
+    {
+      "id": "train-steppedhall3-earth-high-right",
+      "family": "steppedhall",
+      "files": {
+        "rgb.png": "aaeed9302eb871cfd1b5cd9795d48075ba913e7dbafa24d62e10b6fdf0350107",
+        "labels.json": "90a727d116ee1f8b255ba5d3a5e38250a06aa3d3ad70bd2c85359e5c1e6a363d",
+        "labels.npz": "6028494a5efbacf165bf4f7d7a707282d16c2d5db5bae27f3169f22071541ec3"
+      }
+    },
+    {
+      "id": "train-steppedhall3-earth-low-left",
+      "family": "steppedhall",
+      "files": {
+        "rgb.png": "de9433082da7dbf7aa9198d51005017d41e0457e381736b004115883d7012ff6",
+        "labels.json": "3de3ef164e34fc52870ef49076b9e5a302bd13e22e62b284e9855518f34cc221",
+        "labels.npz": "c4355aa439bf0caba90ec1361404bb0a8a96f938bf8253e8264edb3168d2b88a"
+      }
+    },
+    {
+      "id": "train-terrace1-cool-high-right",
+      "family": "terrace",
+      "files": {
+        "rgb.png": "1f4db47d8a0aac3edbf6ee54dc3ac6e89159105aa864635063b46c58e39c0f5c",
+        "labels.json": "efdfffc7bd68d47677d97c4c5702ffe5c025e0d24ae0d19f0113e741d1682e3c",
+        "labels.npz": "9cb2f2e78468d05c8ed8a13d3ee6beaa6fc98681eb71cc7b14ed9c41bb4052c5"
+      }
+    },
+    {
+      "id": "train-terrace1-cool-low-left",
+      "family": "terrace",
+      "files": {
+        "rgb.png": "4c085dd73bcc59ab34bf8229ba4a2c9b7154e8f7adb98e68b2089997daa56936",
+        "labels.json": "2b8440edb4f01a3c4ac470faf447d33bded5f542a2c449f28de6deb903ea3a4a",
+        "labels.npz": "3f26c01dc2502b6293cf036316412a7bada6d33f7709c72281e9036058baa7db"
+      }
+    },
+    {
+      "id": "train-terrace1-earth-high-right",
+      "family": "terrace",
+      "files": {
+        "rgb.png": "23db3977127bf53cd9f1d1a851a66c2fc06d465421559e0efdf0ab225fa4f08e",
+        "labels.json": "c60fb335a7cdf730452a1d9ea43bd35cdf7dc60e82e7816d53d1a6eb9d6f44d5",
+        "labels.npz": "9cb2f2e78468d05c8ed8a13d3ee6beaa6fc98681eb71cc7b14ed9c41bb4052c5"
+      }
+    },
+    {
+      "id": "train-terrace1-earth-low-left",
+      "family": "terrace",
+      "files": {
+        "rgb.png": "b3ad434c94f9a5b6a8401bd7852e3887a68436e87fe3f82e05d219aa74b06323",
+        "labels.json": "05f16212b530f3c1b4130028e22fba2b4f4545cf9ad2b2f3679544d861a32998",
+        "labels.npz": "3f26c01dc2502b6293cf036316412a7bada6d33f7709c72281e9036058baa7db"
+      }
+    },
+    {
+      "id": "train-terrace2-cool-high-right",
+      "family": "terrace",
+      "files": {
+        "rgb.png": "89e3441ac3e61ae1cbc47f6c0519a7c34d1971676ae5513240da6c748074f4aa",
+        "labels.json": "0817f50ee7eb0e6d2663afc870b888704f64aebdecf99836d5578fbc2c2a4a23",
+        "labels.npz": "f58e9f9146b3cd39c09213277deeb1f50de1f88adb2534099b6ea1c1d99ee2ec"
+      }
+    },
+    {
+      "id": "train-terrace2-cool-low-left",
+      "family": "terrace",
+      "files": {
+        "rgb.png": "045d885a436bb2a27adfffb2e694af22281262a098f4a6263592204c3a7f210c",
+        "labels.json": "7191b9540bf9ec0f080f5f8594489d366a52477872135c4cd92cc47dc70797b3",
+        "labels.npz": "1063fd2b5f4431815bcc904522bd60ffdd4526aa5b350f1d5402f6080a0f1f1b"
+      }
+    },
+    {
+      "id": "train-terrace2-earth-high-right",
+      "family": "terrace",
+      "files": {
+        "rgb.png": "c5f7f0fa14485334927605dedb86b41c3c81db6e602beead8bbf835e679fa725",
+        "labels.json": "3c2d470b3880a14a48cd0f6a3ea25a7d02439a652f90b5fe9851c326efd59c81",
+        "labels.npz": "f58e9f9146b3cd39c09213277deeb1f50de1f88adb2534099b6ea1c1d99ee2ec"
+      }
+    },
+    {
+      "id": "train-terrace2-earth-low-left",
+      "family": "terrace",
+      "files": {
+        "rgb.png": "ee5c38aa74c3b8bc9327fa38d206d985ad5632e3b2f0880b1f5542e879296401",
+        "labels.json": "310d0c4dc15a2f6500e81e3c3ed5b79407207832798d4aadcc63c2869305d145",
+        "labels.npz": "1063fd2b5f4431815bcc904522bd60ffdd4526aa5b350f1d5402f6080a0f1f1b"
+      }
+    },
+    {
+      "id": "train-terrace3-cool-high-right",
+      "family": "terrace",
+      "files": {
+        "rgb.png": "231e1f76abd6dbe46224ccbc29ea997048f5758f568af340f87ee3437d3549fd",
+        "labels.json": "85675932eeb1f03eaf11394296ae2ebfe75319db63764bb61bd2c55926383cfa",
+        "labels.npz": "864a9b0e42b13d3de6f28f502df1f94c7af41a62f9daabaccc3a0912e868076f"
+      }
+    },
+    {
+      "id": "train-terrace3-cool-low-left",
+      "family": "terrace",
+      "files": {
+        "rgb.png": "9ac7315345d990167596542d4147a4e6b284611432827e324be87319e044c4ed",
+        "labels.json": "1fc12587cc3a405694975ac434ea711a2cc2f7e995e4c93fc5c8626a61c0383c",
+        "labels.npz": "14456be5019ce192bc5e65447fb684ac419740a1555920a7d8dda9385c87a7be"
+      }
+    },
+    {
+      "id": "train-terrace3-earth-high-right",
+      "family": "terrace",
+      "files": {
+        "rgb.png": "903ef26bd3f8547dd922552d0862f0be59302b2e525438599633fa4bb1267e08",
+        "labels.json": "b1f64cb4cd50b05543c1d0d1c2f9b47382f9979fe2ec9dbec1a2babaede2c133",
+        "labels.npz": "864a9b0e42b13d3de6f28f502df1f94c7af41a62f9daabaccc3a0912e868076f"
+      }
+    },
+    {
+      "id": "train-terrace3-earth-low-left",
+      "family": "terrace",
+      "files": {
+        "rgb.png": "42763e8edcdcf5d4b823ae543e74bd926109326dac23854bb084ae4fccc98369",
+        "labels.json": "fd15cc4c41fcd9e9706577e297f16350572021546623c26e6ac06693f7cfd73a",
+        "labels.npz": "14456be5019ce192bc5e65447fb684ac419740a1555920a7d8dda9385c87a7be"
+      }
+    },
+    {
+      "id": "train-watchpost1-cool-high-right",
+      "family": "watchpost",
+      "files": {
+        "rgb.png": "1d67d38ff710efb6eae647f6c3752b6bf6521119b3366675008510d82b6735d8",
+        "labels.json": "5d78e86c61a02ada4010f92093795c86df54325c1e993d0b9a08f909b45e6444",
+        "labels.npz": "293d85b64694749c4e83d3b7ba08bbef60364abe0256b403eee7ffe733fdff18"
+      }
+    },
+    {
+      "id": "train-watchpost1-cool-low-left",
+      "family": "watchpost",
+      "files": {
+        "rgb.png": "067005b1e24f5fbe06e7d42c50eb99689d1f85419b31c0867197f730a324fb3a",
+        "labels.json": "e0bffc88242bb005be0cfa65e7958f48235cffe594b6bef333959a2fc99cdba4",
+        "labels.npz": "fd4d75e0ce7496094bc943e15b15bf0134eed10e212c9cab96e860ce0c360e06"
+      }
+    },
+    {
+      "id": "train-watchpost1-earth-high-right",
+      "family": "watchpost",
+      "files": {
+        "rgb.png": "724774a223964cc5f17d3ff77aac1f9b703e743a78c5437a36b5b9686f8de8ff",
+        "labels.json": "9de98daee515bc9e892b64a6a4603a35a80d17a09dc2c8f5a99d21e567af5507",
+        "labels.npz": "293d85b64694749c4e83d3b7ba08bbef60364abe0256b403eee7ffe733fdff18"
+      }
+    },
+    {
+      "id": "train-watchpost1-earth-low-left",
+      "family": "watchpost",
+      "files": {
+        "rgb.png": "e5243c110021561f9190f94a8649ddee35f083f5a4ce917daaaf0c4264c44fa9",
+        "labels.json": "d4cb9f597f3be1b6e79ea29fe24901772e10ccaaf2cc99a8762f214c7edc7562",
+        "labels.npz": "fd4d75e0ce7496094bc943e15b15bf0134eed10e212c9cab96e860ce0c360e06"
+      }
+    },
+    {
+      "id": "train-watchpost2-cool-high-right",
+      "family": "watchpost",
+      "files": {
+        "rgb.png": "be686ef69e6e687e393459b9ff0fefda1dd16df896f70741abfe74cf1eda4051",
+        "labels.json": "73793f76e6c5bc49610c267054a0a0b669e490d710ccfdefc9cca09df830f10a",
+        "labels.npz": "653f170301718293df78041a29b60c5ac191fed4d1edc1b4fe05e5e48b8db497"
+      }
+    },
+    {
+      "id": "train-watchpost2-cool-low-left",
+      "family": "watchpost",
+      "files": {
+        "rgb.png": "8e66278a89be9b7f5287a686b2097e8901eca922344e4c50d519ebb200fd2598",
+        "labels.json": "b5e92a40219779e2b4b7932b076c2efab4fd1b967b053b28a51b60fadfe2c3fe",
+        "labels.npz": "637a7f9abdbad7e9935735186c7aaa96a61c05d9f1c8cffa631dead325e5a253"
+      }
+    },
+    {
+      "id": "train-watchpost2-earth-high-right",
+      "family": "watchpost",
+      "files": {
+        "rgb.png": "880d1ac78307c018676fe5b7c9d2d25aa19b2c30fc2f0d330121dff26ddd4034",
+        "labels.json": "30b0467f612f6bae8d2d4fa6b817b140ad823857c19e7e004781c04094803fcf",
+        "labels.npz": "653f170301718293df78041a29b60c5ac191fed4d1edc1b4fe05e5e48b8db497"
+      }
+    },
+    {
+      "id": "train-watchpost2-earth-low-left",
+      "family": "watchpost",
+      "files": {
+        "rgb.png": "566ea87e5601ad0d90bea26c937881004152d19a8463421a2d995eaf27e0db6d",
+        "labels.json": "ddebbf14f78c96ee5790ba5fd757cf69ec15f4520e9a7e70dc1003f68938591d",
+        "labels.npz": "637a7f9abdbad7e9935735186c7aaa96a61c05d9f1c8cffa631dead325e5a253"
+      }
+    },
+    {
+      "id": "train-watchpost3-cool-high-right",
+      "family": "watchpost",
+      "files": {
+        "rgb.png": "2b52973c65c0728f314b9e0ae4c256fb707c0aae9ba93e7a3ee486919f1aeed8",
+        "labels.json": "58f8d993880bf9e1303ba134a642dab3ea682d6df1e2cca45e7cc9338ed73d50",
+        "labels.npz": "f0c100a53ac8b7a90dd0d637877471fcbde4a98353d2b8244679f2ab1209bcba"
+      }
+    },
+    {
+      "id": "train-watchpost3-cool-low-left",
+      "family": "watchpost",
+      "files": {
+        "rgb.png": "0d17871ae2e55c231c25ae74fad1c260bd845d16b86211fc172d89f915ca90ef",
+        "labels.json": "4ba33f340be41b7c05099add71e18a1f9483a5b6cbadf8e4e2536a968df345d2",
+        "labels.npz": "97c7c1cb22a947aa4a9ea07c280a76d8cdc5f259b35388ac3c2260249168cf13"
+      }
+    },
+    {
+      "id": "train-watchpost3-earth-high-right",
+      "family": "watchpost",
+      "files": {
+        "rgb.png": "a51dc82cb3b1364b15edfd235428422f9c33d008df85cbfb678e01596acf097d",
+        "labels.json": "5fada724bd076f9ea4cd30acd61d9a3bc6b7923f1fd17e564478fecc7ffd3a2f",
+        "labels.npz": "f0c100a53ac8b7a90dd0d637877471fcbde4a98353d2b8244679f2ab1209bcba"
+      }
+    },
+    {
+      "id": "train-watchpost3-earth-low-left",
+      "family": "watchpost",
+      "files": {
+        "rgb.png": "bc199b26db6db754464402f7a88d07161d7795e35aee7793d1dc4abcdae29589",
+        "labels.json": "60ebed42f518d5ef18a8cdb45faa55213d852c75b2c3620e0d06f8e23c0fddc3",
+        "labels.npz": "97c7c1cb22a947aa4a9ea07c280a76d8cdc5f259b35388ac3c2260249168cf13"
+      }
+    }
+  ]
+}
