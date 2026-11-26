@@ -20,14 +20,14 @@ For every proposed coordinate, the evaluator compares the registered world cell 
 
 Extract `inputs.zip` into `runs/visible-depth-rounds`. Each `inputs/FRAME.json` contains the frozen image-derived signals. Rendered sample crop names in these inputs are provenance. The placement predictor samples the original RGB.
 
-Download and extract the [Visible Builds v1 dataset](../../../training/DATASET.md). The default layout is `runs/visible-builds-v1` with its versioned shards and extracted images and labels in `data`. Score the ordinary decoder first. A challenger implements `predict(image, version, parts, counts, camera)` and returns local coordinates or a pair containing those coordinates and diagnostics.
+Download and extract the [Visible Builds v1 dataset](../../../training/DATASET.md). The default layout is `runs/visible-builds-v1` with its versioned shards and extracted images and labels in `data`. Extract `scores.zip` into `runs/visible-depth-rounds` to restore the frozen baseline coordinates. A challenger implements `predict(image, version, parts, counts, camera)` and returns local coordinates or a pair containing those coordinates and diagnostics.
 
 ```powershell
-python -m benchmark.visible_depth_score --split all --out runs/visible-depth-rounds/baseline
 python -m benchmark.visible_depth_score --split train --candidate-root PATH_TO_CHECKOUT --candidate MODULE --out runs/MY_METHOD
+python -m benchmark.visible_depth_score --split all --candidate benchmark.visible_depth_score:stock --out runs/current-ordinary-check
 ```
 
-For the independent native screen, use `--split native --native-fixtures PATH_TO_NATIVE_FIXTURES` on both runs. The native fixture root contains the saved capture directories named by `native-inputs/index.json` in the [earlier scoring archive](../texture-camera-01/scoring.zip). The baseline verifies each native world-coordinate set against the [earlier decoded result](../combined-default-01/evidence.zip). The 80 validation, test and regression outputs are each compared with their earlier registered coordinates, including empty builds.
+For the independent native screen, use `--split native --native-fixtures PATH_TO_NATIVE_FIXTURES`. The native fixture root contains the saved capture directories named by `native-inputs/index.json` in the [earlier scoring archive](../texture-camera-01/scoring.zip). To rerun the original production baseline from code, run the scorer from revision `ec38f63` with `--out PATH` and omit `--candidate`. This verifies each native world-coordinate set against the [earlier decoded result](../combined-default-01/evidence.zip). The 80 validation, test and regression outputs are each compared with their earlier registered coordinates, including empty builds.
 
 For the simple grounded-chart-only control, pass `--candidate benchmark.visible_depth_score:strict_only`. Each method uses its own output directory. The archive `scores.zip` contains the round's baseline and control outputs, decoded coordinates, packs, scores and SHA256 manifests.
 
