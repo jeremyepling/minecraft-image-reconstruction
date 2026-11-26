@@ -1,0 +1,610 @@
+{
+  "atlas": {
+    "version": "26.3",
+    "atlas_sha256": "49b477fbfe5f2171c2529e3ffe1722f09fee5a094de2b6b99831512b8601c950",
+    "client_sha256": "4508d006323f24fa02876310c192d739af56516eb259000ac50f0909a68c9a2d",
+    "placement_index_sha256": "32f95873f5b10e0fa36023c149b4277a4b1f7a59fb77940ede120f9292f37ac6",
+    "atlas_json_sha256": "f33529ac90984827e82bf8720d8bd122e11f1386fb6c49a70379437a3c4c54a2",
+    "texture_count": 448,
+    "block_count": 384,
+    "scope": "all opaque untinted full-cube face sprites in the placement index, all six directions"
+  },
+  "synthetic": {
+    "constructed_from": "Vanilla 26.3 cobblestone tile, quarter turn, cyclic x/y shift, 78% brightness, 2x nearest magnification, rectangular hole",
+    "ordinary": [
+      5.999520759673643,
+      3.999491426100906
+    ],
+    "atlas": [
+      5.999520759673643,
+      3.999491426100906
+    ],
+    "atlas_check": {
+      "reason": "validated whole-tile spacing",
+      "accepted": true,
+      "atlas_texture": "cobblestone",
+      "span": [
+        5.999520759673643,
+        3.999491426100906
+      ],
+      "train": 0.9999636933333513,
+      "check": 0.9999636470123677,
+      "margin": 0.7585053382709684,
+      "best_distinct_scale_correlation": 0.24145835506238292,
+      "orientation": 1,
+      "phase": [
+        0.375,
+        0.1875
+      ],
+      "candidate_grids": 34
+    }
+  },
+  "diagnostic": "Uses recorded plane masks and corners; separately ranks individual true face crops with at least 32 supported pixels. Does not feed ordinary predictions.",
+  "examples": [
+    {
+      "four_way_corner_mask_check": {
+        "finder_corners_finder_mask": {
+          "blocks": [
+            null,
+            null
+          ],
+          "measured_chart_spans": [
+            null,
+            null
+          ],
+          "true_chart_spans": [
+            1.0048775201880764,
+            4.530635724567743
+          ],
+          "valid_chart_pixels": 1971,
+          "chart_wh": [
+            20,
+            148
+          ]
+        },
+        "finder_corners_reference_mask": {
+          "blocks": [
+            null,
+            null
+          ],
+          "measured_chart_spans": [
+            null,
+            null
+          ],
+          "true_chart_spans": [
+            1.0048775201880764,
+            4.530635724567743
+          ],
+          "valid_chart_pixels": 2292,
+          "chart_wh": [
+            20,
+            148
+          ]
+        },
+        "reference_corners_finder_mask": {
+          "blocks": [
+            1,
+            5
+          ],
+          "measured_chart_spans": [
+            0.9682287239474939,
+            4.999095499950078
+          ],
+          "true_chart_spans": [
+            1.0000000000000004,
+            5.0
+          ],
+          "valid_chart_pixels": 2037,
+          "chart_wh": [
+            20,
+            164
+          ]
+        },
+        "reference_corners_reference_mask": {
+          "blocks": [
+            1,
+            5
+          ],
+          "measured_chart_spans": [
+            0.9680059068634166,
+            4.997945065290609
+          ],
+          "true_chart_spans": [
+            1.0000000000000004,
+            5.0
+          ],
+          "valid_chart_pixels": 2916,
+          "chart_wh": [
+            20,
+            164
+          ]
+        }
+      },
+      "frame": "smooth_stone/holdout-portico-plaster-low-left",
+      "reference": 8,
+      "actual": [
+        1,
+        5
+      ],
+      "real_corner_chart": [
+        [
+          862.8800234971803,
+          434.1027844580506
+        ],
+        [
+          882.7369819017158,
+          432.03568680135515
+        ],
+        [
+          884.3657587515995,
+          598.4666248223043
+        ],
+        [
+          864.2625738241953,
+          595.0272754617058
+        ]
+      ],
+      "chart_wh": [
+        20,
+        164
+      ],
+      "material": {
+        "minecraft:cobblestone": 5
+      },
+      "crop_only_estimate": [
+        0.9995889479594271,
+        4.997945065290609
+      ],
+      "atlas_check": {
+        "reason": "validated whole-tile spacing",
+        "accepted": true,
+        "atlas_texture": "cobblestone",
+        "span": [
+          0.9995889479594271,
+          4.997945065290609
+        ],
+        "train": 0.651973971900897,
+        "check": 0.6843842722710697,
+        "margin": 0.15347388250931604,
+        "best_distinct_scale_correlation": 0.49850008939158097,
+        "orientation": 0,
+        "phase": [
+          0.0,
+          0.0
+        ],
+        "candidate_grids": 8
+      },
+      "known_face_matcher": {
+        "ranked": 5,
+        "right": 5,
+        "top1": {
+          "minecraft:cobblestone": 5
+        }
+      }
+    },
+    {
+      "four_way_corner_mask_check": {
+        "finder_corners_finder_mask": {
+          "blocks": [
+            null,
+            null
+          ],
+          "measured_chart_spans": [
+            null,
+            null
+          ],
+          "true_chart_spans": [
+            6.069813726352154,
+            2.350964395141781
+          ],
+          "valid_chart_pixels": 13271,
+          "chart_wh": [
+            187,
+            76
+          ]
+        },
+        "finder_corners_reference_mask": {
+          "blocks": [
+            null,
+            null
+          ],
+          "measured_chart_spans": [
+            null,
+            null
+          ],
+          "true_chart_spans": [
+            6.069813726352154,
+            2.350964395141781
+          ],
+          "valid_chart_pixels": 13208,
+          "chart_wh": [
+            187,
+            76
+          ]
+        },
+        "reference_corners_finder_mask": {
+          "blocks": [
+            null,
+            null
+          ],
+          "measured_chart_spans": [
+            null,
+            null
+          ],
+          "true_chart_spans": [
+            5.999999999999886,
+            2.9999999999999716
+          ],
+          "valid_chart_pixels": 13146,
+          "chart_wh": [
+            185,
+            97
+          ]
+        },
+        "reference_corners_reference_mask": {
+          "blocks": [
+            null,
+            null
+          ],
+          "measured_chart_spans": [
+            null,
+            null
+          ],
+          "true_chart_spans": [
+            5.999999999999886,
+            2.9999999999999716
+          ],
+          "valid_chart_pixels": 13094,
+          "chart_wh": [
+            185,
+            97
+          ]
+        }
+      },
+      "frame": "smooth_stone/holdout-portico-plaster-low-left",
+      "reference": 13,
+      "actual": [
+        6,
+        3
+      ],
+      "real_corner_chart": [
+        [
+          522.600478469842,
+          293.81712564251626
+        ],
+        [
+          706.0433496350266,
+          313.268841568062
+        ],
+        [
+          705.9657021749412,
+          405.1216268614271
+        ],
+        [
+          521.3839041836184,
+          395.44816893978475
+        ]
+      ],
+      "chart_wh": [
+        185,
+        97
+      ],
+      "material": {
+        "minecraft:white_concrete": 18
+      },
+      "crop_only_estimate": [
+        null,
+        null
+      ],
+      "atlas_check": {
+        "reason": "ambiguous whole-tile spacing",
+        "accepted": false,
+        "atlas_texture": "iron_block",
+        "span": [
+          1.0,
+          1.5020330478420016
+        ],
+        "train": 0.5082406499109341,
+        "check": 0.4440510382047938,
+        "margin": -0.14879701144918833,
+        "best_distinct_scale_correlation": 0.6570376613601224,
+        "orientation": 7,
+        "phase": [
+          0.875,
+          0.0625
+        ],
+        "candidate_grids": 12
+      },
+      "known_face_matcher": {
+        "ranked": 18,
+        "right": 12,
+        "top1": {
+          "minecraft:iron_block": 6,
+          "minecraft:white_concrete": 12
+        }
+      }
+    },
+    {
+      "four_way_corner_mask_check": {
+        "finder_corners_finder_mask": {
+          "blocks": [
+            null,
+            5
+          ],
+          "measured_chart_spans": [
+            null,
+            5.353846002333407
+          ],
+          "true_chart_spans": [
+            18.061237784074855,
+            1.3430627098982644
+          ],
+          "valid_chart_pixels": 20681,
+          "chart_wh": [
+            588,
+            51
+          ]
+        },
+        "finder_corners_reference_mask": {
+          "blocks": [
+            null,
+            5
+          ],
+          "measured_chart_spans": [
+            null,
+            5.3639739962568695
+          ],
+          "true_chart_spans": [
+            18.061237784074855,
+            1.3430627098982644
+          ],
+          "valid_chart_pixels": 21576,
+          "chart_wh": [
+            588,
+            51
+          ]
+        },
+        "reference_corners_finder_mask": {
+          "blocks": [
+            18,
+            1
+          ],
+          "measured_chart_spans": [
+            17.989541590419,
+            1.008816991743257
+          ],
+          "true_chart_spans": [
+            18.0,
+            0.9999999999999929
+          ],
+          "valid_chart_pixels": 19454,
+          "chart_wh": [
+            586,
+            38
+          ]
+        },
+        "reference_corners_reference_mask": {
+          "blocks": [
+            18,
+            1
+          ],
+          "measured_chart_spans": [
+            17.98923479740353,
+            1.0087997874134302
+          ],
+          "true_chart_spans": [
+            18.0,
+            0.9999999999999929
+          ],
+          "valid_chart_pixels": 20464,
+          "chart_wh": [
+            586,
+            38
+          ]
+        }
+      },
+      "frame": "smooth_stone/holdout-portico-plaster-low-left",
+      "reference": 20,
+      "actual": [
+        18,
+        1
+      ],
+      "real_corner_chart": [
+        [
+          444.0870181592161,
+          365.72408362112
+        ],
+        [
+          1028.0886182613622,
+          403.9224992561757
+        ],
+        [
+          1028.668688824211,
+          435.17818738029155
+        ],
+        [
+          443.3488025067137,
+          410.0374332400147
+        ]
+      ],
+      "chart_wh": [
+        586,
+        38
+      ],
+      "material": {
+        "minecraft:spruce_planks": 18
+      },
+      "crop_only_estimate": [
+        17.98923479740353,
+        0.9994019977106866
+      ],
+      "atlas_check": {
+        "reason": "validated whole-tile spacing",
+        "accepted": true,
+        "atlas_texture": "spruce_planks",
+        "span": [
+          17.98923479740353,
+          0.9994019977106866
+        ],
+        "train": 0.910076571151375,
+        "check": 0.897975227221016,
+        "margin": 0.16505961600345898,
+        "best_distinct_scale_correlation": 0.745016955147916,
+        "orientation": 0,
+        "phase": [
+          0.0,
+          0.0
+        ],
+        "candidate_grids": 28
+      },
+      "known_face_matcher": {
+        "ranked": 18,
+        "right": 18,
+        "top1": {
+          "minecraft:spruce_planks": 18
+        }
+      }
+    },
+    {
+      "four_way_corner_mask_check": {
+        "finder_corners_finder_mask": {
+          "blocks": [
+            14,
+            5
+          ],
+          "measured_chart_spans": [
+            14.062681582800735,
+            5.167038057819271
+          ],
+          "true_chart_spans": [
+            14.015087248538045,
+            5.158512988123548
+          ],
+          "valid_chart_pixels": 54438,
+          "chart_wh": [
+            428,
+            188
+          ]
+        },
+        "finder_corners_reference_mask": {
+          "blocks": [
+            14,
+            5
+          ],
+          "measured_chart_spans": [
+            14.059287958903962,
+            5.167798362061604
+          ],
+          "true_chart_spans": [
+            14.015087248538045,
+            5.158512988123548
+          ],
+          "valid_chart_pixels": 54878,
+          "chart_wh": [
+            428,
+            188
+          ]
+        },
+        "reference_corners_finder_mask": {
+          "blocks": [
+            14,
+            5
+          ],
+          "measured_chart_spans": [
+            13.993263712492995,
+            5.003840324064106
+          ],
+          "true_chart_spans": [
+            13.999999999999972,
+            4.999999999999993
+          ],
+          "valid_chart_pixels": 54112,
+          "chart_wh": [
+            428,
+            182
+          ]
+        },
+        "reference_corners_reference_mask": {
+          "blocks": [
+            14,
+            5
+          ],
+          "measured_chart_spans": [
+            13.993213724285551,
+            5.0038921164987835
+          ],
+          "true_chart_spans": [
+            13.999999999999972,
+            4.999999999999993
+          ],
+          "valid_chart_pixels": 54388,
+          "chart_wh": [
+            428,
+            182
+          ]
+        }
+      },
+      "frame": "light_gray_concrete/holdout-workshop-plaster-low-left",
+      "reference": 15,
+      "actual": [
+        14,
+        5
+      ],
+      "real_corner_chart": [
+        [
+          503.6444807790591,
+          179.51583863531846
+        ],
+        [
+          920.8387376938801,
+          276.84420142523163
+        ],
+        [
+          924.1988257591079,
+          429.7121808932971
+        ],
+        [
+          498.6022008767846,
+          390.19493889707803
+        ]
+      ],
+      "chart_wh": [
+        428,
+        182
+      ],
+      "material": {
+        "minecraft:cobblestone": 50
+      },
+      "crop_only_estimate": [
+        13.993213724285551,
+        5.0038921164987835
+      ],
+      "atlas_check": {
+        "reason": "validated whole-tile spacing",
+        "accepted": true,
+        "atlas_texture": "cobblestone",
+        "span": [
+          14.010895798682071,
+          5.0038921164987835
+        ],
+        "train": 0.8832886633673547,
+        "check": 0.8902016445747382,
+        "margin": 0.6156942763578968,
+        "best_distinct_scale_correlation": 0.26759438700945787,
+        "orientation": 0,
+        "phase": [
+          0.0,
+          0.0
+        ],
+        "candidate_grids": 38
+      },
+      "known_face_matcher": {
+        "ranked": 50,
+        "right": 50,
+        "top1": {
+          "minecraft:cobblestone": 50
+        }
+      }
+    }
+  ]
+}
