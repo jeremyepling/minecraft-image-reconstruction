@@ -123,9 +123,12 @@ def prior_candidate(root,split,key,prior):
 
 
 def score(job):
+    return score_archive(job, *members(job[0]))
+
+
+def score_archive(job, z, folder):
     split,f,prior,out,predictions = job
     key=f['id']
-    z,folder=members(split)
     stem=f'{folder}/{key}'
     pack=z.read(stem+'/reconstruction.zip')
     assert sha256(pack).hexdigest()==prior['pack_sha256']
@@ -193,9 +196,9 @@ def score(job):
     return row
 
 
-def compare(args):
+def compare(args, *, case_source=cases, scorer=score, control='acfe46b', default_engine='36d406a', source_files=None):
     splits=args.splits
-    listed=list(cases(splits))
+    listed=list(case_source(splits))
     if args.ids:
         listed=[t for t in listed if t[1]['id'] in args.ids]
         if {t[1]['id'] for t in listed}!=set(args.ids):
@@ -205,7 +208,7 @@ def compare(args):
     jobs=[(*t,args.out,args.predictions) for t in listed]
     with ProcessPoolExecutor(max_workers=args.workers, initializer=visible_depth_score.init_candidate,
                              initargs=(args.candidate_root.resolve(),args.candidate)) as pool:
-        rows=list(pool.map(score,jobs))
+        rows=list(pool.map(scorer,jobs))
     groups={s:[r for r in rows if r['split']==s] for s in splits}
     if set(EVALUATION)<=set(splits):
         groups['fixed']=[r for r in rows if r['split'] in EVALUATION]
@@ -215,12 +218,13 @@ def compare(args):
         aggregates[k]['changed']=sum(r['changed'] for r in rr)
         aggregates[k]['outside_source_xz']={name:sum(r['outside_source_xz'][name] for r in rr)
                                           for name in ('before','after')}
-    results=dict(control='acfe46b',default_engine='36d406a',candidate=args.candidate,
+    if source_files is None:
+        source_files=(TRAINING_RELEASE,ARCHIVE,NEW_ARCHIVE,REVIEW/'whole-structure-framing-01/evaluation-only.json')
+    results=dict(control=control,default_engine=default_engine,candidate=args.candidate,
                  revision=subprocess.check_output(['git','rev-parse','HEAD'],cwd=args.candidate_root,text=True).strip(),
                  predictions=str(args.predictions) if args.predictions else None,
                  primary='Pooled visible-block F1 after one common XYZ translation',
-                 sources={p.name if p==TRAINING_RELEASE else p.parent.name:digest(p) for p in
-                          (TRAINING_RELEASE,ARCHIVE,NEW_ARCHIVE,REVIEW/'whole-structure-framing-01/evaluation-only.json')},
+                 sources={p.name if p==TRAINING_RELEASE else p.parent.name:digest(p) for p in source_files},
                  groups=aggregates,canopies={k:{field:canopy_report([r[field] for r in rr if field in r])
                               for field in ('previous_roof','roof')} for k,rr in groups.items() if any('roof' in r for r in rr)},
                  worst={k:[r['id'] for r in sorted(rr,key=lambda r:(r['f1'],r['id']))[:3]] for k,rr in groups.items()})
@@ -236,10 +240,11 @@ def compare(args):
         if k in aggregates:
             m=aggregates[k]
             print(k,m['frames'],f"{m['f1']:.4%}",'gained/lost',m['gained'],m['lost'],'extras',m['extras'],flush=True)
+    return results, groups
 
 
-if __name__=='__main__':
-    p=argparse.ArgumentParser(description=__doc__)
+def parser(description):
+    p=argparse.ArgumentParser(description=description)
     p.add_argument('--splits',nargs='+',choices=SIZES,default=list(SIZES))
     p.add_argument('--ids',nargs='+',help='Run only the listed frame IDs from those splits')
     p.add_argument('--out',type=Path,required=True)
@@ -248,4 +253,8 @@ if __name__=='__main__':
     source=p.add_mutually_exclusive_group()
     source.add_argument('--candidate',help='module:function(image, parts, counts, camera, prior)')
     source.add_argument('--predictions',type=Path,help='Root of completed split/id/reconstruction.zip exports')
-    compare(p.parse_args())
+    return p
+
+
+if __name__=='__main__':
+    compare(parser(__doc__).parse_args())
