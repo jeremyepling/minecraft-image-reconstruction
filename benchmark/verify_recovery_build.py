@@ -25,12 +25,23 @@ def verify(build, key, source_run=None, data=None):
     gap_filtered = manifest['stages'].get('opening_sky_filter') == 'row-sky-with-horizon'
     if gap_filtered:
         method = 'gap'
+    photo_method = manifest['stages'].get('photo_edges')
+    if photo_method:
+        from benchmark.verify_default_photo import METHOD
+        sequence = manifest['stages']['boundary_sequence']
+        if (photo_method != 'count-stable-photo-edges-v1' or boundary!=CROP_SPLIT or not gap_filtered or
+            manifest['stages'].get('strip_cleanup')!='neighbor-supported-strip' or
+            sequence[-2:]!=['neighbor-supported-strip',photo_method]):
+            raise ValueError('Unexpected stage order for the promoted photo cleanup')
+        method = METHOD
     if method:
         review = {CROP_SPLIT:'crop-split-01',PLANE_RECOVERY:'afterpass-models-01'}.get(boundary,'single-wall-depth-01')
         if sky_filtered:
             review = 'sky-01'
         if gap_filtered:
             review = 'sky-gap-01'
+        if photo_method:
+            review='edge-detail-stable-01'
         archive=source_run or ROOT/'benchmark/reviews'/review
         source=read(archive/'manifest.json')
         if digest(archive/'cases.json')!=source['artifacts']['cases.json']:
@@ -55,7 +66,7 @@ def verify(build, key, source_run=None, data=None):
     data = data or ROOT/'benchmark/data'
     case = capture_index(data)[key]
     strip_filtered = manifest['stages'].get('strip_cleanup') == 'neighbor-supported-strip'
-    if strip_filtered:
+    if strip_filtered and not photo_method:
         from PIL import Image
         from benchmark.verify_default_strip import SIGNATURES, approved_row, region_signature
         from engine.strip_neighbor import clean_surfaces
@@ -95,6 +106,8 @@ def verify(build, key, source_run=None, data=None):
                 source_prediction_sha256=expected_hash, counter=manifest['stages']['block_count'],
                 block_count_records=len(counts))
     if boundary==CROP_SPLIT:
+        if photo_method:
+            result['photo_edges']=manifest['surface_finder']['boundary_settings']['photo_edges']
         if strip_filtered:
             result['strip_cleanup'] = manifest['surface_finder']['boundary_settings']['strip_cleanup']
         if sky_filtered:

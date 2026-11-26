@@ -1,0 +1,230 @@
+{
+  "fixture": "light_gray_concrete/dev-shopfront-plaster-low-left",
+  "screenshot_sha256": "299e0228de74d2cc7d3a18deaba9f61c82560a0ddd0b8557e5c91728c964a993",
+  "original_png_basename": "dev-shopfront-plaster-low-left.png",
+  "stage_order": [
+    "color-edges",
+    "wall-depth-anything",
+    "junction-cuts",
+    "strip-mlsd",
+    "mobile-wall-split",
+    "single-wall-split",
+    "plane-recovery",
+    "plane-recovery-crop-splits",
+    "clear-noon-sky",
+    "row-sky-with-horizon",
+    "neighbor-supported-strip",
+    "count-stable-photo-edges-v1"
+  ],
+  "model_sha256": {
+    "normal": "24eacb5dc7a2c54c7bc98f7de085ffbed79ad006ea5b664c2c2cdc02ff3a52f0",
+    "depth": "fcf51f1b230362b28690bb9d1809bf0431f29cad20534e3f589bd7285547f20d",
+    "mlsd": "e869f90601ffa263f21ac47e09ff0d65dc936d1aeb47126b8499d5504adfb100",
+    "scalelsd": "d0a7333c4de518a70af7d6ea4a283aa0ce9ffe1047525373b94070b1d1d4003f",
+    "mobilesam": "6dbb90523a35330fedd7f1d3dfc66f995213d81b29a5ca8108dbcdd4e37d6c2f",
+    "pixelwise_planarity": "305325096a80f541e430ccbb1b6581af67b3ef9d3c92f8d9384dc7aaae9f3952"
+  },
+  "visible_proposals": 15,
+  "reference_surfaces": 16,
+  "matched": 12,
+  "assignments": {
+    "mask-0-wall-0": 11,
+    "mask-0-wall-1-single-339-0": 12,
+    "mask-0-wall-1-single-339-2": 16,
+    "mask-1-mobile-0": 9,
+    "mask-1-mobile-1": 4,
+    "mask-2": 6,
+    "mask-3": 1,
+    "mask-4": 5,
+    "mask-5": 3,
+    "mask-7": 2,
+    "mask-10": 18,
+    "underside-0": 8
+  },
+  "split_additional_reference_ids": [
+    3
+  ],
+  "crop_splits": {
+    "input_surfaces": 15,
+    "output_surfaces": 15,
+    "events": [],
+    "inference": {
+      "settings": {
+        "grid": [
+          3,
+          3
+        ],
+        "crop_fraction": 0.5,
+        "stride": 4,
+        "artificial_edge": "discard touching region",
+        "geometry": "Average full-image camera normals and points under registered tile labels",
+        "order": "row-major; for each parent retain one accepted split with the most supporting samples"
+      },
+      "boxes": [
+        [
+          0,
+          0,
+          720,
+          452
+        ],
+        [
+          360,
+          0,
+          1080,
+          452
+        ],
+        [
+          720,
+          0,
+          1440,
+          452
+        ],
+        [
+          0,
+          224,
+          720,
+          676
+        ],
+        [
+          360,
+          224,
+          1080,
+          676
+        ],
+        [
+          720,
+          224,
+          1440,
+          676
+        ],
+        [
+          0,
+          448,
+          720,
+          900
+        ],
+        [
+          360,
+          448,
+          1080,
+          900
+        ],
+        [
+          720,
+          448,
+          1440,
+          900
+        ]
+      ],
+      "count": 9,
+      "geometry_source": "same full-image inference",
+      "crop_inference_s": 0.7489591999910772,
+      "crop_segmentation_s": 0.14472769998246804
+    }
+  },
+  "all_saved_region_properties_equal": true,
+  "canonical_regions_sha256": "835a7acd8719d28305e8e5875c7a531836155764400f7294aace8692dd54f142",
+  "source_prediction_sha256": "2ba465b97c44e9f88105584f6f92953c6bce85a59e23dd9194cdf61d353a9dfa",
+  "counter": "masked-repeat",
+  "block_count_records": 15,
+  "photo_edges": {
+    "applied_radius_px": 4,
+    "changed_surfaces": 14,
+    "attempts": [
+      {
+        "radius_px": 4,
+        "changed_surfaces": 14
+      }
+    ],
+    "settings": {
+      "collar": {
+        "radius": 4,
+        "blur": 0.7,
+        "color_step": 6.0,
+        "change_cost": 1.5,
+        "iterations": 12,
+        "minimum_boundary_contrast": 10.0,
+        "minimum_contrast_gain": 3.0,
+        "units": "source pixels",
+        "method": "color-guided-boundary"
+      },
+      "fallback_radius_px": 2,
+      "guard": "reject a changed or newly complete block-count pair"
+    }
+  },
+  "strip_cleanup": {
+    "settings": {
+      "shape": {
+        "radius_at_900px": 4,
+        "minimum_tail_length_in_radii": 4,
+        "maximum_mean_width_in_diameters": 1,
+        "minimum_aspect_ratio": 3,
+        "minimum_core_fraction": 0.6,
+        "maximum_tail_fraction": 0.14,
+        "maximum_contact_extent_fraction": 0.3
+      },
+      "color": {
+        "outside_radius": 2,
+        "body_radius": 8,
+        "minimum_pixels": 8,
+        "minimum_color_advantage": 6.0,
+        "maximum_outside_error": 18.0
+      },
+      "neighbor": {
+        "neighbor_radius_at_900px": 3,
+        "length_sections": 4,
+        "minimum_section_fraction": 0.75,
+        "minimum_near_fraction": 0.9,
+        "maximum_neighbor_color_error": 18.0
+      }
+    },
+    "changed_surfaces": 0,
+    "removed_pixels": 0,
+    "decisions": [
+      {
+        "donor": "mask-0-wall-1-single-339-1",
+        "tail_xyxy": [
+          846,
+          506,
+          856,
+          542
+        ],
+        "pixels": 264,
+        "receiver": null,
+        "overlap_fraction": null,
+        "near_fraction": null,
+        "neighbor_color_error": null
+      }
+    ]
+  },
+  "background_filter": {
+    "blue_pixels": 405966,
+    "cloud_pixels": 182355,
+    "removed": [],
+    "trimmed": [
+      "mask-0-wall-1-single-339-0",
+      "mask-0-wall-1-single-339-1",
+      "mask-0-wall-1-single-339-2",
+      "mask-3",
+      "underside-0"
+    ],
+    "removed_blue_pixels": 732,
+    "removed_cloud_pixels": 452
+  },
+  "same_count_phase_and_dimensions_for_every_proposal": true,
+  "candidate_build": null,
+  "raw_model_source": "fresh screenshot inference",
+  "model_revision": "c09bd3361e64ff0dec473d6adc9456472e698d97",
+  "model_load_s": 4.550819000025513,
+  "full_frame_inference_s": 1.5995309999852907,
+  "full_frame_segmentation_s": 0.06923429999733344,
+  "baseline_opening_samples_covered": 0,
+  "candidate_opening_samples_covered": 0,
+  "opening_samples": 127,
+  "paired_sizes": {
+    "correct": 1,
+    "incorrect": 0,
+    "missing": 15,
+    "unmatched_returned": 0
+  }
+}
