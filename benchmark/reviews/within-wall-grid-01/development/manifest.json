@@ -1,0 +1,183 @@
+{
+  "run_id": "development",
+  "code": {
+    "commit": "f6578aecc08f4dcb1a16d9d73bf23fe7c02b899a",
+    "predictor_and_runner_sha256": "c1e51e7184b92541d6bdab84115d2002294b8a8bc4f10e9a0a5dfb3714035879",
+    "source_dirty": false
+  },
+  "split": "development",
+  "version": "26.3",
+  "settings": {
+    "min_pairs_score": 0.58,
+    "held_repeat": 0.49,
+    "integer_residual": 0.24,
+    "flat_edge_phase_error": 0.16,
+    "minimum_cycles": 2.1,
+    "minimum_coverage": 0.45,
+    "minimum_donor_contrast": 2.4,
+    "flat_contrast_ratio": 0.65,
+    "partial_tolerance": 0.45
+  },
+  "file_sha256": "c138c81932801e3bf567c11a8634830cb20415414f630a3ab6de95baf58358f1",
+  "source_manifests": {
+    "phase-corners-01": "1964931f3f4a3b7008ea5aba8a6accf5ce8ad8fa384d5c2aee7632736f5cc905",
+    "count-transfer-check-01": "d551623085c66008bdb86365f1cd24dd253075a8219a849461831f741fdac859",
+    "detail-transfer-01": "7addb6af53678a2f3f0d4c8ef36fdb505012f5f27d10e08b84d167f70b7ecfbe",
+    "edge-detail-stable-01": "d8a2c401d28c546762bcef38ed731c4074120f3750f2998a5b7e797fcb6e9a43"
+  },
+  "fixture_sha256": {
+    "smooth_stone": "660d1e535ae134452bca903a9d7cbe8d37953927fa118d9ffb327afad0885bc2",
+    "light_gray_concrete": "321505e15563f8efc0da868baa27409837aaa474410a61f3513b3dac0030f066",
+    "surface_confirm_v1": "0a479a8264f2c0f714284928354ff6ff5f9729491709676f07e2033d25e48fc3",
+    "normal_confirm_v1": "61bdf3a89a505a8be3757efe480185bec9c1888a1c72ffb69ef0093623e27dda"
+  },
+  "reference_sha256": "91efa6d3e992b1a68672eae1fdd6d380e87724742a1a4b6cbe5f84d284f731a1",
+  "additional_shards": {
+    "validation": {
+      "file": "visible-builds-v1-validation.zip",
+      "sha256": "5298a056e4a9d28af448a22da88bbd2ebcdbbbfa967adb2e28b7dc35c9f54401",
+      "bytes": 20125868,
+      "frames": 12,
+      "layouts": 3
+    },
+    "test": {
+      "file": "visible-builds-v1-test.zip",
+      "sha256": "97b6a87b1198f6a0ac1baeb7d4f15a433c2ce6bbde302f61f9c225e1d0ff6dee",
+      "bytes": 20181829,
+      "frames": 12,
+      "layouts": 3
+    }
+  },
+  "methods": {
+    "current": "Approved held-strip self-repeat fallback applied to incomplete masked-repeat results",
+    "patch": "Within one predicted surface; extrapolate a textured patch and inspect its opposite end"
+  },
+  "frame_ids": [
+    {
+      "key": "smooth_stone/dev-shopfront-masonry-high-right",
+      "image_sha256": "f15cd0e471a9a2e375c9f801df171bb8f5ee44d95374f02f1174c7938a94cc79",
+      "layout": "shopfront",
+      "split": "development"
+    },
+    {
+      "key": "light_gray_concrete/dev-shopfront-masonry-high-right",
+      "image_sha256": "bb588b0b0d1cdb05b720ff5bc3b515479426c7772fd98fb7fadb8a55b79ca9db",
+      "layout": "shopfront",
+      "split": "development"
+    },
+    {
+      "key": "smooth_stone/dev-shopfront-masonry-low-left",
+      "image_sha256": "17691e7909ee0e9384db83c3a729f8763e21a281eb89b8dcebe61fc7675d1405",
+      "layout": "shopfront",
+      "split": "development"
+    },
+    {
+      "key": "light_gray_concrete/dev-shopfront-masonry-low-left",
+      "image_sha256": "0359c24dea1b318ec9cd002a1523ae8fc0d7d59fc9d7418972cf9ce9af8d4d57",
+      "layout": "shopfront",
+      "split": "development"
+    },
+    {
+      "key": "smooth_stone/dev-shopfront-plaster-high-right",
+      "image_sha256": "ae58f28554348d924798e23bd492b88db06c2a099f590e325c514ecc5c8f9c7e",
+      "layout": "shopfront",
+      "split": "development"
+    },
+    {
+      "key": "light_gray_concrete/dev-shopfront-plaster-high-right",
+      "image_sha256": "4cc1d5687db72eef74f23fc291fb7916b3f481ed4998d9e1c850024039d38cce",
+      "layout": "shopfront",
+      "split": "development"
+    },
+    {
+      "key": "smooth_stone/dev-shopfront-plaster-low-left",
+      "image_sha256": "5d0c9120de4ca16f35758f90a31e176e50a3cf166358dd9833ee2213d1ff2f72",
+      "layout": "shopfront",
+      "split": "development"
+    },
+    {
+      "key": "light_gray_concrete/dev-shopfront-plaster-low-left",
+      "image_sha256": "299e0228de74d2cc7d3a18deaba9f61c82560a0ddd0b8557e5c91728c964a993",
+      "layout": "shopfront",
+      "split": "development"
+    },
+    {
+      "key": "smooth_stone/dev-wing-masonry-close-front",
+      "image_sha256": "9ce65a1c07694c1d3e57019c07b422d7a6a0771ed0d46f579891eae8a61463a9",
+      "layout": "wing",
+      "split": "development"
+    },
+    {
+      "key": "light_gray_concrete/dev-wing-masonry-close-front",
+      "image_sha256": "9ce65a1c07694c1d3e57019c07b422d7a6a0771ed0d46f579891eae8a61463a9",
+      "layout": "wing",
+      "split": "development"
+    },
+    {
+      "key": "smooth_stone/dev-wing-masonry-high-right",
+      "image_sha256": "8cd9e20f608db25df6d141941051d30afcbf80733ea4c6f2058874c02019bf9f",
+      "layout": "wing",
+      "split": "development"
+    },
+    {
+      "key": "light_gray_concrete/dev-wing-masonry-high-right",
+      "image_sha256": "5ccd9115fd2a70784e0e1ab6819d37fc5c4af54cf965605143b3817e1f3a3efd",
+      "layout": "wing",
+      "split": "development"
+    },
+    {
+      "key": "smooth_stone/dev-wing-masonry-low-left",
+      "image_sha256": "0c7bc49ce3c736391d7954a9c069aee29586f03fd33a2a88926b40257ccae6ce",
+      "layout": "wing",
+      "split": "development"
+    },
+    {
+      "key": "light_gray_concrete/dev-wing-masonry-low-left",
+      "image_sha256": "4e8817361e24c3f05e835d7af6c8bab3da96d50c8821828144f33bb1ea0e87d3",
+      "layout": "wing",
+      "split": "development"
+    },
+    {
+      "key": "smooth_stone/dev-wing-plaster-close-front",
+      "image_sha256": "b3154136e855e9d005a993b8afdb3989e3fb156b102aed46ce0d99e761d2f2b8",
+      "layout": "wing",
+      "split": "development"
+    },
+    {
+      "key": "light_gray_concrete/dev-wing-plaster-close-front",
+      "image_sha256": "b3154136e855e9d005a993b8afdb3989e3fb156b102aed46ce0d99e761d2f2b8",
+      "layout": "wing",
+      "split": "development"
+    },
+    {
+      "key": "smooth_stone/dev-wing-plaster-high-right",
+      "image_sha256": "49832e903f4455c88c44f51da20abc550516d208783af9e3d05edc85ff4116a9",
+      "layout": "wing",
+      "split": "development"
+    },
+    {
+      "key": "light_gray_concrete/dev-wing-plaster-high-right",
+      "image_sha256": "64d4fec367d669912de294146c1fa3e0bf871816ec4f52e57213e35db2968564",
+      "layout": "wing",
+      "split": "development"
+    },
+    {
+      "key": "smooth_stone/dev-wing-plaster-low-left",
+      "image_sha256": "b564e5c3bb2def9511c27cf483dbb01dbe760b1bce8b6060be578c97b2083019",
+      "layout": "wing",
+      "split": "development"
+    },
+    {
+      "key": "light_gray_concrete/dev-wing-plaster-low-left",
+      "image_sha256": "b1aa96442f2858b5435fc9af424de374ffafbade3cc74d059b85b6c1bfd7e13c",
+      "layout": "wing",
+      "split": "development"
+    }
+  ],
+  "timing": "Per-frame processing from cached model and baseline outputs; no new model inference. Includes resampling and dimension calculation.",
+  "artifacts": {
+    "cases.json": "24ef0f401bf86b86ca13ea2e1af496c02d3310e1bb990bbb6692b750606b7d71",
+    "scores.json": "799309e8b3a15dd917a07671d4154d196a5b8950bbe7929d2185191b11352a58"
+  },
+  "reproduce": "python -m benchmark.within_wall_round --split development --out runs/my-within-wall --dataset runs/visible-builds-v1"
+}
