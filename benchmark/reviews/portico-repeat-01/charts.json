@@ -1,0 +1,1071 @@
+{
+  "scope": "Recorded chart, reference visibility mask and face IDs are evaluation-only. The predicted-chart runs use image-only Finder and model evidence.",
+  "examples": [
+    {
+      "key": "smooth_stone/holdout-portico-plaster-low-left",
+      "sha256": "8f7b6cf572ea617a0efa47c002f4f9221df201dcde9d20595a10fb2915228445",
+      "reference": 20,
+      "proposal": "mask-0-mobile-1",
+      "actual": [
+        18,
+        1
+      ],
+      "block_ids": [
+        "minecraft:spruce_planks"
+      ],
+      "predicted_chart": {
+        "quad": [
+          [
+            442.2876710860846,
+            362.1296359261464
+          ],
+          [
+            1028.713570675108,
+            397.42109373225054
+          ],
+          [
+            1029.1178336013436,
+            437.7570205120076
+          ],
+          [
+            441.7290499291786,
+            424.01788438472823
+          ]
+        ],
+        "chart_pixels": [
+          588,
+          51
+        ],
+        "valid_pixels": 20681,
+        "valid_fraction": 0.6896425236761371,
+        "chart_span_in_recorded_blocks": [
+          18.061237784074855,
+          1.3430627098982644
+        ],
+        "expected_mean_pitch_px": [
+          32.5559082400464,
+          37.97291044128773
+        ],
+        "baseline": {
+          "method": "masked-repeat",
+          "counts": [
+            null,
+            5.353846002333407
+          ],
+          "phase": [
+            null,
+            null
+          ],
+          "evidence": {
+            "axes": [
+              null,
+              {
+                "count": 5.353846002333407,
+                "lag": 9.525862338545465,
+                "agreement": 0.6063257058461508,
+                "rows": 48,
+                "source": "repeated texture",
+                "native_support": 0.0
+              }
+            ],
+            "alternatives": [
+              [
+                {
+                  "count": 17.78993118300506,
+                  "lag": 33.052404416365796,
+                  "agreement": 0.44559160868326825,
+                  "rows": 45,
+                  "source": "repeated texture",
+                  "native_support": 0.11557106526328917
+                }
+              ],
+              [
+                {
+                  "count": 5.353846002333407,
+                  "lag": 9.525862338545465,
+                  "agreement": 0.6063257058461508,
+                  "rows": 48,
+                  "source": "repeated texture",
+                  "native_support": 0.0
+                },
+                {
+                  "count": 2.686818201018981,
+                  "lag": 18.981559668107856,
+                  "agreement": 0.6598196427027384,
+                  "rows": 48,
+                  "source": "repeated texture",
+                  "native_support": 0.0
+                }
+              ]
+            ],
+            "aspect": 13.341103315418666,
+            "aspect_source": "camera-space normal and assumed lens"
+          }
+        },
+        "repeat": {
+          "method": "masked-patch-translations",
+          "counts": [
+            null,
+            5.353846002333407
+          ],
+          "phase": [
+            null,
+            null
+          ],
+          "evidence": {
+            "peaks": [
+              [
+                {
+                  "pitch": 32.45780283257595,
+                  "count": 18.11582882036179,
+                  "correlation": 0.6707439422607422,
+                  "cross_axis_shift": 0,
+                  "prominence": 0.28063833713531494
+                },
+                {
+                  "pitch": 67.40257652134446,
+                  "count": 8.723702124558953,
+                  "correlation": 0.6141666769981384,
+                  "cross_axis_shift": 1,
+                  "prominence": 0.22018960118293762
+                }
+              ],
+              [
+                {
+                  "pitch": 9.41886606180102,
+                  "count": 5.41466453237239,
+                  "correlation": 0.6551161408424377,
+                  "cross_axis_shift": -1,
+                  "prominence": 0.6009716503322124
+                },
+                {
+                  "pitch": 19.043983406900796,
+                  "count": 2.678011155035957,
+                  "correlation": 0.6713843941688538,
+                  "cross_axis_shift": -2,
+                  "prominence": 0.9513840973377228
+                }
+              ]
+            ],
+            "selected": [
+              {
+                "pitch": 32.45780283257595,
+                "count": 18.11582882036179,
+                "correlation": 0.6707439422607422,
+                "cross_axis_shift": 0,
+                "prominence": 0.28063833713531494
+              },
+              {
+                "pitch": 9.41886606180102,
+                "count": 5.41466453237239,
+                "correlation": 0.6551161408424377,
+                "cross_axis_shift": -1,
+                "prominence": 0.6009716503322124
+              }
+            ],
+            "aspect": 13.341103315418666,
+            "reason": "axes disagree with chart aspect"
+          }
+        },
+        "baseline_dimensions": [
+          null,
+          5
+        ],
+        "repeat_dimensions": [
+          null,
+          5
+        ],
+        "strongest_patch_translations": [
+          {
+            "pitch": 32.45780283257595,
+            "count": 18.11582882036179,
+            "correlation": 0.6707439422607422,
+            "cross_axis_shift": 0,
+            "prominence": 0.28063833713531494
+          },
+          {
+            "pitch": 9.41886606180102,
+            "count": 5.41466453237239,
+            "correlation": 0.6551161408424377,
+            "cross_axis_shift": -1,
+            "prominence": 0.6009716503322124
+          }
+        ]
+      },
+      "recorded_chart_diagnostic": {
+        "quad": [
+          [
+            444.0870181592161,
+            365.72408362112
+          ],
+          [
+            1028.0886182613622,
+            403.9224992561757
+          ],
+          [
+            1028.668688824211,
+            435.17818738029155
+          ],
+          [
+            443.3488025067137,
+            410.0374332400147
+          ]
+        ],
+        "chart_pixels": [
+          586,
+          38
+        ],
+        "valid_pixels": 20464,
+        "valid_fraction": 0.9189868870127538,
+        "chart_span_in_recorded_blocks": [
+          18.0,
+          0.9999999999999929
+        ],
+        "expected_mean_pitch_px": [
+          32.55555555555556,
+          38.00000000000027
+        ],
+        "baseline": {
+          "method": "masked-repeat",
+          "counts": [
+            17.98923479740353,
+            0.9994019977106866
+          ],
+          "phase": [
+            null,
+            null
+          ],
+          "evidence": {
+            "axes": [
+              {
+                "count": 17.98923479740353,
+                "lag": 32.575037604411065,
+                "agreement": 0.8389717208014594,
+                "rows": 36,
+                "source": "repeated texture",
+                "native_support": 0.2272329065740384
+              },
+              {
+                "count": 0.9994019977106866,
+                "source": "measured axis and plane aspect"
+              }
+            ],
+            "alternatives": [
+              [
+                {
+                  "count": 17.98923479740353,
+                  "lag": 32.575037604411065,
+                  "agreement": 0.8389717208014594,
+                  "rows": 36,
+                  "source": "repeated texture",
+                  "native_support": 0.2272329065740384
+                },
+                {
+                  "count": 9.002636788525942,
+                  "lag": 65.09204067266936,
+                  "agreement": 0.9249747594197592,
+                  "rows": 36,
+                  "source": "repeated texture",
+                  "native_support": 0.0
+                },
+                {
+                  "count": 5.998084734421461,
+                  "lag": 97.69785288912261,
+                  "agreement": 0.880965338812934,
+                  "rows": 36,
+                  "source": "repeated texture",
+                  "native_support": 0.0
+                },
+                {
+                  "count": 4.501006099565371,
+                  "lag": 130.1931139476984,
+                  "agreement": 0.9069573084513346,
+                  "rows": 36,
+                  "source": "repeated texture",
+                  "native_support": 0.0
+                },
+                {
+                  "count": 3.599105018995178,
+                  "lag": 162.81825534604803,
+                  "agreement": 0.909638934665256,
+                  "rows": 36,
+                  "source": "repeated texture",
+                  "native_support": 0.0
+                },
+                {
+                  "count": 3.0004773141438554,
+                  "lag": 195.30225982301985,
+                  "agreement": 0.8738454182942709,
+                  "rows": 36,
+                  "source": "repeated texture",
+                  "native_support": 0.0
+                },
+                {
+                  "count": 2.5711626254922866,
+                  "lag": 227.91246037492544,
+                  "agreement": 0.9196340772840712,
+                  "rows": 36,
+                  "source": "repeated texture",
+                  "native_support": 0.0
+                },
+                {
+                  "count": 2.2501445581856565,
+                  "lag": 260.42771246328516,
+                  "agreement": 0.8415476662772042,
+                  "rows": 35,
+                  "source": "repeated texture",
+                  "native_support": 0.0
+                },
+                {
+                  "count": 2.0000480387173654,
+                  "lag": 292.99296249694225,
+                  "agreement": 0.9178877998800838,
+                  "rows": 34,
+                  "source": "repeated texture",
+                  "native_support": 0.0
+                }
+              ],
+              [
+                {
+                  "count": 2.0162834956199998,
+                  "lag": 18.846556093202132,
+                  "agreement": 0.3736702601114909,
+                  "rows": 48,
+                  "source": "repeated texture",
+                  "native_support": 0.0
+                }
+              ]
+            ],
+            "aspect": 17.99999883791624,
+            "aspect_source": "chart vanishing directions"
+          }
+        },
+        "repeat": {
+          "method": "masked-patch-translations",
+          "counts": [
+            17.98923479740353,
+            0.9994019977106866
+          ],
+          "phase": [
+            null,
+            null
+          ],
+          "evidence": {
+            "reason": "preserve complete baseline count"
+          }
+        },
+        "baseline_dimensions": [
+          18,
+          1
+        ],
+        "repeat_dimensions": [
+          18,
+          1
+        ],
+        "strongest_patch_translations": [
+          {
+            "pitch": 32.60316908492099,
+            "count": 17.973712876611916,
+            "correlation": 0.8410897850990295,
+            "cross_axis_shift": 0,
+            "prominence": 0.8280277410522103
+          },
+          {
+            "pitch": 9.48138098389388,
+            "count": 4.0078549806774975,
+            "correlation": 0.6739898324012756,
+            "cross_axis_shift": 1,
+            "prominence": 0.6800533779896796
+          }
+        ]
+      }
+    },
+    {
+      "key": "smooth_stone/holdout-portico-plaster-low-left",
+      "sha256": "8f7b6cf572ea617a0efa47c002f4f9221df201dcde9d20595a10fb2915228445",
+      "reference": 13,
+      "proposal": "mask-2",
+      "actual": [
+        6,
+        3
+      ],
+      "block_ids": [
+        "minecraft:white_concrete"
+      ],
+      "predicted_chart": {
+        "quad": [
+          [
+            520.0196330859234,
+            292.9862301639154
+          ],
+          [
+            706.0296814923349,
+            312.73691025759524
+          ],
+          [
+            705.9973146506593,
+            383.9044940540525
+          ],
+          [
+            519.4954103607357,
+            373.45685219058726
+          ]
+        ],
+        "chart_pixels": [
+          187,
+          76
+        ],
+        "valid_pixels": 13271,
+        "valid_fraction": 0.9337883478750352,
+        "chart_span_in_recorded_blocks": [
+          6.069813726352154,
+          2.350964395141781
+        ],
+        "expected_mean_pitch_px": [
+          30.808194193528166,
+          32.3271590829076
+        ],
+        "baseline": {
+          "method": "masked-repeat",
+          "counts": [
+            null,
+            null
+          ],
+          "phase": [
+            null,
+            null
+          ],
+          "evidence": {
+            "axes": [
+              null,
+              null
+            ],
+            "alternatives": [
+              [],
+              []
+            ],
+            "aspect": 2.510199160649954,
+            "aspect_source": "camera-space normal and assumed lens"
+          }
+        },
+        "repeat": {
+          "method": "masked-patch-translations",
+          "counts": [
+            null,
+            null
+          ],
+          "phase": [
+            null,
+            null
+          ],
+          "evidence": {
+            "peaks": [
+              [],
+              []
+            ],
+            "selected": [
+              null,
+              null
+            ],
+            "aspect": 2.510199160649954
+          }
+        },
+        "baseline_dimensions": [
+          null,
+          null
+        ],
+        "repeat_dimensions": [
+          null,
+          null
+        ],
+        "strongest_patch_translations": [
+          null,
+          null
+        ]
+      },
+      "recorded_chart_diagnostic": {
+        "quad": [
+          [
+            522.600478469842,
+            293.81712564251626
+          ],
+          [
+            706.0433496350266,
+            313.268841568062
+          ],
+          [
+            705.9657021749412,
+            405.1216268614271
+          ],
+          [
+            521.3839041836184,
+            395.44816893978475
+          ]
+        ],
+        "chart_pixels": [
+          185,
+          97
+        ],
+        "valid_pixels": 13094,
+        "valid_fraction": 0.729674003900808,
+        "chart_span_in_recorded_blocks": [
+          5.999999999999886,
+          2.9999999999999716
+        ],
+        "expected_mean_pitch_px": [
+          30.83333333333392,
+          32.33333333333364
+        ],
+        "baseline": {
+          "method": "masked-repeat",
+          "counts": [
+            null,
+            null
+          ],
+          "phase": [
+            null,
+            null
+          ],
+          "evidence": {
+            "axes": [
+              null,
+              null
+            ],
+            "alternatives": [
+              [],
+              [
+                {
+                  "count": 3.0040660956840033,
+                  "lag": 32.28956917404769,
+                  "agreement": 0.4707501331965129,
+                  "rows": 48,
+                  "source": "repeated texture",
+                  "native_support": 0.0
+                }
+              ]
+            ],
+            "aspect": 1.9999998708795863,
+            "aspect_source": "chart vanishing directions"
+          }
+        },
+        "repeat": {
+          "method": "masked-patch-translations",
+          "counts": [
+            null,
+            null
+          ],
+          "phase": [
+            null,
+            null
+          ],
+          "evidence": {
+            "peaks": [
+              [],
+              []
+            ],
+            "selected": [
+              null,
+              null
+            ],
+            "aspect": 1.9999998708795863
+          }
+        },
+        "baseline_dimensions": [
+          null,
+          null
+        ],
+        "repeat_dimensions": [
+          null,
+          null
+        ],
+        "strongest_patch_translations": [
+          null,
+          null
+        ]
+      }
+    },
+    {
+      "key": "smooth_stone/holdout-portico-plaster-low-left",
+      "sha256": "8f7b6cf572ea617a0efa47c002f4f9221df201dcde9d20595a10fb2915228445",
+      "reference": 8,
+      "proposal": "mask-10",
+      "actual": [
+        1,
+        5
+      ],
+      "block_ids": [
+        "minecraft:cobblestone"
+      ],
+      "predicted_chart": {
+        "quad": [
+          [
+            861.44,
+            449.93
+          ],
+          [
+            874.32,
+            450.47
+          ],
+          [
+            890.05,
+            593.97
+          ],
+          [
+            863.78,
+            601.36
+          ]
+        ],
+        "chart_pixels": [
+          20,
+          148
+        ],
+        "valid_pixels": 1971,
+        "valid_fraction": 0.6658783783783784,
+        "chart_span_in_recorded_blocks": [
+          1.0048775201880764,
+          4.530635724567743
+        ],
+        "expected_mean_pitch_px": [
+          19.902923090822778,
+          32.66649737418921
+        ],
+        "baseline": {
+          "method": "masked-repeat",
+          "counts": [
+            null,
+            null
+          ],
+          "phase": [
+            null,
+            null
+          ],
+          "evidence": {
+            "axes": [
+              null,
+              null
+            ],
+            "alternatives": [
+              [],
+              []
+            ],
+            "aspect": 0.21867264764040276,
+            "aspect_source": "camera-space normal and assumed lens"
+          }
+        },
+        "repeat": {
+          "method": "masked-patch-translations",
+          "counts": [
+            null,
+            null
+          ],
+          "phase": [
+            null,
+            null
+          ],
+          "evidence": {
+            "peaks": [
+              [],
+              []
+            ],
+            "selected": [
+              null,
+              null
+            ],
+            "aspect": 0.21867264764040276
+          }
+        },
+        "baseline_dimensions": [
+          null,
+          null
+        ],
+        "repeat_dimensions": [
+          null,
+          null
+        ],
+        "strongest_patch_translations": [
+          null,
+          null
+        ]
+      },
+      "recorded_chart_diagnostic": {
+        "quad": [
+          [
+            862.8800234971803,
+            434.1027844580506
+          ],
+          [
+            882.7369819017158,
+            432.03568680135515
+          ],
+          [
+            884.3657587515995,
+            598.4666248223043
+          ],
+          [
+            864.2625738241953,
+            595.0272754617058
+          ]
+        ],
+        "chart_pixels": [
+          20,
+          164
+        ],
+        "valid_pixels": 2916,
+        "valid_fraction": 0.8890243902439025,
+        "chart_span_in_recorded_blocks": [
+          1.0000000000000004,
+          5.0
+        ],
+        "expected_mean_pitch_px": [
+          19.999999999999993,
+          32.8
+        ],
+        "baseline": {
+          "method": "masked-repeat",
+          "counts": [
+            0.9995889479594271,
+            4.997945065290609
+          ],
+          "phase": [
+            null,
+            0.9479166666666666
+          ],
+          "evidence": {
+            "axes": [
+              {
+                "count": 0.9995889479594271,
+                "source": "measured axis and plane aspect"
+              },
+              {
+                "count": 4.997945065290609,
+                "lag": 32.81348591422825,
+                "agreement": 0.8485560417175293,
+                "rows": 18,
+                "source": "repeated texture",
+                "native_support": 0.2403326116384951
+              }
+            ],
+            "alternatives": [
+              [],
+              [
+                {
+                  "count": 4.997945065290609,
+                  "lag": 32.81348591422825,
+                  "agreement": 0.8485560417175293,
+                  "rows": 18,
+                  "source": "repeated texture",
+                  "native_support": 0.2403326116384951
+                },
+                {
+                  "count": 2.4983897869142155,
+                  "lag": 65.6422792227941,
+                  "agreement": 0.7871538798014323,
+                  "rows": 18,
+                  "source": "repeated texture",
+                  "native_support": 0.0
+                }
+              ]
+            ],
+            "aspect": 0.19999998697490792,
+            "aspect_source": "chart vanishing directions"
+          }
+        },
+        "repeat": {
+          "method": "masked-patch-translations",
+          "counts": [
+            0.9995889479594271,
+            4.997945065290609
+          ],
+          "phase": [
+            null,
+            0.9479166666666666
+          ],
+          "evidence": {
+            "reason": "preserve complete baseline count"
+          }
+        },
+        "baseline_dimensions": [
+          1,
+          5
+        ],
+        "repeat_dimensions": [
+          1,
+          5
+        ],
+        "strongest_patch_translations": [
+          null,
+          {
+            "pitch": 32.93832259905479,
+            "count": 4.97900278639891,
+            "correlation": 0.950955867767334,
+            "cross_axis_shift": 0,
+            "prominence": 0.9367964938282967
+          }
+        ]
+      }
+    },
+    {
+      "key": "smooth_stone/dev-shopfront-plaster-low-left",
+      "sha256": "5d0c9120de4ca16f35758f90a31e176e50a3cf166358dd9833ee2213d1ff2f72",
+      "reference": 11,
+      "proposal": "mask-0-wall-0",
+      "actual": [
+        2,
+        4
+      ],
+      "block_ids": [
+        "minecraft:cobblestone"
+      ],
+      "predicted_chart": {
+        "quad": [
+          [
+            523.47,
+            385.1
+          ],
+          [
+            606.05,
+            384.93
+          ],
+          [
+            603.2,
+            549.48
+          ],
+          [
+            526.5,
+            550.42
+          ]
+        ],
+        "chart_pixels": [
+          80,
+          165
+        ],
+        "valid_pixels": 11412,
+        "valid_fraction": 0.8645454545454545,
+        "chart_span_in_recorded_blocks": [
+          1.9984155983012775,
+          4.021499297632454
+        ],
+        "expected_mean_pitch_px": [
+          40.03171315716449,
+          41.02947378285983
+        ],
+        "baseline": {
+          "method": "masked-repeat",
+          "counts": [
+            1.9862686721642324,
+            4.017442071483941
+          ],
+          "phase": [
+            null,
+            null
+          ],
+          "evidence": {
+            "axes": [
+              {
+                "count": 1.9862686721642324,
+                "lag": 40.27652508501392,
+                "agreement": 0.4720844030380249,
+                "rows": 48,
+                "source": "repeated texture",
+                "native_support": 0.31392492927484594
+              },
+              {
+                "count": 4.017442071483941,
+                "lag": 41.070909564864785,
+                "agreement": 0.46935629337391954,
+                "rows": 47,
+                "source": "repeated texture",
+                "native_support": 0.30075459566500967
+              }
+            ],
+            "alternatives": [
+              [
+                {
+                  "count": 1.9862686721642324,
+                  "lag": 40.27652508501392,
+                  "agreement": 0.4720844030380249,
+                  "rows": 48,
+                  "source": "repeated texture",
+                  "native_support": 0.31392492927484594
+                }
+              ],
+              [
+                {
+                  "count": 4.017442071483941,
+                  "lag": 41.070909564864785,
+                  "agreement": 0.46935629337391954,
+                  "rows": 47,
+                  "source": "repeated texture",
+                  "native_support": 0.30075459566500967
+                }
+              ]
+            ],
+            "aspect": 0.47678759257611025,
+            "aspect_source": "camera-space normal and assumed lens"
+          }
+        },
+        "repeat": {
+          "method": "masked-patch-translations",
+          "counts": [
+            1.9862686721642324,
+            4.017442071483941
+          ],
+          "phase": [
+            null,
+            null
+          ],
+          "evidence": {
+            "reason": "preserve complete baseline count"
+          }
+        },
+        "baseline_dimensions": [
+          2,
+          4
+        ],
+        "repeat_dimensions": [
+          2,
+          4
+        ],
+        "strongest_patch_translations": [
+          null,
+          {
+            "pitch": 41.1576177655276,
+            "count": 4.008978384997762,
+            "correlation": 0.5510671734809875,
+            "cross_axis_shift": 0,
+            "prominence": 0.5467913569882512
+          }
+        ]
+      },
+      "recorded_chart_diagnostic": {
+        "quad": [
+          [
+            513.6866201429074,
+            385.0313852786309
+          ],
+          [
+            594.2687049489498,
+            388.41883125958134
+          ],
+          [
+            593.8595014055545,
+            549.9890299128101
+          ],
+          [
+            512.9853661744683,
+            553.7580013098706
+          ]
+        ],
+        "chart_pixels": [
+          81,
+          165
+        ],
+        "valid_pixels": 11254,
+        "valid_fraction": 0.8420501309390198,
+        "chart_span_in_recorded_blocks": [
+          1.9999999999999432,
+          3.999999999999993
+        ],
+        "expected_mean_pitch_px": [
+          40.50000000000115,
+          41.25000000000007
+        ],
+        "baseline": {
+          "method": "masked-repeat",
+          "counts": [
+            2.001356604262327,
+            4.00260554103467
+          ],
+          "phase": [
+            null,
+            null
+          ],
+          "evidence": {
+            "axes": [
+              {
+                "count": 2.001356604262327,
+                "lag": 40.47254738485523,
+                "agreement": 0.7736914157867432,
+                "rows": 48,
+                "source": "repeated texture",
+                "native_support": 0.4435586785915784
+              },
+              {
+                "count": 4.00260554103467,
+                "lag": 41.22314784917517,
+                "agreement": 0.8583386739095052,
+                "rows": 48,
+                "source": "repeated texture",
+                "native_support": 0.3970636062609929
+              }
+            ],
+            "alternatives": [
+              [
+                {
+                  "count": 2.001356604262327,
+                  "lag": 40.47254738485523,
+                  "agreement": 0.7736914157867432,
+                  "rows": 48,
+                  "source": "repeated texture",
+                  "native_support": 0.4435586785915784
+                }
+              ],
+              [
+                {
+                  "count": 4.00260554103467,
+                  "lag": 41.22314784917517,
+                  "agreement": 0.8583386739095052,
+                  "rows": 48,
+                  "source": "repeated texture",
+                  "native_support": 0.3970636062609929
+                },
+                {
+                  "count": 1.9999369165550607,
+                  "lag": 82.50260227418396,
+                  "agreement": 0.7417627175649008,
+                  "rows": 48,
+                  "source": "repeated texture",
+                  "native_support": 0.0
+                }
+              ]
+            ],
+            "aspect": 0.4999999741417685,
+            "aspect_source": "chart vanishing directions"
+          }
+        },
+        "repeat": {
+          "method": "masked-patch-translations",
+          "counts": [
+            2.001356604262327,
+            4.00260554103467
+          ],
+          "phase": [
+            null,
+            null
+          ],
+          "evidence": {
+            "reason": "preserve complete baseline count"
+          }
+        },
+        "baseline_dimensions": [
+          2,
+          4
+        ],
+        "repeat_dimensions": [
+          2,
+          4
+        ],
+        "strongest_patch_translations": [
+          null,
+          {
+            "pitch": 41.16922072274383,
+            "count": 4.007848511663622,
+            "correlation": 0.938417375087738,
+            "cross_axis_shift": 0,
+            "prominence": 0.9538777815178037
+          }
+        ]
+      }
+    }
+  ]
+}
