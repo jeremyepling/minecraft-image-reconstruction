@@ -1,7 +1,10 @@
 {
-  "baseline_revision": "832c0ec807a1e60e05938b49299cb1e71bfc54ca",
-  "frozen_comparison_revision": "1014df5",
-  "counter": "masked-repeat",
+  "baseline_revision": "674c869ffe34a01c78232a3d0e3e3593c8f356dd",
+  "promoted_revision": "5df16a000f90367c5bc23bba6b2350f585c27ec3",
+  "counter": "texture-guided-repeat",
+  "exact_face_rule": "Single-image visible face, one-to-one projected IoU >= 0.5, maximum corner error <= 0.25 block, exact top-1 Minecraft block ID",
+  "atlas_sha256": "49b477fbfe5f2171c2529e3ffe1722f09fee5a094de2b6b99831512b8601c950",
+  "placement_index_sha256": "32f95873f5b10e0fa36023c149b4277a4b1f7a59fb77940ede120f9292f37ac6",
   "material_match": "shape",
   "source_masks": "edge_detail:native4-stable-counts",
   "source_mask_manifest_sha256": "d8a2c401d28c546762bcef38ed731c4074120f3750f2998a5b7e797fcb6e9a43",
@@ -12,7 +15,6 @@
     "surface_confirm_v1": "0a479a8264f2c0f714284928354ff6ff5f9729491709676f07e2033d25e48fc3",
     "normal_confirm_v1": "61bdf3a89a505a8be3757efe480185bec9c1888a1c72ffb69ef0093623e27dda"
   },
-  "all_baseline_and_promoted_face_decisions_match_published_experiment": true,
   "scores": {
     "ordinary": {
       "all": {
@@ -97,22 +99,50 @@
       }
     }
   },
-  "paired": {
-    "stats": {
-      "surfaces": 714,
-      "offsets_added": 20,
-      "surfaces_with_new_offsets": 10,
-      "exact_gained": 51,
-      "exact_lost": 0
-    },
-    "added_by_frame": {
-      "smooth_stone/dev-wing-masonry-close-front": 8,
-      "light_gray_concrete/dev-wing-masonry-close-front": 8,
-      "smooth_stone/holdout-courtyard-masonry-close-front": 9,
-      "light_gray_concrete/holdout-courtyard-masonry-close-front": 9,
-      "light_gray_concrete/holdout-courtyard-plaster-high-right": 6,
-      "smooth_stone/holdout-portico-masonry-low-left": 5,
-      "light_gray_concrete/holdout-portico-masonry-low-left": 6
-    }
-  }
+  "spacings_dimensions_rectified_quads_and_existing_offsets_equal": true,
+  "comparison": {
+    "surfaces": 714,
+    "offsets_added": 26,
+    "surfaces_with_new_offsets": 14,
+    "correct_gained": 51,
+    "correct_lost": 0,
+    "wrong_gained": 0,
+    "wrong_lost": 0,
+    "ordinary_unverified": 1,
+    "ordinary_proposed": 104,
+    "promoted_unverified": 1,
+    "promoted_proposed": 155
+  },
+  "texture_guided_only": {
+    "accepted_texture_guided_charts": 41,
+    "offsets_added": 6,
+    "surfaces_with_new_offsets": 4,
+    "correct_gained": 0,
+    "correct_lost": 0,
+    "wrong_gained": 0,
+    "wrong_lost": 0,
+    "ordinary_unverified": 0,
+    "ordinary_proposed": 0,
+    "promoted_unverified": 0,
+    "promoted_proposed": 0
+  },
+  "per_frame_changes": {
+    "smooth_stone/dev-wing-masonry-close-front": 8,
+    "light_gray_concrete/dev-wing-masonry-close-front": 8,
+    "smooth_stone/holdout-courtyard-masonry-close-front": 9,
+    "light_gray_concrete/holdout-courtyard-masonry-close-front": 9,
+    "light_gray_concrete/holdout-courtyard-plaster-high-right": 6,
+    "smooth_stone/holdout-portico-masonry-low-left": 5,
+    "light_gray_concrete/holdout-portico-masonry-low-left": 6
+  },
+  "new_guesses_on_charts_recovered_by_texture_guidance": [],
+  "previous_masked_repeat_comparison": {
+    "baseline_revision": "832c0ec807a1e60e05938b49299cb1e71bfc54ca",
+    "frozen_experiment_revision": "1014df5",
+    "exact_before": 103,
+    "exact_after": 154,
+    "offsets_added": 20,
+    "surfaces_with_new_offsets": 10
+  },
+  "per_frame_changes_unit": "additional exact visible face IDs; all losses and changes in wrong IDs were zero"
 }
