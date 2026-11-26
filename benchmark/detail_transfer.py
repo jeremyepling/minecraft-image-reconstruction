@@ -5,6 +5,7 @@ import hashlib
 import io
 import json
 from collections import Counter
+from concurrent.futures import ProcessPoolExecutor
 from pathlib import Path
 from zipfile import ZipFile
 
@@ -201,33 +202,47 @@ def render(out,reviews):
     save(out/'sheet-views.json',index)
 
 
+def frame_job(job):
+    path,row,builds,out=job
+    filename='ordinary/'+row['id']+'.json.gz'
+    if builds:
+        build=compact_build(row,builds)
+    else:
+        manifest=read(ARCHIVE/'manifest.json')
+        archived=ARCHIVE/filename
+        if digest(archived)!=manifest['artifacts'][filename]:
+            raise ValueError('Changed saved build '+filename)
+        build=json.loads(gzip.decompress(archived.read_bytes()))
+    pack(out/filename,build)
+    with ZipFile(path) as z:
+        rec,parts,real,native,photo=evaluate(z,row,build)
+    local={}
+    review_candidate(local,row,rec,parts,real,native,photo)
+    info=dict(sha256=row['image_sha256'],split=row['split'],layout=row['layout'],
+              build_manifest_sha256=build['full_build_manifest_sha256'],ordinary=filename)
+    return rec,local.get(row['layout']),info
+
+
 @image_only()
-def run(dataset,out,builds):
+def run(dataset,out,builds,workers):
     out.mkdir(parents=True,exist_ok=False)
+    jobs=[]
     rows=[]
     index={}
     reviews={}
     for split,path,shard in shards(dataset):
         with ZipFile(path) as z:
-            for line in z.read('frames.jsonl').splitlines():
-                row=json.loads(line)
-                filename='ordinary/'+row['id']+'.json.gz'
-                if builds:
-                    build=compact_build(row,builds)
-                else:
-                    manifest=read(ARCHIVE/'manifest.json')
-                    archived=ARCHIVE/filename
-                    if digest(archived)!=manifest['artifacts'][filename]:
-                        raise ValueError('Changed saved build '+filename)
-                    build=json.loads(gzip.decompress(archived.read_bytes()))
-                pack(out/filename,build)
-                rec,parts,real,native,photo=evaluate(z,row,build)
-                review_candidate(reviews,row,rec,parts,real,native,photo)
-                rows.append(rec)
-                index[row['id']]=dict(sha256=row['image_sha256'],split=split,layout=row.get('layout'),
-                    build_manifest_sha256=build['full_build_manifest_sha256'],ordinary=filename)
-        if len([r for r in rows if r['split']==split])!=shard['frames']:
-            raise ValueError('Frame inventory differs')
+            inputs=[json.loads(line) for line in z.read('frames.jsonl').splitlines()]
+            if len(inputs)!=shard['frames'] or {r['split'] for r in inputs}!={split}:
+                raise ValueError('Frame inventory differs')
+            jobs.extend((path,row,builds,out) for row in inputs)
+    with ProcessPoolExecutor(max_workers=workers) as pool:
+        for rec,review,info in pool.map(frame_job,jobs):
+            rows.append(rec)
+            index[rec['id']]=info
+            previous=reviews.get(rec['layout'])
+            if review and (previous is None or review[0]>previous[0]):
+                reviews[rec['layout']]=review
     render(out,reviews)
     summary=totals(rows)
     save(out/'cases.json',rows)
@@ -250,8 +265,9 @@ if __name__=='__main__':
     cli=argparse.ArgumentParser(description=__doc__)
     cli.add_argument('--dataset',type=Path,required=True)
     cli.add_argument('--out',type=Path,required=True)
+    cli.add_argument('--workers',type=int,default=4)
     cli.add_argument('--builds',action='append',type=Path,default=[])
     cli.add_argument('--inputs-only',action='store_true')
     args=cli.parse_args()
     if args.inputs_only: export_inputs(args.dataset,args.out)
-    else: run(args.dataset,args.out,args.builds)
+    else: run(args.dataset,args.out,args.builds,args.workers)
