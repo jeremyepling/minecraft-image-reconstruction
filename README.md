@@ -6,7 +6,7 @@ The Java 26.3 camera measures pavement seams first. If those give insufficient e
 
 Download the versioned [Visible Builds dataset](training/DATASET.md) for per-frame screenshots, camera calibration, visible block coordinates and material states.
 
-After estimating the camera, the placement stage compares possible integer depths for each visible surface. A small decision model scores how well the projected vanilla texture, texture-pixel edges and surface outline align. The previous contact-based estimate supplies the fallback when the model or atlas is unavailable. [Training, held-out builds and an illustrated depth choice](https://github.com/jeremyepling/minecraft-image-reconstruction/blob/88ee238/benchmark/reviews/atlas-plane-depth-01/README.md)
+After estimating the camera, a small decision model chooses the depth of each visible surface using the projected vanilla textures, texture edges and outline. Neighboring blocks can have different textures. Partial faces and additional depths inside a mask need corroborating image evidence. A final visibility check removes fully obscured proposals. The contact-based estimate supplies the fallback when the model or atlas is unavailable. On 12 newly reserved, camera-supported builds, correct visible coordinates rose from 1,479 to 1,638 and extras fell from 1,718 to 859. [Current end-to-end results and before/after builds](benchmark/reviews/visible-depth-01/README.md)
 
 Reconstruct only the parts of a build visible in the supplied image or images. Hidden backs, interiors and occluded regions remain unknown and are omitted from the reconstruction. This scope applies to the current pipeline and the [planned learned approach](training/README.md). [Product intent](PRODUCT_INTENT.md)
 

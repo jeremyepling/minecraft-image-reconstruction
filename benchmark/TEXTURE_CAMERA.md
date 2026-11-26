@@ -1,5 +1,7 @@
 # Recovering camera scale from Minecraft textures
 
+The numbers below isolate the floor-camera change. The [subsequent placement evaluation](reviews/visible-depth-01/README.md) scores the new default on these same images and two additional sets of native builds.
+
 The Java 26.3 default now measures the existing ground seams first, then tries to match the visible floor to a calibrated vanilla sprite. On the fixed Visible Builds v1 release this raised metric camera coverage from **16 to 144 of 152** screenshots. Every projected visible corner on those 144 frames landed within two source pixels. The 128 newly recovered views all have light gray concrete ground. [Floor experiments and saved camera matrices](reviews/floor-atlas-camera-01/README.md)
 
 ## What changed in the actual builds
