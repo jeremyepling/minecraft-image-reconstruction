@@ -40,6 +40,13 @@ def write(path,obj):
     path.write_text(json.dumps(obj,indent=1,allow_nan=False)+'\n')
 
 
+def write_samples(path,**arrays):
+    staging=path.with_suffix('.partial')
+    with staging.open('wb') as file:
+        np.savez_compressed(file,**arrays)
+    staging.replace(path)
+
+
 def baseline(image,version,parts,counts,camera):
     with patch.object(visible_placement,'seam_camera',return_value=camera):
         return visible_placement.place(image,version,parts,counts=counts)
@@ -61,7 +68,7 @@ def features(path):
     # Open the source world and pose only after extracting each image's features.
     target={tuple(b['xyz_world']) for b in read(d/'labels.json')['blocks']}
     world=read(d/'world-readback.json')
-    ground_y=min(x[1] for x in target)-1 if not (d/'frame.json').exists() else read(d/'frame.json').get('ground_y',64)
+    ground_y=read(d/'frame.json')['ground_y']
     occupied={(b['x'],b['y'],b['z']) for b in world if b['block_id'].removeprefix('minecraft:')!='air' and b['y']>ground_y}
     if len(xyz):
         T=registration(np.asarray(camera['P']),read(d/'camera.json'))
@@ -71,7 +78,7 @@ def features(path):
     visible=np.array([tuple(cell) in target for cell in mapped],dtype=bool)
     hidden=np.array([tuple(cell) in occupied and tuple(cell) not in target for cell in mapped],dtype=bool)
     dest=OUT/'features'/f'{key}.npz'
-    np.savez_compressed(dest,xyz=xyz,features=values,y=visible,hidden=hidden,target=len(target),
+    write_samples(dest,xyz=xyz,features=values,y=visible,hidden=hidden,target=len(target),
                         atlas=available,family=source['family'],split=source['split'],layout=source['layout'],
                         rgb=source['rgb_sha256'],input_sha256=hashlib.sha256(path.read_bytes()).hexdigest(),
                         baseline_seconds=elapsed_base,feature_seconds=elapsed_features)
@@ -104,7 +111,7 @@ def floor_measure(path):
         t=time.perf_counter()
         X=floor_features(img,source['camera']['P'],xyz)
         elapsed=time.perf_counter()-t
-    np.savez_compressed(OUT/'floor'/path.name,x=X,seconds=elapsed)
+    write_samples(OUT/'floor'/path.name,x=X,seconds=elapsed)
 
 
 def floor_prepare(args):
@@ -131,7 +138,7 @@ def ray_measure(path):
         t=time.perf_counter()
         occluded=fully_occluded_cells(img.size,source['camera']['P'],set(map(tuple,xyz)))
         elapsed=time.perf_counter()-t
-    np.savez_compressed(OUT/'rays'/path.name,drop=np.array([tuple(p) in occluded for p in xyz],bool),
+    write_samples(OUT/'rays'/path.name,drop=np.array([tuple(p) in occluded for p in xyz],bool),
                         seconds=elapsed)
 
 
@@ -233,7 +240,68 @@ def fit_rule(X,Y,families=None):
     return best[1]
 
 
+def fit_conjunctions(rows):
+    """Mine short rejection rules under separate loss limits in each training family."""
+    X,Y=arrays(rows)
+    family=np.concatenate([np.repeat(r['family'],len(r['y'])) for r in rows])
+    bits=lambda group:int.from_bytes(np.packbits(group,bitorder='little').tobytes(),'little')
+    bad,good=bits(~Y),bits(Y)
+    budgets=[]
+    for g in np.unique(family):
+        valid=family==g
+        true=bits(valid & Y)
+        budgets.append((true,bits(valid & ~Y),max(1,int(.01*true.bit_count()))))
+    conditions=[]
+    seen=set()
+    for i,name in enumerate(FEATURES):
+        v=X[:,i]
+        ts=np.unique(np.quantile(v,[.025,.05,.10,.20,.35,.50,.65,.80,.90,.95,.975]))
+        for threshold in ts:
+            for sense in (-1,1):
+                cover=bits(v*sense<threshold*sense)
+                if cover.bit_count()>=20 and cover not in seen:
+                    seen.add(cover)
+                    conditions.append((cover,dict(feature=name,value=float(threshold),sense=sense)))
+    clauses=[]
+    pruned=0
+    for _ in range(2):
+        best_score=0
+        best=None
+        for a,(cover,first) in enumerate(conditions):
+            for other,second in conditions[a:]:
+                if first['feature']==second['feature'] and first!=second:
+                    continue
+                pair=cover & other
+                new=pair & ~pruned
+                score=(new&bad).bit_count()-6*(new&good).bit_count()
+                if score<=best_score:
+                    continue
+                combined=pruned | pair
+                costs=[((combined&t).bit_count(),(combined&f).bit_count(),budget) for t,f,budget in budgets]
+                if any(loss>budget or gain<3*loss for loss,gain,budget in costs):
+                    continue
+                # An entire family can lack the trial failure. The evidence must still
+                # cover at least half the independently grouped training families.
+                if sum((new&f).bit_count()>=4 for _,f,_ in budgets)<(len(budgets)+1)//2:
+                    continue
+                best_score=score
+                best=(pair,[first] if first==second else [first,second])
+        if best is None:
+            break
+        pruned |= best[0]
+        clauses.append(best[1])
+    return dict(kind='conjunctions',clauses=clauses)
+
+
 def rejects(model,X):
+    if model['kind']=='conjunctions':
+        mask=np.zeros(len(X),bool)
+        for clause in model['clauses']:
+            match=np.ones(len(X),bool)
+            for r in clause:
+                match &= X[:,FEATURES.index(r['feature'])]*r['sense']<r['value']*r['sense']
+            mask |= match
+        return mask
     if model['kind'] in ('rule','family_rule'):
         r=model['rule']
         return np.zeros(len(X),bool) if r is None else X[:,FEATURES.index(r['feature'])]*r['sense']<r['value']*r['sense']
@@ -283,11 +351,17 @@ def predict_family_rule(image,version,parts,counts,camera):
     return _predict(image,version,parts,counts,camera,'family_rule')
 
 
+def predict_conjunctions(image,version,parts,counts,camera):
+    return _predict(image,version,parts,counts,camera,'conjunctions')
+
+
 def predict_occluded(image,version,parts,counts,camera):
     return _predict(image,version,parts,counts,camera,'occluded')
 
 
 def fit(rows,kind,cutoff=.22):
+    if kind=='conjunctions':
+        return fit_conjunctions(rows)
     X,Y=arrays(rows)
     if kind in ('rule','family_rule'):
         groups=None
@@ -327,7 +401,7 @@ def train():
         raise ValueError('Require all 72 training frames from six disjoint families.')
     cv={}
     models={}
-    for kind in ('rule','tree','consensus','family_rule'):
+    for kind in ('rule','tree','consensus','family_rule','conjunctions'):
         held=[]
         for g in groups:
             others=[r for r in rows if r['family']!=g]
@@ -336,7 +410,7 @@ def train():
                 held.append((r,model))
         # Set threshold on leave-family-out predictions. Require low cost in every family.
         choices=[]
-        thresholds=[.22] if kind in ('rule','family_rule') else [.08,.12,.16,.20,.24,.28,.32,.36]
+        thresholds=[.22] if kind in ('rule','family_rule','conjunctions') else [.08,.12,.16,.20,.24,.28,.32,.36]
         for t in thresholds:
             by_family={g:[] for g in groups}
             for row,model in held:
@@ -351,7 +425,11 @@ def train():
         choice=max(safe,key=lambda c:c['total']['removed']-4*c['total']['lost']) if safe else choices[0]
         models[kind]=fit(rows,kind,choice['cutoff'])
         cv[kind]=dict(choices=choices,selected=choice)
-    write(MODEL,dict(features=FEATURES,models=models))
+    eligible=[kind for kind,v in cv.items() if v['selected']['safe']
+              and v['selected']['total']['lost']<=.01*v['selected']['total']['correct']
+              and v['selected']['total']['removed']>=5*v['selected']['total']['lost']]
+    preferred=max(eligible,key=lambda k:cv[k]['selected']['total']['removed']-5*cv[k]['selected']['total']['lost']) if eligible else None
+    write(MODEL,dict(features=FEATURES,models=models,preferred=preferred))
     write(MODEL.parent/'training.json',dict(families=groups,frames=len(rows),
           raw=totals([tally(r,np.zeros(len(r['y']),bool)) for r in rows]),cross_validation=cv))
     print({k:(v['selected']['safe'],v['selected']['cutoff'],v['selected']['total']) for k,v in cv.items()})
