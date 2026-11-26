@@ -95,8 +95,10 @@ def run(out, workers):
     save(out/'cases.json',results)
     save(out/'scores.json',table)
     from benchmark.strip_review_sheet import render
+    from benchmark.strip_failure_sheet import render as render_failure
     render(out)
-    modules = ['attached_strip','strip_evidence','attached_strip_round','strip_review_sheet']
+    render_failure(out)
+    modules = ['attached_strip','strip_evidence','attached_strip_round','strip_review_sheet','strip_failure_sheet']
     save(out/'manifest.json',dict(run_id=out.name,code=revision(),version=suite['version'],fixtures=fixtures,
          frames=source['frames'],splits=source['splits'],capture=source['capture'],protocol=PROTOCOL,
          reference_sha256=source['reference_sha256'],source_manifest='benchmark/reviews/sky-gap-01/manifest.json',
