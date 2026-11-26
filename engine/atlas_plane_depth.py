@@ -133,7 +133,7 @@ def _patch_scores(mask, origins, axis, free, level, P, rgb, atlas, *, by_cell=Fa
     return np.sort(scores)[::-1].tolist()
 
 
-def options(mask, P, eye, rays, axis, baseline, rgb, atlas, scene_distance=None, radius=6):
+def options(mask, P, eye, rays, axis, baseline, rgb, atlas, scene_distance=None, radius=6, *, extra_levels=()):
     free = [i for i in range(3) if i != axis]
     inv = np.linalg.inv(P[:,:3])
     boundary = _boundary(mask,inv,axis,free)
@@ -144,6 +144,7 @@ def options(mask, P, eye, rays, axis, baseline, rgb, atlas, scene_distance=None,
     uv = eye[free]
     rows = []
     levels=set(range(baseline-radius,baseline+radius+1))
+    levels.update(extra_levels)
     scene_level=baseline
     if scene_distance is not None:
         scene_level=round(float(eye[axis]+np.median(rays[mask,axis])*scene_distance))
@@ -173,7 +174,7 @@ def place_ranked_without_ray(image, version, parts, counts, camera, *, atlas_pat
     return _place(image, version, parts, counts, camera, atlas_path, remove_occluded=False)
 
 
-def _place(image, version, parts, counts, camera, atlas_path, *, remove_occluded):
+def _place(image, version, parts, counts, camera, atlas_path, *, remove_occluded, junction=None):
     if camera['P'] is None or not parts:
         return place_with_camera(image, version, parts, counts, camera)
     weights = frozen_weights()
@@ -185,10 +186,18 @@ def _place(image, version, parts, counts, camera, atlas_path, *, remove_occluded
         return cells, status
     rgb = np.asarray(image.convert('RGB'))
     decisions = []
+    if junction is not None:
+        from engine.junction_depth import JunctionDepth
+        junction = JunctionDepth(image.size, parts, junction)
 
     def select(part, mask, projection, eye, rays, axis, baseline, scene_distance):
-        rows = options(mask, projection, eye, rays, axis, baseline, rgb, atlas, scene_distance)
-        level = ranked_choice(rows, baseline, weights)
+        extra = junction.levels(mask, projection, eye, rays, axis) if junction is not None else ()
+        rows = options(mask, projection, eye, rays, axis, baseline, rgb, atlas, scene_distance, extra_levels=extra)
+        if junction is None:
+            level = ranked_choice(rows, baseline, weights)
+        else:
+            level = junction.choose(part, mask, projection, eye, rays, axis, baseline, scene_distance, rows, weights)
+            junction.record(part, mask, axis, level, rows)
         decisions.append(dict(id=part['id'], axis=axis, baseline=baseline, level=level))
         return level
 
@@ -200,6 +209,7 @@ def _place(image, version, parts, counts, camera, atlas_path, *, remove_occluded
         return verify(rgb, atlas, mask, projection, cell, axis, sign)
 
     cells, status = place_with_camera(image, version, parts, counts, camera, select_level,
-                                      partial=partial, refine_candidates=refine, remove_occluded=remove_occluded)
+                                      partial=partial, refine_candidates=refine, remove_occluded=remove_occluded,
+                                      walls_first=junction is not None)
     status.update(plane_depth_method='ranked', plane_offsets=decisions)
     return cells, status
