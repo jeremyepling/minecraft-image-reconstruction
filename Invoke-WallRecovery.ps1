@@ -12,7 +12,10 @@ param(
     [string] $PlanarityCheckpoint,
     [string] $PlanarityUtils3D,
     [string] $PlanarityFields,
-    [ValidateSet('cuda','cpu')][string] $Device
+    [ValidateSet('cuda','cpu')][string] $Device,
+    [ValidateSet('atlas','exposure','shape','shape-shadow')][string] $MaterialMatch,
+    [string] $Atlas,
+    [string] $Library
 )
 
 $ErrorActionPreference = 'Stop'
@@ -73,7 +76,11 @@ try {
         $changes['PYTHONPATH'] = $env:PYTHONPATH
         $env:PYTHONPATH = (@($env:PYTHONPATH) + @($extra) | Where-Object { $_ }) -join [IO.Path]::PathSeparator
     }
-    & $Python (Join-Path $PSScriptRoot 'reconstruct.py') build $sourceImage --version 26.3 --through $Through --out $destination
+    $materialOptions = @()
+    if ($MaterialMatch) { $materialOptions += @('--material-match', $MaterialMatch) }
+    if ($Library) { $materialOptions += @('--library', (Resolve-Path -LiteralPath $Library).Path) }
+    if ($Atlas) { $materialOptions += @('--atlas', (Resolve-Path -LiteralPath $Atlas).Path) }
+    & $Python (Join-Path $PSScriptRoot 'reconstruct.py') build $sourceImage --version 26.3 --through $Through --out $destination @materialOptions
     if ($LASTEXITCODE -ne 0) { throw "Wall Recovery exited with code $LASTEXITCODE" }
 } finally {
     foreach ($name in $changes.Keys) { [Environment]::SetEnvironmentVariable($name, $changes[$name]) }

@@ -16,7 +16,7 @@ class ReconstructionCliTests(unittest.TestCase):
         with patch.object(sys, 'argv', argv), patch('engine.surface_model.build') as build:
             reconstruct.main()
         build.assert_called_once_with(Path('picture.png'), '26.3', Path('out'), through='counts',
-                                      atlas_path=Path('atlas'), material_match='atlas', context_px=10)
+                                      atlas_path=Path('atlas'), material_match='atlas', context_px=10, library=None)
 
     def test_prototype_commands_and_method_selectors_are_retired(self):
         retired = [[cmd] for cmd in ('inspect-openings', 'inspect-form', 'fit-voxels')]

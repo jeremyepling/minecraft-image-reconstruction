@@ -1,0 +1,356 @@
+{
+  "method": "crop-split-01 / split",
+  "frames": 56,
+  "total": 743,
+  "thin_span": "minimum distance between parallel lines enclosing the whole predicted mask in source pixels",
+  "bands": {
+    "0-5": 25,
+    "5-8": 7,
+    "8-10": 18,
+    "10-12": 16,
+    "12-16": 33,
+    "16-24": 89,
+    "24-40": 156
+  },
+  "at_least_40": 399,
+  "examples": [
+    {
+      "key": "light_gray_concrete/dev-shopfront-masonry-low-left",
+      "layout": "shopfront",
+      "id": "mask-15",
+      "box": [
+        986,
+        490,
+        988,
+        556
+      ],
+      "width": 2.0,
+      "case": 1
+    },
+    {
+      "key": "light_gray_concrete/dev-wing-plaster-high-right",
+      "layout": "wing",
+      "id": "mask-7",
+      "box": [
+        764,
+        316,
+        834,
+        320
+      ],
+      "width": 4.0,
+      "case": 2
+    },
+    {
+      "key": "light_gray_concrete/holdout-galleries-masonry-low-left",
+      "layout": "galleries",
+      "id": "mask-0-junction-1-mobile-0",
+      "box": [
+        600,
+        482,
+        602,
+        484
+      ],
+      "width": 2.0,
+      "case": 3
+    },
+    {
+      "key": "light_gray_concrete/holdout-workshop-masonry-low-left",
+      "layout": "workshop",
+      "id": "mask-0-mobile-0",
+      "box": [
+        898,
+        436,
+        914,
+        438
+      ],
+      "width": 2.0,
+      "case": 4
+    },
+    {
+      "key": "smooth_stone/dev-wing-masonry-high-right",
+      "layout": "wing",
+      "id": "mask-5",
+      "box": [
+        542,
+        314,
+        786,
+        322
+      ],
+      "width": 6.16881663226701,
+      "case": 5
+    },
+    {
+      "key": "light_gray_concrete/holdout-galleries-masonry-high-right",
+      "layout": "galleries",
+      "id": "mask-8-single-210-1",
+      "box": [
+        658,
+        316,
+        780,
+        322
+      ],
+      "width": 6.0,
+      "case": 6
+    },
+    {
+      "key": "light_gray_concrete/holdout-workshop-plaster-low-left",
+      "layout": "workshop",
+      "id": "mask-10",
+      "box": [
+        368,
+        214,
+        428,
+        228
+      ],
+      "width": 7.862977495474581,
+      "case": 7
+    },
+    {
+      "key": "smooth_stone/dev-shopfront-masonry-low-left",
+      "layout": "shopfront",
+      "id": "mask-11",
+      "box": [
+        848,
+        532,
+        906,
+        540
+      ],
+      "width": 8.0,
+      "case": 8
+    },
+    {
+      "key": "smooth_stone/dev-wing-masonry-low-left",
+      "layout": "wing",
+      "id": "mask-2",
+      "box": [
+        426,
+        284,
+        436,
+        406
+      ],
+      "width": 8.45132599253094,
+      "case": 9
+    },
+    {
+      "key": "light_gray_concrete/holdout-galleries-plaster-high-right",
+      "layout": "galleries",
+      "id": "mask-20",
+      "box": [
+        914,
+        358,
+        922,
+        404
+      ],
+      "width": 8.0,
+      "case": 10
+    },
+    {
+      "key": "light_gray_concrete/holdout-workshop-plaster-low-left",
+      "layout": "workshop",
+      "id": "mask-8",
+      "box": [
+        462,
+        212,
+        596,
+        242
+      ],
+      "width": 9.368498658978808,
+      "case": 11
+    },
+    {
+      "key": "smooth_stone/dev-shopfront-masonry-high-right",
+      "layout": "shopfront",
+      "id": "mask-12",
+      "box": [
+        554,
+        298,
+        792,
+        310
+      ],
+      "width": 10.553746083431975,
+      "case": 12
+    },
+    {
+      "key": "light_gray_concrete/dev-wing-plaster-high-right",
+      "layout": "wing",
+      "id": "mask-5",
+      "box": [
+        424,
+        562,
+        768,
+        656
+      ],
+      "width": 11.634267264133541,
+      "case": 13
+    },
+    {
+      "key": "light_gray_concrete/holdout-galleries-plaster-low-left",
+      "layout": "galleries",
+      "id": "mask-16",
+      "box": [
+        702,
+        292,
+        836,
+        310
+      ],
+      "width": 11.318906619405595,
+      "case": 14
+    },
+    {
+      "key": "light_gray_concrete/holdout-workshop-masonry-low-left",
+      "layout": "workshop",
+      "id": "mask-20",
+      "box": [
+        328,
+        42,
+        346,
+        66
+      ],
+      "width": 11.627553482998906,
+      "case": 15
+    },
+    {
+      "key": "smooth_stone/dev-shopfront-plaster-low-left",
+      "layout": "shopfront",
+      "id": "mask-7",
+      "box": [
+        596,
+        386,
+        610,
+        552
+      ],
+      "width": 14.0,
+      "case": 16
+    },
+    {
+      "key": "light_gray_concrete/holdout-galleries-plaster-low-left",
+      "layout": "galleries",
+      "id": "mask-20",
+      "box": [
+        486,
+        290,
+        504,
+        316
+      ],
+      "width": 14.116120744201112,
+      "case": 17
+    },
+    {
+      "key": "light_gray_concrete/holdout-workshop-masonry-high-right",
+      "layout": "workshop",
+      "id": "mask-12",
+      "box": [
+        774,
+        400,
+        880,
+        426
+      ],
+      "width": 12.365036095663413,
+      "case": 18
+    },
+    {
+      "key": "light_gray_concrete/dev-shopfront-masonry-high-right",
+      "layout": "shopfront",
+      "id": "mask-7",
+      "box": [
+        368,
+        298,
+        984,
+        320
+      ],
+      "width": 21.669219596356015,
+      "case": 19
+    },
+    {
+      "key": "light_gray_concrete/dev-wing-masonry-high-right",
+      "layout": "wing",
+      "id": "mask-5",
+      "box": [
+        848,
+        334,
+        868,
+        408
+      ],
+      "width": 19.39908050203212,
+      "case": 20
+    },
+    {
+      "key": "light_gray_concrete/holdout-galleries-plaster-high-right",
+      "layout": "galleries",
+      "id": "mask-15",
+      "box": [
+        922,
+        336,
+        1236,
+        360
+      ],
+      "width": 23.021590088950006,
+      "case": 21
+    },
+    {
+      "key": "light_gray_concrete/holdout-workshop-plaster-high-right",
+      "layout": "workshop",
+      "id": "mask-13",
+      "box": [
+        240,
+        380,
+        416,
+        400
+      ],
+      "width": 19.98811998707174,
+      "case": 22
+    },
+    {
+      "key": "light_gray_concrete/dev-shopfront-plaster-low-left",
+      "layout": "shopfront",
+      "id": "mask-3",
+      "box": [
+        402,
+        286,
+        436,
+        566
+      ],
+      "width": 32.8956377399997,
+      "case": 23
+    },
+    {
+      "key": "smooth_stone/dev-wing-plaster-high-right",
+      "layout": "wing",
+      "id": "mask-3",
+      "box": [
+        422,
+        548,
+        770,
+        654
+      ],
+      "width": 29.650516776230063,
+      "case": 24
+    },
+    {
+      "key": "light_gray_concrete/holdout-galleries-plaster-high-right",
+      "layout": "galleries",
+      "id": "mask-17",
+      "box": [
+        970,
+        520,
+        1002,
+        636
+      ],
+      "width": 32.0,
+      "case": 25
+    },
+    {
+      "key": "light_gray_concrete/holdout-workshop-masonry-high-right",
+      "layout": "workshop",
+      "id": "planarity-new-20-1",
+      "box": [
+        852,
+        456,
+        1008,
+        488
+      ],
+      "width": 32.0,
+      "case": 26
+    }
+  ]
+}

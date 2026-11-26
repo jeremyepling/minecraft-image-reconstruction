@@ -228,13 +228,14 @@ def proposals_for(image, version, method, normals=None, depth=None):
     return parts
 
 
-def _count_regions(image, planes, version, method, atlas, out):
+def _count_regions(image, planes, version, method, atlas, out, shape_matcher=None, shadow_field=None):
     from engine.surface_sample import sample_surface
     from engine.surface_dimensions import dimensions
 
     if method not in ('legacy-repeat', 'masked-repeat', 'atlas-repeat'):
         raise ValueError(f'Unknown Block Counter method {method}')
     measurements = []
+    faces = []
     samples_dir = out / 'samples'
     samples_dir.mkdir(exist_ok=True)
     for i, plane in enumerate(planes):
@@ -260,22 +261,68 @@ def _count_regions(image, planes, version, method, atlas, out):
                 result = count(sample, version=version)
             row.update(result)
             row['dimensions'] = dimensions(plane, sample['quad'], image.size, result['counts'])
-            if atlas is not None:
-                from engine.atlas_count import rank_tile
-                from engine.surface_tiles import visible_tiles
-                row['visible_cells'] = [
-                    dict(cell=tile['cell'], quad=np.asarray(tile['quad']).tolist(),
-                         material=rank_tile(tile, atlas, version=version))
-                    for tile in visible_tiles(sample, result)]
-                if not row['visible_cells']:
-                    row['material_status'] = 'No complete cell has a supported position inside this mask.'
+            from engine.surface_tiles import complete_footprints
+            from engine.face_evidence import effective_width, MIN_FACE_WIDTH
+            row['visible_cells'] = []
+            row['under_five_px_faces'] = []
+            for cell, quad in complete_footprints(sample, result):
+                width = effective_width(quad)
+                target = 'visible_cells' if width >= MIN_FACE_WIDTH else 'under_five_px_faces'
+                record = dict(face_index=len(faces), surface_id=plane['id'], cell=cell,
+                              quad=canonical(quad), effective_width_px=width,
+                              normal_camera=plane.get('normal_camera'))
+                row[target].append(record)
+                faces.append(record)
+            if not row['visible_cells'] and not row['under_five_px_faces']:
+                row['material_status'] = 'No complete cell has a supported position inside this mask.'
         measurements.append(row)
-    return dict(version=version, units='blocks across and down the rectified sampling chart',
-                shape_artifact='surfaces.json', surfaces=measurements)
+    report = dict(version=version, units='blocks across and down the rectified sampling chart',
+                  shape_artifact='surfaces.json', surfaces=measurements)
+    if atlas is not None:
+        from engine.atlas_count import rank_tile
+        from engine.block_face_groups import assign_block_materials
+        def material(tile):
+            if shape_matcher is None:
+                return rank_tile(tile, atlas, version=version)
+            patch = tile['rgb']
+            shadow = None
+            if shadow_field is not None:
+                from engine.blocker_shadow import cell_shadow, corrected
+                gains, shadow = cell_shadow(shadow_field, tile['quad'], len(patch))
+                patch = corrected(patch, gains)
+            if getattr(shape_matcher, 'sample_size', None) == 16:
+                from engine.geometry import face
+                patch = face(np.asarray(image), tile['quad'], 16)
+            result = shape_matcher.rank_patch(patch)
+            result['block_id'] = 'minecraft:' + result['block_id']
+            result['ranked_ids'] = ['minecraft:' + b for b in result['ranked_ids']]
+            result['same_texture_ids'] = sorted('minecraft:' + b for b in shape_matcher.mapping[result['texture']])
+            if shadow is not None:
+                result['shadow'] = shadow
+            return result
+
+        groups = assign_block_materials(image, faces, material)
+        report['block_groups'] = groups
+        attempted = sum(g['selected_index'] is not None for g in groups)
+        report['material_block_counts'] = dict(total=len(groups), attempted=attempted,
+                                                unresolved=len(groups)-attempted)
+        report['material_face_counts'] = dict(total=len(faces), attempted=attempted,
+            inherited=sum(len(g['face_indices'])-1 for g in groups if g['selected_index'] is not None),
+            under_five_px=sum(len(row.get('under_five_px_faces', [])) for row in measurements))
+    else:
+        from engine.block_face_groups import group_faces
+        groups = group_faces(faces, image.size)
+        for block_index, group in enumerate(groups):
+            group['block_index'] = block_index
+            for idx in group['face_indices']:
+                faces[idx]['block_index'] = block_index
+                faces[idx]['material_source_face'] = group['selected_index']
+        report['block_groups'] = groups
+    return report
 
 
 def build(image_path, version, out, *, outlines=None, order_method=None, through='surfaces',
-          counter=None, atlas_path=None, material_match=None, context_px=None, boundary=None):
+          counter=None, atlas_path=None, material_match=None, context_px=None, boundary=None, library=None):
     from engine.atlas import digest
     from engine.surface_fields import MODELS, SETTINGS as inference, infer
     if version != '26.3':
@@ -467,7 +514,24 @@ def build(image_path, version, out, *, outlines=None, order_method=None, through
             atlas = load_atlas(atlas_path, version=version)
             manifest['atlas'] = atlas.provenance
             methods['material_matching'] = 'atlas'
-        counts = _count_regions(image, patches, version, counter, atlas, out)
+        shape_matcher = None
+        shadow_field = None
+        if material_match in ('shape', 'shape-shadow'):
+            from engine.blocker_shape import ShapeMatcher
+            if atlas_path is None:
+                raise ValueError('Shape material matching needs an atlas directory')
+            shape_matcher = ShapeMatcher(atlas_path)
+            methods['material_matching'] = material_match
+            if material_match == 'shape-shadow':
+                from engine.blocker_shadow import surface_shadow_map
+                shadow_field = surface_shadow_map(np.asarray(image.convert('RGB')), [p for p in patches if p.get('support')])
+        if material_match == 'exposure':
+            from engine.block_exposure import ExposureMatcher
+            shape_matcher = ExposureMatcher(atlas_path, library)
+            methods['material_matching'] = 'exposure'
+            manifest['material_library_sha256'] = digest(library)
+        methods['block_grouping'] = 'convex-shared-edges'
+        counts = _count_regions(image, patches, version, counter, atlas, out, shape_matcher, shadow_field)
         (out/'counts.json').write_text(json.dumps(counts, allow_nan=False, indent=2))
         manifest['artifact'] = 'counts.json'
         manifest['artifacts'].update(counts='counts.json', samples='samples/')
