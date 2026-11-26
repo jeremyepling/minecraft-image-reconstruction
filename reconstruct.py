@@ -83,7 +83,7 @@ def main():
     p.add_argument('--through',choices=['camera','surfaces','counts','placement','assembly'],default='assembly',
                    help='Fit the camera, find surfaces, count blocks, export visible geometry, or assemble a textured facade')
     p.add_argument('--independent-plane-depth', action='store_true',
-                   help='Use the previous independent surface depths during visible placement')
+                   help='Use the previous placer with independent depths and its original edge-face pass')
     p.add_argument('--surface-context-px', type=int,
                    help='Include this many neighboring source pixels per side in Regions First context crops (default 8)')
     p.add_argument('--material-match', choices=['atlas','exposure','shape','shape-shadow'],

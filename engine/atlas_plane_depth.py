@@ -170,13 +170,14 @@ def place_ranked(image, version, parts, counts, camera, *, atlas_path=None, join
     cells, status = _place(image, version, parts, counts, camera, atlas_path, remove_occluded=True,
                            scene_policy=ForegroundConflicts() if joint_foreground else None)
     if cells and status['foreground_depth']['method'] == 'joint':
-        from engine.neighbor_photo_faces import recover
-        extra = recover(image, parts, camera['P'], cells)
-        if extra:
-            cells = cells | extra
-            status['added_blocks'] += len(extra)
-            status['placed_blocks'] = len(cells)
-        status['neighbor_photo_blocks'] = len(extra)
+        from engine import neighbor_photo_faces, visible_horizontal_faces
+        textured = cells | neighbor_photo_faces.recover(image, parts, camera['P'], cells)
+        recovered = visible_horizontal_faces.recover(image, parts, camera, textured)
+        status['neighbor_photo_blocks'] = len(textured) - len(cells)
+        status['dense_horizontal_blocks'] = len(recovered) - len(textured)
+        status['added_blocks'] += len(recovered) - len(cells)
+        status['placed_blocks'] = len(recovered)
+        cells = recovered
     return cells, status
 
 
