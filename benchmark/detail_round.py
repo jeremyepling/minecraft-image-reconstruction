@@ -142,7 +142,30 @@ def totals(rows,methods):
             sums = dict(count)
             sums.update(edge_mean_px=count['edge_sum']/count['edge_n'],pixel_iou=count['intersection']/count['union'])
             table[group][m]['native'] = sums
+            table[group][m]['size_changes'] = {key:sum(len(r['size_changes'][m][key]) for r in subset)
+                                               for key in ('gained','lost')}
     return table
+
+
+def provenance(method, selected):
+    module, setting = method.split(':', 1)
+    candidate = importlib.import_module('benchmark.'+module)
+    data = dict(candidate.provenance(setting)) if hasattr(candidate, 'provenance') else dict(settings=candidate.SETTINGS[setting])
+    fields = {}
+    used = {r['sha256'] for r in selected}
+    for name in data.pop('field_manifests', []):
+        path = ROOT / name
+        evidence = read(path)
+        times = evidence.get('timing', {})
+        total = Counter()
+        if isinstance(times, dict):
+            for sha in used:
+                if isinstance(times.get(sha), dict):
+                    total.update(times[sha])
+        fields[name] = dict(sha256=digest(path), fields_reused=len(used & times.keys()) if isinstance(times,dict) else None,
+                            preprocessing_seconds=dict(total), details={k:evidence[k] for k in
+                            ('release','checkpoint','upstream','moge','utils3d','device','settings','torch','segmentation','load_seconds') if k in evidence})
+    return dict(**data, field_manifests=fields)
 
 
 @image_only()
@@ -158,6 +181,9 @@ def run(out,workers,split,methods,sheet=False):
     checked(ARCHIVE,source['reference_sha256'])
     cohorts,suite,fixtures = groups()
     captures = {c.floor+'/'+c.id:c for group in cohorts.values() for c in group}
+    frame_hashes = {r['key']:r['sha256'] for r in source['frames']}
+    if frame_hashes!={r['key']:r['sha256'] for r in rows} or frame_hashes!={k:r['sha256'] for k,r in expected.items()}:
+        raise ValueError('Source frame list differs from its manifest')
     if fixtures!=source['fixtures'] or set(captures)!=set(expected) or len(rows)!=56 or source['protocol']!=PROTOCOL:
         raise ValueError('Frozen inputs changed')
     selected = [r for r in rows if split in ('all',r['cohort'])]
@@ -181,6 +207,7 @@ def run(out,workers,split,methods,sheet=False):
         reference_sha256=source['reference_sha256'],capture=source['capture'],protocol=PROTOCOL,
         baseline_sources={'benchmark/reviews/sky-gap-01/manifest.json':BASE_SHA,
                           'benchmark/reviews/strip-neighbor-01/manifest.json':digest(APPROVED/'manifest.json')},
+        settings={m:provenance(m, selected) for m in methods},
         candidate_sha256={m:digest(ROOT/'benchmark'/(m.split(':')[0]+'.py')) for m in methods},
         native_metric='Fixed shipped matched IDs, all native pixel centers along 4-connected inner boundary including holes; pooled bidirectional Euclidean distance. Add/remove assessed per proposal against its fixed reference; unmatched proposals excluded from paired metric.',
         timing='CPU wall seconds per picture. Current starts from saved sky-filtered proposals; candidates start from shipped baseline. Any precomputed candidate inference reported separately.',
