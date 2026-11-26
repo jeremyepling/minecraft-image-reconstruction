@@ -148,6 +148,8 @@ def run(out, workers):
     save(out/'cases.json', results)
     save(out/'scores.json', score)
     (out/'pictures.md').write_text(picture_table(results,NAMES,NAMES), encoding='utf8')
+    from benchmark.guard_zoom_sheet import render_crop_split
+    render_crop_split(out, results, captures, score)
     totals = Counter(action['action'] for row in results for action in row['events'])
     save(out/'manifest.json',dict(
         run_id=out.name,code=code,version=suite['version'],protocol=PROTOCOL,fixtures=fixtures,
@@ -163,7 +165,7 @@ def run(out, workers):
         timing='Cached split seconds exclude field decoding, full-frame inference, scoring and block counting.',
         audit=dict(splits=totals['split'],frames_identical_to_previous_zoom_without_additions=len(results),
                    frames_with_identical_foreground=len(results),native_partition_equal_for_every_split=True),
-        scores='scores.json',per_picture='pictures.md',reproduce=r'.\Invoke-SurfaceRound.ps1 -Round crop-split',
+        scores='scores.json',per_picture='pictures.md',sheet='comparison.jpg',reproduce=r'.\Invoke-SurfaceRound.ps1 -Round crop-split',
         artifacts={p.relative_to(out).as_posix():digest(p) for p in sorted(out.rglob('*')) if p.is_file()}))
     print([(name, s['matched'], s['unpaired'], s['opening_filled'], s['sizes']['correct'])
            for name, s in score['all'].items()], flush=True)

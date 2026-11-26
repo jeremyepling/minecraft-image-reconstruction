@@ -114,7 +114,11 @@ def detail_panels(put, full, row, overview, pinned, raw_detail=False, base_name=
             raise ValueError('Pinned close-up uses a different screenshot')
         rid = pinned['reference']
         reason = 'Revisited miss'
-        box, scene = tuple(pinned['crop_xyxy']), tuple(pinned['scene_xyxy'])
+        if 'crop_xyxy' in pinned:
+            box, scene = tuple(pinned['crop_xyxy']), tuple(pinned['scene_xyxy'])
+        else:
+            box = tuple(map(int, focus_box(native, rid, photo.size)))
+            scene = scene_box(native, box, photo.size)
     else:
         rid, reason = choose_target(graded, row)
         box = tuple(map(int, focus_box(native, rid, photo.size)))
@@ -149,7 +153,7 @@ def render(out, rows, captures, table):
 
 @image_only()
 def render_comparison(out, rows, captures, table, names, title, raw_stages=(), raw_panels=None, source=None,
-                      prior_detail_sheet=None, detail_stages=(), detail_renderer=None):
+                      prior_detail_sheet=None, detail_stages=(), detail_renderer=None, detail_targets=None):
     methods = tuple(names)
     if not methods or methods[0] != 'current':
         raise ValueError('The first column method must be the current finder')
@@ -175,6 +179,10 @@ def render_comparison(out, rows, captures, table, names, title, raw_stages=(), r
             pinned[view['layout']] = dict(frame=detail['frame'], sha256=detail['sha256'],
                                           reference=detail['focus_reference'], crop_xyxy=detail['crop_xyxy'],
                                           scene_xyxy=detail['scene_xyxy'])
+    for layout, (key, rid) in (detail_targets or {}).items():
+        if by_key[key]['layout'] != layout:
+            raise ValueError('Selected detail frame belongs to another building')
+        pinned[layout] = dict(frame=key, sha256=by_key[key]['sha256'], reference=rid)
     specs = stages(methods, names, raw_stages) + list(detail_stages)
     width = LEFT + len(roster) * (COL + GAP) + GAP
     height = TOP + sum(h + 82 for _, _, _, _, h in specs) + 9
@@ -236,9 +244,11 @@ def render_comparison(out, rows, captures, table, names, title, raw_stages=(), r
     save(out / 'sheet-views.json', dict(views=views, methods=names, fixed_views_sha256=digest(roster_file),
          prior_misses_sha256=digest(misses_file), reference_sha256=digest(ARCHIVE), matched=totals, eligible=scored,
          definition='Scores and gained/lost status use full surfaces, including regions beyond an enlarged crop.',
-         selection=('All eight close-ups use the prior sheet and the same source coordinates.' if prior_detail_sheet else
+         selection=('Use the prior close-ups except for the named targets from the preceding experiment.' if detail_targets else
+                    'All eight close-ups use the prior sheet and the same source coordinates.' if prior_detail_sheet else
                     'Four pinned regions from the prior misses review. For other buildings prefer changed match IDs, '
                     'then baseline misses and the fixed overview view. Select only after scoring.'),
          **({'prior_detail_sheet_sha256':digest(reference_sheet)} if prior_detail_sheet else {}),
+         **({'selected_detail_targets':detail_targets} if detail_targets else {}),
          image=dict(file=path.name, width=width, height=height, sha256=digest(path))))
     return path
