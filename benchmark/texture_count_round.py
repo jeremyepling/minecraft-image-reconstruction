@@ -156,6 +156,6 @@ if __name__=='__main__':
     parser.add_argument('--workers',type=int,default=4)
     parser.add_argument('--sheet',action='store_true')
     args=parser.parse_args()
-    if args.sheet and (set(args.method)!=set(MODULES) or args.split!='all'):
+    if args.sheet and (not {'repeat','atlas'}.issubset(args.method) or args.split!='all'):
         parser.error('--sheet needs both methods on all views')
     run(args.out.resolve(),args.method,args.split,args.workers,args.sheet)
