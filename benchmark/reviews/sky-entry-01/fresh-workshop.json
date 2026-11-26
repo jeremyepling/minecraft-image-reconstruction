@@ -1,0 +1,179 @@
+{
+  "fixture": "light_gray_concrete/holdout-workshop-masonry-low-left",
+  "screenshot_sha256": "ae86fd9911640c7397bc929d3e0ca1076d84312b5500712cf2c4ec25e7c9112f",
+  "original_png_basename": "holdout-workshop-masonry-low-left.png",
+  "stage_order": [
+    "color-edges",
+    "wall-depth-anything",
+    "junction-cuts",
+    "strip-mlsd",
+    "mobile-wall-split",
+    "single-wall-split",
+    "plane-recovery",
+    "plane-recovery-crop-splits",
+    "clear-noon-sky"
+  ],
+  "model_sha256": {
+    "normal": "24eacb5dc7a2c54c7bc98f7de085ffbed79ad006ea5b664c2c2cdc02ff3a52f0",
+    "depth": "fcf51f1b230362b28690bb9d1809bf0431f29cad20534e3f589bd7285547f20d",
+    "mlsd": "e869f90601ffa263f21ac47e09ff0d65dc936d1aeb47126b8499d5504adfb100",
+    "scalelsd": "d0a7333c4de518a70af7d6ea4a283aa0ce9ffe1047525373b94070b1d1d4003f",
+    "mobilesam": "6dbb90523a35330fedd7f1d3dfc66f995213d81b29a5ca8108dbcdd4e37d6c2f",
+    "pixelwise_planarity": "305325096a80f541e430ccbb1b6581af67b3ef9d3c92f8d9384dc7aaae9f3952"
+  },
+  "visible_proposals": 13,
+  "reference_surfaces": 14,
+  "matched": 7,
+  "assignments": {
+    "mask-0-mobile-1": 14,
+    "mask-0-mobile-5": 15,
+    "mask-2": 2,
+    "mask-3": 11,
+    "mask-4-planarity-split-1": 1,
+    "mask-5": 7,
+    "underside-0": 10
+  },
+  "split_additional_reference_ids": [],
+  "crop_splits": {
+    "input_surfaces": 27,
+    "output_surfaces": 28,
+    "events": [
+      {
+        "action": "split",
+        "parent": "mask-4",
+        "tile": 0,
+        "support_samples": 533,
+        "children": [
+          "mask-4-planarity-split-0",
+          "mask-4-planarity-split-1"
+        ]
+      }
+    ],
+    "inference": {
+      "settings": {
+        "grid": [
+          3,
+          3
+        ],
+        "crop_fraction": 0.5,
+        "stride": 4,
+        "artificial_edge": "discard touching region",
+        "geometry": "Average full-image camera normals and points under registered tile labels",
+        "order": "row-major; for each parent retain one accepted split with the most supporting samples"
+      },
+      "boxes": [
+        [
+          0,
+          0,
+          720,
+          452
+        ],
+        [
+          360,
+          0,
+          1080,
+          452
+        ],
+        [
+          720,
+          0,
+          1440,
+          452
+        ],
+        [
+          0,
+          224,
+          720,
+          676
+        ],
+        [
+          360,
+          224,
+          1080,
+          676
+        ],
+        [
+          720,
+          224,
+          1440,
+          676
+        ],
+        [
+          0,
+          448,
+          720,
+          900
+        ],
+        [
+          360,
+          448,
+          1080,
+          900
+        ],
+        [
+          720,
+          448,
+          1440,
+          900
+        ]
+      ],
+      "count": 9,
+      "geometry_source": "same full-image inference",
+      "crop_inference_s": 0.6982053999963682,
+      "crop_segmentation_s": 0.10980199996265583
+    }
+  },
+  "all_saved_region_properties_equal": true,
+  "canonical_regions_sha256": "e86727195915fbedf63faaa1486d023641c259ea81c8579dce48f13d6fabdd17",
+  "source_prediction_sha256": "f9e24420e99507bbc026eb268d6f5a22048f98cf7b9f21824cf4225be22f9c3b",
+  "counter": "masked-repeat",
+  "block_count_records": 13,
+  "background_filter": {
+    "blue_pixels": 442220,
+    "cloud_pixels": 207618,
+    "removed": [
+      "mask-0-mobile-0",
+      "mask-1",
+      "mask-6",
+      "mask-7",
+      "mask-10",
+      "mask-11",
+      "mask-12",
+      "mask-13",
+      "mask-15",
+      "mask-16",
+      "mask-17",
+      "mask-18",
+      "mask-19",
+      "mask-20",
+      "mask-21"
+    ],
+    "trimmed": [
+      "mask-0-mobile-1",
+      "mask-0-mobile-5",
+      "mask-2",
+      "mask-4-planarity-split-0",
+      "mask-4-planarity-split-1",
+      "mask-8",
+      "underside-0"
+    ],
+    "removed_blue_pixels": 2802,
+    "removed_cloud_pixels": 39908
+  },
+  "same_count_phase_and_dimensions_for_every_proposal": true,
+  "candidate_build": null,
+  "raw_model_source": "fresh screenshot inference",
+  "model_revision": "c09bd3361e64ff0dec473d6adc9456472e698d97",
+  "model_load_s": 4.663831600017147,
+  "full_frame_inference_s": 1.33311340000364,
+  "full_frame_segmentation_s": 0.049878699996043,
+  "baseline_opening_samples_covered": 0,
+  "candidate_opening_samples_covered": 0,
+  "opening_samples": 50,
+  "paired_sizes": {
+    "correct": 2,
+    "incorrect": 1,
+    "missing": 11,
+    "unmatched_returned": 0
+  }
+}
