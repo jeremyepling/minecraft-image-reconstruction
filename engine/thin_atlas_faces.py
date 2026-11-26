@@ -82,6 +82,27 @@ def _projection_margin(eye, rays, plane, uv, colors, templates):
     return round(current-max(depths),4),round(current-max(walls,default=current),4)
 
 
+def color_boundary(rgb, mask):
+    """Include up to two pixels of color continuity next to an original mask."""
+    image = rgb.astype(np.int16)
+    result = mask.copy()
+    for distance in (1, 2):
+        for axis in (0, 1):
+            left = [slice(None), slice(None)]
+            right = left.copy()
+            left[axis], right[axis] = slice(None, -distance), slice(distance, None)
+            left, right = tuple(left), tuple(right)
+            near = np.max(np.abs(image[left]-image[right]), axis=2) <= 6
+            if distance == 2:
+                middle = [slice(None), slice(None)]
+                middle[axis] = slice(1,-1)
+                near &= np.max(np.abs(image[tuple(middle)]-image[left]), axis=2) <= 6
+                near &= np.max(np.abs(image[tuple(middle)]-image[right]), axis=2) <= 6
+            result[left] |= mask[right] & near
+            result[right] |= mask[left] & near
+    return result
+
+
 class StripEvidence:
     def __init__(self,image,parts,camera,prior,atlas):
         self.size = image.size
@@ -100,6 +121,7 @@ class StripEvidence:
         rotation = np.linalg.solve(intrinsic(image.size,focal),P[:,:3])
         self.union,self.masks = _surface_masks(parts,self.size,np.arange(image.width)+.5,
                                                np.arange(image.height)+.5,rotation)
+        self.witness_mask = color_boundary(self.rgb,self.union)
         points = sorted(prior)
         owner,self.axes = _frontmost_cells(points,self.native,self.eye,self.shape,face_axes=True)
         self.depth = np.zeros(self.shape)
@@ -190,7 +212,7 @@ class StripEvidence:
         if joint is not None:
             owner,axes,ids = joint
             front &= (owner[box]==ids[cell]) & (axes[box]==1)
-        witness = front & self.union[box] & (self.axes[box]!=1)
+        witness = front & self.witness_mask[box] & (self.axes[box]!=1)
         n = int(witness.sum())
         if n<12 or n<.35*front.sum():
             return None
