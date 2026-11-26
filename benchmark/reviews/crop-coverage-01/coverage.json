@@ -1,0 +1,4494 @@
+{
+  "run_id": "crop-coverage-01",
+  "code": {
+    "commit": "ee7fc821cd3c4ba1b04b36f1b14b243947cb36cc",
+    "predictor_and_runner_sha256": "0f258cb98954ebb1873ce6f57bbf744491384565e07e2aca7a95e81b8c2341ee",
+    "source_dirty": false
+  },
+  "source_manifest": "b300caff403e517e09003376a112254bc1d72a87e3e52c1b53224c6a892f1850",
+  "source_run": "benchmark/reviews/crop-split-01",
+  "method": "plane-recovery-crop-splits",
+  "game_version": "26.3",
+  "reference_sha256": "91efa6d3e992b1a68672eae1fdd6d380e87724742a1a4b6cbe5f84d284f731a1",
+  "sample_stride_px": 4,
+  "scope": "Eligible, matched surface appearances only.",
+  "measure": "Fraction of owned scoring samples inside the chart, before filtering the interpolation taps. A usable sample contains at least one accepted output pixel.",
+  "summary": {
+    "matched": 516,
+    "usable": 505,
+    "no_chart": 11,
+    "empty_sample": 0,
+    "usable_chart_kinds": {
+      "wall normal + assumed-70-degree-vertical-fov": 16,
+      "supplied quad": 489
+    },
+    "usable_below_90_percent": 121,
+    "usable_below_80_percent": 22
+  },
+  "frames": [
+    {
+      "frame": "smooth_stone/dev-shopfront-masonry-high-right",
+      "sha256": "f15cd0e471a9a2e375c9f801df171bb8f5ee44d95374f02f1174c7938a94cc79",
+      "matched": [
+        {
+          "reference_id": 4,
+          "proposal": "mask-0",
+          "source_mask_samples": 1936,
+          "chart_kind": "wall normal + assumed-70-degree-vertical-fov",
+          "chart_covered_samples": 1936,
+          "valid_output_pixels": 35992
+        },
+        {
+          "reference_id": 7,
+          "proposal": "mask-1-junction-0",
+          "source_mask_samples": 550,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 499,
+          "valid_output_pixels": 8990
+        },
+        {
+          "reference_id": 6,
+          "proposal": "mask-1-junction-1-single-265-0",
+          "source_mask_samples": 298,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 276,
+          "valid_output_pixels": 4197
+        },
+        {
+          "reference_id": 8,
+          "proposal": "mask-1-junction-1-single-265-1",
+          "source_mask_samples": 1065,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 954,
+          "valid_output_pixels": 14546
+        },
+        {
+          "reference_id": 5,
+          "proposal": "mask-2",
+          "source_mask_samples": 1494,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 1444,
+          "valid_output_pixels": 22637
+        },
+        {
+          "reference_id": 19,
+          "proposal": "mask-3",
+          "source_mask_samples": 1237,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 1087,
+          "valid_output_pixels": 21296
+        },
+        {
+          "reference_id": 12,
+          "proposal": "mask-5",
+          "source_mask_samples": 523,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 484,
+          "valid_output_pixels": 13185
+        },
+        {
+          "reference_id": 16,
+          "proposal": "mask-6",
+          "source_mask_samples": 389,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 389,
+          "valid_output_pixels": 6522
+        },
+        {
+          "reference_id": 13,
+          "proposal": "mask-7",
+          "source_mask_samples": 321,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 258,
+          "valid_output_pixels": 22037
+        },
+        {
+          "reference_id": 18,
+          "proposal": "mask-8",
+          "source_mask_samples": 299,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 264,
+          "valid_output_pixels": 4880
+        },
+        {
+          "reference_id": 15,
+          "proposal": "mask-9",
+          "source_mask_samples": 296,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 257,
+          "valid_output_pixels": 4308
+        },
+        {
+          "reference_id": 17,
+          "proposal": "mask-10",
+          "source_mask_samples": 287,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 287,
+          "valid_output_pixels": 4688
+        },
+        {
+          "reference_id": 14,
+          "proposal": "mask-11",
+          "source_mask_samples": 161,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 156,
+          "valid_output_pixels": 2456
+        },
+        {
+          "reference_id": 10,
+          "proposal": "mask-14",
+          "source_mask_samples": 78,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 72,
+          "valid_output_pixels": 923
+        }
+      ]
+    },
+    {
+      "frame": "light_gray_concrete/dev-shopfront-masonry-high-right",
+      "sha256": "bb588b0b0d1cdb05b720ff5bc3b515479426c7772fd98fb7fadb8a55b79ca9db",
+      "matched": [
+        {
+          "reference_id": 6,
+          "proposal": "mask-0-mobile-0-single-238-0",
+          "source_mask_samples": 274,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 248,
+          "valid_output_pixels": 4084
+        },
+        {
+          "reference_id": 8,
+          "proposal": "mask-0-mobile-0-single-238-1",
+          "source_mask_samples": 1097,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 1005,
+          "valid_output_pixels": 15242
+        },
+        {
+          "reference_id": 7,
+          "proposal": "mask-0-mobile-1",
+          "source_mask_samples": 522,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 508,
+          "valid_output_pixels": 8076
+        },
+        {
+          "reference_id": 4,
+          "proposal": "mask-1",
+          "source_mask_samples": 1770,
+          "chart_kind": "wall normal + assumed-70-degree-vertical-fov",
+          "chart_covered_samples": 1770,
+          "valid_output_pixels": 34141
+        },
+        {
+          "reference_id": 5,
+          "proposal": "mask-2",
+          "source_mask_samples": 1459,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 1434,
+          "valid_output_pixels": 23033
+        },
+        {
+          "reference_id": 19,
+          "proposal": "mask-3",
+          "source_mask_samples": 1221,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 1121,
+          "valid_output_pixels": 22649
+        },
+        {
+          "reference_id": 12,
+          "proposal": "mask-5",
+          "source_mask_samples": 505,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 461,
+          "valid_output_pixels": 15713
+        },
+        {
+          "reference_id": 13,
+          "proposal": "mask-6",
+          "source_mask_samples": 457,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 374,
+          "valid_output_pixels": 39826
+        },
+        {
+          "reference_id": 16,
+          "proposal": "mask-8",
+          "source_mask_samples": 392,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 388,
+          "valid_output_pixels": 6449
+        },
+        {
+          "reference_id": 15,
+          "proposal": "mask-9",
+          "source_mask_samples": 295,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 238,
+          "valid_output_pixels": 3851
+        },
+        {
+          "reference_id": 18,
+          "proposal": "mask-10",
+          "source_mask_samples": 288,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 259,
+          "valid_output_pixels": 5798
+        },
+        {
+          "reference_id": 17,
+          "proposal": "mask-11",
+          "source_mask_samples": 282,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 279,
+          "valid_output_pixels": 4756
+        },
+        {
+          "reference_id": 14,
+          "proposal": "mask-12",
+          "source_mask_samples": 162,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 155,
+          "valid_output_pixels": 2328
+        },
+        {
+          "reference_id": 10,
+          "proposal": "mask-13",
+          "source_mask_samples": 97,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 89,
+          "valid_output_pixels": 1264
+        }
+      ]
+    },
+    {
+      "frame": "smooth_stone/dev-shopfront-masonry-low-left",
+      "sha256": "17691e7909ee0e9384db83c3a729f8763e21a281eb89b8dcebe61fc7675d1405",
+      "matched": [
+        {
+          "reference_id": 11,
+          "proposal": "mask-0-wall-0",
+          "source_mask_samples": 504,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 489,
+          "valid_output_pixels": 7548
+        },
+        {
+          "reference_id": 16,
+          "proposal": "mask-0-wall-1-junction-0",
+          "source_mask_samples": 1242,
+          "chart_kind": "wall normal + assumed-70-degree-vertical-fov",
+          "chart_covered_samples": 1242,
+          "valid_output_pixels": 20863
+        },
+        {
+          "reference_id": 12,
+          "proposal": "mask-0-wall-1-junction-1",
+          "source_mask_samples": 4105,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 3973,
+          "valid_output_pixels": 80450
+        },
+        {
+          "reference_id": 13,
+          "proposal": "mask-1-single-283-1",
+          "source_mask_samples": 1339,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 1313,
+          "valid_output_pixels": 20596
+        },
+        {
+          "reference_id": 14,
+          "proposal": "mask-1-single-283-2",
+          "source_mask_samples": 548,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 537,
+          "valid_output_pixels": 8252
+        },
+        {
+          "reference_id": 1,
+          "proposal": "mask-2",
+          "source_mask_samples": 565,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 524,
+          "valid_output_pixels": 10805
+        },
+        {
+          "reference_id": 4,
+          "proposal": "mask-3",
+          "source_mask_samples": 560,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 560,
+          "valid_output_pixels": 8393
+        },
+        {
+          "reference_id": 6,
+          "proposal": "mask-4",
+          "source_mask_samples": 407,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 382,
+          "valid_output_pixels": 5696
+        },
+        {
+          "reference_id": 3,
+          "proposal": "mask-5",
+          "source_mask_samples": 393,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 315,
+          "valid_output_pixels": 5384
+        },
+        {
+          "reference_id": 5,
+          "proposal": "mask-6",
+          "source_mask_samples": 256,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 255,
+          "valid_output_pixels": 3783
+        },
+        {
+          "reference_id": 8,
+          "proposal": "mask-7",
+          "source_mask_samples": 192,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 166,
+          "valid_output_pixels": 6540
+        },
+        {
+          "reference_id": 2,
+          "proposal": "mask-8",
+          "source_mask_samples": 127,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 47,
+          "valid_output_pixels": 550
+        },
+        {
+          "reference_id": 18,
+          "proposal": "mask-10",
+          "source_mask_samples": 47,
+          "chart_kind": null,
+          "chart_covered_samples": null,
+          "valid_output_pixels": 0
+        }
+      ]
+    },
+    {
+      "frame": "light_gray_concrete/dev-shopfront-masonry-low-left",
+      "sha256": "0359c24dea1b318ec9cd002a1523ae8fc0d7d59fc9d7418972cf9ce9af8d4d57",
+      "matched": [
+        {
+          "reference_id": 16,
+          "proposal": "mask-0-junction-0",
+          "source_mask_samples": 496,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 395,
+          "valid_output_pixels": 6612
+        },
+        {
+          "reference_id": 12,
+          "proposal": "mask-0-junction-1",
+          "source_mask_samples": 4897,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 4776,
+          "valid_output_pixels": 82999
+        },
+        {
+          "reference_id": 13,
+          "proposal": "mask-1",
+          "source_mask_samples": 1351,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 1326,
+          "valid_output_pixels": 20014
+        },
+        {
+          "reference_id": 11,
+          "proposal": "mask-2",
+          "source_mask_samples": 700,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 693,
+          "valid_output_pixels": 10845
+        },
+        {
+          "reference_id": 4,
+          "proposal": "mask-3",
+          "source_mask_samples": 572,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 571,
+          "valid_output_pixels": 8571
+        },
+        {
+          "reference_id": 1,
+          "proposal": "mask-4",
+          "source_mask_samples": 552,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 523,
+          "valid_output_pixels": 10325
+        },
+        {
+          "reference_id": 6,
+          "proposal": "mask-5",
+          "source_mask_samples": 417,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 411,
+          "valid_output_pixels": 6075
+        },
+        {
+          "reference_id": 15,
+          "proposal": "mask-6",
+          "source_mask_samples": 376,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 347,
+          "valid_output_pixels": 5041
+        },
+        {
+          "reference_id": 3,
+          "proposal": "mask-7",
+          "source_mask_samples": 353,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 289,
+          "valid_output_pixels": 4886
+        },
+        {
+          "reference_id": 5,
+          "proposal": "mask-8",
+          "source_mask_samples": 237,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 204,
+          "valid_output_pixels": 5713
+        },
+        {
+          "reference_id": 8,
+          "proposal": "mask-9",
+          "source_mask_samples": 182,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 131,
+          "valid_output_pixels": 6724
+        },
+        {
+          "reference_id": 2,
+          "proposal": "mask-10",
+          "source_mask_samples": 138,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 59,
+          "valid_output_pixels": 588
+        },
+        {
+          "reference_id": 18,
+          "proposal": "mask-12",
+          "source_mask_samples": 39,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 34,
+          "valid_output_pixels": 562
+        }
+      ]
+    },
+    {
+      "frame": "smooth_stone/dev-shopfront-plaster-high-right",
+      "sha256": "ae58f28554348d924798e23bd492b88db06c2a099f590e325c514ecc5c8f9c7e",
+      "matched": [
+        {
+          "reference_id": 8,
+          "proposal": "mask-0-wall-0",
+          "source_mask_samples": 1361,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 1130,
+          "valid_output_pixels": 24123
+        },
+        {
+          "reference_id": 6,
+          "proposal": "mask-0-wall-1-single-349-0-planarity-split-0",
+          "source_mask_samples": 495,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 442,
+          "valid_output_pixels": 6642
+        },
+        {
+          "reference_id": 5,
+          "proposal": "mask-0-wall-1-single-349-0-planarity-split-1",
+          "source_mask_samples": 1419,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 1361,
+          "valid_output_pixels": 21546
+        },
+        {
+          "reference_id": 7,
+          "proposal": "mask-0-wall-1-single-349-1",
+          "source_mask_samples": 615,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 567,
+          "valid_output_pixels": 9215
+        },
+        {
+          "reference_id": 19,
+          "proposal": "mask-1",
+          "source_mask_samples": 1198,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 1069,
+          "valid_output_pixels": 21000
+        },
+        {
+          "reference_id": 4,
+          "proposal": "mask-2",
+          "source_mask_samples": 1066,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 983,
+          "valid_output_pixels": 15467
+        },
+        {
+          "reference_id": 16,
+          "proposal": "mask-3",
+          "source_mask_samples": 402,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 380,
+          "valid_output_pixels": 6139
+        },
+        {
+          "reference_id": 13,
+          "proposal": "mask-5",
+          "source_mask_samples": 332,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 267,
+          "valid_output_pixels": 15907
+        },
+        {
+          "reference_id": 12,
+          "proposal": "mask-7",
+          "source_mask_samples": 282,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 262,
+          "valid_output_pixels": 12770
+        },
+        {
+          "reference_id": 17,
+          "proposal": "mask-8",
+          "source_mask_samples": 290,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 279,
+          "valid_output_pixels": 4576
+        },
+        {
+          "reference_id": 18,
+          "proposal": "mask-9",
+          "source_mask_samples": 245,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 222,
+          "valid_output_pixels": 4747
+        },
+        {
+          "reference_id": 15,
+          "proposal": "mask-10",
+          "source_mask_samples": 219,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 219,
+          "valid_output_pixels": 3669
+        },
+        {
+          "reference_id": 14,
+          "proposal": "mask-11",
+          "source_mask_samples": 161,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 155,
+          "valid_output_pixels": 2451
+        },
+        {
+          "reference_id": 10,
+          "proposal": "mask-12",
+          "source_mask_samples": 74,
+          "chart_kind": null,
+          "chart_covered_samples": null,
+          "valid_output_pixels": 0
+        }
+      ]
+    },
+    {
+      "frame": "light_gray_concrete/dev-shopfront-plaster-high-right",
+      "sha256": "4cc1d5687db72eef74f23fc291fb7916b3f481ed4998d9e1c850024039d38cce",
+      "matched": [
+        {
+          "reference_id": 4,
+          "proposal": "mask-0",
+          "source_mask_samples": 1904,
+          "chart_kind": "wall normal + assumed-70-degree-vertical-fov",
+          "chart_covered_samples": 1904,
+          "valid_output_pixels": 34588
+        },
+        {
+          "reference_id": 7,
+          "proposal": "mask-1-wall-0",
+          "source_mask_samples": 619,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 559,
+          "valid_output_pixels": 8646
+        },
+        {
+          "reference_id": 8,
+          "proposal": "mask-2",
+          "source_mask_samples": 1299,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 1047,
+          "valid_output_pixels": 21867
+        },
+        {
+          "reference_id": 6,
+          "proposal": "mask-5",
+          "source_mask_samples": 410,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 323,
+          "valid_output_pixels": 6788
+        },
+        {
+          "reference_id": 16,
+          "proposal": "mask-6",
+          "source_mask_samples": 404,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 384,
+          "valid_output_pixels": 6254
+        },
+        {
+          "reference_id": 12,
+          "proposal": "mask-8",
+          "source_mask_samples": 312,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 279,
+          "valid_output_pixels": 13143
+        },
+        {
+          "reference_id": 17,
+          "proposal": "mask-9",
+          "source_mask_samples": 295,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 275,
+          "valid_output_pixels": 4632
+        },
+        {
+          "reference_id": 18,
+          "proposal": "mask-10",
+          "source_mask_samples": 209,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 195,
+          "valid_output_pixels": 3199
+        },
+        {
+          "reference_id": 15,
+          "proposal": "mask-11",
+          "source_mask_samples": 199,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 198,
+          "valid_output_pixels": 3928
+        },
+        {
+          "reference_id": 14,
+          "proposal": "mask-12",
+          "source_mask_samples": 153,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 146,
+          "valid_output_pixels": 2201
+        },
+        {
+          "reference_id": 19,
+          "proposal": "planarity-new-5-0",
+          "source_mask_samples": 674,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 645,
+          "valid_output_pixels": 13418
+        }
+      ]
+    },
+    {
+      "frame": "smooth_stone/dev-shopfront-plaster-low-left",
+      "sha256": "5d0c9120de4ca16f35758f90a31e176e50a3cf166358dd9833ee2213d1ff2f72",
+      "matched": [
+        {
+          "reference_id": 11,
+          "proposal": "mask-0-wall-0",
+          "source_mask_samples": 739,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 732,
+          "valid_output_pixels": 11412
+        },
+        {
+          "reference_id": 12,
+          "proposal": "mask-0-wall-1-single-244-0-planarity-split-0",
+          "source_mask_samples": 3147,
+          "chart_kind": "wall normal + assumed-70-degree-vertical-fov",
+          "chart_covered_samples": 3147,
+          "valid_output_pixels": 38704
+        },
+        {
+          "reference_id": 16,
+          "proposal": "mask-0-wall-1-single-244-0-planarity-split-1",
+          "source_mask_samples": 948,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 872,
+          "valid_output_pixels": 13117
+        },
+        {
+          "reference_id": 13,
+          "proposal": "mask-0-wall-1-single-244-1-planarity-split-0",
+          "source_mask_samples": 1474,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 1469,
+          "valid_output_pixels": 22718
+        },
+        {
+          "reference_id": 15,
+          "proposal": "mask-0-wall-1-single-244-1-planarity-split-1",
+          "source_mask_samples": 399,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 345,
+          "valid_output_pixels": 5087
+        },
+        {
+          "reference_id": 14,
+          "proposal": "mask-0-wall-1-single-244-2",
+          "source_mask_samples": 591,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 492,
+          "valid_output_pixels": 7650
+        },
+        {
+          "reference_id": 1,
+          "proposal": "mask-1",
+          "source_mask_samples": 578,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 545,
+          "valid_output_pixels": 12424
+        },
+        {
+          "reference_id": 4,
+          "proposal": "mask-2",
+          "source_mask_samples": 521,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 521,
+          "valid_output_pixels": 7823
+        },
+        {
+          "reference_id": 6,
+          "proposal": "mask-3",
+          "source_mask_samples": 411,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 411,
+          "valid_output_pixels": 5986
+        },
+        {
+          "reference_id": 5,
+          "proposal": "mask-4",
+          "source_mask_samples": 213,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 204,
+          "valid_output_pixels": 3229
+        },
+        {
+          "reference_id": 2,
+          "proposal": "mask-7",
+          "source_mask_samples": 123,
+          "chart_kind": "wall normal + assumed-70-degree-vertical-fov",
+          "chart_covered_samples": 123,
+          "valid_output_pixels": 1759
+        },
+        {
+          "reference_id": 18,
+          "proposal": "mask-9",
+          "source_mask_samples": 24,
+          "chart_kind": null,
+          "chart_covered_samples": null,
+          "valid_output_pixels": 0
+        },
+        {
+          "reference_id": 8,
+          "proposal": "underside-0",
+          "source_mask_samples": 180,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 160,
+          "valid_output_pixels": 4994
+        }
+      ]
+    },
+    {
+      "frame": "light_gray_concrete/dev-shopfront-plaster-low-left",
+      "sha256": "299e0228de74d2cc7d3a18deaba9f61c82560a0ddd0b8557e5c91728c964a993",
+      "matched": [
+        {
+          "reference_id": 11,
+          "proposal": "mask-0-wall-0",
+          "source_mask_samples": 738,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 731,
+          "valid_output_pixels": 11214
+        },
+        {
+          "reference_id": 12,
+          "proposal": "mask-0-wall-1-single-339-0",
+          "source_mask_samples": 3549,
+          "chart_kind": "wall normal + assumed-70-degree-vertical-fov",
+          "chart_covered_samples": 3549,
+          "valid_output_pixels": 42620
+        },
+        {
+          "reference_id": 16,
+          "proposal": "mask-0-wall-1-single-339-2",
+          "source_mask_samples": 906,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 810,
+          "valid_output_pixels": 14518
+        },
+        {
+          "reference_id": 9,
+          "proposal": "mask-1-mobile-0",
+          "source_mask_samples": 86,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 86,
+          "valid_output_pixels": 979
+        },
+        {
+          "reference_id": 4,
+          "proposal": "mask-1-mobile-1",
+          "source_mask_samples": 486,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 473,
+          "valid_output_pixels": 7081
+        },
+        {
+          "reference_id": 6,
+          "proposal": "mask-2",
+          "source_mask_samples": 438,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 436,
+          "valid_output_pixels": 6368
+        },
+        {
+          "reference_id": 1,
+          "proposal": "mask-3",
+          "source_mask_samples": 393,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 362,
+          "valid_output_pixels": 12000
+        },
+        {
+          "reference_id": 5,
+          "proposal": "mask-4",
+          "source_mask_samples": 225,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 211,
+          "valid_output_pixels": 3441
+        },
+        {
+          "reference_id": 2,
+          "proposal": "mask-7",
+          "source_mask_samples": 116,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 111,
+          "valid_output_pixels": 2853
+        },
+        {
+          "reference_id": 18,
+          "proposal": "mask-10",
+          "source_mask_samples": 24,
+          "chart_kind": null,
+          "chart_covered_samples": null,
+          "valid_output_pixels": 0
+        },
+        {
+          "reference_id": 8,
+          "proposal": "underside-0",
+          "source_mask_samples": 193,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 133,
+          "valid_output_pixels": 3708
+        }
+      ]
+    },
+    {
+      "frame": "smooth_stone/dev-wing-masonry-close-front",
+      "sha256": "9ce65a1c07694c1d3e57019c07b422d7a6a0771ed0d46f579891eae8a61463a9",
+      "matched": [
+        {
+          "reference_id": 1,
+          "proposal": "mask-0",
+          "source_mask_samples": 80784,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 79344,
+          "valid_output_pixels": 249347
+        }
+      ]
+    },
+    {
+      "frame": "light_gray_concrete/dev-wing-masonry-close-front",
+      "sha256": "9ce65a1c07694c1d3e57019c07b422d7a6a0771ed0d46f579891eae8a61463a9",
+      "matched": [
+        {
+          "reference_id": 1,
+          "proposal": "mask-0",
+          "source_mask_samples": 80784,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 79344,
+          "valid_output_pixels": 249347
+        }
+      ]
+    },
+    {
+      "frame": "smooth_stone/dev-wing-masonry-high-right",
+      "sha256": "8cd9e20f608db25df6d141941051d30afcbf80733ea4c6f2058874c02019bf9f",
+      "matched": [
+        {
+          "reference_id": 2,
+          "proposal": "mask-0",
+          "source_mask_samples": 6406,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 6370,
+          "valid_output_pixels": 102911
+        },
+        {
+          "reference_id": 1,
+          "proposal": "mask-1",
+          "source_mask_samples": 1578,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 1559,
+          "valid_output_pixels": 24846
+        },
+        {
+          "reference_id": 7,
+          "proposal": "mask-2",
+          "source_mask_samples": 1017,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 888,
+          "valid_output_pixels": 23969
+        },
+        {
+          "reference_id": 8,
+          "proposal": "mask-3",
+          "source_mask_samples": 543,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 540,
+          "valid_output_pixels": 10804
+        },
+        {
+          "reference_id": 3,
+          "proposal": "mask-4",
+          "source_mask_samples": 353,
+          "chart_kind": null,
+          "chart_covered_samples": null,
+          "valid_output_pixels": 0
+        }
+      ]
+    },
+    {
+      "frame": "light_gray_concrete/dev-wing-masonry-high-right",
+      "sha256": "5ccd9115fd2a70784e0e1ab6819d37fc5c4af54cf965605143b3817e1f3a3efd",
+      "matched": [
+        {
+          "reference_id": 2,
+          "proposal": "mask-0",
+          "source_mask_samples": 6437,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 6375,
+          "valid_output_pixels": 103304
+        },
+        {
+          "reference_id": 1,
+          "proposal": "mask-1",
+          "source_mask_samples": 1584,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 1564,
+          "valid_output_pixels": 25015
+        },
+        {
+          "reference_id": 7,
+          "proposal": "mask-2",
+          "source_mask_samples": 1022,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 906,
+          "valid_output_pixels": 24400
+        },
+        {
+          "reference_id": 8,
+          "proposal": "mask-3",
+          "source_mask_samples": 534,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 531,
+          "valid_output_pixels": 10625
+        }
+      ]
+    },
+    {
+      "frame": "smooth_stone/dev-wing-masonry-low-left",
+      "sha256": "0c7bc49ce3c736391d7954a9c069aee29586f03fd33a2a88926b40257ccae6ce",
+      "matched": [
+        {
+          "reference_id": 3,
+          "proposal": "mask-0-single-453-0",
+          "source_mask_samples": 10124,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 10017,
+          "valid_output_pixels": 159214
+        },
+        {
+          "reference_id": 2,
+          "proposal": "mask-0-single-453-1",
+          "source_mask_samples": 634,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 621,
+          "valid_output_pixels": 9475
+        },
+        {
+          "reference_id": 1,
+          "proposal": "mask-1",
+          "source_mask_samples": 578,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 555,
+          "valid_output_pixels": 13154
+        }
+      ]
+    },
+    {
+      "frame": "light_gray_concrete/dev-wing-masonry-low-left",
+      "sha256": "4e8817361e24c3f05e835d7af6c8bab3da96d50c8821828144f33bb1ea0e87d3",
+      "matched": [
+        {
+          "reference_id": 3,
+          "proposal": "mask-0-single-474-0",
+          "source_mask_samples": 10096,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 9999,
+          "valid_output_pixels": 159125
+        },
+        {
+          "reference_id": 2,
+          "proposal": "mask-0-single-474-1",
+          "source_mask_samples": 637,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 625,
+          "valid_output_pixels": 9757
+        },
+        {
+          "reference_id": 1,
+          "proposal": "mask-1",
+          "source_mask_samples": 633,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 597,
+          "valid_output_pixels": 15860
+        }
+      ]
+    },
+    {
+      "frame": "smooth_stone/dev-wing-plaster-close-front",
+      "sha256": "b3154136e855e9d005a993b8afdb3989e3fb156b102aed46ce0d99e761d2f2b8",
+      "matched": [
+        {
+          "reference_id": 1,
+          "proposal": "mask-0",
+          "source_mask_samples": 81000,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 81000,
+          "valid_output_pixels": 253924
+        }
+      ]
+    },
+    {
+      "frame": "light_gray_concrete/dev-wing-plaster-close-front",
+      "sha256": "b3154136e855e9d005a993b8afdb3989e3fb156b102aed46ce0d99e761d2f2b8",
+      "matched": [
+        {
+          "reference_id": 1,
+          "proposal": "mask-0",
+          "source_mask_samples": 81000,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 81000,
+          "valid_output_pixels": 253924
+        }
+      ]
+    },
+    {
+      "frame": "smooth_stone/dev-wing-plaster-high-right",
+      "sha256": "49832e903f4455c88c44f51da20abc550516d208783af9e3d05edc85ff4116a9",
+      "matched": [
+        {
+          "reference_id": 1,
+          "proposal": "mask-0",
+          "source_mask_samples": 1636,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 1610,
+          "valid_output_pixels": 25656
+        },
+        {
+          "reference_id": 7,
+          "proposal": "mask-2",
+          "source_mask_samples": 970,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 892,
+          "valid_output_pixels": 27296
+        },
+        {
+          "reference_id": 8,
+          "proposal": "mask-4",
+          "source_mask_samples": 529,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 512,
+          "valid_output_pixels": 10316
+        },
+        {
+          "reference_id": 3,
+          "proposal": "mask-5",
+          "source_mask_samples": 325,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 307,
+          "valid_output_pixels": 7501
+        },
+        {
+          "reference_id": 2,
+          "proposal": "planarity-new-1-0",
+          "source_mask_samples": 4972,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 4966,
+          "valid_output_pixels": 80701
+        }
+      ]
+    },
+    {
+      "frame": "light_gray_concrete/dev-wing-plaster-high-right",
+      "sha256": "64d4fec367d669912de294146c1fa3e0bf871816ec4f52e57213e35db2968564",
+      "matched": [
+        {
+          "reference_id": 2,
+          "proposal": "mask-0",
+          "source_mask_samples": 6172,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 6093,
+          "valid_output_pixels": 98101
+        },
+        {
+          "reference_id": 1,
+          "proposal": "mask-1",
+          "source_mask_samples": 1630,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 1606,
+          "valid_output_pixels": 25742
+        },
+        {
+          "reference_id": 7,
+          "proposal": "mask-2",
+          "source_mask_samples": 629,
+          "chart_kind": "wall normal + assumed-70-degree-vertical-fov",
+          "chart_covered_samples": 629,
+          "valid_output_pixels": 9975
+        },
+        {
+          "reference_id": 8,
+          "proposal": "mask-3",
+          "source_mask_samples": 523,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 501,
+          "valid_output_pixels": 10441
+        },
+        {
+          "reference_id": 3,
+          "proposal": "mask-4",
+          "source_mask_samples": 331,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 314,
+          "valid_output_pixels": 6622
+        }
+      ]
+    },
+    {
+      "frame": "smooth_stone/dev-wing-plaster-low-left",
+      "sha256": "b564e5c3bb2def9511c27cf483dbb01dbe760b1bce8b6060be578c97b2083019",
+      "matched": [
+        {
+          "reference_id": 2,
+          "proposal": "mask-0-wall-0",
+          "source_mask_samples": 671,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 662,
+          "valid_output_pixels": 10085
+        },
+        {
+          "reference_id": 3,
+          "proposal": "mask-0-wall-1",
+          "source_mask_samples": 7903,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 7858,
+          "valid_output_pixels": 125068
+        },
+        {
+          "reference_id": 1,
+          "proposal": "mask-1",
+          "source_mask_samples": 623,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 607,
+          "valid_output_pixels": 12295
+        }
+      ]
+    },
+    {
+      "frame": "light_gray_concrete/dev-wing-plaster-low-left",
+      "sha256": "b1aa96442f2858b5435fc9af424de374ffafbade3cc74d059b85b6c1bfd7e13c",
+      "matched": [
+        {
+          "reference_id": 2,
+          "proposal": "mask-0-wall-0",
+          "source_mask_samples": 669,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 660,
+          "valid_output_pixels": 10132
+        },
+        {
+          "reference_id": 3,
+          "proposal": "mask-0-wall-1",
+          "source_mask_samples": 9746,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 9609,
+          "valid_output_pixels": 151763
+        },
+        {
+          "reference_id": 1,
+          "proposal": "mask-1",
+          "source_mask_samples": 463,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 448,
+          "valid_output_pixels": 15602
+        }
+      ]
+    },
+    {
+      "frame": "smooth_stone/holdout-courtyard-masonry-close-front",
+      "sha256": "655531c2d8fecce752ea93fac3aa6a6e4429bb7ce8a629cb409532583694c678",
+      "matched": [
+        {
+          "reference_id": 2,
+          "proposal": "mask-0",
+          "source_mask_samples": 80953,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 79531,
+          "valid_output_pixels": 249990
+        }
+      ]
+    },
+    {
+      "frame": "light_gray_concrete/holdout-courtyard-masonry-close-front",
+      "sha256": "655531c2d8fecce752ea93fac3aa6a6e4429bb7ce8a629cb409532583694c678",
+      "matched": [
+        {
+          "reference_id": 2,
+          "proposal": "mask-0",
+          "source_mask_samples": 80953,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 79531,
+          "valid_output_pixels": 249990
+        }
+      ]
+    },
+    {
+      "frame": "smooth_stone/holdout-courtyard-masonry-high-right",
+      "sha256": "252fa7c481e990bbbada46717d6e10c6b66c4f9c65846b94a94cd1b40cea0fcd",
+      "matched": [
+        {
+          "reference_id": 1,
+          "proposal": "mask-0",
+          "source_mask_samples": 4204,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 3709,
+          "valid_output_pixels": 70586
+        },
+        {
+          "reference_id": 2,
+          "proposal": "mask-1",
+          "source_mask_samples": 2071,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 1998,
+          "valid_output_pixels": 31755
+        },
+        {
+          "reference_id": 10,
+          "proposal": "mask-2-wall-0",
+          "source_mask_samples": 1631,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 1586,
+          "valid_output_pixels": 25652
+        },
+        {
+          "reference_id": 11,
+          "proposal": "mask-2-wall-1",
+          "source_mask_samples": 268,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 236,
+          "valid_output_pixels": 3646
+        },
+        {
+          "reference_id": 3,
+          "proposal": "mask-3",
+          "source_mask_samples": 1442,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 1419,
+          "valid_output_pixels": 22765
+        },
+        {
+          "reference_id": 12,
+          "proposal": "mask-4",
+          "source_mask_samples": 1032,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 990,
+          "valid_output_pixels": 31270
+        },
+        {
+          "reference_id": 4,
+          "proposal": "mask-5",
+          "source_mask_samples": 288,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 264,
+          "valid_output_pixels": 8036
+        },
+        {
+          "reference_id": 5,
+          "proposal": "mask-6",
+          "source_mask_samples": 130,
+          "chart_kind": null,
+          "chart_covered_samples": null,
+          "valid_output_pixels": 0
+        }
+      ]
+    },
+    {
+      "frame": "light_gray_concrete/holdout-courtyard-masonry-high-right",
+      "sha256": "b5b2bb5300687da8d904fb129043b5d2df0ae56e9ba4e14afb932b3e6d44dd3b",
+      "matched": [
+        {
+          "reference_id": 1,
+          "proposal": "mask-0",
+          "source_mask_samples": 4232,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 3744,
+          "valid_output_pixels": 72218
+        },
+        {
+          "reference_id": 2,
+          "proposal": "mask-1",
+          "source_mask_samples": 2096,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 2071,
+          "valid_output_pixels": 32570
+        },
+        {
+          "reference_id": 11,
+          "proposal": "mask-2-single-95-0",
+          "source_mask_samples": 310,
+          "chart_kind": "wall normal + assumed-70-degree-vertical-fov",
+          "chart_covered_samples": 310,
+          "valid_output_pixels": 4616
+        },
+        {
+          "reference_id": 10,
+          "proposal": "mask-2-single-95-1",
+          "source_mask_samples": 1603,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 1584,
+          "valid_output_pixels": 25815
+        },
+        {
+          "reference_id": 3,
+          "proposal": "mask-3",
+          "source_mask_samples": 1446,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 1369,
+          "valid_output_pixels": 21923
+        },
+        {
+          "reference_id": 12,
+          "proposal": "mask-4",
+          "source_mask_samples": 1033,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 994,
+          "valid_output_pixels": 31929
+        },
+        {
+          "reference_id": 4,
+          "proposal": "mask-5",
+          "source_mask_samples": 265,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 230,
+          "valid_output_pixels": 6702
+        }
+      ]
+    },
+    {
+      "frame": "smooth_stone/holdout-courtyard-masonry-low-left",
+      "sha256": "c80356e1b7d96bdc796ed982f09ed908059399d23fe98c873eecbb6e623a4216",
+      "matched": [
+        {
+          "reference_id": 7,
+          "proposal": "mask-0-wall-0",
+          "source_mask_samples": 3998,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 3978,
+          "valid_output_pixels": 62804
+        },
+        {
+          "reference_id": 5,
+          "proposal": "mask-0-wall-1",
+          "source_mask_samples": 3111,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 2981,
+          "valid_output_pixels": 54025
+        },
+        {
+          "reference_id": 6,
+          "proposal": "mask-1",
+          "source_mask_samples": 1149,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 1113,
+          "valid_output_pixels": 17674
+        },
+        {
+          "reference_id": 1,
+          "proposal": "mask-2",
+          "source_mask_samples": 1051,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 1018,
+          "valid_output_pixels": 18569
+        },
+        {
+          "reference_id": 2,
+          "proposal": "mask-3",
+          "source_mask_samples": 813,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 765,
+          "valid_output_pixels": 11944
+        }
+      ]
+    },
+    {
+      "frame": "light_gray_concrete/holdout-courtyard-masonry-low-left",
+      "sha256": "5b0b16edd7e5207c275e3277db0d65620891c50024735061783d4a175957ff9a",
+      "matched": [
+        {
+          "reference_id": 7,
+          "proposal": "mask-0-wall-0",
+          "source_mask_samples": 3996,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 3969,
+          "valid_output_pixels": 62826
+        },
+        {
+          "reference_id": 5,
+          "proposal": "mask-0-wall-1",
+          "source_mask_samples": 3136,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 3021,
+          "valid_output_pixels": 56280
+        },
+        {
+          "reference_id": 6,
+          "proposal": "mask-1",
+          "source_mask_samples": 1138,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 1113,
+          "valid_output_pixels": 17700
+        },
+        {
+          "reference_id": 1,
+          "proposal": "mask-2",
+          "source_mask_samples": 999,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 981,
+          "valid_output_pixels": 17371
+        },
+        {
+          "reference_id": 2,
+          "proposal": "mask-3",
+          "source_mask_samples": 823,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 798,
+          "valid_output_pixels": 12295
+        }
+      ]
+    },
+    {
+      "frame": "smooth_stone/holdout-courtyard-plaster-close-front",
+      "sha256": "319503ad2c8fbdc7f33f283d4e35b0f3abe43684bdd8341ace1ac1745696abee",
+      "matched": [
+        {
+          "reference_id": 2,
+          "proposal": "mask-0",
+          "source_mask_samples": 81000,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 81000,
+          "valid_output_pixels": 253924
+        }
+      ]
+    },
+    {
+      "frame": "light_gray_concrete/holdout-courtyard-plaster-close-front",
+      "sha256": "319503ad2c8fbdc7f33f283d4e35b0f3abe43684bdd8341ace1ac1745696abee",
+      "matched": [
+        {
+          "reference_id": 2,
+          "proposal": "mask-0",
+          "source_mask_samples": 81000,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 81000,
+          "valid_output_pixels": 253924
+        }
+      ]
+    },
+    {
+      "frame": "smooth_stone/holdout-courtyard-plaster-high-right",
+      "sha256": "7152899302d1721578a01412063a0cafc072986ba9a4acb5c03aa5ecbdde05f1",
+      "matched": [
+        {
+          "reference_id": 2,
+          "proposal": "mask-0",
+          "source_mask_samples": 2075,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 2059,
+          "valid_output_pixels": 32747
+        },
+        {
+          "reference_id": 11,
+          "proposal": "mask-2-wall-0",
+          "source_mask_samples": 306,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 261,
+          "valid_output_pixels": 4274
+        },
+        {
+          "reference_id": 10,
+          "proposal": "mask-2-wall-1",
+          "source_mask_samples": 1597,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 1585,
+          "valid_output_pixels": 25678
+        },
+        {
+          "reference_id": 3,
+          "proposal": "mask-3-single-68-2",
+          "source_mask_samples": 1155,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 1144,
+          "valid_output_pixels": 18040
+        },
+        {
+          "reference_id": 12,
+          "proposal": "mask-4-single-437-0",
+          "source_mask_samples": 645,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 623,
+          "valid_output_pixels": 12731
+        },
+        {
+          "reference_id": 4,
+          "proposal": "mask-5",
+          "source_mask_samples": 292,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 265,
+          "valid_output_pixels": 7264
+        },
+        {
+          "reference_id": 5,
+          "proposal": "mask-7",
+          "source_mask_samples": 118,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 97,
+          "valid_output_pixels": 7680
+        }
+      ]
+    },
+    {
+      "frame": "light_gray_concrete/holdout-courtyard-plaster-high-right",
+      "sha256": "de9e33d3bdb1f64318fbc1dec03fef52cde19a331c90fd1f7bb0b7a322b3bd94",
+      "matched": [
+        {
+          "reference_id": 1,
+          "proposal": "mask-0",
+          "source_mask_samples": 4031,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 3731,
+          "valid_output_pixels": 65415
+        },
+        {
+          "reference_id": 2,
+          "proposal": "mask-1",
+          "source_mask_samples": 2097,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 2032,
+          "valid_output_pixels": 32069
+        },
+        {
+          "reference_id": 10,
+          "proposal": "mask-2-junction-0",
+          "source_mask_samples": 1614,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 1602,
+          "valid_output_pixels": 25924
+        },
+        {
+          "reference_id": 11,
+          "proposal": "mask-2-junction-1",
+          "source_mask_samples": 208,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 172,
+          "valid_output_pixels": 2543
+        },
+        {
+          "reference_id": 3,
+          "proposal": "mask-3-wall-0",
+          "source_mask_samples": 1200,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 1182,
+          "valid_output_pixels": 18822
+        },
+        {
+          "reference_id": 12,
+          "proposal": "mask-4",
+          "source_mask_samples": 815,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 731,
+          "valid_output_pixels": 22827
+        },
+        {
+          "reference_id": 4,
+          "proposal": "mask-5",
+          "source_mask_samples": 287,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 269,
+          "valid_output_pixels": 8384
+        }
+      ]
+    },
+    {
+      "frame": "smooth_stone/holdout-courtyard-plaster-low-left",
+      "sha256": "c8129500a7c473e23666de5470d535f650fb1ac61ae8dcb702f09707ba68949f",
+      "matched": [
+        {
+          "reference_id": 7,
+          "proposal": "mask-0-wall-0-mobile-1",
+          "source_mask_samples": 3382,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 3358,
+          "valid_output_pixels": 52680
+        },
+        {
+          "reference_id": 5,
+          "proposal": "mask-0-wall-1",
+          "source_mask_samples": 2678,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 2573,
+          "valid_output_pixels": 39843
+        },
+        {
+          "reference_id": 6,
+          "proposal": "mask-1",
+          "source_mask_samples": 1133,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 1123,
+          "valid_output_pixels": 17659
+        },
+        {
+          "reference_id": 1,
+          "proposal": "mask-2",
+          "source_mask_samples": 1051,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 1029,
+          "valid_output_pixels": 17271
+        },
+        {
+          "reference_id": 2,
+          "proposal": "mask-3",
+          "source_mask_samples": 820,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 810,
+          "valid_output_pixels": 12499
+        }
+      ]
+    },
+    {
+      "frame": "light_gray_concrete/holdout-courtyard-plaster-low-left",
+      "sha256": "1995d3af4ecbdd7b22bc4ada179009147a5b389379edd6142b99dcaa6446d9c0",
+      "matched": [
+        {
+          "reference_id": 5,
+          "proposal": "mask-0-junction-0-single-457-0",
+          "source_mask_samples": 3012,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 2885,
+          "valid_output_pixels": 45000
+        },
+        {
+          "reference_id": 6,
+          "proposal": "mask-0-junction-0-single-457-2",
+          "source_mask_samples": 1122,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 1110,
+          "valid_output_pixels": 17326
+        },
+        {
+          "reference_id": 7,
+          "proposal": "mask-0-junction-1-mobile-1",
+          "source_mask_samples": 3408,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 3267,
+          "valid_output_pixels": 51300
+        },
+        {
+          "reference_id": 1,
+          "proposal": "mask-1-junction-1",
+          "source_mask_samples": 835,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 695,
+          "valid_output_pixels": 13140
+        },
+        {
+          "reference_id": 2,
+          "proposal": "mask-2",
+          "source_mask_samples": 822,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 814,
+          "valid_output_pixels": 12571
+        }
+      ]
+    },
+    {
+      "frame": "smooth_stone/holdout-portico-masonry-high-right",
+      "sha256": "54819d55b59d36a91e891bf2ff6148104d917d5ca59084f4f73edc43d623e390",
+      "matched": [
+        {
+          "reference_id": 6,
+          "proposal": "mask-0-junction-0",
+          "source_mask_samples": 198,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 189,
+          "valid_output_pixels": 2935
+        },
+        {
+          "reference_id": 9,
+          "proposal": "mask-0-junction-1-single-234-0",
+          "source_mask_samples": 1635,
+          "chart_kind": "wall normal + assumed-70-degree-vertical-fov",
+          "chart_covered_samples": 1635,
+          "valid_output_pixels": 26492
+        },
+        {
+          "reference_id": 8,
+          "proposal": "mask-0-junction-1-single-234-1",
+          "source_mask_samples": 356,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 345,
+          "valid_output_pixels": 5365
+        },
+        {
+          "reference_id": 4,
+          "proposal": "mask-1",
+          "source_mask_samples": 1239,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 1229,
+          "valid_output_pixels": 19188
+        },
+        {
+          "reference_id": 10,
+          "proposal": "mask-2",
+          "source_mask_samples": 836,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 761,
+          "valid_output_pixels": 54631
+        },
+        {
+          "reference_id": 3,
+          "proposal": "mask-3",
+          "source_mask_samples": 790,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 771,
+          "valid_output_pixels": 12098
+        },
+        {
+          "reference_id": 16,
+          "proposal": "mask-4-wall-0",
+          "source_mask_samples": 546,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 496,
+          "valid_output_pixels": 9967
+        },
+        {
+          "reference_id": 17,
+          "proposal": "mask-4-wall-1",
+          "source_mask_samples": 193,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 179,
+          "valid_output_pixels": 3388
+        },
+        {
+          "reference_id": 2,
+          "proposal": "mask-5",
+          "source_mask_samples": 453,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 436,
+          "valid_output_pixels": 7102
+        },
+        {
+          "reference_id": 1,
+          "proposal": "mask-6",
+          "source_mask_samples": 329,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 318,
+          "valid_output_pixels": 4828
+        },
+        {
+          "reference_id": 13,
+          "proposal": "mask-7",
+          "source_mask_samples": 273,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 259,
+          "valid_output_pixels": 3905
+        },
+        {
+          "reference_id": 12,
+          "proposal": "mask-8",
+          "source_mask_samples": 222,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 187,
+          "valid_output_pixels": 2745
+        },
+        {
+          "reference_id": 14,
+          "proposal": "mask-9",
+          "source_mask_samples": 207,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 184,
+          "valid_output_pixels": 2862
+        },
+        {
+          "reference_id": 15,
+          "proposal": "mask-10",
+          "source_mask_samples": 211,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 169,
+          "valid_output_pixels": 2946
+        },
+        {
+          "reference_id": 11,
+          "proposal": "mask-11",
+          "source_mask_samples": 189,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 174,
+          "valid_output_pixels": 2542
+        }
+      ]
+    },
+    {
+      "frame": "light_gray_concrete/holdout-portico-masonry-high-right",
+      "sha256": "f6c57a6cca3c952e2134e27f6ca75816487c4817800f504acaa6aa0240a24329",
+      "matched": [
+        {
+          "reference_id": 1,
+          "proposal": "mask-0-junction-0-planarity-split-0",
+          "source_mask_samples": 323,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 312,
+          "valid_output_pixels": 4891
+        },
+        {
+          "reference_id": 7,
+          "proposal": "mask-0-junction-0-planarity-split-1",
+          "source_mask_samples": 258,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 250,
+          "valid_output_pixels": 3837
+        },
+        {
+          "reference_id": 9,
+          "proposal": "mask-0-junction-1",
+          "source_mask_samples": 1394,
+          "chart_kind": "wall normal + assumed-70-degree-vertical-fov",
+          "chart_covered_samples": 1394,
+          "valid_output_pixels": 22988
+        },
+        {
+          "reference_id": 4,
+          "proposal": "mask-1",
+          "source_mask_samples": 1240,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 1234,
+          "valid_output_pixels": 19303
+        },
+        {
+          "reference_id": 3,
+          "proposal": "mask-2",
+          "source_mask_samples": 796,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 791,
+          "valid_output_pixels": 12116
+        },
+        {
+          "reference_id": 16,
+          "proposal": "mask-3",
+          "source_mask_samples": 527,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 523,
+          "valid_output_pixels": 9665
+        },
+        {
+          "reference_id": 2,
+          "proposal": "mask-4",
+          "source_mask_samples": 444,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 434,
+          "valid_output_pixels": 6914
+        },
+        {
+          "reference_id": 8,
+          "proposal": "mask-6",
+          "source_mask_samples": 340,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 327,
+          "valid_output_pixels": 4993
+        },
+        {
+          "reference_id": 13,
+          "proposal": "mask-7",
+          "source_mask_samples": 275,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 275,
+          "valid_output_pixels": 4033
+        },
+        {
+          "reference_id": 14,
+          "proposal": "mask-8",
+          "source_mask_samples": 237,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 196,
+          "valid_output_pixels": 2939
+        },
+        {
+          "reference_id": 12,
+          "proposal": "mask-9",
+          "source_mask_samples": 230,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 185,
+          "valid_output_pixels": 2778
+        },
+        {
+          "reference_id": 17,
+          "proposal": "mask-10",
+          "source_mask_samples": 213,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 206,
+          "valid_output_pixels": 3243
+        },
+        {
+          "reference_id": 15,
+          "proposal": "mask-11",
+          "source_mask_samples": 219,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 172,
+          "valid_output_pixels": 2639
+        },
+        {
+          "reference_id": 11,
+          "proposal": "mask-12",
+          "source_mask_samples": 198,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 188,
+          "valid_output_pixels": 2779
+        },
+        {
+          "reference_id": 6,
+          "proposal": "mask-13",
+          "source_mask_samples": 185,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 174,
+          "valid_output_pixels": 2731
+        }
+      ]
+    },
+    {
+      "frame": "smooth_stone/holdout-portico-masonry-low-left",
+      "sha256": "eb35fef82a3ed8b7f34c39d7be768ae94123884428038310ea19e578228d83be",
+      "matched": [
+        {
+          "reference_id": 20,
+          "proposal": "mask-0",
+          "source_mask_samples": 1385,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 1156,
+          "valid_output_pixels": 19040
+        },
+        {
+          "reference_id": 11,
+          "proposal": "mask-1",
+          "source_mask_samples": 1035,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 1021,
+          "valid_output_pixels": 16008
+        },
+        {
+          "reference_id": 13,
+          "proposal": "mask-2",
+          "source_mask_samples": 897,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 864,
+          "valid_output_pixels": 13218
+        },
+        {
+          "reference_id": 12,
+          "proposal": "mask-3",
+          "source_mask_samples": 775,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 733,
+          "valid_output_pixels": 11490
+        },
+        {
+          "reference_id": 19,
+          "proposal": "mask-4-single-359-0",
+          "source_mask_samples": 256,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 250,
+          "valid_output_pixels": 3912
+        },
+        {
+          "reference_id": 15,
+          "proposal": "mask-4-single-359-2",
+          "source_mask_samples": 287,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 267,
+          "valid_output_pixels": 4035
+        },
+        {
+          "reference_id": 16,
+          "proposal": "mask-5",
+          "source_mask_samples": 546,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 526,
+          "valid_output_pixels": 8050
+        },
+        {
+          "reference_id": 7,
+          "proposal": "mask-6",
+          "source_mask_samples": 445,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 429,
+          "valid_output_pixels": 6676
+        },
+        {
+          "reference_id": 17,
+          "proposal": "mask-7",
+          "source_mask_samples": 415,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 387,
+          "valid_output_pixels": 6763
+        },
+        {
+          "reference_id": 9,
+          "proposal": "mask-8",
+          "source_mask_samples": 407,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 348,
+          "valid_output_pixels": 7451
+        },
+        {
+          "reference_id": 10,
+          "proposal": "mask-9",
+          "source_mask_samples": 405,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 389,
+          "valid_output_pixels": 6506
+        },
+        {
+          "reference_id": 18,
+          "proposal": "mask-10",
+          "source_mask_samples": 379,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 324,
+          "valid_output_pixels": 4836
+        },
+        {
+          "reference_id": 8,
+          "proposal": "mask-11",
+          "source_mask_samples": 193,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 180,
+          "valid_output_pixels": 3024
+        },
+        {
+          "reference_id": 14,
+          "proposal": "mask-12",
+          "source_mask_samples": 154,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 151,
+          "valid_output_pixels": 2206
+        },
+        {
+          "reference_id": 6,
+          "proposal": "mask-13",
+          "source_mask_samples": 135,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 122,
+          "valid_output_pixels": 2067
+        },
+        {
+          "reference_id": 1,
+          "proposal": "mask-14",
+          "source_mask_samples": 109,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 86,
+          "valid_output_pixels": 1564
+        },
+        {
+          "reference_id": 3,
+          "proposal": "mask-16",
+          "source_mask_samples": 76,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 66,
+          "valid_output_pixels": 1405
+        },
+        {
+          "reference_id": 4,
+          "proposal": "mask-17",
+          "source_mask_samples": 85,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 82,
+          "valid_output_pixels": 1287
+        }
+      ]
+    },
+    {
+      "frame": "light_gray_concrete/holdout-portico-masonry-low-left",
+      "sha256": "00daa00ce6d344d9c00205a65b67ed60af6e0f908e1993e842417450928e55b5",
+      "matched": [
+        {
+          "reference_id": 20,
+          "proposal": "mask-0-planarity-split-1",
+          "source_mask_samples": 967,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 892,
+          "valid_output_pixels": 16141
+        },
+        {
+          "reference_id": 11,
+          "proposal": "mask-1",
+          "source_mask_samples": 1042,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 1032,
+          "valid_output_pixels": 16134
+        },
+        {
+          "reference_id": 13,
+          "proposal": "mask-2",
+          "source_mask_samples": 889,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 852,
+          "valid_output_pixels": 13053
+        },
+        {
+          "reference_id": 12,
+          "proposal": "mask-3",
+          "source_mask_samples": 771,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 731,
+          "valid_output_pixels": 11374
+        },
+        {
+          "reference_id": 19,
+          "proposal": "mask-4-single-364-0",
+          "source_mask_samples": 247,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 245,
+          "valid_output_pixels": 3741
+        },
+        {
+          "reference_id": 15,
+          "proposal": "mask-4-single-364-2",
+          "source_mask_samples": 284,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 265,
+          "valid_output_pixels": 4004
+        },
+        {
+          "reference_id": 16,
+          "proposal": "mask-5",
+          "source_mask_samples": 533,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 491,
+          "valid_output_pixels": 7851
+        },
+        {
+          "reference_id": 7,
+          "proposal": "mask-6",
+          "source_mask_samples": 452,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 420,
+          "valid_output_pixels": 6506
+        },
+        {
+          "reference_id": 17,
+          "proposal": "mask-7",
+          "source_mask_samples": 415,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 370,
+          "valid_output_pixels": 6247
+        },
+        {
+          "reference_id": 9,
+          "proposal": "mask-8",
+          "source_mask_samples": 408,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 356,
+          "valid_output_pixels": 8433
+        },
+        {
+          "reference_id": 10,
+          "proposal": "mask-9",
+          "source_mask_samples": 384,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 377,
+          "valid_output_pixels": 5905
+        },
+        {
+          "reference_id": 18,
+          "proposal": "mask-10",
+          "source_mask_samples": 353,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 328,
+          "valid_output_pixels": 5056
+        },
+        {
+          "reference_id": 8,
+          "proposal": "mask-11",
+          "source_mask_samples": 205,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 191,
+          "valid_output_pixels": 2634
+        },
+        {
+          "reference_id": 6,
+          "proposal": "mask-12",
+          "source_mask_samples": 144,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 144,
+          "valid_output_pixels": 2020
+        },
+        {
+          "reference_id": 14,
+          "proposal": "mask-13",
+          "source_mask_samples": 137,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 128,
+          "valid_output_pixels": 1880
+        },
+        {
+          "reference_id": 1,
+          "proposal": "mask-15",
+          "source_mask_samples": 106,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 82,
+          "valid_output_pixels": 1453
+        },
+        {
+          "reference_id": 3,
+          "proposal": "mask-17",
+          "source_mask_samples": 83,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 65,
+          "valid_output_pixels": 1260
+        },
+        {
+          "reference_id": 4,
+          "proposal": "mask-18",
+          "source_mask_samples": 85,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 82,
+          "valid_output_pixels": 1291
+        }
+      ]
+    },
+    {
+      "frame": "smooth_stone/holdout-portico-plaster-high-right",
+      "sha256": "fb687c20c5df87e79d9dd17ce48566c7f9fca2a092234bedff15fbe3f83b2e8c",
+      "matched": [
+        {
+          "reference_id": 7,
+          "proposal": "mask-0-junction-0",
+          "source_mask_samples": 303,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 296,
+          "valid_output_pixels": 4238
+        },
+        {
+          "reference_id": 9,
+          "proposal": "mask-0-junction-1-single-206-0",
+          "source_mask_samples": 1677,
+          "chart_kind": "wall normal + assumed-70-degree-vertical-fov",
+          "chart_covered_samples": 1677,
+          "valid_output_pixels": 29782
+        },
+        {
+          "reference_id": 8,
+          "proposal": "mask-0-junction-1-single-206-1",
+          "source_mask_samples": 391,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 367,
+          "valid_output_pixels": 5476
+        },
+        {
+          "reference_id": 4,
+          "proposal": "mask-1",
+          "source_mask_samples": 1214,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 1196,
+          "valid_output_pixels": 18947
+        },
+        {
+          "reference_id": 3,
+          "proposal": "mask-2",
+          "source_mask_samples": 788,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 754,
+          "valid_output_pixels": 11765
+        },
+        {
+          "reference_id": 17,
+          "proposal": "mask-3-wall-0",
+          "source_mask_samples": 214,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 194,
+          "valid_output_pixels": 3369
+        },
+        {
+          "reference_id": 16,
+          "proposal": "mask-3-wall-1",
+          "source_mask_samples": 532,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 496,
+          "valid_output_pixels": 9821
+        },
+        {
+          "reference_id": 10,
+          "proposal": "mask-4",
+          "source_mask_samples": 714,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 668,
+          "valid_output_pixels": 45573
+        },
+        {
+          "reference_id": 2,
+          "proposal": "mask-5",
+          "source_mask_samples": 481,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 466,
+          "valid_output_pixels": 7237
+        },
+        {
+          "reference_id": 1,
+          "proposal": "mask-6",
+          "source_mask_samples": 325,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 311,
+          "valid_output_pixels": 4948
+        },
+        {
+          "reference_id": 13,
+          "proposal": "mask-7",
+          "source_mask_samples": 276,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 267,
+          "valid_output_pixels": 4023
+        },
+        {
+          "reference_id": 12,
+          "proposal": "mask-8",
+          "source_mask_samples": 217,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 195,
+          "valid_output_pixels": 2758
+        },
+        {
+          "reference_id": 14,
+          "proposal": "mask-9",
+          "source_mask_samples": 179,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 178,
+          "valid_output_pixels": 2844
+        },
+        {
+          "reference_id": 11,
+          "proposal": "mask-10",
+          "source_mask_samples": 191,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 166,
+          "valid_output_pixels": 2595
+        },
+        {
+          "reference_id": 15,
+          "proposal": "mask-11",
+          "source_mask_samples": 163,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 163,
+          "valid_output_pixels": 2573
+        }
+      ]
+    },
+    {
+      "frame": "light_gray_concrete/holdout-portico-plaster-high-right",
+      "sha256": "fbe284f3ab8d1e0d517c81853c4a6121d359eb023c6f9882769d27605edb9b84",
+      "matched": [
+        {
+          "reference_id": 6,
+          "proposal": "mask-0-junction-0",
+          "source_mask_samples": 200,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 190,
+          "valid_output_pixels": 2890
+        },
+        {
+          "reference_id": 5,
+          "proposal": "mask-0-junction-1-single-250-0",
+          "source_mask_samples": 163,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 148,
+          "valid_output_pixels": 2224
+        },
+        {
+          "reference_id": 7,
+          "proposal": "mask-0-junction-1-single-250-1",
+          "source_mask_samples": 289,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 287,
+          "valid_output_pixels": 4167
+        },
+        {
+          "reference_id": 8,
+          "proposal": "mask-0-junction-1-single-250-2",
+          "source_mask_samples": 365,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 344,
+          "valid_output_pixels": 5343
+        },
+        {
+          "reference_id": 9,
+          "proposal": "mask-0-junction-1-single-250-3",
+          "source_mask_samples": 1348,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 1262,
+          "valid_output_pixels": 19414
+        },
+        {
+          "reference_id": 3,
+          "proposal": "mask-1",
+          "source_mask_samples": 788,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 758,
+          "valid_output_pixels": 11817
+        },
+        {
+          "reference_id": 4,
+          "proposal": "mask-2",
+          "source_mask_samples": 741,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 712,
+          "valid_output_pixels": 10401
+        },
+        {
+          "reference_id": 10,
+          "proposal": "mask-3",
+          "source_mask_samples": 685,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 661,
+          "valid_output_pixels": 45397
+        },
+        {
+          "reference_id": 2,
+          "proposal": "mask-4",
+          "source_mask_samples": 476,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 450,
+          "valid_output_pixels": 6906
+        },
+        {
+          "reference_id": 1,
+          "proposal": "mask-6",
+          "source_mask_samples": 250,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 231,
+          "valid_output_pixels": 3378
+        },
+        {
+          "reference_id": 13,
+          "proposal": "mask-7",
+          "source_mask_samples": 254,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 246,
+          "valid_output_pixels": 3692
+        },
+        {
+          "reference_id": 12,
+          "proposal": "mask-8",
+          "source_mask_samples": 236,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 200,
+          "valid_output_pixels": 2887
+        },
+        {
+          "reference_id": 17,
+          "proposal": "mask-9",
+          "source_mask_samples": 222,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 190,
+          "valid_output_pixels": 3026
+        },
+        {
+          "reference_id": 15,
+          "proposal": "mask-10",
+          "source_mask_samples": 201,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 180,
+          "valid_output_pixels": 2993
+        },
+        {
+          "reference_id": 14,
+          "proposal": "mask-11",
+          "source_mask_samples": 201,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 201,
+          "valid_output_pixels": 2994
+        },
+        {
+          "reference_id": 11,
+          "proposal": "mask-12",
+          "source_mask_samples": 194,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 187,
+          "valid_output_pixels": 2803
+        }
+      ]
+    },
+    {
+      "frame": "smooth_stone/holdout-portico-plaster-low-left",
+      "sha256": "8f7b6cf572ea617a0efa47c002f4f9221df201dcde9d20595a10fb2915228445",
+      "matched": [
+        {
+          "reference_id": 15,
+          "proposal": "mask-0-mobile-0",
+          "source_mask_samples": 289,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 272,
+          "valid_output_pixels": 4085
+        },
+        {
+          "reference_id": 20,
+          "proposal": "mask-0-mobile-1",
+          "source_mask_samples": 1340,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 1217,
+          "valid_output_pixels": 21892
+        },
+        {
+          "reference_id": 19,
+          "proposal": "mask-0-mobile-3",
+          "source_mask_samples": 301,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 254,
+          "valid_output_pixels": 3758
+        },
+        {
+          "reference_id": 17,
+          "proposal": "mask-0-mobile-5",
+          "source_mask_samples": 442,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 371,
+          "valid_output_pixels": 6329
+        },
+        {
+          "reference_id": 11,
+          "proposal": "mask-1",
+          "source_mask_samples": 972,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 943,
+          "valid_output_pixels": 14789
+        },
+        {
+          "reference_id": 13,
+          "proposal": "mask-2",
+          "source_mask_samples": 854,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 837,
+          "valid_output_pixels": 13056
+        },
+        {
+          "reference_id": 12,
+          "proposal": "mask-3",
+          "source_mask_samples": 762,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 735,
+          "valid_output_pixels": 11209
+        },
+        {
+          "reference_id": 16,
+          "proposal": "mask-4",
+          "source_mask_samples": 565,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 554,
+          "valid_output_pixels": 8572
+        },
+        {
+          "reference_id": 7,
+          "proposal": "mask-5",
+          "source_mask_samples": 417,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 407,
+          "valid_output_pixels": 6473
+        },
+        {
+          "reference_id": 18,
+          "proposal": "mask-6",
+          "source_mask_samples": 398,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 339,
+          "valid_output_pixels": 5031
+        },
+        {
+          "reference_id": 10,
+          "proposal": "mask-7",
+          "source_mask_samples": 318,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 301,
+          "valid_output_pixels": 4964
+        },
+        {
+          "reference_id": 14,
+          "proposal": "mask-9",
+          "source_mask_samples": 182,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 178,
+          "valid_output_pixels": 2362
+        },
+        {
+          "reference_id": 8,
+          "proposal": "mask-10",
+          "source_mask_samples": 149,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 136,
+          "valid_output_pixels": 1971
+        },
+        {
+          "reference_id": 6,
+          "proposal": "mask-12",
+          "source_mask_samples": 106,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 94,
+          "valid_output_pixels": 2338
+        },
+        {
+          "reference_id": 4,
+          "proposal": "mask-13",
+          "source_mask_samples": 98,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 80,
+          "valid_output_pixels": 1491
+        },
+        {
+          "reference_id": 1,
+          "proposal": "mask-14",
+          "source_mask_samples": 90,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 82,
+          "valid_output_pixels": 1467
+        },
+        {
+          "reference_id": 9,
+          "proposal": "underside-0",
+          "source_mask_samples": 492,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 410,
+          "valid_output_pixels": 34667
+        }
+      ]
+    },
+    {
+      "frame": "light_gray_concrete/holdout-portico-plaster-low-left",
+      "sha256": "318e6e654ece8e6ab93aea0fa5c0cccecdb727faf743b5fbb5eb31da2f2b05f2",
+      "matched": [
+        {
+          "reference_id": 20,
+          "proposal": "mask-0-single-333-0",
+          "source_mask_samples": 1335,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 1162,
+          "valid_output_pixels": 18553
+        },
+        {
+          "reference_id": 17,
+          "proposal": "mask-0-single-333-1",
+          "source_mask_samples": 443,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 351,
+          "valid_output_pixels": 5595
+        },
+        {
+          "reference_id": 15,
+          "proposal": "mask-0-single-333-2",
+          "source_mask_samples": 169,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 166,
+          "valid_output_pixels": 2703
+        },
+        {
+          "reference_id": 19,
+          "proposal": "mask-0-single-333-4",
+          "source_mask_samples": 253,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 241,
+          "valid_output_pixels": 3559
+        },
+        {
+          "reference_id": 11,
+          "proposal": "mask-1",
+          "source_mask_samples": 966,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 938,
+          "valid_output_pixels": 14623
+        },
+        {
+          "reference_id": 13,
+          "proposal": "mask-2",
+          "source_mask_samples": 854,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 831,
+          "valid_output_pixels": 13208
+        },
+        {
+          "reference_id": 12,
+          "proposal": "mask-3",
+          "source_mask_samples": 757,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 745,
+          "valid_output_pixels": 11312
+        },
+        {
+          "reference_id": 16,
+          "proposal": "mask-4",
+          "source_mask_samples": 557,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 547,
+          "valid_output_pixels": 8416
+        },
+        {
+          "reference_id": 7,
+          "proposal": "mask-5",
+          "source_mask_samples": 420,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 404,
+          "valid_output_pixels": 6426
+        },
+        {
+          "reference_id": 18,
+          "proposal": "mask-6",
+          "source_mask_samples": 388,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 282,
+          "valid_output_pixels": 4464
+        },
+        {
+          "reference_id": 10,
+          "proposal": "mask-8",
+          "source_mask_samples": 227,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 199,
+          "valid_output_pixels": 2976
+        },
+        {
+          "reference_id": 8,
+          "proposal": "mask-9",
+          "source_mask_samples": 208,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 169,
+          "valid_output_pixels": 2724
+        },
+        {
+          "reference_id": 14,
+          "proposal": "mask-12",
+          "source_mask_samples": 140,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 138,
+          "valid_output_pixels": 2109
+        },
+        {
+          "reference_id": 6,
+          "proposal": "mask-13",
+          "source_mask_samples": 115,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 105,
+          "valid_output_pixels": 2845
+        },
+        {
+          "reference_id": 4,
+          "proposal": "mask-14",
+          "source_mask_samples": 98,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 83,
+          "valid_output_pixels": 1487
+        },
+        {
+          "reference_id": 1,
+          "proposal": "mask-16",
+          "source_mask_samples": 67,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 60,
+          "valid_output_pixels": 1030
+        },
+        {
+          "reference_id": 9,
+          "proposal": "underside-0",
+          "source_mask_samples": 520,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 435,
+          "valid_output_pixels": 9178
+        }
+      ]
+    },
+    {
+      "frame": "light_gray_concrete/holdout-workshop-masonry-low-left",
+      "sha256": "ae86fd9911640c7397bc929d3e0ca1076d84312b5500712cf2c4ec25e7c9112f",
+      "matched": [
+        {
+          "reference_id": 14,
+          "proposal": "mask-0-mobile-1",
+          "source_mask_samples": 4263,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 4137,
+          "valid_output_pixels": 68413
+        },
+        {
+          "reference_id": 15,
+          "proposal": "mask-0-mobile-5",
+          "source_mask_samples": 3588,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 3344,
+          "valid_output_pixels": 57303
+        },
+        {
+          "reference_id": 2,
+          "proposal": "mask-2",
+          "source_mask_samples": 1153,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 1142,
+          "valid_output_pixels": 18456
+        },
+        {
+          "reference_id": 11,
+          "proposal": "mask-3",
+          "source_mask_samples": 638,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 612,
+          "valid_output_pixels": 9522
+        },
+        {
+          "reference_id": 1,
+          "proposal": "mask-4-planarity-split-1",
+          "source_mask_samples": 270,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 234,
+          "valid_output_pixels": 4692
+        },
+        {
+          "reference_id": 7,
+          "proposal": "mask-5",
+          "source_mask_samples": 445,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 445,
+          "valid_output_pixels": 7070
+        },
+        {
+          "reference_id": 10,
+          "proposal": "underside-0",
+          "source_mask_samples": 303,
+          "chart_kind": null,
+          "chart_covered_samples": null,
+          "valid_output_pixels": 0
+        }
+      ]
+    },
+    {
+      "frame": "light_gray_concrete/holdout-workshop-masonry-high-right",
+      "sha256": "3aefcb242fdda8a6d4c40adb9a7d2632c8de998b076b1d4ec09a100db95119d4",
+      "matched": [
+        {
+          "reference_id": 4,
+          "proposal": "mask-0-mobile-0",
+          "source_mask_samples": 3068,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 3043,
+          "valid_output_pixels": 46703
+        },
+        {
+          "reference_id": 5,
+          "proposal": "mask-0-mobile-1",
+          "source_mask_samples": 3160,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 3039,
+          "valid_output_pixels": 59447
+        },
+        {
+          "reference_id": 3,
+          "proposal": "mask-1-wall-0",
+          "source_mask_samples": 432,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 372,
+          "valid_output_pixels": 6392
+        },
+        {
+          "reference_id": 2,
+          "proposal": "mask-1-wall-1",
+          "source_mask_samples": 1286,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 1283,
+          "valid_output_pixels": 20127
+        },
+        {
+          "reference_id": 13,
+          "proposal": "mask-2-wall-0-mobile-0",
+          "source_mask_samples": 191,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 167,
+          "valid_output_pixels": 2564
+        },
+        {
+          "reference_id": 14,
+          "proposal": "mask-2-wall-0-mobile-1",
+          "source_mask_samples": 187,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 183,
+          "valid_output_pixels": 2839
+        },
+        {
+          "reference_id": 12,
+          "proposal": "mask-2-wall-1",
+          "source_mask_samples": 215,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 198,
+          "valid_output_pixels": 2884
+        },
+        {
+          "reference_id": 17,
+          "proposal": "mask-3-wall-0",
+          "source_mask_samples": 183,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 165,
+          "valid_output_pixels": 3424
+        },
+        {
+          "reference_id": 15,
+          "proposal": "mask-3-wall-1",
+          "source_mask_samples": 279,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 263,
+          "valid_output_pixels": 6380
+        },
+        {
+          "reference_id": 11,
+          "proposal": "mask-4",
+          "source_mask_samples": 341,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 335,
+          "valid_output_pixels": 5332
+        },
+        {
+          "reference_id": 1,
+          "proposal": "mask-5",
+          "source_mask_samples": 288,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 286,
+          "valid_output_pixels": 4407
+        },
+        {
+          "reference_id": 16,
+          "proposal": "mask-8",
+          "source_mask_samples": 178,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 154,
+          "valid_output_pixels": 2412
+        },
+        {
+          "reference_id": 18,
+          "proposal": "mask-9",
+          "source_mask_samples": 165,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 127,
+          "valid_output_pixels": 3208
+        },
+        {
+          "reference_id": 8,
+          "proposal": "mask-12",
+          "source_mask_samples": 49,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 26,
+          "valid_output_pixels": 568
+        },
+        {
+          "reference_id": 6,
+          "proposal": "planarity-new-20-1",
+          "source_mask_samples": 221,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 220,
+          "valid_output_pixels": 3301
+        }
+      ]
+    },
+    {
+      "frame": "light_gray_concrete/holdout-workshop-plaster-low-left",
+      "sha256": "91c686215bb3105c779a45302ed5b43bf16a2faa32fbfe1f0f2be10f0e161c42",
+      "matched": [
+        {
+          "reference_id": 14,
+          "proposal": "mask-0-mobile-1-single-514-0",
+          "source_mask_samples": 3546,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 3311,
+          "valid_output_pixels": 53005
+        },
+        {
+          "reference_id": 12,
+          "proposal": "mask-0-mobile-1-single-514-1",
+          "source_mask_samples": 354,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 348,
+          "valid_output_pixels": 5146
+        },
+        {
+          "reference_id": 15,
+          "proposal": "mask-0-mobile-2",
+          "source_mask_samples": 3384,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 3218,
+          "valid_output_pixels": 61478
+        },
+        {
+          "reference_id": 2,
+          "proposal": "mask-1",
+          "source_mask_samples": 1144,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 1138,
+          "valid_output_pixels": 18253
+        },
+        {
+          "reference_id": 11,
+          "proposal": "mask-2",
+          "source_mask_samples": 685,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 659,
+          "valid_output_pixels": 13462
+        },
+        {
+          "reference_id": 1,
+          "proposal": "mask-3-planarity-split-1",
+          "source_mask_samples": 289,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 241,
+          "valid_output_pixels": 4372
+        },
+        {
+          "reference_id": 7,
+          "proposal": "mask-4",
+          "source_mask_samples": 475,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 452,
+          "valid_output_pixels": 7018
+        },
+        {
+          "reference_id": 10,
+          "proposal": "underside-0",
+          "source_mask_samples": 293,
+          "chart_kind": null,
+          "chart_covered_samples": null,
+          "valid_output_pixels": 0
+        }
+      ]
+    },
+    {
+      "frame": "light_gray_concrete/holdout-workshop-plaster-high-right",
+      "sha256": "d35ab308820f92501ec898cafb1f50939f3f0ed1141e3d9ee38a00eae1199aa0",
+      "matched": [
+        {
+          "reference_id": 4,
+          "proposal": "mask-0-wall-0",
+          "source_mask_samples": 2759,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 2752,
+          "valid_output_pixels": 40808
+        },
+        {
+          "reference_id": 5,
+          "proposal": "mask-0-wall-1",
+          "source_mask_samples": 3186,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 2815,
+          "valid_output_pixels": 50532
+        },
+        {
+          "reference_id": 3,
+          "proposal": "mask-1-junction-0",
+          "source_mask_samples": 403,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 366,
+          "valid_output_pixels": 5826
+        },
+        {
+          "reference_id": 2,
+          "proposal": "mask-1-junction-1",
+          "source_mask_samples": 1296,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 1261,
+          "valid_output_pixels": 19500
+        },
+        {
+          "reference_id": 6,
+          "proposal": "mask-2",
+          "source_mask_samples": 466,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 449,
+          "valid_output_pixels": 10244
+        },
+        {
+          "reference_id": 11,
+          "proposal": "mask-4",
+          "source_mask_samples": 349,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 343,
+          "valid_output_pixels": 5218
+        },
+        {
+          "reference_id": 1,
+          "proposal": "mask-5",
+          "source_mask_samples": 293,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 289,
+          "valid_output_pixels": 4391
+        },
+        {
+          "reference_id": 12,
+          "proposal": "mask-7",
+          "source_mask_samples": 216,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 198,
+          "valid_output_pixels": 2879
+        },
+        {
+          "reference_id": 13,
+          "proposal": "mask-8",
+          "source_mask_samples": 196,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 166,
+          "valid_output_pixels": 2521
+        },
+        {
+          "reference_id": 14,
+          "proposal": "mask-9",
+          "source_mask_samples": 198,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 161,
+          "valid_output_pixels": 2369
+        },
+        {
+          "reference_id": 16,
+          "proposal": "mask-10",
+          "source_mask_samples": 175,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 152,
+          "valid_output_pixels": 2287
+        },
+        {
+          "reference_id": 8,
+          "proposal": "mask-14",
+          "source_mask_samples": 66,
+          "chart_kind": null,
+          "chart_covered_samples": null,
+          "valid_output_pixels": 0
+        }
+      ]
+    },
+    {
+      "frame": "light_gray_concrete/holdout-crossing-masonry-low-left",
+      "sha256": "93c9a45dbb4d6bc59edc6c18ac8007ad4f99ac340844cb0ed8f171640936fa88",
+      "matched": [
+        {
+          "reference_id": 11,
+          "proposal": "mask-0",
+          "source_mask_samples": 3508,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 3446,
+          "valid_output_pixels": 54332
+        },
+        {
+          "reference_id": 14,
+          "proposal": "mask-1-single-436-0",
+          "source_mask_samples": 2784,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 2486,
+          "valid_output_pixels": 39306
+        },
+        {
+          "reference_id": 10,
+          "proposal": "mask-1-single-436-1",
+          "source_mask_samples": 183,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 161,
+          "valid_output_pixels": 2374
+        },
+        {
+          "reference_id": 1,
+          "proposal": "mask-2",
+          "source_mask_samples": 1564,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 1534,
+          "valid_output_pixels": 27576
+        },
+        {
+          "reference_id": 9,
+          "proposal": "mask-3-planarity-split-0",
+          "source_mask_samples": 949,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 885,
+          "valid_output_pixels": 13934
+        },
+        {
+          "reference_id": 5,
+          "proposal": "mask-4-planarity-split-0",
+          "source_mask_samples": 321,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 315,
+          "valid_output_pixels": 4790
+        },
+        {
+          "reference_id": 4,
+          "proposal": "mask-4-planarity-split-1",
+          "source_mask_samples": 432,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 384,
+          "valid_output_pixels": 7032
+        },
+        {
+          "reference_id": 8,
+          "proposal": "mask-5",
+          "source_mask_samples": 722,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 709,
+          "valid_output_pixels": 10759
+        },
+        {
+          "reference_id": 7,
+          "proposal": "mask-6",
+          "source_mask_samples": 481,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 401,
+          "valid_output_pixels": 13048
+        },
+        {
+          "reference_id": 2,
+          "proposal": "mask-7",
+          "source_mask_samples": 284,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 246,
+          "valid_output_pixels": 4057
+        },
+        {
+          "reference_id": 3,
+          "proposal": "mask-8",
+          "source_mask_samples": 184,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 166,
+          "valid_output_pixels": 2392
+        },
+        {
+          "reference_id": 6,
+          "proposal": "mask-9",
+          "source_mask_samples": 68,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 57,
+          "valid_output_pixels": 782
+        }
+      ]
+    },
+    {
+      "frame": "light_gray_concrete/holdout-crossing-masonry-high-right",
+      "sha256": "7ea5b36aa3c25b3ab4c58dcb773d8c3476c5f2d28048fd72a62970888be31320",
+      "matched": [
+        {
+          "reference_id": 6,
+          "proposal": "mask-0-wall-0",
+          "source_mask_samples": 3796,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 3646,
+          "valid_output_pixels": 56861
+        },
+        {
+          "reference_id": 3,
+          "proposal": "mask-0-wall-1",
+          "source_mask_samples": 1427,
+          "chart_kind": "wall normal + assumed-70-degree-vertical-fov",
+          "chart_covered_samples": 1427,
+          "valid_output_pixels": 25828
+        },
+        {
+          "reference_id": 2,
+          "proposal": "mask-1-single-254-0",
+          "source_mask_samples": 3056,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 3039,
+          "valid_output_pixels": 48312
+        },
+        {
+          "reference_id": 1,
+          "proposal": "mask-1-single-254-1",
+          "source_mask_samples": 188,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 185,
+          "valid_output_pixels": 2671
+        },
+        {
+          "reference_id": 14,
+          "proposal": "mask-2",
+          "source_mask_samples": 731,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 731,
+          "valid_output_pixels": 12247
+        },
+        {
+          "reference_id": 18,
+          "proposal": "mask-3",
+          "source_mask_samples": 420,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 353,
+          "valid_output_pixels": 14531
+        },
+        {
+          "reference_id": 16,
+          "proposal": "mask-7",
+          "source_mask_samples": 170,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 142,
+          "valid_output_pixels": 3739
+        },
+        {
+          "reference_id": 17,
+          "proposal": "mask-9",
+          "source_mask_samples": 112,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 96,
+          "valid_output_pixels": 3172
+        },
+        {
+          "reference_id": 12,
+          "proposal": "mask-14",
+          "source_mask_samples": 34,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 25,
+          "valid_output_pixels": 814
+        }
+      ]
+    },
+    {
+      "frame": "light_gray_concrete/holdout-crossing-plaster-low-left",
+      "sha256": "d348ddef0010267fdffc0d628654ef6ce256329400dec3e1cfd271bfaf764144",
+      "matched": [
+        {
+          "reference_id": 11,
+          "proposal": "mask-0",
+          "source_mask_samples": 3292,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 3213,
+          "valid_output_pixels": 50285
+        },
+        {
+          "reference_id": 14,
+          "proposal": "mask-1-wall-0",
+          "source_mask_samples": 1683,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 1583,
+          "valid_output_pixels": 24968
+        },
+        {
+          "reference_id": 9,
+          "proposal": "mask-2-planarity-split-0",
+          "source_mask_samples": 991,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 925,
+          "valid_output_pixels": 14652
+        },
+        {
+          "reference_id": 1,
+          "proposal": "mask-3",
+          "source_mask_samples": 1155,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 1103,
+          "valid_output_pixels": 22124
+        },
+        {
+          "reference_id": 5,
+          "proposal": "mask-4-planarity-split-0",
+          "source_mask_samples": 321,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 310,
+          "valid_output_pixels": 4698
+        },
+        {
+          "reference_id": 4,
+          "proposal": "mask-4-planarity-split-1",
+          "source_mask_samples": 396,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 385,
+          "valid_output_pixels": 6166
+        },
+        {
+          "reference_id": 8,
+          "proposal": "mask-5",
+          "source_mask_samples": 610,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 585,
+          "valid_output_pixels": 9034
+        },
+        {
+          "reference_id": 7,
+          "proposal": "mask-6",
+          "source_mask_samples": 557,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 455,
+          "valid_output_pixels": 6915
+        },
+        {
+          "reference_id": 2,
+          "proposal": "mask-7-wall-0",
+          "source_mask_samples": 233,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 221,
+          "valid_output_pixels": 3509
+        },
+        {
+          "reference_id": 10,
+          "proposal": "mask-8",
+          "source_mask_samples": 211,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 177,
+          "valid_output_pixels": 2544
+        },
+        {
+          "reference_id": 3,
+          "proposal": "mask-10",
+          "source_mask_samples": 110,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 87,
+          "valid_output_pixels": 1313
+        },
+        {
+          "reference_id": 6,
+          "proposal": "mask-12",
+          "source_mask_samples": 57,
+          "chart_kind": "wall normal + assumed-70-degree-vertical-fov",
+          "chart_covered_samples": 57,
+          "valid_output_pixels": 866
+        }
+      ]
+    },
+    {
+      "frame": "light_gray_concrete/holdout-crossing-plaster-high-right",
+      "sha256": "a7e9cd44bd97237bd3cbf88b11fdfa3575deee7473ef820b30e19bc5fe37698e",
+      "matched": [
+        {
+          "reference_id": 6,
+          "proposal": "mask-0-wall-0-junction-0",
+          "source_mask_samples": 4102,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 4087,
+          "valid_output_pixels": 64769
+        },
+        {
+          "reference_id": 3,
+          "proposal": "mask-0-wall-0-junction-1",
+          "source_mask_samples": 946,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 914,
+          "valid_output_pixels": 14110
+        },
+        {
+          "reference_id": 2,
+          "proposal": "mask-0-wall-1-single-277-0",
+          "source_mask_samples": 3134,
+          "chart_kind": "wall normal + assumed-70-degree-vertical-fov",
+          "chart_covered_samples": 3134,
+          "valid_output_pixels": 41616
+        },
+        {
+          "reference_id": 1,
+          "proposal": "mask-0-wall-1-single-277-1",
+          "source_mask_samples": 169,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 162,
+          "valid_output_pixels": 2327
+        },
+        {
+          "reference_id": 14,
+          "proposal": "mask-1",
+          "source_mask_samples": 691,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 677,
+          "valid_output_pixels": 10432
+        },
+        {
+          "reference_id": 18,
+          "proposal": "mask-2",
+          "source_mask_samples": 332,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 262,
+          "valid_output_pixels": 13834
+        },
+        {
+          "reference_id": 16,
+          "proposal": "mask-6",
+          "source_mask_samples": 173,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 148,
+          "valid_output_pixels": 3687
+        },
+        {
+          "reference_id": 17,
+          "proposal": "mask-7",
+          "source_mask_samples": 138,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 105,
+          "valid_output_pixels": 2316
+        },
+        {
+          "reference_id": 12,
+          "proposal": "mask-11",
+          "source_mask_samples": 51,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 43,
+          "valid_output_pixels": 2502
+        }
+      ]
+    },
+    {
+      "frame": "light_gray_concrete/holdout-registry-masonry-low-left",
+      "sha256": "3f7e9e1b5d577667b157664dd3f37a40e8c7e64a3db0d60ac6c30b294d2ba9e6",
+      "matched": [
+        {
+          "reference_id": 4,
+          "proposal": "mask-0-junction-0",
+          "source_mask_samples": 877,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 873,
+          "valid_output_pixels": 13795
+        },
+        {
+          "reference_id": 5,
+          "proposal": "mask-0-junction-1-planarity-split-0",
+          "source_mask_samples": 3556,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 3441,
+          "valid_output_pixels": 59176
+        },
+        {
+          "reference_id": 6,
+          "proposal": "mask-0-junction-1-planarity-split-1",
+          "source_mask_samples": 4273,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 4054,
+          "valid_output_pixels": 69251
+        },
+        {
+          "reference_id": 7,
+          "proposal": "mask-1",
+          "source_mask_samples": 1721,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 1703,
+          "valid_output_pixels": 26812
+        },
+        {
+          "reference_id": 1,
+          "proposal": "mask-2",
+          "source_mask_samples": 630,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 570,
+          "valid_output_pixels": 11801
+        },
+        {
+          "reference_id": 3,
+          "proposal": "mask-3",
+          "source_mask_samples": 238,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 208,
+          "valid_output_pixels": 3236
+        },
+        {
+          "reference_id": 2,
+          "proposal": "mask-4",
+          "source_mask_samples": 247,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 188,
+          "valid_output_pixels": 2770
+        }
+      ]
+    },
+    {
+      "frame": "light_gray_concrete/holdout-registry-masonry-high-right",
+      "sha256": "e20bfd5e2588ed117375acb3e2f7c42cebb2fdd1ab7167caf35b0b4298a98e19",
+      "matched": [
+        {
+          "reference_id": 2,
+          "proposal": "mask-0-single-588-0",
+          "source_mask_samples": 5188,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 5077,
+          "valid_output_pixels": 80102
+        },
+        {
+          "reference_id": 1,
+          "proposal": "mask-0-single-588-1",
+          "source_mask_samples": 1218,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 1208,
+          "valid_output_pixels": 19075
+        },
+        {
+          "reference_id": 10,
+          "proposal": "mask-1",
+          "source_mask_samples": 2483,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 2253,
+          "valid_output_pixels": 49027
+        },
+        {
+          "reference_id": 3,
+          "proposal": "mask-2",
+          "source_mask_samples": 1533,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 1513,
+          "valid_output_pixels": 29028
+        },
+        {
+          "reference_id": 8,
+          "proposal": "mask-3",
+          "source_mask_samples": 1210,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 1191,
+          "valid_output_pixels": 19181
+        },
+        {
+          "reference_id": 4,
+          "proposal": "mask-4",
+          "source_mask_samples": 694,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 658,
+          "valid_output_pixels": 10748
+        },
+        {
+          "reference_id": 7,
+          "proposal": "mask-5",
+          "source_mask_samples": 437,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 423,
+          "valid_output_pixels": 6911
+        },
+        {
+          "reference_id": 5,
+          "proposal": "mask-7",
+          "source_mask_samples": 116,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 95,
+          "valid_output_pixels": 3408
+        }
+      ]
+    },
+    {
+      "frame": "light_gray_concrete/holdout-registry-plaster-low-left",
+      "sha256": "23e91937ee67563c1c4a463676a43c7d4800f82581a3188aa7125e32001be5e9",
+      "matched": [
+        {
+          "reference_id": 6,
+          "proposal": "mask-0-wall-0-junction-0",
+          "source_mask_samples": 3493,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 3298,
+          "valid_output_pixels": 46839
+        },
+        {
+          "reference_id": 5,
+          "proposal": "mask-0-wall-1-junction-1",
+          "source_mask_samples": 3856,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 3627,
+          "valid_output_pixels": 62957
+        },
+        {
+          "reference_id": 7,
+          "proposal": "mask-1",
+          "source_mask_samples": 1740,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 1712,
+          "valid_output_pixels": 27173
+        },
+        {
+          "reference_id": 1,
+          "proposal": "mask-2",
+          "source_mask_samples": 429,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 358,
+          "valid_output_pixels": 10429
+        },
+        {
+          "reference_id": 2,
+          "proposal": "mask-3",
+          "source_mask_samples": 232,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 227,
+          "valid_output_pixels": 4497
+        },
+        {
+          "reference_id": 3,
+          "proposal": "mask-4",
+          "source_mask_samples": 229,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 213,
+          "valid_output_pixels": 2435
+        }
+      ]
+    },
+    {
+      "frame": "light_gray_concrete/holdout-registry-plaster-high-right",
+      "sha256": "8634b14394486c2fb709ea678008fbaf2314344280b5a13d3582d433125d589d",
+      "matched": [
+        {
+          "reference_id": 1,
+          "proposal": "mask-0-junction-0",
+          "source_mask_samples": 1247,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 1234,
+          "valid_output_pixels": 19578
+        },
+        {
+          "reference_id": 2,
+          "proposal": "mask-0-junction-1-mobile-0",
+          "source_mask_samples": 4434,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 4220,
+          "valid_output_pixels": 67458
+        },
+        {
+          "reference_id": 3,
+          "proposal": "mask-1",
+          "source_mask_samples": 1520,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 1488,
+          "valid_output_pixels": 28774
+        },
+        {
+          "reference_id": 8,
+          "proposal": "mask-3",
+          "source_mask_samples": 731,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 689,
+          "valid_output_pixels": 11506
+        },
+        {
+          "reference_id": 4,
+          "proposal": "mask-4",
+          "source_mask_samples": 688,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 663,
+          "valid_output_pixels": 10741
+        },
+        {
+          "reference_id": 7,
+          "proposal": "mask-5",
+          "source_mask_samples": 450,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 436,
+          "valid_output_pixels": 7010
+        },
+        {
+          "reference_id": 5,
+          "proposal": "mask-7",
+          "source_mask_samples": 128,
+          "chart_kind": null,
+          "chart_covered_samples": null,
+          "valid_output_pixels": 0
+        }
+      ]
+    },
+    {
+      "frame": "light_gray_concrete/holdout-galleries-masonry-low-left",
+      "sha256": "d0fba67900a91a20d0120f298c8783829953bc21c7d45fb4413a8cb829cfddc3",
+      "matched": [
+        {
+          "reference_id": 28,
+          "proposal": "mask-0-junction-0",
+          "source_mask_samples": 687,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 656,
+          "valid_output_pixels": 10497
+        },
+        {
+          "reference_id": 29,
+          "proposal": "mask-0-junction-1-mobile-2",
+          "source_mask_samples": 440,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 437,
+          "valid_output_pixels": 7081
+        },
+        {
+          "reference_id": 30,
+          "proposal": "mask-0-junction-1-mobile-4",
+          "source_mask_samples": 1579,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 1438,
+          "valid_output_pixels": 27817
+        },
+        {
+          "reference_id": 27,
+          "proposal": "mask-0-junction-1-mobile-7",
+          "source_mask_samples": 952,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 926,
+          "valid_output_pixels": 14418
+        },
+        {
+          "reference_id": 26,
+          "proposal": "mask-1",
+          "source_mask_samples": 992,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 940,
+          "valid_output_pixels": 15847
+        },
+        {
+          "reference_id": 19,
+          "proposal": "mask-2",
+          "source_mask_samples": 787,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 747,
+          "valid_output_pixels": 11060
+        },
+        {
+          "reference_id": 20,
+          "proposal": "mask-3",
+          "source_mask_samples": 692,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 692,
+          "valid_output_pixels": 10720
+        },
+        {
+          "reference_id": 16,
+          "proposal": "mask-4",
+          "source_mask_samples": 622,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 592,
+          "valid_output_pixels": 22905
+        },
+        {
+          "reference_id": 24,
+          "proposal": "mask-5",
+          "source_mask_samples": 493,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 464,
+          "valid_output_pixels": 7092
+        },
+        {
+          "reference_id": 8,
+          "proposal": "mask-6",
+          "source_mask_samples": 407,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 388,
+          "valid_output_pixels": 5389
+        },
+        {
+          "reference_id": 12,
+          "proposal": "mask-7",
+          "source_mask_samples": 372,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 362,
+          "valid_output_pixels": 5219
+        },
+        {
+          "reference_id": 25,
+          "proposal": "mask-8",
+          "source_mask_samples": 335,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 311,
+          "valid_output_pixels": 4637
+        },
+        {
+          "reference_id": 23,
+          "proposal": "mask-9",
+          "source_mask_samples": 326,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 324,
+          "valid_output_pixels": 4989
+        },
+        {
+          "reference_id": 11,
+          "proposal": "mask-11",
+          "source_mask_samples": 208,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 194,
+          "valid_output_pixels": 2868
+        },
+        {
+          "reference_id": 9,
+          "proposal": "mask-13",
+          "source_mask_samples": 161,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 140,
+          "valid_output_pixels": 2394
+        },
+        {
+          "reference_id": 4,
+          "proposal": "mask-14",
+          "source_mask_samples": 117,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 106,
+          "valid_output_pixels": 1903
+        },
+        {
+          "reference_id": 1,
+          "proposal": "mask-15",
+          "source_mask_samples": 93,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 80,
+          "valid_output_pixels": 1314
+        },
+        {
+          "reference_id": 10,
+          "proposal": "mask-16",
+          "source_mask_samples": 65,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 63,
+          "valid_output_pixels": 459
+        }
+      ]
+    },
+    {
+      "frame": "light_gray_concrete/holdout-galleries-masonry-high-right",
+      "sha256": "21916862012e6b47e6dbe426fd7a8930bd7fdd51651238d8ad4d3e8860f57a7b",
+      "matched": [
+        {
+          "reference_id": 13,
+          "proposal": "mask-0-wall-0",
+          "source_mask_samples": 1116,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 1003,
+          "valid_output_pixels": 15590
+        },
+        {
+          "reference_id": 12,
+          "proposal": "mask-0-wall-1",
+          "source_mask_samples": 689,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 671,
+          "valid_output_pixels": 10538
+        },
+        {
+          "reference_id": 9,
+          "proposal": "mask-1",
+          "source_mask_samples": 1078,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 1008,
+          "valid_output_pixels": 15402
+        },
+        {
+          "reference_id": 14,
+          "proposal": "mask-2",
+          "source_mask_samples": 917,
+          "chart_kind": null,
+          "chart_covered_samples": null,
+          "valid_output_pixels": 0
+        },
+        {
+          "reference_id": 23,
+          "proposal": "mask-3",
+          "source_mask_samples": 610,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 576,
+          "valid_output_pixels": 8726
+        },
+        {
+          "reference_id": 8,
+          "proposal": "mask-4",
+          "source_mask_samples": 420,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 408,
+          "valid_output_pixels": 6259
+        },
+        {
+          "reference_id": 11,
+          "proposal": "mask-5",
+          "source_mask_samples": 411,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 394,
+          "valid_output_pixels": 6121
+        },
+        {
+          "reference_id": 2,
+          "proposal": "mask-6",
+          "source_mask_samples": 416,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 394,
+          "valid_output_pixels": 6065
+        },
+        {
+          "reference_id": 26,
+          "proposal": "mask-7",
+          "source_mask_samples": 400,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 339,
+          "valid_output_pixels": 5250
+        },
+        {
+          "reference_id": 1,
+          "proposal": "mask-8-single-210-2",
+          "source_mask_samples": 284,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 268,
+          "valid_output_pixels": 3849
+        },
+        {
+          "reference_id": 6,
+          "proposal": "mask-9",
+          "source_mask_samples": 339,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 275,
+          "valid_output_pixels": 4378
+        },
+        {
+          "reference_id": 25,
+          "proposal": "mask-10",
+          "source_mask_samples": 315,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 313,
+          "valid_output_pixels": 5090
+        },
+        {
+          "reference_id": 20,
+          "proposal": "mask-11",
+          "source_mask_samples": 312,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 312,
+          "valid_output_pixels": 4809
+        },
+        {
+          "reference_id": 17,
+          "proposal": "mask-12",
+          "source_mask_samples": 291,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 279,
+          "valid_output_pixels": 4485
+        },
+        {
+          "reference_id": 22,
+          "proposal": "mask-13",
+          "source_mask_samples": 288,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 281,
+          "valid_output_pixels": 4544
+        },
+        {
+          "reference_id": 10,
+          "proposal": "mask-14",
+          "source_mask_samples": 266,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 252,
+          "valid_output_pixels": 4133
+        },
+        {
+          "reference_id": 18,
+          "proposal": "mask-15",
+          "source_mask_samples": 234,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 234,
+          "valid_output_pixels": 3525
+        },
+        {
+          "reference_id": 3,
+          "proposal": "mask-16-single-204-0",
+          "source_mask_samples": 60,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 60,
+          "valid_output_pixels": 878
+        },
+        {
+          "reference_id": 5,
+          "proposal": "mask-16-single-204-1",
+          "source_mask_samples": 127,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 127,
+          "valid_output_pixels": 1952
+        },
+        {
+          "reference_id": 24,
+          "proposal": "mask-17",
+          "source_mask_samples": 167,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 158,
+          "valid_output_pixels": 2825
+        },
+        {
+          "reference_id": 4,
+          "proposal": "mask-18",
+          "source_mask_samples": 179,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 175,
+          "valid_output_pixels": 2271
+        },
+        {
+          "reference_id": 19,
+          "proposal": "mask-20",
+          "source_mask_samples": 57,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 56,
+          "valid_output_pixels": 864
+        }
+      ]
+    },
+    {
+      "frame": "light_gray_concrete/holdout-galleries-plaster-low-left",
+      "sha256": "0fec6765b63937520e2a731a9171eef73e631ce1d47734e3925e2165b64a26c0",
+      "matched": [
+        {
+          "reference_id": 25,
+          "proposal": "mask-0-junction-0",
+          "source_mask_samples": 357,
+          "chart_kind": "wall normal + assumed-70-degree-vertical-fov",
+          "chart_covered_samples": 357,
+          "valid_output_pixels": 4689
+        },
+        {
+          "reference_id": 28,
+          "proposal": "mask-0-junction-1-mobile-1",
+          "source_mask_samples": 684,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 624,
+          "valid_output_pixels": 9875
+        },
+        {
+          "reference_id": 30,
+          "proposal": "mask-0-junction-1-mobile-2",
+          "source_mask_samples": 1480,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 1349,
+          "valid_output_pixels": 25606
+        },
+        {
+          "reference_id": 29,
+          "proposal": "mask-0-junction-1-mobile-5",
+          "source_mask_samples": 450,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 450,
+          "valid_output_pixels": 7030
+        },
+        {
+          "reference_id": 27,
+          "proposal": "mask-0-junction-1-mobile-6",
+          "source_mask_samples": 949,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 840,
+          "valid_output_pixels": 13261
+        },
+        {
+          "reference_id": 22,
+          "proposal": "mask-1-single-147-0",
+          "source_mask_samples": 390,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 389,
+          "valid_output_pixels": 7388
+        },
+        {
+          "reference_id": 19,
+          "proposal": "mask-1-single-147-1",
+          "source_mask_samples": 554,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 534,
+          "valid_output_pixels": 8231
+        },
+        {
+          "reference_id": 26,
+          "proposal": "mask-2",
+          "source_mask_samples": 913,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 797,
+          "valid_output_pixels": 12964
+        },
+        {
+          "reference_id": 20,
+          "proposal": "mask-3",
+          "source_mask_samples": 690,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 667,
+          "valid_output_pixels": 10270
+        },
+        {
+          "reference_id": 16,
+          "proposal": "mask-4",
+          "source_mask_samples": 660,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 580,
+          "valid_output_pixels": 18403
+        },
+        {
+          "reference_id": 24,
+          "proposal": "mask-5",
+          "source_mask_samples": 509,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 454,
+          "valid_output_pixels": 6908
+        },
+        {
+          "reference_id": 12,
+          "proposal": "mask-6",
+          "source_mask_samples": 369,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 354,
+          "valid_output_pixels": 5350
+        },
+        {
+          "reference_id": 23,
+          "proposal": "mask-7",
+          "source_mask_samples": 335,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 325,
+          "valid_output_pixels": 5116
+        },
+        {
+          "reference_id": 21,
+          "proposal": "mask-8",
+          "source_mask_samples": 298,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 288,
+          "valid_output_pixels": 5544
+        },
+        {
+          "reference_id": 8,
+          "proposal": "mask-9",
+          "source_mask_samples": 284,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 281,
+          "valid_output_pixels": 4620
+        },
+        {
+          "reference_id": 11,
+          "proposal": "mask-10",
+          "source_mask_samples": 196,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 186,
+          "valid_output_pixels": 2831
+        },
+        {
+          "reference_id": 9,
+          "proposal": "mask-12",
+          "source_mask_samples": 172,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 167,
+          "valid_output_pixels": 2610
+        },
+        {
+          "reference_id": 1,
+          "proposal": "mask-13",
+          "source_mask_samples": 89,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 84,
+          "valid_output_pixels": 1385
+        },
+        {
+          "reference_id": 4,
+          "proposal": "mask-14",
+          "source_mask_samples": 94,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 65,
+          "valid_output_pixels": 1219
+        },
+        {
+          "reference_id": 10,
+          "proposal": "mask-15",
+          "source_mask_samples": 73,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 55,
+          "valid_output_pixels": 692
+        }
+      ]
+    },
+    {
+      "frame": "light_gray_concrete/holdout-galleries-plaster-high-right",
+      "sha256": "a40a75765e0d99508a283686b4484a510d8ca0404656939017fb6d4a85f49832",
+      "matched": [
+        {
+          "reference_id": 7,
+          "proposal": "mask-0-junction-1-mobile-0-single-339-0",
+          "source_mask_samples": 249,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 230,
+          "valid_output_pixels": 3493
+        },
+        {
+          "reference_id": 9,
+          "proposal": "mask-0-junction-1-mobile-0-single-339-2",
+          "source_mask_samples": 807,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 790,
+          "valid_output_pixels": 12110
+        },
+        {
+          "reference_id": 8,
+          "proposal": "mask-0-junction-1-mobile-1",
+          "source_mask_samples": 423,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 413,
+          "valid_output_pixels": 6306
+        },
+        {
+          "reference_id": 14,
+          "proposal": "mask-1",
+          "source_mask_samples": 1561,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 1475,
+          "valid_output_pixels": 63707
+        },
+        {
+          "reference_id": 10,
+          "proposal": "mask-2-wall-0",
+          "source_mask_samples": 272,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 247,
+          "valid_output_pixels": 5856
+        },
+        {
+          "reference_id": 13,
+          "proposal": "mask-2-wall-1",
+          "source_mask_samples": 1168,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 1012,
+          "valid_output_pixels": 22813
+        },
+        {
+          "reference_id": 22,
+          "proposal": "mask-3-junction-0",
+          "source_mask_samples": 274,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 244,
+          "valid_output_pixels": 4063
+        },
+        {
+          "reference_id": 12,
+          "proposal": "mask-4",
+          "source_mask_samples": 691,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 646,
+          "valid_output_pixels": 10132
+        },
+        {
+          "reference_id": 2,
+          "proposal": "mask-5",
+          "source_mask_samples": 429,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 388,
+          "valid_output_pixels": 5864
+        },
+        {
+          "reference_id": 11,
+          "proposal": "mask-6",
+          "source_mask_samples": 414,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 402,
+          "valid_output_pixels": 6213
+        },
+        {
+          "reference_id": 26,
+          "proposal": "mask-7",
+          "source_mask_samples": 405,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 360,
+          "valid_output_pixels": 8058
+        },
+        {
+          "reference_id": 6,
+          "proposal": "mask-8",
+          "source_mask_samples": 333,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 328,
+          "valid_output_pixels": 5293
+        },
+        {
+          "reference_id": 20,
+          "proposal": "mask-9",
+          "source_mask_samples": 318,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 318,
+          "valid_output_pixels": 5018
+        },
+        {
+          "reference_id": 25,
+          "proposal": "mask-10",
+          "source_mask_samples": 304,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 304,
+          "valid_output_pixels": 4933
+        },
+        {
+          "reference_id": 1,
+          "proposal": "mask-11",
+          "source_mask_samples": 287,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 266,
+          "valid_output_pixels": 4022
+        },
+        {
+          "reference_id": 17,
+          "proposal": "mask-12",
+          "source_mask_samples": 294,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 293,
+          "valid_output_pixels": 4605
+        },
+        {
+          "reference_id": 18,
+          "proposal": "mask-13",
+          "source_mask_samples": 246,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 246,
+          "valid_output_pixels": 3682
+        },
+        {
+          "reference_id": 4,
+          "proposal": "mask-14",
+          "source_mask_samples": 207,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 207,
+          "valid_output_pixels": 3360
+        },
+        {
+          "reference_id": 3,
+          "proposal": "mask-16-mobile-0",
+          "source_mask_samples": 54,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 49,
+          "valid_output_pixels": 668
+        },
+        {
+          "reference_id": 5,
+          "proposal": "mask-16-mobile-2",
+          "source_mask_samples": 137,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 137,
+          "valid_output_pixels": 2079
+        },
+        {
+          "reference_id": 24,
+          "proposal": "mask-17",
+          "source_mask_samples": 172,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 164,
+          "valid_output_pixels": 2452
+        },
+        {
+          "reference_id": 19,
+          "proposal": "mask-19",
+          "source_mask_samples": 41,
+          "chart_kind": "supplied quad",
+          "chart_covered_samples": 29,
+          "valid_output_pixels": 431
+        }
+      ]
+    }
+  ]
+}
