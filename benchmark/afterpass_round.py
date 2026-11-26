@@ -87,10 +87,21 @@ def predict_from_fields(method, directory, field_root):
                     '--fields',str(field_root/method),'--out',str(directory)], cwd=ROOT, check=True)
 
 
+def validate_fields(directory, fixtures, roster):
+    meta = read(directory/'manifest.json')
+    expected = {f'fields/{sha}.npz' for sha in roster.values()}
+    if meta['fixtures'] != fixtures or set(meta['artifacts']) != expected:
+        raise ValueError(f'Model fields differ from the frozen screenshots in {directory}')
+    for path, sha in meta['artifacts'].items():
+        checked(directory/path, sha)
+    return meta
+
+
 @image_only()
 def run(out, candidate_dirs, workers, field_root):
     from benchmark.afterpass_edge_diagnostic import run as grade_edges
     from benchmark.afterpass_sheet import render
+    from benchmark.afterpass_wall_cuts import run as apply_edge_checks
     baseline = read(BASE/'manifest.json')
     checked(ARCHIVE, baseline['reference_sha256'])
     checked(BASE/'cases.json', baseline['artifacts']['cases.json'])
@@ -100,6 +111,7 @@ def run(out, candidate_dirs, workers, field_root):
     roster = {r['key']:r['sha256'] for r in rows}
     if fixtures != baseline['fixtures'] or len(rows) != 56 or roster.keys() != cases.keys():
         raise ValueError('Frozen screenshot suite differs')
+    fields_meta = {m:validate_fields(field_root/m, fixtures, roster) for m in MODULES}
     out.mkdir(parents=True, exist_ok=False)
     if candidate_dirs is None:
         (out/'candidate-runs').mkdir()
@@ -112,7 +124,8 @@ def run(out, candidate_dirs, workers, field_root):
     labels_key = 'labels'
     for m, directory in candidate_dirs.items():
         meta, indexed[m] = index_candidate(directory, fixtures, digest(ARCHIVE), roster)
-        manifests[m] = {'manifest_sha256':digest(directory/'manifest.json'), 'method':meta.get('method', m),
+        manifests[m] = {'manifest_sha256':digest(directory/'manifest.json'), 'method':NAMES[m],
+                        'checkpoint_sha256':fields_meta[m]['checkpoint_sha256'],
                         'fields_manifest_sha256':digest(field_root/m/'manifest.json')}
         if m == 'planarity':
             labels_key = meta.get('sheet_labels_key', 'labels')
@@ -129,6 +142,7 @@ def run(out, candidate_dirs, workers, field_root):
     (out/'pictures.md').write_text(picture_table(rows,methods), encoding='utf8')
     save(out/'recovered.json', recovery_table(rows, methods))
     grade_edges(ROOT, field_root/'ect', out/'edge-diagnostic')
+    apply_edge_checks(ROOT, field_root/'ect', out/'edge-diagnostic', out/'wall-cuts', workers)
     render(out, rows, cases, table, fields={m:field_root/m/'fields' for m in candidate_dirs},
            labels_key=labels_key)
     files = [p for p in out.rglob('*') if p.is_file()]
@@ -136,6 +150,8 @@ def run(out, candidate_dirs, workers, field_root):
          protocol=PROTOCOL, selection=SELECTION, splits=baseline['splits'], fixtures=fixtures,
          reference_sha256=digest(ARCHIVE), methods={m:NAMES[m] for m in methods},
          baseline='wall-recovery-single-v2', baseline_manifest_sha256=digest(BASE/'manifest.json'),
+         score_files={'all_and_by_building':'scores.json', 'per_picture':'pictures.md', 'original_misses':'recovered.json',
+                      'edge_classification':'edge-diagnostic/scores.json', 'wall_cut_outcomes':'wall-cuts/scores.json'},
          candidates=manifests, frames=[{k:r[k] for k in ('key','sha256','cohort','layout')} for r in rows],
          artifacts={p.relative_to(out).as_posix():digest(p) for p in files},
          reproduce=r'.\Invoke-SurfaceRound.ps1 -Round afterpass'))
