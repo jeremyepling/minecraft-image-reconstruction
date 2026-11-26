@@ -99,7 +99,7 @@ def _patch_scores(mask, origins, axis, free, level, P, rgb, atlas):
     return np.sort(scores)[::-1].tolist()
 
 
-def options(mask, P, eye, rays, axis, baseline, rgb, atlas, radius=6):
+def options(mask, P, eye, rays, axis, baseline, rgb, atlas, scene_distance=None, radius=6):
     free = [i for i in range(3) if i != axis]
     inv = np.linalg.inv(P[:,:3])
     boundary = _boundary(mask,inv,axis,free)
@@ -107,7 +107,12 @@ def options(mask, P, eye, rays, axis, baseline, rgb, atlas, radius=6):
     anchors = _coefficients(_sample(rays[mask],180),axis,free)
     uv = eye[free]
     rows = []
-    for level in range(baseline-radius,baseline+radius+1):
+    levels=set(range(baseline-radius,baseline+radius+1))
+    scene_level=baseline
+    if scene_distance is not None:
+        scene_level=round(float(eye[axis]+np.median(rays[mask,axis])*scene_distance))
+        levels.update(range(scene_level-radius,scene_level+radius+1))
+    for level in sorted(levels):
         distance = level-eye[axis]
         if (baseline-eye[axis])*distance <= 0 or (axis==1 and level-int(distance<0)<0):
             continue
@@ -116,13 +121,20 @@ def options(mask, P, eye, rays, axis, baseline, rgb, atlas, radius=6):
         scores = _patch_scores(mask,uv+anchors*distance,axis,free,level,P,rgb,atlas)
         rows.append(dict(level=level,boundary=boundary_score,edge=_edge_score(samples,uv,distance),
                          atlas=float(np.mean(scores[:5])) if scores else 0.,tiles=len(scores),
-                         distinct_votes=sum(v>.55 for v in scores)))
+                         distinct_votes=sum(v>.55 for v in scores),scene_delta=abs(level-scene_level)))
     return rows
 
 
 def choose(rows, baseline, method):
     if not rows or all(r['level']!=baseline for r in rows):
         return baseline
+    if method=='combined':
+        def confidence(r):
+            texture = min(r['tiles']/3,1)*r['atlas']
+            return .53*texture+.30*r['edge']+.17*r['boundary']
+        selected = max(rows,key=lambda r:confidence(r)-.004*min(abs(r['level']-baseline),8))
+        before = next(r for r in rows if r['level']==baseline)
+        return selected['level'] if confidence(selected)>.38 and confidence(selected)-confidence(before)>.07 else baseline
     key = {'boundary':'boundary','edge':'edge','atlas':'atlas'}[method]
     usable = [r for r in rows if key!='atlas' or r['tiles']>=2]
     if not usable:
@@ -136,12 +148,24 @@ def choose(rows, baseline, method):
 
 def place(image,version,parts,counts,camera,method,atlas_path=None):
     rgb = np.asarray(image.convert('RGB'))
-    atlas = _atlas(version,atlas_path) if method=='atlas' else None
-    def select(part,mask,P,eye,rays,axis,baseline):
-        rows = options(mask,P,eye,rays,axis,baseline,rgb,atlas)
+    atlas = _atlas(version,atlas_path) if method in ('atlas','combined') else None
+    def select(part,mask,P,eye,rays,axis,baseline,scene_distance):
+        rows = options(mask,P,eye,rays,axis,baseline,rgb,atlas,scene_distance if method=='combined' else None)
         return choose(rows,baseline,method)
     return place_with_camera(image,version,parts,counts,camera,select)
 
 
 def predict(image,version,parts,counts,camera):
     return place(image,version,parts,counts,camera,'boundary')
+
+
+def atlas_only(image,version,parts,counts,camera):
+    return place(image,version,parts,counts,camera,'atlas')
+
+
+def edge_only(image,version,parts,counts,camera):
+    return place(image,version,parts,counts,camera,'edge')
+
+
+def combined(image,version,parts,counts,camera):
+    return place(image,version,parts,counts,camera,'combined')

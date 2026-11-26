@@ -84,7 +84,7 @@ def _estimate_plane_cells(image, parts, masks, projection, eye, select_level=Non
             depth = distance * np.clip(ratio, .7, 1.4)
             level = int(np.rint(eye[axis] + np.median(rays[mask, axis]) * depth))
         if select_level is not None:
-            level = select_level(part, mask, projection, eye, rays, axis, level)
+            level = select_level(part, mask, projection, eye, rays, axis, level, distance)
         depth = np.divide(level - eye[axis], rays[:, :, axis], out=np.zeros(shape), where=abs(rays[:, :, axis]) > 1e-7)
         inside = mask & (depth > 1.5) & (depth < 150)
         if inside.sum() < MINIMUM_SAMPLES:

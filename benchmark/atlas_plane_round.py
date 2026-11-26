@@ -45,9 +45,9 @@ def extract(source):
         shape=tuple((n+SAMPLE_STRIDE-1)//SAMPLE_STRIDE for n in image.size[::-1])
         masks=[observed_support(p['support'],shape,image.size) if p.get('support') else np.zeros(shape,bool)
                for p in frame['parts']]
-        def collect(part,mask,P,eye,rays,axis,baseline):
+        def collect(part,mask,P,eye,rays,axis,baseline,scene_distance):
             rows.append(dict(id=part['id'],axis=axis,baseline=baseline,n=int(mask.sum()),
-                             choices=options(mask,P,eye,rays,axis,baseline,rgb,atlas)))
+                             choices=options(mask,P,eye,rays,axis,baseline,rgb,atlas,scene_distance)))
             return baseline
         if frame['parts']:
             _estimate_plane_cells(image,frame['parts'],masks,P,eye,collect)
@@ -73,7 +73,7 @@ def extract(source):
             r['truth']=truth
     else:
         elapsed=0.
-    dest=OUT/'features'/frame['split']/(key+'.json')
+    dest=OUT/'wide-features'/frame['split']/(key+'.json')
     dest.parent.mkdir(parents=True,exist_ok=True)
     tmp=dest.with_suffix('.tmp')
     tmp.write_text(json.dumps(dict(id=key,split=frame['split'],family=frame['family'],
@@ -83,7 +83,7 @@ def extract(source):
 
 
 def metrics(files):
-    totals=dict.fromkeys(['samples','oracle','baseline','boundary','edge','atlas'],0)
+    totals=dict.fromkeys(['samples','oracle','baseline','boundary','edge','atlas','combined'],0)
     for f in files:
         for r in read(f)['rows']:
             q=r['choices']
@@ -94,7 +94,7 @@ def metrics(files):
             totals['samples']+=r['n']
             totals['baseline']+=votes(r['baseline'])
             totals['oracle']+=max(votes(row['level']) for row in q)
-            for method in ('boundary','edge','atlas'):
+            for method in ('boundary','edge','atlas','combined'):
                 totals[method]+=votes(choose(q,r['baseline'],method))
     return totals
 
@@ -106,7 +106,7 @@ def main():
     p.add_argument('--watch',type=int,default=0)
     a=p.parse_args()
     prefix='legacy' if a.split=='regression' else a.split
-    out=OUT/'features'/a.split
+    out=OUT/'wide-features'/a.split
     with ProcessPoolExecutor(a.workers) as pool:
         while True:
             jobs=[f for f in sorted(CACHE.glob(prefix+'-*.json')) if not (out/f.name).exists()]
