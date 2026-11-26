@@ -52,13 +52,25 @@ def verify(build, key, source_run=None, data=None):
     with gzip.open(path, 'rt', encoding='utf8') as f:
         payload=json.load(f)
     expected=payload[method] if method else payload
+    data = data or ROOT/'benchmark/data'
+    case = capture_index(data)[key]
+    strip_filtered = manifest['stages'].get('strip_cleanup') == 'neighbor-supported-strip'
+    if strip_filtered:
+        from PIL import Image
+        from benchmark.verify_default_strip import SIGNATURES, approved_row, region_signature
+        from engine.strip_neighbor import clean_surfaces
+        if method != 'gap' or manifest['stages']['boundary_sequence'][-1] != 'neighbor-supported-strip':
+            raise ValueError('Unexpected stage order for the promoted strip cleanup')
+        with Image.open(case.path('image')) as src:
+            expected, _ = clean_surfaces(src.convert('RGB'), expected)
+        if region_signature(expected) != read(SIGNATURES)['frames'][key]:
+            raise ValueError('Archived approved strip result differs')
+        row, method = approved_row(key), 'neighbor'
     if [p['id'] for p in predicted] != [p['id'] for p in expected]:
         raise ValueError('Predicted region IDs differ')
     comparable = [{k: actual.get(k) for k in frozen} for actual, frozen in zip(predicted, expected)]
     if comparable != expected:
         raise ValueError('At least one saved region property differs')
-    data = data or ROOT/'benchmark/data'
-    case = capture_index(data)[key]
     scores, pairs = measure(predicted, recorded(case,data/'visible-geometry-v1.zip')[1], use_mask=True)
     assignments = {predicted[i]['id']: pid for i, pid in pairs}
     expected_scores=row['scores'][method] if method else row['split']
@@ -83,6 +95,8 @@ def verify(build, key, source_run=None, data=None):
                 source_prediction_sha256=expected_hash, counter=manifest['stages']['block_count'],
                 block_count_records=len(counts))
     if boundary==CROP_SPLIT:
+        if strip_filtered:
+            result['strip_cleanup'] = manifest['surface_finder']['boundary_settings']['strip_cleanup']
         if sky_filtered:
             result['background_filter'] = manifest['surface_finder']['boundary_settings']['background_filter']
         from PIL import Image
