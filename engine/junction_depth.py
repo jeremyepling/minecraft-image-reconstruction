@@ -1,16 +1,16 @@
 """Propose visible wall depths from observed contacts between the build and floor."""
 import numpy as np
 
-from engine.plane_offset_features import features, ranked_choice
+from engine.plane_offset_features import features
 from engine.surface_model import intrinsic
-from engine.visible_raster import observed_support, SAMPLE_STRIDE
+from engine.visible_raster import observed_support
 
 
 class JunctionDepth:
-    def __init__(self, size, parts, policy):
+    """Track visible floor contacts and selected walls for a single photograph."""
+    def __init__(self, size, parts):
         self.size = size
         self.parts = parts
-        self.policy = policy
         self.anchors = None
         self.walls = []
 
@@ -20,6 +20,7 @@ class JunctionDepth:
                  else np.zeros(shape, bool) for p in self.parts]
         yy = np.arange(shape[0])[:, None]
         union = np.logical_or.reduce(masks)
+        # Only a column's lowest visible build pixel can establish a floor contact.
         bottom = union & (yy == np.where(union, yy, -1).max(0)) & (yy < shape[0]-1)
         foot = np.divide(-eye[1], rays[:,:,1], out=np.zeros(shape), where=rays[:,:,1] < -1.e-6)
         focal = np.linalg.norm(P[0,:3] - self.size[0]*.5*P[2,:3])
@@ -44,7 +45,7 @@ class JunctionDepth:
         if self.anchors is None:
             self.prepare(P, eye, rays)
         if axis == 1:
-            levels = self.crease_levels(mask, eye, rays) if self.policy in ('creases','single') else ()
+            levels = self.crease_levels(mask, eye, rays)
         else:
             levels = ()
             if len(self.anchors) >= 2:
@@ -85,60 +86,34 @@ class JunctionDepth:
         self.votes = votes
         return votes.keys()
 
-    def choose(self, part, mask, P, eye, rays, axis, baseline, scene, rows, weights, *, chosen_before=None):
-        scene_level = round(float(eye[axis]+np.median(rays[mask,axis])*scene))
-        original = [r for r in rows if min(abs(r['level']-baseline), abs(r['level']-scene_level)) <= 6]
-        before = ranked_choice(original, baseline, weights) if chosen_before is None else chosen_before
-        if not rows:
-            return before
-        previous = next((r for r in rows if r['level'] == before), None)
+    def choose(self, part, mask, P, eye, rays, axis, baseline, scene, rows, weights, *, chosen_before):
+        previous = next((r for r in rows if r['level'] == chosen_before), None)
         if previous is None:
-            return before
-        if axis == 1 and self.policy in ('creases','single'):
-            votes = self.votes
-            if len(votes) == 1:
-                height, anchors = next(iter(votes.items()))
-                if (len({axis for axis,_ in anchors}) == 2 or self.policy == 'single') and previous['atlas'] < .60:
-                    if any(r['level'] == height for r in rows):
-                        return height
+            return chosen_before
+        if axis == 1 and len(self.votes) == 1 and previous['atlas'] < .60:
+            height, anchors = next(iter(self.votes.items()))
+            perpendicular = len({wall_axis for wall_axis,_ in anchors}) == 2
+            if perpendicular and any(r['level'] == height for r in rows):
+                return height
         # Outside the usual search window, require several source tiles to fit
         # the calibrated atlas at the same integer plane. The geometric anchor
         # supplies candidates, never additional blocks.
-        usual = {r['level'] for r in original}
-        promoted = [r for r in rows if r['level'] in self.proposed and r['level'] not in usual and r['distinct_votes'] >= 2
+        scene_level = round(float(eye[axis]+np.median(rays[mask,axis])*scene))
+        promoted = [r for r in rows if r['level'] in self.proposed
+                    and min(abs(r['level']-baseline), abs(r['level']-scene_level)) > 6 and r['distinct_votes'] >= 2
                     and r['atlas'] > max(.65, previous['atlas'] + .12) and r['edge'] > .08]
         if promoted:
-            best = max(promoted, key=lambda r: features([r], baseline)[0,:9] @ weights[:9])
-            if features([best], baseline)[0,:9] @ weights[:9] > features([previous], baseline)[0,:9] @ weights[:9]+1.:
+            def visual_score(row):
+                # First nine features measure the photographed texture and outline.
+                return features([row], baseline)[0,:9] @ weights[:9]
+            best = max(promoted, key=visual_score)
+            if visual_score(best) > visual_score(previous) + 1.:
                 return best['level']
-        if self.policy == 'art':
-            return before
         anchor = self.anchors.get(part['id'])
         if anchor is not None:
             row = next((r for r in rows if r['level'] == anchor[1]), None)
-            weak_art = previous['distinct_votes'] < 2 or (self.policy in ('creases','single') and previous['atlas'] < .60)
+            weak_art = previous['distinct_votes'] < 2 or previous['atlas'] < .60
             if (row is not None and weak_art and row['edge'] > .10
                     and row['edge'] > previous['edge']+.04):
                 return row['level']
-        return before
-
-
-def _run(image,version,parts,counts,camera,policy):
-    from engine.atlas_plane_depth import _place
-    return _place(image,version,parts,counts,camera,None,remove_occluded=True,junction=policy)
-
-
-def art(image,version,parts,counts,camera):
-    return _run(image,version,parts,counts,camera,'art')
-
-
-def contacts(image,version,parts,counts,camera):
-    return _run(image,version,parts,counts,camera,'contacts')
-
-
-def creases(image,version,parts,counts,camera):
-    return _run(image,version,parts,counts,camera,'creases')
-
-
-def single(image,version,parts,counts,camera):
-    return _run(image,version,parts,counts,camera,'single')
+        return chosen_before
