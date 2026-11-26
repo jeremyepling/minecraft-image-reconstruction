@@ -1,17 +1,31 @@
 """Register a visible ground texel lattice to verified vanilla 16 by 16 sprites."""
 from functools import lru_cache
+from pathlib import Path
+from zlib import error as CompressionError
 
 import numpy as np
 
-from engine.atlas_count import _shortlist, load_atlas, prepared_atlas_paths
+from engine.atlas_count import CALIBRATED_INDEX, _shortlist, load_atlas, prepared_atlas_paths
 from engine.camera_texel_floor import _ground, lattice
 
 
 @lru_cache(maxsize=2)
-def _atlas(version):
-    paths=prepared_atlas_paths(version)
-    if not paths: return None
-    return load_atlas(paths[0],version)
+def _verified_atlas(path, version, fingerprint):
+    """The cache key includes file timestamps and sizes so a repair can take effect."""
+    return load_atlas(path, version)
+
+
+def _atlas(version, atlas_path=None):
+    paths = [Path(atlas_path)] if atlas_path is not None else prepared_atlas_paths(version)
+    for path in paths:
+        path = path.resolve()
+        try:
+            stats = [asset.stat() for asset in (path/"atlas.json", path/"atlas.png", CALIBRATED_INDEX)]
+            fingerprint = tuple((s.st_mtime_ns, s.st_size) for s in stats)
+            return _verified_atlas(path, version, fingerprint)
+        except (OSError, ValueError, TypeError, IndexError, KeyError, EOFError, CompressionError):
+            continue
+    return None
 
 
 def _observations(image,inv):
@@ -63,15 +77,13 @@ def register(image,inv,atlas):
     return np.array(matches[0][:2]),evidence
 
 
-def _predict_band(image,version,lower):
+def _predict_band(image,version,lower,atlas_path):
     def abstain(reason,evidence):
         return dict(P=None,scale_status="uncertain",reason=reason,evidence=evidence)
     inv,evidence=lattice(image,lower)
     evidence["lower_bound_fraction"]=lower
     if inv is None: return abstain(evidence["reason"],evidence)
-    try: atlas=_atlas(version)
-    except (OSError,ValueError,KeyError,IndexError,TypeError,EOFError):
-        atlas=None
+    atlas=_atlas(version,atlas_path)
     if atlas is None: return abstain("calibrated atlas unavailable",evidence)
     offset,registration=register(image,inv,atlas)
     evidence.update(registration)
@@ -84,11 +96,13 @@ def _predict_band(image,version,lower):
     return dict(P=P,scale_status="supported",reason="two floor texel pencils registered to a vanilla sprite in both image halves",evidence=evidence)
 
 
-def predict(image,version="26.3"):
+def predict(image,version="26.3",*,atlas_path=None):
+    if version!="26.3":
+        return dict(P=None,scale_status="uncertain",reason="unsupported atlas version",evidence={})
     if min(image.size)<256 or max(image.size)>4096:
         return dict(P=None,scale_status="uncertain",reason="outside native texel sampling range",evidence={})
     for lower in (.74,.83,.86):
-        result=_predict_band(image,version,lower)
-        if result["P"] is not None: break
+        result=_predict_band(image,version,lower,atlas_path)
+        if result["P"] is not None or result["reason"]=="calibrated atlas unavailable": break
     return result
 

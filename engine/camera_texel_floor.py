@@ -23,6 +23,7 @@ def _pencils(edges, rows, h):
     peaks=[p for p,valid in zip(peaks,available) if valid]
     spec=spec[available]
     a, b = len(peaks)//5, 4*len(peaks)//5
+    r=np.array([y for y,p in peaks])
     y1,k1=peaks[a]
     y2,k2=peaks[b]
     finalists=[]
@@ -33,13 +34,17 @@ def _pencils(edges, rows, h):
             if not -.4*h<horizon<.7*h: continue
             A=(y1-horizon)*f1
             for _ in range(3):
-                r=np.array([y for y,p in peaks])
                 f=np.array([p[np.argmin(abs(p-A/(y-horizon)))] for y,p in peaks])
                 good=abs(f-A/(r-horizon)) < .0015
                 if sum(good)<5: break
                 slope, offset=np.polyfit(r[good],1/f[good],1)
-                if slope<=0: break
+                if not np.isfinite(slope) or slope<1e-8 or not np.isfinite(offset):
+                    good[:]=False
+                    break
                 A,horizon=1/slope,-offset/slope
+                if not -.4*h<horizon<.7*h:
+                    good[:]=False
+                    break
             if sum(good)<.55*len(r): continue
             idx=np.clip(np.rint(A/(r-horizon)*8192).astype(int),0,4096)
             score=np.median(spec[np.arange(len(r))[good],idx[good]])*good.mean()
@@ -87,11 +92,13 @@ def _refine(edges, rows, model, horizon):
 
 
 def _ground(Pinv,w,h):
+    if not np.isfinite(Pinv).all() or np.linalg.cond(Pinv)>1e13:
+        return None
     try:
         H=np.linalg.inv(Pinv)
     except np.linalg.LinAlgError:
         return None
-    if np.any(abs(H[2,:2])<1e-12): return None
+    if not np.isfinite(H).all() or np.any(abs(H[2,:2])<1e-12): return None
     if H[2,2]<0: H=-H
     vps=H[:2,:2]/H[2,:2]
     c=np.array([w/2,h/2])
@@ -101,10 +108,12 @@ def _ground(Pinv,w,h):
     K=np.array([[f,0,c[0]],[0,f,c[1]],[0,0,1]])
     axes=np.linalg.solve(K,H)
     lengths=np.linalg.norm(axes[:,:2],axis=0)
+    if not np.isfinite(lengths).all() or min(lengths)<1e-12: return None
     err=abs(lengths[1]-lengths[0])/max(lengths)
     if err>.045: return None
     axes/=np.mean(lengths)
     up=np.cross(axes[:,0],axes[:,1])
+    if abs(up[1])<1e-12: return None
     up*=np.sign(-up[1])/np.linalg.norm(up)
     return (K@np.column_stack([axes[:,0],up,axes[:,1],axes[:,2]])).tolist(),float(f),float(err)
 
@@ -128,7 +137,8 @@ def lattice(image, lower=.74):
         model,score=_phase(edges,rows,A,horizon)
         scores.append(score)
         models.append(_refine(edges,rows,model,horizon))
-    if min(scores)<.45: return None,{"reason":"incoherent texel phase","phase_strength":scores}
+    if not np.isfinite(models).all() or min(scores)<.45:
+        return None,{"reason":"incoherent texel phase","phase_strength":scores}
     def coeff(m):
         A,B,C=m
         return [A,C,B-A*w/2-C*horizon]
