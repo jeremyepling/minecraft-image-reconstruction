@@ -101,7 +101,7 @@ def rectangle(mask, axis, eye, inverse, courses):
     return cells, residual, margin
 
 
-def recover(image, parts, counts, camera, prior, *, mode='guarded'):
+def recover(image, parts, counts, camera, prior, *, mode='guarded', atlas_path=None, audit=None):
     if not prior or camera.get('P') is None or not parts:
         return prior
     P = np.asarray(camera['P'],float)
@@ -134,6 +134,27 @@ def recover(image, parts, counts, camera, prior, *, mode='guarded'):
                     proposals.append((axis,part,new))
     if not proposals:
         return prior
+    threats = {}
+    if mode == 'exchange':
+        from engine.roof_span_exchange import exchange_candidates
+        threats, measured = exchange_candidates(image,points,proposals,native,eye,rot,P,atlas_path)
+        if audit is not None:
+            audit.update(measured)
+    retired = set(threats)
+    # Reinsert an old cell if the newly exported surfaces fail to explain its original pixels.
+    while True:
+        base = prior-retired
+        verified = verify_rectangles(image,parts,P,native,eye,rot,base,proposals)
+        survives = {c for c in retired if sum(n for other,n in threats[c][0].items() if other in verified)
+                    >= .70*threats[c][1]}
+        if survives == retired:
+            if audit is not None:
+                audit['retired'] = len(retired)
+            return verified
+        retired = survives
+
+
+def verify_rectangles(image,parts,P,native,eye,rot,prior,proposals):
     full_union, native_axes = _surface_masks(parts,image.size,np.arange(image.width)+.5,np.arange(image.height)+.5,rot)
     added = set.union(*(row[2] for row in proposals))
     # Re-render to a fixed point. Removing a front layer can expose an unsupported side.
@@ -165,3 +186,7 @@ def recover(image, parts, counts, camera, prior, *, mode='guarded'):
 
 def broad(image, parts, counts, camera, prior):
     return recover(image,parts,counts,camera,prior,mode='broad')
+
+
+def exchange(image,parts,counts,camera,prior):
+    return recover(image,parts,counts,camera,prior,mode='exchange')

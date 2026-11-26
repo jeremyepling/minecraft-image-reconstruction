@@ -17,7 +17,10 @@ def score(job):
     with ZipFile(data.REVIEW/'framed-depth-01/scores.zip') as archive:
         pack = archive.read(f"{split}/{f['id']}/reconstruction.zip")
     prior = set(decoded_pack(BytesIO(pack)))
-    predictions = {mode:recover(image,parts,counts,camera,prior,mode=mode) for mode in ('guarded','broad')}
+    audit = {}
+    predictions = {mode:recover(image,parts,counts,camera,prior,mode=mode,atlas_path=data.STABLE/'runs/26.3/atlas',
+                                audit=audit if mode=='exchange' else None)
+                   for mode in ('guarded','broad','exchange')}
     truth, occupied, transform, _ = data.references(split,f,None,data.TRAINING_DATA,data.DEPTH,{})
     before = registered(prior,transform)
     results = {}
@@ -25,7 +28,7 @@ def score(job):
         after = registered(cells,transform)
         result = placement_scores(after,before,dict.fromkeys(truth),occupied)['relative_geometry']
         results[mode] = {k:result[k] for k in ('gained','lost','extra_added','extra_removed','hidden_added')}
-    return dict(id=f['id'],family=f['family'],pack_sha256=sha256(pack).hexdigest(),scores=results)
+    return dict(id=f['id'],family=f['family'],pack_sha256=sha256(pack).hexdigest(),scores=results,exchange=audit)
 
 
 if __name__ == '__main__':
@@ -35,5 +38,7 @@ if __name__ == '__main__':
     folder = ROOT/'runs/roof-span-contacts'
     folder.mkdir(parents=True,exist_ok=True)
     save(folder/'development.json',rows)
-    for mode in ('guarded','broad'):
+    for mode in ('guarded','broad','exchange'):
         print(mode,{k:sum(r['scores'][mode][k] for r in rows) for k in rows[0]['scores'][mode]})
+    keys=sorted({k for r in rows for k in r['exchange']})
+    print('exchange audit',{k:sum(r['exchange'].get(k,0) for r in rows) for k in keys})
