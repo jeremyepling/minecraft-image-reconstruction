@@ -51,7 +51,7 @@ def appendages(owned, radius):
     return removed
 
 
-def refine(photo, parts, gate=None):
+def refine(photo, parts, gate=None, *, context_gate=None):
     radius = max(1, round(SETTINGS['radius_at_900px'] * photo.height / 900))
     output, changes = [], []
     for part in parts:
@@ -67,6 +67,8 @@ def refine(photo, parts, gate=None):
             if accepted.shape != owned.shape or accepted.dtype != bool or (accepted & ~removed).any():
                 raise ValueError('Evidence gate must return a subset of proposed removals')
             removed = accepted
+        if removed.any() and context_gate is not None:
+            removed = context_gate(part, box, owned, removed)
         if not removed.any():
             output.append(part)
             continue
