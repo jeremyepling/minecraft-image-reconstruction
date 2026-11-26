@@ -1,0 +1,69 @@
+{
+  "layout": "cloister1",
+  "split": "validation",
+  "version": "26.3",
+  "finder_source": "d95c350",
+  "dataset_release": "visible-builds-v1",
+  "shard_sha256": "5298a056e4a9d28af448a22da88bbd2ebcdbbbfa967adb2e28b7dc35c9f54401",
+  "command": "Invoke-WallRecovery.ps1 -Image <frame-dir>/rgb.png -Through surfaces -Out <out>/<frame-id>",
+  "model_sha256": {
+    "normal": "24eacb5dc7a2c54c7bc98f7de085ffbed79ad006ea5b664c2c2cdc02ff3a52f0",
+    "depth": "fcf51f1b230362b28690bb9d1809bf0431f29cad20534e3f589bd7285547f20d",
+    "mlsd": "e869f90601ffa263f21ac47e09ff0d65dc936d1aeb47126b8499d5504adfb100",
+    "scalelsd": "d0a7333c4de518a70af7d6ea4a283aa0ce9ffe1047525373b94070b1d1d4003f",
+    "mobilesam": "6dbb90523a35330fedd7f1d3dfc66f995213d81b29a5ca8108dbcdd4e37d6c2f",
+    "pixelwise_planarity": "305325096a80f541e430ccbb1b6581af67b3ef9d3c92f8d9384dc7aaae9f3952"
+  },
+  "stages": {
+    "outlines": "mask-first",
+    "initial_boundary": "color-edges",
+    "split_hints": "rectangle-finder",
+    "split_depth": "depth-anything-v2",
+    "junction_line_detector": "ScaleLSD v2",
+    "wall_partition_model": "MobileSAM TinyViT",
+    "line_detector": "NAVER M-LSD Tiny 512 FP16",
+    "boundary_sequence": [
+      "color-edges",
+      "wall-depth-anything",
+      "junction-cuts",
+      "strip-mlsd",
+      "mobile-wall-split",
+      "single-wall-split",
+      "plane-recovery",
+      "plane-recovery-crop-splits",
+      "clear-noon-sky",
+      "row-sky-with-horizon",
+      "neighbor-supported-strip"
+    ],
+    "single_wall_depth": "depth-anything-v2",
+    "plane_model": "Pixel-wise Planarity",
+    "plane_fusion": "relaxed-add-split",
+    "surface_boundary": "plane-recovery-crop-splits",
+    "background_filter": "clear-noon-sky",
+    "opening_sky_filter": "row-sky-with-horizon",
+    "strip_cleanup": "neighbor-supported-strip"
+  },
+  "frames": {
+    "validation-cloister1-cool-high-right": {
+      "rgb_sha256": "d070a5b17327f7984b08d4878ef38b1ca8bfc34cc88e8ecf8c0b532e449581e3",
+      "surfaces_sha256": "f1bb766385fe1fb6559f4e8c94ba86aacb097ab9d4dc15a78011b28a3fad9b85",
+      "build_manifest_sha256": "6037955f1b4faaab44e952b3a9ef6f4756ffe22aa717e47a81285a5dec9a515d"
+    },
+    "validation-cloister1-cool-low-left": {
+      "rgb_sha256": "1ada4859cbfd40e9d46f621317bceda78e85c504dd11552d9d165b6be0d087a2",
+      "surfaces_sha256": "522547e5e69613bf8025aa345bcf0493a074d84fbf066e0a7182b480711a6b43",
+      "build_manifest_sha256": "53a2a264bc439d996edb3c1df1d7dbd57d3261870c4c685c713e05e0afe4a205"
+    },
+    "validation-cloister1-earth-high-right": {
+      "rgb_sha256": "6ffa7491a6f89868e57b9550e7aa44e1a3e2b30ec37ef35c5006ef2f5b716833",
+      "surfaces_sha256": "06bfdeb25cc9d1527080e149b162d0b18a3519d0da33c8ce4333a8c891d7efee",
+      "build_manifest_sha256": "3628a6a36e5394f06a313e919fcc06ed11eaef9a936b5311460c23d69587bd7c"
+    },
+    "validation-cloister1-earth-low-left": {
+      "rgb_sha256": "e7277a48a55059a5705a7001dc4db0ace8fafd8ccfd14a20919e45e797889405",
+      "surfaces_sha256": "c054acece08e087d5925af50fd905a967760b1fd75a566ee6d6bfdbb767cd9dc",
+      "build_manifest_sha256": "b16df3b9345eb88734a5c87fe2a3b42caebe215e04f265b3b5b5aea1730f212d"
+    }
+  },
+  "surface_archive_sha256": "9c0d3be447987f0dafbcc6c4f6de3d8329cb7a56701309947632f37504299cf3"
+}
