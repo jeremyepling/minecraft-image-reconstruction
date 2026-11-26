@@ -1,4 +1,6 @@
 """Score image-derived roof spans against the shipped 99655be placement packs."""
+import json
+
 from benchmark import framed_depth_eval as framed
 from benchmark.texture_camera_eval import ROOT, STABLE, TRAINING_RELEASE, checked, digest, read, save
 from benchmark.visible_recovery_report import summarize
@@ -32,7 +34,7 @@ def score(job):
         framed.photo(split, frame, prior)
     row = framed.score_archive(job, framed.archive(PACKS), split)
     if 'roof' in prior:
-        assert row['previous_roof'] == prior['roof'], frame['id']
+        assert json.loads(json.dumps(row['previous_roof'])) == prior['roof'], frame['id']
     return row
 
 
