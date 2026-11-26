@@ -1,4 +1,5 @@
 """Independent replay of the Blocker Picker exposure-only control."""
+from engine.face_evidence import MIN_FACE_WIDTH, effective_width
 import hashlib
 import json
 import sys
@@ -44,16 +45,21 @@ def run(calibration, out):
                     continue
                 if 'truth' not in item:
                     continue
-                crops.append(face(rgb,np.asarray(canonical(item['quad'])),16))
-                rows.append(dict(key=key,group=group,index=idx,truth=item['truth'],xyz=item['xyz'],
+                width=effective_width(item['quad'])
+                if width>=MIN_FACE_WIDTH:
+                    crops.append(face(rgb,np.asarray(canonical(item['quad'])),16))
+                rows.append(dict(key=key,group=group,index=idx,effective_width_px=width,block=None,truth=item['truth'],xyz=item['xyz'],
                                  fixed=item.get('fixed_sample',False),paired=item.get('paired_tile') is not None))
-    for row, (names, distances, gap) in zip(rows,rank(np.stack(crops),features_ref,labels,method,True),strict=True):
+    eligible_rows=[r for r in rows if r['effective_width_px']>=MIN_FACE_WIDTH]
+    rankings=rank(np.stack(crops),features_ref,labels,method,True) if crops else ()
+    for row, (names, distances, gap) in zip(eligible_rows,rankings,strict=True):
         row.update(textures=names,block=min(choices[names[0]],key=lambda x:(x!=names[0],x)),distances=distances,margin=gap)
     scores = {}
     for name, subset in [('fixed',[r for r in rows if r['fixed']]),('paired_known',[r for r in rows if r['paired']]),('predicted',[r for r in rows if r['group']=='predicted'])]:
-        scores[name] = [sum(r['block']==r['truth'] for r in subset),len(subset)]
+        eligible=sum(r['block'] is not None for r in subset)
+        scores[name]=dict(correct=sum(r['block']==r['truth'] for r in subset),eligible=eligible,total=len(subset),under_minimum=len(subset)-eligible)
     out.parent.mkdir(parents=True,exist_ok=True)
-    out.write_text(json.dumps(dict(scores=scores,library_sha256=sha(library),index_sha256=sha(index),materials_sha256=sha(materials),frames=hashes,atlas_sha256=catalog['atlas_sha256'],method=method,rows=rows)))
+    out.write_text(json.dumps(dict(scores=scores,min_face_width_px=MIN_FACE_WIDTH,library_sha256=sha(library),index_sha256=sha(index),materials_sha256=sha(materials),frames=hashes,atlas_sha256=catalog['atlas_sha256'],method=method,rows=rows)))
     print(scores)
 if __name__ == '__main__':
     run(*map(Path,sys.argv[1:]))

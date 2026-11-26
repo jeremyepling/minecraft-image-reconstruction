@@ -1,4 +1,5 @@
 """Check genuine glass, stone and wood on independently placed registry displays."""
+from engine.face_evidence import MIN_FACE_WIDTH, effective_width
 import argparse
 import json
 from pathlib import Path
@@ -26,8 +27,9 @@ def run(cal, out):
             pos=b['x'],b['y'],b['z']
             assert verified[pos]==b['block_id']
             quad=camera_project(south_quad(*pos),pose)
-            result=matcher.rank_patch(face(rgb,quad,32))
-            rows.append(dict(view=view['id'],truth=b['block_id'],picked=result['block_id']))
+            width=effective_width(quad)
+            result=matcher.rank_patch(face(rgb,quad,32)) if width>=MIN_FACE_WIDTH else {"block_id":None}
+            rows.append(dict(view=view['id'],effective_width_px=width,truth=b['block_id'],picked=result['block_id']))
     out.write_text(json.dumps(rows,indent=2))
     print(rows)
 

@@ -21,7 +21,7 @@ def pretty(name):
 
 
 def select(rows):
-    wrong = [r for r in rows if short(r['block_id']) != short(r['truth'])]
+    wrong = [r for r in rows if r['block_id'] is not None and short(r['block_id']) != short(r['truth'])]
     chosen = []
     for kind, limit in [('predicted', 8), ('fixed', 12)]:
         pool = [r for r in wrong if r['kind'] == kind]

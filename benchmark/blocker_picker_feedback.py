@@ -37,10 +37,11 @@ def replay(args):
         draw.rounded_rectangle((x,y,x+615,y+277),8,fill='white')
         group='predicted' if case['kind']=='predicted' else 'known'
         row=lookup[case['key'],group,tuple(case['xyz']),case['direction']]
-        guess=row['shape']
-        correct=guess['block_id']==case['truth']
+        skipped = row.get("effective_width_px", float("inf")) < combined.get("min_face_width_px", 0)
+        guess = {"texture":None, "block_id":None} if skipped else row["shape"]
+        correct = guess["block_id"] == case["truth"]
         label(x+10,y+7,f"{i+1:02}   {case['key'].split('/')[-1]}",18,True)
-        label(x+475,y+7,'Corrected' if correct else 'Still missed',15,True,'#087746' if correct else '#963b26')
+        label(x+475,y+7,'Too thin' if skipped else 'Corrected' if correct else 'Still missed',15,True,'#087746' if correct else '#963b26')
         label(x+10,y+35,('Predicted grid' if group=='predicted' else 'Recorded corners')+'   /   '+case['direction']+' face')
         image=Image.open(images[case['key']]).convert('RGB')
         q=np.array(row['quad'])
@@ -64,6 +65,10 @@ def replay(args):
                 sheet.paste(tile,(x+373+j*121,y+68),tile)
         for j,t in enumerate(('Source','Shade estimate','Sampled pixels','New pick','Actual')):
             label(x+10+j*121,y+179,t,15,True)
+        if skipped:
+            label(x+10,y+207,f"Material skipped at {row['effective_width_px']:.2f} source pixels wide.",16)
+            label(x+10,y+237,'Actual  '+pretty(case['truth']),16)
+            continue
         label(x+10,y+207,'Previously  '+pretty(case['block_id'])+'     /     Now  '+pretty(guess['block_id']),16)
         label(x+10,y+237,'Actual  '+pretty(case['truth'])+'     /     Estimated brightening  '+format(row['shadow']['mean_gain']-1,'.0%'),16)
     args.out.parent.mkdir(parents=True,exist_ok=True)

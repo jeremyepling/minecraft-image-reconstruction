@@ -1,4 +1,6 @@
 """Compare bounded crop adjustments with rendered exposure matching on count-01."""
+from engine.face_evidence import MIN_FACE_WIDTH, effective_width
+from benchmark.blocker_picker_widths import counts_by_kind
 import argparse
 from collections import defaultdict
 from itertools import product
@@ -58,10 +60,23 @@ def main():
         for record in pic['predicted']:
             groups['predicted',record['proposal']].append(record)
         for (kind, group), records in groups.items():
+            usable=[]
+            for record in records:
+                width=effective_width(record['quad'])
+                if width>=MIN_FACE_WIDTH:
+                    usable.append(record)
+                else:
+                    rows.append(dict(key=key,kind=kind,quad=record['quad'],effective_width_px=width,block_id=None,texture=None,ranked_ids=[],direction=record['direction'],truth=record['truth'],xyz=record['xyz'],image=str(path),baseline_id=None,atlas_id=record['block_id']))
+            records=usable
+            if not records:
+                continue
             # Recorded corners are a diagnostic. Only predicted cells need boundary recovery.
             variants = choices if kind == 'predicted' and len(records)>=2 else choices[:1]
             charts = [transform(canonical(r['quad'])) for r in records]
             proposals = [[project(chart,(UNIT-.5)*s+.5+[x,y]) for chart in charts] for x,y,s in variants]
+            supported=[i for i,quads in enumerate(proposals) if all(effective_width(q)>=MIN_FACE_WIDTH for q in quads) or i==0]
+            variants=[variants[i] for i in supported]
+            proposals=[proposals[i] for i in supported]
             samples = np.stack([face(rgb,q,16) for quads in proposals for q in quads])
             ranks = list(rank(samples, train, labels, method, True))
             batches = [ranks[i:i+len(records)] for i in range(0,len(ranks),len(records))]
@@ -71,19 +86,21 @@ def main():
                 return min(mapping[label],key=lambda b:(b!=label,b))
             for i,(record,ranking) in enumerate(zip(records,batches[selected])):
                 names, distances, margin = ranking
-                rows.append(dict(key=key,kind=kind,quad=record['quad'],adjusted_quad=proposals[selected][i].tolist(),
+                rows.append(dict(key=key,kind=kind,quad=record['quad'],effective_width_px=effective_width(record['quad']),adjusted_quad=proposals[selected][i].tolist(),
                     block_id=pick(names[0]),texture=names[0],ranked_ids=[pick(n) for n in names],
                     direction=record['direction'],truth=record['truth'],xyz=record['xyz'],image=str(path),baseline_id=pick(batches[0][i][0][0]),
                     offset=variants[selected],margin=margin,distances=distances,atlas_id=record['block_id']))
     args.out.mkdir(exist_ok=True,parents=True)
-    result=dict(rows=rows,version='26.3',method=method,variants=choices,library_sha256=digest(library),
+    result=dict(rows=rows,counts=counts_by_kind(rows),min_face_width_px=MIN_FACE_WIDTH,version='26.3',method=method,variants=choices,library_sha256=digest(library),
                 atlas_sha256=catalog['atlas_sha256'],frame_sha256={k:f['sha256'] for k,f in frames.items()},
                 code_revision=subprocess.check_output(['git','rev-parse','HEAD'],cwd=root,text=True).strip(),
                 script_sha256=digest(Path(__file__)),input_sha256=digest(suite/'materials.json'))
     (args.out/'results.json').write_text(json.dumps(result,indent=2))
     for kind in ('predicted','fixed'):
         sub=[r for r in rows if r['kind']==kind]
-        print(kind,len(sub),{m:sum(r[m]==r['truth'] for r in sub) for m in ('atlas_id','baseline_id','block_id')})
+        unranked=sum(r['block_id'] is None for r in sub)
+        sub=[r for r in sub if r['block_id'] is not None]
+        print(kind,'eligible',len(sub),'under minimum',unranked,{m:sum(r[m]==r['truth'] for r in sub) for m in ('atlas_id','baseline_id','block_id')})
 
 if __name__=='__main__':
     main()

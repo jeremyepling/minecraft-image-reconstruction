@@ -1,0 +1,95 @@
+{
+  "min_face_width_px": 5.0,
+  "archives": [
+    {
+      "source": "shadow-final.json.gz",
+      "sha256": "38961e15810571121b36ea4ad168b8bbf0b6bc621d5f50c077539ddc5d585c5c",
+      "scores": {
+        "fixed": {
+          "total": 672,
+          "eligible": 542,
+          "under_minimum": 130,
+          "exposure_shadow": {
+            "correct_eligible": 458,
+            "correct_under_minimum_in_archive": 25
+          },
+          "shape_shadow": {
+            "correct_eligible": 462,
+            "correct_under_minimum_in_archive": 19
+          }
+        },
+        "paired_known": {
+          "total": 58,
+          "eligible": 58,
+          "under_minimum": 0,
+          "exposure_shadow": {
+            "correct_eligible": 50,
+            "correct_under_minimum_in_archive": 0
+          },
+          "shape_shadow": {
+            "correct_eligible": 58,
+            "correct_under_minimum_in_archive": 0
+          }
+        },
+        "predicted": {
+          "total": 58,
+          "eligible": 58,
+          "under_minimum": 0,
+          "exposure_shadow": {
+            "correct_eligible": 40,
+            "correct_under_minimum_in_archive": 0
+          },
+          "shape_shadow": {
+            "correct_eligible": 58,
+            "correct_under_minimum_in_archive": 0
+          }
+        }
+      }
+    },
+    {
+      "source": "plane-shadow-final.json.gz",
+      "sha256": "330c9e6e7bab4e8b9f51c9e756ad1ca3db2f488991f9fc3097b042171c1a176a",
+      "scores": {
+        "fixed": {
+          "total": 672,
+          "eligible": 542,
+          "under_minimum": 130,
+          "exposure_shadow": {
+            "correct_eligible": 458,
+            "correct_under_minimum_in_archive": 25
+          },
+          "shape_shadow": {
+            "correct_eligible": 459,
+            "correct_under_minimum_in_archive": 18
+          }
+        },
+        "paired_known": {
+          "total": 58,
+          "eligible": 58,
+          "under_minimum": 0,
+          "exposure_shadow": {
+            "correct_eligible": 50,
+            "correct_under_minimum_in_archive": 0
+          },
+          "shape_shadow": {
+            "correct_eligible": 58,
+            "correct_under_minimum_in_archive": 0
+          }
+        },
+        "predicted": {
+          "total": 58,
+          "eligible": 58,
+          "under_minimum": 0,
+          "exposure_shadow": {
+            "correct_eligible": 40,
+            "correct_under_minimum_in_archive": 0
+          },
+          "shape_shadow": {
+            "correct_eligible": 58,
+            "correct_under_minimum_in_archive": 0
+          }
+        }
+      }
+    }
+  ]
+}

@@ -1,4 +1,5 @@
 """Replay Blocker Picker illumination and optional shape ranking on frozen raw face crops."""
+from engine.face_evidence import MIN_FACE_WIDTH, effective_width
 import argparse
 import gzip
 import json
@@ -56,23 +57,31 @@ def run(cal, out, shape_module, plane_comparison=False):
             for idx_row,item in enumerate(frame[group]):
                 if 'truth' not in item or group=='known' and not(item['fixed_sample'] or item['paired_tile'] is not None):continue
                 q=canonical(item['quad'])
-                gain,details=cell_shadow(field,q,16)
-                crops.append(corrected(face(rgb,q,16),gain))
                 row=dict(key=key,index=idx_row,group=group,truth=item['truth'],quad=q,xyz=item['xyz'],fixed=item.get('fixed_sample',False),
-                         paired=item.get('paired_tile') is not None,shadow=details)
+                         paired=item.get('paired_tile') is not None,effective_width_px=effective_width(q))
+                rows.append(row)
+                if row['effective_width_px'] < MIN_FACE_WIDTH:
+                    row.update(block=None,shape_block=None)
+                    continue
+                gain,details=cell_shadow(field,q,16)
+                row['shadow']=details
+                crops.append(corrected(face(rgb,q,16),gain))
                 if shape:
                     g,_=cell_shadow(field,q,32)
                     result=shape.rank_patch(corrected(face(rgb,q,32),g))
                     row['shape_block']=result['block_id']
                     row['shape']=result
-                rows.append(row)
-    for row,(names,d,gap) in zip(rows,rank(np.stack(crops),train,labels,method,True),strict=True):
+    eligible_rows=[r for r in rows if 'shadow' in r]
+    rankings=rank(np.stack(crops),train,labels,method,True) if crops else ()
+    for row,(names,d,gap) in zip(eligible_rows,rankings,strict=True):
         row.update(block=min(mappings[names[0]],key=lambda n:(n!=names[0],n)),textures=names,distances=d,margin=gap)
     score={}
     for group, selected in [('known_fixed',[r for r in rows if r['fixed']]),('known_paired',[r for r in rows if r['paired']]),('predicted',[r for r in rows if r['group']=='predicted'])]:
-        score[group]=dict(n=len(selected),exposure_shadow=sum(r['truth']==r['block'] for r in selected))
+        total=len(selected)
+        selected=[r for r in selected if r['effective_width_px']>=MIN_FACE_WIDTH]
+        score[group]=dict(n=len(selected),total=total,under_minimum=total-len(selected),exposure_shadow=sum(r['truth']==r['block'] for r in selected))
         if shape: score[group]['shape_shadow']=sum(r['truth']==r['shape_block'].removeprefix('minecraft:') for r in selected)
-    manifest=dict(plane_comparison=plane_comparison,scores=score,frames=frames,materials_sha256=sha(materials),index_sha256=sha(idx),atlas_sha256=index['atlas_sha256'],
+    manifest=dict(min_face_width_px=MIN_FACE_WIDTH,plane_comparison=plane_comparison,scores=score,frames=frames,materials_sha256=sha(materials),index_sha256=sha(idx),atlas_sha256=index['atlas_sha256'],
                   library_sha256=sha(library),shadow_sha256=sha(root/'engine/blocker_shadow.py'),shape_sha256=sha(shape_module) if shape_module else None,
                   map_encoding='source / 12, white is >= 40% inferred light recovery, black is identity; NPZ has loggain, confidence, eave adjacency and surface ids',
                   rows=rows)
