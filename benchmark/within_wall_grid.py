@@ -1,7 +1,7 @@
 """Measure a local tile spacing and extrapolate it within a single visible surface."""
 import numpy as np
 
-from benchmark.phase_corners import shift_score
+from engine.texture_guided_count import shift_score
 from engine.geometry import transform
 from engine.masked_count import _repeat_peaks
 from engine.surface_pitch import _aspect, _phase
