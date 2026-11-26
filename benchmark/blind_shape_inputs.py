@@ -15,12 +15,12 @@ from engine.camera_metric import predict
 from training.visible_labels import write_labels
 
 
-def prepare(root):
+def prepare(root, palettes=PALETTES, angles=ANGLES, revision='434f44b', atlas_path=None):
     native = root/'native'
     camera_labels.label_capture(native)
     index = read(native/'index.json')
     expected = [f'holdout-{layout}-{palette}-{angle}'
-                for layout,(palette,_) in PALETTES.items() for angle,_,_ in ANGLES]
+                for layout,(palette,_) in palettes.items() for angle,_,_ in angles]
     if [f['id'] for f in index['frames']] != expected:
         raise ValueError('Capture IDs do not match the sealed fixture')
     records = root/'scoring/captures'
@@ -45,7 +45,7 @@ def prepare(root):
         labels.mkdir(exist_ok=True,parents=True)
         summary = write_labels(read(pose_file),states,origin,labels)
         with Image.open(png) as image:
-            camera = predict(image.convert('RGB'),'26.3')
+            camera = predict(image.convert('RGB'),'26.3',atlas_path=atlas_path)
         frames.append(dict(id=key,source_id=key,directory='scoring',shape=expected_hash,
                            family=frame['layout'],angle=frame['angle'],palette=frame['palette'],
                            origin_world=origin,blocks=len(occupied),ground_y=ground,camera=camera,
@@ -54,7 +54,7 @@ def prepare(root):
                            'labels.json':digest(labels/'labels.json'),'labels.npz':digest(labels/'labels.npz')}))
     if len({f['shape'] for f in frames})!=2 or len({f['files']['rgb.png'] for f in frames})!=4:
         raise ValueError('Expected two distinct geometries and four distinct screenshots')
-    save(root/'screen.json',dict(recipe_revision='434f44b',geometry_split='unseen structures, confirmation only',
+    save(root/'screen.json',dict(recipe_revision=revision,geometry_split='unseen structures, confirmation only',
                                  selected=frames))
     print([(f['id'],f['camera']['scale_status'],f['target']['visible_blocks']) for f in frames])
 

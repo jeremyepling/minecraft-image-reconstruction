@@ -1,0 +1,67 @@
+{
+  "scores_sha256": "c7a1e963811e44e45c3838222f5a60910792791ffed6bbe7031c40de1b45261d",
+  "methods": {
+    "baseline": {
+      "adapter": "benchmark.visible_depth_score:integrated",
+      "revision": "acfe46b894d6da6a4b07b57b299d388b9d84d380",
+      "rgb_sha256": [
+        "4be0775762b40ae65a872006012a094b892697a7df14ab08400bd07dd57343cc",
+        "d71207192aeb69b67e066da82c59d8d830ca54053220d2005f2f4d4c748bc06a",
+        "28147210e0e7fa17ca1ca516c9fda113c6bbcc507b17dd5af218f4ae273f3dfc",
+        "025139cac7ddf4ae0d435cfe7a5dbad906d9db5c285170cef55c1095809d80b1"
+      ],
+      "relative_geometry": {
+        "target": 764,
+        "placed": 942,
+        "correct": 662,
+        "extras": 280,
+        "missed": 102,
+        "hidden_extras": 9,
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0,
+        "joint_correct": 0,
+        "frames": 4,
+        "supported": 4,
+        "precision": 0.70276008492569,
+        "recall": 0.8664921465968587,
+        "f1": 0.776084407971864
+      },
+      "cases_sha256": "473e8b54e5368799673810a787f244e18879d419d4d85694da29ec878360821a"
+    },
+    "final": {
+      "adapter": "engine.atlas_plane_depth:place_ranked",
+      "revision": "0e0c2295c75a93dc691c2cdabf11e8f4c5b5ee16",
+      "rgb_sha256": [
+        "4be0775762b40ae65a872006012a094b892697a7df14ab08400bd07dd57343cc",
+        "d71207192aeb69b67e066da82c59d8d830ca54053220d2005f2f4d4c748bc06a",
+        "28147210e0e7fa17ca1ca516c9fda113c6bbcc507b17dd5af218f4ae273f3dfc",
+        "025139cac7ddf4ae0d435cfe7a5dbad906d9db5c285170cef55c1095809d80b1"
+      ],
+      "relative_geometry": {
+        "target": 764,
+        "placed": 879,
+        "correct": 677,
+        "extras": 202,
+        "missed": 87,
+        "hidden_extras": 10,
+        "gained": 17,
+        "lost": 2,
+        "extra_added": 1,
+        "extra_removed": 79,
+        "hidden_added": 1,
+        "hidden_removed": 0,
+        "joint_correct": 0,
+        "frames": 4,
+        "supported": 4,
+        "precision": 0.770193401592719,
+        "recall": 0.8861256544502618,
+        "f1": 0.8241022519780888
+      },
+      "cases_sha256": "9d5b4b575485ddab6b269540b460bd1f190e7d5121c88f76f90bc585403f0137"
+    }
+  }
+}

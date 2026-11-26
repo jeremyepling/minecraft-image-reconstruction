@@ -15,12 +15,12 @@ OVERLAY_REVISION = {
 }
 
 
-def archive(root, runs, names, dest):
+def archive(root, runs, names, dest, prefix="blind-"):
     dest.mkdir(exist_ok=True, parents=True)
     methods = {}
     with ZipFile(dest / "scores.zip", "w", ZIP_DEFLATED) as bundle:
         for name in names:
-            inputs = runs / ("blind-" + name)
+            inputs = runs / (prefix + name)
             manifest = read(inputs / "manifest.json")
             checked(root / "screen.json", manifest["selection_sha256"])
             cases = read(checked(inputs / "cases.json", manifest["cases_sha256"]))
