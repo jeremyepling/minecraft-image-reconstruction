@@ -48,8 +48,18 @@ def _floor_match(rgb, projection, eye, cells, column, front, sign):
     measured = clear & in_frame & ref_in_frame
     if measured.sum() < 12:
         return False
-    difference = abs(color[measured]-floor[measured]).max(axis=1)
-    return np.mean(difference<=14) >= .60
+    observed = color[measured]
+    expected = floor[measured]
+    if np.mean(abs(observed-expected).max(axis=1)<=14) < .60:
+        return False
+    # Similar average colors cannot distinguish a smooth gray wall from a floor.
+    # Require spatial variation that recurs at corresponding sub-tile locations.
+    textures = np.column_stack((observed.mean(axis=1),expected.mean(axis=1)))
+    low,high = np.quantile(textures,[.05,.95],axis=0)
+    if (high-low).min()<12:
+        return False
+    pattern = np.clip(textures,low,high)
+    return np.corrcoef(pattern.T)[0,1] >= .20
 
 
 def _side_explains_front(cell, adjacent, front, side, projection, eye, shape, support, sample_face):
@@ -71,9 +81,10 @@ def _side_explains_front(cell, adjacent, front, side, projection, eye, shape, su
     return shared.sum()>=max(4,.40*fp.sum())
 
 
-def grounded_side_owners(image, cells, strict, masks, projection, eye, sample_face):
-    if not cells:
+def grounded_side_owners(image, cells, strict, masks, projection, eye, sample_face, render, seeds):
+    if not seeds:
         return {}
+    seed_columns = {(p[0],p[2],q[0],q[2]) for p,qs in seeds.items() if len(qs)==1 for q in qs}
     rgb = np.asarray(image,dtype=np.int16)
     support = np.logical_or.reduce(masks)
     columns = defaultdict(list)
@@ -81,6 +92,7 @@ def grounded_side_owners(image, cells, strict, masks, projection, eye, sample_fa
         columns[cell[0],cell[2]].append(cell)
     coordinates = np.array(sorted(cells))
     owners = defaultdict(set)
+    silhouette = None
     for column,stack in columns.items():
         # Floor evidence cannot decide ownership of an elevated beam or overhang.
         removable = []
@@ -97,7 +109,8 @@ def grounded_side_owners(image, cells, strict, masks, projection, eye, sample_fa
             toward = 1 if eye[side]>stack[0][side]+1 else -1
             front_sign = 1 if eye[front]>stack[0][front]+1 else -1
             adjacent_floor = list(stack[0]); adjacent_floor[side] -= toward
-            if (adjacent_floor[0],adjacent_floor[2]) not in columns:
+            donor_column = (adjacent_floor[0],adjacent_floor[2])
+            if column + donor_column not in seed_columns:
                 continue
             linked = []
             for p in removable:
@@ -105,7 +118,17 @@ def grounded_side_owners(image, cells, strict, masks, projection, eye, sample_fa
                 if tuple(adjacent) in cells and _side_explains_front(
                         p,adjacent,front,side,projection,eye,support.shape,support,sample_face):
                     linked.append((p, tuple(adjacent)))
-            if len(linked)<3 or linked[0][0][1]!=0 or not _floor_match(rgb,projection,eye,coordinates,column,front,front_sign):
+            if len(linked)<3 or linked[0][0][1]!=0:
+                continue
+            if not any(seeds.get(p)=={q} for p,q in linked):
+                continue
+            if not _floor_match(rgb,projection,eye,coordinates,column,front,front_sign):
+                continue
+            if silhouette is None:
+                silhouette = render(sorted(cells),projection,eye,support.shape)>=0
+            proposed = {cell for cell,_ in linked}
+            remaining = render(sorted(cells-proposed),projection,eye,support.shape)>=0
+            if np.count_nonzero(silhouette & support & ~remaining)>len(proposed):
                 continue
             for cell, adjacent in linked:
                 owners[cell].add(adjacent)

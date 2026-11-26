@@ -146,10 +146,12 @@ def place(image, version, parts, *, counts=None):
         sample_counts = np.bincount(visible[visible >= 0], minlength=len(cells))
         accepted.update(cells[i] for i in np.flatnonzero(sample_counts >= MINIMUM_SAMPLES) if cells[i] in evidence)
     if accepted - strict:
-        from engine.seam_ownership import textured_side_owners, resolve_side_owners
+        from engine.seam_ownership import corroborated_runs, textured_side_owners, resolve_side_owners
         from engine.seam_runs import grounded_side_owners
         textured = textured_side_owners(image, projection, eye, cells, owner, accepted, strict, _sample_face)
-        grounded = grounded_side_owners(image, accepted, strict, masks, projection, eye, _sample_face)
+        runs = grounded_side_owners(image, accepted, strict, masks, projection, eye, _sample_face,
+                                    _frontmost_cells, textured)
+        grounded = corroborated_runs(runs, textured)
         duplicates = resolve_side_owners(textured, grounded, strict)
         accepted -= duplicates
         status.update(duplicate_side_cells=len(duplicates), textured_side_cells=len(duplicates & textured.keys()),

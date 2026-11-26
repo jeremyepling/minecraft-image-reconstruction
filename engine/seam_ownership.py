@@ -1,5 +1,7 @@
 """Test whether a neighboring cube's side explains an alleged second front."""
 from functools import lru_cache
+from collections import defaultdict
+from itertools import groupby
 import numpy as np
 
 from engine.visible_raster import SAMPLE_STRIDE
@@ -89,3 +91,21 @@ def resolve_side_owners(textured, grounded, strict):
         if len(explanations) == 1:
             duplicates.add(cell)
     return duplicates
+
+
+def corroborated_runs(grounded, textured):
+    """Extend a texture-confirmed turn only along its connected pair of columns."""
+    columns = defaultdict(list)
+    for cell, owners in grounded.items():
+        if len(owners) != 1:
+            continue
+        owner = next(iter(owners))
+        columns[(cell[0], cell[2], owner[0], owner[2])].append(cell)
+    corroborated = {}
+    for column in columns.values():
+        levels = sorted(column, key=lambda cell: cell[1])
+        for _, consecutive in groupby(enumerate(levels), key=lambda row: row[1][1] - row[0]):
+            run = [cell for _, cell in consecutive]
+            if len(run) >= 3 and any(textured.get(cell) == grounded[cell] for cell in run):
+                corroborated.update((cell, grounded[cell]) for cell in run)
+    return corroborated

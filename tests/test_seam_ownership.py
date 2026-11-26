@@ -5,7 +5,7 @@ from unittest.mock import patch
 import numpy as np
 from PIL import Image
 
-from engine.seam_ownership import textured_side_owners, resolve_side_owners
+from engine.seam_ownership import corroborated_runs, textured_side_owners, resolve_side_owners
 
 
 class ProjectedSeamTests(unittest.TestCase):
@@ -43,3 +43,10 @@ class ProjectedSeamTests(unittest.TestCase):
         self.assertEqual(resolve_side_owners({a:{b}},{b:{a}},set()),set())
         self.assertEqual(resolve_side_owners({a:{b}},{b:{c}},set()),{a})
         self.assertEqual(resolve_side_owners({a:{b}},{a:{b}},{a}),set())
+
+    def test_run_requires_texture_on_the_same_neighbor_and_contiguous_rows(self):
+        grounded = {(1,y,0): {(0,y,0)} for y in (0,1,2,4,5,6)}
+        self.assertEqual(corroborated_runs(grounded, {}), {})
+        self.assertEqual(corroborated_runs(grounded, {(1,1,0): {(2,1,0)}}), {})
+        selected = corroborated_runs(grounded, {(1,1,0): {(0,1,0)}})
+        self.assertEqual(set(selected), {(1,y,0) for y in (0,1,2)})
