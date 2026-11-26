@@ -1,5 +1,7 @@
 # Planned Minecraft reconstruction training
 
+Use the [reconstruction adjustment log](../MODEL_CHANGELOG.md) when choosing training examples and evaluation cases. It tracks observed failures and measured changes from the existing pipeline.
+
 The first training dataset is available in [Visible Builds v1](DATASET.md). It contains exact screenshots, per-frame visible blocks and camera calibration. The proposed learning experiment below uses the same [visible-only product intent](../PRODUCT_INTENT.md) as the existing pipeline.
 
 ## Objective

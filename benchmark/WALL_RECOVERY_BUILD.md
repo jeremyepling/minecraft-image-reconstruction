@@ -35,7 +35,7 @@ Copy-Item .\benchmark\data\surface-confirm-v1\captures\holdout-workshop-masonry-
 python -m benchmark.verify_recovery_build --build runs/plane-proof/build --case light_gray_concrete/holdout-workshop-masonry-low-left
 ```
 
-The default build read one renamed Workshop image, ran all six checkpoints, found seven of 14 scored surfaces and passed 28 regions to the Block Counter. Every mask, saved region property and block-count result matched the archived split-only zoom predictions. The separate verification command reads the finished predictions and the recorded building. [Default Workshop build](reviews/default-zoom-workshop-01.json) · [Earlier 513-surface Wing verification](reviews/plane-recovery-entry-01.json)
+The sky-filtered Workshop build passed 13 regions to the Block Counter, down from 28 before the filter. Every saved region and block-count result matched the offline replay. The separate verification command reads the finished predictions and recorded building. [Current Workshop build](reviews/sky-entry-01/fresh-workshop.json) · [Earlier split-only zoom verification](reviews/default-zoom-workshop-01.json)
 
 ### Earlier five-model result
 

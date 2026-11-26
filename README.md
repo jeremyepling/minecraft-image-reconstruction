@@ -1,10 +1,12 @@
 # Minecraft Image Reconstruction
 
+[Reconstruction adjustments and lessons for training](MODEL_CHANGELOG.md) records what shipped, which experiments fell short, and what to look for in later training runs.
+
 Download the versioned [Visible Builds dataset](training/DATASET.md) for per-frame screenshots, camera calibration, visible block coordinates and material states.
 
 Reconstruct only the parts of a build visible in the supplied image or images. Hidden backs, interiors and occluded regions remain unknown and are omitted from the reconstruction. This scope applies to the current pipeline and the [planned learned approach](training/README.md). [Product intent](PRODUCT_INTENT.md)
 
-Use `main` to recover visible surfaces from one Minecraft Java 26.3 screenshot. The ordinary **Surface Finder** uses Regions First, Wall Recovery and Pixel-wise Planarity with split-only zoom. It matched **516 of 598** visible surface appearances across 56 saved views of eight buildings. The Block Counter recovered both dimensions for 80 surfaces. [Surface results by screenshot](benchmark/reviews/crop-split-01/pictures.md) · [Crop and straightening review](benchmark/CROP_REVIEW.md)
+Use `main` to recover visible surfaces from one Minecraft Java 26.3 screenshot. The ordinary **Surface Finder** uses Regions First, Wall Recovery and Pixel-wise Planarity with split-only zoom and clear-noon sky exclusion. It matched **517 of 598** visible surface appearances across 56 saved views of eight buildings. The Block Counter recovered both dimensions for 94 surfaces. [Surface results by screenshot](benchmark/reviews/sky-01/pictures.md) · [Crop and straightening review](benchmark/CROP_REVIEW.md)
 
 ## Build from a screenshot
 
@@ -17,10 +19,10 @@ Read `surfaces.json` for the visible masks and openings, the crops for the **Sur
 ## Reproduce the surface score
 
 ```powershell
-.\Invoke-SurfaceRound.ps1 -Round crop-split
+.\Invoke-SurfaceRound.ps1 -Round sky
 ```
 
-This compares the selected finder with the previous 513-surface default on the same clear-noon screenshots. The selected method checks nine overlapping close-ups for evidence that an existing wall contains multiple faces. It kept all 513 matches and found three more across Shopfront and Workshop. Opening coverage stayed identical in every picture. [Comparison and zoomable sheet](benchmark/CROP_SPLIT.md) · [Offline testing guide](benchmark/OFFLINE_GEOMETRY.md)
+This compares the selected finder with the previous 516-surface default on the same clear-noon screenshots. The selected method checks nine overlapping close-ups for evidence that an existing wall contains multiple faces. The final sky check kept all 516 matches and recovered another Registry face. Opening coverage stayed identical in every picture. [Comparison and zoomable sheet](benchmark/reviews/sky-01/comparison.jpg) · [Offline testing guide](benchmark/OFFLINE_GEOMETRY.md)
 
 Use the benchmark runners to replay older experiments. The stage scores, fixtures and prototype command snapshots are listed in the project history. [Branch and experiment history](benchmark/RECONSTRUCTION_LINEAGE.md) · [Architecture and call paths](ARCHITECTURE.md)
 

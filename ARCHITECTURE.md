@@ -4,7 +4,7 @@ The [product intent](PRODUCT_INTENT.md) is visible-only reconstruction for both 
 
 ## Find surfaces and count blocks
 
-The ordinary exterior command on this PC takes one Java 26.3 screenshot. It runs the **Surface Finder**, **Surface Straightener** and **Block Counter** and saves their intermediate results. The selected Surface Finder matched **516 of 598** visible surface appearances across 56 frozen views. The counter got both block dimensions right for **80 of 598**. These scores measure different stages. [Surface comparison](benchmark/CROP_SPLIT.md) · [Crop review](benchmark/CROP_REVIEW.md)
+The ordinary exterior command on this PC takes one Java 26.3 screenshot. It runs the **Surface Finder**, **Surface Straightener** and **Block Counter** and saves their intermediate results. The selected Surface Finder matched **517 of 598** visible surface appearances across 56 frozen views. The counter got both block dimensions right for **94 of 598**. These scores measure different stages. [Surface comparison](benchmark/reviews/sky-01/pictures.md) · [Crop review](benchmark/CROP_REVIEW.md)
 
 ```powershell
 .\Invoke-WallRecovery.ps1 .\wall.png -Out .\runs\my-build
@@ -22,10 +22,10 @@ The Surface Finder’s build IDs are `mask-first` for grouping and `plane-recove
 ## Verify on the saved pictures
 
 ```powershell
-.\Invoke-SurfaceRound.ps1 -Round crop-split
+.\Invoke-SurfaceRound.ps1 -Round sky
 ```
 
-The replay applies the selected rules to saved numerical model outputs, runs the same counter and grades the resulting masks against the recorded geometry. The 56 views cover eight buildings captured in vanilla Java 26.3 at clear noon. Settings were chosen on Shopfront and Wing. The other six buildings measure performance on previously reviewed layouts. Run `build --through camera` with an image, version and output directory for the independent camera and projected-grid estimate. [Replay manifest](benchmark/reviews/crop-split-01/manifest.json) · [Camera test](benchmark/CAMERA_ROUND.md)
+The replay applies the selected rules to saved numerical model outputs, runs the same counter and grades the resulting masks against the recorded geometry. The 56 views cover eight buildings captured in vanilla Java 26.3 at clear noon. Settings were chosen on Shopfront and Wing. The other six buildings measure performance on previously reviewed layouts. Run `build --through camera` with an image, version and output directory for the independent camera and projected-grid estimate. [Replay manifest](benchmark/reviews/sky-01/manifest.json) · [Camera test](benchmark/CAMERA_ROUND.md)
 
 ## Export blocks and check placement
 
