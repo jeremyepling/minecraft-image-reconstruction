@@ -437,7 +437,7 @@ def build(image_path, version, out, *, outlines=None, order_method=None, through
         methods['surface_boundary']=boundary
         if boundary == CROP_SPLIT:
             from engine.sky_filter import filter_surface, sky_masks
-            from engine import sky_gap, strip_neighbor
+            from engine import photo_edges, sky_gap, strip_neighbor
             blue, cloud = sky_masks(image)
             patches, sky_stats = filter_surface(image, patches, masks=(blue, cloud))
             methods['background_filter'] = 'clear-noon-sky'
@@ -451,6 +451,9 @@ def build(image_path, version, out, *, outlines=None, order_method=None, through
             patches, boundary_settings['strip_cleanup'] = strip_neighbor.clean_surfaces(image, patches)
             methods['strip_cleanup'] = strip_neighbor.METHOD
             methods['boundary_sequence'].append(strip_neighbor.METHOD)
+            patches, boundary_settings['photo_edges'] = photo_edges.refine_surfaces(image, patches)
+            methods['photo_edges'] = photo_edges.METHOD
+            methods['boundary_sequence'].append(photo_edges.METHOD)
         context_px = DEFAULT_CONTEXT_PX if context_px is None else context_px
         patches = [with_outline(part) for part in patches]
         crop_dir = out/'surface-crops'
