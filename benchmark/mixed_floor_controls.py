@@ -39,7 +39,7 @@ def tile_indices(a,b):
     return 4*((a+b)%2) + ((a*1973 ^ b*9277 ^ a*b*283) % 4)
 
 
-def make_image(image, pose, faces, tiles):
+def make_image(image, pose, faces, tiles, native_sampling=False):
     w,h = image.size
     top = int(.63*h)
     keep = Image.new('L',(w,h))
@@ -50,18 +50,19 @@ def make_image(image, pose, faces, tiles):
     py,px = np.mgrid[top:h, :w]
     P = truth_camera(pose)
     accum = np.zeros((*px.shape,3), np.float32)
-    for dy in (.25,.75):
-        for dx in (.25,.75):
+    offsets = (.5,) if native_sampling else (.25,.75)
+    for dy in offsets:
+        for dx in offsets:
             xz = plane_coordinates(P,np.stack((px+dx,py+dy),-1).reshape(-1,2),1,GROUND+1).reshape(*px.shape,2)
             cell = np.floor(xz).astype(np.int64)
             a,b = cell.transpose(2,0,1)
             # Disjoint sprite sets on each parity guarantee that every shared
             # block edge changes texture. The order within each set varies.
-            idx = tile_indices(a,b)
+            idx = tile_indices(a,b) if len(tiles)>1 else 0
             u,v = np.moveaxis(np.floor((xz-cell)*16).astype(int),-1,0)
             accum += tiles[idx,v,u]
     rgb = np.array(image)
-    rgb[top:][~keep] = (accum[~keep]*.25).round().astype(np.uint8)
+    rgb[top:][~keep] = (accum[~keep]/len(offsets)**2).round().astype(np.uint8)
     return Image.fromarray(rgb)
 
 
@@ -73,6 +74,8 @@ def main():
     p.add_argument('--candidate')
     p.add_argument('--cohort',choices=['development','check'],default='development')
     p.add_argument('--angle',choices=['high-right','low-left'],default='high-right')
+    p.add_argument('--uniform',action='store_true',help='Use one vanilla sprite over the visible floor.')
+    p.add_argument('--native-sampling',action='store_true',help='Sample one texel per pixel center.')
     args = p.parse_args()
     mark_image_only()
     fn = candidate_fn(args.candidate_root.resolve(),args.candidate) if args.candidate else None
@@ -83,7 +86,9 @@ def main():
     ids = [min(r['id'] for r in rows if r['family']==fam and r['angle']==args.angle) for fam in families[start::2]]
     args.out.mkdir(parents=True,exist_ok=True)
     results = []
-    banks = {k:sprites(v) for k,v in PALETTES.items()}
+    palettes = {name:(name,) for name in ('light_gray_concrete','red_concrete','white_concrete',
+                                          'oak_planks','stone')} if args.uniform else PALETTES
+    banks = {k:sprites(v) for k,v in palettes.items()}
     for name in ids:
         f = root/name
         hashes = next(r['files'] for r in rows if r['id']==name)
@@ -94,7 +99,7 @@ def main():
         with Image.open(f/'rgb.png') as opened:
             image = opened.convert('RGB')
         for palette in ('original',*banks):
-            photo = image if palette=='original' else make_image(image,pose,faces,banks[palette])
+            photo = image if palette=='original' else make_image(image,pose,faces,banks[palette],args.native_sampling)
             if palette!='original':
                 photo.save(args.out/f'{name}-{palette}.png')
             pred = production(photo)
@@ -112,14 +117,15 @@ def main():
                     for key in ('first','second'):
                         a,b = edge[key]
                         loc = np.floor(T @ [a+.5,0,b+.5,1]).astype(int)
-                        truth.append(PALETTES[palette][tile_indices(loc[0],loc[2])])
+                        names = palettes[palette]
+                        truth.append(names[tile_indices(loc[0],loc[2])] if len(names)>1 else names[0])
                     edges.append(dict(first=edge['first'],second=edge['second'],
                                       predicted=[edge['a'],edge['b']],truth=truth))
             results.append(dict(id=name,palette=palette,candidate_invoked=used,
                                 metric_camera=pred['P'] is not None,P=pred['P'],
                                 reason=pred['reason'],atlas_edges=edges,**metrics))
-    (args.out/'control.json').write_text(json.dumps(dict(palettes=PALETTES,candidate=args.candidate,
-        frames=ids,results=results),default=plain))
+    (args.out/'control.json').write_text(json.dumps(dict(palettes=palettes,candidate=args.candidate,
+        native_sampling=args.native_sampling,frames=ids,results=results),default=plain))
     print([(r['palette'],r['within_2px'],r['vertices']) for r in results])
 
 

@@ -1,0 +1,965 @@
+{
+  "method": "Intersect decoded extra coordinates with occupied readback cells strictly above the recorded ground, excluding all supplied-view target coordinates.",
+  "frames": [
+    {
+      "split": "validation",
+      "id": "validation-cloister1-cool-high-right",
+      "baseline": {
+        "extras": 0,
+        "extras_on_unseen_structure": 0
+      },
+      "floor-r3": {
+        "extras": 19,
+        "extras_on_unseen_structure": 0
+      }
+    },
+    {
+      "split": "validation",
+      "id": "validation-cloister1-cool-low-left",
+      "baseline": {
+        "extras": 0,
+        "extras_on_unseen_structure": 0
+      },
+      "floor-r3": {
+        "extras": 14,
+        "extras_on_unseen_structure": 8
+      }
+    },
+    {
+      "split": "validation",
+      "id": "validation-cloister1-earth-high-right",
+      "baseline": {
+        "extras": 0,
+        "extras_on_unseen_structure": 0
+      },
+      "floor-r3": {
+        "extras": 22,
+        "extras_on_unseen_structure": 0
+      }
+    },
+    {
+      "split": "validation",
+      "id": "validation-cloister1-earth-low-left",
+      "baseline": {
+        "extras": 0,
+        "extras_on_unseen_structure": 0
+      },
+      "floor-r3": {
+        "extras": 0,
+        "extras_on_unseen_structure": 0
+      }
+    },
+    {
+      "split": "validation",
+      "id": "validation-cloister2-cool-high-right",
+      "baseline": {
+        "extras": 0,
+        "extras_on_unseen_structure": 0
+      },
+      "floor-r3": {
+        "extras": 27,
+        "extras_on_unseen_structure": 0
+      }
+    },
+    {
+      "split": "validation",
+      "id": "validation-cloister2-cool-low-left",
+      "baseline": {
+        "extras": 0,
+        "extras_on_unseen_structure": 0
+      },
+      "floor-r3": {
+        "extras": 35,
+        "extras_on_unseen_structure": 9
+      }
+    },
+    {
+      "split": "validation",
+      "id": "validation-cloister2-earth-high-right",
+      "baseline": {
+        "extras": 0,
+        "extras_on_unseen_structure": 0
+      },
+      "floor-r3": {
+        "extras": 37,
+        "extras_on_unseen_structure": 0
+      }
+    },
+    {
+      "split": "validation",
+      "id": "validation-cloister2-earth-low-left",
+      "baseline": {
+        "extras": 0,
+        "extras_on_unseen_structure": 0
+      },
+      "floor-r3": {
+        "extras": 54,
+        "extras_on_unseen_structure": 16
+      }
+    },
+    {
+      "split": "validation",
+      "id": "validation-cloister3-cool-high-right",
+      "baseline": {
+        "extras": 0,
+        "extras_on_unseen_structure": 0
+      },
+      "floor-r3": {
+        "extras": 65,
+        "extras_on_unseen_structure": 0
+      }
+    },
+    {
+      "split": "validation",
+      "id": "validation-cloister3-cool-low-left",
+      "baseline": {
+        "extras": 0,
+        "extras_on_unseen_structure": 0
+      },
+      "floor-r3": {
+        "extras": 13,
+        "extras_on_unseen_structure": 0
+      }
+    },
+    {
+      "split": "validation",
+      "id": "validation-cloister3-earth-high-right",
+      "baseline": {
+        "extras": 0,
+        "extras_on_unseen_structure": 0
+      },
+      "floor-r3": {
+        "extras": 280,
+        "extras_on_unseen_structure": 0
+      }
+    },
+    {
+      "split": "validation",
+      "id": "validation-cloister3-earth-low-left",
+      "baseline": {
+        "extras": 0,
+        "extras_on_unseen_structure": 0
+      },
+      "floor-r3": {
+        "extras": 147,
+        "extras_on_unseen_structure": 107
+      }
+    },
+    {
+      "split": "test",
+      "id": "test-twinspire1-cool-high-right",
+      "baseline": {
+        "extras": 0,
+        "extras_on_unseen_structure": 0
+      },
+      "floor-r3": {
+        "extras": 23,
+        "extras_on_unseen_structure": 13
+      }
+    },
+    {
+      "split": "test",
+      "id": "test-twinspire1-cool-low-left",
+      "baseline": {
+        "extras": 0,
+        "extras_on_unseen_structure": 0
+      },
+      "floor-r3": {
+        "extras": 13,
+        "extras_on_unseen_structure": 0
+      }
+    },
+    {
+      "split": "test",
+      "id": "test-twinspire1-earth-high-right",
+      "baseline": {
+        "extras": 0,
+        "extras_on_unseen_structure": 0
+      },
+      "floor-r3": {
+        "extras": 12,
+        "extras_on_unseen_structure": 3
+      }
+    },
+    {
+      "split": "test",
+      "id": "test-twinspire1-earth-low-left",
+      "baseline": {
+        "extras": 0,
+        "extras_on_unseen_structure": 0
+      },
+      "floor-r3": {
+        "extras": 12,
+        "extras_on_unseen_structure": 0
+      }
+    },
+    {
+      "split": "test",
+      "id": "test-twinspire2-cool-high-right",
+      "baseline": {
+        "extras": 0,
+        "extras_on_unseen_structure": 0
+      },
+      "floor-r3": {
+        "extras": 48,
+        "extras_on_unseen_structure": 19
+      }
+    },
+    {
+      "split": "test",
+      "id": "test-twinspire2-cool-low-left",
+      "baseline": {
+        "extras": 0,
+        "extras_on_unseen_structure": 0
+      },
+      "floor-r3": {
+        "extras": 132,
+        "extras_on_unseen_structure": 73
+      }
+    },
+    {
+      "split": "test",
+      "id": "test-twinspire2-earth-high-right",
+      "baseline": {
+        "extras": 0,
+        "extras_on_unseen_structure": 0
+      },
+      "floor-r3": {
+        "extras": 47,
+        "extras_on_unseen_structure": 29
+      }
+    },
+    {
+      "split": "test",
+      "id": "test-twinspire2-earth-low-left",
+      "baseline": {
+        "extras": 0,
+        "extras_on_unseen_structure": 0
+      },
+      "floor-r3": {
+        "extras": 287,
+        "extras_on_unseen_structure": 102
+      }
+    },
+    {
+      "split": "test",
+      "id": "test-twinspire3-cool-high-right",
+      "baseline": {
+        "extras": 0,
+        "extras_on_unseen_structure": 0
+      },
+      "floor-r3": {
+        "extras": 77,
+        "extras_on_unseen_structure": 35
+      }
+    },
+    {
+      "split": "test",
+      "id": "test-twinspire3-cool-low-left",
+      "baseline": {
+        "extras": 0,
+        "extras_on_unseen_structure": 0
+      },
+      "floor-r3": {
+        "extras": 177,
+        "extras_on_unseen_structure": 102
+      }
+    },
+    {
+      "split": "test",
+      "id": "test-twinspire3-earth-high-right",
+      "baseline": {
+        "extras": 0,
+        "extras_on_unseen_structure": 0
+      },
+      "floor-r3": {
+        "extras": 66,
+        "extras_on_unseen_structure": 28
+      }
+    },
+    {
+      "split": "test",
+      "id": "test-twinspire3-earth-low-left",
+      "baseline": {
+        "extras": 0,
+        "extras_on_unseen_structure": 0
+      },
+      "floor-r3": {
+        "extras": 170,
+        "extras_on_unseen_structure": 114
+      }
+    },
+    {
+      "split": "regression",
+      "id": "legacy-light_gray_concrete-dev-shopfront-masonry-high-right",
+      "baseline": {
+        "extras": 0,
+        "extras_on_unseen_structure": 0
+      },
+      "floor-r3": {
+        "extras": 65,
+        "extras_on_unseen_structure": 15
+      }
+    },
+    {
+      "split": "regression",
+      "id": "legacy-light_gray_concrete-dev-shopfront-masonry-low-left",
+      "baseline": {
+        "extras": 0,
+        "extras_on_unseen_structure": 0
+      },
+      "floor-r3": {
+        "extras": 36,
+        "extras_on_unseen_structure": 13
+      }
+    },
+    {
+      "split": "regression",
+      "id": "legacy-light_gray_concrete-dev-shopfront-plaster-high-right",
+      "baseline": {
+        "extras": 0,
+        "extras_on_unseen_structure": 0
+      },
+      "floor-r3": {
+        "extras": 77,
+        "extras_on_unseen_structure": 4
+      }
+    },
+    {
+      "split": "regression",
+      "id": "legacy-light_gray_concrete-dev-shopfront-plaster-low-left",
+      "baseline": {
+        "extras": 0,
+        "extras_on_unseen_structure": 0
+      },
+      "floor-r3": {
+        "extras": 86,
+        "extras_on_unseen_structure": 41
+      }
+    },
+    {
+      "split": "regression",
+      "id": "legacy-light_gray_concrete-dev-wing-masonry-close-front",
+      "baseline": {
+        "extras": 0,
+        "extras_on_unseen_structure": 0
+      },
+      "floor-r3": {
+        "extras": 0,
+        "extras_on_unseen_structure": 0
+      }
+    },
+    {
+      "split": "regression",
+      "id": "legacy-light_gray_concrete-dev-wing-masonry-high-right",
+      "baseline": {
+        "extras": 0,
+        "extras_on_unseen_structure": 0
+      },
+      "floor-r3": {
+        "extras": 9,
+        "extras_on_unseen_structure": 0
+      }
+    },
+    {
+      "split": "regression",
+      "id": "legacy-light_gray_concrete-dev-wing-masonry-low-left",
+      "baseline": {
+        "extras": 0,
+        "extras_on_unseen_structure": 0
+      },
+      "floor-r3": {
+        "extras": 12,
+        "extras_on_unseen_structure": 8
+      }
+    },
+    {
+      "split": "regression",
+      "id": "legacy-light_gray_concrete-dev-wing-plaster-close-front",
+      "baseline": {
+        "extras": 0,
+        "extras_on_unseen_structure": 0
+      },
+      "floor-r3": {
+        "extras": 0,
+        "extras_on_unseen_structure": 0
+      }
+    },
+    {
+      "split": "regression",
+      "id": "legacy-light_gray_concrete-dev-wing-plaster-high-right",
+      "baseline": {
+        "extras": 0,
+        "extras_on_unseen_structure": 0
+      },
+      "floor-r3": {
+        "extras": 1,
+        "extras_on_unseen_structure": 0
+      }
+    },
+    {
+      "split": "regression",
+      "id": "legacy-light_gray_concrete-dev-wing-plaster-low-left",
+      "baseline": {
+        "extras": 0,
+        "extras_on_unseen_structure": 0
+      },
+      "floor-r3": {
+        "extras": 12,
+        "extras_on_unseen_structure": 2
+      }
+    },
+    {
+      "split": "regression",
+      "id": "legacy-light_gray_concrete-holdout-courtyard-masonry-close-front",
+      "baseline": {
+        "extras": 0,
+        "extras_on_unseen_structure": 0
+      },
+      "floor-r3": {
+        "extras": 0,
+        "extras_on_unseen_structure": 0
+      }
+    },
+    {
+      "split": "regression",
+      "id": "legacy-light_gray_concrete-holdout-courtyard-masonry-high-right",
+      "baseline": {
+        "extras": 0,
+        "extras_on_unseen_structure": 0
+      },
+      "floor-r3": {
+        "extras": 16,
+        "extras_on_unseen_structure": 1
+      }
+    },
+    {
+      "split": "regression",
+      "id": "legacy-light_gray_concrete-holdout-courtyard-masonry-low-left",
+      "baseline": {
+        "extras": 0,
+        "extras_on_unseen_structure": 0
+      },
+      "floor-r3": {
+        "extras": 2,
+        "extras_on_unseen_structure": 0
+      }
+    },
+    {
+      "split": "regression",
+      "id": "legacy-light_gray_concrete-holdout-courtyard-plaster-close-front",
+      "baseline": {
+        "extras": 0,
+        "extras_on_unseen_structure": 0
+      },
+      "floor-r3": {
+        "extras": 0,
+        "extras_on_unseen_structure": 0
+      }
+    },
+    {
+      "split": "regression",
+      "id": "legacy-light_gray_concrete-holdout-courtyard-plaster-high-right",
+      "baseline": {
+        "extras": 0,
+        "extras_on_unseen_structure": 0
+      },
+      "floor-r3": {
+        "extras": 19,
+        "extras_on_unseen_structure": 1
+      }
+    },
+    {
+      "split": "regression",
+      "id": "legacy-light_gray_concrete-holdout-courtyard-plaster-low-left",
+      "baseline": {
+        "extras": 0,
+        "extras_on_unseen_structure": 0
+      },
+      "floor-r3": {
+        "extras": 77,
+        "extras_on_unseen_structure": 55
+      }
+    },
+    {
+      "split": "regression",
+      "id": "legacy-light_gray_concrete-holdout-crossing-masonry-high-right",
+      "baseline": {
+        "extras": 0,
+        "extras_on_unseen_structure": 0
+      },
+      "floor-r3": {
+        "extras": 49,
+        "extras_on_unseen_structure": 24
+      }
+    },
+    {
+      "split": "regression",
+      "id": "legacy-light_gray_concrete-holdout-crossing-masonry-low-left",
+      "baseline": {
+        "extras": 0,
+        "extras_on_unseen_structure": 0
+      },
+      "floor-r3": {
+        "extras": 77,
+        "extras_on_unseen_structure": 7
+      }
+    },
+    {
+      "split": "regression",
+      "id": "legacy-light_gray_concrete-holdout-crossing-plaster-high-right",
+      "baseline": {
+        "extras": 0,
+        "extras_on_unseen_structure": 0
+      },
+      "floor-r3": {
+        "extras": 78,
+        "extras_on_unseen_structure": 43
+      }
+    },
+    {
+      "split": "regression",
+      "id": "legacy-light_gray_concrete-holdout-crossing-plaster-low-left",
+      "baseline": {
+        "extras": 0,
+        "extras_on_unseen_structure": 0
+      },
+      "floor-r3": {
+        "extras": 85,
+        "extras_on_unseen_structure": 7
+      }
+    },
+    {
+      "split": "regression",
+      "id": "legacy-light_gray_concrete-holdout-galleries-masonry-high-right",
+      "baseline": {
+        "extras": 0,
+        "extras_on_unseen_structure": 0
+      },
+      "floor-r3": {
+        "extras": 75,
+        "extras_on_unseen_structure": 10
+      }
+    },
+    {
+      "split": "regression",
+      "id": "legacy-light_gray_concrete-holdout-galleries-masonry-low-left",
+      "baseline": {
+        "extras": 0,
+        "extras_on_unseen_structure": 0
+      },
+      "floor-r3": {
+        "extras": 115,
+        "extras_on_unseen_structure": 14
+      }
+    },
+    {
+      "split": "regression",
+      "id": "legacy-light_gray_concrete-holdout-galleries-plaster-high-right",
+      "baseline": {
+        "extras": 0,
+        "extras_on_unseen_structure": 0
+      },
+      "floor-r3": {
+        "extras": 259,
+        "extras_on_unseen_structure": 22
+      }
+    },
+    {
+      "split": "regression",
+      "id": "legacy-light_gray_concrete-holdout-galleries-plaster-low-left",
+      "baseline": {
+        "extras": 0,
+        "extras_on_unseen_structure": 0
+      },
+      "floor-r3": {
+        "extras": 106,
+        "extras_on_unseen_structure": 23
+      }
+    },
+    {
+      "split": "regression",
+      "id": "legacy-light_gray_concrete-holdout-portico-masonry-high-right",
+      "baseline": {
+        "extras": 0,
+        "extras_on_unseen_structure": 0
+      },
+      "floor-r3": {
+        "extras": 27,
+        "extras_on_unseen_structure": 18
+      }
+    },
+    {
+      "split": "regression",
+      "id": "legacy-light_gray_concrete-holdout-portico-masonry-low-left",
+      "baseline": {
+        "extras": 0,
+        "extras_on_unseen_structure": 0
+      },
+      "floor-r3": {
+        "extras": 90,
+        "extras_on_unseen_structure": 15
+      }
+    },
+    {
+      "split": "regression",
+      "id": "legacy-light_gray_concrete-holdout-portico-plaster-high-right",
+      "baseline": {
+        "extras": 0,
+        "extras_on_unseen_structure": 0
+      },
+      "floor-r3": {
+        "extras": 44,
+        "extras_on_unseen_structure": 16
+      }
+    },
+    {
+      "split": "regression",
+      "id": "legacy-light_gray_concrete-holdout-portico-plaster-low-left",
+      "baseline": {
+        "extras": 0,
+        "extras_on_unseen_structure": 0
+      },
+      "floor-r3": {
+        "extras": 125,
+        "extras_on_unseen_structure": 15
+      }
+    },
+    {
+      "split": "regression",
+      "id": "legacy-light_gray_concrete-holdout-registry-masonry-high-right",
+      "baseline": {
+        "extras": 0,
+        "extras_on_unseen_structure": 0
+      },
+      "floor-r3": {
+        "extras": 178,
+        "extras_on_unseen_structure": 131
+      }
+    },
+    {
+      "split": "regression",
+      "id": "legacy-light_gray_concrete-holdout-registry-masonry-low-left",
+      "baseline": {
+        "extras": 0,
+        "extras_on_unseen_structure": 0
+      },
+      "floor-r3": {
+        "extras": 79,
+        "extras_on_unseen_structure": 26
+      }
+    },
+    {
+      "split": "regression",
+      "id": "legacy-light_gray_concrete-holdout-registry-plaster-high-right",
+      "baseline": {
+        "extras": 0,
+        "extras_on_unseen_structure": 0
+      },
+      "floor-r3": {
+        "extras": 128,
+        "extras_on_unseen_structure": 100
+      }
+    },
+    {
+      "split": "regression",
+      "id": "legacy-light_gray_concrete-holdout-registry-plaster-low-left",
+      "baseline": {
+        "extras": 0,
+        "extras_on_unseen_structure": 0
+      },
+      "floor-r3": {
+        "extras": 111,
+        "extras_on_unseen_structure": 76
+      }
+    },
+    {
+      "split": "regression",
+      "id": "legacy-light_gray_concrete-holdout-workshop-masonry-high-right",
+      "baseline": {
+        "extras": 0,
+        "extras_on_unseen_structure": 0
+      },
+      "floor-r3": {
+        "extras": 462,
+        "extras_on_unseen_structure": 0
+      }
+    },
+    {
+      "split": "regression",
+      "id": "legacy-light_gray_concrete-holdout-workshop-masonry-low-left",
+      "baseline": {
+        "extras": 0,
+        "extras_on_unseen_structure": 0
+      },
+      "floor-r3": {
+        "extras": 177,
+        "extras_on_unseen_structure": 110
+      }
+    },
+    {
+      "split": "regression",
+      "id": "legacy-light_gray_concrete-holdout-workshop-plaster-high-right",
+      "baseline": {
+        "extras": 0,
+        "extras_on_unseen_structure": 0
+      },
+      "floor-r3": {
+        "extras": 92,
+        "extras_on_unseen_structure": 0
+      }
+    },
+    {
+      "split": "regression",
+      "id": "legacy-light_gray_concrete-holdout-workshop-plaster-low-left",
+      "baseline": {
+        "extras": 0,
+        "extras_on_unseen_structure": 0
+      },
+      "floor-r3": {
+        "extras": 165,
+        "extras_on_unseen_structure": 66
+      }
+    },
+    {
+      "split": "regression",
+      "id": "legacy-smooth_stone-dev-shopfront-masonry-high-right",
+      "baseline": {
+        "extras": 31,
+        "extras_on_unseen_structure": 0
+      },
+      "floor-r3": {
+        "extras": 31,
+        "extras_on_unseen_structure": 0
+      }
+    },
+    {
+      "split": "regression",
+      "id": "legacy-smooth_stone-dev-shopfront-masonry-low-left",
+      "baseline": {
+        "extras": 28,
+        "extras_on_unseen_structure": 5
+      },
+      "floor-r3": {
+        "extras": 28,
+        "extras_on_unseen_structure": 5
+      }
+    },
+    {
+      "split": "regression",
+      "id": "legacy-smooth_stone-dev-shopfront-plaster-high-right",
+      "baseline": {
+        "extras": 41,
+        "extras_on_unseen_structure": 3
+      },
+      "floor-r3": {
+        "extras": 41,
+        "extras_on_unseen_structure": 3
+      }
+    },
+    {
+      "split": "regression",
+      "id": "legacy-smooth_stone-dev-shopfront-plaster-low-left",
+      "baseline": {
+        "extras": 4,
+        "extras_on_unseen_structure": 1
+      },
+      "floor-r3": {
+        "extras": 4,
+        "extras_on_unseen_structure": 1
+      }
+    },
+    {
+      "split": "regression",
+      "id": "legacy-smooth_stone-dev-wing-masonry-close-front",
+      "baseline": {
+        "extras": 0,
+        "extras_on_unseen_structure": 0
+      },
+      "floor-r3": {
+        "extras": 0,
+        "extras_on_unseen_structure": 0
+      }
+    },
+    {
+      "split": "regression",
+      "id": "legacy-smooth_stone-dev-wing-masonry-high-right",
+      "baseline": {
+        "extras": 2,
+        "extras_on_unseen_structure": 1
+      },
+      "floor-r3": {
+        "extras": 2,
+        "extras_on_unseen_structure": 1
+      }
+    },
+    {
+      "split": "regression",
+      "id": "legacy-smooth_stone-dev-wing-masonry-low-left",
+      "baseline": {
+        "extras": 3,
+        "extras_on_unseen_structure": 2
+      },
+      "floor-r3": {
+        "extras": 3,
+        "extras_on_unseen_structure": 2
+      }
+    },
+    {
+      "split": "regression",
+      "id": "legacy-smooth_stone-dev-wing-plaster-close-front",
+      "baseline": {
+        "extras": 0,
+        "extras_on_unseen_structure": 0
+      },
+      "floor-r3": {
+        "extras": 0,
+        "extras_on_unseen_structure": 0
+      }
+    },
+    {
+      "split": "regression",
+      "id": "legacy-smooth_stone-dev-wing-plaster-high-right",
+      "baseline": {
+        "extras": 75,
+        "extras_on_unseen_structure": 6
+      },
+      "floor-r3": {
+        "extras": 75,
+        "extras_on_unseen_structure": 6
+      }
+    },
+    {
+      "split": "regression",
+      "id": "legacy-smooth_stone-dev-wing-plaster-low-left",
+      "baseline": {
+        "extras": 3,
+        "extras_on_unseen_structure": 2
+      },
+      "floor-r3": {
+        "extras": 3,
+        "extras_on_unseen_structure": 2
+      }
+    },
+    {
+      "split": "regression",
+      "id": "legacy-smooth_stone-holdout-courtyard-masonry-close-front",
+      "baseline": {
+        "extras": 0,
+        "extras_on_unseen_structure": 0
+      },
+      "floor-r3": {
+        "extras": 0,
+        "extras_on_unseen_structure": 0
+      }
+    },
+    {
+      "split": "regression",
+      "id": "legacy-smooth_stone-holdout-courtyard-masonry-high-right",
+      "baseline": {
+        "extras": 16,
+        "extras_on_unseen_structure": 1
+      },
+      "floor-r3": {
+        "extras": 16,
+        "extras_on_unseen_structure": 1
+      }
+    },
+    {
+      "split": "regression",
+      "id": "legacy-smooth_stone-holdout-courtyard-masonry-low-left",
+      "baseline": {
+        "extras": 69,
+        "extras_on_unseen_structure": 55
+      },
+      "floor-r3": {
+        "extras": 69,
+        "extras_on_unseen_structure": 55
+      }
+    },
+    {
+      "split": "regression",
+      "id": "legacy-smooth_stone-holdout-courtyard-plaster-close-front",
+      "baseline": {
+        "extras": 0,
+        "extras_on_unseen_structure": 0
+      },
+      "floor-r3": {
+        "extras": 0,
+        "extras_on_unseen_structure": 0
+      }
+    },
+    {
+      "split": "regression",
+      "id": "legacy-smooth_stone-holdout-courtyard-plaster-high-right",
+      "baseline": {
+        "extras": 14,
+        "extras_on_unseen_structure": 1
+      },
+      "floor-r3": {
+        "extras": 14,
+        "extras_on_unseen_structure": 1
+      }
+    },
+    {
+      "split": "regression",
+      "id": "legacy-smooth_stone-holdout-courtyard-plaster-low-left",
+      "baseline": {
+        "extras": 18,
+        "extras_on_unseen_structure": 2
+      },
+      "floor-r3": {
+        "extras": 18,
+        "extras_on_unseen_structure": 2
+      }
+    },
+    {
+      "split": "regression",
+      "id": "legacy-smooth_stone-holdout-portico-masonry-high-right",
+      "baseline": {
+        "extras": 46,
+        "extras_on_unseen_structure": 18
+      },
+      "floor-r3": {
+        "extras": 46,
+        "extras_on_unseen_structure": 18
+      }
+    },
+    {
+      "split": "regression",
+      "id": "legacy-smooth_stone-holdout-portico-masonry-low-left",
+      "baseline": {
+        "extras": 75,
+        "extras_on_unseen_structure": 0
+      },
+      "floor-r3": {
+        "extras": 75,
+        "extras_on_unseen_structure": 0
+      }
+    },
+    {
+      "split": "regression",
+      "id": "legacy-smooth_stone-holdout-portico-plaster-high-right",
+      "baseline": {
+        "extras": 65,
+        "extras_on_unseen_structure": 18
+      },
+      "floor-r3": {
+        "extras": 65,
+        "extras_on_unseen_structure": 18
+      }
+    },
+    {
+      "split": "regression",
+      "id": "legacy-smooth_stone-holdout-portico-plaster-low-left",
+      "baseline": {
+        "extras": 84,
+        "extras_on_unseen_structure": 0
+      },
+      "floor-r3": {
+        "extras": 84,
+        "extras_on_unseen_structure": 0
+      }
+    }
+  ]
+}
