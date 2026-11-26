@@ -1,6 +1,6 @@
 # Floor texel camera experiments
 
-The camera takes a single native-resolution RGB image. It estimates a projection for the visible block grid. Its local origin and horizontal axis names are arbitrary. The evaluator resolves the integer origin and horizontal square-grid symmetries from visible reference corners when scoring. A metric camera alone supplies no block placements.
+The camera takes a single native-resolution RGB image. It estimates a projection for the visible block grid. Its local origin and horizontal axis names are arbitrary. The evaluator resolves the integer origin and horizontal square-grid symmetries with the recorded camera and a fixed ground ray during scoring. A metric camera alone supplies no block placements.
 
 | Method | Training views with a metric camera | Eligible corners within 2 px | Projected corners within 2 px |
 | --- | ---: | ---: | ---: |
@@ -9,7 +9,7 @@ The camera takes a single native-resolution RGB image. It estimates a projection
 | R2 fit unit-texel pencils, leave block origin arbitrary | 48/72 | 2,548/24,644 | 2,548/15,548 |
 | R3 register both image halves to a vanilla sprite | 72/72 | 24,644/24,644 | 24,644/24,644 |
 
-R2 recovered focal length to a layout-averaged 0.014° horizontal-field-of-view error on its supported images. A texture can repeat every block without a dark seam. Its native texel boundaries reveal the pitch, while the atlas identifies where a block starts within those 16 texels. R3 tries narrower foreground bands when the broad band fails. Each half must agree on the 16-by-16 phase, sprite and orientation. The camera retains the original dark-seam projection whenever available.
+R2 recovered focal length to a layout-averaged 0.014° vertical-field-of-view error on its supported images. A texture can repeat every block without a dark seam. Its native texel boundaries reveal the pitch, while the atlas identifies where a block starts within those 16 texels. R3 tries narrower foreground bands when the broad band fails. Each half must agree on the 16-by-16 phase, sprite and orientation. The camera retains the original dark-seam projection whenever available.
 
 | Fixed R3 evaluation | Metric views | Eligible corners within 2 px | Mean error on projected corners |
 | --- | ---: | ---: | ---: |
