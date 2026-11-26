@@ -1,7 +1,9 @@
-"""Regrade frozen second-pass predictions and run the ordinary Block Counter on every outline."""
+"""Rebuild second-pass predictions from numerical model fields and grade every returned outline."""
 import argparse
-from concurrent.futures import ProcessPoolExecutor
+from concurrent.futures import ProcessPoolExecutor, ThreadPoolExecutor
 from pathlib import Path
+import subprocess
+import sys
 from uuid import uuid4
 
 from benchmark.camera_round import ROOT, digest, read, revision, save
@@ -15,7 +17,8 @@ from runtime.mode import image_only, mark_image_only
 
 
 NAMES = {'current':'Current Surface Finder', 'planarity':'Pixel-wise Planarity', 'ect':'ECT'}
-ARCHIVED = ROOT/'benchmark/reviews/afterpass-models-01'
+FIELDS = ROOT/'benchmark/reviews/afterpass-fields-01'
+MODULES = {'planarity':'benchmark.planarity_afterpass', 'ect':'benchmark.ect_afterpass'}
 COHORTS = ('development', 'previously_reviewed_regression')
 SELECTION = ('Freeze each model configuration on the 20 development views. Evaluate both against the '
              'same ordinary Surface Finder on the six previously reviewed buildings. Favor gains in matched '
@@ -58,6 +61,9 @@ def recovery_table(rows, methods):
     audit = ROOT/'benchmark/reviews/afterpass-headroom-01'
     manifest = read(audit/'manifest.json')
     checked(audit/'per-miss.json', manifest['artifacts']['per-miss.json'])
+    original = ROOT/'benchmark/reviews/current-misses-01'
+    checked(original/'frames.json', read(original/'manifest.json')['artifacts']['frames.json'])
+    old_scopes = {r['key']:r for r in read(original/'frames.json')}
     by_key = {r['key']:r for r in rows}
     results = []
     for miss in read(audit/'per-miss.json'):
@@ -67,6 +73,8 @@ def recovery_table(rows, methods):
             raise ValueError('Historical miss does not match replayed baseline')
         results.append(dict(frame=row['key'], layout=row['layout'], reference=rid,
                             orientation=miss['orientation'], earlier_mobilesam_iou=miss['raw'],
+                            previously_merged=rid in old_scopes[row['key']]['merged'],
+                            parallel_depth_step=rid in old_scopes[row['key']]['parallel_step'],
                             recovered_by=[m for m in methods[1:] if rid in row['scopes'][m]['gained']]))
     baseline_misses = sum(r['scores']['current']['eligible']-r['scores']['current']['matched'] for r in rows)
     if len({(v['frame'],v['reference']) for v in results}) != baseline_misses:
@@ -74,8 +82,14 @@ def recovery_table(rows, methods):
     return results
 
 
+def predict_from_fields(method, directory, field_root):
+    subprocess.run([sys.executable,'-B','-m',MODULES[method],'--source-root',str(ROOT),
+                    '--fields',str(field_root/method),'--out',str(directory)], cwd=ROOT, check=True)
+
+
 @image_only()
-def run(out, candidate_dirs, workers):
+def run(out, candidate_dirs, workers, field_root):
+    from benchmark.afterpass_edge_diagnostic import run as grade_edges
     from benchmark.afterpass_sheet import render
     baseline = read(BASE/'manifest.json')
     checked(ARCHIVE, baseline['reference_sha256'])
@@ -86,11 +100,22 @@ def run(out, candidate_dirs, workers):
     roster = {r['key']:r['sha256'] for r in rows}
     if fixtures != baseline['fixtures'] or len(rows) != 56 or roster.keys() != cases.keys():
         raise ValueError('Frozen screenshot suite differs')
+    out.mkdir(parents=True, exist_ok=False)
+    if candidate_dirs is None:
+        (out/'candidate-runs').mkdir()
+        candidate_dirs = {m:out/'candidate-runs'/m for m in MODULES}
+        with ThreadPoolExecutor(max_workers=len(candidate_dirs)) as pool:
+            futures = [pool.submit(predict_from_fields,m,d,field_root) for m,d in candidate_dirs.items()]
+            for future in futures:
+                future.result()
     manifests, indexed = {}, {}
+    labels_key = 'labels'
     for m, directory in candidate_dirs.items():
         meta, indexed[m] = index_candidate(directory, fixtures, digest(ARCHIVE), roster)
-        manifests[m] = {'manifest_sha256':digest(directory/'manifest.json'), 'method':meta.get('method', m)}
-    out.mkdir(parents=True, exist_ok=False)
+        manifests[m] = {'manifest_sha256':digest(directory/'manifest.json'), 'method':meta.get('method', m),
+                        'fields_manifest_sha256':digest(field_root/m/'manifest.json')}
+        if m == 'planarity':
+            labels_key = meta.get('sheet_labels_key', 'labels')
     methods = ('current', *candidate_dirs)
     jobs = [(cases[r['key']], r, baseline['artifacts'][r['predictions']],
              {m:indexed[m][r['key']] for m in candidate_dirs}, out) for r in rows]
@@ -103,7 +128,9 @@ def run(out, candidate_dirs, workers):
     save(out/'scores.json', table)
     (out/'pictures.md').write_text(picture_table(rows,methods), encoding='utf8')
     save(out/'recovered.json', recovery_table(rows, methods))
-    render(out, rows, cases, table, fields={m:d/'fields' for m,d in candidate_dirs.items()})
+    grade_edges(ROOT, field_root/'ect', out/'edge-diagnostic')
+    render(out, rows, cases, table, fields={m:field_root/m/'fields' for m in candidate_dirs},
+           labels_key=labels_key)
     files = [p for p in out.rglob('*') if p.is_file()]
     save(out/'manifest.json', dict(run_id=out.name, code=revision(), version=suite['version'], capture=baseline['capture'],
          protocol=PROTOCOL, selection=SELECTION, splits=baseline['splits'], fixtures=fixtures,
@@ -119,7 +146,11 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--out',type=Path,default=ROOT/'runs'/f'afterpass-{uuid4().hex[:12]}')
     parser.add_argument('--workers',type=int,default=3)
-    parser.add_argument('--planarity',type=Path,default=ARCHIVED/'candidate-runs/planarity')
-    parser.add_argument('--ect',type=Path,default=ARCHIVED/'candidate-runs/ect')
+    parser.add_argument('--fields',type=Path,default=FIELDS)
+    parser.add_argument('--planarity',type=Path,help='Completed independent run for direct evaluation')
+    parser.add_argument('--ect',type=Path,help='Completed independent run for direct evaluation')
     args = parser.parse_args()
-    run(args.out.resolve(), {m:getattr(args,m).resolve() for m in ('planarity','ect')}, args.workers)
+    if bool(args.planarity) != bool(args.ect):
+        parser.error('Supply both independent runs or omit both to predict from saved model fields.')
+    directories = {m:getattr(args,m).resolve() for m in MODULES} if args.planarity else None
+    run(args.out.resolve(), directories, args.workers, args.fields.resolve())

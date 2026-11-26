@@ -72,7 +72,7 @@ try {
             $arguments = @('-m', $module)
             if ($Round -eq 'recovery-summary') { $arguments += '--sheet' }
             if ($Round -eq 'detection-sheet' -and $SourceRun) { $arguments += @('--run', $SourceRun) }
-            if ($Round -in 'perimeters','separation','recovery' -and $Fields) { $arguments += @('--fields', $Fields) }
+            if ($Round -in 'perimeters','separation','recovery','afterpass' -and $Fields) { $arguments += @('--fields', $Fields) }
             if ($Round -in 'surfaces', 'normals','separation','recovery','recovery-summary','single-wall','ledge-join','afterpass') { $arguments += @('--workers', $Workers) }
             if ($Round -eq 'candidate') {
                 $arguments += @('run', '--name', $Name)

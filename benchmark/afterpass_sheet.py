@@ -5,7 +5,7 @@ from pathlib import Path
 import numpy as np
 from PIL import Image, ImageOps
 
-from benchmark.camera_round import digest, read
+from benchmark.camera_round import digest
 from benchmark.ledge_join_sheet import render_comparison
 from benchmark.surface_detection_sheet import paint
 
@@ -50,7 +50,7 @@ def edge_overlay(photo, a, b, color):
     return Image.composite(Image.new('RGB', photo.size, color), backdrop, strength)
 
 
-def render(out, rows, captures, table, *, fields=None):
+def render(out, rows, captures, table, *, fields=None, labels_key='labels'):
     """Field directories contain source-aligned <image sha256>.npz files.
 
     The planarity candidate manifest may specify sheet_labels_key for its chosen segmentation.
@@ -75,9 +75,6 @@ def render(out, rows, captures, table, *, fields=None):
             raise ValueError(f'Missing field directory: {path}')
         paths[m] = path
         stages.extend(RAW[m])
-    manifest = out/'candidate-runs/planarity/manifest.json'
-    labels_key = read(manifest).get('sheet_labels_key', 'labels') if manifest.is_file() else 'labels'
-
     def draw_fields(put, photo, row, box, prefix):
         sha = row['sha256']
         used = {}
