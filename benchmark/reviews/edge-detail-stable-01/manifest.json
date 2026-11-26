@@ -1,8 +1,8 @@
 {
-  "run_id": "edge-stable-counts",
+  "run_id": "edge-detail-stable-01",
   "code": {
-    "commit": "8bf9f809f8f3484cab11caff2914d37321360b69",
-    "predictor_and_runner_sha256": "9a9228dbfc2d8cab11b8692dd17ab9de7d366cc3fd002b6036229815abc7de69",
+    "commit": "50ec1f885d96a6893afea1613c4621e4d96da657",
+    "predictor_and_runner_sha256": "e9b6e39babafb41258b16dc7ff818e7af68caf09ba9a247e0aa1878dc85cefb0",
     "source_dirty": false
   },
   "frames": [
@@ -357,7 +357,7 @@
     "edge_detail:native4-count-guard",
     "edge_detail:native4-stable-counts"
   ],
-  "workers": 7,
+  "workers": 6,
   "reference_sha256": "91efa6d3e992b1a68672eae1fdd6d380e87724742a1a4b6cbe5f84d284f731a1",
   "capture": {
     "clock_ticks": 6000,
@@ -425,9 +425,10 @@
   },
   "native_metric": "Fixed shipped matched IDs, all native pixel centers along 4-connected inner boundary including holes; pooled bidirectional Euclidean distance. Add/remove assessed per proposal against its fixed reference; unmatched proposals excluded from paired metric.",
   "timing": "CPU wall seconds per picture. Current starts from saved sky-filtered proposals; candidates start from shipped baseline. Any precomputed candidate inference reported separately.",
-  "reproduce": "python -m benchmark.detail_round --split all --method edge_detail:native4-count-guard --method edge_detail:native4-stable-counts --out runs/detail-replay",
+  "reproduce": ".\\Invoke-SurfaceRound.ps1 -Round boundary-detail -Out runs/my-boundary-detail",
   "artifacts": {
-    "cases.json": "43047f5914ddc59a8e5e80f3e04884ce29ee0782cd7496bdbde001d8ca787525",
+    "cases.json": "9f5125dfd7836bcd7f867ba39df1bccd400ab5ff0a4b7d712c34a6b234f530d5",
+    "comparison.jpg": "60a9a903c33569c210bcd0ff5062c483f6385e04ab7dada69a9753aa0a11474a",
     "predictions/light_gray_concrete/dev-shopfront-masonry-high-right.json.gz": "c82b286d2e2172cc2f0265742dba2749520b7949dc6bac718fb3ebbad537527b",
     "predictions/light_gray_concrete/dev-shopfront-masonry-low-left.json.gz": "859edde289d2ce4c56f517ec20d96faea150df1f5126001a5ee397e79f8c0368",
     "predictions/light_gray_concrete/dev-shopfront-plaster-high-right.json.gz": "557655f11deeedd8452e7852cccb7f2517e725768cdb0f7b347277b137512f3a",
@@ -484,6 +485,9 @@
     "predictions/smooth_stone/holdout-portico-masonry-low-left.json.gz": "2136def4cd533a45b02e496b5363ddea515614a78a0be0c43e678ed3a3327ce6",
     "predictions/smooth_stone/holdout-portico-plaster-high-right.json.gz": "0ba66c7003d2b7270e69ecda996cb845c3467af78956b9329c6fd1cfd6a711d2",
     "predictions/smooth_stone/holdout-portico-plaster-low-left.json.gz": "f7d0cf6fc976b77504775a1eefe23e2921e1dca354e2712599ba299483ef3cad",
-    "scores.json": "afdaf64794ad9085b067aaa3887962ef4a003b5573cdd609c636a164a16cd69d"
-  }
+    "scores.json": "c664963d1d67bfbf97aa1b59de41827c6b4beb6409372a9752f6b54471945897",
+    "sheet-views.json": "a0b1aaecc295b48694b3e802941f4cbf51512883bab7073a6421ab5e33f8715f",
+    "count-transitions.json": "8e8d836692f660950735775817d802fc30ce727888ed16285cae3072b3868178"
+  },
+  "round_context": "Retrospective follow-up on already examined Portico errors; all 56 views previously reviewed."
 }

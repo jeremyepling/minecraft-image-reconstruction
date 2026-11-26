@@ -4,6 +4,8 @@ These entries cover model inputs, rules around model outputs, and evaluation cha
 
 ### November 26, 2026
 
+- **Experiment — align existing surface outlines to nearby photo edges.** A four-pixel adjustment with a fallback when complete block counts changed found two extra surfaces and improved native outline error on every building, from 3.824 to 3.720 pixels overall. Exact and incorrect block sizes held at 95 and 50. The safeguard for formerly unresolved sizes was chosen after four wrong Portico counts appeared. Test this frozen rule on fresh layouts before promotion. Finer plane-model sampling and a larger token budget had less benefit. [Trials and zoomable sheets](benchmark/BOUNDARY_DETAIL.md)
+
 - **Shipped — place visible blocks when the camera establishes block scale.** The exterior wrapper now exports a smooth-stone datapack. In 56 fixed views the new placement stage recovered 2,024 correct coordinates with 621 extras, up from 344 correct with 18 extras. On 12 additional supported views it recovered 2,753 of 3,780 visible blocks. The two Corner views illustrate the remaining depth errors. [Behavior, independent validation and replay](benchmark/SUPPORTED_PLACEMENT.md)
 
 - **Shipped — require a neighboring surface along a stray strip.** In 56 saved views, the check trimmed 516 wrong pixels from five surfaces and removed zero correctly assigned pixels from those surfaces. It kept all 517 matches and corrected one block size. For the false Courtyard beam extension, another surface ran alongside the whole strip. At the real wall extension, the nearest one reached only 28%. Ordinary builds apply the check after sky removal, before cropping and counting. [Scores and close-ups](benchmark/ATTACHED_STRIP.md#checking-for-a-neighboring-surface)
