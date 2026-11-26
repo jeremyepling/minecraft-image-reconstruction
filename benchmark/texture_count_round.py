@@ -27,7 +27,7 @@ from runtime.mode import image_only, mark_image_only
 SOURCE = ROOT/'benchmark/reviews/detail-01'
 FINDERS = {'neighbor':(SOURCE,'current'),
            'photo':(ROOT/'benchmark/reviews/edge-detail-stable-01','edge_detail:native4-stable-counts')}
-MODULES = {'repeat':'portico_repeat','atlas':'portico_atlas','rectify':'repeat_rectify'}
+MODULES = {'repeat':'portico_repeat','atlas':'portico_atlas','rectify':'repeat_rectify','phase':'phase_corners'}
 
 
 def scalar(x):
@@ -55,7 +55,7 @@ def evaluate(job):
         evidence = {'current':base}
         for name,module in functions.items():
             start = perf_counter()
-            if name=='rectify':
+            if name in ('rectify','phase'):
                 evidence[name] = module.predict_surface(photo,part,sample,deepcopy(base))
             else:
                 evidence[name] = module.predict(sample,deepcopy(base))
