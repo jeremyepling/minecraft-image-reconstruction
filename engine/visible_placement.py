@@ -28,10 +28,11 @@ def _sample_face(projection, cell, axis, sign, shape):
         return None
 
 
-def _frontmost_cells(cells, projection, eye, shape):
+def _frontmost_cells(cells, projection, eye, shape, *, face_axes=False):
     """Assign each sampled image ray to the nearest projected face in the candidate build."""
     inverse_depth = np.zeros(shape)
     owner = np.full(shape, -1, dtype=int)
+    axes = np.full(shape, -1, dtype=np.int8) if face_axes else None
     occupied = set(cells)
     for index, cell in enumerate(cells):
         for axis in range(3):
@@ -49,10 +50,12 @@ def _frontmost_cells(cells, projection, eye, shape):
             closer = pixels & (depth > inverse_depth[box])
             inverse_depth[box][closer] = depth[closer]
             owner[box][closer] = index
-    return owner
+            if face_axes:
+                axes[box][closer] = axis
+    return (owner, axes) if face_axes else owner
 
 
-def _estimate_plane_cells(image, parts, masks, projection, eye, select_level=None):
+def _estimate_plane_cells(image, parts, masks, projection, eye, select_level=None, *, partial=None, axes=None):
     """Fit provisional grid planes using floor contacts and relative surface depths."""
     focal = np.linalg.norm(projection[0, :3] - image.width / 2 * projection[2, :3])
     rotation = np.linalg.solve(intrinsic(image.size, focal), projection[:, :3])
@@ -69,12 +72,14 @@ def _estimate_plane_cells(image, parts, masks, projection, eye, select_level=Non
     depths = [p['relative_inverse_depth'] for p in parts if (p.get('relative_inverse_depth') or 0) > 0]
     typical = np.median(depths) if depths else 1
     candidates = []
-    for part, mask in zip(parts, masks, strict=True):
+    for index, (part, mask) in enumerate(zip(parts, masks, strict=True)):
         cells = set()
         candidates.append(cells)
         if not mask.any() or part.get('normal_camera') is None:
             continue
         axis = int(np.argmax(abs(rotation.T @ part['normal_camera'])))
+        if axes is not None:
+            axes[index] = axis
         contact = mask & contacts
         if axis != 1 and contact.sum() >= max(4, .12 * mask.any(axis=0).sum()):
             intercepts = eye[axis] + floor_depth[contact] * rays[contact, axis]
@@ -101,6 +106,9 @@ def _estimate_plane_cells(image, parts, masks, projection, eye, select_level=Non
             supported = np.count_nonzero(pixels & mask[box])
             if supported >= max(MINIMUM_SAMPLES, MINIMUM_COVERAGE * pixels.sum()):
                 cells.add(tuple(cell.tolist()))
+            elif partial is not None and supported >= max(MINIMUM_SAMPLES, .22 * pixels.sum()):
+                if partial(mask, projection, cell, axis, sign):
+                    cells.add(tuple(cell.tolist()))
     return candidates
 
 
@@ -127,7 +135,8 @@ def place(image, version, parts, *, counts=None, atlas_path=None):
     return place_ranked(image, version, parts, counts, camera, atlas_path=atlas_path)
 
 
-def place_with_camera(image, version, parts, counts, camera, select_level=None):
+def place_with_camera(image, version, parts, counts, camera, select_level=None, *,
+                      partial=None, refine_candidates=None, remove_occluded=False):
     status = dict(camera_status=camera['scale_status'], reason=camera['reason'], P=camera['P'],
                   strict_blocks=0, added_blocks=0, placed_blocks=0, duplicate_side_cells=0,
                   textured_side_cells=0, grounded_side_cells=0, shared_side_cells=0)
@@ -145,14 +154,21 @@ def place_with_camera(image, version, parts, counts, camera, select_level=None):
     strict, _, _ = _blocks(masks, carriers, projection, {})
     projection = projection / np.linalg.norm(projection[2, :3])
     eye = np.linalg.solve(projection[:, :3], -projection[:, 3])
-    candidates = _estimate_plane_cells(image, parts, masks, projection, eye, select_level)
+    axes = [-1] * len(parts) if partial is not None else None
+    candidates = _estimate_plane_cells(image, parts, masks, projection, eye, select_level,
+                                       partial=partial, axes=axes)
+    if refine_candidates is not None:
+        status['secondary_depths'] = refine_candidates(parts, masks, projection, eye, candidates)
     cells = sorted(strict.union(*candidates))
-    owner = _frontmost_cells(cells, projection, eye, shape)
+    if axes is None:
+        owner = _frontmost_cells(cells, projection, eye, shape)
+    else:
+        owner, front_axes = _frontmost_cells(cells, projection, eye, shape, face_axes=True)
     accepted = strict.copy()
-    for mask, evidence in zip(masks, candidates, strict=True):
+    for index, (mask, evidence) in enumerate(zip(masks, candidates, strict=True)):
         if not evidence:
             continue
-        visible = owner[mask]
+        visible = owner[mask if axes is None else mask & (front_axes == axes[index])]
         sample_counts = np.bincount(visible[visible >= 0], minlength=len(cells))
         accepted.update(cells[i] for i in np.flatnonzero(sample_counts >= MINIMUM_SAMPLES) if cells[i] in evidence)
     if accepted - strict:
@@ -167,5 +183,10 @@ def place_with_camera(image, version, parts, counts, camera, select_level=None):
         status.update(duplicate_side_cells=len(duplicates), textured_side_cells=len(duplicates & textured.keys()),
                       grounded_side_cells=len(duplicates & grounded.keys()),
                       shared_side_cells=len(duplicates & textured.keys() & grounded.keys()))
-    status.update(strict_blocks=len(strict), added_blocks=len(accepted - strict), placed_blocks=len(accepted))
+    if remove_occluded:
+        from engine.visible_ray_filter import fully_occluded_cells
+        occluded = fully_occluded_cells(image.size, camera['P'], accepted)
+        accepted -= occluded
+        status['fully_occluded_blocks'] = len(occluded)
+    status.update(strict_blocks=len(strict & accepted), added_blocks=len(accepted - strict), placed_blocks=len(accepted))
     return accepted, status

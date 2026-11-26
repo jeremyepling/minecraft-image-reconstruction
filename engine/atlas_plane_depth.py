@@ -63,7 +63,9 @@ def _texel_samples(mask, rgb, inv, axis, free):
     offsets = np.array([[0,0], [2,0], [1,1], [3,1], [0,2], [2,2], [1,3], [3,3]])
     xx = (SAMPLE_STRIDE*x[:, None]+offsets[:, 0]).ravel()
     yy = (SAMPLE_STRIDE*y[:, None]+offsets[:, 1]).ravel()
-    ok = (xx+1<rgb.shape[1]) & (yy+1<rgb.shape[0])
+    width = min(rgb.shape[1], mask.shape[1] * SAMPLE_STRIDE)
+    height = min(rgb.shape[0], mask.shape[0] * SAMPLE_STRIDE)
+    ok = (xx+1<width) & (yy+1<height)
     xx, yy = xx[ok], yy[ok]
     ref = rgb[yy, xx]
     result = []
@@ -90,12 +92,12 @@ def _edge_score(samples, eye_uv, distance):
     return float(np.mean(correlations)) if correlations else 0.
 
 
-def _patch_scores(mask, origins, axis, free, level, P, rgb, atlas):
+def _patch_scores(mask, origins, axis, free, level, P, rgb, atlas, *, by_cell=False):
     if atlas is None:
         return []
     origins = origins[np.isfinite(origins).all(1)]
     cells = np.unique(np.floor(origins).astype(int), axis=0)
-    cells = _sample(cells, 30)
+    cells = _sample(cells, 120 if by_cell else 30)
     if not len(cells):
         return []
     u,v = np.meshgrid((np.arange(16)+.5)/16, (np.arange(16)+.5)/16)
@@ -105,7 +107,8 @@ def _patch_scores(mask, origins, axis, free, level, P, rgb, atlas):
     screen = xyz @ P[:,:3].T + P[:,3]
     xy = screen[:,:,:2] / np.maximum(1.e-6,screen[:,:,2:])
     h,w = rgb.shape[:2]
-    x,y = np.moveaxis(xy.astype(int),-1,0)
+    h,w = min(h,mask.shape[0]*SAMPLE_STRIDE), min(w,mask.shape[1]*SAMPLE_STRIDE)
+    x,y = np.moveaxis(np.floor(xy).astype(int),-1,0)
     good = ((x>=0)&(y>=0)&(x<w)&(y<h)&(screen[:,:,2]>1.)).all(1)
     good &= (np.linalg.norm(xy[:,0]-xy[:,15],axis=1)>=9) & (np.linalg.norm(xy[:,0]-xy[:,240],axis=1)>=9)
     x,y = x[good],y[good]
@@ -125,6 +128,8 @@ def _patch_scores(mask, origins, axis, free, level, P, rgb, atlas):
     ref = atlas.patterns[short].reshape(len(x),24,8,256)
     corr = np.einsum('nkod,nd->nko',ref,gray).max(2)/16
     scores = (corr-np.take_along_axis(loss,short,axis=1)/60).max(1)
+    if by_cell:
+        return dict(zip(map(tuple,cells[good][full].tolist()),scores.tolist(),strict=True))
     return np.sort(scores)[::-1].tolist()
 
 
@@ -159,7 +164,16 @@ def options(mask, P, eye, rays, axis, baseline, rgb, atlas, scene_distance=None,
 
 
 def place_ranked(image, version, parts, counts, camera, *, atlas_path=None):
-    """Choose one integer plane per observed mask, retaining the original placer on abstention."""
+    """Place image-supported grid cells and remove cells with no visible ray."""
+    return _place(image, version, parts, counts, camera, atlas_path, remove_occluded=True)
+
+
+def place_ranked_without_ray(image, version, parts, counts, camera, *, atlas_path=None):
+    """Run the same placement before the final native-pixel visibility check."""
+    return _place(image, version, parts, counts, camera, atlas_path, remove_occluded=False)
+
+
+def _place(image, version, parts, counts, camera, atlas_path, *, remove_occluded):
     if camera['P'] is None or not parts:
         return place_with_camera(image, version, parts, counts, camera)
     weights = frozen_weights()
@@ -178,6 +192,14 @@ def place_ranked(image, version, parts, counts, camera, *, atlas_path=None):
         decisions.append(dict(id=part['id'], axis=axis, baseline=baseline, level=level))
         return level
 
-    cells, status = place_with_camera(image, version, parts, counts, camera, select)
+    from engine.partial_atlas_face import verify
+    from engine.secondary_plane_depth import wrap_selector
+    select_level, refine = wrap_selector(select, rgb, atlas)
+
+    def partial(mask, projection, cell, axis, sign):
+        return verify(rgb, atlas, mask, projection, cell, axis, sign)
+
+    cells, status = place_with_camera(image, version, parts, counts, camera, select_level,
+                                      partial=partial, refine_candidates=refine, remove_occluded=remove_occluded)
     status.update(plane_depth_method='ranked', plane_offsets=decisions)
     return cells, status
