@@ -66,7 +66,7 @@ def render(out):
         ImageDraw.Draw(location).rectangle(box, outline='white', width=2)
         actual = size_text(row['expected'])
         cells = [(location.crop(ex['scene_xyxy']), key.split('/')[-1]),
-                 (paint(photo,native,{rid:(255,194,73)}).crop(box), f'Actual {actual} blocks   ·   R{rid}'),
+                 (paint(photo,native,{rid:'#ffc249'}).crop(box), f'Actual {actual} blocks   ·   R{rid}'),
                  (outlined.crop(box), 'Same detected surface for all three crops')]
         for method, _, sampler in modes:
             result = row['methods'][method]
