@@ -81,7 +81,7 @@ try {
                 if ($LASTEXITCODE -ne 0) { throw 'Failed to prepare the pinned local model files.' }
             }
             $arguments = @('-m', $module)
-            if ($Round -eq 'boundary-detail') { $arguments += @('--method','plane_detail:add2','--method','edge_detail:native4-count-guard','--sheet') }
+            if ($Round -eq 'boundary-detail') { $arguments += @('--method','edge_detail:native4-count-guard','--method','edge_detail:native4-stable-counts','--sheet') }
             if ($Round -eq 'recovery-summary') { $arguments += '--sheet' }
             if ($Round -eq 'detection-sheet' -and $SourceRun) { $arguments += @('--run', $SourceRun) }
             if ($Round -in 'perimeters','separation','recovery','afterpass','guard-zoom' -and $Fields) { $arguments += @('--fields', $Fields) }

@@ -200,8 +200,12 @@ def run(out,workers,split,methods,sheet=False):
     save(out/'cases.json',results)
     save(out/'scores.json',scores)
     if sheet:
-        from benchmark.detail_sheet import render
-        render(out)
+        if 'edge_detail:native4-stable-counts' in methods:
+            from benchmark.detail_count_sheet import render_count_review
+            render_count_review(out)
+        else:
+            from benchmark.detail_sheet import render
+            render(out)
     manifest = dict(run_id=out.name,code=code,frames=[dict(key=r['key'],sha256=r['sha256'],cohort=r['cohort'],layout=r['layout']) for r in selected],
         fixtures=fixtures,version=suite['version'],splits=source['splits'],selection=split,methods=labels,workers=workers,
         reference_sha256=source['reference_sha256'],capture=source['capture'],protocol=PROTOCOL,
