@@ -30,6 +30,8 @@ The next experiment is a camera fallback for a complete structure on weakly patt
 
 ## Reproduce
 
+The ordinary placer reproduced the evaluated coordinates and materials across all 204 established exports. Its 22 additional exports also matched on all three new panels. The full screenshot-to-datapack command reproduced the 75-block Canopy 06 export. Over three warm timing runs, the added work took 0.05–0.22 process CPU seconds on two photographs where the placer kept its planes and 7.70 seconds on the canopy that required a second placement pass. [Export verification](verification.json) · [New panel verification](new-panel-verification.json) · [Per-image CPU timings](timing.json)
+
 Use the saved inputs from the [prior release and comparison](../roof-span-01/README.md). The 72 development photos are distinct from the 104 fixed, 20 alternate and four loading-dock/switchback views. Four shelter/gate views use a separate replay. Each case preserves screenshot, surface, count, camera, label and exported-pack provenance. [Compressed comparisons and changed exports](comparisons.zip) · [Ordinary build verification](verification.json)
 
 ```powershell

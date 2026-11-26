@@ -1,0 +1,41 @@
+{
+  "metric": "median process CPU seconds per photograph in the geometry placer, three warm runs on this PC; excludes upstream stages",
+  "rows": [
+    {
+      "id": "shape-benchmark-26.3--train-canopy-04-left",
+      "split": "old",
+      "old_placement_cpu_seconds": 6.391,
+      "additional_cpu_seconds": 0.219,
+      "passes": [
+        1,
+        1,
+        1
+      ],
+      "placed": 39
+    },
+    {
+      "id": "shape-benchmark-26.3--train-canopy-06-left",
+      "split": "old",
+      "old_placement_cpu_seconds": 12.797,
+      "additional_cpu_seconds": 7.703,
+      "passes": [
+        2,
+        2,
+        2
+      ],
+      "placed": 75
+    },
+    {
+      "id": "shape-benchmark-26.3--dev-canopy-19-right",
+      "split": "fresh",
+      "old_placement_cpu_seconds": 2.766,
+      "additional_cpu_seconds": 0.047,
+      "passes": [
+        1,
+        1,
+        1
+      ],
+      "placed": 39
+    }
+  ]
+}

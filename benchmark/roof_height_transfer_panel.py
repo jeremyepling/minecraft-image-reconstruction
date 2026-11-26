@@ -67,7 +67,8 @@ def score(f, assets, data, sources, out, pose_prior=None):
     floor=min(y for x,y,z in occupied)
     front_z=max(z for x,y,z in occupied if y==floor)
     front=sorted(x for x,y,z in occupied if y==floor and z==front_z)
-    assert len(front)==2 and floor==65 and roof_world-floor==f['target_block_y']
+    # Use the leftmost open bay even when the roof has more than two front posts.
+    assert len(front)>=2 and front[1]>front[0]+1 and floor==65 and roof_world-floor==f['target_block_y']
     spec=dict(left=front[0]+1,right=front[1],front_z=front_z,bottom=floor,roof_y=roof_world)
     roof=np.isin(ids,[face['id'] for face in truth['faces'] if face['xyz_world'][1]==roof_world])
     transform=registration(np.asarray(camera['P']),pose) if supported else None
@@ -143,13 +144,17 @@ def run(args):
     print(groups['all'])
 
 
-if __name__=='__main__':
+def main(selection=SELECTION):
     p=argparse.ArgumentParser(description=__doc__)
     p.add_argument('--data',type=Path,required=True)
-    p.add_argument('--selection',type=Path,default=SELECTION)
+    p.add_argument('--selection',type=Path,default=selection)
     p.add_argument('--sources',type=Path)
     p.add_argument('--out',type=Path,required=True)
     p.add_argument('--candidate-root',type=Path,default=ROOT)
     p.add_argument('--candidate')
     p.add_argument('--pose-diagnostic',type=Path,help='Folder of frozen recorded-pose diagnostic priors')
     run(p.parse_args())
+
+
+if __name__=='__main__':
+    main()
