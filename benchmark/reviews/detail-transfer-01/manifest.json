@@ -1,0 +1,254 @@
+{
+  "run_id": "detail-transfer-01",
+  "code": {
+    "commit": "dd10b56399a9162a5c0e55199acab03234774987",
+    "predictor_and_runner_sha256": "a9119ea658231fd5ab837bf6a43b317e37965cb93b131533466ec1b2e6c3700f",
+    "source_dirty": false
+  },
+  "frozen_method_revision": "eefbe59",
+  "setting": "native4-stable-counts",
+  "settings": {
+    "radius": 4,
+    "blur": 0.7,
+    "color_step": 6.0,
+    "change_cost": 1.5,
+    "iterations": 12,
+    "minimum_boundary_contrast": 10.0,
+    "minimum_contrast_gain": 3.0,
+    "units": "source pixels",
+    "method": "color-guided-boundary",
+    "fallback": "native2 then original if a complete count changes or appears"
+  },
+  "protocol": {
+    "iou": 0.5,
+    "sample_stride": 4,
+    "boundary_tolerance_px": 8,
+    "corner_tolerance_px": 12,
+    "contour_simplification_px": 6,
+    "minimum_corner_turn_deg": 30,
+    "minimum_contact_samples": 2,
+    "contact_depth_blocks": 0.5,
+    "filled_gap_fraction": 0.5
+  },
+  "expected": "Improve paired edge distance for both families, retain existing matches and exact block sizes, avoid extra incorrect guesses or covered openings.",
+  "models": "Ordinary single-image default; per-build model hashes and stages in ordinary/*.json.gz.",
+  "reference": "Scores use reference-faces.json and the recorded camera; every projected native surface pixel verified against the released face_id array.",
+  "dataset_manifest_sha256": "a702f1d1a79c9e471680fd362993e14a4c2eeb20b4790d6b67b054b5f4bf0a56",
+  "shards": {
+    "validation": {
+      "file": "visible-builds-v1-validation.zip",
+      "sha256": "5298a056e4a9d28af448a22da88bbd2ebcdbbbfa967adb2e28b7dc35c9f54401",
+      "bytes": 20125868,
+      "frames": 12,
+      "layouts": 3
+    },
+    "test": {
+      "file": "visible-builds-v1-test.zip",
+      "sha256": "97b6a87b1198f6a0ac1baeb7d4f15a433c2ce6bbde302f61f9c225e1d0ff6dee",
+      "bytes": 20181829,
+      "frames": 12,
+      "layouts": 3
+    }
+  },
+  "frames": {
+    "validation-cloister1-cool-high-right": {
+      "sha256": "d070a5b17327f7984b08d4878ef38b1ca8bfc34cc88e8ecf8c0b532e449581e3",
+      "split": "validation",
+      "layout": "cloister1",
+      "build_manifest_sha256": "63692cbaa5fabfba515b6f6dfd47f8f2d0e0895c4c609285dcc9563f09e8c33a",
+      "ordinary": "ordinary/validation-cloister1-cool-high-right.json.gz"
+    },
+    "validation-cloister1-cool-low-left": {
+      "sha256": "1ada4859cbfd40e9d46f621317bceda78e85c504dd11552d9d165b6be0d087a2",
+      "split": "validation",
+      "layout": "cloister1",
+      "build_manifest_sha256": "f0f5a905225d902b55648b1a112054d04aa74306499c4b31d04660878d5cc2b6",
+      "ordinary": "ordinary/validation-cloister1-cool-low-left.json.gz"
+    },
+    "validation-cloister1-earth-high-right": {
+      "sha256": "6ffa7491a6f89868e57b9550e7aa44e1a3e2b30ec37ef35c5006ef2f5b716833",
+      "split": "validation",
+      "layout": "cloister1",
+      "build_manifest_sha256": "a42675580954ebea1bdee36a4717c918f848c5e59bce4575ccd50cbdb4f00206",
+      "ordinary": "ordinary/validation-cloister1-earth-high-right.json.gz"
+    },
+    "validation-cloister1-earth-low-left": {
+      "sha256": "e7277a48a55059a5705a7001dc4db0ace8fafd8ccfd14a20919e45e797889405",
+      "split": "validation",
+      "layout": "cloister1",
+      "build_manifest_sha256": "2d74e362b9842ec0ec780d277e3f6f4bc8a9dac6e6c0fbb7a58b1b7bdca1c5b8",
+      "ordinary": "ordinary/validation-cloister1-earth-low-left.json.gz"
+    },
+    "validation-cloister2-cool-high-right": {
+      "sha256": "b44d39c2293d7c6e6342991fa35bd345c4b65c3a9eb32d709c6ce35a7a34bd8d",
+      "split": "validation",
+      "layout": "cloister2",
+      "build_manifest_sha256": "7cb3c408c6a92f5c651a238a85a82601913bf238b9f65da29978b6f7a4855d95",
+      "ordinary": "ordinary/validation-cloister2-cool-high-right.json.gz"
+    },
+    "validation-cloister2-cool-low-left": {
+      "sha256": "7827d94b5b49939a79c0beff66e6fa9350f1e5369c3604a31ad71d3724bd7da7",
+      "split": "validation",
+      "layout": "cloister2",
+      "build_manifest_sha256": "5440e5e1a5e0b3d510640ee302c942aeb148167ad23ce2bc73e79b691e4efbd3",
+      "ordinary": "ordinary/validation-cloister2-cool-low-left.json.gz"
+    },
+    "validation-cloister2-earth-high-right": {
+      "sha256": "d6158887502cad46d0c123c5d81419216d0d647de03f5cc894ce38fcb824fc03",
+      "split": "validation",
+      "layout": "cloister2",
+      "build_manifest_sha256": "f378a143154daef6ba2e1d0913327bcf961a7490369bcc3b44f30b99758f08be",
+      "ordinary": "ordinary/validation-cloister2-earth-high-right.json.gz"
+    },
+    "validation-cloister2-earth-low-left": {
+      "sha256": "4cc646c35ac8a43bbcaa9ed5f50f6b289001586af8fae76808550e7d7bab9c7f",
+      "split": "validation",
+      "layout": "cloister2",
+      "build_manifest_sha256": "55be1537c0f45634e6d3c8c546d218ae1aa143ef5f182354f921044a1d079fe4",
+      "ordinary": "ordinary/validation-cloister2-earth-low-left.json.gz"
+    },
+    "validation-cloister3-cool-high-right": {
+      "sha256": "5e41490e98d263b75ec35836087592a46e7827ef51b528e1ac4c3a562caf8a1e",
+      "split": "validation",
+      "layout": "cloister3",
+      "build_manifest_sha256": "f29f17794ded9cbe90ad6d1c934544f1746ab8334061981064578e2d936b38a9",
+      "ordinary": "ordinary/validation-cloister3-cool-high-right.json.gz"
+    },
+    "validation-cloister3-cool-low-left": {
+      "sha256": "2af0c43ad2dde58db3fb5f85e860db3151aaa75fe4e42d026bb1603375d63eec",
+      "split": "validation",
+      "layout": "cloister3",
+      "build_manifest_sha256": "082442dd57ca204d2ac21b4747f2bb72faf2773610e23f775c19bd56a79a2305",
+      "ordinary": "ordinary/validation-cloister3-cool-low-left.json.gz"
+    },
+    "validation-cloister3-earth-high-right": {
+      "sha256": "d9c02463e7d3e940c4fe34b84b7f455ae8e21b48884b5c147a9fcf68dae45de5",
+      "split": "validation",
+      "layout": "cloister3",
+      "build_manifest_sha256": "1ee08940a2d76f830a21ccf9415c466a9dc8f8078ac3731b8642bae37c6c3618",
+      "ordinary": "ordinary/validation-cloister3-earth-high-right.json.gz"
+    },
+    "validation-cloister3-earth-low-left": {
+      "sha256": "55dc3070e54ecf411430bb3b314c4bba448be6aa981fe3206354a040f84b8304",
+      "split": "validation",
+      "layout": "cloister3",
+      "build_manifest_sha256": "5746e5afcab6069ce173bb4326281b5fc27802c40d0b06d0cfe750a761f995f6",
+      "ordinary": "ordinary/validation-cloister3-earth-low-left.json.gz"
+    },
+    "test-twinspire1-cool-high-right": {
+      "sha256": "02e58fb693b6a95ffc35c2ba212ec4b150d2670c0b016c747e287afce5723cdf",
+      "split": "test",
+      "layout": "twinspire1",
+      "build_manifest_sha256": "48f5159e09255ee8410f97abcffe118105b9421dab0653531badab9eb7a0c3e1",
+      "ordinary": "ordinary/test-twinspire1-cool-high-right.json.gz"
+    },
+    "test-twinspire1-cool-low-left": {
+      "sha256": "042ce5059691039efe691a2cf61d174f6f46eaed1196d21c9d76516f9956ef73",
+      "split": "test",
+      "layout": "twinspire1",
+      "build_manifest_sha256": "cdb8e850832ab1d3abd676b1d42bebf9e613664e7dd1ee95fafc315c5e00facf",
+      "ordinary": "ordinary/test-twinspire1-cool-low-left.json.gz"
+    },
+    "test-twinspire1-earth-high-right": {
+      "sha256": "45c87bd2a1d91d4f1d7bedbbf238cef410c3f762a55a453fd18959b8bff68a55",
+      "split": "test",
+      "layout": "twinspire1",
+      "build_manifest_sha256": "010db24c6d79b7f3bcfc51b81b41517af45f7d00c223bd15ada87d0823d678ed",
+      "ordinary": "ordinary/test-twinspire1-earth-high-right.json.gz"
+    },
+    "test-twinspire1-earth-low-left": {
+      "sha256": "c5d7e3dda67c0ce99472bbad4d84bdd7adf03c1ef9b4c3aa07961ddd12a6b235",
+      "split": "test",
+      "layout": "twinspire1",
+      "build_manifest_sha256": "79f2aafd78a2580c2efd4ebc10ce31413f6a4c3a9626e0720a360bbb2c574f6e",
+      "ordinary": "ordinary/test-twinspire1-earth-low-left.json.gz"
+    },
+    "test-twinspire2-cool-high-right": {
+      "sha256": "da880aa09dbb3bccb5a8e3a086ab68293bdfbc93759b0451d980e0edf3eb014d",
+      "split": "test",
+      "layout": "twinspire2",
+      "build_manifest_sha256": "4c54ce8535a68383701c4880a338b4f5a8735696b0dfdbfd4ed9ce7b0a251846",
+      "ordinary": "ordinary/test-twinspire2-cool-high-right.json.gz"
+    },
+    "test-twinspire2-cool-low-left": {
+      "sha256": "fd012a40918665b1bbe3660dec678a6b0b252934e4107adbf34bb95102226789",
+      "split": "test",
+      "layout": "twinspire2",
+      "build_manifest_sha256": "41f5daeeec3c360a97a9b5b308b936e9b3c60689355e97b7909affceff36fdb8",
+      "ordinary": "ordinary/test-twinspire2-cool-low-left.json.gz"
+    },
+    "test-twinspire2-earth-high-right": {
+      "sha256": "fc71ebed34081656bdab0306f0f84b1acc3aebb5a87c3e73393999eabb4d50e8",
+      "split": "test",
+      "layout": "twinspire2",
+      "build_manifest_sha256": "4cf6d3a8809e4dfb42dfb34d9a4650c722c58fda0d6299fefd75729059529c9f",
+      "ordinary": "ordinary/test-twinspire2-earth-high-right.json.gz"
+    },
+    "test-twinspire2-earth-low-left": {
+      "sha256": "2b5c0abe66d1257234b3bc7192129e1a453c56b65eb14bb9f858e5af9480072c",
+      "split": "test",
+      "layout": "twinspire2",
+      "build_manifest_sha256": "fb0b740e785b7a0b90608a41db29dea14f69b402c39447c2887189b55eec2608",
+      "ordinary": "ordinary/test-twinspire2-earth-low-left.json.gz"
+    },
+    "test-twinspire3-cool-high-right": {
+      "sha256": "844b971d4a1a94df0dfb7ac6b4def9377b3440a572d99386248d1bf7ec5a1717",
+      "split": "test",
+      "layout": "twinspire3",
+      "build_manifest_sha256": "5e230d7ce738b9c4a03ff15f4fcedff2c54c6ec19634096a40382b742adf9b99",
+      "ordinary": "ordinary/test-twinspire3-cool-high-right.json.gz"
+    },
+    "test-twinspire3-cool-low-left": {
+      "sha256": "105ca0401e7a25246d35564647b91c7c86c41aee3e088b5a0749d915d49c9d0b",
+      "split": "test",
+      "layout": "twinspire3",
+      "build_manifest_sha256": "9e1f004db5a9f00911927b5ef26711dc6003312ad386b9b788b184200ae01d13",
+      "ordinary": "ordinary/test-twinspire3-cool-low-left.json.gz"
+    },
+    "test-twinspire3-earth-high-right": {
+      "sha256": "5318c61a2321570841e0d5c4ceb9c42af75b916a77e1effacde2d6661c2a1bf7",
+      "split": "test",
+      "layout": "twinspire3",
+      "build_manifest_sha256": "99915954467a56b23890f3e8190d4080271dfca08d1a72c6a4916146e2c1ae16",
+      "ordinary": "ordinary/test-twinspire3-earth-high-right.json.gz"
+    },
+    "test-twinspire3-earth-low-left": {
+      "sha256": "24a4c46522c5250677bc5226311a404739b74d88e03d8be92c046b7ad6df8436",
+      "split": "test",
+      "layout": "twinspire3",
+      "build_manifest_sha256": "d6c54d010e65fa847fb5c088e43139e0c0a488aa846ee840b1fe39cb75e9ebe8",
+      "ordinary": "ordinary/test-twinspire3-earth-low-left.json.gz"
+    }
+  },
+  "reproduce": "python -m benchmark.detail_transfer --dataset <visible-builds-v1-shards> --out runs/transfer-replay",
+  "artifacts": {
+    "cases.json": "9193c771d7d466e3e606b3228ff71431da9f2a4afd1d202e4488b66f18d4961f",
+    "comparison.jpg": "3835881b1f67710bde369789ef3426025fbb145ef1707338bc3fd3fd811878b4",
+    "ordinary/test-twinspire1-cool-high-right.json.gz": "5c2a2a900d4d1a6659333821625a56b7c0d6ce88c0e40abf330a12cefd015199",
+    "ordinary/test-twinspire1-cool-low-left.json.gz": "0f5e7e40180ad2626a33098f6d80b9ec9878ba1b748918bfb2289a36fddd2c4d",
+    "ordinary/test-twinspire1-earth-high-right.json.gz": "5a19737b0a880361ff837509ef008f0f611c75e14c6361fbbf6f740df953a048",
+    "ordinary/test-twinspire1-earth-low-left.json.gz": "a4e85ef3341b1a2eaba1c8dd98f282125d7aa3dbcbb785406f4773eaceb40281",
+    "ordinary/test-twinspire2-cool-high-right.json.gz": "2a2d42dcaf296871b639802b43fb1635a7bc4bdf38a010427d8b56edbc501335",
+    "ordinary/test-twinspire2-cool-low-left.json.gz": "54a524c2dd766ccadfe44b5f31779d302df3e1175318a4aaa0d6084451e33de2",
+    "ordinary/test-twinspire2-earth-high-right.json.gz": "e7ab62a84f7b01460eb65af802f7b343be94c6151909c9be51c7d52c34319fbe",
+    "ordinary/test-twinspire2-earth-low-left.json.gz": "8bab92c45718afe5b99c98985fb6fc147d3986897c7a89eeba1832b5497be8ff",
+    "ordinary/test-twinspire3-cool-high-right.json.gz": "0b177e5021746009bd1035834493c9d7395150a4754315d3e478c329bb5fa02a",
+    "ordinary/test-twinspire3-cool-low-left.json.gz": "8bf972474f496a5ab73b0a9a614fc6efd5655c583dfca79e2480ee6e03c182c6",
+    "ordinary/test-twinspire3-earth-high-right.json.gz": "ea9771f2368e64f3e69ece03b596c8d76c444d4e1a4fc8a0220f0d16fb395bc3",
+    "ordinary/test-twinspire3-earth-low-left.json.gz": "7bd2bd3133387dfb73d4e269300c3121d093e6103b5fe0dd90c31b568e333b25",
+    "ordinary/validation-cloister1-cool-high-right.json.gz": "158074e6bf62382dd72419cc2cd088cb642270e6f13c8bee394dc00b1b22631b",
+    "ordinary/validation-cloister1-cool-low-left.json.gz": "c3e1d5da94c2afef12bff6af48b7a38689708016aebffcc1009bec6bb250b859",
+    "ordinary/validation-cloister1-earth-high-right.json.gz": "f7af8bc0a5adf45b53e1fa6fdc5ad0c6806d360e352881d56d1d345e7a91f417",
+    "ordinary/validation-cloister1-earth-low-left.json.gz": "b3ad8679b41891d068930142d8fa053a532fd44e5750b7663fd1c8dbb8663436",
+    "ordinary/validation-cloister2-cool-high-right.json.gz": "5fc793e71f727ea6e879d29746e622b9c0d2b9daa07aeda77393095fb9f347c4",
+    "ordinary/validation-cloister2-cool-low-left.json.gz": "69e3ca1ad895d7ff0dd0369eebd83b06edaecd794095ff386d2ea40736c491c7",
+    "ordinary/validation-cloister2-earth-high-right.json.gz": "fcd66d2a0bb274c0e26dd4c572ccaeab27c51e7793c0eface56592838b4e9171",
+    "ordinary/validation-cloister2-earth-low-left.json.gz": "1e2e119a9a6b01854184eacca6f6f243129b2577df3c9b48f722e17186bf638c",
+    "ordinary/validation-cloister3-cool-high-right.json.gz": "6b7950ee7ad7a92ae4edceda475179b89ff8bdac2d64121000b8bb3fced88753",
+    "ordinary/validation-cloister3-cool-low-left.json.gz": "796faa25dea89235e2f1bf33a2693bcfbfdc0e2931caadf74105e1cdc97fab92",
+    "ordinary/validation-cloister3-earth-high-right.json.gz": "5718625982a008399a69e9f1c8c1484cf3b07d8a3b0cbd138541b758de677395",
+    "ordinary/validation-cloister3-earth-low-left.json.gz": "d7d0523f6517d62f118f18167e5a1c6a3cb741bd40afee0de91dfaf75ed422e0",
+    "scores.json": "d4f69aaca2804a640d09b1fe51d7fc6760966d5ce409ebd14663e8f30c7bf2a1",
+    "sheet-views.json": "180cf6e7b88d184acc849883b4368b2c39329d81015d444b84290d5ea5789415"
+  }
+}
