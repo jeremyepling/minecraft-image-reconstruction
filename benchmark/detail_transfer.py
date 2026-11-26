@@ -107,6 +107,14 @@ def evaluate(z,row,input_build):
     ref=truth(pose,faces)
     native=_native_reference(pose,ref,faces)
     real=reference_planes(ref,faces)
+    index={(tuple(face['xyz']),face['direction']):rid for rid,plane in real.items() for face in plane['faces'].values()}
+    exported=json.loads(member(z,row,'labels.json'))['faces']
+    mapping=np.zeros(len(exported)+1,dtype=np.int32)
+    for face in exported:
+        mapping[face['id']]=index[(tuple(face['xyz_world']),face['direction'])]
+    with np.load(io.BytesIO(member(z,row,'labels.npz')),allow_pickle=False) as maps:
+        if not np.array_equal(mapping[maps['face_id']],native):
+            raise ValueError('Reprojected visible geometry differs from native release target')
     scores,matched,sizes={}, {}, {}
     for method, regs in parts.items():
         scores[method],pairs=measure(regs,ref,use_mask=True)
@@ -251,7 +259,7 @@ def run(dataset,out,builds,workers):
         setting=RULE,settings=edge_detail.SETTINGS[RULE],protocol=PROTOCOL,
         expected='Improve paired edge distance for both families, retain existing matches and exact block sizes, avoid extra incorrect guesses or covered openings.',
         models='Ordinary single-image default; per-build model hashes and stages in ordinary/*.json.gz.',
-        reference='Scores use reference-faces.json and the recorded camera; native pixel counts checked against labels.',
+        reference='Scores use reference-faces.json and the recorded camera; every projected native surface pixel verified against the released face_id array.',
         dataset_manifest_sha256=digest(ROOT/'training/visible-builds-v1.json'),
         shards={split:entry for split,_,entry in shards(dataset)},frames=index,
         reproduce='python -m benchmark.detail_transfer --dataset <visible-builds-v1-shards> --out runs/transfer-replay',
