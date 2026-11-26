@@ -52,7 +52,10 @@ def visible_candidates(ctx, lines):
         coords = np.floor(xyz).astype(int)
         coords[:,axis] = lower
         pts, counts = np.unique(coords,axis=0,return_counts=True)
-        yield from ((tuple(p),axis) for p in pts[counts>=4] if tuple(p) in cells)
+        for point in pts[counts>=4].tolist():
+            cell=tuple(point)
+            if cell in cells:
+                yield cell,axis
 
 
 def measure(ctx, cell, axis, joint=None):

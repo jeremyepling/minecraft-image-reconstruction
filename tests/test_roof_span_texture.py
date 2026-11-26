@@ -1,7 +1,12 @@
 import unittest
+from pathlib import Path
+from tempfile import TemporaryDirectory
+from types import SimpleNamespace
 from unittest.mock import patch
+import numpy as np
 
 from engine import roof_span_texture as roof
+from benchmark.mask_blocks import _write_read
 
 
 class RoofSpanTextureTests(unittest.TestCase):
@@ -26,3 +31,13 @@ class RoofSpanTextureTests(unittest.TestCase):
             for camera in ({'P':None}, {'P':[]}):
                 retained,_ = roof.recover(None,[{'support':True}],{},camera,prior)
                 self.assertEqual(retained,prior)
+
+    def test_ray_candidates_round_trip_through_minecraft_export(self):
+        shape=(8,8)
+        ctx=SimpleNamespace(union=np.ones(shape,bool),axes=np.zeros(shape,int),
+                            masks=np.ones((3,*shape),bool),depth=np.zeros(shape),eye=np.array([.5,2.,.5]),
+                            _rays=lambda x,y: np.tile([0.,-1.,0.],(len(x),1)))
+        cells={c for c,axis in roof.visible_candidates(ctx,{(1,0):{(0,0,0)}})}
+        self.assertEqual(cells,{(0,0,0)})
+        with TemporaryDirectory() as temp:
+            self.assertEqual(_write_read(Path(temp)/'roof.zip',cells),cells)
