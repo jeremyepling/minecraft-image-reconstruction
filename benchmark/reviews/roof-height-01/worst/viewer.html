@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Lowest-scoring structures · Reconstruction overlays</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#12232b;color:#f4f6ef;font:16px/1.45 "Segoe UI",sans-serif}main{max-width:1560px;margin:auto;padding:24px clamp(15px,3vw,54px)}
+h1{font-size:clamp(1.65rem,3vw,2.5rem);margin:0}p{margin:.4em 0 1em;color:#c7d4d5}header,.controls,nav{display:flex;align-items:center;flex-wrap:wrap;gap:10px 16px}header{justify-content:space-between}header label, .blend{display:flex;align-items:center;gap:8px}
+select,button{font:inherit;color:inherit;background:#253941;border:1px solid #587079;border-radius:5px;padding:8px 12px}button{cursor:pointer}button[aria-pressed=true]{background:#d9ede4;color:#182c29;border-color:#d9ede4}select:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid #ffca67}
+.controls{justify-content:space-between;margin:.7em 0}.frame{display:grid;background:#0b1519;border:1px solid #49616b;border-radius:6px;overflow:hidden}
+.frame img{grid-area:1/1;width:100%;height:auto;display:block}figcaption{margin:8px 0;color:#d5dfdf}figure{margin:0}
+footer{margin:14px 0}a{color:#afe0d1}#metrics{color:#f0f4ed;font-variant-numeric:tabular-nums}
+@media(max-width:650px){main{padding:14px}nav{gap:6px}button{padding:5px 9px}.controls{align-items:flex-start}}
+</style>
+<main><header><h1>Lowest-scoring structures</h1><label>Structure <select id="layout"></select></label></header>
+<p>Ranked by geometry F1 across all fixed views of each layout. The overlay uses its lowest-scoring photograph.</p>
+<div class="controls"><nav aria-label="Pipeline stage"></nav><label class="blend">Overlay opacity <input id="opacity" type="range" min="0" max="100" value="100"><output id="pct">100%</output></label></div>
+<figure><div class="frame"><img id="source" width="1440" height="900" alt=""><img id="overlay" width="1440" height="900" alt=""></div><figcaption id="caption"></figcaption></figure>
+<div id="metrics" aria-live="polite"></div><footer><a id="sheet" href="">Open all stages for this structure</a> · <a href="comparison.jpg">Open the ten-structure stage map</a></footer></main>
+<script>
+const layouts=[{"rank":1,"name":"Canopy 00 (open)","f1":0.7012987012987013,"frames":1,"view":{"split":"fresh","id":"shape-benchmark-open-26.3--train-canopy-00-right","name":"Canopy 00 (open)","rgb_sha256":"647ddfc70562de0effeb54a865677408f5b1595fb8ce1d8f67e2d36077c2d1e4","pack_sha256":"b45341a871bc6adac6b2c1cce4db97ad7bf5f4c8579786e8a7933d92c626908d","f1":0.7012987012987013,"correct":27,"target":50,"placed":27,"extras":0,"missed":23},"sheet":"structure-01.jpg"},{"rank":2,"name":"Canopy 04","f1":0.7272727272727273,"frames":1,"view":{"split":"old","id":"shape-benchmark-26.3--train-canopy-04-left","name":"Canopy 04","rgb_sha256":"15fa8537e6b6f095ba50c7e24a71f6b823806a6fb236f80641daf9bc714c0823","pack_sha256":"25155c7385c458f1d1b53bbe0669d6497919289223d56eefa738000ee4d2276c","f1":0.7272727272727273,"correct":36,"target":60,"placed":39,"extras":3,"missed":24},"sheet":"structure-02.jpg"},{"rank":3,"name":"Colonnade 01","f1":0.7522388059701492,"frames":1,"view":{"split":"fresh","id":"inverse-voxels-26.3--confirm--test-colonnade-01-oblique-right","name":"Colonnade 01","rgb_sha256":"56f1d5c1feb17dcee4ab530954cd05a37bf86ef178aead769afe90c9ce6307e6","pack_sha256":"0abaef41f6b6e1c256d90902308b03ac9265276ca4365f6062182a47221fa032","f1":0.7522388059701492,"correct":126,"target":191,"placed":144,"extras":18,"missed":65},"sheet":"structure-03.jpg"},{"rank":4,"name":"Galleries","f1":0.7792207792207793,"frames":4,"view":{"split":"regression","id":"legacy-light_gray_concrete-holdout-galleries-masonry-high-right","name":"Galleries","rgb_sha256":"21916862012e6b47e6dbe426fd7a8930bd7fdd51651238d8ad4d3e8860f57a7b","pack_sha256":"3ffe0cfd2594432030dad16c0f0017957a4c0f6dc14a5a0fa835018c16b5cc07","f1":0.7459016393442623,"correct":182,"target":297,"placed":191,"extras":9,"missed":115},"sheet":"structure-04.jpg"},{"rank":5,"name":"Canopy 07","f1":0.8251748251748252,"frames":1,"view":{"split":"old","id":"shape-benchmark-26.3--train-canopy-07-left","name":"Canopy 07","rgb_sha256":"15984215f0265a4c447ab14c02d913d2b564639d84a739c6c0c1e4e6db47d396","pack_sha256":"f701055c7a1068d6be27034bcd363a5c8c26ec7c62307d0e87fbb56027a88620","f1":0.8251748251748252,"correct":59,"target":83,"placed":60,"extras":1,"missed":24},"sheet":"structure-05.jpg"},{"rank":6,"name":"Physical Shade","f1":0.8361858190709046,"frames":2,"view":{"split":"native","id":"physical-shade-oblique-left","name":"Physical Shade","rgb_sha256":"bd7bca183c7a5ca32ce59edcba2c9341ca600e3bf4779d17ddce9025145a68d2","pack_sha256":"7242871f82405fb6d379e59350593ee85cb73e599a52b509ef579d91ff879dd1","f1":0.819935691318328,"correct":255,"target":365,"placed":257,"extras":2,"missed":110},"sheet":"structure-06.jpg"},{"rank":7,"name":"Dev Relief 00","f1":0.8370044052863436,"frames":1,"view":{"split":"old","id":"signed-relief-26.3--dev--dev-relief-00-oblique-right","name":"Dev Relief 00","rgb_sha256":"17682203a4372c0a677e34f7da95c18cb82acde6d1b92363697905fb6a90f7f5","pack_sha256":"d51ecba5801e1fb3949ae15b7975e1c86c9c7556626380f6a016beab775e8f14","f1":0.8370044052863436,"correct":380,"target":480,"placed":428,"extras":48,"missed":100},"sheet":"structure-07.jpg"},{"rank":8,"name":"Relief 00","f1":0.858397365532382,"frames":1,"view":{"split":"old","id":"signed-relief-26.3--test--test-relief-00-oblique-left","name":"Relief 00","rgb_sha256":"54145a22b48ba5eb35581125363469a3024172b1e9ae95cb6dff00ca9a673854","pack_sha256":"0383966a0ad5c3827f0f637ae08cb44de3d7dcd5bf9cf658a8119c47c2e26e4d","f1":0.858397365532382,"correct":391,"target":482,"placed":429,"extras":38,"missed":91},"sheet":"structure-08.jpg"},{"rank":9,"name":"Shopfront","f1":0.8606142423219709,"frames":8,"view":{"split":"regression","id":"legacy-light_gray_concrete-dev-shopfront-plaster-low-left","name":"Shopfront","rgb_sha256":"299e0228de74d2cc7d3a18deaba9f61c82560a0ddd0b8557e5c91728c964a993","pack_sha256":"0abf521ed30ea4029122b901004bb5189998df5233943a13ed63b2e1bf369971","f1":0.7030716723549488,"correct":103,"target":169,"placed":124,"extras":21,"missed":66},"sheet":"structure-09.jpg"},{"rank":10,"name":"Facade","f1":0.8619676945668135,"frames":2,"view":{"split":"native","id":"heldout-facade-oblique-right","name":"Facade","rgb_sha256":"0828c9d164392fe0bad9a1a709c1f321eb73f7bb7d08739f3b99382493df5ad0","pack_sha256":"4fb6b93d0edc027618c4ebf2a82b0b63871a4435728db1ebe801efeb56f67ff5","f1":0.826865671641791,"correct":277,"target":361,"placed":309,"extras":32,"missed":84},"sheet":"structure-10.jpg"}];
+const stages=[
+ ['source','Source','Original Minecraft screenshot.'],
+ ['outlines','Surface Finder','Detected surface boundaries on the original screenshot.'],
+ ['grid','Block Counter','The measured grid is projected back into each supported image region.'],
+ ['build','Reconstruction','The decoded build projected from the source camera.'],
+ ['truth','Visible reference','Recorded geometry visible in this photograph.'],
+ ['errors','Placement errors','Green marks correct blocks, red marks extras, and blue marks missed visible blocks after one shared translation.']
+];
+const el=id=>document.getElementById(id);
+const chooser=el('layout'),nav=document.querySelector('nav');
+let stage=0;
+layouts.forEach((r,i)=>chooser.add(new Option((i+1)+'. '+r.name,i)));
+stages.forEach(([key,name],i)=>{const b=document.createElement('button');b.textContent=name;b.onclick=()=>{stage=i;render()};nav.append(b)});
+function render(){
+ const r=layouts[Number(chooser.value)],prefix='overlays/'+String(r.rank).padStart(2,'0')+'-';
+ el('source').src=prefix+'source.jpg';el('source').alt=r.name+' source photograph';
+ el('overlay').src=prefix+stages[stage][0]+'.jpg';el('overlay').alt=r.name+' '+stages[stage][1];
+ el('opacity').disabled=stage===0;el('overlay').style.opacity=Number(el('opacity').value)/100;
+ el('pct').textContent=el('opacity').value+'%';[...nav.children].forEach((b,i)=>b.setAttribute('aria-pressed',String(i===stage)));
+ el('sheet').href=r.sheet;el('caption').textContent=stages[stage][2];
+ const v=r.view;
+ el('metrics').textContent='Layout F1 '+(100*r.f1).toFixed(2)+'% across '+r.frames+' '+(r.frames===1?'view':'views')+'  ·  Shown view '+(100*v.f1).toFixed(2)+'%  ·  '+v.correct+' of '+v.target+' visible blocks  ·  '+v.extras+' extra';
+}
+chooser.onchange=render;el('opacity').oninput=render;render();
+</script></html>

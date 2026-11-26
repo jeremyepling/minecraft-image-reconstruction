@@ -1,6 +1,6 @@
 """Publish a compact, linked index of the stage maps and their evaluation records."""
 
-def write_report(out, ranking, traces):
+def write_report(out, ranking, traces, run):
     rows = [
         '# Ten lowest-scoring structures',
         '',
@@ -44,5 +44,5 @@ def write_report(out, ranking, traces):
     for v in ranking['lowest_views']:
         rows.append(f"| {v['id']} | {v['f1']:.2%} | {v['correct']} / {v['target']} | {v['extras']} |")
     rows.extend(['','## Reproduce','','Run from the repository with the scored fixture data and calibrated atlas available. Supply the winning score directory, including the exported packs and decoded coordinates.','',
-                 '```powershell','python -m benchmark.roof_span_worst --run runs/conservative --out benchmark/reviews/roof-span-01/worst','```',''])
+                 '```powershell',f'python -m benchmark.roof_span_worst --run "{run.as_posix()}" --out "{out.as_posix()}"','```',''])
     (out/'README.md').write_text('\n'.join(rows),encoding='utf8')

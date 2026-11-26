@@ -7,10 +7,10 @@ from benchmark.mask_blocks import decoded_pack
 from benchmark.texture_camera_eval import checked, digest, read, save
 
 
-def collect(runs,names,out):
+def collect(runs,names,out,baseline_name='roof-control',control_revision='99655be'):
     out.mkdir(parents=True,exist_ok=True)
-    baseline=read(runs/'roof-control/summary.json')
-    previous=read(checked(runs/'roof-control/cases.json',baseline['cases_sha256']))
+    baseline=read(runs/baseline_name/'summary.json')
+    previous=read(checked(runs/baseline_name/'cases.json',baseline['cases_sha256']))
     index={(r['split'],r['id']):r for r in previous}
     assert len(index)==200
     summaries={}
@@ -51,13 +51,15 @@ def collect(runs,names,out):
                                  transfer=recent['relative_geometry'],cases_sha256=meta['cases_sha256'])
     with ZipFile(out/'comparisons.zip') as z:
         assert z.testzip() is None
-    save(out/'results.json',dict(control='99655be',archive_sha256=digest(out/'comparisons.zip'),methods=summaries))
+    save(out/'results.json',dict(control=control_revision,archive_sha256=digest(out/'comparisons.zip'),methods=summaries))
 
 
 if __name__=='__main__':
     p=argparse.ArgumentParser(description=__doc__)
     p.add_argument('--runs',required=True,type=Path)
     p.add_argument('--out',required=True,type=Path)
+    p.add_argument('--baseline',default='roof-control')
+    p.add_argument('--control-revision',default='99655be')
     p.add_argument('methods',nargs='+')
     a=p.parse_args()
-    collect(a.runs,a.methods,a.out)
+    collect(a.runs,a.methods,a.out,a.baseline,a.control_revision)

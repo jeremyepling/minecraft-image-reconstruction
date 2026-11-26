@@ -12,10 +12,10 @@ def records(folder):
     return {(r.get('split',''),r['id']):r for r in rows}
 
 
-def verify(runs,out):
+def verify(runs,out,winner='conservative'):
     checked_views=[]
     for prefix in ('','transfer-'):
-        before,after=(runs/(prefix+name) for name in ('conservative','production'))
+        before,after=(runs/(prefix+name) for name in (winner,'production'))
         candidate,produced=records(before),records(after)
         assert candidate.keys()==produced.keys()
         for (split,key),base in candidate.items():
@@ -39,12 +39,14 @@ def verify(runs,out):
                   cases_sha256=read(runs/'production/summary.json')['cases_sha256'],
                   cli=dict(id=key,rgb_sha256=m['image_sha256'],pack_sha256=digest(src/'reconstruction.zip'),
                            total=len(cli),roof_span_blocks=p['roof_span_blocks'],
+                           roof_height_revisions=p.get('roof_height_revisions',{}),
                            coordinates_and_materials_match=True)))
 
 
 if __name__=='__main__':
     p=argparse.ArgumentParser(description=__doc__)
     p.add_argument('--runs',required=True,type=Path)
+    p.add_argument('--winner',default='conservative')
     p.add_argument('--out',required=True,type=Path)
     a=p.parse_args()
-    verify(a.runs,a.out)
+    verify(a.runs,a.out,a.winner)

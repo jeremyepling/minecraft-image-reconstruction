@@ -174,4 +174,4 @@ def render(run, out, ranking, frames):
     page.save(out/'comparison.jpg',quality=92,subsampling=0,optimize=True)
     save(out/'stage-traces.json',dict(cases_sha256=ranking['cases_sha256'],stages=LABELS,atlas=atlas.provenance,views=traces))
     from benchmark.roof_span_worst_text import write_report
-    write_report(out,ranking,traces)
+    write_report(out,ranking,traces,run)
