@@ -38,11 +38,12 @@ def score(job):
     return row
 
 
-def compare(args):
+def compare(args, *, case_source=cases, scorer=score, control='99655be', default_engine='0e0c229',
+            additional_sources=()):
     sources = (TRAINING_RELEASE, framed.ARCHIVE, framed.NEW_ARCHIVE, PACKS,
                framed.REVIEW / 'whole-structure-framing-01/evaluation-only.json')
-    summary, groups = framed.compare(args, case_source=cases, scorer=score,
-                                     control='99655be', default_engine='0e0c229', source_files=sources)
+    summary, groups = framed.compare(args, case_source=case_source, scorer=scorer, control=control,
+                                     default_engine=default_engine, source_files=sources+additional_sources)
     summary['camera_registered'] = {
         group: summarize([{'relative_geometry': row['metrics']} for row in rows])
         for group, rows in groups.items()

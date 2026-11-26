@@ -129,7 +129,7 @@ def build(job):
                             str(rgb_path(f).resolve()),'-Through','counts','-Out',str(target.resolve())],
                             check=True,cwd=ROOT,stdout=log,stderr=subprocess.STDOUT)
 
-def score_case(job):
+def score_case(job, *, baseline_local=None):
     from benchmark import visible_depth_score as scorer
     from benchmark.camera_metrics import registration
     from benchmark.mask_blocks import _write_read,registered
@@ -157,8 +157,12 @@ def score_case(job):
     truth={tuple(b['xyz_world']):b['block_id'] for b in visible['blocks']}
     occupied=structure(raw,64).keys()
     assert truth.keys()<=occupied
-    world=registered(local,registration(np.asarray(f['camera']['P']),pose))
-    before=world if baseline is None or method=='prior' else set(map(tuple,read(baseline/key/'cells.json')['world']))
+    transform=registration(np.asarray(f['camera']['P']),pose)
+    world=registered(local,transform)
+    if baseline_local is None:
+        before=world if baseline is None or method=='prior' else set(map(tuple,read(baseline/key/'cells.json')['world']))
+    else:
+        before=registered(baseline_local,transform)
     scores=placement_scores(world,before,truth,occupied)
     save(dest/'cells.json',dict(id=key,local=sorted(local),world=sorted(world)))
     return dict(id=key,camera_supported=True,shape=f['shape'],rgb_sha256=f['files']['rgb.png'],
