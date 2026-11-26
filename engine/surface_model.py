@@ -434,11 +434,18 @@ def build(image_path, version, out, *, outlines=None, order_method=None, through
             patches=split(image,patches,fields['depth'],version)
         methods['surface_boundary']=boundary
         if boundary == CROP_SPLIT:
-            from engine.sky_filter import filter_surface
-            patches, sky_stats = filter_surface(image, patches)
+            from engine.sky_filter import filter_surface, sky_masks
+            from engine import sky_gap
+            blue, cloud = sky_masks(image)
+            patches, sky_stats = filter_surface(image, patches, masks=(blue, cloud))
             methods['background_filter'] = 'clear-noon-sky'
             methods['boundary_sequence'].append(methods['background_filter'])
             boundary_settings['background_filter'] = sky_stats
+            gap = sky_gap.gap_mask(image, blue, cloud)
+            patches, gap_stats = filter_surface(image, patches, masks=(gap, np.zeros_like(gap)))
+            methods['opening_sky_filter'] = sky_gap.METHOD
+            methods['boundary_sequence'].append(sky_gap.METHOD)
+            boundary_settings['opening_sky_filter'] = dict(settings=sky_gap.SETTINGS, **gap_stats)
         context_px = DEFAULT_CONTEXT_PX if context_px is None else context_px
         patches = [with_outline(part) for part in patches]
         crop_dir = out/'surface-crops'

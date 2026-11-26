@@ -3,7 +3,7 @@ import unittest
 import numpy as np
 from PIL import Image
 
-from benchmark.sky_gap_method import gap_mask
+from engine.sky_gap import gap_mask
 
 
 class SkyOpeningTest(unittest.TestCase):

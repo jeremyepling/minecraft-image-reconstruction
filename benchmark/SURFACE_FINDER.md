@@ -1,6 +1,6 @@
 # From a screenshot to visible surfaces and block counts
 
-The ordinary Java 26.3 build uses **Regions First with split-only zoom** for its **Surface Finder**. It found **517 of 598** eligible surface appearances across 56 views of eight Minecraft buildings. The **Block Counter** got both width and height right for 94 surfaces. [See the prediction and reference outlines](reviews/sky-01/comparison.jpg) · [Scores for each picture](reviews/sky-01/pictures.md)
+The ordinary Java 26.3 build uses **Regions First with split-only zoom** for its **Surface Finder**. It found **517 of 598** eligible surface appearances across 56 views of eight Minecraft buildings. The **Block Counter** got both width and height right for 94 surfaces. [See the prediction and reference outlines](reviews/sky-gap-01/comparison.png) · [Scores for each picture](reviews/sky-gap-01/pictures.md)
 
 ## What the Surface Finder sees
 
@@ -9,9 +9,9 @@ The ordinary Java 26.3 build uses **Regions First with split-only zoom** for its
 3. **Find missed planes.** Pixel-wise Planarity checks the full screenshot for a nearby unclaimed surface or evidence of a split within an existing wall. Splits stay within the parent mask. This step raised the score from 501 to 513, kept every earlier match and covered the same 601 of 16,630 sampled opening pixels. [Method and measured tradeoffs](AFTERPASS_MODELS.md)
 4. **Examine walls up close.** The same model inspects nine overlapping crops. A crop can divide an existing surface when two regions have enough support. The resulting pieces exactly cover the original mask, preserving holes. This recovered a narrow Shopfront face and a Workshop face seen in two palettes. [Split-only zoom comparison](CROP_SPLIT.md)
 
-5. **Exclude the sky.** Remove recognized exterior sky and clouds from each mask before writing surfaces, rectifying crops and counting blocks. The manifest records the affected proposals. [Independent pixel check](reviews/sky-control-01/report.json)
+5. **Exclude the sky.** Remove recognized exterior sky and clouds, then check enclosed openings against sky at the same height. Both passes run before writing surfaces, rectifying crops and counting blocks. The manifest records the affected proposals. [Independent pixel check](reviews/sky-control-01/report.json)
 
-An eligible reference surface is a connected patch with at least four visible block faces and 24 scoring samples. It matches one prediction when their overlap is at least half their combined area. The same wall can count again when seen in another picture. Across the suite, 81 eligible surfaces were missed. There were 173 extra proposals after smaller visible surfaces were accounted for. [Run manifest and scores](reviews/sky-01/manifest.json)
+An eligible reference surface is a connected patch with at least four visible block faces and 24 scoring samples. It matches one prediction when their overlap is at least half their combined area. The same wall can count again when seen in another picture. Across the suite, 81 eligible surfaces were missed. There were 173 extra proposals after smaller visible surfaces were accounted for. [Run manifest and scores](reviews/sky-gap-01/manifest.json)
 
 ## Inspect one screenshot
 

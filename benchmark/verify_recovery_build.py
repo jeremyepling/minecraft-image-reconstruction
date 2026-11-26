@@ -22,10 +22,15 @@ def verify(build, key, source_run=None, data=None):
     sky_filtered = manifest['stages'].get('background_filter') == 'clear-noon-sky'
     if sky_filtered:
         method = 'sky'
+    gap_filtered = manifest['stages'].get('opening_sky_filter') == 'row-sky-with-horizon'
+    if gap_filtered:
+        method = 'gap'
     if method:
         review = {CROP_SPLIT:'crop-split-01',PLANE_RECOVERY:'afterpass-models-01'}.get(boundary,'single-wall-depth-01')
         if sky_filtered:
             review = 'sky-01'
+        if gap_filtered:
+            review = 'sky-gap-01'
         archive=source_run or ROOT/'benchmark/reviews'/review
         source=read(archive/'manifest.json')
         if digest(archive/'cases.json')!=source['artifacts']['cases.json']:

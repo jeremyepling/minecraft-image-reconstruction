@@ -15,7 +15,7 @@ from benchmark.camera_sheet import label
 from benchmark.ledge_join_round import score_dimensions, summary
 from benchmark.mask_metrics import PROTOCOL
 from benchmark.normal_round import groups
-from benchmark.sky_gap_method import METHOD, SETTINGS, gap_mask
+from engine.sky_gap import METHOD, SETTINGS, gap_mask
 from benchmark.sky_round import occupied, reference_masks
 from benchmark.split_round import save_and_score
 from benchmark.surface_reference import ARCHIVE
@@ -151,8 +151,8 @@ def run(out,workers):
         fixtures=fixtures,reference_sha256=source['reference_sha256'],protocol=PROTOCOL,splits=source['splits'],
         capture=source['capture'],methods=NAMES,baseline='clear-noon-sky-v1',selection='Frozen before replay; reviewed A-D are regression examples.',
         source_manifest_sha256=digest(BASE/'manifest.json'),source_manifest=str(BASE.relative_to(ROOT).as_posix())+'/manifest.json',
-        review_index_sha256=digest(REVIEW),candidate=METHOD,settings=SETTINGS,candidate_module='benchmark.sky_gap_method.gap_mask',
-        candidate_sha256=digest(ROOT/'benchmark/sky_gap_method.py'),source_model_timing=source['source_model_timing'],new_inference_s=0,
+        review_index_sha256=digest(REVIEW),candidate=METHOD,settings=SETTINGS,candidate_module='engine.sky_gap.gap_mask',
+        candidate_sha256=digest(ROOT/'engine/sky_gap.py'),source_model_timing=source['source_model_timing'],new_inference_s=0,
         timing='Cached time includes exterior sky detection, gap detection and incremental subtraction. I/O and scoring excluded.',
         reference='Only after prediction: upward rays outside the recorded building are sky on this flat world.',
         reproduce='python -m benchmark.sky_gap_round --out runs/sky-gap-replay',

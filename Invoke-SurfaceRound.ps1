@@ -1,6 +1,6 @@
 [CmdletBinding()]
 param([string] $Python, [string] $Out, [int] $Workers = 3,
-      [ValidateSet('surfaces', 'normals', 'saved', 'building-sheet', 'candidate', 'compare', 'perimeters', 'detection-sheet', 'separation', 'recovery', 'recovery-summary', 'single-wall', 'ledge-join', 'afterpass', 'acceptance', 'guard-zoom', 'crop-split', 'contained', 'crop-review', 'sky')] [string] $Round = 'surfaces',
+      [ValidateSet('surfaces', 'normals', 'saved', 'building-sheet', 'candidate', 'compare', 'perimeters', 'detection-sheet', 'separation', 'recovery', 'recovery-summary', 'single-wall', 'ledge-join', 'afterpass', 'acceptance', 'guard-zoom', 'crop-split', 'contained', 'crop-review', 'sky', 'sky-gap')] [string] $Round = 'surfaces',
       [string] $Name = 'candidate', [string] $Outlines, [string] $Pitch, [string] $Order,
       [string] $Split, [string] $Fields, [string[]] $Runs, [string] $SourceRun)
 
@@ -39,10 +39,11 @@ try {
         'crop-split' = 'benchmark.crop_split_round'
         contained = 'benchmark.contained_round'
         sky = 'benchmark.sky_round'
+        'sky-gap' = 'benchmark.sky_gap_round'
         'crop-review' = 'benchmark.crop_review_sheet'
     }[$Round]
     $imports = 'import numpy, PIL'
-    if ($Round -in 'perimeters', 'detection-sheet', 'separation', 'recovery','recovery-summary','single-wall','ledge-join','afterpass','acceptance','guard-zoom','crop-split','contained','crop-review','sky') {
+    if ($Round -in 'perimeters', 'detection-sheet', 'separation', 'recovery','recovery-summary','single-wall','ledge-join','afterpass','acceptance','guard-zoom','crop-split','contained','crop-review','sky','sky-gap') {
         $imports = "import sys,numpy,PIL; sys.exit(0 if (numpy.__version__,PIL.__version__)==('2.3.5','13.0.0') else 1)"
     }
     $needsInference = $Round -in 'normals','separation'
@@ -79,7 +80,7 @@ try {
             if ($Round -eq 'recovery-summary') { $arguments += '--sheet' }
             if ($Round -eq 'detection-sheet' -and $SourceRun) { $arguments += @('--run', $SourceRun) }
             if ($Round -in 'perimeters','separation','recovery','afterpass','guard-zoom' -and $Fields) { $arguments += @('--fields', $Fields) }
-            if ($Round -in 'surfaces', 'normals','separation','recovery','recovery-summary','single-wall','ledge-join','afterpass','acceptance','guard-zoom','crop-split','contained','sky') { $arguments += @('--workers', $Workers) }
+            if ($Round -in 'surfaces', 'normals','separation','recovery','recovery-summary','single-wall','ledge-join','afterpass','acceptance','guard-zoom','crop-split','contained','sky','sky-gap') { $arguments += @('--workers', $Workers) }
             if ($Round -eq 'candidate') {
                 $arguments += @('run', '--name', $Name)
                 $stageOptions = @{outlines=$Outlines; pitch=$Pitch; order=$Order; split=$Split; fields=$Fields}

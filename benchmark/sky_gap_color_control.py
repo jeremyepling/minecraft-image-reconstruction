@@ -52,7 +52,7 @@ def disputed_colors():
 
 
 def score(archive, out):
-    from benchmark.sky_gap_method import gap_mask
+    from engine.sky_gap import gap_mask
     targets, examples, selection_hash = disputed_colors()
     shard = read(ROOT/'training/visible-builds-v1.json')['shards']['train']
     checked(archive, shard['sha256'])
