@@ -95,12 +95,12 @@ class CellMap:
     inverse: np.ndarray
     counts: np.ndarray
 
-    def occupied(self, mask):
+    def occupied(self, mask, minimum_coverage=1.0):
         covered = np.bincount(self.inverse, weights=mask.ravel()[self.valid_pixels], minlength=len(self.cells))
-        complete = self.cells[(covered == self.counts) & (self.counts >= SETTINGS['minimum_face_samples'])]
-        xyz = np.empty((len(complete), 3), dtype=int)
+        supported = self.cells[(covered >= self.counts * minimum_coverage) & (covered >= SETTINGS['minimum_face_samples'])]
+        xyz = np.empty((len(supported), 3), dtype=int)
         xyz[:, self.axis] = self.level - int(self.front > 0)
-        xyz[:, [i for i in range(3) if i != self.axis]] = complete
+        xyz[:, [i for i in range(3) if i != self.axis]] = supported
         return set(map(tuple, xyz.tolist()))
 
 
@@ -122,7 +122,7 @@ def _cell_map(P, shape, plane):
     return CellMap(axis, level, front, valid, unique, inverse.ravel(), counts)
 
 
-def _blocks(masks, carriers, P, cache):
+def _blocks(masks, carriers, P, cache, *, minimum_coverage=1.0):
     blocks, resolved = set(), Counter()
     details = []
     for index, mask in enumerate(masks):
@@ -135,7 +135,7 @@ def _blocks(masks, carriers, P, cache):
                 except np.linalg.LinAlgError:
                     cache[plane] = None
             if cache[plane] is not None:
-                cells = cache[plane].occupied(mask)
+                cells = cache[plane].occupied(mask, minimum_coverage)
             status = 'emitted' if cells else 'no_fully_supported_cell'
         blocks.update(cells)
         resolved[status] += 1
