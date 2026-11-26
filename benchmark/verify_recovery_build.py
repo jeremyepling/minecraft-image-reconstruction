@@ -19,8 +19,13 @@ def verify(build, key, source_run=None, data=None):
     methods={'wall-recovery-single-v2':'single-v2','wall-recovery-single-pro':'single-pro',
              PLANE_RECOVERY:'planarity',CROP_SPLIT:'split'}
     method=methods.get(boundary)
+    sky_filtered = manifest['stages'].get('background_filter') == 'clear-noon-sky'
+    if sky_filtered:
+        method = 'sky'
     if method:
         review = {CROP_SPLIT:'crop-split-01',PLANE_RECOVERY:'afterpass-models-01'}.get(boundary,'single-wall-depth-01')
+        if sky_filtered:
+            review = 'sky-01'
         archive=source_run or ROOT/'benchmark/reviews'/review
         source=read(archive/'manifest.json')
         if digest(archive/'cases.json')!=source['artifacts']['cases.json']:
@@ -73,6 +78,8 @@ def verify(build, key, source_run=None, data=None):
                 source_prediction_sha256=expected_hash, counter=manifest['stages']['block_count'],
                 block_count_records=len(counts))
     if boundary==CROP_SPLIT:
+        if sky_filtered:
+            result['background_filter'] = manifest['surface_finder']['boundary_settings']['background_filter']
         from PIL import Image
         from benchmark.perimeter_round import downstream_counts
         with Image.open(case.path('image')) as src:

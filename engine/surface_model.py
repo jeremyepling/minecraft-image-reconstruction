@@ -386,6 +386,12 @@ def build(image_path, version, out, *, outlines=None, order_method=None, through
             from engine.surface_depth_split import SETTINGS as boundary_settings, split
             patches=split(image,patches,fields['depth'],version)
         methods['surface_boundary']=boundary
+        if boundary == CROP_SPLIT:
+            from engine.sky_filter import filter_surface
+            patches, sky_stats = filter_surface(image, patches)
+            methods['background_filter'] = 'clear-noon-sky'
+            methods['boundary_sequence'].append(methods['background_filter'])
+            boundary_settings['background_filter'] = sky_stats
         context_px = DEFAULT_CONTEXT_PX if context_px is None else context_px
         patches = [with_outline(part) for part in patches]
         crop_dir = out/'surface-crops'
