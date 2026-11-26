@@ -12,7 +12,7 @@ from benchmark.mask_blocks import _write_read, decoded_pack, registered
 from benchmark.relative_geometry import placement_scores
 from benchmark.visible_depth_transfer import structure
 from engine.camera_atlas_floor import _atlas
-from engine.thin_atlas_faces import StripEvidence, choose
+from engine.thin_atlas_faces import StripEvidence, choose, recover
 from engine.visible_horizontal_faces import _keep_prior_visible
 from training.visible_labels import visible_labels
 import numpy as np
@@ -68,12 +68,19 @@ def evaluate(job):
         pool = {c:r for c in ctx.candidates() if (r:=ctx.measure(c)) is not None}
     results = {}
     for mode in modes:
-        selected = choose(pool,mode)
+        decision,sep,repeat=mode.partition('x')
+        selected = choose(pool,decision)
         if selected:
             joint = ctx.joint(selected)
             verified = {c:r for c in selected if (r:=ctx.measure(c,joint)) is not None}
-            selected = choose(verified,mode,pool)
+            selected = choose(verified,decision,pool)
         prediction = _keep_prior_visible(image.size,ctx.P,ctx.eye,prior,selected) if selected else prior
+        if selected and sep:
+            for _ in range(1,int(repeat)):
+                extended=recover(image,parts,camera,prediction,atlas,decision)
+                if extended==prediction:
+                    break
+                prediction=extended
         pack = dest/(mode+'.zip')
         results[mode] = _write_read(pack,prediction)
     # Load scoring data only after serializing every candidate.
