@@ -1,0 +1,118 @@
+# Surface and block counts by screenshot
+
+An R number identifies a recorded visible surface in that picture. Each candidate starts from the same default. Both dimensions must be correct for a block-count match.
+
+| View | Method | Found / scored | Gained | Lost | Extra guesses | Sizes correct |
+| --- | --- | ---: | --- | --- | ---: | ---: |
+| light_gray_concrete/holdout-courtyard-masonry-close-front | Split-only zoom | 1 / 1 | — | — | 0 | 0 |
+| light_gray_concrete/holdout-courtyard-masonry-close-front | Split-only zoom with sky exclusion | 1 / 1 | — | — | 0 | 0 |
+| light_gray_concrete/holdout-courtyard-masonry-high-right | Split-only zoom | 7 / 8 | — | — | 1 | 2 |
+| light_gray_concrete/holdout-courtyard-masonry-high-right | Split-only zoom with sky exclusion | 7 / 8 | — | — | 1 | 3 |
+| light_gray_concrete/holdout-courtyard-masonry-low-left | Split-only zoom | 5 / 5 | — | — | 2 | 1 |
+| light_gray_concrete/holdout-courtyard-masonry-low-left | Split-only zoom with sky exclusion | 5 / 5 | — | — | 1 | 2 |
+| light_gray_concrete/holdout-courtyard-plaster-close-front | Split-only zoom | 1 / 1 | — | — | 0 | 0 |
+| light_gray_concrete/holdout-courtyard-plaster-close-front | Split-only zoom with sky exclusion | 1 / 1 | — | — | 0 | 0 |
+| light_gray_concrete/holdout-courtyard-plaster-high-right | Split-only zoom | 7 / 8 | — | — | 4 | 2 |
+| light_gray_concrete/holdout-courtyard-plaster-high-right | Split-only zoom with sky exclusion | 7 / 8 | — | — | 4 | 2 |
+| light_gray_concrete/holdout-courtyard-plaster-low-left | Split-only zoom | 5 / 5 | — | — | 5 | 2 |
+| light_gray_concrete/holdout-courtyard-plaster-low-left | Split-only zoom with sky exclusion | 5 / 5 | — | — | 5 | 2 |
+| smooth_stone/holdout-courtyard-masonry-close-front | Split-only zoom | 1 / 1 | — | — | 0 | 0 |
+| smooth_stone/holdout-courtyard-masonry-close-front | Split-only zoom with sky exclusion | 1 / 1 | — | — | 0 | 0 |
+| smooth_stone/holdout-courtyard-masonry-high-right | Split-only zoom | 8 / 8 | — | — | 2 | 2 |
+| smooth_stone/holdout-courtyard-masonry-high-right | Split-only zoom with sky exclusion | 8 / 8 | — | — | 2 | 3 |
+| smooth_stone/holdout-courtyard-masonry-low-left | Split-only zoom | 5 / 5 | — | — | 0 | 1 |
+| smooth_stone/holdout-courtyard-masonry-low-left | Split-only zoom with sky exclusion | 5 / 5 | — | — | 0 | 2 |
+| smooth_stone/holdout-courtyard-plaster-close-front | Split-only zoom | 1 / 1 | — | — | 0 | 0 |
+| smooth_stone/holdout-courtyard-plaster-close-front | Split-only zoom with sky exclusion | 1 / 1 | — | — | 0 | 0 |
+| smooth_stone/holdout-courtyard-plaster-high-right | Split-only zoom | 7 / 8 | — | — | 7 | 2 |
+| smooth_stone/holdout-courtyard-plaster-high-right | Split-only zoom with sky exclusion | 7 / 8 | — | — | 7 | 2 |
+| smooth_stone/holdout-courtyard-plaster-low-left | Split-only zoom | 5 / 5 | — | — | 1 | 2 |
+| smooth_stone/holdout-courtyard-plaster-low-left | Split-only zoom with sky exclusion | 5 / 5 | — | — | 1 | 2 |
+| light_gray_concrete/holdout-crossing-masonry-high-right | Split-only zoom | 9 / 11 | — | — | 4 | 2 |
+| light_gray_concrete/holdout-crossing-masonry-high-right | Split-only zoom with sky exclusion | 9 / 11 | — | — | 4 | 2 |
+| light_gray_concrete/holdout-crossing-masonry-low-left | Split-only zoom | 12 / 12 | — | — | 1 | 1 |
+| light_gray_concrete/holdout-crossing-masonry-low-left | Split-only zoom with sky exclusion | 12 / 12 | — | — | 0 | 2 |
+| light_gray_concrete/holdout-crossing-plaster-high-right | Split-only zoom | 9 / 11 | — | — | 1 | 0 |
+| light_gray_concrete/holdout-crossing-plaster-high-right | Split-only zoom with sky exclusion | 9 / 11 | — | — | 1 | 0 |
+| light_gray_concrete/holdout-crossing-plaster-low-left | Split-only zoom | 12 / 12 | — | — | 10 | 0 |
+| light_gray_concrete/holdout-crossing-plaster-low-left | Split-only zoom with sky exclusion | 12 / 12 | — | — | 6 | 0 |
+| light_gray_concrete/holdout-galleries-masonry-high-right | Split-only zoom | 22 / 24 | — | — | 3 | 6 |
+| light_gray_concrete/holdout-galleries-masonry-high-right | Split-only zoom with sky exclusion | 22 / 24 | — | — | 3 | 6 |
+| light_gray_concrete/holdout-galleries-masonry-low-left | Split-only zoom | 18 / 25 | — | — | 11 | 4 |
+| light_gray_concrete/holdout-galleries-masonry-low-left | Split-only zoom with sky exclusion | 18 / 25 | — | — | 11 | 5 |
+| light_gray_concrete/holdout-galleries-plaster-high-right | Split-only zoom | 22 / 24 | — | — | 7 | 1 |
+| light_gray_concrete/holdout-galleries-plaster-high-right | Split-only zoom with sky exclusion | 22 / 24 | — | — | 7 | 1 |
+| light_gray_concrete/holdout-galleries-plaster-low-left | Split-only zoom | 20 / 25 | — | — | 11 | 5 |
+| light_gray_concrete/holdout-galleries-plaster-low-left | Split-only zoom with sky exclusion | 20 / 25 | — | — | 10 | 5 |
+| light_gray_concrete/holdout-portico-masonry-high-right | Split-only zoom | 15 / 17 | — | — | 6 | 3 |
+| light_gray_concrete/holdout-portico-masonry-high-right | Split-only zoom with sky exclusion | 15 / 17 | — | — | 3 | 4 |
+| light_gray_concrete/holdout-portico-masonry-low-left | Split-only zoom | 18 / 20 | — | — | 6 | 2 |
+| light_gray_concrete/holdout-portico-masonry-low-left | Split-only zoom with sky exclusion | 18 / 20 | — | — | 6 | 2 |
+| light_gray_concrete/holdout-portico-plaster-high-right | Split-only zoom | 16 / 17 | — | — | 5 | 3 |
+| light_gray_concrete/holdout-portico-plaster-high-right | Split-only zoom with sky exclusion | 16 / 17 | — | — | 5 | 3 |
+| light_gray_concrete/holdout-portico-plaster-low-left | Split-only zoom | 17 / 20 | — | — | 5 | 1 |
+| light_gray_concrete/holdout-portico-plaster-low-left | Split-only zoom with sky exclusion | 17 / 20 | — | — | 5 | 1 |
+| smooth_stone/holdout-portico-masonry-high-right | Split-only zoom | 15 / 17 | — | — | 2 | 2 |
+| smooth_stone/holdout-portico-masonry-high-right | Split-only zoom with sky exclusion | 15 / 17 | — | — | 2 | 2 |
+| smooth_stone/holdout-portico-masonry-low-left | Split-only zoom | 18 / 20 | — | — | 3 | 4 |
+| smooth_stone/holdout-portico-masonry-low-left | Split-only zoom with sky exclusion | 18 / 20 | — | — | 3 | 5 |
+| smooth_stone/holdout-portico-plaster-high-right | Split-only zoom | 15 / 17 | — | — | 3 | 2 |
+| smooth_stone/holdout-portico-plaster-high-right | Split-only zoom with sky exclusion | 15 / 17 | — | — | 3 | 2 |
+| smooth_stone/holdout-portico-plaster-low-left | Split-only zoom | 17 / 20 | — | — | 6 | 1 |
+| smooth_stone/holdout-portico-plaster-low-left | Split-only zoom with sky exclusion | 17 / 20 | — | — | 6 | 1 |
+| light_gray_concrete/holdout-registry-masonry-high-right | Split-only zoom | 8 / 10 | — | — | 2 | 3 |
+| light_gray_concrete/holdout-registry-masonry-high-right | Split-only zoom with sky exclusion | 8 / 10 | — | — | 2 | 3 |
+| light_gray_concrete/holdout-registry-masonry-low-left | Split-only zoom | 7 / 7 | — | — | 1 | 2 |
+| light_gray_concrete/holdout-registry-masonry-low-left | Split-only zoom with sky exclusion | 7 / 7 | — | — | 1 | 4 |
+| light_gray_concrete/holdout-registry-plaster-high-right | Split-only zoom | 7 / 10 | — | — | 4 | 3 |
+| light_gray_concrete/holdout-registry-plaster-high-right | Split-only zoom with sky exclusion | 8 / 10 | R6 | — | 3 | 4 |
+| light_gray_concrete/holdout-registry-plaster-low-left | Split-only zoom | 6 / 7 | — | — | 4 | 1 |
+| light_gray_concrete/holdout-registry-plaster-low-left | Split-only zoom with sky exclusion | 6 / 7 | — | — | 4 | 1 |
+| light_gray_concrete/dev-shopfront-masonry-high-right | Split-only zoom | 14 / 14 | — | — | 3 | 1 |
+| light_gray_concrete/dev-shopfront-masonry-high-right | Split-only zoom with sky exclusion | 14 / 14 | — | — | 3 | 1 |
+| light_gray_concrete/dev-shopfront-masonry-low-left | Split-only zoom | 13 / 16 | — | — | 3 | 1 |
+| light_gray_concrete/dev-shopfront-masonry-low-left | Split-only zoom with sky exclusion | 13 / 16 | — | — | 3 | 1 |
+| light_gray_concrete/dev-shopfront-plaster-high-right | Split-only zoom | 11 / 14 | — | — | 10 | 0 |
+| light_gray_concrete/dev-shopfront-plaster-high-right | Split-only zoom with sky exclusion | 11 / 14 | — | — | 10 | 0 |
+| light_gray_concrete/dev-shopfront-plaster-low-left | Split-only zoom | 11 / 16 | — | — | 4 | 1 |
+| light_gray_concrete/dev-shopfront-plaster-low-left | Split-only zoom with sky exclusion | 11 / 16 | — | — | 4 | 1 |
+| smooth_stone/dev-shopfront-masonry-high-right | Split-only zoom | 14 / 14 | — | — | 5 | 0 |
+| smooth_stone/dev-shopfront-masonry-high-right | Split-only zoom with sky exclusion | 14 / 14 | — | — | 5 | 0 |
+| smooth_stone/dev-shopfront-masonry-low-left | Split-only zoom | 13 / 16 | — | — | 2 | 0 |
+| smooth_stone/dev-shopfront-masonry-low-left | Split-only zoom with sky exclusion | 13 / 16 | — | — | 2 | 1 |
+| smooth_stone/dev-shopfront-plaster-high-right | Split-only zoom | 14 / 14 | — | — | 4 | 0 |
+| smooth_stone/dev-shopfront-plaster-high-right | Split-only zoom with sky exclusion | 14 / 14 | — | — | 4 | 0 |
+| smooth_stone/dev-shopfront-plaster-low-left | Split-only zoom | 13 / 16 | — | — | 2 | 3 |
+| smooth_stone/dev-shopfront-plaster-low-left | Split-only zoom with sky exclusion | 13 / 16 | — | — | 2 | 3 |
+| light_gray_concrete/dev-wing-masonry-close-front | Split-only zoom | 1 / 1 | — | — | 0 | 0 |
+| light_gray_concrete/dev-wing-masonry-close-front | Split-only zoom with sky exclusion | 1 / 1 | — | — | 0 | 0 |
+| light_gray_concrete/dev-wing-masonry-high-right | Split-only zoom | 4 / 5 | — | — | 2 | 3 |
+| light_gray_concrete/dev-wing-masonry-high-right | Split-only zoom with sky exclusion | 4 / 5 | — | — | 2 | 3 |
+| light_gray_concrete/dev-wing-masonry-low-left | Split-only zoom | 3 / 3 | — | — | 0 | 0 |
+| light_gray_concrete/dev-wing-masonry-low-left | Split-only zoom with sky exclusion | 3 / 3 | — | — | 0 | 0 |
+| light_gray_concrete/dev-wing-plaster-close-front | Split-only zoom | 1 / 1 | — | — | 0 | 0 |
+| light_gray_concrete/dev-wing-plaster-close-front | Split-only zoom with sky exclusion | 1 / 1 | — | — | 0 | 0 |
+| light_gray_concrete/dev-wing-plaster-high-right | Split-only zoom | 5 / 5 | — | — | 3 | 2 |
+| light_gray_concrete/dev-wing-plaster-high-right | Split-only zoom with sky exclusion | 5 / 5 | — | — | 3 | 2 |
+| light_gray_concrete/dev-wing-plaster-low-left | Split-only zoom | 3 / 3 | — | — | 2 | 0 |
+| light_gray_concrete/dev-wing-plaster-low-left | Split-only zoom with sky exclusion | 3 / 3 | — | — | 1 | 0 |
+| smooth_stone/dev-wing-masonry-close-front | Split-only zoom | 1 / 1 | — | — | 0 | 0 |
+| smooth_stone/dev-wing-masonry-close-front | Split-only zoom with sky exclusion | 1 / 1 | — | — | 0 | 0 |
+| smooth_stone/dev-wing-masonry-high-right | Split-only zoom | 5 / 5 | — | — | 3 | 2 |
+| smooth_stone/dev-wing-masonry-high-right | Split-only zoom with sky exclusion | 5 / 5 | — | — | 3 | 2 |
+| smooth_stone/dev-wing-masonry-low-left | Split-only zoom | 3 / 3 | — | — | 1 | 0 |
+| smooth_stone/dev-wing-masonry-low-left | Split-only zoom with sky exclusion | 3 / 3 | — | — | 1 | 0 |
+| smooth_stone/dev-wing-plaster-close-front | Split-only zoom | 1 / 1 | — | — | 0 | 0 |
+| smooth_stone/dev-wing-plaster-close-front | Split-only zoom with sky exclusion | 1 / 1 | — | — | 0 | 0 |
+| smooth_stone/dev-wing-plaster-high-right | Split-only zoom | 5 / 5 | — | — | 3 | 2 |
+| smooth_stone/dev-wing-plaster-high-right | Split-only zoom with sky exclusion | 5 / 5 | — | — | 3 | 2 |
+| smooth_stone/dev-wing-plaster-low-left | Split-only zoom | 3 / 3 | — | — | 0 | 1 |
+| smooth_stone/dev-wing-plaster-low-left | Split-only zoom with sky exclusion | 3 / 3 | — | — | 0 | 1 |
+| light_gray_concrete/holdout-workshop-masonry-high-right | Split-only zoom | 15 / 16 | — | — | 5 | 3 |
+| light_gray_concrete/holdout-workshop-masonry-high-right | Split-only zoom with sky exclusion | 15 / 16 | — | — | 5 | 3 |
+| light_gray_concrete/holdout-workshop-masonry-low-left | Split-only zoom | 7 / 14 | — | — | 21 | 1 |
+| light_gray_concrete/holdout-workshop-masonry-low-left | Split-only zoom with sky exclusion | 7 / 14 | — | — | 6 | 2 |
+| light_gray_concrete/holdout-workshop-plaster-high-right | Split-only zoom | 12 / 16 | — | — | 7 | 0 |
+| light_gray_concrete/holdout-workshop-plaster-high-right | Split-only zoom with sky exclusion | 12 / 16 | — | — | 7 | 0 |
+| light_gray_concrete/holdout-workshop-plaster-low-left | Split-only zoom | 8 / 14 | — | — | 7 | 0 |
+| light_gray_concrete/holdout-workshop-plaster-low-left | Split-only zoom with sky exclusion | 8 / 14 | — | — | 3 | 1 |

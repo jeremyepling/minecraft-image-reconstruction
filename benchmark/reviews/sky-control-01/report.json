@@ -1,0 +1,1678 @@
+{
+  "run_id": "sky-control-01",
+  "code": {
+    "commit": "7cd0e164e16c4076f0c2101781caf3cdcf50bdca",
+    "predictor_and_runner_sha256": "314ba28cefa5bccd42b1d44fc7dc714bb429e36725bfecd060c786360a315fab",
+    "source_dirty": false
+  },
+  "baseline_manifest_sha256": "b300caff403e517e09003376a112254bc1d72a87e3e52c1b53224c6a892f1850",
+  "reference_sha256": "91efa6d3e992b1a68672eae1fdd6d380e87724742a1a4b6cbe5f84d284f731a1",
+  "fixtures": {
+    "smooth_stone": "660d1e535ae134452bca903a9d7cbe8d37953927fa118d9ffb327afad0885bc2",
+    "light_gray_concrete": "321505e15563f8efc0da868baa27409837aaa474410a61f3513b3dac0030f066",
+    "surface_confirm_v1": "0a479a8264f2c0f714284928354ff6ff5f9729491709676f07e2033d25e48fc3",
+    "normal_confirm_v1": "61bdf3a89a505a8be3757efe480185bec9c1888a1c72ffb69ef0093623e27dda"
+  },
+  "version": "26.3",
+  "protocol": "Score upward rays outside the native recorded building. Color subsets are conservative proxies for clouds and clear blue, not exhaustive cloud labels. Counts sum 56 frame entries.",
+  "totals": {
+    "baseline": {
+      "upward_background": 90403,
+      "cloud_proxy": 63279,
+      "clear_blue_proxy": 26225,
+      "building": 17905538
+    },
+    "filtered": {
+      "upward_background": 813,
+      "cloud_proxy": 0,
+      "clear_blue_proxy": 804,
+      "building": 17905529
+    },
+    "removed": {
+      "upward_background": 89590,
+      "cloud_proxy": 63279,
+      "clear_blue_proxy": 25421,
+      "building": 9
+    },
+    "newly_claimed": {
+      "upward_background": 0,
+      "cloud_proxy": 0,
+      "clear_blue_proxy": 0,
+      "building": 0
+    }
+  },
+  "frames": [
+    {
+      "frame": "smooth_stone/dev-shopfront-masonry-high-right",
+      "sha256": "f15cd0e471a9a2e375c9f801df171bb8f5ee44d95374f02f1174c7938a94cc79",
+      "baseline": {
+        "upward_background": 0,
+        "cloud_proxy": 0,
+        "clear_blue_proxy": 0,
+        "building": 154734
+      },
+      "filtered": {
+        "upward_background": 0,
+        "cloud_proxy": 0,
+        "clear_blue_proxy": 0,
+        "building": 154734
+      },
+      "removed": {
+        "upward_background": 0,
+        "cloud_proxy": 0,
+        "clear_blue_proxy": 0,
+        "building": 0
+      },
+      "newly_claimed": {
+        "upward_background": 0,
+        "cloud_proxy": 0,
+        "clear_blue_proxy": 0,
+        "building": 0
+      }
+    },
+    {
+      "frame": "light_gray_concrete/dev-shopfront-masonry-high-right",
+      "sha256": "bb588b0b0d1cdb05b720ff5bc3b515479426c7772fd98fb7fadb8a55b79ca9db",
+      "baseline": {
+        "upward_background": 0,
+        "cloud_proxy": 0,
+        "clear_blue_proxy": 0,
+        "building": 153793
+      },
+      "filtered": {
+        "upward_background": 0,
+        "cloud_proxy": 0,
+        "clear_blue_proxy": 0,
+        "building": 153793
+      },
+      "removed": {
+        "upward_background": 0,
+        "cloud_proxy": 0,
+        "clear_blue_proxy": 0,
+        "building": 0
+      },
+      "newly_claimed": {
+        "upward_background": 0,
+        "cloud_proxy": 0,
+        "clear_blue_proxy": 0,
+        "building": 0
+      }
+    },
+    {
+      "frame": "smooth_stone/dev-shopfront-masonry-low-left",
+      "sha256": "17691e7909ee0e9384db83c3a729f8763e21a281eb89b8dcebe61fc7675d1405",
+      "baseline": {
+        "upward_background": 2135,
+        "cloud_proxy": 586,
+        "clear_blue_proxy": 1495,
+        "building": 164140
+      },
+      "filtered": {
+        "upward_background": 1,
+        "cloud_proxy": 0,
+        "clear_blue_proxy": 0,
+        "building": 164140
+      },
+      "removed": {
+        "upward_background": 2134,
+        "cloud_proxy": 586,
+        "clear_blue_proxy": 1495,
+        "building": 0
+      },
+      "newly_claimed": {
+        "upward_background": 0,
+        "cloud_proxy": 0,
+        "clear_blue_proxy": 0,
+        "building": 0
+      }
+    },
+    {
+      "frame": "light_gray_concrete/dev-shopfront-masonry-low-left",
+      "sha256": "0359c24dea1b318ec9cd002a1523ae8fc0d7d59fc9d7418972cf9ce9af8d4d57",
+      "baseline": {
+        "upward_background": 2037,
+        "cloud_proxy": 837,
+        "clear_blue_proxy": 1135,
+        "building": 163950
+      },
+      "filtered": {
+        "upward_background": 1,
+        "cloud_proxy": 0,
+        "clear_blue_proxy": 0,
+        "building": 163950
+      },
+      "removed": {
+        "upward_background": 2036,
+        "cloud_proxy": 837,
+        "clear_blue_proxy": 1135,
+        "building": 0
+      },
+      "newly_claimed": {
+        "upward_background": 0,
+        "cloud_proxy": 0,
+        "clear_blue_proxy": 0,
+        "building": 0
+      }
+    },
+    {
+      "frame": "smooth_stone/dev-shopfront-plaster-high-right",
+      "sha256": "ae58f28554348d924798e23bd492b88db06c2a099f590e325c514ecc5c8f9c7e",
+      "baseline": {
+        "upward_background": 0,
+        "cloud_proxy": 0,
+        "clear_blue_proxy": 0,
+        "building": 136519
+      },
+      "filtered": {
+        "upward_background": 0,
+        "cloud_proxy": 0,
+        "clear_blue_proxy": 0,
+        "building": 136519
+      },
+      "removed": {
+        "upward_background": 0,
+        "cloud_proxy": 0,
+        "clear_blue_proxy": 0,
+        "building": 0
+      },
+      "newly_claimed": {
+        "upward_background": 0,
+        "cloud_proxy": 0,
+        "clear_blue_proxy": 0,
+        "building": 0
+      }
+    },
+    {
+      "frame": "light_gray_concrete/dev-shopfront-plaster-high-right",
+      "sha256": "4cc1d5687db72eef74f23fc291fb7916b3f481ed4998d9e1c850024039d38cce",
+      "baseline": {
+        "upward_background": 0,
+        "cloud_proxy": 0,
+        "clear_blue_proxy": 0,
+        "building": 143643
+      },
+      "filtered": {
+        "upward_background": 0,
+        "cloud_proxy": 0,
+        "clear_blue_proxy": 0,
+        "building": 143643
+      },
+      "removed": {
+        "upward_background": 0,
+        "cloud_proxy": 0,
+        "clear_blue_proxy": 0,
+        "building": 0
+      },
+      "newly_claimed": {
+        "upward_background": 0,
+        "cloud_proxy": 0,
+        "clear_blue_proxy": 0,
+        "building": 0
+      }
+    },
+    {
+      "frame": "smooth_stone/dev-shopfront-plaster-low-left",
+      "sha256": "5d0c9120de4ca16f35758f90a31e176e50a3cf166358dd9833ee2213d1ff2f72",
+      "baseline": {
+        "upward_background": 1084,
+        "cloud_proxy": 366,
+        "clear_blue_proxy": 701,
+        "building": 153075
+      },
+      "filtered": {
+        "upward_background": 1,
+        "cloud_proxy": 0,
+        "clear_blue_proxy": 0,
+        "building": 153075
+      },
+      "removed": {
+        "upward_background": 1083,
+        "cloud_proxy": 366,
+        "clear_blue_proxy": 701,
+        "building": 0
+      },
+      "newly_claimed": {
+        "upward_background": 0,
+        "cloud_proxy": 0,
+        "clear_blue_proxy": 0,
+        "building": 0
+      }
+    },
+    {
+      "frame": "light_gray_concrete/dev-shopfront-plaster-low-left",
+      "sha256": "299e0228de74d2cc7d3a18deaba9f61c82560a0ddd0b8557e5c91728c964a993",
+      "baseline": {
+        "upward_background": 1073,
+        "cloud_proxy": 435,
+        "clear_blue_proxy": 621,
+        "building": 153190
+      },
+      "filtered": {
+        "upward_background": 1,
+        "cloud_proxy": 0,
+        "clear_blue_proxy": 0,
+        "building": 153190
+      },
+      "removed": {
+        "upward_background": 1072,
+        "cloud_proxy": 435,
+        "clear_blue_proxy": 621,
+        "building": 0
+      },
+      "newly_claimed": {
+        "upward_background": 0,
+        "cloud_proxy": 0,
+        "clear_blue_proxy": 0,
+        "building": 0
+      }
+    },
+    {
+      "frame": "smooth_stone/dev-wing-masonry-close-front",
+      "sha256": "9ce65a1c07694c1d3e57019c07b422d7a6a0771ed0d46f579891eae8a61463a9",
+      "baseline": {
+        "upward_background": 0,
+        "cloud_proxy": 0,
+        "clear_blue_proxy": 0,
+        "building": 1292812
+      },
+      "filtered": {
+        "upward_background": 0,
+        "cloud_proxy": 0,
+        "clear_blue_proxy": 0,
+        "building": 1292812
+      },
+      "removed": {
+        "upward_background": 0,
+        "cloud_proxy": 0,
+        "clear_blue_proxy": 0,
+        "building": 0
+      },
+      "newly_claimed": {
+        "upward_background": 0,
+        "cloud_proxy": 0,
+        "clear_blue_proxy": 0,
+        "building": 0
+      }
+    },
+    {
+      "frame": "light_gray_concrete/dev-wing-masonry-close-front",
+      "sha256": "9ce65a1c07694c1d3e57019c07b422d7a6a0771ed0d46f579891eae8a61463a9",
+      "baseline": {
+        "upward_background": 0,
+        "cloud_proxy": 0,
+        "clear_blue_proxy": 0,
+        "building": 1292812
+      },
+      "filtered": {
+        "upward_background": 0,
+        "cloud_proxy": 0,
+        "clear_blue_proxy": 0,
+        "building": 1292812
+      },
+      "removed": {
+        "upward_background": 0,
+        "cloud_proxy": 0,
+        "clear_blue_proxy": 0,
+        "building": 0
+      },
+      "newly_claimed": {
+        "upward_background": 0,
+        "cloud_proxy": 0,
+        "clear_blue_proxy": 0,
+        "building": 0
+      }
+    },
+    {
+      "frame": "smooth_stone/dev-wing-masonry-high-right",
+      "sha256": "8cd9e20f608db25df6d141941051d30afcbf80733ea4c6f2058874c02019bf9f",
+      "baseline": {
+        "upward_background": 0,
+        "cloud_proxy": 0,
+        "clear_blue_proxy": 0,
+        "building": 158129
+      },
+      "filtered": {
+        "upward_background": 0,
+        "cloud_proxy": 0,
+        "clear_blue_proxy": 0,
+        "building": 158129
+      },
+      "removed": {
+        "upward_background": 0,
+        "cloud_proxy": 0,
+        "clear_blue_proxy": 0,
+        "building": 0
+      },
+      "newly_claimed": {
+        "upward_background": 0,
+        "cloud_proxy": 0,
+        "clear_blue_proxy": 0,
+        "building": 0
+      }
+    },
+    {
+      "frame": "light_gray_concrete/dev-wing-masonry-high-right",
+      "sha256": "5ccd9115fd2a70784e0e1ab6819d37fc5c4af54cf965605143b3817e1f3a3efd",
+      "baseline": {
+        "upward_background": 0,
+        "cloud_proxy": 0,
+        "clear_blue_proxy": 0,
+        "building": 155207
+      },
+      "filtered": {
+        "upward_background": 0,
+        "cloud_proxy": 0,
+        "clear_blue_proxy": 0,
+        "building": 155207
+      },
+      "removed": {
+        "upward_background": 0,
+        "cloud_proxy": 0,
+        "clear_blue_proxy": 0,
+        "building": 0
+      },
+      "newly_claimed": {
+        "upward_background": 0,
+        "cloud_proxy": 0,
+        "clear_blue_proxy": 0,
+        "building": 0
+      }
+    },
+    {
+      "frame": "smooth_stone/dev-wing-masonry-low-left",
+      "sha256": "0c7bc49ce3c736391d7954a9c069aee29586f03fd33a2a88926b40257ccae6ce",
+      "baseline": {
+        "upward_background": 1254,
+        "cloud_proxy": 602,
+        "clear_blue_proxy": 642,
+        "building": 180243
+      },
+      "filtered": {
+        "upward_background": 0,
+        "cloud_proxy": 0,
+        "clear_blue_proxy": 0,
+        "building": 180242
+      },
+      "removed": {
+        "upward_background": 1254,
+        "cloud_proxy": 602,
+        "clear_blue_proxy": 642,
+        "building": 1
+      },
+      "newly_claimed": {
+        "upward_background": 0,
+        "cloud_proxy": 0,
+        "clear_blue_proxy": 0,
+        "building": 0
+      }
+    },
+    {
+      "frame": "light_gray_concrete/dev-wing-masonry-low-left",
+      "sha256": "4e8817361e24c3f05e835d7af6c8bab3da96d50c8821828144f33bb1ea0e87d3",
+      "baseline": {
+        "upward_background": 1202,
+        "cloud_proxy": 548,
+        "clear_blue_proxy": 640,
+        "building": 180224
+      },
+      "filtered": {
+        "upward_background": 0,
+        "cloud_proxy": 0,
+        "clear_blue_proxy": 0,
+        "building": 180223
+      },
+      "removed": {
+        "upward_background": 1202,
+        "cloud_proxy": 548,
+        "clear_blue_proxy": 640,
+        "building": 1
+      },
+      "newly_claimed": {
+        "upward_background": 0,
+        "cloud_proxy": 0,
+        "clear_blue_proxy": 0,
+        "building": 0
+      }
+    },
+    {
+      "frame": "smooth_stone/dev-wing-plaster-close-front",
+      "sha256": "b3154136e855e9d005a993b8afdb3989e3fb156b102aed46ce0d99e761d2f2b8",
+      "baseline": {
+        "upward_background": 0,
+        "cloud_proxy": 0,
+        "clear_blue_proxy": 0,
+        "building": 1296000
+      },
+      "filtered": {
+        "upward_background": 0,
+        "cloud_proxy": 0,
+        "clear_blue_proxy": 0,
+        "building": 1296000
+      },
+      "removed": {
+        "upward_background": 0,
+        "cloud_proxy": 0,
+        "clear_blue_proxy": 0,
+        "building": 0
+      },
+      "newly_claimed": {
+        "upward_background": 0,
+        "cloud_proxy": 0,
+        "clear_blue_proxy": 0,
+        "building": 0
+      }
+    },
+    {
+      "frame": "light_gray_concrete/dev-wing-plaster-close-front",
+      "sha256": "b3154136e855e9d005a993b8afdb3989e3fb156b102aed46ce0d99e761d2f2b8",
+      "baseline": {
+        "upward_background": 0,
+        "cloud_proxy": 0,
+        "clear_blue_proxy": 0,
+        "building": 1296000
+      },
+      "filtered": {
+        "upward_background": 0,
+        "cloud_proxy": 0,
+        "clear_blue_proxy": 0,
+        "building": 1296000
+      },
+      "removed": {
+        "upward_background": 0,
+        "cloud_proxy": 0,
+        "clear_blue_proxy": 0,
+        "building": 0
+      },
+      "newly_claimed": {
+        "upward_background": 0,
+        "cloud_proxy": 0,
+        "clear_blue_proxy": 0,
+        "building": 0
+      }
+    },
+    {
+      "frame": "smooth_stone/dev-wing-plaster-high-right",
+      "sha256": "49832e903f4455c88c44f51da20abc550516d208783af9e3d05edc85ff4116a9",
+      "baseline": {
+        "upward_background": 0,
+        "cloud_proxy": 0,
+        "clear_blue_proxy": 0,
+        "building": 156621
+      },
+      "filtered": {
+        "upward_background": 0,
+        "cloud_proxy": 0,
+        "clear_blue_proxy": 0,
+        "building": 156620
+      },
+      "removed": {
+        "upward_background": 0,
+        "cloud_proxy": 0,
+        "clear_blue_proxy": 0,
+        "building": 1
+      },
+      "newly_claimed": {
+        "upward_background": 0,
+        "cloud_proxy": 0,
+        "clear_blue_proxy": 0,
+        "building": 0
+      }
+    },
+    {
+      "frame": "light_gray_concrete/dev-wing-plaster-high-right",
+      "sha256": "64d4fec367d669912de294146c1fa3e0bf871816ec4f52e57213e35db2968564",
+      "baseline": {
+        "upward_background": 0,
+        "cloud_proxy": 0,
+        "clear_blue_proxy": 0,
+        "building": 150020
+      },
+      "filtered": {
+        "upward_background": 0,
+        "cloud_proxy": 0,
+        "clear_blue_proxy": 0,
+        "building": 150019
+      },
+      "removed": {
+        "upward_background": 0,
+        "cloud_proxy": 0,
+        "clear_blue_proxy": 0,
+        "building": 1
+      },
+      "newly_claimed": {
+        "upward_background": 0,
+        "cloud_proxy": 0,
+        "clear_blue_proxy": 0,
+        "building": 0
+      }
+    },
+    {
+      "frame": "smooth_stone/dev-wing-plaster-low-left",
+      "sha256": "b564e5c3bb2def9511c27cf483dbb01dbe760b1bce8b6060be578c97b2083019",
+      "baseline": {
+        "upward_background": 637,
+        "cloud_proxy": 356,
+        "clear_blue_proxy": 271,
+        "building": 145248
+      },
+      "filtered": {
+        "upward_background": 0,
+        "cloud_proxy": 0,
+        "clear_blue_proxy": 0,
+        "building": 145247
+      },
+      "removed": {
+        "upward_background": 637,
+        "cloud_proxy": 356,
+        "clear_blue_proxy": 271,
+        "building": 1
+      },
+      "newly_claimed": {
+        "upward_background": 0,
+        "cloud_proxy": 0,
+        "clear_blue_proxy": 0,
+        "building": 0
+      }
+    },
+    {
+      "frame": "light_gray_concrete/dev-wing-plaster-low-left",
+      "sha256": "b1aa96442f2858b5435fc9af424de374ffafbade3cc74d059b85b6c1bfd7e13c",
+      "baseline": {
+        "upward_background": 1381,
+        "cloud_proxy": 1013,
+        "clear_blue_proxy": 357,
+        "building": 173516
+      },
+      "filtered": {
+        "upward_background": 0,
+        "cloud_proxy": 0,
+        "clear_blue_proxy": 0,
+        "building": 173515
+      },
+      "removed": {
+        "upward_background": 1381,
+        "cloud_proxy": 1013,
+        "clear_blue_proxy": 357,
+        "building": 1
+      },
+      "newly_claimed": {
+        "upward_background": 0,
+        "cloud_proxy": 0,
+        "clear_blue_proxy": 0,
+        "building": 0
+      }
+    },
+    {
+      "frame": "smooth_stone/holdout-courtyard-masonry-close-front",
+      "sha256": "655531c2d8fecce752ea93fac3aa6a6e4429bb7ce8a629cb409532583694c678",
+      "baseline": {
+        "upward_background": 0,
+        "cloud_proxy": 0,
+        "clear_blue_proxy": 0,
+        "building": 1295212
+      },
+      "filtered": {
+        "upward_background": 0,
+        "cloud_proxy": 0,
+        "clear_blue_proxy": 0,
+        "building": 1295212
+      },
+      "removed": {
+        "upward_background": 0,
+        "cloud_proxy": 0,
+        "clear_blue_proxy": 0,
+        "building": 0
+      },
+      "newly_claimed": {
+        "upward_background": 0,
+        "cloud_proxy": 0,
+        "clear_blue_proxy": 0,
+        "building": 0
+      }
+    },
+    {
+      "frame": "light_gray_concrete/holdout-courtyard-masonry-close-front",
+      "sha256": "655531c2d8fecce752ea93fac3aa6a6e4429bb7ce8a629cb409532583694c678",
+      "baseline": {
+        "upward_background": 0,
+        "cloud_proxy": 0,
+        "clear_blue_proxy": 0,
+        "building": 1295212
+      },
+      "filtered": {
+        "upward_background": 0,
+        "cloud_proxy": 0,
+        "clear_blue_proxy": 0,
+        "building": 1295212
+      },
+      "removed": {
+        "upward_background": 0,
+        "cloud_proxy": 0,
+        "clear_blue_proxy": 0,
+        "building": 0
+      },
+      "newly_claimed": {
+        "upward_background": 0,
+        "cloud_proxy": 0,
+        "clear_blue_proxy": 0,
+        "building": 0
+      }
+    },
+    {
+      "frame": "smooth_stone/holdout-courtyard-masonry-high-right",
+      "sha256": "252fa7c481e990bbbada46717d6e10c6b66c4f9c65846b94a94cd1b40cea0fcd",
+      "baseline": {
+        "upward_background": 0,
+        "cloud_proxy": 0,
+        "clear_blue_proxy": 0,
+        "building": 176382
+      },
+      "filtered": {
+        "upward_background": 0,
+        "cloud_proxy": 0,
+        "clear_blue_proxy": 0,
+        "building": 176382
+      },
+      "removed": {
+        "upward_background": 0,
+        "cloud_proxy": 0,
+        "clear_blue_proxy": 0,
+        "building": 0
+      },
+      "newly_claimed": {
+        "upward_background": 0,
+        "cloud_proxy": 0,
+        "clear_blue_proxy": 0,
+        "building": 0
+      }
+    },
+    {
+      "frame": "light_gray_concrete/holdout-courtyard-masonry-high-right",
+      "sha256": "b5b2bb5300687da8d904fb129043b5d2df0ae56e9ba4e14afb932b3e6d44dd3b",
+      "baseline": {
+        "upward_background": 0,
+        "cloud_proxy": 0,
+        "clear_blue_proxy": 0,
+        "building": 176377
+      },
+      "filtered": {
+        "upward_background": 0,
+        "cloud_proxy": 0,
+        "clear_blue_proxy": 0,
+        "building": 176377
+      },
+      "removed": {
+        "upward_background": 0,
+        "cloud_proxy": 0,
+        "clear_blue_proxy": 0,
+        "building": 0
+      },
+      "newly_claimed": {
+        "upward_background": 0,
+        "cloud_proxy": 0,
+        "clear_blue_proxy": 0,
+        "building": 0
+      }
+    },
+    {
+      "frame": "smooth_stone/holdout-courtyard-masonry-low-left",
+      "sha256": "c80356e1b7d96bdc796ed982f09ed908059399d23fe98c873eecbb6e623a4216",
+      "baseline": {
+        "upward_background": 1147,
+        "cloud_proxy": 520,
+        "clear_blue_proxy": 612,
+        "building": 160615
+      },
+      "filtered": {
+        "upward_background": 0,
+        "cloud_proxy": 0,
+        "clear_blue_proxy": 0,
+        "building": 160615
+      },
+      "removed": {
+        "upward_background": 1147,
+        "cloud_proxy": 520,
+        "clear_blue_proxy": 612,
+        "building": 0
+      },
+      "newly_claimed": {
+        "upward_background": 0,
+        "cloud_proxy": 0,
+        "clear_blue_proxy": 0,
+        "building": 0
+      }
+    },
+    {
+      "frame": "light_gray_concrete/holdout-courtyard-masonry-low-left",
+      "sha256": "5b0b16edd7e5207c275e3277db0d65620891c50024735061783d4a175957ff9a",
+      "baseline": {
+        "upward_background": 2089,
+        "cloud_proxy": 1294,
+        "clear_blue_proxy": 780,
+        "building": 160784
+      },
+      "filtered": {
+        "upward_background": 0,
+        "cloud_proxy": 0,
+        "clear_blue_proxy": 0,
+        "building": 160784
+      },
+      "removed": {
+        "upward_background": 2089,
+        "cloud_proxy": 1294,
+        "clear_blue_proxy": 780,
+        "building": 0
+      },
+      "newly_claimed": {
+        "upward_background": 0,
+        "cloud_proxy": 0,
+        "clear_blue_proxy": 0,
+        "building": 0
+      }
+    },
+    {
+      "frame": "smooth_stone/holdout-courtyard-plaster-close-front",
+      "sha256": "319503ad2c8fbdc7f33f283d4e35b0f3abe43684bdd8341ace1ac1745696abee",
+      "baseline": {
+        "upward_background": 0,
+        "cloud_proxy": 0,
+        "clear_blue_proxy": 0,
+        "building": 1296000
+      },
+      "filtered": {
+        "upward_background": 0,
+        "cloud_proxy": 0,
+        "clear_blue_proxy": 0,
+        "building": 1296000
+      },
+      "removed": {
+        "upward_background": 0,
+        "cloud_proxy": 0,
+        "clear_blue_proxy": 0,
+        "building": 0
+      },
+      "newly_claimed": {
+        "upward_background": 0,
+        "cloud_proxy": 0,
+        "clear_blue_proxy": 0,
+        "building": 0
+      }
+    },
+    {
+      "frame": "light_gray_concrete/holdout-courtyard-plaster-close-front",
+      "sha256": "319503ad2c8fbdc7f33f283d4e35b0f3abe43684bdd8341ace1ac1745696abee",
+      "baseline": {
+        "upward_background": 0,
+        "cloud_proxy": 0,
+        "clear_blue_proxy": 0,
+        "building": 1296000
+      },
+      "filtered": {
+        "upward_background": 0,
+        "cloud_proxy": 0,
+        "clear_blue_proxy": 0,
+        "building": 1296000
+      },
+      "removed": {
+        "upward_background": 0,
+        "cloud_proxy": 0,
+        "clear_blue_proxy": 0,
+        "building": 0
+      },
+      "newly_claimed": {
+        "upward_background": 0,
+        "cloud_proxy": 0,
+        "clear_blue_proxy": 0,
+        "building": 0
+      }
+    },
+    {
+      "frame": "smooth_stone/holdout-courtyard-plaster-high-right",
+      "sha256": "7152899302d1721578a01412063a0cafc072986ba9a4acb5c03aa5ecbdde05f1",
+      "baseline": {
+        "upward_background": 0,
+        "cloud_proxy": 0,
+        "clear_blue_proxy": 0,
+        "building": 140654
+      },
+      "filtered": {
+        "upward_background": 0,
+        "cloud_proxy": 0,
+        "clear_blue_proxy": 0,
+        "building": 140654
+      },
+      "removed": {
+        "upward_background": 0,
+        "cloud_proxy": 0,
+        "clear_blue_proxy": 0,
+        "building": 0
+      },
+      "newly_claimed": {
+        "upward_background": 0,
+        "cloud_proxy": 0,
+        "clear_blue_proxy": 0,
+        "building": 0
+      }
+    },
+    {
+      "frame": "light_gray_concrete/holdout-courtyard-plaster-high-right",
+      "sha256": "de9e33d3bdb1f64318fbc1dec03fef52cde19a331c90fd1f7bb0b7a322b3bd94",
+      "baseline": {
+        "upward_background": 0,
+        "cloud_proxy": 0,
+        "clear_blue_proxy": 0,
+        "building": 171576
+      },
+      "filtered": {
+        "upward_background": 0,
+        "cloud_proxy": 0,
+        "clear_blue_proxy": 0,
+        "building": 171576
+      },
+      "removed": {
+        "upward_background": 0,
+        "cloud_proxy": 0,
+        "clear_blue_proxy": 0,
+        "building": 0
+      },
+      "newly_claimed": {
+        "upward_background": 0,
+        "cloud_proxy": 0,
+        "clear_blue_proxy": 0,
+        "building": 0
+      }
+    },
+    {
+      "frame": "smooth_stone/holdout-courtyard-plaster-low-left",
+      "sha256": "c8129500a7c473e23666de5470d535f650fb1ac61ae8dcb702f09707ba68949f",
+      "baseline": {
+        "upward_background": 663,
+        "cloud_proxy": 350,
+        "clear_blue_proxy": 302,
+        "building": 153704
+      },
+      "filtered": {
+        "upward_background": 0,
+        "cloud_proxy": 0,
+        "clear_blue_proxy": 0,
+        "building": 153704
+      },
+      "removed": {
+        "upward_background": 663,
+        "cloud_proxy": 350,
+        "clear_blue_proxy": 302,
+        "building": 0
+      },
+      "newly_claimed": {
+        "upward_background": 0,
+        "cloud_proxy": 0,
+        "clear_blue_proxy": 0,
+        "building": 0
+      }
+    },
+    {
+      "frame": "light_gray_concrete/holdout-courtyard-plaster-low-left",
+      "sha256": "1995d3af4ecbdd7b22bc4ada179009147a5b389379edd6142b99dcaa6446d9c0",
+      "baseline": {
+        "upward_background": 772,
+        "cloud_proxy": 353,
+        "clear_blue_proxy": 408,
+        "building": 158389
+      },
+      "filtered": {
+        "upward_background": 0,
+        "cloud_proxy": 0,
+        "clear_blue_proxy": 0,
+        "building": 158389
+      },
+      "removed": {
+        "upward_background": 772,
+        "cloud_proxy": 353,
+        "clear_blue_proxy": 408,
+        "building": 0
+      },
+      "newly_claimed": {
+        "upward_background": 0,
+        "cloud_proxy": 0,
+        "clear_blue_proxy": 0,
+        "building": 0
+      }
+    },
+    {
+      "frame": "smooth_stone/holdout-portico-masonry-high-right",
+      "sha256": "54819d55b59d36a91e891bf2ff6148104d917d5ca59084f4f73edc43d623e390",
+      "baseline": {
+        "upward_background": 0,
+        "cloud_proxy": 0,
+        "clear_blue_proxy": 0,
+        "building": 121848
+      },
+      "filtered": {
+        "upward_background": 0,
+        "cloud_proxy": 0,
+        "clear_blue_proxy": 0,
+        "building": 121848
+      },
+      "removed": {
+        "upward_background": 0,
+        "cloud_proxy": 0,
+        "clear_blue_proxy": 0,
+        "building": 0
+      },
+      "newly_claimed": {
+        "upward_background": 0,
+        "cloud_proxy": 0,
+        "clear_blue_proxy": 0,
+        "building": 0
+      }
+    },
+    {
+      "frame": "light_gray_concrete/holdout-portico-masonry-high-right",
+      "sha256": "f6c57a6cca3c952e2134e27f6ca75816487c4817800f504acaa6aa0240a24329",
+      "baseline": {
+        "upward_background": 1204,
+        "cloud_proxy": 1106,
+        "clear_blue_proxy": 98,
+        "building": 119166
+      },
+      "filtered": {
+        "upward_background": 0,
+        "cloud_proxy": 0,
+        "clear_blue_proxy": 0,
+        "building": 119166
+      },
+      "removed": {
+        "upward_background": 1204,
+        "cloud_proxy": 1106,
+        "clear_blue_proxy": 98,
+        "building": 0
+      },
+      "newly_claimed": {
+        "upward_background": 0,
+        "cloud_proxy": 0,
+        "clear_blue_proxy": 0,
+        "building": 0
+      }
+    },
+    {
+      "frame": "smooth_stone/holdout-portico-masonry-low-left",
+      "sha256": "eb35fef82a3ed8b7f34c39d7be768ae94123884428038310ea19e578228d83be",
+      "baseline": {
+        "upward_background": 1630,
+        "cloud_proxy": 277,
+        "clear_blue_proxy": 1176,
+        "building": 127774
+      },
+      "filtered": {
+        "upward_background": 0,
+        "cloud_proxy": 0,
+        "clear_blue_proxy": 0,
+        "building": 127773
+      },
+      "removed": {
+        "upward_background": 1630,
+        "cloud_proxy": 277,
+        "clear_blue_proxy": 1176,
+        "building": 1
+      },
+      "newly_claimed": {
+        "upward_background": 0,
+        "cloud_proxy": 0,
+        "clear_blue_proxy": 0,
+        "building": 0
+      }
+    },
+    {
+      "frame": "light_gray_concrete/holdout-portico-masonry-low-left",
+      "sha256": "00daa00ce6d344d9c00205a65b67ed60af6e0f908e1993e842417450928e55b5",
+      "baseline": {
+        "upward_background": 1607,
+        "cloud_proxy": 213,
+        "clear_blue_proxy": 1211,
+        "building": 127161
+      },
+      "filtered": {
+        "upward_background": 0,
+        "cloud_proxy": 0,
+        "clear_blue_proxy": 0,
+        "building": 127160
+      },
+      "removed": {
+        "upward_background": 1607,
+        "cloud_proxy": 213,
+        "clear_blue_proxy": 1211,
+        "building": 1
+      },
+      "newly_claimed": {
+        "upward_background": 0,
+        "cloud_proxy": 0,
+        "clear_blue_proxy": 0,
+        "building": 0
+      }
+    },
+    {
+      "frame": "smooth_stone/holdout-portico-plaster-high-right",
+      "sha256": "fb687c20c5df87e79d9dd17ce48566c7f9fca2a092234bedff15fbe3f83b2e8c",
+      "baseline": {
+        "upward_background": 0,
+        "cloud_proxy": 0,
+        "clear_blue_proxy": 0,
+        "building": 121270
+      },
+      "filtered": {
+        "upward_background": 0,
+        "cloud_proxy": 0,
+        "clear_blue_proxy": 0,
+        "building": 121270
+      },
+      "removed": {
+        "upward_background": 0,
+        "cloud_proxy": 0,
+        "clear_blue_proxy": 0,
+        "building": 0
+      },
+      "newly_claimed": {
+        "upward_background": 0,
+        "cloud_proxy": 0,
+        "clear_blue_proxy": 0,
+        "building": 0
+      }
+    },
+    {
+      "frame": "light_gray_concrete/holdout-portico-plaster-high-right",
+      "sha256": "fbe284f3ab8d1e0d517c81853c4a6121d359eb023c6f9882769d27605edb9b84",
+      "baseline": {
+        "upward_background": 0,
+        "cloud_proxy": 0,
+        "clear_blue_proxy": 0,
+        "building": 108949
+      },
+      "filtered": {
+        "upward_background": 0,
+        "cloud_proxy": 0,
+        "clear_blue_proxy": 0,
+        "building": 108949
+      },
+      "removed": {
+        "upward_background": 0,
+        "cloud_proxy": 0,
+        "clear_blue_proxy": 0,
+        "building": 0
+      },
+      "newly_claimed": {
+        "upward_background": 0,
+        "cloud_proxy": 0,
+        "clear_blue_proxy": 0,
+        "building": 0
+      }
+    },
+    {
+      "frame": "smooth_stone/holdout-portico-plaster-low-left",
+      "sha256": "8f7b6cf572ea617a0efa47c002f4f9221df201dcde9d20595a10fb2915228445",
+      "baseline": {
+        "upward_background": 1141,
+        "cloud_proxy": 171,
+        "clear_blue_proxy": 903,
+        "building": 126849
+      },
+      "filtered": {
+        "upward_background": 0,
+        "cloud_proxy": 0,
+        "clear_blue_proxy": 0,
+        "building": 126849
+      },
+      "removed": {
+        "upward_background": 1141,
+        "cloud_proxy": 171,
+        "clear_blue_proxy": 903,
+        "building": 0
+      },
+      "newly_claimed": {
+        "upward_background": 0,
+        "cloud_proxy": 0,
+        "clear_blue_proxy": 0,
+        "building": 0
+      }
+    },
+    {
+      "frame": "light_gray_concrete/holdout-portico-plaster-low-left",
+      "sha256": "318e6e654ece8e6ab93aea0fa5c0cccecdb727faf743b5fbb5eb31da2f2b05f2",
+      "baseline": {
+        "upward_background": 1068,
+        "cloud_proxy": 159,
+        "clear_blue_proxy": 836,
+        "building": 125050
+      },
+      "filtered": {
+        "upward_background": 0,
+        "cloud_proxy": 0,
+        "clear_blue_proxy": 0,
+        "building": 125050
+      },
+      "removed": {
+        "upward_background": 1068,
+        "cloud_proxy": 159,
+        "clear_blue_proxy": 836,
+        "building": 0
+      },
+      "newly_claimed": {
+        "upward_background": 0,
+        "cloud_proxy": 0,
+        "clear_blue_proxy": 0,
+        "building": 0
+      }
+    },
+    {
+      "frame": "light_gray_concrete/holdout-workshop-masonry-low-left",
+      "sha256": "ae86fd9911640c7397bc929d3e0ca1076d84312b5500712cf2c4ec25e7c9112f",
+      "baseline": {
+        "upward_background": 42528,
+        "cloud_proxy": 39888,
+        "clear_blue_proxy": 2621,
+        "building": 172655
+      },
+      "filtered": {
+        "upward_background": 1,
+        "cloud_proxy": 0,
+        "clear_blue_proxy": 0,
+        "building": 172655
+      },
+      "removed": {
+        "upward_background": 42527,
+        "cloud_proxy": 39888,
+        "clear_blue_proxy": 2621,
+        "building": 0
+      },
+      "newly_claimed": {
+        "upward_background": 0,
+        "cloud_proxy": 0,
+        "clear_blue_proxy": 0,
+        "building": 0
+      },
+      "example": {
+        "original_id": "mask-1",
+        "baseline": {
+          "upward_background": 26988,
+          "cloud_proxy": 26508,
+          "clear_blue_proxy": 480,
+          "building": 0
+        },
+        "residual_within_original": {
+          "upward_background": 0,
+          "cloud_proxy": 0,
+          "clear_blue_proxy": 0,
+          "building": 0
+        },
+        "crop_xyxy": [
+          180,
+          0,
+          848,
+          112
+        ]
+      }
+    },
+    {
+      "frame": "light_gray_concrete/holdout-workshop-masonry-high-right",
+      "sha256": "3aefcb242fdda8a6d4c40adb9a7d2632c8de998b076b1d4ec09a100db95119d4",
+      "baseline": {
+        "upward_background": 281,
+        "cloud_proxy": 0,
+        "clear_blue_proxy": 281,
+        "building": 166982
+      },
+      "filtered": {
+        "upward_background": 0,
+        "cloud_proxy": 0,
+        "clear_blue_proxy": 0,
+        "building": 166982
+      },
+      "removed": {
+        "upward_background": 281,
+        "cloud_proxy": 0,
+        "clear_blue_proxy": 281,
+        "building": 0
+      },
+      "newly_claimed": {
+        "upward_background": 0,
+        "cloud_proxy": 0,
+        "clear_blue_proxy": 0,
+        "building": 0
+      }
+    },
+    {
+      "frame": "light_gray_concrete/holdout-workshop-plaster-low-left",
+      "sha256": "91c686215bb3105c779a45302ed5b43bf16a2faa32fbfe1f0f2be10f0e161c42",
+      "baseline": {
+        "upward_background": 8576,
+        "cloud_proxy": 6944,
+        "clear_blue_proxy": 1608,
+        "building": 167493
+      },
+      "filtered": {
+        "upward_background": 0,
+        "cloud_proxy": 0,
+        "clear_blue_proxy": 0,
+        "building": 167493
+      },
+      "removed": {
+        "upward_background": 8576,
+        "cloud_proxy": 6944,
+        "clear_blue_proxy": 1608,
+        "building": 0
+      },
+      "newly_claimed": {
+        "upward_background": 0,
+        "cloud_proxy": 0,
+        "clear_blue_proxy": 0,
+        "building": 0
+      },
+      "example": {
+        "original_id": "mask-5",
+        "baseline": {
+          "upward_background": 5536,
+          "cloud_proxy": 5536,
+          "clear_blue_proxy": 0,
+          "building": 0
+        },
+        "residual_within_original": {
+          "upward_background": 0,
+          "cloud_proxy": 0,
+          "clear_blue_proxy": 0,
+          "building": 0
+        },
+        "crop_xyxy": [
+          272,
+          180,
+          632,
+          298
+        ]
+      }
+    },
+    {
+      "frame": "light_gray_concrete/holdout-workshop-plaster-high-right",
+      "sha256": "d35ab308820f92501ec898cafb1f50939f3f0ed1141e3d9ee38a00eae1199aa0",
+      "baseline": {
+        "upward_background": 283,
+        "cloud_proxy": 0,
+        "clear_blue_proxy": 283,
+        "building": 163915
+      },
+      "filtered": {
+        "upward_background": 0,
+        "cloud_proxy": 0,
+        "clear_blue_proxy": 0,
+        "building": 163915
+      },
+      "removed": {
+        "upward_background": 283,
+        "cloud_proxy": 0,
+        "clear_blue_proxy": 283,
+        "building": 0
+      },
+      "newly_claimed": {
+        "upward_background": 0,
+        "cloud_proxy": 0,
+        "clear_blue_proxy": 0,
+        "building": 0
+      }
+    },
+    {
+      "frame": "light_gray_concrete/holdout-crossing-masonry-low-left",
+      "sha256": "93c9a45dbb4d6bc59edc6c18ac8007ad4f99ac340844cb0ed8f171640936fa88",
+      "baseline": {
+        "upward_background": 3313,
+        "cloud_proxy": 1208,
+        "clear_blue_proxy": 2094,
+        "building": 184068
+      },
+      "filtered": {
+        "upward_background": 475,
+        "cloud_proxy": 0,
+        "clear_blue_proxy": 474,
+        "building": 184068
+      },
+      "removed": {
+        "upward_background": 2838,
+        "cloud_proxy": 1208,
+        "clear_blue_proxy": 1620,
+        "building": 0
+      },
+      "newly_claimed": {
+        "upward_background": 0,
+        "cloud_proxy": 0,
+        "clear_blue_proxy": 0,
+        "building": 0
+      },
+      "example": {
+        "original_id": "mask-1-single-436-0",
+        "baseline": {
+          "upward_background": 1010,
+          "cloud_proxy": 603,
+          "clear_blue_proxy": 407,
+          "building": 43770
+        },
+        "residual_within_original": {
+          "upward_background": 0,
+          "cloud_proxy": 0,
+          "clear_blue_proxy": 0,
+          "building": 43770
+        },
+        "crop_xyxy": [
+          604,
+          234,
+          1046,
+          496
+        ]
+      }
+    },
+    {
+      "frame": "light_gray_concrete/holdout-crossing-masonry-high-right",
+      "sha256": "7ea5b36aa3c25b3ab4c58dcb773d8c3476c5f2d28048fd72a62970888be31320",
+      "baseline": {
+        "upward_background": 269,
+        "cloud_proxy": 0,
+        "clear_blue_proxy": 269,
+        "building": 175415
+      },
+      "filtered": {
+        "upward_background": 0,
+        "cloud_proxy": 0,
+        "clear_blue_proxy": 0,
+        "building": 175415
+      },
+      "removed": {
+        "upward_background": 269,
+        "cloud_proxy": 0,
+        "clear_blue_proxy": 269,
+        "building": 0
+      },
+      "newly_claimed": {
+        "upward_background": 0,
+        "cloud_proxy": 0,
+        "clear_blue_proxy": 0,
+        "building": 0
+      }
+    },
+    {
+      "frame": "light_gray_concrete/holdout-crossing-plaster-low-left",
+      "sha256": "d348ddef0010267fdffc0d628654ef6ce256329400dec3e1cfd271bfaf764144",
+      "baseline": {
+        "upward_background": 4140,
+        "cloud_proxy": 3176,
+        "clear_blue_proxy": 940,
+        "building": 176786
+      },
+      "filtered": {
+        "upward_background": 331,
+        "cloud_proxy": 0,
+        "clear_blue_proxy": 330,
+        "building": 176786
+      },
+      "removed": {
+        "upward_background": 3809,
+        "cloud_proxy": 3176,
+        "clear_blue_proxy": 610,
+        "building": 0
+      },
+      "newly_claimed": {
+        "upward_background": 0,
+        "cloud_proxy": 0,
+        "clear_blue_proxy": 0,
+        "building": 0
+      }
+    },
+    {
+      "frame": "light_gray_concrete/holdout-crossing-plaster-high-right",
+      "sha256": "a7e9cd44bd97237bd3cbf88b11fdfa3575deee7473ef820b30e19bc5fe37698e",
+      "baseline": {
+        "upward_background": 218,
+        "cloud_proxy": 0,
+        "clear_blue_proxy": 218,
+        "building": 171737
+      },
+      "filtered": {
+        "upward_background": 0,
+        "cloud_proxy": 0,
+        "clear_blue_proxy": 0,
+        "building": 171737
+      },
+      "removed": {
+        "upward_background": 218,
+        "cloud_proxy": 0,
+        "clear_blue_proxy": 218,
+        "building": 0
+      },
+      "newly_claimed": {
+        "upward_background": 0,
+        "cloud_proxy": 0,
+        "clear_blue_proxy": 0,
+        "building": 0
+      }
+    },
+    {
+      "frame": "light_gray_concrete/holdout-registry-masonry-low-left",
+      "sha256": "3f7e9e1b5d577667b157664dd3f37a40e8c7e64a3db0d60ac6c30b294d2ba9e6",
+      "baseline": {
+        "upward_background": 1596,
+        "cloud_proxy": 778,
+        "clear_blue_proxy": 804,
+        "building": 182644
+      },
+      "filtered": {
+        "upward_background": 0,
+        "cloud_proxy": 0,
+        "clear_blue_proxy": 0,
+        "building": 182644
+      },
+      "removed": {
+        "upward_background": 1596,
+        "cloud_proxy": 778,
+        "clear_blue_proxy": 804,
+        "building": 0
+      },
+      "newly_claimed": {
+        "upward_background": 0,
+        "cloud_proxy": 0,
+        "clear_blue_proxy": 0,
+        "building": 0
+      }
+    },
+    {
+      "frame": "light_gray_concrete/holdout-registry-masonry-high-right",
+      "sha256": "e20bfd5e2588ed117375acb3e2f7c42cebb2fdd1ab7167caf35b0b4298a98e19",
+      "baseline": {
+        "upward_background": 348,
+        "cloud_proxy": 0,
+        "clear_blue_proxy": 348,
+        "building": 207044
+      },
+      "filtered": {
+        "upward_background": 0,
+        "cloud_proxy": 0,
+        "clear_blue_proxy": 0,
+        "building": 207044
+      },
+      "removed": {
+        "upward_background": 348,
+        "cloud_proxy": 0,
+        "clear_blue_proxy": 348,
+        "building": 0
+      },
+      "newly_claimed": {
+        "upward_background": 0,
+        "cloud_proxy": 0,
+        "clear_blue_proxy": 0,
+        "building": 0
+      }
+    },
+    {
+      "frame": "light_gray_concrete/holdout-registry-plaster-low-left",
+      "sha256": "23e91937ee67563c1c4a463676a43c7d4800f82581a3188aa7125e32001be5e9",
+      "baseline": {
+        "upward_background": 1205,
+        "cloud_proxy": 689,
+        "clear_blue_proxy": 506,
+        "building": 180127
+      },
+      "filtered": {
+        "upward_background": 0,
+        "cloud_proxy": 0,
+        "clear_blue_proxy": 0,
+        "building": 180127
+      },
+      "removed": {
+        "upward_background": 1205,
+        "cloud_proxy": 689,
+        "clear_blue_proxy": 506,
+        "building": 0
+      },
+      "newly_claimed": {
+        "upward_background": 0,
+        "cloud_proxy": 0,
+        "clear_blue_proxy": 0,
+        "building": 0
+      }
+    },
+    {
+      "frame": "light_gray_concrete/holdout-registry-plaster-high-right",
+      "sha256": "8634b14394486c2fb709ea678008fbaf2314344280b5a13d3582d433125d589d",
+      "baseline": {
+        "upward_background": 455,
+        "cloud_proxy": 0,
+        "clear_blue_proxy": 455,
+        "building": 183417
+      },
+      "filtered": {
+        "upward_background": 0,
+        "cloud_proxy": 0,
+        "clear_blue_proxy": 0,
+        "building": 183416
+      },
+      "removed": {
+        "upward_background": 455,
+        "cloud_proxy": 0,
+        "clear_blue_proxy": 455,
+        "building": 1
+      },
+      "newly_claimed": {
+        "upward_background": 0,
+        "cloud_proxy": 0,
+        "clear_blue_proxy": 0,
+        "building": 0
+      }
+    },
+    {
+      "frame": "light_gray_concrete/holdout-galleries-masonry-low-left",
+      "sha256": "d0fba67900a91a20d0120f298c8783829953bc21c7d45fb4413a8cb829cfddc3",
+      "baseline": {
+        "upward_background": 2385,
+        "cloud_proxy": 183,
+        "clear_blue_proxy": 2180,
+        "building": 156237
+      },
+      "filtered": {
+        "upward_background": 1,
+        "cloud_proxy": 0,
+        "clear_blue_proxy": 0,
+        "building": 156237
+      },
+      "removed": {
+        "upward_background": 2384,
+        "cloud_proxy": 183,
+        "clear_blue_proxy": 2180,
+        "building": 0
+      },
+      "newly_claimed": {
+        "upward_background": 0,
+        "cloud_proxy": 0,
+        "clear_blue_proxy": 0,
+        "building": 0
+      }
+    },
+    {
+      "frame": "light_gray_concrete/holdout-galleries-masonry-high-right",
+      "sha256": "21916862012e6b47e6dbe426fd7a8930bd7fdd51651238d8ad4d3e8860f57a7b",
+      "baseline": {
+        "upward_background": 0,
+        "cloud_proxy": 0,
+        "clear_blue_proxy": 0,
+        "building": 144825
+      },
+      "filtered": {
+        "upward_background": 0,
+        "cloud_proxy": 0,
+        "clear_blue_proxy": 0,
+        "building": 144825
+      },
+      "removed": {
+        "upward_background": 0,
+        "cloud_proxy": 0,
+        "clear_blue_proxy": 0,
+        "building": 0
+      },
+      "newly_claimed": {
+        "upward_background": 0,
+        "cloud_proxy": 0,
+        "clear_blue_proxy": 0,
+        "building": 0
+      }
+    },
+    {
+      "frame": "light_gray_concrete/holdout-galleries-plaster-low-left",
+      "sha256": "0fec6765b63937520e2a731a9171eef73e631ce1d47734e3925e2165b64a26c0",
+      "baseline": {
+        "upward_background": 2682,
+        "cloud_proxy": 1227,
+        "clear_blue_proxy": 1430,
+        "building": 156855
+      },
+      "filtered": {
+        "upward_background": 1,
+        "cloud_proxy": 0,
+        "clear_blue_proxy": 0,
+        "building": 156855
+      },
+      "removed": {
+        "upward_background": 2681,
+        "cloud_proxy": 1227,
+        "clear_blue_proxy": 1430,
+        "building": 0
+      },
+      "newly_claimed": {
+        "upward_background": 0,
+        "cloud_proxy": 0,
+        "clear_blue_proxy": 0,
+        "building": 0
+      }
+    },
+    {
+      "frame": "light_gray_concrete/holdout-galleries-plaster-high-right",
+      "sha256": "a40a75765e0d99508a283686b4484a510d8ca0404656939017fb6d4a85f49832",
+      "baseline": {
+        "upward_background": 0,
+        "cloud_proxy": 0,
+        "clear_blue_proxy": 0,
+        "building": 156490
+      },
+      "filtered": {
+        "upward_background": 0,
+        "cloud_proxy": 0,
+        "clear_blue_proxy": 0,
+        "building": 156490
+      },
+      "removed": {
+        "upward_background": 0,
+        "cloud_proxy": 0,
+        "clear_blue_proxy": 0,
+        "building": 0
+      },
+      "newly_claimed": {
+        "upward_background": 0,
+        "cloud_proxy": 0,
+        "clear_blue_proxy": 0,
+        "building": 0
+      }
+    }
+  ],
+  "examples_sha256": "80c17b96bacfa529484fc7dafcac2ef8988f24a808702ae84cb3d9ad0b317026"
+}
