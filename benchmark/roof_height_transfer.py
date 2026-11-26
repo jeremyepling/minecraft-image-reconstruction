@@ -50,7 +50,7 @@ def run(inputs,root,method,out):
             assert m['correct']-m['gained']+m['lost']==prior[field]['correct']
             assert m['extras']-m['extra_added']+m['extra_removed']==prior[field]['extras']
             assert m['hidden_extras']-m['hidden_added']+m['hidden_removed']==prior[field]['hidden_extras']
-        assert row['baseline_translation']==prior['translation']
+        assert list(row['baseline_translation'])==prior['translation']
         row['relative_geometry'].pop('joint_correct')
         row.update(status=status,control_pack_sha256=prior['pack_sha256'],reference_hashes=f['files'])
         rows.append(row)
