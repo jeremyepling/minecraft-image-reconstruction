@@ -66,7 +66,7 @@ def _contact_anchors(parts, masks, rays, eye, rotation, estimated_depth):
     return {},1.
 
 
-def plane_levels(image, parts, masks, projection, eye, depth_field, *, inverse=True, anchored=False):
+def plane_measurements(image, parts, masks, projection, eye, depth_field, *, inverse=True, anchored=False):
     if eye[1]<=0 or not masks:
         return {}
     h,w = masks[0].shape
@@ -91,6 +91,10 @@ def plane_levels(image, parts, masks, projection, eye, depth_field, *, inverse=T
         if take.sum()<8:
             continue
         coords = eye[axis]+scale*rays[:,:,axis][take]/inverse_depth[take]
-        level = anchors.get(part['id'],int(np.rint(np.median(coords))))
-        levels[part['id']] = level
+        middle = anchors.get(part['id'],float(np.median(coords)))
+        levels[part['id']] = (middle,float(np.median(abs(coords-middle))))
     return levels
+
+
+def plane_levels(*args, **kwargs):
+    return {key:round(center) for key,(center,_) in plane_measurements(*args,**kwargs).items()}

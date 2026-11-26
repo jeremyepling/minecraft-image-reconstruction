@@ -52,7 +52,7 @@ def _frontmost_cells(cells, projection, eye, shape):
     return owner
 
 
-def _estimate_plane_cells(image, parts, masks, projection, eye, levels=None):
+def _estimate_plane_cells(image, parts, masks, projection, eye, select_level=None):
     """Fit provisional grid planes using floor contacts and relative surface depths."""
     focal = np.linalg.norm(projection[0, :3] - image.width / 2 * projection[2, :3])
     rotation = np.linalg.solve(intrinsic(image.size, focal), projection[:, :3])
@@ -76,15 +76,15 @@ def _estimate_plane_cells(image, parts, masks, projection, eye, levels=None):
             continue
         axis = int(np.argmax(abs(rotation.T @ part['normal_camera'])))
         contact = mask & contacts
-        if levels and part['id'] in levels:
-            level = levels[part['id']]
-        elif axis != 1 and contact.sum() >= max(4, .12 * mask.any(axis=0).sum()):
+        if axis != 1 and contact.sum() >= max(4, .12 * mask.any(axis=0).sum()):
             intercepts = eye[axis] + floor_depth[contact] * rays[contact, axis]
             level = int(np.rint(np.median(intercepts)))
         else:
             ratio = typical / max(part.get('relative_inverse_depth') or typical, .001)
             depth = distance * np.clip(ratio, .7, 1.4)
             level = int(np.rint(eye[axis] + np.median(rays[mask, axis]) * depth))
+        if select_level is not None:
+            level = select_level(part, mask, projection, eye, rays, axis, level, distance)
         depth = np.divide(level - eye[axis], rays[:, :, axis], out=np.zeros(shape), where=abs(rays[:, :, axis]) > 1e-7)
         inside = mask & (depth > 1.5) & (depth < 150)
         if inside.sum() < MINIMUM_SAMPLES:
@@ -123,6 +123,10 @@ def place(image, version, parts, *, counts=None, atlas_path=None):
     """Return local (x, y, z) block coordinates and camera/placement diagnostics."""
     image = image.convert('RGB')
     camera = seam_camera(image, version, atlas_path=atlas_path)
+    return place_with_camera(image, version, parts, counts, camera)
+
+
+def place_with_camera(image, version, parts, counts, camera, select_level=None):
     status = dict(camera_status=camera['scale_status'], reason=camera['reason'], P=camera['P'],
                   strict_blocks=0, added_blocks=0, placed_blocks=0, duplicate_side_cells=0,
                   textured_side_cells=0, grounded_side_cells=0, shared_side_cells=0)
@@ -140,7 +144,7 @@ def place(image, version, parts, *, counts=None, atlas_path=None):
     strict, _, _ = _blocks(masks, carriers, projection, {})
     projection = projection / np.linalg.norm(projection[2, :3])
     eye = np.linalg.solve(projection[:, :3], -projection[:, 3])
-    candidates = _estimate_plane_cells(image, parts, masks, projection, eye)
+    candidates = _estimate_plane_cells(image, parts, masks, projection, eye, select_level)
     cells = sorted(strict.union(*candidates))
     owner = _frontmost_cells(cells, projection, eye, shape)
     accepted = strict.copy()
