@@ -24,7 +24,7 @@ from engine.surface_sample import sample_surface
 from runtime.mode import image_only
 
 BASE = ROOT/'benchmark/reviews/texture-photo-count-01'
-METHODS = ['current', 'phase', 'coplanar']
+METHODS = ['current', 'self_repeat', 'phase', 'coplanar']
 
 
 def indexed(records, field):
@@ -36,7 +36,7 @@ def indexed(records, field):
 
 def join(phase, coplanar):
     base = read(checked(BASE/'cases.json', read(BASE/'manifest.json')['artifacts']['cases.json']))
-    for method, (folder, field) in zip(METHODS[1:], (phase,coplanar)):
+    for method, (folder, field) in zip(('phase','coplanar'), (phase,coplanar)):
         rows = indexed(read(folder/'cases.json'), 'key')
         if rows.keys() != indexed(base,'key').keys():
             raise ValueError('Frame set changed')
@@ -52,6 +52,8 @@ def join(phase, coplanar):
                 if result['guess']['current'] != part['guess']['current']:
                     raise ValueError('Baseline size mismatch')
                 part['guess'][method] = result['guess'][field]
+                if method=='phase':
+                    part['guess']['self_repeat'] = result['guess']['self_repeat']
     for frame in base:
         frame.pop('processing_s',None)
         frame.pop('predictions',None)
@@ -76,7 +78,8 @@ def examples(rows):
                 guesses = part['guess']
                 changes = [(method, guesses[method] == part['actual']) for method in METHODS[1:]
                            if guesses[method] != guesses['current']]
-                priority = (bool(changes), sum(1/(1+seen[k]) for k in changes),
+                portico_beam = layout=='portico' and part['actual']==[18,1] and guesses['self_repeat']==part['actual'] and guesses['phase']!=part['actual']
+                priority = (portico_beam,bool(changes), sum(1/(1+seen[k]) for k in changes),
                             None not in guesses['current'],np.prod(part['actual']))
                 options.append((priority, row, part, changes))
         _, row, part, changes = max(options,key=lambda entry: entry[0])
@@ -95,7 +98,7 @@ def render(rows, out):
     caps = {c.floor+'/'+c.id:c for group in groups()[0].values() for c in group}
     selected = examples(rows)
     stages = ['Screenshot','Surface Finder','Neighboring pixels','Straightened crop','Default count',
-              'Texture-guided crop','Texture-guided count','Same-plane transfer','Recorded surface','Score']
+              'Texture-guided crop','Repeats alone','With atlas check','Possible donor','Same-plane count','Recorded surface','Score']
     w,h,left,top = 278,275,190,118
     page = Image.new('RGB',(left+w*len(selected),top+h*len(stages)),'#f6f5ef')
     draw = ImageDraw.Draw(page)
@@ -130,14 +133,20 @@ def render(rows, out):
         cells = [(locator, 'White box marks surface'),
                  (overlay(photo,box,[(mask,(26,218,205),.62)]),'Image-only outline'),
                  (photo.crop(box),'Original nearby pixels')]
-        for name,result in zip(METHODS,(base[idx],test,transfer)):
+        repeat=test.get('evidence',{}).get('self_repeat',base[idx])
+        for name,result in zip(METHODS,(base[idx],repeat,test,transfer)):
             chart = sample_surface(photo,dict(part,quad=result['quad'])) if result.get('quad') is not None else sample
             guess = dimensions(part,chart['quad'] if chart else None,photo.size,result['counts'])['blocks']
             if guess!=rec['guess'][name]:
                 raise ValueError(f'{key} / {name} changed during rendering: {guess}')
             clean,grid,_ = _straight_photo(chart,result) if chart else (None,None,None)
-            if name!='coplanar':
+            if name in ('current','self_repeat'):
                 cells.append((clean,'Usable texture pixels' if name=='current' else 'Crop selected by this trial'))
+            if name=='coplanar':
+                donor_id = result.get('evidence',{}).get('transfer',{}).get('donor')
+                donor = next((p for p in parts if p['id']==donor_id),None)
+                view = overlay(photo,(0,0,*photo.size),[(mask,(26,218,205),.8),(support(donor,photo.size),(226,95,246),.85)]) if donor else None
+                cells.append((view,'Magenta donor / teal recipient' if donor else 'No transfer accepted'))
             cells.append((grid,'Count '+size_text(guess)))
         cells.append((overlay(photo,box,[(truth,(253,180,45),.67)]),'Recorded size '+size_text(rec['actual'])))
         x=left+col*w
@@ -151,7 +160,7 @@ def render(rows, out):
         for j,name in enumerate(METHODS):
             g=rec['guess'][name]
             verdict='correct' if g==rec['actual'] else 'unresolved' if None in g else 'wrong'
-            title={'current':'Default','phase':'Texture-guided','coplanar':'Same-plane'}[name]
+            title={'current':'Default','self_repeat':'Repeats alone','phase':'With atlas','coplanar':'Same-plane'}[name]
             label(draw,(x+4,y+40*j),f'{title}: {verdict}',18)
         index[layout]=dict(key=key,sha256=frame['sha256'],proposal=part['id'],reference=rec['reference'],
                            actual=rec['actual'],guess=rec['guess'])
