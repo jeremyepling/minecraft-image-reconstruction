@@ -53,21 +53,28 @@ def observed_edges(ctx, upper):
     return edges
 
 
-def top_witness(ctx, cell, joint):
+def top_witness(ctx, cell, joint, unclaimed):
     owner, axes, ids = joint
     hit = _sample_face(ctx.native, cell, 1, 1, ctx.shape)
     if hit is None:
         return None
     box, face, depth, *_ = hit
     front = face & (owner[box] == ids[cell]) & (axes[box] == 1) & (depth > ctx.depth[box]+1e-8)
-    y, x = np.nonzero(front & ctx.masks[1][box])
+    support = front & ctx.masks[1][box]
+    if unclaimed:
+        # A rim can bound several neighboring planes. Admit only exposed photo
+        # area that the original build did not already explain with another cube.
+        fresh = support & (ctx.depth[box] == 0)
+        if fresh.sum() < 4 or fresh.sum() < .85*support.sum():
+            return None
+    y, x = np.nonzero(support)
     if len(x) < 4 or len(x) < .88*front.sum():
         return None
     # Across-perimeter apparent thickness, in native pixels, for the evidence audit.
     return float(len(x)/max(int(np.ptp(x))+1,int(np.ptp(y))+1))
 
 
-def recover(image, parts, counts, camera, prior, *, texture=True, atlas_path=None):
+def recover(image, parts, counts, camera, prior, *, texture=True, unclaimed=False, atlas_path=None):
     stats = dict(edge_rectangles=0, proposed=0, top_witnesses=0, accepted=0, thin_accepted=0)
     if camera.get('P') is None or not prior or not parts:
         return prior, stats
@@ -98,7 +105,7 @@ def recover(image, parts, counts, camera, prior, *, texture=True, atlas_path=Non
         for cell in proposals:
             if ids[cell] in spill:
                 continue
-            thickness = top_witness(ctx,cell,joint)
+            thickness = top_witness(ctx,cell,joint,unclaimed)
             if thickness is None:
                 continue
             if first:
@@ -119,3 +126,7 @@ def recover(image, parts, counts, camera, prior, *, texture=True, atlas_path=Non
 
 def layout(image,parts,counts,camera,prior):
     return recover(image,parts,counts,camera,prior,texture=False)
+
+
+def uncovered(image,parts,counts,camera,prior):
+    return recover(image,parts,counts,camera,prior,texture=False,unclaimed=True)
