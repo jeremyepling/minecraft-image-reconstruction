@@ -198,7 +198,7 @@ def apply_planes(size,P,eye,prior,witnesses,union,strict):
     return prior
 
 
-def recover(image,parts,counts,camera,prior,*,atlas_path=None,mode='loose',course_override=None):
+def recover(image,parts,counts,camera,prior,*,atlas_path=None,mode='loose',course_override=None,place_cells=True):
     status=dict(height_decisions=[],primary_height=None)
     if not prior or camera.get('P') is None or not parts:
         return prior,status
@@ -263,7 +263,7 @@ def recover(image,parts,counts,camera,prior,*,atlas_path=None,mode='loose',cours
         if mode in ('supported','supported_wide'):
             row.update(support_fallback=bool(fallback),support_span=span)
         status['height_decisions'].append(row)
-        if accepted:
+        if accepted and place_cells:
             # A block observed by two independent patches can use both witnesses.
             for c,coords2d in placement_pixels(x,y,rays,colors,eye,dict(best,block_y=row['block_y']),maps,strict).items():
                 if c in witnesses:
