@@ -22,6 +22,14 @@ MAIN_ARCHIVE = REVIEWS / 'visible-recovery-01/scores.zip'
 EXTRA_REVIEW = REVIEWS / 'visible-recovery-extra-views-01'
 EXTRA_INPUTS = STABLE.parent / 'minecraft-image-reconstruction-worktrees/visible-recovery-extra-views/runs/extra-views'
 EVALUATION = ('validation', 'test', 'regression', 'native', 'old', 'fresh')
+# The original Wing and Courtyard close-ups, each captured on two floor variants.
+# The texture fills the supplied RGB frame. This is a fixture annotation, never a predictor input.
+TEXTURE_ONLY_RGB = {
+    '9ce65a1c07694c1d3e57019c07b422d7a6a0771ed0d46f579891eae8a61463a9',
+    'b3154136e855e9d005a993b8afdb3989e3fb156b102aed46ce0d99e761d2f2b8',
+    '655531c2d8fecce752ea93fac3aa6a6e4429bb7ce8a629cb409532583694c678',
+    '319503ad2c8fbdc7f33f283d4e35b0f3abe43684bdd8341ace1ac1745696abee',
+}
 
 
 def records(folder, ids):
@@ -118,6 +126,9 @@ def compare(args):
     groups = {s:[r for r in results if r['split']==s] for s in args.splits}
     if set(EVALUATION)<=set(args.splits):
         groups['evaluation'] = [r for r in results if r['split'] in EVALUATION]
+        controls = [r for r in groups['evaluation'] if r['files']['rgb.png'] in TEXTURE_ONLY_RGB]
+        assert len(controls) == 8 and {r['files']['rgb.png'] for r in controls} == TEXTURE_ONLY_RGB
+        groups['structure_views'] = [r for r in groups['evaluation'] if r['files']['rgb.png'] not in TEXTURE_ONLY_RGB]
     if 'evaluation' in groups and 'extra' in groups:
         assert not {r['inputs']['rgb_sha256'] for r in groups['evaluation']} & {r['inputs']['rgb_sha256'] for r in groups['extra']}
     report = dict(control='cebbffa',primary='pooled visible voxel F1 after one whole-build translation',
@@ -126,10 +137,18 @@ def compare(args):
                   canopies={s:canopy_report([r['canopy'] for r in rows if 'canopy' in r])
                             for s,rows in groups.items() if any('canopy' in r for r in rows)})
     args.out.mkdir(parents=True,exist_ok=True)
+    if 'structure_views' in groups:
+        report['primary_group'] = 'structure_views'
+        report['texture_only_controls'] = {
+            'frames': len(controls),
+            'empty_exports': sum(r['relative_geometry']['placed'] == 0 for r in controls),
+            'placed_blocks': sum(r['relative_geometry']['placed'] for r in controls),
+            'ids': [r['id'] for r in controls],
+        }
     save(args.out/'cases.json',results)
     report['cases_sha256']=digest(args.out/'cases.json')
     save(args.out/'summary.json',report)
-    for group in ('train','evaluation','extra'):
+    for group in ('train','structure_views','evaluation','extra'):
         if group in groups:
             m=report['groups'][group]
             print(group, len(groups[group]), m['correct'], m['extras'], f"{m['f1']:.4%}")

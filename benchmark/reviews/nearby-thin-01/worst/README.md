@@ -1,5 +1,7 @@
 # Lowest-scoring reconstruction images
 
+The close-up thumbnails show the entire 1440 × 900 source photographs, scaled to fit. They are texture-only controls. On the 104 fixed structure views, Canopy 06 left is the lowest-scoring image and pooled F1 is 88.22%. The table below also identifies the weakest alternate views. [Structure and full-suite scores](../structure-scope.json)
+
 Eight of the 112 fixed evaluation rows tied for last. All eight depict a close-up wall and returned an empty pack for 48 visible blocks, or 0% F1. They contain four distinct RGB images because both photographed floor variants are fully outside the frame. All 20 alternate views produced nonempty geometry. [All eight source views](camera-abstentions.jpg)
 
 | Evaluation and view | Relative F1 | Correct / visible | Missed | Extra |

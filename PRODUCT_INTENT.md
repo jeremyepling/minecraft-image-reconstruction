@@ -8,6 +8,8 @@ Recover the visible parts of a Minecraft build from the supplied image or images
 
 Reconstruct only cells supported by visible block-face evidence in the supplied input. A partly visible face can support its block when the grid and placement are established. Minecraft places whole blocks, so placing a full cube for its observed face is expected; that does not authorize adding neighboring cells whose faces were never observed.
 
+A full input frame showing only a surface texture, with no usable view of how parts of a build relate, is a texture and grid example. Leave its structure placement unresolved. For a surface extracted from a larger building screenshot, use the surrounding view for orientation and placement. On the extracted surface, compare the perspective-corrected texture against the complete atlas tile to measure block spacing and alignment. An individual brick or mortar course can occupy only part of one Minecraft block.
+
 ## Unseen areas remain unknown
 
 Do not predict or generate hidden backs, interiors, thickness behind an observed face, occluded continuations, off-image regions or other unobserved geometry. Do not close shells, extrude a facade to an assumed depth, mirror a visible facade onto an unseen side, inpaint missing structure or add hidden supports. Shape or symmetry priors may help interpret visible evidence, but they must not create unobserved cells.

@@ -4,6 +4,8 @@ These entries cover model inputs, rules around model outputs, and evaluation cha
 
 ### November 26, 2026
 
+- **Evaluation scope.** The eight Wing and Courtyard close-ups are full-frame textures. The ordinary build abstained on all eight. On the 104 fixed structure views, the current default scores 88.22% versus 86.44% for its predecessor. The original 112-view result is 87.49% versus 85.71%. Use the texture-only frames to test local tile spacing and alignment. [Scope and source images](benchmark/reviews/nearby-thin-01/worst/README.md)
+
 - **Shipped nearby depth and face-direction decisions and thin-face atlas verification.** Fixed-suite F1 rose from 85.71% to 87.49%, and roof cells positioned correctly against both posts rose from 194 to 294 of 459. Four views of two new structures gained 20 correct blocks and 18 extras. The high-right switchback declined. Excessive depth remains a prominent failure on canopies. [Paired evaluations and worst screenshots](benchmark/reviews/nearby-thin-01/README.md)
 
 - **Geometry placement.** Checking adjacent surfaces for depth conflicts, matching visible texture on neighboring faces and measuring horizontal faces on a two-pixel grid raised relative F1 from 83.95% to 85.71% on 112 screenshots. The public placer recovered 705 net visible positions with 24 net extras. Roof positions anchored to both posts rose from 170 to 194 of 459. The close-up atlas counter remains experimental because a frame-filling texture can leave the face orientation unresolved. [Combined results and rollback](benchmark/reviews/visible-recovery-01/README.md) · [Remaining errors and implications for training](benchmark/reviews/post-placement-budget-01/README.md)

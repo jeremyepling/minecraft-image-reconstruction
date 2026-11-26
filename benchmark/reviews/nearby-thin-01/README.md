@@ -22,6 +22,8 @@ The nearby model compares small depth changes and competing face directions on a
 
 ## Worst-performing screenshots
 
+The structure-only comparison scores the same frozen predictions on 104 fixed building views. The previous default scores 86.44% and the shipped default scores 88.22%. Canopy 06 left is the weakest structure. The eight texture-only controls were defined by inspecting the full source images. [Recomputed structure scope](structure-scope.json)
+
 Eight fixed close-ups tie at 0% because the camera could not recover scale. They contain four distinct RGB images. The lowest nonempty fixed build, Canopy 06 left, recovered 29 of 84 visible cells and placed 92 extras (28.29%). Its 62-block depth span is visible in the [top-down comparison](worst/worst-footprint.png). The reference spans ten blocks. The lowest alternate view, Colonnade 01 oblique-left, recovered 105 of 187 with 61 extras (59.49%). The weakest new view, the high-right switchback, missed part of the brick pier and placed extra blocks at the lookout height. [All eight abstentions](worst/camera-abstentions.jpg) · [Three lowest nonempty fixed builds](worst/fixed.jpg) · [Two lowest alternate views](worst/alternate.jpg) · [Switchback detail](../blind-shapes-01/switchback-high-errors.png) · [Full fixed and alternate rankings](worst/ranking.json)
 
 ## Next test toward 95%

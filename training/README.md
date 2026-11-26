@@ -14,6 +14,8 @@ Do not train this project to complete backs, interiors, occluded continuations, 
 
 ## Training data
 
+Use texture-filled whole frames for material and local block-grid targets. Score structure placement on views that show a build. A crop extracted from such a view can supply texture scale and tile alignment while its parent image supplies spatial context.
+
 Source worlds can contain complete structures. For each example, capture the image together with aligned camera parameters, visible depth, normals, surface IDs, projected block corners and visible block-state labels. Use full world data to determine visibility and generate correct labels; restrict reconstruction targets to evidence visible in that example's supplied input view(s).
 
 Represent visible occupied cells, observed free space and unknown space separately. Unknown cells must not become air labels or hidden occupancy targets. Different camera views may form separate single-image examples, but each target must use only its own visibility. A multi-image example can use the union of its explicitly supplied views. Keep all views, palettes and close structural variants of a building in one split. Held-out world state and camera truth belong to the scorer, not ordinary prediction inputs.

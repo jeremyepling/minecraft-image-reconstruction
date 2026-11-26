@@ -7,7 +7,7 @@ import numpy as np
 from PIL import Image, ImageDraw, ImageOps
 
 from benchmark import visible_depth_native as native, visible_depth_transfer as transfer
-from benchmark.nearby_thin_comparison import EVALUATION, EXTRA_INPUTS, decode, records
+from benchmark.nearby_thin_comparison import EVALUATION, EXTRA_INPUTS, TEXTURE_ONLY_RGB, decode, records
 from benchmark.relative_geometry_replay import references
 from benchmark.texture_camera_eval import DATA, STABLE, checked, frames, read, save
 from benchmark.texture_camera_sheet import font
@@ -99,12 +99,12 @@ def sheet(rows, headline, destination):
     canvas.save(destination,quality=90)
 
 
-def empty_sheet(rows,destination):
+def texture_sheet(rows,destination):
     canvas=Image.new('RGB',(1360,112+196*((len(rows)+1)//2)),BG)
     pen=ImageDraw.Draw(canvas)
-    pen.text((26,16),'Lowest-scoring views · camera abstentions',font=font(32),fill=INK)
+    pen.text((26,16),'Full-frame texture controls',font=font(32),fill=INK)
     distinct=len({r['rgb_sha256'] for r,_ in rows})
-    pen.text((26,68),f'{len(rows)} builds at 0% F1 · {distinct} distinct source images across the photographed floor settings',font=font(21),fill=MUTED)
+    pen.text((26,68),f'{len(rows)} complete screenshots · {distinct} distinct images across the photographed floor settings',font=font(21),fill=MUTED)
     for i,(entry,image) in enumerate(rows):
         x=26+(i%2)*664
         y=110+(i//2)*196
@@ -112,7 +112,7 @@ def empty_sheet(rows,destination):
         floor,_,parts=entry['id'].removeprefix('legacy-').split('-',2)
         pen.text((x+262,y+16),parts.replace('-close-front','').replace('-',' ').title(),font=font(23),fill=INK)
         pen.text((x+262,y+58),floor.replace('_',' ')+' floor',font=font(21),fill=MUTED)
-        pen.text((x+262,y+94),f"0 / {entry['target']} visible · 0 extra",font=font(21),fill=MUTED)
+        pen.text((x+262,y+94),f"{entry['placed']} blocks exported",font=font(21),fill=MUTED)
     canvas.save(destination,quality=90)
 
 
@@ -150,7 +150,7 @@ def footprint(name, truth, placed, destination):
 
 def build(args):
     args.out.mkdir(parents=True,exist_ok=True)
-    output, selected, empty = {}, {}, []
+    output, selected, controls, abstentions = {}, {}, [], []
     for name,splits,count in [('fixed',EVALUATION,3),('alternate',('extra',),2)]:
         indexed=[]
         for split in splits:
@@ -166,15 +166,18 @@ def build(args):
             m=row['relative_geometry']
             record=dict(id=key,split=split,f1=float(f1(row)),rgb_sha256=row['rgb_sha256'],
                         pack_sha256=row['pack_sha256'],**{k:m[k] for k in ('target','placed','correct','extras','missed')})
-            output[name].append(record)
-            if m['placed'] and len(cards)>=count:
+            if not m['placed']:
+                abstentions.append(key)
+            texture_only = name == 'fixed' and row['rgb_sha256'] in TEXTURE_ONLY_RGB
+            if not texture_only:
+                output[name].append(record)
+            if not texture_only and len(cards)>=count:
                 continue
             rgb,pose_path=image_paths(split,f)
             with Image.open(checked(rgb,f['files']['rgb.png'])) as src:
                 image=src.convert('RGB')
-            if not m['placed']:
-                assert not row['camera_supported'] and f1(row)==0
-                empty.append((record,image))
+            if texture_only:
+                controls.append((record,image))
                 continue
             pose=read(checked(pose_path,f['files']['camera.json']))
             truth,_,transform,hashes=references('old' if split=='extra' else split,f,fixture,DATA,
@@ -183,17 +186,17 @@ def build(args):
             dx,dy,dz=row['translation']
             placed={(x+dx,y+dy,z+dz) for x,y,z in cells}
             assert len(placed&truth)==m['correct'] and len(placed-truth)==m['extras'] and len(truth-placed)==m['missed']
-            if name=='fixed' and not cards:
+            if name=='fixed' and not cards and placed:
                 footprint(title(key),truth,placed,args.out/'worst-footprint.png')
             detail=f"{float(f1(row)):.2%} F1     {m['correct']}/{m['target']} correct     {m['extras']} extra     {m['missed']} missing"
             cards.append((title(key),detail,overlay(image,pose,truth,placed)))
-        selected[name]=[entry['id'] for entry in output[name] if entry['placed']][:count]
-        sheet(cards,f"Weakest nonempty builds · {len(indexed)} {name} views",args.out/(name+'.jpg'))
-    if empty:
-        empty.sort(key=lambda pair:(pair[0]['id'].split('-',2)[-1],pair[0]['id']))
-        empty_sheet(empty,args.out/'camera-abstentions.jpg')
+        selected[name]=[entry['id'] for entry in output[name][:count]]
+        sheet(cards,f"Weakest structure builds · {len(output[name])} {name} views",args.out/(name+'.jpg'))
+    if controls:
+        controls.sort(key=lambda pair:(pair[0]['id'].split('-',2)[-1],pair[0]['id']))
+        texture_sheet(controls,args.out/'camera-abstentions.jpg')
     save(args.out/'ranking.json',dict(sort='ascending exact relative F1, then frame ID',selected=selected,
-         abstentions=[r['id'] for r,_ in empty],rankings=output))
+         abstentions=abstentions,texture_only_controls=[r for r,_ in controls],rankings=output))
 
 
 if __name__=='__main__':
