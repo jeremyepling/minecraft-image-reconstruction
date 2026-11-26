@@ -25,7 +25,7 @@ from runtime.mode import image_only, mark_image_only
 
 
 SOURCE = ROOT/'benchmark/reviews/detail-01'
-MODULES = {'repeat':'portico_repeat','atlas':'portico_atlas'}
+MODULES = {'repeat':'portico_repeat','atlas':'portico_atlas','rectify':'repeat_rectify'}
 
 
 def scalar(x):
@@ -41,7 +41,7 @@ def evaluate(job):
     parts = read_gzip(checked(SOURCE/row['predictions'],pred_hash))['current']
     with Image.open(checked(capture.path('image'),row['sha256'])) as opened:
         photo = opened.convert('RGB')
-    functions = {m:importlib.import_module('benchmark.'+MODULES[m]).predict for m in methods}
+    functions = {m:importlib.import_module('benchmark.'+MODULES[m]) for m in methods}
     preds,records = [],[]
     timing = Counter()
     for part in parts:
@@ -50,12 +50,15 @@ def evaluate(job):
         base = count(sample)
         timing['current'] += perf_counter()-start
         evidence = {'current':base}
-        for name,fn in functions.items():
+        for name,module in functions.items():
             start = perf_counter()
-            evidence[name] = fn(sample,deepcopy(base))
+            if name=='rectify':
+                evidence[name] = module.predict_surface(photo,part,sample,deepcopy(base))
+            else:
+                evidence[name] = module.predict(sample,deepcopy(base))
             timing[name] += perf_counter()-start
         quad = sample['quad'] if sample else None
-        flags = {m:dimensions(part,quad,photo.size,res['counts'])['blocks'] for m,res in evidence.items()}
+        flags = {m:dimensions(part,res.get('quad',quad),photo.size,res['counts'])['blocks'] for m,res in evidence.items()}
         records.append(dict(proposal=part['id'],guess=flags))
         preds.append(dict(proposal=part['id'],chart=quad,chart_wh=list(sample['mask'].shape[::-1]) if sample else None,
                           valid=int(sample['mask'].sum()) if sample else 0,methods=evidence))
