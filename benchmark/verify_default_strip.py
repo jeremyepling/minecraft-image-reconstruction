@@ -33,16 +33,23 @@ def approved_row(key):
 def verify_frame(job):
     capture, source, sha, expected, signature = job
 
+    trim_record = {}
+
     def run_filter(photo, parts):
         actual, stats = clean_surfaces(photo, parts)
         if region_signature(actual) != signature:
             raise ValueError('Saved pre-promotion mask or proposal property changed on '+source['key'])
+        edits = expected['removed']['neighbor']
+        if stats['changed_surfaces'] != len(edits) or stats['removed_pixels'] != sum(d['removed'] for d in edits):
+            raise ValueError('Default strip removal statistics differ on '+source['key'])
+        trim_record.update(pixels=stats['removed_pixels'], surfaces=stats['changed_surfaces'])
         return actual, []
 
     result = evaluate((capture, source, sha), refiners=(('neighbor', run_filter),))
     for group in ('scores', 'scopes', 'sizes', 'size_changes'):
         if result[group]['neighbor'] != expected[group]['neighbor']:
             raise ValueError(f"Promoted {group} differs on {source['key']}")
+    result['verified_trim'] = trim_record
     return result
 
 
@@ -72,6 +79,9 @@ def verify_suite(workers):
     return dict(code=revision(),source_run='strip-neighbor-01',approved_revision=read(SIGNATURES)['revision'],
                 scope='Archived inputs to the production strip filter; full upstream inference is tested separately.',
                 frames=len(results),all_ordered_proposal_records_equal=True,all_per_frame_scores_and_sizes_equal=True,
+                changed_views=sum(r['verified_trim']['surfaces']>0 for r in results),
+                changed_surfaces=sum(r['verified_trim']['surfaces'] for r in results),
+                removed_native_pixels=sum(r['verified_trim']['pixels'] for r in results),
                 eligible=scores['eligible'],matched=scores['matched'],sizes=scores['sizes'])
 
 
