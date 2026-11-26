@@ -14,7 +14,9 @@ Use `main` to recover visible surfaces from one Minecraft Java 26.3 screenshot. 
 .\Invoke-WallRecovery.ps1 .\screenshot.png -Out .\runs\my-build
 ```
 
-Read `surfaces.json` for the visible masks and openings, the crops for the **Surface Straightener**’s input, and `counts.json` for the **Block Counter**’s estimates across and down each surface. The **Material Matcher** can compare supported cells with the vanilla atlas. Each build records the methods and model hashes it used in `build-manifest.json`. [Setup and single-image verification](benchmark/WALL_RECOVERY_BUILD.md) · [Stage names and outputs](benchmark/SURFACE_FINDER.md) · [Illustrated pipeline](benchmark/reviews/perimeters-01/comparison.jpg)
+Open `reconstruction.zip` for the visible geometry datapack and `placements.json` for its local block coordinates. Placement uses smooth stone to show geometry. When the camera cannot establish block scale, the pack contains an empty build function and the manifest explains the decision. Load a supported pack as a Java 26.3 datapack and run `/function reconstruction:build` at the desired origin.
+
+Read `surfaces.json` for visible masks and openings, and `counts.json` for the **Block Counter**’s estimates and any requested material matches. Use `-Through counts` to stop after counting. [Setup and single-image verification](benchmark/WALL_RECOVERY_BUILD.md) · [Placement results](benchmark/SUPPORTED_PLACEMENT.md)
 
 ## Reproduce the surface score
 

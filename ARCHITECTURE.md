@@ -32,7 +32,9 @@ The replay applies the selected rules to saved numerical model outputs, runs the
 
 Assembly may place a full Minecraft cube for a block evidenced by a visible face. It must not add further cells to close a shell, fill an unseen continuation or manufacture concealed supports. An omitted unknown cell is not an instruction to place air in an existing world. The facade builder's legacy `--depth` shell generation is outside this product intent; its existence is not evidence that hidden reconstruction is a goal.
 
-The assembly command uses the facade builder. It measures a projected block grid or accepts one saved for the same image. It ranks atlas textures for those cells, resolves conflicting placements and writes a Minecraft datapack. The six-model surface run currently ends at surface-local measurements. For a measured link between those surfaces and world coordinates, see the Block Counter’s separate export experiment. [Count and placement results](benchmark/COUNT_ROUND.md)
+The ordinary exterior wrapper uses `build --through placement`. When the camera supports block scale, it exports the strict grid cells and adds cells with visible face evidence on estimated surface planes. The resulting smooth-stone datapack and coordinate list share the same local origin. [Placement results](benchmark/SUPPORTED_PLACEMENT.md)
+
+The separate `build --through assembly` command uses the facade builder. It measures a projected block grid or accepts one saved for the same image. It ranks atlas textures for those cells, resolves conflicting placements and writes a Minecraft datapack. [Earlier count and placement experiment](benchmark/COUNT_ROUND.md)
 
 ```console
 python reconstruct.py analyze wall.png --out runs/grid

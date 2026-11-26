@@ -1,0 +1,148 @@
+"""Place visible surface cells in the block grid estimated from one screenshot."""
+import numpy as np
+
+from engine.camera_seam import predict as seam_camera
+from engine.masked_count import count
+from engine.surface_model import intrinsic
+from engine.surface_sample import sample_surface
+from engine.visible_grid import _blocks, _carriers
+from engine.visible_raster import SAMPLE_STRIDE, observed_support, rasterize
+
+
+MINIMUM_SAMPLES = 4
+MINIMUM_COVERAGE = .5
+FACE_CORNERS = np.array([[0, 0], [1, 0], [1, 1], [0, 1]])
+
+
+def _sample_face(projection, cell, axis, sign, shape):
+    face = np.tile(cell, (4, 1))
+    face[:, axis] += int(sign > 0)
+    face[:, [i for i in range(3) if i != axis]] += FACE_CORNERS
+    projected = face @ projection[:, :3].T + projection[:, 3]
+    if projected[:, 2].min() <= 1e-5:
+        return None
+    projected[:, :2] /= SAMPLE_STRIDE
+    try:
+        return rasterize(projected, shape[1], shape[0])
+    except np.linalg.LinAlgError:
+        return None
+
+
+def _frontmost_cells(cells, projection, eye, shape):
+    """Assign each sampled image ray to the nearest projected face in the candidate build."""
+    inverse_depth = np.zeros(shape)
+    owner = np.full(shape, -1, dtype=int)
+    occupied = set(cells)
+    for index, cell in enumerate(cells):
+        for axis in range(3):
+            if cell[axis] <= eye[axis] <= cell[axis] + 1:
+                continue
+            sign = 1 if eye[axis] > cell[axis] else -1
+            neighbor = list(cell)
+            neighbor[axis] += sign
+            if tuple(neighbor) in occupied:
+                continue
+            hit = _sample_face(projection, cell, axis, sign, shape)
+            if hit is None:
+                continue
+            box, pixels, depth, _, _ = hit
+            closer = pixels & (depth > inverse_depth[box])
+            inverse_depth[box][closer] = depth[closer]
+            owner[box][closer] = index
+    return owner
+
+
+def _estimate_plane_cells(image, parts, masks, projection, eye):
+    """Fit provisional grid planes using floor contacts and relative surface depths."""
+    focal = np.linalg.norm(projection[0, :3] - image.width / 2 * projection[2, :3])
+    rotation = np.linalg.solve(intrinsic(image.size, focal), projection[:, :3])
+    shape = masks[0].shape
+    yy, xx = np.indices(shape)
+    pixels = np.stack([(xx + .5) * SAMPLE_STRIDE, (yy + .5) * SAMPLE_STRIDE, np.ones(shape)], axis=-1)
+    rays = pixels @ np.linalg.inv(projection[:, :3]).T
+    union = np.logical_or.reduce(masks)
+    bottom = np.where(union, yy, -1).max(axis=0)
+    boundary = union & (yy == bottom) & (yy < shape[0] - 1)
+    floor_depth = np.divide(-eye[1], rays[:, :, 1], out=np.full(shape, np.nan), where=abs(rays[:, :, 1]) > 1e-7)
+    contacts = boundary & (floor_depth > 1) & (floor_depth < 150)
+    distance = np.median(floor_depth[contacts]) if contacts.any() else focal / (image.height / 24)
+    depths = [p['relative_inverse_depth'] for p in parts if (p.get('relative_inverse_depth') or 0) > 0]
+    typical = np.median(depths) if depths else 1
+    candidates = []
+    for part, mask in zip(parts, masks, strict=True):
+        cells = set()
+        candidates.append(cells)
+        if not mask.any() or part.get('normal_camera') is None:
+            continue
+        axis = int(np.argmax(abs(rotation.T @ part['normal_camera'])))
+        contact = mask & contacts
+        if axis != 1 and contact.sum() >= max(4, .12 * mask.any(axis=0).sum()):
+            intercepts = eye[axis] + floor_depth[contact] * rays[contact, axis]
+            level = int(np.rint(np.median(intercepts)))
+        else:
+            ratio = typical / max(part.get('relative_inverse_depth') or typical, .001)
+            depth = distance * np.clip(ratio, .7, 1.4)
+            level = int(np.rint(eye[axis] + np.median(rays[mask, axis]) * depth))
+        depth = np.divide(level - eye[axis], rays[:, :, axis], out=np.zeros(shape), where=abs(rays[:, :, axis]) > 1e-7)
+        inside = mask & (depth > 1.5) & (depth < 150)
+        if inside.sum() < MINIMUM_SAMPLES:
+            continue
+        coords = np.floor(eye + depth[inside, None] * rays[inside]).astype(int)
+        sign = 1 if eye[axis] > level else -1
+        coords[:, axis] = level - int(sign > 0)
+        coords, counts = np.unique(coords[coords[:, 1] >= 0], axis=0, return_counts=True)
+        for cell in coords[counts >= MINIMUM_SAMPLES]:
+            hit = _sample_face(projection, cell, axis, sign, shape)
+            if hit is None:
+                continue
+            box, pixels, _, _, _ = hit
+            supported = np.count_nonzero(pixels & mask[box])
+            if supported >= max(MINIMUM_SAMPLES, MINIMUM_COVERAGE * pixels.sum()):
+                cells.add(tuple(cell.tolist()))
+    return candidates
+
+
+def _charts(image, version, parts, counts):
+    saved = {row['id']: row for row in counts['surfaces']} if counts is not None else {}
+    charts = []
+    for part in parts:
+        row = saved.get(part['id'])
+        if row is None:
+            sample = sample_surface(image, part)
+            quad = sample['quad'] if sample is not None else None
+            spans = count(sample, version=version)['counts']
+        else:
+            quad, spans = row.get('quad'), row['counts']
+        charts.append(dict(id=part['id'], quad=quad, pitch=dict(counts=spans if None not in spans else None)))
+    return charts
+
+
+def place(image, version, parts, *, counts=None):
+    """Return local (x, y, z) block coordinates and camera/placement diagnostics."""
+    image = image.convert('RGB')
+    camera = seam_camera(image, version)
+    status = dict(camera_status=camera['scale_status'], reason=camera['reason'], P=camera['P'],
+                  strict_blocks=0, added_blocks=0, placed_blocks=0)
+    if camera['scale_status'] != 'supported' or camera['P'] is None or not parts:
+        return set(), status
+    projection = np.asarray(camera['P'])
+    # Count sample centers strictly inside the original frame, including odd-sized images.
+    shape = tuple((n + (SAMPLE_STRIDE - 1) // 2) // SAMPLE_STRIDE for n in image.size[::-1])
+    masks = [observed_support(part['support'], shape, image.size) if part.get('support')
+             else np.zeros(shape, dtype=bool) for part in parts]
+    carriers = _carriers(image, _charts(image, version, parts, counts), masks, projection)
+    strict, _, _ = _blocks(masks, carriers, projection, {})
+    projection = projection / np.linalg.norm(projection[2, :3])
+    eye = np.linalg.solve(projection[:, :3], -projection[:, 3])
+    candidates = _estimate_plane_cells(image, parts, masks, projection, eye)
+    cells = sorted(strict.union(*candidates))
+    owner = _frontmost_cells(cells, projection, eye, shape)
+    accepted = strict.copy()
+    for mask, evidence in zip(masks, candidates, strict=True):
+        if not evidence:
+            continue
+        visible = owner[mask]
+        sample_counts = np.bincount(visible[visible >= 0], minlength=len(cells))
+        accepted.update(cells[i] for i in np.flatnonzero(sample_counts >= MINIMUM_SAMPLES) if cells[i] in evidence)
+    status.update(strict_blocks=len(strict), added_blocks=len(accepted - strict), placed_blocks=len(accepted))
+    return accepted, status

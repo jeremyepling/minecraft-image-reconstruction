@@ -2,7 +2,7 @@
 param(
     [Parameter(Mandatory, Position=0)][string] $Image,
     [Parameter(Mandatory)][string] $Out,
-    [ValidateSet('surfaces','counts')][string] $Through = 'counts',
+    [ValidateSet('surfaces','counts','placement')][string] $Through = 'placement',
     [string] $Python,
     [string] $ModelPython,
     [string] $ScaleSource,

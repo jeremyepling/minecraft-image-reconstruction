@@ -80,12 +80,12 @@ def main():
     p.add_argument('--out',type=Path,required=True)
     for key in ('minecraft-dir','manifest','java-home'): p.add_argument('--'+key,type=Path)
     p=cmds.add_parser('build')
-    p.add_argument('--through',choices=['camera','surfaces','counts','assembly'],default='assembly',
-                   help='Fit the camera, find visible surfaces, measure block counts, or build a datapack')
+    p.add_argument('--through',choices=['camera','surfaces','counts','placement','assembly'],default='assembly',
+                   help='Fit the camera, find surfaces, count blocks, export visible geometry, or assemble a textured facade')
     p.add_argument('--surface-context-px', type=int,
                    help='Include this many neighboring source pixels per side in Regions First context crops (default 8)')
     p.add_argument('--material-match', choices=['atlas','exposure','shape','shape-shadow'],
-                   help='Identify complete visible cells against the versioned atlas with --through counts')
+                   help='Identify complete visible cells in the counts report during counting or placement')
     p.add_argument('--version',help='Target Java version')
     p.add_argument('image',type=Path)
     p.add_argument('--atlas',type=Path,help='Versioned atlas directory for assembly or counting with material matching')
@@ -113,25 +113,25 @@ def main():
 @image_only()
 def run_image_command(parser,args):
     if args.command=='build' and args.surface_context_px is not None:
-        if args.through not in ('surfaces','counts') or args.surface_context_px < 0:
-            parser.error('--surface-context-px requires surfaces or counts and a nonnegative margin')
+        if args.through not in ('surfaces','counts','placement') or args.surface_context_px < 0:
+            parser.error('--surface-context-px requires a surface stage and a nonnegative margin')
     if args.command=='build' and args.material_match in ('shape','shape-shadow') and not args.atlas:
         parser.error('--material-match shape and shape-shadow require --atlas')
     if args.command=='build' and args.material_match=='exposure' and not (args.atlas and args.library):
         parser.error('--material-match exposure requires --atlas and --library')
-    if args.command=='build' and args.through!='counts' and args.material_match:
-        parser.error('--material-match applies to --through counts')
+    if args.command=='build' and args.through not in ('counts','placement') and args.material_match:
+        parser.error('--material-match applies to counts or placement')
     if args.command=='atlas':
         defaults=json.loads(args.registry.read_text()) if args.registry else None
         info=catalog.build(args.version,args.out,args.jar,defaults)
         print(f"{args.version}: {len(info['choices']['south'])} placeable south-face textures")
     elif args.command=='analyze':
         analyze(args.image,args.scene,args.out)
-    elif args.through in ('camera', 'surfaces', 'counts'):
+    elif args.through in ('camera', 'surfaces', 'counts', 'placement'):
         if not args.version:
             parser.error('Camera and surface builds need --version')
         if (args.scene or args.geometry or args.depth is not None
-                or (args.library and args.material_match!='exposure') or (args.atlas and args.through!='counts') or args.match_exposure
+                or (args.library and args.material_match!='exposure') or (args.atlas and args.through not in ('counts','placement')) or args.match_exposure
                 or args.white_balance or args.match_appearance):
             parser.error('Choose assembly for the supplied geometry or material placement options')
         if args.through == 'camera':

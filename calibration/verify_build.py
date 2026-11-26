@@ -22,7 +22,8 @@ def verify(build, jar, run, runtime_args):
     if world.exists() or (run/'client').exists():
         raise ValueError('Verification requires a fresh output directory')
     blocks=placements['blocks']
-    xs,ys,zs=[[b[axis] for b in blocks] for axis in ('x','y','z')]
+    # Frame the origin when the camera abstained and the export is empty.
+    xs,ys,zs=[[b[axis] for b in blocks] or [0] for axis in ('x','y','z')]
     offset=GROUND+1-min(ys)
     if max(ys)+offset>=320:
         raise ValueError('Structure exceeds the available height above the test floor')
@@ -30,6 +31,10 @@ def verify(build, jar, run, runtime_args):
     dst=world/'datapacks'/PACK
     dst.parent.mkdir(exist_ok=True)
     with ZipFile(build/'reconstruction.zip') as src, ZipFile(dst,'w',ZIP_DEFLATED) as pack:
+        if not blocks:
+            function = next(name for name in src.namelist() if name.endswith('/build.mcfunction'))
+            if src.read(function).strip():
+                raise ValueError('Empty placement list has a nonempty build function')
         for name in src.namelist(): pack.writestr(name,src.read(name))
         pack.writestr('data/palette_lab/function/page_0.mcfunction',
                       f'execute positioned 0 {offset} 0 run function reconstruction:build\n')

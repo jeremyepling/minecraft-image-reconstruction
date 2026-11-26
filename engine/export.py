@@ -7,6 +7,10 @@ from zipfile import ZipFile, ZIP_DEFLATED
 from calibration.world import tag
 
 
+# Verified against the 26.3 release metadata and vanilla structure palette.
+JAVA_26_3_FORMAT = dict(data_version=5023, palette_key='id', pack_version=dict(data_major=121, data_minor=0))
+
+
 def write_pack(path, blocks, meta):
     pack=meta['pack_version']
     major=pack['data_major'] if 'data_major' in pack else pack['data']

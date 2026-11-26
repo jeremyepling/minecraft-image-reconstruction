@@ -4,12 +4,14 @@ from itertools import groupby
 
 import numpy as np
 
+from engine.visible_raster import SAMPLE_STRIDE, observed_support
+
 from benchmark.camera_labels import rasterize
 from benchmark.camera_metrics import truth_camera
 from engine.geometry import UNIT, project, transform
 
 
-DOWNSAMPLE = 4
+DOWNSAMPLE = SAMPLE_STRIDE
 MIN_PATCH_FACES = 4
 MIN_SUPPORT = 24  # quarter-resolution pixel centers
 IOU_THRESHOLD = .5
@@ -157,17 +159,6 @@ def _one_to_one(pairs):
     for i in sorted(options.keys() - matched):
         augment(i, set())
     return sorted((i, pid) for pid, i in held.items())
-
-
-def observed_support(support,shape,size):
-    """Resample half-open analysis-mask runs at the scoring pixel centers."""
-    sw,sh=support['size']
-    raw=np.zeros((sh,sw),dtype=bool)
-    for y,x0,x1 in support['runs']:
-        raw[y,x0:x1]=True
-    u=((np.arange(shape[1])+.5)*DOWNSAMPLE*sw/size[0]).astype(int).clip(0,sw-1)
-    v=((np.arange(shape[0])+.5)*DOWNSAMPLE*sh/size[1]).astype(int).clip(0,sh-1)
-    return raw[np.ix_(v,u)]
 
 
 def score_planes(t, proposals, *, supported_pixels=False):

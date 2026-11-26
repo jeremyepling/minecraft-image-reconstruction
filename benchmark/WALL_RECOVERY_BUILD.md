@@ -8,7 +8,7 @@ From this checkout on the Minecraft PC:
 .\Invoke-WallRecovery.ps1 .\snapshot.png -Out .\runs\my-build
 ```
 
-This command uses the default Java 26.3 Surface Finder and Block Counter. The input is one ordinary screenshot. Use `-Through surfaces` to stop after surface finding. The build writes `surfaces.json` with visible masks, surface crops, `counts.json` with supported dimensions and `build-manifest.json` with the methods, settings and checkpoint hashes.
+This command runs surface finding, counting and visible block placement on one Java 26.3 screenshot. Use `-Through surfaces` or `-Through counts` for the intermediate stages. The build writes visible masks to `surfaces.json`, estimates to `counts.json`, and camera status and placement counts to `build-manifest.json`. The default also writes local smooth-stone coordinates to `placements.json` and their Minecraft datapack to `reconstruction.zip`. [Placement behavior and evaluation](SUPPORTED_PLACEMENT.md)
 
 The Wall Separator starts with MoGe-2 directions and Depth Anything V2 depth. Its masks supply MobileSAM point prompts. ScaleLSD identifies junction-supported cuts, M-LSD Tiny finds thin undersides, and MobileSAM can partition a wall when the depth evidence supports a step. Pixel-wise Planarity checks the full screenshot for an adjacent missing surface or two distinct planes inside one wall. Nine overlapping crops give that model a closer view. Each accepted crop split keeps exactly the original surface area and holes. The Surface Straightener and Block Counter receive those masks. The build manifest calls the selected method `plane-recovery-crop-splits`. [Results on 56 views](CROP_SPLIT.md)
 
