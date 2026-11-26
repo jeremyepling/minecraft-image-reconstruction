@@ -19,6 +19,24 @@ Every measured width was exact. To measure width, the evaluator takes the larges
 
 The selected oblique canopy angles contain zero visibly downward-facing roof faces. The fixed release supplies underside coverage on 36 of the 80 held or regression views. The ordinary baseline recovers 525 of 1,060 downward-facing blocks with their underside still visible in the fixed exteriors, 202 of 382 in Twin Spires and 16 of 30 in Cloister.
 
+## Frozen challenger comparisons
+
+| Eight new shapes | Correct of 1,431 | Extras | Extras on hidden structure | F1 |
+|---|---:|---:|---:|---:|
+| Previous default `a16668f` | 1,014 | 482 | 21 | .6929 |
+| Junction creases `5219558` | 1,066 | 174 | 6 | .7982 |
+| Repeated-patch evidence `783380a` | 1,070 | 139 | 6 | .8106 |
+| Combined plane rules `af24549` | 1,070 | 139 | 6 | .8106 |
+| Combined rules plus verified neighboring edges `af24549` | 1,070 | 139 | 6 | .8106 |
+
+The repetition and both combined methods returned exactly the same registered coordinates on these eight pictures. Against the baseline, the combined method gained 70 correct placements, lost 14, removed 359 extras and added 16. On the three new canopies each challenger recovered 100 of 167 visible blocks with four extras, gaining 26 correct placements, losing zero and removing 257 net extras. On the larger positive facade the combined method lost three correct placements and added one extra. On the colonnade it gained 21 net correct placements and removed 75 net extras.
+
+The combined method raised visible rim recovery from 16 to 43 of 43 and roof top recovery from 15 to 28 of 82 on the three fresh canopies. On the seven reviewed canopies, rim recovery rose from 68 to 99 of 108, and top recovery from 60 to 113 of 348. The methods retained all 208 front post faces, all ten exact gap widths and all 137 clear sightlines. On the broader 80-view downward-face test the two combined rounds recovered 776 and 778 of 1,472 visible downward faces, compared with 743 for the baseline. [Per-image predictions, roof and gap audits, and underside scores](challengers.zip)
+
+### Why the top surface remains difficult
+
+In the new canopies, 79 of 82 roof top faces occupy at most two rows of the source image. Of 326 four-pixel-grid samples that actually hit the roof tops, 314 landed in an automatic surface mask but only 64 in a mask assigned to the horizontal axis. Only 29 of the 82 visible top faces received even one sample. All 43 roof rim faces had at least four sampled pixels and at least half of those pixels in a mask with the correct axis. On the seven reviewed canopies, 297 of 348 top faces also occupied at most two source rows. The next depth and placement evidence worth testing is a native-resolution strip sampled along the thin roof surface. The extent and orientation figures here are scoring diagnostics against recorded visible faces. Recompute them with `benchmark.canopy_fixture_coverage --inputs PATH_TO_INPUTS --out runs/coverage.json`.
+
 ## Replay the native confirmation
 
 Download the 11,792,186-byte input archive and verify SHA256 `6f5097f69727125448cd0615d191fdd3b2f348edd9101745a798c4c0711aafe7`. It contains eight original PNGs, recorded poses, native block readbacks, and the ordinary upstream masks, counts and build manifests. [Native confirmation fixture](https://github.com/jeremyepling/minecraft-image-reconstruction/releases/download/canopy-confirmation-v1/canopy-confirmation-v1.zip)
