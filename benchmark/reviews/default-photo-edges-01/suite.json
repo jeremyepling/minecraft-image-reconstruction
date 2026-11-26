@@ -1,0 +1,758 @@
+{
+  "code": {
+    "commit": "e1395e4a320daf5647b32381eafe3163533e452b",
+    "predictor_and_runner_sha256": "ee9a71d216ad7c6d2211e70d7522796883675fe1064aba6c465f492b56b99c9c",
+    "source_dirty": false
+  },
+  "source_run": "edge-detail-stable-01",
+  "approved_code": {
+    "commit": "50ec1f885d96a6893afea1613c4621e4d96da657",
+    "predictor_and_runner_sha256": "e9b6e39babafb41258b16dc7ff818e7af68caf09ba9a247e0aa1878dc85cefb0",
+    "source_dirty": false
+  },
+  "source_manifest_sha256": "d8a2c401d28c546762bcef38ed731c4074120f3750f2998a5b7e797fcb6e9a43",
+  "frames": 56,
+  "scope": "Archived ordinary masks after neighboring-strip cleanup; pre-crop production refinement compared with frozen final masks. Full model inference independently verified on one renamed screenshot.",
+  "all_ordered_proposal_records_equal": true,
+  "all_surface_and_count_scores_equal": true,
+  "changed_frames": 49,
+  "changed_surfaces": 624,
+  "eligible": 598,
+  "matched": 519,
+  "sizes": {
+    "correct": 95,
+    "incorrect": 50,
+    "missing": 453,
+    "unmatched_returned": 10
+  },
+  "cases": [
+    {
+      "frame": "smooth_stone/dev-shopfront-masonry-high-right",
+      "changed_surfaces": 18,
+      "eligible": 14,
+      "matched": 14,
+      "sizes": {
+        "correct": 0,
+        "incorrect": 0,
+        "missing": 14,
+        "unmatched_returned": 0
+      },
+      "applied_radius_px": 4
+    },
+    {
+      "frame": "light_gray_concrete/dev-shopfront-masonry-high-right",
+      "changed_surfaces": 17,
+      "eligible": 14,
+      "matched": 14,
+      "sizes": {
+        "correct": 1,
+        "incorrect": 1,
+        "missing": 12,
+        "unmatched_returned": 0
+      },
+      "applied_radius_px": 4
+    },
+    {
+      "frame": "smooth_stone/dev-shopfront-masonry-low-left",
+      "changed_surfaces": 15,
+      "eligible": 16,
+      "matched": 13,
+      "sizes": {
+        "correct": 1,
+        "incorrect": 1,
+        "missing": 14,
+        "unmatched_returned": 0
+      },
+      "applied_radius_px": 4
+    },
+    {
+      "frame": "light_gray_concrete/dev-shopfront-masonry-low-left",
+      "changed_surfaces": 16,
+      "eligible": 16,
+      "matched": 13,
+      "sizes": {
+        "correct": 1,
+        "incorrect": 3,
+        "missing": 12,
+        "unmatched_returned": 0
+      },
+      "applied_radius_px": 4
+    },
+    {
+      "frame": "smooth_stone/dev-shopfront-plaster-high-right",
+      "changed_surfaces": 18,
+      "eligible": 14,
+      "matched": 14,
+      "sizes": {
+        "correct": 0,
+        "incorrect": 0,
+        "missing": 14,
+        "unmatched_returned": 0
+      },
+      "applied_radius_px": 4
+    },
+    {
+      "frame": "light_gray_concrete/dev-shopfront-plaster-high-right",
+      "changed_surfaces": 20,
+      "eligible": 14,
+      "matched": 11,
+      "sizes": {
+        "correct": 0,
+        "incorrect": 0,
+        "missing": 14,
+        "unmatched_returned": 0
+      },
+      "applied_radius_px": 4
+    },
+    {
+      "frame": "smooth_stone/dev-shopfront-plaster-low-left",
+      "changed_surfaces": 15,
+      "eligible": 16,
+      "matched": 13,
+      "sizes": {
+        "correct": 3,
+        "incorrect": 0,
+        "missing": 13,
+        "unmatched_returned": 0
+      },
+      "applied_radius_px": 4
+    },
+    {
+      "frame": "light_gray_concrete/dev-shopfront-plaster-low-left",
+      "changed_surfaces": 14,
+      "eligible": 16,
+      "matched": 12,
+      "sizes": {
+        "correct": 1,
+        "incorrect": 0,
+        "missing": 15,
+        "unmatched_returned": 0
+      },
+      "applied_radius_px": 4
+    },
+    {
+      "frame": "smooth_stone/dev-wing-masonry-close-front",
+      "changed_surfaces": 0,
+      "eligible": 1,
+      "matched": 1,
+      "sizes": {
+        "correct": 0,
+        "incorrect": 1,
+        "missing": 0,
+        "unmatched_returned": 0
+      },
+      "applied_radius_px": 4
+    },
+    {
+      "frame": "light_gray_concrete/dev-wing-masonry-close-front",
+      "changed_surfaces": 0,
+      "eligible": 1,
+      "matched": 1,
+      "sizes": {
+        "correct": 0,
+        "incorrect": 1,
+        "missing": 0,
+        "unmatched_returned": 0
+      },
+      "applied_radius_px": 4
+    },
+    {
+      "frame": "smooth_stone/dev-wing-masonry-high-right",
+      "changed_surfaces": 8,
+      "eligible": 5,
+      "matched": 5,
+      "sizes": {
+        "correct": 2,
+        "incorrect": 0,
+        "missing": 3,
+        "unmatched_returned": 0
+      },
+      "applied_radius_px": 4
+    },
+    {
+      "frame": "light_gray_concrete/dev-wing-masonry-high-right",
+      "changed_surfaces": 5,
+      "eligible": 5,
+      "matched": 4,
+      "sizes": {
+        "correct": 3,
+        "incorrect": 0,
+        "missing": 2,
+        "unmatched_returned": 0
+      },
+      "applied_radius_px": 2
+    },
+    {
+      "frame": "smooth_stone/dev-wing-masonry-low-left",
+      "changed_surfaces": 4,
+      "eligible": 3,
+      "matched": 3,
+      "sizes": {
+        "correct": 0,
+        "incorrect": 2,
+        "missing": 1,
+        "unmatched_returned": 0
+      },
+      "applied_radius_px": 4
+    },
+    {
+      "frame": "light_gray_concrete/dev-wing-masonry-low-left",
+      "changed_surfaces": 3,
+      "eligible": 3,
+      "matched": 3,
+      "sizes": {
+        "correct": 0,
+        "incorrect": 2,
+        "missing": 1,
+        "unmatched_returned": 0
+      },
+      "applied_radius_px": 4
+    },
+    {
+      "frame": "smooth_stone/dev-wing-plaster-close-front",
+      "changed_surfaces": 0,
+      "eligible": 1,
+      "matched": 1,
+      "sizes": {
+        "correct": 0,
+        "incorrect": 0,
+        "missing": 1,
+        "unmatched_returned": 0
+      },
+      "applied_radius_px": 4
+    },
+    {
+      "frame": "light_gray_concrete/dev-wing-plaster-close-front",
+      "changed_surfaces": 0,
+      "eligible": 1,
+      "matched": 1,
+      "sizes": {
+        "correct": 0,
+        "incorrect": 0,
+        "missing": 1,
+        "unmatched_returned": 0
+      },
+      "applied_radius_px": 4
+    },
+    {
+      "frame": "smooth_stone/dev-wing-plaster-high-right",
+      "changed_surfaces": 6,
+      "eligible": 5,
+      "matched": 5,
+      "sizes": {
+        "correct": 2,
+        "incorrect": 0,
+        "missing": 3,
+        "unmatched_returned": 0
+      },
+      "applied_radius_px": 4
+    },
+    {
+      "frame": "light_gray_concrete/dev-wing-plaster-high-right",
+      "changed_surfaces": 7,
+      "eligible": 5,
+      "matched": 5,
+      "sizes": {
+        "correct": 2,
+        "incorrect": 0,
+        "missing": 3,
+        "unmatched_returned": 0
+      },
+      "applied_radius_px": 4
+    },
+    {
+      "frame": "smooth_stone/dev-wing-plaster-low-left",
+      "changed_surfaces": 3,
+      "eligible": 3,
+      "matched": 3,
+      "sizes": {
+        "correct": 1,
+        "incorrect": 1,
+        "missing": 1,
+        "unmatched_returned": 0
+      },
+      "applied_radius_px": 4
+    },
+    {
+      "frame": "light_gray_concrete/dev-wing-plaster-low-left",
+      "changed_surfaces": 4,
+      "eligible": 3,
+      "matched": 3,
+      "sizes": {
+        "correct": 0,
+        "incorrect": 1,
+        "missing": 2,
+        "unmatched_returned": 0
+      },
+      "applied_radius_px": 4
+    },
+    {
+      "frame": "smooth_stone/holdout-courtyard-masonry-close-front",
+      "changed_surfaces": 1,
+      "eligible": 1,
+      "matched": 1,
+      "sizes": {
+        "correct": 0,
+        "incorrect": 1,
+        "missing": 0,
+        "unmatched_returned": 0
+      },
+      "applied_radius_px": 4
+    },
+    {
+      "frame": "light_gray_concrete/holdout-courtyard-masonry-close-front",
+      "changed_surfaces": 1,
+      "eligible": 1,
+      "matched": 1,
+      "sizes": {
+        "correct": 0,
+        "incorrect": 1,
+        "missing": 0,
+        "unmatched_returned": 0
+      },
+      "applied_radius_px": 4
+    },
+    {
+      "frame": "smooth_stone/holdout-courtyard-masonry-high-right",
+      "changed_surfaces": 10,
+      "eligible": 8,
+      "matched": 8,
+      "sizes": {
+        "correct": 3,
+        "incorrect": 0,
+        "missing": 5,
+        "unmatched_returned": 0
+      },
+      "applied_radius_px": 4
+    },
+    {
+      "frame": "light_gray_concrete/holdout-courtyard-masonry-high-right",
+      "changed_surfaces": 8,
+      "eligible": 8,
+      "matched": 7,
+      "sizes": {
+        "correct": 3,
+        "incorrect": 0,
+        "missing": 5,
+        "unmatched_returned": 0
+      },
+      "applied_radius_px": 4
+    },
+    {
+      "frame": "smooth_stone/holdout-courtyard-masonry-low-left",
+      "changed_surfaces": 5,
+      "eligible": 5,
+      "matched": 5,
+      "sizes": {
+        "correct": 2,
+        "incorrect": 1,
+        "missing": 2,
+        "unmatched_returned": 0
+      },
+      "applied_radius_px": 4
+    },
+    {
+      "frame": "light_gray_concrete/holdout-courtyard-masonry-low-left",
+      "changed_surfaces": 6,
+      "eligible": 5,
+      "matched": 5,
+      "sizes": {
+        "correct": 2,
+        "incorrect": 1,
+        "missing": 2,
+        "unmatched_returned": 0
+      },
+      "applied_radius_px": 4
+    },
+    {
+      "frame": "smooth_stone/holdout-courtyard-plaster-close-front",
+      "changed_surfaces": 0,
+      "eligible": 1,
+      "matched": 1,
+      "sizes": {
+        "correct": 0,
+        "incorrect": 0,
+        "missing": 1,
+        "unmatched_returned": 0
+      },
+      "applied_radius_px": 4
+    },
+    {
+      "frame": "light_gray_concrete/holdout-courtyard-plaster-close-front",
+      "changed_surfaces": 0,
+      "eligible": 1,
+      "matched": 1,
+      "sizes": {
+        "correct": 0,
+        "incorrect": 0,
+        "missing": 1,
+        "unmatched_returned": 0
+      },
+      "applied_radius_px": 4
+    },
+    {
+      "frame": "smooth_stone/holdout-courtyard-plaster-high-right",
+      "changed_surfaces": 14,
+      "eligible": 8,
+      "matched": 7,
+      "sizes": {
+        "correct": 2,
+        "incorrect": 1,
+        "missing": 5,
+        "unmatched_returned": 0
+      },
+      "applied_radius_px": 4
+    },
+    {
+      "frame": "light_gray_concrete/holdout-courtyard-plaster-high-right",
+      "changed_surfaces": 0,
+      "eligible": 8,
+      "matched": 7,
+      "sizes": {
+        "correct": 2,
+        "incorrect": 2,
+        "missing": 4,
+        "unmatched_returned": 0
+      },
+      "applied_radius_px": 0
+    },
+    {
+      "frame": "smooth_stone/holdout-courtyard-plaster-low-left",
+      "changed_surfaces": 6,
+      "eligible": 5,
+      "matched": 5,
+      "sizes": {
+        "correct": 2,
+        "incorrect": 2,
+        "missing": 1,
+        "unmatched_returned": 0
+      },
+      "applied_radius_px": 4
+    },
+    {
+      "frame": "light_gray_concrete/holdout-courtyard-plaster-low-left",
+      "changed_surfaces": 10,
+      "eligible": 5,
+      "matched": 5,
+      "sizes": {
+        "correct": 2,
+        "incorrect": 0,
+        "missing": 3,
+        "unmatched_returned": 0
+      },
+      "applied_radius_px": 4
+    },
+    {
+      "frame": "smooth_stone/holdout-portico-masonry-high-right",
+      "changed_surfaces": 16,
+      "eligible": 17,
+      "matched": 15,
+      "sizes": {
+        "correct": 2,
+        "incorrect": 2,
+        "missing": 13,
+        "unmatched_returned": 0
+      },
+      "applied_radius_px": 4
+    },
+    {
+      "frame": "light_gray_concrete/holdout-portico-masonry-high-right",
+      "changed_surfaces": 18,
+      "eligible": 17,
+      "matched": 15,
+      "sizes": {
+        "correct": 4,
+        "incorrect": 3,
+        "missing": 10,
+        "unmatched_returned": 0
+      },
+      "applied_radius_px": 4
+    },
+    {
+      "frame": "smooth_stone/holdout-portico-masonry-low-left",
+      "changed_surfaces": 21,
+      "eligible": 20,
+      "matched": 18,
+      "sizes": {
+        "correct": 5,
+        "incorrect": 2,
+        "missing": 13,
+        "unmatched_returned": 0
+      },
+      "applied_radius_px": 4
+    },
+    {
+      "frame": "light_gray_concrete/holdout-portico-masonry-low-left",
+      "changed_surfaces": 21,
+      "eligible": 20,
+      "matched": 18,
+      "sizes": {
+        "correct": 2,
+        "incorrect": 2,
+        "missing": 16,
+        "unmatched_returned": 3
+      },
+      "applied_radius_px": 4
+    },
+    {
+      "frame": "smooth_stone/holdout-portico-plaster-high-right",
+      "changed_surfaces": 17,
+      "eligible": 17,
+      "matched": 15,
+      "sizes": {
+        "correct": 2,
+        "incorrect": 0,
+        "missing": 15,
+        "unmatched_returned": 0
+      },
+      "applied_radius_px": 4
+    },
+    {
+      "frame": "light_gray_concrete/holdout-portico-plaster-high-right",
+      "changed_surfaces": 16,
+      "eligible": 17,
+      "matched": 16,
+      "sizes": {
+        "correct": 3,
+        "incorrect": 1,
+        "missing": 13,
+        "unmatched_returned": 0
+      },
+      "applied_radius_px": 2
+    },
+    {
+      "frame": "smooth_stone/holdout-portico-plaster-low-left",
+      "changed_surfaces": 15,
+      "eligible": 20,
+      "matched": 17,
+      "sizes": {
+        "correct": 1,
+        "incorrect": 0,
+        "missing": 19,
+        "unmatched_returned": 0
+      },
+      "applied_radius_px": 2
+    },
+    {
+      "frame": "light_gray_concrete/holdout-portico-plaster-low-left",
+      "changed_surfaces": 14,
+      "eligible": 20,
+      "matched": 17,
+      "sizes": {
+        "correct": 1,
+        "incorrect": 0,
+        "missing": 19,
+        "unmatched_returned": 0
+      },
+      "applied_radius_px": 2
+    },
+    {
+      "frame": "light_gray_concrete/holdout-workshop-masonry-low-left",
+      "changed_surfaces": 9,
+      "eligible": 14,
+      "matched": 7,
+      "sizes": {
+        "correct": 2,
+        "incorrect": 1,
+        "missing": 11,
+        "unmatched_returned": 0
+      },
+      "applied_radius_px": 4
+    },
+    {
+      "frame": "light_gray_concrete/holdout-workshop-masonry-high-right",
+      "changed_surfaces": 19,
+      "eligible": 16,
+      "matched": 16,
+      "sizes": {
+        "correct": 3,
+        "incorrect": 0,
+        "missing": 13,
+        "unmatched_returned": 0
+      },
+      "applied_radius_px": 4
+    },
+    {
+      "frame": "light_gray_concrete/holdout-workshop-plaster-low-left",
+      "changed_surfaces": 10,
+      "eligible": 14,
+      "matched": 8,
+      "sizes": {
+        "correct": 1,
+        "incorrect": 0,
+        "missing": 13,
+        "unmatched_returned": 0
+      },
+      "applied_radius_px": 4
+    },
+    {
+      "frame": "light_gray_concrete/holdout-workshop-plaster-high-right",
+      "changed_surfaces": 19,
+      "eligible": 16,
+      "matched": 12,
+      "sizes": {
+        "correct": 0,
+        "incorrect": 2,
+        "missing": 14,
+        "unmatched_returned": 0
+      },
+      "applied_radius_px": 4
+    },
+    {
+      "frame": "light_gray_concrete/holdout-crossing-masonry-low-left",
+      "changed_surfaces": 12,
+      "eligible": 12,
+      "matched": 12,
+      "sizes": {
+        "correct": 2,
+        "incorrect": 3,
+        "missing": 7,
+        "unmatched_returned": 1
+      },
+      "applied_radius_px": 4
+    },
+    {
+      "frame": "light_gray_concrete/holdout-crossing-masonry-high-right",
+      "changed_surfaces": 16,
+      "eligible": 11,
+      "matched": 9,
+      "sizes": {
+        "correct": 2,
+        "incorrect": 1,
+        "missing": 8,
+        "unmatched_returned": 2
+      },
+      "applied_radius_px": 4
+    },
+    {
+      "frame": "light_gray_concrete/holdout-crossing-plaster-low-left",
+      "changed_surfaces": 18,
+      "eligible": 12,
+      "matched": 12,
+      "sizes": {
+        "correct": 0,
+        "incorrect": 6,
+        "missing": 6,
+        "unmatched_returned": 0
+      },
+      "applied_radius_px": 4
+    },
+    {
+      "frame": "light_gray_concrete/holdout-crossing-plaster-high-right",
+      "changed_surfaces": 16,
+      "eligible": 11,
+      "matched": 9,
+      "sizes": {
+        "correct": 0,
+        "incorrect": 1,
+        "missing": 10,
+        "unmatched_returned": 2
+      },
+      "applied_radius_px": 4
+    },
+    {
+      "frame": "light_gray_concrete/holdout-registry-masonry-low-left",
+      "changed_surfaces": 8,
+      "eligible": 7,
+      "matched": 7,
+      "sizes": {
+        "correct": 4,
+        "incorrect": 0,
+        "missing": 3,
+        "unmatched_returned": 0
+      },
+      "applied_radius_px": 4
+    },
+    {
+      "frame": "light_gray_concrete/holdout-registry-masonry-high-right",
+      "changed_surfaces": 10,
+      "eligible": 10,
+      "matched": 8,
+      "sizes": {
+        "correct": 4,
+        "incorrect": 0,
+        "missing": 6,
+        "unmatched_returned": 0
+      },
+      "applied_radius_px": 4
+    },
+    {
+      "frame": "light_gray_concrete/holdout-registry-plaster-low-left",
+      "changed_surfaces": 10,
+      "eligible": 7,
+      "matched": 6,
+      "sizes": {
+        "correct": 1,
+        "incorrect": 1,
+        "missing": 5,
+        "unmatched_returned": 2
+      },
+      "applied_radius_px": 4
+    },
+    {
+      "frame": "light_gray_concrete/holdout-registry-plaster-high-right",
+      "changed_surfaces": 11,
+      "eligible": 10,
+      "matched": 8,
+      "sizes": {
+        "correct": 4,
+        "incorrect": 0,
+        "missing": 6,
+        "unmatched_returned": 0
+      },
+      "applied_radius_px": 4
+    },
+    {
+      "frame": "light_gray_concrete/holdout-galleries-masonry-low-left",
+      "changed_surfaces": 21,
+      "eligible": 25,
+      "matched": 18,
+      "sizes": {
+        "correct": 5,
+        "incorrect": 1,
+        "missing": 19,
+        "unmatched_returned": 0
+      },
+      "applied_radius_px": 4
+    },
+    {
+      "frame": "light_gray_concrete/holdout-galleries-masonry-high-right",
+      "changed_surfaces": 25,
+      "eligible": 24,
+      "matched": 22,
+      "sizes": {
+        "correct": 6,
+        "incorrect": 1,
+        "missing": 17,
+        "unmatched_returned": 0
+      },
+      "applied_radius_px": 4
+    },
+    {
+      "frame": "light_gray_concrete/holdout-galleries-plaster-low-left",
+      "changed_surfaces": 25,
+      "eligible": 25,
+      "matched": 20,
+      "sizes": {
+        "correct": 5,
+        "incorrect": 1,
+        "missing": 19,
+        "unmatched_returned": 0
+      },
+      "applied_radius_px": 4
+    },
+    {
+      "frame": "light_gray_concrete/holdout-galleries-plaster-high-right",
+      "changed_surfaces": 23,
+      "eligible": 24,
+      "matched": 22,
+      "sizes": {
+        "correct": 1,
+        "incorrect": 0,
+        "missing": 23,
+        "unmatched_returned": 0
+      },
+      "applied_radius_px": 2
+    }
+  ]
+}
