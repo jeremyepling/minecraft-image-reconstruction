@@ -173,6 +173,12 @@ def place_ranked(image, version, parts, counts, camera, *, atlas_path=None, join
         from engine import neighbor_photo_faces, visible_horizontal_faces
         textured = cells | neighbor_photo_faces.recover(image, parts, camera['P'], cells)
         recovered = visible_horizontal_faces.recover(image, parts, camera, textured)
+        if len(recovered) > len(textured):
+            # Newly measured cells can make another face eligible for the same
+            # native-pixel orientation and occlusion checks.
+            previous = recovered
+            recovered = visible_horizontal_faces.recover(image, parts, camera, previous)
+            status['second_horizontal_blocks'] = len(recovered) - len(previous)
         status['neighbor_photo_blocks'] = len(textured) - len(cells)
         status['dense_horizontal_blocks'] = len(recovered) - len(textured)
         status['added_blocks'] += len(recovered) - len(cells)
