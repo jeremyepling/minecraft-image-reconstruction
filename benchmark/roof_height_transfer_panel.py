@@ -22,7 +22,7 @@ from training.visible_labels import visible_labels
 SELECTION=ROOT/'benchmark/reviews/roof-height-01/panel/selection.json'
 
 
-def score(f, assets, data, sources, out):
+def score(f, assets, data, sources, out, pose_prior=None):
     key=f['id']
     rgb=sources/f['directory']/'captures'/(f['source_id']+'.png')
     meta=f['files']
@@ -37,6 +37,11 @@ def score(f, assets, data, sources, out):
     assert len(before)==placement['placed_blocks']
     camera=dict(P=placement['P'],scale_status=placement['camera_status'],reason=placement['reason'],
                 camera_source=placement.get('camera_source'))
+    if pose_prior is not None:
+        folder,proof=pose_prior
+        camera=read(checked(folder/key/'camera.json',proof['camera_sha256']))
+        before=set(decoded_pack(checked(folder/key/'reconstruction.zip',proof['pack_sha256'])))
+        paths['reconstruction.zip']=folder/key/'reconstruction.zip'
     supported=camera['P'] is not None
     with Image.open(checked(rgb,meta['rgb.png'])) as source:
         image=source.convert('RGB')
@@ -114,17 +119,26 @@ def run(args):
     assert builds.keys()=={f['id'] for f in frames}
     root=args.candidate_root.resolve()
     scorer.init_candidate(root,args.candidate)
-    rows=[score(f,builds[f['id']],data,sources,args.out) for f in frames]
+    pose_priors={}
+    if args.pose_diagnostic:
+        pose_metadata=read(args.pose_diagnostic/'index.json')
+        assert pose_metadata['builds_sha256']==digest(data/'builds.json')
+        pose_priors={r['id']:(args.pose_diagnostic,r) for r in pose_metadata['rows']}
+        assert pose_priors.keys()==builds.keys()
+    rows=[score(f,builds[f['id']],data,sources,args.out,pose_priors.get(f['id'])) for f in frames]
     groups=dict(all=aggregate(rows),supported=aggregate([r for r in rows if r['camera_supported']]))
     groups.update({f'height_{h}':aggregate([r for r in rows if r['expected_course']==h])
                    for h in sorted({r['expected_course'] for r in rows})})
     save(args.out/'cases.json',rows)
     summary=dict(method=args.candidate,control='54c9fee',control_build_revision=manifest['revision'],
+                 camera_mode='supplied-pose diagnostic' if args.pose_diagnostic else 'ordinary photograph only',
                  candidate_revision=subprocess.check_output(['git','rev-parse','HEAD'],cwd=root,text=True).strip(),
                  selection_sha256=digest(SELECTION),input_manifest_sha256=digest(data/'builds.json'),
                  cases_sha256=digest(args.out/'cases.json'),groups=groups)
     if args.candidate:
         summary['adapter_sha256']=digest(root.joinpath(*args.candidate.partition(':')[0].split('.')).with_suffix('.py'))
+    if args.pose_diagnostic:
+        summary['pose_prior_sha256']=digest(args.pose_diagnostic/'index.json')
     save(args.out/'summary.json',summary)
     print(groups['all'])
 
@@ -136,4 +150,5 @@ if __name__=='__main__':
     p.add_argument('--out',type=Path,required=True)
     p.add_argument('--candidate-root',type=Path,default=ROOT)
     p.add_argument('--candidate')
+    p.add_argument('--pose-diagnostic',type=Path,help='Folder of frozen recorded-pose diagnostic priors')
     run(p.parse_args())
