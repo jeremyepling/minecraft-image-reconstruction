@@ -8,8 +8,8 @@ from engine.plane_candidates import foreground
 from engine.geometry import project
 
 
-METHODS = ('pavement', 'seam-fit', 'tile-lines')
-DEFAULT = 'seam-fit'
+METHODS = ('pavement', 'seam-fit', 'tile-lines', 'seam-or-atlas')
+DEFAULT = 'seam-or-atlas'
 PAVEMENT_SETTINGS = dict(implementation='benchmark.oblique_recess.pavement@a67988b',
                          profile_rows=26, floor_band=[.81, .985], minimum_height_ratio=.90)
 
@@ -82,13 +82,19 @@ def contact_planes(image, P):
     return planes
 
 
-def predict(image, version='26.3', method=None):
+def predict(image, version='26.3', method=None, *, atlas_path=None):
     if version != '26.3':
         raise ValueError('The Stage 1 camera estimators are calibrated for Java 26.3.')
     method = method or DEFAULT
     if method == 'pavement':
         result = pavement_camera(image)
         result['settings'] = PAVEMENT_SETTINGS
+    elif method == 'seam-or-atlas':
+        from engine.camera_metric import predict as fit
+        from engine.camera_seam import SETTINGS as seam_settings
+        result = fit(image, version, atlas_path=atlas_path)
+        result['settings'] = dict(primary='seam-fit', fallback='atlas-floor', seam_fit=seam_settings,
+                                  atlas_version=version)
     elif method == 'seam-fit':
         from engine.camera_seam import predict as fit
         result = fit(image, version)
@@ -110,11 +116,11 @@ def predict(image, version='26.3', method=None):
     return result
 
 
-def build_camera(image_path, version, out):
+def build_camera(image_path, version, out, *, atlas_path=None):
     from engine.atlas import digest
     with Image.open(image_path) as source:
         image = source.convert('RGB')
-    camera = predict(image, version)
+    camera = predict(image, version, atlas_path=atlas_path)
     out.mkdir(parents=True, exist_ok=True)
     provenance = dict(version=version, image_sha256=digest(image_path),
                       through='camera', stages=dict(camera=camera['method']),

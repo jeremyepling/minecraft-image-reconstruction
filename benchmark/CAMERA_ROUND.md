@@ -1,5 +1,7 @@
 # Single-image exterior reconstruction · Camera round 01
 
+The current camera runs this round's winning seam fit first and checks the floor texture atlas on abstention. [Updated default and evaluation](TEXTURE_CAMERA.md)
+
 **The recommended Stage 1 default is the subpixel seam fit (`seam-fit`).** On the held-out courtyard and portico it recovered a metric camera on all eight oblique images. The two close-front images provided insufficient evidence for a full metric camera. [Full-resolution comparison sheet](reviews/camera-01/comparison.png) · [Run manifest](reviews/camera-01/manifest.json) · [Per-image scores](reviews/camera-01/holdout-scores.json)
 
 | Camera | Metric images | Corners within 2 px, layout average | Mean corner error | Mean span error |

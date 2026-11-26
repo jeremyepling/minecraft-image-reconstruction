@@ -1,7 +1,7 @@
 """Place visible surface cells in the block grid estimated from one screenshot."""
 import numpy as np
 
-from engine.camera_seam import predict as seam_camera
+from engine.camera_metric import predict as seam_camera
 from engine.masked_count import count
 from engine.surface_model import intrinsic
 from engine.surface_sample import sample_surface
@@ -117,13 +117,16 @@ def _charts(image, version, parts, counts):
     return charts
 
 
-def place(image, version, parts, *, counts=None):
+def place(image, version, parts, *, counts=None, atlas_path=None):
     """Return local (x, y, z) block coordinates and camera/placement diagnostics."""
     image = image.convert('RGB')
-    camera = seam_camera(image, version)
+    camera = seam_camera(image, version, atlas_path=atlas_path)
     status = dict(camera_status=camera['scale_status'], reason=camera['reason'], P=camera['P'],
                   strict_blocks=0, added_blocks=0, placed_blocks=0, duplicate_side_cells=0,
                   textured_side_cells=0, grounded_side_cells=0, shared_side_cells=0)
+    status['camera_source'] = camera.get('camera_source')
+    if camera.get('atlas_reason'):
+        status['atlas_camera_reason'] = camera['atlas_reason']
     if camera['scale_status'] != 'supported' or camera['P'] is None or not parts:
         return set(), status
     projection = np.asarray(camera['P'])

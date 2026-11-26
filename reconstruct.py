@@ -129,12 +129,12 @@ def run_image_command(parser,args):
         if not args.version:
             parser.error('Camera and surface builds need --version')
         if (args.scene or args.geometry or args.depth is not None
-                or (args.library and args.material_match!='exposure') or (args.atlas and args.through not in ('counts','placement')) or args.match_exposure
+                or (args.library and args.material_match!='exposure') or (args.atlas and args.through not in ('camera','counts','placement')) or args.match_exposure
                 or args.white_balance or args.match_appearance):
             parser.error('Choose assembly for the supplied geometry or material placement options')
         if args.through == 'camera':
             from engine.camera_grid import build_camera
-            build_camera(args.image,args.version,args.out)
+            build_camera(args.image,args.version,args.out,atlas_path=args.atlas)
         else:
             from engine.surface_model import build
             build(args.image,args.version,args.out,through=args.through,atlas_path=args.atlas,

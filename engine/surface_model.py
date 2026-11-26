@@ -198,7 +198,7 @@ def proposals_for(image, version, method, normals=None, depth=None):
         return regions(image, normals, depth, version)
     if method == 'contact':
         from engine.camera_grid import predict
-        parts = predict(image, version, 'seam-fit')['planes']
+        parts = predict(image, version)['planes']
         return [dict(id=f'contact-{i}', quad=canonical(p['quad'])) for i,p in enumerate(parts)]
     if method in ('normal-rank','normal-regions'):
         if normals is None:
@@ -374,6 +374,7 @@ def _material_assets(version, counter, matcher, explicit_path):
 
 def build(image_path, version, out, *, outlines=None, order_method=None, through='surfaces',
           counter=None, atlas_path=None, material_match=None, context_px=None, boundary=None, library=None):
+    camera_atlas_path = atlas_path
     from engine.atlas import digest
     from engine.surface_fields import MODELS, SETTINGS as inference, infer
     if version != '26.3':
@@ -621,7 +622,7 @@ def build(image_path, version, out, *, outlines=None, order_method=None, through
         if through == 'placement':
             from engine.export import JAVA_26_3_FORMAT, write_pack
             from engine.visible_placement import place
-            cells, status = place(image, version, patches, counts=counts)
+            cells, status = place(image, version, patches, counts=counts, atlas_path=camera_atlas_path)
             material = 'smooth_stone'
             blocks = {tuple(map(int, pos)): material for pos in cells}
             rows = [dict(x=x, y=y, z=z, block_id=material) for x,y,z in sorted(blocks)]

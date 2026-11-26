@@ -1,5 +1,7 @@
 # How much of a visible build reaches the datapack?
 
+The subsequent [camera evaluation](TEXTURE_CAMERA.md) measures the default after adding floor atlas registration. The results below preserve the earlier baseline.
+
 On the 56 fixed exterior screenshots, the Java 26.3 default at `7c2137c` placed **2,070 of 10,626 visible blocks** at the right coordinates, added **574 extras**, and exported **zero with the correct material ID**. The optional Texture matcher correctly located and named 154 face appearances in the counts report. The exporter uses smooth stone to display geometry. None of these 56 builds uses smooth stone for a visible target block. [Per-screenshot scores](reviews/combined-default-01/frames.json) · [Eight-building visual walkthrough](reviews/combined-default-01/comparison.jpg)
 
 | Screenshots | Metric cameras | Correct coordinates / visible target blocks | Extra coordinates | Correctly located and named faces in the report / eligible faces | Correct coordinate + ID in the default datapack | Correct coordinate + ID in the projected-face trial |

@@ -13,8 +13,11 @@ import numpy as np
 from PIL import Image, __version__ as pillow_version
 
 from benchmark.camera_metrics import score, summarize
-from engine.camera_grid import METHODS, predict
+from engine.camera_grid import predict
 from runtime.mode import image_only, mark_image_only
+
+# Keep the original three-way selection and its review sheet reproducible.
+METHODS = ('pavement', 'seam-fit', 'tile-lines')
 
 
 ROOT = Path(__file__).resolve().parents[1]
