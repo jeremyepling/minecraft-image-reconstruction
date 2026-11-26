@@ -10,15 +10,17 @@ from benchmark.mask_metrics import measure
 from benchmark.surface_reference import recorded
 from benchmark.wall_join_test import capture_index
 from engine.planarity_entry import METHOD as PLANE_RECOVERY
+from engine.surface_model import CROP_SPLIT
 
 
 def verify(build, key, source_run=None, data=None):
     manifest = read(build/'build-manifest.json')
     boundary=manifest['stages']['surface_boundary']
-    methods={'wall-recovery-single-v2':'single-v2','wall-recovery-single-pro':'single-pro',PLANE_RECOVERY:'planarity'}
+    methods={'wall-recovery-single-v2':'single-v2','wall-recovery-single-pro':'single-pro',
+             PLANE_RECOVERY:'planarity',CROP_SPLIT:'split'}
     method=methods.get(boundary)
     if method:
-        review = 'afterpass-models-01' if boundary==PLANE_RECOVERY else 'single-wall-depth-01'
+        review = {CROP_SPLIT:'crop-split-01',PLANE_RECOVERY:'afterpass-models-01'}.get(boundary,'single-wall-depth-01')
         archive=source_run or ROOT/'benchmark/reviews'/review
         source=read(archive/'manifest.json')
         if digest(archive/'cases.json')!=source['artifacts']['cases.json']:
@@ -56,11 +58,13 @@ def verify(build, key, source_run=None, data=None):
     counts = read(build/'counts.json')['surfaces']
     if [c['id'] for c in counts] != [p['id'] for p in predicted]:
         raise ValueError('The ordinary Block Counter did not receive every predicted region')
-    return dict(fixture=key, screenshot_sha256=row['sha256'], original_png_basename=case.path('image').name,
+    result = dict(fixture=key, screenshot_sha256=row['sha256'], original_png_basename=case.path('image').name,
                 stage_order=manifest['stages']['boundary_sequence'], model_sha256=manifest['model_sha256'],
                 visible_proposals=len(predicted), reference_surfaces=scores['eligible'], matched=len(assignments),
                 assignments=assignments,
-                **({'planarity_additional_reference_ids':row['scopes'][method]['gained'],
+                **({'split_additional_reference_ids':row['scopes'][method]['gained'],
+                    'crop_splits':manifest['surface_finder']['boundary_settings']['crop_splits']} if boundary==CROP_SPLIT else
+                   {'planarity_additional_reference_ids':row['scopes'][method]['gained'],
                     'planarity':manifest['surface_finder']['boundary_settings']['planarity']} if boundary==PLANE_RECOVERY else
                    {'single_wall_additional_reference_ids':row['scopes'][method]['gained']} if method else
                    {'mobile_additional_reference_ids':row['gained']}),
@@ -68,6 +72,26 @@ def verify(build, key, source_run=None, data=None):
                     json.dumps(comparable, sort_keys=True, separators=(',', ':')).encode()).hexdigest(),
                 source_prediction_sha256=expected_hash, counter=manifest['stages']['block_count'],
                 block_count_records=len(counts))
+    if boundary==CROP_SPLIT:
+        from PIL import Image
+        from benchmark.perimeter_round import downstream_counts
+        with Image.open(case.path('image')) as src:
+            gold = downstream_counts(src.convert('RGB'), expected)
+        for actual, frozen in zip(counts, gold, strict=True):
+            reading = frozen['measures']['masked-repeat']
+            for field in ('counts','phase','dimensions'):
+                if actual[field] != reading[field]:
+                    raise ValueError(f"Block Counter {field} differs for {actual['id']}")
+        timings = manifest['surface_finder']['boundary_settings']['planarity']['inference']
+        result.update(same_count_phase_and_dimensions_for_every_proposal=True,
+                      candidate_build=manifest.get('candidate_verification'),
+                      raw_model_source=timings['source'], model_revision=timings['model_revision'],
+                      model_load_s=timings['load_s'], full_frame_inference_s=timings['inference_s'],
+                      full_frame_segmentation_s=timings['segmentation_s'],
+                      baseline_opening_samples_covered=row['scores']['current']['opening_filled'],
+                      candidate_opening_samples_covered=scores['opening_filled'], opening_samples=scores['opening_pixels'],
+                      paired_sizes=row['sizes'][method])
+    return result
 
 
 if __name__ == '__main__':

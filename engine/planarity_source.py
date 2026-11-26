@@ -23,22 +23,28 @@ def git_sha(path):
     return subprocess.check_output(['git','rev-parse','HEAD'], cwd=path, text=True).strip()
 
 
+def sample_indices(native, shape):
+    width, height = native
+    stride = SETTINGS['stride']
+    xs = ((2.5 + stride*np.arange(width//stride)) * shape[1] / width).astype(int)
+    ys = ((2.5 + stride*np.arange(height//stride)) * shape[0] / height).astype(int)
+    return ys, xs
+
+
 def pack_labels(labels, normal, points, native):
     # Preserve the exact center of each evaluation cell in source-image coordinates.
-    width, height = native
-    x = ((2.5+4*np.arange(width//4)) * labels.shape[1] / width).astype(int)
-    y = ((2.5+4*np.arange(height//4)) * labels.shape[0] / height).astype(int)
-    labels = labels[np.ix_(y, x)]
+    ys, xs = sample_indices(native, labels.shape)
+    labels = labels[np.ix_(ys, xs)]
     ids, inv = np.unique(labels, return_inverse=True)
     if ids[0] != 0:
         inv = inv + 1
     labels = inv.reshape(labels.shape).astype(np.uint16)
     ids = labels.ravel()
-    normals = np.nan_to_num(normal[np.ix_(y, x)].reshape(-1, 3), posinf=0, neginf=0)
+    normals = np.nan_to_num(normal[np.ix_(ys, xs)].reshape(-1, 3), posinf=0, neginf=0)
     lengths = np.maximum(1., np.bincount(ids)).astype(float)
     vectors = np.stack([np.bincount(ids, weights=v) for v in normals.T], axis=1)
     vectors /= np.maximum(1e-7, np.linalg.norm(vectors,axis=1,keepdims=True))
-    xyz = np.nan_to_num(points[np.ix_(y, x)].reshape(-1, 3), posinf=0, neginf=0)
+    xyz = np.nan_to_num(points[np.ix_(ys, xs)].reshape(-1, 3), posinf=0, neginf=0)
     centers = np.stack([np.bincount(ids, weights=v)/lengths for v in xyz.T], axis=1)
     return labels, vectors.astype('float32'), centers.astype('float32')
 
@@ -73,7 +79,7 @@ def load_model(upstream, utils3d, checkpoint, device):
     return model,segmentation,load_seconds
 
 
-def infer_image(rgb, model, segmentation, device, keys):
+def infer_image(rgb, model, segmentation, device, keys, *, keep_geometry=False):
     import torch
     width = min(SETTINGS['max_width'], rgb.width)
     resized = rgb.resize((width,round(rgb.height*width/rgb.width)), Image.Resampling.BILINEAR)
@@ -97,5 +103,8 @@ def infer_image(rgb, model, segmentation, device, keys):
         labels, _ = segmentation.compute_planar_segments(valid & (planarity > SETTINGS['planarity']),
             normal, depth, np.deg2rad(angle), SETTINGS['relative_depth'], neighbors, device)
         arrays[key], arrays[key+'_normals'], arrays[key+'_centers'] = pack_labels(labels, normal, points, rgb.size)
+    if keep_geometry:
+        indices = np.ix_(*sample_indices(rgb.size, depth.shape))
+        arrays.update(global_normals=normal[indices], global_points=points[indices])
     segment_s = perf_counter() - start
     return dict(**arrays, image_size=rgb.size),dict(inference_s=inference_s,segmentation_s=segment_s)

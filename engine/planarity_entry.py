@@ -28,12 +28,12 @@ def selected_settings(settings):
             'minimum_neighbors':settings['segmentations'][LABELS][1]}
 
 
-def infer(source, device):
+def infer(source, device, *, crops=False):
     """Use a content-addressed cache only when explicitly supplied. Unknown RGB is inferred."""
     source = Path(source).resolve()
     sha = digest(source)
     cache = os.environ.get('MCIR_PLANARITY_FIELDS')
-    if cache:
+    if cache and not crops:
         folder = Path(cache)
         manifest = json.loads((folder/'manifest.json').read_bytes())
         if (any(manifest.get(k)!=v for k,v in RELEASE.items()) or
@@ -56,22 +56,32 @@ def infer(source, device):
         environment['PYTHONPATH'] = os.pathsep.join(filter(None,(extra,environment.get('PYTHONPATH'))))
     with TemporaryDirectory() as temp:
         folder = Path(temp)
-        subprocess.run([interpreter,'-B','-m','engine.planarity_entry',str(source),str(folder),device],
-                       cwd=ROOT,env=environment,check=True)
+        command = [interpreter,'-B','-m','engine.planarity_entry',str(source),str(folder),device]
+        if crops:
+            command.append('--crops')
+        subprocess.run(command,cwd=ROOT,env=environment,check=True)
         with np.load(folder/'fields.npz',allow_pickle=False) as numeric:
             fields = dict(numeric)
         info = json.loads((folder/'model.json').read_bytes())
     return fields,info
 
 
-def compute(source,folder,device):
+def compute(source,folder,device,*,crops=False):
     import torch
     upstream = _model_input('MCIR_PLANARITY_SOURCE','PixelwisePlanarity')
     utils3d = _model_input('MCIR_PLANARITY_UTILS3D','utils3d')
     checkpoint = _model_input('MCIR_PLANARITY_CHECKPOINT','pixelwise-planarity.pt')
     model,segmentation,load_s = load_model(upstream,utils3d,checkpoint,device)
     with Image.open(source) as photo:
-        fields,timing = infer_image(photo.convert('RGB'),model,segmentation,device,[LABELS])
+        rgb = photo.convert('RGB')
+        fields,timing = infer_image(rgb,model,segmentation,device,[LABELS],keep_geometry=crops)
+        if crops:
+            from engine.planarity_crops import TILING, compute_crops
+            numeric, crop_timing = compute_crops(rgb,model,segmentation,device,fields.pop('global_normals'),
+                                                 fields.pop('global_points'),LABELS)
+            fields.update(numeric)
+            timing['crops'] = dict(settings=TILING, boxes=numeric['boxes'], count=len(numeric['boxes']),
+                                   geometry_source='same full-image inference', **crop_timing)
     np.savez_compressed(folder/'fields.npz',**fields)
     info = dict(RELEASE,source='fresh screenshot inference',image_sha256=digest(source),device=device,
                 torch_version=torch.__version__,settings=selected_settings(SETTINGS),load_s=load_s,
@@ -84,5 +94,6 @@ if __name__=='__main__':
     parser.add_argument('source',type=Path)
     parser.add_argument('folder',type=Path)
     parser.add_argument('device',choices=('cpu','cuda'))
+    parser.add_argument('--crops', action='store_true')
     args = parser.parse_args()
-    compute(args.source,args.folder,args.device)
+    compute(args.source,args.folder,args.device,crops=args.crops)
