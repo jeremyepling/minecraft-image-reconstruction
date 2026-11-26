@@ -17,13 +17,15 @@ def example(job):
     with ZipFile(ev.REVIEW/'framed-depth-01/scores.zip') as z:
         cells=set(map(tuple,json.loads(z.read(f"{split}/{frame['id']}/cells.json"))['local']))
     ctx,rows=method.observations(image,parts,camera,cells,ev.STABLE/'runs/26.3/atlas')
-    candidates={mode:method.proposed(ctx,rows,cells,mode)-cells for mode in ('loose','strict','guarded')}
+    modes=('loose','strict','guarded','conservative')
+    candidates={mode:method.proposed(ctx,rows,cells,mode)-cells for mode in modes}
     truth,occupied,transform,_=ev.references(split,frame,None,ev.TRAINING_DATA,ev.DEPTH,{})
     shift,_=best_translation(registered(cells,transform),truth)
     def score(values):
         world={tuple(a+b for a,b in zip(c,shift)) for c in registered(values,transform)}
         return dict(correct=len(world & truth),extras=len(world-truth),hidden=len((world-truth)&occupied))
     record=dict(id=frame['id'],family=frame['family'],candidates=len(rows),
+                measured_cell_pool=score({c for c,axis in rows}),before_visibility=score(method.continuous(rows,cells,'guarded')),
                 **{k:score(v) for k,v in candidates.items()})
     ev.save(out/(frame['id']+'.json'),record)
     return record
@@ -40,5 +42,5 @@ if __name__=='__main__':
     with ProcessPoolExecutor(max_workers=a.workers) as pool:
         result=list(pool.map(example,jobs))
     ev.save(a.out/'results.json',result)
-    for k in ('loose','strict','guarded'):
+    for k in ('loose','strict','guarded','conservative'):
         print(k,{m:sum(r[k][m] for r in result) for m in ('correct','extras','hidden')})
