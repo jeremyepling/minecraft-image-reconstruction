@@ -11,7 +11,7 @@ def tile_sample(image, quad):
     return dict(quad=quad, rgb=rgb, mask=np.ones((32,32),bool), native_size=image.size, source_image=image)
 
 
-def visible_tiles(sample, result):
+def complete_footprints(sample, result):
     if sample is None:
         return
     ns = result.get('counts')
@@ -36,6 +36,26 @@ def visible_tiles(sample, result):
             q = project(H,uv)
             if (q<0).any() or (q>sample['source_image'].size).any():
                 continue
-            if np.min(np.linalg.norm(np.roll(q,-1,axis=0)-q,axis=1))<4.:
-                continue
-            yield dict(cell=[u,v], **tile_sample(sample['source_image'],q))
+            yield [u,v], q
+
+
+def visible_tiles(sample, result):
+    # Preserve the archived four-pixel edge rule for historical count replays.
+    for cell, q in complete_footprints(sample, result):
+        if np.min(np.linalg.norm(np.roll(q,-1,axis=0)-q,axis=1))>=4.:
+            yield dict(cell=cell, **tile_sample(sample['source_image'],q))
+
+
+def material_cells(sample, result, match):
+    from engine.face_evidence import effective_width, MIN_FACE_WIDTH
+
+    ranked, skipped = [], []
+    for cell, quad in complete_footprints(sample, result):
+        width = effective_width(quad)
+        record = dict(cell=cell, quad=quad.tolist(), effective_width_px=width)
+        if width < MIN_FACE_WIDTH:
+            skipped.append(record)
+        else:
+            tile = tile_sample(sample['source_image'], quad)
+            ranked.append(dict(record, quad=tile['quad'], material=match(tile)))
+    return ranked, skipped

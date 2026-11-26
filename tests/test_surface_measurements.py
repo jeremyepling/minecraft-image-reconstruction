@@ -4,7 +4,8 @@ import numpy as np
 from PIL import Image
 
 from engine.surface_dimensions import dimensions
-from engine.surface_tiles import visible_tiles
+from engine.surface_tiles import visible_tiles, material_cells
+from engine.face_evidence import effective_width
 
 
 class SurfaceMeasurementsTest(unittest.TestCase):
@@ -26,3 +27,15 @@ class SurfaceMeasurementsTest(unittest.TestCase):
         result = visible_tiles(sample,dict(counts=[3,3],phase=[0,0]))
         cells = {tuple(tile['cell']) for tile in result}
         self.assertEqual(cells,{(x,y) for y in range(3) for x in range(3)}-{(1,1)})
+
+    def test_thin_complete_faces_reported_without_matching(self):
+        from unittest.mock import Mock
+        for width, eligible in [(2, False), (4.99, False), (5, True)]:
+            # Long, oblique sides can both exceed five while the actual face is thin.
+            quad = [[2,2], [22,2], [29,2+width], [9,2+width]]
+            sample = dict(mask=np.ones((16,16),bool), quad=quad, source_image=Image.new('RGB',(40,20)))
+            match = Mock(return_value={'block_id':'stone'})
+            ranked, skipped = material_cells(sample,dict(counts=[1,1],phase=[0,0]),match)
+            self.assertAlmostEqual(effective_width(quad), width)
+            self.assertEqual((len(ranked), len(skipped)), (int(eligible), int(not eligible)))
+            self.assertEqual(match.call_count, int(eligible))

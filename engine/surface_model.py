@@ -262,7 +262,7 @@ def _count_regions(image, planes, version, method, atlas, out, shape_matcher=Non
             row['dimensions'] = dimensions(plane, sample['quad'], image.size, result['counts'])
             if atlas is not None:
                 from engine.atlas_count import rank_tile
-                from engine.surface_tiles import visible_tiles
+                from engine.surface_tiles import material_cells
                 def material(tile):
                     if shape_matcher is None:
                         return rank_tile(tile, atlas, version=version)
@@ -280,15 +280,21 @@ def _count_regions(image, planes, version, method, atlas, out, shape_matcher=Non
                         result['shadow'] = shadow
                     return result
 
-                row['visible_cells'] = [
-                    dict(cell=tile['cell'], quad=np.asarray(tile['quad']).tolist(),
-                         material=material(tile))
-                    for tile in visible_tiles(sample, result)]
-                if not row['visible_cells']:
+                ranked, skipped = material_cells(sample, result, material)
+                row['visible_cells'] = ranked
+                row['under_five_px_faces'] = skipped
+                if skipped and not ranked:
+                    row['material_status'] = 'All complete faces are under five source pixels wide.'
+                elif not ranked:
                     row['material_status'] = 'No complete cell has a supported position inside this mask.'
         measurements.append(row)
-    return dict(version=version, units='blocks across and down the rectified sampling chart',
-                shape_artifact='surfaces.json', surfaces=measurements)
+    report = dict(version=version, units='blocks across and down the rectified sampling chart',
+                  shape_artifact='surfaces.json', surfaces=measurements)
+    if atlas is not None:
+        report['material_face_counts'] = dict(
+            attempted=sum(len(row.get('visible_cells', [])) for row in measurements),
+            under_five_px=sum(len(row.get('under_five_px_faces', [])) for row in measurements))
+    return report
 
 
 def build(image_path, version, out, *, outlines=None, order_method=None, through='surfaces',
