@@ -1,0 +1,1301 @@
+{
+  "selection": "every previously unevaluated distinct RGB with a supported frozen camera",
+  "source_sha256": "691708e501e0647365f15793d78f5001b59a9b35815b0052ad6586d0eba5a866",
+  "confirmation_exclusion_sha256": "6cc3d9ff8e00167efb78ae8941358c67fad9d5791d5379cda36dbd3feb0d5898",
+  "prior_case_manifests": {
+    "validation": {
+      "sha256": "336d623f68b8f9b36fbbb71795a4bd2d749c2b5293e8926b28963c6e9f531b84",
+      "frames": 12
+    },
+    "test": {
+      "sha256": "de04e9af3eecb239cb039792869441454d3297891c3c714f5161b7cafad7241b",
+      "frames": 12
+    },
+    "regression": {
+      "sha256": "ad8c3697a7c9163930e57fb807bb388ad1f73f7de4209a849f718168efd02a76",
+      "frames": 56
+    },
+    "native": {
+      "sha256": "049ae2ae833b397544a9e84c5fe4280be9ac77c56a5f938ba9cad0e034390abd",
+      "frames": 12
+    },
+    "old": {
+      "sha256": "3e535cba511f2bb72b7728fe7df24e7b39fd21e10ebba229e303b3f316da5dcd",
+      "frames": 12
+    },
+    "fresh": {
+      "sha256": "0250124858dc1b700ad03be354bc744bf0b2fbd51086b15d9f2117c7930dac2e",
+      "frames": 8
+    }
+  },
+  "screened": 140,
+  "supported": 40,
+  "supported_distinct_rgb": 40,
+  "excluded_fixture_images": 108,
+  "distinct_camera_supported_excluded": 20,
+  "distinct_new_views": 20,
+  "distinct_shapes": 16,
+  "previously_evaluated_shapes": 16,
+  "selected": [
+    {
+      "id": "shape-benchmark-open-26.3--train-canopy-01-right",
+      "source_id": "train-canopy-01-right",
+      "directory": "shape-benchmark-open-26.3",
+      "shape": "f384be360740b07c11918722d27ecfe21211f66e299515a6f983d50deb5070a6",
+      "blocks": 84,
+      "files": {
+        "rgb.png": "38924069a1d38d4ec2969e9420f9cda65d2845b9667e112fc7cf1f3ddcfdc94a",
+        "camera.json": "0ec59bcef683cc6ee32825038eaa3a9112ddc3f6f1c80154a965452bb02e85e7",
+        "world-readback.json": "81134882d7432658fe54d72ba0313e7deade2728222cf35a35bb4b92ce83c252"
+      },
+      "camera": {
+        "P": [
+          [
+            -304.1118945105863,
+            -149.7188216551209,
+            1073.008092153566,
+            11691.057774983232
+          ],
+          [
+            149.3890718312262,
+            -939.451979760912,
+            213.21120680761462,
+            9839.1562207501
+          ],
+          [
+            0.561283086318933,
+            -0.2079428078543346,
+            0.8010749563392607,
+            16.22806077697404
+          ]
+        ],
+        "scale_status": "supported",
+        "reason": "Two perpendicular seam families agree assuming one block per floor tile",
+        "settings": {
+          "seed_width_limit": 768,
+          "horizon_trials": 7,
+          "floor_rows": 88,
+          "center_fit_iterations": 14,
+          "minimum_supported_lines": 4,
+          "maximum_height_disagreement": 0.08,
+          "maximum_normalized_residual": 0.04
+        },
+        "evidence": {
+          "horizon_px": 266.1563754057969,
+          "focal_px": 864.7809756046046,
+          "height_blocks": 6.243538857936534,
+          "axis_heights_blocks": [
+            6.241359528055743,
+            6.245718187817325
+          ],
+          "median_seam_residual_blocks": [
+            0.02146688911611399,
+            0.010424888200359483
+          ],
+          "seam_samples": [
+            604,
+            972
+          ]
+        },
+        "camera_source": "seam-fit"
+      }
+    },
+    {
+      "id": "corner-views-26.3--positive--heldout-facade-oblique-left",
+      "source_id": "heldout-facade-oblique-left",
+      "directory": "corner-views-26.3/positive",
+      "shape": "25e7bc0392eed6bf12a9ac3b846e8933449ff2b69036db2deeb14858b6d57f98",
+      "blocks": 877,
+      "files": {
+        "rgb.png": "4bdc8634f679a27b086d55f60ee6356be1d84015de590a07b9bf96d621eb6c18",
+        "camera.json": "c30709643ac0728d9d3c233189b7421bd762f8c904de22bd69a3b50418da8e95",
+        "world-readback.json": "01e34d8f21ece9bb26eae88b72a42e7638f69359e956d8efbdb65170efe70397"
+      },
+      "camera": {
+        "P": [
+          [
+            347.9409743167208,
+            -149.89543251314385,
+            1058.3603953861902,
+            17900.262542093747
+          ],
+          [
+            243.10603718013323,
+            -938.052510329052,
+            93.35540354323354,
+            14781.252990761903
+          ],
+          [
+            0.9130796487539927,
+            -0.20818810071269978,
+            0.35063267068675197,
+            24.343585090183595
+          ]
+        ],
+        "scale_status": "supported",
+        "reason": "Two perpendicular seam families agree assuming one block per floor tile",
+        "settings": {
+          "seed_width_limit": 768,
+          "horizon_trials": 7,
+          "floor_rows": 88,
+          "center_fit_iterations": 14,
+          "minimum_supported_lines": 4,
+          "maximum_height_disagreement": 0.08,
+          "maximum_normalized_residual": 0.04
+        },
+        "evidence": {
+          "horizon_px": 266.2484455894737,
+          "focal_px": 863.2834348108298,
+          "height_blocks": 9.40357732729138,
+          "axis_heights_blocks": [
+            9.40608025665758,
+            9.401074397925182
+          ],
+          "median_seam_residual_blocks": [
+            0.006448190053669698,
+            0.024768822536083597
+          ],
+          "seam_samples": [
+            1936,
+            546
+          ]
+        },
+        "camera_source": "seam-fit"
+      }
+    },
+    {
+      "id": "shape-benchmark-26.3--train-canopy-08-left",
+      "source_id": "train-canopy-08-left",
+      "directory": "shape-benchmark-26.3",
+      "shape": "a333fd7aacf99750bf70dc443a27854093044ededbec79d9d997838470ad53f3",
+      "blocks": 104,
+      "files": {
+        "rgb.png": "5714484f146d32eebcc0da009d3154b6489a3b636911d14a5b8588848710834e",
+        "camera.json": "fcd6fd25fedaca0c10fceca427aee86b8850f0b7b0613aaaf39de0765b97410e",
+        "world-readback.json": "dc335be925bc26c21c38351593e0e56e07429453de7feda11b7b23d15ddebd76"
+      },
+      "camera": {
+        "P": [
+          [
+            139.48178104277176,
+            -149.67917388727867,
+            1105.260051493199,
+            11667.329794794077
+          ],
+          [
+            221.06329306499902,
+            -937.8594766247832,
+            138.23684866755616,
+            9822.966111111686
+          ],
+          [
+            0.829349908896305,
+            -0.20788774151010925,
+            0.5186149010041234,
+            16.198725769797953
+          ]
+        ],
+        "scale_status": "supported",
+        "reason": "Two perpendicular seam families agree assuming one block per floor tile",
+        "settings": {
+          "seed_width_limit": 768,
+          "horizon_trials": 7,
+          "floor_rows": 88,
+          "center_fit_iterations": 14,
+          "minimum_supported_lines": 4,
+          "maximum_height_disagreement": 0.08,
+          "maximum_normalized_residual": 0.04
+        },
+        "evidence": {
+          "horizon_px": 266.55009024983076,
+          "focal_px": 863.1678885160121,
+          "height_blocks": 6.238555310113366,
+          "axis_heights_blocks": [
+            6.241351519070163,
+            6.23575910115657
+          ],
+          "median_seam_residual_blocks": [
+            0.007290054405871755,
+            0.018595770130289402
+          ],
+          "seam_samples": [
+            1111,
+            618
+          ]
+        },
+        "camera_source": "seam-fit"
+      }
+    },
+    {
+      "id": "shape-benchmark-26.3--train-canopy-06-right",
+      "source_id": "train-canopy-06-right",
+      "directory": "shape-benchmark-26.3",
+      "shape": "7894bab9d4806dc496c01bcc45a248787d248ee606dc3c4f4433d828293e8b42",
+      "blocks": 90,
+      "files": {
+        "rgb.png": "5ceca6afcb49cabf590d9942f720b1c9857c283c10d22349748fc93bae2b1153",
+        "camera.json": "0c9c96660ea87828763538b8b0c854f1d90421b51ba2ec14a570ce5417c4353a",
+        "world-readback.json": "baf8be2a76afbb27732682684ca028576e0ec8fcdd259d01bcd35e239e1d4769"
+      },
+      "camera": {
+        "P": [
+          [
+            -304.1253943741235,
+            -149.67062363545406,
+            1072.9051173882838,
+            12336.739195955346
+          ],
+          [
+            149.41639431120922,
+            -939.3056613458116,
+            213.30390918910433,
+            10243.029929752007
+          ],
+          [
+            0.5611964487876708,
+            -0.20787586616035286,
+            0.80115302541786,
+            17.126241510712806
+          ]
+        ],
+        "scale_status": "supported",
+        "reason": "Two perpendicular seam families agree assuming one block per floor tile",
+        "settings": {
+          "seed_width_limit": 768,
+          "horizon_trials": 7,
+          "floor_rows": 88,
+          "center_fit_iterations": 14,
+          "minimum_supported_lines": 4,
+          "maximum_height_disagreement": 0.08,
+          "maximum_normalized_residual": 0.04
+        },
+        "evidence": {
+          "horizon_px": 266.246150762335,
+          "focal_px": 864.6496064884369,
+          "height_blocks": 6.429292261036612,
+          "axis_heights_blocks": [
+            6.427915996802851,
+            6.430668525270373
+          ],
+          "median_seam_residual_blocks": [
+            0.021270586784358482,
+            0.010489669472409384
+          ],
+          "seam_samples": [
+            640,
+            1033
+          ]
+        },
+        "camera_source": "seam-fit"
+      }
+    },
+    {
+      "id": "shape-benchmark-26.3--train-canopy-09-left",
+      "source_id": "train-canopy-09-left",
+      "directory": "shape-benchmark-26.3",
+      "shape": "14775ba386d4e717087cf74640f62cfb5916f68fde9e395dd648b420221d1883",
+      "blocks": 120,
+      "files": {
+        "rgb.png": "6168d6bd78b6a75df9650080074b6a80ef6bcac35a8970cd3412c8674774000d",
+        "camera.json": "b97d67eaab76a53e572a21ed3e2917e1ae208159c63cc93a64fe5f3ec6e7e30a",
+        "world-readback.json": "aba864620d3342fd5d7312b58c068f678052ce327aad2aa65719260393a53cc6"
+      },
+      "camera": {
+        "P": [
+          [
+            139.55852950451063,
+            -149.67240135263984,
+            1105.0544293262562,
+            12314.184613557081
+          ],
+          [
+            221.10809637279974,
+            -937.610401807985,
+            138.28104279897036,
+            10227.519392061811
+          ],
+          [
+            0.8293243256113318,
+            -0.20787833521199978,
+            0.5186595807452101,
+            17.09777707319492
+          ]
+        ],
+        "scale_status": "supported",
+        "reason": "Two perpendicular seam families agree assuming one block per floor tile",
+        "settings": {
+          "seed_width_limit": 768,
+          "horizon_trials": 7,
+          "floor_rows": 88,
+          "center_fit_iterations": 14,
+          "minimum_supported_lines": 4,
+          "maximum_height_disagreement": 0.08,
+          "maximum_normalized_residual": 0.04
+        },
+        "evidence": {
+          "horizon_px": 266.6123367475217,
+          "focal_px": 862.9158143513798,
+          "height_blocks": 6.42611833228764,
+          "axis_heights_blocks": [
+            6.427828523947306,
+            6.424408140627973
+          ],
+          "median_seam_residual_blocks": [
+            0.007413610438845209,
+            0.0162905160451177
+          ],
+          "seam_samples": [
+            1155,
+            677
+          ]
+        },
+        "camera_source": "seam-fit"
+      }
+    },
+    {
+      "id": "inverse-voxels-26.3--confirm--test-bays-02-oblique-left",
+      "source_id": "test-bays-02-oblique-left",
+      "directory": "inverse-voxels-26.3/confirm",
+      "shape": "a1135050030c5363311320aad952ac017dc6f244f5fc17429396e8d8699d04e1",
+      "blocks": 586,
+      "files": {
+        "rgb.png": "64d69e49a926b9bd113ebe4570f3c90d9f520e59c0ffb99631bf5cb8652a4c12",
+        "camera.json": "b06bb689bff1679f6921d8c1984580bfd3447bf570ee731436e18bc8e57b2964",
+        "world-readback.json": "225479363c05000786f0fa81b5350567914f4a9bb8504545f43b40faf30ad947"
+      },
+      "camera": {
+        "P": [
+          [
+            261.39349845502966,
+            -106.80719366401749,
+            1088.2223587205829,
+            17648.936991550836
+          ],
+          [
+            284.8492491754974,
+            -920.6605736800863,
+            138.95054151582545,
+            14471.31156664448
+          ],
+          [
+            0.8888247848656661,
+            -0.14834332453335763,
+            0.4335720930536159,
+            23.992262039923762
+          ]
+        ],
+        "scale_status": "supported",
+        "reason": "Two perpendicular seam families agree assuming one block per floor tile",
+        "settings": {
+          "seed_width_limit": 768,
+          "horizon_trials": 7,
+          "floor_rows": 88,
+          "center_fit_iterations": 14,
+          "minimum_supported_lines": 4,
+          "maximum_height_disagreement": 0.08,
+          "maximum_normalized_residual": 0.04
+        },
+        "evidence": {
+          "horizon_px": 320.478517280038,
+          "focal_px": 863.4594603525583,
+          "height_blocks": 7.76790033235155,
+          "axis_heights_blocks": [
+            7.769081552437322,
+            7.766719112265778
+          ],
+          "median_seam_residual_blocks": [
+            0.007002041389193027,
+            0.023169336841927405
+          ],
+          "seam_samples": [
+            1738,
+            586
+          ]
+        },
+        "camera_source": "seam-fit"
+      }
+    },
+    {
+      "id": "signed-relief-26.3--test--test-relief-00-oblique-right",
+      "source_id": "test-relief-00-oblique-right",
+      "directory": "signed-relief-26.3/test",
+      "shape": "d1ff59fa7f956e59d24a30d8c5e0cc53a447acc2d3a5d7576dae2feb65745e58",
+      "blocks": 1710,
+      "files": {
+        "rgb.png": "858b89c080aa6199cab23e507db89e187ef71dccbe6d3689602d8659c13ae9bc",
+        "camera.json": "646f224651057e5ab11fff8ee640e9543a33b14ea5d647532f7ec6308af34612",
+        "world-readback.json": "9c952353917594e7fa8d61790cb903508ac2e9cc02086db5dc2abc41b11cf4c0"
+      },
+      "camera": {
+        "P": [
+          [
+            -465.18355763689283,
+            -114.90074557477317,
+            1017.8864771657063,
+            25322.299456503726
+          ],
+          [
+            134.3193160661666,
+            -925.1941360927927,
+            275.2543113144554,
+            21581.547230657212
+          ],
+          [
+            0.4329322886898042,
+            -0.15958436885385163,
+            0.8871879522555105,
+            35.69926051797677
+          ]
+        ],
+        "scale_status": "supported",
+        "reason": "Two perpendicular seam families agree assuming one block per floor tile",
+        "settings": {
+          "seed_width_limit": 768,
+          "horizon_trials": 7,
+          "floor_rows": 88,
+          "center_fit_iterations": 14,
+          "minimum_supported_lines": 4,
+          "maximum_height_disagreement": 0.08,
+          "maximum_normalized_residual": 0.04
+        },
+        "evidence": {
+          "horizon_px": 310.2547894329183,
+          "focal_px": 864.4598336684979,
+          "height_blocks": 11.997136883725359,
+          "axis_heights_blocks": [
+            11.99540441600963,
+            11.998869351441089
+          ],
+          "median_seam_residual_blocks": [
+            0.027537062044371896,
+            0.008917515594056161
+          ],
+          "seam_samples": [
+            832,
+            2368
+          ]
+        },
+        "camera_source": "seam-fit"
+      }
+    },
+    {
+      "id": "shape-benchmark-26.3--train-canopy-04-right",
+      "source_id": "train-canopy-04-right",
+      "directory": "shape-benchmark-26.3",
+      "shape": "7f0dabd97bf0d785be6757298dc6fd80d013e23ef7833aab59afe15fb4d333f9",
+      "blocks": 72,
+      "files": {
+        "rgb.png": "98c5f84a2892a852b140f45dbac3e6ae4ea3dc95c9a8ba31bcb447deb51e5a48",
+        "camera.json": "3ad39f5fddbc41f461ed4d970883d3a0433cab4b0e356ed43bad722d9a787189",
+        "world-readback.json": "926fa00ddd3b9ea517ebc3768ce1845ce7bb2fccb883a7cf6520a8e61ea3d5e6"
+      },
+      "camera": {
+        "P": [
+          [
+            -304.7346319703499,
+            -149.68358669602418,
+            1073.0135348256792,
+            11902.665178241845
+          ],
+          [
+            149.30098998257773,
+            -939.6539943844442,
+            213.27447853639472,
+            9744.883414100901
+          ],
+          [
+            0.5609553170673911,
+            -0.2078938704111447,
+            0.8013172099108423,
+            16.181021039323824
+          ]
+        ],
+        "scale_status": "supported",
+        "reason": "Two perpendicular seam families agree assuming one block per floor tile",
+        "settings": {
+          "seed_width_limit": 768,
+          "horizon_trials": 7,
+          "floor_rows": 88,
+          "center_fit_iterations": 14,
+          "minimum_supported_lines": 4,
+          "maximum_height_disagreement": 0.08,
+          "maximum_normalized_residual": 0.04
+        },
+        "evidence": {
+          "horizon_px": 266.15487087831855,
+          "focal_px": 865.0008196339411,
+          "height_blocks": 6.149598987242941,
+          "axis_heights_blocks": [
+            6.148840060304746,
+            6.150357914181137
+          ],
+          "median_seam_residual_blocks": [
+            0.02184122604538235,
+            0.010438398785124314
+          ],
+          "seam_samples": [
+            608,
+            959
+          ]
+        },
+        "camera_source": "seam-fit"
+      }
+    },
+    {
+      "id": "corner-views-26.3--positive--heldout-facade-oblique-right",
+      "source_id": "heldout-facade-oblique-right",
+      "directory": "corner-views-26.3/positive",
+      "shape": "25e7bc0392eed6bf12a9ac3b846e8933449ff2b69036db2deeb14858b6d57f98",
+      "blocks": 877,
+      "files": {
+        "rgb.png": "a4dd10cfffd1e26d8fa87815fe29fee9468590d036a82d73002df7fe1c1ea044",
+        "camera.json": "4384538c20b4ed5ba38bf068d34ccfc1f6287bc32bc3d8656aa9eeb7341f34fb",
+        "world-readback.json": "01e34d8f21ece9bb26eae88b72a42e7638f69359e956d8efbdb65170efe70397"
+      },
+      "camera": {
+        "P": [
+          [
+            -377.93512148310106,
+            -149.6141236095049,
+            1048.740475096099,
+            18313.47772414399
+          ],
+          [
+            134.23151023693958,
+            -938.7511837168516,
+            223.39212803587847,
+            14915.597601401218
+          ],
+          [
+            0.5038067359383824,
+            -0.20779739390209012,
+            0.8384503658002735,
+            24.812697817532253
+          ]
+        ],
+        "scale_status": "supported",
+        "reason": "Two perpendicular seam families agree assuming one block per floor tile",
+        "settings": {
+          "seed_width_limit": 768,
+          "horizon_trials": 7,
+          "floor_rows": 88,
+          "center_fit_iterations": 14,
+          "minimum_supported_lines": 4,
+          "maximum_height_disagreement": 0.08,
+          "maximum_normalized_residual": 0.04
+        },
+        "evidence": {
+          "horizon_px": 266.4345286827539,
+          "focal_px": 864.1041176494174,
+          "height_blocks": 9.400908314173401,
+          "axis_heights_blocks": [
+            9.399138729469307,
+            9.402677898877496
+          ],
+          "median_seam_residual_blocks": [
+            0.019857199674185096,
+            0.009125824104346508
+          ],
+          "seam_samples": [
+            759,
+            1616
+          ]
+        },
+        "camera_source": "seam-fit"
+      }
+    },
+    {
+      "id": "inverse-voxels-26.3--confirm--test-colonnade-01-oblique-left",
+      "source_id": "test-colonnade-01-oblique-left",
+      "directory": "inverse-voxels-26.3/confirm",
+      "shape": "768c0c3907efd118a650bb27f62c61facc7932ac40427e50b9c5a066fd638bfc",
+      "blocks": 350,
+      "files": {
+        "rgb.png": "b8b09e516a816f842a90b24c9b5a24a297e049509dc4a0dca0b7e980b82f2fbb",
+        "camera.json": "2e91d8d0d063d231f8c061ddff81c025a3492869c658612de2d4221376af23e0",
+        "world-readback.json": "917dc816ed3525733b2998c3a8e95f9bb05423bf8062c498d9f0d0aa907ae9a3"
+      },
+      "camera": {
+        "P": [
+          [
+            261.3337825642995,
+            -106.86492544451875,
+            1088.6323882022198,
+            17109.210610884737
+          ],
+          [
+            284.73634772020006,
+            -921.1864447037813,
+            138.84048841553414,
+            14068.107271402168
+          ],
+          [
+            0.8888815913136969,
+            -0.1484235075618316,
+            0.4334281705504071,
+            23.531055680612255
+          ]
+        ],
+        "scale_status": "supported",
+        "reason": "Two perpendicular seam families agree assuming one block per floor tile",
+        "settings": {
+          "seed_width_limit": 768,
+          "horizon_trials": 7,
+          "floor_rows": 88,
+          "center_fit_iterations": 14,
+          "minimum_supported_lines": 4,
+          "maximum_height_disagreement": 0.08,
+          "maximum_normalized_residual": 0.04
+        },
+        "evidence": {
+          "horizon_px": 320.3310210299014,
+          "focal_px": 863.9652393716402,
+          "height_blocks": 7.474894455291997,
+          "axis_heights_blocks": [
+            7.473685180839932,
+            7.476103729744061
+          ],
+          "median_seam_residual_blocks": [
+            0.0067362326932569674,
+            0.023934339613908957
+          ],
+          "seam_samples": [
+            1686,
+            572
+          ]
+        },
+        "camera_source": "seam-fit"
+      }
+    },
+    {
+      "id": "shape-benchmark-26.3--dev-canopy-19-left",
+      "source_id": "dev-canopy-19-left",
+      "directory": "shape-benchmark-26.3",
+      "shape": "9023107a568e71ff03ad6febbbeb409d6c77eee696deddd6d61e68dd76bc73fd",
+      "blocks": 96,
+      "files": {
+        "rgb.png": "bcfdda6a3cc52a8b2882f1551335ff1242e334670cd80a8f629421d3e00edea0",
+        "camera.json": "a2b6913df79ccc7c4acd444bf4b39f2be9ce4663739d280516a2ead33cdb1b46",
+        "world-readback.json": "707df44a949bccfafde909ffa755e4a07eae99624496604e17102cacb0115a45"
+      },
+      "camera": {
+        "P": [
+          [
+            139.2380925318899,
+            -149.62422006525,
+            1105.8280522813072,
+            13641.285964588349
+          ],
+          [
+            221.0190704620718,
+            -938.5026767078641,
+            138.17970603015158,
+            11063.124236734446
+          ],
+          [
+            0.8294134036515326,
+            -0.20781141675729164,
+            0.5185439430834258,
+            18.55970774096247
+          ]
+        ],
+        "scale_status": "supported",
+        "reason": "Two perpendicular seam families agree assuming one block per floor tile",
+        "settings": {
+          "seed_width_limit": 768,
+          "horizon_trials": 7,
+          "floor_rows": 88,
+          "center_fit_iterations": 14,
+          "minimum_supported_lines": 4,
+          "maximum_height_disagreement": 0.08,
+          "maximum_normalized_residual": 0.04
+        },
+        "evidence": {
+          "horizon_px": 266.4763668986113,
+          "focal_px": 863.846244915334,
+          "height_blocks": 6.9269864304078625,
+          "axis_heights_blocks": [
+            6.929279034193349,
+            6.924693826622376
+          ],
+          "median_seam_residual_blocks": [
+            0.007713298896743252,
+            0.01683967445704985
+          ],
+          "seam_samples": [
+            1248,
+            700
+          ]
+        },
+        "camera_source": "seam-fit"
+      }
+    },
+    {
+      "id": "shape-benchmark-open-26.3--train-canopy-00-left",
+      "source_id": "train-canopy-00-left",
+      "directory": "shape-benchmark-open-26.3",
+      "shape": "339e88da37ce427f3904c2986d92f4079933ce9a8f4ca3170f974139c6130fe6",
+      "blocks": 62,
+      "files": {
+        "rgb.png": "be19118d37b024c5f4974e93590a1bab39cc9ca02a7e767aeb024824fb99ccb9",
+        "camera.json": "e35372c667ea979d96f87078e96538e738b5b9b91f17217b55f49629148403ca",
+        "world-readback.json": "b5f0aef49a59891b49878e79257c3ad2229217ab20aefca6cceac0a64675d2d8"
+      },
+      "camera": {
+        "P": [
+          [
+            139.53206600328687,
+            -149.67324037977022,
+            1105.5609552213684,
+            11417.988293979311
+          ],
+          [
+            221.03298666856784,
+            -938.2410681951387,
+            138.14636728965627,
+            9735.185214650426
+          ],
+          [
+            0.8294720422335111,
+            -0.20787950052745863,
+            0.5184228432596529,
+            16.170175085155208
+          ]
+        ],
+        "scale_status": "supported",
+        "reason": "Two perpendicular seam families agree assuming one block per floor tile",
+        "settings": {
+          "seed_width_limit": 768,
+          "horizon_trials": 7,
+          "floor_rows": 88,
+          "center_fit_iterations": 14,
+          "minimum_supported_lines": 4,
+          "maximum_height_disagreement": 0.08,
+          "maximum_normalized_residual": 0.04
+        },
+        "evidence": {
+          "horizon_px": 266.4743058408509,
+          "focal_px": 863.5602480654785,
+          "height_blocks": 6.146310705928771,
+          "axis_heights_blocks": [
+            6.147482782994852,
+            6.145138628862691
+          ],
+          "median_seam_residual_blocks": [
+            0.007317472032226251,
+            0.017062090577708272
+          ],
+          "seam_samples": [
+            1063,
+            627
+          ]
+        },
+        "camera_source": "seam-fit"
+      }
+    },
+    {
+      "id": "shape-benchmark-26.3--train-corner-03-left",
+      "source_id": "train-corner-03-left",
+      "directory": "shape-benchmark-26.3",
+      "shape": "b1460367784ab15d74b8bc23f55f136252f38aac6d17d5308bb7206234c495d5",
+      "blocks": 161,
+      "files": {
+        "rgb.png": "c5b6ab85e883d34f8e1627ea39b5a9b464872af141b82e3b28617941d4f2d889",
+        "camera.json": "c12b5023caf84c6f449d9796184ed34518c15bc5f17651155c51c8af3a986636",
+        "world-readback.json": "90c5a4d1ce52aec06c803e38719e878950919eb8509faa44d295cc48fe8f522e"
+      },
+      "camera": {
+        "P": [
+          [
+            139.6873028355672,
+            -149.49278300605877,
+            1105.28418083771,
+            16117.547375957802
+          ],
+          [
+            221.29176402987747,
+            -937.8215792188879,
+            138.3271335580819,
+            13314.639610517408
+          ],
+          [
+            0.8294851227538169,
+            -0.2076288652861927,
+            0.5185023485289659,
+            22.12612237507106
+          ]
+        ],
+        "scale_status": "supported",
+        "reason": "Two perpendicular seam families agree assuming one block per floor tile",
+        "settings": {
+          "seed_width_limit": 768,
+          "horizon_trials": 7,
+          "floor_rows": 88,
+          "center_fit_iterations": 14,
+          "minimum_supported_lines": 4,
+          "maximum_height_disagreement": 0.08,
+          "maximum_normalized_residual": 0.04
+        },
+        "evidence": {
+          "horizon_px": 266.7820771700021,
+          "focal_px": 863.1997191580055,
+          "height_blocks": 8.399292183809582,
+          "axis_heights_blocks": [
+            8.399254539616,
+            8.399329828003163
+          ],
+          "median_seam_residual_blocks": [
+            0.007961372973927376,
+            0.019027280484302116
+          ],
+          "seam_samples": [
+            1472,
+            777
+          ]
+        },
+        "camera_source": "seam-fit"
+      }
+    },
+    {
+      "id": "recess-positive-control-26.3--heldout-facade-left",
+      "source_id": "heldout-facade-left",
+      "directory": "recess-positive-control-26.3",
+      "shape": "25e7bc0392eed6bf12a9ac3b846e8933449ff2b69036db2deeb14858b6d57f98",
+      "blocks": 877,
+      "files": {
+        "rgb.png": "d070b9e756b105dd3e37b38a4ff921eedf6ec0c47c126f619d747a8f31498dc6",
+        "camera.json": "840ca717c1f5b5a17ea05ee8f3f0b79ebf260f16a556d27426582149ef9883c7",
+        "world-readback.json": "008dadd1fca63bae2b0044a2097ea82a14d2417292afe3be466fc9b3108afc64"
+      },
+      "camera": {
+        "P": [
+          [
+            139.6146519854636,
+            -149.63743577098674,
+            1105.6442282131957,
+            17446.191432356765
+          ],
+          [
+            221.0704332992822,
+            -938.3390806098566,
+            138.1318425831205,
+            14911.517118327925
+          ],
+          [
+            0.8295449631291257,
+            -0.20782977190414825,
+            0.5183260943241881,
+            24.79653091554386
+          ]
+        ],
+        "scale_status": "supported",
+        "reason": "Two perpendicular seam families agree assuming one block per floor tile",
+        "settings": {
+          "seed_width_limit": 768,
+          "horizon_trials": 7,
+          "floor_rows": 88,
+          "center_fit_iterations": 14,
+          "minimum_supported_lines": 4,
+          "maximum_height_disagreement": 0.08,
+          "maximum_normalized_residual": 0.04
+        },
+        "evidence": {
+          "horizon_px": 266.496022669323,
+          "focal_px": 863.6739967223116,
+          "height_blocks": 9.40405399379538,
+          "axis_heights_blocks": [
+            9.401829411721016,
+            9.406278575869745
+          ],
+          "median_seam_residual_blocks": [
+            0.00858523561069855,
+            0.016441409626687626
+          ],
+          "seam_samples": [
+            1693,
+            916
+          ]
+        },
+        "camera_source": "seam-fit"
+      }
+    },
+    {
+      "id": "shape-benchmark-26.3--dev-corner-16-left",
+      "source_id": "dev-corner-16-left",
+      "directory": "shape-benchmark-26.3",
+      "shape": "ba97f24d5a7bea0d68c1bb0079fb0c2c7eb6fd7eda4a779ea95ddfd0c03e4a73",
+      "blocks": 189,
+      "files": {
+        "rgb.png": "d5642b4c5575c925f734028c4460dea8d7692ea4cfafff9ab83ca214c53fa6a3",
+        "camera.json": "7e87142d3f04dbe52689463b00d20701744d5b29cd57d9b18116072f85793958",
+        "world-readback.json": "bbeacc11819925c6aa97bdd529f726222b2f6b25fde2d70db4757067ee650235"
+      },
+      "camera": {
+        "P": [
+          [
+            139.69935190619526,
+            -149.5307107970637,
+            1105.6345144377121,
+            16634.2883121257
+          ],
+          [
+            221.2010953981747,
+            -938.2827200185651,
+            138.1978097496921,
+            14267.615727547869
+          ],
+          [
+            0.8295980789208676,
+            -0.2076815427736996,
+            0.5183004960849853,
+            23.41464671973043
+          ]
+        ],
+        "scale_status": "supported",
+        "reason": "Two perpendicular seam families agree assuming one block per floor tile",
+        "settings": {
+          "seed_width_limit": 768,
+          "horizon_trials": 7,
+          "floor_rows": 88,
+          "center_fit_iterations": 14,
+          "minimum_supported_lines": 4,
+          "maximum_height_disagreement": 0.08,
+          "maximum_normalized_residual": 0.04
+        },
+        "evidence": {
+          "horizon_px": 266.6364604965223,
+          "focal_px": 863.6567732093587,
+          "height_blocks": 9.088629882318013,
+          "axis_heights_blocks": [
+            9.085975924327716,
+            9.091283840308312
+          ],
+          "median_seam_residual_blocks": [
+            0.007567389725842795,
+            0.017277835135639488
+          ],
+          "seam_samples": [
+            1637,
+            881
+          ]
+        },
+        "camera_source": "seam-fit"
+      }
+    },
+    {
+      "id": "recess-positive-control-26.3--heldout-facade-right",
+      "source_id": "heldout-facade-right",
+      "directory": "recess-positive-control-26.3",
+      "shape": "25e7bc0392eed6bf12a9ac3b846e8933449ff2b69036db2deeb14858b6d57f98",
+      "blocks": 877,
+      "files": {
+        "rgb.png": "d91571964453eeebddbed19af060e98c7aa87900a966f2a3b2ad6e6cd5c903de",
+        "camera.json": "6b9654f1a74468296d882f1b9fe94231729940b2f4bd1804591856632c5fe79e",
+        "world-readback.json": "008dadd1fca63bae2b0044a2097ea82a14d2417292afe3be466fc9b3108afc64"
+      },
+      "camera": {
+        "P": [
+          [
+            -304.1669703326108,
+            -149.6556674351365,
+            1072.7700370423688,
+            18172.701707204804
+          ],
+          [
+            149.41241772930192,
+            -939.1479457453663,
+            213.37052852538972,
+            14912.631265720198
+          ],
+          [
+            0.5610714003668277,
+            -0.20785509365991178,
+            0.801245994517312,
+            24.78970544929885
+          ]
+        ],
+        "scale_status": "supported",
+        "reason": "Two perpendicular seam families agree assuming one block per floor tile",
+        "settings": {
+          "seed_width_limit": 768,
+          "horizon_trials": 7,
+          "floor_rows": 88,
+          "center_fit_iterations": 14,
+          "minimum_supported_lines": 4,
+          "maximum_height_disagreement": 0.08,
+          "maximum_normalized_residual": 0.04
+        },
+        "evidence": {
+          "horizon_px": 266.29840271954026,
+          "focal_px": 864.4940236997945,
+          "height_blocks": 9.403943801016144,
+          "axis_heights_blocks": [
+            9.40254683278332,
+            9.405340769248966
+          ],
+          "median_seam_residual_blocks": [
+            0.02135979730943736,
+            0.010199865482431313
+          ],
+          "seam_samples": [
+            899,
+            1454
+          ]
+        },
+        "camera_source": "seam-fit"
+      }
+    },
+    {
+      "id": "rim-views-26.3--positive--heldout-facade-oblique-left",
+      "source_id": "heldout-facade-oblique-left",
+      "directory": "rim-views-26.3/positive",
+      "shape": "25e7bc0392eed6bf12a9ac3b846e8933449ff2b69036db2deeb14858b6d57f98",
+      "blocks": 877,
+      "files": {
+        "rgb.png": "e601a54ee06fe27391847e07b00e3aecca8e68f1d29f0ac955a123a8e3705185",
+        "camera.json": "1ce614612e2060d58b0185f2e611f21d6e73001ca4a4d2d80de13056b99eea30",
+        "world-readback.json": "daa3b4f15aa859ac6f319db12db9f27fd1ad35c118478cbcb26c66adc318e46d"
+      },
+      "camera": {
+        "P": [
+          [
+            254.2008208526018,
+            -149.79931460242025,
+            1085.2958764034702,
+            18387.272001560617
+          ],
+          [
+            234.03601525024263,
+            -938.7342761866785,
+            114.14961057282852,
+            15038.580918213747
+          ],
+          [
+            0.8791220511467831,
+            -0.20805460361447256,
+            0.4287863117011752,
+            25.281272841093195
+          ]
+        ],
+        "scale_status": "supported",
+        "reason": "Two perpendicular seam families agree assuming one block per floor tile",
+        "settings": {
+          "seed_width_limit": 768,
+          "horizon_trials": 7,
+          "floor_rows": 88,
+          "center_fit_iterations": 14,
+          "minimum_supported_lines": 4,
+          "maximum_height_disagreement": 0.08,
+          "maximum_normalized_residual": 0.04
+        },
+        "evidence": {
+          "horizon_px": 266.21561243396303,
+          "focal_px": 864.0168003666755,
+          "height_blocks": 9.405491157070188,
+          "axis_heights_blocks": [
+            9.406682850768101,
+            9.404299463372276
+          ],
+          "median_seam_residual_blocks": [
+            0.006942077584365999,
+            0.024230562126765286
+          ],
+          "seam_samples": [
+            1824,
+            639
+          ]
+        },
+        "camera_source": "seam-fit"
+      }
+    },
+    {
+      "id": "signed-relief-26.3--dev--dev-relief-00-oblique-left",
+      "source_id": "dev-relief-00-oblique-left",
+      "directory": "signed-relief-26.3/dev",
+      "shape": "4dc0165245a0fc4b9d3bf1eb5d38ac89489ec6acc55e52ddec3d2809857c1c99",
+      "blocks": 1718,
+      "files": {
+        "rgb.png": "e94cb8666e38682c89c766d5ceb2c25b4c7b85f471db64de0e8a6e021b618420",
+        "camera.json": "51e81a69da0b0d7806ed34ecd61c002249ad062266e1cf9f107bd8cf47344be0",
+        "world-readback.json": "45fc60aa53a25519fd922a2602f8ff2987f573e9780fc0d7c85fd57d3d3fa866"
+      },
+      "camera": {
+        "P": [
+          [
+            222.11963332851602,
+            -114.96125422297267,
+            1096.7417321432,
+            26098.457263365155
+          ],
+          [
+            270.42346352632467,
+            -925.0516634641249,
+            143.6879215649709,
+            21583.820536418796
+          ],
+          [
+            0.8717519640546061,
+            -0.1596684086430176,
+            0.46320029409354113,
+            35.70590996183915
+          ]
+        ],
+        "scale_status": "supported",
+        "reason": "Two perpendicular seam families agree assuming one block per floor tile",
+        "settings": {
+          "seed_width_limit": 768,
+          "horizon_trials": 7,
+          "floor_rows": 88,
+          "center_fit_iterations": 14,
+          "minimum_supported_lines": 4,
+          "maximum_height_disagreement": 0.08,
+          "maximum_normalized_residual": 0.04
+        },
+        "evidence": {
+          "horizon_px": 310.2068875974284,
+          "focal_px": 864.2891000741473,
+          "height_blocks": 12.001535379752793,
+          "axis_heights_blocks": [
+            11.998144804687351,
+            12.004925954818235
+          ],
+          "median_seam_residual_blocks": [
+            0.008067846554970916,
+            0.023680036646309043
+          ],
+          "seam_samples": [
+            2481,
+            942
+          ]
+        },
+        "camera_source": "seam-fit"
+      }
+    },
+    {
+      "id": "shape-benchmark-26.3--train-canopy-05-right",
+      "source_id": "train-canopy-05-right",
+      "directory": "shape-benchmark-26.3",
+      "shape": "c3c763ea594f5d17508b4ff615c19865673021a73e83be21782be38ca5edf9b0",
+      "blocks": 78,
+      "files": {
+        "rgb.png": "ec60d1ba3f34ae290141f880b478e4fce13595214383e412dd6328b6417fe7ce",
+        "camera.json": "59a29613de65210f93b03d0218b3813c9da26f6ae580ae939cea9026644c8a99",
+        "world-readback.json": "7574b68a59515cd65b8fd858355a7db21e1a13414ba780098aecb4a3edd55615"
+      },
+      "camera": {
+        "P": [
+          [
+            -304.17922710344095,
+            -149.72757707136105,
+            1072.9629804280232,
+            11690.371221196767
+          ],
+          [
+            149.36786633480267,
+            -939.4251125883459,
+            213.21961741560156,
+            9839.06512910973
+          ],
+          [
+            0.5612133104561932,
+            -0.20795496815466813,
+            0.8011206846578056,
+            16.22792261292718
+          ]
+        ],
+        "scale_status": "supported",
+        "reason": "Two perpendicular seam families agree assuming one block per floor tile",
+        "settings": {
+          "seed_width_limit": 768,
+          "horizon_trials": 7,
+          "floor_rows": 88,
+          "center_fit_iterations": 14,
+          "minimum_supported_lines": 4,
+          "maximum_height_disagreement": 0.08,
+          "maximum_normalized_residual": 0.04
+        },
+        "evidence": {
+          "horizon_px": 266.1516816366777,
+          "focal_px": 864.7501991360822,
+          "height_blocks": 6.243769280211351,
+          "axis_heights_blocks": [
+            6.242074508028821,
+            6.245464052393881
+          ],
+          "median_seam_residual_blocks": [
+            0.021586239168826526,
+            0.010420586911415414
+          ],
+          "seam_samples": [
+            603,
+            975
+          ]
+        },
+        "camera_source": "seam-fit"
+      }
+    },
+    {
+      "id": "shape-benchmark-26.3--train-recess-02-left",
+      "source_id": "train-recess-02-left",
+      "directory": "shape-benchmark-26.3",
+      "shape": "af9197f778bd94342d8ce2695a031291b8c55c78af325c07f6d5e55cc38739f2",
+      "blocks": 856,
+      "files": {
+        "rgb.png": "fbacce85bff62e314335841ce03867de193c2553bbbf3f24bccdeec4cd5007bb",
+        "camera.json": "d9afcba59daa8d687eccf8d924758ef03e351742947b6a224c9dda4330f0ffc1",
+        "world-readback.json": "4620b25e42508146ef75a4002fb5fa25c6471e47a92dc3dd3e56f015fcbd99ad"
+      },
+      "camera": {
+        "P": [
+          [
+            139.6473412380329,
+            -149.6341925021413,
+            1105.6135283320098,
+            17446.02384733024
+          ],
+          [
+            221.08191417460628,
+            -938.3040571019172,
+            138.13518437512334,
+            14911.259726963526
+          ],
+          [
+            0.8295522359400382,
+            -0.20782526736408516,
+            0.5183162606863976,
+            24.796102677821487
+          ]
+        ],
+        "scale_status": "supported",
+        "reason": "Two perpendicular seam families agree assuming one block per floor tile",
+        "settings": {
+          "seed_width_limit": 768,
+          "horizon_trials": 7,
+          "floor_rows": 88,
+          "center_fit_iterations": 14,
+          "minimum_supported_lines": 4,
+          "maximum_height_disagreement": 0.08,
+          "maximum_normalized_residual": 0.04
+        },
+        "evidence": {
+          "horizon_px": 266.50752610422296,
+          "focal_px": 863.6394186877849,
+          "height_blocks": 9.403954378758122,
+          "axis_heights_blocks": [
+            9.401638453116517,
+            9.406270304399726
+          ],
+          "median_seam_residual_blocks": [
+            0.008440340320749456,
+            0.01618904800820726
+          ],
+          "seam_samples": [
+            1680,
+            916
+          ]
+        },
+        "camera_source": "seam-fit"
+      }
+    }
+  ]
+}
