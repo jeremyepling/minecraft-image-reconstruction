@@ -13,6 +13,8 @@ def replay(args):
     old = read(args.sheet)
     combined = read(args.results)
     material = {p['key']: p for p in read(Path('benchmark/reviews/count-01/materials.json'))['pictures']}
+    fixture = Path('benchmark/reviews/mask-four-01')
+    images = {row['key']: fixture/row['source'] for row in read(fixture/'cases.json')}
     lookup = {}
     for row in combined['rows']:
         original = material[row['key']][row['group']][row['index']]
@@ -40,7 +42,7 @@ def replay(args):
         label(x+10,y+7,f"{i+1:02}   {case['key'].split('/')[-1]}",18,True)
         label(x+475,y+7,'Corrected' if correct else 'Still missed',15,True,'#087746' if correct else '#963b26')
         label(x+10,y+35,('Predicted grid' if group=='predicted' else 'Recorded corners')+'   /   '+case['direction']+' face')
-        image=Image.open(case['image']).convert('RGB')
+        image=Image.open(images[case['key']]).convert('RGB')
         q=np.array(row['quad'])
         center=q.mean(0)
         span=max(36,3*np.ptp(q,axis=0).max())
