@@ -14,3 +14,7 @@
 The `feature/afterpass-planarity`, `feature/afterpass-ect` and `feature/afterpass-sheet` checkouts were parallel assignments from the same reconstruction conversation. Their measured work was collected on `feature/single-wall-depth`. Earlier `feature/count-round`, `feature/mask-round` and `feature/normal-round` branches preserve earlier rounds. The registered `normal-round` checkout holds the frozen exterior suite on this PC.
 
 The separate model-research conversation proposed line-model experiments. The four-way review records their measured outcomes. The separate image-rebuild work tested masonry textures on different images. Its exact texture scores and the Surface Finder’s visible-surface counts measure different things.
+
+The local prototype commits for streaming capture, tracing lines and matching masonry were integrated along with the model work. Their history includes `5b9fc3c`, `06655c6` and `cf87010`. Experimental masonry matching remains available in the build that supports it. The ordinary Surface Finder and texture-based Block Counter retain their own measured defaults.
+
+The single-inset and two-model agreement trials were parallel assignments in this chat. Their scores and settings live in the [acceptance review](PLANE_ACCEPTANCE.md). Run them from `main` with the benchmark command in that review.
