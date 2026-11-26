@@ -156,7 +156,7 @@ def apply_planes(size,P,eye,prior,witnesses,union,strict):
     return prior
 
 
-def recover(image,parts,counts,camera,prior,*,atlas_path=None,mode='loose'):
+def recover(image,parts,counts,camera,prior,*,atlas_path=None,mode='loose',course_override=None):
     status=dict(height_decisions=[],primary_height=None)
     if not prior or camera.get('P') is None or not parts:
         return prior,status
@@ -193,6 +193,16 @@ def recover(image,parts,counts,camera,prior,*,atlas_path=None,mode='loose'):
         gap=best['value']-ranked[1]['value'] if len(ranked)>1 else best['value']
         accepted=(best['value']>=(.49 if strict else .38) and gap>=(.13 if strict else .08)
                   and best['phase']>.06 and best['color']<14 and best['texels']>=16)
+        if course_override is not None:
+            # Keep the experimental patch-admission gate identical. Only the
+            # physical plane used to index its native texels and emit cells changes.
+            forced=course_override(part,eye,prior)
+            selected=next((b for b in ranked if b['plane_y']==forced),None)
+            if selected is None:
+                accepted=False
+            else:
+                best=selected
+            h=int(forced)
         row=dict(part=part['id'],plane_y=h,block_y=h-int(eye[1]>h),normal_y=1 if eye[1]>h else -1,
                  area=len(x),accepted=bool(accepted),margin=round(gap,4),pixel_corr=best['pixel_corr'],
                  hypotheses=[[b['plane_y'],b['value']] for b in ranked])
@@ -220,3 +230,10 @@ def recover(image,parts,counts,camera,prior,*,atlas_path=None,mode='loose'):
 
 def strict(image,parts,counts,camera,prior):
     return recover(image,parts,counts,camera,prior,mode='strict')
+
+
+def tallest(image,parts,counts,camera,prior):
+    def course(part,eye,existing):
+        level=max(p[1] for p in existing)
+        return level+int(eye[1]>level+1)
+    return recover(image,parts,counts,camera,prior,course_override=course)
