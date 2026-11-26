@@ -121,7 +121,7 @@ def evaluate(key,sha,layout,cohort,image,parts,load_reference,frozen=None):
         return hashlib.sha256(str((sha,f['xyz'],f['direction'])).encode()).digest()
     audit = set(sorted(valid,key=order)[:8])
     links = {a:link(raw['shape'][a],paired,valid,ref) for a in ARMS}
-    known_keys = audit.union(*(v[0] for lookup in links.values() for v in lookup.values()))
+    known_keys = audit | {v[0] for lookup in links.values() for v in lookup.values()}
     results = {}
     for method,arms in raw.items():
         known = {}
