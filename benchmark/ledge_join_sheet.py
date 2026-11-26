@@ -148,7 +148,8 @@ def render(out, rows, captures, table):
 
 
 @image_only()
-def render_comparison(out, rows, captures, table, names, title, raw_stages=(), raw_panels=None, source=None):
+def render_comparison(out, rows, captures, table, names, title, raw_stages=(), raw_panels=None, source=None,
+                      prior_detail_sheet=None, detail_stages=(), detail_renderer=None):
     methods = tuple(names)
     if not methods or methods[0] != 'current':
         raise ValueError('The first column method must be the current finder')
@@ -166,7 +167,15 @@ def render_comparison(out, rows, captures, table, names, title, raw_stages=(), r
     if (len(roster) != 8 or len({v['layout'] for v in roster}) != 8 or len(pinned) != 4 or
             set(by_key) != set(captures) or len(by_key) != len(rows) or len(rows) != 56):
         raise ValueError('Review inputs differ from the eight fixed buildings and 56 frames')
-    specs = stages(methods, names, raw_stages)
+    if prior_detail_sheet is not None:
+        reference_sheet = Path(prior_detail_sheet)
+        checked(reference_sheet, read(reference_sheet.parent / 'manifest.json')['artifacts'][reference_sheet.name])
+        for view in read(reference_sheet)['views']:
+            detail = view['close_up']
+            pinned[view['layout']] = dict(frame=detail['frame'], sha256=detail['sha256'],
+                                          reference=detail['focus_reference'], crop_xyxy=detail['crop_xyxy'],
+                                          scene_xyxy=detail['scene_xyxy'])
+    specs = stages(methods, names, raw_stages) + list(detail_stages)
     width = LEFT + len(roster) * (COL + GAP) + GAP
     height = TOP + sum(h + 82 for _, _, _, _, h in specs) + 9
     page = Image.new('RGB', (width, height), PAPER)
@@ -219,13 +228,17 @@ def render_comparison(out, rows, captures, table, names, title, raw_stages=(), r
         if raw_panels:
             selection['raw_fields'] = raw_panels(put, data[0], detail, selection['crop_xyxy'], 'raw-detail-',
                                                  focus=selection['focus_reference'])
+        if detail_renderer:
+            selection['downstream'] = detail_renderer(put, data, detail, selection)
         views.append(dict(layout=layout, cohort=row['cohort'], overview=scene, close_up=selection))
     path = out / 'comparison.jpg'
     page.save(path, quality=93, subsampling=0, optimize=True)
     save(out / 'sheet-views.json', dict(views=views, methods=names, fixed_views_sha256=digest(roster_file),
          prior_misses_sha256=digest(misses_file), reference_sha256=digest(ARCHIVE), matched=totals, eligible=scored,
          definition='Scores and gained/lost status use full surfaces, including regions beyond an enlarged crop.',
-         selection='Four pinned regions from the prior misses review. For other buildings prefer changed match IDs, '
-                   'then baseline misses and the fixed overview view. Select only after scoring.',
+         selection=('All eight close-ups use the prior sheet and the same source coordinates.' if prior_detail_sheet else
+                    'Four pinned regions from the prior misses review. For other buildings prefer changed match IDs, '
+                    'then baseline misses and the fixed overview view. Select only after scoring.'),
+         **({'prior_detail_sheet_sha256':digest(reference_sheet)} if prior_detail_sheet else {}),
          image=dict(file=path.name, width=width, height=height, sha256=digest(path))))
     return path
