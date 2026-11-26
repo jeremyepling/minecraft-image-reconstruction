@@ -47,7 +47,7 @@ def confirm(image,P,version):
         m = art.rank(rgb,quad)
         if m['scores'][0] >= .55 and m['score_margin'] >= .04:
             matches[(a,b)] = m['texture']
-    return [dict(a=art1,b=matches[n]) for (a,b),art1 in matches.items()
+    return [dict(first=[int(a),int(b)],second=[int(v) for v in n],a=art1,b=matches[n]) for (a,b),art1 in matches.items()
             for n in ((a+1,b),(a,b+1)) if n in matches and matches[n]!=art1]
 
 
