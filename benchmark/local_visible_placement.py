@@ -117,7 +117,7 @@ def rough_planes(im, parts, masks, P, fallback_distance):
     floor_z=np.divide(-eye[1],rays[:,:,1],out=np.full(shape,np.nan),where=abs(rays[:,:,1])>1e-7)
     contacts=boundary & (floor_z>1) & (floor_z<150)
     distance = fallback_distance or (np.median(floor_z[contacts]) if contacts.any() else focal/(im.height/24))
-    inv_depths=[p.get('relative_inverse_depth') for p in parts if p.get('relative_inverse_depth',0)>0]
+    inv_depths=[p['relative_inverse_depth'] for p in parts if (p.get('relative_inverse_depth') or 0)>0]
     typical = np.median(inv_depths) if inv_depths else 1
     cells = {}
     for p,mask in zip(parts,masks):
