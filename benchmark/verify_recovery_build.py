@@ -113,14 +113,31 @@ def verify(build, key, source_run=None, data=None):
         if sky_filtered:
             result['background_filter'] = manifest['surface_finder']['boundary_settings']['background_filter']
         from PIL import Image
-        from benchmark.perimeter_round import downstream_counts
-        with Image.open(case.path('image')) as src:
-            gold = downstream_counts(src.convert('RGB'), expected)
-        for actual, frozen in zip(counts, gold, strict=True):
-            reading = frozen['measures']['masked-repeat']
-            for field in ('counts','phase','dimensions'):
-                if actual[field] != reading[field]:
-                    raise ValueError(f"Block Counter {field} differs for {actual['id']}")
+        if manifest['stages']['block_count']=='texture-guided-repeat':
+            from benchmark.verify_texture_guided_count import EXTERIOR, cases_at, compare
+            from benchmark.wall_join_test import checked,read_gzip
+            scored=next(r for r in cases_at(EXTERIOR) if r['key']==key)
+            pred=scored['predictions']
+            approved=read_gzip(checked(EXTERIOR/pred,read(EXTERIOR/'manifest.json')['artifacts'][pred]))
+            with Image.open(case.path('image')) as src:
+                result['promoted_counts']=compare(src.convert('RGB'),predicted,counts,approved,scored,'self_repeat',build)
+            result['through']=manifest['through']
+            result['count_settings']=manifest['block_counter']
+            result['fallback_rows']=[dict(proposal=c['id'],reference=assignments.get(c['id']),
+                                          estimate=c['dimensions']['blocks'],actual=s.get('actual'))
+                                     for c,s in zip(counts,scored['surfaces'],strict=True)
+                                     if c['method']=='texture-guided-repeat']
+            result['verified_artifacts']={name:digest(build/manifest['artifacts'][name])
+                                          for name in ('counts','placements','datapack') if name in manifest['artifacts']}
+        else:
+            from benchmark.perimeter_round import downstream_counts
+            with Image.open(case.path('image')) as src:
+                gold = downstream_counts(src.convert('RGB'), expected)
+            for actual, frozen in zip(counts, gold, strict=True):
+                reading = frozen['measures']['masked-repeat']
+                for field in ('counts','phase','dimensions'):
+                    if actual[field] != reading[field]:
+                        raise ValueError(f"Block Counter {field} differs for {actual['id']}")
         timings = manifest['surface_finder']['boundary_settings']['planarity']['inference']
         result.update(same_count_phase_and_dimensions_for_every_proposal=True,
                       candidate_build=manifest.get('candidate_verification'),
@@ -129,7 +146,8 @@ def verify(build, key, source_run=None, data=None):
                       full_frame_segmentation_s=timings['segmentation_s'],
                       baseline_opening_samples_covered=row['scores']['current']['opening_filled'],
                       candidate_opening_samples_covered=scores['opening_filled'], opening_samples=scores['opening_pixels'],
-                      paired_sizes=row['sizes'][method])
+                      paired_sizes=({k:result['promoted_counts'][k] for k in ('correct','incorrect','missing')}
+                                    if 'promoted_counts' in result else row['sizes'][method]))
     return result
 
 
