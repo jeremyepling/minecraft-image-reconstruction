@@ -54,9 +54,9 @@ def strict_only(image,version,parts,counts,camera):
 
 
 def evaluate(job):
-    f,shared,base_dir,dest,data,fixtures=job
+    f,shared,base_dir,dest,data,fixtures,frozen_hash=job
     dest.mkdir(exist_ok=True,parents=True)
-    inputs=read(shared)
+    inputs=read(checked(shared,frozen_hash) if frozen_hash else shared)
     folder=data/'data'/f['split']/f['directory']
     sha=f['files']
     assert inputs['id']==f['id'] and inputs['rgb_sha256']==sha['rgb.png']
@@ -146,9 +146,12 @@ def main():
         p.error('Candidate runs need a private output directory')
     root=args.candidate_root.resolve()
     revision=subprocess.check_output(['git','rev-parse','HEAD'],cwd=root,text=True).strip()
+    dirty=bool(subprocess.check_output(['git','status','--porcelain','--','engine','benchmark'],cwd=root,text=True).strip())
     source=root.joinpath(*(args.candidate.split(':')[0].split('.'))).with_suffix('.py') if args.candidate else ROOT/'engine/visible_placement.py'
     for split in SPLITS if args.split=='all' else [args.split]:
         jobs=[]
+        frozen_manifest=args.inputs.parent/('inputs-'+split+'.json')
+        frozen=read(frozen_manifest)['input_sha256'] if frozen_manifest.exists() else {}
         if split=='native':
             from benchmark.visible_depth_native import rows as native_rows
             samples=native_rows()
@@ -160,13 +163,14 @@ def main():
             if args.ids and f['id'] not in args.ids: continue
             if args.families and f.get('family',f['layout']) not in args.families: continue
             dest=args.out/split/f['id']
-            jobs.append((f,inp,args.baseline if args.candidate else None,dest,args.data,args.native_fixtures))
+            jobs.append((f,inp,args.baseline if args.candidate else None,dest,args.data,args.native_fixtures,
+                         frozen[f['id']] if frozen else None))
         if not jobs: continue
         with ProcessPoolExecutor(max_workers=args.workers,initializer=init_candidate,initargs=(root,args.candidate)) as pool:
             rows=list(pool.map(evaluate,jobs))
         dest=args.out/split
         save(dest/'cases.json',rows)
-        result=dict(split=split,candidate=args.candidate,revision=revision,candidate_sha256=digest(source),
+        result=dict(split=split,candidate=args.candidate,revision=revision,source_dirty=dirty,candidate_sha256=digest(source),
                     scoring_sha256=digest(Path(__file__)),cases_sha256=digest(dest/'cases.json'),
                     summary=aggregate(rows),families={family:aggregate([r for r in rows if r['family']==family])
                                                     for family in sorted({r['family'] for r in rows})})
