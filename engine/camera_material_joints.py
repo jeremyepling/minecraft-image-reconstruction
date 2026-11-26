@@ -51,15 +51,34 @@ def confirm(image,P,version):
             for n in ((a+1,b),(a,b+1)) if n in matches and matches[n]!=art1]
 
 
+def compatible(P,Q,w,h):
+    xy = np.array([[w*u,h*v] for u in (.2,.5,.8) for v in (.76,.9)])
+    first = plane_coordinates(P,xy,1,0)
+    second = plane_coordinates(Q,xy,1,0)
+    # Both seam estimators use the same pencil ordering and unit directions.
+    # Compensate for a different local integer origin before lifting the probes.
+    offset = np.rint(np.median(second-first,axis=0))
+    a = np.insert(first,1,3,axis=1)
+    b = np.insert(first+offset,1,3,axis=1)
+    err = np.linalg.norm(project(P,a)-project(Q,b),axis=1)
+    return np.max(err)<2.
+
+
 def predict(image,version='26.3'):
     image = image.convert('RGB')
-    for radius,adaptive in ((3,False),(3,True),(5,True)):
+    candidates = []
+    for radius,adaptive in ((3,False),(3,True),(5,True),(1,False)):
         result = camera_seam.predict(joint_map(image,radius,adaptive),version)
         if result['P'] is None:
             continue
         edges = confirm(image,np.array(result['P']),version)
-        if len(edges)>=2:
+        if len(edges)>=6:
             result['evidence'].update(confirmed_edges=edges,radius=radius,adaptive=adaptive)
             result['reason']='Ground material joints and adjacent atlas cells agree'
+            candidates.append(result)
+    ranked = sorted(candidates,key=lambda r:-len(r['evidence']['confirmed_edges']))
+    for result in ranked:
+        if any(compatible(np.asarray(result['P']),np.asarray(other['P']),*image.size)
+               for other in ranked if other is not result):
             return result
-    return dict(P=None,scale_status='uncertain',reason='Insufficient verified ground joints',evidence={})
+    return dict(P=None,scale_status='uncertain',reason='Ground joints lack independent metric agreement',evidence={})
