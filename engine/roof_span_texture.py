@@ -101,7 +101,8 @@ def continuous(rows, prior, mode):
     # Recover measured runs along either horizontal grid direction. A run can
     # terminate at a texture change or the photographed outline. Missing
     # witnesses always break the run, even between two measured contacts.
-    score, gap = { 'loose':(.62,.09), 'strict':(.75,.16), 'guarded':(.62,.09) }[mode]
+    score, gap = { 'loose':(.62,.09), 'strict':(.75,.16), 'guarded':(.62,.09),
+                   'conservative':(.75,.16) }[mode]
     cells = {cell for (cell,_),r in rows.items()
              if r['split']>=score and r['depth']>=gap and r['phase']>=.075
              and r['color']<=9 and (r['oriented']>.55 or r['split']>=.84)}
@@ -156,7 +157,7 @@ def proposed(ctx,rows,prior,mode):
     final=continuous(checked,prior,mode)
     if not final:
         return prior
-    if mode=='guarded':
+    if mode in ('guarded','conservative'):
         # Check *all* projected faces, including vertical ends of accepted top
         # strips. Every newly intercepted ray must stay within the photographed
         # silhouette, allowing a one-pixel rasterization discrepancy at edges.
@@ -177,3 +178,7 @@ def proposed(ctx,rows,prior,mode):
 def recover(image,parts,counts,camera,prior,*,atlas_path=None,mode='guarded'):
     ctx,rows=observations(image,parts,camera,prior,atlas_path)
     return proposed(ctx,rows,prior,mode),dict(measured_faces=len(rows))
+
+
+def conservative(image,parts,counts,camera,prior,*,atlas_path=None):
+    return recover(image,parts,counts,camera,prior,atlas_path=atlas_path,mode='conservative')
