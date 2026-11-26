@@ -167,8 +167,17 @@ def options(mask, P, eye, rays, axis, baseline, rgb, atlas, scene_distance=None,
 def place_ranked(image, version, parts, counts, camera, *, atlas_path=None, joint_foreground=True):
     """Place image-supported grid cells and remove cells with no visible ray."""
     from engine.foreground_conflicts import ForegroundConflicts
-    return _place(image, version, parts, counts, camera, atlas_path, remove_occluded=True,
-                  scene_policy=ForegroundConflicts() if joint_foreground else None)
+    cells, status = _place(image, version, parts, counts, camera, atlas_path, remove_occluded=True,
+                           scene_policy=ForegroundConflicts() if joint_foreground else None)
+    if cells and status['foreground_depth']['method'] == 'joint':
+        from engine.neighbor_photo_faces import recover
+        extra = recover(image, parts, camera['P'], cells)
+        if extra:
+            cells = cells | extra
+            status['added_blocks'] += len(extra)
+            status['placed_blocks'] = len(cells)
+        status['neighbor_photo_blocks'] = len(extra)
+    return cells, status
 
 
 def place_ranked_without_ray(image, version, parts, counts, camera, *, atlas_path=None, joint_foreground=True):

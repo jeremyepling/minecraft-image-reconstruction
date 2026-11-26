@@ -32,19 +32,19 @@ def native(inputs, key, original, current):
             set(structure(blocks,64)), original/key/'cells.json', current/key/'cells.json')
 
 
-def galleries(current):
+def galleries(current, previous=BASE):
     root = DATA/'data/regression/frames'/GALLERIES
     return (root/'rgb.png', read(root/'camera.json'),
             read(STABLE/'runs/visible-depth-rounds/inputs'/(GALLERIES+'.json'))['parts'],
             read(root/'labels.json'), set(structure(read(root/'world-readback.json'),read(root/'frame.json')['ground_y'])),
-            BASE/'regression'/GALLERIES/'cells.json',current/'regression'/GALLERIES/'cells.json')
+            previous/'regression'/GALLERIES/'cells.json',current/'regression'/GALLERIES/'cells.json')
 
 
-def build(out, regression, old, fresh):
+def build(out, regression, old, fresh, previous=None):
     samples = [
-        ('Canopy 09 · right',native(OUT,'shape-benchmark-26.3--train-canopy-09-right',OUT/'results/production',old)),
-        ('New canopy 00 · right',native(FRESH,'shape-benchmark-open-26.3--train-canopy-00-right',FRESH/'results/baseline',fresh)),
-        ('Galleries · low left',galleries(regression))]
+        ('Canopy 09 · right',native(OUT,'shape-benchmark-26.3--train-canopy-09-right',previous/'old' if previous else OUT/'results/production',old)),
+        ('Canopy 00 · right',native(FRESH,'shape-benchmark-open-26.3--train-canopy-00-right',previous/'fresh' if previous else FRESH/'results/baseline',fresh)),
+        ('Galleries · low left',galleries(regression,previous or BASE))]
     sheet = Image.new('RGB',(1265,1650),'#101921')
     pen = ImageDraw.Draw(sheet)
     pen.text((22,14),'Where did the visible roof blocks land?',font=font(32))
@@ -82,5 +82,6 @@ if __name__=='__main__':
     p=argparse.ArgumentParser(description=__doc__)
     for key in ('out','regression','old','fresh'):
         p.add_argument('--'+key,type=Path,required=True)
+    p.add_argument('--previous',type=Path,help='Root of one baseline for all three comparisons')
     a=p.parse_args()
-    build(a.out,a.regression,a.old,a.fresh)
+    build(a.out,a.regression,a.old,a.fresh,a.previous)

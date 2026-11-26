@@ -93,11 +93,13 @@ def verify_pack(frame,folder,pose):
     return cells,row['pack_sha256']
 
 
-def run(out):
+def run(out, release=None, previous=None):
     specs=read(PROBES)
-    release=STABLE/'runs/canopy-placement/release'
+    release=release or STABLE/'runs/canopy-placement/release'
     cases=[]
     for cohort,inputs,old in [('old',OLD,OLD/'results/production'),('fresh',FRESH,FRESH/'results/baseline')]:
+        if previous is not None:
+            old=previous/cohort
         for f in read(inputs/'screen.json')['selected']:
             key=f['id']
             if key not in specs:
@@ -135,4 +137,7 @@ def run(out):
 if __name__=='__main__':
     p=argparse.ArgumentParser(description=__doc__)
     p.add_argument('--out',type=Path,default=ROOT/'benchmark/reviews/relative-spacing-01')
-    run(p.parse_args().out)
+    p.add_argument('--current',type=Path,help='Candidate run root with old/ and fresh/ cohorts')
+    p.add_argument('--previous',type=Path,help='Comparison run root with the same cohorts')
+    args=p.parse_args()
+    run(args.out,args.current,args.previous)
