@@ -92,6 +92,10 @@ def apply(image,parts,counts,camera,prior):
     return envelope.recover(image,parts,camera,prior,atlas_path=ATLAS)
 
 
+def neighbors(image,parts,counts,camera,prior):
+    return envelope.recover(image,parts,camera,prior,atlas_path=ATLAS,threshold=.80,neighbors=True)
+
+
 def conservative(image,parts,counts,camera,prior):
     return envelope.recover(image,parts,camera,prior,atlas_path=ATLAS,threshold=.98)
 

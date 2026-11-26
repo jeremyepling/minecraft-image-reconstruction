@@ -163,7 +163,20 @@ def _read_weights(path,mtime):
     return obj
 
 
-def recover(image,parts,camera,prior,*,atlas_path=None,threshold=None):
+def smooth(points, probability, *, horizontal_only):
+    index={tuple(p):i for i,p in enumerate(points)}
+    out=probability.copy()
+    for i,(x,y,z) in enumerate(points):
+        neighbors=[index.get((x+dx,y+dy,z+dz)) for dx,dy,dz in
+                   [(-1,0,0),(1,0,0),(0,0,-1),(0,0,1),(0,-1,0),(0,1,0)] if not (horizontal_only and dy)]
+        values=[probability[j] for j in neighbors if j is not None]
+        if values:
+            out[i]=np.median(values)
+    return out
+
+
+
+def recover(image,parts,camera,prior,*,atlas_path=None,threshold=None,neighbors=False):
     """Keep the previous build if photograph, contacts or calibrated model are insufficient."""
     try:
         obj=_read_weights(WEIGHTS,WEIGHTS.stat().st_mtime_ns)
@@ -173,7 +186,10 @@ def recover(image,parts,camera,prior,*,atlas_path=None,threshold=None):
     if obs is None:
         return prior,dict(removed=0,measured=False)
     pts,X=obs
-    drop=predict_forest(obj['forest'],X)>=(obj['threshold'] if threshold is None else threshold)
+    probability=predict_forest(obj['forest'],X)
+    if neighbors:
+        probability=.3*probability+.7*smooth(pts,probability,horizontal_only=True)
+    drop=probability>=(obj['threshold'] if threshold is None else threshold)
     if obj['local']:
         drop &= (X[:,0]>.5)|(X[:,11]>2)
     return prior-{tuple(p) for p in pts[drop]},dict(removed=int(drop.sum()),measured=True)
