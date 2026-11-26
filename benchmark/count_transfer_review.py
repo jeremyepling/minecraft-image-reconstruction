@@ -7,6 +7,7 @@ from pathlib import Path
 import numpy as np
 from PIL import Image, ImageDraw
 
+from benchmark import coplanar_opportunities
 from benchmark.camera_round import ROOT, digest, read, revision, save
 from benchmark.camera_sheet import label
 from benchmark.crop_fit_sheet import size_text
@@ -37,7 +38,8 @@ def indexed(records, field):
 def join(phase, coplanar):
     base = read(checked(BASE/'cases.json', read(BASE/'manifest.json')['artifacts']['cases.json']))
     for method, (folder, field) in zip(('phase','coplanar'), (phase,coplanar)):
-        rows = indexed(read(folder/'cases.json'), 'key')
+        manifest = read(folder/'manifest.json')
+        rows = indexed(read(checked(folder/'cases.json',manifest['artifacts']['cases.json'])), 'key')
         if rows.keys() != indexed(base,'key').keys():
             raise ValueError('Frame set changed')
         for frame in base:
@@ -52,6 +54,8 @@ def join(phase, coplanar):
                 if result['guess']['current'] != part['guess']['current']:
                     raise ValueError('Baseline size mismatch')
                 part['guess'][method] = result['guess'][field]
+                if method=='coplanar' and 'transfer' in result:
+                    part.update(transfer=result['transfer'],transfer_truth=result.get('transfer_truth',{}))
                 if method=='phase':
                     part['guess']['self_repeat'] = result['guess']['self_repeat']
     for frame in base:
@@ -79,7 +83,7 @@ def examples(rows):
                 changes = [(method, guesses[method] == part['actual']) for method in METHODS[1:]
                            if guesses[method] != guesses['current']]
                 portico_beam = layout=='portico' and part['actual']==[18,1] and guesses['self_repeat']==part['actual'] and guesses['phase']!=part['actual']
-                priority = (portico_beam,bool(changes), sum(1/(1+seen[k]) for k in changes),
+                priority = (portico_beam,portico_beam and row['key']=='smooth_stone/holdout-portico-plaster-low-left',bool(changes), sum(1/(1+seen[k]) for k in changes),
                             None not in guesses['current'],np.prod(part['actual']))
                 options.append((priority, row, part, changes))
         _, row, part, changes = max(options,key=lambda entry: entry[0])
@@ -98,7 +102,7 @@ def render(rows, out):
     caps = {c.floor+'/'+c.id:c for group in groups()[0].values() for c in group}
     selected = examples(rows)
     stages = ['Screenshot','Surface Finder','Neighboring pixels','Straightened crop','Default count',
-              'Texture-guided crop','Repeats alone','With atlas check','Possible donor','Same-plane count','Recorded surface','Score']
+              'Texture-guided crop','Repeats alone','With atlas check','Possible donor','Same-plane count','Recorded surface','Score','Second donor check']
     w,h,left,top = 278,275,190,118
     page = Image.new('RGB',(left+w*len(selected),top+h*len(stages)),'#f6f5ef')
     draw = ImageDraw.Draw(page)
@@ -156,7 +160,7 @@ def render(rows, out):
             if img is not None:
                 _picture(page,img,x+2,y+4,w-4,h-42,nearest=i>0)
             label(draw,(x+4,y+h-30),caption,15)
-        y=top+(len(stages)-1)*h+20
+        y=top+stages.index('Score')*h+20
         for j,name in enumerate(METHODS):
             g=rec['guess'][name]
             verdict='correct' if g==rec['actual'] else 'unresolved' if None in g else 'wrong'
@@ -164,6 +168,27 @@ def render(rows, out):
             label(draw,(x+4,y+40*j),f'{title}: {verdict}',18)
         index[layout]=dict(key=key,sha256=frame['sha256'],proposal=part['id'],reference=rec['reference'],
                            actual=rec['actual'],guess=rec['guess'])
+        y=top+stages.index('Second donor check')*h
+        audited=[(r,p) for r in rows if r['layout']==layout for p in r['surfaces']
+                 if 'coplanar' in p.get('transfer_truth',{})]
+        if not audited:
+            label(draw,(x+4,y+12),'No paired transfer to review',15)
+            continue
+        r,p=max(audited,key=lambda pair:(pair[1]['transfer_truth']['coplanar'],
+                                         pair[1]['guess']['coplanar']!=pair[1].get('actual')))
+        with Image.open(checked(caps[r['key']].path('image'),r['sha256'])) as im:
+            other=im.convert('RGB')
+        rel=meta[r['key']]['predictions']
+        regs=indexed(read_gzip(checked(source/rel,manifest['artifacts'][rel]))[method],'id')
+        donor=support(regs[p['transfer']['donor']],other.size)
+        target=support(regs[p['proposal']],other.size)
+        bbox=Image.fromarray(donor|target).getbbox()
+        close=overlay(other,bbox,[(target,(26,218,205),.72),(donor,(226,95,246),.72)])
+        _picture(page,close,x+2,y+4,w-4,h-83)
+        label(draw,(x+4,y+h-72),'Magenta donor / teal target',14)
+        label(draw,(x+4,y+h-49),'Recorded: '+('same plane' if p['transfer_truth']['coplanar'] else 'different planes'),14)
+        label(draw,(x+4,y+h-27),'Guess '+size_text(p['guess']['coplanar'])+'  |  Actual '+size_text(p.get('actual')),14)
+        index[layout]['donor_example']=dict(frame=r['key'],proposal=p['proposal'],transfer=p['transfer'],truth=p['transfer_truth'])
     page.save(out/'comparison.jpg',quality=92,subsampling=0)
     save(out/'examples.json',index)
 
@@ -177,6 +202,7 @@ def run(phase,coplanar,out,phase_key,coplanar_key):
     save(out/'scores.json',scores)
     save(out/'cases.json',rows)
     render(rows,out)
+    coplanar_opportunities.run(out/'opportunities.json')
     save(out/'manifest.json',dict(code=revision(),run_id=out.name,version='26.3',
          source_manifests={p.name:digest(p/'manifest.json') for p in (BASE,phase,coplanar)},
          frames=[{k:r[k] for k in ('key','sha256','layout','cohort')} for r in rows],
