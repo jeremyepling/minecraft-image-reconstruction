@@ -4,7 +4,7 @@ import numpy as np
 from engine.visible_raster import SAMPLE_STRIDE
 
 
-def verify(rgb,atlas,mask,P,cell,axis,sign):
+def verify(rgb,atlas,mask,P,cell,axis,sign,*,native_mask=None,threshold=.6,minimum=42):
     if atlas is None:return False
     free=[d for d in range(3) if d!=axis]
     u,v=np.meshgrid((np.arange(16)+.5)/16,(np.arange(16)+.5)/16)
@@ -22,7 +22,9 @@ def verify(rgb,atlas,mask,P,cell,axis,sign):
     inside=(x>=0)&(x<w)&(y>=0)&(y<h)
     idx=np.flatnonzero(inside)
     idx=idx[mask[y[idx]//SAMPLE_STRIDE,x[idx]//SAMPLE_STRIDE]]
-    if len(idx)<42 or len(np.unique(y[idx]*w+x[idx]))<20:return False
+    if native_mask is not None:
+        idx=idx[native_mask[y[idx],x[idx]]]
+    if len(idx)<minimum or len(np.unique(y[idx]*w+x[idx]))<20:return False
     patch=rgb[y[idx],x[idx]].astype(np.float32)
     color=patch.mean(0)
     gain=np.clip((atlas.means@color)/np.maximum(1,(atlas.means**2).sum(1)),.30,1.2)
@@ -39,7 +41,7 @@ def verify(rgb,atlas,mask,P,cell,axis,sign):
     if np.bincount(groups,minlength=2).min()<12 or gray.std()<.4:return False
     scores=np.minimum(match(idx,groups==0),match(idx,groups==1))-loss[short,None]/60
     tile,turn=np.unravel_index(scores.argmax(),scores.shape)
-    if scores[tile,turn]<.6:return False
+    if scores[tile,turn]<threshold:return False
     same=np.ones(len(idx),bool)
     offsets=[(idx//16)*16+(idx%16+4)%16,(idx+64)%256]
     return match(idx,same)[tile,turn] > max(match(o,same)[tile,turn] for o in offsets)+.12
