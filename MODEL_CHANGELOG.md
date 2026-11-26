@@ -4,6 +4,8 @@ These entries cover model inputs, rules around model outputs, and evaluation cha
 
 ### November 26, 2026
 
+- **Experiment — transfer repeated photographic texture between neighboring visible faces.** Native RGB correspondences and a joint visibility check added 80 correct coordinates and seven extras on the 112 evaluation images, including six correctly anchored roof blocks across the ten canopy probes. One added block was hidden on the masonry shopfront. Carry the rule into a combined placement test. [Native phase ablations, exported packs and replay](benchmark/reviews/neighbor-photo-01/README.md)
+
 - **Evaluation — make internal geometry the primary placement criterion.** The scorer grants one translation of the entire visible build. Across 112 evaluation screenshots the current method retained 18,703 correct positions and 1,770 extras. The previous default gained four matches, all on canopy 09. The geometry method ranking was unchanged. [Translation test, part spacing and replay](benchmark/reviews/relative-build-01/README.md)
 
 - **Shipped — choose among wider surface depths, including roof heights corroborated by visible walls.** A 17-weight ranker adds one-block texture displacement to the existing sprite and contour evidence. Native masked texels can also recover partly visible edges. On the original failing canopy, correct coordinates rose from 22 to 65 and extras fell from 301 to seven. On three newly reserved canopies, all 43 visible rim faces and all three opening widths were recovered. Weak texture on large surfaces can still shift the wrong plane. [Full comparison, fallbacks and failure cases](benchmark/reviews/canopy-placement-01/README.md)
