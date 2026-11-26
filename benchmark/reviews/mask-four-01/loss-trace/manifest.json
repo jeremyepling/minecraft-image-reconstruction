@@ -1,0 +1,41 @@
+{
+  "run_id": "loss-trace",
+  "diagnostic": true,
+  "method": "normal-regions",
+  "version": "26.3",
+  "baseline_run": "normals-01",
+  "code": {
+    "commit": "bdb085b6d38fd8cd2448f2d378ed0dcd6e07044b",
+    "predictor_and_runner_sha256": "789381b5a6719fbe980e70747c9ede86fff307ae4874f175a8d331c8e03fcdeb",
+    "source_dirty": false
+  },
+  "baseline_source": {
+    "commit": "520d60fd45c4fba1f2048bdf7c76e52d64e10a6f",
+    "predictor_and_runner_sha256": "1ad8b4f61845af0b796d34f9b1524a8e31ebb3d41f408d5b31f5ad37e6384370",
+    "source_dirty": false
+  },
+  "model_sha256": {
+    "normal": "24eacb5dc7a2c54c7bc98f7de085ffbed79ad006ea5b664c2c2cdc02ff3a52f0",
+    "depth": "fcf51f1b230362b28690bb9d1809bf0431f29cad20534e3f589bd7285547f20d"
+  },
+  "numerical_inputs": "verified cached normal and relative-depth tensors",
+  "raw_orientation_degrees": 30.0,
+  "matching_iou": 0.5,
+  "native_pixel_stride": 4,
+  "reference_sha256": "91efa6d3e992b1a68672eae1fdd6d380e87724742a1a4b6cbe5f84d284f731a1",
+  "fixture_sha256": {
+    "smooth_stone": "660d1e535ae134452bca903a9d7cbe8d37953927fa118d9ffb327afad0885bc2",
+    "light_gray_concrete": "321505e15563f8efc0da868baa27409837aaa474410a61f3513b3dac0030f066",
+    "surface_confirm_v1": "0a479a8264f2c0f714284928354ff6ff5f9729491709676f07e2033d25e48fc3",
+    "normal_confirm_v1": "61bdf3a89a505a8be3757efe480185bec9c1888a1c72ffb69ef0093623e27dda"
+  },
+  "elapsed_cached_seconds": 25.635,
+  "baseline_prediction_parity": "IDs, RLE support, quads, confidence, source and support area replayed exactly",
+  "downstream": "Published B stops at surfaces.json. Ordinary assembly consumes separate facade geometry.",
+  "artifacts": {
+    "pictures.json": "d5363c5c48127b0fadaa7b9646513c6988b5d1228a635e11c917fdfb1b1a30b1",
+    "stages.jpg": "262b35cbe0067bd8520883f4fa8e4faa7b51533c6a138135763081dc11b2ab63",
+    "summary.json": "4ecf87bb0e619a5b51b97006a4aa37b159fe0aea52e561c6badf85962b6926a1",
+    "surfaces.json.gz": "6c9f4c073e7e60927a675737963b4b9651466b03504c25962be9589bff828f55"
+  }
+}

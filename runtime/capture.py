@@ -14,6 +14,11 @@ import time
 import uuid
 from zipfile import ZipFile
 
+if __package__:
+    from .mode import require_game_runtime
+else:  # Preserve the standalone runtime/capture.py entry point.
+    from mode import require_game_runtime
+
 HERE = Path(__file__).resolve().parent
 
 
@@ -153,6 +158,8 @@ def main():
             mode.add_argument("--workers",type=int,help="Prediction processes (default: 2)")
             mode.add_argument("--prediction-dir",type=Path,help="Private prediction directory for this fixture")
     args=parser.parse_args()
+    if args.action in ('capture', 'registry'):
+        require_game_runtime(args.action)
     predict_frames = None
     if args.action=="capture":
         if args.predict_split:

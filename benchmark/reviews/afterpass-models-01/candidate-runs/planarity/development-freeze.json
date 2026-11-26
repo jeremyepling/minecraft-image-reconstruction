@@ -1,0 +1,110 @@
+{
+  "selected": "relaxed-add-split",
+  "settings": {
+    "min_samples": 24,
+    "max_add_area_fraction": 0.22,
+    "min_novel_fraction": 0.6,
+    "contact_radius": 4,
+    "min_contact_samples": 3,
+    "max_duplicate_iou": 0.45,
+    "min_split_containment": 0.72,
+    "min_split_share": 0.12,
+    "min_split_coverage": 0.72,
+    "split_angle_deg": 18,
+    "split_plane_distance_fraction": 0.035
+  },
+  "presets": {
+    "standard-add": [
+      "labels",
+      false
+    ],
+    "standard-add-split": [
+      "labels",
+      true
+    ],
+    "thin-add-split": [
+      "thin",
+      true
+    ],
+    "relaxed-add-split": [
+      "relaxed",
+      true
+    ]
+  },
+  "scores": {
+    "baseline": {
+      "matched": 132,
+      "eligible": 156,
+      "proposed": 187,
+      "correct_pixels": 456386,
+      "opening_filled": 33,
+      "opening_pixels": 1084,
+      "f1": 0.7696793002915452,
+      "opening_fill": 0.03044280442804428
+    },
+    "standard-add": {
+      "matched": 134,
+      "eligible": 156,
+      "proposed": 191,
+      "correct_pixels": 461848,
+      "opening_filled": 33,
+      "opening_pixels": 1084,
+      "f1": 0.7723342939481268,
+      "opening_fill": 0.03044280442804428
+    },
+    "standard-add-split": {
+      "matched": 134,
+      "eligible": 156,
+      "proposed": 191,
+      "correct_pixels": 461848,
+      "opening_filled": 33,
+      "opening_pixels": 1084,
+      "f1": 0.7723342939481268,
+      "opening_fill": 0.03044280442804428
+    },
+    "thin-add-split": {
+      "matched": 134,
+      "eligible": 156,
+      "proposed": 192,
+      "correct_pixels": 461926,
+      "opening_filled": 33,
+      "opening_pixels": 1084,
+      "f1": 0.7701149425287356,
+      "opening_fill": 0.03044280442804428
+    },
+    "relaxed-add-split": {
+      "matched": 137,
+      "eligible": 156,
+      "proposed": 192,
+      "correct_pixels": 464511,
+      "opening_filled": 33,
+      "opening_pixels": 1084,
+      "f1": 0.7873563218390804,
+      "opening_fill": 0.03044280442804428
+    }
+  },
+  "within_opening_budget": true,
+  "rule": "Consider only settings within 0.5 percentage points of baseline development opening fill. Maximize matched surfaces, then surface F1, then correctly assigned pixels; prefer the earlier simpler setting on ties. If every candidate exceeds the opening budget, select least opening fill for the measured challenger and flag it as ineligible for promotion.",
+  "development_frames": [
+    "smooth_stone/dev-shopfront-masonry-high-right",
+    "light_gray_concrete/dev-shopfront-masonry-high-right",
+    "smooth_stone/dev-shopfront-masonry-low-left",
+    "light_gray_concrete/dev-shopfront-masonry-low-left",
+    "smooth_stone/dev-shopfront-plaster-high-right",
+    "light_gray_concrete/dev-shopfront-plaster-high-right",
+    "smooth_stone/dev-shopfront-plaster-low-left",
+    "light_gray_concrete/dev-shopfront-plaster-low-left",
+    "smooth_stone/dev-wing-masonry-close-front",
+    "light_gray_concrete/dev-wing-masonry-close-front",
+    "smooth_stone/dev-wing-masonry-high-right",
+    "light_gray_concrete/dev-wing-masonry-high-right",
+    "smooth_stone/dev-wing-masonry-low-left",
+    "light_gray_concrete/dev-wing-masonry-low-left",
+    "smooth_stone/dev-wing-plaster-close-front",
+    "light_gray_concrete/dev-wing-plaster-close-front",
+    "smooth_stone/dev-wing-plaster-high-right",
+    "light_gray_concrete/dev-wing-plaster-high-right",
+    "smooth_stone/dev-wing-plaster-low-left",
+    "light_gray_concrete/dev-wing-plaster-low-left"
+  ]
+}

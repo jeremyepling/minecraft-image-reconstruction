@@ -1,0 +1,57 @@
+{
+  "walls": {
+    "min_area": 96,
+    "min_fraction": 0.05,
+    "min_shared_samples": 12,
+    "min_step": 0.007,
+    "min_rect_agreement": 0.76,
+    "max_fragments": 6,
+    "min_plane_gain": 0.38,
+    "min_broad_step": 0.012,
+    "min_edge_contrast": 9.0,
+    "rectangle_offsets": [
+      0.0,
+      -2.0,
+      2.0
+    ]
+  },
+  "strips": {
+    "min_length": 15,
+    "maximum_slope": 0.75,
+    "minimum_width": 18,
+    "minimum_area": 48,
+    "minimum_aspect": 3.5,
+    "direction_cosine": 0.43,
+    "line_radius": 2,
+    "boundary_coverage": 0.3,
+    "shadow_step": 6.0,
+    "depth_step": 0.006,
+    "max_band_thickness": 16,
+    "parallel_tolerance": 0.14,
+    "pair_relative_darkening": 0.08,
+    "redundant_iou": 0.65,
+    "min_flank_disagreement": 0.2,
+    "min_pair_turn": 0.15,
+    "min_turn_gain": 0.1,
+    "min_pair_occupied": 0.88,
+    "min_dark_flat_fraction": 0.65,
+    "internal_down_cosine": 0.3,
+    "internal_turn_gain": 0.25,
+    "existing_down_cosine": 0.7,
+    "existing_purity": 0.8,
+    "absorb_coverage": 0.65,
+    "units": "Surface-mask pixels, normalized within-image inverse depth; native RGB on 0-255"
+  },
+  "scorer": {
+    "iou": 0.5,
+    "sample_stride": 4,
+    "boundary_tolerance_px": 8,
+    "corner_tolerance_px": 12,
+    "contour_simplification_px": 6,
+    "minimum_corner_turn_deg": 30,
+    "minimum_contact_samples": 2,
+    "contact_depth_blocks": 0.5,
+    "filled_gap_fraction": 0.5
+  },
+  "rule": "Choose each input on development, preferring a higher layout-average F1 for walls, and more undersides for strips if F1 stays within 0.01 of the control. Ties prefer fewer unpaired proposals and the first listed input. For an ordinary surface default require more matches and higher F1 on both development and regression, no fewer undersides on either, opening fill increasing at most 0.003, and correctly assigned pixel fraction dropping at most 0.002 on either. Keep comparably scored experimental methods opt-in until their ordinary image entry point is verified."
+}

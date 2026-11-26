@@ -1,0 +1,461 @@
+{
+  "contact": {
+    "proposals": [
+      {
+        "id": "contact-0",
+        "quad": [
+          [
+            921.8342908074842,
+            476.8233776062585
+          ],
+          [
+            1008.899854378537,
+            438.9111843606066
+          ],
+          [
+            998.5632040235542,
+            626.6752853288227
+          ],
+          [
+            912.6283150420638,
+            714.4559937462686
+          ]
+        ]
+      },
+      {
+        "id": "contact-1",
+        "quad": [
+          [
+            411.2135083462287,
+            317.0044677686099
+          ],
+          [
+            898.9063675254531,
+            321.8137132613406
+          ],
+          [
+            886.780159058742,
+            685.4467908689576
+          ],
+          [
+            425.5564880333113,
+            566.4262491574663
+          ]
+        ]
+      }
+    ],
+    "scores": {
+      "eligible": 5,
+      "proposed": 2,
+      "matched": 1,
+      "precision": 0.5,
+      "recall": 0.2,
+      "matches": [
+        {
+          "proposal_index": 1,
+          "patch_id": 2,
+          "iou": 0.7074725274725274,
+          "center_xy": [
+            610.0762590805514,
+            471.072154703562
+          ],
+          "normal_camera": [
+            -0.5591930435107744,
+            0.13507026022101049,
+            -0.8179603490917651
+          ],
+          "depth_at_center": 22.981523614409273
+        }
+      ],
+      "proposed_pixels": 10208,
+      "spill_pixels": 696,
+      "spill_fraction": 0.06818181818181818
+    }
+  },
+  "edges": {
+    "proposals": [
+      {
+        "id": "surface-34",
+        "quad": [
+          [
+            410.95,
+            316.11
+          ],
+          [
+            772.09,
+            319.01
+          ],
+          [
+            773.37,
+            627.22
+          ],
+          [
+            423.8,
+            546.53
+          ]
+        ],
+        "confidence": 0.9525,
+        "evidence": {
+          "source": "four joined edges",
+          "boundary_support": 0.9031,
+          "region_purity": 0.9882,
+          "shading_used": false
+        },
+        "corner_junctions": [
+          {
+            "corner": 3,
+            "neighbor": "surface-49",
+            "neighbor_corner": 0,
+            "distance_px": 0.0
+          }
+        ]
+      },
+      {
+        "id": "surface-108",
+        "quad": [
+          [
+            826.76,
+            496.0
+          ],
+          [
+            951.2,
+            508.31
+          ],
+          [
+            944.27,
+            649.04
+          ],
+          [
+            826.76,
+            623.39
+          ]
+        ],
+        "confidence": 0.9354,
+        "evidence": {
+          "source": "four joined edges",
+          "boundary_support": 0.8461,
+          "region_purity": 1.0,
+          "shading_used": false
+        },
+        "corner_junctions": []
+      },
+      {
+        "id": "surface-49",
+        "quad": [
+          [
+            423.8,
+            546.53
+          ],
+          [
+            781.21,
+            629.03
+          ],
+          [
+            781.94,
+            655.99
+          ],
+          [
+            424.81,
+            564.6
+          ]
+        ],
+        "confidence": 0.951,
+        "evidence": {
+          "source": "four joined edges",
+          "boundary_support": 0.8833,
+          "region_purity": 1.0,
+          "shading_used": false
+        },
+        "corner_junctions": [
+          {
+            "corner": 0,
+            "neighbor": "surface-34",
+            "neighbor_corner": 3,
+            "distance_px": 0.0
+          }
+        ]
+      },
+      {
+        "id": "surface-111",
+        "quad": [
+          [
+            957.49,
+            513.63
+          ],
+          [
+            998.91,
+            489.69
+          ],
+          [
+            995.21,
+            600.54
+          ],
+          [
+            950.04,
+            640.7
+          ]
+        ],
+        "confidence": 0.9966,
+        "evidence": {
+          "source": "four joined edges",
+          "boundary_support": 1.0,
+          "region_purity": 0.9941,
+          "shading_used": false
+        },
+        "corner_junctions": []
+      }
+    ],
+    "scores": {
+      "eligible": 5,
+      "proposed": 4,
+      "matched": 3,
+      "precision": 0.75,
+      "recall": 0.6,
+      "matches": [
+        {
+          "proposal_index": 0,
+          "patch_id": 2,
+          "iou": 0.9120913016656385,
+          "center_xy": [
+            568.9301321284723,
+            451.72392557388946
+          ],
+          "normal_camera": [
+            -0.5591930435107744,
+            0.13507026022101049,
+            -0.8179603490917651
+          ],
+          "depth_at_center": 23.734636407283322
+        },
+        {
+          "proposal_index": 1,
+          "patch_id": 1,
+          "iou": 0.6177914110429448,
+          "center_xy": [
+            883.9589117516241,
+            570.4934171940139
+          ],
+          "normal_camera": [
+            -0.5591930435107744,
+            0.13507026022101049,
+            -0.8179603490917651
+          ],
+          "depth_at_center": 19.98258179780672
+        },
+        {
+          "proposal_index": 3,
+          "patch_id": 8,
+          "iou": 0.6058823529411764,
+          "center_xy": [
+            976.7793908643158,
+            558.0743520683375
+          ],
+          "normal_camera": [
+            0.8290374780968333,
+            0.09110608471803994,
+            -0.5517214656619467
+          ],
+          "depth_at_center": 20.61213608978806
+        }
+      ],
+      "proposed_pixels": 7765,
+      "spill_pixels": 39,
+      "spill_fraction": 0.005022537025112685
+    }
+  },
+  "edges+shade": {
+    "proposals": [
+      {
+        "id": "surface-34",
+        "quad": [
+          [
+            410.95,
+            316.11
+          ],
+          [
+            772.09,
+            319.01
+          ],
+          [
+            773.37,
+            627.22
+          ],
+          [
+            423.8,
+            546.53
+          ]
+        ],
+        "confidence": 0.9629,
+        "evidence": {
+          "source": "four joined edges",
+          "boundary_support": 0.9031,
+          "region_purity": 0.9882,
+          "shading_used": true,
+          "median_luminance_step": 50.251
+        },
+        "corner_junctions": [
+          {
+            "corner": 3,
+            "neighbor": "surface-49",
+            "neighbor_corner": 0,
+            "distance_px": 0.0
+          }
+        ]
+      },
+      {
+        "id": "surface-108",
+        "quad": [
+          [
+            826.76,
+            496.0
+          ],
+          [
+            951.2,
+            508.31
+          ],
+          [
+            944.27,
+            649.04
+          ],
+          [
+            826.76,
+            623.39
+          ]
+        ],
+        "confidence": 0.9496,
+        "evidence": {
+          "source": "four joined edges",
+          "boundary_support": 0.8461,
+          "region_purity": 1.0,
+          "shading_used": true,
+          "median_luminance_step": 19.542
+        },
+        "corner_junctions": []
+      },
+      {
+        "id": "surface-49",
+        "quad": [
+          [
+            423.8,
+            546.53
+          ],
+          [
+            781.21,
+            629.03
+          ],
+          [
+            781.94,
+            655.99
+          ],
+          [
+            424.81,
+            564.6
+          ]
+        ],
+        "confidence": 0.9618,
+        "evidence": {
+          "source": "four joined edges",
+          "boundary_support": 0.8833,
+          "region_purity": 1.0,
+          "shading_used": true,
+          "median_luminance_step": 13.469
+        },
+        "corner_junctions": [
+          {
+            "corner": 0,
+            "neighbor": "surface-34",
+            "neighbor_corner": 3,
+            "distance_px": 0.0
+          }
+        ]
+      },
+      {
+        "id": "surface-111",
+        "quad": [
+          [
+            957.49,
+            513.63
+          ],
+          [
+            998.91,
+            489.69
+          ],
+          [
+            995.21,
+            600.54
+          ],
+          [
+            950.04,
+            640.7
+          ]
+        ],
+        "confidence": 0.8961,
+        "evidence": {
+          "source": "four joined edges",
+          "boundary_support": 1.0,
+          "region_purity": 0.9941,
+          "shading_used": true,
+          "median_luminance_step": 6.476
+        },
+        "corner_junctions": []
+      }
+    ],
+    "scores": {
+      "eligible": 5,
+      "proposed": 4,
+      "matched": 3,
+      "precision": 0.75,
+      "recall": 0.6,
+      "matches": [
+        {
+          "proposal_index": 0,
+          "patch_id": 2,
+          "iou": 0.9120913016656385,
+          "center_xy": [
+            568.9301321284723,
+            451.72392557388946
+          ],
+          "normal_camera": [
+            -0.5591930435107744,
+            0.13507026022101049,
+            -0.8179603490917651
+          ],
+          "depth_at_center": 23.734636407283322
+        },
+        {
+          "proposal_index": 1,
+          "patch_id": 1,
+          "iou": 0.6177914110429448,
+          "center_xy": [
+            883.9589117516241,
+            570.4934171940139
+          ],
+          "normal_camera": [
+            -0.5591930435107744,
+            0.13507026022101049,
+            -0.8179603490917651
+          ],
+          "depth_at_center": 19.98258179780672
+        },
+        {
+          "proposal_index": 3,
+          "patch_id": 8,
+          "iou": 0.6058823529411764,
+          "center_xy": [
+            976.7793908643158,
+            558.0743520683375
+          ],
+          "normal_camera": [
+            0.8290374780968333,
+            0.09110608471803994,
+            -0.5517214656619467
+          ],
+          "depth_at_center": 20.61213608978806
+        }
+      ],
+      "proposed_pixels": 7765,
+      "spill_pixels": 39,
+      "spill_fraction": 0.005022537025112685
+    }
+  }
+}

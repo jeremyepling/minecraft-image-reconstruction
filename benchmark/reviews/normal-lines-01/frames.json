@@ -1,0 +1,1634 @@
+[
+  {
+    "id": "dev-shopfront-masonry-high-right",
+    "floor": "smooth_stone",
+    "layout": "shopfront",
+    "cohort": "dev",
+    "palette": "masonry",
+    "source": "benchmark/data/camera-round-01/captures/dev-shopfront-masonry-high-right.png",
+    "image_sha256": "f15cd0e471a9a2e375c9f801df171bb8f5ee44d95374f02f1174c7938a94cc79",
+    "labels_json_sha256": "cf97fff7e030f2e3046be699fdfb8d0cebfb1ad2e991f99115be9dbcc4c37070",
+    "pose_json_sha256": "3e0b83c3c82245f33e37d26e8a49f2e9aa6ca05abb6e0a3e93fb179b19b9dcb0",
+    "roi_px": 164593,
+    "results": {
+      "mlsd-tiny-512-fp16": {
+        "segments": 65,
+        "all_line_px": 24351,
+        "evaluated_line_px": 6952,
+        "line_px_within_tolerance": 5349,
+        "line_precision": 0.7694188722669736,
+        "truth_boundary_px": 10264,
+        "recovered_boundary_px": 7906,
+        "boundary_recall": 0.7702650038971162
+      },
+      "structural_lines.detect": {
+        "segments": 720,
+        "all_line_px": 46002,
+        "evaluated_line_px": 9379,
+        "line_px_within_tolerance": 6770,
+        "line_precision": 0.7218253545154067,
+        "truth_boundary_px": 10264,
+        "recovered_boundary_px": 8538,
+        "boundary_recall": 0.8318394388152767
+      }
+    }
+  },
+  {
+    "id": "dev-shopfront-masonry-high-right",
+    "floor": "light_gray_concrete",
+    "layout": "shopfront",
+    "cohort": "dev",
+    "palette": "masonry",
+    "source": "benchmark/data/camera-gray-concrete-v1/captures/dev-shopfront-masonry-high-right.png",
+    "image_sha256": "bb588b0b0d1cdb05b720ff5bc3b515479426c7772fd98fb7fadb8a55b79ca9db",
+    "labels_json_sha256": "cf97fff7e030f2e3046be699fdfb8d0cebfb1ad2e991f99115be9dbcc4c37070",
+    "pose_json_sha256": "3e0b83c3c82245f33e37d26e8a49f2e9aa6ca05abb6e0a3e93fb179b19b9dcb0",
+    "roi_px": 164593,
+    "results": {
+      "mlsd-tiny-512-fp16": {
+        "segments": 59,
+        "all_line_px": 21745,
+        "evaluated_line_px": 7391,
+        "line_px_within_tolerance": 5422,
+        "line_precision": 0.7335949127317007,
+        "truth_boundary_px": 10264,
+        "recovered_boundary_px": 8312,
+        "boundary_recall": 0.8098207326578332
+      },
+      "structural_lines.detect": {
+        "segments": 720,
+        "all_line_px": 40012,
+        "evaluated_line_px": 20347,
+        "line_px_within_tolerance": 10694,
+        "line_precision": 0.52558116675677,
+        "truth_boundary_px": 10264,
+        "recovered_boundary_px": 9691,
+        "boundary_recall": 0.9441738113795791
+      }
+    }
+  },
+  {
+    "id": "dev-shopfront-masonry-low-left",
+    "floor": "smooth_stone",
+    "layout": "shopfront",
+    "cohort": "dev",
+    "palette": "masonry",
+    "source": "benchmark/data/camera-round-01/captures/dev-shopfront-masonry-low-left.png",
+    "image_sha256": "17691e7909ee0e9384db83c3a729f8763e21a281eb89b8dcebe61fc7675d1405",
+    "labels_json_sha256": "334140c30156a2ecb8f82e3c6cc03c533d517fb7c072bd2287841042a0153413",
+    "pose_json_sha256": "ae2885906b29eac370b2596cc1cc047fd317128690f0e778fc3ff908c1e83a64",
+    "roi_px": 175100,
+    "results": {
+      "mlsd-tiny-512-fp16": {
+        "segments": 97,
+        "all_line_px": 35998,
+        "evaluated_line_px": 7280,
+        "line_px_within_tolerance": 5549,
+        "line_precision": 0.7622252747252747,
+        "truth_boundary_px": 10120,
+        "recovered_boundary_px": 6850,
+        "boundary_recall": 0.6768774703557312
+      },
+      "structural_lines.detect": {
+        "segments": 720,
+        "all_line_px": 46575,
+        "evaluated_line_px": 9147,
+        "line_px_within_tolerance": 6029,
+        "line_precision": 0.6591232097955614,
+        "truth_boundary_px": 10120,
+        "recovered_boundary_px": 7930,
+        "boundary_recall": 0.7835968379446641
+      }
+    }
+  },
+  {
+    "id": "dev-shopfront-masonry-low-left",
+    "floor": "light_gray_concrete",
+    "layout": "shopfront",
+    "cohort": "dev",
+    "palette": "masonry",
+    "source": "benchmark/data/camera-gray-concrete-v1/captures/dev-shopfront-masonry-low-left.png",
+    "image_sha256": "0359c24dea1b318ec9cd002a1523ae8fc0d7d59fc9d7418972cf9ce9af8d4d57",
+    "labels_json_sha256": "334140c30156a2ecb8f82e3c6cc03c533d517fb7c072bd2287841042a0153413",
+    "pose_json_sha256": "ae2885906b29eac370b2596cc1cc047fd317128690f0e778fc3ff908c1e83a64",
+    "roi_px": 175100,
+    "results": {
+      "mlsd-tiny-512-fp16": {
+        "segments": 54,
+        "all_line_px": 12532,
+        "evaluated_line_px": 7139,
+        "line_px_within_tolerance": 5330,
+        "line_precision": 0.7466031657094832,
+        "truth_boundary_px": 10120,
+        "recovered_boundary_px": 6774,
+        "boundary_recall": 0.6693675889328063
+      },
+      "structural_lines.detect": {
+        "segments": 720,
+        "all_line_px": 40824,
+        "evaluated_line_px": 17825,
+        "line_px_within_tolerance": 8778,
+        "line_precision": 0.49245441795231415,
+        "truth_boundary_px": 10120,
+        "recovered_boundary_px": 8941,
+        "boundary_recall": 0.883498023715415
+      }
+    }
+  },
+  {
+    "id": "dev-shopfront-plaster-high-right",
+    "floor": "smooth_stone",
+    "layout": "shopfront",
+    "cohort": "dev",
+    "palette": "plaster",
+    "source": "benchmark/data/camera-round-01/captures/dev-shopfront-plaster-high-right.png",
+    "image_sha256": "ae58f28554348d924798e23bd492b88db06c2a099f590e325c514ecc5c8f9c7e",
+    "labels_json_sha256": "00ad1be55f2b8b953c61dca257f0c0d1ae2a23afa6a5910b839a02c5cde77582",
+    "pose_json_sha256": "6a7fb56e17f096913144c099e6123d12a76d61e060bd6129a312ae71876372ba",
+    "roi_px": 164593,
+    "results": {
+      "mlsd-tiny-512-fp16": {
+        "segments": 63,
+        "all_line_px": 25226,
+        "evaluated_line_px": 4959,
+        "line_px_within_tolerance": 4396,
+        "line_precision": 0.8864690461786651,
+        "truth_boundary_px": 10264,
+        "recovered_boundary_px": 7137,
+        "boundary_recall": 0.6953429462197973
+      },
+      "structural_lines.detect": {
+        "segments": 720,
+        "all_line_px": 46222,
+        "evaluated_line_px": 8885,
+        "line_px_within_tolerance": 7094,
+        "line_precision": 0.7984243106359032,
+        "truth_boundary_px": 10264,
+        "recovered_boundary_px": 9024,
+        "boundary_recall": 0.8791893998441154
+      }
+    }
+  },
+  {
+    "id": "dev-shopfront-plaster-high-right",
+    "floor": "light_gray_concrete",
+    "layout": "shopfront",
+    "cohort": "dev",
+    "palette": "plaster",
+    "source": "benchmark/data/camera-gray-concrete-v1/captures/dev-shopfront-plaster-high-right.png",
+    "image_sha256": "4cc1d5687db72eef74f23fc291fb7916b3f481ed4998d9e1c850024039d38cce",
+    "labels_json_sha256": "00ad1be55f2b8b953c61dca257f0c0d1ae2a23afa6a5910b839a02c5cde77582",
+    "pose_json_sha256": "6a7fb56e17f096913144c099e6123d12a76d61e060bd6129a312ae71876372ba",
+    "roi_px": 164593,
+    "results": {
+      "mlsd-tiny-512-fp16": {
+        "segments": 55,
+        "all_line_px": 22201,
+        "evaluated_line_px": 5561,
+        "line_px_within_tolerance": 4984,
+        "line_precision": 0.8962416831505124,
+        "truth_boundary_px": 10264,
+        "recovered_boundary_px": 7182,
+        "boundary_recall": 0.6997272018706158
+      },
+      "structural_lines.detect": {
+        "segments": 720,
+        "all_line_px": 41483,
+        "evaluated_line_px": 21602,
+        "line_px_within_tolerance": 10252,
+        "line_precision": 0.4745856865105083,
+        "truth_boundary_px": 10264,
+        "recovered_boundary_px": 9973,
+        "boundary_recall": 0.9716484801247077
+      }
+    }
+  },
+  {
+    "id": "dev-shopfront-plaster-low-left",
+    "floor": "smooth_stone",
+    "layout": "shopfront",
+    "cohort": "dev",
+    "palette": "plaster",
+    "source": "benchmark/data/camera-round-01/captures/dev-shopfront-plaster-low-left.png",
+    "image_sha256": "5d0c9120de4ca16f35758f90a31e176e50a3cf166358dd9833ee2213d1ff2f72",
+    "labels_json_sha256": "57707a87422ba39ac86b858e1b1c2a6ce451338fd3790260b1d2285da23db7df",
+    "pose_json_sha256": "beab37da0b3a2cfbd19c55caf47733540c194dbff0eaaf42f67edade58fc6c64",
+    "roi_px": 175100,
+    "results": {
+      "mlsd-tiny-512-fp16": {
+        "segments": 97,
+        "all_line_px": 37613,
+        "evaluated_line_px": 6357,
+        "line_px_within_tolerance": 5697,
+        "line_precision": 0.8961774421897122,
+        "truth_boundary_px": 10120,
+        "recovered_boundary_px": 6562,
+        "boundary_recall": 0.6484189723320158
+      },
+      "structural_lines.detect": {
+        "segments": 720,
+        "all_line_px": 48952,
+        "evaluated_line_px": 9341,
+        "line_px_within_tolerance": 6755,
+        "line_precision": 0.7231559790172358,
+        "truth_boundary_px": 10120,
+        "recovered_boundary_px": 9187,
+        "boundary_recall": 0.907806324110672
+      }
+    }
+  },
+  {
+    "id": "dev-shopfront-plaster-low-left",
+    "floor": "light_gray_concrete",
+    "layout": "shopfront",
+    "cohort": "dev",
+    "palette": "plaster",
+    "source": "benchmark/data/camera-gray-concrete-v1/captures/dev-shopfront-plaster-low-left.png",
+    "image_sha256": "299e0228de74d2cc7d3a18deaba9f61c82560a0ddd0b8557e5c91728c964a993",
+    "labels_json_sha256": "57707a87422ba39ac86b858e1b1c2a6ce451338fd3790260b1d2285da23db7df",
+    "pose_json_sha256": "beab37da0b3a2cfbd19c55caf47733540c194dbff0eaaf42f67edade58fc6c64",
+    "roi_px": 175100,
+    "results": {
+      "mlsd-tiny-512-fp16": {
+        "segments": 49,
+        "all_line_px": 10415,
+        "evaluated_line_px": 6038,
+        "line_px_within_tolerance": 5410,
+        "line_precision": 0.8959920503477973,
+        "truth_boundary_px": 10120,
+        "recovered_boundary_px": 6512,
+        "boundary_recall": 0.6434782608695652
+      },
+      "structural_lines.detect": {
+        "segments": 720,
+        "all_line_px": 41282,
+        "evaluated_line_px": 19005,
+        "line_px_within_tolerance": 9312,
+        "line_precision": 0.48997632202052094,
+        "truth_boundary_px": 10120,
+        "recovered_boundary_px": 9870,
+        "boundary_recall": 0.9752964426877471
+      }
+    }
+  },
+  {
+    "id": "dev-wing-masonry-close-front",
+    "floor": "smooth_stone",
+    "layout": "wing",
+    "cohort": "dev",
+    "palette": "masonry",
+    "source": "benchmark/data/camera-round-01/captures/dev-wing-masonry-close-front.png",
+    "image_sha256": "9ce65a1c07694c1d3e57019c07b422d7a6a0771ed0d46f579891eae8a61463a9",
+    "labels_json_sha256": "c22ec3151382d6eba5b3671fd9ff845b549109aec8d47b687ae81a80938eb90b",
+    "pose_json_sha256": "a966c875fc272fec9a27460a0f47b6f1bb465bfa8debcc9fd7d666ac867db4da",
+    "roi_px": 1296000,
+    "results": {
+      "mlsd-tiny-512-fp16": {
+        "segments": 182,
+        "all_line_px": 51298,
+        "evaluated_line_px": 51298,
+        "line_px_within_tolerance": 0,
+        "line_precision": 0.0,
+        "truth_boundary_px": 0,
+        "recovered_boundary_px": 0,
+        "boundary_recall": null
+      },
+      "structural_lines.detect": {
+        "segments": 494,
+        "all_line_px": 44235,
+        "evaluated_line_px": 44235,
+        "line_px_within_tolerance": 0,
+        "line_precision": 0.0,
+        "truth_boundary_px": 0,
+        "recovered_boundary_px": 0,
+        "boundary_recall": null
+      }
+    }
+  },
+  {
+    "id": "dev-wing-masonry-close-front",
+    "floor": "light_gray_concrete",
+    "layout": "wing",
+    "cohort": "dev",
+    "palette": "masonry",
+    "source": "benchmark/data/camera-gray-concrete-v1/captures/dev-wing-masonry-close-front.png",
+    "image_sha256": "9ce65a1c07694c1d3e57019c07b422d7a6a0771ed0d46f579891eae8a61463a9",
+    "labels_json_sha256": "c22ec3151382d6eba5b3671fd9ff845b549109aec8d47b687ae81a80938eb90b",
+    "pose_json_sha256": "a966c875fc272fec9a27460a0f47b6f1bb465bfa8debcc9fd7d666ac867db4da",
+    "roi_px": 1296000,
+    "results": {
+      "mlsd-tiny-512-fp16": {
+        "segments": 182,
+        "all_line_px": 51298,
+        "evaluated_line_px": 51298,
+        "line_px_within_tolerance": 0,
+        "line_precision": 0.0,
+        "truth_boundary_px": 0,
+        "recovered_boundary_px": 0,
+        "boundary_recall": null
+      },
+      "structural_lines.detect": {
+        "segments": 494,
+        "all_line_px": 44235,
+        "evaluated_line_px": 44235,
+        "line_px_within_tolerance": 0,
+        "line_precision": 0.0,
+        "truth_boundary_px": 0,
+        "recovered_boundary_px": 0,
+        "boundary_recall": null
+      }
+    }
+  },
+  {
+    "id": "dev-wing-masonry-high-right",
+    "floor": "smooth_stone",
+    "layout": "wing",
+    "cohort": "dev",
+    "palette": "masonry",
+    "source": "benchmark/data/camera-round-01/captures/dev-wing-masonry-high-right.png",
+    "image_sha256": "8cd9e20f608db25df6d141941051d30afcbf80733ea4c6f2058874c02019bf9f",
+    "labels_json_sha256": "16dfc12c054dc4449de043e07e0615a345f819764b86b1e2a54e32e1a95e7533",
+    "pose_json_sha256": "387d8f331e8576e98e509f113af12414656b1b7cf9f91d577f6f4099474cff98",
+    "roi_px": 167626,
+    "results": {
+      "mlsd-tiny-512-fp16": {
+        "segments": 49,
+        "all_line_px": 19156,
+        "evaluated_line_px": 7919,
+        "line_px_within_tolerance": 2526,
+        "line_precision": 0.3189796691501452,
+        "truth_boundary_px": 4283,
+        "recovered_boundary_px": 3837,
+        "boundary_recall": 0.8958673826756947
+      },
+      "structural_lines.detect": {
+        "segments": 720,
+        "all_line_px": 48686,
+        "evaluated_line_px": 13282,
+        "line_px_within_tolerance": 3925,
+        "line_precision": 0.2955127239873513,
+        "truth_boundary_px": 4283,
+        "recovered_boundary_px": 4105,
+        "boundary_recall": 0.958440345552183
+      }
+    }
+  },
+  {
+    "id": "dev-wing-masonry-high-right",
+    "floor": "light_gray_concrete",
+    "layout": "wing",
+    "cohort": "dev",
+    "palette": "masonry",
+    "source": "benchmark/data/camera-gray-concrete-v1/captures/dev-wing-masonry-high-right.png",
+    "image_sha256": "5ccd9115fd2a70784e0e1ab6819d37fc5c4af54cf965605143b3817e1f3a3efd",
+    "labels_json_sha256": "16dfc12c054dc4449de043e07e0615a345f819764b86b1e2a54e32e1a95e7533",
+    "pose_json_sha256": "387d8f331e8576e98e509f113af12414656b1b7cf9f91d577f6f4099474cff98",
+    "roi_px": 167626,
+    "results": {
+      "mlsd-tiny-512-fp16": {
+        "segments": 43,
+        "all_line_px": 16501,
+        "evaluated_line_px": 7714,
+        "line_px_within_tolerance": 2543,
+        "line_precision": 0.3296603577910293,
+        "truth_boundary_px": 4283,
+        "recovered_boundary_px": 3854,
+        "boundary_recall": 0.8998365631566659
+      },
+      "structural_lines.detect": {
+        "segments": 720,
+        "all_line_px": 42688,
+        "evaluated_line_px": 23235,
+        "line_px_within_tolerance": 5699,
+        "line_precision": 0.24527652248762644,
+        "truth_boundary_px": 4283,
+        "recovered_boundary_px": 4217,
+        "boundary_recall": 0.9845902404856409
+      }
+    }
+  },
+  {
+    "id": "dev-wing-masonry-low-left",
+    "floor": "smooth_stone",
+    "layout": "wing",
+    "cohort": "dev",
+    "palette": "masonry",
+    "source": "benchmark/data/camera-round-01/captures/dev-wing-masonry-low-left.png",
+    "image_sha256": "0c7bc49ce3c736391d7954a9c069aee29586f03fd33a2a88926b40257ccae6ce",
+    "labels_json_sha256": "615cdda91de51bd143dd307e5a99a52a6d1ae3241b7fca0105403d51ff10f851",
+    "pose_json_sha256": "327e8d5a4cb8094aefb93c988ac1bd70516aafef33bb3968e6c658ef4180f2e5",
+    "roi_px": 189649,
+    "results": {
+      "mlsd-tiny-512-fp16": {
+        "segments": 68,
+        "all_line_px": 32554,
+        "evaluated_line_px": 4053,
+        "line_px_within_tolerance": 3054,
+        "line_precision": 0.7535159141376758,
+        "truth_boundary_px": 2801,
+        "recovered_boundary_px": 2698,
+        "boundary_recall": 0.9632274187790075
+      },
+      "structural_lines.detect": {
+        "segments": 720,
+        "all_line_px": 50578,
+        "evaluated_line_px": 15092,
+        "line_px_within_tolerance": 3630,
+        "line_precision": 0.24052478134110788,
+        "truth_boundary_px": 2801,
+        "recovered_boundary_px": 2705,
+        "boundary_recall": 0.9657265262406284
+      }
+    }
+  },
+  {
+    "id": "dev-wing-masonry-low-left",
+    "floor": "light_gray_concrete",
+    "layout": "wing",
+    "cohort": "dev",
+    "palette": "masonry",
+    "source": "benchmark/data/camera-gray-concrete-v1/captures/dev-wing-masonry-low-left.png",
+    "image_sha256": "4e8817361e24c3f05e835d7af6c8bab3da96d50c8821828144f33bb1ea0e87d3",
+    "labels_json_sha256": "615cdda91de51bd143dd307e5a99a52a6d1ae3241b7fca0105403d51ff10f851",
+    "pose_json_sha256": "327e8d5a4cb8094aefb93c988ac1bd70516aafef33bb3968e6c658ef4180f2e5",
+    "roi_px": 189649,
+    "results": {
+      "mlsd-tiny-512-fp16": {
+        "segments": 19,
+        "all_line_px": 6345,
+        "evaluated_line_px": 4220,
+        "line_px_within_tolerance": 2877,
+        "line_precision": 0.6817535545023696,
+        "truth_boundary_px": 2801,
+        "recovered_boundary_px": 2618,
+        "boundary_recall": 0.9346661906461978
+      },
+      "structural_lines.detect": {
+        "segments": 720,
+        "all_line_px": 43162,
+        "evaluated_line_px": 24271,
+        "line_px_within_tolerance": 4367,
+        "line_precision": 0.17992666144781838,
+        "truth_boundary_px": 2801,
+        "recovered_boundary_px": 2775,
+        "boundary_recall": 0.9907176008568368
+      }
+    }
+  },
+  {
+    "id": "dev-wing-plaster-close-front",
+    "floor": "smooth_stone",
+    "layout": "wing",
+    "cohort": "dev",
+    "palette": "plaster",
+    "source": "benchmark/data/camera-round-01/captures/dev-wing-plaster-close-front.png",
+    "image_sha256": "b3154136e855e9d005a993b8afdb3989e3fb156b102aed46ce0d99e761d2f2b8",
+    "labels_json_sha256": "06fc5105cff504c905fb1c6dca2e9b08822237d5d1df78c9a45117b2192e69af",
+    "pose_json_sha256": "be7a21e86873637350812dc29cc1da75cbace2bfc50e5534a21c0ab606d5c26c",
+    "roi_px": 1296000,
+    "results": {
+      "mlsd-tiny-512-fp16": {
+        "segments": 0,
+        "all_line_px": 0,
+        "evaluated_line_px": 0,
+        "line_px_within_tolerance": 0,
+        "line_precision": null,
+        "truth_boundary_px": 0,
+        "recovered_boundary_px": 0,
+        "boundary_recall": null
+      },
+      "structural_lines.detect": {
+        "segments": 0,
+        "all_line_px": 0,
+        "evaluated_line_px": 0,
+        "line_px_within_tolerance": 0,
+        "line_precision": null,
+        "truth_boundary_px": 0,
+        "recovered_boundary_px": 0,
+        "boundary_recall": null
+      }
+    }
+  },
+  {
+    "id": "dev-wing-plaster-close-front",
+    "floor": "light_gray_concrete",
+    "layout": "wing",
+    "cohort": "dev",
+    "palette": "plaster",
+    "source": "benchmark/data/camera-gray-concrete-v1/captures/dev-wing-plaster-close-front.png",
+    "image_sha256": "b3154136e855e9d005a993b8afdb3989e3fb156b102aed46ce0d99e761d2f2b8",
+    "labels_json_sha256": "06fc5105cff504c905fb1c6dca2e9b08822237d5d1df78c9a45117b2192e69af",
+    "pose_json_sha256": "be7a21e86873637350812dc29cc1da75cbace2bfc50e5534a21c0ab606d5c26c",
+    "roi_px": 1296000,
+    "results": {
+      "mlsd-tiny-512-fp16": {
+        "segments": 0,
+        "all_line_px": 0,
+        "evaluated_line_px": 0,
+        "line_px_within_tolerance": 0,
+        "line_precision": null,
+        "truth_boundary_px": 0,
+        "recovered_boundary_px": 0,
+        "boundary_recall": null
+      },
+      "structural_lines.detect": {
+        "segments": 0,
+        "all_line_px": 0,
+        "evaluated_line_px": 0,
+        "line_px_within_tolerance": 0,
+        "line_precision": null,
+        "truth_boundary_px": 0,
+        "recovered_boundary_px": 0,
+        "boundary_recall": null
+      }
+    }
+  },
+  {
+    "id": "dev-wing-plaster-high-right",
+    "floor": "smooth_stone",
+    "layout": "wing",
+    "cohort": "dev",
+    "palette": "plaster",
+    "source": "benchmark/data/camera-round-01/captures/dev-wing-plaster-high-right.png",
+    "image_sha256": "49832e903f4455c88c44f51da20abc550516d208783af9e3d05edc85ff4116a9",
+    "labels_json_sha256": "6467c2dcfae15f4d8fb033347ad34b024dd1cda25306fc09396f5de63a85153e",
+    "pose_json_sha256": "ebbed41706c017c7411774127a427e84c0c2aa169822d32a38cfbe1c6b889db8",
+    "roi_px": 167626,
+    "results": {
+      "mlsd-tiny-512-fp16": {
+        "segments": 34,
+        "all_line_px": 14833,
+        "evaluated_line_px": 2548,
+        "line_px_within_tolerance": 2162,
+        "line_precision": 0.8485086342229199,
+        "truth_boundary_px": 4283,
+        "recovered_boundary_px": 3483,
+        "boundary_recall": 0.8132150361895868
+      },
+      "structural_lines.detect": {
+        "segments": 720,
+        "all_line_px": 47917,
+        "evaluated_line_px": 7229,
+        "line_px_within_tolerance": 3329,
+        "line_precision": 0.46050629409323557,
+        "truth_boundary_px": 4283,
+        "recovered_boundary_px": 3942,
+        "boundary_recall": 0.9203829091758113
+      }
+    }
+  },
+  {
+    "id": "dev-wing-plaster-high-right",
+    "floor": "light_gray_concrete",
+    "layout": "wing",
+    "cohort": "dev",
+    "palette": "plaster",
+    "source": "benchmark/data/camera-gray-concrete-v1/captures/dev-wing-plaster-high-right.png",
+    "image_sha256": "64d4fec367d669912de294146c1fa3e0bf871816ec4f52e57213e35db2968564",
+    "labels_json_sha256": "6467c2dcfae15f4d8fb033347ad34b024dd1cda25306fc09396f5de63a85153e",
+    "pose_json_sha256": "ebbed41706c017c7411774127a427e84c0c2aa169822d32a38cfbe1c6b889db8",
+    "roi_px": 167626,
+    "results": {
+      "mlsd-tiny-512-fp16": {
+        "segments": 27,
+        "all_line_px": 11657,
+        "evaluated_line_px": 2783,
+        "line_px_within_tolerance": 2390,
+        "line_precision": 0.8587854832914121,
+        "truth_boundary_px": 4283,
+        "recovered_boundary_px": 3876,
+        "boundary_recall": 0.9049731496614523
+      },
+      "structural_lines.detect": {
+        "segments": 662,
+        "all_line_px": 37136,
+        "evaluated_line_px": 13367,
+        "line_px_within_tolerance": 4194,
+        "line_precision": 0.3137577616518291,
+        "truth_boundary_px": 4283,
+        "recovered_boundary_px": 4190,
+        "boundary_recall": 0.9782862479570394
+      }
+    }
+  },
+  {
+    "id": "dev-wing-plaster-low-left",
+    "floor": "smooth_stone",
+    "layout": "wing",
+    "cohort": "dev",
+    "palette": "plaster",
+    "source": "benchmark/data/camera-round-01/captures/dev-wing-plaster-low-left.png",
+    "image_sha256": "b564e5c3bb2def9511c27cf483dbb01dbe760b1bce8b6060be578c97b2083019",
+    "labels_json_sha256": "5cf359de02e58e22b4261882de0218059baa905811c1410a0f05f68ca350a42a",
+    "pose_json_sha256": "35bfe1d4b5c031dde388df6f568e1e46b5189d64340c98c8485d9befdba707d9",
+    "roi_px": 189649,
+    "results": {
+      "mlsd-tiny-512-fp16": {
+        "segments": 76,
+        "all_line_px": 34583,
+        "evaluated_line_px": 3294,
+        "line_px_within_tolerance": 2783,
+        "line_precision": 0.844869459623558,
+        "truth_boundary_px": 2801,
+        "recovered_boundary_px": 2259,
+        "boundary_recall": 0.8064976794002142
+      },
+      "structural_lines.detect": {
+        "segments": 720,
+        "all_line_px": 50310,
+        "evaluated_line_px": 6996,
+        "line_px_within_tolerance": 2995,
+        "line_precision": 0.4281017724413951,
+        "truth_boundary_px": 2801,
+        "recovered_boundary_px": 2751,
+        "boundary_recall": 0.9821492324169939
+      }
+    }
+  },
+  {
+    "id": "dev-wing-plaster-low-left",
+    "floor": "light_gray_concrete",
+    "layout": "wing",
+    "cohort": "dev",
+    "palette": "plaster",
+    "source": "benchmark/data/camera-gray-concrete-v1/captures/dev-wing-plaster-low-left.png",
+    "image_sha256": "b1aa96442f2858b5435fc9af424de374ffafbade3cc74d059b85b6c1bfd7e13c",
+    "labels_json_sha256": "5cf359de02e58e22b4261882de0218059baa905811c1410a0f05f68ca350a42a",
+    "pose_json_sha256": "35bfe1d4b5c031dde388df6f568e1e46b5189d64340c98c8485d9befdba707d9",
+    "roi_px": 189649,
+    "results": {
+      "mlsd-tiny-512-fp16": {
+        "segments": 29,
+        "all_line_px": 8648,
+        "evaluated_line_px": 3472,
+        "line_px_within_tolerance": 3003,
+        "line_precision": 0.8649193548387096,
+        "truth_boundary_px": 2801,
+        "recovered_boundary_px": 1896,
+        "boundary_recall": 0.6769011067475902
+      },
+      "structural_lines.detect": {
+        "segments": 567,
+        "all_line_px": 34934,
+        "evaluated_line_px": 10880,
+        "line_px_within_tolerance": 3015,
+        "line_precision": 0.2771139705882353,
+        "truth_boundary_px": 2801,
+        "recovered_boundary_px": 2751,
+        "boundary_recall": 0.9821492324169939
+      }
+    }
+  },
+  {
+    "id": "holdout-courtyard-masonry-close-front",
+    "floor": "smooth_stone",
+    "layout": "courtyard",
+    "cohort": "regression",
+    "palette": "masonry",
+    "source": "benchmark/data/camera-round-01/captures/holdout-courtyard-masonry-close-front.png",
+    "image_sha256": "655531c2d8fecce752ea93fac3aa6a6e4429bb7ce8a629cb409532583694c678",
+    "labels_json_sha256": "7df821e3a3b985906acccd09eae2f0f31ecb208f736430291701ed1aa610fa20",
+    "pose_json_sha256": "a3acc09293eaaa965818b9ab51b4de15493bb981e1025ef879a1451bc28a102f",
+    "roi_px": 1296000,
+    "results": {
+      "mlsd-tiny-512-fp16": {
+        "segments": 183,
+        "all_line_px": 53194,
+        "evaluated_line_px": 53194,
+        "line_px_within_tolerance": 31,
+        "line_precision": 0.0005827724931383239,
+        "truth_boundary_px": 139,
+        "recovered_boundary_px": 71,
+        "boundary_recall": 0.5107913669064749
+      },
+      "structural_lines.detect": {
+        "segments": 499,
+        "all_line_px": 43798,
+        "evaluated_line_px": 43798,
+        "line_px_within_tolerance": 52,
+        "line_precision": 0.001187268825060505,
+        "truth_boundary_px": 139,
+        "recovered_boundary_px": 129,
+        "boundary_recall": 0.9280575539568345
+      }
+    }
+  },
+  {
+    "id": "holdout-courtyard-masonry-close-front",
+    "floor": "light_gray_concrete",
+    "layout": "courtyard",
+    "cohort": "regression",
+    "palette": "masonry",
+    "source": "benchmark/data/camera-gray-concrete-v1/captures/holdout-courtyard-masonry-close-front.png",
+    "image_sha256": "655531c2d8fecce752ea93fac3aa6a6e4429bb7ce8a629cb409532583694c678",
+    "labels_json_sha256": "7df821e3a3b985906acccd09eae2f0f31ecb208f736430291701ed1aa610fa20",
+    "pose_json_sha256": "a3acc09293eaaa965818b9ab51b4de15493bb981e1025ef879a1451bc28a102f",
+    "roi_px": 1296000,
+    "results": {
+      "mlsd-tiny-512-fp16": {
+        "segments": 183,
+        "all_line_px": 53194,
+        "evaluated_line_px": 53194,
+        "line_px_within_tolerance": 31,
+        "line_precision": 0.0005827724931383239,
+        "truth_boundary_px": 139,
+        "recovered_boundary_px": 71,
+        "boundary_recall": 0.5107913669064749
+      },
+      "structural_lines.detect": {
+        "segments": 499,
+        "all_line_px": 43798,
+        "evaluated_line_px": 43798,
+        "line_px_within_tolerance": 52,
+        "line_precision": 0.001187268825060505,
+        "truth_boundary_px": 139,
+        "recovered_boundary_px": 129,
+        "boundary_recall": 0.9280575539568345
+      }
+    }
+  },
+  {
+    "id": "holdout-courtyard-masonry-high-right",
+    "floor": "smooth_stone",
+    "layout": "courtyard",
+    "cohort": "regression",
+    "palette": "masonry",
+    "source": "benchmark/data/camera-round-01/captures/holdout-courtyard-masonry-high-right.png",
+    "image_sha256": "252fa7c481e990bbbada46717d6e10c6b66c4f9c65846b94a94cd1b40cea0fcd",
+    "labels_json_sha256": "f738f9cc87673b76c935c4d41854391af0cc1aff5a425306922af7a8e134bcad",
+    "pose_json_sha256": "775ba6fd0790f0f76bed792abec813a19812fdb08f1e05ea390ec91f612ccf3b",
+    "roi_px": 187086,
+    "results": {
+      "mlsd-tiny-512-fp16": {
+        "segments": 66,
+        "all_line_px": 20111,
+        "evaluated_line_px": 8247,
+        "line_px_within_tolerance": 3877,
+        "line_precision": 0.4701103431550867,
+        "truth_boundary_px": 5971,
+        "recovered_boundary_px": 5307,
+        "boundary_recall": 0.8887958465918606
+      },
+      "structural_lines.detect": {
+        "segments": 720,
+        "all_line_px": 46711,
+        "evaluated_line_px": 12095,
+        "line_px_within_tolerance": 5298,
+        "line_precision": 0.43803224472922697,
+        "truth_boundary_px": 5971,
+        "recovered_boundary_px": 5703,
+        "boundary_recall": 0.9551163959135823
+      }
+    }
+  },
+  {
+    "id": "holdout-courtyard-masonry-high-right",
+    "floor": "light_gray_concrete",
+    "layout": "courtyard",
+    "cohort": "regression",
+    "palette": "masonry",
+    "source": "benchmark/data/camera-gray-concrete-v1/captures/holdout-courtyard-masonry-high-right.png",
+    "image_sha256": "b5b2bb5300687da8d904fb129043b5d2df0ae56e9ba4e14afb932b3e6d44dd3b",
+    "labels_json_sha256": "f738f9cc87673b76c935c4d41854391af0cc1aff5a425306922af7a8e134bcad",
+    "pose_json_sha256": "775ba6fd0790f0f76bed792abec813a19812fdb08f1e05ea390ec91f612ccf3b",
+    "roi_px": 187086,
+    "results": {
+      "mlsd-tiny-512-fp16": {
+        "segments": 62,
+        "all_line_px": 18214,
+        "evaluated_line_px": 8367,
+        "line_px_within_tolerance": 3791,
+        "line_precision": 0.4530895183458826,
+        "truth_boundary_px": 5971,
+        "recovered_boundary_px": 5426,
+        "boundary_recall": 0.9087255066153073
+      },
+      "structural_lines.detect": {
+        "segments": 720,
+        "all_line_px": 38864,
+        "evaluated_line_px": 21938,
+        "line_px_within_tolerance": 7255,
+        "line_precision": 0.33070471328288814,
+        "truth_boundary_px": 5971,
+        "recovered_boundary_px": 5865,
+        "boundary_recall": 0.9822475297270139
+      }
+    }
+  },
+  {
+    "id": "holdout-courtyard-masonry-low-left",
+    "floor": "smooth_stone",
+    "layout": "courtyard",
+    "cohort": "regression",
+    "palette": "masonry",
+    "source": "benchmark/data/camera-round-01/captures/holdout-courtyard-masonry-low-left.png",
+    "image_sha256": "c80356e1b7d96bdc796ed982f09ed908059399d23fe98c873eecbb6e623a4216",
+    "labels_json_sha256": "64587235147996b6049c56b20e9312d82b76189ec95f9985efb77149cf0db542",
+    "pose_json_sha256": "0f39d5c95e54d5eec6fe9edcb6cad6d5213bbabe37abcf9dd577fe6bfec4fe28",
+    "roi_px": 170208,
+    "results": {
+      "mlsd-tiny-512-fp16": {
+        "segments": 107,
+        "all_line_px": 39006,
+        "evaluated_line_px": 6699,
+        "line_px_within_tolerance": 2610,
+        "line_precision": 0.38961038961038963,
+        "truth_boundary_px": 4132,
+        "recovered_boundary_px": 3109,
+        "boundary_recall": 0.7524201355275896
+      },
+      "structural_lines.detect": {
+        "segments": 720,
+        "all_line_px": 47733,
+        "evaluated_line_px": 8832,
+        "line_px_within_tolerance": 3601,
+        "line_precision": 0.4077219202898551,
+        "truth_boundary_px": 4132,
+        "recovered_boundary_px": 3465,
+        "boundary_recall": 0.8385769603097774
+      }
+    }
+  },
+  {
+    "id": "holdout-courtyard-masonry-low-left",
+    "floor": "light_gray_concrete",
+    "layout": "courtyard",
+    "cohort": "regression",
+    "palette": "masonry",
+    "source": "benchmark/data/camera-gray-concrete-v1/captures/holdout-courtyard-masonry-low-left.png",
+    "image_sha256": "5b0b16edd7e5207c275e3277db0d65620891c50024735061783d4a175957ff9a",
+    "labels_json_sha256": "64587235147996b6049c56b20e9312d82b76189ec95f9985efb77149cf0db542",
+    "pose_json_sha256": "0f39d5c95e54d5eec6fe9edcb6cad6d5213bbabe37abcf9dd577fe6bfec4fe28",
+    "roi_px": 170208,
+    "results": {
+      "mlsd-tiny-512-fp16": {
+        "segments": 59,
+        "all_line_px": 13089,
+        "evaluated_line_px": 6637,
+        "line_px_within_tolerance": 2723,
+        "line_precision": 0.41027572698508363,
+        "truth_boundary_px": 4132,
+        "recovered_boundary_px": 3254,
+        "boundary_recall": 0.787512100677638
+      },
+      "structural_lines.detect": {
+        "segments": 720,
+        "all_line_px": 39956,
+        "evaluated_line_px": 17982,
+        "line_px_within_tolerance": 5090,
+        "line_precision": 0.2830608386163942,
+        "truth_boundary_px": 4132,
+        "recovered_boundary_px": 3770,
+        "boundary_recall": 0.9123910939012585
+      }
+    }
+  },
+  {
+    "id": "holdout-courtyard-plaster-close-front",
+    "floor": "smooth_stone",
+    "layout": "courtyard",
+    "cohort": "regression",
+    "palette": "plaster",
+    "source": "benchmark/data/camera-round-01/captures/holdout-courtyard-plaster-close-front.png",
+    "image_sha256": "319503ad2c8fbdc7f33f283d4e35b0f3abe43684bdd8341ace1ac1745696abee",
+    "labels_json_sha256": "e5d685bf60e528ee0096c26d492fb57257727e498cab203b0e2df6afee04ecc1",
+    "pose_json_sha256": "793817812c906f81b5d1cfbe5057fbc282e81ceaafbb3990e5b41d0a8efd3274",
+    "roi_px": 1296000,
+    "results": {
+      "mlsd-tiny-512-fp16": {
+        "segments": 14,
+        "all_line_px": 6798,
+        "evaluated_line_px": 6798,
+        "line_px_within_tolerance": 0,
+        "line_precision": 0.0,
+        "truth_boundary_px": 139,
+        "recovered_boundary_px": 0,
+        "boundary_recall": 0.0
+      },
+      "structural_lines.detect": {
+        "segments": 2,
+        "all_line_px": 90,
+        "evaluated_line_px": 90,
+        "line_px_within_tolerance": 50,
+        "line_precision": 0.5555555555555556,
+        "truth_boundary_px": 139,
+        "recovered_boundary_px": 123,
+        "boundary_recall": 0.8848920863309353
+      }
+    }
+  },
+  {
+    "id": "holdout-courtyard-plaster-close-front",
+    "floor": "light_gray_concrete",
+    "layout": "courtyard",
+    "cohort": "regression",
+    "palette": "plaster",
+    "source": "benchmark/data/camera-gray-concrete-v1/captures/holdout-courtyard-plaster-close-front.png",
+    "image_sha256": "319503ad2c8fbdc7f33f283d4e35b0f3abe43684bdd8341ace1ac1745696abee",
+    "labels_json_sha256": "e5d685bf60e528ee0096c26d492fb57257727e498cab203b0e2df6afee04ecc1",
+    "pose_json_sha256": "793817812c906f81b5d1cfbe5057fbc282e81ceaafbb3990e5b41d0a8efd3274",
+    "roi_px": 1296000,
+    "results": {
+      "mlsd-tiny-512-fp16": {
+        "segments": 14,
+        "all_line_px": 6798,
+        "evaluated_line_px": 6798,
+        "line_px_within_tolerance": 0,
+        "line_precision": 0.0,
+        "truth_boundary_px": 139,
+        "recovered_boundary_px": 0,
+        "boundary_recall": 0.0
+      },
+      "structural_lines.detect": {
+        "segments": 2,
+        "all_line_px": 90,
+        "evaluated_line_px": 90,
+        "line_px_within_tolerance": 50,
+        "line_precision": 0.5555555555555556,
+        "truth_boundary_px": 139,
+        "recovered_boundary_px": 123,
+        "boundary_recall": 0.8848920863309353
+      }
+    }
+  },
+  {
+    "id": "holdout-courtyard-plaster-high-right",
+    "floor": "smooth_stone",
+    "layout": "courtyard",
+    "cohort": "regression",
+    "palette": "plaster",
+    "source": "benchmark/data/camera-round-01/captures/holdout-courtyard-plaster-high-right.png",
+    "image_sha256": "7152899302d1721578a01412063a0cafc072986ba9a4acb5c03aa5ecbdde05f1",
+    "labels_json_sha256": "6545cd637d2a260e8610dddf54cacdb4fe755f246a09a5c16aa1291dceb38db5",
+    "pose_json_sha256": "d6c09c04bcc12cddb960b2748fd0992a4993524bcf30d097b517ca21320ab43d",
+    "roi_px": 187086,
+    "results": {
+      "mlsd-tiny-512-fp16": {
+        "segments": 53,
+        "all_line_px": 20593,
+        "evaluated_line_px": 3828,
+        "line_px_within_tolerance": 3392,
+        "line_precision": 0.8861024033437827,
+        "truth_boundary_px": 5971,
+        "recovered_boundary_px": 4987,
+        "boundary_recall": 0.8352034835036007
+      },
+      "structural_lines.detect": {
+        "segments": 720,
+        "all_line_px": 44650,
+        "evaluated_line_px": 7460,
+        "line_px_within_tolerance": 4552,
+        "line_precision": 0.6101876675603217,
+        "truth_boundary_px": 5971,
+        "recovered_boundary_px": 5630,
+        "boundary_recall": 0.942890638084073
+      }
+    }
+  },
+  {
+    "id": "holdout-courtyard-plaster-high-right",
+    "floor": "light_gray_concrete",
+    "layout": "courtyard",
+    "cohort": "regression",
+    "palette": "plaster",
+    "source": "benchmark/data/camera-gray-concrete-v1/captures/holdout-courtyard-plaster-high-right.png",
+    "image_sha256": "de9e33d3bdb1f64318fbc1dec03fef52cde19a331c90fd1f7bb0b7a322b3bd94",
+    "labels_json_sha256": "6545cd637d2a260e8610dddf54cacdb4fe755f246a09a5c16aa1291dceb38db5",
+    "pose_json_sha256": "d6c09c04bcc12cddb960b2748fd0992a4993524bcf30d097b517ca21320ab43d",
+    "roi_px": 187086,
+    "results": {
+      "mlsd-tiny-512-fp16": {
+        "segments": 44,
+        "all_line_px": 17684,
+        "evaluated_line_px": 4096,
+        "line_px_within_tolerance": 3489,
+        "line_precision": 0.851806640625,
+        "truth_boundary_px": 5971,
+        "recovered_boundary_px": 5143,
+        "boundary_recall": 0.8613297605091275
+      },
+      "structural_lines.detect": {
+        "segments": 720,
+        "all_line_px": 38160,
+        "evaluated_line_px": 17830,
+        "line_px_within_tolerance": 6228,
+        "line_precision": 0.349298934380258,
+        "truth_boundary_px": 5971,
+        "recovered_boundary_px": 5857,
+        "boundary_recall": 0.9809077206498074
+      }
+    }
+  },
+  {
+    "id": "holdout-courtyard-plaster-low-left",
+    "floor": "smooth_stone",
+    "layout": "courtyard",
+    "cohort": "regression",
+    "palette": "plaster",
+    "source": "benchmark/data/camera-round-01/captures/holdout-courtyard-plaster-low-left.png",
+    "image_sha256": "c8129500a7c473e23666de5470d535f650fb1ac61ae8dcb702f09707ba68949f",
+    "labels_json_sha256": "393630851e8274673b0e5086a6515575b90197ab25b8e978ed82fbb5b3f25fab",
+    "pose_json_sha256": "eaf32e983fe8f7a40445a9e623c1b4b8d55fbd427f20c076a5bc91f35fbcbb66",
+    "roi_px": 170208,
+    "results": {
+      "mlsd-tiny-512-fp16": {
+        "segments": 83,
+        "all_line_px": 34326,
+        "evaluated_line_px": 3594,
+        "line_px_within_tolerance": 2728,
+        "line_precision": 0.7590428491930996,
+        "truth_boundary_px": 4132,
+        "recovered_boundary_px": 3333,
+        "boundary_recall": 0.8066311713455954
+      },
+      "structural_lines.detect": {
+        "segments": 720,
+        "all_line_px": 45703,
+        "evaluated_line_px": 5386,
+        "line_px_within_tolerance": 3747,
+        "line_precision": 0.6956925362049758,
+        "truth_boundary_px": 4132,
+        "recovered_boundary_px": 3819,
+        "boundary_recall": 0.9242497579864473
+      }
+    }
+  },
+  {
+    "id": "holdout-courtyard-plaster-low-left",
+    "floor": "light_gray_concrete",
+    "layout": "courtyard",
+    "cohort": "regression",
+    "palette": "plaster",
+    "source": "benchmark/data/camera-gray-concrete-v1/captures/holdout-courtyard-plaster-low-left.png",
+    "image_sha256": "1995d3af4ecbdd7b22bc4ada179009147a5b389379edd6142b99dcaa6446d9c0",
+    "labels_json_sha256": "393630851e8274673b0e5086a6515575b90197ab25b8e978ed82fbb5b3f25fab",
+    "pose_json_sha256": "eaf32e983fe8f7a40445a9e623c1b4b8d55fbd427f20c076a5bc91f35fbcbb66",
+    "roi_px": 170208,
+    "results": {
+      "mlsd-tiny-512-fp16": {
+        "segments": 36,
+        "all_line_px": 8033,
+        "evaluated_line_px": 3608,
+        "line_px_within_tolerance": 2841,
+        "line_precision": 0.7874168514412417,
+        "truth_boundary_px": 4132,
+        "recovered_boundary_px": 3310,
+        "boundary_recall": 0.8010648596321394
+      },
+      "structural_lines.detect": {
+        "segments": 614,
+        "all_line_px": 32830,
+        "evaluated_line_px": 10545,
+        "line_px_within_tolerance": 4179,
+        "line_precision": 0.39630156472261735,
+        "truth_boundary_px": 4132,
+        "recovered_boundary_px": 3932,
+        "boundary_recall": 0.9515972894482091
+      }
+    }
+  },
+  {
+    "id": "holdout-portico-masonry-high-right",
+    "floor": "smooth_stone",
+    "layout": "portico",
+    "cohort": "regression",
+    "palette": "masonry",
+    "source": "benchmark/data/camera-round-01/captures/holdout-portico-masonry-high-right.png",
+    "image_sha256": "54819d55b59d36a91e891bf2ff6148104d917d5ca59084f4f73edc43d623e390",
+    "labels_json_sha256": "3dc90c2f57ee4dd92911beaf007b3eb66daa7cc035c2bb4b9de0af9d5dd81fcf",
+    "pose_json_sha256": "2fb0da0a00967152538c3bee17259b8cfa9398c1a85d9f5ac0315026fd9068f1",
+    "roi_px": 134444,
+    "results": {
+      "mlsd-tiny-512-fp16": {
+        "segments": 60,
+        "all_line_px": 17067,
+        "evaluated_line_px": 6038,
+        "line_px_within_tolerance": 4298,
+        "line_precision": 0.7118251076515403,
+        "truth_boundary_px": 7816,
+        "recovered_boundary_px": 5819,
+        "boundary_recall": 0.7444984646878199
+      },
+      "structural_lines.detect": {
+        "segments": 720,
+        "all_line_px": 44637,
+        "evaluated_line_px": 6796,
+        "line_px_within_tolerance": 5163,
+        "line_precision": 0.7597115950559152,
+        "truth_boundary_px": 7816,
+        "recovered_boundary_px": 6748,
+        "boundary_recall": 0.8633572159672467
+      }
+    }
+  },
+  {
+    "id": "holdout-portico-masonry-high-right",
+    "floor": "light_gray_concrete",
+    "layout": "portico",
+    "cohort": "regression",
+    "palette": "masonry",
+    "source": "benchmark/data/camera-gray-concrete-v1/captures/holdout-portico-masonry-high-right.png",
+    "image_sha256": "f6c57a6cca3c952e2134e27f6ca75816487c4817800f504acaa6aa0240a24329",
+    "labels_json_sha256": "3dc90c2f57ee4dd92911beaf007b3eb66daa7cc035c2bb4b9de0af9d5dd81fcf",
+    "pose_json_sha256": "2fb0da0a00967152538c3bee17259b8cfa9398c1a85d9f5ac0315026fd9068f1",
+    "roi_px": 134444,
+    "results": {
+      "mlsd-tiny-512-fp16": {
+        "segments": 58,
+        "all_line_px": 17446,
+        "evaluated_line_px": 6072,
+        "line_px_within_tolerance": 4406,
+        "line_precision": 0.7256258234519104,
+        "truth_boundary_px": 7816,
+        "recovered_boundary_px": 5992,
+        "boundary_recall": 0.7666325486182191
+      },
+      "structural_lines.detect": {
+        "segments": 720,
+        "all_line_px": 36989,
+        "evaluated_line_px": 14958,
+        "line_px_within_tolerance": 7407,
+        "line_precision": 0.49518652226233456,
+        "truth_boundary_px": 7816,
+        "recovered_boundary_px": 7260,
+        "boundary_recall": 0.9288638689866939
+      }
+    }
+  },
+  {
+    "id": "holdout-portico-masonry-low-left",
+    "floor": "smooth_stone",
+    "layout": "portico",
+    "cohort": "regression",
+    "palette": "masonry",
+    "source": "benchmark/data/camera-round-01/captures/holdout-portico-masonry-low-left.png",
+    "image_sha256": "eb35fef82a3ed8b7f34c39d7be768ae94123884428038310ea19e578228d83be",
+    "labels_json_sha256": "2bc309bc089f2441453a97ac90f474e62c37d892925961e1bac8b94e5a6bf1b7",
+    "pose_json_sha256": "0318852b715b84a88910391e95e5c3948d244c0d96104776df111e39253d85c7",
+    "roi_px": 139057,
+    "results": {
+      "mlsd-tiny-512-fp16": {
+        "segments": 105,
+        "all_line_px": 45423,
+        "evaluated_line_px": 5847,
+        "line_px_within_tolerance": 4456,
+        "line_precision": 0.7621002223362409,
+        "truth_boundary_px": 9470,
+        "recovered_boundary_px": 6585,
+        "boundary_recall": 0.6953537486800423
+      },
+      "structural_lines.detect": {
+        "segments": 720,
+        "all_line_px": 46112,
+        "evaluated_line_px": 6208,
+        "line_px_within_tolerance": 4916,
+        "line_precision": 0.791881443298969,
+        "truth_boundary_px": 9470,
+        "recovered_boundary_px": 6650,
+        "boundary_recall": 0.7022175290390708
+      }
+    }
+  },
+  {
+    "id": "holdout-portico-masonry-low-left",
+    "floor": "light_gray_concrete",
+    "layout": "portico",
+    "cohort": "regression",
+    "palette": "masonry",
+    "source": "benchmark/data/camera-gray-concrete-v1/captures/holdout-portico-masonry-low-left.png",
+    "image_sha256": "00daa00ce6d344d9c00205a65b67ed60af6e0f908e1993e842417450928e55b5",
+    "labels_json_sha256": "2bc309bc089f2441453a97ac90f474e62c37d892925961e1bac8b94e5a6bf1b7",
+    "pose_json_sha256": "0318852b715b84a88910391e95e5c3948d244c0d96104776df111e39253d85c7",
+    "roi_px": 139057,
+    "results": {
+      "mlsd-tiny-512-fp16": {
+        "segments": 40,
+        "all_line_px": 8767,
+        "evaluated_line_px": 5723,
+        "line_px_within_tolerance": 4247,
+        "line_precision": 0.7420933077057488,
+        "truth_boundary_px": 9470,
+        "recovered_boundary_px": 6100,
+        "boundary_recall": 0.6441393875395988
+      },
+      "structural_lines.detect": {
+        "segments": 720,
+        "all_line_px": 35883,
+        "evaluated_line_px": 14999,
+        "line_px_within_tolerance": 8434,
+        "line_precision": 0.5623041536102407,
+        "truth_boundary_px": 9470,
+        "recovered_boundary_px": 8644,
+        "boundary_recall": 0.9127771911298839
+      }
+    }
+  },
+  {
+    "id": "holdout-portico-plaster-high-right",
+    "floor": "smooth_stone",
+    "layout": "portico",
+    "cohort": "regression",
+    "palette": "plaster",
+    "source": "benchmark/data/camera-round-01/captures/holdout-portico-plaster-high-right.png",
+    "image_sha256": "fb687c20c5df87e79d9dd17ce48566c7f9fca2a092234bedff15fbe3f83b2e8c",
+    "labels_json_sha256": "4b2742bbd7fce0836a79dd53f2dda1f4a96dbba3996aa38476db3533200fb47a",
+    "pose_json_sha256": "631a57e149cabf3a474350e188eca729294e6a5dc6d8d2bbfc8171126622fe1a",
+    "roi_px": 134444,
+    "results": {
+      "mlsd-tiny-512-fp16": {
+        "segments": 49,
+        "all_line_px": 16291,
+        "evaluated_line_px": 5201,
+        "line_px_within_tolerance": 4462,
+        "line_precision": 0.8579119400115363,
+        "truth_boundary_px": 7816,
+        "recovered_boundary_px": 5541,
+        "boundary_recall": 0.7089303991811668
+      },
+      "structural_lines.detect": {
+        "segments": 720,
+        "all_line_px": 45473,
+        "evaluated_line_px": 7452,
+        "line_px_within_tolerance": 5842,
+        "line_precision": 0.7839506172839507,
+        "truth_boundary_px": 7816,
+        "recovered_boundary_px": 6769,
+        "boundary_recall": 0.8660440122824974
+      }
+    }
+  },
+  {
+    "id": "holdout-portico-plaster-high-right",
+    "floor": "light_gray_concrete",
+    "layout": "portico",
+    "cohort": "regression",
+    "palette": "plaster",
+    "source": "benchmark/data/camera-gray-concrete-v1/captures/holdout-portico-plaster-high-right.png",
+    "image_sha256": "fbe284f3ab8d1e0d517c81853c4a6121d359eb023c6f9882769d27605edb9b84",
+    "labels_json_sha256": "4b2742bbd7fce0836a79dd53f2dda1f4a96dbba3996aa38476db3533200fb47a",
+    "pose_json_sha256": "631a57e149cabf3a474350e188eca729294e6a5dc6d8d2bbfc8171126622fe1a",
+    "roi_px": 134444,
+    "results": {
+      "mlsd-tiny-512-fp16": {
+        "segments": 46,
+        "all_line_px": 15963,
+        "evaluated_line_px": 5099,
+        "line_px_within_tolerance": 4293,
+        "line_precision": 0.8419297901549323,
+        "truth_boundary_px": 7816,
+        "recovered_boundary_px": 5411,
+        "boundary_recall": 0.6922978505629478
+      },
+      "structural_lines.detect": {
+        "segments": 720,
+        "all_line_px": 36536,
+        "evaluated_line_px": 14499,
+        "line_px_within_tolerance": 8934,
+        "line_precision": 0.6161804262362922,
+        "truth_boundary_px": 7816,
+        "recovered_boundary_px": 7614,
+        "boundary_recall": 0.9741555783009211
+      }
+    }
+  },
+  {
+    "id": "holdout-portico-plaster-low-left",
+    "floor": "smooth_stone",
+    "layout": "portico",
+    "cohort": "regression",
+    "palette": "plaster",
+    "source": "benchmark/data/camera-round-01/captures/holdout-portico-plaster-low-left.png",
+    "image_sha256": "8f7b6cf572ea617a0efa47c002f4f9221df201dcde9d20595a10fb2915228445",
+    "labels_json_sha256": "adf9dd00fa951d2f8d2abbf22443fb4f2acaa4ac4a0aba7b3e6b2c41d53b58fb",
+    "pose_json_sha256": "9145b475fab6de1ddd929e538db3cb4da4205610053b5d81a4d71ad6980f5122",
+    "roi_px": 139057,
+    "results": {
+      "mlsd-tiny-512-fp16": {
+        "segments": 101,
+        "all_line_px": 44396,
+        "evaluated_line_px": 4152,
+        "line_px_within_tolerance": 4006,
+        "line_precision": 0.9648362235067437,
+        "truth_boundary_px": 9470,
+        "recovered_boundary_px": 7005,
+        "boundary_recall": 0.7397043294614573
+      },
+      "structural_lines.detect": {
+        "segments": 720,
+        "all_line_px": 48507,
+        "evaluated_line_px": 6287,
+        "line_px_within_tolerance": 5756,
+        "line_precision": 0.9155400031811675,
+        "truth_boundary_px": 9470,
+        "recovered_boundary_px": 7709,
+        "boundary_recall": 0.8140443505807814
+      }
+    }
+  },
+  {
+    "id": "holdout-portico-plaster-low-left",
+    "floor": "light_gray_concrete",
+    "layout": "portico",
+    "cohort": "regression",
+    "palette": "plaster",
+    "source": "benchmark/data/camera-gray-concrete-v1/captures/holdout-portico-plaster-low-left.png",
+    "image_sha256": "318e6e654ece8e6ab93aea0fa5c0cccecdb727faf743b5fbb5eb31da2f2b05f2",
+    "labels_json_sha256": "adf9dd00fa951d2f8d2abbf22443fb4f2acaa4ac4a0aba7b3e6b2c41d53b58fb",
+    "pose_json_sha256": "9145b475fab6de1ddd929e538db3cb4da4205610053b5d81a4d71ad6980f5122",
+    "roi_px": 139057,
+    "results": {
+      "mlsd-tiny-512-fp16": {
+        "segments": 38,
+        "all_line_px": 8378,
+        "evaluated_line_px": 3880,
+        "line_px_within_tolerance": 3830,
+        "line_precision": 0.9871134020618557,
+        "truth_boundary_px": 9470,
+        "recovered_boundary_px": 7009,
+        "boundary_recall": 0.7401267159450897
+      },
+      "structural_lines.detect": {
+        "segments": 720,
+        "all_line_px": 42135,
+        "evaluated_line_px": 14054,
+        "line_px_within_tolerance": 8783,
+        "line_precision": 0.6249466344101323,
+        "truth_boundary_px": 9470,
+        "recovered_boundary_px": 9069,
+        "boundary_recall": 0.9576557550158394
+      }
+    }
+  },
+  {
+    "id": "holdout-workshop-masonry-low-left",
+    "floor": "light_gray_concrete",
+    "layout": "workshop",
+    "cohort": "confirmation",
+    "palette": "masonry",
+    "source": "benchmark/data/surface-confirm-v1/captures/holdout-workshop-masonry-low-left.png",
+    "image_sha256": "ae86fd9911640c7397bc929d3e0ca1076d84312b5500712cf2c4ec25e7c9112f",
+    "labels_json_sha256": "646c7eadfb73958a84970e40225c9bcd38aab7832907d874957819adcf07ad0f",
+    "pose_json_sha256": "9ed5f98e6f66a7461f8d55e38d11379c5d3434810861970fb0e75492d53e4e88",
+    "roi_px": 183368,
+    "results": {
+      "mlsd-tiny-512-fp16": {
+        "segments": 37,
+        "all_line_px": 7887,
+        "evaluated_line_px": 4347,
+        "line_px_within_tolerance": 2465,
+        "line_precision": 0.5670577409707844,
+        "truth_boundary_px": 7459,
+        "recovered_boundary_px": 4303,
+        "boundary_recall": 0.5768869821691915
+      },
+      "structural_lines.detect": {
+        "segments": 720,
+        "all_line_px": 37784,
+        "evaluated_line_px": 18396,
+        "line_px_within_tolerance": 6721,
+        "line_precision": 0.3653511632963688,
+        "truth_boundary_px": 7459,
+        "recovered_boundary_px": 6713,
+        "boundary_recall": 0.8999865933771283
+      }
+    }
+  },
+  {
+    "id": "holdout-workshop-masonry-high-right",
+    "floor": "light_gray_concrete",
+    "layout": "workshop",
+    "cohort": "confirmation",
+    "palette": "masonry",
+    "source": "benchmark/data/surface-confirm-v1/captures/holdout-workshop-masonry-high-right.png",
+    "image_sha256": "3aefcb242fdda8a6d4c40adb9a7d2632c8de998b076b1d4ec09a100db95119d4",
+    "labels_json_sha256": "8039a8de85019332bd8a83e3fe51bd0a99b1735ca4871a508f2b28a997897a4c",
+    "pose_json_sha256": "cadd6a65b41baad58ed0e5fcf907b125db7a8011c1445543389edf1cc17dc6ac",
+    "roi_px": 179290,
+    "results": {
+      "mlsd-tiny-512-fp16": {
+        "segments": 33,
+        "all_line_px": 7418,
+        "evaluated_line_px": 4541,
+        "line_px_within_tolerance": 2348,
+        "line_precision": 0.517066725390883,
+        "truth_boundary_px": 7215,
+        "recovered_boundary_px": 3664,
+        "boundary_recall": 0.5078309078309078
+      },
+      "structural_lines.detect": {
+        "segments": 720,
+        "all_line_px": 41715,
+        "evaluated_line_px": 18139,
+        "line_px_within_tolerance": 7093,
+        "line_precision": 0.39103588951981916,
+        "truth_boundary_px": 7215,
+        "recovered_boundary_px": 6703,
+        "boundary_recall": 0.9290367290367291
+      }
+    }
+  },
+  {
+    "id": "holdout-workshop-plaster-low-left",
+    "floor": "light_gray_concrete",
+    "layout": "workshop",
+    "cohort": "confirmation",
+    "palette": "plaster",
+    "source": "benchmark/data/surface-confirm-v1/captures/holdout-workshop-plaster-low-left.png",
+    "image_sha256": "91c686215bb3105c779a45302ed5b43bf16a2faa32fbfe1f0f2be10f0e161c42",
+    "labels_json_sha256": "7fd54d0ecdfbeb43d81e9d8c2cac7d5290d0f383e6f804f16f879faa671f90d5",
+    "pose_json_sha256": "5a8ce3e08d58ab7b341ac7fd3310be8eff0fa72766f8d964f2fe3e3adac82d40",
+    "roi_px": 183368,
+    "results": {
+      "mlsd-tiny-512-fp16": {
+        "segments": 39,
+        "all_line_px": 8101,
+        "evaluated_line_px": 2937,
+        "line_px_within_tolerance": 2401,
+        "line_precision": 0.8175008512087164,
+        "truth_boundary_px": 7459,
+        "recovered_boundary_px": 4471,
+        "boundary_recall": 0.5994101085936453
+      },
+      "structural_lines.detect": {
+        "segments": 720,
+        "all_line_px": 40980,
+        "evaluated_line_px": 17606,
+        "line_px_within_tolerance": 6560,
+        "line_precision": 0.3726002499148018,
+        "truth_boundary_px": 7459,
+        "recovered_boundary_px": 6679,
+        "boundary_recall": 0.8954283416007508
+      }
+    }
+  },
+  {
+    "id": "holdout-workshop-plaster-high-right",
+    "floor": "light_gray_concrete",
+    "layout": "workshop",
+    "cohort": "confirmation",
+    "palette": "plaster",
+    "source": "benchmark/data/surface-confirm-v1/captures/holdout-workshop-plaster-high-right.png",
+    "image_sha256": "d35ab308820f92501ec898cafb1f50939f3f0ed1141e3d9ee38a00eae1199aa0",
+    "labels_json_sha256": "a255b57270eedbbd36b688eb2eb072a8a3bb8c4eaaea751a413597ec4a80996c",
+    "pose_json_sha256": "c7c717c8cc377a5293d92be53cee57eaf1b5b9e479b7f54604c015fa4812bd12",
+    "roi_px": 179290,
+    "results": {
+      "mlsd-tiny-512-fp16": {
+        "segments": 28,
+        "all_line_px": 6402,
+        "evaluated_line_px": 3201,
+        "line_px_within_tolerance": 2647,
+        "line_precision": 0.8269290846610434,
+        "truth_boundary_px": 7215,
+        "recovered_boundary_px": 4397,
+        "boundary_recall": 0.6094248094248095
+      },
+      "structural_lines.detect": {
+        "segments": 720,
+        "all_line_px": 42245,
+        "evaluated_line_px": 16498,
+        "line_px_within_tolerance": 6491,
+        "line_precision": 0.3934416292883986,
+        "truth_boundary_px": 7215,
+        "recovered_boundary_px": 6411,
+        "boundary_recall": 0.8885654885654886
+      }
+    }
+  },
+  {
+    "id": "holdout-crossing-masonry-low-left",
+    "floor": "light_gray_concrete",
+    "layout": "crossing",
+    "cohort": "confirmation",
+    "palette": "masonry",
+    "source": "benchmark/data/surface-confirm-v1/captures/holdout-crossing-masonry-low-left.png",
+    "image_sha256": "93c9a45dbb4d6bc59edc6c18ac8007ad4f99ac340844cb0ed8f171640936fa88",
+    "labels_json_sha256": "b3db663677535e4bbe52433c57758225975aa64e05c0af1c6bb00b207aa78ec5",
+    "pose_json_sha256": "63f77c692055755b51253626ff8d3ba3bc9fa4c869ddc7f6ba0e27e43f5334b0",
+    "roi_px": 196778,
+    "results": {
+      "mlsd-tiny-512-fp16": {
+        "segments": 58,
+        "all_line_px": 11170,
+        "evaluated_line_px": 6552,
+        "line_px_within_tolerance": 3714,
+        "line_precision": 0.5668498168498168,
+        "truth_boundary_px": 7604,
+        "recovered_boundary_px": 5237,
+        "boundary_recall": 0.6887164650184113
+      },
+      "structural_lines.detect": {
+        "segments": 720,
+        "all_line_px": 40241,
+        "evaluated_line_px": 20924,
+        "line_px_within_tolerance": 6422,
+        "line_precision": 0.30692028292869433,
+        "truth_boundary_px": 7604,
+        "recovered_boundary_px": 6773,
+        "boundary_recall": 0.8907154129405576
+      }
+    }
+  },
+  {
+    "id": "holdout-crossing-masonry-high-right",
+    "floor": "light_gray_concrete",
+    "layout": "crossing",
+    "cohort": "confirmation",
+    "palette": "masonry",
+    "source": "benchmark/data/surface-confirm-v1/captures/holdout-crossing-masonry-high-right.png",
+    "image_sha256": "7ea5b36aa3c25b3ab4c58dcb773d8c3476c5f2d28048fd72a62970888be31320",
+    "labels_json_sha256": "56c81c511ee0e97bcbfac4610bdcdf49b31b3a8fa622e3a3b6d5a3406d6328a6",
+    "pose_json_sha256": "02b1aa63612ded6b4cc8ef0d29e931cdc70d1698799a6287f3581ca4a71871e1",
+    "roi_px": 188470,
+    "results": {
+      "mlsd-tiny-512-fp16": {
+        "segments": 56,
+        "all_line_px": 13225,
+        "evaluated_line_px": 7678,
+        "line_px_within_tolerance": 4727,
+        "line_precision": 0.6156551185204481,
+        "truth_boundary_px": 8618,
+        "recovered_boundary_px": 5962,
+        "boundary_recall": 0.6918078440473427
+      },
+      "structural_lines.detect": {
+        "segments": 720,
+        "all_line_px": 40087,
+        "evaluated_line_px": 20154,
+        "line_px_within_tolerance": 8545,
+        "line_precision": 0.42398531308921306,
+        "truth_boundary_px": 8618,
+        "recovered_boundary_px": 8016,
+        "boundary_recall": 0.9301462056161522
+      }
+    }
+  },
+  {
+    "id": "holdout-crossing-plaster-low-left",
+    "floor": "light_gray_concrete",
+    "layout": "crossing",
+    "cohort": "confirmation",
+    "palette": "plaster",
+    "source": "benchmark/data/surface-confirm-v1/captures/holdout-crossing-plaster-low-left.png",
+    "image_sha256": "d348ddef0010267fdffc0d628654ef6ce256329400dec3e1cfd271bfaf764144",
+    "labels_json_sha256": "55ceaa0d3d775868c8186317cdefc2c6f27a6cf3840d360a26cb6d731712c346",
+    "pose_json_sha256": "0cec8cea9a240102fc27b5263ee11873b923c05b5a58a9ed2fdd276d4ec8b234",
+    "roi_px": 196778,
+    "results": {
+      "mlsd-tiny-512-fp16": {
+        "segments": 53,
+        "all_line_px": 11100,
+        "evaluated_line_px": 5688,
+        "line_px_within_tolerance": 4739,
+        "line_precision": 0.8331575246132208,
+        "truth_boundary_px": 7604,
+        "recovered_boundary_px": 5509,
+        "boundary_recall": 0.7244871120462915
+      },
+      "structural_lines.detect": {
+        "segments": 674,
+        "all_line_px": 36016,
+        "evaluated_line_px": 16739,
+        "line_px_within_tolerance": 6956,
+        "line_precision": 0.41555648485572616,
+        "truth_boundary_px": 7604,
+        "recovered_boundary_px": 7143,
+        "boundary_recall": 0.9393740136770121
+      }
+    }
+  },
+  {
+    "id": "holdout-crossing-plaster-high-right",
+    "floor": "light_gray_concrete",
+    "layout": "crossing",
+    "cohort": "confirmation",
+    "palette": "plaster",
+    "source": "benchmark/data/surface-confirm-v1/captures/holdout-crossing-plaster-high-right.png",
+    "image_sha256": "a7e9cd44bd97237bd3cbf88b11fdfa3575deee7473ef820b30e19bc5fe37698e",
+    "labels_json_sha256": "63713ee3f775d2cc89e3d2218a26ff120c335352e5b0ab957175e4e77491150c",
+    "pose_json_sha256": "f36a63883885064c71d2afc6654f97714c861177006e88c177cbe7ad50878cef",
+    "roi_px": 188470,
+    "results": {
+      "mlsd-tiny-512-fp16": {
+        "segments": 39,
+        "all_line_px": 10804,
+        "evaluated_line_px": 4922,
+        "line_px_within_tolerance": 4300,
+        "line_precision": 0.8736286062576188,
+        "truth_boundary_px": 8618,
+        "recovered_boundary_px": 6117,
+        "boundary_recall": 0.7097934555581341
+      },
+      "structural_lines.detect": {
+        "segments": 720,
+        "all_line_px": 37600,
+        "evaluated_line_px": 15015,
+        "line_px_within_tolerance": 8180,
+        "line_precision": 0.5447885447885448,
+        "truth_boundary_px": 8618,
+        "recovered_boundary_px": 8010,
+        "boundary_recall": 0.9294499883963797
+      }
+    }
+  }
+]

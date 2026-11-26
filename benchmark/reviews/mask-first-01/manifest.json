@@ -1,0 +1,90 @@
+{
+  "run_id": "mask-first-01",
+  "phase": "first",
+  "code": {
+    "commit": "5ac4a5f1a134cb52372b088f7d5b7ed834d3284b",
+    "predictor_and_runner_sha256": "0175a4de251e01e6bd46f6ff6cf913c3bfc8b35e2877e56e475d3ba1301a06df",
+    "source_dirty": false
+  },
+  "version": "26.3",
+  "fixtures": {
+    "smooth_stone": "660d1e535ae134452bca903a9d7cbe8d37953927fa118d9ffb327afad0885bc2",
+    "light_gray_concrete": "321505e15563f8efc0da868baa27409837aaa474410a61f3513b3dac0030f066",
+    "surface_confirm_v1": "0a479a8264f2c0f714284928354ff6ff5f9729491709676f07e2033d25e48fc3",
+    "normal_confirm_v1": "61bdf3a89a505a8be3757efe480185bec9c1888a1c72ffb69ef0093623e27dda"
+  },
+  "reference_sha256": "91efa6d3e992b1a68672eae1fdd6d380e87724742a1a4b6cbe5f84d284f731a1",
+  "previous_b_run_sha256": "9e934e12ba60e3806614abd6568bbb9ec0479630f5930545558954c36d7e0c45",
+  "shared_models": {
+    "normal": "24eacb5dc7a2c54c7bc98f7de085ffbed79ad006ea5b664c2c2cdc02ff3a52f0",
+    "depth": "fcf51f1b230362b28690bb9d1809bf0431f29cad20534e3f589bd7285547f20d"
+  },
+  "settings": {
+    "mask_first": {
+      "analysis_width": 720,
+      "max_angle_deg": 44.0,
+      "min_area": 48,
+      "foreground_step": 0.035,
+      "depth_step": 0.025,
+      "depth_radius": 3,
+      "full_frame_depth_step": 0.16
+    },
+    "metrics": {
+      "iou": 0.5,
+      "sample_stride": 4,
+      "boundary_tolerance_px": 8,
+      "corner_tolerance_px": 12,
+      "contour_simplification_px": 6,
+      "minimum_corner_turn_deg": 30,
+      "minimum_contact_samples": 2,
+      "contact_depth_blocks": 0.5,
+      "filled_gap_fraction": 0.5
+    }
+  },
+  "split": {
+    "development": [
+      "shopfront",
+      "wing"
+    ],
+    "regression": [],
+    "blind": []
+  },
+  "split_history": "Only shopfront and wing used for tuning. All six other layouts have appeared in earlier reports.",
+  "methods": [
+    "current-b",
+    "mask-first"
+  ],
+  "selection": {
+    "rule": "Use development layouts equally. Promote mask-first over B for this surface comparison if mean layout F1 or correctly assigned eligible pixel fraction improves by at least 2 points, the other falls by no more than 2 points, and opening fill increases by at most 1 point. Each line alternative must meet the same rule against mask-first. Among passing methods take highest mean layout F1 then pixel accuracy; prefer mask-first on ties. Ordinary builds also require demonstrated correct metric block placement.",
+    "ratings": {
+      "current-b": {
+        "f1": 0.671067106710671,
+        "assigned_fraction": 0.6634006751456663,
+        "opening_fill": 0.19391392920804684
+      },
+      "mask-first": {
+        "f1": 0.7005801687763713,
+        "assigned_fraction": 0.74680714355114,
+        "opening_fill": 0.033645276292335116
+      }
+    },
+    "selected": "mask-first"
+  },
+  "baseline_replays_matching": 20,
+  "timings_seconds": {
+    "model_fields_cached": 0.0980930000951048,
+    "mask-first": 4.029931999888504,
+    "current-b": 5.956105299963383
+  },
+  "environment": {
+    "numpy": "2.3.5",
+    "pillow": "13.0.0"
+  },
+  "artifacts": {
+    "scores": "scores.json",
+    "per_picture": "cases.json",
+    "predictions": "predictions/",
+    "selection": "selection.json",
+    "sheet": "comparison.jpg"
+  }
+}

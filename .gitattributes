@@ -1,0 +1,32 @@
+# Capture manifests and readbacks are hashed alongside the native framebuffers.
+benchmark/data/camera-round-01/** -text
+benchmark/data/camera-gray-concrete-v1/** -text
+benchmark/data/surface-confirm-v1/** -text
+benchmark/data/normal-confirm-v1/** -text
+benchmark/suites/*.json text eol=lf
+benchmark/worlds/exterior-v1/** -text
+benchmark/worlds/normal-confirm-v1/** -text
+# Preserve measured artifact bytes, including the JSON files fingerprinted by SHA-256.
+benchmark/reviews/mask-first-01/** -text
+benchmark/reviews/mask-loss-01/** -text
+benchmark/reviews/mask-four-01/** -text
+benchmark/data/mask-field-timing-v1.json -text
+benchmark/reviews/count-01/** -text
+benchmark/reviews/perimeters-01/** -text
+# These archived JSON digests were measured on files checked out with CRLF.
+benchmark/reviews/overhang-01/**/*.json text eol=crlf
+benchmark/reviews/separation-01/**/*.json text eol=crlf
+benchmark/reviews/recovery-overview-01/**/*.json text eol=crlf
+benchmark/reviews/recovery-01/** -text whitespace=trailing-space,space-before-tab,cr-at-eol
+benchmark/reviews/direction-resolution-01/** -text whitespace=trailing-space,space-before-tab,cr-at-eol
+benchmark/reviews/recovery-summary-01/** -text whitespace=trailing-space,space-before-tab,cr-at-eol
+benchmark/reviews/mobile-regions-01/** -text whitespace=trailing-space,space-before-tab,cr-at-eol
+benchmark/reviews/mobile-walls-01/** -text whitespace=trailing-space,space-before-tab,cr-at-eol
+benchmark/reviews/mobile-combined-01/** -text whitespace=trailing-space,space-before-tab,cr-at-eol
+benchmark/reviews/single-wall-v2-fields-01/** -text whitespace=trailing-space,space-before-tab,cr-at-eol
+benchmark/reviews/single-wall-depth-01/** -text whitespace=trailing-space,space-before-tab,cr-at-eol
+benchmark/reviews/current-misses-01/** -text whitespace=trailing-space,space-before-tab,cr-at-eol
+benchmark/reviews/ledge-join-01/** -text whitespace=trailing-space,space-before-tab,cr-at-eol
+benchmark/reviews/afterpass-headroom-01/** -text whitespace=trailing-space,space-before-tab,cr-at-eol
+benchmark/reviews/afterpass-models-01/** -text whitespace=trailing-space,space-before-tab,cr-at-eol
+benchmark/reviews/afterpass-fields-01/** -text whitespace=trailing-space,space-before-tab,cr-at-eol

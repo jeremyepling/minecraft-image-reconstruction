@@ -1,0 +1,1154 @@
+{
+  "minecraft": "26.3",
+  "split": "dev",
+  "baseline": "f0634fc line-first",
+  "sources": {
+    "benchmark/line_form.py": "f5b4aa61304943c4e8a8c899acb48ae0485dd17da50eae5ed4d39e6aca9b2986",
+    "engine/cube_axes.py": "9341fd0aae6cb601b485b8bc12fa584f60454b458bc630c82f7cd03ad4e32861",
+    "engine/cube_contour.py": "ae41513ae0ed0f3dbd45d45544b8ff58277c26dd5eda8e6f29e6d98f3e806922",
+    "engine/cube_faces.py": "ac53754e92c516401a9ae03491a120a1a906830de1d652d5ec2639d98d361702",
+    "engine/line_relief.py": "8ea2c3f0f602070ec9ca9475ee882162cf6cef32f8e9b6516d2aa7e7c9982cfe",
+    "engine/line_outline.py": "f5cbb07a0f389de681c289ae8ce97889ab0377feaaba12f28ba7427593793b2e",
+    "engine/structural_lines.py": "a58281608fe8972585196428c3e544000ebf336662ebb1c43f5c7a401a876642"
+  },
+  "summary": {
+    "oblique": {
+      "views": 12,
+      "methods": {
+        "line_first": {
+          "iou": 0.94319,
+          "boundary_f1": 0.83476,
+          "clear_sightlines": 20,
+          "incorrectly_filled": 3,
+          "panels": {
+            "total": 18,
+            "localized": 17,
+            "correct": 7,
+            "wrong": 1,
+            "unknown": 9,
+            "missed": 1,
+            "by_actual": {
+              "recess": {
+                "unknown": 4,
+                "recess": 2
+              },
+              "flat": {
+                "flat": 4,
+                "unknown": 2
+              },
+              "protrusion": {
+                "flat": 1,
+                "missed": 1,
+                "unknown": 3,
+                "protrusion": 1
+              }
+            },
+            "extra_proposals": {
+              "unknown": 26,
+              "recess": 5,
+              "protrusion": 5
+            }
+          }
+        },
+        "cube_turns": {
+          "iou": 0.9473,
+          "boundary_f1": 0.85232,
+          "axes_fitted": 12,
+          "outlines_changed": 12,
+          "joined_turns": 89,
+          "mean_axis_error_degrees": 0.219,
+          "clear_sightlines": 20,
+          "incorrectly_filled": 3,
+          "panels": {
+            "total": 18,
+            "localized": 17,
+            "correct": 7,
+            "wrong": 1,
+            "unknown": 9,
+            "missed": 1,
+            "by_actual": {
+              "recess": {
+                "unknown": 4,
+                "recess": 2
+              },
+              "flat": {
+                "flat": 4,
+                "unknown": 2
+              },
+              "protrusion": {
+                "flat": 1,
+                "missed": 1,
+                "unknown": 3,
+                "protrusion": 1
+              }
+            },
+            "extra_proposals": {
+              "unknown": 33,
+              "recess": 1,
+              "protrusion": 2
+            }
+          }
+        }
+      }
+    },
+    "open_canopies": {
+      "views": 12,
+      "methods": {
+        "line_first": {
+          "iou": 0.73805,
+          "boundary_f1": 0.81285,
+          "clear_sightlines": 215,
+          "incorrectly_filled": 78
+        },
+        "cube_turns": {
+          "iou": 0.73933,
+          "boundary_f1": 0.82191,
+          "axes_fitted": 11,
+          "outlines_changed": 11,
+          "joined_turns": 107,
+          "mean_axis_error_degrees": 0.186,
+          "clear_sightlines": 215,
+          "incorrectly_filled": 70
+        }
+      }
+    }
+  },
+  "views": {
+    "dev-adjacency-13-left": {
+      "group": "oblique",
+      "sha256": "ea02ca7971e4f0913c2793756f9c619f688997d9048a8763620ef85fd3f2733b",
+      "angle": "left",
+      "scores": {
+        "line_first": {
+          "outline": {
+            "iou": 0.8448,
+            "boundary_f1": 0.6331
+          }
+        },
+        "cube_turns": {
+          "outline": {
+            "iou": 0.8378,
+            "boundary_f1": 0.6138
+          },
+          "axes_fitted": true,
+          "joined_turns": 2,
+          "changed_pixels": 4960,
+          "mean_error_degrees_by_world_axis": [
+            0.086,
+            0.189,
+            0.281
+          ]
+        }
+      }
+    },
+    "dev-adjacency-13-right": {
+      "group": "oblique",
+      "sha256": "0fb581627fddabf2868c4acb61e0c9e3fcf1218d38eae2cc908f838b6b3f907e",
+      "angle": "right",
+      "scores": {
+        "line_first": {
+          "outline": {
+            "iou": 0.8964,
+            "boundary_f1": 0.8014
+          }
+        },
+        "cube_turns": {
+          "outline": {
+            "iou": 0.9014,
+            "boundary_f1": 0.815
+          },
+          "axes_fitted": true,
+          "joined_turns": 12,
+          "changed_pixels": 5950,
+          "mean_error_degrees_by_world_axis": [
+            0.062,
+            0.108,
+            0.544
+          ]
+        }
+      }
+    },
+    "dev-stepped_tower-14-left": {
+      "group": "oblique",
+      "sha256": "331649b97334f68056720e7ce0293f4712ebbb02bcef4583944196e09f1048e4",
+      "angle": "left",
+      "scores": {
+        "line_first": {
+          "outline": {
+            "iou": 0.9494,
+            "boundary_f1": 0.7545
+          }
+        },
+        "cube_turns": {
+          "outline": {
+            "iou": 0.9678,
+            "boundary_f1": 0.7977
+          },
+          "axes_fitted": true,
+          "joined_turns": 12,
+          "changed_pixels": 6039,
+          "mean_error_degrees_by_world_axis": [
+            0.155,
+            0.183,
+            0.039
+          ]
+        }
+      }
+    },
+    "dev-stepped_tower-14-right": {
+      "group": "oblique",
+      "sha256": "d8f46fe920d1a98af91abe8234aa36322d07c496e7079984ddabafaa03d6510b",
+      "angle": "right",
+      "scores": {
+        "line_first": {
+          "outline": {
+            "iou": 0.9476,
+            "boundary_f1": 0.8141
+          }
+        },
+        "cube_turns": {
+          "outline": {
+            "iou": 0.96,
+            "boundary_f1": 0.8447
+          },
+          "axes_fitted": true,
+          "joined_turns": 9,
+          "changed_pixels": 5294,
+          "mean_error_degrees_by_world_axis": [
+            0.029,
+            0.204,
+            0.461
+          ]
+        }
+      }
+    },
+    "dev-recess-15-left": {
+      "group": "oblique",
+      "sha256": "4d2194edc428648a270cfe8bf23697d3d0d08f440dd4600118aef96d63b0342e",
+      "angle": "left",
+      "scores": {
+        "line_first": {
+          "outline": {
+            "iou": 0.9458,
+            "boundary_f1": 0.7735
+          }
+        },
+        "cube_turns": {
+          "outline": {
+            "iou": 0.9573,
+            "boundary_f1": 0.8299
+          },
+          "axes_fitted": true,
+          "joined_turns": 4,
+          "changed_pixels": 7036,
+          "mean_error_degrees_by_world_axis": [
+            0.028,
+            0.086,
+            0.486
+          ]
+        }
+      }
+    },
+    "dev-recess-15-right": {
+      "group": "oblique",
+      "sha256": "a8c95d65b107147b39ee30e9c67fb7741fc17a7b45092c9a6b12f9e2a5852a63",
+      "angle": "right",
+      "scores": {
+        "line_first": {
+          "outline": {
+            "iou": 0.954,
+            "boundary_f1": 0.7956
+          }
+        },
+        "cube_turns": {
+          "outline": {
+            "iou": 0.9631,
+            "boundary_f1": 0.852
+          },
+          "axes_fitted": true,
+          "joined_turns": 4,
+          "changed_pixels": 6698,
+          "mean_error_degrees_by_world_axis": [
+            0.167,
+            0.103,
+            0.655
+          ]
+        }
+      }
+    },
+    "dev-corner-16-left": {
+      "group": "oblique",
+      "sha256": "d5642b4c5575c925f734028c4460dea8d7692ea4cfafff9ab83ca214c53fa6a3",
+      "angle": "left",
+      "scores": {
+        "line_first": {
+          "outline": {
+            "iou": 0.9721,
+            "boundary_f1": 0.9963
+          }
+        },
+        "cube_turns": {
+          "outline": {
+            "iou": 0.9749,
+            "boundary_f1": 1.0
+          },
+          "axes_fitted": true,
+          "joined_turns": 8,
+          "changed_pixels": 4455,
+          "mean_error_degrees_by_world_axis": [
+            0.034,
+            0.14,
+            0.338
+          ]
+        }
+      }
+    },
+    "dev-corner-16-right": {
+      "group": "oblique",
+      "sha256": "753a868e072dae0eb53267e1a5f9b015f4e8b40b93de558cea1f0fa3d5366079",
+      "angle": "right",
+      "scores": {
+        "line_first": {
+          "outline": {
+            "iou": 0.9626,
+            "boundary_f1": 0.9629
+          }
+        },
+        "cube_turns": {
+          "outline": {
+            "iou": 0.9613,
+            "boundary_f1": 0.9687
+          },
+          "axes_fitted": true,
+          "joined_turns": 7,
+          "changed_pixels": 3758,
+          "mean_error_degrees_by_world_axis": [
+            0.039,
+            0.103,
+            0.182
+          ]
+        }
+      }
+    },
+    "dev-canopy-17-left": {
+      "group": "oblique",
+      "sha256": "0380351412b55e45018b9e01a9758b3f901d23a855737f168e5f5260e011227e",
+      "angle": "left",
+      "scores": {
+        "line_first": {
+          "outline": {
+            "iou": 0.9553,
+            "boundary_f1": 0.9521
+          },
+          "gap_probes": {
+            "eligible": 8,
+            "filled": 2
+          }
+        },
+        "cube_turns": {
+          "outline": {
+            "iou": 0.9503,
+            "boundary_f1": 0.9491
+          },
+          "axes_fitted": true,
+          "joined_turns": 13,
+          "changed_pixels": 4480,
+          "mean_error_degrees_by_world_axis": [
+            0.609,
+            0.694,
+            0.156
+          ],
+          "gap_probes": {
+            "eligible": 8,
+            "filled": 2
+          }
+        }
+      }
+    },
+    "dev-canopy-17-right": {
+      "group": "oblique",
+      "sha256": "c2170f48eaeb5e9795034297446fc2fdda92df28ec9a5737f485b527e92193c7",
+      "angle": "right",
+      "scores": {
+        "line_first": {
+          "outline": {
+            "iou": 0.9494,
+            "boundary_f1": 0.947
+          },
+          "gap_probes": {
+            "eligible": 12,
+            "filled": 1
+          }
+        },
+        "cube_turns": {
+          "outline": {
+            "iou": 0.9439,
+            "boundary_f1": 0.9408
+          },
+          "axes_fitted": true,
+          "joined_turns": 11,
+          "changed_pixels": 3947,
+          "mean_error_degrees_by_world_axis": [
+            0.154,
+            0.197,
+            0.086
+          ],
+          "gap_probes": {
+            "eligible": 12,
+            "filled": 1
+          }
+        }
+      }
+    },
+    "dev-relief-00-oblique-left": {
+      "group": "oblique",
+      "sha256": "e94cb8666e38682c89c766d5ceb2c25b4c7b85f471db64de0e8a6e021b618420",
+      "angle": "oblique-left",
+      "scores": {
+        "line_first": {
+          "outline": {
+            "iou": 0.9727,
+            "boundary_f1": 0.8446
+          },
+          "panels": {
+            "rows": [
+              {
+                "target": "panel-1",
+                "actual": "recess",
+                "decision": "unknown",
+                "iou": 0.865
+              },
+              {
+                "target": "panel-2",
+                "actual": "protrusion",
+                "decision": "flat",
+                "iou": 0.93
+              },
+              {
+                "target": "panel-3",
+                "actual": "flat",
+                "decision": "flat",
+                "iou": 0.944
+              },
+              {
+                "target": "panel-4",
+                "actual": "recess",
+                "decision": "unknown",
+                "iou": 0.669
+              },
+              {
+                "target": "panel-5",
+                "actual": "protrusion",
+                "decision": "missed",
+                "iou": 0.0
+              },
+              {
+                "target": "panel-6",
+                "actual": "flat",
+                "decision": "flat",
+                "iou": 0.945
+              },
+              {
+                "target": "panel-7",
+                "actual": "recess",
+                "decision": "unknown",
+                "iou": 0.896
+              },
+              {
+                "target": "panel-8",
+                "actual": "protrusion",
+                "decision": "unknown",
+                "iou": 0.574
+              },
+              {
+                "target": "panel-9",
+                "actual": "flat",
+                "decision": "flat",
+                "iou": 0.975
+              }
+            ],
+            "extra": {
+              "unknown": 14,
+              "recess": 4,
+              "protrusion": 1
+            }
+          }
+        },
+        "cube_turns": {
+          "outline": {
+            "iou": 0.9731,
+            "boundary_f1": 0.8431
+          },
+          "axes_fitted": true,
+          "joined_turns": 3,
+          "changed_pixels": 2964,
+          "mean_error_degrees_by_world_axis": [
+            0.047,
+            0.145,
+            0.413
+          ],
+          "panels": {
+            "rows": [
+              {
+                "target": "panel-1",
+                "actual": "recess",
+                "decision": "unknown",
+                "iou": 0.864
+              },
+              {
+                "target": "panel-2",
+                "actual": "protrusion",
+                "decision": "flat",
+                "iou": 0.93
+              },
+              {
+                "target": "panel-3",
+                "actual": "flat",
+                "decision": "flat",
+                "iou": 0.945
+              },
+              {
+                "target": "panel-4",
+                "actual": "recess",
+                "decision": "unknown",
+                "iou": 0.666
+              },
+              {
+                "target": "panel-5",
+                "actual": "protrusion",
+                "decision": "missed",
+                "iou": 0.0
+              },
+              {
+                "target": "panel-6",
+                "actual": "flat",
+                "decision": "flat",
+                "iou": 0.948
+              },
+              {
+                "target": "panel-7",
+                "actual": "recess",
+                "decision": "recess",
+                "iou": 0.878
+              },
+              {
+                "target": "panel-8",
+                "actual": "protrusion",
+                "decision": "unknown",
+                "iou": 0.574
+              },
+              {
+                "target": "panel-9",
+                "actual": "flat",
+                "decision": "flat",
+                "iou": 0.975
+              }
+            ],
+            "extra": {
+              "unknown": 16,
+              "recess": 1,
+              "protrusion": 1
+            }
+          }
+        }
+      }
+    },
+    "dev-relief-00-oblique-right": {
+      "group": "oblique",
+      "sha256": "17682203a4372c0a677e34f7da95c18cb82acde6d1b92363697905fb6a90f7f5",
+      "angle": "oblique-right",
+      "scores": {
+        "line_first": {
+          "outline": {
+            "iou": 0.9682,
+            "boundary_f1": 0.742
+          },
+          "panels": {
+            "rows": [
+              {
+                "target": "panel-1",
+                "actual": "recess",
+                "decision": "recess",
+                "iou": 0.882
+              },
+              {
+                "target": "panel-2",
+                "actual": "protrusion",
+                "decision": "unknown",
+                "iou": 0.923
+              },
+              {
+                "target": "panel-3",
+                "actual": "flat",
+                "decision": "unknown",
+                "iou": 0.948
+              },
+              {
+                "target": "panel-4",
+                "actual": "recess",
+                "decision": "unknown",
+                "iou": 0.888
+              },
+              {
+                "target": "panel-5",
+                "actual": "protrusion",
+                "decision": "protrusion",
+                "iou": 0.713
+              },
+              {
+                "target": "panel-6",
+                "actual": "flat",
+                "decision": "unknown",
+                "iou": 0.96
+              },
+              {
+                "target": "panel-7",
+                "actual": "recess",
+                "decision": "recess",
+                "iou": 0.957
+              },
+              {
+                "target": "panel-8",
+                "actual": "protrusion",
+                "decision": "unknown",
+                "iou": 0.701
+              },
+              {
+                "target": "panel-9",
+                "actual": "flat",
+                "decision": "flat",
+                "iou": 0.98
+              }
+            ],
+            "extra": {
+              "unknown": 12,
+              "protrusion": 4,
+              "recess": 1
+            }
+          }
+        },
+        "cube_turns": {
+          "outline": {
+            "iou": 0.9767,
+            "boundary_f1": 0.773
+          },
+          "axes_fitted": true,
+          "joined_turns": 4,
+          "changed_pixels": 4673,
+          "mean_error_degrees_by_world_axis": [
+            0.108,
+            0.066,
+            0.491
+          ],
+          "panels": {
+            "rows": [
+              {
+                "target": "panel-1",
+                "actual": "recess",
+                "decision": "unknown",
+                "iou": 0.88
+              },
+              {
+                "target": "panel-2",
+                "actual": "protrusion",
+                "decision": "protrusion",
+                "iou": 0.924
+              },
+              {
+                "target": "panel-3",
+                "actual": "flat",
+                "decision": "flat",
+                "iou": 0.931
+              },
+              {
+                "target": "panel-4",
+                "actual": "recess",
+                "decision": "unknown",
+                "iou": 0.919
+              },
+              {
+                "target": "panel-5",
+                "actual": "protrusion",
+                "decision": "unknown",
+                "iou": 0.737
+              },
+              {
+                "target": "panel-6",
+                "actual": "flat",
+                "decision": "unknown",
+                "iou": 0.96
+              },
+              {
+                "target": "panel-7",
+                "actual": "recess",
+                "decision": "recess",
+                "iou": 0.957
+              },
+              {
+                "target": "panel-8",
+                "actual": "protrusion",
+                "decision": "unknown",
+                "iou": 0.679
+              },
+              {
+                "target": "panel-9",
+                "actual": "flat",
+                "decision": "unknown",
+                "iou": 0.986
+              }
+            ],
+            "extra": {
+              "unknown": 17,
+              "protrusion": 1
+            }
+          }
+        }
+      }
+    },
+    "dev-canopy-03-front": {
+      "group": "open_canopies",
+      "sha256": "b6021d0e0070f79bb347013d41e16b1c2a5d0a2eda18f57443aac98eff8e65af",
+      "angle": "front",
+      "scores": {
+        "line_first": {
+          "outline": {
+            "iou": 0.8643,
+            "boundary_f1": 0.9051
+          },
+          "gap_probes": {
+            "eligible": 12,
+            "filled": 2
+          }
+        },
+        "cube_turns": {
+          "outline": {
+            "iou": 0.8666,
+            "boundary_f1": 0.907
+          },
+          "axes_fitted": true,
+          "joined_turns": 11,
+          "changed_pixels": 3054,
+          "mean_error_degrees_by_world_axis": [
+            0.016,
+            0.061,
+            0.592
+          ],
+          "gap_probes": {
+            "eligible": 12,
+            "filled": 2
+          }
+        }
+      }
+    },
+    "dev-canopy-03-left": {
+      "group": "open_canopies",
+      "sha256": "873a7e0a0175398c3d7f550b13c5702ad32dc9a6812d0e91ccc4a854e1336114",
+      "angle": "left",
+      "scores": {
+        "line_first": {
+          "outline": {
+            "iou": 0.9415,
+            "boundary_f1": 0.9674
+          },
+          "gap_probes": {
+            "eligible": 8,
+            "filled": 2
+          }
+        },
+        "cube_turns": {
+          "outline": {
+            "iou": 0.941,
+            "boundary_f1": 0.967
+          },
+          "axes_fitted": true,
+          "joined_turns": 11,
+          "changed_pixels": 4811,
+          "mean_error_degrees_by_world_axis": [
+            0.077,
+            0.022,
+            0.04
+          ],
+          "gap_probes": {
+            "eligible": 8,
+            "filled": 2
+          }
+        }
+      }
+    },
+    "dev-canopy-03-right": {
+      "group": "open_canopies",
+      "sha256": "11cbeab63a441f94cde6963f1ebee85e20bd39fbfe73b830ff6c4dabd7c72f03",
+      "angle": "right",
+      "scores": {
+        "line_first": {
+          "outline": {
+            "iou": 0.9384,
+            "boundary_f1": 0.9704
+          },
+          "gap_probes": {
+            "eligible": 12,
+            "filled": 1
+          }
+        },
+        "cube_turns": {
+          "outline": {
+            "iou": 0.934,
+            "boundary_f1": 0.9724
+          },
+          "axes_fitted": true,
+          "joined_turns": 13,
+          "changed_pixels": 4950,
+          "mean_error_degrees_by_world_axis": [
+            0.17,
+            0.242,
+            0.212
+          ],
+          "gap_probes": {
+            "eligible": 12,
+            "filled": 1
+          }
+        }
+      }
+    },
+    "dev-canopy-03-elevated": {
+      "group": "open_canopies",
+      "sha256": "83a9495da83bfe13142d37601e9e23e637af38aaee90b7df6482aa46766b5348",
+      "angle": "elevated",
+      "scores": {
+        "line_first": {
+          "outline": {
+            "iou": 0.5191,
+            "boundary_f1": 0.7228
+          },
+          "gap_probes": {
+            "eligible": 9,
+            "filled": 4
+          }
+        },
+        "cube_turns": {
+          "outline": {
+            "iou": 0.5108,
+            "boundary_f1": 0.7355
+          },
+          "axes_fitted": true,
+          "joined_turns": 6,
+          "changed_pixels": 4419,
+          "mean_error_degrees_by_world_axis": [
+            0.683,
+            0.472,
+            0.109
+          ],
+          "gap_probes": {
+            "eligible": 9,
+            "filled": 3
+          }
+        }
+      }
+    },
+    "dev-canopy-04-front": {
+      "group": "open_canopies",
+      "sha256": "c1900feb138a38a0312d423e5a532f94abcd1f4560b0ce62fcba19bc39849c0e",
+      "angle": "front",
+      "scores": {
+        "line_first": {
+          "outline": {
+            "iou": 0.8105,
+            "boundary_f1": 0.8279
+          },
+          "gap_probes": {
+            "eligible": 24,
+            "filled": 10
+          }
+        },
+        "cube_turns": {
+          "outline": {
+            "iou": 0.8136,
+            "boundary_f1": 0.8705
+          },
+          "axes_fitted": true,
+          "joined_turns": 11,
+          "changed_pixels": 4769,
+          "mean_error_degrees_by_world_axis": [
+            0.024,
+            0.054,
+            0.386
+          ],
+          "gap_probes": {
+            "eligible": 24,
+            "filled": 8
+          }
+        }
+      }
+    },
+    "dev-canopy-04-left": {
+      "group": "open_canopies",
+      "sha256": "a022d55bc7a0d3a4740622a82d146cf36903d6b8cc0099319d44e025d5fb1c87",
+      "angle": "left",
+      "scores": {
+        "line_first": {
+          "outline": {
+            "iou": 0.8668,
+            "boundary_f1": 0.9026
+          },
+          "gap_probes": {
+            "eligible": 20,
+            "filled": 6
+          }
+        },
+        "cube_turns": {
+          "outline": {
+            "iou": 0.8782,
+            "boundary_f1": 0.914
+          },
+          "axes_fitted": true,
+          "joined_turns": 12,
+          "changed_pixels": 5992,
+          "mean_error_degrees_by_world_axis": [
+            0.22,
+            0.219,
+            0.083
+          ],
+          "gap_probes": {
+            "eligible": 20,
+            "filled": 6
+          }
+        }
+      }
+    },
+    "dev-canopy-04-right": {
+      "group": "open_canopies",
+      "sha256": "0e94bf46bee6895fadd3644ddceef4db806dd2da0f2aa202bdf3f77063f9cdff",
+      "angle": "right",
+      "scores": {
+        "line_first": {
+          "outline": {
+            "iou": 0.8789,
+            "boundary_f1": 0.9201
+          },
+          "gap_probes": {
+            "eligible": 20,
+            "filled": 7
+          }
+        },
+        "cube_turns": {
+          "outline": {
+            "iou": 0.8836,
+            "boundary_f1": 0.9279
+          },
+          "axes_fitted": true,
+          "joined_turns": 11,
+          "changed_pixels": 5856,
+          "mean_error_degrees_by_world_axis": [
+            0.191,
+            0.236,
+            0.217
+          ],
+          "gap_probes": {
+            "eligible": 20,
+            "filled": 6
+          }
+        }
+      }
+    },
+    "dev-canopy-04-elevated": {
+      "group": "open_canopies",
+      "sha256": "03bcb26e84db77569dc35bc2627cd6a4cf36754a512336c76b02c31c6df4a4d7",
+      "angle": "elevated",
+      "scores": {
+        "line_first": {
+          "outline": {
+            "iou": 0.365,
+            "boundary_f1": 0.5358
+          },
+          "gap_probes": {
+            "eligible": 15,
+            "filled": 8
+          }
+        },
+        "cube_turns": {
+          "outline": {
+            "iou": 0.3632,
+            "boundary_f1": 0.5449
+          },
+          "axes_fitted": true,
+          "joined_turns": 5,
+          "changed_pixels": 3494,
+          "mean_error_degrees_by_world_axis": [
+            0.24,
+            0.128,
+            0.122
+          ],
+          "gap_probes": {
+            "eligible": 15,
+            "filled": 8
+          }
+        }
+      }
+    },
+    "dev-canopy-05-front": {
+      "group": "open_canopies",
+      "sha256": "dec458f32190a962055a20e4f77668ff2379ae8231139f7ddbb34ae5d43d124f",
+      "angle": "front",
+      "scores": {
+        "line_first": {
+          "outline": {
+            "iou": 0.7479,
+            "boundary_f1": 0.8147
+          },
+          "gap_probes": {
+            "eligible": 26,
+            "filled": 6
+          }
+        },
+        "cube_turns": {
+          "outline": {
+            "iou": 0.7507,
+            "boundary_f1": 0.822
+          },
+          "axes_fitted": true,
+          "joined_turns": 8,
+          "changed_pixels": 5860,
+          "mean_error_degrees_by_world_axis": [
+            0.067,
+            0.061,
+            0.847
+          ],
+          "gap_probes": {
+            "eligible": 26,
+            "filled": 6
+          }
+        }
+      }
+    },
+    "dev-canopy-05-left": {
+      "group": "open_canopies",
+      "sha256": "0faa090d168800f8b52758d5d0a00b3eaad37b555501e05eba7545851ec263a9",
+      "angle": "left",
+      "scores": {
+        "line_first": {
+          "outline": {
+            "iou": 0.7892,
+            "boundary_f1": 0.8676
+          },
+          "gap_probes": {
+            "eligible": 31,
+            "filled": 10
+          }
+        },
+        "cube_turns": {
+          "outline": {
+            "iou": 0.7935,
+            "boundary_f1": 0.872
+          },
+          "axes_fitted": true,
+          "joined_turns": 9,
+          "changed_pixels": 5170,
+          "mean_error_degrees_by_world_axis": [
+            0.12,
+            0.037,
+            0.049
+          ],
+          "gap_probes": {
+            "eligible": 31,
+            "filled": 8
+          }
+        }
+      }
+    },
+    "dev-canopy-05-right": {
+      "group": "open_canopies",
+      "sha256": "e847e09f0ce1c3abbdc187281155b037066631816a88a70872b720663f574f87",
+      "angle": "right",
+      "scores": {
+        "line_first": {
+          "outline": {
+            "iou": 0.7996,
+            "boundary_f1": 0.8123
+          },
+          "gap_probes": {
+            "eligible": 26,
+            "filled": 11
+          }
+        },
+        "cube_turns": {
+          "outline": {
+            "iou": 0.8014,
+            "boundary_f1": 0.8222
+          },
+          "axes_fitted": true,
+          "joined_turns": 10,
+          "changed_pixels": 5055,
+          "mean_error_degrees_by_world_axis": [
+            0.064,
+            0.061,
+            0.022
+          ],
+          "gap_probes": {
+            "eligible": 26,
+            "filled": 9
+          }
+        }
+      }
+    },
+    "dev-canopy-05-elevated": {
+      "group": "open_canopies",
+      "sha256": "d54ab3b2668d90a3f04f47ad083f92b032fca49b47e47452fecd039226b7fbac",
+      "angle": "elevated",
+      "scores": {
+        "line_first": {
+          "outline": {
+            "iou": 0.3354,
+            "boundary_f1": 0.5075
+          },
+          "gap_probes": {
+            "eligible": 12,
+            "filled": 11
+          }
+        },
+        "cube_turns": {
+          "outline": {
+            "iou": 0.3354,
+            "boundary_f1": 0.5075
+          },
+          "axes_fitted": false,
+          "joined_turns": 0,
+          "changed_pixels": 0,
+          "gap_probes": {
+            "eligible": 12,
+            "filled": 11
+          }
+        }
+      }
+    }
+  },
+  "flat_controls": {
+    "line_first": {
+      "dark-inlay-oblique-left": {
+        "recess": 7,
+        "unknown": 9
+      },
+      "dark-inlay-oblique-right": {
+        "flat": 1,
+        "protrusion": 8,
+        "unknown": 6
+      },
+      "physical-shade-oblique-left": {},
+      "physical-shade-oblique-right": {}
+    },
+    "cube_turns": {
+      "dark-inlay-oblique-left": {
+        "recess": 8,
+        "unknown": 11
+      },
+      "dark-inlay-oblique-right": {
+        "flat": 1,
+        "protrusion": 6,
+        "unknown": 8
+      },
+      "physical-shade-oblique-left": {
+        "unknown": 1
+      },
+      "physical-shade-oblique-right": {}
+    }
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "run": "count-01",
+  "published_source": {
+    "commit": "89d77cec84ecc7f295bc15213fda648b9667fc25",
+    "predictor_and_runner_sha256": "aa2d61f1b5e19ea36dcdc678f4bb92f435c12cd03def8a344ca0be0acdfeb390",
+    "source_dirty": false
+  },
+  "independent_source": {
+    "commit": "376fc0bcfb66a58dd99fa12c2fb1f54164ceecfb",
+    "predictor_and_runner_sha256": "9d0834e16a3b05ebfdafa3a61db757371c870b19e129119285d40b809da405a7",
+    "source_dirty": false
+  },
+  "independent_run": "independent-count-01",
+  "frames": 56,
+  "equal_predicted_surface_results": 600,
+  "equal_known_rectangle_results": 346,
+  "equal_minecraft_packs": 112,
+  "byte_identical_artifacts": {
+    "scores.json": "516c0b5d716a5d62464a1079c1022844455b05c8cabb161be6c29d54eaf01ea9",
+    "selection.json": "fa8f739370b1413a29042a37633db0f014a35d4bd22c4b4d4826dc91c15245a1",
+    "materials.json": "8ffe0a8d77df5ea18c884da13e491c61cab521ade02b48f07ec7a1ffd48e81a8",
+    "comparison.jpg": "c20b194a6f4704caaa1e6d9797849e77a68e955d06d4eceae00e092f29686c04",
+    "geometry-packs.zip": "ffbffabb6926d7c16eaf53344468cedd7df38c1bcfbe528fb075a9e634dc35e2",
+    "placed-geometry.json": "613e7aa7137be63c9f7f3a084932d87387ed9a9faa3ccaf4c4003f9df2c82007"
+  },
+  "extent_diagnostic_source": "0d00c8d",
+  "extent_totals": {
+    "eligible": 598,
+    "equal": 432,
+    "different": 166,
+    "touching_frame": 8,
+    "different_touching_frame": 8
+  },
+  "case_comparison": "All surface and reference-rectangle results identical after removing elapsed seconds. The independent verifier decoded coordinates and states in both arms."
+}

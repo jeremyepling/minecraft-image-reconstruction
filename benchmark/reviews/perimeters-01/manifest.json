@@ -1,0 +1,668 @@
+{
+  "run_id": "perimeters-01",
+  "code": {
+    "commit": "09541120f223ced43160d7d946a196cc6704a407",
+    "predictor_and_runner_sha256": "77cd1de09bccc5559fb41f6bd4d5b49c0263403de050b356c9854f9ba0a7afe7",
+    "source_dirty": false
+  },
+  "stage": "Surface Finder",
+  "version": "26.3",
+  "fixtures": {
+    "smooth_stone": "660d1e535ae134452bca903a9d7cbe8d37953927fa118d9ffb327afad0885bc2",
+    "light_gray_concrete": "321505e15563f8efc0da868baa27409837aaa474410a61f3513b3dac0030f066",
+    "surface_confirm_v1": "0a479a8264f2c0f714284928354ff6ff5f9729491709676f07e2033d25e48fc3",
+    "normal_confirm_v1": "61bdf3a89a505a8be3757efe480185bec9c1888a1c72ffb69ef0093623e27dda"
+  },
+  "models": {
+    "normal": {
+      "sha256": "24eacb5dc7a2c54c7bc98f7de085ffbed79ad006ea5b664c2c2cdc02ff3a52f0",
+      "pinned_source": "https://huggingface.co/Ruicheng/moge-2-vits-normal-onnx/resolve/e50ffda41565591092adea54c6ac83d6212e1e23/model.onnx"
+    },
+    "depth": {
+      "sha256": "fcf51f1b230362b28690bb9d1809bf0431f29cad20534e3f589bd7285547f20d",
+      "pinned_source": "https://huggingface.co/onnx-community/depth-anything-v2-small/resolve/34f40a4c93991327074907b51792dbc27e7d6f1c/onnx/model_uint8.onnx"
+    }
+  },
+  "capture": {
+    "clock_ticks": 6000,
+    "raining": false,
+    "thundering": false,
+    "resource_packs": [
+      "vanilla"
+    ],
+    "hud_hidden": true,
+    "image_size": [
+      1440,
+      900
+    ]
+  },
+  "reference_sha256": "91efa6d3e992b1a68672eae1fdd6d380e87724742a1a4b6cbe5f84d284f731a1",
+  "baseline_manifest_sha256": "d5d84bca39a3b7b74d483d3f60627931f58d494995f40fe55523215ef5ce4c49",
+  "review_source_manifest_sha256": "00e7f40243a86d6aed2c397c65f91a96fd830ace76901d8800c85362ae9a8f5f",
+  "methods": [
+    "regions-first",
+    "color-edges",
+    "depth-split"
+  ],
+  "settings": {
+    "color-edges": {
+      "radius": 3,
+      "blur": 0.7,
+      "color_step": 6.0,
+      "change_cost": 1.5,
+      "iterations": 12,
+      "minimum_boundary_contrast": 10.0,
+      "minimum_contrast_gain": 3.0,
+      "units": "analysis-mask samples",
+      "method": "color-guided-boundary"
+    },
+    "depth-split": {
+      "min_child_area": 96,
+      "min_child_fraction": 0.06,
+      "min_core_coverage": 0.92,
+      "min_shared_edge": 12,
+      "min_step": 0.008,
+      "min_local_step": 0.003,
+      "min_rgb_jump": 7.0,
+      "min_joint_fraction": 0.5,
+      "sample_radius": 5
+    },
+    "scoring": {
+      "iou": 0.5,
+      "sample_stride": 4,
+      "boundary_tolerance_px": 8,
+      "corner_tolerance_px": 12,
+      "contour_simplification_px": 6,
+      "minimum_corner_turn_deg": 30,
+      "minimum_contact_samples": 2,
+      "contact_depth_blocks": 0.5,
+      "filled_gap_fraction": 0.5
+    }
+  },
+  "selection": {
+    "selected": "color-edges",
+    "rule": "Choose on shopfront and wing, weighting each layout equally. Require either a 0.10 pixel reduction in mean edge error or a 0.01 gain in surface F1. Allow at most 0.10 pixels worse edge error, 0.002 lower F1, 0.002 lower assigned pixel fraction and 0.003 higher opening fill. Among qualifying candidates prioritize F1, then lower boundary error.",
+    "ratings": {
+      "regions-first": {
+        "edge_error_px": 6.692057361997001,
+        "f1": 0.7005801687763713,
+        "assigned_fraction": 0.74680714355114,
+        "opening_fill": 0.033645276292335116
+      },
+      "color-edges": {
+        "edge_error_px": 6.543651208648001,
+        "f1": 0.7005801687763713,
+        "assigned_fraction": 0.7475287307871565,
+        "opening_fill": 0.033645276292335116
+      },
+      "depth-split": {
+        "edge_error_px": 6.661528333524135,
+        "f1": 0.7033982877251956,
+        "assigned_fraction": 0.7504056664611078,
+        "opening_fill": 0.033645276292335116
+      }
+    }
+  },
+  "aggregate": {
+    "regions-first": {
+      "eligible": 598,
+      "proposed": 600,
+      "matched": 394,
+      "unmatched_overlaps_small_surface": 21,
+      "unmatched_mostly_background": 85,
+      "unmatched_fragment_or_mixed": 100,
+      "eligible_pixels": 1132348,
+      "correct_pixels": 959011,
+      "wrong_plane_pixels": 147322,
+      "unclaimed_pixels": 26015,
+      "background_claimed": 15815,
+      "opening_pixels": 16630,
+      "opening_filled": 650,
+      "gaps": 98,
+      "gaps_half_filled": 12,
+      "real_connections": 606,
+      "proposed_connections": 841,
+      "correct_connections": 271,
+      "edge_true": 78006,
+      "edge_proposed": 80105,
+      "edge_distance_sum": 750843.893040951,
+      "edge_distance_count": 108155,
+      "edge_true_near": 49462,
+      "edge_proposed_near": 49612,
+      "corner_true": 2824,
+      "corner_proposed": 3833,
+      "corner_distance_sum": 73824.68763391385,
+      "corner_distance_count": 4192,
+      "corner_true_near": 1619,
+      "corner_proposed_near": 1710,
+      "f1": 0.657762938230384,
+      "assigned_fraction": 0.8469225008566271,
+      "opening_fill": 0.039085989176187615,
+      "edge_error_px": 6.94229479026352,
+      "edge_recall": 0.6340794297874522,
+      "edge_precision": 0.6193371200299607,
+      "corner_error_px": 17.61085105770846,
+      "corner_recall": 0.5733002832861189,
+      "corner_precision": 0.44612575006522304
+    },
+    "color-edges": {
+      "eligible": 598,
+      "proposed": 600,
+      "matched": 398,
+      "unmatched_overlaps_small_surface": 21,
+      "unmatched_mostly_background": 86,
+      "unmatched_fragment_or_mixed": 95,
+      "eligible_pixels": 1132348,
+      "correct_pixels": 959882,
+      "wrong_plane_pixels": 146721,
+      "unclaimed_pixels": 25745,
+      "background_claimed": 12637,
+      "opening_pixels": 16630,
+      "opening_filled": 601,
+      "gaps": 98,
+      "gaps_half_filled": 12,
+      "real_connections": 606,
+      "proposed_connections": 839,
+      "correct_connections": 274,
+      "edge_true": 78006,
+      "edge_proposed": 78565,
+      "edge_distance_sum": 741392.1462909569,
+      "edge_distance_count": 108481,
+      "edge_true_near": 49624,
+      "edge_proposed_near": 49645,
+      "corner_true": 2824,
+      "corner_proposed": 3788,
+      "corner_distance_sum": 73819.11839921743,
+      "corner_distance_count": 4203,
+      "corner_true_near": 1627,
+      "corner_proposed_near": 1719,
+      "f1": 0.664440734557596,
+      "assigned_fraction": 0.847691699018323,
+      "opening_fill": 0.03613950691521347,
+      "edge_error_px": 6.83430412967208,
+      "edge_recall": 0.6361561931133503,
+      "edge_precision": 0.6318971552217909,
+      "corner_error_px": 17.563435260342,
+      "corner_recall": 0.5761331444759207,
+      "corner_precision": 0.4538014783526927
+    },
+    "depth-split": {
+      "eligible": 598,
+      "proposed": 613,
+      "matched": 406,
+      "unmatched_overlaps_small_surface": 21,
+      "unmatched_mostly_background": 85,
+      "unmatched_fragment_or_mixed": 101,
+      "eligible_pixels": 1132348,
+      "correct_pixels": 975165,
+      "wrong_plane_pixels": 131168,
+      "unclaimed_pixels": 26015,
+      "background_claimed": 15815,
+      "opening_pixels": 16630,
+      "opening_filled": 650,
+      "gaps": 98,
+      "gaps_half_filled": 12,
+      "real_connections": 606,
+      "proposed_connections": 869,
+      "correct_connections": 285,
+      "edge_true": 78006,
+      "edge_proposed": 81307,
+      "edge_distance_sum": 700221.3619800628,
+      "edge_distance_count": 111672,
+      "edge_true_near": 51380,
+      "edge_proposed_near": 51582,
+      "corner_true": 2824,
+      "corner_proposed": 3890,
+      "corner_distance_sum": 72978.01192287238,
+      "corner_distance_count": 4328,
+      "corner_true_near": 1678,
+      "corner_proposed_near": 1775,
+      "f1": 0.6705202312138728,
+      "assigned_fraction": 0.8611884332378386,
+      "opening_fill": 0.039085989176187615,
+      "edge_error_px": 6.2703395836025395,
+      "edge_recall": 0.6586672820039484,
+      "edge_precision": 0.6344103213745435,
+      "corner_error_px": 16.861832699369774,
+      "corner_recall": 0.5941926345609065,
+      "corner_precision": 0.45629820051413883
+    }
+  },
+  "frames": [
+    {
+      "key": "smooth_stone/dev-shopfront-masonry-high-right",
+      "sha256": "f15cd0e471a9a2e375c9f801df171bb8f5ee44d95374f02f1174c7938a94cc79",
+      "layout": "shopfront",
+      "cohort": "development"
+    },
+    {
+      "key": "light_gray_concrete/dev-shopfront-masonry-high-right",
+      "sha256": "bb588b0b0d1cdb05b720ff5bc3b515479426c7772fd98fb7fadb8a55b79ca9db",
+      "layout": "shopfront",
+      "cohort": "development"
+    },
+    {
+      "key": "smooth_stone/dev-shopfront-masonry-low-left",
+      "sha256": "17691e7909ee0e9384db83c3a729f8763e21a281eb89b8dcebe61fc7675d1405",
+      "layout": "shopfront",
+      "cohort": "development"
+    },
+    {
+      "key": "light_gray_concrete/dev-shopfront-masonry-low-left",
+      "sha256": "0359c24dea1b318ec9cd002a1523ae8fc0d7d59fc9d7418972cf9ce9af8d4d57",
+      "layout": "shopfront",
+      "cohort": "development"
+    },
+    {
+      "key": "smooth_stone/dev-shopfront-plaster-high-right",
+      "sha256": "ae58f28554348d924798e23bd492b88db06c2a099f590e325c514ecc5c8f9c7e",
+      "layout": "shopfront",
+      "cohort": "development"
+    },
+    {
+      "key": "light_gray_concrete/dev-shopfront-plaster-high-right",
+      "sha256": "4cc1d5687db72eef74f23fc291fb7916b3f481ed4998d9e1c850024039d38cce",
+      "layout": "shopfront",
+      "cohort": "development"
+    },
+    {
+      "key": "smooth_stone/dev-shopfront-plaster-low-left",
+      "sha256": "5d0c9120de4ca16f35758f90a31e176e50a3cf166358dd9833ee2213d1ff2f72",
+      "layout": "shopfront",
+      "cohort": "development"
+    },
+    {
+      "key": "light_gray_concrete/dev-shopfront-plaster-low-left",
+      "sha256": "299e0228de74d2cc7d3a18deaba9f61c82560a0ddd0b8557e5c91728c964a993",
+      "layout": "shopfront",
+      "cohort": "development"
+    },
+    {
+      "key": "smooth_stone/dev-wing-masonry-close-front",
+      "sha256": "9ce65a1c07694c1d3e57019c07b422d7a6a0771ed0d46f579891eae8a61463a9",
+      "layout": "wing",
+      "cohort": "development"
+    },
+    {
+      "key": "light_gray_concrete/dev-wing-masonry-close-front",
+      "sha256": "9ce65a1c07694c1d3e57019c07b422d7a6a0771ed0d46f579891eae8a61463a9",
+      "layout": "wing",
+      "cohort": "development"
+    },
+    {
+      "key": "smooth_stone/dev-wing-masonry-high-right",
+      "sha256": "8cd9e20f608db25df6d141941051d30afcbf80733ea4c6f2058874c02019bf9f",
+      "layout": "wing",
+      "cohort": "development"
+    },
+    {
+      "key": "light_gray_concrete/dev-wing-masonry-high-right",
+      "sha256": "5ccd9115fd2a70784e0e1ab6819d37fc5c4af54cf965605143b3817e1f3a3efd",
+      "layout": "wing",
+      "cohort": "development"
+    },
+    {
+      "key": "smooth_stone/dev-wing-masonry-low-left",
+      "sha256": "0c7bc49ce3c736391d7954a9c069aee29586f03fd33a2a88926b40257ccae6ce",
+      "layout": "wing",
+      "cohort": "development"
+    },
+    {
+      "key": "light_gray_concrete/dev-wing-masonry-low-left",
+      "sha256": "4e8817361e24c3f05e835d7af6c8bab3da96d50c8821828144f33bb1ea0e87d3",
+      "layout": "wing",
+      "cohort": "development"
+    },
+    {
+      "key": "smooth_stone/dev-wing-plaster-close-front",
+      "sha256": "b3154136e855e9d005a993b8afdb3989e3fb156b102aed46ce0d99e761d2f2b8",
+      "layout": "wing",
+      "cohort": "development"
+    },
+    {
+      "key": "light_gray_concrete/dev-wing-plaster-close-front",
+      "sha256": "b3154136e855e9d005a993b8afdb3989e3fb156b102aed46ce0d99e761d2f2b8",
+      "layout": "wing",
+      "cohort": "development"
+    },
+    {
+      "key": "smooth_stone/dev-wing-plaster-high-right",
+      "sha256": "49832e903f4455c88c44f51da20abc550516d208783af9e3d05edc85ff4116a9",
+      "layout": "wing",
+      "cohort": "development"
+    },
+    {
+      "key": "light_gray_concrete/dev-wing-plaster-high-right",
+      "sha256": "64d4fec367d669912de294146c1fa3e0bf871816ec4f52e57213e35db2968564",
+      "layout": "wing",
+      "cohort": "development"
+    },
+    {
+      "key": "smooth_stone/dev-wing-plaster-low-left",
+      "sha256": "b564e5c3bb2def9511c27cf483dbb01dbe760b1bce8b6060be578c97b2083019",
+      "layout": "wing",
+      "cohort": "development"
+    },
+    {
+      "key": "light_gray_concrete/dev-wing-plaster-low-left",
+      "sha256": "b1aa96442f2858b5435fc9af424de374ffafbade3cc74d059b85b6c1bfd7e13c",
+      "layout": "wing",
+      "cohort": "development"
+    },
+    {
+      "key": "smooth_stone/holdout-courtyard-masonry-close-front",
+      "sha256": "655531c2d8fecce752ea93fac3aa6a6e4429bb7ce8a629cb409532583694c678",
+      "layout": "courtyard",
+      "cohort": "previously_reviewed_regression"
+    },
+    {
+      "key": "light_gray_concrete/holdout-courtyard-masonry-close-front",
+      "sha256": "655531c2d8fecce752ea93fac3aa6a6e4429bb7ce8a629cb409532583694c678",
+      "layout": "courtyard",
+      "cohort": "previously_reviewed_regression"
+    },
+    {
+      "key": "smooth_stone/holdout-courtyard-masonry-high-right",
+      "sha256": "252fa7c481e990bbbada46717d6e10c6b66c4f9c65846b94a94cd1b40cea0fcd",
+      "layout": "courtyard",
+      "cohort": "previously_reviewed_regression"
+    },
+    {
+      "key": "light_gray_concrete/holdout-courtyard-masonry-high-right",
+      "sha256": "b5b2bb5300687da8d904fb129043b5d2df0ae56e9ba4e14afb932b3e6d44dd3b",
+      "layout": "courtyard",
+      "cohort": "previously_reviewed_regression"
+    },
+    {
+      "key": "smooth_stone/holdout-courtyard-masonry-low-left",
+      "sha256": "c80356e1b7d96bdc796ed982f09ed908059399d23fe98c873eecbb6e623a4216",
+      "layout": "courtyard",
+      "cohort": "previously_reviewed_regression"
+    },
+    {
+      "key": "light_gray_concrete/holdout-courtyard-masonry-low-left",
+      "sha256": "5b0b16edd7e5207c275e3277db0d65620891c50024735061783d4a175957ff9a",
+      "layout": "courtyard",
+      "cohort": "previously_reviewed_regression"
+    },
+    {
+      "key": "smooth_stone/holdout-courtyard-plaster-close-front",
+      "sha256": "319503ad2c8fbdc7f33f283d4e35b0f3abe43684bdd8341ace1ac1745696abee",
+      "layout": "courtyard",
+      "cohort": "previously_reviewed_regression"
+    },
+    {
+      "key": "light_gray_concrete/holdout-courtyard-plaster-close-front",
+      "sha256": "319503ad2c8fbdc7f33f283d4e35b0f3abe43684bdd8341ace1ac1745696abee",
+      "layout": "courtyard",
+      "cohort": "previously_reviewed_regression"
+    },
+    {
+      "key": "smooth_stone/holdout-courtyard-plaster-high-right",
+      "sha256": "7152899302d1721578a01412063a0cafc072986ba9a4acb5c03aa5ecbdde05f1",
+      "layout": "courtyard",
+      "cohort": "previously_reviewed_regression"
+    },
+    {
+      "key": "light_gray_concrete/holdout-courtyard-plaster-high-right",
+      "sha256": "de9e33d3bdb1f64318fbc1dec03fef52cde19a331c90fd1f7bb0b7a322b3bd94",
+      "layout": "courtyard",
+      "cohort": "previously_reviewed_regression"
+    },
+    {
+      "key": "smooth_stone/holdout-courtyard-plaster-low-left",
+      "sha256": "c8129500a7c473e23666de5470d535f650fb1ac61ae8dcb702f09707ba68949f",
+      "layout": "courtyard",
+      "cohort": "previously_reviewed_regression"
+    },
+    {
+      "key": "light_gray_concrete/holdout-courtyard-plaster-low-left",
+      "sha256": "1995d3af4ecbdd7b22bc4ada179009147a5b389379edd6142b99dcaa6446d9c0",
+      "layout": "courtyard",
+      "cohort": "previously_reviewed_regression"
+    },
+    {
+      "key": "smooth_stone/holdout-portico-masonry-high-right",
+      "sha256": "54819d55b59d36a91e891bf2ff6148104d917d5ca59084f4f73edc43d623e390",
+      "layout": "portico",
+      "cohort": "previously_reviewed_regression"
+    },
+    {
+      "key": "light_gray_concrete/holdout-portico-masonry-high-right",
+      "sha256": "f6c57a6cca3c952e2134e27f6ca75816487c4817800f504acaa6aa0240a24329",
+      "layout": "portico",
+      "cohort": "previously_reviewed_regression"
+    },
+    {
+      "key": "smooth_stone/holdout-portico-masonry-low-left",
+      "sha256": "eb35fef82a3ed8b7f34c39d7be768ae94123884428038310ea19e578228d83be",
+      "layout": "portico",
+      "cohort": "previously_reviewed_regression"
+    },
+    {
+      "key": "light_gray_concrete/holdout-portico-masonry-low-left",
+      "sha256": "00daa00ce6d344d9c00205a65b67ed60af6e0f908e1993e842417450928e55b5",
+      "layout": "portico",
+      "cohort": "previously_reviewed_regression"
+    },
+    {
+      "key": "smooth_stone/holdout-portico-plaster-high-right",
+      "sha256": "fb687c20c5df87e79d9dd17ce48566c7f9fca2a092234bedff15fbe3f83b2e8c",
+      "layout": "portico",
+      "cohort": "previously_reviewed_regression"
+    },
+    {
+      "key": "light_gray_concrete/holdout-portico-plaster-high-right",
+      "sha256": "fbe284f3ab8d1e0d517c81853c4a6121d359eb023c6f9882769d27605edb9b84",
+      "layout": "portico",
+      "cohort": "previously_reviewed_regression"
+    },
+    {
+      "key": "smooth_stone/holdout-portico-plaster-low-left",
+      "sha256": "8f7b6cf572ea617a0efa47c002f4f9221df201dcde9d20595a10fb2915228445",
+      "layout": "portico",
+      "cohort": "previously_reviewed_regression"
+    },
+    {
+      "key": "light_gray_concrete/holdout-portico-plaster-low-left",
+      "sha256": "318e6e654ece8e6ab93aea0fa5c0cccecdb727faf743b5fbb5eb31da2f2b05f2",
+      "layout": "portico",
+      "cohort": "previously_reviewed_regression"
+    },
+    {
+      "key": "light_gray_concrete/holdout-workshop-masonry-low-left",
+      "sha256": "ae86fd9911640c7397bc929d3e0ca1076d84312b5500712cf2c4ec25e7c9112f",
+      "layout": "workshop",
+      "cohort": "previously_reviewed_regression"
+    },
+    {
+      "key": "light_gray_concrete/holdout-workshop-masonry-high-right",
+      "sha256": "3aefcb242fdda8a6d4c40adb9a7d2632c8de998b076b1d4ec09a100db95119d4",
+      "layout": "workshop",
+      "cohort": "previously_reviewed_regression"
+    },
+    {
+      "key": "light_gray_concrete/holdout-workshop-plaster-low-left",
+      "sha256": "91c686215bb3105c779a45302ed5b43bf16a2faa32fbfe1f0f2be10f0e161c42",
+      "layout": "workshop",
+      "cohort": "previously_reviewed_regression"
+    },
+    {
+      "key": "light_gray_concrete/holdout-workshop-plaster-high-right",
+      "sha256": "d35ab308820f92501ec898cafb1f50939f3f0ed1141e3d9ee38a00eae1199aa0",
+      "layout": "workshop",
+      "cohort": "previously_reviewed_regression"
+    },
+    {
+      "key": "light_gray_concrete/holdout-crossing-masonry-low-left",
+      "sha256": "93c9a45dbb4d6bc59edc6c18ac8007ad4f99ac340844cb0ed8f171640936fa88",
+      "layout": "crossing",
+      "cohort": "previously_reviewed_regression"
+    },
+    {
+      "key": "light_gray_concrete/holdout-crossing-masonry-high-right",
+      "sha256": "7ea5b36aa3c25b3ab4c58dcb773d8c3476c5f2d28048fd72a62970888be31320",
+      "layout": "crossing",
+      "cohort": "previously_reviewed_regression"
+    },
+    {
+      "key": "light_gray_concrete/holdout-crossing-plaster-low-left",
+      "sha256": "d348ddef0010267fdffc0d628654ef6ce256329400dec3e1cfd271bfaf764144",
+      "layout": "crossing",
+      "cohort": "previously_reviewed_regression"
+    },
+    {
+      "key": "light_gray_concrete/holdout-crossing-plaster-high-right",
+      "sha256": "a7e9cd44bd97237bd3cbf88b11fdfa3575deee7473ef820b30e19bc5fe37698e",
+      "layout": "crossing",
+      "cohort": "previously_reviewed_regression"
+    },
+    {
+      "key": "light_gray_concrete/holdout-registry-masonry-low-left",
+      "sha256": "3f7e9e1b5d577667b157664dd3f37a40e8c7e64a3db0d60ac6c30b294d2ba9e6",
+      "layout": "registry",
+      "cohort": "previously_reviewed_regression"
+    },
+    {
+      "key": "light_gray_concrete/holdout-registry-masonry-high-right",
+      "sha256": "e20bfd5e2588ed117375acb3e2f7c42cebb2fdd1ab7167caf35b0b4298a98e19",
+      "layout": "registry",
+      "cohort": "previously_reviewed_regression"
+    },
+    {
+      "key": "light_gray_concrete/holdout-registry-plaster-low-left",
+      "sha256": "23e91937ee67563c1c4a463676a43c7d4800f82581a3188aa7125e32001be5e9",
+      "layout": "registry",
+      "cohort": "previously_reviewed_regression"
+    },
+    {
+      "key": "light_gray_concrete/holdout-registry-plaster-high-right",
+      "sha256": "8634b14394486c2fb709ea678008fbaf2314344280b5a13d3582d433125d589d",
+      "layout": "registry",
+      "cohort": "previously_reviewed_regression"
+    },
+    {
+      "key": "light_gray_concrete/holdout-galleries-masonry-low-left",
+      "sha256": "d0fba67900a91a20d0120f298c8783829953bc21c7d45fb4413a8cb829cfddc3",
+      "layout": "galleries",
+      "cohort": "previously_reviewed_regression"
+    },
+    {
+      "key": "light_gray_concrete/holdout-galleries-masonry-high-right",
+      "sha256": "21916862012e6b47e6dbe426fd7a8930bd7fdd51651238d8ad4d3e8860f57a7b",
+      "layout": "galleries",
+      "cohort": "previously_reviewed_regression"
+    },
+    {
+      "key": "light_gray_concrete/holdout-galleries-plaster-low-left",
+      "sha256": "0fec6765b63937520e2a731a9171eef73e631ce1d47734e3925e2165b64a26c0",
+      "layout": "galleries",
+      "cohort": "previously_reviewed_regression"
+    },
+    {
+      "key": "light_gray_concrete/holdout-galleries-plaster-high-right",
+      "sha256": "a40a75765e0d99508a283686b4484a510d8ca0404656939017fb6d4a85f49832",
+      "layout": "galleries",
+      "cohort": "previously_reviewed_regression"
+    }
+  ],
+  "artifacts": {
+    "cases.json": "b5fb9d1adce05c83b6191ca48be9046b713e074036b55ac57a58716510d937c6",
+    "comparison.jpg": "a7f1c0e664450c44795eb60d69a5052ef2abee9c13451a8ada5adb37b8450ee6",
+    "context-margins.json": "7a8a282e13094666beecd60a0d13a417d110073e092f63a685bae3944bc5276c",
+    "edge-closeups.jpg": "6acfcf5d38ff0eb6086bf1439171552292daabfc58328da6854d64a0852669ec",
+    "edge-closeups.json": "bd6cf1aa5a6fa3b1527d436dfc16ea7b56904b4fa57350632a2319dc17f88fe5",
+    "pipeline-rows.json": "48ce504e3305b3aca988762a3d8988e69f27b41849147c7d784b215661986a8d",
+    "report.html": "41faea0d03bdf504726f06058943c0fb0e04d94c54b3d25dc8b70fa452b83eb5",
+    "scores.json": "5e83117c2e3b683fa94dfad0727b3021307b0445d653f0e742714271050b93b8",
+    "selection.json": "1ec14f0f643ae833d56425f73bfbc06f88bdf6362df51b135a406a9a24f1b2a4",
+    "count-context/cases.json": "32b7524eaa27a0e6073d5380549aa6aa725a48fc7ce7148e3aed24afa2e317ec",
+    "count-context/manifest.json": "0d1e80ab8fa278a5d36c3ed108926f328f511a6b943daad518d093de69db8c27",
+    "count-context/scores.json": "96d4211ba55311de8126381e200f578d45ade76e93658840b03baa9ac13d1136",
+    "crops/courtyard/context.png": "fa045335c6b165f7ec8df17f256a5e2c5b9e7e3f6b97f6467680ad2d60726348",
+    "crops/courtyard/surface.png": "84011f0c98782c9dce51cf298b0f8f23ab71191479514ffb04ec4294891c50f9",
+    "crops/registry/context.png": "4d8779978f6c3b3be4283048bc9cdb3ae4cbd7ef8e22e28d1515ec6027b06401",
+    "crops/registry/surface.png": "00b9860be40d106fea15624942fd8de4f478ca20ebbb06213cab5310e4f07946",
+    "crops/workshop/context.png": "3d999e8b8748b88561365611981d502f3280ce29f82460ed85ab83513745a931",
+    "crops/workshop/surface.png": "06d152c9dc80db432701612c003d228b5587512b2d1c2676b8f6a616cb3c2e96",
+    "predictions/light_gray_concrete/dev-shopfront-masonry-high-right.json.gz": "ae8ed584c4d1923e1a2e0415c263287f910a93168cf84c43b8ea516c9f7ba93a",
+    "predictions/light_gray_concrete/dev-shopfront-masonry-low-left.json.gz": "38cdafc89ec1e167d3434b7863e753d7bbdc1d78b2a99b1aa50d372600c2eac0",
+    "predictions/light_gray_concrete/dev-shopfront-plaster-high-right.json.gz": "72057648bf10a7a4fa3ad472c4e780c2455db32ca6d7f083c3053cb3ff25a981",
+    "predictions/light_gray_concrete/dev-shopfront-plaster-low-left.json.gz": "b3fa47f66f9fe5e165020008eac63df855689e08be6b3c443c123f656638659a",
+    "predictions/light_gray_concrete/dev-wing-masonry-close-front.json.gz": "43bfcb7319399b0677938cb08babd2c102334d0f8c4d9afeb5dfb902d28b775a",
+    "predictions/light_gray_concrete/dev-wing-masonry-high-right.json.gz": "2b07ff85ce96e8eb590ccd879ebf0138c7889a8077768317be973531f8183cf5",
+    "predictions/light_gray_concrete/dev-wing-masonry-low-left.json.gz": "f80af9e327f1aa4f2f342e987246df46ccffa9118052b0329d643c7aeaa77c2c",
+    "predictions/light_gray_concrete/dev-wing-plaster-close-front.json.gz": "adeda75c01a7e1b548b5ff45fea310d054def253949691db159d91fe3347e757",
+    "predictions/light_gray_concrete/dev-wing-plaster-high-right.json.gz": "21bbfbf3edaedea0005799c1040dc70cd3ee964a1452adbccfe1bb20c35880cb",
+    "predictions/light_gray_concrete/dev-wing-plaster-low-left.json.gz": "caafdaa3e35bcf665c404136cbc574ce1c51392a9a7515e32af6c3341bec1717",
+    "predictions/light_gray_concrete/holdout-courtyard-masonry-close-front.json.gz": "e075a45a32d522508a5f43ab05a72a0aedd9dce767c5f2828ca1da5036171857",
+    "predictions/light_gray_concrete/holdout-courtyard-masonry-high-right.json.gz": "39e78a137b2ab5eee1d9eb44346384733e3695cb7193c222b1aad6cf0d737417",
+    "predictions/light_gray_concrete/holdout-courtyard-masonry-low-left.json.gz": "d257167afb711a9efa69cdb551e6a4d467085e08f1ac048aed10e7baad62a844",
+    "predictions/light_gray_concrete/holdout-courtyard-plaster-close-front.json.gz": "953cf7eacac059be764dd784191ebeffe73ea8fd9998efc545bd5da48bb98768",
+    "predictions/light_gray_concrete/holdout-courtyard-plaster-high-right.json.gz": "f196fb55e3fd6d533650c21bcf74bd39afcc11226ba9d9a08377d84798b838fd",
+    "predictions/light_gray_concrete/holdout-courtyard-plaster-low-left.json.gz": "381b8d91a5fbedcaa6aa1c1dff98eca4814ca0ccc9dfa31bb9b8110241ee3e0a",
+    "predictions/light_gray_concrete/holdout-crossing-masonry-high-right.json.gz": "84d0ec1a3d3a19e2949416267e1ffd16fb31fc4abec23707ea10c279b59ee62e",
+    "predictions/light_gray_concrete/holdout-crossing-masonry-low-left.json.gz": "84e52dca9d72779fa5891121789541cd913655c4301fe5e88c44dfad95bc6550",
+    "predictions/light_gray_concrete/holdout-crossing-plaster-high-right.json.gz": "7d7ac0ad9a57edf62d8c9c2a223cf49338cd3246c9a831d70647171738ed96ae",
+    "predictions/light_gray_concrete/holdout-crossing-plaster-low-left.json.gz": "8cd88fcb963a0395f0e34ec39aa7df7f43264b2ff23f047fc7b1eeb3474f46b3",
+    "predictions/light_gray_concrete/holdout-galleries-masonry-high-right.json.gz": "bc4a74dcb74b0080e9f3d389f99df95e23c4a17af45d6c87fed4b839ffb61119",
+    "predictions/light_gray_concrete/holdout-galleries-masonry-low-left.json.gz": "f4b8ceaf2f4c405d93aa972ee070f4cd7e55b3df44082bbaa8483f389d3b6e38",
+    "predictions/light_gray_concrete/holdout-galleries-plaster-high-right.json.gz": "0fbcb17dc8167991a4b840078c6b8a82dca611226e42b652cbca1477584c2b52",
+    "predictions/light_gray_concrete/holdout-galleries-plaster-low-left.json.gz": "06c65def59c68d3b99e7d4b0554e317521d9357e429488efd5feed0502a5ed6b",
+    "predictions/light_gray_concrete/holdout-portico-masonry-high-right.json.gz": "085e241516c9dba4513d267680e31789aa01b40b8476cb44532a0d2df9fafd6c",
+    "predictions/light_gray_concrete/holdout-portico-masonry-low-left.json.gz": "84cac69b87337a5e941fcf24ba0b6bf6780b24304bb5d2f01992b13ccad7a6a3",
+    "predictions/light_gray_concrete/holdout-portico-plaster-high-right.json.gz": "38c33f3e7a532718f2f85af328bbd828d2363b4afc52272d677eafd57684fca7",
+    "predictions/light_gray_concrete/holdout-portico-plaster-low-left.json.gz": "97aebf9dd7a5b2d18a86cfbbb6da50d5e02993555267a2ac7cb98c79b2722932",
+    "predictions/light_gray_concrete/holdout-registry-masonry-high-right.json.gz": "a72e30fefd8b1b0a37df590249b9a8fc1de84ee43dd891fac67bb73c01118d5c",
+    "predictions/light_gray_concrete/holdout-registry-masonry-low-left.json.gz": "6a84a12e824de3b2cba01e350cf856137b5cffb1673771816ba2c983bf181f41",
+    "predictions/light_gray_concrete/holdout-registry-plaster-high-right.json.gz": "3396188c6ecb1ee8cf5af37450f93c5de2e14c6dcd3f7b668d985755bdb0b381",
+    "predictions/light_gray_concrete/holdout-registry-plaster-low-left.json.gz": "5cfff900e3d486e8fb4fc1709682197c38af5a9364e88ac9873cab0010319173",
+    "predictions/light_gray_concrete/holdout-workshop-masonry-high-right.json.gz": "4d11986c3202fe4eb72eb427a3a7c202267b1d94d89295a78b0c53efed10434b",
+    "predictions/light_gray_concrete/holdout-workshop-masonry-low-left.json.gz": "3e1fea250218a677a26357b1065720a74aca2137c398961aca9f3fee14bd876b",
+    "predictions/light_gray_concrete/holdout-workshop-plaster-high-right.json.gz": "69e2657ae1cb84c3dff3b7155d494c0ef612b3bc4230871a29eaa7b50cb709da",
+    "predictions/light_gray_concrete/holdout-workshop-plaster-low-left.json.gz": "b312d1b99efb2dd0b9dbde8814d08bc512b27869e389fa1a9b00a2031cb2cad7",
+    "predictions/smooth_stone/dev-shopfront-masonry-high-right.json.gz": "74931cd2f3584f79e32a6eb8e591adddff5d6c7b4922df3d7fb9065a44fc8d27",
+    "predictions/smooth_stone/dev-shopfront-masonry-low-left.json.gz": "c250e589af06fc6ad8c95f7268a4fa2f3b32aba7bdc49d800ab9b7e6c116cff9",
+    "predictions/smooth_stone/dev-shopfront-plaster-high-right.json.gz": "b9fc9178164ad5014cf9961d922fadf7da6a393d0b297b3acdfc876a5ff237a5",
+    "predictions/smooth_stone/dev-shopfront-plaster-low-left.json.gz": "0ee7589a2c4a70f2166b256a635f0499910e9dc6be0c84838be29e03992a3033",
+    "predictions/smooth_stone/dev-wing-masonry-close-front.json.gz": "43bfcb7319399b0677938cb08babd2c102334d0f8c4d9afeb5dfb902d28b775a",
+    "predictions/smooth_stone/dev-wing-masonry-high-right.json.gz": "6467015b426141a1293e642220d5d14c2e69e1e2c0afc2aa6beb9a458c0b8d9f",
+    "predictions/smooth_stone/dev-wing-masonry-low-left.json.gz": "cc0f3bd0bcd0fce0ab723cd18c02a8cd9dc69568cd514c3de58750bafce90bd8",
+    "predictions/smooth_stone/dev-wing-plaster-close-front.json.gz": "adeda75c01a7e1b548b5ff45fea310d054def253949691db159d91fe3347e757",
+    "predictions/smooth_stone/dev-wing-plaster-high-right.json.gz": "9a9d225508ae5e03c8daadb911061ffe777269e73969c5d2c5cb2a43126ade59",
+    "predictions/smooth_stone/dev-wing-plaster-low-left.json.gz": "e2095ad63b00a53f8a25d199a8028c253823f3e3b1e64008fe96987ad5d7b87f",
+    "predictions/smooth_stone/holdout-courtyard-masonry-close-front.json.gz": "e075a45a32d522508a5f43ab05a72a0aedd9dce767c5f2828ca1da5036171857",
+    "predictions/smooth_stone/holdout-courtyard-masonry-high-right.json.gz": "94e307ae4a378fb8c45fb6ed6fac1bbcaad31ad80e845b2949deb8f4e565b778",
+    "predictions/smooth_stone/holdout-courtyard-masonry-low-left.json.gz": "9f7beb188d5747988a5ddb09ece263328070e06fed96b6db2d0a0df7d3ca4c20",
+    "predictions/smooth_stone/holdout-courtyard-plaster-close-front.json.gz": "953cf7eacac059be764dd784191ebeffe73ea8fd9998efc545bd5da48bb98768",
+    "predictions/smooth_stone/holdout-courtyard-plaster-high-right.json.gz": "b3f8c2ad506662d5c0415690bdee46a409a362e5a3eaa777149f55ea89620cdc",
+    "predictions/smooth_stone/holdout-courtyard-plaster-low-left.json.gz": "64c2927220ca9587bdb300ab099321e2f8259a7c392d1688dbaaba045270e13e",
+    "predictions/smooth_stone/holdout-portico-masonry-high-right.json.gz": "0fd376c88cc6c1a6dced8f74cf88c449590f7b0656569770b464d0c85586dad4",
+    "predictions/smooth_stone/holdout-portico-masonry-low-left.json.gz": "7f5aee7ddb53e87faab77bd83f26104a9aba5c8353d756fd324c86740e545335",
+    "predictions/smooth_stone/holdout-portico-plaster-high-right.json.gz": "4fdf56f9f82e3f683d44235bd6324b21ab82f1bef241ca920670226772160b0f",
+    "predictions/smooth_stone/holdout-portico-plaster-low-left.json.gz": "549d583a1f0f3c1cdea046902044d40e9a32c3ae6a76bd4406ffbb319e6ab5ed",
+    "surface-detection.jpg": "5870fec8c428fa1b9013f6d833b341260ed515d6a826fc4d5eb24400dfa954f1",
+    "surface-detection.json": "cd761d3919bf473257ae7553e9c2e4ba2276c1651b830a2ed76852beb08991b6"
+  },
+  "reproduce": ".\\Invoke-SurfaceRound.ps1 -Round perimeters",
+  "runtime": "Frozen MoGe-2 and Depth Anything V2 predictions. Per-picture timings cover refinement only.",
+  "presentation": {
+    "revision": "b126109a7a5506a979bef36172029ecea20ddd0a",
+    "image": "comparison.jpg",
+    "orientation": "portrait",
+    "building_columns": 8,
+    "stage_rows": 6,
+    "image_size_px": [
+      3144,
+      3757
+    ],
+    "previous_artifact_sha256": {
+      "comparison.jpg": "e6ae79b0a3cad32e9eacd64d7737c6255d3f6d9a224d9b9daa166908bed61d43",
+      "pipeline-rows.json": "9ee0fa23ab089ce3f292f4e43acee6cbca0ae1c9d092fb80a8fb19275561b16d",
+      "report.html": "18f7b45c4fc96c024d1da49c09f8b0dfad41a36dfb07dcfaabdea02bca26d2c8"
+    },
+    "surface_detection_image": "surface-detection.jpg",
+    "surface_detection_data": "surface-detection.json",
+    "surface_detection_method": "color-edges"
+  }
+}

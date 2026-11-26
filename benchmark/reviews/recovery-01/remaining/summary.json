@@ -1,0 +1,2446 @@
+{
+  "method": "wall-depth-anything",
+  "version": "26.3",
+  "fixtures": {
+    "smooth_stone": "660d1e535ae134452bca903a9d7cbe8d37953927fa118d9ffb327afad0885bc2",
+    "light_gray_concrete": "321505e15563f8efc0da868baa27409837aaa474410a61f3513b3dac0030f066",
+    "surface_confirm_v1": "0a479a8264f2c0f714284928354ff6ff5f9729491709676f07e2033d25e48fc3",
+    "normal_confirm_v1": "61bdf3a89a505a8be3757efe480185bec9c1888a1c72ffb69ef0093623e27dda"
+  },
+  "reference_sha256": "91efa6d3e992b1a68672eae1fdd6d380e87724742a1a4b6cbe5f84d284f731a1",
+  "source_manifest_sha256": "28f694e90b2733c23e5c25c84c8b6d300a5849a360ea5640fb68997fcc2527e1",
+  "legacy_manifest_sha256": "9c7e34217c47bffbef0f7761cfff55d9c2ee050193a1392758459822724af329",
+  "frames": 56,
+  "eligible": {
+    "vertical": 532,
+    "top": 48,
+    "underside": 18
+  },
+  "matched": 423,
+  "all": {
+    "n": 175,
+    "orientation": {
+      "vertical": 152,
+      "top": 13,
+      "underside": 10
+    },
+    "causes": {
+      "merged with another scored face": 138,
+      "split into two or more mostly pure pieces": 8,
+      "coverage distributed across mixed guesses": 12,
+      "less than half covered by all guesses": 7,
+      "single overextended or partial guess": 10
+    },
+    "absorbed": 138,
+    "parallel_step": 116,
+    "any_claim": 175,
+    "half_claimed": 168,
+    "one_half_cover": 149,
+    "fragmented": 8,
+    "near_40_to_50": 37,
+    "near_45_to_50": 25,
+    "close_49_to_50": 7,
+    "any_saved_method_found": 30,
+    "can_join_two_unmatched": 7,
+    "other_methods": {
+      "wall-moge": 7,
+      "current-b": 17,
+      "strip-both": 6,
+      "strip-deeplsd": 6,
+      "strip-mlsd": 6,
+      "strip-scalelsd": 6
+    }
+  },
+  "layouts": {
+    "courtyard": {
+      "n": 8,
+      "orientation": {
+        "top": 2,
+        "vertical": 6
+      },
+      "causes": {
+        "single overextended or partial guess": 2,
+        "merged with another scored face": 5,
+        "less than half covered by all guesses": 1
+      },
+      "absorbed": 5,
+      "parallel_step": 5,
+      "any_claim": 8,
+      "half_claimed": 7,
+      "one_half_cover": 7,
+      "fragmented": 0,
+      "near_40_to_50": 2,
+      "near_45_to_50": 2,
+      "close_49_to_50": 1,
+      "any_saved_method_found": 2,
+      "can_join_two_unmatched": 0,
+      "other_methods": {
+        "current-b": 2
+      }
+    },
+    "crossing": {
+      "n": 12,
+      "orientation": {
+        "vertical": 10,
+        "top": 2
+      },
+      "causes": {
+        "merged with another scored face": 11,
+        "less than half covered by all guesses": 1
+      },
+      "absorbed": 11,
+      "parallel_step": 8,
+      "any_claim": 12,
+      "half_claimed": 11,
+      "one_half_cover": 11,
+      "fragmented": 0,
+      "near_40_to_50": 4,
+      "near_45_to_50": 3,
+      "close_49_to_50": 0,
+      "any_saved_method_found": 0,
+      "can_join_two_unmatched": 0,
+      "other_methods": {}
+    },
+    "galleries": {
+      "n": 30,
+      "orientation": {
+        "vertical": 26,
+        "underside": 2,
+        "top": 2
+      },
+      "causes": {
+        "merged with another scored face": 26,
+        "single overextended or partial guess": 2,
+        "coverage distributed across mixed guesses": 2
+      },
+      "absorbed": 26,
+      "parallel_step": 16,
+      "any_claim": 30,
+      "half_claimed": 30,
+      "one_half_cover": 28,
+      "fragmented": 0,
+      "near_40_to_50": 2,
+      "near_45_to_50": 0,
+      "close_49_to_50": 0,
+      "any_saved_method_found": 3,
+      "can_join_two_unmatched": 0,
+      "other_methods": {
+        "current-b": 3
+      }
+    },
+    "portico": {
+      "n": 39,
+      "orientation": {
+        "vertical": 36,
+        "top": 1,
+        "underside": 2
+      },
+      "causes": {
+        "merged with another scored face": 30,
+        "coverage distributed across mixed guesses": 5,
+        "single overextended or partial guess": 2,
+        "split into two or more mostly pure pieces": 2
+      },
+      "absorbed": 30,
+      "parallel_step": 25,
+      "any_claim": 39,
+      "half_claimed": 39,
+      "one_half_cover": 32,
+      "fragmented": 2,
+      "near_40_to_50": 10,
+      "near_45_to_50": 8,
+      "close_49_to_50": 2,
+      "any_saved_method_found": 6,
+      "can_join_two_unmatched": 2,
+      "other_methods": {
+        "wall-moge": 1,
+        "current-b": 3,
+        "strip-both": 2,
+        "strip-deeplsd": 2,
+        "strip-mlsd": 2,
+        "strip-scalelsd": 2
+      }
+    },
+    "registry": {
+      "n": 11,
+      "orientation": {
+        "vertical": 9,
+        "top": 2
+      },
+      "causes": {
+        "merged with another scored face": 7,
+        "single overextended or partial guess": 3,
+        "less than half covered by all guesses": 1
+      },
+      "absorbed": 7,
+      "parallel_step": 7,
+      "any_claim": 11,
+      "half_claimed": 10,
+      "one_half_cover": 10,
+      "fragmented": 0,
+      "near_40_to_50": 3,
+      "near_45_to_50": 2,
+      "close_49_to_50": 0,
+      "any_saved_method_found": 6,
+      "can_join_two_unmatched": 0,
+      "other_methods": {
+        "wall-moge": 4,
+        "current-b": 2
+      }
+    },
+    "shopfront": {
+      "n": 38,
+      "orientation": {
+        "vertical": 34,
+        "top": 2,
+        "underside": 2
+      },
+      "causes": {
+        "merged with another scored face": 30,
+        "split into two or more mostly pure pieces": 4,
+        "coverage distributed across mixed guesses": 3,
+        "less than half covered by all guesses": 1
+      },
+      "absorbed": 30,
+      "parallel_step": 26,
+      "any_claim": 38,
+      "half_claimed": 37,
+      "one_half_cover": 31,
+      "fragmented": 4,
+      "near_40_to_50": 4,
+      "near_45_to_50": 2,
+      "close_49_to_50": 1,
+      "any_saved_method_found": 9,
+      "can_join_two_unmatched": 4,
+      "other_methods": {
+        "wall-moge": 1,
+        "current-b": 6,
+        "strip-both": 2,
+        "strip-deeplsd": 2,
+        "strip-mlsd": 2,
+        "strip-scalelsd": 2
+      }
+    },
+    "wing": {
+      "n": 4,
+      "orientation": {
+        "top": 1,
+        "vertical": 3
+      },
+      "causes": {
+        "less than half covered by all guesses": 2,
+        "merged with another scored face": 2
+      },
+      "absorbed": 2,
+      "parallel_step": 2,
+      "any_claim": 4,
+      "half_claimed": 2,
+      "one_half_cover": 2,
+      "fragmented": 0,
+      "near_40_to_50": 1,
+      "near_45_to_50": 1,
+      "close_49_to_50": 0,
+      "any_saved_method_found": 0,
+      "can_join_two_unmatched": 0,
+      "other_methods": {}
+    },
+    "workshop": {
+      "n": 33,
+      "orientation": {
+        "vertical": 28,
+        "underside": 4,
+        "top": 1
+      },
+      "causes": {
+        "merged with another scored face": 27,
+        "coverage distributed across mixed guesses": 2,
+        "split into two or more mostly pure pieces": 2,
+        "less than half covered by all guesses": 1,
+        "single overextended or partial guess": 1
+      },
+      "absorbed": 27,
+      "parallel_step": 27,
+      "any_claim": 33,
+      "half_claimed": 32,
+      "one_half_cover": 28,
+      "fragmented": 2,
+      "near_40_to_50": 11,
+      "near_45_to_50": 7,
+      "close_49_to_50": 3,
+      "any_saved_method_found": 4,
+      "can_join_two_unmatched": 1,
+      "other_methods": {
+        "strip-both": 2,
+        "strip-deeplsd": 2,
+        "strip-mlsd": 2,
+        "strip-scalelsd": 2,
+        "wall-moge": 1,
+        "current-b": 1
+      }
+    }
+  },
+  "splits": {
+    "development": {
+      "n": 42,
+      "orientation": {
+        "vertical": 37,
+        "top": 3,
+        "underside": 2
+      },
+      "causes": {
+        "merged with another scored face": 32,
+        "split into two or more mostly pure pieces": 4,
+        "coverage distributed across mixed guesses": 3,
+        "less than half covered by all guesses": 3
+      },
+      "absorbed": 32,
+      "parallel_step": 28,
+      "any_claim": 42,
+      "half_claimed": 39,
+      "one_half_cover": 33,
+      "fragmented": 4,
+      "near_40_to_50": 5,
+      "near_45_to_50": 3,
+      "close_49_to_50": 1,
+      "any_saved_method_found": 9,
+      "can_join_two_unmatched": 4,
+      "other_methods": {
+        "wall-moge": 1,
+        "current-b": 6,
+        "strip-both": 2,
+        "strip-deeplsd": 2,
+        "strip-mlsd": 2,
+        "strip-scalelsd": 2
+      }
+    },
+    "previously_reviewed_regression": {
+      "n": 133,
+      "orientation": {
+        "top": 10,
+        "vertical": 115,
+        "underside": 8
+      },
+      "causes": {
+        "single overextended or partial guess": 10,
+        "merged with another scored face": 106,
+        "less than half covered by all guesses": 4,
+        "coverage distributed across mixed guesses": 9,
+        "split into two or more mostly pure pieces": 4
+      },
+      "absorbed": 106,
+      "parallel_step": 88,
+      "any_claim": 133,
+      "half_claimed": 129,
+      "one_half_cover": 116,
+      "fragmented": 4,
+      "near_40_to_50": 32,
+      "near_45_to_50": 22,
+      "close_49_to_50": 6,
+      "any_saved_method_found": 21,
+      "can_join_two_unmatched": 3,
+      "other_methods": {
+        "current-b": 11,
+        "wall-moge": 6,
+        "strip-both": 4,
+        "strip-deeplsd": 4,
+        "strip-mlsd": 4,
+        "strip-scalelsd": 4
+      }
+    }
+  },
+  "scoring": "Eligible surfaces at stride four. One-to-one IoU >= 0.50. Absorbed = a single guess covers >=50% of each of two scored surfaces. Fragmented = at least two guesses each cover >=10% of the target, with >=70% purity. Near-threshold and absorption can overlap. Pair diagnostic looks for a union of two guesses currently unmatched to any regular scored surface; small-surface matches may be affected. Older surface matches are read from their versioned results and are a hindsight ceiling.",
+  "cases": [
+    {
+      "key": "smooth_stone/dev-shopfront-masonry-high-right",
+      "sha256": "f15cd0e471a9a2e375c9f801df171bb8f5ee44d95374f02f1174c7938a94cc79",
+      "eligible": 14,
+      "matched_ids": [
+        4,
+        5,
+        8,
+        10,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19
+      ],
+      "prediction_archive_sha256": "3baf5782184dac7e7442422a46840ead1b477a7a942153929f5db1b0b62ecc2f",
+      "summary": {
+        "n": 2,
+        "orientation": {
+          "vertical": 2
+        },
+        "causes": {
+          "merged with another scored face": 2
+        },
+        "absorbed": 2,
+        "parallel_step": 2,
+        "any_claim": 2,
+        "half_claimed": 2,
+        "one_half_cover": 2,
+        "fragmented": 0,
+        "near_40_to_50": 0,
+        "near_45_to_50": 0,
+        "close_49_to_50": 0,
+        "any_saved_method_found": 0,
+        "can_join_two_unmatched": 0,
+        "other_methods": {}
+      }
+    },
+    {
+      "key": "light_gray_concrete/dev-shopfront-masonry-high-right",
+      "sha256": "bb588b0b0d1cdb05b720ff5bc3b515479426c7772fd98fb7fadb8a55b79ca9db",
+      "eligible": 14,
+      "matched_ids": [
+        4,
+        5,
+        8,
+        10,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19
+      ],
+      "prediction_archive_sha256": "15a239be8bbc0dca1d7a722f81ee1d3913be7fcba1e0a879d95d4ac6347c7289",
+      "summary": {
+        "n": 2,
+        "orientation": {
+          "vertical": 2
+        },
+        "causes": {
+          "merged with another scored face": 2
+        },
+        "absorbed": 2,
+        "parallel_step": 2,
+        "any_claim": 2,
+        "half_claimed": 2,
+        "one_half_cover": 2,
+        "fragmented": 0,
+        "near_40_to_50": 0,
+        "near_45_to_50": 0,
+        "close_49_to_50": 0,
+        "any_saved_method_found": 0,
+        "can_join_two_unmatched": 0,
+        "other_methods": {}
+      }
+    },
+    {
+      "key": "smooth_stone/dev-shopfront-masonry-low-left",
+      "sha256": "17691e7909ee0e9384db83c3a729f8763e21a281eb89b8dcebe61fc7675d1405",
+      "eligible": 16,
+      "matched_ids": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        8,
+        11,
+        12,
+        13,
+        18
+      ],
+      "prediction_archive_sha256": "3b44c30e0199a763e3004544ac0bae91d649606784c5fecf9058647af71c8d8a",
+      "summary": {
+        "n": 5,
+        "orientation": {
+          "vertical": 5
+        },
+        "causes": {
+          "merged with another scored face": 5
+        },
+        "absorbed": 5,
+        "parallel_step": 4,
+        "any_claim": 5,
+        "half_claimed": 5,
+        "one_half_cover": 5,
+        "fragmented": 0,
+        "near_40_to_50": 0,
+        "near_45_to_50": 0,
+        "close_49_to_50": 0,
+        "any_saved_method_found": 1,
+        "can_join_two_unmatched": 0,
+        "other_methods": {
+          "wall-moge": 1
+        }
+      }
+    },
+    {
+      "key": "light_gray_concrete/dev-shopfront-masonry-low-left",
+      "sha256": "0359c24dea1b318ec9cd002a1523ae8fc0d7d59fc9d7418972cf9ce9af8d4d57",
+      "eligible": 16,
+      "matched_ids": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        8,
+        11,
+        12,
+        13,
+        15,
+        18
+      ],
+      "prediction_archive_sha256": "4da2c982645ac8d35a169522cfd6897da21f8f82ae9b36349ddadae5c4bc39c8",
+      "summary": {
+        "n": 4,
+        "orientation": {
+          "vertical": 4
+        },
+        "causes": {
+          "merged with another scored face": 4
+        },
+        "absorbed": 4,
+        "parallel_step": 3,
+        "any_claim": 4,
+        "half_claimed": 4,
+        "one_half_cover": 4,
+        "fragmented": 0,
+        "near_40_to_50": 0,
+        "near_45_to_50": 0,
+        "close_49_to_50": 0,
+        "any_saved_method_found": 0,
+        "can_join_two_unmatched": 0,
+        "other_methods": {}
+      }
+    },
+    {
+      "key": "smooth_stone/dev-shopfront-plaster-high-right",
+      "sha256": "ae58f28554348d924798e23bd492b88db06c2a099f590e325c514ecc5c8f9c7e",
+      "eligible": 14,
+      "matched_ids": [
+        4,
+        8,
+        10,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19
+      ],
+      "prediction_archive_sha256": "ae5d6b5f1aea62bfed9b809f38cf017e747a9e6f36008265abe472ce03311e74",
+      "summary": {
+        "n": 3,
+        "orientation": {
+          "vertical": 3
+        },
+        "causes": {
+          "merged with another scored face": 3
+        },
+        "absorbed": 3,
+        "parallel_step": 3,
+        "any_claim": 3,
+        "half_claimed": 3,
+        "one_half_cover": 3,
+        "fragmented": 0,
+        "near_40_to_50": 0,
+        "near_45_to_50": 0,
+        "close_49_to_50": 0,
+        "any_saved_method_found": 0,
+        "can_join_two_unmatched": 0,
+        "other_methods": {}
+      }
+    },
+    {
+      "key": "light_gray_concrete/dev-shopfront-plaster-high-right",
+      "sha256": "4cc1d5687db72eef74f23fc291fb7916b3f481ed4998d9e1c850024039d38cce",
+      "eligible": 14,
+      "matched_ids": [
+        4,
+        6,
+        7,
+        8,
+        12,
+        14,
+        15,
+        16,
+        17,
+        18
+      ],
+      "prediction_archive_sha256": "752d9cba570e624b57ed413f822dd64cc36d04853d99c7852c3d2c22d5a9186d",
+      "summary": {
+        "n": 4,
+        "orientation": {
+          "vertical": 2,
+          "top": 2
+        },
+        "causes": {
+          "split into two or more mostly pure pieces": 2,
+          "coverage distributed across mixed guesses": 1,
+          "less than half covered by all guesses": 1
+        },
+        "absorbed": 0,
+        "parallel_step": 0,
+        "any_claim": 4,
+        "half_claimed": 3,
+        "one_half_cover": 0,
+        "fragmented": 2,
+        "near_40_to_50": 1,
+        "near_45_to_50": 0,
+        "close_49_to_50": 0,
+        "any_saved_method_found": 1,
+        "can_join_two_unmatched": 2,
+        "other_methods": {
+          "current-b": 1
+        }
+      }
+    },
+    {
+      "key": "smooth_stone/dev-shopfront-plaster-low-left",
+      "sha256": "5d0c9120de4ca16f35758f90a31e176e50a3cf166358dd9833ee2213d1ff2f72",
+      "eligible": 16,
+      "matched_ids": [
+        1,
+        2,
+        4,
+        5,
+        6,
+        11,
+        18
+      ],
+      "prediction_archive_sha256": "18b9bcdc2a36a9b2b99e45bb239bd3722644d20ab595b76edfff1ae2caee35f4",
+      "summary": {
+        "n": 9,
+        "orientation": {
+          "vertical": 8,
+          "underside": 1
+        },
+        "causes": {
+          "split into two or more mostly pure pieces": 1,
+          "coverage distributed across mixed guesses": 1,
+          "merged with another scored face": 7
+        },
+        "absorbed": 7,
+        "parallel_step": 7,
+        "any_claim": 9,
+        "half_claimed": 9,
+        "one_half_cover": 7,
+        "fragmented": 1,
+        "near_40_to_50": 1,
+        "near_45_to_50": 0,
+        "close_49_to_50": 0,
+        "any_saved_method_found": 5,
+        "can_join_two_unmatched": 1,
+        "other_methods": {
+          "strip-both": 1,
+          "strip-deeplsd": 1,
+          "strip-mlsd": 1,
+          "strip-scalelsd": 1,
+          "current-b": 4
+        }
+      }
+    },
+    {
+      "key": "light_gray_concrete/dev-shopfront-plaster-low-left",
+      "sha256": "299e0228de74d2cc7d3a18deaba9f61c82560a0ddd0b8557e5c91728c964a993",
+      "eligible": 16,
+      "matched_ids": [
+        1,
+        2,
+        4,
+        5,
+        6,
+        11,
+        18
+      ],
+      "prediction_archive_sha256": "dc48efa1ce0a5f743aefe4c582103875b23e920357e9ea1501b7890cad52b643",
+      "summary": {
+        "n": 9,
+        "orientation": {
+          "vertical": 8,
+          "underside": 1
+        },
+        "causes": {
+          "split into two or more mostly pure pieces": 1,
+          "coverage distributed across mixed guesses": 1,
+          "merged with another scored face": 7
+        },
+        "absorbed": 7,
+        "parallel_step": 5,
+        "any_claim": 9,
+        "half_claimed": 9,
+        "one_half_cover": 8,
+        "fragmented": 1,
+        "near_40_to_50": 2,
+        "near_45_to_50": 2,
+        "close_49_to_50": 1,
+        "any_saved_method_found": 2,
+        "can_join_two_unmatched": 1,
+        "other_methods": {
+          "strip-both": 1,
+          "strip-deeplsd": 1,
+          "strip-mlsd": 1,
+          "strip-scalelsd": 1,
+          "current-b": 1
+        }
+      }
+    },
+    {
+      "key": "smooth_stone/dev-wing-masonry-close-front",
+      "sha256": "9ce65a1c07694c1d3e57019c07b422d7a6a0771ed0d46f579891eae8a61463a9",
+      "eligible": 1,
+      "matched_ids": [
+        1
+      ],
+      "prediction_archive_sha256": "16b5c6125ddf3ae671da4511b33e155cba57d210ab3c6095b2026ef86d16725e",
+      "summary": {
+        "n": 0,
+        "orientation": {},
+        "causes": {},
+        "absorbed": 0,
+        "parallel_step": 0,
+        "any_claim": 0,
+        "half_claimed": 0,
+        "one_half_cover": 0,
+        "fragmented": 0,
+        "near_40_to_50": 0,
+        "near_45_to_50": 0,
+        "close_49_to_50": 0,
+        "any_saved_method_found": 0,
+        "can_join_two_unmatched": 0,
+        "other_methods": {}
+      }
+    },
+    {
+      "key": "light_gray_concrete/dev-wing-masonry-close-front",
+      "sha256": "9ce65a1c07694c1d3e57019c07b422d7a6a0771ed0d46f579891eae8a61463a9",
+      "eligible": 1,
+      "matched_ids": [
+        1
+      ],
+      "prediction_archive_sha256": "16b5c6125ddf3ae671da4511b33e155cba57d210ab3c6095b2026ef86d16725e",
+      "summary": {
+        "n": 0,
+        "orientation": {},
+        "causes": {},
+        "absorbed": 0,
+        "parallel_step": 0,
+        "any_claim": 0,
+        "half_claimed": 0,
+        "one_half_cover": 0,
+        "fragmented": 0,
+        "near_40_to_50": 0,
+        "near_45_to_50": 0,
+        "close_49_to_50": 0,
+        "any_saved_method_found": 0,
+        "can_join_two_unmatched": 0,
+        "other_methods": {}
+      }
+    },
+    {
+      "key": "smooth_stone/dev-wing-masonry-high-right",
+      "sha256": "8cd9e20f608db25df6d141941051d30afcbf80733ea4c6f2058874c02019bf9f",
+      "eligible": 5,
+      "matched_ids": [
+        1,
+        2,
+        3,
+        7,
+        8
+      ],
+      "prediction_archive_sha256": "a17eb1483dee98733271836e9ef3f8c2210d9597f20f0efaa0bd3875392fee16",
+      "summary": {
+        "n": 0,
+        "orientation": {},
+        "causes": {},
+        "absorbed": 0,
+        "parallel_step": 0,
+        "any_claim": 0,
+        "half_claimed": 0,
+        "one_half_cover": 0,
+        "fragmented": 0,
+        "near_40_to_50": 0,
+        "near_45_to_50": 0,
+        "close_49_to_50": 0,
+        "any_saved_method_found": 0,
+        "can_join_two_unmatched": 0,
+        "other_methods": {}
+      }
+    },
+    {
+      "key": "light_gray_concrete/dev-wing-masonry-high-right",
+      "sha256": "5ccd9115fd2a70784e0e1ab6819d37fc5c4af54cf965605143b3817e1f3a3efd",
+      "eligible": 5,
+      "matched_ids": [
+        1,
+        2,
+        7,
+        8
+      ],
+      "prediction_archive_sha256": "1cc666a6ad31e337ff305768e40d1be99b090465495df2867eecea4f9c5e2808",
+      "summary": {
+        "n": 1,
+        "orientation": {
+          "top": 1
+        },
+        "causes": {
+          "less than half covered by all guesses": 1
+        },
+        "absorbed": 0,
+        "parallel_step": 0,
+        "any_claim": 1,
+        "half_claimed": 0,
+        "one_half_cover": 0,
+        "fragmented": 0,
+        "near_40_to_50": 1,
+        "near_45_to_50": 1,
+        "close_49_to_50": 0,
+        "any_saved_method_found": 0,
+        "can_join_two_unmatched": 0,
+        "other_methods": {}
+      }
+    },
+    {
+      "key": "smooth_stone/dev-wing-masonry-low-left",
+      "sha256": "0c7bc49ce3c736391d7954a9c069aee29586f03fd33a2a88926b40257ccae6ce",
+      "eligible": 3,
+      "matched_ids": [
+        1,
+        3
+      ],
+      "prediction_archive_sha256": "edb10379a8fb376f6c947fd4c4a7eeb35f5d3d6eb86b157ea0be4d3d6690bc31",
+      "summary": {
+        "n": 1,
+        "orientation": {
+          "vertical": 1
+        },
+        "causes": {
+          "merged with another scored face": 1
+        },
+        "absorbed": 1,
+        "parallel_step": 1,
+        "any_claim": 1,
+        "half_claimed": 1,
+        "one_half_cover": 1,
+        "fragmented": 0,
+        "near_40_to_50": 0,
+        "near_45_to_50": 0,
+        "close_49_to_50": 0,
+        "any_saved_method_found": 0,
+        "can_join_two_unmatched": 0,
+        "other_methods": {}
+      }
+    },
+    {
+      "key": "light_gray_concrete/dev-wing-masonry-low-left",
+      "sha256": "4e8817361e24c3f05e835d7af6c8bab3da96d50c8821828144f33bb1ea0e87d3",
+      "eligible": 3,
+      "matched_ids": [
+        1,
+        3
+      ],
+      "prediction_archive_sha256": "88d97140320d8769be019e46f7698b2bb0fd7e57d3d76ae680d8716ba0ace5f0",
+      "summary": {
+        "n": 1,
+        "orientation": {
+          "vertical": 1
+        },
+        "causes": {
+          "merged with another scored face": 1
+        },
+        "absorbed": 1,
+        "parallel_step": 1,
+        "any_claim": 1,
+        "half_claimed": 1,
+        "one_half_cover": 1,
+        "fragmented": 0,
+        "near_40_to_50": 0,
+        "near_45_to_50": 0,
+        "close_49_to_50": 0,
+        "any_saved_method_found": 0,
+        "can_join_two_unmatched": 0,
+        "other_methods": {}
+      }
+    },
+    {
+      "key": "smooth_stone/dev-wing-plaster-close-front",
+      "sha256": "b3154136e855e9d005a993b8afdb3989e3fb156b102aed46ce0d99e761d2f2b8",
+      "eligible": 1,
+      "matched_ids": [
+        1
+      ],
+      "prediction_archive_sha256": "e46e17d8f3d417396a8a5df6a52055900fa4f5ddd1422613fbf495d9bba88b14",
+      "summary": {
+        "n": 0,
+        "orientation": {},
+        "causes": {},
+        "absorbed": 0,
+        "parallel_step": 0,
+        "any_claim": 0,
+        "half_claimed": 0,
+        "one_half_cover": 0,
+        "fragmented": 0,
+        "near_40_to_50": 0,
+        "near_45_to_50": 0,
+        "close_49_to_50": 0,
+        "any_saved_method_found": 0,
+        "can_join_two_unmatched": 0,
+        "other_methods": {}
+      }
+    },
+    {
+      "key": "light_gray_concrete/dev-wing-plaster-close-front",
+      "sha256": "b3154136e855e9d005a993b8afdb3989e3fb156b102aed46ce0d99e761d2f2b8",
+      "eligible": 1,
+      "matched_ids": [
+        1
+      ],
+      "prediction_archive_sha256": "e46e17d8f3d417396a8a5df6a52055900fa4f5ddd1422613fbf495d9bba88b14",
+      "summary": {
+        "n": 0,
+        "orientation": {},
+        "causes": {},
+        "absorbed": 0,
+        "parallel_step": 0,
+        "any_claim": 0,
+        "half_claimed": 0,
+        "one_half_cover": 0,
+        "fragmented": 0,
+        "near_40_to_50": 0,
+        "near_45_to_50": 0,
+        "close_49_to_50": 0,
+        "any_saved_method_found": 0,
+        "can_join_two_unmatched": 0,
+        "other_methods": {}
+      }
+    },
+    {
+      "key": "smooth_stone/dev-wing-plaster-high-right",
+      "sha256": "49832e903f4455c88c44f51da20abc550516d208783af9e3d05edc85ff4116a9",
+      "eligible": 5,
+      "matched_ids": [
+        1,
+        3,
+        7,
+        8
+      ],
+      "prediction_archive_sha256": "df5d62b8c3e48cba86cedb4ad806762af60e6612be78f37e61044283415d0e42",
+      "summary": {
+        "n": 1,
+        "orientation": {
+          "vertical": 1
+        },
+        "causes": {
+          "less than half covered by all guesses": 1
+        },
+        "absorbed": 0,
+        "parallel_step": 0,
+        "any_claim": 1,
+        "half_claimed": 0,
+        "one_half_cover": 0,
+        "fragmented": 0,
+        "near_40_to_50": 0,
+        "near_45_to_50": 0,
+        "close_49_to_50": 0,
+        "any_saved_method_found": 0,
+        "can_join_two_unmatched": 0,
+        "other_methods": {}
+      }
+    },
+    {
+      "key": "light_gray_concrete/dev-wing-plaster-high-right",
+      "sha256": "64d4fec367d669912de294146c1fa3e0bf871816ec4f52e57213e35db2968564",
+      "eligible": 5,
+      "matched_ids": [
+        1,
+        2,
+        3,
+        7,
+        8
+      ],
+      "prediction_archive_sha256": "e4a2914864eac218022de06e0ecf104836889ba179ed55e0eb4710c367d03ee1",
+      "summary": {
+        "n": 0,
+        "orientation": {},
+        "causes": {},
+        "absorbed": 0,
+        "parallel_step": 0,
+        "any_claim": 0,
+        "half_claimed": 0,
+        "one_half_cover": 0,
+        "fragmented": 0,
+        "near_40_to_50": 0,
+        "near_45_to_50": 0,
+        "close_49_to_50": 0,
+        "any_saved_method_found": 0,
+        "can_join_two_unmatched": 0,
+        "other_methods": {}
+      }
+    },
+    {
+      "key": "smooth_stone/dev-wing-plaster-low-left",
+      "sha256": "b564e5c3bb2def9511c27cf483dbb01dbe760b1bce8b6060be578c97b2083019",
+      "eligible": 3,
+      "matched_ids": [
+        1,
+        2,
+        3
+      ],
+      "prediction_archive_sha256": "c8e919b5098cfa03a59e12b24dd3eaf2b2e4affd9c5707b35912d28282ed7045",
+      "summary": {
+        "n": 0,
+        "orientation": {},
+        "causes": {},
+        "absorbed": 0,
+        "parallel_step": 0,
+        "any_claim": 0,
+        "half_claimed": 0,
+        "one_half_cover": 0,
+        "fragmented": 0,
+        "near_40_to_50": 0,
+        "near_45_to_50": 0,
+        "close_49_to_50": 0,
+        "any_saved_method_found": 0,
+        "can_join_two_unmatched": 0,
+        "other_methods": {}
+      }
+    },
+    {
+      "key": "light_gray_concrete/dev-wing-plaster-low-left",
+      "sha256": "b1aa96442f2858b5435fc9af424de374ffafbade3cc74d059b85b6c1bfd7e13c",
+      "eligible": 3,
+      "matched_ids": [
+        1,
+        2,
+        3
+      ],
+      "prediction_archive_sha256": "7cfb566d8fa8002b4c565f0fd1f1b8a50db757bb4844c28db157a5113a57aaf5",
+      "summary": {
+        "n": 0,
+        "orientation": {},
+        "causes": {},
+        "absorbed": 0,
+        "parallel_step": 0,
+        "any_claim": 0,
+        "half_claimed": 0,
+        "one_half_cover": 0,
+        "fragmented": 0,
+        "near_40_to_50": 0,
+        "near_45_to_50": 0,
+        "close_49_to_50": 0,
+        "any_saved_method_found": 0,
+        "can_join_two_unmatched": 0,
+        "other_methods": {}
+      }
+    },
+    {
+      "key": "smooth_stone/holdout-courtyard-masonry-close-front",
+      "sha256": "655531c2d8fecce752ea93fac3aa6a6e4429bb7ce8a629cb409532583694c678",
+      "eligible": 1,
+      "matched_ids": [
+        2
+      ],
+      "prediction_archive_sha256": "f9fa621381453e57d54410e4bb0b827d21b07db501783f46907b0109abc085af",
+      "summary": {
+        "n": 0,
+        "orientation": {},
+        "causes": {},
+        "absorbed": 0,
+        "parallel_step": 0,
+        "any_claim": 0,
+        "half_claimed": 0,
+        "one_half_cover": 0,
+        "fragmented": 0,
+        "near_40_to_50": 0,
+        "near_45_to_50": 0,
+        "close_49_to_50": 0,
+        "any_saved_method_found": 0,
+        "can_join_two_unmatched": 0,
+        "other_methods": {}
+      }
+    },
+    {
+      "key": "light_gray_concrete/holdout-courtyard-masonry-close-front",
+      "sha256": "655531c2d8fecce752ea93fac3aa6a6e4429bb7ce8a629cb409532583694c678",
+      "eligible": 1,
+      "matched_ids": [
+        2
+      ],
+      "prediction_archive_sha256": "f9fa621381453e57d54410e4bb0b827d21b07db501783f46907b0109abc085af",
+      "summary": {
+        "n": 0,
+        "orientation": {},
+        "causes": {},
+        "absorbed": 0,
+        "parallel_step": 0,
+        "any_claim": 0,
+        "half_claimed": 0,
+        "one_half_cover": 0,
+        "fragmented": 0,
+        "near_40_to_50": 0,
+        "near_45_to_50": 0,
+        "close_49_to_50": 0,
+        "any_saved_method_found": 0,
+        "can_join_two_unmatched": 0,
+        "other_methods": {}
+      }
+    },
+    {
+      "key": "smooth_stone/holdout-courtyard-masonry-high-right",
+      "sha256": "252fa7c481e990bbbada46717d6e10c6b66c4f9c65846b94a94cd1b40cea0fcd",
+      "eligible": 8,
+      "matched_ids": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        10,
+        11,
+        12
+      ],
+      "prediction_archive_sha256": "7fe5d7f55f62303f4aec59626deebf61d1976e307f65a2af84f89f414dd29d98",
+      "summary": {
+        "n": 0,
+        "orientation": {},
+        "causes": {},
+        "absorbed": 0,
+        "parallel_step": 0,
+        "any_claim": 0,
+        "half_claimed": 0,
+        "one_half_cover": 0,
+        "fragmented": 0,
+        "near_40_to_50": 0,
+        "near_45_to_50": 0,
+        "close_49_to_50": 0,
+        "any_saved_method_found": 0,
+        "can_join_two_unmatched": 0,
+        "other_methods": {}
+      }
+    },
+    {
+      "key": "light_gray_concrete/holdout-courtyard-masonry-high-right",
+      "sha256": "b5b2bb5300687da8d904fb129043b5d2df0ae56e9ba4e14afb932b3e6d44dd3b",
+      "eligible": 8,
+      "matched_ids": [
+        1,
+        2,
+        3,
+        4,
+        10,
+        12
+      ],
+      "prediction_archive_sha256": "8c8ca7184ea353dfdf7e47810ca9936918b67619dbe0d3845d5275b8745bebba",
+      "summary": {
+        "n": 2,
+        "orientation": {
+          "top": 1,
+          "vertical": 1
+        },
+        "causes": {
+          "single overextended or partial guess": 1,
+          "merged with another scored face": 1
+        },
+        "absorbed": 1,
+        "parallel_step": 1,
+        "any_claim": 2,
+        "half_claimed": 2,
+        "one_half_cover": 2,
+        "fragmented": 0,
+        "near_40_to_50": 0,
+        "near_45_to_50": 0,
+        "close_49_to_50": 0,
+        "any_saved_method_found": 1,
+        "can_join_two_unmatched": 0,
+        "other_methods": {
+          "current-b": 1
+        }
+      }
+    },
+    {
+      "key": "smooth_stone/holdout-courtyard-masonry-low-left",
+      "sha256": "c80356e1b7d96bdc796ed982f09ed908059399d23fe98c873eecbb6e623a4216",
+      "eligible": 5,
+      "matched_ids": [
+        1,
+        2,
+        5,
+        6,
+        7
+      ],
+      "prediction_archive_sha256": "829dabc2e81001b68fba9b761403861d7ffed3226c0e81249954cb97cd876643",
+      "summary": {
+        "n": 0,
+        "orientation": {},
+        "causes": {},
+        "absorbed": 0,
+        "parallel_step": 0,
+        "any_claim": 0,
+        "half_claimed": 0,
+        "one_half_cover": 0,
+        "fragmented": 0,
+        "near_40_to_50": 0,
+        "near_45_to_50": 0,
+        "close_49_to_50": 0,
+        "any_saved_method_found": 0,
+        "can_join_two_unmatched": 0,
+        "other_methods": {}
+      }
+    },
+    {
+      "key": "light_gray_concrete/holdout-courtyard-masonry-low-left",
+      "sha256": "5b0b16edd7e5207c275e3277db0d65620891c50024735061783d4a175957ff9a",
+      "eligible": 5,
+      "matched_ids": [
+        1,
+        2,
+        5,
+        6,
+        7
+      ],
+      "prediction_archive_sha256": "95e136eee3a02e5000936c2f95b7acb8d66237ef63d647b71e945b3b14d48e0f",
+      "summary": {
+        "n": 0,
+        "orientation": {},
+        "causes": {},
+        "absorbed": 0,
+        "parallel_step": 0,
+        "any_claim": 0,
+        "half_claimed": 0,
+        "one_half_cover": 0,
+        "fragmented": 0,
+        "near_40_to_50": 0,
+        "near_45_to_50": 0,
+        "close_49_to_50": 0,
+        "any_saved_method_found": 0,
+        "can_join_two_unmatched": 0,
+        "other_methods": {}
+      }
+    },
+    {
+      "key": "smooth_stone/holdout-courtyard-plaster-close-front",
+      "sha256": "319503ad2c8fbdc7f33f283d4e35b0f3abe43684bdd8341ace1ac1745696abee",
+      "eligible": 1,
+      "matched_ids": [
+        2
+      ],
+      "prediction_archive_sha256": "d6959d720ffa33de004258f834af28e0f785189ed9b22b701f6d22a0c8ebbe0c",
+      "summary": {
+        "n": 0,
+        "orientation": {},
+        "causes": {},
+        "absorbed": 0,
+        "parallel_step": 0,
+        "any_claim": 0,
+        "half_claimed": 0,
+        "one_half_cover": 0,
+        "fragmented": 0,
+        "near_40_to_50": 0,
+        "near_45_to_50": 0,
+        "close_49_to_50": 0,
+        "any_saved_method_found": 0,
+        "can_join_two_unmatched": 0,
+        "other_methods": {}
+      }
+    },
+    {
+      "key": "light_gray_concrete/holdout-courtyard-plaster-close-front",
+      "sha256": "319503ad2c8fbdc7f33f283d4e35b0f3abe43684bdd8341ace1ac1745696abee",
+      "eligible": 1,
+      "matched_ids": [
+        2
+      ],
+      "prediction_archive_sha256": "d6959d720ffa33de004258f834af28e0f785189ed9b22b701f6d22a0c8ebbe0c",
+      "summary": {
+        "n": 0,
+        "orientation": {},
+        "causes": {},
+        "absorbed": 0,
+        "parallel_step": 0,
+        "any_claim": 0,
+        "half_claimed": 0,
+        "one_half_cover": 0,
+        "fragmented": 0,
+        "near_40_to_50": 0,
+        "near_45_to_50": 0,
+        "close_49_to_50": 0,
+        "any_saved_method_found": 0,
+        "can_join_two_unmatched": 0,
+        "other_methods": {}
+      }
+    },
+    {
+      "key": "smooth_stone/holdout-courtyard-plaster-high-right",
+      "sha256": "7152899302d1721578a01412063a0cafc072986ba9a4acb5c03aa5ecbdde05f1",
+      "eligible": 8,
+      "matched_ids": [
+        2,
+        3,
+        4,
+        5,
+        10,
+        11,
+        12
+      ],
+      "prediction_archive_sha256": "f4a89ddb7ca4a63c46f54e1d8baa59876161edade2243e8b26e5ee45f546097c",
+      "summary": {
+        "n": 1,
+        "orientation": {
+          "vertical": 1
+        },
+        "causes": {
+          "less than half covered by all guesses": 1
+        },
+        "absorbed": 0,
+        "parallel_step": 0,
+        "any_claim": 1,
+        "half_claimed": 0,
+        "one_half_cover": 0,
+        "fragmented": 0,
+        "near_40_to_50": 1,
+        "near_45_to_50": 1,
+        "close_49_to_50": 0,
+        "any_saved_method_found": 0,
+        "can_join_two_unmatched": 0,
+        "other_methods": {}
+      }
+    },
+    {
+      "key": "light_gray_concrete/holdout-courtyard-plaster-high-right",
+      "sha256": "de9e33d3bdb1f64318fbc1dec03fef52cde19a331c90fd1f7bb0b7a322b3bd94",
+      "eligible": 8,
+      "matched_ids": [
+        1,
+        2,
+        3,
+        4,
+        10,
+        12
+      ],
+      "prediction_archive_sha256": "96c0709eb61cf90678b9714d00d2d9c1b5436a98e619da15e7405eb2ee781723",
+      "summary": {
+        "n": 2,
+        "orientation": {
+          "top": 1,
+          "vertical": 1
+        },
+        "causes": {
+          "single overextended or partial guess": 1,
+          "merged with another scored face": 1
+        },
+        "absorbed": 1,
+        "parallel_step": 1,
+        "any_claim": 2,
+        "half_claimed": 2,
+        "one_half_cover": 2,
+        "fragmented": 0,
+        "near_40_to_50": 0,
+        "near_45_to_50": 0,
+        "close_49_to_50": 0,
+        "any_saved_method_found": 0,
+        "can_join_two_unmatched": 0,
+        "other_methods": {}
+      }
+    },
+    {
+      "key": "smooth_stone/holdout-courtyard-plaster-low-left",
+      "sha256": "c8129500a7c473e23666de5470d535f650fb1ac61ae8dcb702f09707ba68949f",
+      "eligible": 5,
+      "matched_ids": [
+        1,
+        2,
+        5,
+        6,
+        7
+      ],
+      "prediction_archive_sha256": "32d795032688fca7fde03777d292200904a1cf40d5506b878f690ee16755e816",
+      "summary": {
+        "n": 0,
+        "orientation": {},
+        "causes": {},
+        "absorbed": 0,
+        "parallel_step": 0,
+        "any_claim": 0,
+        "half_claimed": 0,
+        "one_half_cover": 0,
+        "fragmented": 0,
+        "near_40_to_50": 0,
+        "near_45_to_50": 0,
+        "close_49_to_50": 0,
+        "any_saved_method_found": 0,
+        "can_join_two_unmatched": 0,
+        "other_methods": {}
+      }
+    },
+    {
+      "key": "light_gray_concrete/holdout-courtyard-plaster-low-left",
+      "sha256": "1995d3af4ecbdd7b22bc4ada179009147a5b389379edd6142b99dcaa6446d9c0",
+      "eligible": 5,
+      "matched_ids": [
+        1,
+        2
+      ],
+      "prediction_archive_sha256": "bea15b04cc10b1e02a42e0e1d63eaf82c1b78858a850992f5f4024d0af34675c",
+      "summary": {
+        "n": 3,
+        "orientation": {
+          "vertical": 3
+        },
+        "causes": {
+          "merged with another scored face": 3
+        },
+        "absorbed": 3,
+        "parallel_step": 3,
+        "any_claim": 3,
+        "half_claimed": 3,
+        "one_half_cover": 3,
+        "fragmented": 0,
+        "near_40_to_50": 1,
+        "near_45_to_50": 1,
+        "close_49_to_50": 1,
+        "any_saved_method_found": 1,
+        "can_join_two_unmatched": 0,
+        "other_methods": {
+          "current-b": 1
+        }
+      }
+    },
+    {
+      "key": "smooth_stone/holdout-portico-masonry-high-right",
+      "sha256": "54819d55b59d36a91e891bf2ff6148104d917d5ca59084f4f73edc43d623e390",
+      "eligible": 17,
+      "matched_ids": [
+        1,
+        2,
+        3,
+        4,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17
+      ],
+      "prediction_archive_sha256": "58bbaf2ac9cf5937298f37336bdf14dbe3d274cfe87027c1e1126a8a0c77edf5",
+      "summary": {
+        "n": 4,
+        "orientation": {
+          "vertical": 4
+        },
+        "causes": {
+          "merged with another scored face": 4
+        },
+        "absorbed": 4,
+        "parallel_step": 4,
+        "any_claim": 4,
+        "half_claimed": 4,
+        "one_half_cover": 4,
+        "fragmented": 0,
+        "near_40_to_50": 0,
+        "near_45_to_50": 0,
+        "close_49_to_50": 0,
+        "any_saved_method_found": 0,
+        "can_join_two_unmatched": 0,
+        "other_methods": {}
+      }
+    },
+    {
+      "key": "light_gray_concrete/holdout-portico-masonry-high-right",
+      "sha256": "f6c57a6cca3c952e2134e27f6ca75816487c4817800f504acaa6aa0240a24329",
+      "eligible": 17,
+      "matched_ids": [
+        2,
+        3,
+        4,
+        6,
+        8,
+        9,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17
+      ],
+      "prediction_archive_sha256": "5ae7182e4a6f936c3d267c4bc8e479674cc90418b19d98a31a34167d62c3a3ff",
+      "summary": {
+        "n": 4,
+        "orientation": {
+          "vertical": 3,
+          "top": 1
+        },
+        "causes": {
+          "merged with another scored face": 3,
+          "coverage distributed across mixed guesses": 1
+        },
+        "absorbed": 3,
+        "parallel_step": 3,
+        "any_claim": 4,
+        "half_claimed": 4,
+        "one_half_cover": 3,
+        "fragmented": 0,
+        "near_40_to_50": 1,
+        "near_45_to_50": 1,
+        "close_49_to_50": 0,
+        "any_saved_method_found": 2,
+        "can_join_two_unmatched": 0,
+        "other_methods": {
+          "wall-moge": 1,
+          "current-b": 1
+        }
+      }
+    },
+    {
+      "key": "smooth_stone/holdout-portico-masonry-low-left",
+      "sha256": "eb35fef82a3ed8b7f34c39d7be768ae94123884428038310ea19e578228d83be",
+      "eligible": 20,
+      "matched_ids": [
+        1,
+        3,
+        4,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        16,
+        17,
+        18,
+        20
+      ],
+      "prediction_archive_sha256": "ce41dac6769a79766114d11651e8f36639aee9802dd8c4ba963a5f95e9919f18",
+      "summary": {
+        "n": 4,
+        "orientation": {
+          "vertical": 4
+        },
+        "causes": {
+          "merged with another scored face": 3,
+          "coverage distributed across mixed guesses": 1
+        },
+        "absorbed": 3,
+        "parallel_step": 2,
+        "any_claim": 4,
+        "half_claimed": 4,
+        "one_half_cover": 3,
+        "fragmented": 0,
+        "near_40_to_50": 3,
+        "near_45_to_50": 3,
+        "close_49_to_50": 1,
+        "any_saved_method_found": 0,
+        "can_join_two_unmatched": 0,
+        "other_methods": {}
+      }
+    },
+    {
+      "key": "light_gray_concrete/holdout-portico-masonry-low-left",
+      "sha256": "00daa00ce6d344d9c00205a65b67ed60af6e0f908e1993e842417450928e55b5",
+      "eligible": 20,
+      "matched_ids": [
+        1,
+        3,
+        4,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        20
+      ],
+      "prediction_archive_sha256": "49077d91da72c173c2d490b6c8347404c7d66ccbd4fd4dc8a0dbf9618937c0e1",
+      "summary": {
+        "n": 3,
+        "orientation": {
+          "vertical": 3
+        },
+        "causes": {
+          "merged with another scored face": 2,
+          "coverage distributed across mixed guesses": 1
+        },
+        "absorbed": 2,
+        "parallel_step": 1,
+        "any_claim": 3,
+        "half_claimed": 3,
+        "one_half_cover": 2,
+        "fragmented": 0,
+        "near_40_to_50": 2,
+        "near_45_to_50": 2,
+        "close_49_to_50": 0,
+        "any_saved_method_found": 0,
+        "can_join_two_unmatched": 0,
+        "other_methods": {}
+      }
+    },
+    {
+      "key": "smooth_stone/holdout-portico-plaster-high-right",
+      "sha256": "fb687c20c5df87e79d9dd17ce48566c7f9fca2a092234bedff15fbe3f83b2e8c",
+      "eligible": 17,
+      "matched_ids": [
+        1,
+        2,
+        3,
+        4,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17
+      ],
+      "prediction_archive_sha256": "1c0ee123fdd895c3843efedcb7baa0ee5878963abf784e66cfc648986d73ac84",
+      "summary": {
+        "n": 5,
+        "orientation": {
+          "vertical": 5
+        },
+        "causes": {
+          "merged with another scored face": 5
+        },
+        "absorbed": 5,
+        "parallel_step": 5,
+        "any_claim": 5,
+        "half_claimed": 5,
+        "one_half_cover": 5,
+        "fragmented": 0,
+        "near_40_to_50": 1,
+        "near_45_to_50": 1,
+        "close_49_to_50": 1,
+        "any_saved_method_found": 1,
+        "can_join_two_unmatched": 0,
+        "other_methods": {
+          "current-b": 1
+        }
+      }
+    },
+    {
+      "key": "light_gray_concrete/holdout-portico-plaster-high-right",
+      "sha256": "fbe284f3ab8d1e0d517c81853c4a6121d359eb023c6f9882769d27605edb9b84",
+      "eligible": 17,
+      "matched_ids": [
+        1,
+        2,
+        3,
+        4,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        17
+      ],
+      "prediction_archive_sha256": "62d7cbb8a8bc02bc65424d1dc82593c17c13173c81bf2fe3fe1a6058fc1d1ca4",
+      "summary": {
+        "n": 5,
+        "orientation": {
+          "vertical": 5
+        },
+        "causes": {
+          "merged with another scored face": 4,
+          "single overextended or partial guess": 1
+        },
+        "absorbed": 4,
+        "parallel_step": 4,
+        "any_claim": 5,
+        "half_claimed": 5,
+        "one_half_cover": 5,
+        "fragmented": 0,
+        "near_40_to_50": 1,
+        "near_45_to_50": 1,
+        "close_49_to_50": 0,
+        "any_saved_method_found": 1,
+        "can_join_two_unmatched": 0,
+        "other_methods": {
+          "current-b": 1
+        }
+      }
+    },
+    {
+      "key": "smooth_stone/holdout-portico-plaster-low-left",
+      "sha256": "8f7b6cf572ea617a0efa47c002f4f9221df201dcde9d20595a10fb2915228445",
+      "eligible": 20,
+      "matched_ids": [
+        1,
+        4,
+        6,
+        7,
+        8,
+        10,
+        11,
+        12,
+        13,
+        14,
+        16,
+        18,
+        20
+      ],
+      "prediction_archive_sha256": "7186337f3404fd120ae07a3af419e176fc51d1da2dac753627621b71d4714f2f",
+      "summary": {
+        "n": 7,
+        "orientation": {
+          "vertical": 6,
+          "underside": 1
+        },
+        "causes": {
+          "merged with another scored face": 4,
+          "single overextended or partial guess": 1,
+          "coverage distributed across mixed guesses": 1,
+          "split into two or more mostly pure pieces": 1
+        },
+        "absorbed": 4,
+        "parallel_step": 3,
+        "any_claim": 7,
+        "half_claimed": 7,
+        "one_half_cover": 5,
+        "fragmented": 1,
+        "near_40_to_50": 2,
+        "near_45_to_50": 0,
+        "close_49_to_50": 0,
+        "any_saved_method_found": 1,
+        "can_join_two_unmatched": 1,
+        "other_methods": {
+          "strip-both": 1,
+          "strip-deeplsd": 1,
+          "strip-mlsd": 1,
+          "strip-scalelsd": 1
+        }
+      }
+    },
+    {
+      "key": "light_gray_concrete/holdout-portico-plaster-low-left",
+      "sha256": "318e6e654ece8e6ab93aea0fa5c0cccecdb727faf743b5fbb5eb31da2f2b05f2",
+      "eligible": 20,
+      "matched_ids": [
+        1,
+        4,
+        6,
+        7,
+        8,
+        10,
+        11,
+        12,
+        13,
+        14,
+        16,
+        18,
+        20
+      ],
+      "prediction_archive_sha256": "f5fdff0a8a727fff049406a214793ec08d6ee85815f35006e70f8af1b2ec18de",
+      "summary": {
+        "n": 7,
+        "orientation": {
+          "vertical": 6,
+          "underside": 1
+        },
+        "causes": {
+          "merged with another scored face": 5,
+          "coverage distributed across mixed guesses": 1,
+          "split into two or more mostly pure pieces": 1
+        },
+        "absorbed": 5,
+        "parallel_step": 3,
+        "any_claim": 7,
+        "half_claimed": 7,
+        "one_half_cover": 5,
+        "fragmented": 1,
+        "near_40_to_50": 0,
+        "near_45_to_50": 0,
+        "close_49_to_50": 0,
+        "any_saved_method_found": 1,
+        "can_join_two_unmatched": 1,
+        "other_methods": {
+          "strip-both": 1,
+          "strip-deeplsd": 1,
+          "strip-mlsd": 1,
+          "strip-scalelsd": 1
+        }
+      }
+    },
+    {
+      "key": "light_gray_concrete/holdout-workshop-masonry-low-left",
+      "sha256": "ae86fd9911640c7397bc929d3e0ca1076d84312b5500712cf2c4ec25e7c9112f",
+      "eligible": 14,
+      "matched_ids": [
+        2,
+        7,
+        11
+      ],
+      "prediction_archive_sha256": "ec1deceee408d83c3786a51d20589ee57f2ba05faa3d7e1411608f1e86bd09af",
+      "summary": {
+        "n": 11,
+        "orientation": {
+          "vertical": 9,
+          "underside": 2
+        },
+        "causes": {
+          "merged with another scored face": 9,
+          "coverage distributed across mixed guesses": 1,
+          "split into two or more mostly pure pieces": 1
+        },
+        "absorbed": 9,
+        "parallel_step": 9,
+        "any_claim": 11,
+        "half_claimed": 11,
+        "one_half_cover": 9,
+        "fragmented": 1,
+        "near_40_to_50": 2,
+        "near_45_to_50": 0,
+        "close_49_to_50": 0,
+        "any_saved_method_found": 1,
+        "can_join_two_unmatched": 0,
+        "other_methods": {
+          "strip-both": 1,
+          "strip-deeplsd": 1,
+          "strip-mlsd": 1,
+          "strip-scalelsd": 1
+        }
+      }
+    },
+    {
+      "key": "light_gray_concrete/holdout-workshop-masonry-high-right",
+      "sha256": "3aefcb242fdda8a6d4c40adb9a7d2632c8de998b076b1d4ec09a100db95119d4",
+      "eligible": 16,
+      "matched_ids": [
+        1,
+        2,
+        3,
+        8,
+        11,
+        12,
+        15,
+        16,
+        17,
+        18
+      ],
+      "prediction_archive_sha256": "cc180b7894b600ba9c8d375941536f8ef8a1e0de64c22fa8866f2089a323a1c3",
+      "summary": {
+        "n": 6,
+        "orientation": {
+          "vertical": 5,
+          "top": 1
+        },
+        "causes": {
+          "merged with another scored face": 4,
+          "less than half covered by all guesses": 1,
+          "single overextended or partial guess": 1
+        },
+        "absorbed": 4,
+        "parallel_step": 4,
+        "any_claim": 6,
+        "half_claimed": 5,
+        "one_half_cover": 5,
+        "fragmented": 0,
+        "near_40_to_50": 5,
+        "near_45_to_50": 5,
+        "close_49_to_50": 2,
+        "any_saved_method_found": 0,
+        "can_join_two_unmatched": 0,
+        "other_methods": {}
+      }
+    },
+    {
+      "key": "light_gray_concrete/holdout-workshop-plaster-low-left",
+      "sha256": "91c686215bb3105c779a45302ed5b43bf16a2faa32fbfe1f0f2be10f0e161c42",
+      "eligible": 14,
+      "matched_ids": [
+        2,
+        7,
+        11
+      ],
+      "prediction_archive_sha256": "2e20dc1cf8f08d12f16cbf47d6945fbba0701decad70abcd9c4884dae50977c2",
+      "summary": {
+        "n": 11,
+        "orientation": {
+          "vertical": 9,
+          "underside": 2
+        },
+        "causes": {
+          "merged with another scored face": 9,
+          "coverage distributed across mixed guesses": 1,
+          "split into two or more mostly pure pieces": 1
+        },
+        "absorbed": 9,
+        "parallel_step": 9,
+        "any_claim": 11,
+        "half_claimed": 11,
+        "one_half_cover": 9,
+        "fragmented": 1,
+        "near_40_to_50": 2,
+        "near_45_to_50": 0,
+        "close_49_to_50": 0,
+        "any_saved_method_found": 1,
+        "can_join_two_unmatched": 1,
+        "other_methods": {
+          "strip-both": 1,
+          "strip-deeplsd": 1,
+          "strip-mlsd": 1,
+          "strip-scalelsd": 1
+        }
+      }
+    },
+    {
+      "key": "light_gray_concrete/holdout-workshop-plaster-high-right",
+      "sha256": "d35ab308820f92501ec898cafb1f50939f3f0ed1141e3d9ee38a00eae1199aa0",
+      "eligible": 16,
+      "matched_ids": [
+        1,
+        2,
+        4,
+        5,
+        6,
+        8,
+        11,
+        12,
+        13,
+        14,
+        16
+      ],
+      "prediction_archive_sha256": "fd6e52caf0cf9ba1580bfb704f727772bffd3ec34ec18a6c90987b66fe0a5e0d",
+      "summary": {
+        "n": 5,
+        "orientation": {
+          "vertical": 5
+        },
+        "causes": {
+          "merged with another scored face": 5
+        },
+        "absorbed": 5,
+        "parallel_step": 5,
+        "any_claim": 5,
+        "half_claimed": 5,
+        "one_half_cover": 5,
+        "fragmented": 0,
+        "near_40_to_50": 2,
+        "near_45_to_50": 2,
+        "close_49_to_50": 1,
+        "any_saved_method_found": 2,
+        "can_join_two_unmatched": 0,
+        "other_methods": {
+          "wall-moge": 1,
+          "current-b": 1
+        }
+      }
+    },
+    {
+      "key": "light_gray_concrete/holdout-crossing-masonry-low-left",
+      "sha256": "93c9a45dbb4d6bc59edc6c18ac8007ad4f99ac340844cb0ed8f171640936fa88",
+      "eligible": 12,
+      "matched_ids": [
+        1,
+        2,
+        3,
+        6,
+        7,
+        8,
+        9,
+        11,
+        14
+      ],
+      "prediction_archive_sha256": "55c665db563a035fc372d8e7b12ce4843965e9c3a1d872a3d0187aec1c1617da",
+      "summary": {
+        "n": 3,
+        "orientation": {
+          "vertical": 3
+        },
+        "causes": {
+          "merged with another scored face": 3
+        },
+        "absorbed": 3,
+        "parallel_step": 3,
+        "any_claim": 3,
+        "half_claimed": 3,
+        "one_half_cover": 3,
+        "fragmented": 0,
+        "near_40_to_50": 2,
+        "near_45_to_50": 1,
+        "close_49_to_50": 0,
+        "any_saved_method_found": 0,
+        "can_join_two_unmatched": 0,
+        "other_methods": {}
+      }
+    },
+    {
+      "key": "light_gray_concrete/holdout-crossing-masonry-high-right",
+      "sha256": "7ea5b36aa3c25b3ab4c58dcb773d8c3476c5f2d28048fd72a62970888be31320",
+      "eligible": 11,
+      "matched_ids": [
+        2,
+        3,
+        6,
+        12,
+        14,
+        16,
+        17,
+        18
+      ],
+      "prediction_archive_sha256": "2d7360113e4a4b77b03270cc8e9776b417938c27bc4024ceb6aff2d96039e850",
+      "summary": {
+        "n": 3,
+        "orientation": {
+          "vertical": 2,
+          "top": 1
+        },
+        "causes": {
+          "merged with another scored face": 3
+        },
+        "absorbed": 3,
+        "parallel_step": 1,
+        "any_claim": 3,
+        "half_claimed": 3,
+        "one_half_cover": 3,
+        "fragmented": 0,
+        "near_40_to_50": 0,
+        "near_45_to_50": 0,
+        "close_49_to_50": 0,
+        "any_saved_method_found": 0,
+        "can_join_two_unmatched": 0,
+        "other_methods": {}
+      }
+    },
+    {
+      "key": "light_gray_concrete/holdout-crossing-plaster-low-left",
+      "sha256": "d348ddef0010267fdffc0d628654ef6ce256329400dec3e1cfd271bfaf764144",
+      "eligible": 12,
+      "matched_ids": [
+        1,
+        2,
+        3,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        14
+      ],
+      "prediction_archive_sha256": "a6acce90b4450307d1d6a0572e34d7819e83e2d431e6955ca0c4531edad4ee0f",
+      "summary": {
+        "n": 2,
+        "orientation": {
+          "vertical": 2
+        },
+        "causes": {
+          "merged with another scored face": 2
+        },
+        "absorbed": 2,
+        "parallel_step": 2,
+        "any_claim": 2,
+        "half_claimed": 2,
+        "one_half_cover": 2,
+        "fragmented": 0,
+        "near_40_to_50": 2,
+        "near_45_to_50": 2,
+        "close_49_to_50": 0,
+        "any_saved_method_found": 0,
+        "can_join_two_unmatched": 0,
+        "other_methods": {}
+      }
+    },
+    {
+      "key": "light_gray_concrete/holdout-crossing-plaster-high-right",
+      "sha256": "a7e9cd44bd97237bd3cbf88b11fdfa3575deee7473ef820b30e19bc5fe37698e",
+      "eligible": 11,
+      "matched_ids": [
+        2,
+        6,
+        12,
+        14,
+        16,
+        17,
+        18
+      ],
+      "prediction_archive_sha256": "a0153dea62141a7a7a4a9667642edac2f47935d3cc1ad66eaeb4dba791723e74",
+      "summary": {
+        "n": 4,
+        "orientation": {
+          "vertical": 3,
+          "top": 1
+        },
+        "causes": {
+          "merged with another scored face": 3,
+          "less than half covered by all guesses": 1
+        },
+        "absorbed": 3,
+        "parallel_step": 2,
+        "any_claim": 4,
+        "half_claimed": 3,
+        "one_half_cover": 3,
+        "fragmented": 0,
+        "near_40_to_50": 0,
+        "near_45_to_50": 0,
+        "close_49_to_50": 0,
+        "any_saved_method_found": 0,
+        "can_join_two_unmatched": 0,
+        "other_methods": {}
+      }
+    },
+    {
+      "key": "light_gray_concrete/holdout-registry-masonry-low-left",
+      "sha256": "3f7e9e1b5d577667b157664dd3f37a40e8c7e64a3db0d60ac6c30b294d2ba9e6",
+      "eligible": 7,
+      "matched_ids": [
+        1,
+        2,
+        3,
+        7
+      ],
+      "prediction_archive_sha256": "d5af1f87e61b387b07442626012adaf1ed2ce38c9c6a18c6686f9d2bd49a5dfd",
+      "summary": {
+        "n": 3,
+        "orientation": {
+          "vertical": 3
+        },
+        "causes": {
+          "merged with another scored face": 3
+        },
+        "absorbed": 3,
+        "parallel_step": 3,
+        "any_claim": 3,
+        "half_claimed": 3,
+        "one_half_cover": 3,
+        "fragmented": 0,
+        "near_40_to_50": 1,
+        "near_45_to_50": 1,
+        "close_49_to_50": 0,
+        "any_saved_method_found": 2,
+        "can_join_two_unmatched": 0,
+        "other_methods": {
+          "wall-moge": 2
+        }
+      }
+    },
+    {
+      "key": "light_gray_concrete/holdout-registry-masonry-high-right",
+      "sha256": "e20bfd5e2588ed117375acb3e2f7c42cebb2fdd1ab7167caf35b0b4298a98e19",
+      "eligible": 10,
+      "matched_ids": [
+        2,
+        3,
+        4,
+        5,
+        7,
+        8,
+        10
+      ],
+      "prediction_archive_sha256": "5759d9fc627d7e874968069f53dc768ad7bf2a5477c5f8dd5f2718a8830c388a",
+      "summary": {
+        "n": 3,
+        "orientation": {
+          "vertical": 2,
+          "top": 1
+        },
+        "causes": {
+          "merged with another scored face": 2,
+          "single overextended or partial guess": 1
+        },
+        "absorbed": 2,
+        "parallel_step": 2,
+        "any_claim": 3,
+        "half_claimed": 3,
+        "one_half_cover": 3,
+        "fragmented": 0,
+        "near_40_to_50": 0,
+        "near_45_to_50": 0,
+        "close_49_to_50": 0,
+        "any_saved_method_found": 0,
+        "can_join_two_unmatched": 0,
+        "other_methods": {}
+      }
+    },
+    {
+      "key": "light_gray_concrete/holdout-registry-plaster-low-left",
+      "sha256": "23e91937ee67563c1c4a463676a43c7d4800f82581a3188aa7125e32001be5e9",
+      "eligible": 7,
+      "matched_ids": [
+        1,
+        2,
+        3,
+        5,
+        6,
+        7
+      ],
+      "prediction_archive_sha256": "dc7b1e794b3bc55e6fde064bd5a5f30160a39d8d9131b402cd8e0b9af2ead2c7",
+      "summary": {
+        "n": 1,
+        "orientation": {
+          "vertical": 1
+        },
+        "causes": {
+          "merged with another scored face": 1
+        },
+        "absorbed": 1,
+        "parallel_step": 1,
+        "any_claim": 1,
+        "half_claimed": 1,
+        "one_half_cover": 1,
+        "fragmented": 0,
+        "near_40_to_50": 0,
+        "near_45_to_50": 0,
+        "close_49_to_50": 0,
+        "any_saved_method_found": 0,
+        "can_join_two_unmatched": 0,
+        "other_methods": {}
+      }
+    },
+    {
+      "key": "light_gray_concrete/holdout-registry-plaster-high-right",
+      "sha256": "8634b14394486c2fb709ea678008fbaf2314344280b5a13d3582d433125d589d",
+      "eligible": 10,
+      "matched_ids": [
+        2,
+        3,
+        4,
+        5,
+        7,
+        8
+      ],
+      "prediction_archive_sha256": "8c5d71aa8d786cc812ef52518b5a595382fc3bdd334132e578c0dd180159c089",
+      "summary": {
+        "n": 4,
+        "orientation": {
+          "vertical": 3,
+          "top": 1
+        },
+        "causes": {
+          "merged with another scored face": 1,
+          "single overextended or partial guess": 2,
+          "less than half covered by all guesses": 1
+        },
+        "absorbed": 1,
+        "parallel_step": 1,
+        "any_claim": 4,
+        "half_claimed": 3,
+        "one_half_cover": 3,
+        "fragmented": 0,
+        "near_40_to_50": 2,
+        "near_45_to_50": 1,
+        "close_49_to_50": 0,
+        "any_saved_method_found": 4,
+        "can_join_two_unmatched": 0,
+        "other_methods": {
+          "wall-moge": 2,
+          "current-b": 2
+        }
+      }
+    },
+    {
+      "key": "light_gray_concrete/holdout-galleries-masonry-low-left",
+      "sha256": "d0fba67900a91a20d0120f298c8783829953bc21c7d45fb4413a8cb829cfddc3",
+      "eligible": 25,
+      "matched_ids": [
+        1,
+        4,
+        8,
+        9,
+        10,
+        11,
+        12,
+        16,
+        19,
+        20,
+        23,
+        24,
+        25,
+        26
+      ],
+      "prediction_archive_sha256": "c4f4db75889275c52b1ba096c00274dbded299a0a817ee35f3c8f5d67786ae15",
+      "summary": {
+        "n": 11,
+        "orientation": {
+          "vertical": 10,
+          "underside": 1
+        },
+        "causes": {
+          "merged with another scored face": 9,
+          "single overextended or partial guess": 1,
+          "coverage distributed across mixed guesses": 1
+        },
+        "absorbed": 9,
+        "parallel_step": 4,
+        "any_claim": 11,
+        "half_claimed": 11,
+        "one_half_cover": 10,
+        "fragmented": 0,
+        "near_40_to_50": 2,
+        "near_45_to_50": 0,
+        "close_49_to_50": 0,
+        "any_saved_method_found": 1,
+        "can_join_two_unmatched": 0,
+        "other_methods": {
+          "current-b": 1
+        }
+      }
+    },
+    {
+      "key": "light_gray_concrete/holdout-galleries-masonry-high-right",
+      "sha256": "21916862012e6b47e6dbe426fd7a8930bd7fdd51651238d8ad4d3e8860f57a7b",
+      "eligible": 24,
+      "matched_ids": [
+        1,
+        2,
+        4,
+        5,
+        6,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        17,
+        18,
+        19,
+        20,
+        22,
+        23,
+        24,
+        25,
+        26
+      ],
+      "prediction_archive_sha256": "f8bf078acd26ce184da7a047e8ff8c333075ea7913f7b644ec30fbda4f652838",
+      "summary": {
+        "n": 3,
+        "orientation": {
+          "vertical": 2,
+          "top": 1
+        },
+        "causes": {
+          "merged with another scored face": 3
+        },
+        "absorbed": 3,
+        "parallel_step": 2,
+        "any_claim": 3,
+        "half_claimed": 3,
+        "one_half_cover": 3,
+        "fragmented": 0,
+        "near_40_to_50": 0,
+        "near_45_to_50": 0,
+        "close_49_to_50": 0,
+        "any_saved_method_found": 0,
+        "can_join_two_unmatched": 0,
+        "other_methods": {}
+      }
+    },
+    {
+      "key": "light_gray_concrete/holdout-galleries-plaster-low-left",
+      "sha256": "0fec6765b63937520e2a731a9171eef73e631ce1d47734e3925e2165b64a26c0",
+      "eligible": 25,
+      "matched_ids": [
+        1,
+        4,
+        8,
+        9,
+        10,
+        11,
+        12,
+        16,
+        19,
+        20,
+        21,
+        23,
+        24,
+        26
+      ],
+      "prediction_archive_sha256": "7b3b97dfee725032dfa24ecf86330cbe43fe7e8174529dfb9103221ef56989e2",
+      "summary": {
+        "n": 11,
+        "orientation": {
+          "vertical": 10,
+          "underside": 1
+        },
+        "causes": {
+          "merged with another scored face": 9,
+          "single overextended or partial guess": 1,
+          "coverage distributed across mixed guesses": 1
+        },
+        "absorbed": 9,
+        "parallel_step": 6,
+        "any_claim": 11,
+        "half_claimed": 11,
+        "one_half_cover": 10,
+        "fragmented": 0,
+        "near_40_to_50": 0,
+        "near_45_to_50": 0,
+        "close_49_to_50": 0,
+        "any_saved_method_found": 2,
+        "can_join_two_unmatched": 0,
+        "other_methods": {
+          "current-b": 2
+        }
+      }
+    },
+    {
+      "key": "light_gray_concrete/holdout-galleries-plaster-high-right",
+      "sha256": "a40a75765e0d99508a283686b4484a510d8ca0404656939017fb6d4a85f49832",
+      "eligible": 24,
+      "matched_ids": [
+        1,
+        2,
+        4,
+        5,
+        6,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        17,
+        18,
+        19,
+        20,
+        23,
+        24,
+        25,
+        26
+      ],
+      "prediction_archive_sha256": "b37525e8ed2fcd881629c148d1f9f443b4be83fd496e65e52a90e458c900b10a",
+      "summary": {
+        "n": 5,
+        "orientation": {
+          "vertical": 4,
+          "top": 1
+        },
+        "causes": {
+          "merged with another scored face": 5
+        },
+        "absorbed": 5,
+        "parallel_step": 4,
+        "any_claim": 5,
+        "half_claimed": 5,
+        "one_half_cover": 5,
+        "fragmented": 0,
+        "near_40_to_50": 0,
+        "near_45_to_50": 0,
+        "close_49_to_50": 0,
+        "any_saved_method_found": 0,
+        "can_join_two_unmatched": 0,
+        "other_methods": {}
+      }
+    }
+  ]
+}

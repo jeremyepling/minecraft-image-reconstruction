@@ -1,0 +1,1481 @@
+{
+  "source": "single-wall-depth-01",
+  "cases_sha256": "8541dad27b5e6cd7cf7b99829dfccf8cc1459d664a7ca9c19b2d4a6bd3effdcf",
+  "control_cases_sha256": "c796a458ecc286b0060a52861462bef38fe52db123fb14d55c784a0de01fca14",
+  "view_roster_sha256": "e052002cfd6cb993b162fc8d9bb46131e75a186d53310a70dcf4fa5ebd775bdb",
+  "reference_sha256": "91efa6d3e992b1a68672eae1fdd6d380e87724742a1a4b6cbe5f84d284f731a1",
+  "suite_counts": {
+    "current": {
+      "found": 471,
+      "scored": 598
+    },
+    "single-v2": {
+      "found": 501,
+      "scored": 598
+    },
+    "single-pro": {
+      "found": 499,
+      "scored": 598
+    }
+  },
+  "views": [
+    {
+      "frame": "light_gray_concrete/dev-shopfront-masonry-high-right",
+      "sha256": "bb588b0b0d1cdb05b720ff5bc3b515479426c7772fd98fb7fadb8a55b79ca9db",
+      "layout": "shopfront",
+      "scene_xyxy": [
+        472,
+        284,
+        1076,
+        696
+      ],
+      "focus_reference": 6,
+      "crop_xyxy": [
+        466,
+        375,
+        716,
+        628
+      ],
+      "methods": {
+        "current": {
+          "found": [
+            4,
+            5,
+            7,
+            8,
+            10,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19
+          ],
+          "missed": [
+            6
+          ],
+          "counts": {
+            "visible": 19,
+            "scored": 14,
+            "found": 13,
+            "missed": 1,
+            "small": 5,
+            "small_found": 2,
+            "unsampled": 0,
+            "proposed": 18,
+            "unmatched": 5,
+            "unpaired": 3
+          },
+          "target": {
+            "found": false,
+            "overlap": 0.17852161785216178,
+            "proposal": "mask-0-mobile-0",
+            "index": 1
+          },
+          "in_view": true,
+          "gained_in_crop": [],
+          "lost_in_crop": []
+        },
+        "single-v2": {
+          "found": [
+            4,
+            5,
+            6,
+            7,
+            8,
+            10,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19
+          ],
+          "missed": [],
+          "counts": {
+            "visible": 19,
+            "scored": 14,
+            "found": 14,
+            "missed": 0,
+            "small": 5,
+            "small_found": 2,
+            "unsampled": 0,
+            "proposed": 19,
+            "unmatched": 5,
+            "unpaired": 3
+          },
+          "target": {
+            "found": true,
+            "overlap": 0.7544378698224852,
+            "proposal": "mask-0-mobile-0-single-238-0",
+            "index": 1
+          },
+          "in_view": true,
+          "gained_in_crop": [
+            6
+          ],
+          "lost_in_crop": []
+        },
+        "single-pro": {
+          "found": [
+            4,
+            5,
+            6,
+            7,
+            8,
+            10,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19
+          ],
+          "missed": [],
+          "counts": {
+            "visible": 19,
+            "scored": 14,
+            "found": 14,
+            "missed": 0,
+            "small": 5,
+            "small_found": 2,
+            "unsampled": 0,
+            "proposed": 19,
+            "unmatched": 5,
+            "unpaired": 3
+          },
+          "target": {
+            "found": true,
+            "overlap": 0.7544378698224852,
+            "proposal": "mask-0-mobile-0-single-238-0",
+            "index": 1
+          },
+          "in_view": true,
+          "gained_in_crop": [
+            6
+          ],
+          "lost_in_crop": []
+        }
+      },
+      "boundary_example": {
+        "frame": "light_gray_concrete/dev-shopfront-plaster-low-left",
+        "sha256": "299e0228de74d2cc7d3a18deaba9f61c82560a0ddd0b8557e5c91728c964a993",
+        "proposal": 397,
+        "parent": "mask-2",
+        "crop_xyxy": [
+          793,
+          374,
+          980,
+          564
+        ],
+        "sample_count": 12,
+        "events": {
+          "single-v2": {
+            "parent": "mask-2",
+            "proposal": 397,
+            "accepted": false,
+            "children": [],
+            "median_jump": 0.0025413301114125403,
+            "median_step": 0.0014169394513033444,
+            "sign_agreement": 0.6666666666666666,
+            "sample_count": 12
+          },
+          "single-pro": {
+            "parent": "mask-2",
+            "proposal": 397,
+            "accepted": true,
+            "children": [
+              "mask-2-single-397-0",
+              "mask-2-single-397-1"
+            ],
+            "median_jump": 0.0028336553360018557,
+            "median_step": 0.0019719756159475438,
+            "sign_agreement": 1.0,
+            "sample_count": 12
+          }
+        }
+      }
+    },
+    {
+      "frame": "smooth_stone/dev-wing-masonry-high-right",
+      "sha256": "8cd9e20f608db25df6d141941051d30afcbf80733ea4c6f2058874c02019bf9f",
+      "layout": "wing",
+      "scene_xyxy": [
+        388,
+        292,
+        1032,
+        704
+      ],
+      "focus_reference": 7,
+      "crop_xyxy": [
+        582,
+        255,
+        1038,
+        718
+      ],
+      "methods": {
+        "current": {
+          "found": [
+            1,
+            2,
+            3,
+            7,
+            8
+          ],
+          "missed": [],
+          "counts": {
+            "visible": 8,
+            "scored": 5,
+            "found": 5,
+            "missed": 0,
+            "small": 3,
+            "small_found": 0,
+            "unsampled": 2,
+            "proposed": 8,
+            "unmatched": 3,
+            "unpaired": 3
+          },
+          "target": {
+            "found": true,
+            "overlap": 0.8947368421052632,
+            "proposal": "mask-2",
+            "index": 3
+          },
+          "in_view": true,
+          "gained_in_crop": [],
+          "lost_in_crop": []
+        },
+        "single-v2": {
+          "found": [
+            1,
+            2,
+            3,
+            7,
+            8
+          ],
+          "missed": [],
+          "counts": {
+            "visible": 8,
+            "scored": 5,
+            "found": 5,
+            "missed": 0,
+            "small": 3,
+            "small_found": 0,
+            "unsampled": 2,
+            "proposed": 8,
+            "unmatched": 3,
+            "unpaired": 3
+          },
+          "target": {
+            "found": true,
+            "overlap": 0.8947368421052632,
+            "proposal": "mask-2",
+            "index": 3
+          },
+          "in_view": true,
+          "gained_in_crop": [],
+          "lost_in_crop": []
+        },
+        "single-pro": {
+          "found": [
+            1,
+            2,
+            3,
+            7,
+            8
+          ],
+          "missed": [],
+          "counts": {
+            "visible": 8,
+            "scored": 5,
+            "found": 5,
+            "missed": 0,
+            "small": 3,
+            "small_found": 0,
+            "unsampled": 2,
+            "proposed": 8,
+            "unmatched": 3,
+            "unpaired": 3
+          },
+          "target": {
+            "found": true,
+            "overlap": 0.8947368421052632,
+            "proposal": "mask-2",
+            "index": 3
+          },
+          "in_view": true,
+          "gained_in_crop": [],
+          "lost_in_crop": []
+        }
+      },
+      "boundary_example": {
+        "frame": "smooth_stone/dev-wing-masonry-low-left",
+        "sha256": "0c7bc49ce3c736391d7954a9c069aee29586f03fd33a2a88926b40257ccae6ce",
+        "proposal": 453,
+        "parent": "mask-0",
+        "crop_xyxy": [
+          887,
+          425,
+          1069,
+          609
+        ],
+        "sample_count": 35,
+        "events": {
+          "single-v2": {
+            "parent": "mask-0",
+            "proposal": 453,
+            "accepted": true,
+            "children": [
+              "mask-0-single-453-0",
+              "mask-0-single-453-1"
+            ],
+            "median_jump": -0.00934064135753937,
+            "median_step": -0.008842572474798305,
+            "sign_agreement": 0.9428571428571428,
+            "sample_count": 35
+          },
+          "single-pro": {
+            "parent": "mask-0",
+            "proposal": 453,
+            "accepted": false,
+            "children": [],
+            "median_jump": -0.003749918957734022,
+            "median_step": 0.0002649926851020293,
+            "sign_agreement": 0.0,
+            "sample_count": 35
+          }
+        }
+      }
+    },
+    {
+      "frame": "light_gray_concrete/holdout-courtyard-masonry-high-right",
+      "sha256": "b5b2bb5300687da8d904fb129043b5d2df0ae56e9ba4e14afb932b3e6d44dd3b",
+      "layout": "courtyard",
+      "scene_xyxy": [
+        392,
+        280,
+        1080,
+        696
+      ],
+      "focus_reference": 11,
+      "crop_xyxy": [
+        514,
+        297,
+        701,
+        427
+      ],
+      "methods": {
+        "current": {
+          "found": [
+            1,
+            2,
+            3,
+            4,
+            10,
+            12
+          ],
+          "missed": [
+            5,
+            11
+          ],
+          "counts": {
+            "visible": 12,
+            "scored": 8,
+            "found": 6,
+            "missed": 2,
+            "small": 4,
+            "small_found": 0,
+            "unsampled": 4,
+            "proposed": 7,
+            "unmatched": 1,
+            "unpaired": 1
+          },
+          "target": {
+            "found": false,
+            "overlap": 0.14812889812889812,
+            "proposal": "mask-2",
+            "index": 3
+          },
+          "in_view": true,
+          "gained_in_crop": [],
+          "lost_in_crop": []
+        },
+        "single-v2": {
+          "found": [
+            1,
+            2,
+            3,
+            4,
+            10,
+            11,
+            12
+          ],
+          "missed": [
+            5
+          ],
+          "counts": {
+            "visible": 12,
+            "scored": 8,
+            "found": 7,
+            "missed": 1,
+            "small": 4,
+            "small_found": 0,
+            "unsampled": 4,
+            "proposed": 8,
+            "unmatched": 1,
+            "unpaired": 1
+          },
+          "target": {
+            "found": true,
+            "overlap": 0.8819875776397516,
+            "proposal": "mask-2-single-95-0",
+            "index": 3
+          },
+          "in_view": true,
+          "gained_in_crop": [
+            11
+          ],
+          "lost_in_crop": []
+        },
+        "single-pro": {
+          "found": [
+            1,
+            2,
+            3,
+            4,
+            10,
+            11,
+            12
+          ],
+          "missed": [
+            5
+          ],
+          "counts": {
+            "visible": 12,
+            "scored": 8,
+            "found": 7,
+            "missed": 1,
+            "small": 4,
+            "small_found": 0,
+            "unsampled": 4,
+            "proposed": 8,
+            "unmatched": 1,
+            "unpaired": 1
+          },
+          "target": {
+            "found": true,
+            "overlap": 0.8819875776397516,
+            "proposal": "mask-2-single-95-0",
+            "index": 3
+          },
+          "in_view": true,
+          "gained_in_crop": [
+            11
+          ],
+          "lost_in_crop": []
+        }
+      },
+      "boundary_example": {
+        "frame": "smooth_stone/holdout-courtyard-plaster-low-left",
+        "sha256": "c8129500a7c473e23666de5470d535f650fb1ac61ae8dcb702f09707ba68949f",
+        "proposal": 53,
+        "parent": "mask-2",
+        "crop_xyxy": [
+          237,
+          294,
+          623,
+          685
+        ],
+        "sample_count": 49,
+        "events": {
+          "single-v2": {
+            "parent": "mask-2",
+            "proposal": 53,
+            "accepted": false,
+            "children": [],
+            "median_jump": 0.011470455855781436,
+            "median_step": -0.0011505025554417875,
+            "sign_agreement": 0.02040816326530612,
+            "sample_count": 49
+          },
+          "single-pro": {
+            "parent": "mask-2",
+            "proposal": 53,
+            "accepted": true,
+            "children": [
+              "mask-2-single-53-0",
+              "mask-2-single-53-1",
+              "mask-2-single-53-2"
+            ],
+            "median_jump": 0.013489609191543406,
+            "median_step": 0.003709373095536206,
+            "sign_agreement": 0.9183673469387755,
+            "sample_count": 49
+          }
+        }
+      }
+    },
+    {
+      "frame": "smooth_stone/holdout-portico-masonry-high-right",
+      "sha256": "54819d55b59d36a91e891bf2ff6148104d917d5ca59084f4f73edc43d623e390",
+      "layout": "portico",
+      "scene_xyxy": [
+        404,
+        280,
+        1068,
+        672
+      ],
+      "focus_reference": 8,
+      "crop_xyxy": [
+        673,
+        428,
+        924,
+        683
+      ],
+      "methods": {
+        "current": {
+          "found": [
+            1,
+            2,
+            3,
+            4,
+            6,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17
+          ],
+          "missed": [
+            5,
+            7,
+            8
+          ],
+          "counts": {
+            "visible": 17,
+            "scored": 17,
+            "found": 14,
+            "missed": 3,
+            "small": 0,
+            "small_found": 0,
+            "unsampled": 0,
+            "proposed": 16,
+            "unmatched": 2,
+            "unpaired": 2
+          },
+          "target": {
+            "found": false,
+            "overlap": 0.16437684003925418,
+            "proposal": "mask-0-junction-1",
+            "index": 2
+          },
+          "in_view": true,
+          "gained_in_crop": [],
+          "lost_in_crop": []
+        },
+        "single-v2": {
+          "found": [
+            1,
+            2,
+            3,
+            4,
+            6,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17
+          ],
+          "missed": [
+            5,
+            7
+          ],
+          "counts": {
+            "visible": 17,
+            "scored": 17,
+            "found": 15,
+            "missed": 2,
+            "small": 0,
+            "small_found": 0,
+            "unsampled": 0,
+            "proposed": 17,
+            "unmatched": 2,
+            "unpaired": 2
+          },
+          "target": {
+            "found": true,
+            "overlap": 0.8312655086848635,
+            "proposal": "mask-0-junction-1-single-234-1",
+            "index": 3
+          },
+          "in_view": true,
+          "gained_in_crop": [
+            8
+          ],
+          "lost_in_crop": []
+        },
+        "single-pro": {
+          "found": [
+            1,
+            2,
+            3,
+            4,
+            6,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17
+          ],
+          "missed": [
+            5,
+            7
+          ],
+          "counts": {
+            "visible": 17,
+            "scored": 17,
+            "found": 15,
+            "missed": 2,
+            "small": 0,
+            "small_found": 0,
+            "unsampled": 0,
+            "proposed": 17,
+            "unmatched": 2,
+            "unpaired": 2
+          },
+          "target": {
+            "found": true,
+            "overlap": 0.8312655086848635,
+            "proposal": "mask-0-junction-1-single-234-1",
+            "index": 3
+          },
+          "in_view": true,
+          "gained_in_crop": [
+            8
+          ],
+          "lost_in_crop": []
+        }
+      },
+      "boundary_example": {
+        "frame": "smooth_stone/holdout-portico-masonry-low-left",
+        "sha256": "eb35fef82a3ed8b7f34c39d7be768ae94123884428038310ea19e578228d83be",
+        "proposal": 336,
+        "parent": "mask-4",
+        "crop_xyxy": [
+          787,
+          403,
+          1007,
+          626
+        ],
+        "sample_count": 38,
+        "events": {
+          "single-v2": {
+            "parent": "mask-4",
+            "proposal": 336,
+            "accepted": false,
+            "children": [],
+            "median_jump": 0.013600567601331937,
+            "median_step": 0.009485977428962657,
+            "sign_agreement": 0.8947368421052632,
+            "sample_count": 38
+          },
+          "single-pro": {
+            "parent": "mask-4",
+            "proposal": 336,
+            "accepted": true,
+            "children": [
+              "mask-4-single-336-0",
+              "mask-4-single-336-1"
+            ],
+            "median_jump": 0.011318185098684805,
+            "median_step": 0.009538226155647565,
+            "sign_agreement": 1.0,
+            "sample_count": 38
+          }
+        }
+      }
+    },
+    {
+      "frame": "light_gray_concrete/holdout-workshop-plaster-high-right",
+      "sha256": "d35ab308820f92501ec898cafb1f50939f3f0ed1141e3d9ee38a00eae1199aa0",
+      "layout": "workshop",
+      "scene_xyxy": [
+        368,
+        248,
+        1052,
+        684
+      ],
+      "focus_reference": 15,
+      "crop_xyxy": [
+        720,
+        514,
+        856,
+        604
+      ],
+      "methods": {
+        "current": {
+          "found": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            8,
+            11,
+            12,
+            13,
+            14,
+            16
+          ],
+          "missed": [
+            15,
+            17,
+            18,
+            19
+          ],
+          "counts": {
+            "visible": 19,
+            "scored": 16,
+            "found": 12,
+            "missed": 4,
+            "small": 3,
+            "small_found": 0,
+            "unsampled": 1,
+            "proposed": 18,
+            "unmatched": 6,
+            "unpaired": 6
+          },
+          "target": {
+            "found": false,
+            "overlap": 0.4924078091106291,
+            "proposal": "mask-3",
+            "index": 6
+          },
+          "in_view": true,
+          "gained_in_crop": [],
+          "lost_in_crop": []
+        },
+        "single-v2": {
+          "found": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            8,
+            11,
+            12,
+            13,
+            14,
+            16
+          ],
+          "missed": [
+            15,
+            17,
+            18,
+            19
+          ],
+          "counts": {
+            "visible": 19,
+            "scored": 16,
+            "found": 12,
+            "missed": 4,
+            "small": 3,
+            "small_found": 0,
+            "unsampled": 1,
+            "proposed": 18,
+            "unmatched": 6,
+            "unpaired": 6
+          },
+          "target": {
+            "found": false,
+            "overlap": 0.4924078091106291,
+            "proposal": "mask-3",
+            "index": 6
+          },
+          "in_view": true,
+          "gained_in_crop": [],
+          "lost_in_crop": []
+        },
+        "single-pro": {
+          "found": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            8,
+            11,
+            12,
+            13,
+            14,
+            16
+          ],
+          "missed": [
+            15,
+            17,
+            18,
+            19
+          ],
+          "counts": {
+            "visible": 19,
+            "scored": 16,
+            "found": 12,
+            "missed": 4,
+            "small": 3,
+            "small_found": 0,
+            "unsampled": 1,
+            "proposed": 18,
+            "unmatched": 6,
+            "unpaired": 6
+          },
+          "target": {
+            "found": false,
+            "overlap": 0.4924078091106291,
+            "proposal": "mask-3",
+            "index": 6
+          },
+          "in_view": true,
+          "gained_in_crop": [],
+          "lost_in_crop": []
+        }
+      },
+      "boundary_example": {
+        "frame": "light_gray_concrete/holdout-workshop-plaster-low-left",
+        "sha256": "91c686215bb3105c779a45302ed5b43bf16a2faa32fbfe1f0f2be10f0e161c42",
+        "proposal": 514,
+        "parent": "mask-0-mobile-1",
+        "crop_xyxy": [
+          839,
+          472,
+          980,
+          615
+        ],
+        "sample_count": 40,
+        "events": {
+          "single-v2": {
+            "parent": "mask-0-mobile-1",
+            "proposal": 514,
+            "accepted": true,
+            "children": [
+              "mask-0-mobile-1-single-514-0",
+              "mask-0-mobile-1-single-514-1"
+            ],
+            "median_jump": -0.005673199651038782,
+            "median_step": -0.004459897891421968,
+            "sign_agreement": 0.875,
+            "sample_count": 40
+          },
+          "single-pro": {
+            "parent": "mask-0-mobile-1",
+            "proposal": 514,
+            "accepted": true,
+            "children": [
+              "mask-0-mobile-1-single-514-0",
+              "mask-0-mobile-1-single-514-1"
+            ],
+            "median_jump": -0.013823484329625282,
+            "median_step": -0.009472815688048565,
+            "sign_agreement": 0.925,
+            "sample_count": 40
+          }
+        }
+      }
+    },
+    {
+      "frame": "light_gray_concrete/holdout-crossing-masonry-low-left",
+      "sha256": "93c9a45dbb4d6bc59edc6c18ac8007ad4f99ac340844cb0ed8f171640936fa88",
+      "layout": "crossing",
+      "scene_xyxy": [
+        372,
+        260,
+        1032,
+        688
+      ],
+      "focus_reference": 10,
+      "crop_xyxy": [
+        841,
+        259,
+        963,
+        367
+      ],
+      "methods": {
+        "current": {
+          "found": [
+            1,
+            2,
+            3,
+            6,
+            7,
+            8,
+            9,
+            11,
+            14
+          ],
+          "missed": [
+            4,
+            5,
+            10
+          ],
+          "counts": {
+            "visible": 17,
+            "scored": 12,
+            "found": 9,
+            "missed": 3,
+            "small": 5,
+            "small_found": 0,
+            "unsampled": 0,
+            "proposed": 11,
+            "unmatched": 2,
+            "unpaired": 2
+          },
+          "target": {
+            "found": false,
+            "overlap": 0.05953582240161453,
+            "proposal": "mask-1",
+            "index": 2
+          },
+          "in_view": true,
+          "gained_in_crop": [],
+          "lost_in_crop": []
+        },
+        "single-v2": {
+          "found": [
+            1,
+            2,
+            3,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            14
+          ],
+          "missed": [
+            4,
+            5
+          ],
+          "counts": {
+            "visible": 17,
+            "scored": 12,
+            "found": 10,
+            "missed": 2,
+            "small": 5,
+            "small_found": 0,
+            "unsampled": 0,
+            "proposed": 12,
+            "unmatched": 2,
+            "unpaired": 2
+          },
+          "target": {
+            "found": true,
+            "overlap": 0.8963730569948186,
+            "proposal": "mask-1-single-436-1",
+            "index": 3
+          },
+          "in_view": true,
+          "gained_in_crop": [
+            10
+          ],
+          "lost_in_crop": []
+        },
+        "single-pro": {
+          "found": [
+            1,
+            2,
+            3,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            14
+          ],
+          "missed": [
+            4,
+            5
+          ],
+          "counts": {
+            "visible": 17,
+            "scored": 12,
+            "found": 10,
+            "missed": 2,
+            "small": 5,
+            "small_found": 0,
+            "unsampled": 0,
+            "proposed": 12,
+            "unmatched": 2,
+            "unpaired": 2
+          },
+          "target": {
+            "found": true,
+            "overlap": 0.8963730569948186,
+            "proposal": "mask-1-single-436-1",
+            "index": 3
+          },
+          "in_view": true,
+          "gained_in_crop": [
+            10
+          ],
+          "lost_in_crop": []
+        }
+      },
+      "boundary_example": {
+        "frame": "light_gray_concrete/holdout-crossing-plaster-high-right",
+        "sha256": "a7e9cd44bd97237bd3cbf88b11fdfa3575deee7473ef820b30e19bc5fe37698e",
+        "proposal": 443,
+        "parent": "mask-0-wall-0-junction-0",
+        "crop_xyxy": [
+          392,
+          219,
+          1028,
+          664
+        ],
+        "sample_count": 141,
+        "events": {
+          "single-v2": {
+            "parent": "mask-0-wall-0-junction-0",
+            "proposal": 443,
+            "accepted": false,
+            "children": [],
+            "median_jump": -0.0007084268376945646,
+            "median_step": -0.0004390060212429159,
+            "sign_agreement": 0.5035460992907801,
+            "sample_count": 141
+          },
+          "single-pro": {
+            "parent": "mask-0-wall-0-junction-0",
+            "proposal": 443,
+            "accepted": true,
+            "children": [
+              "mask-0-wall-0-junction-0-single-443-0",
+              "mask-0-wall-0-junction-0-single-443-1"
+            ],
+            "median_jump": 0.0021365056999576026,
+            "median_step": 0.001850077292574942,
+            "sign_agreement": 0.8014184397163121,
+            "sample_count": 141
+          }
+        }
+      }
+    },
+    {
+      "frame": "light_gray_concrete/holdout-galleries-masonry-low-left",
+      "sha256": "d0fba67900a91a20d0120f298c8783829953bc21c7d45fb4413a8cb829cfddc3",
+      "layout": "galleries",
+      "scene_xyxy": [
+        392,
+        252,
+        1080,
+        676
+      ],
+      "focus_reference": 22,
+      "crop_xyxy": [
+        589,
+        460,
+        760,
+        633
+      ],
+      "methods": {
+        "current": {
+          "found": [
+            1,
+            4,
+            8,
+            9,
+            10,
+            11,
+            12,
+            16,
+            19,
+            20,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30
+          ],
+          "missed": [
+            2,
+            3,
+            6,
+            7,
+            13,
+            21,
+            22
+          ],
+          "counts": {
+            "visible": 30,
+            "scored": 25,
+            "found": 18,
+            "missed": 7,
+            "small": 5,
+            "small_found": 0,
+            "unsampled": 2,
+            "proposed": 29,
+            "unmatched": 11,
+            "unpaired": 11
+          },
+          "target": {
+            "found": false,
+            "overlap": 0.2190923317683881,
+            "proposal": "mask-6",
+            "index": 15
+          },
+          "in_view": true,
+          "gained_in_crop": [],
+          "lost_in_crop": []
+        },
+        "single-v2": {
+          "found": [
+            1,
+            4,
+            8,
+            9,
+            10,
+            11,
+            12,
+            16,
+            19,
+            20,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30
+          ],
+          "missed": [
+            2,
+            3,
+            6,
+            7,
+            13,
+            21,
+            22
+          ],
+          "counts": {
+            "visible": 30,
+            "scored": 25,
+            "found": 18,
+            "missed": 7,
+            "small": 5,
+            "small_found": 0,
+            "unsampled": 2,
+            "proposed": 29,
+            "unmatched": 11,
+            "unpaired": 11
+          },
+          "target": {
+            "found": false,
+            "overlap": 0.2190923317683881,
+            "proposal": "mask-6",
+            "index": 15
+          },
+          "in_view": true,
+          "gained_in_crop": [],
+          "lost_in_crop": []
+        },
+        "single-pro": {
+          "found": [
+            1,
+            4,
+            8,
+            9,
+            10,
+            11,
+            12,
+            16,
+            19,
+            20,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30
+          ],
+          "missed": [
+            2,
+            3,
+            6,
+            7,
+            13,
+            21,
+            22
+          ],
+          "counts": {
+            "visible": 30,
+            "scored": 25,
+            "found": 18,
+            "missed": 7,
+            "small": 5,
+            "small_found": 0,
+            "unsampled": 2,
+            "proposed": 30,
+            "unmatched": 12,
+            "unpaired": 12
+          },
+          "target": {
+            "found": false,
+            "overlap": 0.4488778054862843,
+            "proposal": "mask-2-single-186-0",
+            "index": 11
+          },
+          "in_view": true,
+          "gained_in_crop": [],
+          "lost_in_crop": []
+        }
+      },
+      "boundary_example": {
+        "frame": "light_gray_concrete/holdout-galleries-plaster-low-left",
+        "sha256": "0fec6765b63937520e2a731a9171eef73e631ce1d47734e3925e2165b64a26c0",
+        "proposal": 147,
+        "parent": "mask-1",
+        "crop_xyxy": [
+          524,
+          460,
+          692,
+          631
+        ],
+        "sample_count": 11,
+        "events": {
+          "single-v2": {
+            "parent": "mask-1",
+            "proposal": 147,
+            "accepted": true,
+            "children": [
+              "mask-1-single-147-0",
+              "mask-1-single-147-1"
+            ],
+            "median_jump": -0.0010413480788392937,
+            "median_step": -0.0017497707466563525,
+            "sign_agreement": 0.8181818181818182,
+            "sample_count": 11
+          },
+          "single-pro": {
+            "parent": "mask-1",
+            "proposal": 147,
+            "accepted": false,
+            "children": [],
+            "median_jump": -0.0037685552853974624,
+            "median_step": -0.0031276515441206326,
+            "sign_agreement": 0.6363636363636364,
+            "sample_count": 11
+          }
+        }
+      }
+    },
+    {
+      "frame": "light_gray_concrete/holdout-registry-masonry-high-right",
+      "sha256": "e20bfd5e2588ed117375acb3e2f7c42cebb2fdd1ab7167caf35b0b4298a98e19",
+      "layout": "registry",
+      "scene_xyxy": [
+        408,
+        240,
+        1084,
+        700
+      ],
+      "focus_reference": 1,
+      "crop_xyxy": [
+        648,
+        499,
+        956,
+        714
+      ],
+      "methods": {
+        "current": {
+          "found": [
+            2,
+            3,
+            4,
+            5,
+            7,
+            8,
+            10
+          ],
+          "missed": [
+            1,
+            6,
+            9
+          ],
+          "counts": {
+            "visible": 10,
+            "scored": 10,
+            "found": 7,
+            "missed": 3,
+            "small": 0,
+            "small_found": 0,
+            "unsampled": 0,
+            "proposed": 9,
+            "unmatched": 2,
+            "unpaired": 2
+          },
+          "target": {
+            "found": false,
+            "overlap": 0.18946712371455282,
+            "proposal": "mask-0",
+            "index": 1
+          },
+          "in_view": true,
+          "gained_in_crop": [],
+          "lost_in_crop": []
+        },
+        "single-v2": {
+          "found": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            7,
+            8,
+            10
+          ],
+          "missed": [
+            6,
+            9
+          ],
+          "counts": {
+            "visible": 10,
+            "scored": 10,
+            "found": 8,
+            "missed": 2,
+            "small": 0,
+            "small_found": 0,
+            "unsampled": 0,
+            "proposed": 10,
+            "unmatched": 2,
+            "unpaired": 2
+          },
+          "target": {
+            "found": true,
+            "overlap": 0.9725806451612903,
+            "proposal": "mask-0-single-588-1",
+            "index": 2
+          },
+          "in_view": true,
+          "gained_in_crop": [
+            1
+          ],
+          "lost_in_crop": []
+        },
+        "single-pro": {
+          "found": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            7,
+            8,
+            10
+          ],
+          "missed": [
+            6,
+            9
+          ],
+          "counts": {
+            "visible": 10,
+            "scored": 10,
+            "found": 8,
+            "missed": 2,
+            "small": 0,
+            "small_found": 0,
+            "unsampled": 0,
+            "proposed": 10,
+            "unmatched": 2,
+            "unpaired": 2
+          },
+          "target": {
+            "found": true,
+            "overlap": 0.9725806451612903,
+            "proposal": "mask-0-single-588-1",
+            "index": 2
+          },
+          "in_view": true,
+          "gained_in_crop": [
+            1
+          ],
+          "lost_in_crop": []
+        }
+      },
+      "boundary_example": {
+        "frame": "light_gray_concrete/holdout-registry-plaster-low-left",
+        "sha256": "23e91937ee67563c1c4a463676a43c7d4800f82581a3188aa7125e32001be5e9",
+        "proposal": 365,
+        "parent": "mask-0-wall-1-junction-1",
+        "crop_xyxy": [
+          748,
+          500,
+          960,
+          648
+        ],
+        "sample_count": 38,
+        "events": {
+          "single-v2": {
+            "parent": "mask-0-wall-1-junction-1",
+            "proposal": 365,
+            "accepted": false,
+            "children": [],
+            "median_jump": -0.0007058467715530814,
+            "median_step": 0.0004772896109645139,
+            "sign_agreement": 0.3684210526315789,
+            "sample_count": 38
+          },
+          "single-pro": {
+            "parent": "mask-0-wall-1-junction-1",
+            "proposal": 365,
+            "accepted": true,
+            "children": [
+              "mask-0-wall-1-junction-1-single-365-0",
+              "mask-0-wall-1-junction-1-single-365-1"
+            ],
+            "median_jump": -0.012356957515129371,
+            "median_step": -0.0109659944485519,
+            "sign_agreement": 1.0,
+            "sample_count": 38
+          }
+        }
+      }
+    }
+  ],
+  "image": {
+    "file": "comparison.jpg",
+    "sha256": "ed6398314f7c612c14d66c4ccedba3931535c2e1485611c22afdc1b763957685",
+    "width": 3504,
+    "height": 6947
+  }
+}

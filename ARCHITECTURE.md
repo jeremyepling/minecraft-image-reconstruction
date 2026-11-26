@@ -2,6 +2,8 @@
 
 The entry point is [reconstruct.py](reconstruct.py). A plain `build` uses baseline geometry and ranks block textures at the image's current brightness. Newer algorithms have their own switches or research commands. The normal build never runs a tournament of algorithms on the user's image.
 
+For a single exterior, `build --through counts` runs the Surface Finder (Regions First, Wall Recovery and the single-outline depth check), Surface Straightener and Block Counter (masked repetition). Five local checkpoints supply the default evidence. Add `--material-match atlas` to rank block IDs for complete cells. Each build manifest records the actual steps and models. [Stage guide](benchmark/SURFACE_FINDER.md) · [Single-outline comparison](benchmark/SINGLE_WALL_DEPTH.md) · [Count experiment](benchmark/COUNT_ROUND.md)
+
 ```mermaid
 flowchart TD
     V["Java version and client JAR"] --> A["atlas: sprite sheet, texture metadata, placement index"]
@@ -47,6 +49,8 @@ Dimensions are a separate **output and measurement concern** within `analyze`. T
 
 ### Research path for angled openings
 
+**Cube constraints are opt-in.** `inspect-form --cube-turns` fits a common three-axis camera frame using the detected segments, adjusts supported stretches of the silhouette and tests whether a proposed face and its connecting edges follow the frame. `analyze --geometry-method cube` and `build --geometry-method cube` send the same silhouette into the existing elevation, lattice and frontal depth stages. Local qualitative relief labels are review evidence. [Call paths and limitations](benchmark/CUBE_TURNS.md)
+
 `inspect-form` traces coarse and fine straight segments across the frame, groups the coarse edges into an outline with background-color evidence, then looks for smaller faces and angled junctions within it. The output records a qualitative relief label independently of block depth. `outline.png` shows the general form before local predictions. `relief.png` and `form.json` expose individual predictions for review. This path is experimental and has no connection to block placement. [Algorithms, failures and comparative scores](benchmark/LINE_FORM.md)
 
 The user-facing diagnostic is `reconstruct.py inspect-openings IMAGE --out REVIEW`. It loads a fixed entrance policy, rectifies the facade, proposes opening outlines, then estimates depth from local texture scale. The JSON distinguishes a supported depth, a flush surface, an unresolved measurement and an extra outline for review. The review image labels each outline. The selection benchmark compares these decisions against known Minecraft worlds. The build command and the atlas matcher run independently of this diagnostic. [Selection rule, live results and limitations](benchmark/ENTRANCES.md)
@@ -54,6 +58,8 @@ The user-facing diagnostic is `reconstruct.py inspect-openings IMAGE --out REVIE
 `python -m benchmark.oblique_recess --image IMAGE --out result.json` runs the pavement-based oblique rectification, proposes dark opening rims, projects alternative back edges, and checks the local wall texture to reject flush inlays. Back-corner experiments compare competing depth estimates on those same candidates. World geometry and recorded camera poses are used for scoring after prediction. These experiments have no call path into normal block placement. The frontal depth estimator in `remap` is wired into placement. [Frontal and oblique experiments](benchmark/RECESSES.md)
 
 ### Two ways to follow a run
+
+The opt-in `fit-voxels` command follows a separate geometry path. It fits a perspective camera and a bounded cell grid, proposes solid block occupancy, then renders the visible faces back into the screenshot. The default for this command uses depth symmetry. Full-cube geometry is exported in smooth stone when an atlas is supplied. [Candidates, results and reproduction instructions](benchmark/VOXEL_FIT.md)
 
 ```console
 python reconstruct.py build wall.png --atlas runs/26.3/atlas --out runs/default

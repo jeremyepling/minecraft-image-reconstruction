@@ -36,7 +36,7 @@ def save_nbt(path,value):
     path.write_bytes(gzip.compress(b'\x0a\x00\x00'+tag(value)[1],mtime=0))
 
 
-def create_world(world, metadata, extra_rules=None, level_name='Palette Lab'):
+def create_world(world, metadata, extra_rules=None, level_name='Palette Lab', *, floor='smooth_stone'):
     data_version=metadata['world_version']
     over,nether,end=['minecraft:'+s for s in ('overworld','the_nether','the_end')]
     spawn=dict(pos=(11,[0,GROUND+1,29]),pitch=(5,0.),dimension=over,yaw=(5,180.))
@@ -49,7 +49,7 @@ def create_world(world, metadata, extra_rules=None, level_name='Palette Lab'):
     save_nbt(world/'level.dat',{'Data':level})
     flat=dict(features=False,biome='minecraft:plains',structure_overrides=[],lakes=False,layers=[
         dict(block='minecraft:bedrock',height=1),dict(block='minecraft:stone',height=127),
-        dict(block='minecraft:smooth_stone',height=1)])
+        dict(block='minecraft:'+floor,height=1)])
     dims={over:dict(type=over,generator=dict(type='minecraft:flat',settings=flat)),
           nether:dict(type=nether,generator=dict(type='minecraft:noise',settings='minecraft:nether',
                                                  biome_source=dict(type='minecraft:multi_noise',preset='minecraft:nether'))),

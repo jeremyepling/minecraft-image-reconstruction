@@ -1,0 +1,207 @@
+{
+  "id": "holdout-courtyard-masonry-close-front",
+  "floor": "light_gray_concrete",
+  "layout": "courtyard",
+  "split": "holdout",
+  "condition": "limited-ground",
+  "metric": false,
+  "vertices": 35,
+  "spans": 12,
+  "within_2px": 0,
+  "projected": 0,
+  "measured_spans": 0,
+  "mean_px": null,
+  "p90_px": null,
+  "span_mae": null,
+  "relative_span_error": null,
+  "axis_mae_deg": 0.4485031913999908,
+  "fov_error_deg": null,
+  "charts": [
+    {
+      "axis": 2,
+      "plane": -4,
+      "expected": [
+        6,
+        4
+      ]
+    }
+  ],
+  "hit_rate": 0.0,
+  "endpoint_diagnostic": {
+    "total": 4,
+    "measured": 4,
+    "abstained": 0,
+    "mean_abs_error_pct": 0.13641214635028154,
+    "cases": [
+      {
+        "corner_xyz": [
+          1029,
+          67,
+          -4
+        ],
+        "normal_axis": 2,
+        "width_end_xyz": [
+          1035,
+          67,
+          -4
+        ],
+        "height_end_xyz": [
+          1029,
+          71,
+          -4
+        ],
+        "corner_px": [
+          55.0449605780023,
+          893.3034765496271
+        ],
+        "width_end_px": [
+          1384.9555205780669,
+          893.3035957952434
+        ],
+        "height_end_px": [
+          55.0449605780023,
+          6.696472718311103
+        ],
+        "axis_indices": [
+          0,
+          2
+        ],
+        "expected_ratio": 1.5,
+        "predicted_ratio": 1.5021416252227744,
+        "abs_error_pct": 0.14277501485162603,
+        "reason": null
+      },
+      {
+        "corner_xyz": [
+          1029,
+          71,
+          -4
+        ],
+        "normal_axis": 2,
+        "width_end_xyz": [
+          1035,
+          71,
+          -4
+        ],
+        "height_end_xyz": [
+          1029,
+          67,
+          -4
+        ],
+        "corner_px": [
+          55.0449605780023,
+          6.696472718311103
+        ],
+        "width_end_px": [
+          1384.9555205780669,
+          6.696353472681158
+        ],
+        "height_end_px": [
+          55.0449605780023,
+          893.3034765496271
+        ],
+        "axis_indices": [
+          0,
+          2
+        ],
+        "expected_ratio": 1.5,
+        "predicted_ratio": 1.5020140732097054,
+        "abs_error_pct": 0.1342715473136913,
+        "reason": null
+      },
+      {
+        "corner_xyz": [
+          1035,
+          67,
+          -4
+        ],
+        "normal_axis": 2,
+        "width_end_xyz": [
+          1029,
+          67,
+          -4
+        ],
+        "height_end_xyz": [
+          1035,
+          71,
+          -4
+        ],
+        "corner_px": [
+          1384.9555205780669,
+          893.3035957952434
+        ],
+        "width_end_px": [
+          55.0449605780023,
+          893.3034765496271
+        ],
+        "height_end_px": [
+          1384.9555205780669,
+          6.696353472681158
+        ],
+        "axis_indices": [
+          0,
+          2
+        ],
+        "expected_ratio": 1.5,
+        "predicted_ratio": 1.498049087076519,
+        "abs_error_pct": 0.1300608615653953,
+        "reason": null
+      },
+      {
+        "corner_xyz": [
+          1035,
+          71,
+          -4
+        ],
+        "normal_axis": 2,
+        "width_end_xyz": [
+          1029,
+          71,
+          -4
+        ],
+        "height_end_xyz": [
+          1035,
+          67,
+          -4
+        ],
+        "corner_px": [
+          1384.9555205780669,
+          6.696353472681158
+        ],
+        "width_end_px": [
+          55.0449605780023,
+          6.696472718311103
+        ],
+        "height_end_px": [
+          1384.9555205780669,
+          893.3035957952434
+        ],
+        "axis_indices": [
+          0,
+          2
+        ],
+        "expected_ratio": 1.5,
+        "predicted_ratio": 1.4979218825749439,
+        "abs_error_pct": 0.13854116167041353,
+        "reason": null
+      }
+    ]
+  },
+  "automatic_charts": {
+    "total": 1,
+    "measured": 0,
+    "abstained": 1,
+    "mean_abs_error_pct": null,
+    "cases": [
+      {
+        "axis": 2,
+        "plane": -4,
+        "plane_error_blocks": null,
+        "expected_ratio": 1.5,
+        "predicted_ratio": null,
+        "abs_error_pct": null,
+        "reason": "no_automatic_chart"
+      }
+    ]
+  }
+}

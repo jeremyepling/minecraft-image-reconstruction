@@ -1,0 +1,27 @@
+{
+  "selection": "Select on Shopfront and Wing: require more exact surface matches and higher pooled surface F1 than Wall Recovery, preserve all opening pixels, and rank by matches, then F1, then correctly assigned pixels. On reviewed regression require at least as many matches and no lower F1. Speed and number of models are excluded from selection.",
+  "gate": {
+    "max_vertical_normal_y": 0.5,
+    "min_parent_share": 0.035,
+    "min_side_area": 24,
+    "min_containment": 0.55,
+    "max_parent_share": 0.92,
+    "min_sample_pairs": 6,
+    "near_distance": 0,
+    "far_distance": 2,
+    "min_step": 0.001,
+    "min_agreement": 0.7,
+    "min_seed_samples": 12
+  },
+  "scoring": {
+    "iou": 0.5,
+    "sample_stride": 4,
+    "boundary_tolerance_px": 8,
+    "corner_tolerance_px": 12,
+    "contour_simplification_px": 6,
+    "minimum_corner_turn_deg": 30,
+    "minimum_contact_samples": 2,
+    "contact_depth_blocks": 0.5,
+    "filled_gap_fraction": 0.5
+  }
+}

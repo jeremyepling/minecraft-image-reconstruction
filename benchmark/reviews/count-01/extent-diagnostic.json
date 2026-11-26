@@ -1,0 +1,3343 @@
+{
+  "diagnostic": "Reference raster vs touched-block extents",
+  "stride_px": 4,
+  "protocol": "Compare two ground-truth descriptions of visible width and height, without running a predictor.\n\nThe reference raster labels the center of every four-by-four screenshot pixel square.\nWe map the outer corners of those squares into the known plane and round each span\nto the nearest block. The comparison target counts every labeled block column and\nrow touched, including partially visible edge blocks. Occlusion, grazing views and\nraster sampling can make these quantities differ even with a correct plane.",
+  "axis_order": "Two world axes in X, Y, Z order excluding the plane normal axis",
+  "all": {
+    "eligible": 598,
+    "equal": 432,
+    "different": 166,
+    "touching_frame": 8,
+    "different_touching_frame": 8
+  },
+  "pictures": [
+    {
+      "key": "smooth_stone/dev-shopfront-masonry-high-right",
+      "counts": {
+        "eligible": 14,
+        "equal": 9,
+        "different": 5,
+        "touching_frame": 0,
+        "different_touching_frame": 0
+      },
+      "disagreements": [
+        {
+          "surface": 12,
+          "touched_block_extents": [
+            10,
+            3
+          ],
+          "visible_span": [
+            10.442275730772394,
+            3.7434575796627567
+          ],
+          "rounded": [
+            10,
+            4
+          ],
+          "touching_frame": false
+        },
+        {
+          "surface": 13,
+          "touched_block_extents": [
+            15,
+            5
+          ],
+          "visible_span": [
+            16.212184942907413,
+            7.047301560869483
+          ],
+          "rounded": [
+            16,
+            7
+          ],
+          "touching_frame": false
+        },
+        {
+          "surface": 14,
+          "touched_block_extents": [
+            4,
+            1
+          ],
+          "visible_span": [
+            3.353056928325813,
+            1.1734217389035566
+          ],
+          "rounded": [
+            3,
+            1
+          ],
+          "touching_frame": false
+        },
+        {
+          "surface": 16,
+          "touched_block_extents": [
+            4,
+            3
+          ],
+          "visible_span": [
+            3.39403937445654,
+            3.0350805433336046
+          ],
+          "rounded": [
+            3,
+            3
+          ],
+          "touching_frame": false
+        },
+        {
+          "surface": 17,
+          "touched_block_extents": [
+            4,
+            2
+          ],
+          "visible_span": [
+            3.3795865217918077,
+            2.227083744783239
+          ],
+          "rounded": [
+            3,
+            2
+          ],
+          "touching_frame": false
+        }
+      ]
+    },
+    {
+      "key": "light_gray_concrete/dev-shopfront-masonry-high-right",
+      "counts": {
+        "eligible": 14,
+        "equal": 9,
+        "different": 5,
+        "touching_frame": 0,
+        "different_touching_frame": 0
+      },
+      "disagreements": [
+        {
+          "surface": 12,
+          "touched_block_extents": [
+            10,
+            3
+          ],
+          "visible_span": [
+            10.442275730772394,
+            3.7434575796627567
+          ],
+          "rounded": [
+            10,
+            4
+          ],
+          "touching_frame": false
+        },
+        {
+          "surface": 13,
+          "touched_block_extents": [
+            15,
+            5
+          ],
+          "visible_span": [
+            16.212184942907413,
+            7.047301560869483
+          ],
+          "rounded": [
+            16,
+            7
+          ],
+          "touching_frame": false
+        },
+        {
+          "surface": 14,
+          "touched_block_extents": [
+            4,
+            1
+          ],
+          "visible_span": [
+            3.353056928325813,
+            1.1734217389035566
+          ],
+          "rounded": [
+            3,
+            1
+          ],
+          "touching_frame": false
+        },
+        {
+          "surface": 16,
+          "touched_block_extents": [
+            4,
+            3
+          ],
+          "visible_span": [
+            3.39403937445654,
+            3.0350805433336046
+          ],
+          "rounded": [
+            3,
+            3
+          ],
+          "touching_frame": false
+        },
+        {
+          "surface": 17,
+          "touched_block_extents": [
+            4,
+            2
+          ],
+          "visible_span": [
+            3.3795865217918077,
+            2.227083744783239
+          ],
+          "rounded": [
+            3,
+            2
+          ],
+          "touching_frame": false
+        }
+      ]
+    },
+    {
+      "key": "smooth_stone/dev-shopfront-masonry-low-left",
+      "counts": {
+        "eligible": 16,
+        "equal": 14,
+        "different": 2,
+        "touching_frame": 0,
+        "different_touching_frame": 0
+      },
+      "disagreements": [
+        {
+          "surface": 8,
+          "touched_block_extents": [
+            10,
+            6
+          ],
+          "visible_span": [
+            10.781741719761158,
+            6.418189147947077
+          ],
+          "rounded": [
+            11,
+            6
+          ],
+          "touching_frame": false
+        },
+        {
+          "surface": 18,
+          "touched_block_extents": [
+            2,
+            3
+          ],
+          "visible_span": [
+            2.313087492636896,
+            3.803269660176249
+          ],
+          "rounded": [
+            2,
+            4
+          ],
+          "touching_frame": false
+        }
+      ]
+    },
+    {
+      "key": "light_gray_concrete/dev-shopfront-masonry-low-left",
+      "counts": {
+        "eligible": 16,
+        "equal": 14,
+        "different": 2,
+        "touching_frame": 0,
+        "different_touching_frame": 0
+      },
+      "disagreements": [
+        {
+          "surface": 8,
+          "touched_block_extents": [
+            10,
+            6
+          ],
+          "visible_span": [
+            10.781741719761158,
+            6.418189147947077
+          ],
+          "rounded": [
+            11,
+            6
+          ],
+          "touching_frame": false
+        },
+        {
+          "surface": 18,
+          "touched_block_extents": [
+            2,
+            3
+          ],
+          "visible_span": [
+            2.313087492636896,
+            3.803269660176249
+          ],
+          "rounded": [
+            2,
+            4
+          ],
+          "touching_frame": false
+        }
+      ]
+    },
+    {
+      "key": "smooth_stone/dev-shopfront-plaster-high-right",
+      "counts": {
+        "eligible": 14,
+        "equal": 9,
+        "different": 5,
+        "touching_frame": 0,
+        "different_touching_frame": 0
+      },
+      "disagreements": [
+        {
+          "surface": 12,
+          "touched_block_extents": [
+            10,
+            3
+          ],
+          "visible_span": [
+            10.442275730772963,
+            3.743457579662782
+          ],
+          "rounded": [
+            10,
+            4
+          ],
+          "touching_frame": false
+        },
+        {
+          "surface": 13,
+          "touched_block_extents": [
+            15,
+            5
+          ],
+          "visible_span": [
+            16.21218494290804,
+            7.047301560869583
+          ],
+          "rounded": [
+            16,
+            7
+          ],
+          "touching_frame": false
+        },
+        {
+          "surface": 14,
+          "touched_block_extents": [
+            4,
+            1
+          ],
+          "visible_span": [
+            3.353056928325813,
+            1.1734217389035566
+          ],
+          "rounded": [
+            3,
+            1
+          ],
+          "touching_frame": false
+        },
+        {
+          "surface": 16,
+          "touched_block_extents": [
+            4,
+            3
+          ],
+          "visible_span": [
+            3.39403937445654,
+            3.0350805433336046
+          ],
+          "rounded": [
+            3,
+            3
+          ],
+          "touching_frame": false
+        },
+        {
+          "surface": 17,
+          "touched_block_extents": [
+            4,
+            2
+          ],
+          "visible_span": [
+            3.379586521791822,
+            2.227083744783231
+          ],
+          "rounded": [
+            3,
+            2
+          ],
+          "touching_frame": false
+        }
+      ]
+    },
+    {
+      "key": "light_gray_concrete/dev-shopfront-plaster-high-right",
+      "counts": {
+        "eligible": 14,
+        "equal": 9,
+        "different": 5,
+        "touching_frame": 0,
+        "different_touching_frame": 0
+      },
+      "disagreements": [
+        {
+          "surface": 12,
+          "touched_block_extents": [
+            10,
+            3
+          ],
+          "visible_span": [
+            10.442275730772963,
+            3.743457579662782
+          ],
+          "rounded": [
+            10,
+            4
+          ],
+          "touching_frame": false
+        },
+        {
+          "surface": 13,
+          "touched_block_extents": [
+            15,
+            5
+          ],
+          "visible_span": [
+            16.21218494290804,
+            7.047301560869583
+          ],
+          "rounded": [
+            16,
+            7
+          ],
+          "touching_frame": false
+        },
+        {
+          "surface": 14,
+          "touched_block_extents": [
+            4,
+            1
+          ],
+          "visible_span": [
+            3.353056928325813,
+            1.1734217389035566
+          ],
+          "rounded": [
+            3,
+            1
+          ],
+          "touching_frame": false
+        },
+        {
+          "surface": 16,
+          "touched_block_extents": [
+            4,
+            3
+          ],
+          "visible_span": [
+            3.39403937445654,
+            3.0350805433336046
+          ],
+          "rounded": [
+            3,
+            3
+          ],
+          "touching_frame": false
+        },
+        {
+          "surface": 17,
+          "touched_block_extents": [
+            4,
+            2
+          ],
+          "visible_span": [
+            3.379586521791822,
+            2.227083744783231
+          ],
+          "rounded": [
+            3,
+            2
+          ],
+          "touching_frame": false
+        }
+      ]
+    },
+    {
+      "key": "smooth_stone/dev-shopfront-plaster-low-left",
+      "counts": {
+        "eligible": 16,
+        "equal": 14,
+        "different": 2,
+        "touching_frame": 0,
+        "different_touching_frame": 0
+      },
+      "disagreements": [
+        {
+          "surface": 8,
+          "touched_block_extents": [
+            10,
+            6
+          ],
+          "visible_span": [
+            10.781741719761499,
+            6.418189147947007
+          ],
+          "rounded": [
+            11,
+            6
+          ],
+          "touching_frame": false
+        },
+        {
+          "surface": 18,
+          "touched_block_extents": [
+            2,
+            3
+          ],
+          "visible_span": [
+            2.3130874926370097,
+            3.8032696601762117
+          ],
+          "rounded": [
+            2,
+            4
+          ],
+          "touching_frame": false
+        }
+      ]
+    },
+    {
+      "key": "light_gray_concrete/dev-shopfront-plaster-low-left",
+      "counts": {
+        "eligible": 16,
+        "equal": 14,
+        "different": 2,
+        "touching_frame": 0,
+        "different_touching_frame": 0
+      },
+      "disagreements": [
+        {
+          "surface": 8,
+          "touched_block_extents": [
+            10,
+            6
+          ],
+          "visible_span": [
+            10.781741719761499,
+            6.418189147947007
+          ],
+          "rounded": [
+            11,
+            6
+          ],
+          "touching_frame": false
+        },
+        {
+          "surface": 18,
+          "touched_block_extents": [
+            2,
+            3
+          ],
+          "visible_span": [
+            2.3130874926370097,
+            3.8032696601762117
+          ],
+          "rounded": [
+            2,
+            4
+          ],
+          "touching_frame": false
+        }
+      ]
+    },
+    {
+      "key": "smooth_stone/dev-wing-masonry-close-front",
+      "counts": {
+        "eligible": 1,
+        "equal": 0,
+        "different": 1,
+        "touching_frame": 1,
+        "different_touching_frame": 1
+      },
+      "disagreements": [
+        {
+          "surface": 1,
+          "touched_block_extents": [
+            8,
+            6
+          ],
+          "visible_span": [
+            6.496677490853555,
+            4.0604236426333955
+          ],
+          "rounded": [
+            6,
+            4
+          ],
+          "touching_frame": true
+        }
+      ]
+    },
+    {
+      "key": "light_gray_concrete/dev-wing-masonry-close-front",
+      "counts": {
+        "eligible": 1,
+        "equal": 0,
+        "different": 1,
+        "touching_frame": 1,
+        "different_touching_frame": 1
+      },
+      "disagreements": [
+        {
+          "surface": 1,
+          "touched_block_extents": [
+            8,
+            6
+          ],
+          "visible_span": [
+            6.496677490853555,
+            4.0604236426333955
+          ],
+          "rounded": [
+            6,
+            4
+          ],
+          "touching_frame": true
+        }
+      ]
+    },
+    {
+      "key": "smooth_stone/dev-wing-masonry-high-right",
+      "counts": {
+        "eligible": 5,
+        "equal": 4,
+        "different": 1,
+        "touching_frame": 0,
+        "different_touching_frame": 0
+      },
+      "disagreements": [
+        {
+          "surface": 3,
+          "touched_block_extents": [
+            4,
+            4
+          ],
+          "visible_span": [
+            4.254879069218248,
+            4.540395622863041
+          ],
+          "rounded": [
+            4,
+            5
+          ],
+          "touching_frame": false
+        }
+      ]
+    },
+    {
+      "key": "light_gray_concrete/dev-wing-masonry-high-right",
+      "counts": {
+        "eligible": 5,
+        "equal": 4,
+        "different": 1,
+        "touching_frame": 0,
+        "different_touching_frame": 0
+      },
+      "disagreements": [
+        {
+          "surface": 3,
+          "touched_block_extents": [
+            4,
+            4
+          ],
+          "visible_span": [
+            4.254879069218248,
+            4.540395622863041
+          ],
+          "rounded": [
+            4,
+            5
+          ],
+          "touching_frame": false
+        }
+      ]
+    },
+    {
+      "key": "smooth_stone/dev-wing-masonry-low-left",
+      "counts": {
+        "eligible": 3,
+        "equal": 1,
+        "different": 2,
+        "touching_frame": 0,
+        "different_touching_frame": 0
+      },
+      "disagreements": [
+        {
+          "surface": 1,
+          "touched_block_extents": [
+            8,
+            4
+          ],
+          "visible_span": [
+            8.17379894440262,
+            4.544367841548622
+          ],
+          "rounded": [
+            8,
+            5
+          ],
+          "touching_frame": false
+        },
+        {
+          "surface": 2,
+          "touched_block_extents": [
+            4,
+            4
+          ],
+          "visible_span": [
+            3.218719737664742,
+            4.121495813696242
+          ],
+          "rounded": [
+            3,
+            4
+          ],
+          "touching_frame": false
+        }
+      ]
+    },
+    {
+      "key": "light_gray_concrete/dev-wing-masonry-low-left",
+      "counts": {
+        "eligible": 3,
+        "equal": 1,
+        "different": 2,
+        "touching_frame": 0,
+        "different_touching_frame": 0
+      },
+      "disagreements": [
+        {
+          "surface": 1,
+          "touched_block_extents": [
+            8,
+            4
+          ],
+          "visible_span": [
+            8.17379894440262,
+            4.544367841548622
+          ],
+          "rounded": [
+            8,
+            5
+          ],
+          "touching_frame": false
+        },
+        {
+          "surface": 2,
+          "touched_block_extents": [
+            4,
+            4
+          ],
+          "visible_span": [
+            3.218719737664742,
+            4.121495813696242
+          ],
+          "rounded": [
+            3,
+            4
+          ],
+          "touching_frame": false
+        }
+      ]
+    },
+    {
+      "key": "smooth_stone/dev-wing-plaster-close-front",
+      "counts": {
+        "eligible": 1,
+        "equal": 0,
+        "different": 1,
+        "touching_frame": 1,
+        "different_touching_frame": 1
+      },
+      "disagreements": [
+        {
+          "surface": 1,
+          "touched_block_extents": [
+            8,
+            6
+          ],
+          "visible_span": [
+            6.496677490853585,
+            4.0604236426333955
+          ],
+          "rounded": [
+            6,
+            4
+          ],
+          "touching_frame": true
+        }
+      ]
+    },
+    {
+      "key": "light_gray_concrete/dev-wing-plaster-close-front",
+      "counts": {
+        "eligible": 1,
+        "equal": 0,
+        "different": 1,
+        "touching_frame": 1,
+        "different_touching_frame": 1
+      },
+      "disagreements": [
+        {
+          "surface": 1,
+          "touched_block_extents": [
+            8,
+            6
+          ],
+          "visible_span": [
+            6.496677490853585,
+            4.0604236426333955
+          ],
+          "rounded": [
+            6,
+            4
+          ],
+          "touching_frame": true
+        }
+      ]
+    },
+    {
+      "key": "smooth_stone/dev-wing-plaster-high-right",
+      "counts": {
+        "eligible": 5,
+        "equal": 4,
+        "different": 1,
+        "touching_frame": 0,
+        "different_touching_frame": 0
+      },
+      "disagreements": [
+        {
+          "surface": 3,
+          "touched_block_extents": [
+            4,
+            4
+          ],
+          "visible_span": [
+            4.254879069218134,
+            4.540395622863008
+          ],
+          "rounded": [
+            4,
+            5
+          ],
+          "touching_frame": false
+        }
+      ]
+    },
+    {
+      "key": "light_gray_concrete/dev-wing-plaster-high-right",
+      "counts": {
+        "eligible": 5,
+        "equal": 4,
+        "different": 1,
+        "touching_frame": 0,
+        "different_touching_frame": 0
+      },
+      "disagreements": [
+        {
+          "surface": 3,
+          "touched_block_extents": [
+            4,
+            4
+          ],
+          "visible_span": [
+            4.254879069218134,
+            4.540395622863008
+          ],
+          "rounded": [
+            4,
+            5
+          ],
+          "touching_frame": false
+        }
+      ]
+    },
+    {
+      "key": "smooth_stone/dev-wing-plaster-low-left",
+      "counts": {
+        "eligible": 3,
+        "equal": 1,
+        "different": 2,
+        "touching_frame": 0,
+        "different_touching_frame": 0
+      },
+      "disagreements": [
+        {
+          "surface": 1,
+          "touched_block_extents": [
+            8,
+            4
+          ],
+          "visible_span": [
+            8.173798944402535,
+            4.54436784154861
+          ],
+          "rounded": [
+            8,
+            5
+          ],
+          "touching_frame": false
+        },
+        {
+          "surface": 2,
+          "touched_block_extents": [
+            4,
+            4
+          ],
+          "visible_span": [
+            3.2187197376647987,
+            4.121495813696242
+          ],
+          "rounded": [
+            3,
+            4
+          ],
+          "touching_frame": false
+        }
+      ]
+    },
+    {
+      "key": "light_gray_concrete/dev-wing-plaster-low-left",
+      "counts": {
+        "eligible": 3,
+        "equal": 1,
+        "different": 2,
+        "touching_frame": 0,
+        "different_touching_frame": 0
+      },
+      "disagreements": [
+        {
+          "surface": 1,
+          "touched_block_extents": [
+            8,
+            4
+          ],
+          "visible_span": [
+            8.173798944402535,
+            4.54436784154861
+          ],
+          "rounded": [
+            8,
+            5
+          ],
+          "touching_frame": false
+        },
+        {
+          "surface": 2,
+          "touched_block_extents": [
+            4,
+            4
+          ],
+          "visible_span": [
+            3.2187197376647987,
+            4.121495813696242
+          ],
+          "rounded": [
+            3,
+            4
+          ],
+          "touching_frame": false
+        }
+      ]
+    },
+    {
+      "key": "smooth_stone/holdout-courtyard-masonry-close-front",
+      "counts": {
+        "eligible": 1,
+        "equal": 0,
+        "different": 1,
+        "touching_frame": 1,
+        "different_touching_frame": 1
+      },
+      "disagreements": [
+        {
+          "surface": 2,
+          "touched_block_extents": [
+            8,
+            6
+          ],
+          "visible_span": [
+            6.496677490853699,
+            4.060423619637618
+          ],
+          "rounded": [
+            6,
+            4
+          ],
+          "touching_frame": true
+        }
+      ]
+    },
+    {
+      "key": "light_gray_concrete/holdout-courtyard-masonry-close-front",
+      "counts": {
+        "eligible": 1,
+        "equal": 0,
+        "different": 1,
+        "touching_frame": 1,
+        "different_touching_frame": 1
+      },
+      "disagreements": [
+        {
+          "surface": 2,
+          "touched_block_extents": [
+            8,
+            6
+          ],
+          "visible_span": [
+            6.496677490853699,
+            4.060423619637618
+          ],
+          "rounded": [
+            6,
+            4
+          ],
+          "touching_frame": true
+        }
+      ]
+    },
+    {
+      "key": "smooth_stone/holdout-courtyard-masonry-high-right",
+      "counts": {
+        "eligible": 8,
+        "equal": 6,
+        "different": 2,
+        "touching_frame": 0,
+        "different_touching_frame": 0
+      },
+      "disagreements": [
+        {
+          "surface": 4,
+          "touched_block_extents": [
+            4,
+            4
+          ],
+          "visible_span": [
+            4.294266810670706,
+            4.641019422421603
+          ],
+          "rounded": [
+            4,
+            5
+          ],
+          "touching_frame": false
+        },
+        {
+          "surface": 5,
+          "touched_block_extents": [
+            5,
+            6
+          ],
+          "visible_span": [
+            6.899070227225252,
+            7.8164376849704915
+          ],
+          "rounded": [
+            7,
+            8
+          ],
+          "touching_frame": false
+        }
+      ]
+    },
+    {
+      "key": "light_gray_concrete/holdout-courtyard-masonry-high-right",
+      "counts": {
+        "eligible": 8,
+        "equal": 6,
+        "different": 2,
+        "touching_frame": 0,
+        "different_touching_frame": 0
+      },
+      "disagreements": [
+        {
+          "surface": 4,
+          "touched_block_extents": [
+            4,
+            4
+          ],
+          "visible_span": [
+            4.294266810670706,
+            4.641019422421603
+          ],
+          "rounded": [
+            4,
+            5
+          ],
+          "touching_frame": false
+        },
+        {
+          "surface": 5,
+          "touched_block_extents": [
+            5,
+            6
+          ],
+          "visible_span": [
+            6.899070227225252,
+            7.8164376849704915
+          ],
+          "rounded": [
+            7,
+            8
+          ],
+          "touching_frame": false
+        }
+      ]
+    },
+    {
+      "key": "smooth_stone/holdout-courtyard-masonry-low-left",
+      "counts": {
+        "eligible": 5,
+        "equal": 4,
+        "different": 1,
+        "touching_frame": 0,
+        "different_touching_frame": 0
+      },
+      "disagreements": [
+        {
+          "surface": 1,
+          "touched_block_extents": [
+            8,
+            8
+          ],
+          "visible_span": [
+            8.190493469146674,
+            8.674987169925291
+          ],
+          "rounded": [
+            8,
+            9
+          ],
+          "touching_frame": false
+        }
+      ]
+    },
+    {
+      "key": "light_gray_concrete/holdout-courtyard-masonry-low-left",
+      "counts": {
+        "eligible": 5,
+        "equal": 4,
+        "different": 1,
+        "touching_frame": 0,
+        "different_touching_frame": 0
+      },
+      "disagreements": [
+        {
+          "surface": 1,
+          "touched_block_extents": [
+            8,
+            8
+          ],
+          "visible_span": [
+            8.190493469146674,
+            8.674987169925291
+          ],
+          "rounded": [
+            8,
+            9
+          ],
+          "touching_frame": false
+        }
+      ]
+    },
+    {
+      "key": "smooth_stone/holdout-courtyard-plaster-close-front",
+      "counts": {
+        "eligible": 1,
+        "equal": 0,
+        "different": 1,
+        "touching_frame": 1,
+        "different_touching_frame": 1
+      },
+      "disagreements": [
+        {
+          "surface": 2,
+          "touched_block_extents": [
+            8,
+            6
+          ],
+          "visible_span": [
+            6.496677490853472,
+            4.060423619637618
+          ],
+          "rounded": [
+            6,
+            4
+          ],
+          "touching_frame": true
+        }
+      ]
+    },
+    {
+      "key": "light_gray_concrete/holdout-courtyard-plaster-close-front",
+      "counts": {
+        "eligible": 1,
+        "equal": 0,
+        "different": 1,
+        "touching_frame": 1,
+        "different_touching_frame": 1
+      },
+      "disagreements": [
+        {
+          "surface": 2,
+          "touched_block_extents": [
+            8,
+            6
+          ],
+          "visible_span": [
+            6.496677490853472,
+            4.060423619637618
+          ],
+          "rounded": [
+            6,
+            4
+          ],
+          "touching_frame": true
+        }
+      ]
+    },
+    {
+      "key": "smooth_stone/holdout-courtyard-plaster-high-right",
+      "counts": {
+        "eligible": 8,
+        "equal": 6,
+        "different": 2,
+        "touching_frame": 0,
+        "different_touching_frame": 0
+      },
+      "disagreements": [
+        {
+          "surface": 4,
+          "touched_block_extents": [
+            4,
+            4
+          ],
+          "visible_span": [
+            4.294266810670024,
+            4.6410194224215955
+          ],
+          "rounded": [
+            4,
+            5
+          ],
+          "touching_frame": false
+        },
+        {
+          "surface": 5,
+          "touched_block_extents": [
+            5,
+            6
+          ],
+          "visible_span": [
+            6.899070227225138,
+            7.816437684970264
+          ],
+          "rounded": [
+            7,
+            8
+          ],
+          "touching_frame": false
+        }
+      ]
+    },
+    {
+      "key": "light_gray_concrete/holdout-courtyard-plaster-high-right",
+      "counts": {
+        "eligible": 8,
+        "equal": 6,
+        "different": 2,
+        "touching_frame": 0,
+        "different_touching_frame": 0
+      },
+      "disagreements": [
+        {
+          "surface": 4,
+          "touched_block_extents": [
+            4,
+            4
+          ],
+          "visible_span": [
+            4.294266810670024,
+            4.6410194224215955
+          ],
+          "rounded": [
+            4,
+            5
+          ],
+          "touching_frame": false
+        },
+        {
+          "surface": 5,
+          "touched_block_extents": [
+            5,
+            6
+          ],
+          "visible_span": [
+            6.899070227225138,
+            7.816437684970264
+          ],
+          "rounded": [
+            7,
+            8
+          ],
+          "touching_frame": false
+        }
+      ]
+    },
+    {
+      "key": "smooth_stone/holdout-courtyard-plaster-low-left",
+      "counts": {
+        "eligible": 5,
+        "equal": 4,
+        "different": 1,
+        "touching_frame": 0,
+        "different_touching_frame": 0
+      },
+      "disagreements": [
+        {
+          "surface": 1,
+          "touched_block_extents": [
+            8,
+            8
+          ],
+          "visible_span": [
+            8.190493469147341,
+            8.674987169925934
+          ],
+          "rounded": [
+            8,
+            9
+          ],
+          "touching_frame": false
+        }
+      ]
+    },
+    {
+      "key": "light_gray_concrete/holdout-courtyard-plaster-low-left",
+      "counts": {
+        "eligible": 5,
+        "equal": 4,
+        "different": 1,
+        "touching_frame": 0,
+        "different_touching_frame": 0
+      },
+      "disagreements": [
+        {
+          "surface": 1,
+          "touched_block_extents": [
+            8,
+            8
+          ],
+          "visible_span": [
+            8.190493469147341,
+            8.674987169925934
+          ],
+          "rounded": [
+            8,
+            9
+          ],
+          "touching_frame": false
+        }
+      ]
+    },
+    {
+      "key": "smooth_stone/holdout-portico-masonry-high-right",
+      "counts": {
+        "eligible": 17,
+        "equal": 13,
+        "different": 4,
+        "touching_frame": 0,
+        "different_touching_frame": 0
+      },
+      "disagreements": [
+        {
+          "surface": 1,
+          "touched_block_extents": [
+            4,
+            4
+          ],
+          "visible_span": [
+            2.9681850219433272,
+            3.912312834042112
+          ],
+          "rounded": [
+            3,
+            4
+          ],
+          "touching_frame": false
+        },
+        {
+          "surface": 2,
+          "touched_block_extents": [
+            4,
+            4
+          ],
+          "visible_span": [
+            3.0223515642214807,
+            3.896970526713986
+          ],
+          "rounded": [
+            3,
+            4
+          ],
+          "touching_frame": false
+        },
+        {
+          "surface": 10,
+          "touched_block_extents": [
+            18,
+            8
+          ],
+          "visible_span": [
+            19.015235083795233,
+            9.26246229930774
+          ],
+          "rounded": [
+            19,
+            9
+          ],
+          "touching_frame": false
+        },
+        {
+          "surface": 16,
+          "touched_block_extents": [
+            6,
+            5
+          ],
+          "visible_span": [
+            4.648672349932298,
+            5.3962691124644575
+          ],
+          "rounded": [
+            5,
+            5
+          ],
+          "touching_frame": false
+        }
+      ]
+    },
+    {
+      "key": "light_gray_concrete/holdout-portico-masonry-high-right",
+      "counts": {
+        "eligible": 17,
+        "equal": 13,
+        "different": 4,
+        "touching_frame": 0,
+        "different_touching_frame": 0
+      },
+      "disagreements": [
+        {
+          "surface": 1,
+          "touched_block_extents": [
+            4,
+            4
+          ],
+          "visible_span": [
+            2.9681850219433272,
+            3.912312834042112
+          ],
+          "rounded": [
+            3,
+            4
+          ],
+          "touching_frame": false
+        },
+        {
+          "surface": 2,
+          "touched_block_extents": [
+            4,
+            4
+          ],
+          "visible_span": [
+            3.0223515642214807,
+            3.896970526713986
+          ],
+          "rounded": [
+            3,
+            4
+          ],
+          "touching_frame": false
+        },
+        {
+          "surface": 10,
+          "touched_block_extents": [
+            18,
+            8
+          ],
+          "visible_span": [
+            19.015235083795233,
+            9.26246229930774
+          ],
+          "rounded": [
+            19,
+            9
+          ],
+          "touching_frame": false
+        },
+        {
+          "surface": 16,
+          "touched_block_extents": [
+            6,
+            5
+          ],
+          "visible_span": [
+            4.648672349932298,
+            5.3962691124644575
+          ],
+          "rounded": [
+            5,
+            5
+          ],
+          "touching_frame": false
+        }
+      ]
+    },
+    {
+      "key": "smooth_stone/holdout-portico-masonry-low-left",
+      "counts": {
+        "eligible": 20,
+        "equal": 14,
+        "different": 6,
+        "touching_frame": 0,
+        "different_touching_frame": 0
+      },
+      "disagreements": [
+        {
+          "surface": 2,
+          "touched_block_extents": [
+            6,
+            1
+          ],
+          "visible_span": [
+            5.059374342933552,
+            1.5997984795777014
+          ],
+          "rounded": [
+            5,
+            2
+          ],
+          "touching_frame": false
+        },
+        {
+          "surface": 4,
+          "touched_block_extents": [
+            3,
+            3
+          ],
+          "visible_span": [
+            2.3866676096614725,
+            3.153358951509195
+          ],
+          "rounded": [
+            2,
+            3
+          ],
+          "touching_frame": false
+        },
+        {
+          "surface": 9,
+          "touched_block_extents": [
+            18,
+            7
+          ],
+          "visible_span": [
+            18.852513510681547,
+            8.363897849761461
+          ],
+          "rounded": [
+            19,
+            8
+          ],
+          "touching_frame": false
+        },
+        {
+          "surface": 11,
+          "touched_block_extents": [
+            4,
+            5
+          ],
+          "visible_span": [
+            3.3641420918029326,
+            5.1157481847410935
+          ],
+          "rounded": [
+            3,
+            5
+          ],
+          "touching_frame": false
+        },
+        {
+          "surface": 12,
+          "touched_block_extents": [
+            4,
+            5
+          ],
+          "visible_span": [
+            3.1281986213457458,
+            5.129538158150055
+          ],
+          "rounded": [
+            3,
+            5
+          ],
+          "touching_frame": false
+        },
+        {
+          "surface": 13,
+          "touched_block_extents": [
+            6,
+            3
+          ],
+          "visible_span": [
+            6.1310252939401835,
+            2.4095658473745516
+          ],
+          "rounded": [
+            6,
+            2
+          ],
+          "touching_frame": false
+        }
+      ]
+    },
+    {
+      "key": "light_gray_concrete/holdout-portico-masonry-low-left",
+      "counts": {
+        "eligible": 20,
+        "equal": 14,
+        "different": 6,
+        "touching_frame": 0,
+        "different_touching_frame": 0
+      },
+      "disagreements": [
+        {
+          "surface": 2,
+          "touched_block_extents": [
+            6,
+            1
+          ],
+          "visible_span": [
+            5.059374342933552,
+            1.5997984795777014
+          ],
+          "rounded": [
+            5,
+            2
+          ],
+          "touching_frame": false
+        },
+        {
+          "surface": 4,
+          "touched_block_extents": [
+            3,
+            3
+          ],
+          "visible_span": [
+            2.3866676096614725,
+            3.153358951509195
+          ],
+          "rounded": [
+            2,
+            3
+          ],
+          "touching_frame": false
+        },
+        {
+          "surface": 9,
+          "touched_block_extents": [
+            18,
+            7
+          ],
+          "visible_span": [
+            18.852513510681547,
+            8.363897849761461
+          ],
+          "rounded": [
+            19,
+            8
+          ],
+          "touching_frame": false
+        },
+        {
+          "surface": 11,
+          "touched_block_extents": [
+            4,
+            5
+          ],
+          "visible_span": [
+            3.3641420918029326,
+            5.1157481847410935
+          ],
+          "rounded": [
+            3,
+            5
+          ],
+          "touching_frame": false
+        },
+        {
+          "surface": 12,
+          "touched_block_extents": [
+            4,
+            5
+          ],
+          "visible_span": [
+            3.1281986213457458,
+            5.129538158150055
+          ],
+          "rounded": [
+            3,
+            5
+          ],
+          "touching_frame": false
+        },
+        {
+          "surface": 13,
+          "touched_block_extents": [
+            6,
+            3
+          ],
+          "visible_span": [
+            6.1310252939401835,
+            2.4095658473745516
+          ],
+          "rounded": [
+            6,
+            2
+          ],
+          "touching_frame": false
+        }
+      ]
+    },
+    {
+      "key": "smooth_stone/holdout-portico-plaster-high-right",
+      "counts": {
+        "eligible": 17,
+        "equal": 13,
+        "different": 4,
+        "touching_frame": 0,
+        "different_touching_frame": 0
+      },
+      "disagreements": [
+        {
+          "surface": 1,
+          "touched_block_extents": [
+            4,
+            4
+          ],
+          "visible_span": [
+            2.9681850219433272,
+            3.912312834042112
+          ],
+          "rounded": [
+            3,
+            4
+          ],
+          "touching_frame": false
+        },
+        {
+          "surface": 2,
+          "touched_block_extents": [
+            4,
+            4
+          ],
+          "visible_span": [
+            3.022351564221708,
+            3.896970526713986
+          ],
+          "rounded": [
+            3,
+            4
+          ],
+          "touching_frame": false
+        },
+        {
+          "surface": 10,
+          "touched_block_extents": [
+            18,
+            8
+          ],
+          "visible_span": [
+            19.015235083795687,
+            9.262462299307558
+          ],
+          "rounded": [
+            19,
+            9
+          ],
+          "touching_frame": false
+        },
+        {
+          "surface": 16,
+          "touched_block_extents": [
+            6,
+            5
+          ],
+          "visible_span": [
+            4.648672349932028,
+            5.396269112464275
+          ],
+          "rounded": [
+            5,
+            5
+          ],
+          "touching_frame": false
+        }
+      ]
+    },
+    {
+      "key": "light_gray_concrete/holdout-portico-plaster-high-right",
+      "counts": {
+        "eligible": 17,
+        "equal": 13,
+        "different": 4,
+        "touching_frame": 0,
+        "different_touching_frame": 0
+      },
+      "disagreements": [
+        {
+          "surface": 1,
+          "touched_block_extents": [
+            4,
+            4
+          ],
+          "visible_span": [
+            2.9681850219433272,
+            3.912312834042112
+          ],
+          "rounded": [
+            3,
+            4
+          ],
+          "touching_frame": false
+        },
+        {
+          "surface": 2,
+          "touched_block_extents": [
+            4,
+            4
+          ],
+          "visible_span": [
+            3.022351564221708,
+            3.896970526713986
+          ],
+          "rounded": [
+            3,
+            4
+          ],
+          "touching_frame": false
+        },
+        {
+          "surface": 10,
+          "touched_block_extents": [
+            18,
+            8
+          ],
+          "visible_span": [
+            19.015235083795687,
+            9.262462299307558
+          ],
+          "rounded": [
+            19,
+            9
+          ],
+          "touching_frame": false
+        },
+        {
+          "surface": 16,
+          "touched_block_extents": [
+            6,
+            5
+          ],
+          "visible_span": [
+            4.648672349932028,
+            5.396269112464275
+          ],
+          "rounded": [
+            5,
+            5
+          ],
+          "touching_frame": false
+        }
+      ]
+    },
+    {
+      "key": "smooth_stone/holdout-portico-plaster-low-left",
+      "counts": {
+        "eligible": 20,
+        "equal": 14,
+        "different": 6,
+        "touching_frame": 0,
+        "different_touching_frame": 0
+      },
+      "disagreements": [
+        {
+          "surface": 2,
+          "touched_block_extents": [
+            6,
+            1
+          ],
+          "visible_span": [
+            5.059374342933552,
+            1.5997984795776952
+          ],
+          "rounded": [
+            5,
+            2
+          ],
+          "touching_frame": false
+        },
+        {
+          "surface": 4,
+          "touched_block_extents": [
+            3,
+            3
+          ],
+          "visible_span": [
+            2.3866676096615294,
+            3.153358951509179
+          ],
+          "rounded": [
+            2,
+            3
+          ],
+          "touching_frame": false
+        },
+        {
+          "surface": 9,
+          "touched_block_extents": [
+            18,
+            7
+          ],
+          "visible_span": [
+            18.85251351068041,
+            8.36389784976118
+          ],
+          "rounded": [
+            19,
+            8
+          ],
+          "touching_frame": false
+        },
+        {
+          "surface": 11,
+          "touched_block_extents": [
+            4,
+            5
+          ],
+          "visible_span": [
+            3.3641420918036147,
+            5.115748184741108
+          ],
+          "rounded": [
+            3,
+            5
+          ],
+          "touching_frame": false
+        },
+        {
+          "surface": 12,
+          "touched_block_extents": [
+            4,
+            5
+          ],
+          "visible_span": [
+            3.1281986213457458,
+            5.129538158150083
+          ],
+          "rounded": [
+            3,
+            5
+          ],
+          "touching_frame": false
+        },
+        {
+          "surface": 13,
+          "touched_block_extents": [
+            6,
+            3
+          ],
+          "visible_span": [
+            6.1310252939401835,
+            2.4095658473745516
+          ],
+          "rounded": [
+            6,
+            2
+          ],
+          "touching_frame": false
+        }
+      ]
+    },
+    {
+      "key": "light_gray_concrete/holdout-portico-plaster-low-left",
+      "counts": {
+        "eligible": 20,
+        "equal": 14,
+        "different": 6,
+        "touching_frame": 0,
+        "different_touching_frame": 0
+      },
+      "disagreements": [
+        {
+          "surface": 2,
+          "touched_block_extents": [
+            6,
+            1
+          ],
+          "visible_span": [
+            5.059374342933552,
+            1.5997984795776952
+          ],
+          "rounded": [
+            5,
+            2
+          ],
+          "touching_frame": false
+        },
+        {
+          "surface": 4,
+          "touched_block_extents": [
+            3,
+            3
+          ],
+          "visible_span": [
+            2.3866676096615294,
+            3.153358951509179
+          ],
+          "rounded": [
+            2,
+            3
+          ],
+          "touching_frame": false
+        },
+        {
+          "surface": 9,
+          "touched_block_extents": [
+            18,
+            7
+          ],
+          "visible_span": [
+            18.85251351068041,
+            8.36389784976118
+          ],
+          "rounded": [
+            19,
+            8
+          ],
+          "touching_frame": false
+        },
+        {
+          "surface": 11,
+          "touched_block_extents": [
+            4,
+            5
+          ],
+          "visible_span": [
+            3.3641420918036147,
+            5.115748184741108
+          ],
+          "rounded": [
+            3,
+            5
+          ],
+          "touching_frame": false
+        },
+        {
+          "surface": 12,
+          "touched_block_extents": [
+            4,
+            5
+          ],
+          "visible_span": [
+            3.1281986213457458,
+            5.129538158150083
+          ],
+          "rounded": [
+            3,
+            5
+          ],
+          "touching_frame": false
+        },
+        {
+          "surface": 13,
+          "touched_block_extents": [
+            6,
+            3
+          ],
+          "visible_span": [
+            6.1310252939401835,
+            2.4095658473745516
+          ],
+          "rounded": [
+            6,
+            2
+          ],
+          "touching_frame": false
+        }
+      ]
+    },
+    {
+      "key": "light_gray_concrete/holdout-workshop-masonry-low-left",
+      "counts": {
+        "eligible": 14,
+        "equal": 10,
+        "different": 4,
+        "touching_frame": 0,
+        "different_touching_frame": 0
+      },
+      "disagreements": [
+        {
+          "surface": 8,
+          "touched_block_extents": [
+            4,
+            3
+          ],
+          "visible_span": [
+            4.59128940896544,
+            5.0991014061523625
+          ],
+          "rounded": [
+            5,
+            5
+          ],
+          "touching_frame": false
+        },
+        {
+          "surface": 10,
+          "touched_block_extents": [
+            14,
+            9
+          ],
+          "visible_span": [
+            14.654034165744532,
+            9.968149328753373
+          ],
+          "rounded": [
+            15,
+            10
+          ],
+          "touching_frame": false
+        },
+        {
+          "surface": 12,
+          "touched_block_extents": [
+            4,
+            4
+          ],
+          "visible_span": [
+            3.2394211774201676,
+            4.136680626421622
+          ],
+          "rounded": [
+            3,
+            4
+          ],
+          "touching_frame": false
+        },
+        {
+          "surface": 13,
+          "touched_block_extents": [
+            6,
+            1
+          ],
+          "visible_span": [
+            5.125672911231742,
+            1.123443967788674
+          ],
+          "rounded": [
+            5,
+            1
+          ],
+          "touching_frame": false
+        }
+      ]
+    },
+    {
+      "key": "light_gray_concrete/holdout-workshop-masonry-high-right",
+      "counts": {
+        "eligible": 16,
+        "equal": 11,
+        "different": 5,
+        "touching_frame": 0,
+        "different_touching_frame": 0
+      },
+      "disagreements": [
+        {
+          "surface": 1,
+          "touched_block_extents": [
+            3,
+            4
+          ],
+          "visible_span": [
+            2.256235214987198,
+            3.5206764540861144
+          ],
+          "rounded": [
+            2,
+            4
+          ],
+          "touching_frame": false
+        },
+        {
+          "surface": 6,
+          "touched_block_extents": [
+            6,
+            8
+          ],
+          "visible_span": [
+            6.253376415109237,
+            8.987976126529164
+          ],
+          "rounded": [
+            6,
+            9
+          ],
+          "touching_frame": false
+        },
+        {
+          "surface": 8,
+          "touched_block_extents": [
+            1,
+            9
+          ],
+          "visible_span": [
+            1.556801244776663,
+            10.337087002389634
+          ],
+          "rounded": [
+            2,
+            10
+          ],
+          "touching_frame": false
+        },
+        {
+          "surface": 18,
+          "touched_block_extents": [
+            4,
+            7
+          ],
+          "visible_span": [
+            3.9888279559362587,
+            7.796126967059429
+          ],
+          "rounded": [
+            4,
+            8
+          ],
+          "touching_frame": false
+        },
+        {
+          "surface": 19,
+          "touched_block_extents": [
+            1,
+            8
+          ],
+          "visible_span": [
+            1.36737574859049,
+            9.759363154938265
+          ],
+          "rounded": [
+            1,
+            10
+          ],
+          "touching_frame": false
+        }
+      ]
+    },
+    {
+      "key": "light_gray_concrete/holdout-workshop-plaster-low-left",
+      "counts": {
+        "eligible": 14,
+        "equal": 10,
+        "different": 4,
+        "touching_frame": 0,
+        "different_touching_frame": 0
+      },
+      "disagreements": [
+        {
+          "surface": 8,
+          "touched_block_extents": [
+            4,
+            3
+          ],
+          "visible_span": [
+            4.591289408965395,
+            5.0991014061523625
+          ],
+          "rounded": [
+            5,
+            5
+          ],
+          "touching_frame": false
+        },
+        {
+          "surface": 10,
+          "touched_block_extents": [
+            14,
+            9
+          ],
+          "visible_span": [
+            14.654034165744719,
+            9.968149328753348
+          ],
+          "rounded": [
+            15,
+            10
+          ],
+          "touching_frame": false
+        },
+        {
+          "surface": 12,
+          "touched_block_extents": [
+            4,
+            4
+          ],
+          "visible_span": [
+            3.2394211774201267,
+            4.13668062642158
+          ],
+          "rounded": [
+            3,
+            4
+          ],
+          "touching_frame": false
+        },
+        {
+          "surface": 13,
+          "touched_block_extents": [
+            6,
+            1
+          ],
+          "visible_span": [
+            5.125672911231732,
+            1.123443967788674
+          ],
+          "rounded": [
+            5,
+            1
+          ],
+          "touching_frame": false
+        }
+      ]
+    },
+    {
+      "key": "light_gray_concrete/holdout-workshop-plaster-high-right",
+      "counts": {
+        "eligible": 16,
+        "equal": 11,
+        "different": 5,
+        "touching_frame": 0,
+        "different_touching_frame": 0
+      },
+      "disagreements": [
+        {
+          "surface": 1,
+          "touched_block_extents": [
+            3,
+            4
+          ],
+          "visible_span": [
+            2.256235214987214,
+            3.5206764540861144
+          ],
+          "rounded": [
+            2,
+            4
+          ],
+          "touching_frame": false
+        },
+        {
+          "surface": 6,
+          "touched_block_extents": [
+            6,
+            8
+          ],
+          "visible_span": [
+            6.253376415109187,
+            8.987976126529153
+          ],
+          "rounded": [
+            6,
+            9
+          ],
+          "touching_frame": false
+        },
+        {
+          "surface": 8,
+          "touched_block_extents": [
+            1,
+            9
+          ],
+          "visible_span": [
+            1.5568012447769775,
+            10.337087002389595
+          ],
+          "rounded": [
+            2,
+            10
+          ],
+          "touching_frame": false
+        },
+        {
+          "surface": 18,
+          "touched_block_extents": [
+            4,
+            7
+          ],
+          "visible_span": [
+            3.9888279559363298,
+            7.796126967059482
+          ],
+          "rounded": [
+            4,
+            8
+          ],
+          "touching_frame": false
+        },
+        {
+          "surface": 19,
+          "touched_block_extents": [
+            1,
+            8
+          ],
+          "visible_span": [
+            1.36737574859049,
+            9.759363154938265
+          ],
+          "rounded": [
+            1,
+            10
+          ],
+          "touching_frame": false
+        }
+      ]
+    },
+    {
+      "key": "light_gray_concrete/holdout-crossing-masonry-low-left",
+      "counts": {
+        "eligible": 12,
+        "equal": 8,
+        "different": 4,
+        "touching_frame": 0,
+        "different_touching_frame": 0
+      },
+      "disagreements": [
+        {
+          "surface": 6,
+          "touched_block_extents": [
+            2,
+            4
+          ],
+          "visible_span": [
+            1.0271911217586478,
+            3.099797591091056
+          ],
+          "rounded": [
+            1,
+            3
+          ],
+          "touching_frame": false
+        },
+        {
+          "surface": 7,
+          "touched_block_extents": [
+            12,
+            7
+          ],
+          "visible_span": [
+            12.751768354045112,
+            8.064574012464119
+          ],
+          "rounded": [
+            13,
+            8
+          ],
+          "touching_frame": false
+        },
+        {
+          "surface": 9,
+          "touched_block_extents": [
+            4,
+            6
+          ],
+          "visible_span": [
+            4.099782987110984,
+            5.132287093943518
+          ],
+          "rounded": [
+            4,
+            5
+          ],
+          "touching_frame": false
+        },
+        {
+          "surface": 10,
+          "touched_block_extents": [
+            4,
+            2
+          ],
+          "visible_span": [
+            4.112938030836517,
+            1.1737148135729711
+          ],
+          "rounded": [
+            4,
+            1
+          ],
+          "touching_frame": false
+        }
+      ]
+    },
+    {
+      "key": "light_gray_concrete/holdout-crossing-masonry-high-right",
+      "counts": {
+        "eligible": 11,
+        "equal": 6,
+        "different": 5,
+        "touching_frame": 0,
+        "different_touching_frame": 0
+      },
+      "disagreements": [
+        {
+          "surface": 1,
+          "touched_block_extents": [
+            2,
+            3
+          ],
+          "visible_span": [
+            1.9680121582887296,
+            1.767262335942121
+          ],
+          "rounded": [
+            2,
+            2
+          ],
+          "touching_frame": false
+        },
+        {
+          "surface": 12,
+          "touched_block_extents": [
+            4,
+            6
+          ],
+          "visible_span": [
+            6.522492956158146,
+            8.208138462072284
+          ],
+          "rounded": [
+            7,
+            8
+          ],
+          "touching_frame": false
+        },
+        {
+          "surface": 13,
+          "touched_block_extents": [
+            12,
+            1
+          ],
+          "visible_span": [
+            9.341847859216273,
+            3.3059149145859745
+          ],
+          "rounded": [
+            9,
+            3
+          ],
+          "touching_frame": false
+        },
+        {
+          "surface": 17,
+          "touched_block_extents": [
+            3,
+            3
+          ],
+          "visible_span": [
+            3.112938599688505,
+            3.6709885587542264
+          ],
+          "rounded": [
+            3,
+            4
+          ],
+          "touching_frame": false
+        },
+        {
+          "surface": 18,
+          "touched_block_extents": [
+            10,
+            6
+          ],
+          "visible_span": [
+            10.465903430647174,
+            7.573825556176792
+          ],
+          "rounded": [
+            10,
+            8
+          ],
+          "touching_frame": false
+        }
+      ]
+    },
+    {
+      "key": "light_gray_concrete/holdout-crossing-plaster-low-left",
+      "counts": {
+        "eligible": 12,
+        "equal": 8,
+        "different": 4,
+        "touching_frame": 0,
+        "different_touching_frame": 0
+      },
+      "disagreements": [
+        {
+          "surface": 6,
+          "touched_block_extents": [
+            2,
+            4
+          ],
+          "visible_span": [
+            1.0271911217586194,
+            3.099797591091069
+          ],
+          "rounded": [
+            1,
+            3
+          ],
+          "touching_frame": false
+        },
+        {
+          "surface": 7,
+          "touched_block_extents": [
+            12,
+            7
+          ],
+          "visible_span": [
+            12.751768354045453,
+            8.06457401246398
+          ],
+          "rounded": [
+            13,
+            8
+          ],
+          "touching_frame": false
+        },
+        {
+          "surface": 9,
+          "touched_block_extents": [
+            4,
+            6
+          ],
+          "visible_span": [
+            4.099782987110984,
+            5.132287093943518
+          ],
+          "rounded": [
+            4,
+            5
+          ],
+          "touching_frame": false
+        },
+        {
+          "surface": 10,
+          "touched_block_extents": [
+            4,
+            2
+          ],
+          "visible_span": [
+            4.1129380308367445,
+            1.1737148135729711
+          ],
+          "rounded": [
+            4,
+            1
+          ],
+          "touching_frame": false
+        }
+      ]
+    },
+    {
+      "key": "light_gray_concrete/holdout-crossing-plaster-high-right",
+      "counts": {
+        "eligible": 11,
+        "equal": 6,
+        "different": 5,
+        "touching_frame": 0,
+        "different_touching_frame": 0
+      },
+      "disagreements": [
+        {
+          "surface": 1,
+          "touched_block_extents": [
+            2,
+            3
+          ],
+          "visible_span": [
+            1.9680121582886159,
+            1.7672623359421067
+          ],
+          "rounded": [
+            2,
+            2
+          ],
+          "touching_frame": false
+        },
+        {
+          "surface": 12,
+          "touched_block_extents": [
+            4,
+            6
+          ],
+          "visible_span": [
+            6.522492956158203,
+            8.208138462072352
+          ],
+          "rounded": [
+            7,
+            8
+          ],
+          "touching_frame": false
+        },
+        {
+          "surface": 13,
+          "touched_block_extents": [
+            12,
+            1
+          ],
+          "visible_span": [
+            9.341847859215932,
+            3.305914914585943
+          ],
+          "rounded": [
+            9,
+            3
+          ],
+          "touching_frame": false
+        },
+        {
+          "surface": 17,
+          "touched_block_extents": [
+            3,
+            3
+          ],
+          "visible_span": [
+            3.1129385996882775,
+            3.6709885587540665
+          ],
+          "rounded": [
+            3,
+            4
+          ],
+          "touching_frame": false
+        },
+        {
+          "surface": 18,
+          "touched_block_extents": [
+            10,
+            6
+          ],
+          "visible_span": [
+            10.465903430646733,
+            7.573825556176411
+          ],
+          "rounded": [
+            10,
+            8
+          ],
+          "touching_frame": false
+        }
+      ]
+    },
+    {
+      "key": "light_gray_concrete/holdout-registry-masonry-low-left",
+      "counts": {
+        "eligible": 7,
+        "equal": 5,
+        "different": 2,
+        "touching_frame": 0,
+        "different_touching_frame": 0
+      },
+      "disagreements": [
+        {
+          "surface": 1,
+          "touched_block_extents": [
+            8,
+            8
+          ],
+          "visible_span": [
+            8.24387034403729,
+            9.11449015840881
+          ],
+          "rounded": [
+            8,
+            9
+          ],
+          "touching_frame": false
+        },
+        {
+          "surface": 3,
+          "touched_block_extents": [
+            3,
+            9
+          ],
+          "visible_span": [
+            2.4404520662409794,
+            8.93225719199553
+          ],
+          "rounded": [
+            2,
+            9
+          ],
+          "touching_frame": false
+        }
+      ]
+    },
+    {
+      "key": "light_gray_concrete/holdout-registry-masonry-high-right",
+      "counts": {
+        "eligible": 10,
+        "equal": 9,
+        "different": 1,
+        "touching_frame": 0,
+        "different_touching_frame": 0
+      },
+      "disagreements": [
+        {
+          "surface": 6,
+          "touched_block_extents": [
+            8,
+            8
+          ],
+          "visible_span": [
+            10.083541773517368,
+            8.838452800766543
+          ],
+          "rounded": [
+            10,
+            9
+          ],
+          "touching_frame": false
+        }
+      ]
+    },
+    {
+      "key": "light_gray_concrete/holdout-registry-plaster-low-left",
+      "counts": {
+        "eligible": 7,
+        "equal": 5,
+        "different": 2,
+        "touching_frame": 0,
+        "different_touching_frame": 0
+      },
+      "disagreements": [
+        {
+          "surface": 1,
+          "touched_block_extents": [
+            8,
+            8
+          ],
+          "visible_span": [
+            8.243870344037177,
+            9.114490158408621
+          ],
+          "rounded": [
+            8,
+            9
+          ],
+          "touching_frame": false
+        },
+        {
+          "surface": 3,
+          "touched_block_extents": [
+            3,
+            9
+          ],
+          "visible_span": [
+            2.4404520662409794,
+            8.932257191995472
+          ],
+          "rounded": [
+            2,
+            9
+          ],
+          "touching_frame": false
+        }
+      ]
+    },
+    {
+      "key": "light_gray_concrete/holdout-registry-plaster-high-right",
+      "counts": {
+        "eligible": 10,
+        "equal": 9,
+        "different": 1,
+        "touching_frame": 0,
+        "different_touching_frame": 0
+      },
+      "disagreements": [
+        {
+          "surface": 6,
+          "touched_block_extents": [
+            8,
+            8
+          ],
+          "visible_span": [
+            10.083541773517169,
+            8.838452800766508
+          ],
+          "rounded": [
+            10,
+            9
+          ],
+          "touching_frame": false
+        }
+      ]
+    },
+    {
+      "key": "light_gray_concrete/holdout-galleries-masonry-low-left",
+      "counts": {
+        "eligible": 25,
+        "equal": 20,
+        "different": 5,
+        "touching_frame": 0,
+        "different_touching_frame": 0
+      },
+      "disagreements": [
+        {
+          "surface": 2,
+          "touched_block_extents": [
+            4,
+            2
+          ],
+          "visible_span": [
+            4.08749817940479,
+            2.798758121414086
+          ],
+          "rounded": [
+            4,
+            3
+          ],
+          "touching_frame": false
+        },
+        {
+          "surface": 3,
+          "touched_block_extents": [
+            4,
+            2
+          ],
+          "visible_span": [
+            4.152956527363031,
+            2.7022964207091937
+          ],
+          "rounded": [
+            4,
+            3
+          ],
+          "touching_frame": false
+        },
+        {
+          "surface": 13,
+          "touched_block_extents": [
+            17,
+            10
+          ],
+          "visible_span": [
+            19.224353240755818,
+            12.126026565911548
+          ],
+          "rounded": [
+            19,
+            12
+          ],
+          "touching_frame": false
+        },
+        {
+          "surface": 19,
+          "touched_block_extents": [
+            3,
+            4
+          ],
+          "visible_span": [
+            2.4365303583794002,
+            4.068339058730999
+          ],
+          "rounded": [
+            2,
+            4
+          ],
+          "touching_frame": false
+        },
+        {
+          "surface": 20,
+          "touched_block_extents": [
+            7,
+            3
+          ],
+          "visible_span": [
+            6.117097792249751,
+            2.480001305341048
+          ],
+          "rounded": [
+            6,
+            2
+          ],
+          "touching_frame": false
+        }
+      ]
+    },
+    {
+      "key": "light_gray_concrete/holdout-galleries-masonry-high-right",
+      "counts": {
+        "eligible": 24,
+        "equal": 17,
+        "different": 7,
+        "touching_frame": 0,
+        "different_touching_frame": 0
+      },
+      "disagreements": [
+        {
+          "surface": 1,
+          "touched_block_extents": [
+            8,
+            1
+          ],
+          "visible_span": [
+            7.149306101865477,
+            1.1132107310617414
+          ],
+          "rounded": [
+            7,
+            1
+          ],
+          "touching_frame": false
+        },
+        {
+          "surface": 2,
+          "touched_block_extents": [
+            5,
+            3
+          ],
+          "visible_span": [
+            4.47505807824507,
+            2.6490230162167308
+          ],
+          "rounded": [
+            4,
+            3
+          ],
+          "touching_frame": false
+        },
+        {
+          "surface": 3,
+          "touched_block_extents": [
+            3,
+            2
+          ],
+          "visible_span": [
+            1.3238245322764897,
+            1.3593931209031638
+          ],
+          "rounded": [
+            1,
+            1
+          ],
+          "touching_frame": false
+        },
+        {
+          "surface": 6,
+          "touched_block_extents": [
+            2,
+            4
+          ],
+          "visible_span": [
+            1.9413718656478522,
+            3.3668843938932866
+          ],
+          "rounded": [
+            2,
+            3
+          ],
+          "touching_frame": false
+        },
+        {
+          "surface": 14,
+          "touched_block_extents": [
+            17,
+            10
+          ],
+          "visible_span": [
+            17.56617694253754,
+            10.752946568828136
+          ],
+          "rounded": [
+            18,
+            11
+          ],
+          "touching_frame": false
+        },
+        {
+          "surface": 16,
+          "touched_block_extents": [
+            11,
+            6
+          ],
+          "visible_span": [
+            14.667796222023583,
+            11.322944156715945
+          ],
+          "rounded": [
+            15,
+            11
+          ],
+          "touching_frame": false
+        },
+        {
+          "surface": 24,
+          "touched_block_extents": [
+            4,
+            2
+          ],
+          "visible_span": [
+            3.4785874037336697,
+            2.331007507693388
+          ],
+          "rounded": [
+            3,
+            2
+          ],
+          "touching_frame": false
+        }
+      ]
+    },
+    {
+      "key": "light_gray_concrete/holdout-galleries-plaster-low-left",
+      "counts": {
+        "eligible": 25,
+        "equal": 20,
+        "different": 5,
+        "touching_frame": 0,
+        "different_touching_frame": 0
+      },
+      "disagreements": [
+        {
+          "surface": 2,
+          "touched_block_extents": [
+            4,
+            2
+          ],
+          "visible_span": [
+            4.087498179404719,
+            2.7987581214140573
+          ],
+          "rounded": [
+            4,
+            3
+          ],
+          "touching_frame": false
+        },
+        {
+          "surface": 3,
+          "touched_block_extents": [
+            4,
+            2
+          ],
+          "visible_span": [
+            4.152956527362974,
+            2.7022964207091817
+          ],
+          "rounded": [
+            4,
+            3
+          ],
+          "touching_frame": false
+        },
+        {
+          "surface": 13,
+          "touched_block_extents": [
+            17,
+            10
+          ],
+          "visible_span": [
+            19.224353240761843,
+            12.126026565913225
+          ],
+          "rounded": [
+            19,
+            12
+          ],
+          "touching_frame": false
+        },
+        {
+          "surface": 19,
+          "touched_block_extents": [
+            3,
+            4
+          ],
+          "visible_span": [
+            2.4365303583794002,
+            4.068339058730999
+          ],
+          "rounded": [
+            2,
+            4
+          ],
+          "touching_frame": false
+        },
+        {
+          "surface": 20,
+          "touched_block_extents": [
+            7,
+            3
+          ],
+          "visible_span": [
+            6.117097792249865,
+            2.480001305341048
+          ],
+          "rounded": [
+            6,
+            2
+          ],
+          "touching_frame": false
+        }
+      ]
+    },
+    {
+      "key": "light_gray_concrete/holdout-galleries-plaster-high-right",
+      "counts": {
+        "eligible": 24,
+        "equal": 17,
+        "different": 7,
+        "touching_frame": 0,
+        "different_touching_frame": 0
+      },
+      "disagreements": [
+        {
+          "surface": 1,
+          "touched_block_extents": [
+            8,
+            1
+          ],
+          "visible_span": [
+            7.149306101865477,
+            1.1132107310617272
+          ],
+          "rounded": [
+            7,
+            1
+          ],
+          "touching_frame": false
+        },
+        {
+          "surface": 2,
+          "touched_block_extents": [
+            5,
+            3
+          ],
+          "visible_span": [
+            4.475058078245183,
+            2.6490230162167308
+          ],
+          "rounded": [
+            4,
+            3
+          ],
+          "touching_frame": false
+        },
+        {
+          "surface": 3,
+          "touched_block_extents": [
+            3,
+            2
+          ],
+          "visible_span": [
+            1.3238245322764897,
+            1.3593931209031496
+          ],
+          "rounded": [
+            1,
+            1
+          ],
+          "touching_frame": false
+        },
+        {
+          "surface": 6,
+          "touched_block_extents": [
+            2,
+            4
+          ],
+          "visible_span": [
+            1.941371865647966,
+            3.3668843938932866
+          ],
+          "rounded": [
+            2,
+            3
+          ],
+          "touching_frame": false
+        },
+        {
+          "surface": 14,
+          "touched_block_extents": [
+            17,
+            10
+          ],
+          "visible_span": [
+            17.56617694253748,
+            10.752946568828136
+          ],
+          "rounded": [
+            18,
+            11
+          ],
+          "touching_frame": false
+        },
+        {
+          "surface": 16,
+          "touched_block_extents": [
+            11,
+            6
+          ],
+          "visible_span": [
+            14.667796222020456,
+            11.322944156715543
+          ],
+          "rounded": [
+            15,
+            11
+          ],
+          "touching_frame": false
+        },
+        {
+          "surface": 24,
+          "touched_block_extents": [
+            4,
+            2
+          ],
+          "visible_span": [
+            3.4785874037337408,
+            2.331007507693404
+          ],
+          "rounded": [
+            3,
+            2
+          ],
+          "touching_frame": false
+        }
+      ]
+    }
+  ]
+}

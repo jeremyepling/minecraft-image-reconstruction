@@ -1,0 +1,89 @@
+{
+  "fixture": "smooth_stone/dev-wing-plaster-high-right",
+  "screenshot_sha256": "49832e903f4455c88c44f51da20abc550516d208783af9e3d05edc85ff4116a9",
+  "original_png_basename": "dev-wing-plaster-high-right.png",
+  "stage_order": [
+    "color-edges",
+    "wall-depth-anything",
+    "junction-cuts",
+    "strip-mlsd",
+    "mobile-wall-split",
+    "single-wall-split",
+    "plane-recovery"
+  ],
+  "model_sha256": {
+    "normal": "24eacb5dc7a2c54c7bc98f7de085ffbed79ad006ea5b664c2c2cdc02ff3a52f0",
+    "depth": "fcf51f1b230362b28690bb9d1809bf0431f29cad20534e3f589bd7285547f20d",
+    "mlsd": "e869f90601ffa263f21ac47e09ff0d65dc936d1aeb47126b8499d5504adfb100",
+    "scalelsd": "d0a7333c4de518a70af7d6ea4a283aa0ce9ffe1047525373b94070b1d1d4003f",
+    "mobilesam": "6dbb90523a35330fedd7f1d3dfc66f995213d81b29a5ca8108dbcdd4e37d6c2f",
+    "pixelwise_planarity": "305325096a80f541e430ccbb1b6581af67b3ef9d3c92f8d9384dc7aaae9f3952"
+  },
+  "visible_proposals": 8,
+  "reference_surfaces": 5,
+  "matched": 5,
+  "assignments": {
+    "mask-0": 1,
+    "mask-2": 7,
+    "mask-4": 8,
+    "mask-5": 3,
+    "planarity-new-1-0": 2
+  },
+  "planarity_additional_reference_ids": [
+    2
+  ],
+  "planarity": {
+    "inference": {
+      "upstream": "6bdd3a5d334bd716faae515a48e4408336d29b47",
+      "moge": "8147f21883be489543e47e7a4d6134833ef992c7",
+      "utils3d": "3fab839f0be9931dac7c8488eb0e1600c236e183",
+      "model_revision": "c09bd3361e64ff0dec473d6adc9456472e698d97",
+      "checkpoint_sha256": "305325096a80f541e430ccbb1b6581af67b3ef9d3c92f8d9384dc7aaae9f3952",
+      "source": "fresh screenshot inference",
+      "image_sha256": "49832e903f4455c88c44f51da20abc550516d208783af9e3d05edc85ff4116a9",
+      "device": "cuda",
+      "torch_version": "2.8.0+cu128",
+      "settings": {
+        "max_width": 800,
+        "tokens": 1600,
+        "stride": 4,
+        "planarity": 0.3,
+        "relative_depth": 0.025,
+        "normal_degrees": 20,
+        "minimum_neighbors": 8
+      },
+      "load_s": 6.010172000009334,
+      "field_sha256": "e5a0b75b99791374fe59be9c100b5a673784b185b77bdc0a8337da2ef64a4096",
+      "seed": 0,
+      "inference_s": 1.7241264999902342,
+      "segmentation_s": 0.055729699990479276
+    },
+    "rule": {
+      "min_samples": 24,
+      "max_add_area_fraction": 0.22,
+      "min_novel_fraction": 0.6,
+      "contact_radius": 4,
+      "min_contact_samples": 3,
+      "max_duplicate_iou": 0.45,
+      "min_split_containment": 0.72,
+      "min_split_share": 0.12,
+      "min_split_coverage": 0.72,
+      "split_angle_deg": 18,
+      "split_plane_distance_fraction": 0.035
+    },
+    "input_surfaces": 7,
+    "output_surfaces": 8,
+    "events": [
+      {
+        "action": "add",
+        "id": "planarity-new-1-0",
+        "label": 1
+      }
+    ]
+  },
+  "all_saved_region_properties_equal": true,
+  "canonical_regions_sha256": "e12c4e7c74d3041246643b88c6a319fae9f3c07ff45803244d707dce0f1948c7",
+  "source_prediction_sha256": "149d5325b3d7a2d8027c730a2e8a53aa5be2c2d756a28af0d0977fb4ed8e57b6",
+  "counter": "masked-repeat",
+  "block_count_records": 8
+}

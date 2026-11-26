@@ -1,0 +1,980 @@
+{
+  "run_id": "mask-four-01",
+  "suite": "mask-round",
+  "phase": "full",
+  "code": {
+    "commit": "bdb085b6d38fd8cd2448f2d378ed0dcd6e07044b",
+    "predictor_and_runner_sha256": "789381b5a6719fbe980e70747c9ede86fff307ae4874f175a8d331c8e03fcdeb",
+    "source_dirty": false
+  },
+  "version": "26.3",
+  "fixtures": {
+    "smooth_stone": "660d1e535ae134452bca903a9d7cbe8d37953927fa118d9ffb327afad0885bc2",
+    "light_gray_concrete": "321505e15563f8efc0da868baa27409837aaa474410a61f3513b3dac0030f066",
+    "surface_confirm_v1": "0a479a8264f2c0f714284928354ff6ff5f9729491709676f07e2033d25e48fc3",
+    "normal_confirm_v1": "61bdf3a89a505a8be3757efe480185bec9c1888a1c72ffb69ef0093623e27dda"
+  },
+  "client_sha256": "4508d006323f24fa02876310c192d739af56516eb259000ac50f0909a68c9a2d",
+  "capture": {
+    "clock_ticks": 6000,
+    "raining": false,
+    "thundering": false,
+    "resource_packs": [
+      "vanilla"
+    ],
+    "hud_hidden": true,
+    "image_size": [
+      1440,
+      900
+    ]
+  },
+  "baseline_revision": {
+    "commit": "520d60fd45c4fba1f2048bdf7c76e52d64e10a6f",
+    "predictor_and_runner_sha256": "1ad8b4f61845af0b796d34f9b1524a8e31ebb3d41f408d5b31f5ad37e6384370",
+    "source_dirty": false
+  },
+  "reference_sha256": "91efa6d3e992b1a68672eae1fdd6d380e87724742a1a4b6cbe5f84d284f731a1",
+  "previous_b_run_sha256": "9e934e12ba60e3806614abd6568bbb9ec0479630f5930545558954c36d7e0c45",
+  "shared_models": {
+    "normal": {
+      "sha256": "24eacb5dc7a2c54c7bc98f7de085ffbed79ad006ea5b664c2c2cdc02ff3a52f0",
+      "pinned_source": "https://huggingface.co/Ruicheng/moge-2-vits-normal-onnx/resolve/e50ffda41565591092adea54c6ac83d6212e1e23/model.onnx"
+    },
+    "depth": {
+      "sha256": "fcf51f1b230362b28690bb9d1809bf0431f29cad20534e3f589bd7285547f20d",
+      "pinned_source": "https://huggingface.co/onnx-community/depth-anything-v2-small/resolve/34f40a4c93991327074907b51792dbc27e7d6f1c/onnx/model_uint8.onnx"
+    }
+  },
+  "settings": {
+    "mask_first": {
+      "analysis_width": 720,
+      "max_angle_deg": 44.0,
+      "min_area": 48,
+      "foreground_step": 0.035,
+      "depth_step": 0.025,
+      "depth_radius": 3,
+      "full_frame_depth_step": 0.16
+    },
+    "metrics": {
+      "iou": 0.5,
+      "sample_stride": 4,
+      "boundary_tolerance_px": 8,
+      "corner_tolerance_px": 12,
+      "contour_simplification_px": 6,
+      "minimum_corner_turn_deg": 30,
+      "minimum_contact_samples": 2,
+      "contact_depth_blocks": 0.5,
+      "filled_gap_fraction": 0.5
+    },
+    "shared_inference": {
+      "provider": "CPUExecutionProvider",
+      "normal_max_side": 720,
+      "normal_tokens": 1200,
+      "depth_size": 518,
+      "threads": 4,
+      "normal_resize": "Lanczos",
+      "depth_resize": "DPT aspect-preserving, bicubic"
+    },
+    "line_refinement": {
+      "min_length": 9.0,
+      "probe_offset": 4.0,
+      "pair_agreement": 0.65,
+      "direction_change_deg": 20.0,
+      "min_inverse_depth_step": 0.035,
+      "geometry_agreement": 0.5,
+      "max_move": 3.0,
+      "junction_radius": 2.5,
+      "endpoint_inset": 2.0,
+      "min_region_fraction": 0.82,
+      "units": "mask grid samples; source lines use original image xy pixels"
+    },
+    "block_export": {
+      "camera": "seam-fit",
+      "pitch": "repeat",
+      "lift": "shared-edges-v1",
+      "minimum_carrier_iou": 0.5,
+      "maximum_plane_corner_residual_blocks": 0.5,
+      "minimum_face_samples": 4,
+      "required_footprint_coverage": 1.0,
+      "sample_stride_px": 4,
+      "material": "smooth_stone",
+      "pack": {
+        "data_version": 5023,
+        "palette_key": "id",
+        "pack_version": {
+          "data_major": 121,
+          "data_minor": 0
+        }
+      }
+    }
+  },
+  "split": {
+    "previously_reviewed_regression": [
+      "courtyard",
+      "crossing",
+      "galleries",
+      "portico",
+      "registry",
+      "workshop"
+    ],
+    "development": [
+      "shopfront",
+      "wing"
+    ]
+  },
+  "split_history": "Only shopfront and wing used for tuning. All six other layouts have appeared in earlier reports.",
+  "methods": [
+    "current-b",
+    "mask-first",
+    "scalelsd",
+    "deeplsd"
+  ],
+  "selection": {
+    "rule": "Use development layouts equally. Promote mask-first over B for this surface comparison if mean layout F1 or correctly assigned eligible pixel fraction improves by at least 2 points, the other falls by no more than 2 points, and opening fill increases by at most 1 point. Each line alternative must meet the same rule against mask-first. Among passing methods take highest mean layout F1 then pixel accuracy; prefer mask-first on ties. Ordinary builds also require demonstrated correct metric block placement.",
+    "ratings": {
+      "current-b": {
+        "f1": 0.671067106710671,
+        "assigned_fraction": 0.6634006751456663,
+        "opening_fill": 0.19391392920804684
+      },
+      "mask-first": {
+        "f1": 0.7005801687763713,
+        "assigned_fraction": 0.74680714355114,
+        "opening_fill": 0.033645276292335116
+      },
+      "scalelsd": {
+        "f1": 0.7005801687763713,
+        "assigned_fraction": 0.7465301511402981,
+        "opening_fill": 0.033645276292335116
+      },
+      "deeplsd": {
+        "f1": 0.7005801687763713,
+        "assigned_fraction": 0.7470294860265351,
+        "opening_fill": 0.033645276292335116
+      }
+    },
+    "selected": "mask-first"
+  },
+  "baseline_replays_matching": 56,
+  "timings_seconds": {
+    "current-b": 17.439022100152215,
+    "mask-first": 12.242228499992052,
+    "scalelsd_inference_recorded": 4.233563999878243,
+    "model_fields_cached": 0.26744319999124855,
+    "deeplsd_refine": 4.680421000055503,
+    "deeplsd_inference_recorded": 394.6315614709999,
+    "scalelsd_refine": 5.183054399909452
+  },
+  "frames": [
+    {
+      "key": "smooth_stone/dev-shopfront-masonry-high-right",
+      "sha256": "f15cd0e471a9a2e375c9f801df171bb8f5ee44d95374f02f1174c7938a94cc79"
+    },
+    {
+      "key": "light_gray_concrete/dev-shopfront-masonry-high-right",
+      "sha256": "bb588b0b0d1cdb05b720ff5bc3b515479426c7772fd98fb7fadb8a55b79ca9db"
+    },
+    {
+      "key": "smooth_stone/dev-shopfront-masonry-low-left",
+      "sha256": "17691e7909ee0e9384db83c3a729f8763e21a281eb89b8dcebe61fc7675d1405"
+    },
+    {
+      "key": "light_gray_concrete/dev-shopfront-masonry-low-left",
+      "sha256": "0359c24dea1b318ec9cd002a1523ae8fc0d7d59fc9d7418972cf9ce9af8d4d57"
+    },
+    {
+      "key": "smooth_stone/dev-shopfront-plaster-high-right",
+      "sha256": "ae58f28554348d924798e23bd492b88db06c2a099f590e325c514ecc5c8f9c7e"
+    },
+    {
+      "key": "light_gray_concrete/dev-shopfront-plaster-high-right",
+      "sha256": "4cc1d5687db72eef74f23fc291fb7916b3f481ed4998d9e1c850024039d38cce"
+    },
+    {
+      "key": "smooth_stone/dev-shopfront-plaster-low-left",
+      "sha256": "5d0c9120de4ca16f35758f90a31e176e50a3cf166358dd9833ee2213d1ff2f72"
+    },
+    {
+      "key": "light_gray_concrete/dev-shopfront-plaster-low-left",
+      "sha256": "299e0228de74d2cc7d3a18deaba9f61c82560a0ddd0b8557e5c91728c964a993"
+    },
+    {
+      "key": "smooth_stone/dev-wing-masonry-close-front",
+      "sha256": "9ce65a1c07694c1d3e57019c07b422d7a6a0771ed0d46f579891eae8a61463a9"
+    },
+    {
+      "key": "light_gray_concrete/dev-wing-masonry-close-front",
+      "sha256": "9ce65a1c07694c1d3e57019c07b422d7a6a0771ed0d46f579891eae8a61463a9"
+    },
+    {
+      "key": "smooth_stone/dev-wing-masonry-high-right",
+      "sha256": "8cd9e20f608db25df6d141941051d30afcbf80733ea4c6f2058874c02019bf9f"
+    },
+    {
+      "key": "light_gray_concrete/dev-wing-masonry-high-right",
+      "sha256": "5ccd9115fd2a70784e0e1ab6819d37fc5c4af54cf965605143b3817e1f3a3efd"
+    },
+    {
+      "key": "smooth_stone/dev-wing-masonry-low-left",
+      "sha256": "0c7bc49ce3c736391d7954a9c069aee29586f03fd33a2a88926b40257ccae6ce"
+    },
+    {
+      "key": "light_gray_concrete/dev-wing-masonry-low-left",
+      "sha256": "4e8817361e24c3f05e835d7af6c8bab3da96d50c8821828144f33bb1ea0e87d3"
+    },
+    {
+      "key": "smooth_stone/dev-wing-plaster-close-front",
+      "sha256": "b3154136e855e9d005a993b8afdb3989e3fb156b102aed46ce0d99e761d2f2b8"
+    },
+    {
+      "key": "light_gray_concrete/dev-wing-plaster-close-front",
+      "sha256": "b3154136e855e9d005a993b8afdb3989e3fb156b102aed46ce0d99e761d2f2b8"
+    },
+    {
+      "key": "smooth_stone/dev-wing-plaster-high-right",
+      "sha256": "49832e903f4455c88c44f51da20abc550516d208783af9e3d05edc85ff4116a9"
+    },
+    {
+      "key": "light_gray_concrete/dev-wing-plaster-high-right",
+      "sha256": "64d4fec367d669912de294146c1fa3e0bf871816ec4f52e57213e35db2968564"
+    },
+    {
+      "key": "smooth_stone/dev-wing-plaster-low-left",
+      "sha256": "b564e5c3bb2def9511c27cf483dbb01dbe760b1bce8b6060be578c97b2083019"
+    },
+    {
+      "key": "light_gray_concrete/dev-wing-plaster-low-left",
+      "sha256": "b1aa96442f2858b5435fc9af424de374ffafbade3cc74d059b85b6c1bfd7e13c"
+    },
+    {
+      "key": "smooth_stone/holdout-courtyard-masonry-close-front",
+      "sha256": "655531c2d8fecce752ea93fac3aa6a6e4429bb7ce8a629cb409532583694c678"
+    },
+    {
+      "key": "light_gray_concrete/holdout-courtyard-masonry-close-front",
+      "sha256": "655531c2d8fecce752ea93fac3aa6a6e4429bb7ce8a629cb409532583694c678"
+    },
+    {
+      "key": "smooth_stone/holdout-courtyard-masonry-high-right",
+      "sha256": "252fa7c481e990bbbada46717d6e10c6b66c4f9c65846b94a94cd1b40cea0fcd"
+    },
+    {
+      "key": "light_gray_concrete/holdout-courtyard-masonry-high-right",
+      "sha256": "b5b2bb5300687da8d904fb129043b5d2df0ae56e9ba4e14afb932b3e6d44dd3b"
+    },
+    {
+      "key": "smooth_stone/holdout-courtyard-masonry-low-left",
+      "sha256": "c80356e1b7d96bdc796ed982f09ed908059399d23fe98c873eecbb6e623a4216"
+    },
+    {
+      "key": "light_gray_concrete/holdout-courtyard-masonry-low-left",
+      "sha256": "5b0b16edd7e5207c275e3277db0d65620891c50024735061783d4a175957ff9a"
+    },
+    {
+      "key": "smooth_stone/holdout-courtyard-plaster-close-front",
+      "sha256": "319503ad2c8fbdc7f33f283d4e35b0f3abe43684bdd8341ace1ac1745696abee"
+    },
+    {
+      "key": "light_gray_concrete/holdout-courtyard-plaster-close-front",
+      "sha256": "319503ad2c8fbdc7f33f283d4e35b0f3abe43684bdd8341ace1ac1745696abee"
+    },
+    {
+      "key": "smooth_stone/holdout-courtyard-plaster-high-right",
+      "sha256": "7152899302d1721578a01412063a0cafc072986ba9a4acb5c03aa5ecbdde05f1"
+    },
+    {
+      "key": "light_gray_concrete/holdout-courtyard-plaster-high-right",
+      "sha256": "de9e33d3bdb1f64318fbc1dec03fef52cde19a331c90fd1f7bb0b7a322b3bd94"
+    },
+    {
+      "key": "smooth_stone/holdout-courtyard-plaster-low-left",
+      "sha256": "c8129500a7c473e23666de5470d535f650fb1ac61ae8dcb702f09707ba68949f"
+    },
+    {
+      "key": "light_gray_concrete/holdout-courtyard-plaster-low-left",
+      "sha256": "1995d3af4ecbdd7b22bc4ada179009147a5b389379edd6142b99dcaa6446d9c0"
+    },
+    {
+      "key": "smooth_stone/holdout-portico-masonry-high-right",
+      "sha256": "54819d55b59d36a91e891bf2ff6148104d917d5ca59084f4f73edc43d623e390"
+    },
+    {
+      "key": "light_gray_concrete/holdout-portico-masonry-high-right",
+      "sha256": "f6c57a6cca3c952e2134e27f6ca75816487c4817800f504acaa6aa0240a24329"
+    },
+    {
+      "key": "smooth_stone/holdout-portico-masonry-low-left",
+      "sha256": "eb35fef82a3ed8b7f34c39d7be768ae94123884428038310ea19e578228d83be"
+    },
+    {
+      "key": "light_gray_concrete/holdout-portico-masonry-low-left",
+      "sha256": "00daa00ce6d344d9c00205a65b67ed60af6e0f908e1993e842417450928e55b5"
+    },
+    {
+      "key": "smooth_stone/holdout-portico-plaster-high-right",
+      "sha256": "fb687c20c5df87e79d9dd17ce48566c7f9fca2a092234bedff15fbe3f83b2e8c"
+    },
+    {
+      "key": "light_gray_concrete/holdout-portico-plaster-high-right",
+      "sha256": "fbe284f3ab8d1e0d517c81853c4a6121d359eb023c6f9882769d27605edb9b84"
+    },
+    {
+      "key": "smooth_stone/holdout-portico-plaster-low-left",
+      "sha256": "8f7b6cf572ea617a0efa47c002f4f9221df201dcde9d20595a10fb2915228445"
+    },
+    {
+      "key": "light_gray_concrete/holdout-portico-plaster-low-left",
+      "sha256": "318e6e654ece8e6ab93aea0fa5c0cccecdb727faf743b5fbb5eb31da2f2b05f2"
+    },
+    {
+      "key": "light_gray_concrete/holdout-workshop-masonry-low-left",
+      "sha256": "ae86fd9911640c7397bc929d3e0ca1076d84312b5500712cf2c4ec25e7c9112f"
+    },
+    {
+      "key": "light_gray_concrete/holdout-workshop-masonry-high-right",
+      "sha256": "3aefcb242fdda8a6d4c40adb9a7d2632c8de998b076b1d4ec09a100db95119d4"
+    },
+    {
+      "key": "light_gray_concrete/holdout-workshop-plaster-low-left",
+      "sha256": "91c686215bb3105c779a45302ed5b43bf16a2faa32fbfe1f0f2be10f0e161c42"
+    },
+    {
+      "key": "light_gray_concrete/holdout-workshop-plaster-high-right",
+      "sha256": "d35ab308820f92501ec898cafb1f50939f3f0ed1141e3d9ee38a00eae1199aa0"
+    },
+    {
+      "key": "light_gray_concrete/holdout-crossing-masonry-low-left",
+      "sha256": "93c9a45dbb4d6bc59edc6c18ac8007ad4f99ac340844cb0ed8f171640936fa88"
+    },
+    {
+      "key": "light_gray_concrete/holdout-crossing-masonry-high-right",
+      "sha256": "7ea5b36aa3c25b3ab4c58dcb773d8c3476c5f2d28048fd72a62970888be31320"
+    },
+    {
+      "key": "light_gray_concrete/holdout-crossing-plaster-low-left",
+      "sha256": "d348ddef0010267fdffc0d628654ef6ce256329400dec3e1cfd271bfaf764144"
+    },
+    {
+      "key": "light_gray_concrete/holdout-crossing-plaster-high-right",
+      "sha256": "a7e9cd44bd97237bd3cbf88b11fdfa3575deee7473ef820b30e19bc5fe37698e"
+    },
+    {
+      "key": "light_gray_concrete/holdout-registry-masonry-low-left",
+      "sha256": "3f7e9e1b5d577667b157664dd3f37a40e8c7e64a3db0d60ac6c30b294d2ba9e6"
+    },
+    {
+      "key": "light_gray_concrete/holdout-registry-masonry-high-right",
+      "sha256": "e20bfd5e2588ed117375acb3e2f7c42cebb2fdd1ab7167caf35b0b4298a98e19"
+    },
+    {
+      "key": "light_gray_concrete/holdout-registry-plaster-low-left",
+      "sha256": "23e91937ee67563c1c4a463676a43c7d4800f82581a3188aa7125e32001be5e9"
+    },
+    {
+      "key": "light_gray_concrete/holdout-registry-plaster-high-right",
+      "sha256": "8634b14394486c2fb709ea678008fbaf2314344280b5a13d3582d433125d589d"
+    },
+    {
+      "key": "light_gray_concrete/holdout-galleries-masonry-low-left",
+      "sha256": "d0fba67900a91a20d0120f298c8783829953bc21c7d45fb4413a8cb829cfddc3"
+    },
+    {
+      "key": "light_gray_concrete/holdout-galleries-masonry-high-right",
+      "sha256": "21916862012e6b47e6dbe426fd7a8930bd7fdd51651238d8ad4d3e8860f57a7b"
+    },
+    {
+      "key": "light_gray_concrete/holdout-galleries-plaster-low-left",
+      "sha256": "0fec6765b63937520e2a731a9171eef73e631ce1d47734e3925e2165b64a26c0"
+    },
+    {
+      "key": "light_gray_concrete/holdout-galleries-plaster-high-right",
+      "sha256": "a40a75765e0d99508a283686b4484a510d8ca0404656939017fb6d4a85f49832"
+    }
+  ],
+  "environment": {
+    "numpy": "2.3.5",
+    "pillow": "13.0.0",
+    "python": "3.12.14",
+    "platform": "Windows-11-10.0.26300-SP0"
+  },
+  "artifacts": {
+    "scores": "scores.json",
+    "per_picture": "cases.json",
+    "predictions": "predictions/",
+    "selection": "selection.json",
+    "sheet": "comparison.jpg",
+    "visual_feedback": "feedback.jsonl",
+    "review_regions": "review-regions.json",
+    "report": "report.html",
+    "block_scores": "blocks.json",
+    "exported_packs": "block-packs.zip",
+    "loss_trace": "loss-trace/manifest.json",
+    "loss_sheet": "loss-trace/stages.jpg",
+    "recovered_by_stage": "recovered-by-stage.json"
+  },
+  "line_models": {
+    "scalelsd": {
+      "method": "ScaleLSD v2",
+      "upstream_url": "https://github.com/ant-research/scalelsd",
+      "upstream_revision": "e2751fcd0eb82694abeb12ef7ec9d46237e2ca06",
+      "checkpoint_url": "https://huggingface.co/cherubicxn/scalelsd/resolve/f0a119fb3d4a12c53c317a8746db80d267fb2a0f/scalelsd-vitbase-v2-train-sa1b.pt",
+      "checkpoint_revision": "f0a119fb3d4a12c53c317a8746db80d267fb2a0f",
+      "checkpoint_sha256": "d0a7333c4de518a70af7d6ea4a283aa0ce9ffe1047525373b94070b1d1d4003f",
+      "wrapper_revision": "3eb49fccb38d6df922260fc1335367c7e378f3f3",
+      "wrapper_sha256": "c04bef0bc904ab164f1a87307297bc7889e66985a68652204ce633f2672bf37d",
+      "fixture_sha256": "f47b9d6e3c59021f6968ca089d8f8f17fefc162f749edf55a02bcd9d22bab72c",
+      "settings": {
+        "input_size": [
+          512,
+          512
+        ],
+        "line_support_strictly_above": 10,
+        "junction_heatmap_threshold": 0.008,
+        "max_junctions": 512,
+        "use_nms": false,
+        "use_lsd": false,
+        "seed": 0
+      },
+      "files": {
+        "f15cd0e471a9a2e375c9f801df171bb8f5ee44d95374f02f1174c7938a94cc79": "46a5d721a4ec2a3502368443b8a724aaf68faca331f7b1cafeb453f711f8cc6d",
+        "bb588b0b0d1cdb05b720ff5bc3b515479426c7772fd98fb7fadb8a55b79ca9db": "ed8e5b92103543311cbf7add00917bdf59d4bb278c904d05e1d3ca5d4c44a2e8",
+        "17691e7909ee0e9384db83c3a729f8763e21a281eb89b8dcebe61fc7675d1405": "2dc28c16f3600b98bc6b70d4c683bec502a484aa40a5d7ec8d3e7c719ec601a3",
+        "0359c24dea1b318ec9cd002a1523ae8fc0d7d59fc9d7418972cf9ce9af8d4d57": "f06a32d757bf1bdf44fd3f66a930b26c7773ee8c203812fc375aa31f42c90a01",
+        "ae58f28554348d924798e23bd492b88db06c2a099f590e325c514ecc5c8f9c7e": "4c6f10d6dfd29c5658727a70124b32da87059839937aec2abd65f96a47248dcc",
+        "4cc1d5687db72eef74f23fc291fb7916b3f481ed4998d9e1c850024039d38cce": "0a52f4a568eea2a516a8a77b401ad7f39a570520cd787ae6bf054d6091f67d03",
+        "5d0c9120de4ca16f35758f90a31e176e50a3cf166358dd9833ee2213d1ff2f72": "e10e8e2243f4fc085c4a7506a8e5532364805d136c64f3f546bbe2337b09e17f",
+        "299e0228de74d2cc7d3a18deaba9f61c82560a0ddd0b8557e5c91728c964a993": "a0a9eac4b35ac0188e1999c248bea03e47084b7db36a5e4ae27d30b840d8cc6e",
+        "9ce65a1c07694c1d3e57019c07b422d7a6a0771ed0d46f579891eae8a61463a9": "12c46a37454586bee1876b61038dc1cb3cb6005ba9acf786be4238a99274a8e5",
+        "8cd9e20f608db25df6d141941051d30afcbf80733ea4c6f2058874c02019bf9f": "0e799949f2a9d56551820a726d9519a2910b77a4b5db4ad71676d071ba444f1b",
+        "5ccd9115fd2a70784e0e1ab6819d37fc5c4af54cf965605143b3817e1f3a3efd": "5d8f7b064dc015049ae5c9475e2a7f0558e474e1114d094f3bbb5cc36d50f7c3",
+        "0c7bc49ce3c736391d7954a9c069aee29586f03fd33a2a88926b40257ccae6ce": "7c120d6db6473cb71a0e7ddde45addd3f84b6de2e1d30d6977193a180d239734",
+        "4e8817361e24c3f05e835d7af6c8bab3da96d50c8821828144f33bb1ea0e87d3": "d4358d417a6109bdb859c8ebf1ea027ba08a67b6ba1f19529ea986dda12c376e",
+        "b3154136e855e9d005a993b8afdb3989e3fb156b102aed46ce0d99e761d2f2b8": "b97cc897dbaf43d185dd469bc8a2a6bea648cba33ff936f33c91bfa1791b4b7f",
+        "49832e903f4455c88c44f51da20abc550516d208783af9e3d05edc85ff4116a9": "fdf542600d5b2adaae38f5ee3fb60e06b9f04828f098473c518eb36b22dbcffb",
+        "64d4fec367d669912de294146c1fa3e0bf871816ec4f52e57213e35db2968564": "29e9f191c22904b858c94a5ff6a7cf6c0e50cf2dc87b6e4a79a18e2f3719d43d",
+        "b564e5c3bb2def9511c27cf483dbb01dbe760b1bce8b6060be578c97b2083019": "c60e9a3ef03fc5a6e9fd6aea3e8e338e38b092a998a3dcd7461537c82d845894",
+        "b1aa96442f2858b5435fc9af424de374ffafbade3cc74d059b85b6c1bfd7e13c": "4d8725b65dd5ec877f73eeaaa132da12c0b5a7d3de97b7a31026eb152d68554c",
+        "655531c2d8fecce752ea93fac3aa6a6e4429bb7ce8a629cb409532583694c678": "57d375603842abdfe1647c24a7f5c31624252020090ffb3e180c9dea54ce57b7",
+        "252fa7c481e990bbbada46717d6e10c6b66c4f9c65846b94a94cd1b40cea0fcd": "d41bb8c2c96f5ea6fc9b837bfa1c3949857a96ba9e9bfaf5627d821bd5d72682",
+        "b5b2bb5300687da8d904fb129043b5d2df0ae56e9ba4e14afb932b3e6d44dd3b": "e2042fab80c21f33e9c551f3e20b8b69d0c88e51195f165265db66f279c678a7",
+        "c80356e1b7d96bdc796ed982f09ed908059399d23fe98c873eecbb6e623a4216": "ca8bed268d21d0065c5be009e758aaf38aaa730146dbdf3ea19c5c209efa41a2",
+        "5b0b16edd7e5207c275e3277db0d65620891c50024735061783d4a175957ff9a": "b3e30f7e77cd278b7ed2ea0a16668961783fde59b02cb5735819bd107c9dc38b",
+        "319503ad2c8fbdc7f33f283d4e35b0f3abe43684bdd8341ace1ac1745696abee": "f764cafd4dbfb31ec9fe07466f93fc6698d43f03906119aa1a41aa02e2b5683f",
+        "7152899302d1721578a01412063a0cafc072986ba9a4acb5c03aa5ecbdde05f1": "5d73ab95d449f5a7b785fc2194fd6210fbb90ec9495dd4ffa1e6eadc4ded6a50",
+        "de9e33d3bdb1f64318fbc1dec03fef52cde19a331c90fd1f7bb0b7a322b3bd94": "be10e9f4d2e7fd940c06eb9615a9f69ab82a84120b3f655e0a02883ba5597917",
+        "c8129500a7c473e23666de5470d535f650fb1ac61ae8dcb702f09707ba68949f": "302bade0a07d89939980a3531727f62c513e9793ba9c9e0b9dd90b9548638169",
+        "1995d3af4ecbdd7b22bc4ada179009147a5b389379edd6142b99dcaa6446d9c0": "b672dbb278200f5bb30bb461b3c8d55d88f265fad8a363b7a8d50184187f68d8",
+        "54819d55b59d36a91e891bf2ff6148104d917d5ca59084f4f73edc43d623e390": "2eb166d5e5398899b6c77d495034ea232edaa81d8af1ad7b11b2a5a8602aa69e",
+        "f6c57a6cca3c952e2134e27f6ca75816487c4817800f504acaa6aa0240a24329": "a109bcc7504fb05332436731162e2a4ce65b535da4c6a4f0fa1facc5c6f521c2",
+        "eb35fef82a3ed8b7f34c39d7be768ae94123884428038310ea19e578228d83be": "5689908ee519cabf06003a8796e5c46fdb65b61cba49cc802ecc7295b2e73775",
+        "00daa00ce6d344d9c00205a65b67ed60af6e0f908e1993e842417450928e55b5": "5a810adc0019a4dc8929742f9a9e7058d1a0e3b47c92b446de86ad21898be495",
+        "fb687c20c5df87e79d9dd17ce48566c7f9fca2a092234bedff15fbe3f83b2e8c": "1cdfbc3be0fb3dd27b07024f45eab23edd6a2029197207079542c3555166721c",
+        "fbe284f3ab8d1e0d517c81853c4a6121d359eb023c6f9882769d27605edb9b84": "5d671b99bcee23f33ea8f2628d29441fd4017117edeef303dba6ab3ec293993b",
+        "8f7b6cf572ea617a0efa47c002f4f9221df201dcde9d20595a10fb2915228445": "c743420a1c3392b2f87cfc56dfe23bfa5a4c06cd2e38ad0b340cdc5912fb56bb",
+        "318e6e654ece8e6ab93aea0fa5c0cccecdb727faf743b5fbb5eb31da2f2b05f2": "ae85bac3350433437eb35de4379e26de53abb9a80356454e187c8f0ad673dd65",
+        "ae86fd9911640c7397bc929d3e0ca1076d84312b5500712cf2c4ec25e7c9112f": "92ba3952c3368bde04469fbf153a8be0a59c92f4e18b4a7424fcb1930ceda17d",
+        "3aefcb242fdda8a6d4c40adb9a7d2632c8de998b076b1d4ec09a100db95119d4": "cb6cf7ab5e810cfc4ede56c60fffa74014b89292b67559b2f8e9d7caf832110c",
+        "91c686215bb3105c779a45302ed5b43bf16a2faa32fbfe1f0f2be10f0e161c42": "59ceeed52780e2cdefeb278758fc75be26ee459939967392548abfabdd862598",
+        "d35ab308820f92501ec898cafb1f50939f3f0ed1141e3d9ee38a00eae1199aa0": "73a6a697e0633a360e06b9ee2cd40d07b456f8860e05d2314208f7a3cfb02e44",
+        "93c9a45dbb4d6bc59edc6c18ac8007ad4f99ac340844cb0ed8f171640936fa88": "de8de181e87f0c3adf66ae932d50da09ac8887800ed31aeb9c3e27e87ec51aa9",
+        "7ea5b36aa3c25b3ab4c58dcb773d8c3476c5f2d28048fd72a62970888be31320": "39d8d1daad8642ea4c6930d92e150f7b34a6155a17db772e910c36c3196e4bde",
+        "d348ddef0010267fdffc0d628654ef6ce256329400dec3e1cfd271bfaf764144": "453dc2fb6394c9652947db92340b479def36d82a7dfa50a97f5490bda1de0f2f",
+        "a7e9cd44bd97237bd3cbf88b11fdfa3575deee7473ef820b30e19bc5fe37698e": "f8cffbbd0d639ee0b487ff5ce0b500af65c7b32a5e7eea1ca77c6e953053c323",
+        "3f7e9e1b5d577667b157664dd3f37a40e8c7e64a3db0d60ac6c30b294d2ba9e6": "ec86202c8fbb35410e42fcccd8098a5874fb6d00b36ce26743b3390f1be574a0",
+        "e20bfd5e2588ed117375acb3e2f7c42cebb2fdd1ab7167caf35b0b4298a98e19": "ab91b7252513f454e3af2730cabda48a9fd45d3ac051dafc28cd1137078777b1",
+        "23e91937ee67563c1c4a463676a43c7d4800f82581a3188aa7125e32001be5e9": "a45eb55200c65241603aae39b57fbf3ca680958b8b5c5ae9b5db27c6a2df2b40",
+        "8634b14394486c2fb709ea678008fbaf2314344280b5a13d3582d433125d589d": "433f8be3bf1afee8132663e8ae83d2d26253c7a9bdf3f2dbc21f9d23a1b65d4d",
+        "d0fba67900a91a20d0120f298c8783829953bc21c7d45fb4413a8cb829cfddc3": "b418022b8caf1f667ee7c3afebfeea72f745edd39095567c155d9cd91dc53385",
+        "21916862012e6b47e6dbe426fd7a8930bd7fdd51651238d8ad4d3e8860f57a7b": "093952381c80ca07cc650a32783bdc8cb6bedb57ce8c475645159a8554a276f9",
+        "0fec6765b63937520e2a731a9171eef73e631ce1d47734e3925e2165b64a26c0": "05ed384263913b9c04fb3dd9dcb012b4cd84798a16d722138c6924fe121f0ca6",
+        "a40a75765e0d99508a283686b4484a510d8ca0404656939017fb6d4a85f49832": "267b1f2422c48aea46197ee89bc392d23d39eb8b3b89c7cefd0adf0b8486b3ef"
+      },
+      "frame_ids": {
+        "smooth_stone/dev-shopfront-masonry-high-right": "f15cd0e471a9a2e375c9f801df171bb8f5ee44d95374f02f1174c7938a94cc79",
+        "light_gray_concrete/dev-shopfront-masonry-high-right": "bb588b0b0d1cdb05b720ff5bc3b515479426c7772fd98fb7fadb8a55b79ca9db",
+        "smooth_stone/dev-shopfront-masonry-low-left": "17691e7909ee0e9384db83c3a729f8763e21a281eb89b8dcebe61fc7675d1405",
+        "light_gray_concrete/dev-shopfront-masonry-low-left": "0359c24dea1b318ec9cd002a1523ae8fc0d7d59fc9d7418972cf9ce9af8d4d57",
+        "smooth_stone/dev-shopfront-plaster-high-right": "ae58f28554348d924798e23bd492b88db06c2a099f590e325c514ecc5c8f9c7e",
+        "light_gray_concrete/dev-shopfront-plaster-high-right": "4cc1d5687db72eef74f23fc291fb7916b3f481ed4998d9e1c850024039d38cce",
+        "smooth_stone/dev-shopfront-plaster-low-left": "5d0c9120de4ca16f35758f90a31e176e50a3cf166358dd9833ee2213d1ff2f72",
+        "light_gray_concrete/dev-shopfront-plaster-low-left": "299e0228de74d2cc7d3a18deaba9f61c82560a0ddd0b8557e5c91728c964a993",
+        "smooth_stone/dev-wing-masonry-close-front": "9ce65a1c07694c1d3e57019c07b422d7a6a0771ed0d46f579891eae8a61463a9",
+        "light_gray_concrete/dev-wing-masonry-close-front": "9ce65a1c07694c1d3e57019c07b422d7a6a0771ed0d46f579891eae8a61463a9",
+        "smooth_stone/dev-wing-masonry-high-right": "8cd9e20f608db25df6d141941051d30afcbf80733ea4c6f2058874c02019bf9f",
+        "light_gray_concrete/dev-wing-masonry-high-right": "5ccd9115fd2a70784e0e1ab6819d37fc5c4af54cf965605143b3817e1f3a3efd",
+        "smooth_stone/dev-wing-masonry-low-left": "0c7bc49ce3c736391d7954a9c069aee29586f03fd33a2a88926b40257ccae6ce",
+        "light_gray_concrete/dev-wing-masonry-low-left": "4e8817361e24c3f05e835d7af6c8bab3da96d50c8821828144f33bb1ea0e87d3",
+        "smooth_stone/dev-wing-plaster-close-front": "b3154136e855e9d005a993b8afdb3989e3fb156b102aed46ce0d99e761d2f2b8",
+        "light_gray_concrete/dev-wing-plaster-close-front": "b3154136e855e9d005a993b8afdb3989e3fb156b102aed46ce0d99e761d2f2b8",
+        "smooth_stone/dev-wing-plaster-high-right": "49832e903f4455c88c44f51da20abc550516d208783af9e3d05edc85ff4116a9",
+        "light_gray_concrete/dev-wing-plaster-high-right": "64d4fec367d669912de294146c1fa3e0bf871816ec4f52e57213e35db2968564",
+        "smooth_stone/dev-wing-plaster-low-left": "b564e5c3bb2def9511c27cf483dbb01dbe760b1bce8b6060be578c97b2083019",
+        "light_gray_concrete/dev-wing-plaster-low-left": "b1aa96442f2858b5435fc9af424de374ffafbade3cc74d059b85b6c1bfd7e13c",
+        "smooth_stone/holdout-courtyard-masonry-close-front": "655531c2d8fecce752ea93fac3aa6a6e4429bb7ce8a629cb409532583694c678",
+        "light_gray_concrete/holdout-courtyard-masonry-close-front": "655531c2d8fecce752ea93fac3aa6a6e4429bb7ce8a629cb409532583694c678",
+        "smooth_stone/holdout-courtyard-masonry-high-right": "252fa7c481e990bbbada46717d6e10c6b66c4f9c65846b94a94cd1b40cea0fcd",
+        "light_gray_concrete/holdout-courtyard-masonry-high-right": "b5b2bb5300687da8d904fb129043b5d2df0ae56e9ba4e14afb932b3e6d44dd3b",
+        "smooth_stone/holdout-courtyard-masonry-low-left": "c80356e1b7d96bdc796ed982f09ed908059399d23fe98c873eecbb6e623a4216",
+        "light_gray_concrete/holdout-courtyard-masonry-low-left": "5b0b16edd7e5207c275e3277db0d65620891c50024735061783d4a175957ff9a",
+        "smooth_stone/holdout-courtyard-plaster-close-front": "319503ad2c8fbdc7f33f283d4e35b0f3abe43684bdd8341ace1ac1745696abee",
+        "light_gray_concrete/holdout-courtyard-plaster-close-front": "319503ad2c8fbdc7f33f283d4e35b0f3abe43684bdd8341ace1ac1745696abee",
+        "smooth_stone/holdout-courtyard-plaster-high-right": "7152899302d1721578a01412063a0cafc072986ba9a4acb5c03aa5ecbdde05f1",
+        "light_gray_concrete/holdout-courtyard-plaster-high-right": "de9e33d3bdb1f64318fbc1dec03fef52cde19a331c90fd1f7bb0b7a322b3bd94",
+        "smooth_stone/holdout-courtyard-plaster-low-left": "c8129500a7c473e23666de5470d535f650fb1ac61ae8dcb702f09707ba68949f",
+        "light_gray_concrete/holdout-courtyard-plaster-low-left": "1995d3af4ecbdd7b22bc4ada179009147a5b389379edd6142b99dcaa6446d9c0",
+        "smooth_stone/holdout-portico-masonry-high-right": "54819d55b59d36a91e891bf2ff6148104d917d5ca59084f4f73edc43d623e390",
+        "light_gray_concrete/holdout-portico-masonry-high-right": "f6c57a6cca3c952e2134e27f6ca75816487c4817800f504acaa6aa0240a24329",
+        "smooth_stone/holdout-portico-masonry-low-left": "eb35fef82a3ed8b7f34c39d7be768ae94123884428038310ea19e578228d83be",
+        "light_gray_concrete/holdout-portico-masonry-low-left": "00daa00ce6d344d9c00205a65b67ed60af6e0f908e1993e842417450928e55b5",
+        "smooth_stone/holdout-portico-plaster-high-right": "fb687c20c5df87e79d9dd17ce48566c7f9fca2a092234bedff15fbe3f83b2e8c",
+        "light_gray_concrete/holdout-portico-plaster-high-right": "fbe284f3ab8d1e0d517c81853c4a6121d359eb023c6f9882769d27605edb9b84",
+        "smooth_stone/holdout-portico-plaster-low-left": "8f7b6cf572ea617a0efa47c002f4f9221df201dcde9d20595a10fb2915228445",
+        "light_gray_concrete/holdout-portico-plaster-low-left": "318e6e654ece8e6ab93aea0fa5c0cccecdb727faf743b5fbb5eb31da2f2b05f2",
+        "light_gray_concrete/holdout-workshop-masonry-low-left": "ae86fd9911640c7397bc929d3e0ca1076d84312b5500712cf2c4ec25e7c9112f",
+        "light_gray_concrete/holdout-workshop-masonry-high-right": "3aefcb242fdda8a6d4c40adb9a7d2632c8de998b076b1d4ec09a100db95119d4",
+        "light_gray_concrete/holdout-workshop-plaster-low-left": "91c686215bb3105c779a45302ed5b43bf16a2faa32fbfe1f0f2be10f0e161c42",
+        "light_gray_concrete/holdout-workshop-plaster-high-right": "d35ab308820f92501ec898cafb1f50939f3f0ed1141e3d9ee38a00eae1199aa0",
+        "light_gray_concrete/holdout-crossing-masonry-low-left": "93c9a45dbb4d6bc59edc6c18ac8007ad4f99ac340844cb0ed8f171640936fa88",
+        "light_gray_concrete/holdout-crossing-masonry-high-right": "7ea5b36aa3c25b3ab4c58dcb773d8c3476c5f2d28048fd72a62970888be31320",
+        "light_gray_concrete/holdout-crossing-plaster-low-left": "d348ddef0010267fdffc0d628654ef6ce256329400dec3e1cfd271bfaf764144",
+        "light_gray_concrete/holdout-crossing-plaster-high-right": "a7e9cd44bd97237bd3cbf88b11fdfa3575deee7473ef820b30e19bc5fe37698e",
+        "light_gray_concrete/holdout-registry-masonry-low-left": "3f7e9e1b5d577667b157664dd3f37a40e8c7e64a3db0d60ac6c30b294d2ba9e6",
+        "light_gray_concrete/holdout-registry-masonry-high-right": "e20bfd5e2588ed117375acb3e2f7c42cebb2fdd1ab7167caf35b0b4298a98e19",
+        "light_gray_concrete/holdout-registry-plaster-low-left": "23e91937ee67563c1c4a463676a43c7d4800f82581a3188aa7125e32001be5e9",
+        "light_gray_concrete/holdout-registry-plaster-high-right": "8634b14394486c2fb709ea678008fbaf2314344280b5a13d3582d433125d589d",
+        "light_gray_concrete/holdout-galleries-masonry-low-left": "d0fba67900a91a20d0120f298c8783829953bc21c7d45fb4413a8cb829cfddc3",
+        "light_gray_concrete/holdout-galleries-masonry-high-right": "21916862012e6b47e6dbe426fd7a8930bd7fdd51651238d8ad4d3e8860f57a7b",
+        "light_gray_concrete/holdout-galleries-plaster-low-left": "0fec6765b63937520e2a731a9171eef73e631ce1d47734e3925e2165b64a26c0",
+        "light_gray_concrete/holdout-galleries-plaster-high-right": "a40a75765e0d99508a283686b4484a510d8ca0404656939017fb6d4a85f49832"
+      },
+      "inference_seconds": 3.867723099916475,
+      "cache_read_seconds": 0.0,
+      "timing": "Synchronized model forward only, once per unique image. Model loading, IO and one additional transform self-test excluded.",
+      "transform_check": "Re-ran first frame with 512x512 output metadata and verified every native x/y coordinate independently.",
+      "platform": "Windows-11-10.0.26300-SP0",
+      "python": "3.13.5 (tags/v3.13.5:6cb20a2, Jun 11 2025, 16:15:46) [MSC v.1943 64 bit (AMD64)]",
+      "device": "cuda",
+      "gpu": "NVIDIA GeForce RTX 4080",
+      "cuda": "12.8",
+      "packages": {
+        "torch": "2.8.0+cu128",
+        "torchvision": "0.23.0+cu128",
+        "timm": "1.0.15",
+        "opencv-python-headless": "4.12.0.88",
+        "numpy": "2.2.6",
+        "matplotlib": "3.10.7",
+        "python-json-logger": "3.3.0"
+      }
+    },
+    "deeplsd": {
+      "method": "DeepLSD MegaDepth official quickstart",
+      "upstream": "https://github.com/cvg/DeepLSD",
+      "upstream_revision": "f7d9d6258c0cd25d4f6eea882853565403d289be",
+      "native_detector_revision": "21381ca4c5c8da297ef44ce07dda115075c5a648",
+      "native_detector_binary_sha256": "a5606df1aaf23c1194c4c0906293a77d492f8645300a8dbff522b3baf2cadeb4",
+      "checkpoint_url": "https://cvg-data.inf.ethz.ch/DeepLSD/deeplsd_md.tar",
+      "checkpoint_sha256": "56e9bae263977caa289ae49802987a67d4f00f376ae7e542176c8ae0a6cc2083",
+      "model_settings": {
+        "multiscale": false,
+        "detect_lines": true,
+        "line_detection_params": {
+          "merge": false,
+          "filtering": "normal",
+          "grad_thresh": 3,
+          "grad_nfa": true
+        }
+      },
+      "transform": {
+        "max_long_side": 960,
+        "resize": "aspect preserving, INTER_AREA, rounded size",
+        "padding": "none",
+        "coordinates": "native source pixels, origin at upper-left image edge; model pixel (0,0) center is (+0.5,+0.5) before inverse resize"
+      },
+      "junctions": {
+        "algorithm": "midpoints of nearby nonparallel segment endpoints",
+        "radius_native_px": 5.0,
+        "minimum_angle_degrees": 20.0
+      },
+      "inference_wrapper_revision": "4e65f3f34ff18c2d901ecd4ae13a52a3bf64bfe9",
+      "inference_wrapper_sha256": "eb2a28fac2d0d91e0ecb979a7ec195f429489f2e43ebc0eb88442d51505e1d6d",
+      "environment": {
+        "python": "3.10.22",
+        "platform": "Linux-6.8.0-1070-azure-x86_64-with-glibc2.35",
+        "device": "cpu",
+        "torch_threads": 4,
+        "torch": "2.5.1+cpu",
+        "numpy": "1.26.4",
+        "opencv": "4.10.0",
+        "scipy": "1.13.1",
+        "scikit_image": "0.24.0",
+        "omegaconf": "2.3.0",
+        "actions_run": "45669295380"
+      },
+      "inference_timing": "resize + CNN + official PyTLSD extraction/filter + coordinate conversion and junctions; excludes loading, image decode and cache writing",
+      "model_load_seconds": 0.206290843000005,
+      "inference_seconds": 366.40507227699993,
+      "per_image_seconds": {
+        "f15cd0e471a9a2e375c9f801df171bb8f5ee44d95374f02f1174c7938a94cc79": 6.956419535000009,
+        "bb588b0b0d1cdb05b720ff5bc3b515479426c7772fd98fb7fadb8a55b79ca9db": 7.013004392999989,
+        "17691e7909ee0e9384db83c3a729f8763e21a281eb89b8dcebe61fc7675d1405": 7.145969477999984,
+        "0359c24dea1b318ec9cd002a1523ae8fc0d7d59fc9d7418972cf9ce9af8d4d57": 7.049914017999981,
+        "ae58f28554348d924798e23bd492b88db06c2a099f590e325c514ecc5c8f9c7e": 7.054781977000005,
+        "4cc1d5687db72eef74f23fc291fb7916b3f481ed4998d9e1c850024039d38cce": 6.9542191660000015,
+        "5d0c9120de4ca16f35758f90a31e176e50a3cf166358dd9833ee2213d1ff2f72": 7.030716313999989,
+        "299e0228de74d2cc7d3a18deaba9f61c82560a0ddd0b8557e5c91728c964a993": 7.031507446999996,
+        "9ce65a1c07694c1d3e57019c07b422d7a6a0771ed0d46f579891eae8a61463a9": 7.066637404000005,
+        "8cd9e20f608db25df6d141941051d30afcbf80733ea4c6f2058874c02019bf9f": 7.074645916999998,
+        "5ccd9115fd2a70784e0e1ab6819d37fc5c4af54cf965605143b3817e1f3a3efd": 6.953325406999994,
+        "0c7bc49ce3c736391d7954a9c069aee29586f03fd33a2a88926b40257ccae6ce": 7.055835397999999,
+        "4e8817361e24c3f05e835d7af6c8bab3da96d50c8821828144f33bb1ea0e87d3": 7.014557932999992,
+        "b3154136e855e9d005a993b8afdb3989e3fb156b102aed46ce0d99e761d2f2b8": 6.9684014359999935,
+        "49832e903f4455c88c44f51da20abc550516d208783af9e3d05edc85ff4116a9": 7.0743622950000145,
+        "64d4fec367d669912de294146c1fa3e0bf871816ec4f52e57213e35db2968564": 6.982730599000007,
+        "b564e5c3bb2def9511c27cf483dbb01dbe760b1bce8b6060be578c97b2083019": 7.125044868000032,
+        "b1aa96442f2858b5435fc9af424de374ffafbade3cc74d059b85b6c1bfd7e13c": 7.041233741999974,
+        "655531c2d8fecce752ea93fac3aa6a6e4429bb7ce8a629cb409532583694c678": 7.069109244999993,
+        "252fa7c481e990bbbada46717d6e10c6b66c4f9c65846b94a94cd1b40cea0fcd": 7.152999991999991,
+        "b5b2bb5300687da8d904fb129043b5d2df0ae56e9ba4e14afb932b3e6d44dd3b": 7.107774573000029,
+        "c80356e1b7d96bdc796ed982f09ed908059399d23fe98c873eecbb6e623a4216": 7.0958381160000386,
+        "5b0b16edd7e5207c275e3277db0d65620891c50024735061783d4a175957ff9a": 7.086865308000029,
+        "319503ad2c8fbdc7f33f283d4e35b0f3abe43684bdd8341ace1ac1745696abee": 7.12234110899999,
+        "7152899302d1721578a01412063a0cafc072986ba9a4acb5c03aa5ecbdde05f1": 7.259404143999973,
+        "de9e33d3bdb1f64318fbc1dec03fef52cde19a331c90fd1f7bb0b7a322b3bd94": 7.159257760000003,
+        "c8129500a7c473e23666de5470d535f650fb1ac61ae8dcb702f09707ba68949f": 7.094874145999995,
+        "1995d3af4ecbdd7b22bc4ada179009147a5b389379edd6142b99dcaa6446d9c0": 6.975449733000005,
+        "54819d55b59d36a91e891bf2ff6148104d917d5ca59084f4f73edc43d623e390": 7.082758625999986,
+        "f6c57a6cca3c952e2134e27f6ca75816487c4817800f504acaa6aa0240a24329": 7.000816380000003,
+        "eb35fef82a3ed8b7f34c39d7be768ae94123884428038310ea19e578228d83be": 7.094475826999997,
+        "00daa00ce6d344d9c00205a65b67ed60af6e0f908e1993e842417450928e55b5": 7.026434768999991,
+        "fb687c20c5df87e79d9dd17ce48566c7f9fca2a092234bedff15fbe3f83b2e8c": 7.122929048000003,
+        "fbe284f3ab8d1e0d517c81853c4a6121d359eb023c6f9882769d27605edb9b84": 7.10368323199998,
+        "8f7b6cf572ea617a0efa47c002f4f9221df201dcde9d20595a10fb2915228445": 7.164592823000021,
+        "318e6e654ece8e6ab93aea0fa5c0cccecdb727faf743b5fbb5eb31da2f2b05f2": 7.000481111999989,
+        "ae86fd9911640c7397bc929d3e0ca1076d84312b5500712cf2c4ec25e7c9112f": 7.012788578000027,
+        "3aefcb242fdda8a6d4c40adb9a7d2632c8de998b076b1d4ec09a100db95119d4": 7.089274805999992,
+        "91c686215bb3105c779a45302ed5b43bf16a2faa32fbfe1f0f2be10f0e161c42": 7.016058706000024,
+        "d35ab308820f92501ec898cafb1f50939f3f0ed1141e3d9ee38a00eae1199aa0": 7.021348800999988,
+        "93c9a45dbb4d6bc59edc6c18ac8007ad4f99ac340844cb0ed8f171640936fa88": 7.066905919999954,
+        "7ea5b36aa3c25b3ab4c58dcb773d8c3476c5f2d28048fd72a62970888be31320": 6.992577826999991,
+        "d348ddef0010267fdffc0d628654ef6ce256329400dec3e1cfd271bfaf764144": 7.028988879999986,
+        "a7e9cd44bd97237bd3cbf88b11fdfa3575deee7473ef820b30e19bc5fe37698e": 6.976265459999979,
+        "3f7e9e1b5d577667b157664dd3f37a40e8c7e64a3db0d60ac6c30b294d2ba9e6": 6.998976668000012,
+        "e20bfd5e2588ed117375acb3e2f7c42cebb2fdd1ab7167caf35b0b4298a98e19": 7.002085419999958,
+        "23e91937ee67563c1c4a463676a43c7d4800f82581a3188aa7125e32001be5e9": 6.933661844000028,
+        "8634b14394486c2fb709ea678008fbaf2314344280b5a13d3582d433125d589d": 6.986511209000014,
+        "d0fba67900a91a20d0120f298c8783829953bc21c7d45fb4413a8cb829cfddc3": 6.994255818999989,
+        "21916862012e6b47e6dbe426fd7a8930bd7fdd51651238d8ad4d3e8860f57a7b": 6.952191429999971,
+        "0fec6765b63937520e2a731a9171eef73e631ce1d47734e3925e2165b64a26c0": 7.017466083999977,
+        "a40a75765e0d99508a283686b4484a510d8ca0404656939017fb6d4a85f49832": 7.002321555000037
+      },
+      "fixture_ids": {
+        "smooth_stone/dev-shopfront-masonry-high-right": "f15cd0e471a9a2e375c9f801df171bb8f5ee44d95374f02f1174c7938a94cc79",
+        "light_gray_concrete/dev-shopfront-masonry-high-right": "bb588b0b0d1cdb05b720ff5bc3b515479426c7772fd98fb7fadb8a55b79ca9db",
+        "smooth_stone/dev-shopfront-masonry-low-left": "17691e7909ee0e9384db83c3a729f8763e21a281eb89b8dcebe61fc7675d1405",
+        "light_gray_concrete/dev-shopfront-masonry-low-left": "0359c24dea1b318ec9cd002a1523ae8fc0d7d59fc9d7418972cf9ce9af8d4d57",
+        "smooth_stone/dev-shopfront-plaster-high-right": "ae58f28554348d924798e23bd492b88db06c2a099f590e325c514ecc5c8f9c7e",
+        "light_gray_concrete/dev-shopfront-plaster-high-right": "4cc1d5687db72eef74f23fc291fb7916b3f481ed4998d9e1c850024039d38cce",
+        "smooth_stone/dev-shopfront-plaster-low-left": "5d0c9120de4ca16f35758f90a31e176e50a3cf166358dd9833ee2213d1ff2f72",
+        "light_gray_concrete/dev-shopfront-plaster-low-left": "299e0228de74d2cc7d3a18deaba9f61c82560a0ddd0b8557e5c91728c964a993",
+        "smooth_stone/dev-wing-masonry-close-front": "9ce65a1c07694c1d3e57019c07b422d7a6a0771ed0d46f579891eae8a61463a9",
+        "light_gray_concrete/dev-wing-masonry-close-front": "9ce65a1c07694c1d3e57019c07b422d7a6a0771ed0d46f579891eae8a61463a9",
+        "smooth_stone/dev-wing-masonry-high-right": "8cd9e20f608db25df6d141941051d30afcbf80733ea4c6f2058874c02019bf9f",
+        "light_gray_concrete/dev-wing-masonry-high-right": "5ccd9115fd2a70784e0e1ab6819d37fc5c4af54cf965605143b3817e1f3a3efd",
+        "smooth_stone/dev-wing-masonry-low-left": "0c7bc49ce3c736391d7954a9c069aee29586f03fd33a2a88926b40257ccae6ce",
+        "light_gray_concrete/dev-wing-masonry-low-left": "4e8817361e24c3f05e835d7af6c8bab3da96d50c8821828144f33bb1ea0e87d3",
+        "smooth_stone/dev-wing-plaster-close-front": "b3154136e855e9d005a993b8afdb3989e3fb156b102aed46ce0d99e761d2f2b8",
+        "light_gray_concrete/dev-wing-plaster-close-front": "b3154136e855e9d005a993b8afdb3989e3fb156b102aed46ce0d99e761d2f2b8",
+        "smooth_stone/dev-wing-plaster-high-right": "49832e903f4455c88c44f51da20abc550516d208783af9e3d05edc85ff4116a9",
+        "light_gray_concrete/dev-wing-plaster-high-right": "64d4fec367d669912de294146c1fa3e0bf871816ec4f52e57213e35db2968564",
+        "smooth_stone/dev-wing-plaster-low-left": "b564e5c3bb2def9511c27cf483dbb01dbe760b1bce8b6060be578c97b2083019",
+        "light_gray_concrete/dev-wing-plaster-low-left": "b1aa96442f2858b5435fc9af424de374ffafbade3cc74d059b85b6c1bfd7e13c",
+        "smooth_stone/holdout-courtyard-masonry-close-front": "655531c2d8fecce752ea93fac3aa6a6e4429bb7ce8a629cb409532583694c678",
+        "light_gray_concrete/holdout-courtyard-masonry-close-front": "655531c2d8fecce752ea93fac3aa6a6e4429bb7ce8a629cb409532583694c678",
+        "smooth_stone/holdout-courtyard-masonry-high-right": "252fa7c481e990bbbada46717d6e10c6b66c4f9c65846b94a94cd1b40cea0fcd",
+        "light_gray_concrete/holdout-courtyard-masonry-high-right": "b5b2bb5300687da8d904fb129043b5d2df0ae56e9ba4e14afb932b3e6d44dd3b",
+        "smooth_stone/holdout-courtyard-masonry-low-left": "c80356e1b7d96bdc796ed982f09ed908059399d23fe98c873eecbb6e623a4216",
+        "light_gray_concrete/holdout-courtyard-masonry-low-left": "5b0b16edd7e5207c275e3277db0d65620891c50024735061783d4a175957ff9a",
+        "smooth_stone/holdout-courtyard-plaster-close-front": "319503ad2c8fbdc7f33f283d4e35b0f3abe43684bdd8341ace1ac1745696abee",
+        "light_gray_concrete/holdout-courtyard-plaster-close-front": "319503ad2c8fbdc7f33f283d4e35b0f3abe43684bdd8341ace1ac1745696abee",
+        "smooth_stone/holdout-courtyard-plaster-high-right": "7152899302d1721578a01412063a0cafc072986ba9a4acb5c03aa5ecbdde05f1",
+        "light_gray_concrete/holdout-courtyard-plaster-high-right": "de9e33d3bdb1f64318fbc1dec03fef52cde19a331c90fd1f7bb0b7a322b3bd94",
+        "smooth_stone/holdout-courtyard-plaster-low-left": "c8129500a7c473e23666de5470d535f650fb1ac61ae8dcb702f09707ba68949f",
+        "light_gray_concrete/holdout-courtyard-plaster-low-left": "1995d3af4ecbdd7b22bc4ada179009147a5b389379edd6142b99dcaa6446d9c0",
+        "smooth_stone/holdout-portico-masonry-high-right": "54819d55b59d36a91e891bf2ff6148104d917d5ca59084f4f73edc43d623e390",
+        "light_gray_concrete/holdout-portico-masonry-high-right": "f6c57a6cca3c952e2134e27f6ca75816487c4817800f504acaa6aa0240a24329",
+        "smooth_stone/holdout-portico-masonry-low-left": "eb35fef82a3ed8b7f34c39d7be768ae94123884428038310ea19e578228d83be",
+        "light_gray_concrete/holdout-portico-masonry-low-left": "00daa00ce6d344d9c00205a65b67ed60af6e0f908e1993e842417450928e55b5",
+        "smooth_stone/holdout-portico-plaster-high-right": "fb687c20c5df87e79d9dd17ce48566c7f9fca2a092234bedff15fbe3f83b2e8c",
+        "light_gray_concrete/holdout-portico-plaster-high-right": "fbe284f3ab8d1e0d517c81853c4a6121d359eb023c6f9882769d27605edb9b84",
+        "smooth_stone/holdout-portico-plaster-low-left": "8f7b6cf572ea617a0efa47c002f4f9221df201dcde9d20595a10fb2915228445",
+        "light_gray_concrete/holdout-portico-plaster-low-left": "318e6e654ece8e6ab93aea0fa5c0cccecdb727faf743b5fbb5eb31da2f2b05f2",
+        "light_gray_concrete/holdout-workshop-masonry-low-left": "ae86fd9911640c7397bc929d3e0ca1076d84312b5500712cf2c4ec25e7c9112f",
+        "light_gray_concrete/holdout-workshop-masonry-high-right": "3aefcb242fdda8a6d4c40adb9a7d2632c8de998b076b1d4ec09a100db95119d4",
+        "light_gray_concrete/holdout-workshop-plaster-low-left": "91c686215bb3105c779a45302ed5b43bf16a2faa32fbfe1f0f2be10f0e161c42",
+        "light_gray_concrete/holdout-workshop-plaster-high-right": "d35ab308820f92501ec898cafb1f50939f3f0ed1141e3d9ee38a00eae1199aa0",
+        "light_gray_concrete/holdout-crossing-masonry-low-left": "93c9a45dbb4d6bc59edc6c18ac8007ad4f99ac340844cb0ed8f171640936fa88",
+        "light_gray_concrete/holdout-crossing-masonry-high-right": "7ea5b36aa3c25b3ab4c58dcb773d8c3476c5f2d28048fd72a62970888be31320",
+        "light_gray_concrete/holdout-crossing-plaster-low-left": "d348ddef0010267fdffc0d628654ef6ce256329400dec3e1cfd271bfaf764144",
+        "light_gray_concrete/holdout-crossing-plaster-high-right": "a7e9cd44bd97237bd3cbf88b11fdfa3575deee7473ef820b30e19bc5fe37698e",
+        "light_gray_concrete/holdout-registry-masonry-low-left": "3f7e9e1b5d577667b157664dd3f37a40e8c7e64a3db0d60ac6c30b294d2ba9e6",
+        "light_gray_concrete/holdout-registry-masonry-high-right": "e20bfd5e2588ed117375acb3e2f7c42cebb2fdd1ab7167caf35b0b4298a98e19",
+        "light_gray_concrete/holdout-registry-plaster-low-left": "23e91937ee67563c1c4a463676a43c7d4800f82581a3188aa7125e32001be5e9",
+        "light_gray_concrete/holdout-registry-plaster-high-right": "8634b14394486c2fb709ea678008fbaf2314344280b5a13d3582d433125d589d",
+        "light_gray_concrete/holdout-galleries-masonry-low-left": "d0fba67900a91a20d0120f298c8783829953bc21c7d45fb4413a8cb829cfddc3",
+        "light_gray_concrete/holdout-galleries-masonry-high-right": "21916862012e6b47e6dbe426fd7a8930bd7fdd51651238d8ad4d3e8860f57a7b",
+        "light_gray_concrete/holdout-galleries-plaster-low-left": "0fec6765b63937520e2a731a9171eef73e631ce1d47734e3925e2165b64a26c0",
+        "light_gray_concrete/holdout-galleries-plaster-high-right": "a40a75765e0d99508a283686b4484a510d8ca0404656939017fb6d4a85f49832"
+      },
+      "segment_count": {
+        "f15cd0e471a9a2e375c9f801df171bb8f5ee44d95374f02f1174c7938a94cc79": 843,
+        "bb588b0b0d1cdb05b720ff5bc3b515479426c7772fd98fb7fadb8a55b79ca9db": 167,
+        "17691e7909ee0e9384db83c3a729f8763e21a281eb89b8dcebe61fc7675d1405": 621,
+        "0359c24dea1b318ec9cd002a1523ae8fc0d7d59fc9d7418972cf9ce9af8d4d57": 249,
+        "ae58f28554348d924798e23bd492b88db06c2a099f590e325c514ecc5c8f9c7e": 748,
+        "4cc1d5687db72eef74f23fc291fb7916b3f481ed4998d9e1c850024039d38cce": 62,
+        "5d0c9120de4ca16f35758f90a31e176e50a3cf166358dd9833ee2213d1ff2f72": 494,
+        "299e0228de74d2cc7d3a18deaba9f61c82560a0ddd0b8557e5c91728c964a993": 131,
+        "9ce65a1c07694c1d3e57019c07b422d7a6a0771ed0d46f579891eae8a61463a9": 862,
+        "8cd9e20f608db25df6d141941051d30afcbf80733ea4c6f2058874c02019bf9f": 850,
+        "5ccd9115fd2a70784e0e1ab6819d37fc5c4af54cf965605143b3817e1f3a3efd": 195,
+        "0c7bc49ce3c736391d7954a9c069aee29586f03fd33a2a88926b40257ccae6ce": 653,
+        "4e8817361e24c3f05e835d7af6c8bab3da96d50c8821828144f33bb1ea0e87d3": 297,
+        "b3154136e855e9d005a993b8afdb3989e3fb156b102aed46ce0d99e761d2f2b8": 0,
+        "49832e903f4455c88c44f51da20abc550516d208783af9e3d05edc85ff4116a9": 749,
+        "64d4fec367d669912de294146c1fa3e0bf871816ec4f52e57213e35db2968564": 94,
+        "b564e5c3bb2def9511c27cf483dbb01dbe760b1bce8b6060be578c97b2083019": 484,
+        "b1aa96442f2858b5435fc9af424de374ffafbade3cc74d059b85b6c1bfd7e13c": 126,
+        "655531c2d8fecce752ea93fac3aa6a6e4429bb7ce8a629cb409532583694c678": 824,
+        "252fa7c481e990bbbada46717d6e10c6b66c4f9c65846b94a94cd1b40cea0fcd": 887,
+        "b5b2bb5300687da8d904fb129043b5d2df0ae56e9ba4e14afb932b3e6d44dd3b": 222,
+        "c80356e1b7d96bdc796ed982f09ed908059399d23fe98c873eecbb6e623a4216": 550,
+        "5b0b16edd7e5207c275e3277db0d65620891c50024735061783d4a175957ff9a": 205,
+        "319503ad2c8fbdc7f33f283d4e35b0f3abe43684bdd8341ace1ac1745696abee": 1,
+        "7152899302d1721578a01412063a0cafc072986ba9a4acb5c03aa5ecbdde05f1": 758,
+        "de9e33d3bdb1f64318fbc1dec03fef52cde19a331c90fd1f7bb0b7a322b3bd94": 110,
+        "c8129500a7c473e23666de5470d535f650fb1ac61ae8dcb702f09707ba68949f": 492,
+        "1995d3af4ecbdd7b22bc4ada179009147a5b389379edd6142b99dcaa6446d9c0": 143,
+        "54819d55b59d36a91e891bf2ff6148104d917d5ca59084f4f73edc43d623e390": 797,
+        "f6c57a6cca3c952e2134e27f6ca75816487c4817800f504acaa6aa0240a24329": 166,
+        "eb35fef82a3ed8b7f34c39d7be768ae94123884428038310ea19e578228d83be": 542,
+        "00daa00ce6d344d9c00205a65b67ed60af6e0f908e1993e842417450928e55b5": 206,
+        "fb687c20c5df87e79d9dd17ce48566c7f9fca2a092234bedff15fbe3f83b2e8c": 731,
+        "fbe284f3ab8d1e0d517c81853c4a6121d359eb023c6f9882769d27605edb9b84": 88,
+        "8f7b6cf572ea617a0efa47c002f4f9221df201dcde9d20595a10fb2915228445": 480,
+        "318e6e654ece8e6ab93aea0fa5c0cccecdb727faf743b5fbb5eb31da2f2b05f2": 135,
+        "ae86fd9911640c7397bc929d3e0ca1076d84312b5500712cf2c4ec25e7c9112f": 195,
+        "3aefcb242fdda8a6d4c40adb9a7d2632c8de998b076b1d4ec09a100db95119d4": 188,
+        "91c686215bb3105c779a45302ed5b43bf16a2faa32fbfe1f0f2be10f0e161c42": 142,
+        "d35ab308820f92501ec898cafb1f50939f3f0ed1141e3d9ee38a00eae1199aa0": 106,
+        "93c9a45dbb4d6bc59edc6c18ac8007ad4f99ac340844cb0ed8f171640936fa88": 285,
+        "7ea5b36aa3c25b3ab4c58dcb773d8c3476c5f2d28048fd72a62970888be31320": 237,
+        "d348ddef0010267fdffc0d628654ef6ce256329400dec3e1cfd271bfaf764144": 133,
+        "a7e9cd44bd97237bd3cbf88b11fdfa3575deee7473ef820b30e19bc5fe37698e": 76,
+        "3f7e9e1b5d577667b157664dd3f37a40e8c7e64a3db0d60ac6c30b294d2ba9e6": 310,
+        "e20bfd5e2588ed117375acb3e2f7c42cebb2fdd1ab7167caf35b0b4298a98e19": 206,
+        "23e91937ee67563c1c4a463676a43c7d4800f82581a3188aa7125e32001be5e9": 150,
+        "8634b14394486c2fb709ea678008fbaf2314344280b5a13d3582d433125d589d": 120,
+        "d0fba67900a91a20d0120f298c8783829953bc21c7d45fb4413a8cb829cfddc3": 222,
+        "21916862012e6b47e6dbe426fd7a8930bd7fdd51651238d8ad4d3e8860f57a7b": 163,
+        "0fec6765b63937520e2a731a9171eef73e631ce1d47734e3925e2165b64a26c0": 150,
+        "a40a75765e0d99508a283686b4484a510d8ca0404656939017fb6d4a85f49832": 97
+      },
+      "files": {
+        "f15cd0e471a9a2e375c9f801df171bb8f5ee44d95374f02f1174c7938a94cc79": "9f1d3215e3734a3142f451b5750fe96d726e068d90cf5b8e81462447b195f78e",
+        "bb588b0b0d1cdb05b720ff5bc3b515479426c7772fd98fb7fadb8a55b79ca9db": "286460b545c79c9397a717accd5b8e68bcbf28437896d1fdd8265e25d8c4a25e",
+        "17691e7909ee0e9384db83c3a729f8763e21a281eb89b8dcebe61fc7675d1405": "ebe7591aebec6048a5eedef1faab3c792e44e05928c2ecefca4cfe5621d351b0",
+        "0359c24dea1b318ec9cd002a1523ae8fc0d7d59fc9d7418972cf9ce9af8d4d57": "3a31592d660a3722f6a8ea30ca8701acfce9f3d0a596db95849d5d7f210c3def",
+        "ae58f28554348d924798e23bd492b88db06c2a099f590e325c514ecc5c8f9c7e": "012ea2412d844701eaa77b121434cfe2da3a6691198edcd0f6b56906c98370e9",
+        "4cc1d5687db72eef74f23fc291fb7916b3f481ed4998d9e1c850024039d38cce": "2fe22e2c7b886bf28ff17082ce150b8b063ee41b56d5074377f009d9aa1f361d",
+        "5d0c9120de4ca16f35758f90a31e176e50a3cf166358dd9833ee2213d1ff2f72": "fec3570d59b2f4071d8ea637709251513e7915a77d01b9b6e0d85439ef2d0aab",
+        "299e0228de74d2cc7d3a18deaba9f61c82560a0ddd0b8557e5c91728c964a993": "a1f6bddc457b262becdf99ae288e2177f7ea111aa99a4b5f00daf4391fc4e88c",
+        "9ce65a1c07694c1d3e57019c07b422d7a6a0771ed0d46f579891eae8a61463a9": "39048d6f65804185d4ac3921ca63b318bdde04366e435df6b52cff2bcf442de8",
+        "8cd9e20f608db25df6d141941051d30afcbf80733ea4c6f2058874c02019bf9f": "6ff65c425b4556160beb648433ab7e726ce32dfb0ec3e15176b8452d62a5620f",
+        "5ccd9115fd2a70784e0e1ab6819d37fc5c4af54cf965605143b3817e1f3a3efd": "3f768c46ac704ac540e04be23d408ffde09e6d07cdc53ea6ffeddc7b4ad9968f",
+        "0c7bc49ce3c736391d7954a9c069aee29586f03fd33a2a88926b40257ccae6ce": "1f3936ff320accf904169a7de2326a4fa271b0ef2ca9351e5630f1fae0971dc5",
+        "4e8817361e24c3f05e835d7af6c8bab3da96d50c8821828144f33bb1ea0e87d3": "876a36af3cf3056abc839c208b1262572036b2eb4ac74c6d2f1b21a58629c796",
+        "b3154136e855e9d005a993b8afdb3989e3fb156b102aed46ce0d99e761d2f2b8": "ca99f2359476a1e56f5ee223f7bd92af2e114d3133bf202a8c1f3b157fb29ae0",
+        "49832e903f4455c88c44f51da20abc550516d208783af9e3d05edc85ff4116a9": "c05fa1c71e2c9bf8da02d2a9a1e64ee2b86f11e59490b09720239a8f810095eb",
+        "64d4fec367d669912de294146c1fa3e0bf871816ec4f52e57213e35db2968564": "cfa4d03152758cb58d9ff16003b49867b8e52c88452200bde518a653b3ede915",
+        "b564e5c3bb2def9511c27cf483dbb01dbe760b1bce8b6060be578c97b2083019": "95f98905fa3f5f260421f7116eefe9f77f049613ff2f21fda5dd8493e402cb9c",
+        "b1aa96442f2858b5435fc9af424de374ffafbade3cc74d059b85b6c1bfd7e13c": "c626b2a4a82738c8f5a291d56e59c7d90c985cdc060895d65b72af478544180c",
+        "655531c2d8fecce752ea93fac3aa6a6e4429bb7ce8a629cb409532583694c678": "d736d5508dd4f7f9c7bd5d52955fee8e607133b9c68e9385201e873b86e71529",
+        "252fa7c481e990bbbada46717d6e10c6b66c4f9c65846b94a94cd1b40cea0fcd": "27bfe1e993fccfb391cff930b5115f914921cbbeefd0e9d2442d26dc376712b3",
+        "b5b2bb5300687da8d904fb129043b5d2df0ae56e9ba4e14afb932b3e6d44dd3b": "538cb533924a8e304210d493f56a13c7c199e994489ba3b76ec10d22a321299c",
+        "c80356e1b7d96bdc796ed982f09ed908059399d23fe98c873eecbb6e623a4216": "ce05a6384149b2dc6e390f167c93bd72231b097fe5bfc91aa8de0b33b81cd1dc",
+        "5b0b16edd7e5207c275e3277db0d65620891c50024735061783d4a175957ff9a": "363b43579e0d5d5427795af144d8b1609540f963192c298956b0d174c0c3aba3",
+        "319503ad2c8fbdc7f33f283d4e35b0f3abe43684bdd8341ace1ac1745696abee": "ffa9cd92acf40d15b1040fe505adbca7dc9070b4ec51a208c0885027c68d87c7",
+        "7152899302d1721578a01412063a0cafc072986ba9a4acb5c03aa5ecbdde05f1": "f205f3f3ffec360c3fcc906da24f3757a463437d618a08e3ec99ed418d60d7cb",
+        "de9e33d3bdb1f64318fbc1dec03fef52cde19a331c90fd1f7bb0b7a322b3bd94": "7858186c63c3dc496e49c0e2663a76fc45a57a8a58d1ef276952aaac3e3f2f77",
+        "c8129500a7c473e23666de5470d535f650fb1ac61ae8dcb702f09707ba68949f": "849194325815df2e23eb6c40adefd6ed8ce38e3f05a2f19b9a05773cd2e281c6",
+        "1995d3af4ecbdd7b22bc4ada179009147a5b389379edd6142b99dcaa6446d9c0": "538211f6a23d3de7ab2da3a7765cb99c579447a3cc517542bec3c39381e4a126",
+        "54819d55b59d36a91e891bf2ff6148104d917d5ca59084f4f73edc43d623e390": "5d71500d9af6582164bb414154eaa9b07b3fd1aa97aeec953d5ff6eb56bb1825",
+        "f6c57a6cca3c952e2134e27f6ca75816487c4817800f504acaa6aa0240a24329": "04131c8deadc6912cb6322dcd0d47a2ec28f8cabb0541ed5e8d518b188b32984",
+        "eb35fef82a3ed8b7f34c39d7be768ae94123884428038310ea19e578228d83be": "680f9c16aef0666d1c634ef1b14203fac7609902311961efba21fc4044073baf",
+        "00daa00ce6d344d9c00205a65b67ed60af6e0f908e1993e842417450928e55b5": "afee761b663081edd0bcc0858436d26e8fbfeddd5d81db067cee7f2232e3891f",
+        "fb687c20c5df87e79d9dd17ce48566c7f9fca2a092234bedff15fbe3f83b2e8c": "e56574ea8329a1cb4b0c21c53982cc5d54a1e0168768a48809bc03dfe84a4dd2",
+        "fbe284f3ab8d1e0d517c81853c4a6121d359eb023c6f9882769d27605edb9b84": "ae1bb490226cac2f74ca97d6fc49eb584183ee9f180ebbb84e224e00e75d189c",
+        "8f7b6cf572ea617a0efa47c002f4f9221df201dcde9d20595a10fb2915228445": "11a23d20a54eaeb56a8012df9ca56c735e703525c4aa90a5e3a54d992bd1469c",
+        "318e6e654ece8e6ab93aea0fa5c0cccecdb727faf743b5fbb5eb31da2f2b05f2": "b870af675fe961314ebd084b1dcb6d8b48714b2975221647cb971c4f85f7fe0b",
+        "ae86fd9911640c7397bc929d3e0ca1076d84312b5500712cf2c4ec25e7c9112f": "9579558f805767b93740e2c6f80f3d652fe07f2035cc0e418e0fa2b98c769bf0",
+        "3aefcb242fdda8a6d4c40adb9a7d2632c8de998b076b1d4ec09a100db95119d4": "c4746fd3c98758e95482a0daddee1681293131e040ec017ffbe55cb35f76a593",
+        "91c686215bb3105c779a45302ed5b43bf16a2faa32fbfe1f0f2be10f0e161c42": "5ec0dcf1f55795bc8f912eab4a9a97ab4e1fdd44cf233d76fe273b434490c0dd",
+        "d35ab308820f92501ec898cafb1f50939f3f0ed1141e3d9ee38a00eae1199aa0": "49511d2ec0e3c7333d399ef3f4664daa2434e2a6aaabcfeb6fba90d5115f8271",
+        "93c9a45dbb4d6bc59edc6c18ac8007ad4f99ac340844cb0ed8f171640936fa88": "c6da8de1dd1b6d58dd6d2106d5ec357a734d70308d205a3d68098f0a393dc620",
+        "7ea5b36aa3c25b3ab4c58dcb773d8c3476c5f2d28048fd72a62970888be31320": "cd60d0d25b3d18ea46e858416fe66bd2be2befbe530d67e85ba520d9d5c0ae6e",
+        "d348ddef0010267fdffc0d628654ef6ce256329400dec3e1cfd271bfaf764144": "f8b2e29d465c0b17a9037ef7cd1708eeed13e22b32738b7f11a4c2c158edb103",
+        "a7e9cd44bd97237bd3cbf88b11fdfa3575deee7473ef820b30e19bc5fe37698e": "5df3648074af2e9c7d6f5fea0b4f14bfcf0f30d244defe509ef26b2b8319ace6",
+        "3f7e9e1b5d577667b157664dd3f37a40e8c7e64a3db0d60ac6c30b294d2ba9e6": "43ae58087268034375a3d2706b481f4d46d5ecbb33022e50fca812586fdf8b15",
+        "e20bfd5e2588ed117375acb3e2f7c42cebb2fdd1ab7167caf35b0b4298a98e19": "2c1fac419a6b9ccc8362dea22ac142a604330bea8e02ed1b3743d972c1e6ca09",
+        "23e91937ee67563c1c4a463676a43c7d4800f82581a3188aa7125e32001be5e9": "00d0cf7cff855d56afe7a0f1d4e41a39e85b2ee5b846962c9d942460964f30b8",
+        "8634b14394486c2fb709ea678008fbaf2314344280b5a13d3582d433125d589d": "1d6292a47c39b8df1148e082e99870f6a1427419ed89430b24cedc04e5427663",
+        "d0fba67900a91a20d0120f298c8783829953bc21c7d45fb4413a8cb829cfddc3": "cfb7156e72c747954ad0439eb9bc759ab8f139a6839a70ac5886f7c6af634330",
+        "21916862012e6b47e6dbe426fd7a8930bd7fdd51651238d8ad4d3e8860f57a7b": "e839017d187f2938f98cda829cfc1031b53edab84640b226a8f9bc98f78f48cc",
+        "0fec6765b63937520e2a731a9171eef73e631ce1d47734e3925e2165b64a26c0": "5624aede80be26e51e350e929c2b06db981fca82b42c55e1893e5734002ffa15",
+        "a40a75765e0d99508a283686b4484a510d8ca0404656939017fb6d4a85f49832": "efb6860e91b0a8ff673960ee91382ff4998df24d473669083457d94074197594"
+      }
+    }
+  },
+  "shared_field_inference": {
+    "cached_during_comparison": true,
+    "fresh_frames": 0,
+    "cached_frames": 56,
+    "unique_images": 52,
+    "separate_timed_replay_seconds": {
+      "normal": 69.40721820006729,
+      "depth": 45.617544099950464
+    },
+    "per_image_file": "../../data/mask-field-timing-v1.json",
+    "timing_file_sha256": "e137c681711f6533f92d688240f49ad891601d280a75a3b5ab63b62c718fed3b"
+  },
+  "unique_line_inference_seconds": {
+    "scalelsd": 3.867723099916475,
+    "deeplsd": 366.40507227699993
+  },
+  "numerical_cache_sha256": {
+    "f15cd0e471a9a2e375c9f801df171bb8f5ee44d95374f02f1174c7938a94cc79": "463dad525591e9ff17401b2a2afbf2b2099c3f98e400cb2dcfac6a50b7980fe4",
+    "bb588b0b0d1cdb05b720ff5bc3b515479426c7772fd98fb7fadb8a55b79ca9db": "7d9abe0b1f4251ef635b7663d5b305e51a53588d728c5367870340bf367f31cb",
+    "17691e7909ee0e9384db83c3a729f8763e21a281eb89b8dcebe61fc7675d1405": "f6d26f9663ef4fb45249e3d1017724fef93ee7b99d829d6d288aef9ce9e982dc",
+    "0359c24dea1b318ec9cd002a1523ae8fc0d7d59fc9d7418972cf9ce9af8d4d57": "c0fe8c42fc7bd4dccea276ae29de03381265c6ac8d2ab6292da2e28451b915aa",
+    "ae58f28554348d924798e23bd492b88db06c2a099f590e325c514ecc5c8f9c7e": "fc959cdd46bedda2e1165cf252bb5fab57090c2c32f3d093a40881cf816f55f1",
+    "4cc1d5687db72eef74f23fc291fb7916b3f481ed4998d9e1c850024039d38cce": "a66a4f7277ec3b7e7fff71d9e6a73730b0456cd88d4c3fafd9a333ae8915c451",
+    "5d0c9120de4ca16f35758f90a31e176e50a3cf166358dd9833ee2213d1ff2f72": "37b3c782424b2b62325a68bfc6d7f0004f0ae8644cbc8415c1932ea7bdf345dd",
+    "299e0228de74d2cc7d3a18deaba9f61c82560a0ddd0b8557e5c91728c964a993": "df8f32bb92ab2c54e24464ca664c4c6a4b6c2f3dcd225d8bb1457b4926b10c98",
+    "9ce65a1c07694c1d3e57019c07b422d7a6a0771ed0d46f579891eae8a61463a9": "31e4b7ed0a23527d0a27de9b4141129a838770ef3958356d7eec5b0e6ea80bd4",
+    "8cd9e20f608db25df6d141941051d30afcbf80733ea4c6f2058874c02019bf9f": "9171f8588388cc977d5c9c0af709ed7fbe6ed6345e85527432da0af93283cc46",
+    "5ccd9115fd2a70784e0e1ab6819d37fc5c4af54cf965605143b3817e1f3a3efd": "ff47044cc56cd69863d312b2214639c47706a57a3b78734623a1a92c4319dd45",
+    "0c7bc49ce3c736391d7954a9c069aee29586f03fd33a2a88926b40257ccae6ce": "8c38a78cb0d30f3a91a1a4fa542f63b2de440ba4cd7f8ef678f759fd2a2c61a6",
+    "4e8817361e24c3f05e835d7af6c8bab3da96d50c8821828144f33bb1ea0e87d3": "646a7e7a0686e14798b858f618be7e7c71db251273dd0a7ca7f091a0f304f8a0",
+    "b3154136e855e9d005a993b8afdb3989e3fb156b102aed46ce0d99e761d2f2b8": "9d8aaa7c168eaf956774596846c01275d20f0eb5dcb846257b842b9e6523fb7a",
+    "49832e903f4455c88c44f51da20abc550516d208783af9e3d05edc85ff4116a9": "f290c4318c7e0a195132bc5c870fff20e186e68b5b3d0c002f1ae14eff00db65",
+    "64d4fec367d669912de294146c1fa3e0bf871816ec4f52e57213e35db2968564": "1cebc7278122e04441fb93c87ebfecdb05d0e6bab59fdc004211fc466b124c44",
+    "b564e5c3bb2def9511c27cf483dbb01dbe760b1bce8b6060be578c97b2083019": "e21696441dc3994f5dfb98541233bd79ab3717894946120fc5e4e948c03cff3c",
+    "b1aa96442f2858b5435fc9af424de374ffafbade3cc74d059b85b6c1bfd7e13c": "fd13d43f37fecb77c1e4bfbc86b88972ec6dbd9ef78ccc787ca36acd686d8370",
+    "655531c2d8fecce752ea93fac3aa6a6e4429bb7ce8a629cb409532583694c678": "1f356b18be038c817bd76315e792d37b9117e437c1a16927b9b6542357b90af1",
+    "252fa7c481e990bbbada46717d6e10c6b66c4f9c65846b94a94cd1b40cea0fcd": "9db9f33524227c1edcd2197f87013bd1cfc4badab034c511e7207247c4645ec8",
+    "b5b2bb5300687da8d904fb129043b5d2df0ae56e9ba4e14afb932b3e6d44dd3b": "ad6b2060d17ccc2081ced7456a0550b76a9753f3a77043c893992d178c788e7d",
+    "c80356e1b7d96bdc796ed982f09ed908059399d23fe98c873eecbb6e623a4216": "94d80483376cada05abc0f82cf397d498d797edfd89abb78223719520e207654",
+    "5b0b16edd7e5207c275e3277db0d65620891c50024735061783d4a175957ff9a": "5be6841bd948444a417b906f2de383587557326f566851dc2c745a14e422d6ac",
+    "319503ad2c8fbdc7f33f283d4e35b0f3abe43684bdd8341ace1ac1745696abee": "a02db3057d7be56261a69dec2061d98b9b7eda227f5e1e64bcaf3e54105d9716",
+    "7152899302d1721578a01412063a0cafc072986ba9a4acb5c03aa5ecbdde05f1": "3ebb5d35736f3f1bc0e085ede88f9f5e16c79bbe0f4b817a8d180b9ed427c60a",
+    "de9e33d3bdb1f64318fbc1dec03fef52cde19a331c90fd1f7bb0b7a322b3bd94": "23627816d07da9ebffafe03de8e250341319f76838fc72049e5300b34d167eb1",
+    "c8129500a7c473e23666de5470d535f650fb1ac61ae8dcb702f09707ba68949f": "ce75da44ead94cce47e7ca0f837a839974a568fb10e0d6734db6b770c4dbd4cb",
+    "1995d3af4ecbdd7b22bc4ada179009147a5b389379edd6142b99dcaa6446d9c0": "360da49f09bfdd0e96a16adca8d54ccbccf4fe4f29bd544b36b89e0db2b0b583",
+    "54819d55b59d36a91e891bf2ff6148104d917d5ca59084f4f73edc43d623e390": "aa1de31d7fd55b72afb4505f96b9899898f76f8cab988450bfb04088049b9149",
+    "f6c57a6cca3c952e2134e27f6ca75816487c4817800f504acaa6aa0240a24329": "3c17ea020537f30ccca8329ae61357c712945cb8871bb08f0b193c98e8445564",
+    "eb35fef82a3ed8b7f34c39d7be768ae94123884428038310ea19e578228d83be": "16d7cf6928c1fd5f7c362335ad6476592fb5c86f1709c60f4963b5f5e63f404d",
+    "00daa00ce6d344d9c00205a65b67ed60af6e0f908e1993e842417450928e55b5": "0b2b514e5f03d92552e2db01007310180bbbe8c9a87f094171941557c0832f11",
+    "fb687c20c5df87e79d9dd17ce48566c7f9fca2a092234bedff15fbe3f83b2e8c": "1c552fee7ed6c552addbd1bf38c95f2d05e0813c1cca815e311ac0f87ec44cb2",
+    "fbe284f3ab8d1e0d517c81853c4a6121d359eb023c6f9882769d27605edb9b84": "3e04af83125cde1a9ffc586624a48848be9f58cc1a3cc8b70c870234c454b03d",
+    "8f7b6cf572ea617a0efa47c002f4f9221df201dcde9d20595a10fb2915228445": "16819ef4557eee0a750f6cd9234ec354a6485577fa8bace953d5482a281cca72",
+    "318e6e654ece8e6ab93aea0fa5c0cccecdb727faf743b5fbb5eb31da2f2b05f2": "f83cc5336b3dcc0e02f432936962b187cb3c59fd40ef687e681c1ce40671c8d5",
+    "ae86fd9911640c7397bc929d3e0ca1076d84312b5500712cf2c4ec25e7c9112f": "8e66f101efb7d51941f631d40f1ceb667106fe71cf26aedf48a393d378f74aec",
+    "3aefcb242fdda8a6d4c40adb9a7d2632c8de998b076b1d4ec09a100db95119d4": "a42659b9cebc757d0ba3eea5750bdd9db4b0a4852833e5c730aac5899ee8ccd3",
+    "91c686215bb3105c779a45302ed5b43bf16a2faa32fbfe1f0f2be10f0e161c42": "eaceff749b4268ca03c039a049c0c3729d3da5b0296eb63012a627d9eac0d0ea",
+    "d35ab308820f92501ec898cafb1f50939f3f0ed1141e3d9ee38a00eae1199aa0": "280e97ebf63d8acbc88bb326f1c67bda9a04fbfb3caf7b859ffd2dd134bcbaab",
+    "93c9a45dbb4d6bc59edc6c18ac8007ad4f99ac340844cb0ed8f171640936fa88": "bc4887223e319d4de7c67f6b57714f767c65d26b3bc694c683ce3753b2f16f14",
+    "7ea5b36aa3c25b3ab4c58dcb773d8c3476c5f2d28048fd72a62970888be31320": "7c9cbb51087da1d4fca9ba231296d7e9bdd25e23475469d1dc0197791b37222f",
+    "d348ddef0010267fdffc0d628654ef6ce256329400dec3e1cfd271bfaf764144": "c38539f9bdb653d6aeaeea3d1063e95849dd81c4000c243334d685482180b678",
+    "a7e9cd44bd97237bd3cbf88b11fdfa3575deee7473ef820b30e19bc5fe37698e": "2b63393e396c467fd112a582a95da254a99b8fef4979ad5faee91a303a13a372",
+    "3f7e9e1b5d577667b157664dd3f37a40e8c7e64a3db0d60ac6c30b294d2ba9e6": "451c8285706b4af7815d981d28ea84adbe0b279415ffb5f8a29bd380221540a5",
+    "e20bfd5e2588ed117375acb3e2f7c42cebb2fdd1ab7167caf35b0b4298a98e19": "33b9d4eb42bf835a1cb5c002bdf2139447f4d8ceb7ecb036cd58d2bc3790034b",
+    "23e91937ee67563c1c4a463676a43c7d4800f82581a3188aa7125e32001be5e9": "11764d18dd6a7cb4a64a8431c87068848f0401731ebac35679da75f933272da6",
+    "8634b14394486c2fb709ea678008fbaf2314344280b5a13d3582d433125d589d": "23f7f653cb0ae0cc7da0c09a55ffa130ac5554a0da23705dec2174c91ce4fe0a",
+    "d0fba67900a91a20d0120f298c8783829953bc21c7d45fb4413a8cb829cfddc3": "792c3dd34764a6023f5ee14350e3cc9f2098759391e970e59f8457cfba4f8625",
+    "21916862012e6b47e6dbe426fd7a8930bd7fdd51651238d8ad4d3e8860f57a7b": "08f880dd1a752c1147ad4f6febd34fb8e02da6d8054c8dcae5b1dae9d0c8a7e3",
+    "0fec6765b63937520e2a731a9171eef73e631ce1d47734e3925e2165b64a26c0": "17406518467bb8275ed3b9041bd7414a4e3044f628897fec96f29d290ae15005",
+    "a40a75765e0d99508a283686b4484a510d8ca0404656939017fb6d4a85f49832": "8b85020e39261bca978bca026ab985da4b7ce9853b03245bba056328b5979e88"
+  },
+  "artifact_sha256": {
+    "block-packs.zip": "f28e7b7bc4238463255bef330249d7489be55e5c447430dad1608549f7c4f741",
+    "blocks.json": "4d9c6828678a1b668f866c9a2320af5deaf06fc4c28d02ffbf07cbfa5197921e",
+    "cases.json": "4d79bd7664126a82845a0959fbe5c97ce32c22e8bcc00516cfcc2ad8d94e0be1",
+    "comparison.jpg": "b2ab3cf8f7a790c66d394be285f4f6b8d264f270d92332ef8b4c95b41ac13b7e",
+    "loss-trace/manifest.json": "a7676c8df2b4fb0647df6412a90278fb273784d15b924f5c47b72e873cf653e2",
+    "loss-trace/pictures.json": "d5363c5c48127b0fadaa7b9646513c6988b5d1228a635e11c917fdfb1b1a30b1",
+    "loss-trace/stages.jpg": "262b35cbe0067bd8520883f4fa8e4faa7b51533c6a138135763081dc11b2ab63",
+    "loss-trace/summary.json": "4ecf87bb0e619a5b51b97006a4aa37b159fe0aea52e561c6badf85962b6926a1",
+    "loss-trace/surfaces.json.gz": "6c9f4c073e7e60927a675737963b4b9651466b03504c25962be9589bff828f55",
+    "predictions/light_gray_concrete/dev-shopfront-masonry-high-right.json.gz": "b34b46ab3c4123399a2e2c9f1f5bfcd6f000058797ccdbe0dc2d8ac2d101c0ab",
+    "predictions/light_gray_concrete/dev-shopfront-masonry-low-left.json.gz": "8b9860179ba268e7db84084f81b9b29fb4ab2a7914e66c73d9bc7f7170bce3fc",
+    "predictions/light_gray_concrete/dev-shopfront-plaster-high-right.json.gz": "8f63296bb8bab5bfa709128f486351f593e9cf7222b911f6551b36dda647819b",
+    "predictions/light_gray_concrete/dev-shopfront-plaster-low-left.json.gz": "4b46239c841a18f03d451d40772a7da20dc5e36ba511921466c9d26a8f2e3c39",
+    "predictions/light_gray_concrete/dev-wing-masonry-close-front.json.gz": "05fee1ce9c14cce0ed26c77298a85557d06185a2e075ed1fec64d2e102fcf9c0",
+    "predictions/light_gray_concrete/dev-wing-masonry-high-right.json.gz": "6fee1af1f04c4e74606f9ab2f8f18ddd876d6ab6818e7c839d9205e8f2b356f9",
+    "predictions/light_gray_concrete/dev-wing-masonry-low-left.json.gz": "e23de30116d9b28b7214c6c9d585de354f2f94645f05e710c442b87c1c1342e6",
+    "predictions/light_gray_concrete/dev-wing-plaster-close-front.json.gz": "e98f59ab9530b66b9e467c6702cd3118882e028448b5eec18b400a316b4835d5",
+    "predictions/light_gray_concrete/dev-wing-plaster-high-right.json.gz": "bca9ffaad897df3ead6ab33f4a4204288c3ed8538d8d615f2c7358daee0eeb50",
+    "predictions/light_gray_concrete/dev-wing-plaster-low-left.json.gz": "783c15340b5bbae30e571170ab09bd9f36f022abb7ec8e9be1a59e0133fb35c1",
+    "predictions/light_gray_concrete/holdout-courtyard-masonry-close-front.json.gz": "d7a5bf0f764f90bd58b6700549bae47032f355f6904662a3da06ffc4c706fac6",
+    "predictions/light_gray_concrete/holdout-courtyard-masonry-high-right.json.gz": "ed124db37974d529c840046e436ca9a6ead6f3c610379f382eb90f8ab7ca119b",
+    "predictions/light_gray_concrete/holdout-courtyard-masonry-low-left.json.gz": "692776f778d7b00b25504e5e00a181cbb9aa049c4acffe8c501388a7d35badcb",
+    "predictions/light_gray_concrete/holdout-courtyard-plaster-close-front.json.gz": "c48c990226edf8a7faaeb2d732e448589d415098d2bf29fd08de3e43acf5c5c0",
+    "predictions/light_gray_concrete/holdout-courtyard-plaster-high-right.json.gz": "828d2a12c479709c525a5d780ffb238d89e6b262732dec2d4c9ab9dd324ad2fd",
+    "predictions/light_gray_concrete/holdout-courtyard-plaster-low-left.json.gz": "471681b4700689710091d6a027159c9d92c48ac008e6804c107fd6e4b0e21f5c",
+    "predictions/light_gray_concrete/holdout-crossing-masonry-high-right.json.gz": "5f6b9523e27bd0e0d32499e5441d5f38ec5cffa682839e20d13559a18e7a2a68",
+    "predictions/light_gray_concrete/holdout-crossing-masonry-low-left.json.gz": "9a8d17db89053837ceb2c7d988044f788cfc44f6593490866955b4855a0a968a",
+    "predictions/light_gray_concrete/holdout-crossing-plaster-high-right.json.gz": "4b0d070e02e84e060442540eb12f9be1839d6020ce7a69c7e37f2dfa738a7166",
+    "predictions/light_gray_concrete/holdout-crossing-plaster-low-left.json.gz": "d77ed3bd0075cdd2607dba82057ba561cb94cc240dd9d951820d40767ef85305",
+    "predictions/light_gray_concrete/holdout-galleries-masonry-high-right.json.gz": "cf3389274357bfc1ae56f0c96bd1a904cfd01d6897f8efb21665d7b0f3ffdd0f",
+    "predictions/light_gray_concrete/holdout-galleries-masonry-low-left.json.gz": "da2ab8134e1dc6f3fa7e108522acb4bbd09fb1bd04397681a27675a93dd338a7",
+    "predictions/light_gray_concrete/holdout-galleries-plaster-high-right.json.gz": "e5a6d7a17db07a6c51dcad487978f976762f59eec3004f18837058bb0ab6f950",
+    "predictions/light_gray_concrete/holdout-galleries-plaster-low-left.json.gz": "32914156ab85f5995e82981d4b3018e691d6e15407190b3e7a1fe51c244d7291",
+    "predictions/light_gray_concrete/holdout-portico-masonry-high-right.json.gz": "6d988b25887a07491b4dedb551534b71863933a3e2698dd00fa9cd46019c8c97",
+    "predictions/light_gray_concrete/holdout-portico-masonry-low-left.json.gz": "617cc5fdfda5c811caf62835633d4d0cb30e3b29b8a8bc86c31ddab3a82ae6c0",
+    "predictions/light_gray_concrete/holdout-portico-plaster-high-right.json.gz": "bf76ca46ae9addfcc821ea4ac4512ef48a91b4ac54780fc36f6cf9f21af5df2b",
+    "predictions/light_gray_concrete/holdout-portico-plaster-low-left.json.gz": "98626ebd4800c493ca44c137dc408e2c35783817f1c4a20ad07a025a965843cc",
+    "predictions/light_gray_concrete/holdout-registry-masonry-high-right.json.gz": "a84b0623b21d1c48a69d9533a908b0bed1586301cbb0e430d15924ed74e51eb2",
+    "predictions/light_gray_concrete/holdout-registry-masonry-low-left.json.gz": "779cf709bf509ffa0698f0e48906cefdbabd4179e1ebcb1b0f6882662894bf2b",
+    "predictions/light_gray_concrete/holdout-registry-plaster-high-right.json.gz": "7adadd993ec686d2c4be05bbac5215c4668fe3647a434d751899f28d02c22410",
+    "predictions/light_gray_concrete/holdout-registry-plaster-low-left.json.gz": "11e700591688a432f907c8d803f9397b4c841f05d84b508db87179b9d581c7a9",
+    "predictions/light_gray_concrete/holdout-workshop-masonry-high-right.json.gz": "c168ad68ae6ed019f750eb2a08bd4ab393173da0ee198b740a48b6ffdbcdb6ee",
+    "predictions/light_gray_concrete/holdout-workshop-masonry-low-left.json.gz": "56ca38a696fb7a194aa25906578ce7f386ac5e78cbd7f004dd86416b704dd9f8",
+    "predictions/light_gray_concrete/holdout-workshop-plaster-high-right.json.gz": "38d0264e2e671cc3acad7a90dd97ee274fa464a4cbf818a23469d92882489095",
+    "predictions/light_gray_concrete/holdout-workshop-plaster-low-left.json.gz": "9cf4e39d911b702b593d4fd40054f5cbf77964cb7a7949b84c0338be7ecc0468",
+    "predictions/smooth_stone/dev-shopfront-masonry-high-right.json.gz": "a0e56f34ea78f7ce9f7b2508759e963ef24e41311a5e6b4c168d6e2e80ee9336",
+    "predictions/smooth_stone/dev-shopfront-masonry-low-left.json.gz": "a55aa3e29c167aed95fc0027529406d5d1290680a87445a220989ff71241a430",
+    "predictions/smooth_stone/dev-shopfront-plaster-high-right.json.gz": "2d79279863a7954dcc759df0c653638e8ec4cfa43facc862dc510c84dc356cb4",
+    "predictions/smooth_stone/dev-shopfront-plaster-low-left.json.gz": "7bd272a62fa4dd588ffe97194fce0eba45d1054641b3cf0e484e7e27c4f4e280",
+    "predictions/smooth_stone/dev-wing-masonry-close-front.json.gz": "05fee1ce9c14cce0ed26c77298a85557d06185a2e075ed1fec64d2e102fcf9c0",
+    "predictions/smooth_stone/dev-wing-masonry-high-right.json.gz": "d03653e57cb62674e39c766b13debfd3a0189e1a4dad9e19723305d0f570b7e8",
+    "predictions/smooth_stone/dev-wing-masonry-low-left.json.gz": "5de96fbfd6e29ab38d50f30f9aca7a4fcd5e3bc7f77cd269909e4d0acd581d60",
+    "predictions/smooth_stone/dev-wing-plaster-close-front.json.gz": "e98f59ab9530b66b9e467c6702cd3118882e028448b5eec18b400a316b4835d5",
+    "predictions/smooth_stone/dev-wing-plaster-high-right.json.gz": "4a01c347fae8b734f422eb9cda47b4f688ca9fba31173728be9f21b4b87d18d5",
+    "predictions/smooth_stone/dev-wing-plaster-low-left.json.gz": "4f34ebd9e6774ae78c7869b8459c5c130bfbc34c1c7b995421851c91c0332cee",
+    "predictions/smooth_stone/holdout-courtyard-masonry-close-front.json.gz": "d7a5bf0f764f90bd58b6700549bae47032f355f6904662a3da06ffc4c706fac6",
+    "predictions/smooth_stone/holdout-courtyard-masonry-high-right.json.gz": "712bb7db3a449740d71b8dccaed65596aff977561b666ede1f00f99de9a8aadd",
+    "predictions/smooth_stone/holdout-courtyard-masonry-low-left.json.gz": "fed059bc2fd6e7a8bb7d347223271681deab10dac1e2af6ff2b9f931ccce0164",
+    "predictions/smooth_stone/holdout-courtyard-plaster-close-front.json.gz": "c48c990226edf8a7faaeb2d732e448589d415098d2bf29fd08de3e43acf5c5c0",
+    "predictions/smooth_stone/holdout-courtyard-plaster-high-right.json.gz": "5008024f08a403ef158530b9b5fcbcb58ecb6552b6c6373e616a215ea92c3599",
+    "predictions/smooth_stone/holdout-courtyard-plaster-low-left.json.gz": "ffd4ac9c1fcb1b6d598ca985395324cfa5026b7ec1ccf26b1af2cd15fba77dac",
+    "predictions/smooth_stone/holdout-portico-masonry-high-right.json.gz": "6b70f28f3b31374954d0e6179be59480dac091f7b0c9a74792658fc4c7239d7b",
+    "predictions/smooth_stone/holdout-portico-masonry-low-left.json.gz": "ffe74531d17116b6db495c9ec18eb38c2ba97a865b7baebff7ca793f6f61f769",
+    "predictions/smooth_stone/holdout-portico-plaster-high-right.json.gz": "506b817c368cd8ce98fc08dd6730270fde77e41d3f60f917d933ea3a3fa16012",
+    "predictions/smooth_stone/holdout-portico-plaster-low-left.json.gz": "2c9c30dcef040487c6cb2c9f8986eda66aaf73ab5f2df3b6c8f2218b0b472559",
+    "recovered-by-stage.json": "a283d0ae81a9975fe8f256e39acef54443ddfa3b79eb4c41e21ebde075194304",
+    "report.html": "d1d46c4917a9bf0224784efc7854faf47ee4815280da968656815b19c5f6bf82",
+    "review-regions.json": "ffb78591dfcb6bee36156ef7557be3738eb360bf87383782dbd4cda9c89011ba",
+    "scores.json": "58c429208052ea1249cdd0362ae46cb12519ad917280c31689d7470e61323c76",
+    "selection.json": "e752055f5513360506271e8feaa96e2ba07b4b0baa701f9912ded3ca9fcee5b9"
+  }
+}

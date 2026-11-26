@@ -127,9 +127,17 @@ def elevation(rgb,mask,spacing,fit=True,calibration=None):
     return [plane],cells
 
 
-def candidate(image,fit=True,ground=False):
+def candidate(image,fit=True,ground=False,cube_turns=False):
     rgb=np.asarray(image.convert('RGB'))
-    mask=structure_mask(image)
+    evidence=None
+    if cube_turns:
+        from engine.structural_lines import detect
+        from engine.line_outline import cube_outline, silhouette
+        lines=detect(image)
+        refined,evidence=cube_outline(image,lines,silhouette(image,lines))
+        mask=np.asarray(refined)>0
+    else:
+        mask=structure_mask(image)
     if not mask.any():
         raise ValueError('The image contains no visible structure')
     spacing=estimate_pitch(rgb,mask)
@@ -142,4 +150,7 @@ def candidate(image,fit=True,ground=False):
         calibration=floor_calibration(rgb)
     else:
         calibration=None
-    return elevation(rgb,mask,spacing,fit,calibration)
+    planes,cells=elevation(rgb,mask,spacing,fit,calibration)
+    if evidence is not None:
+        planes[0]['cube_turns']=evidence
+    return planes,cells

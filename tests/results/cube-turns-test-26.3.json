@@ -1,0 +1,1161 @@
+{
+  "minecraft": "26.3",
+  "split": "test",
+  "baseline": "f0634fc line-first",
+  "sources": {
+    "benchmark/line_form.py": "f5b4aa61304943c4e8a8c899acb48ae0485dd17da50eae5ed4d39e6aca9b2986",
+    "engine/cube_axes.py": "9341fd0aae6cb601b485b8bc12fa584f60454b458bc630c82f7cd03ad4e32861",
+    "engine/cube_contour.py": "ae41513ae0ed0f3dbd45d45544b8ff58277c26dd5eda8e6f29e6d98f3e806922",
+    "engine/cube_faces.py": "ac53754e92c516401a9ae03491a120a1a906830de1d652d5ec2639d98d361702",
+    "engine/line_relief.py": "8ea2c3f0f602070ec9ca9475ee882162cf6cef32f8e9b6516d2aa7e7c9982cfe",
+    "engine/line_outline.py": "f5cbb07a0f389de681c289ae8ce97889ab0377feaaba12f28ba7427593793b2e",
+    "engine/structural_lines.py": "a58281608fe8972585196428c3e544000ebf336662ebb1c43f5c7a401a876642"
+  },
+  "summary": {
+    "oblique": {
+      "views": 12,
+      "methods": {
+        "line_first": {
+          "iou": 0.94609,
+          "boundary_f1": 0.85395,
+          "clear_sightlines": 23,
+          "incorrectly_filled": 2,
+          "panels": {
+            "total": 18,
+            "localized": 17,
+            "correct": 10,
+            "wrong": 3,
+            "unknown": 4,
+            "missed": 1,
+            "by_actual": {
+              "recess": {
+                "recess": 5,
+                "protrusion": 1
+              },
+              "flat": {
+                "unknown": 1,
+                "missed": 1,
+                "flat": 2,
+                "recess": 2
+              },
+              "protrusion": {
+                "protrusion": 3,
+                "unknown": 3
+              }
+            },
+            "extra_proposals": {
+              "unknown": 25,
+              "recess": 10,
+              "protrusion": 5
+            }
+          }
+        },
+        "cube_turns": {
+          "iou": 0.95158,
+          "boundary_f1": 0.87616,
+          "axes_fitted": 12,
+          "outlines_changed": 12,
+          "joined_turns": 84,
+          "mean_axis_error_degrees": 0.226,
+          "clear_sightlines": 23,
+          "incorrectly_filled": 2,
+          "panels": {
+            "total": 18,
+            "localized": 17,
+            "correct": 8,
+            "wrong": 4,
+            "unknown": 5,
+            "missed": 1,
+            "by_actual": {
+              "recess": {
+                "recess": 3,
+                "unknown": 2,
+                "flat": 1
+              },
+              "flat": {
+                "recess": 3,
+                "missed": 1,
+                "flat": 2
+              },
+              "protrusion": {
+                "protrusion": 3,
+                "unknown": 3
+              }
+            },
+            "extra_proposals": {
+              "unknown": 34,
+              "recess": 8,
+              "protrusion": 4
+            }
+          }
+        }
+      }
+    },
+    "open_canopies": {
+      "views": 12,
+      "methods": {
+        "line_first": {
+          "iou": 0.86152,
+          "boundary_f1": 0.88936,
+          "clear_sightlines": 266,
+          "incorrectly_filled": 91
+        },
+        "cube_turns": {
+          "iou": 0.86753,
+          "boundary_f1": 0.89931,
+          "axes_fitted": 12,
+          "outlines_changed": 12,
+          "joined_turns": 128,
+          "mean_axis_error_degrees": 0.213,
+          "clear_sightlines": 266,
+          "incorrectly_filled": 88
+        }
+      }
+    }
+  },
+  "views": {
+    "test-adjacency-26-left": {
+      "group": "oblique",
+      "sha256": "be25476a7d52878bb52f7d69c7a7d00f85c29f78b0e9b22226346153968d0ce0",
+      "angle": "left",
+      "scores": {
+        "line_first": {
+          "outline": {
+            "iou": 0.845,
+            "boundary_f1": 0.635
+          }
+        },
+        "cube_turns": {
+          "outline": {
+            "iou": 0.8403,
+            "boundary_f1": 0.6148
+          },
+          "axes_fitted": true,
+          "joined_turns": 2,
+          "changed_pixels": 4460,
+          "mean_error_degrees_by_world_axis": [
+            0.162,
+            0.068,
+            0.23
+          ]
+        }
+      }
+    },
+    "test-adjacency-26-right": {
+      "group": "oblique",
+      "sha256": "020e3114962331500352eb2dbec1a0b5b4b9572c0571b1bba3debac74d439092",
+      "angle": "right",
+      "scores": {
+        "line_first": {
+          "outline": {
+            "iou": 0.8966,
+            "boundary_f1": 0.7963
+          }
+        },
+        "cube_turns": {
+          "outline": {
+            "iou": 0.9016,
+            "boundary_f1": 0.8128
+          },
+          "axes_fitted": true,
+          "joined_turns": 12,
+          "changed_pixels": 8119,
+          "mean_error_degrees_by_world_axis": [
+            0.039,
+            0.359,
+            1.203
+          ]
+        }
+      }
+    },
+    "test-stepped_tower-27-left": {
+      "group": "oblique",
+      "sha256": "fa242f5066262aab85a27d7698298f634c118f73f56af81c57c92961b79a3802",
+      "angle": "left",
+      "scores": {
+        "line_first": {
+          "outline": {
+            "iou": 0.955,
+            "boundary_f1": 0.8362
+          }
+        },
+        "cube_turns": {
+          "outline": {
+            "iou": 0.9757,
+            "boundary_f1": 0.8836
+          },
+          "axes_fitted": true,
+          "joined_turns": 11,
+          "changed_pixels": 6464,
+          "mean_error_degrees_by_world_axis": [
+            0.127,
+            0.072,
+            0.063
+          ]
+        }
+      }
+    },
+    "test-stepped_tower-27-right": {
+      "group": "oblique",
+      "sha256": "621c9b464077d619fc7af0d4100cbfa19deffb518a2e4184a2e18dda96eeb5ca",
+      "angle": "right",
+      "scores": {
+        "line_first": {
+          "outline": {
+            "iou": 0.9492,
+            "boundary_f1": 0.8148
+          }
+        },
+        "cube_turns": {
+          "outline": {
+            "iou": 0.9711,
+            "boundary_f1": 0.8687
+          },
+          "axes_fitted": true,
+          "joined_turns": 11,
+          "changed_pixels": 7602,
+          "mean_error_degrees_by_world_axis": [
+            0.03,
+            0.1,
+            0.364
+          ]
+        }
+      }
+    },
+    "test-recess-28-left": {
+      "group": "oblique",
+      "sha256": "d4891492a4b325a1eb7c3e1ce9f3124b2815e72fb29038f5086afd9b91fc4dc6",
+      "angle": "left",
+      "scores": {
+        "line_first": {
+          "outline": {
+            "iou": 0.9439,
+            "boundary_f1": 0.778
+          }
+        },
+        "cube_turns": {
+          "outline": {
+            "iou": 0.9599,
+            "boundary_f1": 0.8499
+          },
+          "axes_fitted": true,
+          "joined_turns": 4,
+          "changed_pixels": 6960,
+          "mean_error_degrees_by_world_axis": [
+            0.151,
+            0.213,
+            0.49
+          ]
+        }
+      }
+    },
+    "test-recess-28-right": {
+      "group": "oblique",
+      "sha256": "920d8a23dea473f3064517315f8a9dbf943253af141ae61ea4d0367eb133f9d6",
+      "angle": "right",
+      "scores": {
+        "line_first": {
+          "outline": {
+            "iou": 0.959,
+            "boundary_f1": 0.817
+          }
+        },
+        "cube_turns": {
+          "outline": {
+            "iou": 0.9664,
+            "boundary_f1": 0.8753
+          },
+          "axes_fitted": true,
+          "joined_turns": 2,
+          "changed_pixels": 6476,
+          "mean_error_degrees_by_world_axis": [
+            0.261,
+            0.133,
+            0.356
+          ]
+        }
+      }
+    },
+    "test-corner-29-left": {
+      "group": "oblique",
+      "sha256": "93ca442b933fa21083f39a5963301b6277184c570a9f61e01ba4cb6d88f35c96",
+      "angle": "left",
+      "scores": {
+        "line_first": {
+          "outline": {
+            "iou": 0.9701,
+            "boundary_f1": 1.0
+          }
+        },
+        "cube_turns": {
+          "outline": {
+            "iou": 0.972,
+            "boundary_f1": 1.0
+          },
+          "axes_fitted": true,
+          "joined_turns": 8,
+          "changed_pixels": 4427,
+          "mean_error_degrees_by_world_axis": [
+            0.066,
+            0.066,
+            0.021
+          ]
+        }
+      }
+    },
+    "test-corner-29-right": {
+      "group": "oblique",
+      "sha256": "dd2ec5551859a61d800d68d157c6092fb796743ec5036d8310a60d131853bf74",
+      "angle": "right",
+      "scores": {
+        "line_first": {
+          "outline": {
+            "iou": 0.9716,
+            "boundary_f1": 0.9543
+          }
+        },
+        "cube_turns": {
+          "outline": {
+            "iou": 0.9684,
+            "boundary_f1": 0.9609
+          },
+          "axes_fitted": true,
+          "joined_turns": 7,
+          "changed_pixels": 4035,
+          "mean_error_degrees_by_world_axis": [
+            0.144,
+            0.167,
+            0.079
+          ]
+        }
+      }
+    },
+    "test-canopy-30-left": {
+      "group": "oblique",
+      "sha256": "1fbc4ac57466fff86a383bae9bcf794fd9d35ca3e1c630cc450f5542357e2f7b",
+      "angle": "left",
+      "scores": {
+        "line_first": {
+          "outline": {
+            "iou": 0.9523,
+            "boundary_f1": 0.9572
+          },
+          "gap_probes": {
+            "eligible": 9,
+            "filled": 1
+          }
+        },
+        "cube_turns": {
+          "outline": {
+            "iou": 0.9483,
+            "boundary_f1": 0.9598
+          },
+          "axes_fitted": true,
+          "joined_turns": 11,
+          "changed_pixels": 4976,
+          "mean_error_degrees_by_world_axis": [
+            0.113,
+            0.133,
+            0.154
+          ],
+          "gap_probes": {
+            "eligible": 9,
+            "filled": 1
+          }
+        }
+      }
+    },
+    "test-canopy-30-right": {
+      "group": "oblique",
+      "sha256": "e1bb929c52cc7d19e6d53be52ca5871d5cf661d94d40a023da2bb412ca949b50",
+      "angle": "right",
+      "scores": {
+        "line_first": {
+          "outline": {
+            "iou": 0.9481,
+            "boundary_f1": 0.9566
+          },
+          "gap_probes": {
+            "eligible": 14,
+            "filled": 1
+          }
+        },
+        "cube_turns": {
+          "outline": {
+            "iou": 0.9541,
+            "boundary_f1": 0.9608
+          },
+          "axes_fitted": true,
+          "joined_turns": 10,
+          "changed_pixels": 5483,
+          "mean_error_degrees_by_world_axis": [
+            0.523,
+            0.458,
+            0.04
+          ],
+          "gap_probes": {
+            "eligible": 14,
+            "filled": 1
+          }
+        }
+      }
+    },
+    "test-relief-00-oblique-left": {
+      "group": "oblique",
+      "sha256": "54145a22b48ba5eb35581125363469a3024172b1e9ae95cb6dff00ca9a673854",
+      "angle": "oblique-left",
+      "scores": {
+        "line_first": {
+          "outline": {
+            "iou": 0.9792,
+            "boundary_f1": 0.8166
+          },
+          "panels": {
+            "rows": [
+              {
+                "target": "panel-1",
+                "actual": "flat",
+                "decision": "unknown",
+                "iou": 0.984
+              },
+              {
+                "target": "panel-2",
+                "actual": "recess",
+                "decision": "recess",
+                "iou": 0.867
+              },
+              {
+                "target": "panel-3",
+                "actual": "protrusion",
+                "decision": "protrusion",
+                "iou": 0.775
+              },
+              {
+                "target": "panel-4",
+                "actual": "flat",
+                "decision": "missed",
+                "iou": 0.0
+              },
+              {
+                "target": "panel-5",
+                "actual": "recess",
+                "decision": "recess",
+                "iou": 0.9
+              },
+              {
+                "target": "panel-6",
+                "actual": "protrusion",
+                "decision": "unknown",
+                "iou": 0.692
+              },
+              {
+                "target": "panel-7",
+                "actual": "flat",
+                "decision": "flat",
+                "iou": 0.976
+              },
+              {
+                "target": "panel-8",
+                "actual": "recess",
+                "decision": "protrusion",
+                "iou": 0.856
+              },
+              {
+                "target": "panel-9",
+                "actual": "protrusion",
+                "decision": "protrusion",
+                "iou": 0.865
+              }
+            ],
+            "extra": {
+              "unknown": 18,
+              "recess": 3,
+              "protrusion": 4
+            }
+          }
+        },
+        "cube_turns": {
+          "outline": {
+            "iou": 0.9785,
+            "boundary_f1": 0.8333
+          },
+          "axes_fitted": true,
+          "joined_turns": 3,
+          "changed_pixels": 5639,
+          "mean_error_degrees_by_world_axis": [
+            0.021,
+            0.193,
+            0.847
+          ],
+          "panels": {
+            "rows": [
+              {
+                "target": "panel-1",
+                "actual": "flat",
+                "decision": "recess",
+                "iou": 0.985
+              },
+              {
+                "target": "panel-2",
+                "actual": "recess",
+                "decision": "recess",
+                "iou": 0.867
+              },
+              {
+                "target": "panel-3",
+                "actual": "protrusion",
+                "decision": "protrusion",
+                "iou": 0.776
+              },
+              {
+                "target": "panel-4",
+                "actual": "flat",
+                "decision": "missed",
+                "iou": 0.0
+              },
+              {
+                "target": "panel-5",
+                "actual": "recess",
+                "decision": "recess",
+                "iou": 0.899
+              },
+              {
+                "target": "panel-6",
+                "actual": "protrusion",
+                "decision": "unknown",
+                "iou": 0.692
+              },
+              {
+                "target": "panel-7",
+                "actual": "flat",
+                "decision": "flat",
+                "iou": 0.982
+              },
+              {
+                "target": "panel-8",
+                "actual": "recess",
+                "decision": "unknown",
+                "iou": 0.863
+              },
+              {
+                "target": "panel-9",
+                "actual": "protrusion",
+                "decision": "protrusion",
+                "iou": 0.861
+              }
+            ],
+            "extra": {
+              "unknown": 21,
+              "recess": 4,
+              "protrusion": 3
+            }
+          }
+        }
+      }
+    },
+    "test-relief-00-oblique-right": {
+      "group": "oblique",
+      "sha256": "858b89c080aa6199cab23e507db89e187ef71dccbe6d3689602d8659c13ae9bc",
+      "angle": "oblique-right",
+      "scores": {
+        "line_first": {
+          "outline": {
+            "iou": 0.9831,
+            "boundary_f1": 0.8854
+          },
+          "panels": {
+            "rows": [
+              {
+                "target": "panel-1",
+                "actual": "flat",
+                "decision": "recess",
+                "iou": 0.983
+              },
+              {
+                "target": "panel-2",
+                "actual": "recess",
+                "decision": "recess",
+                "iou": 0.896
+              },
+              {
+                "target": "panel-3",
+                "actual": "protrusion",
+                "decision": "unknown",
+                "iou": 0.913
+              },
+              {
+                "target": "panel-4",
+                "actual": "flat",
+                "decision": "flat",
+                "iou": 0.726
+              },
+              {
+                "target": "panel-5",
+                "actual": "recess",
+                "decision": "recess",
+                "iou": 0.905
+              },
+              {
+                "target": "panel-6",
+                "actual": "protrusion",
+                "decision": "protrusion",
+                "iou": 0.925
+              },
+              {
+                "target": "panel-7",
+                "actual": "flat",
+                "decision": "recess",
+                "iou": 0.943
+              },
+              {
+                "target": "panel-8",
+                "actual": "recess",
+                "decision": "recess",
+                "iou": 0.836
+              },
+              {
+                "target": "panel-9",
+                "actual": "protrusion",
+                "decision": "unknown",
+                "iou": 0.792
+              }
+            ],
+            "extra": {
+              "unknown": 7,
+              "recess": 7,
+              "protrusion": 1
+            }
+          }
+        },
+        "cube_turns": {
+          "outline": {
+            "iou": 0.9826,
+            "boundary_f1": 0.894
+          },
+          "axes_fitted": true,
+          "joined_turns": 3,
+          "changed_pixels": 3843,
+          "mean_error_degrees_by_world_axis": [
+            0.037,
+            0.099,
+            0.555
+          ],
+          "panels": {
+            "rows": [
+              {
+                "target": "panel-1",
+                "actual": "flat",
+                "decision": "recess",
+                "iou": 0.984
+              },
+              {
+                "target": "panel-2",
+                "actual": "recess",
+                "decision": "unknown",
+                "iou": 0.895
+              },
+              {
+                "target": "panel-3",
+                "actual": "protrusion",
+                "decision": "unknown",
+                "iou": 0.918
+              },
+              {
+                "target": "panel-4",
+                "actual": "flat",
+                "decision": "flat",
+                "iou": 0.727
+              },
+              {
+                "target": "panel-5",
+                "actual": "recess",
+                "decision": "recess",
+                "iou": 0.904
+              },
+              {
+                "target": "panel-6",
+                "actual": "protrusion",
+                "decision": "protrusion",
+                "iou": 0.925
+              },
+              {
+                "target": "panel-7",
+                "actual": "flat",
+                "decision": "recess",
+                "iou": 0.946
+              },
+              {
+                "target": "panel-8",
+                "actual": "recess",
+                "decision": "flat",
+                "iou": 0.844
+              },
+              {
+                "target": "panel-9",
+                "actual": "protrusion",
+                "decision": "unknown",
+                "iou": 0.791
+              }
+            ],
+            "extra": {
+              "recess": 4,
+              "unknown": 13,
+              "protrusion": 1
+            }
+          }
+        }
+      }
+    },
+    "test-canopy-06-front": {
+      "group": "open_canopies",
+      "sha256": "f397b375b43bcbb18117204890a7c37f120ea62f729e41f89a8760b284677f41",
+      "angle": "front",
+      "scores": {
+        "line_first": {
+          "outline": {
+            "iou": 0.8767,
+            "boundary_f1": 0.9152
+          },
+          "gap_probes": {
+            "eligible": 14,
+            "filled": 4
+          }
+        },
+        "cube_turns": {
+          "outline": {
+            "iou": 0.8848,
+            "boundary_f1": 0.9108
+          },
+          "axes_fitted": true,
+          "joined_turns": 11,
+          "changed_pixels": 4505,
+          "mean_error_degrees_by_world_axis": [
+            0.007,
+            0.044,
+            0.639
+          ],
+          "gap_probes": {
+            "eligible": 14,
+            "filled": 4
+          }
+        }
+      }
+    },
+    "test-canopy-06-left": {
+      "group": "open_canopies",
+      "sha256": "45a1aec2553764230a3108843bb5dc8c2fa382d0f9506a5d1d0b8549cc99189b",
+      "angle": "left",
+      "scores": {
+        "line_first": {
+          "outline": {
+            "iou": 0.9338,
+            "boundary_f1": 0.9622
+          },
+          "gap_probes": {
+            "eligible": 9,
+            "filled": 1
+          }
+        },
+        "cube_turns": {
+          "outline": {
+            "iou": 0.9339,
+            "boundary_f1": 0.9665
+          },
+          "axes_fitted": true,
+          "joined_turns": 11,
+          "changed_pixels": 5586,
+          "mean_error_degrees_by_world_axis": [
+            0.357,
+            0.323,
+            0.16
+          ],
+          "gap_probes": {
+            "eligible": 9,
+            "filled": 1
+          }
+        }
+      }
+    },
+    "test-canopy-06-right": {
+      "group": "open_canopies",
+      "sha256": "6e5f587b4da2060852d0a04c064feb3f7e6a81310317506851ba02d416914ec9",
+      "angle": "right",
+      "scores": {
+        "line_first": {
+          "outline": {
+            "iou": 0.9397,
+            "boundary_f1": 0.9735
+          },
+          "gap_probes": {
+            "eligible": 14,
+            "filled": 1
+          }
+        },
+        "cube_turns": {
+          "outline": {
+            "iou": 0.9459,
+            "boundary_f1": 0.9874
+          },
+          "axes_fitted": true,
+          "joined_turns": 13,
+          "changed_pixels": 5958,
+          "mean_error_degrees_by_world_axis": [
+            0.074,
+            0.076,
+            0.021
+          ],
+          "gap_probes": {
+            "eligible": 14,
+            "filled": 1
+          }
+        }
+      }
+    },
+    "test-canopy-06-elevated": {
+      "group": "open_canopies",
+      "sha256": "e86735a8e06aca762d504e3c8dc49bf4461efbd040879506975fde07142ebfa3",
+      "angle": "elevated",
+      "scores": {
+        "line_first": {
+          "outline": {
+            "iou": 0.9451,
+            "boundary_f1": 0.9349
+          },
+          "gap_probes": {
+            "eligible": 10,
+            "filled": 5
+          }
+        },
+        "cube_turns": {
+          "outline": {
+            "iou": 0.9403,
+            "boundary_f1": 0.9343
+          },
+          "axes_fitted": true,
+          "joined_turns": 8,
+          "changed_pixels": 4639,
+          "mean_error_degrees_by_world_axis": [
+            0.126,
+            0.086,
+            0.047
+          ],
+          "gap_probes": {
+            "eligible": 10,
+            "filled": 4
+          }
+        }
+      }
+    },
+    "test-canopy-07-front": {
+      "group": "open_canopies",
+      "sha256": "07d0878abf0de5380accde8a09d6070a90b843cdb2426e781149506b7fa456b0",
+      "angle": "front",
+      "scores": {
+        "line_first": {
+          "outline": {
+            "iou": 0.8423,
+            "boundary_f1": 0.88
+          },
+          "gap_probes": {
+            "eligible": 28,
+            "filled": 11
+          }
+        },
+        "cube_turns": {
+          "outline": {
+            "iou": 0.8438,
+            "boundary_f1": 0.8913
+          },
+          "axes_fitted": true,
+          "joined_turns": 12,
+          "changed_pixels": 7446,
+          "mean_error_degrees_by_world_axis": [
+            0.16,
+            0.769,
+            0.77
+          ],
+          "gap_probes": {
+            "eligible": 28,
+            "filled": 7
+          }
+        }
+      }
+    },
+    "test-canopy-07-left": {
+      "group": "open_canopies",
+      "sha256": "126b1cf2a80304141a604d4424d8a055983957003871855daddfc5868ace5f8d",
+      "angle": "left",
+      "scores": {
+        "line_first": {
+          "outline": {
+            "iou": 0.8779,
+            "boundary_f1": 0.8892
+          },
+          "gap_probes": {
+            "eligible": 23,
+            "filled": 7
+          }
+        },
+        "cube_turns": {
+          "outline": {
+            "iou": 0.8828,
+            "boundary_f1": 0.9258
+          },
+          "axes_fitted": true,
+          "joined_turns": 13,
+          "changed_pixels": 8577,
+          "mean_error_degrees_by_world_axis": [
+            0.568,
+            0.498,
+            0.084
+          ],
+          "gap_probes": {
+            "eligible": 23,
+            "filled": 7
+          }
+        }
+      }
+    },
+    "test-canopy-07-right": {
+      "group": "open_canopies",
+      "sha256": "3a4864893ef916823712a12ab3c0c3385df555413ec789862ecd60a35d87dc65",
+      "angle": "right",
+      "scores": {
+        "line_first": {
+          "outline": {
+            "iou": 0.8724,
+            "boundary_f1": 0.9057
+          },
+          "gap_probes": {
+            "eligible": 23,
+            "filled": 6
+          }
+        },
+        "cube_turns": {
+          "outline": {
+            "iou": 0.8834,
+            "boundary_f1": 0.9335
+          },
+          "axes_fitted": true,
+          "joined_turns": 14,
+          "changed_pixels": 7637,
+          "mean_error_degrees_by_world_axis": [
+            0.118,
+            0.188,
+            0.145
+          ],
+          "gap_probes": {
+            "eligible": 23,
+            "filled": 6
+          }
+        }
+      }
+    },
+    "test-canopy-07-elevated": {
+      "group": "open_canopies",
+      "sha256": "1736199d0f57b479a7a65a6779103bf917a2998982f7829423c623faf168b71c",
+      "angle": "elevated",
+      "scores": {
+        "line_first": {
+          "outline": {
+            "iou": 0.8914,
+            "boundary_f1": 0.8429
+          },
+          "gap_probes": {
+            "eligible": 18,
+            "filled": 10
+          }
+        },
+        "cube_turns": {
+          "outline": {
+            "iou": 0.8975,
+            "boundary_f1": 0.8611
+          },
+          "axes_fitted": true,
+          "joined_turns": 8,
+          "changed_pixels": 3671,
+          "mean_error_degrees_by_world_axis": [
+            0.271,
+            0.178,
+            0.261
+          ],
+          "gap_probes": {
+            "eligible": 18,
+            "filled": 10
+          }
+        }
+      }
+    },
+    "test-canopy-08-front": {
+      "group": "open_canopies",
+      "sha256": "b71794a3c7c1dcb2ef59553a7318b85fba9bcf992ee58e714d8ec5164da5769b",
+      "angle": "front",
+      "scores": {
+        "line_first": {
+          "outline": {
+            "iou": 0.76,
+            "boundary_f1": 0.8396
+          },
+          "gap_probes": {
+            "eligible": 30,
+            "filled": 6
+          }
+        },
+        "cube_turns": {
+          "outline": {
+            "iou": 0.7664,
+            "boundary_f1": 0.8389
+          },
+          "axes_fitted": true,
+          "joined_turns": 8,
+          "changed_pixels": 5812,
+          "mean_error_degrees_by_world_axis": [
+            0.1,
+            0.183,
+            0.578
+          ],
+          "gap_probes": {
+            "eligible": 30,
+            "filled": 6
+          }
+        }
+      }
+    },
+    "test-canopy-08-left": {
+      "group": "open_canopies",
+      "sha256": "7c9ae3635fa9d36730fe55dc1037fba3c08670bd858c8efab84d5a1e9e55ad86",
+      "angle": "left",
+      "scores": {
+        "line_first": {
+          "outline": {
+            "iou": 0.7845,
+            "boundary_f1": 0.8886
+          },
+          "gap_probes": {
+            "eligible": 37,
+            "filled": 11
+          }
+        },
+        "cube_turns": {
+          "outline": {
+            "iou": 0.8031,
+            "boundary_f1": 0.8919
+          },
+          "axes_fitted": true,
+          "joined_turns": 10,
+          "changed_pixels": 6952,
+          "mean_error_degrees_by_world_axis": [
+            0.059,
+            0.041,
+            0.033
+          ],
+          "gap_probes": {
+            "eligible": 37,
+            "filled": 11
+          }
+        }
+      }
+    },
+    "test-canopy-08-right": {
+      "group": "open_canopies",
+      "sha256": "bc052abfeaf5ff87b5b3eefb763858090084657e043c89e0537b59a5891983f4",
+      "angle": "right",
+      "scores": {
+        "line_first": {
+          "outline": {
+            "iou": 0.785,
+            "boundary_f1": 0.8278
+          },
+          "gap_probes": {
+            "eligible": 37,
+            "filled": 11
+          }
+        },
+        "cube_turns": {
+          "outline": {
+            "iou": 0.7923,
+            "boundary_f1": 0.8347
+          },
+          "axes_fitted": true,
+          "joined_turns": 12,
+          "changed_pixels": 5471,
+          "mean_error_degrees_by_world_axis": [
+            0.045,
+            0.027,
+            0.198
+          ],
+          "gap_probes": {
+            "eligible": 37,
+            "filled": 10
+          }
+        }
+      }
+    },
+    "test-canopy-08-elevated": {
+      "group": "open_canopies",
+      "sha256": "9f23400eb02649401f56eeed91b25e5b32f8b9c97f91c1447235eb3992259aab",
+      "angle": "elevated",
+      "scores": {
+        "line_first": {
+          "outline": {
+            "iou": 0.8295,
+            "boundary_f1": 0.8127
+          },
+          "gap_probes": {
+            "eligible": 23,
+            "filled": 18
+          }
+        },
+        "cube_turns": {
+          "outline": {
+            "iou": 0.8361,
+            "boundary_f1": 0.8155
+          },
+          "axes_fitted": true,
+          "joined_turns": 8,
+          "changed_pixels": 3683,
+          "mean_error_degrees_by_world_axis": [
+            0.05,
+            0.108,
+            0.259
+          ],
+          "gap_probes": {
+            "eligible": 23,
+            "filled": 21
+          }
+        }
+      }
+    }
+  },
+  "flat_controls": {
+    "line_first": {
+      "dark-inlay-oblique-left": {
+        "flat": 2,
+        "recess": 6,
+        "unknown": 8,
+        "protrusion": 1
+      },
+      "dark-inlay-oblique-right": {
+        "protrusion": 7,
+        "flat": 1,
+        "unknown": 9
+      },
+      "physical-shade-oblique-left": {},
+      "physical-shade-oblique-right": {}
+    },
+    "cube_turns": {
+      "dark-inlay-oblique-left": {
+        "recess": 6,
+        "unknown": 11,
+        "protrusion": 1
+      },
+      "dark-inlay-oblique-right": {
+        "protrusion": 5,
+        "unknown": 10,
+        "recess": 1
+      },
+      "physical-shade-oblique-left": {},
+      "physical-shade-oblique-right": {}
+    }
+  }
+}

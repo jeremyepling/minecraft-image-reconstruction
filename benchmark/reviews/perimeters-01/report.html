@@ -1,0 +1,243 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Surface Finder perimeter review</title><style>body{margin:2rem auto;padding:0 1rem;max-width:1250px;background:#faf9f4;color:#183638;font:16px/1.45 system-ui}img{max-width:100%}table{border-collapse:collapse}td,th{padding:.4rem .6rem;text-align:left;border-bottom:1px solid #cdd6d1}a{color:#106568}summary{cursor:pointer}</style>
+<h1>Surface Finder perimeter review</h1><p>Open the portrait sheet to zoom in. Read down a building’s column to follow the same surface, or across a stage to compare buildings. A missing grid means that the counter could not place the lines with confidence.</p>
+<a href="comparison.jpg"><img src="comparison.jpg" alt="Eight buildings shown through each stage of reconstruction"></a>
+<h2>Which surfaces were found or missed?</h2><p>The pipeline follows one outline per example. This separate sheet shows every predicted region and every recorded visible building surface in those same eight views. Green marks a scored match, amber a scored miss, pink an extra prediction, blue a separately paired small surface and gray a small unpaired surface.</p>
+<a href="surface-detection.jpg"><img src="surface-detection.jpg" alt="All building surfaces and close-ups of missed regions in eight pictures"></a>
+<p>A scored surface has at least four visible block faces and 24 samples on the four-pixel scoring grid. Small surfaces are counted and drawn from the original-resolution geometry. We check them separately against the remaining predictions. <a href="surface-detection.json">Individual surface IDs, pairings and native close-up coordinates</a></p>
+<h2>The three highlighted buildings</h2><p>The older sheet used the four sampling corners as a surface outline. The detail shows where that chart cuts across visible pixels. The gold overlay is the independently recorded surface.</p>
+<a href="edge-closeups.jpg"><img src="edge-closeups.jpg" alt="Old chart and actual surface contours on courtyard, workshop and registry"></a>
+<p>Full-resolution crops: Courtyard <a href="crops/courtyard/surface.png">surface</a> / <a href="crops/courtyard/context.png">with context</a> · Workshop <a href="crops/workshop/surface.png">surface</a> / <a href="crops/workshop/context.png">with context</a> · Registry <a href="crops/registry/surface.png">surface</a> / <a href="crops/registry/context.png">with context</a></p>
+<h2>Which boundaries improved?</h2>
+<table><tr><th>Method</th><th>Matched / eligible</th><th>Mean border error</th><th>Correct surface pixels</th><th>Opening area covered</th><th>Both block counts correct</th></tr><tr><td>Original Regions First</td><td>394 / 598</td><td>6.94 px</td><td>84.69%</td><td>3.91%</td><td>57</td></tr><tr><td>Snap the perimeter to image edges</td><td>398 / 598</td><td>6.83 px</td><td>84.77%</td><td>3.61%</td><td>56</td></tr><tr><td>Separate parallel surfaces using depth</td><td>406 / 598</td><td>6.27 px</td><td>86.12%</td><td>3.91%</td><td>59</td></tr></table>
+<h2>How much context does a wider crop show?</h2><p>Each count is a sample of four by four native pixels, summed across matched regions. The added margin shows real neighboring pixels. The ordinary Block Counter measures the owned surface.</p>
+<table><tr><th>Margin on each side</th><th>Missed target samples visible in RGB context</th><th>Other surface or background samples in context</th></tr><tr><td>0 px</td><td>15913</td><td>224307</td></tr><tr><td>4 px</td><td>17542</td><td>283670</td></tr><tr><td>8 px</td><td>17788</td><td>347536</td></tr><tr><td>16 px</td><td>18015</td><td>484893</td></tr></table>
+<h2>Does the extra texture improve counting?</h2><p>In this diagnostic we allowed connected, similar-colored pixels outside the tight crop to help the counter. Holes and other detected surfaces stayed excluded. We also ran the expanded sampling charts with the extra RGB hidden to isolate the effect of seeing those neighbors.</p>
+<table><tr><th>Counter input</th><th>Both dimensions right</th><th>Wrong pair</th><th>No complete count</th><th>Both grid origins estimated</th></tr><tr><td>Tight surface only</td><td>56</td><td>23</td><td>519</td><td>10</td></tr><tr><td>8 px with neighboring texture</td><td>55</td><td>23</td><td>520</td><td>10</td></tr><tr><td>16 px with neighboring texture</td><td>55</td><td>22</td><td>521</td><td>9</td></tr><tr><td>8 px, extra pixels hidden</td><td>57</td><td>25</td><td>516</td><td>10</td></tr><tr><td>16 px, extra pixels hidden</td><td>57</td><td>24</td><td>517</td><td>10</td></tr></table>
+<p><a href="count-context/cases.json">All context measurements</a> · <a href="count-context/manifest.json">Context settings and methods</a></p>
+<h2>All 56 original pictures</h2>
+<details><summary>smooth_stone/dev-shopfront-masonry-high-right</summary>
+<p><a href="../../data/camera-round-01/captures/dev-shopfront-masonry-high-right.png">Original PNG</a></p>
+<table><tr><th>Surface Finder</th><th>Correct surfaces</th><th>Eligible surfaces</th><th>Correctly sized surfaces</th></tr><tr><td>Original Regions First</td><td>12</td><td>14</td><td>0</td></tr><tr><td>Snap the perimeter to image edges</td><td>12</td><td>14</td><td>0</td></tr><tr><td>Separate parallel surfaces using depth</td><td>12</td><td>14</td><td>0</td></tr></table>
+</details>
+<details><summary>light_gray_concrete/dev-shopfront-masonry-high-right</summary>
+<p><a href="../../data/camera-gray-concrete-v1/captures/dev-shopfront-masonry-high-right.png">Original PNG</a></p>
+<table><tr><th>Surface Finder</th><th>Correct surfaces</th><th>Eligible surfaces</th><th>Correctly sized surfaces</th></tr><tr><td>Original Regions First</td><td>12</td><td>14</td><td>0</td></tr><tr><td>Snap the perimeter to image edges</td><td>12</td><td>14</td><td>0</td></tr><tr><td>Separate parallel surfaces using depth</td><td>12</td><td>14</td><td>0</td></tr></table>
+</details>
+<details><summary>smooth_stone/dev-shopfront-masonry-low-left</summary>
+<p><a href="../../data/camera-round-01/captures/dev-shopfront-masonry-low-left.png">Original PNG</a></p>
+<table><tr><th>Surface Finder</th><th>Correct surfaces</th><th>Eligible surfaces</th><th>Correctly sized surfaces</th></tr><tr><td>Original Regions First</td><td>10</td><td>16</td><td>0</td></tr><tr><td>Snap the perimeter to image edges</td><td>10</td><td>16</td><td>0</td></tr><tr><td>Separate parallel surfaces using depth</td><td>10</td><td>16</td><td>0</td></tr></table>
+</details>
+<details><summary>light_gray_concrete/dev-shopfront-masonry-low-left</summary>
+<p><a href="../../data/camera-gray-concrete-v1/captures/dev-shopfront-masonry-low-left.png">Original PNG</a></p>
+<table><tr><th>Surface Finder</th><th>Correct surfaces</th><th>Eligible surfaces</th><th>Correctly sized surfaces</th></tr><tr><td>Original Regions First</td><td>12</td><td>16</td><td>1</td></tr><tr><td>Snap the perimeter to image edges</td><td>12</td><td>16</td><td>1</td></tr><tr><td>Separate parallel surfaces using depth</td><td>12</td><td>16</td><td>1</td></tr></table>
+</details>
+<details><summary>smooth_stone/dev-shopfront-plaster-high-right</summary>
+<p><a href="../../data/camera-round-01/captures/dev-shopfront-plaster-high-right.png">Original PNG</a></p>
+<table><tr><th>Surface Finder</th><th>Correct surfaces</th><th>Eligible surfaces</th><th>Correctly sized surfaces</th></tr><tr><td>Original Regions First</td><td>10</td><td>14</td><td>0</td></tr><tr><td>Snap the perimeter to image edges</td><td>10</td><td>14</td><td>0</td></tr><tr><td>Separate parallel surfaces using depth</td><td>10</td><td>14</td><td>0</td></tr></table>
+</details>
+<details><summary>light_gray_concrete/dev-shopfront-plaster-high-right</summary>
+<p><a href="../../data/camera-gray-concrete-v1/captures/dev-shopfront-plaster-high-right.png">Original PNG</a></p>
+<table><tr><th>Surface Finder</th><th>Correct surfaces</th><th>Eligible surfaces</th><th>Correctly sized surfaces</th></tr><tr><td>Original Regions First</td><td>9</td><td>14</td><td>0</td></tr><tr><td>Snap the perimeter to image edges</td><td>9</td><td>14</td><td>0</td></tr><tr><td>Separate parallel surfaces using depth</td><td>10</td><td>14</td><td>0</td></tr></table>
+</details>
+<details><summary>smooth_stone/dev-shopfront-plaster-low-left</summary>
+<p><a href="../../data/camera-round-01/captures/dev-shopfront-plaster-low-left.png">Original PNG</a></p>
+<table><tr><th>Surface Finder</th><th>Correct surfaces</th><th>Eligible surfaces</th><th>Correctly sized surfaces</th></tr><tr><td>Original Regions First</td><td>6</td><td>16</td><td>0</td></tr><tr><td>Snap the perimeter to image edges</td><td>6</td><td>16</td><td>0</td></tr><tr><td>Separate parallel surfaces using depth</td><td>6</td><td>16</td><td>0</td></tr></table>
+</details>
+<details><summary>light_gray_concrete/dev-shopfront-plaster-low-left</summary>
+<p><a href="../../data/camera-gray-concrete-v1/captures/dev-shopfront-plaster-low-left.png">Original PNG</a></p>
+<table><tr><th>Surface Finder</th><th>Correct surfaces</th><th>Eligible surfaces</th><th>Correctly sized surfaces</th></tr><tr><td>Original Regions First</td><td>6</td><td>16</td><td>0</td></tr><tr><td>Snap the perimeter to image edges</td><td>6</td><td>16</td><td>0</td></tr><tr><td>Separate parallel surfaces using depth</td><td>6</td><td>16</td><td>0</td></tr></table>
+</details>
+<details><summary>smooth_stone/dev-wing-masonry-close-front</summary>
+<p><a href="../../data/camera-round-01/captures/dev-wing-masonry-close-front.png">Original PNG</a></p>
+<table><tr><th>Surface Finder</th><th>Correct surfaces</th><th>Eligible surfaces</th><th>Correctly sized surfaces</th></tr><tr><td>Original Regions First</td><td>1</td><td>1</td><td>0</td></tr><tr><td>Snap the perimeter to image edges</td><td>1</td><td>1</td><td>0</td></tr><tr><td>Separate parallel surfaces using depth</td><td>1</td><td>1</td><td>0</td></tr></table>
+</details>
+<details><summary>light_gray_concrete/dev-wing-masonry-close-front</summary>
+<p><a href="../../data/camera-gray-concrete-v1/captures/dev-wing-masonry-close-front.png">Original PNG</a></p>
+<table><tr><th>Surface Finder</th><th>Correct surfaces</th><th>Eligible surfaces</th><th>Correctly sized surfaces</th></tr><tr><td>Original Regions First</td><td>1</td><td>1</td><td>0</td></tr><tr><td>Snap the perimeter to image edges</td><td>1</td><td>1</td><td>0</td></tr><tr><td>Separate parallel surfaces using depth</td><td>1</td><td>1</td><td>0</td></tr></table>
+</details>
+<details><summary>smooth_stone/dev-wing-masonry-high-right</summary>
+<p><a href="../../data/camera-round-01/captures/dev-wing-masonry-high-right.png">Original PNG</a></p>
+<table><tr><th>Surface Finder</th><th>Correct surfaces</th><th>Eligible surfaces</th><th>Correctly sized surfaces</th></tr><tr><td>Original Regions First</td><td>5</td><td>5</td><td>2</td></tr><tr><td>Snap the perimeter to image edges</td><td>5</td><td>5</td><td>2</td></tr><tr><td>Separate parallel surfaces using depth</td><td>5</td><td>5</td><td>2</td></tr></table>
+</details>
+<details><summary>light_gray_concrete/dev-wing-masonry-high-right</summary>
+<p><a href="../../data/camera-gray-concrete-v1/captures/dev-wing-masonry-high-right.png">Original PNG</a></p>
+<table><tr><th>Surface Finder</th><th>Correct surfaces</th><th>Eligible surfaces</th><th>Correctly sized surfaces</th></tr><tr><td>Original Regions First</td><td>4</td><td>5</td><td>3</td></tr><tr><td>Snap the perimeter to image edges</td><td>4</td><td>5</td><td>3</td></tr><tr><td>Separate parallel surfaces using depth</td><td>4</td><td>5</td><td>3</td></tr></table>
+</details>
+<details><summary>smooth_stone/dev-wing-masonry-low-left</summary>
+<p><a href="../../data/camera-round-01/captures/dev-wing-masonry-low-left.png">Original PNG</a></p>
+<table><tr><th>Surface Finder</th><th>Correct surfaces</th><th>Eligible surfaces</th><th>Correctly sized surfaces</th></tr><tr><td>Original Regions First</td><td>2</td><td>3</td><td>0</td></tr><tr><td>Snap the perimeter to image edges</td><td>2</td><td>3</td><td>0</td></tr><tr><td>Separate parallel surfaces using depth</td><td>2</td><td>3</td><td>0</td></tr></table>
+</details>
+<details><summary>light_gray_concrete/dev-wing-masonry-low-left</summary>
+<p><a href="../../data/camera-gray-concrete-v1/captures/dev-wing-masonry-low-left.png">Original PNG</a></p>
+<table><tr><th>Surface Finder</th><th>Correct surfaces</th><th>Eligible surfaces</th><th>Correctly sized surfaces</th></tr><tr><td>Original Regions First</td><td>2</td><td>3</td><td>0</td></tr><tr><td>Snap the perimeter to image edges</td><td>2</td><td>3</td><td>0</td></tr><tr><td>Separate parallel surfaces using depth</td><td>2</td><td>3</td><td>0</td></tr></table>
+</details>
+<details><summary>smooth_stone/dev-wing-plaster-close-front</summary>
+<p><a href="../../data/camera-round-01/captures/dev-wing-plaster-close-front.png">Original PNG</a></p>
+<table><tr><th>Surface Finder</th><th>Correct surfaces</th><th>Eligible surfaces</th><th>Correctly sized surfaces</th></tr><tr><td>Original Regions First</td><td>1</td><td>1</td><td>0</td></tr><tr><td>Snap the perimeter to image edges</td><td>1</td><td>1</td><td>0</td></tr><tr><td>Separate parallel surfaces using depth</td><td>1</td><td>1</td><td>0</td></tr></table>
+</details>
+<details><summary>light_gray_concrete/dev-wing-plaster-close-front</summary>
+<p><a href="../../data/camera-gray-concrete-v1/captures/dev-wing-plaster-close-front.png">Original PNG</a></p>
+<table><tr><th>Surface Finder</th><th>Correct surfaces</th><th>Eligible surfaces</th><th>Correctly sized surfaces</th></tr><tr><td>Original Regions First</td><td>1</td><td>1</td><td>0</td></tr><tr><td>Snap the perimeter to image edges</td><td>1</td><td>1</td><td>0</td></tr><tr><td>Separate parallel surfaces using depth</td><td>1</td><td>1</td><td>0</td></tr></table>
+</details>
+<details><summary>smooth_stone/dev-wing-plaster-high-right</summary>
+<p><a href="../../data/camera-round-01/captures/dev-wing-plaster-high-right.png">Original PNG</a></p>
+<table><tr><th>Surface Finder</th><th>Correct surfaces</th><th>Eligible surfaces</th><th>Correctly sized surfaces</th></tr><tr><td>Original Regions First</td><td>4</td><td>5</td><td>2</td></tr><tr><td>Snap the perimeter to image edges</td><td>4</td><td>5</td><td>2</td></tr><tr><td>Separate parallel surfaces using depth</td><td>4</td><td>5</td><td>2</td></tr></table>
+</details>
+<details><summary>light_gray_concrete/dev-wing-plaster-high-right</summary>
+<p><a href="../../data/camera-gray-concrete-v1/captures/dev-wing-plaster-high-right.png">Original PNG</a></p>
+<table><tr><th>Surface Finder</th><th>Correct surfaces</th><th>Eligible surfaces</th><th>Correctly sized surfaces</th></tr><tr><td>Original Regions First</td><td>5</td><td>5</td><td>2</td></tr><tr><td>Snap the perimeter to image edges</td><td>5</td><td>5</td><td>2</td></tr><tr><td>Separate parallel surfaces using depth</td><td>5</td><td>5</td><td>2</td></tr></table>
+</details>
+<details><summary>smooth_stone/dev-wing-plaster-low-left</summary>
+<p><a href="../../data/camera-round-01/captures/dev-wing-plaster-low-left.png">Original PNG</a></p>
+<table><tr><th>Surface Finder</th><th>Correct surfaces</th><th>Eligible surfaces</th><th>Correctly sized surfaces</th></tr><tr><td>Original Regions First</td><td>2</td><td>3</td><td>0</td></tr><tr><td>Snap the perimeter to image edges</td><td>2</td><td>3</td><td>0</td></tr><tr><td>Separate parallel surfaces using depth</td><td>2</td><td>3</td><td>0</td></tr></table>
+</details>
+<details><summary>light_gray_concrete/dev-wing-plaster-low-left</summary>
+<p><a href="../../data/camera-gray-concrete-v1/captures/dev-wing-plaster-low-left.png">Original PNG</a></p>
+<table><tr><th>Surface Finder</th><th>Correct surfaces</th><th>Eligible surfaces</th><th>Correctly sized surfaces</th></tr><tr><td>Original Regions First</td><td>2</td><td>3</td><td>0</td></tr><tr><td>Snap the perimeter to image edges</td><td>2</td><td>3</td><td>0</td></tr><tr><td>Separate parallel surfaces using depth</td><td>2</td><td>3</td><td>0</td></tr></table>
+</details>
+<details><summary>smooth_stone/holdout-courtyard-masonry-close-front</summary>
+<p><a href="../../data/camera-round-01/captures/holdout-courtyard-masonry-close-front.png">Original PNG</a></p>
+<table><tr><th>Surface Finder</th><th>Correct surfaces</th><th>Eligible surfaces</th><th>Correctly sized surfaces</th></tr><tr><td>Original Regions First</td><td>1</td><td>1</td><td>0</td></tr><tr><td>Snap the perimeter to image edges</td><td>1</td><td>1</td><td>0</td></tr><tr><td>Separate parallel surfaces using depth</td><td>1</td><td>1</td><td>0</td></tr></table>
+</details>
+<details><summary>light_gray_concrete/holdout-courtyard-masonry-close-front</summary>
+<p><a href="../../data/camera-gray-concrete-v1/captures/holdout-courtyard-masonry-close-front.png">Original PNG</a></p>
+<table><tr><th>Surface Finder</th><th>Correct surfaces</th><th>Eligible surfaces</th><th>Correctly sized surfaces</th></tr><tr><td>Original Regions First</td><td>1</td><td>1</td><td>0</td></tr><tr><td>Snap the perimeter to image edges</td><td>1</td><td>1</td><td>0</td></tr><tr><td>Separate parallel surfaces using depth</td><td>1</td><td>1</td><td>0</td></tr></table>
+</details>
+<details><summary>smooth_stone/holdout-courtyard-masonry-high-right</summary>
+<p><a href="../../data/camera-round-01/captures/holdout-courtyard-masonry-high-right.png">Original PNG</a></p>
+<table><tr><th>Surface Finder</th><th>Correct surfaces</th><th>Eligible surfaces</th><th>Correctly sized surfaces</th></tr><tr><td>Original Regions First</td><td>7</td><td>8</td><td>1</td></tr><tr><td>Snap the perimeter to image edges</td><td>7</td><td>8</td><td>1</td></tr><tr><td>Separate parallel surfaces using depth</td><td>7</td><td>8</td><td>1</td></tr></table>
+</details>
+<details><summary>light_gray_concrete/holdout-courtyard-masonry-high-right</summary>
+<p><a href="../../data/camera-gray-concrete-v1/captures/holdout-courtyard-masonry-high-right.png">Original PNG</a></p>
+<table><tr><th>Surface Finder</th><th>Correct surfaces</th><th>Eligible surfaces</th><th>Correctly sized surfaces</th></tr><tr><td>Original Regions First</td><td>6</td><td>8</td><td>1</td></tr><tr><td>Snap the perimeter to image edges</td><td>6</td><td>8</td><td>1</td></tr><tr><td>Separate parallel surfaces using depth</td><td>6</td><td>8</td><td>1</td></tr></table>
+</details>
+<details><summary>smooth_stone/holdout-courtyard-masonry-low-left</summary>
+<p><a href="../../data/camera-round-01/captures/holdout-courtyard-masonry-low-left.png">Original PNG</a></p>
+<table><tr><th>Surface Finder</th><th>Correct surfaces</th><th>Eligible surfaces</th><th>Correctly sized surfaces</th></tr><tr><td>Original Regions First</td><td>4</td><td>5</td><td>1</td></tr><tr><td>Snap the perimeter to image edges</td><td>4</td><td>5</td><td>1</td></tr><tr><td>Separate parallel surfaces using depth</td><td>5</td><td>5</td><td>1</td></tr></table>
+</details>
+<details><summary>light_gray_concrete/holdout-courtyard-masonry-low-left</summary>
+<p><a href="../../data/camera-gray-concrete-v1/captures/holdout-courtyard-masonry-low-left.png">Original PNG</a></p>
+<table><tr><th>Surface Finder</th><th>Correct surfaces</th><th>Eligible surfaces</th><th>Correctly sized surfaces</th></tr><tr><td>Original Regions First</td><td>4</td><td>5</td><td>1</td></tr><tr><td>Snap the perimeter to image edges</td><td>4</td><td>5</td><td>1</td></tr><tr><td>Separate parallel surfaces using depth</td><td>5</td><td>5</td><td>1</td></tr></table>
+</details>
+<details><summary>smooth_stone/holdout-courtyard-plaster-close-front</summary>
+<p><a href="../../data/camera-round-01/captures/holdout-courtyard-plaster-close-front.png">Original PNG</a></p>
+<table><tr><th>Surface Finder</th><th>Correct surfaces</th><th>Eligible surfaces</th><th>Correctly sized surfaces</th></tr><tr><td>Original Regions First</td><td>1</td><td>1</td><td>0</td></tr><tr><td>Snap the perimeter to image edges</td><td>1</td><td>1</td><td>0</td></tr><tr><td>Separate parallel surfaces using depth</td><td>1</td><td>1</td><td>0</td></tr></table>
+</details>
+<details><summary>light_gray_concrete/holdout-courtyard-plaster-close-front</summary>
+<p><a href="../../data/camera-gray-concrete-v1/captures/holdout-courtyard-plaster-close-front.png">Original PNG</a></p>
+<table><tr><th>Surface Finder</th><th>Correct surfaces</th><th>Eligible surfaces</th><th>Correctly sized surfaces</th></tr><tr><td>Original Regions First</td><td>1</td><td>1</td><td>0</td></tr><tr><td>Snap the perimeter to image edges</td><td>1</td><td>1</td><td>0</td></tr><tr><td>Separate parallel surfaces using depth</td><td>1</td><td>1</td><td>0</td></tr></table>
+</details>
+<details><summary>smooth_stone/holdout-courtyard-plaster-high-right</summary>
+<p><a href="../../data/camera-round-01/captures/holdout-courtyard-plaster-high-right.png">Original PNG</a></p>
+<table><tr><th>Surface Finder</th><th>Correct surfaces</th><th>Eligible surfaces</th><th>Correctly sized surfaces</th></tr><tr><td>Original Regions First</td><td>6</td><td>8</td><td>2</td></tr><tr><td>Snap the perimeter to image edges</td><td>6</td><td>8</td><td>2</td></tr><tr><td>Separate parallel surfaces using depth</td><td>7</td><td>8</td><td>3</td></tr></table>
+</details>
+<details><summary>light_gray_concrete/holdout-courtyard-plaster-high-right</summary>
+<p><a href="../../data/camera-gray-concrete-v1/captures/holdout-courtyard-plaster-high-right.png">Original PNG</a></p>
+<table><tr><th>Surface Finder</th><th>Correct surfaces</th><th>Eligible surfaces</th><th>Correctly sized surfaces</th></tr><tr><td>Original Regions First</td><td>6</td><td>8</td><td>1</td></tr><tr><td>Snap the perimeter to image edges</td><td>6</td><td>8</td><td>1</td></tr><tr><td>Separate parallel surfaces using depth</td><td>6</td><td>8</td><td>1</td></tr></table>
+</details>
+<details><summary>smooth_stone/holdout-courtyard-plaster-low-left</summary>
+<p><a href="../../data/camera-round-01/captures/holdout-courtyard-plaster-low-left.png">Original PNG</a></p>
+<table><tr><th>Surface Finder</th><th>Correct surfaces</th><th>Eligible surfaces</th><th>Correctly sized surfaces</th></tr><tr><td>Original Regions First</td><td>4</td><td>5</td><td>2</td></tr><tr><td>Snap the perimeter to image edges</td><td>4</td><td>5</td><td>2</td></tr><tr><td>Separate parallel surfaces using depth</td><td>4</td><td>5</td><td>2</td></tr></table>
+</details>
+<details><summary>light_gray_concrete/holdout-courtyard-plaster-low-left</summary>
+<p><a href="../../data/camera-gray-concrete-v1/captures/holdout-courtyard-plaster-low-left.png">Original PNG</a></p>
+<table><tr><th>Surface Finder</th><th>Correct surfaces</th><th>Eligible surfaces</th><th>Correctly sized surfaces</th></tr><tr><td>Original Regions First</td><td>2</td><td>5</td><td>1</td></tr><tr><td>Snap the perimeter to image edges</td><td>2</td><td>5</td><td>1</td></tr><tr><td>Separate parallel surfaces using depth</td><td>2</td><td>5</td><td>1</td></tr></table>
+</details>
+<details><summary>smooth_stone/holdout-portico-masonry-high-right</summary>
+<p><a href="../../data/camera-round-01/captures/holdout-portico-masonry-high-right.png">Original PNG</a></p>
+<table><tr><th>Surface Finder</th><th>Correct surfaces</th><th>Eligible surfaces</th><th>Correctly sized surfaces</th></tr><tr><td>Original Regions First</td><td>12</td><td>17</td><td>2</td></tr><tr><td>Snap the perimeter to image edges</td><td>12</td><td>17</td><td>2</td></tr><tr><td>Separate parallel surfaces using depth</td><td>13</td><td>17</td><td>2</td></tr></table>
+</details>
+<details><summary>light_gray_concrete/holdout-portico-masonry-high-right</summary>
+<p><a href="../../data/camera-gray-concrete-v1/captures/holdout-portico-masonry-high-right.png">Original PNG</a></p>
+<table><tr><th>Surface Finder</th><th>Correct surfaces</th><th>Eligible surfaces</th><th>Correctly sized surfaces</th></tr><tr><td>Original Regions First</td><td>13</td><td>17</td><td>2</td></tr><tr><td>Snap the perimeter to image edges</td><td>13</td><td>17</td><td>2</td></tr><tr><td>Separate parallel surfaces using depth</td><td>13</td><td>17</td><td>2</td></tr></table>
+</details>
+<details><summary>smooth_stone/holdout-portico-masonry-low-left</summary>
+<p><a href="../../data/camera-round-01/captures/holdout-portico-masonry-low-left.png">Original PNG</a></p>
+<table><tr><th>Surface Finder</th><th>Correct surfaces</th><th>Eligible surfaces</th><th>Correctly sized surfaces</th></tr><tr><td>Original Regions First</td><td>16</td><td>20</td><td>4</td></tr><tr><td>Snap the perimeter to image edges</td><td>16</td><td>20</td><td>4</td></tr><tr><td>Separate parallel surfaces using depth</td><td>16</td><td>20</td><td>4</td></tr></table>
+</details>
+<details><summary>light_gray_concrete/holdout-portico-masonry-low-left</summary>
+<p><a href="../../data/camera-gray-concrete-v1/captures/holdout-portico-masonry-low-left.png">Original PNG</a></p>
+<table><tr><th>Surface Finder</th><th>Correct surfaces</th><th>Eligible surfaces</th><th>Correctly sized surfaces</th></tr><tr><td>Original Regions First</td><td>16</td><td>20</td><td>3</td></tr><tr><td>Snap the perimeter to image edges</td><td>17</td><td>20</td><td>2</td></tr><tr><td>Separate parallel surfaces using depth</td><td>16</td><td>20</td><td>3</td></tr></table>
+</details>
+<details><summary>smooth_stone/holdout-portico-plaster-high-right</summary>
+<p><a href="../../data/camera-round-01/captures/holdout-portico-plaster-high-right.png">Original PNG</a></p>
+<table><tr><th>Surface Finder</th><th>Correct surfaces</th><th>Eligible surfaces</th><th>Correctly sized surfaces</th></tr><tr><td>Original Regions First</td><td>11</td><td>17</td><td>2</td></tr><tr><td>Snap the perimeter to image edges</td><td>11</td><td>17</td><td>2</td></tr><tr><td>Separate parallel surfaces using depth</td><td>12</td><td>17</td><td>2</td></tr></table>
+</details>
+<details><summary>light_gray_concrete/holdout-portico-plaster-high-right</summary>
+<p><a href="../../data/camera-gray-concrete-v1/captures/holdout-portico-plaster-high-right.png">Original PNG</a></p>
+<table><tr><th>Surface Finder</th><th>Correct surfaces</th><th>Eligible surfaces</th><th>Correctly sized surfaces</th></tr><tr><td>Original Regions First</td><td>12</td><td>17</td><td>2</td></tr><tr><td>Snap the perimeter to image edges</td><td>12</td><td>17</td><td>2</td></tr><tr><td>Separate parallel surfaces using depth</td><td>12</td><td>17</td><td>2</td></tr></table>
+</details>
+<details><summary>smooth_stone/holdout-portico-plaster-low-left</summary>
+<p><a href="../../data/camera-round-01/captures/holdout-portico-plaster-low-left.png">Original PNG</a></p>
+<table><tr><th>Surface Finder</th><th>Correct surfaces</th><th>Eligible surfaces</th><th>Correctly sized surfaces</th></tr><tr><td>Original Regions First</td><td>13</td><td>20</td><td>1</td></tr><tr><td>Snap the perimeter to image edges</td><td>13</td><td>20</td><td>1</td></tr><tr><td>Separate parallel surfaces using depth</td><td>13</td><td>20</td><td>1</td></tr></table>
+</details>
+<details><summary>light_gray_concrete/holdout-portico-plaster-low-left</summary>
+<p><a href="../../data/camera-gray-concrete-v1/captures/holdout-portico-plaster-low-left.png">Original PNG</a></p>
+<table><tr><th>Surface Finder</th><th>Correct surfaces</th><th>Eligible surfaces</th><th>Correctly sized surfaces</th></tr><tr><td>Original Regions First</td><td>13</td><td>20</td><td>1</td></tr><tr><td>Snap the perimeter to image edges</td><td>13</td><td>20</td><td>1</td></tr><tr><td>Separate parallel surfaces using depth</td><td>13</td><td>20</td><td>1</td></tr></table>
+</details>
+<details><summary>light_gray_concrete/holdout-workshop-masonry-low-left</summary>
+<p><a href="../../data/surface-confirm-v1/captures/holdout-workshop-masonry-low-left.png">Original PNG</a></p>
+<table><tr><th>Surface Finder</th><th>Correct surfaces</th><th>Eligible surfaces</th><th>Correctly sized surfaces</th></tr><tr><td>Original Regions First</td><td>3</td><td>14</td><td>1</td></tr><tr><td>Snap the perimeter to image edges</td><td>3</td><td>14</td><td>1</td></tr><tr><td>Separate parallel surfaces using depth</td><td>3</td><td>14</td><td>1</td></tr></table>
+</details>
+<details><summary>light_gray_concrete/holdout-workshop-masonry-high-right</summary>
+<p><a href="../../data/surface-confirm-v1/captures/holdout-workshop-masonry-high-right.png">Original PNG</a></p>
+<table><tr><th>Surface Finder</th><th>Correct surfaces</th><th>Eligible surfaces</th><th>Correctly sized surfaces</th></tr><tr><td>Original Regions First</td><td>7</td><td>16</td><td>0</td></tr><tr><td>Snap the perimeter to image edges</td><td>7</td><td>16</td><td>0</td></tr><tr><td>Separate parallel surfaces using depth</td><td>9</td><td>16</td><td>1</td></tr></table>
+</details>
+<details><summary>light_gray_concrete/holdout-workshop-plaster-low-left</summary>
+<p><a href="../../data/surface-confirm-v1/captures/holdout-workshop-plaster-low-left.png">Original PNG</a></p>
+<table><tr><th>Surface Finder</th><th>Correct surfaces</th><th>Eligible surfaces</th><th>Correctly sized surfaces</th></tr><tr><td>Original Regions First</td><td>3</td><td>14</td><td>0</td></tr><tr><td>Snap the perimeter to image edges</td><td>3</td><td>14</td><td>0</td></tr><tr><td>Separate parallel surfaces using depth</td><td>3</td><td>14</td><td>0</td></tr></table>
+</details>
+<details><summary>light_gray_concrete/holdout-workshop-plaster-high-right</summary>
+<p><a href="../../data/surface-confirm-v1/captures/holdout-workshop-plaster-high-right.png">Original PNG</a></p>
+<table><tr><th>Surface Finder</th><th>Correct surfaces</th><th>Eligible surfaces</th><th>Correctly sized surfaces</th></tr><tr><td>Original Regions First</td><td>9</td><td>16</td><td>0</td></tr><tr><td>Snap the perimeter to image edges</td><td>10</td><td>16</td><td>0</td></tr><tr><td>Separate parallel surfaces using depth</td><td>9</td><td>16</td><td>0</td></tr></table>
+</details>
+<details><summary>light_gray_concrete/holdout-crossing-masonry-low-left</summary>
+<p><a href="../../data/surface-confirm-v1/captures/holdout-crossing-masonry-low-left.png">Original PNG</a></p>
+<table><tr><th>Surface Finder</th><th>Correct surfaces</th><th>Eligible surfaces</th><th>Correctly sized surfaces</th></tr><tr><td>Original Regions First</td><td>9</td><td>12</td><td>1</td></tr><tr><td>Snap the perimeter to image edges</td><td>9</td><td>12</td><td>1</td></tr><tr><td>Separate parallel surfaces using depth</td><td>9</td><td>12</td><td>1</td></tr></table>
+</details>
+<details><summary>light_gray_concrete/holdout-crossing-masonry-high-right</summary>
+<p><a href="../../data/surface-confirm-v1/captures/holdout-crossing-masonry-high-right.png">Original PNG</a></p>
+<table><tr><th>Surface Finder</th><th>Correct surfaces</th><th>Eligible surfaces</th><th>Correctly sized surfaces</th></tr><tr><td>Original Regions First</td><td>7</td><td>11</td><td>0</td></tr><tr><td>Snap the perimeter to image edges</td><td>7</td><td>11</td><td>0</td></tr><tr><td>Separate parallel surfaces using depth</td><td>8</td><td>11</td><td>1</td></tr></table>
+</details>
+<details><summary>light_gray_concrete/holdout-crossing-plaster-low-left</summary>
+<p><a href="../../data/surface-confirm-v1/captures/holdout-crossing-plaster-low-left.png">Original PNG</a></p>
+<table><tr><th>Surface Finder</th><th>Correct surfaces</th><th>Eligible surfaces</th><th>Correctly sized surfaces</th></tr><tr><td>Original Regions First</td><td>9</td><td>12</td><td>1</td></tr><tr><td>Snap the perimeter to image edges</td><td>10</td><td>12</td><td>1</td></tr><tr><td>Separate parallel surfaces using depth</td><td>9</td><td>12</td><td>0</td></tr></table>
+</details>
+<details><summary>light_gray_concrete/holdout-crossing-plaster-high-right</summary>
+<p><a href="../../data/surface-confirm-v1/captures/holdout-crossing-plaster-high-right.png">Original PNG</a></p>
+<table><tr><th>Surface Finder</th><th>Correct surfaces</th><th>Eligible surfaces</th><th>Correctly sized surfaces</th></tr><tr><td>Original Regions First</td><td>4</td><td>11</td><td>0</td></tr><tr><td>Snap the perimeter to image edges</td><td>5</td><td>11</td><td>0</td></tr><tr><td>Separate parallel surfaces using depth</td><td>4</td><td>11</td><td>0</td></tr></table>
+</details>
+<details><summary>light_gray_concrete/holdout-registry-masonry-low-left</summary>
+<p><a href="../../data/normal-confirm-v1/captures/holdout-registry-masonry-low-left.png">Original PNG</a></p>
+<table><tr><th>Surface Finder</th><th>Correct surfaces</th><th>Eligible surfaces</th><th>Correctly sized surfaces</th></tr><tr><td>Original Regions First</td><td>4</td><td>7</td><td>1</td></tr><tr><td>Snap the perimeter to image edges</td><td>4</td><td>7</td><td>1</td></tr><tr><td>Separate parallel surfaces using depth</td><td>4</td><td>7</td><td>1</td></tr></table>
+</details>
+<details><summary>light_gray_concrete/holdout-registry-masonry-high-right</summary>
+<p><a href="../../data/normal-confirm-v1/captures/holdout-registry-masonry-high-right.png">Original PNG</a></p>
+<table><tr><th>Surface Finder</th><th>Correct surfaces</th><th>Eligible surfaces</th><th>Correctly sized surfaces</th></tr><tr><td>Original Regions First</td><td>7</td><td>10</td><td>2</td></tr><tr><td>Snap the perimeter to image edges</td><td>7</td><td>10</td><td>2</td></tr><tr><td>Separate parallel surfaces using depth</td><td>7</td><td>10</td><td>2</td></tr></table>
+</details>
+<details><summary>light_gray_concrete/holdout-registry-plaster-low-left</summary>
+<p><a href="../../data/normal-confirm-v1/captures/holdout-registry-plaster-low-left.png">Original PNG</a></p>
+<table><tr><th>Surface Finder</th><th>Correct surfaces</th><th>Eligible surfaces</th><th>Correctly sized surfaces</th></tr><tr><td>Original Regions First</td><td>4</td><td>7</td><td>1</td></tr><tr><td>Snap the perimeter to image edges</td><td>4</td><td>7</td><td>1</td></tr><tr><td>Separate parallel surfaces using depth</td><td>6</td><td>7</td><td>1</td></tr></table>
+</details>
+<details><summary>light_gray_concrete/holdout-registry-plaster-high-right</summary>
+<p><a href="../../data/normal-confirm-v1/captures/holdout-registry-plaster-high-right.png">Original PNG</a></p>
+<table><tr><th>Surface Finder</th><th>Correct surfaces</th><th>Eligible surfaces</th><th>Correctly sized surfaces</th></tr><tr><td>Original Regions First</td><td>6</td><td>10</td><td>2</td></tr><tr><td>Snap the perimeter to image edges</td><td>6</td><td>10</td><td>2</td></tr><tr><td>Separate parallel surfaces using depth</td><td>6</td><td>10</td><td>2</td></tr></table>
+</details>
+<details><summary>light_gray_concrete/holdout-galleries-masonry-low-left</summary>
+<p><a href="../../data/normal-confirm-v1/captures/holdout-galleries-masonry-low-left.png">Original PNG</a></p>
+<table><tr><th>Surface Finder</th><th>Correct surfaces</th><th>Eligible surfaces</th><th>Correctly sized surfaces</th></tr><tr><td>Original Regions First</td><td>14</td><td>25</td><td>2</td></tr><tr><td>Snap the perimeter to image edges</td><td>14</td><td>25</td><td>2</td></tr><tr><td>Separate parallel surfaces using depth</td><td>14</td><td>25</td><td>2</td></tr></table>
+</details>
+<details><summary>light_gray_concrete/holdout-galleries-masonry-high-right</summary>
+<p><a href="../../data/normal-confirm-v1/captures/holdout-galleries-masonry-high-right.png">Original PNG</a></p>
+<table><tr><th>Surface Finder</th><th>Correct surfaces</th><th>Eligible surfaces</th><th>Correctly sized surfaces</th></tr><tr><td>Original Regions First</td><td>20</td><td>24</td><td>5</td></tr><tr><td>Snap the perimeter to image edges</td><td>20</td><td>24</td><td>5</td></tr><tr><td>Separate parallel surfaces using depth</td><td>21</td><td>24</td><td>5</td></tr></table>
+</details>
+<details><summary>light_gray_concrete/holdout-galleries-plaster-low-left</summary>
+<p><a href="../../data/normal-confirm-v1/captures/holdout-galleries-plaster-low-left.png">Original PNG</a></p>
+<table><tr><th>Surface Finder</th><th>Correct surfaces</th><th>Eligible surfaces</th><th>Correctly sized surfaces</th></tr><tr><td>Original Regions First</td><td>14</td><td>25</td><td>3</td></tr><tr><td>Snap the perimeter to image edges</td><td>14</td><td>25</td><td>3</td></tr><tr><td>Separate parallel surfaces using depth</td><td>14</td><td>25</td><td>3</td></tr></table>
+</details>
+<details><summary>light_gray_concrete/holdout-galleries-plaster-high-right</summary>
+<p><a href="../../data/normal-confirm-v1/captures/holdout-galleries-plaster-high-right.png">Original PNG</a></p>
+<table><tr><th>Surface Finder</th><th>Correct surfaces</th><th>Eligible surfaces</th><th>Correctly sized surfaces</th></tr><tr><td>Original Regions First</td><td>18</td><td>24</td><td>1</td></tr><tr><td>Snap the perimeter to image edges</td><td>18</td><td>24</td><td>1</td></tr><tr><td>Separate parallel surfaces using depth</td><td>18</td><td>24</td><td>1</td></tr></table>
+</details>
+<p><a href="manifest.json">Run manifest</a> · <a href="cases.json">Per-picture numbers</a> · <a href="selection.json">Development choice</a></p></html>

@@ -1,0 +1,31 @@
+{
+  "method": "ledge-corner-cut",
+  "settings": {
+    "min_agreement": 0.6,
+    "min_segment_px": 16,
+    "boundary_distance_px": 6,
+    "min_aligned_samples": 4,
+    "min_boundary_fraction": 0.25,
+    "min_aligned_span_px": 12,
+    "tangent_tolerance_degrees": 39,
+    "junction_angle_degrees": 28,
+    "junction_radius_px": 8,
+    "max_boundary_end_distance_px": 14,
+    "continuation_px": 12
+  },
+  "baseline_gate": {
+    "max_vertical_normal_y": 0.5,
+    "min_parent_share": 0.035,
+    "min_side_area": 24,
+    "min_containment": 0.55,
+    "max_parent_share": 0.92,
+    "min_sample_pairs": 6,
+    "near_distance": 0,
+    "far_distance": 2,
+    "min_step": 0.001,
+    "min_agreement": 0.7,
+    "min_seed_samples": 12
+  },
+  "default": "single-v2",
+  "freeze": "One fixed rule before processing development. No search or retuning. Development first, regression second."
+}

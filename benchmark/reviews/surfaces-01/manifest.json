@@ -1,0 +1,300 @@
+{
+  "run_id": "surfaces-01",
+  "code": {
+    "commit": "57b829b02de0af47e6ccabc3b9b5b00090fac174",
+    "predictor_and_runner_sha256": "9498c446ff909a6bc2b05427dfbb3be15bb2805100ae11713eeffe5116c7a427",
+    "source_dirty": false
+  },
+  "version": "26.3",
+  "client_sha256": "4508d006323f24fa02876310c192d739af56516eb259000ac50f0909a68c9a2d",
+  "environment": {
+    "python": "3.12.14",
+    "numpy": "2.3.5",
+    "pillow": "13.0.0"
+  },
+  "capture": {
+    "clock_ticks": 6000,
+    "raining": false,
+    "thundering": false,
+    "resource_packs": [
+      "vanilla"
+    ],
+    "hud_hidden": true,
+    "image_size": [
+      1440,
+      900
+    ]
+  },
+  "split": {
+    "dev": [
+      "shopfront",
+      "wing"
+    ],
+    "regression": [
+      "courtyard",
+      "portico"
+    ],
+    "confirmation": [
+      "crossing",
+      "workshop"
+    ]
+  },
+  "releases": {
+    "smooth_stone": "660d1e535ae134452bca903a9d7cbe8d37953927fa118d9ffb327afad0885bc2",
+    "light_gray_concrete": "321505e15563f8efc0da868baa27409837aaa474410a61f3513b3dac0030f066",
+    "surface-confirm-v1": "0a479a8264f2c0f714284928354ff6ff5f9729491709676f07e2033d25e48fc3"
+  },
+  "confirmation_world": {
+    "archive": "../../worlds/surface-confirm-v1/workshop-and-crossing.zip",
+    "sha256": "25b4fd835d3f65915ff6d75d5869db880bc106adeed23b266b9056ca824eb90a"
+  },
+  "stages": {
+    "outlines": "edges+shade",
+    "pitch": "repeat"
+  },
+  "methods": {
+    "outlines": [
+      "contact",
+      "edges",
+      "edges+shade"
+    ],
+    "pitch": [
+      "texel",
+      "repeat"
+    ],
+    "lift": "shared-edges-v1"
+  },
+  "settings": {
+    "outlines": {
+      "analysis_width": 580,
+      "blur_px": 1.4,
+      "region_scale": 185.0,
+      "min_region_px": 18,
+      "min_face_purity": 0.8,
+      "min_quad_area": 42.0,
+      "max_patches": 65
+    },
+    "shade_weight": 0.22,
+    "pitch": {
+      "texels_per_block": 16,
+      "scanlines": 40,
+      "oversampling": 2.5,
+      "maximum_samples": 3072,
+      "minimum_native_period_px": 1.65,
+      "minimum_color_step": 3.0,
+      "minimum_effective_texel_bins": 9.0,
+      "phase_bins": 96
+    },
+    "lift": {
+      "assumed_vertical_fov_degrees": 70,
+      "shared_edge_tolerance_px": 5,
+      "minimum_shared_edge_px": 10,
+      "max_relative_edge_disagreement": 0.2,
+      "max_pitch_anisotropy": 1.25,
+      "min_fold_degrees": 12
+    },
+    "reference_methods": [
+      "engine.camera_grid:seam-fit/contact_planes",
+      "engine.texel_grid:texel_grid"
+    ]
+  },
+  "selection_rule": {
+    "outlines": "Maximize mean development-layout plane F1 at IoU 0.5. Tie: registry order.",
+    "pitch": "Maximize layout-mean net correct count rate on diagnostic charts (+1 both spans within half a block, -1 wrong, 0 abstain). Tie: more accurate registered grids, then registry order."
+  },
+  "confirmation": {
+    "frames": 8,
+    "outlines": {
+      "contact": {
+        "matched": 0,
+        "eligible": 106,
+        "proposed": 0,
+        "precision": null,
+        "recall": 0.0,
+        "f1": 0.0,
+        "foreground_spill": null
+      },
+      "edges": {
+        "matched": 16,
+        "eligible": 106,
+        "proposed": 97,
+        "precision": 0.16494845360824742,
+        "recall": 0.1509433962264151,
+        "f1": 0.15763546798029557,
+        "foreground_spill": 0.003541185527328714
+      },
+      "edges+shade": {
+        "matched": 11,
+        "eligible": 106,
+        "proposed": 79,
+        "precision": 0.13924050632911392,
+        "recall": 0.10377358490566038,
+        "f1": 0.11891891891891893,
+        "foreground_spill": 0.004226502089236828
+      }
+    },
+    "pitch": {
+      "texel": {
+        "oracle": {
+          "charts": 62,
+          "counts_returned": 62,
+          "within_half_block": 3,
+          "charts_with_grid_points": 62,
+          "accurate_registered": 0,
+          "registered_rate": 0.0,
+          "accurate_rate": 0.04838709677419355,
+          "net_correct_rate": -0.9032258064516129,
+          "grid_precision": 0.06342182890855458,
+          "grid_recall": 0.19491525423728814
+        },
+        "auto": {
+          "charts": 11,
+          "counts_returned": 11,
+          "within_half_block": 0,
+          "charts_with_grid_points": 11,
+          "accurate_registered": 0,
+          "registered_rate": 0.0,
+          "accurate_rate": 0.0,
+          "net_correct_rate": -1.0,
+          "grid_precision": 0.026156941649899398,
+          "grid_recall": 0.125
+        }
+      },
+      "repeat": {
+        "oracle": {
+          "charts": 62,
+          "counts_returned": 26,
+          "within_half_block": 26,
+          "charts_with_grid_points": 2,
+          "accurate_registered": 2,
+          "registered_rate": 0.03225806451612903,
+          "accurate_rate": 0.41935483870967744,
+          "net_correct_rate": 0.41935483870967744,
+          "grid_precision": 1.0,
+          "grid_recall": 0.053268765133171914
+        },
+        "auto": {
+          "charts": 11,
+          "counts_returned": 1,
+          "within_half_block": 1,
+          "charts_with_grid_points": 0,
+          "accurate_registered": 0,
+          "registered_rate": 0.0,
+          "accurate_rate": 0.09090909090909091,
+          "net_correct_rate": 0.09090909090909091,
+          "grid_precision": 0.0,
+          "grid_recall": 0.0
+        }
+      }
+    },
+    "lift": {
+      "texel": {
+        "estimated_lift": {
+          "matched": 11,
+          "normals": 11,
+          "within_15_degrees": 2,
+          "median_normal_error_degrees": 24.03079795069615,
+          "metric_depths": 1,
+          "within_one_block": 0,
+          "median_depth_error_blocks": 3.3389366507449623
+        },
+        "known_lift": {
+          "matched": 11,
+          "normals": 11,
+          "within_15_degrees": 1,
+          "median_normal_error_degrees": 20.502952303757162,
+          "metric_depths": 0,
+          "within_one_block": 0,
+          "median_depth_error_blocks": null
+        }
+      },
+      "repeat": {
+        "estimated_lift": {
+          "matched": 11,
+          "normals": 11,
+          "within_15_degrees": 2,
+          "median_normal_error_degrees": 24.03079795069615,
+          "metric_depths": 2,
+          "within_one_block": 0,
+          "median_depth_error_blocks": 11.381920864270938
+        },
+        "known_lift": {
+          "matched": 11,
+          "normals": 11,
+          "within_15_degrees": 1,
+          "median_normal_error_degrees": 20.502952303757162,
+          "metric_depths": 2,
+          "within_one_block": 1,
+          "median_depth_error_blocks": 1.3888566748969513
+        }
+      }
+    },
+    "connections": {
+      "texel": 3,
+      "repeat": 3
+    }
+  },
+  "confirmation_topology": {
+    "frames": 8,
+    "openings": {
+      "contact": {
+        "opening_pixels": 4028,
+        "filled_pixels": 0,
+        "frames_with_openings": 8,
+        "frames_with_filled_openings": 0,
+        "filled_fraction": 0.0
+      },
+      "edges": {
+        "opening_pixels": 4028,
+        "filled_pixels": 37,
+        "frames_with_openings": 8,
+        "frames_with_filled_openings": 2,
+        "filled_fraction": 0.009185700099304866
+      },
+      "edges+shade": {
+        "opening_pixels": 4028,
+        "filled_pixels": 38,
+        "frames_with_openings": 8,
+        "frames_with_filled_openings": 2,
+        "filled_fraction": 0.009433962264150943
+      }
+    },
+    "junctions": {
+      "texel": {
+        "joins": 3,
+        "matched_distinct": 1,
+        "measured": 1,
+        "supported": 1,
+        "max_endpoint_delta_blocks": 0.3207167961899664,
+        "median_larger_endpoint_delta_blocks": 0.3207167961899664,
+        "supported_per_join": 0.3333333333333333,
+        "supported_per_measured": 1.0
+      },
+      "repeat": {
+        "joins": 3,
+        "matched_distinct": 1,
+        "measured": 1,
+        "supported": 1,
+        "max_endpoint_delta_blocks": 0.3207167961899664,
+        "median_larger_endpoint_delta_blocks": 0.3207167961899664,
+        "supported_per_join": 0.3333333333333333,
+        "supported_per_measured": 1.0
+      }
+    }
+  },
+  "artifacts": {
+    "review": "comparison.jpg",
+    "gallery": "fixtures.jpg",
+    "scores": "scores.json",
+    "selection": "selection.json",
+    "floors": "floor-scores.json",
+    "topology": "topology.json",
+    "review_regions": "review-regions.json",
+    "cases": "cases.json",
+    "per_case": [
+      "outlines.json",
+      "surfaces.json"
+    ],
+    "visual_feedback": "feedback.jsonl"
+  }
+}

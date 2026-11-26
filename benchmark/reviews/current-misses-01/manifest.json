@@ -1,0 +1,176 @@
+{
+  "run_id": "current-misses-01",
+  "code": {
+    "commit": "24dc95fc6997b3ff7f0713e2b3f0ab4d784b982c",
+    "predictor_and_runner_sha256": "c2c4b387e7ee5cb10bbfd9c278e0ab4009f86ce935499b8fde7cfcf3dd460d29",
+    "source_dirty": false
+  },
+  "method": "wall-recovery-single-v2",
+  "source_manifests": {
+    "single-wall-depth-01": "1ad02ad7519d8c0a65d4b49da3fad778cb208fbcf4ea4b6db897cce552754edb",
+    "mobile-regions-01": "46a62cf9ec80de7c308dee379672528ecad6c07faee98856c9f3a9c0087363da"
+  },
+  "fixtures": {
+    "smooth_stone": "660d1e535ae134452bca903a9d7cbe8d37953927fa118d9ffb327afad0885bc2",
+    "light_gray_concrete": "321505e15563f8efc0da868baa27409837aaa474410a61f3513b3dac0030f066",
+    "surface_confirm_v1": "0a479a8264f2c0f714284928354ff6ff5f9729491709676f07e2033d25e48fc3",
+    "normal_confirm_v1": "61bdf3a89a505a8be3757efe480185bec9c1888a1c72ffb69ef0093623e27dda"
+  },
+  "reference_sha256": "91efa6d3e992b1a68672eae1fdd6d380e87724742a1a4b6cbe5f84d284f731a1",
+  "totals": {
+    "eligible": 598,
+    "found": 501,
+    "missed": 97,
+    "merged": 64,
+    "parallel_step": 44,
+    "in_raw_sam": 39,
+    "in_filtered_sam": 18,
+    "orientation": {
+      "vertical": 80,
+      "top": 13,
+      "underside": 4
+    }
+  },
+  "examples": [
+    {
+      "frame": "light_gray_concrete/dev-shopfront-plaster-high-right",
+      "sha256": "4cc1d5687db72eef74f23fc291fb7916b3f481ed4998d9e1c850024039d38cce",
+      "stage": "Surface Finder",
+      "reference": 5,
+      "crop_xyxy": [
+        564,
+        362,
+        1052,
+        703
+      ],
+      "scene_xyxy": [
+        449,
+        262,
+        1099,
+        749
+      ],
+      "closest": {
+        "found": false,
+        "overlap": 0.4178445229681979,
+        "proposal": "mask-1-wall-1",
+        "index": 3
+      },
+      "target_coverage": 0.42574257425742573,
+      "diagnostic": {
+        "parts": [
+          "mask-1-wall-1",
+          "mask-3"
+        ],
+        "overlap": 0.6981546572934973
+      }
+    },
+    {
+      "frame": "smooth_stone/dev-wing-plaster-high-right",
+      "sha256": "49832e903f4455c88c44f51da20abc550516d208783af9e3d05edc85ff4116a9",
+      "stage": "Surface Finder",
+      "reference": 2,
+      "crop_xyxy": [
+        346,
+        253,
+        839,
+        719
+      ],
+      "scene_xyxy": [
+        297,
+        204,
+        1055,
+        768
+      ],
+      "closest": {
+        "found": false,
+        "overlap": 0.1365801198340759,
+        "proposal": "mask-1",
+        "index": 2
+      },
+      "target_coverage": 0.13795779019242707,
+      "diagnostic": {
+        "mobile_proposal": 9,
+        "overlap": 0.8680216802168021,
+        "inside_starting_outline": 0.3154453827295015
+      }
+    },
+    {
+      "frame": "light_gray_concrete/holdout-workshop-masonry-low-left",
+      "sha256": "ae86fd9911640c7397bc929d3e0ca1076d84312b5500712cf2c4ec25e7c9112f",
+      "stage": "Surface Finder",
+      "reference": 13,
+      "crop_xyxy": [
+        862,
+        427,
+        996,
+        535
+      ],
+      "scene_xyxy": [
+        351,
+        166,
+        1044,
+        696
+      ],
+      "closest": {
+        "found": false,
+        "overlap": 0.04152005629838142,
+        "proposal": "mask-0-mobile-1",
+        "index": 2
+      },
+      "target_coverage": 1.0,
+      "diagnostic": {
+        "mobile_proposal": 632,
+        "overlap": 0.9722222222222222,
+        "vote": {
+          "parent": "mask-0-mobile-1",
+          "proposal": 632,
+          "accepted": false,
+          "children": [],
+          "median_jump": 0.004521921337866108,
+          "median_step": 0.0029951078823677903,
+          "sign_agreement": 0.6666666666666666,
+          "sample_count": 24
+        }
+      }
+    },
+    {
+      "frame": "light_gray_concrete/holdout-galleries-masonry-low-left",
+      "sha256": "d0fba67900a91a20d0120f298c8783829953bc21c7d45fb4413a8cb829cfddc3",
+      "stage": "Surface Finder",
+      "reference": 13,
+      "crop_xyxy": [
+        796,
+        429,
+        984,
+        546
+      ],
+      "scene_xyxy": [
+        362,
+        223,
+        1109,
+        706
+      ],
+      "closest": {
+        "found": false,
+        "overlap": 0.36363636363636365,
+        "proposal": "underside-0",
+        "index": 28
+      },
+      "target_coverage": 0.4722222222222222,
+      "diagnostic": {
+        "target_coverage": 0.8472222222222222
+      }
+    }
+  ],
+  "settings": "Saved production masks, official one-to-one scoring. Four illustrative errors selected after grading. The diagnostic row uses reference geometry for selection or coverage. No inference or tuning.",
+  "dimensions": [
+    1968,
+    2411
+  ],
+  "reproduce": "python -m benchmark.current_misses_sheet --out runs/current-misses-review",
+  "artifacts": {
+    "missed-surfaces.jpg": "5d57a10e3cda7bde62c883fbc034949cb07ad29f7acfa1ebed6a80d5aaccf7b0",
+    "frames.json": "fcf703296e5c1d2c2f099e2f6b7cde6ebc8e81fac842312298f7ea8b00c6a277",
+    "pictures.md": "2be308e1ffc95753431406716344efd934ad4ebb9fe193e02f8daff3ed5a1edd"
+  }
+}

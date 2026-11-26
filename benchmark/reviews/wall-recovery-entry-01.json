@@ -1,0 +1,54 @@
+{
+  "fixture": "light_gray_concrete/holdout-galleries-plaster-low-left",
+  "screenshot_sha256": "0fec6765b63937520e2a731a9171eef73e631ce1d47734e3925e2165b64a26c0",
+  "original_png_basename": "holdout-galleries-plaster-low-left.png",
+  "stage_order": [
+    "color-edges",
+    "wall-depth-anything",
+    "junction-cuts",
+    "strip-mlsd",
+    "mobile-wall-split"
+  ],
+  "model_sha256": {
+    "normal": "24eacb5dc7a2c54c7bc98f7de085ffbed79ad006ea5b664c2c2cdc02ff3a52f0",
+    "depth": "fcf51f1b230362b28690bb9d1809bf0431f29cad20534e3f589bd7285547f20d",
+    "mlsd": "e869f90601ffa263f21ac47e09ff0d65dc936d1aeb47126b8499d5504adfb100",
+    "scalelsd": "d0a7333c4de518a70af7d6ea4a283aa0ce9ffe1047525373b94070b1d1d4003f",
+    "mobilesam": "6dbb90523a35330fedd7f1d3dfc66f995213d81b29a5ca8108dbcdd4e37d6c2f"
+  },
+  "visible_proposals": 30,
+  "reference_surfaces": 25,
+  "matched": 19,
+  "assignments": {
+    "mask-0-junction-0": 25,
+    "mask-0-junction-1-mobile-1": 28,
+    "mask-0-junction-1-mobile-2": 30,
+    "mask-0-junction-1-mobile-5": 29,
+    "mask-0-junction-1-mobile-6": 27,
+    "mask-1": 19,
+    "mask-2": 26,
+    "mask-3": 20,
+    "mask-4": 16,
+    "mask-5": 24,
+    "mask-6": 12,
+    "mask-7": 23,
+    "mask-8": 21,
+    "mask-9": 8,
+    "mask-10": 11,
+    "mask-12": 9,
+    "mask-13": 1,
+    "mask-14": 4,
+    "mask-15": 10
+  },
+  "mobile_additional_reference_ids": [
+    27,
+    28,
+    29,
+    30
+  ],
+  "all_saved_region_properties_equal": true,
+  "canonical_regions_sha256": "ba032ff32d6f087a2db8946be4c2af0c18992926a131ac0dde2400640beb77e5",
+  "source_prediction_sha256": "76d2a6d83413e907b7cc01ef37ef6bc6edc22494071e2c65a83af96abf90d58b",
+  "counter": "masked-repeat",
+  "block_count_records": 30
+}

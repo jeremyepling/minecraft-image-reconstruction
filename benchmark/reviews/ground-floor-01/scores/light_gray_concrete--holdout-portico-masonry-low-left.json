@@ -1,0 +1,71 @@
+{
+  "id": "holdout-portico-masonry-low-left",
+  "floor": "light_gray_concrete",
+  "layout": "portico",
+  "split": "holdout",
+  "condition": "ground-visible",
+  "metric": false,
+  "vertices": 283,
+  "spans": 56,
+  "within_2px": 0,
+  "projected": 0,
+  "measured_spans": 0,
+  "mean_px": null,
+  "p90_px": null,
+  "span_mae": null,
+  "relative_span_error": null,
+  "axis_mae_deg": null,
+  "fov_error_deg": null,
+  "charts": [
+    {
+      "axis": 0,
+      "plane": 1548,
+      "expected": [
+        5,
+        4
+      ]
+    },
+    {
+      "axis": 2,
+      "plane": 2,
+      "expected": [
+        13,
+        5
+      ]
+    }
+  ],
+  "hit_rate": 0.0,
+  "endpoint_diagnostic": {
+    "total": 0,
+    "measured": 0,
+    "abstained": 0,
+    "mean_abs_error_pct": null,
+    "cases": []
+  },
+  "automatic_charts": {
+    "total": 2,
+    "measured": 0,
+    "abstained": 2,
+    "mean_abs_error_pct": null,
+    "cases": [
+      {
+        "axis": 0,
+        "plane": 1548,
+        "plane_error_blocks": null,
+        "expected_ratio": 0.8,
+        "predicted_ratio": null,
+        "abs_error_pct": null,
+        "reason": "no_automatic_chart"
+      },
+      {
+        "axis": 2,
+        "plane": 2,
+        "plane_error_blocks": null,
+        "expected_ratio": 2.6,
+        "predicted_ratio": null,
+        "abs_error_pct": null,
+        "reason": "no_automatic_chart"
+      }
+    ]
+  }
+}

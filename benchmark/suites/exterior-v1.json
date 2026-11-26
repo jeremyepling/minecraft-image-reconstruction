@@ -1,0 +1,39 @@
+{
+  "schema": 1,
+  "id": "exterior-v1",
+  "version": "26.3",
+  "capture_conditions": {
+    "clock_ticks": 6000,
+    "raining": false,
+    "thundering": false,
+    "resource_packs": ["vanilla"],
+    "hud_hidden": true,
+    "image_size": [1440, 900]
+  },
+  "client_sha256": "4508d006323f24fa02876310c192d739af56516eb259000ac50f0909a68c9a2d",
+  "pairs": 20,
+  "split_unit": "underlying layout across all poses, palettes and floors",
+  "layouts": {
+    "dev": ["shopfront", "wing"],
+    "holdout": ["courtyard", "portico"]
+  },
+  "cohort_status": "All four layouts have been reviewed. The historical holdout is a fixed regression cohort.",
+  "conditions": {
+    "smooth_stone": {
+      "index": "../data/camera-round-01/index.json",
+      "sha256": "660d1e535ae134452bca903a9d7cbe8d37953927fa118d9ffb327afad0885bc2"
+    },
+    "light_gray_concrete": {
+      "index": "../data/camera-gray-concrete-v1/index.json",
+      "sha256": "321505e15563f8efc0da868baa27409837aaa474410a61f3513b3dac0030f066"
+    }
+  },
+  "pair_audit": {
+    "path": "../data/camera-gray-concrete-v1/pair-verification.json",
+    "sha256": "4aa92d26745ff20f6981a7d763d89861602a6ac83c9c73cf319a43a687258a5f"
+  },
+  "world_archives": {
+    "index": "../worlds/exterior-v1/world-index.json",
+    "sha256": "747b3c4d2b0eac1cda809a38ec899e8696d8d79ccd4faf575ce3c63c27b0b8c8"
+  }
+}

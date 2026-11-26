@@ -1,0 +1,408 @@
+{
+  "rule": {
+    "outlines": "Maximize mean development-layout plane F1 at IoU 0.5. Tie: registry order.",
+    "pitch": "Maximize layout-mean net correct count rate on diagnostic charts (+1 both spans within half a block, -1 wrong, 0 abstain). Tie: more accurate registered grids, then registry order."
+  },
+  "selected": {
+    "outlines": "edges+shade",
+    "pitch": "repeat"
+  },
+  "development": {
+    "all": {
+      "frames": 20,
+      "outlines": {
+        "contact": {
+          "matched": 6,
+          "eligible": 156,
+          "proposed": 16,
+          "precision": 0.375,
+          "recall": 0.038461538461538464,
+          "f1": 0.06976744186046512,
+          "foreground_spill": 0.09368964224970451
+        },
+        "edges": {
+          "matched": 30,
+          "eligible": 156,
+          "proposed": 167,
+          "precision": 0.17964071856287425,
+          "recall": 0.19230769230769232,
+          "f1": 0.18575851393188855,
+          "foreground_spill": 0.011848536438025152
+        },
+        "edges+shade": {
+          "matched": 28,
+          "eligible": 156,
+          "proposed": 133,
+          "precision": 0.21052631578947367,
+          "recall": 0.1794871794871795,
+          "f1": 0.19377162629757785,
+          "foreground_spill": 0.012547087800637496
+        }
+      },
+      "pitch": {
+        "texel": {
+          "oracle": {
+            "charts": 88,
+            "counts_returned": 88,
+            "within_half_block": 4,
+            "charts_with_grid_points": 88,
+            "accurate_registered": 0,
+            "registered_rate": 0.0,
+            "accurate_rate": 0.045454545454545456,
+            "net_correct_rate": -0.9090909090909091,
+            "grid_precision": 0.024598615407276477,
+            "grid_recall": 0.18688118811881188
+          },
+          "auto": {
+            "charts": 28,
+            "counts_returned": 28,
+            "within_half_block": 4,
+            "charts_with_grid_points": 28,
+            "accurate_registered": 0,
+            "registered_rate": 0.0,
+            "accurate_rate": 0.14285714285714285,
+            "net_correct_rate": -0.7142857142857143,
+            "grid_precision": 0.04350025290844714,
+            "grid_recall": 0.1423728813559322
+          }
+        },
+        "repeat": {
+          "oracle": {
+            "charts": 88,
+            "counts_returned": 28,
+            "within_half_block": 28,
+            "charts_with_grid_points": 4,
+            "accurate_registered": 4,
+            "registered_rate": 0.045454545454545456,
+            "accurate_rate": 0.3181818181818182,
+            "net_correct_rate": 0.3181818181818182,
+            "grid_precision": 1.0,
+            "grid_recall": 0.018564356435643563
+          },
+          "auto": {
+            "charts": 28,
+            "counts_returned": 2,
+            "within_half_block": 2,
+            "charts_with_grid_points": 0,
+            "accurate_registered": 0,
+            "registered_rate": 0.0,
+            "accurate_rate": 0.07142857142857142,
+            "net_correct_rate": 0.07142857142857142,
+            "grid_precision": 0.0,
+            "grid_recall": 0.0
+          }
+        }
+      },
+      "lift": {
+        "texel": {
+          "estimated_lift": {
+            "matched": 28,
+            "normals": 28,
+            "within_15_degrees": 8,
+            "median_normal_error_degrees": 23.077292226021562,
+            "metric_depths": 7,
+            "within_one_block": 0,
+            "median_depth_error_blocks": 13.794887403925596
+          },
+          "known_lift": {
+            "matched": 28,
+            "normals": 28,
+            "within_15_degrees": 11,
+            "median_normal_error_degrees": 20.00276076770877,
+            "metric_depths": 7,
+            "within_one_block": 0,
+            "median_depth_error_blocks": 17.689324494903172
+          }
+        },
+        "repeat": {
+          "estimated_lift": {
+            "matched": 28,
+            "normals": 28,
+            "within_15_degrees": 8,
+            "median_normal_error_degrees": 23.077292226021562,
+            "metric_depths": 2,
+            "within_one_block": 0,
+            "median_depth_error_blocks": 2.5209629151242545
+          },
+          "known_lift": {
+            "matched": 28,
+            "normals": 28,
+            "within_15_degrees": 11,
+            "median_normal_error_degrees": 20.00276076770877,
+            "metric_depths": 2,
+            "within_one_block": 2,
+            "median_depth_error_blocks": 0.4639411395710198
+          }
+        }
+      },
+      "connections": {
+        "texel": 6,
+        "repeat": 6
+      }
+    },
+    "shopfront": {
+      "frames": 8,
+      "outlines": {
+        "contact": {
+          "matched": 0,
+          "eligible": 120,
+          "proposed": 8,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "foreground_spill": 0.14218771856203666
+        },
+        "edges": {
+          "matched": 12,
+          "eligible": 120,
+          "proposed": 115,
+          "precision": 0.10434782608695652,
+          "recall": 0.1,
+          "f1": 0.10212765957446808,
+          "foreground_spill": 0.018273499116493556
+        },
+        "edges+shade": {
+          "matched": 10,
+          "eligible": 120,
+          "proposed": 87,
+          "precision": 0.11494252873563218,
+          "recall": 0.08333333333333333,
+          "f1": 0.0966183574879227,
+          "foreground_spill": 0.021624929871984496
+        }
+      },
+      "pitch": {
+        "texel": {
+          "oracle": {
+            "charts": 52,
+            "counts_returned": 52,
+            "within_half_block": 2,
+            "charts_with_grid_points": 52,
+            "accurate_registered": 0,
+            "registered_rate": 0.0,
+            "accurate_rate": 0.038461538461538464,
+            "net_correct_rate": -0.9230769230769231,
+            "grid_precision": 0.08586232420429311,
+            "grid_recall": 0.31645569620253167
+          },
+          "auto": {
+            "charts": 10,
+            "counts_returned": 10,
+            "within_half_block": 2,
+            "charts_with_grid_points": 10,
+            "accurate_registered": 0,
+            "registered_rate": 0.0,
+            "accurate_rate": 0.2,
+            "net_correct_rate": -0.6,
+            "grid_precision": 0.025280898876404494,
+            "grid_recall": 0.14754098360655737
+          }
+        },
+        "repeat": {
+          "oracle": {
+            "charts": 52,
+            "counts_returned": 12,
+            "within_half_block": 12,
+            "charts_with_grid_points": 0,
+            "accurate_registered": 0,
+            "registered_rate": 0.0,
+            "accurate_rate": 0.23076923076923078,
+            "net_correct_rate": 0.23076923076923078,
+            "grid_precision": 0.0,
+            "grid_recall": 0.0
+          },
+          "auto": {
+            "charts": 10,
+            "counts_returned": 2,
+            "within_half_block": 2,
+            "charts_with_grid_points": 0,
+            "accurate_registered": 0,
+            "registered_rate": 0.0,
+            "accurate_rate": 0.2,
+            "net_correct_rate": 0.2,
+            "grid_precision": 0.0,
+            "grid_recall": 0.0
+          }
+        }
+      },
+      "lift": {
+        "texel": {
+          "estimated_lift": {
+            "matched": 10,
+            "normals": 10,
+            "within_15_degrees": 2,
+            "median_normal_error_degrees": 33.659890097279074,
+            "metric_depths": 3,
+            "within_one_block": 0,
+            "median_depth_error_blocks": 9.908046568477738
+          },
+          "known_lift": {
+            "matched": 10,
+            "normals": 10,
+            "within_15_degrees": 2,
+            "median_normal_error_degrees": 34.18850059076286,
+            "metric_depths": 3,
+            "within_one_block": 0,
+            "median_depth_error_blocks": 3.995108477564589
+          }
+        },
+        "repeat": {
+          "estimated_lift": {
+            "matched": 10,
+            "normals": 10,
+            "within_15_degrees": 2,
+            "median_normal_error_degrees": 33.659890097279074,
+            "metric_depths": 2,
+            "within_one_block": 0,
+            "median_depth_error_blocks": 2.5209629151242545
+          },
+          "known_lift": {
+            "matched": 10,
+            "normals": 10,
+            "within_15_degrees": 2,
+            "median_normal_error_degrees": 34.18850059076286,
+            "metric_depths": 2,
+            "within_one_block": 2,
+            "median_depth_error_blocks": 0.4639411395710198
+          }
+        }
+      },
+      "connections": {
+        "texel": 5,
+        "repeat": 5
+      }
+    },
+    "wing": {
+      "frames": 12,
+      "outlines": {
+        "contact": {
+          "matched": 6,
+          "eligible": 36,
+          "proposed": 8,
+          "precision": 0.75,
+          "recall": 0.16666666666666666,
+          "f1": 0.2727272727272727,
+          "foreground_spill": 0.05968319356578883
+        },
+        "edges": {
+          "matched": 18,
+          "eligible": 36,
+          "proposed": 52,
+          "precision": 0.34615384615384615,
+          "recall": 0.5,
+          "f1": 0.4090909090909091,
+          "foreground_spill": 0.008844921725464912
+        },
+        "edges+shade": {
+          "matched": 18,
+          "eligible": 36,
+          "proposed": 46,
+          "precision": 0.391304347826087,
+          "recall": 0.5,
+          "f1": 0.43902439024390244,
+          "foreground_spill": 0.008945014469876349
+        }
+      },
+      "pitch": {
+        "texel": {
+          "oracle": {
+            "charts": 36,
+            "counts_returned": 36,
+            "within_half_block": 2,
+            "charts_with_grid_points": 36,
+            "accurate_registered": 0,
+            "registered_rate": 0.0,
+            "accurate_rate": 0.05555555555555555,
+            "net_correct_rate": -0.8888888888888888,
+            "grid_precision": 0.009378447958808385,
+            "grid_recall": 0.10365853658536585
+          },
+          "auto": {
+            "charts": 18,
+            "counts_returned": 18,
+            "within_half_block": 2,
+            "charts_with_grid_points": 18,
+            "accurate_registered": 0,
+            "registered_rate": 0.0,
+            "accurate_rate": 0.1111111111111111,
+            "net_correct_rate": -0.7777777777777778,
+            "grid_precision": 0.047501542257865514,
+            "grid_recall": 0.14177693761814744
+          }
+        },
+        "repeat": {
+          "oracle": {
+            "charts": 36,
+            "counts_returned": 16,
+            "within_half_block": 16,
+            "charts_with_grid_points": 4,
+            "accurate_registered": 4,
+            "registered_rate": 0.1111111111111111,
+            "accurate_rate": 0.4444444444444444,
+            "net_correct_rate": 0.4444444444444444,
+            "grid_precision": 1.0,
+            "grid_recall": 0.03048780487804878
+          },
+          "auto": {
+            "charts": 18,
+            "counts_returned": 0,
+            "within_half_block": 0,
+            "charts_with_grid_points": 0,
+            "accurate_registered": 0,
+            "registered_rate": 0.0,
+            "accurate_rate": 0.0,
+            "net_correct_rate": 0.0,
+            "grid_precision": 0.0,
+            "grid_recall": 0.0
+          }
+        }
+      },
+      "lift": {
+        "texel": {
+          "estimated_lift": {
+            "matched": 18,
+            "normals": 18,
+            "within_15_degrees": 6,
+            "median_normal_error_degrees": 18.640438450946448,
+            "metric_depths": 4,
+            "within_one_block": 0,
+            "median_depth_error_blocks": 39.85135107868611
+          },
+          "known_lift": {
+            "matched": 18,
+            "normals": 18,
+            "within_15_degrees": 9,
+            "median_normal_error_degrees": 14.128859027983806,
+            "metric_depths": 4,
+            "within_one_block": 0,
+            "median_depth_error_blocks": 41.750460102839504
+          }
+        },
+        "repeat": {
+          "estimated_lift": {
+            "matched": 18,
+            "normals": 18,
+            "within_15_degrees": 6,
+            "median_normal_error_degrees": 18.640438450946448,
+            "metric_depths": 0,
+            "within_one_block": 0,
+            "median_depth_error_blocks": null
+          },
+          "known_lift": {
+            "matched": 18,
+            "normals": 18,
+            "within_15_degrees": 9,
+            "median_normal_error_degrees": 14.128859027983806,
+            "metric_depths": 0,
+            "within_one_block": 0,
+            "median_depth_error_blocks": null
+          }
+        }
+      },
+      "connections": {
+        "texel": 1,
+        "repeat": 1
+      }
+    }
+  }
+}

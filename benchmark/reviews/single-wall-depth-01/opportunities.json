@@ -1,0 +1,1517 @@
+{
+  "title": "What happened to the matching MobileSAM outlines in the 41 baseline misses?",
+  "diagnostic": "Recorded shapes identify candidates shared with each target at IoU >= 0.5. Per-target counts allow any matching filtered mask. A candidate must retain enough of the target when cut to a parent to qualify for the clipped count. A surface can also be recovered as a remainder of a different cut.",
+  "source": "single-wall-depth-01",
+  "cases_sha256": "8541dad27b5e6cd7cf7b99829dfccf8cc1459d664a7ca9c19b2d4a6bd3effdcf",
+  "control_cases_sha256": "c796a458ecc286b0060a52861462bef38fe52db123fb14d55c784a0de01fca14",
+  "sam_manifest_sha256": "46a62cf9ec80de7c308dee379672528ecad6c07faee98856c9f3a9c0087363da",
+  "reference_sha256": "91efa6d3e992b1a68672eae1fdd6d380e87724742a1a4b6cbe5f84d284f731a1",
+  "summary": {
+    "all": {
+      "targets": 41,
+      "any_matching_sam_offered": 25,
+      "still_matches_after_parent_clip": 25,
+      "best_excluded_cut": {
+        "insufficient containment": 7,
+        "insufficient depth sample pairs": 4,
+        "proposed piece too small": 1,
+        "no single parent retains half overlap": 4
+      },
+      "methods": {
+        "single-v2": {
+          "any_matching_sam_accepted": 16,
+          "clipped_matching_sam_accepted": 16,
+          "found": 23,
+          "found_as_matching_sam_piece": 16,
+          "found_as_remainder": 7,
+          "found_other": 0
+        },
+        "single-pro": {
+          "any_matching_sam_accepted": 15,
+          "clipped_matching_sam_accepted": 15,
+          "found": 22,
+          "found_as_matching_sam_piece": 15,
+          "found_as_remainder": 7,
+          "found_other": 0
+        }
+      }
+    },
+    "development": {
+      "targets": 18,
+      "any_matching_sam_offered": 9,
+      "still_matches_after_parent_clip": 9,
+      "best_excluded_cut": {
+        "insufficient containment": 3,
+        "insufficient depth sample pairs": 3,
+        "proposed piece too small": 1,
+        "no single parent retains half overlap": 2
+      },
+      "methods": {
+        "single-v2": {
+          "any_matching_sam_accepted": 6,
+          "clipped_matching_sam_accepted": 6,
+          "found": 8,
+          "found_as_matching_sam_piece": 6,
+          "found_as_remainder": 2,
+          "found_other": 0
+        },
+        "single-pro": {
+          "any_matching_sam_accepted": 4,
+          "clipped_matching_sam_accepted": 4,
+          "found": 6,
+          "found_as_matching_sam_piece": 4,
+          "found_as_remainder": 2,
+          "found_other": 0
+        }
+      }
+    },
+    "previously_reviewed_regression": {
+      "targets": 23,
+      "any_matching_sam_offered": 16,
+      "still_matches_after_parent_clip": 16,
+      "best_excluded_cut": {
+        "insufficient containment": 4,
+        "insufficient depth sample pairs": 1,
+        "no single parent retains half overlap": 2
+      },
+      "methods": {
+        "single-v2": {
+          "any_matching_sam_accepted": 10,
+          "clipped_matching_sam_accepted": 10,
+          "found": 15,
+          "found_as_matching_sam_piece": 10,
+          "found_as_remainder": 5,
+          "found_other": 0
+        },
+        "single-pro": {
+          "any_matching_sam_accepted": 11,
+          "clipped_matching_sam_accepted": 11,
+          "found": 16,
+          "found_as_matching_sam_piece": 11,
+          "found_as_remainder": 5,
+          "found_other": 0
+        }
+      }
+    }
+  },
+  "pictures": [
+    {
+      "frame": "smooth_stone/dev-shopfront-masonry-high-right",
+      "sha256": "f15cd0e471a9a2e375c9f801df171bb8f5ee44d95374f02f1174c7938a94cc79",
+      "cohort": "development",
+      "targets": [
+        {
+          "reference": 6,
+          "raw_ious": {
+            "103": 0.5241264559068219
+          },
+          "offered": [],
+          "matched": {
+            "single-v2": {
+              "id": "mask-1-junction-1-single-265-0",
+              "parent": "mask-1-junction-1",
+              "proposal": 265,
+              "side": "remainder"
+            },
+            "single-pro": {
+              "id": "mask-1-junction-1-single-265-0",
+              "parent": "mask-1-junction-1",
+              "proposal": 265,
+              "side": "remainder"
+            }
+          },
+          "best_excluded_cut": {
+            "parent": "mask-1-junction-1",
+            "proposal": 103,
+            "clipped_iou": 0.8283132530120482,
+            "reason": "insufficient containment"
+          }
+        }
+      ]
+    },
+    {
+      "frame": "light_gray_concrete/dev-shopfront-masonry-high-right",
+      "sha256": "bb588b0b0d1cdb05b720ff5bc3b515479426c7772fd98fb7fadb8a55b79ca9db",
+      "cohort": "development",
+      "targets": [
+        {
+          "reference": 6,
+          "raw_ious": {
+            "100": 0.5199335548172758
+          },
+          "offered": [],
+          "matched": {
+            "single-v2": {
+              "id": "mask-0-mobile-0-single-238-0",
+              "parent": "mask-0-mobile-0",
+              "proposal": 238,
+              "side": "remainder"
+            },
+            "single-pro": {
+              "id": "mask-0-mobile-0-single-238-0",
+              "parent": "mask-0-mobile-0",
+              "proposal": 238,
+              "side": "remainder"
+            }
+          },
+          "best_excluded_cut": {
+            "parent": "mask-0-mobile-0",
+            "proposal": 100,
+            "clipped_iou": 0.7507507507507507,
+            "reason": "insufficient containment"
+          }
+        }
+      ]
+    },
+    {
+      "frame": "smooth_stone/dev-shopfront-masonry-low-left",
+      "sha256": "17691e7909ee0e9384db83c3a729f8763e21a281eb89b8dcebe61fc7675d1405",
+      "cohort": "development",
+      "targets": [
+        {
+          "reference": 14,
+          "raw_ious": {
+            "283": 0.7098844672657253
+          },
+          "offered": [
+            {
+              "parent": "mask-1",
+              "proposal": 283,
+              "clipped_iou": 0.9540636042402827,
+              "accepted": {
+                "single-v2": true,
+                "single-pro": true
+              }
+            }
+          ],
+          "matched": {
+            "single-v2": {
+              "id": "mask-1-single-283-2",
+              "parent": "mask-1",
+              "proposal": 283,
+              "side": "inside"
+            },
+            "single-pro": {
+              "id": "mask-1-single-283-2",
+              "parent": "mask-1",
+              "proposal": 283,
+              "side": "inside"
+            }
+          },
+          "best_excluded_cut": null
+        },
+        {
+          "reference": 15,
+          "raw_ious": {
+            "482": 0.5214626391096979
+          },
+          "offered": [],
+          "matched": {
+            "single-v2": null,
+            "single-pro": null
+          },
+          "best_excluded_cut": {
+            "parent": "mask-0-wall-1-junction-0",
+            "proposal": 482,
+            "clipped_iou": 0.9287749287749287,
+            "reason": "insufficient containment"
+          }
+        }
+      ]
+    },
+    {
+      "frame": "light_gray_concrete/dev-shopfront-masonry-low-left",
+      "sha256": "0359c24dea1b318ec9cd002a1523ae8fc0d7d59fc9d7418972cf9ce9af8d4d57",
+      "cohort": "development",
+      "targets": [
+        {
+          "reference": 14,
+          "raw_ious": {
+            "279": 0.7093469910371318
+          },
+          "offered": [],
+          "matched": {
+            "single-v2": null,
+            "single-pro": null
+          },
+          "best_excluded_cut": {
+            "parent": "mask-0-junction-1",
+            "proposal": 279,
+            "clipped_iou": 0.9203389830508475,
+            "reason": "insufficient depth sample pairs"
+          }
+        }
+      ]
+    },
+    {
+      "frame": "smooth_stone/dev-shopfront-plaster-high-right",
+      "sha256": "ae58f28554348d924798e23bd492b88db06c2a099f590e325c514ecc5c8f9c7e",
+      "cohort": "development",
+      "targets": [
+        {
+          "reference": 6,
+          "raw_ious": {
+            "75": 0.5171849427168577
+          },
+          "offered": [
+            {
+              "parent": "mask-0-wall-1",
+              "proposal": 75,
+              "clipped_iou": 0.8426666666666667,
+              "accepted": {
+                "single-v2": false,
+                "single-pro": false
+              }
+            }
+          ],
+          "matched": {
+            "single-v2": null,
+            "single-pro": null
+          },
+          "best_excluded_cut": null
+        },
+        {
+          "reference": 7,
+          "raw_ious": {
+            "349": 0.7134502923976608
+          },
+          "offered": [
+            {
+              "parent": "mask-0-wall-1",
+              "proposal": 349,
+              "clipped_iou": 0.889922480620155,
+              "accepted": {
+                "single-v2": true,
+                "single-pro": true
+              }
+            }
+          ],
+          "matched": {
+            "single-v2": {
+              "id": "mask-0-wall-1-single-349-1",
+              "parent": "mask-0-wall-1",
+              "proposal": 349,
+              "side": "inside"
+            },
+            "single-pro": {
+              "id": "mask-0-wall-1-single-349-1",
+              "parent": "mask-0-wall-1",
+              "proposal": 349,
+              "side": "inside"
+            }
+          },
+          "best_excluded_cut": null
+        }
+      ]
+    },
+    {
+      "frame": "light_gray_concrete/dev-shopfront-plaster-high-right",
+      "sha256": "4cc1d5687db72eef74f23fc291fb7916b3f481ed4998d9e1c850024039d38cce",
+      "cohort": "development",
+      "targets": []
+    },
+    {
+      "frame": "smooth_stone/dev-shopfront-plaster-low-left",
+      "sha256": "5d0c9120de4ca16f35758f90a31e176e50a3cf166358dd9833ee2213d1ff2f72",
+      "cohort": "development",
+      "targets": [
+        {
+          "reference": 9,
+          "raw_ious": {
+            "256": 1.0
+          },
+          "offered": [],
+          "matched": {
+            "single-v2": null,
+            "single-pro": null
+          },
+          "best_excluded_cut": {
+            "parent": "mask-0-wall-1",
+            "proposal": 256,
+            "clipped_iou": 0.6470588235294118,
+            "reason": "proposed piece too small"
+          }
+        },
+        {
+          "reference": 10,
+          "raw_ious": {
+            "360": 0.5755813953488372
+          },
+          "offered": [],
+          "matched": {
+            "single-v2": null,
+            "single-pro": null
+          },
+          "best_excluded_cut": {
+            "parent": "mask-0-wall-1",
+            "proposal": 360,
+            "clipped_iou": 0.42857142857142855,
+            "reason": "no single parent retains half overlap"
+          }
+        },
+        {
+          "reference": 14,
+          "raw_ious": {
+            "244": 0.7084398976982097
+          },
+          "offered": [
+            {
+              "parent": "mask-0-wall-1",
+              "proposal": 244,
+              "clipped_iou": 0.9087893864013267,
+              "accepted": {
+                "single-v2": true,
+                "single-pro": true
+              }
+            }
+          ],
+          "matched": {
+            "single-v2": {
+              "id": "mask-0-wall-1-single-244-2",
+              "parent": "mask-0-wall-1",
+              "proposal": 244,
+              "side": "inside"
+            },
+            "single-pro": {
+              "id": "mask-0-wall-1-single-244-2",
+              "parent": "mask-0-wall-1",
+              "proposal": 244,
+              "side": "inside"
+            }
+          },
+          "best_excluded_cut": null
+        },
+        {
+          "reference": 15,
+          "raw_ious": {
+            "433": 0.5209677419354839
+          },
+          "offered": [],
+          "matched": {
+            "single-v2": null,
+            "single-pro": null
+          },
+          "best_excluded_cut": {
+            "parent": "mask-0-wall-1",
+            "proposal": 433,
+            "clipped_iou": 0.805,
+            "reason": "insufficient depth sample pairs"
+          }
+        },
+        {
+          "reference": 16,
+          "raw_ious": {
+            "316": 0.703125
+          },
+          "offered": [
+            {
+              "parent": "mask-0-wall-1",
+              "proposal": 316,
+              "clipped_iou": 0.9335443037974683,
+              "accepted": {
+                "single-v2": false,
+                "single-pro": false
+              }
+            }
+          ],
+          "matched": {
+            "single-v2": null,
+            "single-pro": null
+          },
+          "best_excluded_cut": null
+        }
+      ]
+    },
+    {
+      "frame": "light_gray_concrete/dev-shopfront-plaster-low-left",
+      "sha256": "299e0228de74d2cc7d3a18deaba9f61c82560a0ddd0b8557e5c91728c964a993",
+      "cohort": "development",
+      "targets": [
+        {
+          "reference": 10,
+          "raw_ious": {
+            "369": 0.5789473684210527
+          },
+          "offered": [],
+          "matched": {
+            "single-v2": null,
+            "single-pro": null
+          },
+          "best_excluded_cut": {
+            "parent": "mask-2",
+            "proposal": 369,
+            "clipped_iou": 0.3851851851851852,
+            "reason": "no single parent retains half overlap"
+          }
+        },
+        {
+          "reference": 14,
+          "raw_ious": {
+            "268": 0.6976160602258469
+          },
+          "offered": [
+            {
+              "parent": "mask-0-wall-1",
+              "proposal": 268,
+              "clipped_iou": 0.924114671163575,
+              "accepted": {
+                "single-v2": false,
+                "single-pro": false
+              }
+            }
+          ],
+          "matched": {
+            "single-v2": null,
+            "single-pro": null
+          },
+          "best_excluded_cut": null
+        },
+        {
+          "reference": 15,
+          "raw_ious": {
+            "448": 0.5209677419354839
+          },
+          "offered": [],
+          "matched": {
+            "single-v2": null,
+            "single-pro": null
+          },
+          "best_excluded_cut": {
+            "parent": "mask-0-wall-1",
+            "proposal": 448,
+            "clipped_iou": 0.8298969072164949,
+            "reason": "insufficient depth sample pairs"
+          }
+        },
+        {
+          "reference": 16,
+          "raw_ious": {
+            "339": 0.706436420722135
+          },
+          "offered": [
+            {
+              "parent": "mask-0-wall-1",
+              "proposal": 339,
+              "clipped_iou": 0.9336898395721925,
+              "accepted": {
+                "single-v2": true,
+                "single-pro": true
+              }
+            }
+          ],
+          "matched": {
+            "single-v2": {
+              "id": "mask-0-wall-1-single-339-2",
+              "parent": "mask-0-wall-1",
+              "proposal": 339,
+              "side": "inside"
+            },
+            "single-pro": {
+              "id": "mask-0-wall-1-single-339-2",
+              "parent": "mask-0-wall-1",
+              "proposal": 339,
+              "side": "inside"
+            }
+          },
+          "best_excluded_cut": null
+        }
+      ]
+    },
+    {
+      "frame": "smooth_stone/dev-wing-masonry-close-front",
+      "sha256": "9ce65a1c07694c1d3e57019c07b422d7a6a0771ed0d46f579891eae8a61463a9",
+      "cohort": "development",
+      "targets": []
+    },
+    {
+      "frame": "light_gray_concrete/dev-wing-masonry-close-front",
+      "sha256": "9ce65a1c07694c1d3e57019c07b422d7a6a0771ed0d46f579891eae8a61463a9",
+      "cohort": "development",
+      "targets": []
+    },
+    {
+      "frame": "smooth_stone/dev-wing-masonry-high-right",
+      "sha256": "8cd9e20f608db25df6d141941051d30afcbf80733ea4c6f2058874c02019bf9f",
+      "cohort": "development",
+      "targets": []
+    },
+    {
+      "frame": "light_gray_concrete/dev-wing-masonry-high-right",
+      "sha256": "5ccd9115fd2a70784e0e1ab6819d37fc5c4af54cf965605143b3817e1f3a3efd",
+      "cohort": "development",
+      "targets": []
+    },
+    {
+      "frame": "smooth_stone/dev-wing-masonry-low-left",
+      "sha256": "0c7bc49ce3c736391d7954a9c069aee29586f03fd33a2a88926b40257ccae6ce",
+      "cohort": "development",
+      "targets": [
+        {
+          "reference": 2,
+          "raw_ious": {
+            "453": 0.952887537993921
+          },
+          "offered": [
+            {
+              "parent": "mask-0",
+              "proposal": 453,
+              "clipped_iou": 0.9498480243161094,
+              "accepted": {
+                "single-v2": true,
+                "single-pro": false
+              }
+            }
+          ],
+          "matched": {
+            "single-v2": {
+              "id": "mask-0-single-453-1",
+              "parent": "mask-0",
+              "proposal": 453,
+              "side": "inside"
+            },
+            "single-pro": null
+          },
+          "best_excluded_cut": null
+        }
+      ]
+    },
+    {
+      "frame": "light_gray_concrete/dev-wing-masonry-low-left",
+      "sha256": "4e8817361e24c3f05e835d7af6c8bab3da96d50c8821828144f33bb1ea0e87d3",
+      "cohort": "development",
+      "targets": [
+        {
+          "reference": 2,
+          "raw_ious": {
+            "474": 0.9525993883792049
+          },
+          "offered": [
+            {
+              "parent": "mask-0",
+              "proposal": 474,
+              "clipped_iou": 0.9510703363914373,
+              "accepted": {
+                "single-v2": true,
+                "single-pro": false
+              }
+            }
+          ],
+          "matched": {
+            "single-v2": {
+              "id": "mask-0-single-474-1",
+              "parent": "mask-0",
+              "proposal": 474,
+              "side": "inside"
+            },
+            "single-pro": null
+          },
+          "best_excluded_cut": null
+        }
+      ]
+    },
+    {
+      "frame": "smooth_stone/dev-wing-plaster-close-front",
+      "sha256": "b3154136e855e9d005a993b8afdb3989e3fb156b102aed46ce0d99e761d2f2b8",
+      "cohort": "development",
+      "targets": []
+    },
+    {
+      "frame": "light_gray_concrete/dev-wing-plaster-close-front",
+      "sha256": "b3154136e855e9d005a993b8afdb3989e3fb156b102aed46ce0d99e761d2f2b8",
+      "cohort": "development",
+      "targets": []
+    },
+    {
+      "frame": "smooth_stone/dev-wing-plaster-high-right",
+      "sha256": "49832e903f4455c88c44f51da20abc550516d208783af9e3d05edc85ff4116a9",
+      "cohort": "development",
+      "targets": []
+    },
+    {
+      "frame": "light_gray_concrete/dev-wing-plaster-high-right",
+      "sha256": "64d4fec367d669912de294146c1fa3e0bf871816ec4f52e57213e35db2968564",
+      "cohort": "development",
+      "targets": []
+    },
+    {
+      "frame": "smooth_stone/dev-wing-plaster-low-left",
+      "sha256": "b564e5c3bb2def9511c27cf483dbb01dbe760b1bce8b6060be578c97b2083019",
+      "cohort": "development",
+      "targets": []
+    },
+    {
+      "frame": "light_gray_concrete/dev-wing-plaster-low-left",
+      "sha256": "b1aa96442f2858b5435fc9af424de374ffafbade3cc74d059b85b6c1bfd7e13c",
+      "cohort": "development",
+      "targets": []
+    },
+    {
+      "frame": "smooth_stone/holdout-courtyard-masonry-close-front",
+      "sha256": "655531c2d8fecce752ea93fac3aa6a6e4429bb7ce8a629cb409532583694c678",
+      "cohort": "previously_reviewed_regression",
+      "targets": []
+    },
+    {
+      "frame": "light_gray_concrete/holdout-courtyard-masonry-close-front",
+      "sha256": "655531c2d8fecce752ea93fac3aa6a6e4429bb7ce8a629cb409532583694c678",
+      "cohort": "previously_reviewed_regression",
+      "targets": []
+    },
+    {
+      "frame": "smooth_stone/holdout-courtyard-masonry-high-right",
+      "sha256": "252fa7c481e990bbbada46717d6e10c6b66c4f9c65846b94a94cd1b40cea0fcd",
+      "cohort": "previously_reviewed_regression",
+      "targets": []
+    },
+    {
+      "frame": "light_gray_concrete/holdout-courtyard-masonry-high-right",
+      "sha256": "b5b2bb5300687da8d904fb129043b5d2df0ae56e9ba4e14afb932b3e6d44dd3b",
+      "cohort": "previously_reviewed_regression",
+      "targets": []
+    },
+    {
+      "frame": "smooth_stone/holdout-courtyard-masonry-low-left",
+      "sha256": "c80356e1b7d96bdc796ed982f09ed908059399d23fe98c873eecbb6e623a4216",
+      "cohort": "previously_reviewed_regression",
+      "targets": []
+    },
+    {
+      "frame": "light_gray_concrete/holdout-courtyard-masonry-low-left",
+      "sha256": "5b0b16edd7e5207c275e3277db0d65620891c50024735061783d4a175957ff9a",
+      "cohort": "previously_reviewed_regression",
+      "targets": []
+    },
+    {
+      "frame": "smooth_stone/holdout-courtyard-plaster-close-front",
+      "sha256": "319503ad2c8fbdc7f33f283d4e35b0f3abe43684bdd8341ace1ac1745696abee",
+      "cohort": "previously_reviewed_regression",
+      "targets": []
+    },
+    {
+      "frame": "light_gray_concrete/holdout-courtyard-plaster-close-front",
+      "sha256": "319503ad2c8fbdc7f33f283d4e35b0f3abe43684bdd8341ace1ac1745696abee",
+      "cohort": "previously_reviewed_regression",
+      "targets": []
+    },
+    {
+      "frame": "smooth_stone/holdout-courtyard-plaster-high-right",
+      "sha256": "7152899302d1721578a01412063a0cafc072986ba9a4acb5c03aa5ecbdde05f1",
+      "cohort": "previously_reviewed_regression",
+      "targets": []
+    },
+    {
+      "frame": "light_gray_concrete/holdout-courtyard-plaster-high-right",
+      "sha256": "de9e33d3bdb1f64318fbc1dec03fef52cde19a331c90fd1f7bb0b7a322b3bd94",
+      "cohort": "previously_reviewed_regression",
+      "targets": []
+    },
+    {
+      "frame": "smooth_stone/holdout-courtyard-plaster-low-left",
+      "sha256": "c8129500a7c473e23666de5470d535f650fb1ac61ae8dcb702f09707ba68949f",
+      "cohort": "previously_reviewed_regression",
+      "targets": []
+    },
+    {
+      "frame": "light_gray_concrete/holdout-courtyard-plaster-low-left",
+      "sha256": "1995d3af4ecbdd7b22bc4ada179009147a5b389379edd6142b99dcaa6446d9c0",
+      "cohort": "previously_reviewed_regression",
+      "targets": [
+        {
+          "reference": 6,
+          "raw_ious": {
+            "457": 0.5726013340174448
+          },
+          "offered": [
+            {
+              "parent": "mask-0-junction-0",
+              "proposal": 457,
+              "clipped_iou": 0.9797713280562885,
+              "accepted": {
+                "single-v2": true,
+                "single-pro": true
+              }
+            }
+          ],
+          "matched": {
+            "single-v2": {
+              "id": "mask-0-junction-0-single-457-2",
+              "parent": "mask-0-junction-0",
+              "proposal": 457,
+              "side": "inside"
+            },
+            "single-pro": {
+              "id": "mask-0-junction-0-single-457-2",
+              "parent": "mask-0-junction-0",
+              "proposal": 457,
+              "side": "inside"
+            }
+          },
+          "best_excluded_cut": null
+        }
+      ]
+    },
+    {
+      "frame": "smooth_stone/holdout-portico-masonry-high-right",
+      "sha256": "54819d55b59d36a91e891bf2ff6148104d917d5ca59084f4f73edc43d623e390",
+      "cohort": "previously_reviewed_regression",
+      "targets": [
+        {
+          "reference": 7,
+          "raw_ious": {
+            "147": 0.5833333333333334
+          },
+          "offered": [],
+          "matched": {
+            "single-v2": null,
+            "single-pro": null
+          },
+          "best_excluded_cut": {
+            "parent": "mask-0-junction-1",
+            "proposal": 147,
+            "clipped_iou": 0.760655737704918,
+            "reason": "insufficient containment"
+          }
+        },
+        {
+          "reference": 8,
+          "raw_ious": {
+            "234": 0.6607773851590106
+          },
+          "offered": [
+            {
+              "parent": "mask-0-junction-1",
+              "proposal": 234,
+              "clipped_iou": 0.8379746835443038,
+              "accepted": {
+                "single-v2": true,
+                "single-pro": true
+              }
+            }
+          ],
+          "matched": {
+            "single-v2": {
+              "id": "mask-0-junction-1-single-234-1",
+              "parent": "mask-0-junction-1",
+              "proposal": 234,
+              "side": "inside"
+            },
+            "single-pro": {
+              "id": "mask-0-junction-1-single-234-1",
+              "parent": "mask-0-junction-1",
+              "proposal": 234,
+              "side": "inside"
+            }
+          },
+          "best_excluded_cut": null
+        }
+      ]
+    },
+    {
+      "frame": "light_gray_concrete/holdout-portico-masonry-high-right",
+      "sha256": "f6c57a6cca3c952e2134e27f6ca75816487c4817800f504acaa6aa0240a24329",
+      "cohort": "previously_reviewed_regression",
+      "targets": [
+        {
+          "reference": 7,
+          "raw_ious": {
+            "156": 0.5854166666666667
+          },
+          "offered": [],
+          "matched": {
+            "single-v2": null,
+            "single-pro": null
+          },
+          "best_excluded_cut": {
+            "parent": "mask-0-junction-0",
+            "proposal": 156,
+            "clipped_iou": 0.7475409836065574,
+            "reason": "insufficient containment"
+          }
+        }
+      ]
+    },
+    {
+      "frame": "smooth_stone/holdout-portico-masonry-low-left",
+      "sha256": "eb35fef82a3ed8b7f34c39d7be768ae94123884428038310ea19e578228d83be",
+      "cohort": "previously_reviewed_regression",
+      "targets": [
+        {
+          "reference": 15,
+          "raw_ious": {
+            "359": 0.9093959731543624
+          },
+          "offered": [
+            {
+              "parent": "mask-4",
+              "proposal": 359,
+              "clipped_iou": 0.9093959731543624,
+              "accepted": {
+                "single-v2": true,
+                "single-pro": false
+              }
+            }
+          ],
+          "matched": {
+            "single-v2": {
+              "id": "mask-4-single-359-2",
+              "parent": "mask-4",
+              "proposal": 359,
+              "side": "inside"
+            },
+            "single-pro": {
+              "id": "mask-4-single-336-0",
+              "parent": "mask-4",
+              "proposal": 336,
+              "side": "remainder"
+            }
+          },
+          "best_excluded_cut": null
+        },
+        {
+          "reference": 19,
+          "raw_ious": {
+            "336": 0.5289079229122056
+          },
+          "offered": [
+            {
+              "parent": "mask-4",
+              "proposal": 336,
+              "clipped_iou": 0.8966789667896679,
+              "accepted": {
+                "single-v2": false,
+                "single-pro": true
+              }
+            }
+          ],
+          "matched": {
+            "single-v2": {
+              "id": "mask-4-single-359-0",
+              "parent": "mask-4",
+              "proposal": 359,
+              "side": "remainder"
+            },
+            "single-pro": {
+              "id": "mask-4-single-336-1",
+              "parent": "mask-4",
+              "proposal": 336,
+              "side": "inside"
+            }
+          },
+          "best_excluded_cut": null
+        }
+      ]
+    },
+    {
+      "frame": "light_gray_concrete/holdout-portico-masonry-low-left",
+      "sha256": "00daa00ce6d344d9c00205a65b67ed60af6e0f908e1993e842417450928e55b5",
+      "cohort": "previously_reviewed_regression",
+      "targets": [
+        {
+          "reference": 19,
+          "raw_ious": {
+            "352": 0.5300429184549357
+          },
+          "offered": [],
+          "matched": {
+            "single-v2": {
+              "id": "mask-4-single-364-0",
+              "parent": "mask-4",
+              "proposal": 364,
+              "side": "remainder"
+            },
+            "single-pro": {
+              "id": "mask-4-single-364-0",
+              "parent": "mask-4",
+              "proposal": 364,
+              "side": "remainder"
+            }
+          },
+          "best_excluded_cut": {
+            "parent": "mask-4",
+            "proposal": 352,
+            "clipped_iou": 0.9018867924528302,
+            "reason": "insufficient containment"
+          }
+        }
+      ]
+    },
+    {
+      "frame": "smooth_stone/holdout-portico-plaster-high-right",
+      "sha256": "fb687c20c5df87e79d9dd17ce48566c7f9fca2a092234bedff15fbe3f83b2e8c",
+      "cohort": "previously_reviewed_regression",
+      "targets": [
+        {
+          "reference": 6,
+          "raw_ious": {
+            "46": 0.5105386416861827
+          },
+          "offered": [],
+          "matched": {
+            "single-v2": null,
+            "single-pro": {
+              "id": "mask-0-junction-1-single-271-1",
+              "parent": "mask-0-junction-1",
+              "proposal": 271,
+              "side": "remainder"
+            }
+          },
+          "best_excluded_cut": {
+            "parent": "mask-0-junction-1",
+            "proposal": 46,
+            "clipped_iou": 0.8311688311688312,
+            "reason": "insufficient containment"
+          }
+        },
+        {
+          "reference": 8,
+          "raw_ious": {
+            "206": 0.6660682226211849
+          },
+          "offered": [
+            {
+              "parent": "mask-0-junction-1",
+              "proposal": 206,
+              "clipped_iou": 0.9438775510204082,
+              "accepted": {
+                "single-v2": true,
+                "single-pro": false
+              }
+            }
+          ],
+          "matched": {
+            "single-v2": {
+              "id": "mask-0-junction-1-single-206-1",
+              "parent": "mask-0-junction-1",
+              "proposal": 206,
+              "side": "inside"
+            },
+            "single-pro": {
+              "id": "mask-0-junction-1-single-271-2",
+              "parent": "mask-0-junction-1",
+              "proposal": 271,
+              "side": "remainder"
+            }
+          },
+          "best_excluded_cut": null
+        }
+      ]
+    },
+    {
+      "frame": "light_gray_concrete/holdout-portico-plaster-high-right",
+      "sha256": "fbe284f3ab8d1e0d517c81853c4a6121d359eb023c6f9882769d27605edb9b84",
+      "cohort": "previously_reviewed_regression",
+      "targets": [
+        {
+          "reference": 7,
+          "raw_ious": {
+            "104": 0.6025369978858351
+          },
+          "offered": [
+            {
+              "parent": "mask-0-junction-1",
+              "proposal": 104,
+              "clipped_iou": 0.8791946308724832,
+              "accepted": {
+                "single-v2": false,
+                "single-pro": false
+              }
+            }
+          ],
+          "matched": {
+            "single-v2": {
+              "id": "mask-0-junction-1-single-250-1",
+              "parent": "mask-0-junction-1",
+              "proposal": 250,
+              "side": "remainder"
+            },
+            "single-pro": null
+          },
+          "best_excluded_cut": null
+        },
+        {
+          "reference": 8,
+          "raw_ious": {
+            "202": 0.6726296958855098
+          },
+          "offered": [
+            {
+              "parent": "mask-0-junction-1",
+              "proposal": 202,
+              "clipped_iou": 0.9012987012987013,
+              "accepted": {
+                "single-v2": false,
+                "single-pro": true
+              }
+            }
+          ],
+          "matched": {
+            "single-v2": {
+              "id": "mask-0-junction-1-single-250-2",
+              "parent": "mask-0-junction-1",
+              "proposal": 250,
+              "side": "remainder"
+            },
+            "single-pro": {
+              "id": "mask-0-junction-1-single-202-1",
+              "parent": "mask-0-junction-1",
+              "proposal": 202,
+              "side": "inside"
+            }
+          },
+          "best_excluded_cut": null
+        }
+      ]
+    },
+    {
+      "frame": "smooth_stone/holdout-portico-plaster-low-left",
+      "sha256": "8f7b6cf572ea617a0efa47c002f4f9221df201dcde9d20595a10fb2915228445",
+      "cohort": "previously_reviewed_regression",
+      "targets": []
+    },
+    {
+      "frame": "light_gray_concrete/holdout-portico-plaster-low-left",
+      "sha256": "318e6e654ece8e6ab93aea0fa5c0cccecdb727faf743b5fbb5eb31da2f2b05f2",
+      "cohort": "previously_reviewed_regression",
+      "targets": [
+        {
+          "reference": 17,
+          "raw_ious": {
+            "182": 0.6677367576243981
+          },
+          "offered": [],
+          "matched": {
+            "single-v2": {
+              "id": "mask-0-single-333-1",
+              "parent": "mask-0",
+              "proposal": 333,
+              "side": "remainder"
+            },
+            "single-pro": {
+              "id": "mask-0-single-333-1",
+              "parent": "mask-0",
+              "proposal": 333,
+              "side": "remainder"
+            }
+          },
+          "best_excluded_cut": {
+            "parent": "mask-0",
+            "proposal": 182,
+            "clipped_iou": 0.7667342799188641,
+            "reason": "insufficient depth sample pairs"
+          }
+        },
+        {
+          "reference": 19,
+          "raw_ious": {
+            "333": 0.5341880341880342
+          },
+          "offered": [
+            {
+              "parent": "mask-0",
+              "proposal": 333,
+              "clipped_iou": 0.8303886925795053,
+              "accepted": {
+                "single-v2": true,
+                "single-pro": true
+              }
+            }
+          ],
+          "matched": {
+            "single-v2": {
+              "id": "mask-0-single-333-4",
+              "parent": "mask-0",
+              "proposal": 333,
+              "side": "inside"
+            },
+            "single-pro": {
+              "id": "mask-0-single-333-4",
+              "parent": "mask-0",
+              "proposal": 333,
+              "side": "inside"
+            }
+          },
+          "best_excluded_cut": null
+        }
+      ]
+    },
+    {
+      "frame": "light_gray_concrete/holdout-workshop-masonry-low-left",
+      "sha256": "ae86fd9911640c7397bc929d3e0ca1076d84312b5500712cf2c4ec25e7c9112f",
+      "cohort": "previously_reviewed_regression",
+      "targets": [
+        {
+          "reference": 13,
+          "raw_ious": {
+            "632": 0.9722222222222222,
+            "599": 0.794392523364486
+          },
+          "offered": [
+            {
+              "parent": "mask-0-mobile-1",
+              "proposal": 632,
+              "clipped_iou": 0.9722222222222222,
+              "accepted": {
+                "single-v2": false,
+                "single-pro": false
+              }
+            },
+            {
+              "parent": "mask-0-mobile-1",
+              "proposal": 599,
+              "clipped_iou": 0.794392523364486,
+              "accepted": {
+                "single-v2": false,
+                "single-pro": false
+              }
+            }
+          ],
+          "matched": {
+            "single-v2": null,
+            "single-pro": null
+          },
+          "best_excluded_cut": null
+        }
+      ]
+    },
+    {
+      "frame": "light_gray_concrete/holdout-workshop-masonry-high-right",
+      "sha256": "3aefcb242fdda8a6d4c40adb9a7d2632c8de998b076b1d4ec09a100db95119d4",
+      "cohort": "previously_reviewed_regression",
+      "targets": []
+    },
+    {
+      "frame": "light_gray_concrete/holdout-workshop-plaster-low-left",
+      "sha256": "91c686215bb3105c779a45302ed5b43bf16a2faa32fbfe1f0f2be10f0e161c42",
+      "cohort": "previously_reviewed_regression",
+      "targets": [
+        {
+          "reference": 12,
+          "raw_ious": {
+            "514": 0.9719626168224299
+          },
+          "offered": [
+            {
+              "parent": "mask-0-mobile-1",
+              "proposal": 514,
+              "clipped_iou": 0.8364928909952607,
+              "accepted": {
+                "single-v2": true,
+                "single-pro": true
+              }
+            }
+          ],
+          "matched": {
+            "single-v2": {
+              "id": "mask-0-mobile-1-single-514-1",
+              "parent": "mask-0-mobile-1",
+              "proposal": 514,
+              "side": "inside"
+            },
+            "single-pro": {
+              "id": "mask-0-mobile-1-single-514-1",
+              "parent": "mask-0-mobile-1",
+              "proposal": 514,
+              "side": "inside"
+            }
+          },
+          "best_excluded_cut": null
+        },
+        {
+          "reference": 13,
+          "raw_ious": {
+            "536": 0.9619565217391305
+          },
+          "offered": [
+            {
+              "parent": "mask-0-mobile-1",
+              "proposal": 536,
+              "clipped_iou": 0.9619565217391305,
+              "accepted": {
+                "single-v2": false,
+                "single-pro": false
+              }
+            }
+          ],
+          "matched": {
+            "single-v2": null,
+            "single-pro": null
+          },
+          "best_excluded_cut": null
+        }
+      ]
+    },
+    {
+      "frame": "light_gray_concrete/holdout-workshop-plaster-high-right",
+      "sha256": "d35ab308820f92501ec898cafb1f50939f3f0ed1141e3d9ee38a00eae1199aa0",
+      "cohort": "previously_reviewed_regression",
+      "targets": []
+    },
+    {
+      "frame": "light_gray_concrete/holdout-crossing-masonry-low-left",
+      "sha256": "93c9a45dbb4d6bc59edc6c18ac8007ad4f99ac340844cb0ed8f171640936fa88",
+      "cohort": "previously_reviewed_regression",
+      "targets": [
+        {
+          "reference": 10,
+          "raw_ious": {
+            "436": 0.7103174603174603
+          },
+          "offered": [
+            {
+              "parent": "mask-1",
+              "proposal": 436,
+              "clipped_iou": 0.8826530612244898,
+              "accepted": {
+                "single-v2": true,
+                "single-pro": true
+              }
+            }
+          ],
+          "matched": {
+            "single-v2": {
+              "id": "mask-1-single-436-1",
+              "parent": "mask-1",
+              "proposal": 436,
+              "side": "inside"
+            },
+            "single-pro": {
+              "id": "mask-1-single-436-1",
+              "parent": "mask-1",
+              "proposal": 436,
+              "side": "inside"
+            }
+          },
+          "best_excluded_cut": null
+        }
+      ]
+    },
+    {
+      "frame": "light_gray_concrete/holdout-crossing-masonry-high-right",
+      "sha256": "7ea5b36aa3c25b3ab4c58dcb773d8c3476c5f2d28048fd72a62970888be31320",
+      "cohort": "previously_reviewed_regression",
+      "targets": [
+        {
+          "reference": 1,
+          "raw_ious": {
+            "254": 0.9441624365482234
+          },
+          "offered": [
+            {
+              "parent": "mask-1",
+              "proposal": 254,
+              "clipped_iou": 0.9187817258883249,
+              "accepted": {
+                "single-v2": true,
+                "single-pro": true
+              }
+            }
+          ],
+          "matched": {
+            "single-v2": {
+              "id": "mask-1-single-254-1",
+              "parent": "mask-1",
+              "proposal": 254,
+              "side": "inside"
+            },
+            "single-pro": {
+              "id": "mask-1-single-254-1",
+              "parent": "mask-1",
+              "proposal": 254,
+              "side": "inside"
+            }
+          },
+          "best_excluded_cut": null
+        }
+      ]
+    },
+    {
+      "frame": "light_gray_concrete/holdout-crossing-plaster-low-left",
+      "sha256": "d348ddef0010267fdffc0d628654ef6ce256329400dec3e1cfd271bfaf764144",
+      "cohort": "previously_reviewed_regression",
+      "targets": []
+    },
+    {
+      "frame": "light_gray_concrete/holdout-crossing-plaster-high-right",
+      "sha256": "a7e9cd44bd97237bd3cbf88b11fdfa3575deee7473ef820b30e19bc5fe37698e",
+      "cohort": "previously_reviewed_regression",
+      "targets": [
+        {
+          "reference": 1,
+          "raw_ious": {
+            "277": 0.9639175257731959
+          },
+          "offered": [
+            {
+              "parent": "mask-0-wall-1",
+              "proposal": 277,
+              "clipped_iou": 0.8238341968911918,
+              "accepted": {
+                "single-v2": true,
+                "single-pro": true
+              }
+            }
+          ],
+          "matched": {
+            "single-v2": {
+              "id": "mask-0-wall-1-single-277-1",
+              "parent": "mask-0-wall-1",
+              "proposal": 277,
+              "side": "inside"
+            },
+            "single-pro": {
+              "id": "mask-0-wall-1-single-277-1",
+              "parent": "mask-0-wall-1",
+              "proposal": 277,
+              "side": "inside"
+            }
+          },
+          "best_excluded_cut": null
+        }
+      ]
+    },
+    {
+      "frame": "light_gray_concrete/holdout-registry-masonry-low-left",
+      "sha256": "3f7e9e1b5d577667b157664dd3f37a40e8c7e64a3db0d60ac6c30b294d2ba9e6",
+      "cohort": "previously_reviewed_regression",
+      "targets": []
+    },
+    {
+      "frame": "light_gray_concrete/holdout-registry-masonry-high-right",
+      "sha256": "e20bfd5e2588ed117375acb3e2f7c42cebb2fdd1ab7167caf35b0b4298a98e19",
+      "cohort": "previously_reviewed_regression",
+      "targets": [
+        {
+          "reference": 1,
+          "raw_ious": {
+            "588": 0.7473420888055035
+          },
+          "offered": [
+            {
+              "parent": "mask-0",
+              "proposal": 588,
+              "clipped_iou": 0.9620048504446241,
+              "accepted": {
+                "single-v2": true,
+                "single-pro": true
+              }
+            }
+          ],
+          "matched": {
+            "single-v2": {
+              "id": "mask-0-single-588-1",
+              "parent": "mask-0",
+              "proposal": 588,
+              "side": "inside"
+            },
+            "single-pro": {
+              "id": "mask-0-single-588-1",
+              "parent": "mask-0",
+              "proposal": 588,
+              "side": "inside"
+            }
+          },
+          "best_excluded_cut": null
+        }
+      ]
+    },
+    {
+      "frame": "light_gray_concrete/holdout-registry-plaster-low-left",
+      "sha256": "23e91937ee67563c1c4a463676a43c7d4800f82581a3188aa7125e32001be5e9",
+      "cohort": "previously_reviewed_regression",
+      "targets": [
+        {
+          "reference": 4,
+          "raw_ious": {
+            "365": 0.9840909090909091
+          },
+          "offered": [
+            {
+              "parent": "mask-0-wall-1-junction-1",
+              "proposal": 365,
+              "clipped_iou": 0.9715909090909091,
+              "accepted": {
+                "single-v2": false,
+                "single-pro": true
+              }
+            }
+          ],
+          "matched": {
+            "single-v2": null,
+            "single-pro": {
+              "id": "mask-0-wall-1-junction-1-single-365-1",
+              "parent": "mask-0-wall-1-junction-1",
+              "proposal": 365,
+              "side": "inside"
+            }
+          },
+          "best_excluded_cut": null
+        }
+      ]
+    },
+    {
+      "frame": "light_gray_concrete/holdout-registry-plaster-high-right",
+      "sha256": "8634b14394486c2fb709ea678008fbaf2314344280b5a13d3582d433125d589d",
+      "cohort": "previously_reviewed_regression",
+      "targets": []
+    },
+    {
+      "frame": "light_gray_concrete/holdout-galleries-masonry-low-left",
+      "sha256": "d0fba67900a91a20d0120f298c8783829953bc21c7d45fb4413a8cb829cfddc3",
+      "cohort": "previously_reviewed_regression",
+      "targets": [
+        {
+          "reference": 21,
+          "raw_ious": {
+            "12": 0.5674740484429066
+          },
+          "offered": [],
+          "matched": {
+            "single-v2": null,
+            "single-pro": null
+          },
+          "best_excluded_cut": {
+            "parent": "mask-17",
+            "proposal": 12,
+            "clipped_iou": 0.4,
+            "reason": "no single parent retains half overlap"
+          }
+        },
+        {
+          "reference": 22,
+          "raw_ious": {
+            "211": 0.8451025056947609
+          },
+          "offered": [],
+          "matched": {
+            "single-v2": null,
+            "single-pro": null
+          },
+          "best_excluded_cut": {
+            "parent": "mask-2",
+            "proposal": 211,
+            "clipped_iou": 0.47493403693931396,
+            "reason": "no single parent retains half overlap"
+          }
+        }
+      ]
+    },
+    {
+      "frame": "light_gray_concrete/holdout-galleries-masonry-high-right",
+      "sha256": "21916862012e6b47e6dbe426fd7a8930bd7fdd51651238d8ad4d3e8860f57a7b",
+      "cohort": "previously_reviewed_regression",
+      "targets": []
+    },
+    {
+      "frame": "light_gray_concrete/holdout-galleries-plaster-low-left",
+      "sha256": "0fec6765b63937520e2a731a9171eef73e631ce1d47734e3925e2165b64a26c0",
+      "cohort": "previously_reviewed_regression",
+      "targets": []
+    },
+    {
+      "frame": "light_gray_concrete/holdout-galleries-plaster-high-right",
+      "sha256": "a40a75765e0d99508a283686b4484a510d8ca0404656939017fb6d4a85f49832",
+      "cohort": "previously_reviewed_regression",
+      "targets": []
+    }
+  ]
+}

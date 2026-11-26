@@ -1,0 +1,207 @@
+{
+  "id": "dev-wing-masonry-close-front",
+  "floor": "smooth_stone",
+  "layout": "wing",
+  "split": "dev",
+  "condition": "limited-ground",
+  "metric": false,
+  "vertices": 35,
+  "spans": 12,
+  "within_2px": 0,
+  "projected": 0,
+  "measured_spans": 0,
+  "mean_px": null,
+  "p90_px": null,
+  "span_mae": null,
+  "relative_span_error": null,
+  "axis_mae_deg": 2.4787198289286025,
+  "fov_error_deg": null,
+  "charts": [
+    {
+      "axis": 2,
+      "plane": 1,
+      "expected": [
+        6,
+        4
+      ]
+    }
+  ],
+  "hit_rate": 0.0,
+  "endpoint_diagnostic": {
+    "total": 4,
+    "measured": 4,
+    "abstained": 0,
+    "mean_abs_error_pct": 0.7128208920458456,
+    "cases": [
+      {
+        "corner_xyz": [
+          4,
+          67,
+          1
+        ],
+        "normal_axis": 2,
+        "width_end_xyz": [
+          10,
+          67,
+          1
+        ],
+        "height_end_xyz": [
+          4,
+          71,
+          1
+        ],
+        "corner_px": [
+          55.044960578002375,
+          893.303476549627
+        ],
+        "width_end_px": [
+          1384.9555205780669,
+          893.3035957952435
+        ],
+        "height_end_px": [
+          55.044960578002375,
+          6.696472718311153
+        ],
+        "axis_indices": [
+          0,
+          2
+        ],
+        "expected_ratio": 1.5,
+        "predicted_ratio": 1.5116219862853837,
+        "abs_error_pct": 0.774799085692246,
+        "reason": null
+      },
+      {
+        "corner_xyz": [
+          4,
+          71,
+          1
+        ],
+        "normal_axis": 2,
+        "width_end_xyz": [
+          10,
+          71,
+          1
+        ],
+        "height_end_xyz": [
+          4,
+          67,
+          1
+        ],
+        "corner_px": [
+          55.044960578002375,
+          6.696472718311153
+        ],
+        "width_end_px": [
+          1384.9555205780669,
+          6.696353472681208
+        ],
+        "height_end_px": [
+          55.044960578002375,
+          893.303476549627
+        ],
+        "axis_indices": [
+          0,
+          2
+        ],
+        "expected_ratio": 1.5,
+        "predicted_ratio": 1.4902065755675364,
+        "abs_error_pct": 0.652894962164241,
+        "reason": null
+      },
+      {
+        "corner_xyz": [
+          10,
+          67,
+          1
+        ],
+        "normal_axis": 2,
+        "width_end_xyz": [
+          4,
+          67,
+          1
+        ],
+        "height_end_xyz": [
+          10,
+          71,
+          1
+        ],
+        "corner_px": [
+          1384.9555205780669,
+          893.3035957952435
+        ],
+        "width_end_px": [
+          55.044960578002375,
+          893.303476549627
+        ],
+        "height_end_px": [
+          1384.9555205780669,
+          6.696353472681208
+        ],
+        "axis_indices": [
+          0,
+          2
+        ],
+        "expected_ratio": 1.5,
+        "predicted_ratio": 1.5072761713916025,
+        "abs_error_pct": 0.48507809277349434,
+        "reason": null
+      },
+      {
+        "corner_xyz": [
+          10,
+          71,
+          1
+        ],
+        "normal_axis": 2,
+        "width_end_xyz": [
+          4,
+          71,
+          1
+        ],
+        "height_end_xyz": [
+          10,
+          67,
+          1
+        ],
+        "corner_px": [
+          1384.9555205780669,
+          6.696353472681208
+        ],
+        "width_end_px": [
+          55.044960578002375,
+          6.696472718311153
+        ],
+        "height_end_px": [
+          1384.9555205780669,
+          893.3035957952435
+        ],
+        "axis_indices": [
+          0,
+          2
+        ],
+        "expected_ratio": 1.5,
+        "predicted_ratio": 1.485922328586699,
+        "abs_error_pct": 0.9385114275534012,
+        "reason": null
+      }
+    ]
+  },
+  "automatic_charts": {
+    "total": 1,
+    "measured": 0,
+    "abstained": 1,
+    "mean_abs_error_pct": null,
+    "cases": [
+      {
+        "axis": 2,
+        "plane": 1,
+        "plane_error_blocks": null,
+        "expected_ratio": 1.5,
+        "predicted_ratio": null,
+        "abs_error_pct": null,
+        "reason": "no_automatic_chart"
+      }
+    ]
+  }
+}

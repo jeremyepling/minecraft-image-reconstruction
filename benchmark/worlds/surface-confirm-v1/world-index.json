@@ -1,0 +1,104 @@
+{
+  "schema": 1,
+  "fixture": "surface-confirm-v1",
+  "fixture_index_sha256": "3562b5b0b086dea6eaa50dfe903b1d55434a6368f78d58b38c409d521f94bbe1",
+  "game": "Minecraft Java Edition",
+  "version": "26.3",
+  "install": "Extract the ZIP into your Java game directory's saves folder. Open 'Surface confirmation v1 - Workshop and crossing' in Singleplayer.",
+  "bounds": "World XYZ, lower inclusive and upper exclusive.",
+  "worlds": [
+    {
+      "floor": "light_gray_concrete",
+      "archive": "workshop-and-crossing.zip",
+      "folder": "Surface confirmation v1 - Workshop and crossing",
+      "bytes": 1692404,
+      "sha256": "25b4fd835d3f65915ff6d75d5869db880bc106adeed23b266b9056ca824eb90a",
+      "clock_ticks": 6000,
+      "raining": false,
+      "thundering": false,
+      "advance_time": false,
+      "advance_weather": false,
+      "matched_sites": 4,
+      "matched_layout_cells": 7060,
+      "matched_camera_floor_probes": 8
+    }
+  ],
+  "sites": [
+    {
+      "layout": "workshop",
+      "palette": "masonry",
+      "split": "holdout",
+      "bounds_xyz": [
+        [
+          -1,
+          65,
+          -8
+        ],
+        [
+          18,
+          76,
+          2
+        ]
+      ],
+      "low_left_view": "holdout-workshop-masonry-low-left",
+      "teleport": "/tp @s -7.76133 66.18000 21.10841 -146.00000 -5.30455"
+    },
+    {
+      "layout": "workshop",
+      "palette": "plaster",
+      "split": "holdout",
+      "bounds_xyz": [
+        [
+          255,
+          65,
+          -8
+        ],
+        [
+          274,
+          76,
+          2
+        ]
+      ],
+      "low_left_view": "holdout-workshop-plaster-low-left",
+      "teleport": "/tp @s 248.23867 66.18000 21.10841 -146.00000 -5.30455"
+    },
+    {
+      "layout": "crossing",
+      "palette": "masonry",
+      "split": "holdout",
+      "bounds_xyz": [
+        [
+          512,
+          65,
+          -6
+        ],
+        [
+          528,
+          75,
+          3
+        ]
+      ],
+      "low_left_view": "holdout-crossing-masonry-low-left",
+      "teleport": "/tp @s 506.17675 66.18000 18.99381 -146.00000 -5.08574"
+    },
+    {
+      "layout": "crossing",
+      "palette": "plaster",
+      "split": "holdout",
+      "bounds_xyz": [
+        [
+          768,
+          65,
+          -6
+        ],
+        [
+          784,
+          75,
+          3
+        ]
+      ],
+      "low_left_view": "holdout-crossing-plaster-low-left",
+      "teleport": "/tp @s 762.17675 66.18000 18.99381 -146.00000 -5.08574"
+    }
+  ]
+}

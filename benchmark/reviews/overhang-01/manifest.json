@@ -1,0 +1,49 @@
+{
+  "run_id": "overhang-01",
+  "kind": "Saved-prediction diagnostic",
+  "code": {
+    "commit": "6035e025bb037ec0d93c647dbee199681d64bc20",
+    "predictor_and_runner_sha256": "5d7d35d918d0338babdf133366beb4b3855e38e687eab1500aed4917dcceea5a",
+    "source_dirty": false
+  },
+  "reference_inputs": {
+    "perimeters-01": "7289b45331a25d1e3c9ec976614c604eef34c512b8924a7a3475d36e08c8f39c",
+    "mask-four-01": "d5d84bca39a3b7b74d483d3f60627931f58d494995f40fe55523215ef5ce4c49"
+  },
+  "raw_inputs": {
+    "perimeter_manifest": "7289b45331a25d1e3c9ec976614c604eef34c512b8924a7a3475d36e08c8f39c",
+    "orientation_trace": "6c9f4c073e7e60927a675737963b4b9651466b03504c25962be9589bff828f55",
+    "raw_lines": {
+      "scalelsd": "99f5bfb88a78ec67a377cf8f564ad67b746b99e1ac3115d3149e6d38cb08aba9",
+      "deeplsd": "dd8596cd8963a14b99eaf17bdd9aa76bf0f7e25dd4f214cfef30ef79b0f6113c"
+    }
+  },
+  "fixtures": {
+    "smooth_stone": "660d1e535ae134452bca903a9d7cbe8d37953927fa118d9ffb327afad0885bc2",
+    "light_gray_concrete": "321505e15563f8efc0da868baa27409837aaa474410a61f3513b3dac0030f066",
+    "surface_confirm_v1": "0a479a8264f2c0f714284928354ff6ff5f9729491709676f07e2033d25e48fc3",
+    "normal_confirm_v1": "61bdf3a89a505a8be3757efe480185bec9c1888a1c72ffb69ef0093623e27dda"
+  },
+  "splits": "20 development and 36 previously reviewed regression pictures; no tuning in this audit.",
+  "methods": [
+    "current-b",
+    "mask-first",
+    "color-edges",
+    "depth-split",
+    "scalelsd",
+    "deeplsd"
+  ],
+  "settings": "Saved predictor settings and checkpoints are pinned by the two reference input manifests.",
+  "scoring": "One-to-one surface overlap of at least 0.50. Independently count traceable seam samples within 3 native pixels and 15 degrees.",
+  "scores": "summary.json",
+  "per_frame": "results.json",
+  "artifacts": {
+    "evidence.jpg": "f9466a6a0f680395230d310baf6c6f4d52f10b372a2740cedb552beefd2314de",
+    "summary.json": "95e8ea326258db6055d5d3bfa0d573c2ca5be216cd3c926194f27faa81573365",
+    "results.json": "939829f379bc6742812848814057a22b68f19617ab30052db582432159cdf846",
+    "lines.json": "a783699c29984985bb1031d924236b4fab6d07b03913574de706c66fdbfd0050",
+    "misses.json": "7ee237d527013c126a46b7367b104d234b26271713c7bdfa8fe793129cb14cd0",
+    "focus.json": "92b71207e1618b9b3a017f6ba500e0fd6e6b16f1f2c1824c1b4bf15a09959455"
+  },
+  "reproduce": "python -m benchmark.overhang_review --out runs/overhang-repeat"
+}

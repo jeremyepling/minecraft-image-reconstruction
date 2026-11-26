@@ -1,0 +1,94 @@
+name: Exterior regression set
+on:
+  push:
+    branches: ['**']
+    paths:
+      - 'benchmark/**'
+      - 'engine/**'
+      - 'calibration/**'
+      - 'runtime/**'
+      - 'tests/**'
+      - 'reconstruct.py'
+      - '.github/workflows/exterior.yml'
+  pull_request:
+    paths:
+      - 'benchmark/**'
+      - 'engine/**'
+      - 'calibration/**'
+      - 'runtime/**'
+      - 'tests/**'
+      - 'reconstruct.py'
+      - '.github/workflows/exterior.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+env:
+  MCIR_IMAGE_ONLY: '1'
+jobs:
+  visible-planes:
+    runs-on: ubuntu-latest
+    env:
+      OPENBLAS_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+          cache-dependency-path: benchmark/suites/*requirements.txt
+      - run: python -m pip install -r benchmark/suites/normal-requirements.txt
+      - uses: actions/cache@v4
+        with:
+          path: .deps/*.onnx
+          key: frozen-surface-onnx-${{ hashFiles('engine/surface_fields.py', 'benchmark/normal_assets.py') }}
+      - run: python -m benchmark.normal_assets --download
+      - run: python -m benchmark.normal_round --out runs/normals/ci-${{ github.run_id }}-${{ github.run_attempt }} --workers 2
+      - uses: actions/upload-artifact@v4
+        with:
+          name: normal-planes-${{ github.sha }}
+          path: runs/normals/
+          if-no-files-found: error
+  replay:
+    runs-on: ubuntu-latest
+    env:
+      OPENBLAS_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+          cache-dependency-path: benchmark/suites/requirements.txt
+      - run: python -m pip install -r benchmark/suites/requirements.txt
+      - run: python -m unittest discover -s tests
+      - run: python -m benchmark.score_saved_planes
+      - run: python -m benchmark.normal_building_sheet
+      - name: Compare two independent image-only runs
+        shell: bash
+        run: |
+          python -m benchmark.compare_surface_methods run --name baseline --outlines edges+shade --out runs/candidates/baseline &
+          baseline_pid=$!
+          python -m benchmark.compare_surface_methods run --name contrast --outlines edges --out runs/candidates/contrast &
+          contrast_pid=$!
+          result=0
+          wait "$baseline_pid" || result=1
+          wait "$contrast_pid" || result=1
+          test "$result" -eq 0
+          python -m benchmark.compare_surface_methods compare runs/candidates/baseline runs/candidates/contrast
+      - uses: actions/upload-artifact@v4
+        with:
+          name: surface-candidates-${{ github.sha }}
+          path: runs/candidates/
+          if-no-files-found: error
+      - run: python -m benchmark.exterior_suite --out runs/exterior/ci-${{ github.run_id }}-${{ github.run_attempt }}
+      - run: python -m benchmark.surface_round --out runs/surfaces/ci-${{ github.run_id }}-${{ github.run_attempt }}
+      - uses: actions/upload-artifact@v4
+        with:
+          name: exterior-v1-${{ github.sha }}
+          path: runs/exterior/
+          if-no-files-found: error
+      - uses: actions/upload-artifact@v4
+        with:
+          name: visible-surfaces-${{ github.sha }}
+          path: runs/surfaces/
+          if-no-files-found: error

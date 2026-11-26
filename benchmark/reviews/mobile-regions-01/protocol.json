@@ -1,0 +1,16 @@
+{
+  "settings": {
+    "grid_step_native_px": 32,
+    "near_centroid_per_existing_region": true,
+    "batch": 12,
+    "minimum_mask_area_samples": 24,
+    "predicted_iou_cutoff": 0.88,
+    "stability_cutoff": 0.95,
+    "max_mask_iou_after_nms": 0.8,
+    "minimum_building_fraction": 0.8
+  },
+  "source": "f706ad9c4eb7f219c00d9050e46328518ffb65d2",
+  "weights": "6dbb90523a35330fedd7f1d3dfc66f995213d81b29a5ca8108dbcdd4e37d6c2f",
+  "purpose": "Model screen; point prompts use a fixed grid inside existing foreground and a point per region. No reference prompt or ground-truth crop.",
+  "scoring": "Best possible one-to-one match among all distinct generated masks at IoU >= .50, plus reference-free score/stability and mask-overlap suppression. Outputs may overlap. A match is an evaluation observation, not permission to replace the baseline."
+}

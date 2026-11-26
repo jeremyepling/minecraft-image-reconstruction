@@ -1,0 +1,511 @@
+{
+  "contact": {
+    "proposals": [
+      {
+        "id": "contact-0",
+        "quad": [
+          [
+            518.2126049882385,
+            242.7429738066907
+          ],
+          [
+            932.9447604951671,
+            294.4075672793625
+          ],
+          [
+            935.5414051691936,
+            598.5505789252253
+          ],
+          [
+            515.0556335941154,
+            632.1541082106436
+          ]
+        ]
+      },
+      {
+        "id": "contact-1",
+        "quad": [
+          [
+            430.27312287847843,
+            286.0693527045082
+          ],
+          [
+            478.93191665632855,
+            223.48666550810435
+          ],
+          [
+            474.8488658353202,
+            644.737431289579
+          ],
+          [
+            426.57928926018906,
+            603.9584330930154
+          ]
+        ]
+      }
+    ],
+    "scores": {
+      "eligible": 3,
+      "proposed": 2,
+      "matched": 2,
+      "precision": 1.0,
+      "recall": 0.6666666666666666,
+      "matches": [
+        {
+          "proposal_index": 0,
+          "patch_id": 3,
+          "iou": 0.8176094629399981,
+          "center_xy": [
+            751.1477618262168,
+            441.33962054301526
+          ],
+          "normal_camera": [
+            0.4539905371565947,
+            -0.03077677780317592,
+            -0.8904748070782522
+          ],
+          "depth_at_center": 21.40264902343278
+        },
+        {
+          "proposal_index": 1,
+          "patch_id": 1,
+          "iou": 0.5577264653641207,
+          "center_xy": [
+            449.2785488034309,
+            438.9919771416037
+          ],
+          "normal_camera": [
+            -0.8910065051234287,
+            -0.015681551442201458,
+            -0.45371962360655
+          ],
+          "depth_at_center": 19.039013717446338
+        }
+      ],
+      "proposed_pixels": 10183,
+      "spill_pixels": 521,
+      "spill_fraction": 0.05116370421290386
+    }
+  },
+  "edges": {
+    "proposals": [
+      {
+        "id": "surface-73",
+        "quad": [
+          [
+            456.17,
+            610.88
+          ],
+          [
+            937.68,
+            576.12
+          ],
+          [
+            937.73,
+            596.59
+          ],
+          [
+            456.11,
+            632.62
+          ]
+        ],
+        "confidence": 0.9578,
+        "evidence": {
+          "source": "four joined edges",
+          "boundary_support": 0.9486,
+          "region_purity": 0.9645,
+          "shading_used": false
+        },
+        "corner_junctions": [
+          {
+            "corner": 0,
+            "neighbor": "surface-591",
+            "neighbor_corner": 3,
+            "distance_px": 0.0
+          }
+        ]
+      },
+      {
+        "id": "surface-2722",
+        "quad": [
+          [
+            944.66,
+            456.29
+          ],
+          [
+            1010.48,
+            456.18
+          ],
+          [
+            1010.48,
+            556.91
+          ],
+          [
+            944.66,
+            556.91
+          ]
+        ],
+        "confidence": 0.9919,
+        "evidence": {
+          "source": "four joined edges",
+          "boundary_support": 0.9807,
+          "region_purity": 1.0,
+          "shading_used": false
+        },
+        "corner_junctions": [
+          {
+            "corner": 2,
+            "neighbor": "surface-22",
+            "neighbor_corner": 1,
+            "distance_px": 0.0
+          },
+          {
+            "corner": 3,
+            "neighbor": "surface-22",
+            "neighbor_corner": 0,
+            "distance_px": 1.27
+          }
+        ]
+      },
+      {
+        "id": "surface-591",
+        "quad": [
+          [
+            456.19,
+            602.78
+          ],
+          [
+            930.86,
+            567.9
+          ],
+          [
+            930.85,
+            576.62
+          ],
+          [
+            456.17,
+            610.88
+          ]
+        ],
+        "confidence": 0.9796,
+        "evidence": {
+          "source": "four joined edges",
+          "boundary_support": 0.9514,
+          "region_purity": 1.0,
+          "shading_used": false
+        },
+        "corner_junctions": [
+          {
+            "corner": 3,
+            "neighbor": "surface-73",
+            "neighbor_corner": 0,
+            "distance_px": 0.0
+          }
+        ]
+      },
+      {
+        "id": "surface-22",
+        "quad": [
+          [
+            945.93,
+            556.91
+          ],
+          [
+            1010.48,
+            556.91
+          ],
+          [
+            1010.48,
+            577.91
+          ],
+          [
+            945.93,
+            579.88
+          ]
+        ],
+        "confidence": 0.8531,
+        "evidence": {
+          "source": "region boundary",
+          "boundary_support": 0.6667,
+          "region_purity": 0.9882,
+          "shading_used": false
+        },
+        "corner_junctions": [
+          {
+            "corner": 1,
+            "neighbor": "surface-2722",
+            "neighbor_corner": 2,
+            "distance_px": 0.0
+          },
+          {
+            "corner": 0,
+            "neighbor": "surface-2722",
+            "neighbor_corner": 3,
+            "distance_px": 1.27
+          }
+        ]
+      },
+      {
+        "id": "surface-17",
+        "quad": [
+          [
+            721.93,
+            430.06
+          ],
+          [
+            742.4,
+            467.39
+          ],
+          [
+            738.84,
+            486.48
+          ],
+          [
+            715.89,
+            451.84
+          ]
+        ],
+        "confidence": 0.825,
+        "evidence": {
+          "source": "region boundary",
+          "boundary_support": 0.5833,
+          "region_purity": 1.0,
+          "shading_used": false
+        },
+        "corner_junctions": []
+      },
+      {
+        "id": "surface-14",
+        "quad": [
+          [
+            750.08,
+            432.58
+          ],
+          [
+            769.68,
+            411.58
+          ],
+          [
+            777.58,
+            425.38
+          ],
+          [
+            756.42,
+            451.98
+          ]
+        ],
+        "confidence": 0.825,
+        "evidence": {
+          "source": "region boundary",
+          "boundary_support": 0.5833,
+          "region_purity": 1.0,
+          "shading_used": false
+        },
+        "corner_junctions": []
+      },
+      {
+        "id": "surface-5",
+        "quad": [
+          [
+            838.48,
+            321.76
+          ],
+          [
+            850.41,
+            316.86
+          ],
+          [
+            853.29,
+            340.97
+          ],
+          [
+            839.29,
+            341.53
+          ]
+        ],
+        "confidence": 0.79,
+        "evidence": {
+          "source": "region boundary",
+          "boundary_support": 0.5,
+          "region_purity": 1.0,
+          "shading_used": false
+        },
+        "corner_junctions": []
+      }
+    ],
+    "scores": {
+      "eligible": 3,
+      "proposed": 7,
+      "matched": 1,
+      "precision": 0.14285714285714285,
+      "recall": 0.3333333333333333,
+      "matches": [
+        {
+          "proposal_index": 1,
+          "patch_id": 2,
+          "iou": 0.6498470948012233,
+          "center_xy": [
+            977.5520208592004,
+            506.57251502359077
+          ],
+          "normal_camera": [
+            0.4539905371565947,
+            -0.03077677780317592,
+            -0.8904748070782522
+          ],
+          "depth_at_center": 26.01836994689805
+        }
+      ],
+      "proposed_pixels": 1494,
+      "spill_pixels": 136,
+      "spill_fraction": 0.09103078982597054
+    }
+  },
+  "edges+shade": {
+    "proposals": [
+      {
+        "id": "surface-73",
+        "quad": [
+          [
+            456.17,
+            610.88
+          ],
+          [
+            937.68,
+            576.12
+          ],
+          [
+            937.73,
+            596.59
+          ],
+          [
+            456.11,
+            632.62
+          ]
+        ],
+        "confidence": 0.9671,
+        "evidence": {
+          "source": "four joined edges",
+          "boundary_support": 0.9486,
+          "region_purity": 0.9645,
+          "shading_used": true,
+          "median_luminance_step": 21.615
+        },
+        "corner_junctions": [
+          {
+            "corner": 0,
+            "neighbor": "surface-593",
+            "neighbor_corner": 3,
+            "distance_px": 0.0
+          },
+          {
+            "corner": 1,
+            "neighbor": "surface-593",
+            "neighbor_corner": 2,
+            "distance_px": 0.0
+          }
+        ]
+      },
+      {
+        "id": "surface-2722",
+        "quad": [
+          [
+            944.66,
+            456.29
+          ],
+          [
+            1010.48,
+            456.18
+          ],
+          [
+            1010.48,
+            556.91
+          ],
+          [
+            944.66,
+            556.91
+          ]
+        ],
+        "confidence": 0.9862,
+        "evidence": {
+          "source": "four joined edges",
+          "boundary_support": 0.9807,
+          "region_purity": 1.0,
+          "shading_used": true,
+          "median_luminance_step": 11.593
+        },
+        "corner_junctions": []
+      },
+      {
+        "id": "surface-593",
+        "quad": [
+          [
+            456.19,
+            602.78
+          ],
+          [
+            937.65,
+            567.4
+          ],
+          [
+            937.68,
+            576.12
+          ],
+          [
+            456.17,
+            610.88
+          ]
+        ],
+        "confidence": 0.977,
+        "evidence": {
+          "source": "four joined edges",
+          "boundary_support": 0.938,
+          "region_purity": 0.9941,
+          "shading_used": true,
+          "median_luminance_step": 16.693
+        },
+        "corner_junctions": [
+          {
+            "corner": 3,
+            "neighbor": "surface-73",
+            "neighbor_corner": 0,
+            "distance_px": 0.0
+          },
+          {
+            "corner": 2,
+            "neighbor": "surface-73",
+            "neighbor_corner": 1,
+            "distance_px": 0.0
+          }
+        ]
+      }
+    ],
+    "scores": {
+      "eligible": 3,
+      "proposed": 3,
+      "matched": 1,
+      "precision": 0.3333333333333333,
+      "recall": 0.3333333333333333,
+      "matches": [
+        {
+          "proposal_index": 1,
+          "patch_id": 2,
+          "iou": 0.6498470948012233,
+          "center_xy": [
+            977.5520208592004,
+            506.57251502359077
+          ],
+          "normal_camera": [
+            0.4539905371565947,
+            -0.03077677780317592,
+            -0.8904748070782522
+          ],
+          "depth_at_center": 26.01836994689805
+        }
+      ],
+      "proposed_pixels": 1311,
+      "spill_pixels": 136,
+      "spill_fraction": 0.10373760488176964
+    }
+  }
+}

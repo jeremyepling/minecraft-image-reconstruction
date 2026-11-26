@@ -4,9 +4,37 @@ Reconstruct a Minecraft Java build from a screenshot and place it in a real worl
 
 [Architecture, call paths, defaults and experimental modes](ARCHITECTURE.md)
 
-## Start with a version
+## Single-image exterior benchmark
 
-Use Python 3.11 or newer, an installed vanilla Java client, and a JDK compatible with that client. Live verification has run on Windows with JDK 25 and Minecraft Java 26.1, 26.2 and 26.3.
+Run `.\Invoke-WallRecovery.ps1 .\screenshot.png -Out .\runs\my-build` to use the full surface-recovery sequence on a new image. It writes the outlines, crops and block count estimates and records which models ran. [Single-image build and local models](benchmark/WALL_RECOVERY_BUILD.md)
+
+The **Surface Finder** uses Pixel-wise Planarity after Wall Recovery to add missed planes and separate merged walls. It found **513 of 598** surfaces across 56 saved views, kept all 501 previous matches and covered the same amount of open space. Run `.\Invoke-SurfaceRound.ps1 -Round afterpass` to reproduce the model comparison. [Zoomable comparison sheet](benchmark/reviews/afterpass-models-01/comparison.jpg) · [Scores by screenshot](benchmark/reviews/afterpass-models-01/pictures.md) · [What worked and what still went missing](benchmark/AFTERPASS_MODELS.md)
+
+Earlier tests targeted 97 misses in the five-model Wall Recovery baseline. Checking corners on possible ledges tied it at 501. Joining wall pieces fell to 489. [Ledge and wall results](benchmark/LEDGE_JOIN.md) · [Five-model baseline](benchmark/SINGLE_WALL_DEPTH.md)
+
+Run `.\Invoke-SurfaceRound.ps1 -Round single-wall` to repeat both experiments from the frozen model outputs on all 56 original screenshots and regenerate the sheet. Read down a building’s column to see the original picture, predictions, recorded geometry and enlarged edge where each model voted. [Earlier wall, junction and underside tests](benchmark/RECOVERY_ROUND.md)
+
+Open the [pipeline comparison](benchmark/reviews/perimeters-01/comparison.jpg) to follow the same surface through the original photograph, Surface Finder outline, context crop, perspective correction, block-grid overlay and texture match. The [three close-ups](benchmark/reviews/perimeters-01/edge-closeups.jpg) show why the old courtyard, workshop and registry diagonals were misleading. Reproduce the review with `.\Invoke-SurfaceRound.ps1 -Round perimeters`. [Surface and crop results](benchmark/PERIMETER_ROUND.md)
+
+Regions First supplies the visible outlines in the **Surface Finder**. The **Surface Straightener** then removes perspective from each masked surface. The **Block Counter** measures repeated textures across and down, and the **Material Matcher** compares individual cells with the vanilla atlas. Run `.\Invoke-BlockCountRound.ps1` to grade the saved screenshots. [Stage names and the legacy Rectangle Finder](benchmark/SURFACE_FINDER.md) · [Block-count comparison](benchmark/COUNT_ROUND.md) · [Per-picture report](benchmark/reviews/count-01/report.html)
+
+Run `.\Invoke-MaskRound.ps1` for the four-way comparison on the 56 saved views. It compares the Rectangle Finder, preserved regions, and the same regions refined with ScaleLSD v2 or DeepLSD. The review shows each building from the same angle, with the recorded geometry in its own column. [Comparison sheet](benchmark/reviews/mask-four-01/comparison.jpg) · [Per-picture results](benchmark/reviews/mask-four-01/report.html) · [How the experiment works](benchmark/MASK_ROUND.md)
+
+Use the same 56 saved screenshots and their geometry whenever you test a new surface method. Change the method, run it on the images, then compare its outlines against the same Minecraft surfaces. A coordinator in one chat can give the baseline and each challenger to a different agent, run them in parallel and return one comparison. [How to run a new combination](benchmark/OFFLINE_GEOMETRY.md)
+
+Open the [eight-building picture sheet](benchmark/reviews/normals-01/buildings-b.jpg) to see each original screenshot beside the MoGe-2 surface directions and the Rectangle Finder’s checked outlines. Run `.\Invoke-SurfaceRound.ps1 -Round saved` to compare the Rectangle Finder’s saved outlines against the recorded buildings entirely offline. [Saved geometry and replay commands](benchmark/OFFLINE_GEOMETRY.md)
+
+The visible-plane experiment compares the deterministic outline method with two local vision alternatives on eight Minecraft structures. The review includes clean source screenshots, the effects on openings, block scale and relative depth, and one command to reproduce it. [Measured results and execution path](benchmark/NORMAL_ROUND.md)
+
+Two Windows runs produced identical predictions for all 56 frames. Two independent Linux replays reproduced every plane match count and the default selection. The experimental relative-depth pass varied across runners. Using normal regions on the original six layouts, Windows proposed 274 near/far relations and the final Linux replay proposed 277. Both verified 41 correct relations there and 14 on the blind buildings. [Windows run manifest](benchmark/reviews/normals-01/manifest.json) · [First Linux replay](https://github.com/jeremyepling/minecraft-image-reconstruction/actions/runs/45600701874) · [Final Linux replay](https://github.com/jeremyepling/minecraft-image-reconstruction/actions/runs/45601327150)
+
+Run the shared regression suite with `python -m benchmark.exterior_suite`. It replays 40 original screenshots from two clear-noon worlds, pairs tiled and weakly marked floors at the same pose, and compares the results with the recorded camera reference. [Suite, worlds and review](benchmark/EXTERIOR_SUITE.md)
+
+Round one measures the projected camera and block grid on newly captured vanilla Java 26.3 exteriors. To reproduce the experiment on its frozen inputs, run `python -m benchmark.camera_round` from this checkout. To use the selected camera on a single screenshot, run `python reconstruct.py build IMAGE --through camera --version 26.3 --out runs/camera-build`. [Round design and review](benchmark/CAMERA_ROUND.md)
+
+## Create a calibration world for a new version
+
+The saved benchmarks above run with Python and their listed dependencies. Use the following live procedure when building new reference displays for a game version. It needs an installed vanilla client and compatible JDK. Live verification has run on Windows with JDK 25 and Minecraft Java 26.1, 26.2 and 26.3.
 
 ```console
 python -m pip install -r requirements.txt
@@ -24,12 +52,11 @@ For an offline atlas and a first reconstruction without launching Minecraft, run
 ```console
 python reconstruct.py analyze examples/repair-wall/wall-only.png --out runs/wall-grid
 python reconstruct.py build examples/repair-wall/wall-only.png --geometry runs/wall-grid/geometry.json --atlas runs/26.3/atlas --library runs/26.3/face_textures/softened-library.npz --out runs/wall
-python reconstruct.py verify-build runs/wall --version 26.3 --out runs/wall-world
 ```
 
 Replace the example PNG with a JPEG, PNG, or another Pillow-readable image. To run both image stages in one command, omit `--geometry`. Review `grid.png` for the detected outline and spacing. `geometry.json` records the image fingerprint, camera-plane transforms, source pixels and destination coordinates. You can reuse this file with another version's atlas and library. `dimensions.json` reports block measurements. `matches.json` records the closest texture candidates, distances and margins. Each visible cell receives its best eligible block when building. A small margin means the decision is ambiguous. Reviewer labels belong in test cases.
 
-The result is a Java datapack, `reconstruction.zip`, containing tiled structure templates. To place it in an existing world, put the ZIP in that world's `datapacks` folder, run `/reload`, stand at the desired origin and run `/function reconstruction:build`. For a separate playable world use `verify-build`. Its save is under `client/saves/Palette Lab` and its real framebuffer screenshot is under `captures`.
+The result is a Java datapack, `reconstruction.zip`, containing tiled structure templates. File export runs with Minecraft closed. When the task calls for actual placement and an in-game screenshot, run `python reconstruct.py verify-build runs/wall --version 26.3 --out runs/wall-world`. Its save is under `client/saves/Palette Lab` and the screenshot is under `captures`. To place it in an existing world, put the ZIP in that world's `datapacks` folder, run `/reload`, stand at the desired origin and run `/function reconstruction:build`.
 
 ## Angled views and hidden geometry
 
@@ -68,3 +95,5 @@ Use `--geometry-method remap` to estimate a common elevation grid from texture r
 For an angled wall, `python reconstruct.py inspect-openings IMAGE --out REVIEW` writes an annotated image and the evidence for each depth decision. This experimental command is separate from export. [How a setting earns adoption, and what happened on two new walls](benchmark/ENTRANCES.md)
 
 To trace the general form first, run `python reconstruct.py inspect-form IMAGE --out REVIEW`. It draws the visible outline and major edges, then inspects smaller line junctions for inward and outward relief. It also works on images without visible pavement. [Line tracing, screenshot comparison and measured accuracy](benchmark/LINE_FORM.md)
+
+Add `--cube-turns` to fit three mutually perpendicular world directions to the image. The preview marks supported outline turns and shows how the same axis projects differently across the frame. Use `--geometry-method cube` with `analyze` or `build` to use the corrected silhouette for block occupancy. [Projected block directions and test results](benchmark/CUBE_TURNS.md)

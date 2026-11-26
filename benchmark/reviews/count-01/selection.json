@@ -1,0 +1,21 @@
+{
+  "selected": "masked-repeat",
+  "scores": {
+    "legacy-repeat": {
+      "balanced_score": 0.027777777777777776,
+      "correct": 4,
+      "wrong": 2
+    },
+    "masked-repeat": {
+      "balanced_score": 0.08472222222222223,
+      "correct": 10,
+      "wrong": 6
+    },
+    "atlas-repeat": {
+      "balanced_score": 0.013888888888888888,
+      "correct": 3,
+      "wrong": 2
+    }
+  },
+  "rule": "On each development layout compute (both dimensions correct minus both attempted with an error) / eligible surfaces. Average layouts equally. Break ties by total correct then registry order."
+}

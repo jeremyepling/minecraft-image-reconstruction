@@ -1,0 +1,283 @@
+{
+  "schema": 2,
+  "run_id": "ground-floor-01",
+  "suite": "exterior-v1",
+  "suite_sha256": "853cf401432c36f000e5f4bd73b308bab67422735c0c371100119c29e8161f44",
+  "suite_path": "../../suites/exterior-v1.json",
+  "protocol": "camera-floor-ratios-v1",
+  "version": "26.3",
+  "stage": "camera",
+  "methods": [
+    "seam-fit"
+  ],
+  "settings": {
+    "seed_width_limit": 768,
+    "horizon_trials": 7,
+    "floor_rows": 88,
+    "center_fit_iterations": 14,
+    "minimum_supported_lines": 4,
+    "maximum_height_disagreement": 0.08,
+    "maximum_normalized_residual": 0.04
+  },
+  "split": "all",
+  "capture_conditions": {
+    "clock_ticks": 6000,
+    "raining": false,
+    "thundering": false,
+    "resource_packs": [
+      "vanilla"
+    ],
+    "hud_hidden": true,
+    "image_size": [
+      1440,
+      900
+    ]
+  },
+  "cohort_status": "All four layouts have been reviewed. The historical holdout is a fixed regression cohort.",
+  "revision": {
+    "commit": "98017f8013a727d9e87e694a6812b64764bb89d3",
+    "predictor_and_runner_sha256": "17bcc9aa1b8b0f4b56594f30109a32c5a4589626a343717a0a8b0169731274be",
+    "source_dirty": false
+  },
+  "frames": 40,
+  "fixture": {
+    "indexes": {
+      "smooth_stone": "../../data/camera-round-01/index.json",
+      "light_gray_concrete": "../../data/camera-gray-concrete-v1/index.json"
+    }
+  },
+  "environment": {
+    "python": "3.12.14",
+    "numpy": "2.3.5",
+    "pillow": "13.0.0"
+  },
+  "artifacts": {
+    "predictions": "predictions/",
+    "per_image": "scores/",
+    "visual_feedback": "feedback.jsonl",
+    "sheet": "comparison.png",
+    "regions": "regions.json"
+  },
+  "scores": {
+    "smooth_stone": {
+      "all": {
+        "layouts": 4,
+        "images": 20,
+        "metric_images": 16,
+        "vertices": 4380,
+        "within_2px": 4240,
+        "projected": 4240,
+        "spans": 1240,
+        "measured_spans": 1192,
+        "layout_hit_rate": 0.8333333333333333,
+        "layout_mean_px": 0.3668172392840614,
+        "layout_span_mae_blocks": 0.007195453806404689,
+        "layout_axis_mae_deg": 0.15879777033050588,
+        "layout_fov_error_deg": 0.020235794627771586,
+        "charts": 36,
+        "predicted_charts": 30,
+        "conditional_chart_extent_mae": 2.316666666666667,
+        "exact_chart_planes": 6,
+        "axes_frames": 18,
+        "endpoint_diagnostic": {
+          "total": 216,
+          "measured": 208,
+          "abstained": 8,
+          "within_10pct": 208,
+          "returned_frames": 16,
+          "conditional_layout_mean_abs_error_pct": 0.08850023000468696
+        },
+        "automatic_charts": {
+          "total": 36,
+          "measured": 30,
+          "abstained": 6,
+          "within_10pct": 2,
+          "returned_frames": 16,
+          "conditional_layout_mean_abs_error_pct": 57.488743894993895
+        }
+      },
+      "dev": {
+        "layouts": 2,
+        "images": 10,
+        "metric_images": 8,
+        "vertices": 2018,
+        "within_2px": 1948,
+        "projected": 1948,
+        "spans": 580,
+        "measured_spans": 556,
+        "layout_hit_rate": 0.8333333333333333,
+        "layout_mean_px": 0.3801269059527068,
+        "layout_span_mae_blocks": 0.007926700855003736,
+        "layout_axis_mae_deg": 0.25900956065904585,
+        "layout_fov_error_deg": 0.020803318065803822,
+        "charts": 18,
+        "predicted_charts": 16,
+        "conditional_chart_extent_mae": 2.0625,
+        "exact_chart_planes": 4,
+        "axes_frames": 9,
+        "endpoint_diagnostic": {
+          "total": 102,
+          "measured": 98,
+          "abstained": 4,
+          "within_10pct": 98,
+          "returned_frames": 9,
+          "conditional_layout_mean_abs_error_pct": 0.1299540915540696
+        },
+        "automatic_charts": {
+          "total": 18,
+          "measured": 16,
+          "abstained": 2,
+          "within_10pct": 0,
+          "returned_frames": 8,
+          "conditional_layout_mean_abs_error_pct": 52.13408119658119
+        }
+      },
+      "holdout": {
+        "layouts": 2,
+        "images": 10,
+        "metric_images": 8,
+        "vertices": 2362,
+        "within_2px": 2292,
+        "projected": 2292,
+        "spans": 660,
+        "measured_spans": 636,
+        "layout_hit_rate": 0.8333333333333333,
+        "layout_mean_px": 0.353507572615416,
+        "layout_span_mae_blocks": 0.006464206757805641,
+        "layout_axis_mae_deg": 0.058585980001965875,
+        "layout_fov_error_deg": 0.01966827118973935,
+        "charts": 18,
+        "predicted_charts": 14,
+        "conditional_chart_extent_mae": 2.607142857142857,
+        "exact_chart_planes": 2,
+        "axes_frames": 9,
+        "endpoint_diagnostic": {
+          "total": 114,
+          "measured": 110,
+          "abstained": 4,
+          "within_10pct": 110,
+          "returned_frames": 7,
+          "conditional_layout_mean_abs_error_pct": 0.04704636845530433
+        },
+        "automatic_charts": {
+          "total": 18,
+          "measured": 14,
+          "abstained": 4,
+          "within_10pct": 2,
+          "returned_frames": 8,
+          "conditional_layout_mean_abs_error_pct": 62.8434065934066
+        }
+      }
+    },
+    "light_gray_concrete": {
+      "all": {
+        "layouts": 4,
+        "images": 20,
+        "metric_images": 0,
+        "vertices": 4380,
+        "within_2px": 0,
+        "projected": 0,
+        "spans": 1240,
+        "measured_spans": 0,
+        "layout_hit_rate": 0.0,
+        "layout_mean_px": null,
+        "layout_span_mae_blocks": null,
+        "layout_axis_mae_deg": 5.760209033925867,
+        "layout_fov_error_deg": null,
+        "charts": 36,
+        "predicted_charts": 0,
+        "conditional_chart_extent_mae": null,
+        "exact_chart_planes": 0,
+        "axes_frames": 3,
+        "endpoint_diagnostic": {
+          "total": 216,
+          "measured": 16,
+          "abstained": 200,
+          "within_10pct": 8,
+          "returned_frames": 3,
+          "conditional_layout_mean_abs_error_pct": 28.99793042832104
+        },
+        "automatic_charts": {
+          "total": 36,
+          "measured": 0,
+          "abstained": 36,
+          "within_10pct": 0,
+          "returned_frames": 0,
+          "conditional_layout_mean_abs_error_pct": null
+        }
+      },
+      "dev": {
+        "layouts": 2,
+        "images": 10,
+        "metric_images": 0,
+        "vertices": 2018,
+        "within_2px": 0,
+        "projected": 0,
+        "spans": 580,
+        "measured_spans": 0,
+        "layout_hit_rate": 0.0,
+        "layout_mean_px": null,
+        "layout_span_mae_blocks": null,
+        "layout_axis_mae_deg": 11.071914876451743,
+        "layout_fov_error_deg": null,
+        "charts": 18,
+        "predicted_charts": 0,
+        "conditional_chart_extent_mae": null,
+        "exact_chart_planes": 0,
+        "axes_frames": 2,
+        "endpoint_diagnostic": {
+          "total": 102,
+          "measured": 12,
+          "abstained": 90,
+          "within_10pct": 4,
+          "returned_frames": 2,
+          "conditional_layout_mean_abs_error_pct": 57.8594487102918
+        },
+        "automatic_charts": {
+          "total": 18,
+          "measured": 0,
+          "abstained": 18,
+          "within_10pct": 0,
+          "returned_frames": 0,
+          "conditional_layout_mean_abs_error_pct": null
+        }
+      },
+      "holdout": {
+        "layouts": 2,
+        "images": 10,
+        "metric_images": 0,
+        "vertices": 2362,
+        "within_2px": 0,
+        "projected": 0,
+        "spans": 660,
+        "measured_spans": 0,
+        "layout_hit_rate": 0.0,
+        "layout_mean_px": null,
+        "layout_span_mae_blocks": null,
+        "layout_axis_mae_deg": 0.4485031913999908,
+        "layout_fov_error_deg": null,
+        "charts": 18,
+        "predicted_charts": 0,
+        "conditional_chart_extent_mae": null,
+        "exact_chart_planes": 0,
+        "axes_frames": 1,
+        "endpoint_diagnostic": {
+          "total": 114,
+          "measured": 4,
+          "abstained": 110,
+          "within_10pct": 4,
+          "returned_frames": 1,
+          "conditional_layout_mean_abs_error_pct": 0.13641214635028154
+        },
+        "automatic_charts": {
+          "total": 18,
+          "measured": 0,
+          "abstained": 18,
+          "within_10pct": 0,
+          "returned_frames": 0,
+          "conditional_layout_mean_abs_error_pct": null
+        }
+      }
+    }
+  }
+}
