@@ -24,7 +24,15 @@ from runtime.mode import image_only, mark_image_only
 METHODS = ('current', 'shape', 'evidence')
 
 
-def evaluate(job):
+def refine_shape(image, parts):
+    return attached_strip.refine(image, parts)
+
+
+def refine_evidence(image, parts):
+    return attached_strip.refine(image, parts, strip_evidence.gate)
+
+
+def evaluate(job, refiners=(('shape', refine_shape), ('evidence', refine_evidence))):
     case,row,sha = job
     with Image.open(checked(case.path('image'),row['sha256'])) as src:
         photo = src.convert('RGB')
@@ -32,9 +40,9 @@ def evaluate(job):
     proposals = {'current':baseline}
     changes = {}
     timing = {'current':0.}
-    for name, gate in [('shape',None),('evidence',strip_evidence.gate)]:
+    for name, refine in refiners:
         start = perf_counter()
-        proposals[name], changes[name] = attached_strip.refine(photo,baseline,gate)
+        proposals[name], changes[name] = refine(photo,baseline)
         timing[name] = perf_counter()-start
 
     # Predictions are final before any recorded camera or reference mask is opened.
@@ -61,6 +69,25 @@ def evaluate(job):
     return result
 
 
+def summarize(results, methods):
+    table = {}
+    for group in ('all',*COHORTS,*sorted({r['layout'] for r in results})):
+        subset = [r for r in results if group in ('all',r['cohort'],r['layout'])]
+        table[group] = summary(subset,methods)
+        for m in methods[1:]:
+            details = [d for r in subset for d in r['removed'][m]]
+            matched = [d for d in details if d['reference'] is not None]
+            table[group][m]['removed'] = dict(
+                changed_frames=sum(bool(r['removed'][m]) for r in subset),
+                changed_proposals=len(details),matched_changed=len(matched),
+                correct=sum(d['removed_correct'] for d in matched),
+                wrong=sum(d['removed']-d['removed_correct'] for d in matched),
+                all_wrong=sum(d['removed_correct']==0 for d in matched),
+                mixed=sum(0<d['removed_correct']<d['removed'] for d in matched),
+                all_correct=sum(d['removed_correct']==d['removed'] for d in matched))
+    return table
+
+
 @image_only()
 def run(out, workers):
     source = read(checked(BASE/'manifest.json',BASE_SHA))
@@ -77,21 +104,7 @@ def run(out, workers):
     jobs = [(captures[r['key']],r,source['artifacts'][r['predictions']]) for r in rows]
     with ProcessPoolExecutor(max_workers=workers,initializer=mark_image_only) as pool:
         results = list(pool.map(evaluate,jobs))
-    table = {}
-    for group in ('all',*COHORTS,*sorted({r['layout'] for r in results})):
-        subset = [r for r in results if group in ('all',r['cohort'],r['layout'])]
-        table[group] = summary(subset,METHODS)
-        for m in METHODS[1:]:
-            details = [d for r in subset for d in r['removed'][m]]
-            matched = [d for d in details if d['reference'] is not None]
-            table[group][m]['removed'] = dict(
-                changed_frames=sum(bool(r['removed'][m]) for r in subset),
-                changed_proposals=len(details),matched_changed=len(matched),
-                correct=sum(d['removed_correct'] for d in matched),
-                wrong=sum(d['removed']-d['removed_correct'] for d in matched),
-                all_wrong=sum(d['removed_correct']==0 for d in matched),
-                mixed=sum(0<d['removed_correct']<d['removed'] for d in matched),
-                all_correct=sum(d['removed_correct']==d['removed'] for d in matched))
+    table = summarize(results, METHODS)
     save(out/'cases.json',results)
     save(out/'scores.json',table)
     from benchmark.strip_review_sheet import render
