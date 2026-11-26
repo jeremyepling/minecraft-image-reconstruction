@@ -27,7 +27,7 @@ if __name__=='__main__':
     p=argparse.ArgumentParser(description=__doc__)
     p.add_argument('--runs',type=Path,default=Path('../roof-span-round/runs/production'))
     p.add_argument('--out',type=Path,required=True)
-    p.add_argument('--mode',choices=('strict','loose'),required=True)
+    p.add_argument('--mode',choices=('strict','loose','supported','supported_wide'),required=True)
     p.add_argument('--workers',type=int,default=4)
     a=p.parse_args()
     a.out.mkdir(exist_ok=True,parents=True)
