@@ -4,6 +4,8 @@ Jeremy's scope decision, confirmed November 26, 2026, applies to the current rec
 
 ## Intended result
 
+Prioritize the visible facade and the relative positions of its walls, openings, posts and roof edges. Two perpendicular rim lengths can bound a roof proposal. Place a proposed block only when a visible face supports it. Report both strict visible-block recovery and how well the facade was recovered. On the 1440 × 900 evaluation images, also report a diagnostic that makes top-only blocks optional when their connected top surface has no fully visible 8 × 8 pixel patch. A block with a visible wall face still counts. [Measured effect and examples](benchmark/reviews/facade-placement-01/README.md)
+
 Recover the visible parts of a Minecraft build from the supplied image or images, accurately enough to place the observed blocks in Minecraft and compare the result from the source view. Estimate visible surface boundaries, block grids, dimensions, relative placement and materials from image evidence. Report unresolved measurements and ambiguous identities.
 
 Reconstruct only cells supported by visible block-face evidence in the supplied input. A partly visible face can support its block when the grid and placement are established. Minecraft places whole blocks, so placing a full cube for its observed face is expected; that does not authorize adding neighboring cells whose faces were never observed.
