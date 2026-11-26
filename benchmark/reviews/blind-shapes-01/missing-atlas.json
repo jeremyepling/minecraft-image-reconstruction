@@ -1,0 +1,60 @@
+{
+  "prior": "cebbffaaf3d2082a58982ecf2c314bf6c60cf246",
+  "final": "36d406a667624bcc8fb54b53a4097a69b290b8db",
+  "failure_condition": "No prepared atlas is present or discoverable in either checkout",
+  "identical_decoded_positions": true,
+  "prior_summary": {
+    "target": 747,
+    "placed": 679,
+    "correct": 347,
+    "extras": 332,
+    "missed": 400,
+    "hidden_extras": 66,
+    "gained": 0,
+    "lost": 0,
+    "extra_added": 0,
+    "extra_removed": 0,
+    "hidden_added": 0,
+    "hidden_removed": 0,
+    "joint_correct": 0,
+    "frames": 4,
+    "supported": 4,
+    "precision": 0.5110456553755522,
+    "recall": 0.464524765729585,
+    "f1": 0.48667601683029454
+  },
+  "frames": [
+    {
+      "id": "holdout-switchback-brick-low-left",
+      "cells_sha256": "c9d6637b574950618f880e6c726e2effde3894273100060cebc220407eb786b2",
+      "target": 98,
+      "correct": 29,
+      "extras": 62,
+      "known_hidden_extras": 13
+    },
+    {
+      "id": "holdout-switchback-brick-high-right",
+      "cells_sha256": "532ce8d4325d9e683af33410b28675b455ab28afa98e023061ec0421809a82d8",
+      "target": 129,
+      "correct": 70,
+      "extras": 56,
+      "known_hidden_extras": 0
+    },
+    {
+      "id": "holdout-loadingdock-timber-low-left",
+      "cells_sha256": "3dabeca4a5dade890b71e763447795a79b3344c271f91c78acfccd929b928014",
+      "target": 264,
+      "correct": 110,
+      "extras": 118,
+      "known_hidden_extras": 22
+    },
+    {
+      "id": "holdout-loadingdock-timber-high-right",
+      "cells_sha256": "f3190c1e5429085e5144511e9851644ac6acbc9c2e9a815fb7e4af607f911703",
+      "target": 256,
+      "correct": 138,
+      "extras": 96,
+      "known_hidden_extras": 31
+    }
+  ]
+}
