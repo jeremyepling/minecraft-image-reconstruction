@@ -30,7 +30,7 @@ Size errors use the views with estimates. Providing true outlines lowered the ex
 
 ## Material results
 
-Allowing a bounded change in exposure improved identification on aligned faces from 1,628 to 1,999 out of 2,658. On the complete adjacency screenshots the default geometry plus exposure recovered 31 correct faces, while the experimental geometry plus exposure recovered six. Alignment is the limiting step on these walls. Both options remain available individually through `--geometry-method texel` and `--match-exposure`. [Texture results, conditions and reproduction commands](TEXTURES.md)
+Allowing a bounded change in exposure improved identification on aligned faces from 1,628 to 1,999 out of 2,658. On the complete adjacency screenshots the default geometry plus exposure recovered 31 correct faces, while the experimental geometry plus exposure recovered six. Alignment is the limiting step on these walls. The historical benchmark compares `baseline` and `texel`. Assembly builds still accept `--match-exposure`. [Texture results, conditions and reproduction commands](TEXTURES.md)
 
 ## Reproduce the geometry comparison
 

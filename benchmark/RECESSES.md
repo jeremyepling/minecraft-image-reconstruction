@@ -46,7 +46,7 @@ The live comparison uses the same four source screenshots and motif matcher as t
 
 ## Reproduce
 
-Use the project root, the matching client JAR, and the main geometry fixture run from the [building benchmark](README.md).
+The first two commands below reproduce the archived single-image `remap` build at the linked revision. The remaining commands are the research tools for this fixture. Use the matching client JAR when creating new captures. [CLI snapshot at ca0a60c](https://github.com/jeremyepling/minecraft-image-reconstruction/tree/ca0a60c) · [Building benchmark](README.md)
 
 ```console
 python reconstruct.py analyze IMAGE --geometry-method remap --out GRID

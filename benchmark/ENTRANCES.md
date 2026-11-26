@@ -1,6 +1,6 @@
 # How experimental opening measurements are chosen
 
-Run `python reconstruct.py inspect-openings image.jpg --out review` to get `review.png` and `openings.json`. Each run loads the same [entrance policy](entrance-policy.json). A plain build uses baseline geometry. The opt-in `remap` build can place near-frontal recesses. This oblique inspector only produces measurements and outlines for review.
+The archived `inspect-openings` command loaded the fixed entrance policy and wrote `review.png` and `openings.json` for one image. The `benchmark.entrance_trials` commands under “Reproduce the decision” replay the oblique measurements on saved screenshots. [CLI snapshot at ca0a60c](https://github.com/jeremyepling/minecraft-image-reconstruction/tree/ca0a60c) · [Entrance policy](entrance-policy.json)
 
 ## How we know on a test wall
 

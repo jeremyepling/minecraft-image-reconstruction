@@ -1,5 +1,7 @@
 # Fitting a solid model to one screenshot
 
+The `fit-voxels` command below belongs to the archived prototype. The `benchmark.voxel_eval` commands under “Run the comparison” replay its candidates. [CLI snapshot at ca0a60c](https://github.com/jeremyepling/minecraft-image-reconstruction/tree/ca0a60c)
+
 `python reconstruct.py fit-voxels IMAGE --out RUN` fits occupied XYZ cells, writes the projection and cell coordinates in `model.json`, and draws the fitted volume and its visible creases in `model.png` and `outline.png`. Pass `--atlas ATLAS_DIRECTORY` to also create a versioned smooth-stone datapack and placement manifest. Use `verify-build` to place that export in a private world. The experimental command defaults to `--method symmetric`. The regular material reconstruction command has its own geometry path.
 
 ## From image to proposed blocks
