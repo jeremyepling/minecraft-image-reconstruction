@@ -51,13 +51,11 @@ def adjust(cells,mask,P,eye,rays,axis,primary,rgb,atlas):
             if q<.70 or counts[n]<8:
                 continue
             rows=idx==n
-            if np.mean(base_scores[rows]+.20<q)>=.8:
-                viable[k]=(n,q)
-        for (a,b),(n,q) in viable.items():
+            cell=coordinates(np.array([k]),axis,level,eye)[0]
+            if np.mean(base_scores[rows]+.20<q)>=.8 and supported_face(cell,axis,level,eye,P,mask):
+                viable[k]=(n,q,cell)
+        for (a,b),(n,q,cell) in viable.items():
             if not any(x in viable for x in ((a+1,b),(a-1,b),(a,b+1),(a,b-1))):
-                continue
-            cell=coordinates(np.array([[a,b]]),axis,level,eye)[0]
-            if not supported_face(cell,axis,level,eye,P,mask):
                 continue
             rows=(idx==n)&(q>best)
             owner[rows]=len(winners)
