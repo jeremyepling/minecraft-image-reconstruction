@@ -1,0 +1,193 @@
+{
+  "scores_sha256": "7f2fda2d61dbf7dfb56a9062f9fa9cdacb28e58bf8f1b585ee58c7294470d5a9",
+  "methods": {
+    "baseline": {
+      "adapter": "benchmark.visible_depth_score:integrated",
+      "revision": "434f44b1888284ac4a5c279ef27138263a034365",
+      "rgb_sha256": [
+        "b2d145e026728a431b94ace0a36343ba5a1111d2d4edeb616d2053c1838813b3",
+        "91a5d591c8776106d6cabd7d9bee1b9ac1bb06ae4908f8bd764c3331cbc439aa",
+        "d32e3474498373d3ec1ea2003b82c7cb885d02db72981eef20aff1790a17ed7f",
+        "05b57b37e071efdd67304d0f81345987bc5c0bcda039e4a9f5e9c260105c9fe7"
+      ],
+      "relative_geometry": {
+        "target": 747,
+        "placed": 708,
+        "correct": 598,
+        "extras": 110,
+        "missed": 149,
+        "hidden_extras": 0,
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0,
+        "joint_correct": 0,
+        "frames": 4,
+        "supported": 4,
+        "precision": 0.844632768361582,
+        "recall": 0.8005354752342704,
+        "f1": 0.8219931271477663
+      },
+      "cases_sha256": "b6c82b42901058d03d3e6eeda2bc78bed4925ee5bdac2ec216767979d598549b"
+    },
+    "second": {
+      "adapter": "benchmark.visible_depth_score:integrated",
+      "revision": "f4781628396698b52f703a7c9c5a65637da5cc25",
+      "rgb_sha256": [
+        "b2d145e026728a431b94ace0a36343ba5a1111d2d4edeb616d2053c1838813b3",
+        "91a5d591c8776106d6cabd7d9bee1b9ac1bb06ae4908f8bd764c3331cbc439aa",
+        "d32e3474498373d3ec1ea2003b82c7cb885d02db72981eef20aff1790a17ed7f",
+        "05b57b37e071efdd67304d0f81345987bc5c0bcda039e4a9f5e9c260105c9fe7"
+      ],
+      "relative_geometry": {
+        "target": 747,
+        "placed": 719,
+        "correct": 600,
+        "extras": 119,
+        "missed": 147,
+        "hidden_extras": 0,
+        "gained": 2,
+        "lost": 0,
+        "extra_added": 9,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0,
+        "joint_correct": 0,
+        "frames": 4,
+        "supported": 4,
+        "precision": 0.8344923504867872,
+        "recall": 0.8032128514056225,
+        "f1": 0.8185538881309686
+      },
+      "cases_sha256": "9729596a727a2a24895caf483636946470323f13be24369faf430bf54497768b"
+    },
+    "nearby": {
+      "adapter": "benchmark.blind_shape_endpoints:nearby",
+      "revision": "80958f88000383a384836073e0d428ccb2efa879",
+      "rgb_sha256": [
+        "b2d145e026728a431b94ace0a36343ba5a1111d2d4edeb616d2053c1838813b3",
+        "91a5d591c8776106d6cabd7d9bee1b9ac1bb06ae4908f8bd764c3331cbc439aa",
+        "d32e3474498373d3ec1ea2003b82c7cb885d02db72981eef20aff1790a17ed7f",
+        "05b57b37e071efdd67304d0f81345987bc5c0bcda039e4a9f5e9c260105c9fe7"
+      ],
+      "relative_geometry": {
+        "target": 747,
+        "placed": 712,
+        "correct": 599,
+        "extras": 113,
+        "missed": 148,
+        "hidden_extras": 0,
+        "gained": 1,
+        "lost": 0,
+        "extra_added": 3,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0,
+        "joint_correct": 0,
+        "frames": 4,
+        "supported": 4,
+        "precision": 0.8412921348314607,
+        "recall": 0.8018741633199464,
+        "f1": 0.8211103495544894
+      },
+      "cases_sha256": "903c7530468a918db7821e9c40bf1c54b2839dac8c48036d2df508eafd71b4a6",
+      "overlay_revision": "545252331519566327e86cec0801b3c8e57cd76c"
+    },
+    "thin": {
+      "adapter": "benchmark.blind_shape_endpoints:thin",
+      "revision": "80958f88000383a384836073e0d428ccb2efa879",
+      "rgb_sha256": [
+        "b2d145e026728a431b94ace0a36343ba5a1111d2d4edeb616d2053c1838813b3",
+        "91a5d591c8776106d6cabd7d9bee1b9ac1bb06ae4908f8bd764c3331cbc439aa",
+        "d32e3474498373d3ec1ea2003b82c7cb885d02db72981eef20aff1790a17ed7f",
+        "05b57b37e071efdd67304d0f81345987bc5c0bcda039e4a9f5e9c260105c9fe7"
+      ],
+      "relative_geometry": {
+        "target": 747,
+        "placed": 724,
+        "correct": 609,
+        "extras": 115,
+        "missed": 138,
+        "hidden_extras": 0,
+        "gained": 11,
+        "lost": 0,
+        "extra_added": 5,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0,
+        "joint_correct": 0,
+        "frames": 4,
+        "supported": 4,
+        "precision": 0.8411602209944752,
+        "recall": 0.8152610441767069,
+        "f1": 0.8280081577158396
+      },
+      "cases_sha256": "3a71afcb543f40b474769ff5bd798ca3e358a67dacb24824b5464a128494d5b3",
+      "overlay_revision": "3b7b69c04bd9a992417fb5f6e69b3d4411b2e17f"
+    },
+    "combined": {
+      "adapter": "benchmark.nearby_thin_order:combined",
+      "revision": "e63440314c62b22800d77b161c9d325d973ad129",
+      "rgb_sha256": [
+        "b2d145e026728a431b94ace0a36343ba5a1111d2d4edeb616d2053c1838813b3",
+        "91a5d591c8776106d6cabd7d9bee1b9ac1bb06ae4908f8bd764c3331cbc439aa",
+        "d32e3474498373d3ec1ea2003b82c7cb885d02db72981eef20aff1790a17ed7f",
+        "05b57b37e071efdd67304d0f81345987bc5c0bcda039e4a9f5e9c260105c9fe7"
+      ],
+      "relative_geometry": {
+        "target": 747,
+        "placed": 738,
+        "correct": 613,
+        "extras": 125,
+        "missed": 134,
+        "hidden_extras": 0,
+        "gained": 15,
+        "lost": 0,
+        "extra_added": 15,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0,
+        "joint_correct": 0,
+        "frames": 4,
+        "supported": 4,
+        "precision": 0.8306233062330624,
+        "recall": 0.820615796519411,
+        "f1": 0.8255892255892255
+      },
+      "cases_sha256": "60df307da677622a68c72e2e0a9af10521976c8b715b378e7866fbf9041c2797"
+    },
+    "2strip": {
+      "adapter": "benchmark.visible_depth_score:integrated",
+      "revision": "36d406a667624bcc8fb54b53a4097a69b290b8db",
+      "rgb_sha256": [
+        "b2d145e026728a431b94ace0a36343ba5a1111d2d4edeb616d2053c1838813b3",
+        "91a5d591c8776106d6cabd7d9bee1b9ac1bb06ae4908f8bd764c3331cbc439aa",
+        "d32e3474498373d3ec1ea2003b82c7cb885d02db72981eef20aff1790a17ed7f",
+        "05b57b37e071efdd67304d0f81345987bc5c0bcda039e4a9f5e9c260105c9fe7"
+      ],
+      "relative_geometry": {
+        "target": 747,
+        "placed": 746,
+        "correct": 618,
+        "extras": 128,
+        "missed": 129,
+        "hidden_extras": 0,
+        "gained": 20,
+        "lost": 0,
+        "extra_added": 18,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0,
+        "joint_correct": 0,
+        "frames": 4,
+        "supported": 4,
+        "precision": 0.8284182305630027,
+        "recall": 0.8273092369477911,
+        "f1": 0.8278633623576691
+      },
+      "cases_sha256": "98b87e95a668b05525035f349d9d6a3d67f675812cd48c6f0b2f5b07ff536bee"
+    }
+  }
+}
