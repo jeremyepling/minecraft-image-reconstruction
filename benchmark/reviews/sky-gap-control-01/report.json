@@ -1,0 +1,1071 @@
+{
+  "code": {
+    "commit": "d97e5a57251112a0b6603d01577d1220fe49d600",
+    "predictor_and_runner_sha256": "3d0e55bbd492f4c857f7cbe5575e7abe280bdb076228101385a96858036fe504",
+    "source_dirty": false
+  },
+  "shard": {
+    "file": "visible-builds-v1-train.zip",
+    "sha256": "5e863f48890c7c8253b932f0419dd0c7f73a3615c6e88d6d90571cc620cfe873",
+    "bytes": 109450687,
+    "frames": 72,
+    "layouts": 18
+  },
+  "test": "L-infinity RGB distance to visible unit-face interiors on the training shard",
+  "selection_sha256": "8a2f5d624a5a78092325dc254ef6f1afb78a12bc34987a7c2556ef041fed406f",
+  "examples": [
+    {
+      "id": "A",
+      "frame": "light_gray_concrete/holdout-crossing-masonry-low-left",
+      "marked": 564,
+      "source_sha256": "93c9a45dbb4d6bc59edc6c18ac8007ad4f99ac340844cb0ed8f171640936fa88",
+      "top_rgb": [
+        {
+          "rgb": [
+            184,
+            211,
+            255
+          ],
+          "pixels": 283
+        },
+        {
+          "rgb": [
+            176,
+            205,
+            255
+          ],
+          "pixels": 60
+        },
+        {
+          "rgb": [
+            177,
+            206,
+            255
+          ],
+          "pixels": 49
+        },
+        {
+          "rgb": [
+            175,
+            204,
+            255
+          ],
+          "pixels": 38
+        },
+        {
+          "rgb": [
+            175,
+            205,
+            255
+          ],
+          "pixels": 29
+        }
+      ]
+    },
+    {
+      "id": "B",
+      "frame": "light_gray_concrete/holdout-galleries-masonry-low-left",
+      "marked": 162,
+      "source_sha256": "d0fba67900a91a20d0120f298c8783829953bc21c7d45fb4413a8cb829cfddc3",
+      "top_rgb": [
+        {
+          "rgb": [
+            184,
+            211,
+            255
+          ],
+          "pixels": 162
+        }
+      ]
+    },
+    {
+      "id": "C",
+      "frame": "light_gray_concrete/holdout-crossing-plaster-low-left",
+      "marked": 404,
+      "source_sha256": "d348ddef0010267fdffc0d628654ef6ce256329400dec3e1cfd271bfaf764144",
+      "top_rgb": [
+        {
+          "rgb": [
+            184,
+            211,
+            255
+          ],
+          "pixels": 253
+        },
+        {
+          "rgb": [
+            176,
+            205,
+            255
+          ],
+          "pixels": 50
+        },
+        {
+          "rgb": [
+            175,
+            204,
+            255
+          ],
+          "pixels": 36
+        },
+        {
+          "rgb": [
+            175,
+            205,
+            255
+          ],
+          "pixels": 17
+        },
+        {
+          "rgb": [
+            174,
+            204,
+            255
+          ],
+          "pixels": 16
+        }
+      ]
+    },
+    {
+      "id": "D",
+      "frame": "light_gray_concrete/holdout-galleries-plaster-low-left",
+      "marked": 171,
+      "source_sha256": "0fec6765b63937520e2a731a9171eef73e631ce1d47734e3925e2165b64a26c0",
+      "top_rgb": [
+        {
+          "rgb": [
+            184,
+            211,
+            255
+          ],
+          "pixels": 171
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "building_pixels": 13419592,
+    "interior_pixels": 11084476,
+    "distinct_materials": 24,
+    "old_building_hits": 10,
+    "added_building_hits": 0,
+    "added_interior_hits": 0,
+    "marked_pixels": 1301,
+    "marked_with_exact_material_color": 0
+  },
+  "colors": [
+    {
+      "rgb": [
+        184,
+        211,
+        255
+      ],
+      "marked_pixels": 869,
+      "closest_max_channel_delta": 34,
+      "closest": [
+        {
+          "block": "minecraft:calcite",
+          "rgb": [
+            217,
+            221,
+            221
+          ]
+        },
+        {
+          "block": "minecraft:polished_diorite",
+          "rgb": [
+            218,
+            216,
+            221
+          ]
+        }
+      ]
+    },
+    {
+      "rgb": [
+        176,
+        205,
+        255
+      ],
+      "marked_pixels": 110,
+      "closest_max_channel_delta": 38,
+      "closest": [
+        {
+          "block": "minecraft:calcite",
+          "rgb": [
+            214,
+            218,
+            217
+          ]
+        },
+        {
+          "block": "minecraft:polished_diorite",
+          "rgb": [
+            214,
+            213,
+            217
+          ]
+        }
+      ]
+    },
+    {
+      "rgb": [
+        175,
+        204,
+        255
+      ],
+      "marked_pixels": 74,
+      "closest_max_channel_delta": 38,
+      "closest": [
+        {
+          "block": "minecraft:polished_diorite",
+          "rgb": [
+            213,
+            212,
+            217
+          ]
+        }
+      ]
+    },
+    {
+      "rgb": [
+        177,
+        206,
+        255
+      ],
+      "marked_pixels": 53,
+      "closest_max_channel_delta": 37,
+      "closest": [
+        {
+          "block": "minecraft:calcite",
+          "rgb": [
+            214,
+            218,
+            218
+          ]
+        },
+        {
+          "block": "minecraft:polished_diorite",
+          "rgb": [
+            214,
+            213,
+            218
+          ]
+        }
+      ]
+    },
+    {
+      "rgb": [
+        175,
+        205,
+        255
+      ],
+      "marked_pixels": 46,
+      "closest_max_channel_delta": 38,
+      "closest": [
+        {
+          "block": "minecraft:polished_diorite",
+          "rgb": [
+            213,
+            212,
+            217
+          ]
+        }
+      ]
+    },
+    {
+      "rgb": [
+        174,
+        204,
+        255
+      ],
+      "marked_pixels": 32,
+      "closest_max_channel_delta": 39,
+      "closest": [
+        {
+          "block": "minecraft:calcite",
+          "rgb": [
+            213,
+            217,
+            216
+          ]
+        },
+        {
+          "block": "minecraft:polished_diorite",
+          "rgb": [
+            212,
+            212,
+            216
+          ]
+        }
+      ]
+    },
+    {
+      "rgb": [
+        179,
+        207,
+        255
+      ],
+      "marked_pixels": 27,
+      "closest_max_channel_delta": 37,
+      "closest": [
+        {
+          "block": "minecraft:calcite",
+          "rgb": [
+            216,
+            219,
+            218
+          ]
+        },
+        {
+          "block": "minecraft:polished_diorite",
+          "rgb": [
+            215,
+            215,
+            218
+          ]
+        }
+      ]
+    },
+    {
+      "rgb": [
+        178,
+        206,
+        255
+      ],
+      "marked_pixels": 20,
+      "closest_max_channel_delta": 37,
+      "closest": [
+        {
+          "block": "minecraft:calcite",
+          "rgb": [
+            214,
+            218,
+            218
+          ]
+        },
+        {
+          "block": "minecraft:polished_diorite",
+          "rgb": [
+            215,
+            215,
+            218
+          ]
+        }
+      ]
+    },
+    {
+      "rgb": [
+        180,
+        208,
+        255
+      ],
+      "marked_pixels": 14,
+      "closest_max_channel_delta": 36,
+      "closest": [
+        {
+          "block": "minecraft:calcite",
+          "rgb": [
+            216,
+            219,
+            219
+          ]
+        },
+        {
+          "block": "minecraft:polished_diorite",
+          "rgb": [
+            216,
+            214,
+            219
+          ]
+        }
+      ]
+    },
+    {
+      "rgb": [
+        178,
+        207,
+        255
+      ],
+      "marked_pixels": 13,
+      "closest_max_channel_delta": 37,
+      "closest": [
+        {
+          "block": "minecraft:calcite",
+          "rgb": [
+            214,
+            218,
+            218
+          ]
+        },
+        {
+          "block": "minecraft:polished_diorite",
+          "rgb": [
+            215,
+            215,
+            218
+          ]
+        }
+      ]
+    },
+    {
+      "rgb": [
+        182,
+        209,
+        255
+      ],
+      "marked_pixels": 12,
+      "closest_max_channel_delta": 35,
+      "closest": [
+        {
+          "block": "minecraft:calcite",
+          "rgb": [
+            217,
+            221,
+            221
+          ]
+        },
+        {
+          "block": "minecraft:polished_diorite",
+          "rgb": [
+            217,
+            216,
+            220
+          ]
+        }
+      ]
+    },
+    {
+      "rgb": [
+        183,
+        210,
+        255
+      ],
+      "marked_pixels": 12,
+      "closest_max_channel_delta": 34,
+      "closest": [
+        {
+          "block": "minecraft:calcite",
+          "rgb": [
+            217,
+            221,
+            221
+          ]
+        }
+      ]
+    },
+    {
+      "rgb": [
+        181,
+        209,
+        255
+      ],
+      "marked_pixels": 10,
+      "closest_max_channel_delta": 36,
+      "closest": [
+        {
+          "block": "minecraft:calcite",
+          "rgb": [
+            217,
+            220,
+            219
+          ]
+        },
+        {
+          "block": "minecraft:polished_diorite",
+          "rgb": [
+            217,
+            215,
+            219
+          ]
+        }
+      ]
+    },
+    {
+      "rgb": [
+        181,
+        208,
+        255
+      ],
+      "marked_pixels": 8,
+      "closest_max_channel_delta": 36,
+      "closest": [
+        {
+          "block": "minecraft:calcite",
+          "rgb": [
+            217,
+            220,
+            219
+          ]
+        },
+        {
+          "block": "minecraft:polished_diorite",
+          "rgb": [
+            217,
+            215,
+            219
+          ]
+        }
+      ]
+    },
+    {
+      "rgb": [
+        177,
+        205,
+        255
+      ],
+      "marked_pixels": 1,
+      "closest_max_channel_delta": 37,
+      "closest": [
+        {
+          "block": "minecraft:calcite",
+          "rgb": [
+            214,
+            218,
+            218
+          ]
+        },
+        {
+          "block": "minecraft:polished_diorite",
+          "rgb": [
+            214,
+            213,
+            218
+          ]
+        }
+      ]
+    }
+  ],
+  "by_material": {
+    "minecraft:blue_terracotta": {
+      "pixels": 1029502,
+      "interior_pixels": 848831,
+      "old_hits": 1,
+      "added_hits": 0,
+      "added_interior_hits": 0
+    },
+    "minecraft:bricks": {
+      "pixels": 839169,
+      "interior_pixels": 703202,
+      "old_hits": 0,
+      "added_hits": 0,
+      "added_interior_hits": 0
+    },
+    "minecraft:calcite": {
+      "pixels": 667078,
+      "interior_pixels": 557739,
+      "old_hits": 1,
+      "added_hits": 0,
+      "added_interior_hits": 0
+    },
+    "minecraft:cobblestone": {
+      "pixels": 896288,
+      "interior_pixels": 749411,
+      "old_hits": 0,
+      "added_hits": 0,
+      "added_interior_hits": 0
+    },
+    "minecraft:cut_sandstone": {
+      "pixels": 234734,
+      "interior_pixels": 182370,
+      "old_hits": 1,
+      "added_hits": 0,
+      "added_interior_hits": 0
+    },
+    "minecraft:dark_prismarine": {
+      "pixels": 212041,
+      "interior_pixels": 164092,
+      "old_hits": 1,
+      "added_hits": 0,
+      "added_interior_hits": 0
+    },
+    "minecraft:deepslate_tiles": {
+      "pixels": 839169,
+      "interior_pixels": 703202,
+      "old_hits": 0,
+      "added_hits": 0,
+      "added_interior_hits": 0
+    },
+    "minecraft:granite": {
+      "pixels": 1029502,
+      "interior_pixels": 848831,
+      "old_hits": 1,
+      "added_hits": 0,
+      "added_interior_hits": 0
+    },
+    "minecraft:jungle_planks": {
+      "pixels": 212041,
+      "interior_pixels": 164092,
+      "old_hits": 1,
+      "added_hits": 0,
+      "added_interior_hits": 0
+    },
+    "minecraft:light_gray_concrete": {
+      "pixels": 441050,
+      "interior_pixels": 365787,
+      "old_hits": 1,
+      "added_hits": 0,
+      "added_interior_hits": 0
+    },
+    "minecraft:mud_bricks": {
+      "pixels": 526870,
+      "interior_pixels": 429805,
+      "old_hits": 0,
+      "added_hits": 0,
+      "added_interior_hits": 0
+    },
+    "minecraft:oak_planks": {
+      "pixels": 228163,
+      "interior_pixels": 179107,
+      "old_hits": 0,
+      "added_hits": 0,
+      "added_interior_hits": 0
+    },
+    "minecraft:polished_andesite": {
+      "pixels": 946310,
+      "interior_pixels": 783950,
+      "old_hits": 0,
+      "added_hits": 0,
+      "added_interior_hits": 0
+    },
+    "minecraft:polished_diorite": {
+      "pixels": 527353,
+      "interior_pixels": 440722,
+      "old_hits": 0,
+      "added_hits": 0,
+      "added_interior_hits": 0
+    },
+    "minecraft:polished_granite": {
+      "pixels": 667078,
+      "interior_pixels": 557739,
+      "old_hits": 1,
+      "added_hits": 0,
+      "added_interior_hits": 0
+    },
+    "minecraft:prismarine_bricks": {
+      "pixels": 228163,
+      "interior_pixels": 179107,
+      "old_hits": 0,
+      "added_hits": 0,
+      "added_interior_hits": 0
+    },
+    "minecraft:red_sandstone": {
+      "pixels": 527353,
+      "interior_pixels": 440722,
+      "old_hits": 0,
+      "added_hits": 0,
+      "added_interior_hits": 0
+    },
+    "minecraft:sandstone": {
+      "pixels": 896288,
+      "interior_pixels": 749411,
+      "old_hits": 0,
+      "added_hits": 0,
+      "added_interior_hits": 0
+    },
+    "minecraft:smooth_quartz": {
+      "pixels": 161238,
+      "interior_pixels": 137222,
+      "old_hits": 0,
+      "added_hits": 0,
+      "added_interior_hits": 0
+    },
+    "minecraft:smooth_sandstone": {
+      "pixels": 441050,
+      "interior_pixels": 365787,
+      "old_hits": 1,
+      "added_hits": 0,
+      "added_interior_hits": 0
+    },
+    "minecraft:spruce_planks": {
+      "pixels": 234734,
+      "interior_pixels": 182370,
+      "old_hits": 1,
+      "added_hits": 0,
+      "added_interior_hits": 0
+    },
+    "minecraft:stone_bricks": {
+      "pixels": 526870,
+      "interior_pixels": 429805,
+      "old_hits": 0,
+      "added_hits": 0,
+      "added_interior_hits": 0
+    },
+    "minecraft:terracotta": {
+      "pixels": 946310,
+      "interior_pixels": 783950,
+      "old_hits": 0,
+      "added_hits": 0,
+      "added_interior_hits": 0
+    },
+    "minecraft:warped_planks": {
+      "pixels": 161238,
+      "interior_pixels": 137222,
+      "old_hits": 0,
+      "added_hits": 0,
+      "added_interior_hits": 0
+    }
+  },
+  "frames": [
+    {
+      "frame": "frames/train-arcade1-cool-high-right",
+      "added_pixels": 0,
+      "added_on_building": 0
+    },
+    {
+      "frame": "frames/train-arcade1-cool-low-left",
+      "added_pixels": 0,
+      "added_on_building": 0
+    },
+    {
+      "frame": "frames/train-arcade1-earth-high-right",
+      "added_pixels": 0,
+      "added_on_building": 0
+    },
+    {
+      "frame": "frames/train-arcade1-earth-low-left",
+      "added_pixels": 0,
+      "added_on_building": 0
+    },
+    {
+      "frame": "frames/train-arcade2-cool-high-right",
+      "added_pixels": 0,
+      "added_on_building": 0
+    },
+    {
+      "frame": "frames/train-arcade2-cool-low-left",
+      "added_pixels": 0,
+      "added_on_building": 0
+    },
+    {
+      "frame": "frames/train-arcade2-earth-high-right",
+      "added_pixels": 0,
+      "added_on_building": 0
+    },
+    {
+      "frame": "frames/train-arcade2-earth-low-left",
+      "added_pixels": 0,
+      "added_on_building": 0
+    },
+    {
+      "frame": "frames/train-arcade3-cool-high-right",
+      "added_pixels": 0,
+      "added_on_building": 0
+    },
+    {
+      "frame": "frames/train-arcade3-cool-low-left",
+      "added_pixels": 0,
+      "added_on_building": 0
+    },
+    {
+      "frame": "frames/train-arcade3-earth-high-right",
+      "added_pixels": 0,
+      "added_on_building": 0
+    },
+    {
+      "frame": "frames/train-arcade3-earth-low-left",
+      "added_pixels": 0,
+      "added_on_building": 0
+    },
+    {
+      "frame": "frames/train-arcbridge1-cool-high-right",
+      "added_pixels": 0,
+      "added_on_building": 0
+    },
+    {
+      "frame": "frames/train-arcbridge1-cool-low-left",
+      "added_pixels": 323,
+      "added_on_building": 0
+    },
+    {
+      "frame": "frames/train-arcbridge1-earth-high-right",
+      "added_pixels": 0,
+      "added_on_building": 0
+    },
+    {
+      "frame": "frames/train-arcbridge1-earth-low-left",
+      "added_pixels": 323,
+      "added_on_building": 0
+    },
+    {
+      "frame": "frames/train-arcbridge2-cool-high-right",
+      "added_pixels": 0,
+      "added_on_building": 0
+    },
+    {
+      "frame": "frames/train-arcbridge2-cool-low-left",
+      "added_pixels": 6536,
+      "added_on_building": 0
+    },
+    {
+      "frame": "frames/train-arcbridge2-earth-high-right",
+      "added_pixels": 0,
+      "added_on_building": 0
+    },
+    {
+      "frame": "frames/train-arcbridge2-earth-low-left",
+      "added_pixels": 6536,
+      "added_on_building": 0
+    },
+    {
+      "frame": "frames/train-arcbridge3-cool-high-right",
+      "added_pixels": 0,
+      "added_on_building": 0
+    },
+    {
+      "frame": "frames/train-arcbridge3-cool-low-left",
+      "added_pixels": 14229,
+      "added_on_building": 0
+    },
+    {
+      "frame": "frames/train-arcbridge3-earth-high-right",
+      "added_pixels": 0,
+      "added_on_building": 0
+    },
+    {
+      "frame": "frames/train-arcbridge3-earth-low-left",
+      "added_pixels": 14229,
+      "added_on_building": 0
+    },
+    {
+      "frame": "frames/train-sawtooth1-cool-high-right",
+      "added_pixels": 0,
+      "added_on_building": 0
+    },
+    {
+      "frame": "frames/train-sawtooth1-cool-low-left",
+      "added_pixels": 0,
+      "added_on_building": 0
+    },
+    {
+      "frame": "frames/train-sawtooth1-earth-high-right",
+      "added_pixels": 0,
+      "added_on_building": 0
+    },
+    {
+      "frame": "frames/train-sawtooth1-earth-low-left",
+      "added_pixels": 0,
+      "added_on_building": 0
+    },
+    {
+      "frame": "frames/train-sawtooth2-cool-high-right",
+      "added_pixels": 0,
+      "added_on_building": 0
+    },
+    {
+      "frame": "frames/train-sawtooth2-cool-low-left",
+      "added_pixels": 0,
+      "added_on_building": 0
+    },
+    {
+      "frame": "frames/train-sawtooth2-earth-high-right",
+      "added_pixels": 0,
+      "added_on_building": 0
+    },
+    {
+      "frame": "frames/train-sawtooth2-earth-low-left",
+      "added_pixels": 0,
+      "added_on_building": 0
+    },
+    {
+      "frame": "frames/train-sawtooth3-cool-high-right",
+      "added_pixels": 0,
+      "added_on_building": 0
+    },
+    {
+      "frame": "frames/train-sawtooth3-cool-low-left",
+      "added_pixels": 0,
+      "added_on_building": 0
+    },
+    {
+      "frame": "frames/train-sawtooth3-earth-high-right",
+      "added_pixels": 0,
+      "added_on_building": 0
+    },
+    {
+      "frame": "frames/train-sawtooth3-earth-low-left",
+      "added_pixels": 0,
+      "added_on_building": 0
+    },
+    {
+      "frame": "frames/train-steppedhall1-cool-high-right",
+      "added_pixels": 0,
+      "added_on_building": 0
+    },
+    {
+      "frame": "frames/train-steppedhall1-cool-low-left",
+      "added_pixels": 0,
+      "added_on_building": 0
+    },
+    {
+      "frame": "frames/train-steppedhall1-earth-high-right",
+      "added_pixels": 0,
+      "added_on_building": 0
+    },
+    {
+      "frame": "frames/train-steppedhall1-earth-low-left",
+      "added_pixels": 0,
+      "added_on_building": 0
+    },
+    {
+      "frame": "frames/train-steppedhall2-cool-high-right",
+      "added_pixels": 0,
+      "added_on_building": 0
+    },
+    {
+      "frame": "frames/train-steppedhall2-cool-low-left",
+      "added_pixels": 0,
+      "added_on_building": 0
+    },
+    {
+      "frame": "frames/train-steppedhall2-earth-high-right",
+      "added_pixels": 0,
+      "added_on_building": 0
+    },
+    {
+      "frame": "frames/train-steppedhall2-earth-low-left",
+      "added_pixels": 0,
+      "added_on_building": 0
+    },
+    {
+      "frame": "frames/train-steppedhall3-cool-high-right",
+      "added_pixels": 0,
+      "added_on_building": 0
+    },
+    {
+      "frame": "frames/train-steppedhall3-cool-low-left",
+      "added_pixels": 0,
+      "added_on_building": 0
+    },
+    {
+      "frame": "frames/train-steppedhall3-earth-high-right",
+      "added_pixels": 0,
+      "added_on_building": 0
+    },
+    {
+      "frame": "frames/train-steppedhall3-earth-low-left",
+      "added_pixels": 0,
+      "added_on_building": 0
+    },
+    {
+      "frame": "frames/train-terrace1-cool-high-right",
+      "added_pixels": 0,
+      "added_on_building": 0
+    },
+    {
+      "frame": "frames/train-terrace1-cool-low-left",
+      "added_pixels": 0,
+      "added_on_building": 0
+    },
+    {
+      "frame": "frames/train-terrace1-earth-high-right",
+      "added_pixels": 0,
+      "added_on_building": 0
+    },
+    {
+      "frame": "frames/train-terrace1-earth-low-left",
+      "added_pixels": 0,
+      "added_on_building": 0
+    },
+    {
+      "frame": "frames/train-terrace2-cool-high-right",
+      "added_pixels": 0,
+      "added_on_building": 0
+    },
+    {
+      "frame": "frames/train-terrace2-cool-low-left",
+      "added_pixels": 0,
+      "added_on_building": 0
+    },
+    {
+      "frame": "frames/train-terrace2-earth-high-right",
+      "added_pixels": 0,
+      "added_on_building": 0
+    },
+    {
+      "frame": "frames/train-terrace2-earth-low-left",
+      "added_pixels": 0,
+      "added_on_building": 0
+    },
+    {
+      "frame": "frames/train-terrace3-cool-high-right",
+      "added_pixels": 0,
+      "added_on_building": 0
+    },
+    {
+      "frame": "frames/train-terrace3-cool-low-left",
+      "added_pixels": 0,
+      "added_on_building": 0
+    },
+    {
+      "frame": "frames/train-terrace3-earth-high-right",
+      "added_pixels": 0,
+      "added_on_building": 0
+    },
+    {
+      "frame": "frames/train-terrace3-earth-low-left",
+      "added_pixels": 0,
+      "added_on_building": 0
+    },
+    {
+      "frame": "frames/train-watchpost1-cool-high-right",
+      "added_pixels": 7495,
+      "added_on_building": 0
+    },
+    {
+      "frame": "frames/train-watchpost1-cool-low-left",
+      "added_pixels": 0,
+      "added_on_building": 0
+    },
+    {
+      "frame": "frames/train-watchpost1-earth-high-right",
+      "added_pixels": 7495,
+      "added_on_building": 0
+    },
+    {
+      "frame": "frames/train-watchpost1-earth-low-left",
+      "added_pixels": 0,
+      "added_on_building": 0
+    },
+    {
+      "frame": "frames/train-watchpost2-cool-high-right",
+      "added_pixels": 0,
+      "added_on_building": 0
+    },
+    {
+      "frame": "frames/train-watchpost2-cool-low-left",
+      "added_pixels": 0,
+      "added_on_building": 0
+    },
+    {
+      "frame": "frames/train-watchpost2-earth-high-right",
+      "added_pixels": 0,
+      "added_on_building": 0
+    },
+    {
+      "frame": "frames/train-watchpost2-earth-low-left",
+      "added_pixels": 0,
+      "added_on_building": 0
+    },
+    {
+      "frame": "frames/train-watchpost3-cool-high-right",
+      "added_pixels": 0,
+      "added_on_building": 0
+    },
+    {
+      "frame": "frames/train-watchpost3-cool-low-left",
+      "added_pixels": 0,
+      "added_on_building": 0
+    },
+    {
+      "frame": "frames/train-watchpost3-earth-high-right",
+      "added_pixels": 0,
+      "added_on_building": 0
+    },
+    {
+      "frame": "frames/train-watchpost3-earth-low-left",
+      "added_pixels": 0,
+      "added_on_building": 0
+    }
+  ]
+}
