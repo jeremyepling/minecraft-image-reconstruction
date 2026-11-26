@@ -46,6 +46,9 @@ def predict(photo, parts, methods):
                        for part,sample,baseline in zip(parts,samples,base)]
         if len(results)!=len(parts):
             raise ValueError(f'{method} returned a different surface inventory')
+        if method=='phase':
+            predictions['phase_repeat'] = [r['evidence'].get('self_repeat',baseline)
+                                           for r,baseline in zip(results,base)]
         predictions[method] = results
         timing[method] = perf_counter()-start
     rows = []
@@ -85,7 +88,7 @@ def evaluate(job):
     row = dict(key=frame_id,sha256=frame['image_sha256'],family=frame['family'],layout=frame['layout'],
                split=frame['split'],eligible=metrics['eligible'],surfaces=records,predictions=file,
                processing_s=timing,ordinary_sha256=ordinary_hash)
-    row['scores'] = summarize([row],['current',*methods])
+    row['scores'] = summarize([row],list(predictions))
     return row
 
 
@@ -130,15 +133,19 @@ def run(dataset,out,workers,methods):
                 or any(score[k]!=old['scores']['photo'][k] for k in ('eligible','matched'))
                 or score['unmatched_returned']!=old['sizes']['photo']['unmatched_complete']):
             raise ValueError('Per-picture shipped baseline differs: '+r['key'])
-    names = ['current',*methods]
+    names = list(rows[0]['scores'])
     groups = sorted({r['family'] for r in rows}|{r['layout'] for r in rows})
     scores = {g:summarize([r for r in rows if g in ('all',r['family'],r['layout'])],names)
               for g in ['all',*groups]}
     save(out/'scores.json',scores)
     save(out/'cases.json',rows)
+    atlas = {}
+    if 'phase' in methods:
+        from benchmark.portico_atlas import atlas as vanilla_atlas
+        atlas = vanilla_atlas().provenance
     save(out/'manifest.json',dict(run_id=out.name,version='26.3',code=code,
         algorithm='No tuning. Frozen predictors receive only one RGB and image-derived surfaces, with normals, relative inverse depth and baseline count evidence.',
-        methods=names,sources=sources,photo_rule=photo_edges.METHOD,
+        methods=names,sources=sources,atlas=atlas,photo_rule=photo_edges.METHOD,
         inputs='Saved ordinary predictions and two Visible Builds v1 released shards; all original inference reused.',
         transfer_archive_sha256=digest(ARCHIVE/'manifest.json'),shards=archive['shards'],
         fixture_ids=[dict(id=r['key'],layout=r['layout'],image_sha256=r['sha256']) for r in rows],
