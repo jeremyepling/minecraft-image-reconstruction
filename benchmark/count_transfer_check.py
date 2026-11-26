@@ -11,6 +11,7 @@ import subprocess
 from time import perf_counter
 from zipfile import ZipFile
 
+import numpy as np
 from PIL import Image
 
 from benchmark.camera_round import ROOT, digest, read, revision, save
@@ -21,6 +22,7 @@ from benchmark.surface_metrics import truth
 from benchmark.texture_count_round import scalar, summarize
 from benchmark.wall_join_test import checked, read_gzip
 from engine import photo_edges
+from engine.geometry import UNIT, project
 from engine.masked_count import count
 from engine.surface_dimensions import dimensions
 from engine.surface_sample import sample_surface
@@ -62,6 +64,32 @@ def predict(photo, parts, methods):
     return rows,predictions,timing
 
 
+
+def grade_transfer(transfer,rid,did,ref,targets):
+    data = dict(donor=transfer['donor'],predicted_offset=transfer['recipient_offset'],
+                recipient_reference=rid,donor_reference=did,correct_plane=None)
+    if did is None or rid is None:
+        return data
+    source,target = (ref['patches'][i] for i in (did,rid))
+    data['correct_plane'] = source['normal']==target['normal'] and source['offset']==target['offset']
+    data['donor_and_recipient_materials'] = [
+        sorted({f['block_id'] for f in targets[i]['faces'].values()}) for i in (did,rid)]
+    if data['correct_plane']:
+        world_grid = np.linalg.inv(ref['charts'][did])@transfer['donor_grid_to_image']
+        basis = project(world_grid,UNIT)
+        vectors = basis[[1,3]]-basis[0]
+        axes = np.argmax(abs(vectors),axis=1)
+        if axes[0]!=axes[1]:
+            orientation = np.sign(vectors[np.arange(2),axes])
+            origins = []
+            for i in (did,rid):
+                cells = np.asarray(list(targets[i]['faces']))[:,axes]
+                origins.append(np.where(orientation>0,cells.min(0),-cells.max(0)-1))
+            data['actual_offset'] = (origins[1]-origins[0]).tolist()
+            data['exact_offset'] = data['actual_offset']==data['predicted_offset']
+    return data
+
+
 def evaluate(job):
     path,frame,ordinary_hash,methods,out = job
     frame_id = frame['id']
@@ -85,6 +113,13 @@ def evaluate(job):
     metrics,pairs = measure(parts,ref,use_mask=True)
     for index,rid in pairs:
         records[index].update(reference=rid,actual=targets[rid]['size'])
+    if 'coplanar' in predictions:
+        paired = {records[i]['proposal']:rid for i,rid in pairs}
+        for record,result in zip(records,predictions['coplanar']):
+            transfer = result.get('evidence',{}).get('transfer')
+            if transfer:
+                record['transfer_score'] = grade_transfer(transfer,record.get('reference'),
+                                                          paired.get(transfer['donor']),ref,targets)
     row = dict(key=frame_id,sha256=frame['image_sha256'],family=frame['family'],layout=frame['layout'],
                split=frame['split'],eligible=metrics['eligible'],surfaces=records,predictions=file,
                processing_s=timing,ordinary_sha256=ordinary_hash)
