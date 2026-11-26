@@ -140,7 +140,7 @@ def place(image, version, parts, *, counts=None, atlas_path=None):
 
 
 def place_with_camera(image, version, parts, counts, camera, select_level=None, *,
-                      partial=None, refine_candidates=None, remove_occluded=False, walls_first=False):
+                      partial=None, refine_candidates=None, remove_occluded=False, walls_first=False, recover_edges=None):
     status = dict(camera_status=camera['scale_status'], reason=camera['reason'], P=camera['P'],
                   strict_blocks=0, added_blocks=0, placed_blocks=0, duplicate_side_cells=0,
                   textured_side_cells=0, grounded_side_cells=0, shared_side_cells=0)
@@ -192,5 +192,14 @@ def place_with_camera(image, version, parts, counts, camera, select_level=None, 
         occluded = fully_occluded_cells(image.size, camera['P'], accepted)
         accepted -= occluded
         status['fully_occluded_blocks'] = len(occluded)
+    if recover_edges is not None:
+        added = recover_edges(accepted)
+        if added:
+            accepted.update(added)
+            if remove_occluded:
+                occluded = fully_occluded_cells(image.size, camera['P'], accepted)
+                accepted -= occluded
+                status['fully_occluded_blocks'] += len(occluded)
+        status['verified_edge_blocks'] = len(added & accepted)
     status.update(strict_blocks=len(strict & accepted), added_blocks=len(accepted - strict), placed_blocks=len(accepted))
     return accepted, status
