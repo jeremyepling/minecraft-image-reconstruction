@@ -4,6 +4,7 @@ import numpy as np
 from engine.camera_atlas_floor import _atlas
 from engine.visible_placement import place_with_camera
 from engine.visible_raster import SAMPLE_STRIDE
+from engine.plane_offset_features import ranked_choice
 
 
 def _sample(items, limit):
@@ -146,11 +147,14 @@ def choose(rows, baseline, method):
     return winner['level'] if winner[key] >= {'boundary':.52,'edge':.28,'atlas':.57}[method] else baseline
 
 
-def place(image,version,parts,counts,camera,method,atlas_path=None):
+def place(image,version,parts,counts,camera,method,atlas_path=None,weights=None):
     rgb = np.asarray(image.convert('RGB'))
-    atlas = _atlas(version,atlas_path) if method in ('atlas','combined') else None
+    atlas = _atlas(version,atlas_path) if method in ('atlas','combined','ranked') else None
     def select(part,mask,P,eye,rays,axis,baseline,scene_distance):
-        rows = options(mask,P,eye,rays,axis,baseline,rgb,atlas,scene_distance if method=='combined' else None)
+        rows = options(mask,P,eye,rays,axis,baseline,rgb,atlas,
+                       scene_distance if method in ('combined','ranked') else None)
+        if method=='ranked':
+            return ranked_choice(rows,baseline,weights)
         return choose(rows,baseline,method)
     return place_with_camera(image,version,parts,counts,camera,select)
 
