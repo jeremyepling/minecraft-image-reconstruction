@@ -196,6 +196,11 @@ def place_ranked(image, version, parts, counts, camera, *, atlas_path=None, join
             status['second_thin_atlas_blocks'] = len(recovered) - len(first)
             recovered, refinement = refine_framed_depth(image, parts, camera, recovered, atlas, atlas_path)
             status.update(refinement)
+            if atlas is not None:
+                from engine.roof_span_texture import conservative
+                extended, _ = conservative(image, parts, counts, camera, recovered, atlas_path=atlas_path)
+                status['roof_span_blocks'] = len(extended - recovered)
+                recovered = extended
         status['strict_blocks'] = len(recovered & strict)
         status['added_blocks'] = len(recovered) - status['strict_blocks']
         status['placed_blocks'] = len(recovered)
