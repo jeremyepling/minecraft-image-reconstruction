@@ -28,10 +28,11 @@ def _sample_face(projection, cell, axis, sign, shape):
         return None
 
 
-def _frontmost_cells(cells, projection, eye, shape):
+def _frontmost_cells(cells, projection, eye, shape, *, faces=False):
     """Assign each sampled image ray to the nearest projected face in the candidate build."""
     inverse_depth = np.zeros(shape)
     owner = np.full(shape, -1, dtype=int)
+    axis_map = np.full(shape,-1,dtype=np.int8) if faces else None
     occupied = set(cells)
     for index, cell in enumerate(cells):
         for axis in range(3):
@@ -49,7 +50,35 @@ def _frontmost_cells(cells, projection, eye, shape):
             closer = pixels & (depth > inverse_depth[box])
             inverse_depth[box][closer] = depth[closer]
             owner[box][closer] = index
-    return owner
+            if faces:
+                axis_map[box][closer] = axis
+    return (owner,axis_map,inverse_depth) if faces else owner
+
+
+def _supported_faces(cells, strict, candidates, masks, axes, P, eye, *, revive):
+    shape=masks[0].shape
+    owner,normals,_ = _frontmost_cells(cells,P,eye,shape,faces=True)
+    accepted=set(strict)
+    for mask,evidence,axis in zip(masks,candidates,axes,strict=True):
+        visible=owner[mask & (normals==axis)]
+        counts=np.bincount(visible[visible>=0],minlength=len(cells))
+        accepted.update(cells[i] for i in np.flatnonzero(counts>=MINIMUM_SAMPLES) if cells[i] in evidence)
+    if revive and accepted:
+        _,_,depth=_frontmost_cells(sorted(accepted),P,eye,shape,faces=True)
+        recovered=set()
+        for mask,evidence,axis in zip(masks,candidates,axes,strict=True):
+            for cell in evidence-accepted:
+                sign=1 if eye[axis]>=cell[axis]+1 else -1
+                hit=_sample_face(P,cell,axis,sign,shape)
+                if hit is None:continue
+                box,pixels,z,_,_=hit
+                clear=pixels & mask[box] & (z>depth[box]+1e-7)
+                if clear.sum()>=max(MINIMUM_SAMPLES,.1*pixels.sum()):
+                    recovered.add(cell)
+        if recovered:
+            eligible=sorted(accepted|recovered)
+            accepted,_,_= _supported_faces(eligible,strict,candidates,masks,axes,P,eye,revive=False)
+    return accepted,owner,normals
 
 
 def _estimate_plane_cells(image, parts, masks, projection, eye, select_level=None):
@@ -126,7 +155,7 @@ def place(image, version, parts, *, counts=None, atlas_path=None):
     return place_with_camera(image, version, parts, counts, camera)
 
 
-def place_with_camera(image, version, parts, counts, camera, select_level=None):
+def place_with_camera(image, version, parts, counts, camera, select_level=None, face_policy=None):
     status = dict(camera_status=camera['scale_status'], reason=camera['reason'], P=camera['P'],
                   strict_blocks=0, added_blocks=0, placed_blocks=0, duplicate_side_cells=0,
                   textured_side_cells=0, grounded_side_cells=0, shared_side_cells=0)
@@ -146,14 +175,20 @@ def place_with_camera(image, version, parts, counts, camera, select_level=None):
     eye = np.linalg.solve(projection[:, :3], -projection[:, 3])
     candidates = _estimate_plane_cells(image, parts, masks, projection, eye, select_level)
     cells = sorted(strict.union(*candidates))
-    owner = _frontmost_cells(cells, projection, eye, shape)
-    accepted = strict.copy()
-    for mask, evidence in zip(masks, candidates, strict=True):
-        if not evidence:
-            continue
-        visible = owner[mask]
-        sample_counts = np.bincount(visible[visible >= 0], minlength=len(cells))
-        accepted.update(cells[i] for i in np.flatnonzero(sample_counts >= MINIMUM_SAMPLES) if cells[i] in evidence)
+    if face_policy:
+        focal=np.linalg.norm(projection[0,:3]-image.width*.5*projection[2,:3])
+        rot=np.linalg.solve(intrinsic(image.size,focal),projection[:,:3])
+        axes=[int(np.argmax(abs(rot.T@p['normal_camera']))) if p.get('normal_camera') is not None else -1 for p in parts]
+        accepted,owner,_=_supported_faces(cells,strict,candidates,masks,axes,projection,eye,revive=face_policy=='retry')
+    else:
+        owner = _frontmost_cells(cells, projection, eye, shape)
+        accepted = strict.copy()
+        for mask, evidence in zip(masks, candidates, strict=True):
+            if not evidence:
+                continue
+            visible = owner[mask]
+            sample_counts = np.bincount(visible[visible >= 0], minlength=len(cells))
+            accepted.update(cells[i] for i in np.flatnonzero(sample_counts >= MINIMUM_SAMPLES) if cells[i] in evidence)
     if accepted - strict:
         from engine.seam_ownership import corroborated_runs, textured_side_owners, resolve_side_owners
         from engine.seam_runs import grounded_side_owners
