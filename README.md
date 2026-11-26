@@ -1,5 +1,7 @@
 # Minecraft Image Reconstruction
 
+Reconstruct only the parts of a build visible in the supplied image or images. Hidden backs, interiors and occluded regions remain unknown and are omitted from the reconstruction. This scope applies to the current pipeline and the [planned learned approach](training/README.md). [Product intent](PRODUCT_INTENT.md)
+
 Use `main` to recover visible surfaces from one Minecraft Java 26.3 screenshot. The ordinary **Surface Finder** uses Regions First, Wall Recovery and Pixel-wise Planarity with split-only zoom. It matched **516 of 598** visible surface appearances across 56 saved views of eight buildings. The Block Counter recovered both dimensions for 80 surfaces. [Surface results by screenshot](benchmark/reviews/crop-split-01/pictures.md) · [Crop and straightening review](benchmark/CROP_REVIEW.md)
 
 ## Build from a screenshot
@@ -50,7 +52,7 @@ Replace the example PNG with a JPEG, PNG, or another Pillow-readable image. To r
 
 The result is a Java datapack, `reconstruction.zip`, containing tiled structure templates. File export runs with Minecraft closed. When the task calls for actual placement and an in-game screenshot, run `python reconstruct.py verify-build runs/wall --version 26.3 --out runs/wall-world`. Its save is under `client/saves/Palette Lab` and the screenshot is under `captures`. To place it in an existing world, put the ZIP in that world's `datapacks` folder, run `/reload`, stand at the desired origin and run `/function reconstruction:build`.
 
-## Angled views and hidden geometry
+## Angled views and visible geometry
 
 The automatic pass proposes a main wall or a front and return from image structure and looks for periodic seams. Busy backgrounds, stepped roofs and repeated window bays can produce the wrong outline or block pitch. For those images, edit the generated `proposed-scene.json` and rebuild using `--scene PATH`. Geometry hints are independent of block identities. This example defines a six-by-six wall by its four pixel corners and world-relative location.
 
@@ -60,11 +62,15 @@ The automatic pass proposes a main wall or a front and return from image structu
 
 Order corners clockwise from top left. The origin is the block at the bottom left of that plane. Supply a plane per visible surface with shared coordinates at adjoining edges. Directions include north, south, east, west, up and down. A south wall runs toward positive X on the right. On an upward-facing roof, the image top runs toward negative Z. Omit both counts to estimate the lattice from seams. Use `holes` containing lists of image polygons to exclude openings or occlusions. Alpha transparency also excludes cells. For detailed parallel façades, the geometry engine also supports shared vanishing directions, approximate block scales and per-plane anchors; the `dimensions` section can join measured adjoining bands across setbacks.
 
-By default, the pack contains the observed surfaces. For one wall, `--depth 8` builds a hollow eight-block-deep shell from its side, roof, floor and back edges. Depth supplied this way is an assumption. Hidden rooms, backs of buildings, stair/slab states, and identical-looking block IDs cannot generally be recovered from one view. Reconstruction currently places full cubes. The catalog also measures exact-ID recognition for irregular blocks as a separate research metric. Use `--white-balance` for conservative neutral-patch correction on a shader image.
+The reconstruction target contains only blocks supported by visible face evidence in the supplied input. Unseen cells are unknown, not confirmed air; omission must not become a claim about their contents or permission to clear them in an existing world. Reconstruction currently places full cubes, so a visibly supported block has its normal Minecraft volume. Do not add further cells to complete a wall, roof, shell, interior or concealed support. Ambiguous visible dimensions, materials and states should remain explicit uncertainties.
+
+The legacy facade builder still accepts `--depth` to generate an assumed shell. That historical option is outside the reconstruction scope and is not a recommended reconstruction step. This intent update does not remove the option or establish runtime enforcement. The catalog measures exact-ID recognition for irregular blocks as a separate research metric. Use `--white-balance` for conservative neutral-patch correction on a shader image.
 
 ## Verification
 
 Minecraft can drop sand, gravel and concrete powder when a reconstructed face has a gap below it. For known vanilla gravity blocks, the exporter checks support within the reconstructed shape. Where support is missing it takes the highest-ranked self-supporting alternative and records the coordinate, original material and replacement in `placements.json` under `substitutions`. The original texture rankings remain in `matches.json`. This check assumes full-block supports and does not model later player edits or redstone changes.
+
+The visible-only intent does not permit inventing hidden support blocks. Record material substitutions and unresolved placement constraints separately from evidence about the source build.
 
 | Java release | Registry IDs tested | Held-out labeled faces correct | Touching-wall material IDs correct | Auto-detected independent wall |
 | --- | ---: | ---: | ---: | ---: |

@@ -1,5 +1,7 @@
 # Version calibration
 
+Follow the [visible-only product intent](../PRODUCT_INTENT.md) when reusing captures for learned reconstruction. Full world states and exact cameras can generate aligned labels, but the target for each example must be masked to the evidence visible in its supplied input. Other captured angles must not turn a single-image example into a hidden-geometry target. Keep unobserved cells unknown and outside occupancy/material losses; confirmed clear sightlines are distinct from occluded or out-of-frame space. No hidden-area completion objective is part of calibration or planned reconstruction training.
+
 Use a new output directory for each client version and calibration run. The main project CLI orchestrates the steps. To run them individually from the repository root:
 
 ```console

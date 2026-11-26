@@ -1,5 +1,7 @@
 # Measuring a build from screenshots
 
+The [product intent](../PRODUCT_INTENT.md) limits reconstruction to visible evidence in the supplied input. For a one-frame prediction, other views and the complete source world are scoring resources, not additional observations. Keep unobserved cells unknown, exclude them from visible-recovery denominators, and report unsupported extra placements separately. Do not reward guessed backs, interiors, shells or occluded continuations. Historical results below retain their original definitions; they do not establish a hidden-completion objective.
+
 For the current eight-building exterior suite, start with the [saved geometry and comparison commands](OFFLINE_GEOMETRY.md). Run new combinations on the existing captures. The results below describe an earlier fixture collection.
 
 This Java 26.3 benchmark uses 48 built fixtures and 216 Minecraft screenshots. Each building belongs to one split. Four camera views of that building stay together, and the predictor sees one frame at a time. Physical block coordinates and actual camera poses supply ground truth for scoring.

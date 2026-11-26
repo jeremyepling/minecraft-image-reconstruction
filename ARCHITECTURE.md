@@ -1,5 +1,7 @@
 # How a screenshot becomes a Minecraft build
 
+The [product intent](PRODUCT_INTENT.md) is visible-only reconstruction for both the current pipeline and proposed learned components. Only blocks supported by visible faces in the supplied input belong in the output. Unobserved backs, interiors and occluded regions stay unknown; geometry consistency must not become a hidden-area completion step.
+
 ## Find surfaces and count blocks
 
 The ordinary exterior command on this PC takes one Java 26.3 screenshot. It runs the **Surface Finder**, **Surface Straightener** and **Block Counter** and saves their intermediate results. The selected Surface Finder matched **516 of 598** visible surface appearances across 56 frozen views. The counter got both block dimensions right for **80 of 598**. These scores measure different stages. [Surface comparison](benchmark/CROP_SPLIT.md) · [Crop review](benchmark/CROP_REVIEW.md)
@@ -26,6 +28,8 @@ The Surface Finder’s build IDs are `mask-first` for grouping and `plane-recove
 The replay applies the selected rules to saved numerical model outputs, runs the same counter and grades the resulting masks against the recorded geometry. The 56 views cover eight buildings captured in vanilla Java 26.3 at clear noon. Settings were chosen on Shopfront and Wing. The other six buildings measure performance on previously reviewed layouts. Run `build --through camera` with an image, version and output directory for the independent camera and projected-grid estimate. [Replay manifest](benchmark/reviews/crop-split-01/manifest.json) · [Camera test](benchmark/CAMERA_ROUND.md)
 
 ## Export blocks and check placement
+
+Assembly may place a full Minecraft cube for a block evidenced by a visible face. It must not add further cells to close a shell, fill an unseen continuation or manufacture concealed supports. An omitted unknown cell is not an instruction to place air in an existing world. The facade builder's legacy `--depth` shell generation is outside this product intent; its existence is not evidence that hidden reconstruction is a goal.
 
 The assembly command uses the facade builder. It measures a projected block grid or accepts one saved for the same image. It ranks atlas textures for those cells, resolves conflicting placements and writes a Minecraft datapack. The six-model surface run currently ends at surface-local measurements. For a measured link between those surfaces and world coordinates, see the Block Counter’s separate export experiment. [Count and placement results](benchmark/COUNT_ROUND.md)
 

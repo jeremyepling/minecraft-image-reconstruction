@@ -1,5 +1,7 @@
 # Reusing the same buildings without starting Minecraft
 
+Apply the [visible-only product intent](../PRODUCT_INTENT.md) to prediction, training and scoring. A single-image run reconstructs only what is visible in that frame; sibling views and source-world labels must not supply hidden output geometry. Visibility masks distinguish observed surfaces and clear sightlines from unobserved cells. Unobserved is unknown, not an empty-space label. Score visible recovery and unsupported extra guesses or placements separately, without rewarding completion of unseen regions. Preserve the original definitions when replaying archived scores.
+
 For surface-matching reviews, `.\Invoke-SurfaceRound.ps1 -Round detection-sheet` redraws the latest comparison from its saved predictions. Use `-Round afterpass` to rebuild predictions from archived Planarity and ECT fields, score all 56 pictures, and run the ordinary Block Counter. Use `-Round single-wall` for the earlier depth-voting experiment. [Current sheet](reviews/afterpass-models-01/comparison.jpg) · [Experiment and default](AFTERPASS_MODELS.md)
 
 Use `.\Invoke-SurfaceRound.ps1 -Round separation` to repeat the wall and underside comparisons and the downstream dimension check on all 56 pictures. It runs picture jobs in parallel and reuses frozen model evidence by screenshot hash. [Inputs, selection and scores](SEPARATION_ROUND.md)

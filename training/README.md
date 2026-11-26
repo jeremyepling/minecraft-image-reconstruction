@@ -1,0 +1,33 @@
+# Planned Minecraft reconstruction training
+
+This is the intent and initial plan for a learned approach alongside the existing image-reconstruction pipeline. No separate training project, dataset generator or trained model is established by this document. Both approaches follow [the shared product intent](../PRODUCT_INTENT.md): reconstruct only blocks supported by visible face evidence in the supplied image(s), and leave unseen areas unknown.
+
+## Objective
+
+Improve measurements needed to reproduce the observed build: visible surface boundaries, projected block-grid alignment, block dimensions, depth in block units, relative surface placement and material identity. Start by evaluating a Minecraft-specific block-grid predictor against the existing Block Counter. Adapting a pretrained vision encoder is a proposed first experiment, not an implemented or validated result.
+
+Do not train this project to complete backs, interiors, occluded continuations, off-image regions, assumed thickness or other hidden structure. Whole-building occupancy prediction, generative completion and hidden-area inpainting are outside the objective. A full Minecraft block may be placed for its observed face; additional unseen cells must not be generated to close or support it.
+
+## Training data
+
+Source worlds can contain complete structures. For each example, capture the image together with aligned camera parameters, visible depth, normals, surface IDs, projected block corners and visible block-state labels. Use full world data to determine visibility and generate correct labels; restrict reconstruction targets to evidence visible in that example's supplied input view(s).
+
+Represent visible occupied cells, observed free space and unknown space separately. Unknown cells must not become air labels or hidden occupancy targets. Different camera views may form separate single-image examples, but each target must use only its own visibility. A multi-image example can use the union of its explicitly supplied views. Keep all views, palettes and close structural variants of a building in one split. Held-out world state and camera truth belong to the scorer, not ordinary prediction inputs.
+
+Use known world labels as ground truth when available. Other models can provide image-derived features or candidate predictions; agreement alone is not proof of correctness. Human review should verify capture alignment and selected failures rather than approve every automatically labeled block.
+
+## Proposed first comparison
+
+1. Audit aligned labels on a small collection of full-cube structures with openings, overhangs and varied dimensions.
+2. Build a pilot dataset with whole-building training, validation and untouched test splits. Include varied architecture and real builds before interpreting generalization.
+3. Train a small grid-prediction module over a frozen pretrained encoder; consider selective fine-tuning only after the baseline is measured.
+4. Compare against the current counter using identical input images and surface evidence. Grade grid-corner error, exact visible dimensions and correct and incorrect exported cells. Report teacher-feature and camera assumptions.
+5. Check the combined image-to-build result. Verify that export preserves visible openings and adds no unsupported cells. Report unknown measurements explicitly; do not fill gaps to improve appearance.
+
+Use the existing eight-building suite as a regression collection. Its repeatedly reviewed buildings are not an untouched generalization test. GPU time, dataset size and expected accuracy remain estimates until measured on the selected architecture and capture system.
+
+## Acceptance
+
+Progress means more correct visible blocks, fewer incorrect or unsupported placements, better dimensions and material identification, and preserved openings on new buildings. Hidden world truth is excluded from required recovery. Any unsupported added cell is an error even if it makes a building look plausible. No completion model or full-world occupancy objective should enter this plan as an automatic next stage.
+
+Read [AGENTS.md](AGENTS.md) before implementing the training work and [the current architecture](../ARCHITECTURE.md) before integrating a model.

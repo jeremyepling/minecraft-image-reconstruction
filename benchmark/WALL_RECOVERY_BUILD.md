@@ -1,5 +1,7 @@
 # Build surfaces from one screenshot with Wall Recovery
 
+The [product intent](../PRODUCT_INTENT.md) is to reconstruct visible evidence only. A missed visible face is a recovery target; an unseen face is not. Preserve openings and leave occluded regions, hidden backs and interiors unknown. Neither a plausible shape nor a learned prior justifies adding unsupported cells to the exported build. This is the scope for future implementation and evaluation; it does not claim that every existing export path already enforces it.
+
 From this checkout on the Minecraft PC:
 
 ```powershell
