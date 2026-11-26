@@ -8,6 +8,13 @@ from benchmark.visible_depth_score import integrated
 from engine.neighbor_photo_faces import rows, select_joint
 
 
+def live(image, version, parts, counts, camera):
+    from engine.neighbor_photo_faces import recover
+    base, status = integrated(image, version, parts, counts, camera)
+    added = recover(image, parts, camera['P'], base)
+    return base | added, status
+
+
 def select(rows, variant):
     if variant.startswith('joint'):
         return select_joint(rows, seed_fraction=.08 if variant == 'joint_partial' else .35,
