@@ -4,6 +4,8 @@ These entries cover model inputs, rules around model outputs, and evaluation cha
 
 ### November 26, 2026
 
+- **Experiment — require a neighboring surface along a stray strip.** In 56 saved views, the check trimmed 516 wrong pixels from five surfaces and removed zero correctly assigned pixels from those surfaces. It kept all 517 matches and corrected one block size. For the false Courtyard beam extension, another surface ran alongside the whole strip. At the real wall extension, the nearest one reached only 28%. Recommended for promotion after review. [Scores and close-ups](benchmark/ATTACHED_STRIP.md#checking-for-a-neighboring-surface)
+
 - **Experiment — trim thin extensions attached to a broader surface.** On Courtyard B, both rules removed 208 incorrect pixels and kept the genuine 1 × 4 Shopfront B face intact. Requiring color agreement with the surroundings kept all 517 previous surface matches and added one, but removed 587 correct pixels from another Courtyard wall. Keep the current Surface Finder. Include genuine thin extensions attached to broader walls as training controls alongside standalone thin faces. [Scores and close-ups](benchmark/ATTACHED_STRIP.md)
 
 - **Experiment — expand the crop to the detected surface.** Of 456 usable crops, 67 missed more than a tenth of the detected outline. Full expansion reduced that to zero, and guarded expansion reduced it to two. Exact block sizes fell from 94 to 90 and 93 respectively. Neither recovered a new exact size. Keep the existing crop for counting. Track window coverage separately from the ability to count texture repeats. [Scores and sheet](benchmark/CROP_REVIEW.md#crop-expansion)
