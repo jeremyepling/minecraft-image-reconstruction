@@ -1,0 +1,450 @@
+{
+  "features": [
+    "ordinary_choice",
+    "one_axis_transferred",
+    "repeat_weak",
+    "repeat_strong",
+    "repeat_gap_to_axis_best",
+    "texel_weak",
+    "texel_strong",
+    "log_observed_rows",
+    "aspect_known",
+    "aspect_log_error",
+    "mask_fill",
+    "log_smaller_pixels_per_block",
+    "log_larger_pixels_per_block"
+  ],
+  "ridge": 0.05,
+  "mean": [
+    0.16039512185345517,
+    0.24371567861151194,
+    0.508707528492526,
+    0.6396329336806438,
+    0.11387471581070882,
+    0.02667531948525507,
+    0.0914289157811775,
+    3.6554072763533987,
+    0.9999999999999999,
+    0.4797999538801025,
+    0.8257180522264904,
+    3.4815970479355025,
+    3.995771903784606
+  ],
+  "scale": [
+    0.3669721062139059,
+    0.4293231261071806,
+    0.17247757527408558,
+    0.1548591638139304,
+    0.14597457308511302,
+    0.11547485012362209,
+    0.22477400112311247,
+    0.5244738785829518,
+    0.05,
+    0.45756722215100365,
+    0.19989215181547773,
+    0.6328242062930166,
+    0.585526018153533
+  ],
+  "intercept": -2.3158650165925923,
+  "coefficients": [
+    0.6527465036438683,
+    0.3152100607970727,
+    -0.07718306636377459,
+    -0.32708239560216446,
+    -0.5646068034577519,
+    0.20514660296779794,
+    0.02950661145612041,
+    0.04407401216417225,
+    5.007417854302161e-32,
+    -0.6398290653778368,
+    0.264973529929558,
+    0.04277442207066143,
+    -0.3336026699231226
+  ],
+  "training_rows": 283,
+  "guard": null,
+  "crossfit": [
+    {
+      "guard": null,
+      "mean_layout_utility": 0.03611111111111111,
+      "scores": {
+        "shopfront": {
+          "eligible": 120,
+          "correct": 7,
+          "incorrect": 5,
+          "missing": 108,
+          "unmatched_returned": 0,
+          "gained": 0,
+          "lost": 0,
+          "changed": 0
+        },
+        "wing": {
+          "eligible": 36,
+          "correct": 10,
+          "incorrect": 8,
+          "missing": 18,
+          "unmatched_returned": 0,
+          "gained": 0,
+          "lost": 0,
+          "changed": 0
+        }
+      }
+    },
+    {
+      "guard": {
+        "threshold": 0.35,
+        "margin": 0.025
+      },
+      "mean_layout_utility": 0.03194444444444444,
+      "scores": {
+        "shopfront": {
+          "eligible": 120,
+          "correct": 7,
+          "incorrect": 6,
+          "missing": 107,
+          "unmatched_returned": 0,
+          "gained": 0,
+          "lost": 0,
+          "changed": 1
+        },
+        "wing": {
+          "eligible": 36,
+          "correct": 10,
+          "incorrect": 8,
+          "missing": 18,
+          "unmatched_returned": 0,
+          "gained": 0,
+          "lost": 0,
+          "changed": 1
+        }
+      }
+    },
+    {
+      "guard": {
+        "threshold": 0.35,
+        "margin": 0.1
+      },
+      "mean_layout_utility": 0.03194444444444444,
+      "scores": {
+        "shopfront": {
+          "eligible": 120,
+          "correct": 7,
+          "incorrect": 6,
+          "missing": 107,
+          "unmatched_returned": 0,
+          "gained": 0,
+          "lost": 0,
+          "changed": 1
+        },
+        "wing": {
+          "eligible": 36,
+          "correct": 10,
+          "incorrect": 8,
+          "missing": 18,
+          "unmatched_returned": 0,
+          "gained": 0,
+          "lost": 0,
+          "changed": 0
+        }
+      }
+    },
+    {
+      "guard": {
+        "threshold": 0.5,
+        "margin": 0.025
+      },
+      "mean_layout_utility": 0.03194444444444444,
+      "scores": {
+        "shopfront": {
+          "eligible": 120,
+          "correct": 7,
+          "incorrect": 6,
+          "missing": 107,
+          "unmatched_returned": 0,
+          "gained": 0,
+          "lost": 0,
+          "changed": 1
+        },
+        "wing": {
+          "eligible": 36,
+          "correct": 10,
+          "incorrect": 8,
+          "missing": 18,
+          "unmatched_returned": 0,
+          "gained": 0,
+          "lost": 0,
+          "changed": 1
+        }
+      }
+    },
+    {
+      "guard": {
+        "threshold": 0.5,
+        "margin": 0.1
+      },
+      "mean_layout_utility": 0.03194444444444444,
+      "scores": {
+        "shopfront": {
+          "eligible": 120,
+          "correct": 7,
+          "incorrect": 6,
+          "missing": 107,
+          "unmatched_returned": 0,
+          "gained": 0,
+          "lost": 0,
+          "changed": 1
+        },
+        "wing": {
+          "eligible": 36,
+          "correct": 10,
+          "incorrect": 8,
+          "missing": 18,
+          "unmatched_returned": 0,
+          "gained": 0,
+          "lost": 0,
+          "changed": 0
+        }
+      }
+    },
+    {
+      "guard": {
+        "threshold": 0.65,
+        "margin": 0.025
+      },
+      "mean_layout_utility": 0.03611111111111111,
+      "scores": {
+        "shopfront": {
+          "eligible": 120,
+          "correct": 7,
+          "incorrect": 5,
+          "missing": 108,
+          "unmatched_returned": 0,
+          "gained": 0,
+          "lost": 0,
+          "changed": 0
+        },
+        "wing": {
+          "eligible": 36,
+          "correct": 10,
+          "incorrect": 8,
+          "missing": 18,
+          "unmatched_returned": 0,
+          "gained": 0,
+          "lost": 0,
+          "changed": 1
+        }
+      }
+    },
+    {
+      "guard": {
+        "threshold": 0.65,
+        "margin": 0.1
+      },
+      "mean_layout_utility": 0.03611111111111111,
+      "scores": {
+        "shopfront": {
+          "eligible": 120,
+          "correct": 7,
+          "incorrect": 5,
+          "missing": 108,
+          "unmatched_returned": 0,
+          "gained": 0,
+          "lost": 0,
+          "changed": 0
+        },
+        "wing": {
+          "eligible": 36,
+          "correct": 10,
+          "incorrect": 8,
+          "missing": 18,
+          "unmatched_returned": 0,
+          "gained": 0,
+          "lost": 0,
+          "changed": 0
+        }
+      }
+    },
+    {
+      "guard": {
+        "threshold": 0.8,
+        "margin": 0.025
+      },
+      "mean_layout_utility": 0.03611111111111111,
+      "scores": {
+        "shopfront": {
+          "eligible": 120,
+          "correct": 7,
+          "incorrect": 5,
+          "missing": 108,
+          "unmatched_returned": 0,
+          "gained": 0,
+          "lost": 0,
+          "changed": 0
+        },
+        "wing": {
+          "eligible": 36,
+          "correct": 10,
+          "incorrect": 8,
+          "missing": 18,
+          "unmatched_returned": 0,
+          "gained": 0,
+          "lost": 0,
+          "changed": 0
+        }
+      }
+    },
+    {
+      "guard": {
+        "threshold": 0.8,
+        "margin": 0.1
+      },
+      "mean_layout_utility": 0.03611111111111111,
+      "scores": {
+        "shopfront": {
+          "eligible": 120,
+          "correct": 7,
+          "incorrect": 5,
+          "missing": 108,
+          "unmatched_returned": 0,
+          "gained": 0,
+          "lost": 0,
+          "changed": 0
+        },
+        "wing": {
+          "eligible": 36,
+          "correct": 10,
+          "incorrect": 8,
+          "missing": 18,
+          "unmatched_returned": 0,
+          "gained": 0,
+          "lost": 0,
+          "changed": 0
+        }
+      }
+    }
+  ],
+  "forced_crossfit": {
+    "shopfront": {
+      "eligible": 120,
+      "correct": 7,
+      "incorrect": 7,
+      "missing": 106,
+      "unmatched_returned": 1,
+      "gained": 0,
+      "lost": 0,
+      "changed": 3
+    },
+    "wing": {
+      "eligible": 36,
+      "correct": 12,
+      "incorrect": 9,
+      "missing": 15,
+      "unmatched_returned": 0,
+      "gained": 2,
+      "lost": 0,
+      "changed": 4
+    }
+  },
+  "training_frames": [
+    {
+      "key": "smooth_stone/dev-shopfront-masonry-high-right",
+      "sha256": "f15cd0e471a9a2e375c9f801df171bb8f5ee44d95374f02f1174c7938a94cc79",
+      "layout": "shopfront"
+    },
+    {
+      "key": "light_gray_concrete/dev-shopfront-masonry-high-right",
+      "sha256": "bb588b0b0d1cdb05b720ff5bc3b515479426c7772fd98fb7fadb8a55b79ca9db",
+      "layout": "shopfront"
+    },
+    {
+      "key": "smooth_stone/dev-shopfront-masonry-low-left",
+      "sha256": "17691e7909ee0e9384db83c3a729f8763e21a281eb89b8dcebe61fc7675d1405",
+      "layout": "shopfront"
+    },
+    {
+      "key": "light_gray_concrete/dev-shopfront-masonry-low-left",
+      "sha256": "0359c24dea1b318ec9cd002a1523ae8fc0d7d59fc9d7418972cf9ce9af8d4d57",
+      "layout": "shopfront"
+    },
+    {
+      "key": "smooth_stone/dev-shopfront-plaster-high-right",
+      "sha256": "ae58f28554348d924798e23bd492b88db06c2a099f590e325c514ecc5c8f9c7e",
+      "layout": "shopfront"
+    },
+    {
+      "key": "light_gray_concrete/dev-shopfront-plaster-high-right",
+      "sha256": "4cc1d5687db72eef74f23fc291fb7916b3f481ed4998d9e1c850024039d38cce",
+      "layout": "shopfront"
+    },
+    {
+      "key": "smooth_stone/dev-shopfront-plaster-low-left",
+      "sha256": "5d0c9120de4ca16f35758f90a31e176e50a3cf166358dd9833ee2213d1ff2f72",
+      "layout": "shopfront"
+    },
+    {
+      "key": "light_gray_concrete/dev-shopfront-plaster-low-left",
+      "sha256": "299e0228de74d2cc7d3a18deaba9f61c82560a0ddd0b8557e5c91728c964a993",
+      "layout": "shopfront"
+    },
+    {
+      "key": "smooth_stone/dev-wing-masonry-close-front",
+      "sha256": "9ce65a1c07694c1d3e57019c07b422d7a6a0771ed0d46f579891eae8a61463a9",
+      "layout": "wing"
+    },
+    {
+      "key": "light_gray_concrete/dev-wing-masonry-close-front",
+      "sha256": "9ce65a1c07694c1d3e57019c07b422d7a6a0771ed0d46f579891eae8a61463a9",
+      "layout": "wing"
+    },
+    {
+      "key": "smooth_stone/dev-wing-masonry-high-right",
+      "sha256": "8cd9e20f608db25df6d141941051d30afcbf80733ea4c6f2058874c02019bf9f",
+      "layout": "wing"
+    },
+    {
+      "key": "light_gray_concrete/dev-wing-masonry-high-right",
+      "sha256": "5ccd9115fd2a70784e0e1ab6819d37fc5c4af54cf965605143b3817e1f3a3efd",
+      "layout": "wing"
+    },
+    {
+      "key": "smooth_stone/dev-wing-masonry-low-left",
+      "sha256": "0c7bc49ce3c736391d7954a9c069aee29586f03fd33a2a88926b40257ccae6ce",
+      "layout": "wing"
+    },
+    {
+      "key": "light_gray_concrete/dev-wing-masonry-low-left",
+      "sha256": "4e8817361e24c3f05e835d7af6c8bab3da96d50c8821828144f33bb1ea0e87d3",
+      "layout": "wing"
+    },
+    {
+      "key": "smooth_stone/dev-wing-plaster-close-front",
+      "sha256": "b3154136e855e9d005a993b8afdb3989e3fb156b102aed46ce0d99e761d2f2b8",
+      "layout": "wing"
+    },
+    {
+      "key": "light_gray_concrete/dev-wing-plaster-close-front",
+      "sha256": "b3154136e855e9d005a993b8afdb3989e3fb156b102aed46ce0d99e761d2f2b8",
+      "layout": "wing"
+    },
+    {
+      "key": "smooth_stone/dev-wing-plaster-high-right",
+      "sha256": "49832e903f4455c88c44f51da20abc550516d208783af9e3d05edc85ff4116a9",
+      "layout": "wing"
+    },
+    {
+      "key": "light_gray_concrete/dev-wing-plaster-high-right",
+      "sha256": "64d4fec367d669912de294146c1fa3e0bf871816ec4f52e57213e35db2968564",
+      "layout": "wing"
+    },
+    {
+      "key": "smooth_stone/dev-wing-plaster-low-left",
+      "sha256": "b564e5c3bb2def9511c27cf483dbb01dbe760b1bce8b6060be578c97b2083019",
+      "layout": "wing"
+    },
+    {
+      "key": "light_gray_concrete/dev-wing-plaster-low-left",
+      "sha256": "b1aa96442f2858b5435fc9af424de374ffafbade3cc74d059b85b6c1bfd7e13c",
+      "layout": "wing"
+    }
+  ]
+}

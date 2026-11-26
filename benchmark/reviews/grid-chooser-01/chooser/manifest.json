@@ -1,0 +1,27 @@
+{
+  "version": "26.3",
+  "method": "ridge-logistic grid reranker",
+  "train": [
+    "shopfront",
+    "wing"
+  ],
+  "selection": "Held-one-development-building-out mean (exact - wrong - unmatched guesses)/eligible; ordinary retained on ties.",
+  "reference_use": "Development candidate pair labels during fitting. Other reference data used only for final grades.",
+  "forced_diagnostic": "Highest model score on every nonempty pool. No confidence threshold, margin or baseline fallback when a candidate exists. Same model, excluded from policy selection.",
+  "input_sha256": {
+    "candidates.json": "37cd0272eb35ca5fa9fad47f812a3a29784dbb43d61ae8ad1ba5b2e99a18a2b2",
+    "targets.json": "d46334acf0fbaf9b75f8e25b08324a304a0a7a4f104c2084976094ef8c3cf0bf"
+  },
+  "source_manifest_sha256": "ab9016856bd11e4fc0a2c6fae28f8287816da62e03d9cd137640c1d9a9d6d53a",
+  "reference_sha256": "91efa6d3e992b1a68672eae1fdd6d380e87724742a1a4b6cbe5f84d284f731a1",
+  "region_signatures_sha256": "689ccfed4ccd61a1572382961e134792bb6761f2fe689c15a6a5bb90312c1ce6",
+  "artifacts": {
+    "forced-scores.json": "682e9b9b73296b0d3675b8305e4d1bcbf65e8305a4857979c43dc8f54a8f40a5",
+    "forced-selections.json": "da755a033fedcf4af82e3f56adfee69770c56f21ac61d1a753b26dd6eb89bf92",
+    "frames.json": "b55141d091d3f5db27cd8f0733634ac0964a5511fba2aac56038ed1feefbe006",
+    "model.json": "464f18a91e7e5183141cf38b904376a242f3bd73271bd0fb11f2f017ebd82035",
+    "scores.json": "6d4d1894174d9fa53d61261a7b044971473daac8b50dd435e418ff1086f3cc29",
+    "selections.json": "08a5124f90744cbd0b1f8bed31c3feeb64d5bcf4e1bd3240cd14ba3274ffc467"
+  },
+  "runner_sha256": "ccc8d8390c282f9dd1e9ecc730bf9f3ffa195e1f00c4036680fd38bc7d79778c"
+}
