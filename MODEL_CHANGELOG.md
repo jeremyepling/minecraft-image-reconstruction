@@ -4,6 +4,8 @@ These entries cover model inputs, rules around model outputs, and evaluation cha
 
 ### November 26, 2026
 
+- **Experiment — transfer scale across partial, perpendicular surface edges.** Four transfers on 56 single-view regression screenshots added eight correct placements and 46 extras, with zero previously placed coordinates lost. A long mask contact near a projected grid line was insufficient evidence of a physical join. The plaster courtyard high-right view alone gained eight correct coordinates and 27 extras. Keep this method experimental. [Benchmark runner](benchmark/neighbor_scale_round.py)
+
 - **Experiment — trim thin extensions attached to a broader surface.** On Courtyard B, both rules removed 208 incorrect pixels and kept the genuine 1 × 4 Shopfront B face intact. Requiring color agreement with the surroundings kept all 517 previous surface matches and added one, but removed 587 correct pixels from another Courtyard wall. Keep the current Surface Finder. Include genuine thin extensions attached to broader walls as training controls alongside standalone thin faces. [Scores and close-ups](benchmark/ATTACHED_STRIP.md)
 
 - **Experiment — expand the crop to the detected surface.** Of 456 usable crops, 67 missed more than a tenth of the detected outline. Full expansion reduced that to zero, and guarded expansion reduced it to two. Exact block sizes fell from 94 to 90 and 93 respectively. Neither recovered a new exact size. Keep the existing crop for counting. Track window coverage separately from the ability to count texture repeats. [Scores and sheet](benchmark/CROP_REVIEW.md#crop-expansion)
