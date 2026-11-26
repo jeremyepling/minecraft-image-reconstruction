@@ -1,0 +1,408 @@
+{
+  "selection": "Two shapes per height where available, balancing suite then ascending occupancy SHA; left and right complete photos. No camera-success or score filtering.",
+  "checked_control_images": 204,
+  "checked_control_shapes": 62,
+  "eligible_novel_pairs_by_height": {
+    "5": 4,
+    "6": 10,
+    "7": 12
+  },
+  "selected": [
+    {
+      "id": "shape-benchmark-26.3--train-canopy-12-left",
+      "source_id": "train-canopy-12-left",
+      "directory": "shape-benchmark-26.3",
+      "shape": "6dfad4be6e9b7622348f382074b211f5766466a16a6fd8ecb7431222d6916581",
+      "target_block_y": 5,
+      "files": {
+        "rgb.png": "4b16a6c4d138b8d9c7f980558cf9dcbfbefbf37cec93850c0981c3401a454249",
+        "camera.json": "9dcbd679945515aedac3b982a3bd429ab8e98183455218cc1570ee24084111c4",
+        "world-readback.json": "cb23daa66aac82c15520dd0737115c6df85024a291c09d53a769326e6e7ff771"
+      },
+      "framing": {
+        "image_size": [
+          1440,
+          900
+        ],
+        "occupied_cells": 150,
+        "accepted": true,
+        "projected_margins_px": [
+          378.3404,
+          283.0815,
+          304.0988,
+          234.1176
+        ],
+        "visible_margins_px": [
+          378,
+          283,
+          304,
+          234
+        ],
+        "reason": "whole_structure"
+      }
+    },
+    {
+      "id": "shape-benchmark-26.3--train-canopy-12-right",
+      "source_id": "train-canopy-12-right",
+      "directory": "shape-benchmark-26.3",
+      "shape": "6dfad4be6e9b7622348f382074b211f5766466a16a6fd8ecb7431222d6916581",
+      "target_block_y": 5,
+      "files": {
+        "rgb.png": "c6b666213df5fd81f347895bb3ac7ff5be33876dbd72a9ac0bd6c92abfe72cea",
+        "camera.json": "7358145888c1c4d6a12440530fe83a5526131e588723d957dde560484efd6a68",
+        "world-readback.json": "cb23daa66aac82c15520dd0737115c6df85024a291c09d53a769326e6e7ff771"
+      },
+      "framing": {
+        "image_size": [
+          1440,
+          900
+        ],
+        "occupied_cells": 150,
+        "accepted": true,
+        "projected_margins_px": [
+          309.8076,
+          283.028,
+          367.505,
+          230.0711
+        ],
+        "visible_margins_px": [
+          310,
+          283,
+          368,
+          230
+        ],
+        "reason": "whole_structure"
+      }
+    },
+    {
+      "id": "shape-benchmark-open-26.3--train-canopy-02-left",
+      "source_id": "train-canopy-02-left",
+      "directory": "shape-benchmark-open-26.3",
+      "shape": "ec7fa48c35ed8f952774ec680402b843d9b3988d6a03cfb53a4e256d64b58f82",
+      "target_block_y": 5,
+      "files": {
+        "rgb.png": "8d516e14b1e967f17a48c165525e52b7d943e8b821a7410efc5b74543ea8bcc5",
+        "camera.json": "02faed0284bcd78826118157554564ef1fc07a064f9bf9ad57896907f1c9d8e8",
+        "world-readback.json": "3879c62fe855c13199a07b88e4d407a36c1731cacd8ead88068408799594a21e"
+      },
+      "framing": {
+        "image_size": [
+          1440,
+          900
+        ],
+        "occupied_cells": 120,
+        "accepted": true,
+        "projected_margins_px": [
+          378.3404,
+          283.0815,
+          304.0988,
+          234.1176
+        ],
+        "visible_margins_px": [
+          378,
+          283,
+          304,
+          234
+        ],
+        "reason": "whole_structure"
+      }
+    },
+    {
+      "id": "shape-benchmark-open-26.3--train-canopy-02-right",
+      "source_id": "train-canopy-02-right",
+      "directory": "shape-benchmark-open-26.3",
+      "shape": "ec7fa48c35ed8f952774ec680402b843d9b3988d6a03cfb53a4e256d64b58f82",
+      "target_block_y": 5,
+      "files": {
+        "rgb.png": "11f3abfe4118296094e44348580842b0273627c203a2ebdfe645af9ddc939351",
+        "camera.json": "6fe85ab90e372845acbdb6597e2f0ce44b532358f6147118606aff4691612e2f",
+        "world-readback.json": "3879c62fe855c13199a07b88e4d407a36c1731cacd8ead88068408799594a21e"
+      },
+      "framing": {
+        "image_size": [
+          1440,
+          900
+        ],
+        "occupied_cells": 120,
+        "accepted": true,
+        "projected_margins_px": [
+          309.8076,
+          283.028,
+          367.505,
+          230.0711
+        ],
+        "visible_margins_px": [
+          310,
+          283,
+          368,
+          230
+        ],
+        "reason": "whole_structure"
+      }
+    },
+    {
+      "id": "shape-benchmark-26.3--dev-canopy-22-left",
+      "source_id": "dev-canopy-22-left",
+      "directory": "shape-benchmark-26.3",
+      "shape": "0c9bdbde84d63d1b52b95a44c8576b716db1bcf89afb16f8334ab2a711843d6a",
+      "target_block_y": 6,
+      "files": {
+        "rgb.png": "b48ae8453e7cc1f1af36434168d3fdfc9bc2bc0d94c4075a7c063a93f22e2de4",
+        "camera.json": "98776d7b27b12918249d2f4f0427b3f806c3a8ae7ccfec385bdc8e4f6ce3e5b5",
+        "world-readback.json": "7cbcb0646b4ebc9ba5b8fa6214e7de0944e14ef167f0ead3a16e43d984ba1ee4"
+      },
+      "framing": {
+        "image_size": [
+          1440,
+          900
+        ],
+        "occupied_cells": 128,
+        "accepted": true,
+        "projected_margins_px": [
+          427.3508,
+          259.8303,
+          338.7223,
+          221.102
+        ],
+        "visible_margins_px": [
+          427,
+          260,
+          339,
+          221
+        ],
+        "reason": "whole_structure"
+      }
+    },
+    {
+      "id": "shape-benchmark-26.3--dev-canopy-22-right",
+      "source_id": "dev-canopy-22-right",
+      "directory": "shape-benchmark-26.3",
+      "shape": "0c9bdbde84d63d1b52b95a44c8576b716db1bcf89afb16f8334ab2a711843d6a",
+      "target_block_y": 6,
+      "files": {
+        "rgb.png": "3881d74a853e38d20836e46f24749dca62585329c98d22021ec395f7af4f1855",
+        "camera.json": "80e6ef0b03d98a24120825ddbd491f6f8fff2c627c8a69fbda3373c8cb04c256",
+        "world-readback.json": "7cbcb0646b4ebc9ba5b8fa6214e7de0944e14ef167f0ead3a16e43d984ba1ee4"
+      },
+      "framing": {
+        "image_size": [
+          1440,
+          900
+        ],
+        "occupied_cells": 128,
+        "accepted": true,
+        "projected_margins_px": [
+          340.88,
+          259.8104,
+          417.0779,
+          218.3074
+        ],
+        "visible_margins_px": [
+          341,
+          260,
+          417,
+          218
+        ],
+        "reason": "whole_structure"
+      }
+    },
+    {
+      "id": "shape-benchmark-open-26.3--dev-canopy-03-left",
+      "source_id": "dev-canopy-03-left",
+      "directory": "shape-benchmark-open-26.3",
+      "shape": "2b2889c8cb842488bb620d2d6ad560f6d23c463fe8b9236ca7c067d918a42817",
+      "target_block_y": 6,
+      "files": {
+        "rgb.png": "873a7e0a0175398c3d7f550b13c5702ad32dc9a6812d0e91ccc4a854e1336114",
+        "camera.json": "c1fd7254e0ec385ba84d353c5956f144c770f3cee5ac0d6aca0ac3604a1190b0",
+        "world-readback.json": "aceea006614765aef0388897f0a293217e262d272fbb79d5682cef24a961a0b4"
+      },
+      "framing": {
+        "image_size": [
+          1440,
+          900
+        ],
+        "occupied_cells": 66,
+        "accepted": true,
+        "projected_margins_px": [
+          478.883,
+          235.2016,
+          429.1513,
+          173.4358
+        ],
+        "visible_margins_px": [
+          479,
+          235,
+          429,
+          174
+        ],
+        "reason": "whole_structure"
+      }
+    },
+    {
+      "id": "shape-benchmark-open-26.3--dev-canopy-03-right",
+      "source_id": "dev-canopy-03-right",
+      "directory": "shape-benchmark-open-26.3",
+      "shape": "2b2889c8cb842488bb620d2d6ad560f6d23c463fe8b9236ca7c067d918a42817",
+      "target_block_y": 6,
+      "files": {
+        "rgb.png": "11cbeab63a441f94cde6963f1ebee85e20bd39fbfe73b830ff6c4dabd7c72f03",
+        "camera.json": "2cb8e018dfc6a348f27effae2977d79ad7fadb72305714f79bc5e09e42342073",
+        "world-readback.json": "aceea006614765aef0388897f0a293217e262d272fbb79d5682cef24a961a0b4"
+      },
+      "framing": {
+        "image_size": [
+          1440,
+          900
+        ],
+        "occupied_cells": 66,
+        "accepted": true,
+        "projected_margins_px": [
+          429.8194,
+          235.1103,
+          471.6841,
+          172.9035
+        ],
+        "visible_margins_px": [
+          430,
+          235,
+          472,
+          173
+        ],
+        "reason": "whole_structure"
+      }
+    },
+    {
+      "id": "shape-benchmark-26.3--test-canopy-37-left",
+      "source_id": "test-canopy-37-left",
+      "directory": "shape-benchmark-26.3",
+      "shape": "0e10adf7905d4e014b84bfdd5a86e38ee0f2281c85a43179d4c25ae1a13e48c3",
+      "target_block_y": 7,
+      "files": {
+        "rgb.png": "2bd7f016aa87a05276f43cecaf5f4b4a6c4a6fc382581b147a3f1f7654908233",
+        "camera.json": "f1dbf78d2352fb216bc2f9c2dbe5948d0fd198433ed54e65227c62579a67bf8c",
+        "world-readback.json": "39d0e7d7423b86445a630437543fa621427ba6efb3cf2ee807ec560bc61445bc"
+      },
+      "framing": {
+        "image_size": [
+          1440,
+          900
+        ],
+        "occupied_cells": 150,
+        "accepted": true,
+        "projected_margins_px": [
+          374.1131,
+          201.9786,
+          339.3197,
+          139.4474
+        ],
+        "visible_margins_px": [
+          374,
+          202,
+          339,
+          140
+        ],
+        "reason": "whole_structure"
+      }
+    },
+    {
+      "id": "shape-benchmark-26.3--test-canopy-37-right",
+      "source_id": "test-canopy-37-right",
+      "directory": "shape-benchmark-26.3",
+      "shape": "0e10adf7905d4e014b84bfdd5a86e38ee0f2281c85a43179d4c25ae1a13e48c3",
+      "target_block_y": 7,
+      "files": {
+        "rgb.png": "bd5d8101d4530dea1b77a722455dfb700be8f8db6675c0065181fb94f7a81263",
+        "camera.json": "5502f184575b5d59524ad2bedbe00983e19fecc067778f3e36a9433d784fa601",
+        "world-readback.json": "39d0e7d7423b86445a630437543fa621427ba6efb3cf2ee807ec560bc61445bc"
+      },
+      "framing": {
+        "image_size": [
+          1440,
+          900
+        ],
+        "occupied_cells": 150,
+        "accepted": true,
+        "projected_margins_px": [
+          345.9733,
+          201.2736,
+          365.1831,
+          135.0971
+        ],
+        "visible_margins_px": [
+          346,
+          201,
+          365,
+          135
+        ],
+        "reason": "whole_structure"
+      }
+    },
+    {
+      "id": "shape-benchmark-open-26.3--test-canopy-07-left",
+      "source_id": "test-canopy-07-left",
+      "directory": "shape-benchmark-open-26.3",
+      "shape": "15e1ec170a5ac65fb2bac204181482bbed85b4311df4eb00117f5587c5a944c9",
+      "target_block_y": 7,
+      "files": {
+        "rgb.png": "126b1cf2a80304141a604d4424d8a055983957003871855daddfc5868ace5f8d",
+        "camera.json": "c26b8b53cda74a7d0f93ca16708f567ace8b5bf308bb88dc7200ab8b91d98cc2",
+        "world-readback.json": "af6e94c1b6bd8583cd291703739eb22f22e20570f44300ee63db4f2ca2bf4254"
+      },
+      "framing": {
+        "image_size": [
+          1440,
+          900
+        ],
+        "occupied_cells": 92,
+        "accepted": true,
+        "projected_margins_px": [
+          429.7014,
+          205.3865,
+          377.7986,
+          158.2622
+        ],
+        "visible_margins_px": [
+          430,
+          205,
+          378,
+          158
+        ],
+        "reason": "whole_structure"
+      }
+    },
+    {
+      "id": "shape-benchmark-open-26.3--test-canopy-07-right",
+      "source_id": "test-canopy-07-right",
+      "directory": "shape-benchmark-open-26.3",
+      "shape": "15e1ec170a5ac65fb2bac204181482bbed85b4311df4eb00117f5587c5a944c9",
+      "target_block_y": 7,
+      "files": {
+        "rgb.png": "3a4864893ef916823712a12ab3c0c3385df555413ec789862ecd60a35d87dc65",
+        "camera.json": "63d80d70e08e44df33f053b71db5c3e49d346e9992be8c02aa495ad48021f643",
+        "world-readback.json": "af6e94c1b6bd8583cd291703739eb22f22e20570f44300ee63db4f2ca2bf4254"
+      },
+      "framing": {
+        "image_size": [
+          1440,
+          900
+        ],
+        "occupied_cells": 92,
+        "accepted": true,
+        "projected_margins_px": [
+          381.0437,
+          205.0248,
+          421.4275,
+          155.7497
+        ],
+        "visible_margins_px": [
+          381,
+          205,
+          421,
+          156
+        ],
+        "reason": "whole_structure"
+      }
+    }
+  ]
+}
