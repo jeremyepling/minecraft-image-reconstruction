@@ -132,7 +132,8 @@ def run(source,fields,out):
         artifacts[name] = digest(out/name)
     raw = [r for c in cases for r in c['raw_before_fusion_on_baseline_misses']]
     summary = {name:aggregate([c['score'] for c in cases if cohort is None or c['cohort']==cohort])
-               for name,cohort in [('all',None),('development','development'),('regression','regression')]}
+               for name,cohort in [('all',None),('development','development'),
+                                   ('regression','previously_reviewed_regression')]}
     save(out/'manifest.json',dict(run_id=out.name,method='Pixel-wise Planarity after Surface Finder',
         selected=preset, sheet_labels_key=labels_key, code=revision(), fixtures=base['fixtures'],
         reference_sha256=base['reference_sha256'],version=base['version'],capture=base['capture'],splits=base['splits'],
