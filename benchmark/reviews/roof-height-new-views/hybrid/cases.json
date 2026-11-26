@@ -1,0 +1,981 @@
+[
+  {
+    "id": "holdout-lowawning-masonry-low-left",
+    "shape": "270fe056c45975eda8d58a4a71d954348d929accb510cbcc6fd6d2a23a96fa82",
+    "rgb_sha256": "73a455bfd30c7674193b972ffcf2ae1cfa819f561cc43fcb9c85ee905f1f9e05",
+    "reference_hashes": {
+      "rgb.png": "73a455bfd30c7674193b972ffcf2ae1cfa819f561cc43fcb9c85ee905f1f9e05",
+      "camera.json": "1180fe2b1cf8ea334865b6490f7c168589546da40b4e6d994d33644f7d0bbed4",
+      "world-readback.json": "c2a9788bd348bc7d656d9ca7c7ca27662667aacf89dfb8c5767ae49944ed4125",
+      "raw-readback.json": "25344afca0a5a7a563f85a199d2a5569ad0ff44726ab70d0cdfc85e4ab499a0f",
+      "labels.json": "eeec11217cbc1e614e1663686afe58be6814dc7c85996ff687f8cf210d49478f",
+      "labels.npz": "d1cced5313b6c2edad790332fa4713d692853675c42e9fc550dce80358b8919f"
+    },
+    "input_hashes": {
+      "build-manifest.json": "6c89c45fc8f7816bf10e23155413c887a1440e4bad029ae28decd05e45a64f86",
+      "surfaces.json": "56945070418fa1ef60bec16e04895173bd5ed7cb4fa7b20173c4a192e2b1e3a3",
+      "counts.json": "9780a33701c24f5d8d5c794d21fcc2bbe8b0ffc7d0a2377767f08584f80ef414",
+      "reconstruction.zip": "5d1fd0234e04ec5e9c4a069b8090d97dafc989c14e0b45e6d897a0199df2f06b"
+    },
+    "pack_sha256": "5d1fd0234e04ec5e9c4a069b8090d97dafc989c14e0b45e6d897a0199df2f06b",
+    "camera_supported": true,
+    "camera_source": "seam-fit",
+    "expected_course": 3,
+    "prior_modal": 3,
+    "prior_tallest": 3,
+    "primary": {
+      "part": null,
+      "block_y": null,
+      "exact": false,
+      "associated": false
+    },
+    "accepted": [],
+    "status": {
+      "height_decisions": [
+        {
+          "part": "mask-6",
+          "plane_y": 4,
+          "block_y": 3,
+          "normal_y": 1,
+          "area": 958,
+          "accepted": false,
+          "margin": 0.254,
+          "pixel_corr": 0.2611,
+          "hypotheses": [
+            [
+              4,
+              0.2426
+            ],
+            [
+              3,
+              -0.0114
+            ]
+          ],
+          "support_fallback": false,
+          "support_span": 0,
+          "atlas_accepted": false
+        },
+        {
+          "part": "underside-0",
+          "plane_y": 3,
+          "block_y": 2,
+          "normal_y": 1,
+          "area": 784,
+          "accepted": false,
+          "margin": 0.0989,
+          "pixel_corr": 0.477,
+          "hypotheses": [
+            [
+              3,
+              0.462
+            ],
+            [
+              2,
+              0.3631
+            ],
+            [
+              1,
+              0.1626
+            ]
+          ],
+          "support_fallback": false,
+          "support_span": 0,
+          "atlas_accepted": true
+        }
+      ],
+      "primary_height": null,
+      "verified_height_decisions": [
+        {
+          "part": "mask-6",
+          "plane_y": 4,
+          "block_y": 3,
+          "normal_y": 1,
+          "area": 958,
+          "accepted": false,
+          "margin": 0.254,
+          "pixel_corr": 0.2611,
+          "hypotheses": [
+            [
+              4,
+              0.2426
+            ],
+            [
+              3,
+              -0.0114
+            ]
+          ]
+        },
+        {
+          "part": "underside-0",
+          "plane_y": 3,
+          "block_y": 2,
+          "normal_y": 1,
+          "area": 784,
+          "accepted": false,
+          "margin": 0.0989,
+          "pixel_corr": 0.477,
+          "hypotheses": [
+            [
+              3,
+              0.462
+            ],
+            [
+              2,
+              0.3631
+            ],
+            [
+              1,
+              0.1626
+            ]
+          ]
+        }
+      ],
+      "verified_added": 0,
+      "verified_removed": 0
+    },
+    "roof": {
+      "offset": [
+        0,
+        0,
+        0
+      ],
+      "target_post_courses": 3,
+      "matching_post_courses": 3,
+      "visible_roof_cells": 35,
+      "anchored_roof_cells": 15,
+      "target_triples": 105,
+      "matching_triples": 45,
+      "target_gap_width": 5,
+      "observed_gap_width": 5
+    },
+    "clear_rays": 15,
+    "filled_clear_rays": 0,
+    "metrics": {
+      "target": 47,
+      "placed": 27,
+      "correct": 27,
+      "extras": 0,
+      "missed": 20,
+      "hidden_extras": 0,
+      "gained": 0,
+      "lost": 0,
+      "extra_added": 0,
+      "extra_removed": 0,
+      "hidden_added": 0,
+      "hidden_removed": 0,
+      "joint_correct": 0
+    },
+    "relative_geometry": {
+      "target": 47,
+      "placed": 27,
+      "correct": 27,
+      "extras": 0,
+      "missed": 20,
+      "hidden_extras": 0,
+      "gained": 0,
+      "lost": 0,
+      "extra_added": 0,
+      "extra_removed": 0,
+      "hidden_added": 0,
+      "hidden_removed": 0
+    },
+    "translation": [
+      0,
+      0,
+      0
+    ],
+    "baseline_translation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "id": "holdout-lowawning-masonry-high-right",
+    "shape": "270fe056c45975eda8d58a4a71d954348d929accb510cbcc6fd6d2a23a96fa82",
+    "rgb_sha256": "589f2e2a352fe8bf8873434fe925b3eceedecfcf6dd836476e10c5b3f113bb8b",
+    "reference_hashes": {
+      "rgb.png": "589f2e2a352fe8bf8873434fe925b3eceedecfcf6dd836476e10c5b3f113bb8b",
+      "camera.json": "50732fcb6c69c1b7ae1a8b98cbcc400a5631bc5c1d35253e4a6cac9842eac8c9",
+      "world-readback.json": "c2a9788bd348bc7d656d9ca7c7ca27662667aacf89dfb8c5767ae49944ed4125",
+      "raw-readback.json": "25344afca0a5a7a563f85a199d2a5569ad0ff44726ab70d0cdfc85e4ab499a0f",
+      "labels.json": "51a04680a0055d3804c0818212524063c81722ab09bf84c6f38bcb71d77de128",
+      "labels.npz": "6749d279a34c1237171dc94e56546b4a70827585acc4b85cb5e8601452cae154"
+    },
+    "input_hashes": {
+      "build-manifest.json": "bbd63786dfe7be8a79a5e6b5d9a40420fa5819cef8bbb0838d88af2365d6694e",
+      "surfaces.json": "668d9c468f4e88869e0640dc85023d28946e6eab845aaf7799308a219b6fead1",
+      "counts.json": "e3b7dd24461b0e9288d852b482192766b52479ad819c3d139e3515ef3b8cce35",
+      "reconstruction.zip": "a4009726d382955cc1aa21eed180d15d5435430dc66364a0820e276ccad045c8"
+    },
+    "pack_sha256": "a4009726d382955cc1aa21eed180d15d5435430dc66364a0820e276ccad045c8",
+    "camera_supported": false,
+    "camera_source": null,
+    "expected_course": 3,
+    "prior_modal": null,
+    "prior_tallest": null,
+    "primary": {
+      "part": null,
+      "block_y": null,
+      "exact": false,
+      "associated": false
+    },
+    "accepted": [],
+    "status": {
+      "height_decisions": [],
+      "primary_height": null,
+      "verified_height_decisions": [],
+      "verified_added": 0,
+      "verified_removed": 0
+    },
+    "roof": {
+      "offset": null,
+      "target_post_courses": 3,
+      "matching_post_courses": 0,
+      "visible_roof_cells": 54,
+      "anchored_roof_cells": 0,
+      "target_triples": 162,
+      "matching_triples": 0,
+      "target_gap_width": 5,
+      "observed_gap_width": null
+    },
+    "clear_rays": 10,
+    "filled_clear_rays": 0,
+    "metrics": {
+      "target": 61,
+      "placed": 0,
+      "correct": 0,
+      "extras": 0,
+      "missed": 61,
+      "hidden_extras": 0,
+      "gained": 0,
+      "lost": 0,
+      "extra_added": 0,
+      "extra_removed": 0,
+      "hidden_added": 0,
+      "hidden_removed": 0,
+      "joint_correct": 0
+    },
+    "relative_geometry": {
+      "target": 61,
+      "placed": 0,
+      "correct": 0,
+      "extras": 0,
+      "missed": 61,
+      "hidden_extras": 0,
+      "gained": 0,
+      "lost": 0,
+      "extra_added": 0,
+      "extra_removed": 0,
+      "hidden_added": 0,
+      "hidden_removed": 0
+    },
+    "translation": [
+      0,
+      0,
+      0
+    ],
+    "baseline_translation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "id": "holdout-highwalkroof-timber-low-left",
+    "shape": "4a58e3dc27f645ebb09e126cd470878893ae3d70641376441b48d618ccfbc29a",
+    "rgb_sha256": "96710a9a52a8724207a63ec7686a131c1707b1ae31a29c6ca846effde30a82ff",
+    "reference_hashes": {
+      "rgb.png": "96710a9a52a8724207a63ec7686a131c1707b1ae31a29c6ca846effde30a82ff",
+      "camera.json": "37b9205805208e8165abde84ff48abbe5c2330f9a8cdf5b2a595a29727445be3",
+      "world-readback.json": "da5c3593e150102a7080f8a614933402c135419710800391f690e2048fc23335",
+      "raw-readback.json": "072bfdf4aa81d46310fc8c2b3de7b08cb901d90bef031a0a44818d77f9b165c9",
+      "labels.json": "9d1cd20d11b70e4e650526faafe5d4057b39789dcf7fd40c343b2ddf5fe1e25a",
+      "labels.npz": "a658848dc06d2c24cae7c0bb5583c3d094b924db0843ae49f69972f69609ba1c"
+    },
+    "input_hashes": {
+      "build-manifest.json": "af097412d6525e68be14b6feba2a250247679e70dcf6cdf26d1b9d0a39a8bc7f",
+      "surfaces.json": "0342a4698a651f12589433ab622ede14ced28e4a3b425b499202a42432f2b4b4",
+      "counts.json": "f7ec4c8fa6226c23012ddbf8beea739a67494f2224e666dbd424c78e1dd78960",
+      "reconstruction.zip": "863266a5504c04856f5ad6c1cf24fa810b0e8d6c27f7b325aebe009e8409fe14"
+    },
+    "pack_sha256": "863266a5504c04856f5ad6c1cf24fa810b0e8d6c27f7b325aebe009e8409fe14",
+    "camera_supported": true,
+    "camera_source": "seam-fit",
+    "expected_course": 8,
+    "prior_modal": 8,
+    "prior_tallest": 8,
+    "primary": {
+      "part": null,
+      "block_y": null,
+      "exact": false,
+      "associated": false
+    },
+    "accepted": [],
+    "status": {
+      "height_decisions": [
+        {
+          "part": "mask-19",
+          "plane_y": 2,
+          "block_y": 1,
+          "normal_y": 1,
+          "area": 107,
+          "accepted": false,
+          "margin": 0.143,
+          "pixel_corr": 0.448,
+          "hypotheses": [
+            [
+              2,
+              0.3771
+            ],
+            [
+              1,
+              0.2341
+            ],
+            [
+              3,
+              0.1668
+            ]
+          ],
+          "support_fallback": false,
+          "support_span": 0,
+          "atlas_accepted": false
+        },
+        {
+          "part": "underside-0",
+          "plane_y": 5,
+          "block_y": 5,
+          "normal_y": -1,
+          "area": 28593,
+          "accepted": false,
+          "margin": 0.1192,
+          "pixel_corr": 0.2592,
+          "hypotheses": [
+            [
+              5,
+              0.2397
+            ],
+            [
+              8,
+              0.1205
+            ],
+            [
+              7,
+              0.1104
+            ],
+            [
+              12,
+              0.0952
+            ],
+            [
+              6,
+              0.0642
+            ],
+            [
+              9,
+              0.0546
+            ],
+            [
+              11,
+              0.05
+            ],
+            [
+              10,
+              0.0424
+            ],
+            [
+              14,
+              0.0261
+            ],
+            [
+              13,
+              0.0252
+            ]
+          ],
+          "support_fallback": false,
+          "support_span": 0,
+          "atlas_accepted": false
+        }
+      ],
+      "primary_height": null,
+      "verified_height_decisions": [
+        {
+          "part": "mask-19",
+          "plane_y": 2,
+          "block_y": 1,
+          "normal_y": 1,
+          "area": 107,
+          "accepted": false,
+          "margin": 0.143,
+          "pixel_corr": 0.448,
+          "hypotheses": [
+            [
+              2,
+              0.3771
+            ],
+            [
+              1,
+              0.2341
+            ],
+            [
+              3,
+              0.1668
+            ]
+          ]
+        },
+        {
+          "part": "underside-0",
+          "plane_y": 5,
+          "block_y": 5,
+          "normal_y": -1,
+          "area": 28593,
+          "accepted": false,
+          "margin": 0.1192,
+          "pixel_corr": 0.2592,
+          "hypotheses": [
+            [
+              5,
+              0.2397
+            ],
+            [
+              8,
+              0.1205
+            ],
+            [
+              7,
+              0.1104
+            ],
+            [
+              12,
+              0.0952
+            ],
+            [
+              6,
+              0.0642
+            ],
+            [
+              9,
+              0.0546
+            ],
+            [
+              11,
+              0.05
+            ],
+            [
+              10,
+              0.0424
+            ],
+            [
+              14,
+              0.0261
+            ],
+            [
+              13,
+              0.0252
+            ]
+          ]
+        }
+      ],
+      "verified_added": 0,
+      "verified_removed": 0
+    },
+    "roof": {
+      "offset": [
+        0,
+        0,
+        0
+      ],
+      "target_post_courses": 8,
+      "matching_post_courses": 8,
+      "visible_roof_cells": 104,
+      "anchored_roof_cells": 94,
+      "target_triples": 832,
+      "matching_triples": 752,
+      "target_gap_width": 4,
+      "observed_gap_width": 4.0
+    },
+    "clear_rays": 32,
+    "filled_clear_rays": 0,
+    "metrics": {
+      "target": 144,
+      "placed": 138,
+      "correct": 134,
+      "extras": 4,
+      "missed": 10,
+      "hidden_extras": 0,
+      "gained": 0,
+      "lost": 0,
+      "extra_added": 0,
+      "extra_removed": 0,
+      "hidden_added": 0,
+      "hidden_removed": 0,
+      "joint_correct": 0
+    },
+    "relative_geometry": {
+      "target": 144,
+      "placed": 138,
+      "correct": 134,
+      "extras": 4,
+      "missed": 10,
+      "hidden_extras": 0,
+      "gained": 0,
+      "lost": 0,
+      "extra_added": 0,
+      "extra_removed": 0,
+      "hidden_added": 0,
+      "hidden_removed": 0
+    },
+    "translation": [
+      0,
+      0,
+      0
+    ],
+    "baseline_translation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "id": "holdout-highwalkroof-timber-high-right",
+    "shape": "4a58e3dc27f645ebb09e126cd470878893ae3d70641376441b48d618ccfbc29a",
+    "rgb_sha256": "3322161725187a583203c4b7003267a51909647610489838891bece67805eaf6",
+    "reference_hashes": {
+      "rgb.png": "3322161725187a583203c4b7003267a51909647610489838891bece67805eaf6",
+      "camera.json": "ad30acd2d90a5c833a8c48047078f22faf025e6a51836e6c4366698781078eae",
+      "world-readback.json": "da5c3593e150102a7080f8a614933402c135419710800391f690e2048fc23335",
+      "raw-readback.json": "072bfdf4aa81d46310fc8c2b3de7b08cb901d90bef031a0a44818d77f9b165c9",
+      "labels.json": "1b024315bab018213be2af453f5923b3186d98166029f19d10b323de752e9fe6",
+      "labels.npz": "352a9811f29fcf52fbc92fcf7d20495f7946b3b411787ebba7073cede4597697"
+    },
+    "input_hashes": {
+      "build-manifest.json": "fa04c9cf1ef8d29266451aec5366343c8f819a9ae477e6e977f114721c71f8b9",
+      "surfaces.json": "8105933cf43d744a7229ed605576f16e36507341028e75ef89dfc3c59a959b8f",
+      "counts.json": "1873002da7ebc545bc247d1945eb670091875e8e8b50fc5df3f2009a44557eca",
+      "reconstruction.zip": "14492953d32408e0f4d7aab08979622738ce8e264fa8b1487d54aba33e269820"
+    },
+    "pack_sha256": "14492953d32408e0f4d7aab08979622738ce8e264fa8b1487d54aba33e269820",
+    "camera_supported": true,
+    "camera_source": "seam-fit",
+    "expected_course": 8,
+    "prior_modal": 8,
+    "prior_tallest": 8,
+    "primary": {
+      "part": null,
+      "block_y": null,
+      "exact": false,
+      "associated": false
+    },
+    "accepted": [],
+    "status": {
+      "height_decisions": [
+        {
+          "part": "mask-1",
+          "plane_y": 9,
+          "block_y": 8,
+          "normal_y": 1,
+          "area": 19909,
+          "accepted": false,
+          "margin": 0.1078,
+          "pixel_corr": 0.2847,
+          "hypotheses": [
+            [
+              9,
+              0.2437
+            ],
+            [
+              11,
+              0.1359
+            ],
+            [
+              4,
+              0.0553
+            ],
+            [
+              5,
+              0.0475
+            ],
+            [
+              7,
+              0.0431
+            ],
+            [
+              10,
+              0.0431
+            ],
+            [
+              8,
+              0.0377
+            ],
+            [
+              6,
+              0.034
+            ],
+            [
+              2,
+              0.0295
+            ],
+            [
+              1,
+              0.0236
+            ],
+            [
+              3,
+              0.0212
+            ]
+          ],
+          "support_fallback": true,
+          "support_span": 10,
+          "atlas_accepted": true
+        },
+        {
+          "part": "mask-12",
+          "plane_y": 11,
+          "block_y": 10,
+          "normal_y": 1,
+          "area": 125,
+          "accepted": false,
+          "margin": 0.1409,
+          "pixel_corr": 0.8159,
+          "hypotheses": [
+            [
+              11,
+              0.4261
+            ],
+            [
+              9,
+              0.2852
+            ],
+            [
+              2,
+              0.212
+            ],
+            [
+              8,
+              0.1912
+            ],
+            [
+              10,
+              0.1824
+            ],
+            [
+              1,
+              0.1252
+            ],
+            [
+              5,
+              0.0945
+            ],
+            [
+              7,
+              0.0781
+            ],
+            [
+              4,
+              0.0546
+            ],
+            [
+              3,
+              0.0431
+            ],
+            [
+              6,
+              0.0314
+            ]
+          ],
+          "support_fallback": false,
+          "support_span": 0,
+          "atlas_accepted": true
+        },
+        {
+          "part": "mask-13",
+          "plane_y": 10,
+          "block_y": 9,
+          "normal_y": 1,
+          "area": 112,
+          "accepted": false,
+          "margin": 0.0251,
+          "pixel_corr": 0.4697,
+          "hypotheses": [
+            [
+              10,
+              0.3436
+            ],
+            [
+              11,
+              0.3185
+            ],
+            [
+              6,
+              0.2872
+            ],
+            [
+              8,
+              0.2717
+            ],
+            [
+              1,
+              0.2471
+            ],
+            [
+              7,
+              0.2309
+            ],
+            [
+              2,
+              0.178
+            ],
+            [
+              9,
+              0.1753
+            ],
+            [
+              4,
+              0.1725
+            ],
+            [
+              5,
+              0.1708
+            ],
+            [
+              3,
+              0.1005
+            ]
+          ],
+          "support_fallback": false,
+          "support_span": 0,
+          "atlas_accepted": false
+        }
+      ],
+      "primary_height": null,
+      "verified_height_decisions": [
+        {
+          "part": "mask-1",
+          "plane_y": 9,
+          "block_y": 8,
+          "normal_y": 1,
+          "area": 19909,
+          "accepted": false,
+          "margin": 0.1078,
+          "pixel_corr": 0.2847,
+          "hypotheses": [
+            [
+              9,
+              0.2437
+            ],
+            [
+              11,
+              0.1359
+            ],
+            [
+              4,
+              0.0553
+            ],
+            [
+              5,
+              0.0475
+            ],
+            [
+              7,
+              0.0431
+            ],
+            [
+              10,
+              0.0431
+            ],
+            [
+              8,
+              0.0377
+            ],
+            [
+              6,
+              0.034
+            ],
+            [
+              2,
+              0.0295
+            ],
+            [
+              1,
+              0.0236
+            ],
+            [
+              3,
+              0.0212
+            ]
+          ]
+        },
+        {
+          "part": "mask-12",
+          "plane_y": 11,
+          "block_y": 10,
+          "normal_y": 1,
+          "area": 125,
+          "accepted": false,
+          "margin": 0.1409,
+          "pixel_corr": 0.8159,
+          "hypotheses": [
+            [
+              11,
+              0.4261
+            ],
+            [
+              9,
+              0.2852
+            ],
+            [
+              2,
+              0.212
+            ],
+            [
+              8,
+              0.1912
+            ],
+            [
+              10,
+              0.1824
+            ],
+            [
+              1,
+              0.1252
+            ],
+            [
+              5,
+              0.0945
+            ],
+            [
+              7,
+              0.0781
+            ],
+            [
+              4,
+              0.0546
+            ],
+            [
+              3,
+              0.0431
+            ],
+            [
+              6,
+              0.0314
+            ]
+          ]
+        },
+        {
+          "part": "mask-13",
+          "plane_y": 10,
+          "block_y": 9,
+          "normal_y": 1,
+          "area": 112,
+          "accepted": false,
+          "margin": 0.0251,
+          "pixel_corr": 0.4697,
+          "hypotheses": [
+            [
+              10,
+              0.3436
+            ],
+            [
+              11,
+              0.3185
+            ],
+            [
+              6,
+              0.2872
+            ],
+            [
+              8,
+              0.2717
+            ],
+            [
+              1,
+              0.2471
+            ],
+            [
+              7,
+              0.2309
+            ],
+            [
+              2,
+              0.178
+            ],
+            [
+              9,
+              0.1753
+            ],
+            [
+              4,
+              0.1725
+            ],
+            [
+              5,
+              0.1708
+            ],
+            [
+              3,
+              0.1005
+            ]
+          ]
+        }
+      ],
+      "verified_added": 0,
+      "verified_removed": 0
+    },
+    "roof": {
+      "offset": [
+        0,
+        0,
+        0
+      ],
+      "target_post_courses": 8,
+      "matching_post_courses": 8,
+      "visible_roof_cells": 114,
+      "anchored_roof_cells": 114,
+      "target_triples": 912,
+      "matching_triples": 912,
+      "target_gap_width": 4,
+      "observed_gap_width": 4.0
+    },
+    "clear_rays": 28,
+    "filled_clear_rays": 0,
+    "metrics": {
+      "target": 152,
+      "placed": 155,
+      "correct": 152,
+      "extras": 3,
+      "missed": 0,
+      "hidden_extras": 0,
+      "gained": 0,
+      "lost": 0,
+      "extra_added": 0,
+      "extra_removed": 0,
+      "hidden_added": 0,
+      "hidden_removed": 0,
+      "joint_correct": 0
+    },
+    "relative_geometry": {
+      "target": 152,
+      "placed": 155,
+      "correct": 152,
+      "extras": 3,
+      "missed": 0,
+      "hidden_extras": 0,
+      "gained": 0,
+      "lost": 0,
+      "extra_added": 0,
+      "extra_removed": 0,
+      "hidden_added": 0,
+      "hidden_removed": 0
+    },
+    "translation": [
+      0,
+      0,
+      0
+    ],
+    "baseline_translation": [
+      0,
+      0,
+      0
+    ]
+  }
+]

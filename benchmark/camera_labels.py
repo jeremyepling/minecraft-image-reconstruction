@@ -111,7 +111,9 @@ def label_capture(root):
         actual = {tuple(b[axis] for axis in "xyz"): b for b in rows}
         if (len(actual) != len(rows) or actual.keys() != expected.keys()
             or any(b["block_id"] != expected[p]["block_id"]
-                   or b["state"] != "Block{minecraft:" + b["block_id"] + "}" for p, b in actual.items())):
+                   or b["state"] != ("Block{minecraft:" + b["block_id"] + "}"
+                                     + ("[axis=y]" if b["block_id"] == "stripped_oak_log" else ""))
+                   for p, b in actual.items())):
             raise ValueError(f"Server state disagrees with staged world in {states_file}")
         floor_sites = {p for p, b in expected.items() if b["role"] == "floor_probe"}
         if "floor" in layout and (not floor_sites or
