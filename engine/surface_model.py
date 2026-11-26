@@ -327,11 +327,13 @@ def build(image_path, version, out, *, outlines=None, order_method=None, through
     from engine.surface_fields import MODELS, SETTINGS as inference, infer
     if version != '26.3':
         raise ValueError('The surface methods support Java 26.3.')
-    if through not in ('surfaces', 'counts'):
+    if through not in ('surfaces', 'counts', 'placement'):
         raise ValueError(f'Unknown surface stage {through}')
     defaults = json.loads(DEFAULTS.read_text())
     outlines = outlines or defaults['outlines']
     mask_first = outlines == 'mask-first'
+    if through == 'placement' and not mask_first:
+        raise ValueError('Visible placement requires Regions First surface masks.')
     if boundary is not None and (not mask_first or boundary not in BOUNDARY_METHODS):
         raise ValueError('Select a Regions First boundary method for a mask-first surface build.')
     if context_px is not None and (not mask_first or not isinstance(context_px, int) or context_px < 0):
@@ -516,7 +518,7 @@ def build(image_path, version, out, *, outlines=None, order_method=None, through
         manifest['surface_finder'] = dict(name='Surface Finder', method='Rectangle Finder',
                                           implementation='normal-regions', directions='MoGe-2',
                                           settings=rectangle_settings, outline='fitted quadrilateral')
-    if through == 'counts':
+    if through in ('counts', 'placement'):
         counter = counter or defaults['block_count']
         atlas = None
         if counter == 'atlas-repeat' or atlas_path is not None or material_match == 'atlas':
@@ -546,4 +548,20 @@ def build(image_path, version, out, *, outlines=None, order_method=None, through
         manifest['artifact'] = 'counts.json'
         manifest['artifacts'].update(counts='counts.json', samples='samples/')
         methods['block_count'] = counter
+        if through == 'placement':
+            from engine.export import JAVA_26_3_FORMAT, write_pack
+            from engine.visible_placement import place
+            cells, status = place(image, version, patches, counts=counts)
+            material = 'smooth_stone'
+            blocks = {tuple(map(int, pos)): material for pos in cells}
+            rows = [dict(x=x, y=y, z=z, block_id=material) for x,y,z in sorted(blocks)]
+            placement = dict(version=version, camera_status=status['camera_status'],
+                             coordinates='local block grid relative to the placement function origin',
+                             material=material, blocks=rows)
+            write_pack(out/'reconstruction.zip', blocks, JAVA_26_3_FORMAT)
+            (out/'placements.json').write_text(json.dumps(placement, indent=2))
+            methods['placement'] = 'camera-supported-visible-planes'
+            manifest['placement'] = dict(status, material=material)
+            manifest['artifacts'].update(placements='placements.json', datapack='reconstruction.zip')
+            manifest['artifact'] = 'reconstruction.zip'
     (out/'build-manifest.json').write_text(json.dumps(manifest, indent=2))
