@@ -1,0 +1,486 @@
+{
+  "development": {
+    "default": {
+      "target": 20681,
+      "correct": 16052,
+      "extras": 1827,
+      "hidden_extras": 123,
+      "f1": 0.8325726141078839
+    },
+    "conservative": {
+      "target": 20681,
+      "correct": 16191,
+      "extras": 1693,
+      "hidden_extras": 121,
+      "f1": 0.8396732788798134
+    },
+    "balanced": {
+      "target": 20681,
+      "correct": 16172,
+      "extras": 1734,
+      "hidden_extras": 192,
+      "f1": 0.838209759763651
+    },
+    "assertive": {
+      "target": 20681,
+      "correct": 16066,
+      "extras": 1834,
+      "hidden_extras": 240,
+      "f1": 0.8328451828620306
+    },
+    "perfect_frame_selector": {
+      "target": 20681,
+      "correct": 16292,
+      "extras": 1576,
+      "hidden_extras": 115,
+      "f1": 0.8452618744973929
+    },
+    "wins_ties_losses": [
+      9,
+      72,
+      3
+    ],
+    "largest_gains_and_losses": [
+      [
+        "train-steppedhall2-cool-high-right",
+        -0.00818104495149874
+      ],
+      [
+        "train-steppedhall2-earth-high-right",
+        -0.0038644650363454103
+      ],
+      [
+        "train-watchpost2-earth-high-right",
+        -0.0008958320954701726
+      ],
+      [
+        "train-arcade3-cool-low-left",
+        0.21048886834791813
+      ],
+      [
+        "train-arcade3-earth-low-left",
+        0.19824561403508767
+      ],
+      [
+        "train-watchpost1-cool-high-right",
+        0.030152365677626247
+      ]
+    ]
+  },
+  "evaluation": {
+    "default": {
+      "target": 24086,
+      "correct": 18703,
+      "extras": 1770,
+      "hidden_extras": 94,
+      "f1": 0.8394712628200812
+    },
+    "conservative": {
+      "target": 24086,
+      "correct": 18834,
+      "extras": 1711,
+      "hidden_extras": 95,
+      "f1": 0.8439873630436244
+    },
+    "perfect_frame_selector": {
+      "target": 24086,
+      "correct": 18837,
+      "extras": 1711,
+      "hidden_extras": 95,
+      "f1": 0.8440650625084016
+    },
+    "wins_ties_losses": [
+      11,
+      100,
+      1
+    ],
+    "largest_gains_and_losses": [
+      [
+        "validation-cloister1-cool-high-right",
+        -0.009478093908186436
+      ],
+      [
+        "validation-cloister1-cool-low-left",
+        0.0
+      ],
+      [
+        "validation-cloister1-earth-low-left",
+        0.0
+      ],
+      [
+        "legacy-smooth_stone-dev-shopfront-plaster-high-right",
+        0.34162208572749486
+      ],
+      [
+        "legacy-light_gray_concrete-holdout-portico-plaster-low-left",
+        0.09772665519427581
+      ],
+      [
+        "legacy-light_gray_concrete-dev-shopfront-masonry-low-left",
+        0.054186798706225225
+      ]
+    ]
+  },
+  "roofs": [
+    {
+      "id": "shape-benchmark-26.3--train-canopy-07-left",
+      "cohort": "old",
+      "default": {
+        "offset": [
+          0,
+          0,
+          0
+        ],
+        "target_post_courses": 5,
+        "matching_post_courses": 5,
+        "visible_roof_cells": 48,
+        "anchored_roof_cells": 14,
+        "target_triples": 240,
+        "matching_triples": 70,
+        "target_gap_width": 4,
+        "observed_gap_width": 4,
+        "pack_sha256": "69a97f495a56665e291454ad8d94640682e218c45b18f6450e5ed50b3a137de1"
+      },
+      "conservative": {
+        "offset": [
+          0,
+          0,
+          0
+        ],
+        "target_post_courses": 5,
+        "matching_post_courses": 5,
+        "visible_roof_cells": 48,
+        "anchored_roof_cells": 14,
+        "target_triples": 240,
+        "matching_triples": 70,
+        "target_gap_width": 4,
+        "observed_gap_width": 4,
+        "pack_sha256": "28282a6af50d28556020c9527338d184d835377b1d339fc6c5da90cb0dc46686"
+      }
+    },
+    {
+      "id": "shape-benchmark-26.3--train-canopy-04-left",
+      "cohort": "old",
+      "default": {
+        "offset": [
+          0,
+          0,
+          0
+        ],
+        "target_post_courses": 5,
+        "matching_post_courses": 5,
+        "visible_roof_cells": 35,
+        "anchored_roof_cells": 12,
+        "target_triples": 175,
+        "matching_triples": 60,
+        "target_gap_width": 2,
+        "observed_gap_width": 2,
+        "pack_sha256": "6804ecdc222ff0aa37a2dd798bdcd8be939ccf562a5f50a352d8b8077e5cbaad"
+      },
+      "conservative": {
+        "offset": [
+          0,
+          0,
+          0
+        ],
+        "target_post_courses": 5,
+        "matching_post_courses": 5,
+        "visible_roof_cells": 35,
+        "anchored_roof_cells": 12,
+        "target_triples": 175,
+        "matching_triples": 60,
+        "target_gap_width": 2,
+        "observed_gap_width": 2,
+        "pack_sha256": "bb9fb07b4847a4b0bfe1216b8669445b68b2f8257cfa524a9fa74c87ba776744"
+      }
+    },
+    {
+      "id": "shape-benchmark-open-26.3--train-canopy-01-left",
+      "cohort": "old",
+      "default": {
+        "offset": [
+          0,
+          0,
+          0
+        ],
+        "target_post_courses": 5,
+        "matching_post_courses": 5,
+        "visible_roof_cells": 63,
+        "anchored_roof_cells": 19,
+        "target_triples": 315,
+        "matching_triples": 95,
+        "target_gap_width": 4,
+        "observed_gap_width": 4,
+        "pack_sha256": "662a8037c41e67dae1614b663e779d2f573c4ec252632a28a8dfcdbb26c9a2d7"
+      },
+      "conservative": {
+        "offset": [
+          0,
+          0,
+          0
+        ],
+        "target_post_courses": 5,
+        "matching_post_courses": 5,
+        "visible_roof_cells": 63,
+        "anchored_roof_cells": 19,
+        "target_triples": 315,
+        "matching_triples": 95,
+        "target_gap_width": 4,
+        "observed_gap_width": 4,
+        "pack_sha256": "7c3473a3c11164dbe80def9925dc68aa37346e7a011c09cfd38ba8de916f61ff"
+      }
+    },
+    {
+      "id": "shape-benchmark-26.3--train-canopy-09-right",
+      "cohort": "old",
+      "default": {
+        "offset": [
+          0,
+          0,
+          0
+        ],
+        "target_post_courses": 5,
+        "matching_post_courses": 5,
+        "visible_roof_cells": 80,
+        "anchored_roof_cells": 41,
+        "target_triples": 400,
+        "matching_triples": 205,
+        "target_gap_width": 4,
+        "observed_gap_width": 4,
+        "pack_sha256": "4107de9e177809cb2d9e8ec9a92c68ec39fd6095e8eeaa1845a0f8ff3d278742"
+      },
+      "conservative": {
+        "offset": [
+          0,
+          0,
+          0
+        ],
+        "target_post_courses": 5,
+        "matching_post_courses": 5,
+        "visible_roof_cells": 80,
+        "anchored_roof_cells": 41,
+        "target_triples": 400,
+        "matching_triples": 205,
+        "target_gap_width": 4,
+        "observed_gap_width": 4,
+        "pack_sha256": "d6ae66c666dee100ca1749de44f99db830201e91f8cfcad8553660112e2bad7d"
+      }
+    },
+    {
+      "id": "shape-benchmark-26.3--train-canopy-06-left",
+      "cohort": "old",
+      "default": {
+        "offset": [
+          0,
+          0,
+          0
+        ],
+        "target_post_courses": 5,
+        "matching_post_courses": 5,
+        "visible_roof_cells": 60,
+        "anchored_roof_cells": 6,
+        "target_triples": 300,
+        "matching_triples": 30,
+        "target_gap_width": 2,
+        "observed_gap_width": 2,
+        "pack_sha256": "175f59a5c3b3cd7c12a91e21c9a31896a0dc3897158fd2c9ef114b0295c9c537"
+      },
+      "conservative": {
+        "offset": [
+          0,
+          0,
+          0
+        ],
+        "target_post_courses": 5,
+        "matching_post_courses": 5,
+        "visible_roof_cells": 60,
+        "anchored_roof_cells": 6,
+        "target_triples": 300,
+        "matching_triples": 30,
+        "target_gap_width": 2,
+        "observed_gap_width": 2,
+        "pack_sha256": "2624dc719777ce0902c757b5bef88f018dabd7d1a23ad96e46ae0a2a5b8023e6"
+      }
+    },
+    {
+      "id": "shape-benchmark-26.3--train-canopy-08-right",
+      "cohort": "old",
+      "default": {
+        "offset": [
+          0,
+          0,
+          0
+        ],
+        "target_post_courses": 5,
+        "matching_post_courses": 5,
+        "visible_roof_cells": 63,
+        "anchored_roof_cells": 22,
+        "target_triples": 315,
+        "matching_triples": 110,
+        "target_gap_width": 4,
+        "observed_gap_width": 4,
+        "pack_sha256": "92483352ecf1f47c8b65f2d54fed54ca5ff8bdcdbf857ca9bf5d9c469870b762"
+      },
+      "conservative": {
+        "offset": [
+          0,
+          0,
+          0
+        ],
+        "target_post_courses": 5,
+        "matching_post_courses": 5,
+        "visible_roof_cells": 63,
+        "anchored_roof_cells": 22,
+        "target_triples": 315,
+        "matching_triples": 110,
+        "target_gap_width": 4,
+        "observed_gap_width": 4,
+        "pack_sha256": "f1182b8299f9dfc22832195cfd306cb126c8dd718ccfa28e615da1aa444fd66c"
+      }
+    },
+    {
+      "id": "shape-benchmark-26.3--dev-canopy-18-left",
+      "cohort": "old",
+      "default": {
+        "offset": [
+          0,
+          0,
+          0
+        ],
+        "target_post_courses": 6,
+        "matching_post_courses": 6,
+        "visible_roof_cells": 13,
+        "anchored_roof_cells": 13,
+        "target_triples": 78,
+        "matching_triples": 78,
+        "target_gap_width": 2,
+        "observed_gap_width": 2.0,
+        "pack_sha256": "b203e218a35526afb242c3b842c2d600687a9b71504d2b7727461c694937de9a"
+      },
+      "conservative": {
+        "offset": [
+          0,
+          0,
+          0
+        ],
+        "target_post_courses": 6,
+        "matching_post_courses": 6,
+        "visible_roof_cells": 13,
+        "anchored_roof_cells": 13,
+        "target_triples": 78,
+        "matching_triples": 78,
+        "target_gap_width": 2,
+        "observed_gap_width": 2.0,
+        "pack_sha256": "79e1be92673a840882dd840860077a1065ab0eb4866fb9fb952679579d2557be"
+      }
+    },
+    {
+      "id": "shape-benchmark-open-26.3--train-canopy-00-right",
+      "cohort": "fresh",
+      "default": {
+        "offset": [
+          0,
+          0,
+          0
+        ],
+        "target_post_courses": 5,
+        "matching_post_courses": 5,
+        "visible_roof_cells": 35,
+        "anchored_roof_cells": 12,
+        "target_triples": 175,
+        "matching_triples": 60,
+        "target_gap_width": 2,
+        "observed_gap_width": 2,
+        "pack_sha256": "c087107757427188d87741f2c8e908fc85f400b93fcdc43e5a0744aa34d8eebc"
+      },
+      "conservative": {
+        "offset": [
+          0,
+          0,
+          0
+        ],
+        "target_post_courses": 5,
+        "matching_post_courses": 5,
+        "visible_roof_cells": 35,
+        "anchored_roof_cells": 12,
+        "target_triples": 175,
+        "matching_triples": 60,
+        "target_gap_width": 2,
+        "observed_gap_width": 2,
+        "pack_sha256": "1fcc5450e5b8937412a9c8c5a8f9adfd0067ad25171584626dce425c316b6a74"
+      }
+    },
+    {
+      "id": "shape-benchmark-26.3--train-canopy-05-left",
+      "cohort": "fresh",
+      "default": {
+        "offset": [
+          0,
+          0,
+          0
+        ],
+        "target_post_courses": 5,
+        "matching_post_courses": 5,
+        "visible_roof_cells": 47,
+        "anchored_roof_cells": 16,
+        "target_triples": 235,
+        "matching_triples": 80,
+        "target_gap_width": 2,
+        "observed_gap_width": 2,
+        "pack_sha256": "0e9c59176d51aa8800e598b8a68311378b799668c8875a623404333707cdf6a2"
+      },
+      "conservative": {
+        "offset": [
+          0,
+          0,
+          0
+        ],
+        "target_post_courses": 5,
+        "matching_post_courses": 5,
+        "visible_roof_cells": 47,
+        "anchored_roof_cells": 16,
+        "target_triples": 235,
+        "matching_triples": 80,
+        "target_gap_width": 2,
+        "observed_gap_width": 2,
+        "pack_sha256": "ebbf0f8776f5127866c8b97458920e3c21656647d580012df0e8ca68a04260f2"
+      }
+    },
+    {
+      "id": "shape-benchmark-26.3--dev-canopy-19-right",
+      "cohort": "fresh",
+      "default": {
+        "offset": [
+          0,
+          0,
+          0
+        ],
+        "target_post_courses": 6,
+        "matching_post_courses": 6,
+        "visible_roof_cells": 15,
+        "anchored_roof_cells": 15,
+        "target_triples": 90,
+        "matching_triples": 90,
+        "target_gap_width": 2,
+        "observed_gap_width": 2.0,
+        "pack_sha256": "79ce0778e31550a0c66b319da6beb1617dc9eb1036c2f737a1e7b845b2a72bdc"
+      },
+      "conservative": {
+        "offset": [
+          0,
+          0,
+          0
+        ],
+        "target_post_courses": 6,
+        "matching_post_courses": 6,
+        "visible_roof_cells": 15,
+        "anchored_roof_cells": 15,
+        "target_triples": 90,
+        "matching_triples": 90,
+        "target_gap_width": 2,
+        "observed_gap_width": 2.0,
+        "pack_sha256": "6ce081447ed8f624c98f7056c7b043ad3ffaff60d346f0ef122566f8b34d7bf1"
+      }
+    }
+  ]
+}
