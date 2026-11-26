@@ -1,0 +1,74 @@
+{
+  "misses": 97,
+  "sam": {
+    "raw": 39,
+    "selected": 18,
+    "offered": 6,
+    "intact": 2
+  },
+  "raw_below_quarter": 39,
+  "raw_below_quarter_by_orientation": {
+    "top": 6,
+    "vertical": 29,
+    "underside": 4
+  },
+  "raw_between_40_and_50_percent": 7,
+  "inventory": 66,
+  "eligible_individual_cuts": 26,
+  "individual_gain_ids": [
+    [
+      "light_gray_concrete/holdout-registry-plaster-low-left",
+      4
+    ],
+    [
+      "light_gray_concrete/holdout-workshop-masonry-low-left",
+      13
+    ]
+  ],
+  "isolated_gain_no_loss": [
+    [
+      "light_gray_concrete/holdout-registry-plaster-low-left",
+      4
+    ],
+    [
+      "light_gray_concrete/holdout-workshop-masonry-low-left",
+      13
+    ]
+  ],
+  "cut_outcomes": {
+    "gain_only": 3,
+    "loss_only": 1,
+    "gained_and_lost": 0,
+    "no_change": 22
+  },
+  "contrast": {
+    "threshold": 30.666666666666668,
+    "development": {
+      "real": 8,
+      "flat": 6,
+      "real_passed": 3,
+      "flat_passed": 0,
+      "median_real": 15.333333333333334,
+      "median_flat": 15.0,
+      "auc": 0.6041666666666666
+    },
+    "regression": {
+      "real": 23,
+      "flat": 25,
+      "real_passed": 4,
+      "flat_passed": 6,
+      "median_real": 15.0,
+      "median_flat": 17.666666666666668,
+      "auc": 0.3791304347826087
+    },
+    "all": {
+      "real": 31,
+      "flat": 31,
+      "real_passed": 7,
+      "flat_passed": 6,
+      "median_real": 15.0,
+      "median_flat": 16.166666666666664,
+      "auc": 0.42299687825182103
+    }
+  }
+}
