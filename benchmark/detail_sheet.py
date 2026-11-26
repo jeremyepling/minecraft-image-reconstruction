@@ -38,7 +38,7 @@ def zoom_box(detail, changes, truth, side=60):
     return (x0,y0,x0+side,y0+side)
 
 
-def render(out):
+def render(out, *, examples=None, titles=None):
     """Rows index archived prediction files; methods maps their keys to review labels."""
     out = Path(out)
     from benchmark.plane_detail import register, source_field
@@ -46,25 +46,32 @@ def render(out):
     rows = read(out/'cases.json')
     keys = list(read_gzip(out/rows[0]['predictions']))
     methods = {key: ('Current Finder' if key=='current' else 'Plane refinement' if key.startswith('plane_detail:') else 'Photo refinement') for key in keys}
-    archive = read(ROOT/'benchmark/reviews/crop-review-02/index.json')['examples']
-    examples = {ex['id']:ex for ex in archive}
+    primary_review = examples is None
+    if primary_review:
+        archive = read(ROOT/'benchmark/reviews/crop-review-02/index.json')['examples']
+        by_name = {ex['id']:ex for ex in archive}
+        examples = [by_name[name] for name in EXAMPLES]
+    if titles:
+        methods = {key:titles[key] for key in keys}
     captures = {c.floor+'/'+c.id:c for group in groups()[0].values() for c in group}
     rows = {r['key']:r for r in rows}
     keys = list(methods)
-    stages = ['Source', 'Recorded surface', 'Raw plane close-up', '4-pixel sampling', '2-pixel sampling'] + [
+    stages = ['Source', 'Recorded surface'] + (['Raw plane close-up', '4-pixel sampling', '2-pixel sampling'] if primary_review else []) + [
         stage for key in keys for stage in (methods[key],'Edge close-up','Face-on crop','Block Counter')]
     colwidth, height, left, top = 312, 226, 212, 135
-    page = Image.new('RGB',(left+colwidth*len(EXAMPLES),top+height*len(stages)+8),'#f8f7f1')
+    if not primary_review:
+        colwidth = 465
+    page = Image.new('RGB',(left+colwidth*len(examples),top+height*len(stages)+8),'#f8f7f1')
     pen = ImageDraw.Draw(page)
-    label(pen,(14,10),'Which settings bring the outline closer?',35,bold=True)
+    label(pen,(14,10),'Which settings bring the outline closer?' if primary_review else 'Can the better outline keep a reliable block count?',35,bold=True)
     label(pen,(14,60),'Gold = recorded surface. Cyan = prediction. In close-ups, green = correctly included, pink = extra, orange = missing. White box locates the close-up.',19)
     for idx,name in enumerate(stages):
         y = top+idx*height
         pen.line((8,y,page.width-8,y),fill='#aab9b5',width=2)
         label(pen,(12,y+15),name,19,bold=True)
     review = []
-    for col,example in enumerate(EXAMPLES):
-        ex = examples[example]
+    for col,ex in enumerate(examples):
+        example = ex['id']
         key,rid = ex['frame'],ex['reference']
         row,case = rows[key],captures[key]
         if ex['sha256'] != row['sha256']:
@@ -87,18 +94,20 @@ def render(out):
         cells = [(location.crop(ex['scene_xyxy']),key.split('/')[-1]),
                  (overlay(photo,detail,[(truth,GOLD,.7)]),f"R{rid}   ·   Actual {size_text(ex['reference_size_blocks'])} blocks")]
         # Choose a single segment by overlap with the baseline prediction, before consulting gold.
-        field = source_field(row['sha256'])
-        raw = register(field,photo.size,1)
-        ids_in_parent = np.bincount(raw[masks[0]],minlength=int(raw.max())+1)
-        areas = np.bincount(raw.ravel())
-        ious = ids_in_parent / np.maximum(1,areas + masks[0].sum() - ids_in_parent)
-        ious[0] = 0
-        segment = int(ious.argmax()) if ious.max()>0 else None
-        for step in (1,4,2):
-            registered = raw if step==1 else register(field,photo.size,step)
-            mask = registered==segment if segment is not None else np.zeros_like(truth)
-            cells.append((overlay(photo,zoom,[(mask&truth,(63,200,120),.48),(mask&~truth,(247,72,145),.95),
-                          (truth&~mask,(255,177,42),.95)]), 'Full-view model diagnostic   ·   same segment'))
+        segment = None
+        if primary_review:
+            field = source_field(row['sha256'])
+            raw = register(field,photo.size,1)
+            ids_in_parent = np.bincount(raw[masks[0]],minlength=int(raw.max())+1)
+            areas = np.bincount(raw.ravel())
+            ious = ids_in_parent / np.maximum(1,areas + masks[0].sum() - ids_in_parent)
+            ious[0] = 0
+            segment = int(ious.argmax()) if ious.max()>0 else None
+            for step in (1,4,2):
+                registered = raw if step==1 else register(field,photo.size,step)
+                mask = registered==segment if segment is not None else np.zeros_like(truth)
+                cells.append((overlay(photo,zoom,[(mask&truth,(63,200,120),.48),(mask&~truth,(247,72,145),.95),
+                              (truth&~mask,(255,177,42),.95)]), 'Full-view model diagnostic   ·   same segment'))
         scores = {}
         for method,part,mask in zip(keys,parts,masks):
             whole = overlay(photo,detail,[(mask,CYAN,.6)])
