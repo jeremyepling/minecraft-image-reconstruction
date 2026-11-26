@@ -1,5 +1,7 @@
 # Single-image exterior experiments
 
+Rank placement methods by visible-block F1 after one whole-build integer XYZ translation. Report the camera-registered score as a diagnostic. Preserve the spacing between all visible parts, including disconnected pieces, under that same shift. For canopies also measure roof positions relative to both pillars and the opening width. [Relative placement evaluation](benchmark/reviews/relative-build-01/README.md)
+
 When an experiment changes reconstruction behavior or reveals a failure worth testing in training, add a dated bullet to [the reconstruction adjustment log](MODEL_CHANGELOG.md). Record the decision, measured effect and example, and link the replay or evidence. Distinguish model changes from rules and evaluation changes.
 
 Follow the [product intent](PRODUCT_INTENT.md): reconstruct only blocks with visible face evidence in the supplied image or images. Jeremy does not want hidden-area prediction in either this pipeline or the proposed training approach. Do not complete unseen backs, interiors, occluded surfaces, shells or concealed supports. Placing the full Minecraft cube for a visibly supported block is allowed; adding unsupported cells is not. Leave unobserved areas unknown and omitted, rather than labeling them air or clearing them in an existing world.

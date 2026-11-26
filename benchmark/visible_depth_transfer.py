@@ -9,6 +9,7 @@ from pathlib import Path
 import subprocess
 from zipfile import ZipFile
 
+from benchmark.relative_geometry import PRIMARY_METRIC, placement_scores
 from benchmark.texture_camera_eval import DATA,ROOT,STABLE,checked,digest,frames,read,save
 import numpy as np
 from PIL import Image
@@ -158,18 +159,11 @@ def score_case(job):
     assert truth.keys()<=occupied
     world=registered(local,registration(np.asarray(f['camera']['P']),pose))
     before=world if baseline is None or method=='prior' else set(map(tuple,read(baseline/key/'cells.json')['world']))
-    correct=world & truth.keys()
-    extras=world-truth.keys()
-    new,removed=world-before,before-world
-    metrics=dict(target=len(truth),placed=len(world),correct=len(correct),extras=len(extras),
-                 hidden_extras=len(extras&occupied),missed=len(truth)-len(correct),gained=len(new & truth.keys()),
-                 lost=len(removed & truth.keys()),extra_added=len(new-truth.keys()),extra_removed=len(removed-truth.keys()),
-                 hidden_added=len((new-truth.keys())&occupied),hidden_removed=len((removed-truth.keys())&occupied),
-                 joint_correct=sum(truth[p]=='minecraft:smooth_stone' for p in correct))
+    scores=placement_scores(world,before,truth,occupied)
     save(dest/'cells.json',dict(id=key,local=sorted(local),world=sorted(world)))
     return dict(id=key,camera_supported=True,shape=f['shape'],rgb_sha256=f['files']['rgb.png'],
                 surface_sha256=digest(upstream/'surfaces.json'),counts_sha256=digest(upstream/'counts.json'),
-                pack_sha256=digest(pack),metrics=metrics)
+                pack_sha256=digest(pack),**scores)
 
 def score_all(out,root,workers,method):
     from benchmark.visible_depth_score import aggregate,init_candidate
@@ -185,7 +179,7 @@ def score_all(out,root,workers,method):
             results=list(pool.map(score_case,[(f,out,choice) for f in frames]))
         dest=out/'results'/choice
         save(dest/'cases.json',results)
-        evidence=dict(method=choice,adapter=adapter,selection_sha256=digest(out/'screen.json'),cases_sha256=digest(dest/'cases.json'),
+        evidence=dict(primary_metric=PRIMARY_METRIC,method=choice,adapter=adapter,selection_sha256=digest(out/'screen.json'),cases_sha256=digest(dest/'cases.json'),
              candidate_revision=subprocess.check_output(['git','rev-parse','HEAD'],cwd=root,text=True).strip(),
              scorer_sha256=digest(Path(__file__)),summary=aggregate(results))
         if choice in PRODUCTION:

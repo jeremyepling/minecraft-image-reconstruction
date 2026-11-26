@@ -2,7 +2,8 @@ import itertools
 import random
 import unittest
 
-from benchmark.relative_geometry import best_translation
+from benchmark.relative_geometry import best_translation, placement_scores
+from benchmark.visible_depth_score import aggregate
 
 
 def translate(cells, offset):
@@ -24,6 +25,23 @@ class RelativeGeometryTests(unittest.TestCase):
         target = pillars | roof
         predicted = pillars | translate(roof, (0, 0, 1))
         self.assertEqual(best_translation(predicted, target), ((0, 0, 0), 6))
+
+    def test_primary_benchmark_honors_one_shared_origin_for_roof_and_pillars(self):
+        pillars = {(x, y, 0) for x in (0, 4) for y in (0, 1, 2)}
+        roof = {(x, 3, 0) for x in range(5)}
+        truth = dict.fromkeys(pillars | roof, 'minecraft:smooth_stone')
+        original = set(truth)
+        shifted = translate(original, (0, 0, 1))
+        partial = pillars | translate(roof, (0, 0, 1))
+        whole = placement_scores(shifted, original, truth, original)
+        roof_only = placement_scores(partial, shifted, truth, original)
+        self.assertEqual(whole['metrics']['correct'], 0)
+        self.assertEqual(whole['relative_geometry']['correct'], 11)
+        self.assertEqual(whole['relative_geometry']['lost'], 0)
+        self.assertEqual(roof_only['relative_geometry']['lost'], 5)
+        self.assertEqual(roof_only['relative_geometry']['extras'], 5)
+        rows = [dict(camera_supported=True, **s) for s in (whole, roof_only)]
+        self.assertEqual(aggregate(rows)['relative_geometry']['f1'], 17 / 22)
 
     def test_extra_and_missing_cells_remain_errors_after_alignment(self):
         target = {(0, 0, 0), (1, 0, 0), (2, 0, 0), (2, 1, 0)}

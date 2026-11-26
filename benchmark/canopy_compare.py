@@ -4,6 +4,7 @@ from concurrent.futures import ProcessPoolExecutor
 from pathlib import Path
 import subprocess
 
+from benchmark.relative_geometry import PRIMARY_METRIC
 from benchmark.texture_camera_eval import digest, read, save
 from benchmark.visible_depth_score import aggregate, init_candidate
 from benchmark.visible_depth_transfer import score_case
@@ -29,7 +30,7 @@ def run(inputs, out, root, adapter, baseline, workers):
     summary = aggregate(rows)
     revision = subprocess.check_output(['git','rev-parse','HEAD'],cwd=root,text=True).strip()
     module = root.joinpath(*adapter.split(':')[0].split('.')).with_suffix('.py')
-    save(out/'manifest.json',dict(adapter=adapter, revision=revision, adapter_sha256=digest(module),
+    save(out/'manifest.json',dict(primary_metric=PRIMARY_METRIC, adapter=adapter, revision=revision, adapter_sha256=digest(module),
                                   selection_sha256=digest(manifest), cases_sha256=digest(out/'cases.json'),
                                   summary=summary))
     print(summary,flush=True)

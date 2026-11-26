@@ -6,6 +6,8 @@ The first training dataset is available in [Visible Builds v1](DATASET.md). It c
 
 ## Objective
 
+The origin of a reconstructed build is arbitrary. Evaluate visible positions after one shared translation of the complete build. Preserve the measured offsets between roofs, walls, posts and disconnected pieces. Keep source-world coordinates in the dataset for visibility, camera calibration and reproducibility. [Shared placement criterion](../PRODUCT_INTENT.md#training-and-evaluation)
+
 Improve measurements needed to reproduce the observed build: visible surface boundaries, projected block-grid alignment, block dimensions, depth in block units, relative surface placement and material identity. Start by evaluating a Minecraft-specific block-grid predictor against the existing Block Counter. Adapting a pretrained vision encoder is a proposed first experiment, not an implemented or validated result.
 
 Do not train this project to complete backs, interiors, occluded continuations, off-image regions, assumed thickness or other hidden structure. Whole-building occupancy prediction, generative completion and hidden-area inpainting are outside the objective. A full Minecraft block may be placed for its observed face; additional unseen cells must not be generated to close or support it.

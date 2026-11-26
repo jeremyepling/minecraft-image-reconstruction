@@ -6,6 +6,8 @@ The Java 26.3 camera measures pavement seams first. If those give insufficient e
 
 Download the versioned [Visible Builds dataset](training/DATASET.md) for per-frame screenshots, camera calibration, visible block coordinates and material states.
 
+A build can be placed anywhere in the world. We score its visible blocks after shifting the whole build together. This gives full credit for a translated copy while preserving the roof height, pillar spacing and offsets between parts. [Relative geometry results and one-block control](benchmark/reviews/relative-build-01/README.md)
+
 After estimating the camera, a small decision model chooses the depth of each visible surface. It uses vanilla sprite matches, texture changes at block and texel boundaries, and repeating art where present. Independently observed walls can locate a roof edge at their shared height. The placer checks partially visible edge faces against original screenshot pixels and rechecks occlusion before export. On eight newly reserved camera-supported builds, the current update raised correct visible positions from 1,014 to 1,070 and reduced extras from 482 to 139. [Current results and decoded builds](benchmark/reviews/canopy-placement-01/README.md) · [Previous placement evaluation](benchmark/reviews/visible-depth-01/README.md)
 
 Reconstruct only the parts of a build visible in the supplied image or images. Hidden backs, interiors and occluded regions remain unknown and are omitted from the reconstruction. This scope applies to the current pipeline and the [planned learned approach](training/README.md). [Product intent](PRODUCT_INTENT.md)

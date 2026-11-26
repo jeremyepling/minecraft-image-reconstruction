@@ -18,6 +18,8 @@ For one-image reconstruction, visibility means visibility in that image. If seve
 
 ## Training and evaluation
 
+The build may be placed anywhere in the world. Its internal geometry is the objective: block dimensions, distances, heights, openings and the offsets between visible parts. For the primary placement score, give each complete prediction one integer XYZ translation that maximizes overlap with the visible target. Apply the same shift to every component, including disconnected pieces. Keep scale and the registered axes fixed. Absolute coordinates remain useful for diagnosing camera registration.
+
 Full source worlds, block states, camera parameters and renderer outputs may provide training labels and scoring truth. Derive the target from the visibility of each example's actual input image(s). Exclude hidden geometry from reconstruction supervision and from the set of blocks the model is expected to recover. Do not label unobserved cells as air or train full-world occupancy/completion as this project's objective. Source metadata is not an inference input unless the task explicitly declares it.
 
 Score visible surface and grid accuracy, block dimensions, material identity and exported block placements. Count unsupported added blocks as errors, preserve openings, and allow unresolved predictions. A partial reconstruction with accurate visible blocks satisfies the intent better than a completed building containing invented hidden structure. Do not reward visual resemblance alone when unsupported blocks have been added. Keep every view and close variant of a building in the same dataset split.

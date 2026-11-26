@@ -11,6 +11,7 @@ from time import perf_counter
 from zipfile import ZipFile
 
 from benchmark.texture_camera_eval import DATA, ROOT, STABLE, SPLITS, frames, checked, digest, read, save
+from benchmark.relative_geometry import PRIMARY_METRIC, placement_scores
 from benchmark.mask_blocks import registered, _write_read
 from benchmark.camera_metrics import registration
 import numpy as np
@@ -104,33 +105,33 @@ def evaluate(job):
         with ZipFile(extra.GEOMETRY if native else ARCHIVE) as archive:
             archived=json.loads(archive.read(member))
         assert world==set(map(tuple,archived['registered'])),f['id']
-    correct=world & truth.keys()
-    extras=world-truth.keys()
-    new=world-before
-    removed=before-world
-    fp_hidden=extras & structure
-    metrics=dict(target=len(truth),placed=len(world),correct=len(correct),extras=len(extras),
-                 hidden_extras=len(fp_hidden),missed=len(truth)-len(correct),
-                 gained=len(new & truth.keys()),lost=len(removed & truth.keys()),
-                 extra_added=len(new-truth.keys()),extra_removed=len(removed-truth.keys()),
-                 hidden_added=len((new-truth.keys())&structure),hidden_removed=len((removed-truth.keys())&structure),
-                 joint_correct=sum(truth[p]=='minecraft:smooth_stone' for p in correct))
+    scores=placement_scores(world,before,truth,structure)
     input_hash=digest(shared)
     save(dest/'cells.json',dict(id=f['id'],input_sha256=input_hash,local=sorted(local),world=sorted(world)))
     return dict(id=f['id'],split=f['split'],layout=f['layout'],family=f.get('family',f['layout']),
                 input_sha256=input_hash,rgb_sha256=sha['rgb.png'],pack_sha256=digest(pack),
-                camera_supported=camera['P'] is not None,seconds=seconds,metrics=metrics)
+                camera_supported=camera['P'] is not None,seconds=seconds,**scores)
 
 
-def aggregate(rows):
+def _aggregate_metrics(rows, field):
     counts=Counter()
     for row in rows:
-        counts.update(row['metrics'])
+        counts.update(row[field])
     total=dict(counts)
     total.update(frames=len(rows),supported=sum(r['camera_supported'] for r in rows),
                  precision=total['correct']/max(1,total['placed']),recall=total['correct']/max(1,total['target']),
                  f1=2*total['correct']/max(1,total['placed']+total['target']))
     return total
+
+
+def aggregate(rows):
+    summary = _aggregate_metrics(rows, 'metrics')
+    scored = sum('relative_geometry' in row for row in rows)
+    if scored:
+        if scored != len(rows):
+            raise ValueError('Rescore all frames before pooling relative geometry')
+        summary['relative_geometry'] = _aggregate_metrics(rows, 'relative_geometry')
+    return summary
 
 
 def main():
@@ -176,7 +177,7 @@ def main():
             rows=list(pool.map(evaluate,jobs))
         dest=args.out/split
         save(dest/'cases.json',rows)
-        result=dict(split=split,candidate=args.candidate,revision=revision,source_dirty=dirty,candidate_sha256=digest(source),
+        result=dict(split=split,primary_metric=PRIMARY_METRIC,candidate=args.candidate,revision=revision,source_dirty=dirty,candidate_sha256=digest(source),
                     scoring_sha256=digest(Path(__file__)),cases_sha256=digest(dest/'cases.json'),
                     summary=aggregate(rows),families={family:aggregate([r for r in rows if r['family']==family])
                                                     for family in sorted({r['family'] for r in rows})})
