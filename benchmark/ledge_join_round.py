@@ -95,23 +95,27 @@ def evaluate(job):
         for key in ('opening_filled', 'background_claimed', 'unclaimed_pixels', 'gaps_half_filled'):
             if result['scores'][method][key] != result['scores']['current'][key]:
                 raise ValueError(f'Foreground coverage changed in {row["key"]}/{method}/{key}')
-    if result['scopes']['current']['matched'] != row['scopes']['single-v2']['matched']:
-        raise ValueError('Baseline matches changed')
-    with Image.open(capture.path('image')) as source:
-        sizes, _ = count_frame(capture, source.convert('RGB'), result, predictions, METHODS)
-    result['sizes'] = {m: {k: sizes[m]['totals'][k] for k in ('correct','incorrect','missing','unmatched_returned')}
-                       for m in METHODS}
-    if result['sizes']['current'] != row['sizes']['single-v2']:
-        raise ValueError('Baseline block counts changed')
-    result['size_changes'] = {m: sizes[m]['comparisons'] for m in METHODS}
+    score_dimensions(capture, row, predictions, result)
     result['events'] = events
     result['edit_diagnostics'] = audit_edits(capture,row,predictions,events,evidence_sha)
     return result
 
 
-def summary(rows):
+def score_dimensions(capture, row, predictions, result):
+    if result['scopes']['current']['matched'] != row['scopes']['single-v2']['matched']:
+        raise ValueError('Baseline matches changed')
+    with Image.open(capture.path('image')) as source:
+        sizes, _ = count_frame(capture, source.convert('RGB'), result, predictions, tuple(predictions))
+    result['sizes'] = {m: {k: sizes[m]['totals'][k] for k in ('correct','incorrect','missing','unmatched_returned')}
+                       for m in predictions}
+    if result['sizes']['current'] != row['sizes']['single-v2']:
+        raise ValueError('Baseline block counts changed')
+    result['size_changes'] = {m: sizes[m]['comparisons'] for m in predictions}
+
+
+def summary(rows, methods=METHODS):
     table = {}
-    for m in METHODS:
+    for m in methods:
         counts = Counter()
         for row in rows:
             counts.update(row['sizes'][m])
