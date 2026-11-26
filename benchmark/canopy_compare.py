@@ -18,6 +18,13 @@ def run(inputs, out, root, adapter, baseline, workers):
     with ProcessPoolExecutor(max_workers=workers, initializer=init_candidate,
                              initargs=(root, adapter)) as pool:
         rows = list(pool.map(score_case, jobs))
+    if baseline:
+        previous = {row['id']: row for row in read(baseline/'cases.json')}
+        if previous.keys() != {row['id'] for row in rows}:
+            raise ValueError('The candidate and baseline contain different frames')
+        for row in rows:
+            if any(row[k] != previous[row['id']][k] for k in ('rgb_sha256','surface_sha256','counts_sha256')):
+                raise ValueError(f"Placement inputs differ for {row['id']}")
     save(out/'cases.json',rows)
     summary = aggregate(rows)
     revision = subprocess.check_output(['git','rev-parse','HEAD'],cwd=root,text=True).strip()

@@ -1,0 +1,49 @@
+# Recovering visible roof positions
+
+On the canopy that motivated this round, the previous default put nearly the entire roof at the wrong depth. It recovered 22 of 112 visible blocks and placed 301 extras. The updated placer recovered **65 of 112** and placed **seven extras**. On three newly reserved canopies it recovered 100 of 167 visible blocks with four extras, up from 74 with 261 extras. All three openings retained the correct width in blocks. [Photographs, masks, visible targets and decoded builds](comparison.jpg)
+
+## What changed
+
+The camera already projected the failing canopy's visible corners accurately. Its roof front was on local plane −5, while the old search chose +22. The earlier range excluded the correct answer. We widened the search from six to 18 blocks around two image-derived estimates and included candidate planes up to 24 blocks from the eye on the measured side. The 17-weight linear ranker uses matches to the vanilla atlas, texel edges, outlines and the improvement in agreement when a photographed patch is shifted by exactly one block instead of a nearby fractional distance. Adjacent blocks may use different sprites. On training folds excluding one complete building family at a time, the new model picked the correct plane for 756,235 of 834,281 mask samples. A perfect chooser limited to the old candidates could place 761,970 samples on their correct plane. With the wider set, the ceiling was 773,628. This oracle reads visible labels for diagnosis. [Training decisions, guarded variant and exported oracle builds](https://github.com/jeremyepling/minecraft-image-reconstruction/blob/353606a/benchmark/reviews/canopy-plane-chooser-01/README.md)
+
+Where visible wall masks meet the photographed ground, the placer uses the contacts to propose additional wall planes. Where two perpendicular observed walls agree on a common height at the edge of a horizontal mask, that height can resolve a weak roof texture. A single wall could also produce convincing but incorrect heights. Accepting those single-wall estimates lost 115 previously correct training placements. The corroborated rule lost one. These rules choose depths for existing visible masks and supply no support blocks. [Contact and roof-height trials](https://github.com/jeremyepling/minecraft-image-reconstruction/blob/b1d0210/benchmark/reviews/canopy-junction-depth-01/README.md)
+
+A final pass checks photographed pixels the placed geometry has left unclaimed. It tests nearby faces against the native mask and multiple spatial subsets of the atlas sprite. Matches on an alternative plane need a corroborating neighbor. Accepted faces must still own image rays, and occlusion is rechecked after additions. Relative to the combined plane selectors, this pass recovered an additional 36 net correct positions across the 112 evaluation views and added two net extras. [Edge and nearby-depth ablations](https://github.com/jeremyepling/minecraft-image-reconstruction/blob/bd7ed42/benchmark/reviews/canopy-edge-evidence-01/README.md)
+
+## Decoded placement scores
+
+Each method column gives correct visible positions / extra positions / extras coinciding with hidden structure. All extras count as errors. Repeated appearances in different photographs are scored separately. Frozen inputs include the original RGB and its image-derived masks, counts and camera. Recorded poses and worlds are opened after prediction for registration and scoring. Eight fixed exterior screenshots with unsupported cameras remain in the denominator.
+
+| Cohort | Visible target | Previous default `a16668f` | New default | Position F1 before → after |
+|---|---:|---:|---:|---:|
+| Cloister validation, 12 | 2,476 | 2,171 / 126 / 0 | 2,181 / 126 / 7 | .910 → .912 |
+| Twin Spires test, 12 | 3,414 | 2,925 / 154 / 14 | 2,975 / 125 / 9 | .901 → .913 |
+| Fixed exteriors, 56 | 10,626 | 7,780 / 979 / 46 | 7,821 / 834 / 24 | .803 → .811 |
+| Earlier supported native views, 12 | 3,780 | 2,926 / 256 / 5 | 2,960 / 227 / 5 | .841 → .850 |
+| Previously reviewed native builds, 12 | 2,359 | 1,638 / 859 / 42 | 1,696 / 319 / 43 | .675 → .775 |
+| Newly reserved native builds, 8 | 1,431 | 1,014 / 482 / 21 | 1,070 / 139 / 6 | .693 → .811 |
+
+Across the 112 evaluation views, correct placements rose from 18,454 to 18,703 of 24,086. Extras fell from 2,856 to 1,770, including 128 to 94 overlapping hidden structure. These totals include regression and development photographs. The eight newly reserved builds are the independent confirmation set, conditional on a supported camera. On the separate 72 fit images the released model recovered 14,356 of 18,322 visible positions, with 1,508 extras and 80 on hidden structure. The position-plus-material score across the 112 views rose from 135 to 149. Geometry exports still use smooth stone as their placeholder ID. [New confirmation fixture, exact inputs and paired scores](../canopy-fixtures-01/README.md) · [Decoded packs, coordinates, source fingerprints and CLI verification](evidence.zip)
+
+On the three new canopies, visible roof rims improved from 16 to 43 of 43 and tops from 15 to 28 of 82. On the seven earlier canopies, rims improved from 68 to 99 of 108 and tops from 60 to 113 of 348. All ten gap widths were correct and all 137 clear sightlines remained open. None of those ten cameras saw the underneath of its roof. The separate 80-view test with genuinely visible downward-facing faces improved from 743 to 778 of 1,472. The reference demands that the correct position is recovered and the underside remains visible in the decoded result.
+
+The largest individual regression was the smooth-stone, plaster, high-right Shopfront. Correct positions fell from 137 to 56 of 216 while extras fell from 41 to 37. A conservative switch preserves that view but loses much of the wider ranker's improvement on other buildings. Cloister gained ten correct positions overall and introduced seven extras on hidden structure. The fresh colonnade gained 21 net correct positions but swapped out 11 previously correct ones. Per-frame gained and lost counts are preserved in the evidence.
+
+## Follow-up decisions
+
+We tested whether a second learned model could recognize when to revert an individual plane. With both rankers fitted outside the evaluated training family, they disagreed on 97 of 1,165 masked surfaces. Even a perfect switch could recover only 2,211 more correctly assigned samples over the wider chooser's 756,235. Nested family validation of a regularized logistic switch recovered 23 samples and lost 30. A stricter probability threshold recovered zero and lost three. Keep the standalone switch experimental. [Fold assignments, decision rows and model comparison](https://github.com/jeremyepling/minecraft-image-reconstruction/blob/0c80d44/benchmark/reviews/plane-switch-confidence-01/README.md)
+
+We also tested matching native one- and two-pixel-high horizontal strips directly against the atlas. Of 82 visible roof-top faces on the three new canopies, 79 occupy at most two image rows. The four-pixel placement grid samples just 29 of them. A permissive native match gained eight correct blocks on the reviewed 12 views but added 13 extras for four correct gains on training. An orientation check cut the training cost to two extras. It then gained two correct blocks on a recess and five on Twin Spires, and zero on all ten measured canopies. Keep this check experimental. In the seven earlier canopies, 213 of 235 missing roof-top coordinates had at least 14 source pixels in a detected mask. Only 122 still had that much evidence after accounting for the current predicted foreground. The next geometry test should distinguish an incorrectly placed foreground face from a genuinely unobservable roof strip. A native-pixel visibility and roof-height oracle can measure the opportunity before another model fit. [Grazing-angle tests and native visibility audit](https://github.com/jeremyepling/minecraft-image-reconstruction/blob/8926820/benchmark/reviews/grazing-roof-01/README.md)
+
+## Reproduce
+
+With assets warm and one worker, placement took 0.74 → 1.13 seconds on canopy 09, 0.61 → 1.10 on Cloister high-right and 0.75 → 1.64 on Galleries low-left. These are the means of two timed calls per revision on this PC. The methods ran in alternating order on frozen upstream outputs. They exclude camera estimation, surface detection, counting and datapack export. [Raw measurements](timing.json) · [Timing runner](../../canopy_timing.py)
+
+Restore [Visible Builds v1](../../../training/DATASET.md), the [frozen placement inputs](../visible-depth-inputs-01/README.md), and the previous default's `shipped` results from [its scoring archive](../visible-depth-01/evidence.zip). From the report revision, run:
+
+```powershell
+python -m benchmark.visible_depth_score --split all --candidate benchmark.visible_depth_score:integrated --baseline runs/visible-depth-rounds/shipped --out runs/canopy-replay
+python -m benchmark.visible_depth_score --split native --candidate benchmark.visible_depth_score:integrated --baseline runs/visible-depth-rounds/shipped --out runs/canopy-replay
+```
+
+For the 12 reviewed and eight newly reserved builds, download their separate fixtures, set the native fixture root and run `benchmark.canopy_compare` as described in the [fixture guide](../canopy-fixtures-01/README.md). The combined method before the edge pass can be replayed with `benchmark.canopy_composition:without_edges`. The ordinary command is `.\Invoke-WallRecovery.ps1 SCREENSHOT.png -Out runs/my-build`. A fresh CLI build of canopy 09 reproduced all 72 local coordinates and block IDs in the decoded replay. With the new weight file unavailable, the placer reproduced all 323 coordinates from the previous default on that same image. Missing atlas assets retain the existing contact-based placement fallback.
