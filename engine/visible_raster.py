@@ -15,12 +15,14 @@ def observed_support(support,shape,size):
     return raw[np.ix_(v,u)]
 
 
+# The frozen visible-geometry archive fingerprints the complete source of rasterize().
 def rasterize(quad3, width, height):
     """Return a screen-clipped pixel-center mask, reciprocal depth and full-face area."""
     x, y, w = quad3.T
     if any(np.all(side <= 0) for side in (w, x, y, width*w-x, height*w-y)):
         return None
-    # Crossing the camera plane can make a projected polygon unbounded. The caller must clip or reject it first.
+    # Crossing the camera plane can make a projected polygon unbounded. These fixtures
+    # arrange the close views so that such side faces are already outside the frustum.
     if w.min() <= 0:
         raise ValueError("A face crossing the camera plane intersects the scoring viewport")
     q = quad3[:, :2] / w[:, None]
