@@ -1,0 +1,404 @@
+{
+  "production_revision": "7c2137c3defa73fba8c17afd452153be16daa1bf",
+  "settings": {
+    "outlines": "mask-first",
+    "boundary": "plane-recovery-crop-splits",
+    "block_count": "texture-guided-repeat",
+    "pitch": "repeat",
+    "order": "geometry"
+  },
+  "groups": {
+    "fixed56": {
+      "frames": 56,
+      "cameras": {
+        "supported": 16,
+        "uncertain": 40
+      },
+      "placements": {
+        "serialized": 2644,
+        "visible_truth": 10626,
+        "correct_visible": 2070,
+        "extra": 574,
+        "missed": 8556,
+        "joint_correct": 0,
+        "smooth_truth": 0
+      },
+      "old_counter_delta": {
+        "correct_gain": 4,
+        "correct_loss": 0,
+        "extra_added": 0,
+        "extra_removed": 6
+      },
+      "precision": 0.7829046898638427,
+      "recall": 0.19480519480519481,
+      "produced": 16,
+      "camera_supported_truth": 3090,
+      "supported_wrong": 574,
+      "surfaces": {
+        "eligible": 598,
+        "proposed": 714,
+        "matched": 519,
+        "unmatched_overlaps_small_surface": 24,
+        "unmatched_mostly_background": 60,
+        "unmatched_fragment_or_mixed": 111,
+        "eligible_pixels": 1132348,
+        "correct_pixels": 1071781,
+        "wrong_plane_pixels": 41257,
+        "unclaimed_pixels": 19310,
+        "background_claimed": 5135,
+        "opening_pixels": 16630,
+        "opening_filled": 482,
+        "gaps": 98,
+        "gaps_half_filled": 12,
+        "real_connections": 606,
+        "proposed_connections": 1090,
+        "correct_connections": 428,
+        "edge_true": 78006,
+        "edge_proposed": 84650,
+        "edge_distance_sum": 556948.9088970107,
+        "edge_distance_count": 142111,
+        "edge_true_near": 66715,
+        "edge_proposed_near": 66643,
+        "corner_true": 2824,
+        "corner_proposed": 3930,
+        "corner_distance_sum": 67178.93608932094,
+        "corner_distance_count": 5540,
+        "corner_true_near": 2185,
+        "corner_proposed_near": 2309,
+        "f1": 0.7911585365853658,
+        "assigned_fraction": 0.9465120263381929,
+        "opening_fill": 0.028983764281419123,
+        "edge_error_px": 3.919111883647365,
+        "edge_recall": 0.8552547239955901,
+        "edge_precision": 0.7872770230360308,
+        "corner_error_px": 12.126161748974898,
+        "corner_recall": 0.7737252124645893,
+        "corner_precision": 0.5875318066157761
+      },
+      "sizes": {
+        "correct": 121,
+        "matched_incomplete": 336,
+        "unmatched_incomplete": 182,
+        "missing": 415,
+        "wrong": 62,
+        "unmatched_complete": 13
+      },
+      "local_face_ids": {
+        "eligible": 10438,
+        "proposed": 155,
+        "named": 155,
+        "aligned": 154,
+        "correct": 154,
+        "wrong_id": 0,
+        "unresolved_aligned": 0,
+        "unpaired": 0,
+        "misaligned": 1,
+        "unverified_named": 1,
+        "aligned_top5": 154
+      },
+      "projected_material_trial": {
+        "frames": 16,
+        "target": 3090,
+        "placed": 2644,
+        "eligible": 1202,
+        "correct": 302,
+        "gained": 302,
+        "aligned": 2070,
+        "wrong_id": 1768,
+        "extra": 574,
+        "ambiguous": 809,
+        "ambiguous_exact_top1_if_forced": 509,
+        "accepted": 393,
+        "accepted_correct": 302,
+        "accepted_wrong_id": 26,
+        "accepted_at_extra": 65
+      }
+    },
+    "additional24": {
+      "frames": 24,
+      "cameras": {
+        "uncertain": 24
+      },
+      "placements": {
+        "visible_truth": 5890,
+        "missed": 5890,
+        "serialized": 0,
+        "correct_visible": 0,
+        "extra": 0,
+        "joint_correct": 0,
+        "smooth_truth": 0
+      },
+      "old_counter_delta": null,
+      "precision": null,
+      "recall": 0.0,
+      "produced": 0,
+      "camera_supported_truth": 0,
+      "supported_wrong": 0,
+      "surfaces": {
+        "eligible": 298,
+        "proposed": 353,
+        "matched": 250,
+        "unmatched_overlaps_small_surface": 2,
+        "unmatched_mostly_background": 33,
+        "unmatched_fragment_or_mixed": 68,
+        "eligible_pixels": 325722,
+        "correct_pixels": 289526,
+        "wrong_plane_pixels": 32637,
+        "unclaimed_pixels": 3559,
+        "background_claimed": 2458,
+        "opening_pixels": 8582,
+        "opening_filled": 653,
+        "gaps": 56,
+        "gaps_half_filled": 14,
+        "real_connections": 306,
+        "proposed_connections": 543,
+        "correct_connections": 202,
+        "edge_true": 40828,
+        "edge_proposed": 42091,
+        "edge_distance_sum": 345884.62148042495,
+        "edge_distance_count": 73529,
+        "edge_true_near": 34830,
+        "edge_proposed_near": 34512,
+        "corner_true": 1416,
+        "corner_proposed": 1841,
+        "corner_distance_sum": 31619.374367017153,
+        "corner_distance_count": 2657,
+        "corner_true_near": 1108,
+        "corner_proposed_near": 1143,
+        "f1": 0.7680491551459293,
+        "assigned_fraction": 0.888874561742836,
+        "opening_fill": 0.076089489629457,
+        "edge_error_px": 4.70405719485407,
+        "edge_recall": 0.8530910159694327,
+        "edge_precision": 0.8199377539141384,
+        "corner_error_px": 11.900404353412553,
+        "corner_recall": 0.7824858757062146,
+        "corner_precision": 0.6208582292232482
+      },
+      "sizes": {
+        "matched_incomplete": 137,
+        "unmatched_complete": 17,
+        "unmatched_incomplete": 86,
+        "missing": 185,
+        "correct": 73,
+        "wrong": 40
+      },
+      "local_face_ids": {
+        "eligible": 6116,
+        "proposed": 170,
+        "named": 170,
+        "aligned": 167,
+        "correct": 154,
+        "wrong_id": 13,
+        "unresolved_aligned": 0,
+        "unpaired": 1,
+        "misaligned": 2,
+        "unverified_named": 3,
+        "aligned_top5": 162
+      },
+      "projected_material_trial": {
+        "frames": 0
+      }
+    },
+    "supported12": {
+      "frames": 12,
+      "cameras": {
+        "supported": 12
+      },
+      "placements": {
+        "serialized": 3249,
+        "visible_truth": 3780,
+        "correct_visible": 2760,
+        "extra": 489,
+        "missed": 1020,
+        "smooth_truth": 210,
+        "joint_correct": 73
+      },
+      "old_counter_delta": {
+        "correct_gain": 0,
+        "correct_loss": 0,
+        "extra_added": 2,
+        "extra_removed": 0
+      },
+      "precision": 0.8494921514312096,
+      "recall": 0.7301587301587301,
+      "produced": 12,
+      "camera_supported_truth": 3780,
+      "supported_wrong": 489,
+      "surfaces": null,
+      "sizes": {},
+      "local_face_ids": {
+        "eligible": 4142,
+        "proposed": 36,
+        "named": 36,
+        "aligned": 0,
+        "correct": 0,
+        "wrong_id": 0,
+        "unresolved_aligned": 0,
+        "unpaired": 36,
+        "misaligned": 0,
+        "unverified_named": 36,
+        "aligned_top5": 0
+      },
+      "projected_material_trial": {
+        "frames": 12,
+        "target": 3780,
+        "placed": 3249,
+        "eligible": 1982,
+        "correct": 1731,
+        "gained": 1658,
+        "aligned": 2760,
+        "wrong_id": 1029,
+        "extra": 489,
+        "accepted": 1706,
+        "accepted_correct": 1658,
+        "accepted_wrong_id": 1,
+        "ambiguous": 276,
+        "baseline_correct": 73,
+        "ambiguous_exact_top1_if_forced": 106,
+        "accepted_at_extra": 47
+      }
+    }
+  },
+  "actual_and_oracle_association": {
+    "fixed56": {
+      "visible_truth": 10626,
+      "named_exact_distinct_blocks": 154,
+      "coords_correct": 2070,
+      "coords_extra": 574,
+      "correct_coordinate_and_named_face_overlap": 16,
+      "of_overlap_already_smooth": 0,
+      "exported_coord_and_state": 0,
+      "oracle_wired_including_smooth": 16
+    },
+    "all": {
+      "visible_truth": 20296,
+      "named_exact_distinct_blocks": 308,
+      "coords_correct": 4830,
+      "coords_extra": 1063,
+      "correct_coordinate_and_named_face_overlap": 16,
+      "of_overlap_already_smooth": 0,
+      "exported_coord_and_state": 73,
+      "oracle_wired_including_smooth": 89
+    },
+    "additional24": {
+      "visible_truth": 5890,
+      "named_exact_distinct_blocks": 154,
+      "coords_correct": 0,
+      "coords_extra": 0,
+      "correct_coordinate_and_named_face_overlap": 0,
+      "of_overlap_already_smooth": 0,
+      "exported_coord_and_state": 0,
+      "oracle_wired_including_smooth": 0
+    },
+    "camera_selected12": {
+      "visible_truth": 3780,
+      "named_exact_distinct_blocks": 0,
+      "coords_correct": 2760,
+      "coords_extra": 489,
+      "correct_coordinate_and_named_face_overlap": 0,
+      "of_overlap_already_smooth": 0,
+      "exported_coord_and_state": 73,
+      "oracle_wired_including_smooth": 73
+    }
+  },
+  "estimated_camera_projected_material": {
+    "camera": "seam camera from RGB",
+    "proposed_geometry": "decoded geometry-only local placements",
+    "visibility": "all rasterized native pixel centers frontmost for the exact face and inside one predicted surface; all four vertices on-screen",
+    "min_effective_width_native_pixels": 5.0,
+    "face_selection": "widest then largest area then lowest enumeration index",
+    "matcher": "shape (unchanged)",
+    "abstaindecision": "existing matcher ambiguous flag: top-two margin below .04 or a texture with multiple IDs",
+    "default": "preserve smooth_stone on no complete visible face or ambiguous match"
+  },
+  "projected_material_common_atlas_sha256": "49b477fbfe5f2171c2529e3ffe1722f09fee5a094de2b6b99831512b8601c950",
+  "camera_screen": {
+    "native70": {
+      "frames": 70,
+      "supported": 12,
+      "visible": 10168,
+      "supported_visible": 3780
+    },
+    "pilot96": {
+      "frames": 96,
+      "supported": 0,
+      "visible": 24212,
+      "supported_visible": 0
+    }
+  },
+  "all_matched_face_oracle": {
+    "all": {
+      "correct_placement": 4830,
+      "eligible_crop": 3953,
+      "top1": 3591,
+      "top5": 3699,
+      "placeholder_correct_before": 73,
+      "baseline_smooth_inside_candidates": 7,
+      "top1_new": 3584,
+      "top1_lost": 0,
+      "top1_joint_keeping_placeholder_elsewhere": 3657,
+      "oracle_top5_new": 3692,
+      "oracle_top5_lost": 0,
+      "oracle_top5_joint_keeping_placeholder_elsewhere": 3765
+    },
+    "fixed56": {
+      "correct_placement": 2070,
+      "eligible_crop": 1648,
+      "top1": 1309,
+      "top5": 1399,
+      "placeholder_correct_before": 0,
+      "baseline_smooth_inside_candidates": 0,
+      "top1_new": 1309,
+      "top1_lost": 0,
+      "top1_joint_keeping_placeholder_elsewhere": 1309,
+      "oracle_top5_new": 1399,
+      "oracle_top5_lost": 0,
+      "oracle_top5_joint_keeping_placeholder_elsewhere": 1399
+    },
+    "additional24": {
+      "correct_placement": 0,
+      "eligible_crop": 0,
+      "top1": 0,
+      "top5": 0,
+      "placeholder_correct_before": 0,
+      "baseline_smooth_inside_candidates": 0,
+      "top1_new": 0,
+      "top1_lost": 0,
+      "top1_joint_keeping_placeholder_elsewhere": 0,
+      "oracle_top5_new": 0,
+      "oracle_top5_lost": 0,
+      "oracle_top5_joint_keeping_placeholder_elsewhere": 0
+    },
+    "camera_selected12": {
+      "correct_placement": 2760,
+      "eligible_crop": 2305,
+      "top1": 2282,
+      "top5": 2300,
+      "placeholder_correct_before": 73,
+      "baseline_smooth_inside_candidates": 7,
+      "top1_new": 2275,
+      "top1_lost": 0,
+      "top1_joint_keeping_placeholder_elsewhere": 2348,
+      "oracle_top5_new": 2293,
+      "oracle_top5_lost": 0,
+      "oracle_top5_joint_keeping_placeholder_elsewhere": 2366
+    }
+  },
+  "spot_check": {
+    "frame": "smooth_stone/holdout-courtyard-masonry-high-right",
+    "all_local_corners_and_ids_equal": true,
+    "named": 6,
+    "all_decoded_positions_and_states_equal": true,
+    "placed": 210
+  },
+  "frozen_inputs": {
+    "edge-detail-stable-01/manifest.json": "d8a2c401d28c546762bcef38ed731c4074120f3750f2998a5b7e797fcb6e9a43",
+    "detail-transfer-01/manifest.json": "7addb6af53678a2f3f0d4c8ef36fdb505012f5f27d10e08b84d167f70b7ecfbe",
+    "data/visible-geometry-v1.zip": "91efa6d3e992b1a68672eae1fdd6d380e87724742a1a4b6cbe5f84d284f731a1",
+    "promoted-inputs/manifest.json": "5e1c82e27fc7b772479db4d4bf597d566c9f928bca89a86497623c35b2bc3326",
+    "supported-placement-holdout/results.json": "ecbc14258a7cd669aca1cb79d91e5e7028b3880595ffb3761442b07145ce2098",
+    "promoted-combined/results.json": "e4ae0a78c90a90c8b858ae18eae38be6042288d827cefbf4f22a8921725616cf",
+    "training/visible-builds-v1.json": "a702f1d1a79c9e471680fd362993e14a4c2eeb20b4790d6b67b054b5f4bf0a56"
+  }
+}

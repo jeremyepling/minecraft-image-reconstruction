@@ -2,6 +2,8 @@
 
 [Reconstruction adjustments and lessons for training](MODEL_CHANGELOG.md) records what shipped, which experiments fell short, and what to look for in later training runs.
 
+The [combined default evaluation](benchmark/COMBINED_DEFAULT_EVALUATION.md) measures exact visible coordinates and block IDs in 92 exported datapacks and compares the next material and camera experiments.
+
 Download the versioned [Visible Builds dataset](training/DATASET.md) for per-frame screenshots, camera calibration, visible block coordinates and material states.
 
 Reconstruct only the parts of a build visible in the supplied image or images. Hidden backs, interiors and occluded regions remain unknown and are omitted from the reconstruction. This scope applies to the current pipeline and the [planned learned approach](training/README.md). [Product intent](PRODUCT_INTENT.md)
