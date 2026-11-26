@@ -86,6 +86,7 @@ def refine(photo, parts, *, decisions=None):
 
     return attached_strip.refine(photo, parts, gate=strip_evidence.gate, context_gate=check)
 
+
 def clean_surfaces(photo, parts):
     """Run the shipped rule and record each accepted or declined strip for the manifest."""
     decisions = []

@@ -1,7 +1,11 @@
 import unittest
 import numpy as np
 
-from benchmark.strip_neighbor import select_receiver
+from PIL import Image
+
+from engine.plane_consensus import row_runs
+from engine.strip_neighbor import clean_surfaces, select_receiver
+from engine.surface_perimeter import _native_alpha
 
 
 class StripNeighborTests(unittest.TestCase):
@@ -36,3 +40,24 @@ class StripNeighborTests(unittest.TestCase):
     def test_mismatching_wall_is_insufficient(self):
         self.rgb[self.wall] = 150
         self.assertIsNone(self.select([('wall', self.wall)]))
+
+    def test_shipped_cleanup_records_removed_pixels_and_leaves_neighbor_alone(self):
+        size = (120, 900)
+        donor = np.zeros(size[::-1], bool)
+        donor[20:80, 10:100] = True
+        donor[80:132, 42:45] = True
+        receiver = np.zeros_like(donor)
+        receiver[80:150, 45:100] = True
+        rgb = np.full((*donor.shape, 3), 60, np.uint8)
+        rgb[20:80, 10:100] = 190
+        parts = [dict(id=name, support=dict(size=list(size), runs=row_runs(mask)))
+                 for name, mask in [('beam', donor), ('side', receiver)]]
+        result, stats = clean_surfaces(Image.fromarray(rgb), parts)
+        self.assertEqual(stats['changed_surfaces'], 1)
+        self.assertEqual(stats['removed_pixels'], 3*52)
+        self.assertEqual(stats['decisions'][0]['receiver'], 'side')
+        self.assertEqual(stats['decisions'][0]['overlap_fraction'], 0.)
+        self.assertIs(result[1], parts[1])
+        alpha, box = _native_alpha(result[0]['support'], size)
+        self.assertEqual(box, (10, 20, 100, 80))
+        self.assertEqual(np.count_nonzero(alpha), 90*60)

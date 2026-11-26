@@ -57,7 +57,9 @@ def run(out, workers):
     save(out/'scores.json',scores)
     from benchmark.strip_neighbor_sheet import render
     render(out)
-    modules = ('attached_strip','attached_strip_round','strip_evidence','strip_neighbor','strip_neighbor_round','strip_neighbor_sheet')
+    modules = ('engine/attached_strip.py', 'benchmark/attached_strip_round.py',
+               'engine/strip_evidence.py', 'engine/strip_neighbor.py',
+               'benchmark/strip_neighbor_round.py', 'benchmark/strip_neighbor_sheet.py')
     manifest = dict(run_id=out.name,code=revision(),version=suite['version'],fixtures=fixtures,
         frames=source['frames'],splits=source['splits'],capture=source['capture'],protocol=PROTOCOL,
         reference_sha256=source['reference_sha256'],source_manifest='benchmark/reviews/sky-gap-01/manifest.json',
@@ -66,7 +68,7 @@ def run(out, workers):
         replay_check='Compared current and photo-only per-frame scores, scopes, sizes, exact reference changes and native removals.',
         predictions='gap',new_inference_s=0,workers=workers,methods=METHODS,
         settings=dict(shape=attached_strip.SETTINGS,evidence=strip_evidence.SETTINGS,neighbor=strip_neighbor.SETTINGS),
-        module_sha256={m:digest(ROOT/('engine' if m in ('attached_strip','strip_evidence','strip_neighbor') else 'benchmark')/(m+'.py')) for m in modules},
+        module_sha256={Path(module).stem:digest(ROOT/module) for module in modules},
         rule='Freeze before regression. Keep a new default only if it fixes the beam, protects the real wall and thin face, preserves prior matches and counts, and avoids collateral damage on the suite.',
         native_metric=prior['native_metric'],
         reproduce='python -m benchmark.strip_neighbor_round --out runs/strip-neighbor-replay',

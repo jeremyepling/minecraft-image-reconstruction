@@ -111,14 +111,16 @@ def run(out, workers):
     from benchmark.strip_failure_sheet import render as render_failure
     render(out)
     render_failure(out)
-    modules = ['attached_strip','strip_evidence','attached_strip_round','strip_review_sheet','strip_failure_sheet']
+    modules = ('engine/attached_strip.py', 'engine/strip_evidence.py',
+               'benchmark/attached_strip_round.py', 'benchmark/strip_review_sheet.py',
+               'benchmark/strip_failure_sheet.py')
     save(out/'manifest.json',dict(run_id=out.name,code=revision(),version=suite['version'],fixtures=fixtures,
          frames=source['frames'],splits=source['splits'],capture=source['capture'],protocol=PROTOCOL,
          reference_sha256=source['reference_sha256'],source_manifest='benchmark/reviews/sky-gap-01/manifest.json',
          source_manifest_sha256=BASE_SHA,source_code=source['code'],source_model_timing=source['source_model_timing'],
          predictions='gap',new_inference_s=0,workers=workers,methods=METHODS,
          settings=dict(shape=attached_strip.SETTINGS,evidence=strip_evidence.SETTINGS),
-         module_sha256={m:digest(ROOT/('engine' if m in ('attached_strip','strip_evidence','strip_neighbor') else 'benchmark')/(m+'.py')) for m in modules},
+         module_sha256={Path(module).stem:digest(ROOT/module) for module in modules},
          rule='Freeze without suite tuning. Reject default if existing matches or exact sizes lost, new incorrect sizes or openings covered, or native ownership worsens. Review collateral removals.',
          native_metric='Per baseline-matched proposal, measure removed native pixel centers against its matched reference. Unmatched proposal changes are recorded separately. Opening fill uses the established sampled scorer.',
          reproduce='python -m benchmark.attached_strip_round --out runs/attached-strip-replay',
