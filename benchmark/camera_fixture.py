@@ -82,7 +82,7 @@ def poses(b, shape, lo, hi, *, obliques=(("low-left", -27, 3.1), ("high-right", 
                    x=b.origin + x, z=wall_z + 3.9, feetY=GROUND + 1 + 4 - 1.62)
 
 
-def stage(root, jar, floor="smooth_stone", *, shape_groups=LAYOUTS, viewpoints=poses):
+def stage(root, jar, floor="smooth_stone", *, shape_groups=LAYOUTS, viewpoints=poses, palettes_for=None):
     if floor not in FLOORS:
         raise ValueError(f"Unknown fixture floor: {floor}")
     with ZipFile(jar) as archive:
@@ -99,9 +99,11 @@ def stage(root, jar, floor="smooth_stone", *, shape_groups=LAYOUTS, viewpoints=p
         pack.writestr("pack.mcmeta", json.dumps(dict(pack=dict(description="Exterior fixture",
                                                               min_format=fmt, max_format=fmt))))
         for split, shape in shape_groups:
-            for palette_name, materials in PALETTES.items():
+            palettes = palettes_for(shape) if palettes_for else PALETTES
+            for palette_name, materials in palettes.items():
                 page = len(layouts)
-                b = Building(page, "test" if split == "holdout" else split, shape.__name__, {})
+                internal_split = {"holdout": "test", "validation": "dev"}.get(split, split)
+                b = Building(page, internal_split, shape.__name__, {})
                 b.origin = page * 256  # Other pages are outside the private client's render distance.
                 shape(b, *materials)
                 lo, hi = b.finish()

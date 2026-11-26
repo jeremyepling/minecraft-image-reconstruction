@@ -1,6 +1,6 @@
 # Planned Minecraft reconstruction training
 
-This is the intent and initial plan for a learned approach alongside the existing image-reconstruction pipeline. No separate training project, dataset generator or trained model is established by this document. Both approaches follow [the shared product intent](../PRODUCT_INTENT.md): reconstruct only blocks supported by visible face evidence in the supplied image(s), and leave unseen areas unknown.
+The first training dataset is available in [Visible Builds v1](DATASET.md). It contains exact screenshots, per-frame visible blocks and camera calibration. The proposed learning experiment below uses the same [visible-only product intent](../PRODUCT_INTENT.md) as the existing pipeline.
 
 ## Objective
 
@@ -19,7 +19,7 @@ Use known world labels as ground truth when available. Other models can provide 
 ## Proposed first comparison
 
 1. Audit aligned labels on a small collection of full-cube structures with openings, overhangs and varied dimensions.
-2. Build a pilot dataset with whole-building training, validation and untouched test splits. Include varied architecture and real builds before interpreting generalization.
+2. Use the pilot's family-level training, validation and test assignments. Add player-authored examples in a future version before interpreting performance on player builds.
 3. Train a small grid-prediction module over a frozen pretrained encoder; consider selective fine-tuning only after the baseline is measured.
 4. Compare against the current counter using identical input images and surface evidence. Grade grid-corner error, exact visible dimensions and correct and incorrect exported cells. Report teacher-feature and camera assumptions.
 5. Check the combined image-to-build result. Verify that export preserves visible openings and adds no unsupported cells. Report unknown measurements explicitly; do not fill gaps to improve appearance.

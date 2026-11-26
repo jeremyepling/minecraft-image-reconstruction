@@ -1,5 +1,7 @@
 # Minecraft Image Reconstruction
 
+Download the versioned [Visible Builds dataset](training/DATASET.md) for per-frame screenshots, camera calibration, visible block coordinates and material states.
+
 Reconstruct only the parts of a build visible in the supplied image or images. Hidden backs, interiors and occluded regions remain unknown and are omitted from the reconstruction. This scope applies to the current pipeline and the [planned learned approach](training/README.md). [Product intent](PRODUCT_INTENT.md)
 
 Use `main` to recover visible surfaces from one Minecraft Java 26.3 screenshot. The ordinary **Surface Finder** uses Regions First, Wall Recovery and Pixel-wise Planarity with split-only zoom. It matched **516 of 598** visible surface appearances across 56 saved views of eight buildings. The Block Counter recovered both dimensions for 80 surfaces. [Surface results by screenshot](benchmark/reviews/crop-split-01/pictures.md) · [Crop and straightening review](benchmark/CROP_REVIEW.md)
