@@ -92,11 +92,10 @@ def panels(photo, part, rid, native, whole_size, iou, scene):
         result = masked_count.count(sample)
         clean, grid, lines = _straight_photo(sample, result)
         blocks = dimensions(part, quad, photo.size, result['counts'])['blocks']
-        guess = ' × '.join('?' if n is None else str(n) for n in blocks)
         axes = sum(bool(axis) for axis in lines)
         caption = ('No grid located', 'One grid axis located', 'Both grid axes located')[axes]
         panels.extend([(clean, f'{clean.width} × {clean.height} chart pixels'),
-                       (grid, f'{caption}   ·   {guess} blocks')])
+                       (grid, caption)])
         record.update(chart_source=sample['chart_source'], straightened_wh=list(clean.size), counts=result['counts'],
                       grid_phase=result['phase'], grid_lines=lines, blocks=blocks,
                       straightened_valid_fraction=float(sample['mask'].mean()))
@@ -183,6 +182,11 @@ def run(out):
                 else:
                     _picture(page,img,x,y+9,COL,PIC)
                 label(draw,(x,y+PIC+19),code+'   ·   '+caption,17,fill=INK)
+                if name == 'Block Counter':
+                    estimate = rec['blocks'] or [None, None]
+                    guess = ' × '.join('?' if n is None else str(n) for n in estimate)
+                    across, down = rec['reference_size_blocks']
+                    label(draw,(x,y+PIC+39),f'Counter: {guess}     Actual: {across} × {down}',18,bold=True)
                 rec['stages'][name]=[x,y,x+COL,y+CELL]
             examples.append(rec)
     out.mkdir(parents=True, exist_ok=False)
