@@ -42,3 +42,7 @@ The final production entry at `36d406a` recovered 20 additional visible blocks a
 The high-right switchback gained one correct cell and five extras. Across the two dock images, the final method missed 33 of 125 visible roof cells, 20 of 118 deck cells and 14 of 38 recessed-bay cells. On the switchback lookout it missed 14 of 37. The final combination and thin-only model finished within 0.02 F1 points of each other. Four views of two structures can confirm that some gains transfer. A larger set of independently authored shapes would be needed to distinguish such a small difference.
 
 The fixture and report can be merged as confirmation coverage. These photographs were kept sealed through selection and were first disclosed after the `36d406a` configuration was frozen.
+
+The lowest final score was the high-right switchback. The orange faces include the upper brick pier and lookout platform. Many extra centers project into the background, close to the horizon on either side of the lookout. The right panel projects each extra block center using the recorded native camera, so dots at different depths can overlap. [Visual comparison](switchback-high-errors.png) · [Original, uncropped screenshot](switchback-high-source.png)
+
+The ordinary entry point reproduced the scorer's exported positions and materials for all 106 prior-default blocks in the low-left switchback and all 260 final-default blocks in the high-right loading dock. [Original CLI check](cli-check.json) · [Final CLI check](final-cli-check.json)
