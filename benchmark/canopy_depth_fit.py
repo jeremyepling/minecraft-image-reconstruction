@@ -6,7 +6,8 @@ from pathlib import Path
 from benchmark.canopy_depth_choices import DEST
 from benchmark.texture_camera_eval import ROOT,read,save
 from engine.atlas_plane_depth import frozen_weights
-from engine.plane_repeat_evidence import feature_rows,pick,pick_with_fit
+from engine.plane_offset_features import ranked_choice
+from engine.plane_repeat_evidence import REPEAT_FEATURES, feature_rows, select_repeat
 import numpy as np
 
 
@@ -49,14 +50,14 @@ def analyze(frames,w):
             wide=[r for r in q if min(abs(r['level']-b),r['scene_delta'])<=18]
             votes=lambda level:t.get(str(level),0)
             ceiling=lambda seq:max([votes(r['level']) for r in seq]+[0])
-            old=pick(q,b,frozen_weights(),'old')
+            old=select_repeat(q,b,frozen_weights(),None)
             best=max(t,key=t.get,default=b)
             orientation='vertical' if row['axis']!=1 else 'top' if int(best)<row['eye'] else 'underside'
             m=dict(samples=row['n'],masks=1,wrong_axis_or_background=row['n']-sum(t.values()),old=votes(old),
-                wide=votes(pick(q,b,frozen_weights(),'wide')),oracle_narrow=ceiling(narrow),
+                wide=votes(ranked_choice(q,b,frozen_weights())),oracle_narrow=ceiling(narrow),
                 oracle_wide=ceiling(wide),oracle_near=ceiling(q),oracle_any=max(t.values(),default=0),
-                learned=votes(pick_with_fit(q,b,old,w,'learned')),
-                guarded=votes(pick_with_fit(q,b,old,w,'guarded')))
+                learned=votes(select_repeat(q,b,frozen_weights(),w)),
+                guarded=votes(select_repeat(q,b,frozen_weights(),w,guarded=True)))
             for k in ('all',orientation):groups[k].update(m)
     return {k:dict(v) for k,v in groups.items()}
 
@@ -76,7 +77,7 @@ def main():
     dest=ROOT/'benchmark/reviews/canopy-plane-chooser-01'
     dest.mkdir(parents=True,exist_ok=True)
     save(dest/'development.json',results)
-    save(ROOT/'engine/repeat_plane_weights.json',dict(weights=w.tolist(),train_frames=72))
+    save(ROOT/'engine/repeat_plane_weights.json',dict(schema=1,version='26.3',features=REPEAT_FEATURES,weights=w.tolist(),train_frames=72))
     total=Counter()
     for v in oof.values(): total.update(v['all'])
     print('LOFO',dict(total),'transfer',results['transfer'])

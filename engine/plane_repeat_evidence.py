@@ -1,68 +1,91 @@
-"""Score unit-length translations along an observed planar texture."""
-import numpy as np
+"""Rank plausible depths by comparing block-sized translations of visible textures."""
 from functools import lru_cache
 import json
 from pathlib import Path
 
-from engine.atlas_plane_depth import _sample
+import numpy as np
+
+from engine.plane_offset_features import NAMES, features, ranked_choice
 from engine.visible_raster import SAMPLE_STRIDE
-from engine.plane_offset_features import features, ranked_choice
+
+
+REPEAT_FEATURES = (*NAMES, 'repeat_high', 'repeat_low', 'repeat_atlas', 'repeat_edge', 'repeat_boundary')
+WEIGHTS = Path(__file__).with_name('repeat_plane_weights.json')
+
+
+@lru_cache(maxsize=2)
+def _load_weights(path, fingerprint):
+    model = json.loads(path.read_bytes())
+    weights = np.asarray(model['weights'], dtype=float)
+    if (model['schema'] != 1 or model['version'] != '26.3' or tuple(model['features']) != REPEAT_FEATURES
+            or weights.shape != (len(REPEAT_FEATURES),) or not np.isfinite(weights).all()):
+        raise ValueError('Unsupported repeat plane model')
+    return weights
+
+
+def frozen_repeat_weights():
+    """Recheck the fingerprint so an asset repaired during the process can load."""
+    try:
+        stat = WEIGHTS.stat()
+        return _load_weights(WEIGHTS, (stat.st_mtime_ns, stat.st_size))
+    except (OSError, ValueError, TypeError, KeyError, OverflowError):
+        return None
 
 
 def near_levels(eye_coordinate, baseline):
     """Cover short planes missed by a distant accidental floor contact."""
-    side=1 if baseline>eye_coordinate else -1
-    return [round(eye_coordinate)+side*i for i in range(1,25)]
+    side = 1 if baseline > eye_coordinate else -1
+    return [round(eye_coordinate) + side*i for i in range(1, 25)]
 
 
 def feature_rows(rows, baseline):
-    ordinary=features(rows,baseline)
-    hi=np.array([r['repeat_high'] for r in rows])
-    lo=np.array([r['repeat_low'] for r in rows])
-    return np.column_stack((ordinary,hi,lo,hi*ordinary[:,0],hi*ordinary[:,4],lo*ordinary[:,5]))
+    ordinary = features(rows,baseline)
+    hi = np.array([r['repeat_high'] for r in rows])
+    lo = np.array([r['repeat_low'] for r in rows])
+    return np.column_stack((ordinary, hi, lo, hi*ordinary[:,0], hi*ordinary[:,4], lo*ordinary[:,5]))
 
 
-def pick(rows, baseline, weights, method):
-    narrow=[r for r in rows if min(abs(r['level']-baseline),r['scene_delta'])<=6]
-    old=ranked_choice(narrow,baseline,weights)
-    if not rows or method=='old':return old
-    if method=='wide':return ranked_choice(rows,baseline,weights)
-    learned=fit_weights()
-    return pick_with_fit(rows,baseline,old,learned,method)
+def scored_rows(mask, P, eye, rays, axis, baseline, rgb, atlas, scene, *, extra_levels=()):
+    from engine.atlas_plane_depth import options
+    levels = set(near_levels(eye[axis], baseline)).union(extra_levels)
+    rows = options(mask, P, eye, rays, axis, baseline, rgb, atlas, scene, radius=18, extra_levels=levels)
+    repeats = repeat_scores(rgb, mask, P, eye, axis, [r['level'] for r in rows])
+    for row, (hi, lo) in zip(rows, repeats, strict=True):
+        row.update(repeat_high=hi, repeat_low=lo)
+    return rows
 
 
-def pick_with_fit(rows,baseline,old,learned,method):
-    X=feature_rows(rows,baseline)
-    best=int(np.argmax(X@learned))
-    winner=rows[best]
-    if method=='guarded':
-        strong_tile=winner['atlas']>=.70 and winner['distinct_votes']>=2
-        strong_repeat=winner['repeat_high']>=.24 and winner['edge']>=.12
-        if not strong_tile and not strong_repeat:return old
-    return winner['level']
+def select_repeat(rows, baseline, stock_weights, repeat_weights, *, guarded=False):
+    """Select one of the observed mask's candidate planes, with optional corroboration."""
+    if not rows:
+        return baseline
+    if repeat_weights is not None:
+        scores = feature_rows(rows, baseline) @ repeat_weights
+        best = rows[int(np.argmax(scores))]
+        strong_tile = best['atlas'] >= .70 and best['distinct_votes'] >= 2
+        strong_repeat = best['repeat_high'] >= .24 and best['edge'] >= .12
+        if not guarded or strong_tile or strong_repeat:
+            return best['level']
+    narrow = [row for row in rows if min(abs(row['level']-baseline), row['scene_delta']) <= 6]
+    return ranked_choice(narrow, baseline, stock_weights)
 
 
-@lru_cache(maxsize=1)
-def fit_weights():
-    return np.asarray(json.loads(Path(__file__).with_name('repeat_plane_weights.json').read_bytes())['weights'])
-
-
-def place(image,version,parts,counts,camera,*,method='learned',atlas_path=None):
-    from engine.atlas_plane_depth import _place,options
-    def choose(part,mask,P,eye,rays,axis,baseline,rgb,atlas,scene,weights):
-        rows=options(mask,P,eye,rays,axis,baseline,rgb,atlas,scene,radius=18,extra_levels=near_levels(eye[axis],baseline))
-        levels=[r['level'] for r in rows]
-        for r,(hi,lo) in zip(rows,repeat_scores(rgb,mask,P,eye,axis,levels),strict=True):
-            r.update(repeat_high=hi,repeat_low=lo)
-        return pick(rows,baseline,weights,method)
-    return _place(image,version,parts,counts,camera,atlas_path,remove_occluded=True,choose_plane=choose)
+def place(image, version, parts, counts, camera, *, guarded=False, atlas_path=None):
+    from engine.atlas_plane_depth import _place
+    weights = frozen_repeat_weights()
+    def choose(part, mask, P, eye, rays, axis, baseline, rgb, atlas, scene, stock_weights):
+        rows = scored_rows(mask, P, eye, rays, axis, baseline, rgb, atlas, scene)
+        return select_repeat(rows, baseline, stock_weights, weights, guarded=guarded)
+    return _place(image, version, parts, counts, camera, atlas_path, remove_occluded=True,
+                  choose_plane=choose if weights is not None else None)
 
 
 def guarded(image,version,parts,counts,camera):
-    return place(image,version,parts,counts,camera,method='guarded')
+    return place(image,version,parts,counts,camera,guarded=True)
 
 
 def repeat_scores(rgb, mask, P, eye, axis, levels):
+    from engine.atlas_plane_depth import _sample
     yy, xx = np.unravel_index(_sample(np.flatnonzero(mask), 600), mask.shape)
     # Native texel centers are sampled inside the observed surface.
     x = SAMPLE_STRIDE * xx + SAMPLE_STRIDE // 2
