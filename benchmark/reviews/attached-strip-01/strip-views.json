@@ -1,0 +1,116 @@
+{
+  "source_run": "crop-fit-01",
+  "source_sheet_sha256": "63fa54b51cd50550dca108caafdf8281642302b3f8a0427503a07e6bd560dba5",
+  "views": [
+    {
+      "example": "Courtyard B",
+      "frame": "light_gray_concrete/holdout-courtyard-masonry-high-right",
+      "image_sha256": "b5b2bb5300687da8d904fb129043b5d2df0ae56e9ba4e14afb932b3e6d44dd3b",
+      "proposal": "mask-2-single-95-0",
+      "reference": 11,
+      "actual": [
+        6,
+        1
+      ],
+      "detail_xyxy": [
+        521,
+        321,
+        693,
+        523
+      ],
+      "methods": {
+        "current": {
+          "correct": 4554,
+          "extra": 454,
+          "correct_removed": 0,
+          "extra_removed": 0,
+          "lower_strip_remaining": 184,
+          "lower_strip_correct": 0,
+          "blocks": [
+            null,
+            null
+          ]
+        },
+        "shape": {
+          "correct": 4554,
+          "extra": 246,
+          "correct_removed": 0,
+          "extra_removed": 208,
+          "lower_strip_remaining": 0,
+          "lower_strip_correct": 0,
+          "blocks": [
+            null,
+            null
+          ]
+        },
+        "evidence": {
+          "correct": 4554,
+          "extra": 246,
+          "correct_removed": 0,
+          "extra_removed": 208,
+          "lower_strip_remaining": 0,
+          "lower_strip_correct": 0,
+          "blocks": [
+            null,
+            null
+          ]
+        }
+      },
+      "lower_strip_xyxy": [
+        652,
+        388,
+        654,
+        480
+      ]
+    },
+    {
+      "example": "Shopfront B",
+      "frame": "smooth_stone/dev-shopfront-masonry-low-left",
+      "image_sha256": "17691e7909ee0e9384db83c3a729f8763e21a281eb89b8dcebe61fc7675d1405",
+      "proposal": "mask-8",
+      "reference": 2,
+      "actual": [
+        1,
+        4
+      ],
+      "detail_xyxy": [
+        575,
+        369,
+        625,
+        569
+      ],
+      "methods": {
+        "current": {
+          "correct": 1994,
+          "extra": 186,
+          "correct_removed": 0,
+          "extra_removed": 0,
+          "blocks": [
+            null,
+            null
+          ]
+        },
+        "shape": {
+          "correct": 1994,
+          "extra": 186,
+          "correct_removed": 0,
+          "extra_removed": 0,
+          "blocks": [
+            null,
+            null
+          ]
+        },
+        "evidence": {
+          "correct": 1994,
+          "extra": 186,
+          "correct_removed": 0,
+          "extra_removed": 0,
+          "blocks": [
+            null,
+            null
+          ]
+        }
+      }
+    }
+  ]
+}
