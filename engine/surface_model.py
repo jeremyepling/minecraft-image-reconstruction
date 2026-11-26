@@ -235,6 +235,7 @@ def _count_regions(image, planes, version, method, atlas, out, shape_matcher=Non
     if method not in ('legacy-repeat', 'masked-repeat', 'atlas-repeat'):
         raise ValueError(f'Unknown Block Counter method {method}')
     measurements = []
+    faces = []
     samples_dir = out / 'samples'
     samples_dir.mkdir(exist_ok=True)
     for i, plane in enumerate(planes):
@@ -261,41 +262,53 @@ def _count_regions(image, planes, version, method, atlas, out, shape_matcher=Non
             row.update(result)
             row['dimensions'] = dimensions(plane, sample['quad'], image.size, result['counts'])
             if atlas is not None:
-                from engine.atlas_count import rank_tile
-                from engine.surface_tiles import material_cells
-                def material(tile):
-                    if shape_matcher is None:
-                        return rank_tile(tile, atlas, version=version)
-                    patch = tile['rgb']
-                    shadow = None
-                    if shadow_field is not None:
-                        from engine.blocker_shadow import cell_shadow, corrected
-                        gains, shadow = cell_shadow(shadow_field, tile['quad'], len(patch))
-                        patch = corrected(patch, gains)
-                    if getattr(shape_matcher, 'sample_size', None) == 16:
-                        from engine.geometry import face
-                        patch = face(np.asarray(image), tile['quad'], 16)
-                    result = shape_matcher.rank_patch(patch)
-                    result['block_id'] = 'minecraft:' + result['block_id']
-                    result['ranked_ids'] = ['minecraft:' + b for b in result['ranked_ids']]
-                    result['same_texture_ids'] = sorted('minecraft:' + b for b in shape_matcher.mapping[result['texture']])
-                    if shadow is not None:
-                        result['shadow'] = shadow
-                    return result
-
-                ranked, skipped = material_cells(sample, result, material)
-                row['visible_cells'] = ranked
-                row['under_five_px_faces'] = skipped
-                if skipped and not ranked:
-                    row['material_status'] = 'All complete faces are under five source pixels wide.'
-                elif not ranked:
+                from engine.surface_tiles import complete_footprints
+                from engine.face_evidence import effective_width, MIN_FACE_WIDTH
+                row['visible_cells'] = []
+                row['under_five_px_faces'] = []
+                for cell, quad in complete_footprints(sample, result):
+                    width = effective_width(quad)
+                    target = 'visible_cells' if width >= MIN_FACE_WIDTH else 'under_five_px_faces'
+                    record = dict(face_index=len(faces), surface_id=plane['id'], cell=cell,
+                                  quad=canonical(quad), effective_width_px=width,
+                                  normal_camera=plane.get('normal_camera'))
+                    row[target].append(record)
+                    faces.append(record)
+                if not row['visible_cells'] and not row['under_five_px_faces']:
                     row['material_status'] = 'No complete cell has a supported position inside this mask.'
         measurements.append(row)
     report = dict(version=version, units='blocks across and down the rectified sampling chart',
                   shape_artifact='surfaces.json', surfaces=measurements)
     if atlas is not None:
-        report['material_face_counts'] = dict(
-            attempted=sum(len(row.get('visible_cells', [])) for row in measurements),
+        from engine.atlas_count import rank_tile
+        from engine.block_face_groups import assign_block_materials
+        def material(tile):
+            if shape_matcher is None:
+                return rank_tile(tile, atlas, version=version)
+            patch = tile['rgb']
+            shadow = None
+            if shadow_field is not None:
+                from engine.blocker_shadow import cell_shadow, corrected
+                gains, shadow = cell_shadow(shadow_field, tile['quad'], len(patch))
+                patch = corrected(patch, gains)
+            if getattr(shape_matcher, 'sample_size', None) == 16:
+                from engine.geometry import face
+                patch = face(np.asarray(image), tile['quad'], 16)
+            result = shape_matcher.rank_patch(patch)
+            result['block_id'] = 'minecraft:' + result['block_id']
+            result['ranked_ids'] = ['minecraft:' + b for b in result['ranked_ids']]
+            result['same_texture_ids'] = sorted('minecraft:' + b for b in shape_matcher.mapping[result['texture']])
+            if shadow is not None:
+                result['shadow'] = shadow
+            return result
+
+        groups = assign_block_materials(image, faces, material)
+        report['block_groups'] = groups
+        attempted = sum(g['selected_index'] is not None for g in groups)
+        report['material_block_counts'] = dict(total=len(groups), attempted=attempted,
+                                                unresolved=len(groups)-attempted)
+        report['material_face_counts'] = dict(total=len(faces), attempted=attempted,
+            inherited=sum(len(g['face_indices'])-1 for g in groups if g['selected_index'] is not None),
             under_five_px=sum(len(row.get('under_five_px_faces', [])) for row in measurements))
     return report
 
