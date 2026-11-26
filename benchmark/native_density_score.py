@@ -22,7 +22,8 @@ from training.visible_labels import visible_labels
 
 MODES = {'four64':(4,64), 'two64':(2,64), 'two16':(2,16),
          'visible16':(2,16), 'interior16':(2,16), 'visible64':(2,64),
-         'interior4pitch':(4,16), 'interior_verified':(2,16), 'interior_verified4':(4,16)}
+         'interior4pitch':(4,16), 'interior_verified':(2,16), 'interior_verified4':(4,16),
+         'production_guard':(2,16)}
 REPLAY = ROOT/'benchmark/reviews/relative-build-01/scores.zip'
 FIELDS = ('target','placed','correct','extras','hidden_extras','gained','lost','extra_added','extra_removed')
 
@@ -54,9 +55,13 @@ def evaluate(job):
     predictions = {}
     for mode in modes:
         start = perf_counter()
-        cells = residual(photo,parts,camera,baseline,*MODES[mode],
-                         depth_aware=mode.startswith(('visible','interior')), interior=mode.startswith('interior'),
-                         confirm_axes=mode.startswith('interior_verified'))
+        if mode=='production_guard':
+            from engine.visible_horizontal_faces import recover
+            cells = recover(photo,parts,camera,baseline)
+        else:
+            cells = residual(photo,parts,camera,baseline,*MODES[mode],
+                             depth_aware=mode.startswith(('visible','interior')), interior=mode.startswith('interior'),
+                             confirm_axes=mode.startswith('interior_verified'))
         seconds = perf_counter()-start
         path = out/'packs'/split/key/(mode+'.zip')
         path.parent.mkdir(exist_ok=True,parents=True)
@@ -126,6 +131,7 @@ def main():
             total = sum((Counter(r['methods'][mode]['metrics']) for r in result),Counter())
             print(split,mode,len(result),dict(total),flush=True)
     report = dict(baseline_replay_sha256=digest(REPLAY),source_sha256=digest(Path(__file__).with_name('native_sample_density.py')),
+                  production_sha256=digest(ROOT/'engine/visible_horizontal_faces.py'),
                   modes={m:MODES[m] for m in args.modes}, cases=rows)
     (args.out/'scores.json').write_text(json.dumps(report,indent=2)+'\n',encoding='utf8')
 
