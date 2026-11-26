@@ -144,5 +144,8 @@ def recover(image, parts, projection, base_cells):
         extra &= select_joint(rows(image, parts, projection, base_cells, competing=extra))
     if extra:
         from engine.visible_ray_filter import fully_occluded_cells
-        extra -= fully_occluded_cells(image.size, projection, base_cells | extra)
+        occluded = fully_occluded_cells(image.size, projection, base_cells | extra)
+        if occluded & base_cells:
+            return set()
+        extra -= occluded
     return extra
