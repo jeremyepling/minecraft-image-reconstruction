@@ -516,6 +516,8 @@ def build(image_path, version, out, *, outlines=None, order_method=None, through
             shape_matcher = ExposureMatcher(atlas_path, library)
             methods['material_matching'] = 'exposure'
             manifest['material_library_sha256'] = digest(library)
+        if atlas is not None:
+            methods['block_grouping'] = 'convex-shared-edges'
         counts = _count_regions(image, patches, version, counter, atlas, out, shape_matcher, shadow_field)
         (out/'counts.json').write_text(json.dumps(counts, allow_nan=False, indent=2))
         manifest['artifact'] = 'counts.json'
