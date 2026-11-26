@@ -2,9 +2,10 @@
 import argparse
 from pathlib import Path
 
+import numpy as np
 from PIL import Image, ImageDraw
 
-from benchmark.attached_strip import refine as trim_by_photo
+from benchmark.attached_strip import neighborhood, refine as trim_by_photo
 from benchmark.camera_round import ROOT, digest, read, save
 from benchmark.camera_sheet import label
 from benchmark.count_metrics import reference_planes
@@ -24,6 +25,26 @@ GREEN = (83, 234, 110)
 STAGES = ['Source image', 'Recorded surface', 'Current Finder', 'Color rule',
           'Color rule cuts', 'Neighbor evidence', 'Neighbor rule', 'Neighbor rule cuts',
           'Current block grid', 'Color rule grid', 'Neighbor rule grid']
+
+
+def closest_mask(photo, parts, donor, donor_mask, proposed_cut, decision):
+    """Diagnostic measure only: use the candidate's radius on already frozen predictions."""
+    radius = max(1, round(photo.height * 3 / 900))
+    l,t,r,b = decision['tail_xyxy']
+    box = np.s_[max(0,t-radius):min(photo.height,b+radius), max(0,l-radius):min(photo.width,r+radius)]
+    tail = proposed_cut[box]
+    assert int(tail.sum())==decision['pixels']
+    options = []
+    for part in parts:
+        if part['id']==donor['id']:
+            continue
+        mask = native_mask(part,photo.size)[box]
+        nearby = neighborhood(mask & ~donor_mask[box],radius)>0
+        options.append((int((tail & nearby).sum()),int((tail & mask).sum()),part['id']))
+    if options:
+        near, overlap, pid = max(options)
+        return dict(closest=pid, near_pixels=near, overlapping_pixels=overlap,
+                    tail_pixels=int(tail.sum()), radius_px=radius)
 
 
 @image_only()
@@ -62,6 +83,8 @@ def render(out):
         receiver_ids = {d['receiver'] for d in decisions if d['receiver']}
         pieces = [donor] + [next(p for p in items if p['id']==donor['id']) for items in (color_parts,neighbor_parts)]
         current, color, neighbor = masks = [native_mask(p,photo.size) for p in pieces]
+        for decision in decisions:
+            decision['retrospective_proximity'] = closest_mask(photo,parts,donor,current,current & ~color,decision)
         truth = ids == rid
         box = ex.get('zoom_xyxy',ex['detail_xyxy'])
         locator = photo.copy()
@@ -83,6 +106,9 @@ def render(out):
                 layers.append((current & ~color,WRONG,.88))
                 note = 'Pink = proposed cut; green = supporting neighbor' if receiver_ids else (
                        'No supporting neighbor accepted' if decisions else 'No color-supported cut proposed')
+                if decisions and not receiver_ids:
+                    near = decisions[0]['retrospective_proximity']
+                    note = f'Closest mask near {near["near_pixels"]}/{near["tail_pixels"]} cut pixels; none accepted'
                 cells.append((overlay(photo,box,layers),note))
             cells.append((overlay(photo,box,[(mask,CYAN,.66)]),
                           f'{methods[name]["correct"]:,} correct pixels   ·   {methods[name]["extra"]:,} extra'))
