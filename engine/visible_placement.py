@@ -52,7 +52,7 @@ def _frontmost_cells(cells, projection, eye, shape):
     return owner
 
 
-def _estimate_plane_cells(image, parts, masks, projection, eye):
+def _estimate_plane_cells(image, parts, masks, projection, eye, levels=None):
     """Fit provisional grid planes using floor contacts and relative surface depths."""
     focal = np.linalg.norm(projection[0, :3] - image.width / 2 * projection[2, :3])
     rotation = np.linalg.solve(intrinsic(image.size, focal), projection[:, :3])
@@ -76,7 +76,9 @@ def _estimate_plane_cells(image, parts, masks, projection, eye):
             continue
         axis = int(np.argmax(abs(rotation.T @ part['normal_camera'])))
         contact = mask & contacts
-        if axis != 1 and contact.sum() >= max(4, .12 * mask.any(axis=0).sum()):
+        if levels and part['id'] in levels:
+            level = levels[part['id']]
+        elif axis != 1 and contact.sum() >= max(4, .12 * mask.any(axis=0).sum()):
             intercepts = eye[axis] + floor_depth[contact] * rays[contact, axis]
             level = int(np.rint(np.median(intercepts)))
         else:
