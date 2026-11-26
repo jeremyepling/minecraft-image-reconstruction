@@ -18,7 +18,7 @@ DEV = 'development'
 REG = 'previously_reviewed_regression'
 
 
-def sample_scores(candidate, geometry, margin):
+def sample_scores(candidate, geometry, margin=None):
     # Coordinates are centers on the same four-pixel lattice as the two inner sample cells.
     pairs = np.asarray(candidate['samples']).reshape(-1, 4, 2)
     midpoint = pairs[:, 1:3].mean(axis=1)
@@ -29,7 +29,7 @@ def sample_scores(candidate, geometry, margin):
     y1, x1 = np.minimum(y0 + 1, geometry.shape[0]-1), np.minimum(x0 + 1, geometry.shape[1]-1)
     dy, dx = y-y0, x-x0
     features = []
-    for field in (geometry, margin):
+    for field in (geometry,) if margin is None else (geometry, margin):
         nearby = ((1-dy)*((1-dx)*field[y0,x0] + dx*field[y0,x1]) +
                   dy*((1-dx)*field[y1,x0] + dx*field[y1,x1]))
         features.append(float(np.median(nearby.max(axis=1))))
