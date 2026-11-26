@@ -1,0 +1,51 @@
+{
+ "schema": 1,
+ "source": "070581e",
+ "kind": "reject-if-any-path-matches",
+ "paths": [
+  [
+   [
+    "plane_atlas",
+    "le",
+    0.045454545454545456
+   ],
+   [
+    "edge_contrast",
+    "le",
+    10.248611450195312
+   ],
+   [
+    "visible_samples",
+    "le",
+    1.4143607558740532
+   ],
+   [
+    "atlas_separation",
+    "le",
+    0.0
+   ]
+  ],
+  [
+   [
+    "plane_atlas",
+    "le",
+    0.045454545454545456
+   ],
+   [
+    "edge_contrast",
+    "gt",
+    10.248611450195312
+   ],
+   [
+    "plane_median_atlas",
+    "gt",
+    0.23261145502328873
+   ],
+   [
+    "horizontal_face",
+    "le",
+    0.0
+   ]
+  ]
+ ]
+}
