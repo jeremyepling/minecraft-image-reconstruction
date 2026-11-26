@@ -13,5 +13,5 @@ def predict(photo, parts, frame_sha, setting):
 
 def provenance(setting):
     photo_setting, plane_setting = SETTINGS[setting]
-    return dict(photo=edge_detail.SETTINGS[photo_setting],plane=plane_detail.provenance(plane_setting),
+    return dict(photo=edge_detail.provenance(photo_setting),plane=plane_detail.provenance(plane_setting),
                 field_manifests=plane_detail.provenance(plane_setting)['field_manifests'])
