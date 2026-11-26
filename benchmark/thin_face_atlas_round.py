@@ -12,6 +12,7 @@ from benchmark.mask_blocks import _write_read, decoded_pack, registered
 from benchmark.relative_geometry import placement_scores
 from benchmark.visible_depth_transfer import structure
 from engine.camera_atlas_floor import _atlas
+from engine import thin_atlas_faces as strips
 from engine.thin_atlas_faces import StripEvidence, choose, recover
 from engine.visible_horizontal_faces import _keep_prior_visible
 from training.visible_labels import visible_labels
@@ -24,6 +25,19 @@ EXTRA = TREES/'visible-recovery-extra-views/runs/extra-views'
 COHORTS = ('validation','test','regression','native','old','fresh','extra')
 
 
+def choose_trial(rows,method,context=None):
+    minimums={'strong':(.78,.16,.55),'moderate':(.60,.10,.70),'union':(.80,.20,0)}
+    if method in minimums:
+        score,phase,orientation=minimums[method]
+        return {c for c,r in rows.items() if r['texels']>=10 and r['n']>=16 and r['color']<=10
+                and r['fraction']>=.60 and r['split']-.010*r['color']>=score and r['phase']>=phase
+                and r['oriented']>=orientation}
+    if method.startswith('geometry'):
+        model=strips._model(strips.WEIGHTS,strips.WEIGHTS.stat().st_mtime_ns)
+        return {c for c,p in strips.probabilities(rows,model,context).items() if p>=float(method[8:])/100}
+    return choose(rows,method,context)
+
+
 def fixture(split):
     if split=='old': return STABLE/'runs/visible-depth-rounds/transfer'
     if split=='fresh': return STABLE/'runs/canopy-placement/confirmation'
@@ -31,17 +45,21 @@ def fixture(split):
     return None
 
 
-def job_list(split,out,modes,count):
+def job_list(split,out,modes,count,folds):
     base = EXTRA/'candidate' if split=='extra' else PREVIOUS/split
     baseline = {r['id']:r for r in read(base/'cases.json')}
     source = fixture(split)
     samples = read(source/'screen.json')['selected'] if source else (native.rows() if split=='native' else frames(DATA,split))
-    return [(split,f,source,base,baseline[f['id']],out,modes) for f in samples[:count]]
+    return [(split,f,source,base,baseline[f['id']],out,modes,folds) for f in samples[:count]]
 
 
 def evaluate(job):
-    split,f,fixture_path,base,ref,out,modes = job
+    split,f,fixture_path,base,ref,out,modes,folds = job
     key,h = f['id'],f['files']
+    if folds:
+        if split!='train':
+            raise ValueError('Out-of-family models are training diagnostics')
+        strips.WEIGHTS=folds/(ref['family']+'.json')
     dest = out/split/key
     dest.mkdir(exist_ok=True,parents=True)
     if fixture_path:
@@ -69,11 +87,11 @@ def evaluate(job):
     results = {}
     for mode in modes:
         decision,sep,repeat=mode.partition('x')
-        selected = choose(pool,decision)
+        selected = choose_trial(pool,decision)
         if selected:
             joint = ctx.joint(selected)
             verified = {c:r for c in selected if (r:=ctx.measure(c,joint)) is not None}
-            selected = choose(verified,decision,pool)
+            selected = choose_trial(verified,decision,pool)
         prediction = _keep_prior_visible(image.size,ctx.P,ctx.eye,prior,selected) if selected else prior
         if selected and sep:
             for _ in range(1,int(repeat)):
@@ -119,8 +137,9 @@ def main():
     p.add_argument('--workers',type=int,default=4)
     p.add_argument('--limit',type=int)
     p.add_argument('--out',type=Path,required=True)
+    p.add_argument('--folds',type=Path)
     args=p.parse_args()
-    jobs=[j for s in args.sets for j in job_list(s,args.out,args.modes,args.limit)]
+    jobs=[j for s in args.sets for j in job_list(s,args.out,args.modes,args.limit,args.folds)]
     with ProcessPoolExecutor(max_workers=args.workers) as pool:
         rows=list(pool.map(evaluate,jobs))
     for mode in args.modes:

@@ -54,6 +54,17 @@ class ThinAtlasFacesTest(unittest.TestCase):
         self.assertGreater(match['phase'],.65)
         self.assertIsNone(strips._match(uv,np.zeros_like(colors),atlas,strips._mips(atlas)))
 
+    def test_second_pass_rechecks_original_photo_only_after_a_change(self):
+        with patch.object(strips,'recover',return_value=self.prior) as step:
+            self.assertEqual(strips.recover_two_passes(self.photo,self.parts,self.cam,self.prior,self.atlas),self.prior)
+            self.assertEqual(step.call_count,1)
+        first=self.prior|{(2,1,1)}
+        second=first|{(3,1,1)}
+        with patch.object(strips,'recover',side_effect=[first,second]) as step:
+            self.assertEqual(strips.recover_two_passes(self.photo,self.parts,self.cam,self.prior,self.atlas),second)
+            self.assertEqual(step.call_count,2)
+            step.assert_called_with(self.photo,self.parts,self.cam,first,self.atlas,'rank75')
+
 
 if __name__=='__main__':
     unittest.main()

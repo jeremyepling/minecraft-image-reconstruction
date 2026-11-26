@@ -266,17 +266,7 @@ def _model(path,mtime):
 
 
 def model_probabilities(values,model):
-    if 'forest' in model:
-        def score(tree):
-            if isinstance(tree,list):
-                k,t,left,right=tree
-                return np.where(values[:,k]<=t,score(left),score(right))
-            return tree
-        linear=np.full(len(values),model['bias'])
-        for tree in model['forest']:
-            linear+=score(tree)
-    else:
-        linear = (values-np.array(model['mean']))/model['scale']@model['weights']+model['bias']
+    linear = (values-np.array(model['mean']))/model['scale']@model['weights']+model['bias']
     return 1/(1+np.exp(-linear.clip(-30,30)))
 
 
@@ -288,33 +278,19 @@ def probabilities(rows,model,context=None):
 
 
 def choose(rows,mode,context=None):
-    if mode.startswith('rank'):
-        try:
-            model=_model(WEIGHTS,WEIGHTS.stat().st_mtime_ns)
-        except (OSError,KeyError,TypeError,ValueError):
-            return set()
-        threshold=float(mode[4:])/100
-        return {c for c,p in probabilities(rows,model,context).items() if p>=threshold
-                and rows[c]['split']>=.25 and rows[c]['phase']>.02 and rows[c]['texels']>=8}
-    accepted = set()
-    for c,r in rows.items():
-        if r['texels']<10 or r['n']<16 or r['color']>10 or r['fraction']<.60:
-            continue
-        score = r['split']-.010*r['color']
-        if mode=='strong':
-            good = score>=.78 and r['phase']>=.16 and r['oriented']>=.55
-        elif mode=='moderate':
-            good = score>=.60 and r['phase']>=.10 and r['oriented']>=.70
-        elif mode=='union':
-            good = score>=.80 and r['phase']>=.20
-        else:
-            raise ValueError(mode)
-        if good:
-            accepted.add(c)
-    return accepted
+    if not mode.startswith('rank'):
+        raise ValueError(f'Unknown thin-face decision rule {mode}')
+    try:
+        model=_model(WEIGHTS,WEIGHTS.stat().st_mtime_ns)
+    except (OSError,KeyError,TypeError,ValueError,OverflowError):
+        return set()
+    threshold=float(mode[4:])/100
+    return {c for c,p in probabilities(rows,model,context).items() if p>=threshold
+            and rows[c]['split']>=.25 and rows[c]['phase']>.02 and rows[c]['texels']>=8}
 
 
 def recover(image,parts,camera,prior,atlas,mode='rank85'):
+    """Return a build with one batch of native, atlas-verified strip additions."""
     provenance=getattr(atlas,'provenance',None) or {}
     if (not prior or camera['P'] is None or not any(p.get('support') for p in parts)
             or provenance.get('version')!='26.3' or provenance.get('atlas_sha256')!=ATLAS_SHA256):
@@ -334,3 +310,11 @@ def recover(image,parts,camera,prior,atlas,mode='rank85'):
     if not selected:
         return prior
     return _keep_prior_visible(image.size,ctx.P,ctx.eye,prior,selected)
+
+
+def recover_two_passes(image,parts,camera,prior,atlas):
+    """Retest newly exposed neighboring strips against the original photograph."""
+    first=recover(image,parts,camera,prior,atlas,'rank75')
+    if first==prior:
+        return prior
+    return recover(image,parts,camera,first,atlas,'rank75')

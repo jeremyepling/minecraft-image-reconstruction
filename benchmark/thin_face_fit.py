@@ -78,13 +78,31 @@ def main(args):
             candidates[group]+=int(r['target'])
     X,y,groups=np.asarray(X),np.asarray(ys),np.asarray(groups)
     eligible=np.asarray(eligible)
+    if args.geometry_only:
+        keep={'sample_count','face_coverage','orientation','coplanar_neighbors','all_axes',
+              'mask_coverage','occludes_matching_axis','other_faces','mask_purity','visible_fraction'}
+        X[:,[i for i,key in enumerate(FEATURES) if key not in keep]]=0
+        eligible[:]=True
     oof=np.zeros(len(y))
     from engine.thin_atlas_faces import model_probabilities
     train=boost if args.boost else fit
     for group in sorted(set(groups)):
         hold=groups==group
         model=train(X[~hold],y[~hold])
-        oof[hold]=model_probabilities(X[hold],model)
+        if args.folds:
+            args.folds.mkdir(parents=True,exist_ok=True)
+            save(args.folds/(str(group)+'.json'),model)
+        if args.boost:
+            values=X[hold]
+            def tree_scores(tree):
+                if isinstance(tree,list):
+                    k,t,left,right=tree
+                    return np.where(values[:,k]<=t,tree_scores(left),tree_scores(right))
+                return tree
+            logits=model['bias']+sum(tree_scores(t) for t in model['forest'])
+            oof[hold]=1/(1+np.exp(-logits.clip(-30,30)))
+        else:
+            oof[hold]=model_probabilities(X[hold],model)
     rows={}
     for threshold in (.5,.65,.75,.85,.92):
         take=(oof>=threshold)&eligible
@@ -106,4 +124,6 @@ if __name__=='__main__':
     p.add_argument('--weights',type=Path,required=True)
     p.add_argument('--report',type=Path,required=True)
     p.add_argument('--boost',action='store_true')
+    p.add_argument('--geometry-only',action='store_true',help='Ablate texture features on the same candidate pool')
+    p.add_argument('--folds',type=Path,help='Write six models trained without their named family')
     main(p.parse_args())
