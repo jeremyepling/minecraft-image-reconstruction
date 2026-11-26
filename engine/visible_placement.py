@@ -79,7 +79,7 @@ def _estimate_plane_cells(image, parts, masks, projection, eye, select_level=Non
                          and np.argmax(abs(rotation.T @ parts[i]['normal_camera'])) == 1)
     selections = []
     for index in indices:
-        part, mask, cells = parts[index], masks[index], candidates[index]
+        part, mask = parts[index], masks[index]
         if not mask.any() or part.get('normal_camera') is None:
             continue
         axis = int(np.argmax(abs(rotation.T @ part['normal_camera'])))
@@ -137,12 +137,12 @@ def _charts(image, version, parts, counts):
     return charts
 
 
-def place(image, version, parts, *, counts=None, atlas_path=None):
+def place(image, version, parts, *, counts=None, atlas_path=None, joint_foreground=True):
     """Return local (x, y, z) block coordinates and camera/placement diagnostics."""
     from engine.atlas_plane_depth import place_ranked
     image = image.convert('RGB')
     camera = seam_camera(image, version, atlas_path=atlas_path)
-    return place_ranked(image, version, parts, counts, camera, atlas_path=atlas_path)
+    return place_ranked(image, version, parts, counts, camera, atlas_path=atlas_path, joint_foreground=joint_foreground)
 
 
 def place_with_camera(image, version, parts, counts, camera, select_level=None, *,

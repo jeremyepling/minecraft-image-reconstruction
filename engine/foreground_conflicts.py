@@ -39,7 +39,8 @@ def first_hit(mask_rays, probes, eye, axis, level):
     Return the first hit before the back of the slab for each competing ray.
     """
     free = [i for i in range(3) if i != axis]
-    own_depth = (level-eye[axis]) / mask_rays[:, axis]
+    normal = mask_rays[:, axis]
+    own_depth = np.divide(level-eye[axis], normal, out=np.zeros(len(normal)), where=abs(normal)>1e-9)
     valid = (own_depth > 1.5) & (own_depth < 150.)
     if not valid.any():
         return np.full(len(probes), np.inf)
@@ -70,8 +71,8 @@ def first_hit(mask_rays, probes, eye, axis, level):
     return hits
 
 
-class Scene:
-    def __init__(self, strength, threshold):
+class ForegroundConflicts:
+    def __init__(self, strength=1.6, threshold=.50):
         self.strength, self.threshold = strength, threshold
         self.planes = {}
         self.levels = {}
@@ -81,6 +82,8 @@ class Scene:
             return
         self.eye, self.rays = eye, rays
         scores = feature_rows(rows, baseline) @ weights
+        if not np.isfinite(scores).all():
+            return
         best = set(np.argsort(scores)[-4:])
         base_idx = next((i for i, r in enumerate(rows) if r['level']==chosen), None)
         if base_idx is None:
@@ -141,7 +144,7 @@ class Scene:
 def run(strength, threshold, image, version, parts, counts, camera):
     from engine.atlas_plane_depth import _place
     return _place(image, version, parts, counts, camera, None, remove_occluded=True,
-                  scene_policy=Scene(strength, threshold))
+                  scene_policy=ForegroundConflicts(strength, threshold))
 
 
 conservative = partial(run, 1.6, .50)

@@ -82,6 +82,8 @@ def main():
     p=cmds.add_parser('build')
     p.add_argument('--through',choices=['camera','surfaces','counts','placement','assembly'],default='assembly',
                    help='Fit the camera, find surfaces, count blocks, export visible geometry, or assemble a textured facade')
+    p.add_argument('--independent-plane-depth', action='store_true',
+                   help='Use the previous independent surface depths during visible placement')
     p.add_argument('--surface-context-px', type=int,
                    help='Include this many neighboring source pixels per side in Regions First context crops (default 8)')
     p.add_argument('--material-match', choices=['atlas','exposure','shape','shape-shadow'],
@@ -112,6 +114,8 @@ def main():
 
 @image_only()
 def run_image_command(parser,args):
+    if args.command=='build' and args.independent_plane_depth and args.through!='placement':
+        parser.error('--independent-plane-depth requires --through placement')
     if args.command=='build' and args.surface_context_px is not None:
         if args.through not in ('surfaces','counts','placement') or args.surface_context_px < 0:
             parser.error('--surface-context-px requires a surface stage and a nonnegative margin')
@@ -138,7 +142,8 @@ def run_image_command(parser,args):
         else:
             from engine.surface_model import build
             build(args.image,args.version,args.out,through=args.through,atlas_path=args.atlas,
-                  material_match=args.material_match,context_px=args.surface_context_px,library=args.library)
+                  material_match=args.material_match,context_px=args.surface_context_px,library=args.library,
+                  **({'joint_foreground':False} if args.independent_plane_depth else {}))
     else:
         if not args.atlas:
             parser.error('An assembly build needs --atlas')

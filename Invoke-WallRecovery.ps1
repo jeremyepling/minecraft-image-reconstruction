@@ -15,7 +15,8 @@ param(
     [ValidateSet('cuda','cpu')][string] $Device,
     [ValidateSet('atlas','exposure','shape','shape-shadow')][string] $MaterialMatch,
     [string] $Atlas,
-    [string] $Library
+    [string] $Library,
+    [switch] $IndependentPlaneDepth
 )
 
 $ErrorActionPreference = 'Stop'
@@ -77,6 +78,7 @@ try {
         $env:PYTHONPATH = (@($env:PYTHONPATH) + @($extra) | Where-Object { $_ }) -join [IO.Path]::PathSeparator
     }
     $materialOptions = @()
+    if ($IndependentPlaneDepth) { $materialOptions += '--independent-plane-depth' }
     if ($MaterialMatch) { $materialOptions += @('--material-match', $MaterialMatch) }
     if ($Library) { $materialOptions += @('--library', (Resolve-Path -LiteralPath $Library).Path) }
     if ($Atlas) { $materialOptions += @('--atlas', $ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($Atlas)) }
