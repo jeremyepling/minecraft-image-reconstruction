@@ -81,7 +81,7 @@ def _supported_faces(cells, strict, candidates, masks, axes, P, eye, *, revive):
     return accepted,owner,normals
 
 
-def _estimate_plane_cells(image, parts, masks, projection, eye, select_level=None):
+def _estimate_plane_cells(image, parts, masks, projection, eye, select_level=None, partial=None):
     """Fit provisional grid planes using floor contacts and relative surface depths."""
     focal = np.linalg.norm(projection[0, :3] - image.width / 2 * projection[2, :3])
     rotation = np.linalg.solve(intrinsic(image.size, focal), projection[:, :3])
@@ -130,6 +130,8 @@ def _estimate_plane_cells(image, parts, masks, projection, eye, select_level=Non
             supported = np.count_nonzero(pixels & mask[box])
             if supported >= max(MINIMUM_SAMPLES, MINIMUM_COVERAGE * pixels.sum()):
                 cells.add(tuple(cell.tolist()))
+            elif partial and supported>=max(MINIMUM_SAMPLES,.22*pixels.sum()) and partial(mask,projection,cell,axis,sign):
+                cells.add(tuple(cell.tolist()))
     return candidates
 
 
@@ -155,7 +157,7 @@ def place(image, version, parts, *, counts=None, atlas_path=None):
     return place_with_camera(image, version, parts, counts, camera)
 
 
-def place_with_camera(image, version, parts, counts, camera, select_level=None, face_policy=None):
+def place_with_camera(image, version, parts, counts, camera, select_level=None, face_policy=None, partial=None):
     status = dict(camera_status=camera['scale_status'], reason=camera['reason'], P=camera['P'],
                   strict_blocks=0, added_blocks=0, placed_blocks=0, duplicate_side_cells=0,
                   textured_side_cells=0, grounded_side_cells=0, shared_side_cells=0)
@@ -173,7 +175,7 @@ def place_with_camera(image, version, parts, counts, camera, select_level=None, 
     strict, _, _ = _blocks(masks, carriers, projection, {})
     projection = projection / np.linalg.norm(projection[2, :3])
     eye = np.linalg.solve(projection[:, :3], -projection[:, 3])
-    candidates = _estimate_plane_cells(image, parts, masks, projection, eye, select_level)
+    candidates = _estimate_plane_cells(image, parts, masks, projection, eye, select_level,partial)
     cells = sorted(strict.union(*candidates))
     if face_policy:
         focal=np.linalg.norm(projection[0,:3]-image.width*.5*projection[2,:3])

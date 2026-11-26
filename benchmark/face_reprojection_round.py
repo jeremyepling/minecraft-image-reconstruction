@@ -25,7 +25,13 @@ def run(image,version,parts,counts,camera,policy):
     def select(part,mask,P,eye,rays,axis,baseline,dist):
         rows=options(mask,P,eye,rays,axis,baseline,rgb,atlas,dist)
         return ranked_choice(rows,baseline,w) if w is not None else choose(rows,baseline,'combined')
-    return place_with_camera(image,version,parts,counts,camera,select,policy)
+    partial=None
+    if policy=='loose':
+        partial=lambda *args:True
+    if policy=='art':
+        from engine.partial_atlas_face import verify
+        partial=lambda *args:verify(rgb,atlas,*args)
+    return place_with_camera(image,version,parts,counts,camera,select,policy,partial)
 
 
 def same_face(image,version,parts,counts,camera):
@@ -34,3 +40,11 @@ def same_face(image,version,parts,counts,camera):
 
 def retry(image,version,parts,counts,camera):
     return run(image,version,parts,counts,camera,'retry')
+
+
+def loose(image,version,parts,counts,camera):
+    return run(image,version,parts,counts,camera,'loose')
+
+
+def art(image,version,parts,counts,camera):
+    return run(image,version,parts,counts,camera,'art')
