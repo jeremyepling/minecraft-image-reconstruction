@@ -3,6 +3,7 @@ import argparse
 from collections import Counter
 from concurrent.futures import ProcessPoolExecutor, ThreadPoolExecutor
 from pathlib import Path
+import shutil
 import subprocess
 import sys
 from uuid import uuid4
@@ -156,18 +157,20 @@ def run(out, workers, candidates):
     if len(rows) != 56 or captures.keys() != roster.keys() or fixtures != baseline['fixtures']:
         raise ValueError('Frozen screenshot suite differs')
     out.mkdir(parents=True, exist_ok=False)
-    if not candidates:
-        candidates = {m: out/'candidate-runs'/m for m in MODULES}
+    directories = {m: out/'candidate-runs'/m for m in MODULES}
+    if candidates:
+        for m, directory in candidates.items():
+            shutil.copytree(directory, directories[m])
+    else:
         with ThreadPoolExecutor(max_workers=2) as pool:
-            futures = [pool.submit(predict,m,directory) for m,directory in candidates.items()]
+            futures = [pool.submit(predict,m,directory) for m,directory in directories.items()]
             for f in futures:
                 f.result()
     indexed = {}
     sources = {}
-    for method, directory in candidates.items():
-        manifest, indexed[method] = index_candidate(directory, fixtures, baseline['reference_sha256'], roster)
-        sources[method] = digest(directory/'manifest.json')
-        save(out/(method+'-manifest.json'), manifest)
+    for method, directory in directories.items():
+        _, indexed[method] = index_candidate(directory, fixtures, baseline['reference_sha256'], roster)
+        sources[(directory/'manifest.json').relative_to(out).as_posix()] = digest(directory/'manifest.json')
     jobs = [(captures[r['key']], r, hashes[r['predictions']], hashes[r['boundary_evidence']],
              {m: indexed[m][r['key']] for m in MODULES}, out)
             for r in rows]
@@ -180,7 +183,7 @@ def run(out, workers, candidates):
     save(out/'cases.json', rows)
     (out/'pictures.md').write_text(picture_table(rows), encoding='utf8')
     render(out, rows, captures, table)
-    files = [p for p in out.rglob('*') if p.is_file() and 'candidate-runs' not in p.relative_to(out).parts]
+    files = [p for p in out.rglob('*') if p.is_file()]
     save(out/'manifest.json', dict(run_id=out.name, code=revision(), methods=NAMES, protocol=PROTOCOL,
          selection=RULE, version=baseline['version'], fixtures=fixtures, reference_sha256=digest(ARCHIVE),
          baseline_id='wall-recovery-single-v2', baseline_manifest_sha256=digest(BASE/'manifest.json'),
