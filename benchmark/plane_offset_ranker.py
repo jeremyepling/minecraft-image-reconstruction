@@ -10,14 +10,15 @@ from engine.atlas_plane_depth import choose
 from engine.plane_offset_features import features, NAMES, ranked_choice
 
 
-def examples(frames):
+def examples(frames, cell_target=False):
     for frame in frames:
         for row in frame['rows']:
             options = row['choices']
             if len(options)<2:
                 continue
-            y = np.array([row['truth'].get(str(o['level']),0) for o in options],float)
-            if y.sum() < 24 or y.sum()<.2*row['n']:
+            truth=row['truth_cells'] if cell_target else row['truth']
+            y = np.array([truth.get(str(o['level']),0) for o in options],float)
+            if y.sum() < (1.5 if cell_target else 24) or (not cell_target and y.sum()<.2*row['n']):
                 continue
             # Only rays hitting labeled visible faces on this axis supervise offset.
             yield features(options,row['baseline']), y/y.sum(), min(y.sum()**.5,60.)
@@ -48,8 +49,8 @@ def fit_examples(items, lam=.002):
     return w
 
 
-def fit(frames, lam=.002):
-    return fit_examples(examples(frames),lam)
+def fit(frames, lam=.002, cell_target=False):
+    return fit_examples(examples(frames,cell_target),lam)
 
 
 def select(row,w,margin):
@@ -74,16 +75,18 @@ def evaluate(frames,w,margins):
 def main():
     p=argparse.ArgumentParser()
     p.add_argument('--out',type=Path,required=True)
+    p.add_argument('--cell-target',action='store_true')
     args=p.parse_args()
-    frames=[read(f) for f in sorted((OUT/'wide-features'/'train').glob('*.json'))]
+    source=OUT/('cell-labels' if args.cell_target else 'wide-features')/'train'
+    frames=[read(f) for f in sorted(source.glob('*.json'))]
     families=sorted({f['family'] for f in frames})
     margins=[0., .5, 1., 1.5]
     result,folds={},{}
     for family in families:
-        w=fit([f for f in frames if f['family']!=family])
+        w=fit([f for f in frames if f['family']!=family],cell_target=args.cell_target)
         folds[family]=w.tolist()
         result[family]=evaluate([f for f in frames if f['family']==family],w,margins)
-    w=fit(frames)
+    w=fit(frames,cell_target=args.cell_target)
     args.out.parent.mkdir(parents=True,exist_ok=True)
     args.out.write_text(json.dumps(dict(frames=[f['id'] for f in frames],features=NAMES,weights=w.tolist(),
         folds=folds,oof=result),indent=2)+'\n')
