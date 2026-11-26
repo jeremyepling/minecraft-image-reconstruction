@@ -13,12 +13,13 @@ from benchmark.texture_camera_eval import ROOT, checked, digest, read, save
 from benchmark.visible_recovery_report import summarize
 
 
-def run(inputs,root,method,out):
+def run(inputs,root,method,out,*,bundle=None,prefix='conservative/transfer',control=CONTROL,archive_path=CHANGES):
     review = ROOT/'benchmark/reviews/framed-depth-transfer-01'
     screen = checked(inputs/'screen.json',digest(review/'screen.json'))
     frames = read(screen)['selected']
-    prefix = 'conservative/transfer'
-    previous = {r['id']:r for r in previous_rows(prefix)}
+    if bundle is None:
+        bundle=changes()
+    previous = {r['id']:r for r in previous_rows(prefix,bundle)}
     assert len(previous)==len(frames)==4 and set(previous)=={f['id'] for f in frames}
     framing = read(review/'framing.json')
     assert all(r['framing']['accepted'] for r in framing)
@@ -32,7 +33,7 @@ def run(inputs,root,method,out):
         assert prior['rgb_sha256']==f['files']['rgb.png']
         for name,field in [('surfaces.json','surface_sha256'),('counts.json','counts_sha256')]:
             checked(inputs/'upstream'/key/name,prior[field])
-        pack = changes().read(f'{prefix}/{key}/reconstruction.zip')
+        pack = bundle.read(f'{prefix}/{key}/reconstruction.zip')
         assert sha256(pack).hexdigest()==prior['pack_sha256']
         before = set(decoded_pack(BytesIO(pack)))
         status = {}
@@ -55,9 +56,9 @@ def run(inputs,root,method,out):
         row.update(status=status,control_pack_sha256=prior['pack_sha256'],reference_hashes=f['files'])
         rows.append(row)
     save(out/'cases.json',rows)
-    summary=dict(method=method,control=CONTROL,revision=subprocess.check_output(
+    summary=dict(method=method,control=control,revision=subprocess.check_output(
         ['git','rev-parse','HEAD'],cwd=root,text=True).strip(),screen_sha256=digest(screen),
-        control_archive_sha256=digest(CHANGES),framing_sha256=digest(review/'framing.json'),
+        control_archive_sha256=digest(archive_path),framing_sha256=digest(review/'framing.json'),
         cases_sha256=digest(out/'cases.json'),relative_geometry=summarize(rows))
     if method:
         module = root.joinpath(*method.partition(':')[0].split('.')).with_suffix('.py')

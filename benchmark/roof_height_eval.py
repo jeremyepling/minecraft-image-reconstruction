@@ -20,9 +20,11 @@ def changes():
     return ZipFile(checked(CHANGES, manifest['archive_sha256']))
 
 
-def previous_rows(prefix):
-    encoded = changes().read(f'{prefix}/cases.json')
-    meta = json.loads(changes().read(f'{prefix}/summary.json'))
+def previous_rows(prefix,bundle=None):
+    if bundle is None:
+        bundle=changes()
+    encoded = bundle.read(f'{prefix}/cases.json')
+    meta = json.loads(bundle.read(f'{prefix}/summary.json'))
     assert sha256(encoded).hexdigest() == meta['cases_sha256']
     return json.loads(encoded)
 
