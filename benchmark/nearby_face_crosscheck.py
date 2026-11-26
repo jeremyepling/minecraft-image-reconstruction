@@ -10,7 +10,7 @@ CONFIGS=[(d,a,r) for d in (2,3) for a,r in ((.50,.35),(.55,.50),(.60,.30),(.65,.
 
 
 def evaluate(job):
-    i,case=job
+    i,case,prefix=job
     data=frozen(case)
     image,parts,camera,prior=load_prediction(case)
     src,tgt,axis=data['edges'].T
@@ -19,7 +19,7 @@ def evaluate(job):
     results=[]
     cache={}
     for d in (2,3):
-        with np.load(RUN/f'held-atlas-{d}.npz') as output:
+        with np.load(RUN/f'held-{prefix}-{d}.npz') as output:
             new,old=output[str(i)]
         for depth,add,drop in CONFIGS:
             if depth!=d:continue
@@ -37,9 +37,13 @@ def evaluate(job):
 
 
 def main():
+    import argparse
+    parser=argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--context',action='store_true')
+    args=parser.parse_args()
     jobs=cases('train')
     with ProcessPoolExecutor(max_workers=6) as pool:
-        values=np.array(list(pool.map(evaluate,enumerate(jobs))))
+        values=np.array(list(pool.map(evaluate,[(i,c,'context' if args.context else 'atlas') for i,c in enumerate(jobs)])))
     families=sorted({c[1]['family'] for c in jobs})
     best=None
     result=[]
@@ -54,12 +58,15 @@ def main():
         result.append(row)
         if best is None or row['rank']>best['rank']:
             best=row
-    save(PUBLIC/'held-visible.json',dict(variants=result,selected=best,folds=[families[i::3] for i in range(3)]))
+    save(PUBLIC/('context-held-visible.json' if args.context else 'held-visible.json'),dict(variants=result,selected=best,folds=[families[i::3] for i in range(3)]))
     print(best,flush=True)
-    model=fold(([],best['depth'],True))
+    model=fold(([],best['depth'],'context' if args.context else True))
     model.update(atlas=True,drop=best['drop'],add=best['add'],margin=.2)
+    if args.context:
+        model['context']=True
     import json
-    method.MODEL.write_text(json.dumps(model,separators=(',',':'))+'\n',encoding='utf8')
+    dest=RUN/'context-model.json' if args.context else method.MODEL
+    dest.write_text(json.dumps(model,separators=(',',':'))+'\n',encoding='utf8')
 
 
 if __name__=='__main__':

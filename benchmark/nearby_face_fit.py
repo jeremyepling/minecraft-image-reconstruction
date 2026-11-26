@@ -4,7 +4,7 @@ from concurrent.futures import ProcessPoolExecutor
 import json
 import numpy as np
 
-from benchmark.nearby_face_trial import RUN, PUBLIC, cases, frozen, art_sample, method, save
+from benchmark.nearby_face_trial import RUN, PUBLIC, cases, frozen, art_sample, context_sample, method, save
 
 
 def train(X,y,rounds=36,depth=3):
@@ -51,7 +51,8 @@ def train(X,y,rounds=36,depth=3):
 
 def fold(job):
     held,depth,atlas=job
-    items=[(f[1]['family'],(art_sample if atlas else frozen)(f)) for f in cases('train')]
+    loader=context_sample if atlas=='context' else art_sample if atlas else frozen
+    items=[(f[1]['family'],loader(f)) for f in cases('train')]
     features=[]
     source,dest=[],[]
     for family,p in items:
@@ -91,6 +92,7 @@ def main():
     import argparse
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--atlas',action='store_true')
+    parser.add_argument('--context',action='store_true')
     args=parser.parse_args()
     items=[(f[1]['family'],frozen(f)) for f in cases('train')]
     families=sorted({k for k,p in items})
@@ -100,9 +102,9 @@ def main():
     rows=[]
     with ProcessPoolExecutor(max_workers=4) as pool:
         for depth in (2,3):
-            results=pool.map(fold,[(g,depth,args.atlas) for g in groups])
+            results=pool.map(fold,[(g,depth,'context' if args.context else args.atlas) for g in groups])
             predictions={i:(new,old) for result in results for i,new,old in result}
-            prefix='atlas' if args.atlas else 'photo'
+            prefix='context' if args.context else 'atlas' if args.atlas else 'photo'
             np.savez_compressed(RUN/f'held-{prefix}-{depth}.npz',**{str(i):np.stack(pair) for i,pair in predictions.items()})
             for add,drop,margin in configs:
                 counts=np.array([changes(p,predictions[i],add,drop,margin) for i,(_,p) in enumerate(items)])
@@ -119,13 +121,14 @@ def main():
                 if best is None or rank>best['rank']:
                     best=row
             print('best so far',best,flush=True)
-    model=fold(([],best['depth'],args.atlas))
+    model=fold(([],best['depth'],'context' if args.context else args.atlas))
     model['atlas']=args.atlas
     model.update({k:best[k] for k in ('drop','add','margin')})
-    method.MODEL.write_text(json.dumps(model,separators=(',',':'))+'\n',encoding='utf8')
+    dest=RUN/'context-model.json' if args.context else method.MODEL
+    dest.write_text(json.dumps(model,separators=(',',':'))+'\n',encoding='utf8')
     PUBLIC.mkdir(parents=True,exist_ok=True)
     oracle=sum(int(p['correct'][int(p['base_count']):].sum()) for _,p in items)
-    save(PUBLIC/'training.json',dict(selected=best,families=families,held_groups=groups,oracle_additions=oracle,variants=rows))
+    save(PUBLIC/('context-training.json' if args.context else 'training.json'),dict(selected=best,families=families,held_groups=groups,oracle_additions=oracle,variants=rows))
     print('oracle proposals',oracle, 'frozen',best,flush=True)
 
 

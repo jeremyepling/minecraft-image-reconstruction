@@ -120,14 +120,33 @@ def art_sample(job):
     return data
 
 
-def evaluate(job):
+def context(job):
+    from engine.nearby_face_context import enrich
+    data=art_sample(job)
+    split,f,*_=job
+    path=RUN/'context'/split/(f['id']+'.npz')
+    path.parent.mkdir(exist_ok=True,parents=True)
+    np.savez_compressed(path,columns=enrich(data)['features'][:,66:])
+    return len(data['edges'])
+
+
+def context_sample(job):
+    data=art_sample(job)
+    split,f,*_=job
+    with np.load(RUN/'context'/split/(f['id']+'.npz')) as new:
+        data['features']=np.column_stack((data['features'],new['columns']))
+    return data
+
+
+def evaluate(job,contextual=False):
     split,f,_,_,base=job
-    model=read(method.MODEL)
-    data=art_sample(job) if model.get('atlas') else frozen(job)
+    path=PUBLIC/'context-model.json' if contextual else method.MODEL
+    model=read(path)
+    data=context_sample(job) if contextual else art_sample(job) if model.get('atlas') else frozen(job)
     image,parts,camera,prior=load_prediction(job)
     decisions=(set(),set(),set()) if not len(data['edges']) else method.choose(data,model)
     placed=method.apply(image,parts,camera,prior,data,decisions)
-    out=RUN/'predictions'/split/f['id']
+    out=RUN/('context-predictions' if contextual else 'predictions')/split/f['id']
     out.mkdir(exist_ok=True,parents=True)
     pack=out/'reconstruction.zip'
     local=_write_read(pack,placed)
@@ -140,8 +159,9 @@ def evaluate(job):
 
 
 def main():
+    from functools import partial
     p=argparse.ArgumentParser(description=__doc__)
-    p.add_argument('stage',choices=('features','art','evaluate'))
+    p.add_argument('stage',choices=('features','art','context','evaluate','evaluate-context'))
     p.add_argument('--sets',nargs='+',required=True)
     p.add_argument('--limit',type=int)
     p.add_argument('--workers',type=int,default=5)
@@ -151,14 +171,17 @@ def main():
         jobs=cases(split)[:args.limit]
         start=time.perf_counter()
         with ProcessPoolExecutor(max_workers=args.workers) as pool:
-            rows=list(pool.map({'features':features,'art':art,'evaluate':evaluate}[args.stage],jobs))
-        if args.stage!='evaluate':
+            rows=list(pool.map({'features':features,'art':art,'context':context,'evaluate':evaluate,
+                                'evaluate-context':partial(evaluate,contextual=True)}[args.stage],jobs))
+        if args.stage not in ('evaluate','evaluate-context'):
             print(split,'pairs',sum(rows),flush=True)
         else:
-            out=RUN/'predictions'/split
+            selected=args.stage=='evaluate-context'
+            path=PUBLIC/'context-model.json' if selected else method.MODEL
+            out=RUN/('context-predictions' if selected else 'predictions')/split
             save(out/'cases.json',rows)
             summary=aggregate(rows)['relative_geometry']
-            save(out/'manifest.json',dict(summary=summary,model_sha256=digest(method.MODEL),cases_sha256=digest(out/'cases.json')))
+            save(out/'manifest.json',dict(summary=summary,model_sha256=digest(path),cases_sha256=digest(out/'cases.json')))
             print(split,summary,flush=True)
         print('seconds',round(time.perf_counter()-start,2),flush=True)
 
