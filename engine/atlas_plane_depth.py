@@ -164,25 +164,32 @@ def options(mask, P, eye, rays, axis, baseline, rgb, atlas, scene_distance=None,
 
 
 
-def place_ranked(image, version, parts, counts, camera, *, atlas_path=None):
+def place_ranked(image, version, parts, counts, camera, *, atlas_path=None, joint_foreground=True):
     """Place image-supported grid cells and remove cells with no visible ray."""
-    return _place(image, version, parts, counts, camera, atlas_path, remove_occluded=True)
+    from engine.foreground_conflicts import ForegroundConflicts
+    return _place(image, version, parts, counts, camera, atlas_path, remove_occluded=True,
+                  scene_policy=ForegroundConflicts() if joint_foreground else None)
 
 
-def place_ranked_without_ray(image, version, parts, counts, camera, *, atlas_path=None):
+def place_ranked_without_ray(image, version, parts, counts, camera, *, atlas_path=None, joint_foreground=True):
     """Run the same placement before the final native-pixel visibility check."""
-    return _place(image, version, parts, counts, camera, atlas_path, remove_occluded=False)
+    from engine.foreground_conflicts import ForegroundConflicts
+    return _place(image, version, parts, counts, camera, atlas_path, remove_occluded=False,
+                  scene_policy=ForegroundConflicts() if joint_foreground else None)
 
 
 def _place(image, version, parts, counts, camera, atlas_path, *, remove_occluded, recover_edges=True, scene_policy=None):
     if camera['P'] is None or not parts:
-        return place_with_camera(image, version, parts, counts, camera)
+        cells, status = place_with_camera(image, version, parts, counts, camera)
+        status['foreground_depth'] = dict(method='unavailable', changed_planes=0, reason='no supported camera or surfaces')
+        return cells, status
     weights = frozen_weights()
     atlas = _atlas(version, atlas_path) if weights is not None else None
     if atlas is None:
         cells, status = place_with_camera(image, version, parts, counts, camera)
         status['plane_depth_reason'] = ('trained plane model unavailable' if weights is None
                                         else 'calibrated atlas unavailable')
+        status['foreground_depth'] = dict(method='unavailable', changed_planes=0, reason=status['plane_depth_reason'])
         return cells, status
     rgb = np.asarray(image.convert('RGB'))
     decisions = []
@@ -212,8 +219,19 @@ def _place(image, version, parts, counts, camera, atlas_path, *, remove_occluded
     from engine.secondary_plane_depth import wrap_selector
     select_level, refine = wrap_selector(select, rgb, atlas, final_levels=scene_policy.levels if scene_policy else None)
 
+    foreground_status = dict(method='independent' if scene_policy is None else 'joint', changed_planes=0)
+    if junction is None:
+        foreground_status.update(method='unavailable', reason='repeat plane model unavailable')
+
     def reconcile(selections):
-        levels = scene_policy.resolve()
+        try:
+            levels = scene_policy.resolve()
+        except (ArithmeticError, ValueError, np.linalg.LinAlgError) as err:
+            scene_policy.levels.clear()
+            foreground_status.update(method='independent', reason=f'foreground evidence unusable: {err}')
+            return selections
+        foreground_status['changed_planes'] = sum(levels.get(row['id'], row['level']) != row['level']
+                                                  for row in decisions)
         for row in decisions:
             row['level'] = levels.get(row['id'], row['level'])
         return [(i, a, levels.get(parts[i]['id'], l)) for i, a, l in selections]
@@ -227,8 +245,8 @@ def _place(image, version, parts, counts, camera, atlas_path, *, remove_occluded
 
     cells, status = place_with_camera(image, version, parts, counts, camera, select_level,
                                       partial=partial, refine_candidates=refine, remove_occluded=remove_occluded,
-                                      walls_first=junction is not None, reconcile=reconcile if scene_policy else None,
+                                      walls_first=junction is not None, reconcile=reconcile if scene_policy and junction is not None else None,
                                       recover_edges=recover if recover_edges and junction is not None else None)
-    status.update(plane_depth_method='ranked', plane_offsets=decisions,
+    status.update(plane_depth_method='ranked', plane_offsets=decisions, foreground_depth=foreground_status,
                   plane_depth_search='texture-and-contacts' if junction is not None else 'original-window')
     return cells, status

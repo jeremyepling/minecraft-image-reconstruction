@@ -373,7 +373,8 @@ def _material_assets(version, counter, matcher, explicit_path):
 
 
 def build(image_path, version, out, *, outlines=None, order_method=None, through='surfaces',
-          counter=None, atlas_path=None, material_match=None, context_px=None, boundary=None, library=None):
+          counter=None, atlas_path=None, material_match=None, context_px=None, boundary=None, library=None,
+          joint_foreground=True):
     camera_atlas_path = atlas_path
     from engine.atlas import digest
     from engine.surface_fields import MODELS, SETTINGS as inference, infer
@@ -622,7 +623,8 @@ def build(image_path, version, out, *, outlines=None, order_method=None, through
         if through == 'placement':
             from engine.export import JAVA_26_3_FORMAT, write_pack
             from engine.visible_placement import place
-            cells, status = place(image, version, patches, counts=counts, atlas_path=camera_atlas_path)
+            cells, status = place(image, version, patches, counts=counts, atlas_path=camera_atlas_path,
+                                  joint_foreground=joint_foreground)
             material = 'smooth_stone'
             blocks = {tuple(map(int, pos)): material for pos in cells}
             rows = [dict(x=x, y=y, z=z, block_id=material) for x,y,z in sorted(blocks)]
