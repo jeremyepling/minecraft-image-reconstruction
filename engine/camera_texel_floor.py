@@ -18,6 +18,10 @@ def _tracks(edges, rows):
 def _pencils(edges, rows, h):
     sparse = np.arange(0,len(rows),8)
     peaks, spec = _tracks(edges[sparse], rows[sparse])
+    available = np.array([len(p)>0 for _,p in peaks])
+    if np.count_nonzero(available)<8: return []
+    peaks=[p for p,valid in zip(peaks,available) if valid]
+    spec=spec[available]
     a, b = len(peaks)//5, 4*len(peaks)//5
     y1,k1=peaks[a]
     y2,k2=peaks[b]
@@ -34,6 +38,7 @@ def _pencils(edges, rows, h):
                 good=abs(f-A/(r-horizon)) < .0015
                 if sum(good)<5: break
                 slope, offset=np.polyfit(r[good],1/f[good],1)
+                if slope<=0: break
                 A,horizon=1/slope,-offset/slope
             if sum(good)<.55*len(r): continue
             idx=np.clip(np.rint(A/(r-horizon)*8192).astype(int),0,4096)
@@ -57,7 +62,7 @@ def _phase(edges, rows, A, horizon):
     inv=d*d*(1/(rows-horizon)-1/d)
     trials=np.arange(-2,2.001,.002)
     def solve(trials):
-        vals=np.exp(-2j*np.pi*trials[:,None]*inv)@states
+        vals=np.einsum("ij,j->i",np.exp(-2j*np.pi*trials[:,None]*inv),states)
         i=np.argmax(abs(vals))
         return trials[i], np.angle(vals[i])/(2*np.pi), abs(vals[i])/max(np.sum(abs(states)),1)
     slope,_,_=solve(trials)
@@ -82,7 +87,11 @@ def _refine(edges, rows, model, horizon):
 
 
 def _ground(Pinv,w,h):
-    H=np.linalg.inv(Pinv)
+    try:
+        H=np.linalg.inv(Pinv)
+    except np.linalg.LinAlgError:
+        return None
+    if np.any(abs(H[2,:2])<1e-12): return None
     if H[2,2]<0: H=-H
     vps=H[:2,:2]/H[2,:2]
     c=np.array([w/2,h/2])
@@ -100,10 +109,10 @@ def _ground(Pinv,w,h):
     return (K@np.column_stack([axes[:,0],up,axes[:,1],axes[:,2]])).tolist(),float(f),float(err)
 
 
-def lattice(image):
+def lattice(image, lower=.74):
     rgb=np.asarray(image.convert("RGB"),np.int16)
     h,w=rgb.shape[:2]
-    rows=np.arange(int(.74*h),int(.983*h))+.5
+    rows=np.arange(int(lower*h),int(.983*h))+.5
     floor=rgb[rows.astype(int)]
     center=np.median(floor[::6,::6],axis=(0,1))
     mask=np.max(abs(floor-center),axis=2)<14
