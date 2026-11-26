@@ -22,6 +22,10 @@ The final rule gained 708 correct positions and lost three. It added 111 erroneo
 | Reviewed transfer views | 12 | 77.55% | 79.47% | 2,359 |
 | Additional transfer views | 8 | 81.06% | 82.91% | 1,431 |
 
+## Confirmation on additional views
+
+Before scoring, we reserved all 20 remaining camera-supported photographs from the native archive after excluding every RGB hash in the fixed suite and the earlier transfer selections. The camera views were new to this comparison. The 16 structures had already appeared from other angles. Pooled F1 rose from **79.58% to 81.94%**. Correct positions rose from 2,986 to 3,173 of 4,098. Extras rose from 420 to 474, including two more on hidden structure. Precision went from 87.67% to 87.00% and recall from 72.86% to 77.43%. Twelve views improved, five tied and three declined. Eight alternate canopy views recovered 131 of 398 roof blocks at the right offsets from both posts, up from 112. Six opening widths were correct and two were unresolved under both methods. [Reserved photographs, input hashes and paired builds](../visible-recovery-extra-views-01/README.md)
+
 ## What changed in an exported build
 
 The foreground decision compares plausible surface depths. If a proposed block would project in front of another independently observed surface, a depth that preserves both observations can win. The rule keeps the prior decision when evidence for switching is weak. The next pass checks whether the visible part of an adjacent face matches the source photograph at the same position within a texture tile. The last pass tests projected tops and undersides every two image pixels. Two neighboring blocks nominate a location. Visible face pixels and their measured orientations must support placement. Both recovery passes preserve native-pixel visibility of earlier placements. [Foreground depth alternatives](../foreground-conflicts-01/README.md) · [Neighboring texture controls](../neighbor-photo-01/README.md) · [Two-pixel and four-pixel controls](../native-sample-density-01/README.md)

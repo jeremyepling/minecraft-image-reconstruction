@@ -24,9 +24,9 @@ def summarize(rows):
     correct = counts['correct']
     previous = correct-counts['gained']+counts['lost']
     previous_extra = counts['extras']-counts['extra_added']+counts['extra_removed']
-    return dict(counts,frames=len(rows),**directions,precision=correct/counts['placed'],recall=correct/counts['target'],
-                f1=2*correct/(counts['placed']+counts['target']),
-                previous_f1=2*previous/(previous+previous_extra+counts['target']))
+    return dict(counts,frames=len(rows),**directions,precision=correct/max(1,counts['placed']),
+                recall=correct/max(1,counts['target']),f1=2*correct/max(1,counts['placed']+counts['target']),
+                previous_f1=2*previous/max(1,previous+previous_extra+counts['target']))
 
 
 def run(root,out):
@@ -73,4 +73,3 @@ if __name__=='__main__':
     p.add_argument('--out',type=Path,required=True)
     args = p.parse_args()
     run(args.predictions,args.out)
-
