@@ -1,0 +1,327 @@
+{
+  "run_id": "count-transfer-check-01",
+  "version": "26.3",
+  "code": {
+    "commit": "3140818ecd2ca387bc4a6aedf0c00ceddfb4c685",
+    "predictor_and_runner_sha256": "680941fc53ac2e95bbc99a9b704ed0708325b8c6b9033901622938d4025dd5dc",
+    "source_dirty": false
+  },
+  "algorithm": "No tuning. Frozen predictors receive only one RGB and image-derived surfaces, with normals, relative inverse depth and baseline count evidence.",
+  "methods": [
+    "current",
+    "refit",
+    "phase_repeat",
+    "phase",
+    "coplanar"
+  ],
+  "sources": {
+    "refit": {
+      "module": "repeat_rectify",
+      "file_sha256": "e11789b3c427f16bf3e3f026fae94f8d38f2072692d1e6b7958090a25b394c5b",
+      "commit": "3140818ecd2ca387bc4a6aedf0c00ceddfb4c685",
+      "settings": {
+        "bins": 16,
+        "fit_span": [
+          0.12,
+          0.88
+        ],
+        "minimum_bins": 8,
+        "minimum_fit_iou": 0.82,
+        "minimum_valid_fraction": 0.48,
+        "cross_band_relative_tolerance": 0.08,
+        "minimum_band_agreement": 0.48
+      }
+    },
+    "phase": {
+      "module": "phase_corners",
+      "file_sha256": "49cd3b29f040e96d6fb158e3d1fd4223b5f1dd1967da66e8fb39d26c62f5c4f0",
+      "commit": "3140818ecd2ca387bc4a6aedf0c00ceddfb4c685",
+      "settings": {
+        "envelope_min_iou": 0.72,
+        "envelope_weights": [
+          0.5,
+          1.0
+        ],
+        "slope_changes": [
+          -0.075,
+          0.075
+        ],
+        "training_outer_fraction": 0.3,
+        "held_center_fraction": 0.3,
+        "minimum_pairs": 32,
+        "minimum_repeat": 0.55,
+        "max_pitch_drift": 0.12,
+        "minimum_atlas_train": 0.55,
+        "minimum_atlas_hold": 0.45,
+        "minimum_atlas_margin": 0.07,
+        "atlas_shortlist": 20,
+        "atlas_max_observations": 2000
+      }
+    },
+    "coplanar": {
+      "module": "coplanar_count",
+      "file_sha256": "770e7faa467febd976d4b0d3c6650647cc133f01b6575a7eba777b861bf2c3c2",
+      "commit": "3140818ecd2ca387bc4a6aedf0c00ceddfb4c685",
+      "settings": {
+        "normal_cosine": 0.975,
+        "minimum_repeat": 0.65,
+        "minimum_cycles": 2.0,
+        "minimum_inverse_depth": 0.03,
+        "depth_log_tolerance": 0.16,
+        "max_gap_blocks": 8.0,
+        "donor_grid_residual": 0.3,
+        "recipient_grid_residual": 0.28,
+        "max_pitch_ratio": 1.23,
+        "max_already_measured_error": 0.45
+      }
+    }
+  },
+  "atlas": {
+    "version": "26.3",
+    "atlas_sha256": "49b477fbfe5f2171c2529e3ffe1722f09fee5a094de2b6b99831512b8601c950",
+    "client_sha256": "4508d006323f24fa02876310c192d739af56516eb259000ac50f0909a68c9a2d",
+    "placement_index_sha256": "32f95873f5b10e0fa36023c149b4277a4b1f7a59fb77940ede120f9292f37ac6",
+    "atlas_json_sha256": "f33529ac90984827e82bf8720d8bd122e11f1386fb6c49a70379437a3c4c54a2",
+    "texture_count": 448,
+    "block_count": 384,
+    "scope": "all opaque untinted full-cube face sprites in the placement index, all six directions"
+  },
+  "photo_rule": "count-stable-photo-edges-v1",
+  "inputs": "Saved ordinary predictions and two Visible Builds v1 released shards; all original inference reused.",
+  "transfer_archive_sha256": "7addb6af53678a2f3f0d4c8ef36fdb505012f5f27d10e08b84d167f70b7ecfbe",
+  "shards": {
+    "validation": {
+      "file": "visible-builds-v1-validation.zip",
+      "sha256": "5298a056e4a9d28af448a22da88bbd2ebcdbbbfa967adb2e28b7dc35c9f54401",
+      "bytes": 20125868,
+      "frames": 12,
+      "layouts": 3
+    },
+    "test": {
+      "file": "visible-builds-v1-test.zip",
+      "sha256": "97b6a87b1198f6a0ac1baeb7d4f15a433c2ce6bbde302f61f9c225e1d0ff6dee",
+      "bytes": 20181829,
+      "frames": 12,
+      "layouts": 3
+    }
+  },
+  "fixture_ids": [
+    {
+      "id": "validation-cloister1-cool-high-right",
+      "layout": "cloister1",
+      "image_sha256": "d070a5b17327f7984b08d4878ef38b1ca8bfc34cc88e8ecf8c0b532e449581e3"
+    },
+    {
+      "id": "validation-cloister1-cool-low-left",
+      "layout": "cloister1",
+      "image_sha256": "1ada4859cbfd40e9d46f621317bceda78e85c504dd11552d9d165b6be0d087a2"
+    },
+    {
+      "id": "validation-cloister1-earth-high-right",
+      "layout": "cloister1",
+      "image_sha256": "6ffa7491a6f89868e57b9550e7aa44e1a3e2b30ec37ef35c5006ef2f5b716833"
+    },
+    {
+      "id": "validation-cloister1-earth-low-left",
+      "layout": "cloister1",
+      "image_sha256": "e7277a48a55059a5705a7001dc4db0ace8fafd8ccfd14a20919e45e797889405"
+    },
+    {
+      "id": "validation-cloister2-cool-high-right",
+      "layout": "cloister2",
+      "image_sha256": "b44d39c2293d7c6e6342991fa35bd345c4b65c3a9eb32d709c6ce35a7a34bd8d"
+    },
+    {
+      "id": "validation-cloister2-cool-low-left",
+      "layout": "cloister2",
+      "image_sha256": "7827d94b5b49939a79c0beff66e6fa9350f1e5369c3604a31ad71d3724bd7da7"
+    },
+    {
+      "id": "validation-cloister2-earth-high-right",
+      "layout": "cloister2",
+      "image_sha256": "d6158887502cad46d0c123c5d81419216d0d647de03f5cc894ce38fcb824fc03"
+    },
+    {
+      "id": "validation-cloister2-earth-low-left",
+      "layout": "cloister2",
+      "image_sha256": "4cc646c35ac8a43bbcaa9ed5f50f6b289001586af8fae76808550e7d7bab9c7f"
+    },
+    {
+      "id": "validation-cloister3-cool-high-right",
+      "layout": "cloister3",
+      "image_sha256": "5e41490e98d263b75ec35836087592a46e7827ef51b528e1ac4c3a562caf8a1e"
+    },
+    {
+      "id": "validation-cloister3-cool-low-left",
+      "layout": "cloister3",
+      "image_sha256": "2af0c43ad2dde58db3fb5f85e860db3151aaa75fe4e42d026bb1603375d63eec"
+    },
+    {
+      "id": "validation-cloister3-earth-high-right",
+      "layout": "cloister3",
+      "image_sha256": "d9c02463e7d3e940c4fe34b84b7f455ae8e21b48884b5c147a9fcf68dae45de5"
+    },
+    {
+      "id": "validation-cloister3-earth-low-left",
+      "layout": "cloister3",
+      "image_sha256": "55dc3070e54ecf411430bb3b314c4bba448be6aa981fe3206354a040f84b8304"
+    },
+    {
+      "id": "test-twinspire1-cool-high-right",
+      "layout": "twinspire1",
+      "image_sha256": "02e58fb693b6a95ffc35c2ba212ec4b150d2670c0b016c747e287afce5723cdf"
+    },
+    {
+      "id": "test-twinspire1-cool-low-left",
+      "layout": "twinspire1",
+      "image_sha256": "042ce5059691039efe691a2cf61d174f6f46eaed1196d21c9d76516f9956ef73"
+    },
+    {
+      "id": "test-twinspire1-earth-high-right",
+      "layout": "twinspire1",
+      "image_sha256": "45c87bd2a1d91d4f1d7bedbbf238cef410c3f762a55a453fd18959b8bff68a55"
+    },
+    {
+      "id": "test-twinspire1-earth-low-left",
+      "layout": "twinspire1",
+      "image_sha256": "c5d7e3dda67c0ce99472bbad4d84bdd7adf03c1ef9b4c3aa07961ddd12a6b235"
+    },
+    {
+      "id": "test-twinspire2-cool-high-right",
+      "layout": "twinspire2",
+      "image_sha256": "da880aa09dbb3bccb5a8e3a086ab68293bdfbc93759b0451d980e0edf3eb014d"
+    },
+    {
+      "id": "test-twinspire2-cool-low-left",
+      "layout": "twinspire2",
+      "image_sha256": "fd012a40918665b1bbe3660dec678a6b0b252934e4107adbf34bb95102226789"
+    },
+    {
+      "id": "test-twinspire2-earth-high-right",
+      "layout": "twinspire2",
+      "image_sha256": "fc71ebed34081656bdab0306f0f84b1acc3aebb5a87c3e73393999eabb4d50e8"
+    },
+    {
+      "id": "test-twinspire2-earth-low-left",
+      "layout": "twinspire2",
+      "image_sha256": "2b5c0abe66d1257234b3bc7192129e1a453c56b65eb14bb9f858e5af9480072c"
+    },
+    {
+      "id": "test-twinspire3-cool-high-right",
+      "layout": "twinspire3",
+      "image_sha256": "844b971d4a1a94df0dfb7ac6b4def9377b3440a572d99386248d1bf7ec5a1717"
+    },
+    {
+      "id": "test-twinspire3-cool-low-left",
+      "layout": "twinspire3",
+      "image_sha256": "105ca0401e7a25246d35564647b91c7c86c41aee3e088b5a0749d915d49c9d0b"
+    },
+    {
+      "id": "test-twinspire3-earth-high-right",
+      "layout": "twinspire3",
+      "image_sha256": "5318c61a2321570841e0d5c4ceb9c42af75b916a77e1effacde2d6661c2a1bf7"
+    },
+    {
+      "id": "test-twinspire3-earth-low-left",
+      "layout": "twinspire3",
+      "image_sha256": "24a4c46522c5250677bc5226311a404739b74d88e03d8be92c046b7ad6df8436"
+    }
+  ],
+  "workers": 5,
+  "summary": {
+    "current": {
+      "correct": 59,
+      "incorrect": 34,
+      "unmatched_returned": 15,
+      "axis_correct": 157,
+      "axis_wrong": 60,
+      "prior_correct_lost": 0,
+      "new_correct": 0,
+      "new_wrong": 0,
+      "eligible": 298,
+      "matched": 250,
+      "missing": 205
+    },
+    "refit": {
+      "correct": 70,
+      "incorrect": 41,
+      "unmatched_returned": 16,
+      "axis_correct": 180,
+      "axis_wrong": 65,
+      "prior_correct_lost": 0,
+      "new_correct": 11,
+      "new_wrong": 7,
+      "eligible": 298,
+      "matched": 250,
+      "missing": 187
+    },
+    "phase_repeat": {
+      "correct": 73,
+      "incorrect": 40,
+      "unmatched_returned": 17,
+      "axis_correct": 184,
+      "axis_wrong": 65,
+      "prior_correct_lost": 0,
+      "new_correct": 14,
+      "new_wrong": 6,
+      "eligible": 298,
+      "matched": 250,
+      "missing": 185
+    },
+    "phase": {
+      "correct": 62,
+      "incorrect": 34,
+      "unmatched_returned": 15,
+      "axis_correct": 162,
+      "axis_wrong": 59,
+      "prior_correct_lost": 0,
+      "new_correct": 3,
+      "new_wrong": 0,
+      "eligible": 298,
+      "matched": 250,
+      "missing": 202
+    },
+    "coplanar": {
+      "correct": 60,
+      "incorrect": 38,
+      "unmatched_returned": 15,
+      "axis_correct": 161,
+      "axis_wrong": 65,
+      "prior_correct_lost": 0,
+      "new_correct": 1,
+      "new_wrong": 4,
+      "eligible": 298,
+      "matched": 250,
+      "missing": 200
+    }
+  },
+  "command": "python -m benchmark.count_transfer_check --dataset <visible-builds-v1-shards> --out runs/count-transfer-replay --methods refit phase coplanar",
+  "artifacts": {
+    "cases.json": "5d06cc042bb488134b9b5f9c82a439b6458c365c268f4a097289c94f153de119",
+    "predictions/test-twinspire1-cool-high-right.json.gz": "5b65746cd981a6d027b0239c033c69f99c127d936aa9e20d8aa17505f1205940",
+    "predictions/test-twinspire1-cool-low-left.json.gz": "ed32f967c00ca163419170afe029fe0dc072366097981ebd004b4e99ea9562a5",
+    "predictions/test-twinspire1-earth-high-right.json.gz": "8b30074de4847a919c08d9f577721596a8be683e1568ccd2264c00dc89140a73",
+    "predictions/test-twinspire1-earth-low-left.json.gz": "11a472d9f8d761149ace480b80ffa79083e63da4cdf360bfbf977ec1662c73a9",
+    "predictions/test-twinspire2-cool-high-right.json.gz": "c8b80b35863ffe170740da9cc5415cdc844fff92fdbd675a178996904b6b2928",
+    "predictions/test-twinspire2-cool-low-left.json.gz": "785ef52fe5a2ff05a6ba2590f8616ebfa45f932f1b31f103a88a5636c1afab57",
+    "predictions/test-twinspire2-earth-high-right.json.gz": "3cb9a0e07f61a1b75653763d0b55b7f6ed92a1d4ae8779ab844ff5dfeb1cb2ae",
+    "predictions/test-twinspire2-earth-low-left.json.gz": "4e9b1374e39ec0c72cf5f89b99a9922d56deecb81c6cb0f6206fdb7319ae98c5",
+    "predictions/test-twinspire3-cool-high-right.json.gz": "e59805a6e05cc86b9d8cb9c196e34fc8867ba683c47ac9b77f667d9fab1037c9",
+    "predictions/test-twinspire3-cool-low-left.json.gz": "63ec18295c909555fe7fd58d8a5629d33dab0dde4c22eb5b7913048b9dc327b8",
+    "predictions/test-twinspire3-earth-high-right.json.gz": "6e86c58fe3cc251e3f35d306c6cab62198c3f3f86b2f1a28baafae07ceb279aa",
+    "predictions/test-twinspire3-earth-low-left.json.gz": "d088ee72928a926b27a4f1f24cea416bf7e06f719789c5720f8893b2b8001b85",
+    "predictions/validation-cloister1-cool-high-right.json.gz": "bb885ccd0a4ed84c0fa686ae2a83ce0bf26b5a2aabb0150d9e4791125b32e3de",
+    "predictions/validation-cloister1-cool-low-left.json.gz": "93944f51f2153b36bb5199275a3fa1ff0c515759d508ce3ec51516e3a5e469c6",
+    "predictions/validation-cloister1-earth-high-right.json.gz": "0189ab569b282e739600dbc76fbaf610caca73f94226f3a1e7e21484b07d9c1e",
+    "predictions/validation-cloister1-earth-low-left.json.gz": "d5d3f939de8dbbc45c0035183f36c67cf8a0b6801f74de293d7333b1debe92f4",
+    "predictions/validation-cloister2-cool-high-right.json.gz": "980a442f31f37c6c52976d7e060d87bb1be8b29e4ee5c2dfd01c8a11c73758be",
+    "predictions/validation-cloister2-cool-low-left.json.gz": "982361b29bbf07bee8770a5dbf239c6e1ae34fac9901942c504d327d770f0fa5",
+    "predictions/validation-cloister2-earth-high-right.json.gz": "9fd67d242a8bfc122b539213b31f7dfed7eb23f361cd55f981849efe4d9dab2e",
+    "predictions/validation-cloister2-earth-low-left.json.gz": "0530842aeecc1a5fb67beda599c554b03d88fd09a816611b4af6d6e1270763cc",
+    "predictions/validation-cloister3-cool-high-right.json.gz": "b53d6ab5f41f150a983690b9ec81424057980a89f1cb264e88baecf27900b914",
+    "predictions/validation-cloister3-cool-low-left.json.gz": "eb60e78bee8f21a2ecbf0f7d419286f75ba5d1d43b421041c5482147dfa4e44b",
+    "predictions/validation-cloister3-earth-high-right.json.gz": "b5b784a859fc6796da360f4f0a4f1b2ebd8ef30da192946addeceda7bf3d1814",
+    "predictions/validation-cloister3-earth-low-left.json.gz": "f9ebf8629b73bfa6893c112a7ad266d58d02982e89475f69fb0f55c045e37d78",
+    "scores.json": "c713cf8d2671b7e1cf0fbef57070e3bd25ae53a5241305a1e66ac161dc5a7b10"
+  }
+}
