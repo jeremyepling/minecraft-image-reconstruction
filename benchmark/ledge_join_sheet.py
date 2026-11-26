@@ -20,18 +20,20 @@ METHODS = ('current', 'ledge', 'join')
 NAMES = dict(current='Current finder', ledge='Ledge cut', join='Wall-piece join')
 
 
-def stages():
+def stages(methods=METHODS, names=NAMES, raw_stages=()):
     rows = [('source', 'Source building', 'Original', 'Clean building crop from the fixed review view.', 238),
             ('actual', 'Visible surfaces', 'Reference', 'Gold outlines show scored surfaces. Gray marks surfaces below the size cutoff.', 238)]
-    rows.extend((m, NAMES[m], 'Prediction', 'Guesses across this building. Pink marks guesses without a match.', 242)
-                for m in METHODS)
-    rows.extend(('grade-' + m, NAMES[m], 'Scored reference', 'Green marks surfaces found. Amber marks misses.', 242)
-                for m in METHODS)
+    rows.extend((key, title, 'Model output', note, 242) for key, title, note in raw_stages)
+    rows.extend((m, names[m], 'Prediction', 'Guesses across this building. Pink marks guesses without a match.', 242)
+                for m in methods)
+    rows.extend(('grade-' + m, names[m], 'Scored reference', 'Green marks surfaces found. Amber marks misses.', 242)
+                for m in methods)
     rows.extend([('locate', 'Find the close-up', 'Original', 'The white box locates the detail below. Each caption identifies its view.', 247),
                  ('crop', 'Original pixels', 'Close-up', 'This crop stays fixed for the remaining rows in its column.', 247),
                  ('target', 'Actual surface', 'Reference close-up', 'Gold marks only the selected surface. Scores use its full outline.', 247)])
-    rows.extend(('detail-' + m, NAMES[m], 'Prediction close-up', 'Cyan shows the paired guess, or the closest guess for a miss.', 247)
-                for m in METHODS)
+    rows.extend(('raw-detail-' + key, title, 'Model close-up', note, 247) for key, title, note in raw_stages)
+    rows.extend(('detail-' + m, names[m], 'Prediction close-up', 'Cyan shows the paired guess, or the closest guess for a miss.', 247)
+                for m in methods)
     return rows
 
 
@@ -41,7 +43,7 @@ def describe(row):
     return variant + ' / ' + floor.replace('_', ' ')
 
 
-def picture(out, row, case):
+def picture(out, row, case, methods=METHODS):
     checked(case.path('image'), row['sha256'])
     with Image.open(case.path('image')) as source:
         photo = source.convert('RGB')
@@ -49,21 +51,20 @@ def picture(out, row, case):
         parts = json.load(stream)
     _, ref = recorded(case)
     graded = {}
-    for method in METHODS:
+    for method in methods:
         graded[method], native = assessment(case, ref, parts[method], set(row['scopes'][method]['matched']))
     return photo, ref, native, graded
 
 
-def changes(row):
+def changes(row, methods=METHODS):
     baseline = set(row['scopes']['current']['matched'])
-    return {m: baseline ^ set(row['scopes'][m]['matched']) for m in METHODS[1:]}
+    return set().union(*(baseline ^ set(row['scopes'][m]['matched']) for m in methods[1:]))
 
 
-def choose_detail(candidates, fixed):
+def choose_detail(candidates, fixed, methods=METHODS):
     # Use grades only to choose an illustration after every method has produced its predictions.
     def priority(row):
-        changed = changes(row)
-        different = len(changed['ledge'] | changed['join'])
+        different = len(changes(row, methods))
         baseline = row['scores']['current']
         return (different > 0, baseline['matched'] < baseline['eligible'], row['key'] == fixed,
                 different, baseline['eligible'] - baseline['matched'])
@@ -72,13 +73,13 @@ def choose_detail(candidates, fixed):
 
 def choose_target(data, row):
     eligible = [p for p in data['current']['grading']['references'] if p['eligible']]
-    changed = changes(row)
+    changed = changes(row, tuple(data))
     def rank(p):
         rid = p['id']
-        return (rid in changed['ledge'] | changed['join'], rid not in data['current']['found'],
+        return (rid in changed, rid not in data['current']['found'],
                 p['pixels'], -rid)
     rid = max(eligible, key=rank)['id']
-    if rid in changed['ledge'] | changed['join']:
+    if rid in changed:
         return rid, 'Changed match'
     return rid, 'Current miss' if rid not in data['current']['found'] else 'Matched example'
 
@@ -92,8 +93,7 @@ def overview_panels(put, full, row, view):
     put('actual', actual.crop(scene), f'{len(ref["patches"])} visible / {len(eligible)} scored',
         f'{len(ref["patches"]) - len(eligible)} below the size cutoff')
     summary = {}
-    for m in METHODS:
-        result = graded[m]
+    for m, result in graded.items():
         found = result['found']
         counts = result['grading']['counts']
         put(m, color_predictions(photo, result).crop(scene),
@@ -106,7 +106,7 @@ def overview_panels(put, full, row, view):
     return dict(frame=row['key'], sha256=row['sha256'], scene_xyxy=scene, methods=summary)
 
 
-def detail_panels(put, full, row, overview, pinned):
+def detail_panels(put, full, row, overview, pinned, raw_detail=False):
     photo, _, native, graded = full
     if pinned:
         if pinned['sha256'] != row['sha256'] or pinned['frame'] != row['key']:
@@ -121,12 +121,12 @@ def detail_panels(put, full, row, overview, pinned):
     same = row['key'] == overview
     view_note = 'Same view as overview' if same else 'Different view for close-up'
     put('locate', locate(photo, box).crop(scene), view_note, describe(row))
-    put('crop', photo.crop(box), f'{reason} · R{rid}', 'Same original pixels in the four rows below')
+    caption = 'Every following row uses this crop' if raw_detail else 'Same original pixels in the four rows below'
+    put('crop', photo.crop(box), f'{reason} · R{rid}', caption)
     put('target', paint(photo, native, {rid: GOLD}).crop(box), f'Recorded surface R{rid}', 'Gold marks its visible footprint')
     paired = {}
     base_found = rid in graded['current']['found']
-    for m in METHODS:
-        result = graded[m]
+    for m, result in graded.items():
         near = result['lookup'][rid]
         i = near['index']
         image, shown = _detail(photo, result['parts'][i - 1] if i else None, box)
@@ -141,8 +141,16 @@ def detail_panels(put, full, row, overview, pinned):
                 focus_reason=reason, crop_xyxy=box, scene_xyxy=scene, methods=paired)
 
 
-@image_only()
 def render(out, rows, captures, table):
+    return render_comparison(out, rows, captures, table, NAMES,
+                             'Did the ledge cut or the wall-piece join recover more surfaces?')
+
+
+@image_only()
+def render_comparison(out, rows, captures, table, names, title, raw_stages=(), raw_panels=None):
+    methods = tuple(names)
+    if not methods or methods[0] != 'current':
+        raise ValueError('The first column method must be the current finder')
     out = Path(out)
     reviews = ROOT / 'benchmark/reviews'
     roster_file = reviews / 'recovery-01/sheet-views.json'
@@ -156,15 +164,15 @@ def render(out, rows, captures, table):
     if (len(roster) != 8 or len({v['layout'] for v in roster}) != 8 or len(pinned) != 4 or
             set(by_key) != set(captures) or len(by_key) != len(rows) or len(rows) != 56):
         raise ValueError('Review inputs differ from the eight fixed buildings and 56 frames')
-    specs = stages()
+    specs = stages(methods, names, raw_stages)
     width = LEFT + len(roster) * (COL + GAP) + GAP
     height = TOP + sum(h + 82 for _, _, _, _, h in specs) + 9
     page = Image.new('RGB', (width, height), PAPER)
     draw = ImageDraw.Draw(page)
-    label(draw, (16, 16), 'Did the ledge cut or the wall-piece join recover more surfaces?', 39, bold=True)
-    totals = {m: table['all'][m]['matched'] for m in METHODS}
+    label(draw, (16, 16), title, 39, bold=True)
+    totals = {m: table['all'][m]['matched'] for m in methods}
     scored = table['all']['current']['eligible']
-    line = '   /   '.join(f'{NAMES[m]} {totals[m]} of {scored}' for m in METHODS)
+    line = '   /   '.join(f'{names[m]} {totals[m]} of {scored}' for m in methods)
     label(draw, (18, 74), line + '     ·     56 saved views', 22)
     legends = [(GOLD, 'Actual surface'), (COLORS['finder'], 'Prediction'), (COLORS['extra'], 'Extra guess'),
                (COLORS['found'], 'Found'), (COLORS['missed'], 'Missed'), (COLORS['small_found'], 'Small match')]
@@ -195,18 +203,22 @@ def render(out, rows, captures, table):
         def put(key, image, first, second):
             y, h = starts[key]
             tile(page, x, y, h, image, first, second)
-        data = picture(out, row, captures[key])
+        data = picture(out, row, captures[key], methods)
         scene = overview_panels(put, data, row, view)
+        if raw_panels:
+            scene['raw_fields'] = raw_panels(put, data[0], row, scene['scene_xyxy'], '')
         pin = pinned.get(layout)
         detail = (by_key[pin['frame']] if pin else
-                  choose_detail([r for r in rows if r['layout'] == layout], key))
+                  choose_detail([r for r in rows if r['layout'] == layout], key, methods))
         if detail['key'] != key:
-            data = picture(out, detail, captures[detail['key']])
-        selection = detail_panels(put, data, detail, key, pin)
+            data = picture(out, detail, captures[detail['key']], methods)
+        selection = detail_panels(put, data, detail, key, pin, raw_detail=bool(raw_stages) or len(methods) != 3)
+        if raw_panels:
+            selection['raw_fields'] = raw_panels(put, data[0], detail, selection['crop_xyxy'], 'raw-detail-')
         views.append(dict(layout=layout, cohort=row['cohort'], overview=scene, close_up=selection))
     path = out / 'comparison.jpg'
     page.save(path, quality=93, subsampling=0, optimize=True)
-    save(out / 'sheet-views.json', dict(views=views, methods=NAMES, fixed_views_sha256=digest(roster_file),
+    save(out / 'sheet-views.json', dict(views=views, methods=names, fixed_views_sha256=digest(roster_file),
          prior_misses_sha256=digest(misses_file), reference_sha256=digest(ARCHIVE), matched=totals, eligible=scored,
          definition='Scores and gained/lost status use full surfaces, including regions beyond an enlarged crop.',
          selection='Four pinned regions from the prior misses review. For other buildings prefer changed match IDs, '
