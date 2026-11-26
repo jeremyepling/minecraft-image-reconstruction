@@ -1,5 +1,6 @@
 """Lift visible rectangular outlines into camera coordinates (+x right, +y down, +z forward)."""
 import json
+import logging
 from pathlib import Path
 
 import numpy as np
@@ -237,6 +238,10 @@ def _count_regions(image, planes, version, method, atlas, out, shape_matcher=Non
         raise ValueError(f'Unknown Block Counter method {method}')
     measurements = []
     faces = []
+    phase_report = None
+    if method in ('masked-repeat', texture_guided_count.METHOD) and atlas is not None:
+        from engine.atlas_phase import register_phase
+        phase_report = dict(status='enabled', offsets_added=0, surface_errors=0)
     samples_dir = out / 'samples'
     samples_dir.mkdir(exist_ok=True)
     for i, plane in enumerate(planes):
@@ -264,6 +269,21 @@ def _count_regions(image, planes, version, method, atlas, out, shape_matcher=Non
             path = samples_dir / f'surface-{i:03}.png'
             rectified.save(path)
             row.update(quad=np.asarray(sample['quad']).tolist(), sample=path.relative_to(out).as_posix())
+            if phase_report is not None:
+                try:
+                    registered = register_phase(sample, result, atlas)
+                except Exception as exc:
+                    # Only the optional atlas step can fall back. Keep the measured grid.
+                    row['atlas_phase_error'] = f'{type(exc).__name__}: {exc}'
+                    phase_report['status'] = 'partial'
+                    phase_report['surface_errors'] += 1
+                else:
+                    if registered['phase'] != result['phase']:
+                        row['phase_before_atlas'] = result['phase']
+                        phase_report['offsets_added'] += sum(
+                            old is None and new is not None
+                            for old, new in zip(result['phase'], registered['phase']))
+                    result = registered
             row.update(result)
             row['dimensions'] = dimensions(plane, sample['quad'], image.size, result['counts'])
             from engine.surface_tiles import complete_footprints
@@ -283,6 +303,8 @@ def _count_regions(image, planes, version, method, atlas, out, shape_matcher=Non
         measurements.append(row)
     report = dict(version=version, units='blocks across and down the rectified sampling chart',
                   shape_artifact='surfaces.json', surfaces=measurements)
+    if phase_report is not None:
+        report['atlas_phase'] = phase_report
     if atlas is not None:
         from engine.atlas_count import rank_tile
         from engine.block_face_groups import assign_block_materials
@@ -529,29 +551,51 @@ def build(image_path, version, out, *, outlines=None, order_method=None, through
     if through in ('counts', 'placement'):
         counter = counter or defaults['block_count']
         atlas = None
-        if counter == 'atlas-repeat' or atlas_path is not None or material_match == 'atlas':
-            from engine.atlas_count import load_atlas
-            atlas = load_atlas(atlas_path, version=version)
-            manifest['atlas'] = atlas.provenance
-            methods['material_matching'] = 'atlas'
         shape_matcher = None
         shadow_field = None
-        if material_match in ('shape', 'shape-shadow'):
-            from engine.blocker_shape import ShapeMatcher
-            if atlas_path is None:
-                raise ValueError('Shape material matching needs an atlas directory')
-            shape_matcher = ShapeMatcher(atlas_path)
-            methods['material_matching'] = material_match
-            if material_match == 'shape-shadow':
-                from engine.blocker_shadow import surface_shadow_map
-                shadow_field = surface_shadow_map(np.asarray(image.convert('RGB')), [p for p in patches if p.get('support')])
-        if material_match == 'exposure':
+        atlas_error = None
+        if atlas_path is not None or material_match or counter == 'atlas-repeat':
+            from engine.atlas_count import load_atlas, prepared_atlas_path
+            material_match = material_match or 'atlas'
+            try:
+                if atlas_path is None and counter != 'atlas-repeat':
+                    atlas_path = prepared_atlas_path(version)
+                    if atlas_path is None:
+                        raise FileNotFoundError(f'No prepared Java {version} texture atlas found')
+                atlas = load_atlas(atlas_path, version=version,
+                                   verify_material_index=material_match in ('shape', 'shape-shadow', 'exposure'))
+                if material_match in ('shape', 'shape-shadow'):
+                    from engine.blocker_shape import ShapeMatcher
+                    shape_matcher = ShapeMatcher(atlas_path, catalog=atlas.material_index)
+            except Exception as exc:
+                if counter == 'atlas-repeat':
+                    raise  # This explicitly selected counter requires the atlas to measure spacing.
+                atlas = None
+                atlas_error = dict(status='unavailable', requested_matcher=material_match,
+                                   reason=f'{type(exc).__name__}: {exc}', offsets_added=0)
+                if atlas_path is not None:
+                    atlas_error['path'] = str(atlas_path)
+                logging.getLogger(__name__).warning('Using measured grids without material IDs: %s', exc)
+                methods['material_matching'] = 'unavailable'
+            else:
+                manifest['atlas'] = atlas.provenance
+                methods['material_matching'] = material_match
+        if atlas is not None and material_match == 'shape-shadow':
+            from engine.blocker_shadow import surface_shadow_map
+            shadow_field = surface_shadow_map(np.asarray(image.convert('RGB')), [p for p in patches if p.get('support')])
+        if atlas is not None and material_match == 'exposure':
             from engine.block_exposure import ExposureMatcher
-            shape_matcher = ExposureMatcher(atlas_path, library)
-            methods['material_matching'] = 'exposure'
+            shape_matcher = ExposureMatcher(atlas_path, library, catalog=atlas.material_index)
             manifest['material_library_sha256'] = digest(library)
         methods['block_grouping'] = 'convex-shared-edges'
         counts = _count_regions(image, patches, version, counter, atlas, out, shape_matcher, shadow_field)
+        if atlas_error is not None:
+            counts['atlas_phase'] = atlas_error
+        if 'atlas_phase' in counts:
+            manifest['atlas_phase'] = counts['atlas_phase']
+            if counts['atlas_phase']['status'] == 'partial':
+                logging.getLogger(__name__).warning('Used measured offsets on %d surfaces after atlas errors; see counts.json',
+                                                    counts['atlas_phase']['surface_errors'])
         (out/'counts.json').write_text(json.dumps(counts, allow_nan=False, indent=2))
         manifest['artifact'] = 'counts.json'
         manifest['artifacts'].update(counts='counts.json', samples='samples/')

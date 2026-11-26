@@ -12,9 +12,10 @@ from engine.reconstruction import exemplar_bank
 class ExposureMatcher:
     sample_size = 16
 
-    def __init__(self, atlas_path, library):
+    def __init__(self, atlas_path, library, *, catalog=None):
         atlas_path = Path(atlas_path)
-        catalog = json.loads((atlas_path/'placement-index.json').read_bytes())
+        if catalog is None:
+            catalog = json.loads((atlas_path/'placement-index.json').read_bytes())
         self.version = catalog['version']
         self.mapping = defaultdict(set)
         for side in catalog['choices'].values():

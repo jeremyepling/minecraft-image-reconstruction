@@ -115,10 +115,8 @@ def run_image_command(parser,args):
     if args.command=='build' and args.surface_context_px is not None:
         if args.through not in ('surfaces','counts','placement') or args.surface_context_px < 0:
             parser.error('--surface-context-px requires a surface stage and a nonnegative margin')
-    if args.command=='build' and args.material_match in ('shape','shape-shadow') and not args.atlas:
-        parser.error('--material-match shape and shape-shadow require --atlas')
-    if args.command=='build' and args.material_match=='exposure' and not (args.atlas and args.library):
-        parser.error('--material-match exposure requires --atlas and --library')
+    if args.command=='build' and args.material_match=='exposure' and not args.library:
+        parser.error('--material-match exposure requires --library')
     if args.command=='build' and args.through not in ('counts','placement') and args.material_match:
         parser.error('--material-match applies to counts or placement')
     if args.command=='atlas':

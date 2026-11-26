@@ -30,10 +30,10 @@ def features(tiles):
 
 
 class ShapeMatcher:
-    def __init__(self, atlas_path):
+    def __init__(self, atlas_path, *, catalog=None):
         atlas_path = Path(atlas_path)
         meta = json.loads((atlas_path/'atlas.json').read_bytes())
-        index = json.loads((atlas_path/'placement-index.json').read_bytes())
+        index = catalog if catalog is not None else json.loads((atlas_path/'placement-index.json').read_bytes())
         if (meta['version'] != index['version'] or meta['atlas_sha256'] != index['atlas_sha256']
                 or digest(atlas_path/meta['atlas']) != meta['atlas_sha256']):
             raise ValueError('Atlas and placement index must match')

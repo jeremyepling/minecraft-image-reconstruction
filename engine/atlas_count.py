@@ -22,6 +22,8 @@ METHOD = 'atlas-repeat'
 ROOT = Path(__file__).resolve().parents[1]
 CALIBRATED_INDEX = ROOT/'benchmark/data/count-atlas-v1/placement-index-26.3.json.gz'
 INDEX_SHA256 = '32f95873f5b10e0fa36023c149b4277a4b1f7a59fb77940ede120f9292f37ac6'
+# Ordered texture IDs and pixel rectangles in the verified vanilla 26.3 sheet.
+SPRITE_LAYOUT_SHA256 = 'e9168881e77cb0cd1287fdd7b52d15bf92e1b09c66271b070c4202384d95ad3c'
 
 
 @dataclass
@@ -35,6 +37,7 @@ class Atlas:
     spectra: np.ndarray
     profiles: np.ndarray
     provenance: dict
+    material_index: dict | None = None
 
 
 def _prepare(tiles, labels, ids, provenance):
@@ -57,14 +60,33 @@ def _prepare(tiles, labels, ids, provenance):
                  np.stack(profiles,axis=1), provenance)
 
 
-def load_atlas(path=None, version='26.3'):
+def prepared_atlas_path(version):
+    workspace_atlas = Path('workspace/builds/mcir-port-validation') / ('final-cli-' + version) / 'atlas'
+    paths = [ROOT/'runs'/version/'atlas', ROOT/'runs'/'atlas',
+             ROOT.parent/workspace_atlas, ROOT.parent.parent/workspace_atlas]
+    return next((p for p in paths if (p/'atlas.json').is_file()), None)
+
+
+def _verify_material_index(local, calibrated):
+    # Offline regeneration can omit stateful cubes. Every ID it does include
+    # must be a calibrated choice for this texture and facing.
+    if (any(local[k] != calibrated[k] for k in ('version', 'client_sha256', 'atlas_sha256'))
+            or local['choices'].keys() != calibrated['choices'].keys()):
+        raise ValueError('Material placement index does not match the calibrated atlas')
+    for side, choices in local['choices'].items():
+        for texture, ids in choices.items():
+            if not ids or not set(ids).issubset(calibrated['choices'][side].get(texture, ())):
+                raise ValueError(f'Unexpected block mapping for {texture} on the {side} face')
+    if not any(local['choices'].values()):
+        raise ValueError('Material placement index contains no block mappings')
+
+
+def load_atlas(path=None, version='26.3', *, verify_material_index=False):
     """Load local vanilla art and the frozen full-block index for the measured game release."""
     if path is None:
-        paths = [ROOT/'runs'/version/'atlas', ROOT/'runs'/'atlas',
-                 ROOT.parent.parent/'workspace'/'builds'/'mcir-port-validation'/('final-cli-'+version)/'atlas']
-        path = next((p for p in paths if (p/'atlas.json').is_file()),None)
+        path = prepared_atlas_path(version)
         if path is None and version=='26.3':
-            path=paths[0]
+            path=ROOT/'runs'/version/'atlas'
             make_atlas(discover(version),path,version)
     if path is None or not (Path(path)/'atlas.json').is_file():
         raise FileNotFoundError(f'Prepare an atlas with python reconstruct.py atlas --version {version} --out runs/{version}/atlas')
@@ -84,6 +106,14 @@ def load_atlas(path=None, version='26.3'):
             or index['client_sha256'] != meta['recipe']['client_sha256']
             or digest(path/meta['atlas']) != meta['atlas_sha256']):
         raise ValueError('Atlas art, target version and placement index must agree')
+    local_index = None
+    if version == '26.3':
+        layout = [(t['id'], t['rect']) for t in meta['textures']]
+        if hashlib.sha256(json.dumps(layout, separators=(',', ':')).encode()).hexdigest() != SPRITE_LAYOUT_SHA256:
+            raise ValueError('Vanilla sprite names or coordinates do not match the calibrated atlas')
+        if verify_material_index:
+            local_index = json.loads((path/'placement-index.json').read_bytes())
+            _verify_material_index(local_index, index)
     tiles, labels = opaque_sprites(path,index)
     ids = []
     for texture in labels:
@@ -94,7 +124,9 @@ def load_atlas(path=None, version='26.3'):
                       atlas_json_sha256=digest(path/'atlas.json'), texture_count=len(labels),
                       block_count=len(set().union(*map(set,ids))),
                       scope='all opaque untinted full-cube face sprites in the placement index, all six directions')
-    return _prepare(tiles, labels.tolist(), ids, provenance)
+    atlas = _prepare(tiles, labels.tolist(), ids, provenance)
+    atlas.material_index = local_index
+    return atlas
 
 
 def _shortlist(rgb, mask, atlas):

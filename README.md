@@ -18,6 +18,14 @@ Open `reconstruction.zip` for the visible geometry datapack and `placements.json
 
 Read `surfaces.json` for visible masks and openings, and `counts.json` for the **Block Counter**’s estimates and any requested material matches. Use `-Through counts` to stop after counting. [Setup and single-image verification](benchmark/WALL_RECOVERY_BUILD.md) · [Placement results](benchmark/SUPPORTED_PLACEMENT.md)
 
+To identify visible materials, run the Texture matcher with a prepared vanilla Java 26.3 atlas:
+
+```powershell
+.\Invoke-WallRecovery.ps1 .\screenshot.png -Through counts -MaterialMatch shape -Out .\runs\my-materials
+```
+
+The command finds the atlas in `runs/26.3/atlas`, `runs/atlas`, or this workspace’s calibration directory. Use `-Atlas PATH` to select a directory explicitly. When both block spacings are measured, material runs automatically use visible texture to locate missing grid offsets. Only complete faces inside the observed mask reach material matching. If the atlas is missing or damaged, the build writes the ordinary measurements and leaves material IDs unresolved. If registration fails on one surface, its original grid still goes to the matcher. The `atlas_phase` entry in `build-manifest.json` records recovered offsets or the fallback reason. [Paired results on 56 screenshots](benchmark/reviews/default-atlas-phase-01.json)
+
 ## Reproduce the surface score
 
 ```powershell

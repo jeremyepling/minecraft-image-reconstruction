@@ -1,0 +1,118 @@
+{
+  "baseline_revision": "832c0ec807a1e60e05938b49299cb1e71bfc54ca",
+  "frozen_comparison_revision": "1014df5",
+  "counter": "masked-repeat",
+  "material_match": "shape",
+  "source_masks": "edge_detail:native4-stable-counts",
+  "source_mask_manifest_sha256": "d8a2c401d28c546762bcef38ed731c4074120f3750f2998a5b7e797fcb6e9a43",
+  "reference_sha256": "91efa6d3e992b1a68672eae1fdd6d380e87724742a1a4b6cbe5f84d284f731a1",
+  "fixtures": {
+    "smooth_stone": "660d1e535ae134452bca903a9d7cbe8d37953927fa118d9ffb327afad0885bc2",
+    "light_gray_concrete": "321505e15563f8efc0da868baa27409837aaa474410a61f3513b3dac0030f066",
+    "surface_confirm_v1": "0a479a8264f2c0f714284928354ff6ff5f9729491709676f07e2033d25e48fc3",
+    "normal_confirm_v1": "61bdf3a89a505a8be3757efe480185bec9c1888a1c72ffb69ef0093623e27dda"
+  },
+  "all_baseline_and_promoted_face_decisions_match_published_experiment": true,
+  "scores": {
+    "ordinary": {
+      "all": {
+        "frames": 56,
+        "eligible": 10438,
+        "proposed": 104,
+        "named": 104,
+        "aligned": 103,
+        "correct": 103,
+        "wrong_id": 0,
+        "unresolved_aligned": 0,
+        "unpaired": 0,
+        "misaligned": 1,
+        "unverified_named": 1
+      },
+      "development": {
+        "frames": 20,
+        "eligible": 3072,
+        "proposed": 19,
+        "named": 19,
+        "aligned": 19,
+        "correct": 19,
+        "wrong_id": 0,
+        "unresolved_aligned": 0,
+        "unpaired": 0,
+        "misaligned": 0,
+        "unverified_named": 0
+      },
+      "regression": {
+        "frames": 36,
+        "eligible": 7366,
+        "proposed": 85,
+        "named": 85,
+        "aligned": 84,
+        "correct": 84,
+        "wrong_id": 0,
+        "unresolved_aligned": 0,
+        "unpaired": 0,
+        "misaligned": 1,
+        "unverified_named": 1
+      }
+    },
+    "promoted": {
+      "all": {
+        "frames": 56,
+        "eligible": 10438,
+        "proposed": 155,
+        "named": 155,
+        "aligned": 154,
+        "correct": 154,
+        "wrong_id": 0,
+        "unresolved_aligned": 0,
+        "unpaired": 0,
+        "misaligned": 1,
+        "unverified_named": 1
+      },
+      "development": {
+        "frames": 20,
+        "eligible": 3072,
+        "proposed": 35,
+        "named": 35,
+        "aligned": 35,
+        "correct": 35,
+        "wrong_id": 0,
+        "unresolved_aligned": 0,
+        "unpaired": 0,
+        "misaligned": 0,
+        "unverified_named": 0
+      },
+      "regression": {
+        "frames": 36,
+        "eligible": 7366,
+        "proposed": 120,
+        "named": 120,
+        "aligned": 119,
+        "correct": 119,
+        "wrong_id": 0,
+        "unresolved_aligned": 0,
+        "unpaired": 0,
+        "misaligned": 1,
+        "unverified_named": 1
+      }
+    }
+  },
+  "paired": {
+    "stats": {
+      "surfaces": 714,
+      "offsets_added": 20,
+      "surfaces_with_new_offsets": 10,
+      "exact_gained": 51,
+      "exact_lost": 0
+    },
+    "added_by_frame": {
+      "smooth_stone/dev-wing-masonry-close-front": 8,
+      "light_gray_concrete/dev-wing-masonry-close-front": 8,
+      "smooth_stone/holdout-courtyard-masonry-close-front": 9,
+      "light_gray_concrete/holdout-courtyard-masonry-close-front": 9,
+      "light_gray_concrete/holdout-courtyard-plaster-high-right": 6,
+      "smooth_stone/holdout-portico-masonry-low-left": 5,
+      "light_gray_concrete/holdout-portico-masonry-low-left": 6
+    }
+  }
+}
