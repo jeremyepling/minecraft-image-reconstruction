@@ -126,7 +126,7 @@ def place(image, version, parts, *, counts=None, atlas_path=None):
     return place_with_camera(image, version, parts, counts, camera)
 
 
-def place_with_camera(image, version, parts, counts, camera, select_level=None):
+def place_with_camera(image, version, parts, counts, camera, select_level=None, refine_candidates=None):
     status = dict(camera_status=camera['scale_status'], reason=camera['reason'], P=camera['P'],
                   strict_blocks=0, added_blocks=0, placed_blocks=0, duplicate_side_cells=0,
                   textured_side_cells=0, grounded_side_cells=0, shared_side_cells=0)
@@ -145,6 +145,8 @@ def place_with_camera(image, version, parts, counts, camera, select_level=None):
     projection = projection / np.linalg.norm(projection[2, :3])
     eye = np.linalg.solve(projection[:, :3], -projection[:, 3])
     candidates = _estimate_plane_cells(image, parts, masks, projection, eye, select_level)
+    if refine_candidates is not None:
+        status['secondary_depths'] = refine_candidates(parts,masks,projection,eye,candidates)
     cells = sorted(strict.union(*candidates))
     owner = _frontmost_cells(cells, projection, eye, shape)
     accepted = strict.copy()
