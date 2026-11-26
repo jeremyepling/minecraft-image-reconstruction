@@ -84,7 +84,7 @@ def main():
                    help='Fit the camera, find visible surfaces, measure block counts, or build a datapack')
     p.add_argument('--surface-context-px', type=int,
                    help='Include this many neighboring source pixels per side in Regions First context crops (default 8)')
-    p.add_argument('--material-match', choices=['atlas'],
+    p.add_argument('--material-match', choices=['atlas','shape','shape-shadow'],
                    help='Identify complete visible cells against the versioned atlas with --through counts')
     p.add_argument('--version',help='Target Java version')
     p.add_argument('image',type=Path)
@@ -115,6 +115,8 @@ def run_image_command(parser,args):
     if args.command=='build' and args.surface_context_px is not None:
         if args.through not in ('surfaces','counts') or args.surface_context_px < 0:
             parser.error('--surface-context-px requires surfaces or counts and a nonnegative margin')
+    if args.command=='build' and args.material_match in ('shape','shape-shadow') and not args.atlas:
+        parser.error('--material-match shape and shape-shadow require --atlas')
     if args.command=='build' and args.through!='counts' and args.material_match:
         parser.error('--material-match applies to --through counts')
     if args.command=='atlas':

@@ -228,7 +228,7 @@ def proposals_for(image, version, method, normals=None, depth=None):
     return parts
 
 
-def _count_regions(image, planes, version, method, atlas, out):
+def _count_regions(image, planes, version, method, atlas, out, shape_matcher=None, shadow_field=None):
     from engine.surface_sample import sample_surface
     from engine.surface_dimensions import dimensions
 
@@ -263,9 +263,26 @@ def _count_regions(image, planes, version, method, atlas, out):
             if atlas is not None:
                 from engine.atlas_count import rank_tile
                 from engine.surface_tiles import visible_tiles
+                def material(tile):
+                    if shape_matcher is None:
+                        return rank_tile(tile, atlas, version=version)
+                    patch = tile['rgb']
+                    shadow = None
+                    if shadow_field is not None:
+                        from engine.blocker_shadow import cell_shadow, corrected
+                        gains, shadow = cell_shadow(shadow_field, tile['quad'], len(patch))
+                        patch = corrected(patch, gains)
+                    result = shape_matcher.rank_patch(patch)
+                    result['block_id'] = 'minecraft:' + result['block_id']
+                    result['ranked_ids'] = ['minecraft:' + b for b in result['ranked_ids']]
+                    result['same_texture_ids'] = sorted('minecraft:' + b for b in shape_matcher.mapping[result['texture']])
+                    if shadow is not None:
+                        result['shadow'] = shadow
+                    return result
+
                 row['visible_cells'] = [
                     dict(cell=tile['cell'], quad=np.asarray(tile['quad']).tolist(),
-                         material=rank_tile(tile, atlas, version=version))
+                         material=material(tile))
                     for tile in visible_tiles(sample, result)]
                 if not row['visible_cells']:
                     row['material_status'] = 'No complete cell has a supported position inside this mask.'
@@ -461,7 +478,18 @@ def build(image_path, version, out, *, outlines=None, order_method=None, through
             atlas = load_atlas(atlas_path, version=version)
             manifest['atlas'] = atlas.provenance
             methods['material_matching'] = 'atlas'
-        counts = _count_regions(image, patches, version, counter, atlas, out)
+        shape_matcher = None
+        shadow_field = None
+        if material_match in ('shape', 'shape-shadow'):
+            from engine.blocker_shape import ShapeMatcher
+            if atlas_path is None:
+                raise ValueError('Shape material matching needs an atlas directory')
+            shape_matcher = ShapeMatcher(atlas_path)
+            methods['material_matching'] = material_match
+            if material_match == 'shape-shadow':
+                from engine.blocker_shadow import surface_shadow_map
+                shadow_field = surface_shadow_map(np.asarray(image.convert('RGB')), [p for p in patches if p.get('support')])
+        counts = _count_regions(image, patches, version, counter, atlas, out, shape_matcher, shadow_field)
         (out/'counts.json').write_text(json.dumps(counts, allow_nan=False, indent=2))
         manifest['artifact'] = 'counts.json'
         manifest['artifacts'].update(counts='counts.json', samples='samples/')
