@@ -19,7 +19,7 @@ from engine.surface_dimensions import dimensions
 from engine.surface_sample import sample_surface
 
 
-def opening_panels(put, out, row, capture, names, box=None):
+def opening_panels(put, out, row, capture, names, box=None, earlier_zoom=None):
     with Image.open(capture.path('image')) as original:
         photo = original.convert('RGB')
     _, ref = recorded(capture)
@@ -52,8 +52,18 @@ def opening_panels(put, out, row, capture, names, box=None):
     for m, label in names.items():
         n = int(filled[m].sum())
         put('opening-'+m, tint(filled[m], '#fc4381'), label, f'{n} opening samples covered in the view')
-    return dict(frame=row['key'], crop_xyxy=box, opening_samples=int(openings.sum()),
-                filled_samples={m:int(mask.sum()) for m, mask in filled.items()})
+    counts = {m:int(mask.sum()) for m, mask in filled.items()}
+    if earlier_zoom is not None:
+        old_parts, expected_count = earlier_zoom
+        old_filled = np.zeros_like(openings, dtype=bool)
+        for part in old_parts:
+            old_filled |= openings & footprint(part, openings.shape, photo.size, True)
+        counts['previous_zoom'] = int(old_filled.sum())
+        if counts['previous_zoom'] != expected_count:
+            raise ValueError('Historical zoom opening count differs from the prior sheet')
+        put('opening-previous_zoom', tint(old_filled, '#fc4381'), 'Previous zoom with additions',
+            f'{expected_count} opening samples covered in the view')
+    return dict(frame=row['key'], crop_xyxy=box, opening_samples=int(openings.sum()), filled_samples=counts)
 
 
 def render(out, rows, captures, table, zoom):
@@ -92,6 +102,11 @@ def render_zoom_review(out, rows, captures, table, zoom, names, title, prior_she
         ('opening-truth', 'Open space', 'Scored reference', 'Gold marks background between or beneath building surfaces.', 210)])
     downstream.extend(('opening-'+m, title, 'Scored prediction', 'Pink marks predicted surface pixels inside a scored opening.', 210)
                       for m, title in names.items())
+    if opening_details:
+        prior = prior_sheet.parent
+        prior_artifacts = read(prior/'manifest.json')['artifacts']
+        downstream.append(('opening-previous_zoom', 'Previous zoom', 'Archived comparison',
+                           'This earlier method could add surfaces outside a wall. Pink marks open space it covered.', 210))
     def opening_rank(r):
         zoom_filled = r['scores']['zoom']['opening_filled']
         return zoom_filled-r['scores']['current']['opening_filled'], zoom_filled, r['scores']['zoom']['opening_pixels']
@@ -143,7 +158,13 @@ def render_zoom_review(out, rows, captures, table, zoom, names, title, prior_she
                                       proposal=part['id'] if part else None, blocks=spans)
         opening = opening_views[row['layout']]
         box = opening_details[row['layout']]['crop_xyxy'] if opening_details else None
-        return dict(surfaces=out_status, openings=opening_panels(put, out, opening, captures[opening['key']], names, box))
+        historical = None
+        if opening_details:
+            path = opening['predictions']
+            old_parts = read_gzip(checked(prior/path, prior_artifacts[path]))['zoom']
+            historical = old_parts, opening_details[row['layout']]['filled_samples']['zoom']
+        return dict(surfaces=out_status, openings=opening_panels(put, out, opening, captures[opening['key']],
+                                                                 names, box, historical))
 
     return render_comparison(out, rows, captures, table, names, title,
         raw_stages=raw_stages, raw_panels=raw_panels, detail_stages=downstream, detail_renderer=extra_details,
