@@ -27,3 +27,13 @@ def shorten_and_verify(image,parts,counts,camera,prior):
 
 def relocate_and_verify(image,parts,counts,camera,prior):
     return refine(image,parts,camera,prior,'move')
+
+
+def guarded(image,parts,counts,camera,prior):
+    from engine.atlas_plane_depth import refine_framed_depth
+    return refine_framed_depth(image,parts,camera,prior,_atlas('26.3',ATLAS),ATLAS)
+
+
+def production(image,parts,counts,camera,prior):
+    from engine.atlas_plane_depth import place_ranked
+    return place_ranked(image,'26.3',parts,counts,camera,atlas_path=ATLAS)

@@ -194,11 +194,28 @@ def place_ranked(image, version, parts, counts, camera, *, atlas_path=None, join
                 recovered = thin_atlas_faces.recover(image, parts, camera, first, atlas, mode='rank75')
             status['thin_atlas_blocks'] = len(recovered) - len(adjusted)
             status['second_thin_atlas_blocks'] = len(recovered) - len(first)
+            recovered, refinement = refine_framed_depth(image, parts, camera, recovered, atlas, atlas_path)
+            status.update(refinement)
         status['strict_blocks'] = len(recovered & strict)
         status['added_blocks'] = len(recovered) - status['strict_blocks']
         status['placed_blocks'] = len(recovered)
         cells = recovered
     return cells, status
+
+
+def refine_framed_depth(image, parts, camera, prior, atlas, atlas_path=None):
+    """Correct conflicting depths and verify newly placed faces against the source photograph."""
+    from engine import grounded_depth_envelope, grounded_exposed_faces, section_decision, vertical_atlas_faces
+    if not prior or atlas is None or camera.get('P') is None:
+        return prior, {}
+    grounded, evidence = grounded_depth_envelope.recover(image, parts, camera, prior, atlas_path=atlas_path)
+    adjusted = section_decision.recover(image, parts, camera, grounded, atlas_path=atlas_path, mode='deeper')
+    exposed = grounded_exposed_faces.recover(image, parts, camera, prior, adjusted, atlas_path=atlas_path)
+    verified = vertical_atlas_faces.recover(image, parts, camera, exposed, atlas)
+    return verified, dict(ground_contact_removed=evidence['removed'],
+                          section_removed=len(grounded-adjusted), section_added=len(adjusted-grounded),
+                          exposed_atlas_blocks=len(exposed-adjusted),
+                          vertical_atlas_blocks=len(verified-exposed))
 
 
 def place_ranked_without_ray(image, version, parts, counts, camera, *, atlas_path=None, joint_foreground=True):
