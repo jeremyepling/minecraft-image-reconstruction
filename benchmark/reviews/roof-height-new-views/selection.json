@@ -1,0 +1,307 @@
+{
+  "recipe_revision": "5bef42645b9871f30f495d42473c4c59514f1f68",
+  "geometry_split": "unseen structures, confirmation only",
+  "selected": [
+    {
+      "id": "holdout-lowawning-masonry-low-left",
+      "source_id": "holdout-lowawning-masonry-low-left",
+      "directory": "scoring",
+      "shape": "270fe056c45975eda8d58a4a71d954348d929accb510cbcc6fd6d2a23a96fa82",
+      "family": "lowawning",
+      "angle": "low-left",
+      "palette": "masonry",
+      "origin_world": [
+        -1,
+        65,
+        -4
+      ],
+      "blocks": 66,
+      "ground_y": 64,
+      "camera": {
+        "P": [
+          [
+            223.36658793633882,
+            -104.73161047388172,
+            1096.2054213589563,
+            9588.623118069952
+          ],
+          [
+            282.2253909322161,
+            -918.9107332610267,
+            150.2649715215832,
+            7680.942865240369
+          ],
+          [
+            0.8732960009473233,
+            -0.14546057010261348,
+            0.4649680819957811,
+            12.71555935359179
+          ]
+        ],
+        "scale_status": "supported",
+        "reason": "Two perpendicular seam families agree assuming one block per floor tile",
+        "settings": {
+          "seed_width_limit": 768,
+          "horizon_trials": 7,
+          "floor_rows": 88,
+          "center_fit_iterations": 14,
+          "minimum_supported_lines": 4,
+          "maximum_height_disagreement": 0.08,
+          "maximum_normalized_residual": 0.04
+        },
+        "evidence": {
+          "horizon_px": 323.172659242762,
+          "focal_px": 862.6283490910453,
+          "height_blocks": 4.09635754158675,
+          "axis_heights_blocks": [
+            4.0981967211410835,
+            4.094518362032416
+          ],
+          "median_seam_residual_blocks": [
+            0.007211351208738087,
+            0.020362111666902365
+          ],
+          "seam_samples": [
+            863,
+            352
+          ]
+        },
+        "camera_source": "seam-fit"
+      },
+      "target": {
+        "labels": "labels.json",
+        "raster": "labels.npz",
+        "visible_blocks": 47,
+        "visible_faces": 72,
+        "visible_pixels": 102864,
+        "visible_surfaces": 12
+      },
+      "files": {
+        "rgb.png": "73a455bfd30c7674193b972ffcf2ae1cfa819f561cc43fcb9c85ee905f1f9e05",
+        "camera.json": "1180fe2b1cf8ea334865b6490f7c168589546da40b4e6d994d33644f7d0bbed4",
+        "world-readback.json": "c2a9788bd348bc7d656d9ca7c7ca27662667aacf89dfb8c5767ae49944ed4125",
+        "raw-readback.json": "25344afca0a5a7a563f85a199d2a5569ad0ff44726ab70d0cdfc85e4ab499a0f",
+        "labels.json": "eeec11217cbc1e614e1663686afe58be6814dc7c85996ff687f8cf210d49478f",
+        "labels.npz": "d1cced5313b6c2edad790332fa4713d692853675c42e9fc550dce80358b8919f"
+      },
+      "target_block_y": 3
+    },
+    {
+      "id": "holdout-lowawning-masonry-high-right",
+      "source_id": "holdout-lowawning-masonry-high-right",
+      "directory": "scoring",
+      "shape": "270fe056c45975eda8d58a4a71d954348d929accb510cbcc6fd6d2a23a96fa82",
+      "family": "lowawning",
+      "angle": "high-right",
+      "palette": "masonry",
+      "origin_world": [
+        -1,
+        65,
+        -4
+      ],
+      "blocks": 66,
+      "ground_y": 64,
+      "camera": {
+        "P": null,
+        "scale_status": "uncertain",
+        "reason": "No paired periodic floor signal",
+        "settings": {
+          "seed_width_limit": 768,
+          "horizon_trials": 7,
+          "floor_rows": 88,
+          "center_fit_iterations": 14,
+          "minimum_supported_lines": 4,
+          "maximum_height_disagreement": 0.08,
+          "maximum_normalized_residual": 0.04
+        },
+        "camera_source": null,
+        "atlas_reason": "incomplete floor texel coverage"
+      },
+      "target": {
+        "labels": "labels.json",
+        "raster": "labels.npz",
+        "visible_blocks": 61,
+        "visible_faces": 83,
+        "visible_pixels": 117089,
+        "visible_surfaces": 9
+      },
+      "files": {
+        "rgb.png": "589f2e2a352fe8bf8873434fe925b3eceedecfcf6dd836476e10c5b3f113bb8b",
+        "camera.json": "50732fcb6c69c1b7ae1a8b98cbcc400a5631bc5c1d35253e4a6cac9842eac8c9",
+        "world-readback.json": "c2a9788bd348bc7d656d9ca7c7ca27662667aacf89dfb8c5767ae49944ed4125",
+        "raw-readback.json": "25344afca0a5a7a563f85a199d2a5569ad0ff44726ab70d0cdfc85e4ab499a0f",
+        "labels.json": "51a04680a0055d3804c0818212524063c81722ab09bf84c6f38bcb71d77de128",
+        "labels.npz": "6749d279a34c1237171dc94e56546b4a70827585acc4b85cb5e8601452cae154"
+      },
+      "target_block_y": 3
+    },
+    {
+      "id": "holdout-highwalkroof-timber-low-left",
+      "source_id": "holdout-highwalkroof-timber-low-left",
+      "directory": "scoring",
+      "shape": "4a58e3dc27f645ebb09e126cd470878893ae3d70641376441b48d618ccfbc29a",
+      "family": "highwalkroof",
+      "angle": "low-left",
+      "palette": "timber",
+      "origin_world": [
+        255,
+        65,
+        -6
+      ],
+      "blocks": 154,
+      "ground_y": 64,
+      "camera": {
+        "P": [
+          [
+            230.39441080693197,
+            13.211627918852733,
+            1100.2292494786582,
+            18839.29760748698
+          ],
+          [
+            411.26576107466315,
+            -854.940026062335,
+            218.62881478872586,
+            15654.567967015939
+          ],
+          [
+            0.8828390349889427,
+            0.018349483220628796,
+            0.46931709404764754,
+            26.008649747142528
+          ]
+        ],
+        "scale_status": "supported",
+        "reason": "Two perpendicular seam families agree assuming one block per floor tile",
+        "settings": {
+          "seed_width_limit": 768,
+          "horizon_trials": 7,
+          "floor_rows": 88,
+          "center_fit_iterations": 14,
+          "minimum_supported_lines": 4,
+          "maximum_height_disagreement": 0.08,
+          "maximum_normalized_residual": 0.04
+        },
+        "evidence": {
+          "horizon_px": 465.844559172459,
+          "focal_px": 863.342651009268,
+          "height_blocks": 4.098006985294045,
+          "axis_heights_blocks": [
+            4.09766609005911,
+            4.098347880528981
+          ],
+          "median_seam_residual_blocks": [
+            0.007848674300706406,
+            0.02295818032655499
+          ],
+          "seam_samples": [
+            1351,
+            508
+          ]
+        },
+        "camera_source": "seam-fit"
+      },
+      "target": {
+        "labels": "labels.json",
+        "raster": "labels.npz",
+        "visible_blocks": 144,
+        "visible_faces": 206,
+        "visible_pixels": 143847,
+        "visible_surfaces": 13
+      },
+      "files": {
+        "rgb.png": "96710a9a52a8724207a63ec7686a131c1707b1ae31a29c6ca846effde30a82ff",
+        "camera.json": "37b9205805208e8165abde84ff48abbe5c2330f9a8cdf5b2a595a29727445be3",
+        "world-readback.json": "da5c3593e150102a7080f8a614933402c135419710800391f690e2048fc23335",
+        "raw-readback.json": "072bfdf4aa81d46310fc8c2b3de7b08cb901d90bef031a0a44818d77f9b165c9",
+        "labels.json": "9d1cd20d11b70e4e650526faafe5d4057b39789dcf7fd40c343b2ddf5fe1e25a",
+        "labels.npz": "a658848dc06d2c24cae7c0bb5583c3d094b924db0843ae49f69972f69609ba1c"
+      },
+      "target_block_y": 8
+    },
+    {
+      "id": "holdout-highwalkroof-timber-high-right",
+      "source_id": "holdout-highwalkroof-timber-high-right",
+      "directory": "scoring",
+      "shape": "4a58e3dc27f645ebb09e126cd470878893ae3d70641376441b48d618ccfbc29a",
+      "family": "highwalkroof",
+      "angle": "high-right",
+      "palette": "timber",
+      "origin_world": [
+        255,
+        65,
+        -6
+      ],
+      "blocks": 154,
+      "ground_y": 64,
+      "camera": {
+        "P": [
+          [
+            -333.2827150761034,
+            -217.68186762039792,
+            1052.5602716908397,
+            17141.229922228806
+          ],
+          [
+            93.63738439426093,
+            -960.4166139267668,
+            138.84472312026622,
+            14677.906520025721
+          ],
+          [
+            0.5329665061060342,
+            -0.3023359272505527,
+            0.7902782361059143,
+            24.13668606656629
+          ]
+        ],
+        "scale_status": "supported",
+        "reason": "Two perpendicular seam families agree assuming one block per floor tile",
+        "settings": {
+          "seed_width_limit": 768,
+          "horizon_trials": 7,
+          "floor_rows": 88,
+          "center_fit_iterations": 14,
+          "minimum_supported_lines": 4,
+          "maximum_height_disagreement": 0.08,
+          "maximum_normalized_residual": 0.04
+        },
+        "evidence": {
+          "horizon_px": 175.69093614980693,
+          "focal_px": 864.8386492294952,
+          "height_blocks": 11.503716342210716,
+          "axis_heights_blocks": [
+            11.503071425407567,
+            11.504361259013866
+          ],
+          "median_seam_residual_blocks": [
+            0.021107982144121896,
+            0.010022721897422851
+          ],
+          "seam_samples": [
+            962,
+            1627
+          ]
+        },
+        "camera_source": "seam-fit"
+      },
+      "target": {
+        "labels": "labels.json",
+        "raster": "labels.npz",
+        "visible_blocks": 152,
+        "visible_faces": 206,
+        "visible_pixels": 114677,
+        "visible_surfaces": 13
+      },
+      "files": {
+        "rgb.png": "3322161725187a583203c4b7003267a51909647610489838891bece67805eaf6",
+        "camera.json": "ad30acd2d90a5c833a8c48047078f22faf025e6a51836e6c4366698781078eae",
+        "world-readback.json": "da5c3593e150102a7080f8a614933402c135419710800391f690e2048fc23335",
+        "raw-readback.json": "072bfdf4aa81d46310fc8c2b3de7b08cb901d90bef031a0a44818d77f9b165c9",
+        "labels.json": "1b024315bab018213be2af453f5923b3186d98166029f19d10b323de752e9fe6",
+        "labels.npz": "352a9811f29fcf52fbc92fcf7d20495f7946b3b411787ebba7073cede4597697"
+      },
+      "target_block_y": 8
+    }
+  ]
+}
