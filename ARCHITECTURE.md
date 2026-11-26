@@ -4,7 +4,7 @@ The [product intent](PRODUCT_INTENT.md) is visible-only reconstruction for both 
 
 ## Find surfaces and count blocks
 
-The ordinary exterior command on this PC takes one Java 26.3 screenshot. It runs the **Surface Finder**, **Surface Straightener** and **Block Counter** and saves their intermediate results. The selected Surface Finder matched **517 of 598** visible surface appearances across 56 frozen views. The counter got both block dimensions right for **94 of 598**. These scores measure different stages. [Surface comparison](benchmark/reviews/sky-gap-01/pictures.md) · [Crop review](benchmark/CROP_REVIEW.md)
+The ordinary exterior command on this PC takes one Java 26.3 screenshot. It runs the **Surface Finder**, **Surface Straightener** and **Block Counter** and saves their intermediate results. The selected Surface Finder matched **519 of 598** visible surface appearances across 56 frozen views. The counter got both block dimensions right for **121 of 598**. These scores measure different stages. [Surface comparison](benchmark/reviews/edge-detail-stable-01/cases.json) · [Crop review](benchmark/CROP_REVIEW.md)
 
 ```powershell
 .\Invoke-WallRecovery.ps1 .\wall.png -Out .\runs\my-build
@@ -18,7 +18,7 @@ The ordinary exterior command on this PC takes one Java 26.3 screenshot. It runs
 | Block Grouper | Join up to three visible faces along supported convex edges. Select the face with the greatest effective width in source pixels, breaking ties by area. A face must be at least five pixels wide to supply a material. | `counts.json` records the member faces and selected face for each block. |
 | Blocker Picker (Material Matcher) | When requested, match the selected face once with the atlas, rendered exposure, texture, or texture with local shade. Other linked faces inherit its block ID. | Inspect `block_groups` and the material source on each face in `counts.json`. |
 
-The Surface Finder’s build IDs are `mask-first` for grouping and `plane-recovery-crop-splits` for refinement. After the full-image pass, closer views can split a region while preserving its footprint. The counter’s ID is `masked-repeat`. Each run writes its actual stages, settings, input digest and checkpoint hashes to `build-manifest.json`. The winner is selected on the fixed suite. The previous methods are available through benchmark replays. [Single-image setup](benchmark/WALL_RECOVERY_BUILD.md) · [Stage guide](benchmark/SURFACE_FINDER.md) · [Method history](benchmark/RECONSTRUCTION_LINEAGE.md)
+The Surface Finder’s build IDs are `mask-first` for grouping and `plane-recovery-crop-splits` for refinement. After the full-image pass, closer views can split a region while preserving its footprint. The counter’s ID is `texture-guided-repeat`. Each surface records which step supplied its count. A complete initial estimate uses `masked-repeat`; an incomplete estimate can use texture-guided straightening when a reserved strip confirms the spacing. Each run writes its actual stages, settings, input digest and checkpoint hashes to `build-manifest.json`. The winner is selected on the fixed suite. The previous methods are available through benchmark replays. [Single-image setup](benchmark/WALL_RECOVERY_BUILD.md) · [Stage guide](benchmark/SURFACE_FINDER.md) · [Method history](benchmark/RECONSTRUCTION_LINEAGE.md)
 
 ## Verify on the saved pictures
 

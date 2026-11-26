@@ -1,5 +1,7 @@
 # Can a textured part of one wall measure its quieter end?
 
+[Zoomable comparison by building](comparison.jpg) and [selected regions and measurements](comparison.json).
+
 Keep this experiment out of ordinary builds. Using a texture patch added two correct sizes and one wrong size on the 56 familiar views. The 24 Cloister and Twin Spires views supplied no new count. All existing counts survived, and the number of unmatched proposals with complete counts stayed at 30 across the two suites.
 
 | Views | Promoted counter, exact / wrong | With local patch, exact / wrong | Eligible without complete count after patch |

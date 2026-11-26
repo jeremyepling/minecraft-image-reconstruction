@@ -1,0 +1,503 @@
+{
+  "method": "within-surface-patch-grid",
+  "examples": {
+    "cloister": {
+      "key": "validation-cloister3-cool-high-right",
+      "proposal": "mask-1-junction-1",
+      "reference": 14,
+      "guess": {
+        "current": [
+          null,
+          null
+        ],
+        "patch": [
+          null,
+          null
+        ]
+      },
+      "actual": [
+        10,
+        9
+      ],
+      "patch": {
+        "axis": 1,
+        "pitch_px": 37.98967912115206,
+        "chart_wh": [
+          150,
+          263
+        ],
+        "donor_box": [
+          0,
+          0,
+          75,
+          131
+        ],
+        "far_box": [
+          0,
+          131,
+          75,
+          263
+        ],
+        "donor_score": 0.8549716537063187,
+        "donor_contrast": 2.7603871824440023,
+        "phase": null,
+        "far_score": 0.6417325556278228,
+        "far_contrast": 2.3363780975341797,
+        "far_coverage": 0.9696969696969697,
+        "far_edge_residual": null,
+        "raw_counts": [
+          11.253864793267319,
+          6.922932914523242
+        ],
+        "accepted": false,
+        "reason": "noninteger extent"
+      },
+      "sha256": "5e41490e98d263b75ec35836087592a46e7827ef51b528e1ac4c3a562caf8a1e"
+    },
+    "courtyard": {
+      "key": "smooth_stone/holdout-courtyard-plaster-high-right",
+      "proposal": "mask-4-single-437-0",
+      "reference": 12,
+      "guess": {
+        "current": [
+          null,
+          null
+        ],
+        "patch": [
+          null,
+          null
+        ]
+      },
+      "actual": [
+        6,
+        8
+      ],
+      "patch": {
+        "axis": 1,
+        "pitch_px": 41.18522093816627,
+        "chart_wh": [
+          68,
+          205
+        ],
+        "donor_box": [
+          0,
+          0,
+          34,
+          102
+        ],
+        "far_box": [
+          0,
+          102,
+          34,
+          205
+        ],
+        "donor_score": 0.7763685584068298,
+        "donor_contrast": 2.6410740507656807,
+        "phase": null,
+        "far_score": 0.47447524070739744,
+        "far_contrast": 2.3997914791107178,
+        "far_coverage": 0.9214734437464306,
+        "far_edge_residual": null,
+        "raw_counts": [
+          6.263867251511298,
+          4.977513664617176
+        ],
+        "accepted": false,
+        "reason": "noninteger extent"
+      },
+      "sha256": "7152899302d1721578a01412063a0cafc072986ba9a4acb5c03aa5ecbdde05f1"
+    },
+    "crossing": {
+      "key": "light_gray_concrete/holdout-crossing-plaster-high-right",
+      "proposal": "mask-0-wall-0-junction-0",
+      "reference": 6,
+      "guess": {
+        "current": [
+          null,
+          null
+        ],
+        "patch": [
+          null,
+          null
+        ]
+      },
+      "actual": [
+        12,
+        3
+      ],
+      "patch": {
+        "axis": 1,
+        "pitch_px": 21.05943213387558,
+        "chart_wh": [
+          515,
+          138
+        ],
+        "donor_box": [
+          257,
+          69,
+          515,
+          138
+        ],
+        "far_box": [
+          257,
+          0,
+          515,
+          69
+        ],
+        "donor_score": 0.5920539222687129,
+        "donor_contrast": 5.2560395504871105,
+        "phase": null,
+        "far_score": 0.01409928137436509,
+        "far_contrast": 3.788623332977295,
+        "far_coverage": 0.8859678687787889,
+        "far_edge_residual": null,
+        "raw_counts": [
+          27.48190733285098,
+          6.552883245983509
+        ],
+        "accepted": false,
+        "reason": "noninteger extent"
+      },
+      "sha256": "a7e9cd44bd97237bd3cbf88b11fdfa3575deee7473ef820b30e19bc5fe37698e"
+    },
+    "galleries": {
+      "key": "light_gray_concrete/holdout-galleries-masonry-low-left",
+      "proposal": "mask-0-junction-1-mobile-4",
+      "reference": 30,
+      "guess": {
+        "current": [
+          null,
+          null
+        ],
+        "patch": [
+          null,
+          null
+        ]
+      },
+      "actual": [
+        17,
+        1
+      ],
+      "patch": {
+        "axis": 0,
+        "pitch_px": 33.92942810971944,
+        "chart_wh": [
+          611,
+          53
+        ],
+        "donor_box": [
+          0,
+          26,
+          305,
+          53
+        ],
+        "far_box": [
+          305,
+          26,
+          611,
+          53
+        ],
+        "donor_score": 0.6010738260605756,
+        "donor_contrast": 5.164971032923555,
+        "phase": 0.9270833333333334,
+        "far_score": -0.024961364269256603,
+        "far_contrast": 4.322453498840332,
+        "far_coverage": 0.6489954006293875,
+        "far_edge_residual": 0.021937146193867108,
+        "raw_counts": [
+          18.007966359591325,
+          1.3581012462549114
+        ],
+        "accepted": false,
+        "reason": "noninteger extent"
+      },
+      "sha256": "d0fba67900a91a20d0120f298c8783829953bc21c7d45fb4413a8cb829cfddc3"
+    },
+    "portico": {
+      "key": "smooth_stone/holdout-portico-plaster-low-left",
+      "proposal": "mask-0-mobile-5",
+      "reference": 17,
+      "guess": {
+        "current": [
+          null,
+          null
+        ],
+        "patch": [
+          1,
+          6
+        ]
+      },
+      "actual": [
+        1,
+        5
+      ],
+      "patch": {
+        "axis": 1,
+        "pitch_px": 36.86199921507745,
+        "chart_wh": [
+          38,
+          192
+        ],
+        "donor_box": [
+          0,
+          96,
+          19,
+          192
+        ],
+        "far_box": [
+          0,
+          0,
+          19,
+          96
+        ],
+        "donor_score": 0.628857241736518,
+        "donor_contrast": 7.668683202258522,
+        "phase": 0.15639134820447698,
+        "far_score": 0.5439640790224075,
+        "far_contrast": 7.564526557922363,
+        "far_coverage": 0.8722587719298246,
+        "far_edge_residual": 0.06063431970145161,
+        "raw_counts": [
+          1.0534801323732002,
+          5.208616029742287
+        ],
+        "accepted": true,
+        "reason": "repeat independently visible near far edge"
+      },
+      "sha256": "8f7b6cf572ea617a0efa47c002f4f9221df201dcde9d20595a10fb2915228445"
+    },
+    "registry": {
+      "key": "light_gray_concrete/holdout-registry-plaster-low-left",
+      "proposal": "mask-0-wall-1-junction-1",
+      "reference": 5,
+      "guess": {
+        "current": [
+          12,
+          null
+        ],
+        "patch": [
+          12,
+          null
+        ]
+      },
+      "actual": [
+        11,
+        8
+      ],
+      "patch": {},
+      "sha256": "23e91937ee67563c1c4a463676a43c7d4800f82581a3188aa7125e32001be5e9"
+    },
+    "shopfront": {
+      "key": "smooth_stone/dev-shopfront-masonry-high-right",
+      "proposal": "mask-0",
+      "reference": 4,
+      "guess": {
+        "current": [
+          14,
+          null
+        ],
+        "patch": [
+          14,
+          null
+        ]
+      },
+      "actual": [
+        15,
+        7
+      ],
+      "patch": {
+        "axis": 0,
+        "pitch_px": 33.984616533865356,
+        "chart_wh": [
+          488,
+          283
+        ],
+        "donor_box": [
+          0,
+          0,
+          244,
+          141
+        ],
+        "far_box": [
+          244,
+          0,
+          488,
+          141
+        ],
+        "donor_score": 0.6678927853810701,
+        "donor_contrast": 2.9016217093913004,
+        "phase": null,
+        "far_score": 0.14966719448566432,
+        "far_contrast": 2.98888897895813,
+        "far_coverage": 0.2638356005115684,
+        "far_edge_residual": null,
+        "raw_counts": [
+          14.359438174437322,
+          7.26024929999908
+        ],
+        "accepted": false,
+        "reason": "noninteger extent"
+      },
+      "sha256": "f15cd0e471a9a2e375c9f801df171bb8f5ee44d95374f02f1174c7938a94cc79"
+    },
+    "twinspire": {
+      "key": "test-twinspire3-cool-high-right",
+      "proposal": "mask-0-junction-1",
+      "reference": 7,
+      "guess": {
+        "current": [
+          null,
+          null
+        ],
+        "patch": [
+          null,
+          null
+        ]
+      },
+      "actual": [
+        4,
+        11
+      ],
+      "patch": {
+        "axis": 1,
+        "pitch_px": 36.16243519040145,
+        "chart_wh": [
+          126,
+          394
+        ],
+        "donor_box": [
+          63,
+          0,
+          126,
+          197
+        ],
+        "far_box": [
+          63,
+          197,
+          126,
+          394
+        ],
+        "donor_score": 0.5938988962481099,
+        "donor_contrast": 5.407903123008286,
+        "phase": 0.03125,
+        "far_score": -0.2584305837750435,
+        "far_contrast": 5.062077045440674,
+        "far_coverage": 0.974135847232294,
+        "far_edge_residual": 0.19127205227461985,
+        "raw_counts": [
+          3.746554433777963,
+          10.895283957662754
+        ],
+        "accepted": false,
+        "reason": "noninteger extent"
+      },
+      "sha256": "844b971d4a1a94df0dfb7ac6b4def9377b3440a572d99386248d1bf7ec5a1717"
+    },
+    "wing": {
+      "key": "light_gray_concrete/dev-wing-masonry-high-right",
+      "proposal": "mask-2",
+      "reference": 7,
+      "guess": {
+        "current": [
+          null,
+          null
+        ],
+        "patch": [
+          null,
+          null
+        ]
+      },
+      "actual": [
+        4,
+        8
+      ],
+      "patch": {
+        "axis": 1,
+        "pitch_px": 38.04076625580851,
+        "chart_wh": [
+          95,
+          314
+        ],
+        "donor_box": [
+          0,
+          0,
+          47,
+          157
+        ],
+        "far_box": [
+          0,
+          157,
+          47,
+          314
+        ],
+        "donor_score": 0.6292487849359927,
+        "donor_contrast": 3.4712745970532977,
+        "phase": null,
+        "far_score": 0.7286263436079026,
+        "far_contrast": 2.869581937789917,
+        "far_coverage": 0.4760807697519989,
+        "far_edge_residual": null,
+        "raw_counts": [
+          5.187194261636236,
+          8.254302710110494
+        ],
+        "accepted": false,
+        "reason": "noninteger extent"
+      },
+      "sha256": "5ccd9115fd2a70784e0e1ab6819d37fc5c4af54cf965605143b3817e1f3a3efd"
+    },
+    "workshop": {
+      "key": "light_gray_concrete/holdout-workshop-masonry-high-right",
+      "proposal": "mask-1-wall-0",
+      "reference": 3,
+      "guess": {
+        "current": [
+          6,
+          null
+        ],
+        "patch": [
+          6,
+          1
+        ]
+      },
+      "actual": [
+        6,
+        1
+      ],
+      "patch": {
+        "axis": 0,
+        "pitch_px": 36.659186518288394,
+        "chart_wh": [
+          191,
+          38
+        ],
+        "donor_box": [
+          0,
+          19,
+          95,
+          38
+        ],
+        "far_box": [
+          95,
+          19,
+          191,
+          38
+        ],
+        "donor_score": 0.7294259912827435,
+        "donor_contrast": 5.42774936061381,
+        "phase": null,
+        "far_score": 0.5938735812902451,
+        "far_contrast": 4.557571887969971,
+        "far_coverage": 0.8854166666666666,
+        "far_edge_residual": null,
+        "raw_counts": [
+          5.210153801550251,
+          1.0799970756212918
+        ],
+        "accepted": true,
+        "reason": "repeat independently visible near far edge"
+      },
+      "sha256": "3aefcb242fdda8a6d4c40adb9a7d2632c8de998b076b1d4ec09a100db95119d4"
+    }
+  }
+}

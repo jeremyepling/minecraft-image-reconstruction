@@ -1,0 +1,12 @@
+{
+  "source_run_sha256": "eb08851d6624b59c9ea2f10152704d2e9f93365e475112aee072c11e0e11d871",
+  "renderer_sha256": "832b72902c9140fd809891034983a4a1c7fdc8ca4312334cb1278d707d72f35a",
+  "production_source": "190617a452256ee55f838b7df12b8b2583857c0ab6fb894f74e74650cedd230c",
+  "artifacts": {
+    "comparison.jpg": "76a414f984f3e6ac0c3ccddcb22db5a1c53851cc5d30597db761c87f795c2747",
+    "comparison.json": "a196a4ad219d9e99c648d9dc72cda1ca63d8b6c56c491999ff2d66d111fb8ac8",
+    "placement-impact.json": "257e9c8fdcc21214edf5a71004dc91ebd5873616ef9ae8871b3421e11e33bba2"
+  },
+  "replay": "python -m benchmark.within_wall_sheet --cases benchmark/reviews/within-wall-grid-01/cases.json --out runs/within-wall-sheet.jpg",
+  "placement_replay": "python -m benchmark.count_promotion_placement --out runs/placement-impact.json"
+}

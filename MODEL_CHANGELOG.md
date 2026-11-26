@@ -4,6 +4,10 @@ These entries cover model inputs, rules around model outputs, and evaluation cha
 
 ### November 26, 2026
 
+- **Shipped — use texture-guided straightening automatically for incomplete counts.** Ordinary builds use the chart confirmed by the reserved strip and pass it to later sampling and placement. This supplies 40 additional correct sizes and 18 wrong sizes in 80 views. In a 56-view placement replay, four more visible coordinates were correct and six extra coordinates disappeared. [Counting results](benchmark/COUNT_TRANSFER.md) and [placement check](benchmark/reviews/within-wall-grid-01/placement-impact.json).
+
+- **Experiment — extend spacing from a textured patch within one surface.** The patch counted one Portico pillar and one Workshop surface correctly and another Portico pillar one block too tall. None of the 24 additional views gained a count. No real mixed-material wall gained a correct size, so leave this trial out of ordinary builds. [Picture sheet and results](benchmark/reviews/within-wall-grid-01/README.md)
+
 - **Experiment — use repeated texture to straighten a crop and check an unused strip.** Across 56 regression views and 24 separate views this added 40 correct visible sizes and 18 wrong ones. The Portico spruce beam measured 18 by 1. Requiring an atlas match kept only seven new correct sizes. Recommend the repeat-only fallback for counting. [Results and visual review](benchmark/COUNT_TRANSFER.md)
 
 - **Experiment — borrow a grid from another proposed surface on the same plane.** One Portico pair recovered both the 1 by 5 count and four-block offset. On Twin Spires four transfers crossed a two-block setback. Keep independent depth evidence as a prerequisite for using transferred positions. [Donor checks](benchmark/reviews/coplanar-transfer-01/README.md)

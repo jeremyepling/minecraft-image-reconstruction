@@ -10,6 +10,8 @@ From this checkout on the Minecraft PC:
 
 This command runs surface finding, counting and visible block placement on one Java 26.3 screenshot. Use `-Through surfaces` or `-Through counts` for the intermediate stages. The build writes visible masks to `surfaces.json`, estimates to `counts.json`, and camera status and placement counts to `build-manifest.json`. The default also writes local smooth-stone coordinates to `placements.json` and their Minecraft datapack to `reconstruction.zip`. [Placement behavior and evaluation](SUPPORTED_PLACEMENT.md)
 
+The ordinary Block Counter keeps complete initial counts. On an incomplete count it tries nearby crop corners, measures the repeating texture in two strips, then checks the spacing in a third strip. The chosen crop and counts feed subsequent sampling. The manifest identifies the counter as `texture-guided-repeat`. [Promotion results](COUNT_TRANSFER.md)
+
 The Wall Separator starts with MoGe-2 directions and Depth Anything V2 depth. Its masks supply MobileSAM point prompts. ScaleLSD identifies junction-supported cuts, M-LSD Tiny finds thin undersides, and MobileSAM can partition a wall when the depth evidence supports a step. Pixel-wise Planarity checks the full screenshot for an adjacent missing surface or two distinct planes inside one wall. Nine overlapping crops give that model a closer view. Each accepted crop split keeps exactly the original surface area and holes. The Surface Straightener and Block Counter receive those masks. The build manifest calls the selected method `plane-recovery-crop-splits`. [Results on 56 views](CROP_SPLIT.md)
 
 ### Model environments

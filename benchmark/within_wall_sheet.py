@@ -38,7 +38,9 @@ def select(rows):
             if 'actual' not in part:
                 continue
             patch=part.get('patch') or {}
-            priority=(bool(patch.get('accepted')),bool(patch.get('donor_box')),
+            material_boxes=part.get('patch_materials',{})
+            dominant=[max(box,key=box.get) for box in material_boxes.values() if box]
+            priority=(bool(patch.get('accepted')),len(set(dominant))>1,bool(patch.get('donor_box')),
                       part['guess']['current']!=part['actual'],
                       max(part['actual']), min(part['actual']))
             if building not in choices or priority>choices[building][0]:
