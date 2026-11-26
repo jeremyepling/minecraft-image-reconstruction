@@ -1,0 +1,1640 @@
+{
+  "case_count": 104,
+  "distinct_layouts": 40,
+  "cases_sha256": "967c189abaae192f76623ef917cffecf0729ac9173545bc6e7cfd0afa3ba9dd5",
+  "control": "1c2f77d",
+  "candidate": "benchmark.facade_rectangle_order:roof_then_walls",
+  "revision": "7eb2c7e88f641f3f460f3f6dd93f4a1a0c54dbf7",
+  "layouts": [
+    {
+      "name": "Canopy 00 (open)",
+      "shape_sha256": "339e88da37ce427f3904c2986d92f4079933ce9a8f4ca3170f974139c6130fe6",
+      "frames": 1,
+      "correct": 27,
+      "target": 50,
+      "placed": 27,
+      "extras": 0,
+      "missed": 23,
+      "f1": 0.7012987012987013,
+      "representative": {
+        "split": "fresh",
+        "id": "shape-benchmark-open-26.3--train-canopy-00-right",
+        "name": "Canopy 00 (open)",
+        "rgb_sha256": "647ddfc70562de0effeb54a865677408f5b1595fb8ce1d8f67e2d36077c2d1e4",
+        "pack_sha256": "b45341a871bc6adac6b2c1cce4db97ad7bf5f4c8579786e8a7933d92c626908d",
+        "f1": 0.7012987012987013,
+        "correct": 27,
+        "target": 50,
+        "placed": 27,
+        "extras": 0,
+        "missed": 23
+      },
+      "frame_ids": [
+        "shape-benchmark-open-26.3--train-canopy-00-right"
+      ],
+      "rank": 1,
+      "sheet": "structure-01.jpg"
+    },
+    {
+      "name": "Canopy 04",
+      "shape_sha256": "7f0dabd97bf0d785be6757298dc6fd80d013e23ef7833aab59afe15fb4d333f9",
+      "frames": 1,
+      "correct": 36,
+      "target": 60,
+      "placed": 39,
+      "extras": 3,
+      "missed": 24,
+      "f1": 0.7272727272727273,
+      "representative": {
+        "split": "old",
+        "id": "shape-benchmark-26.3--train-canopy-04-left",
+        "name": "Canopy 04",
+        "rgb_sha256": "15fa8537e6b6f095ba50c7e24a71f6b823806a6fb236f80641daf9bc714c0823",
+        "pack_sha256": "25155c7385c458f1d1b53bbe0669d6497919289223d56eefa738000ee4d2276c",
+        "f1": 0.7272727272727273,
+        "correct": 36,
+        "target": 60,
+        "placed": 39,
+        "extras": 3,
+        "missed": 24
+      },
+      "frame_ids": [
+        "shape-benchmark-26.3--train-canopy-04-left"
+      ],
+      "rank": 2,
+      "sheet": "structure-02.jpg"
+    },
+    {
+      "name": "Colonnade 01",
+      "shape_sha256": "768c0c3907efd118a650bb27f62c61facc7932ac40427e50b9c5a066fd638bfc",
+      "frames": 1,
+      "correct": 126,
+      "target": 191,
+      "placed": 144,
+      "extras": 18,
+      "missed": 65,
+      "f1": 0.7522388059701492,
+      "representative": {
+        "split": "fresh",
+        "id": "inverse-voxels-26.3--confirm--test-colonnade-01-oblique-right",
+        "name": "Colonnade 01",
+        "rgb_sha256": "56f1d5c1feb17dcee4ab530954cd05a37bf86ef178aead769afe90c9ce6307e6",
+        "pack_sha256": "0abaef41f6b6e1c256d90902308b03ac9265276ca4365f6062182a47221fa032",
+        "f1": 0.7522388059701492,
+        "correct": 126,
+        "target": 191,
+        "placed": 144,
+        "extras": 18,
+        "missed": 65
+      },
+      "frame_ids": [
+        "inverse-voxels-26.3--confirm--test-colonnade-01-oblique-right"
+      ],
+      "rank": 3,
+      "sheet": "structure-03.jpg"
+    },
+    {
+      "name": "Galleries",
+      "shape_sha256": "85807f95e26614ef6d248a05df4458c5ddcc43d905cbbfbe4c775b044215b535",
+      "frames": 4,
+      "correct": 787,
+      "target": 1142,
+      "placed": 867,
+      "extras": 80,
+      "missed": 355,
+      "f1": 0.7834743653558984,
+      "representative": {
+        "split": "regression",
+        "id": "legacy-light_gray_concrete-holdout-galleries-plaster-low-left",
+        "name": "Galleries",
+        "rgb_sha256": "0fec6765b63937520e2a731a9171eef73e631ce1d47734e3925e2165b64a26c0",
+        "pack_sha256": "f5599de78c523e2c1c87c6019e1261ab89b984a30a07ee92bbec4dc8166e9e2d",
+        "f1": 0.7504990019960079,
+        "correct": 188,
+        "target": 274,
+        "placed": 227,
+        "extras": 39,
+        "missed": 86
+      },
+      "frame_ids": [
+        "legacy-light_gray_concrete-holdout-galleries-masonry-high-right",
+        "legacy-light_gray_concrete-holdout-galleries-masonry-low-left",
+        "legacy-light_gray_concrete-holdout-galleries-plaster-high-right",
+        "legacy-light_gray_concrete-holdout-galleries-plaster-low-left"
+      ],
+      "rank": 4,
+      "sheet": "structure-04.jpg"
+    },
+    {
+      "name": "Canopy 07",
+      "shape_sha256": "54ea1e26c082b02dd5b7a0a4b1fd7d30eccc603e1890c2f000f3b211cb7e303a",
+      "frames": 1,
+      "correct": 59,
+      "target": 83,
+      "placed": 60,
+      "extras": 1,
+      "missed": 24,
+      "f1": 0.8251748251748252,
+      "representative": {
+        "split": "old",
+        "id": "shape-benchmark-26.3--train-canopy-07-left",
+        "name": "Canopy 07",
+        "rgb_sha256": "15984215f0265a4c447ab14c02d913d2b564639d84a739c6c0c1e4e6db47d396",
+        "pack_sha256": "f701055c7a1068d6be27034bcd363a5c8c26ec7c62307d0e87fbb56027a88620",
+        "f1": 0.8251748251748252,
+        "correct": 59,
+        "target": 83,
+        "placed": 60,
+        "extras": 1,
+        "missed": 24
+      },
+      "frame_ids": [
+        "shape-benchmark-26.3--train-canopy-07-left"
+      ],
+      "rank": 5,
+      "sheet": "structure-05.jpg"
+    },
+    {
+      "name": "Physical Shade",
+      "shape_sha256": "1e9a6cd426e510d529ddc6fe461235f72d886343edf8afad68c8ef328bd428f9",
+      "frames": 2,
+      "correct": 513,
+      "target": 711,
+      "placed": 516,
+      "extras": 3,
+      "missed": 198,
+      "f1": 0.8361858190709046,
+      "representative": {
+        "split": "native",
+        "id": "physical-shade-oblique-left",
+        "name": "Physical Shade",
+        "rgb_sha256": "bd7bca183c7a5ca32ce59edcba2c9341ca600e3bf4779d17ddce9025145a68d2",
+        "pack_sha256": "7242871f82405fb6d379e59350593ee85cb73e599a52b509ef579d91ff879dd1",
+        "f1": 0.819935691318328,
+        "correct": 255,
+        "target": 365,
+        "placed": 257,
+        "extras": 2,
+        "missed": 110
+      },
+      "frame_ids": [
+        "physical-shade-oblique-left",
+        "physical-shade-oblique-right"
+      ],
+      "rank": 6,
+      "sheet": "structure-06.jpg"
+    },
+    {
+      "name": "Dev Relief 00",
+      "shape_sha256": "4dc0165245a0fc4b9d3bf1eb5d38ac89489ec6acc55e52ddec3d2809857c1c99",
+      "frames": 1,
+      "correct": 380,
+      "target": 480,
+      "placed": 428,
+      "extras": 48,
+      "missed": 100,
+      "f1": 0.8370044052863436,
+      "representative": {
+        "split": "old",
+        "id": "signed-relief-26.3--dev--dev-relief-00-oblique-right",
+        "name": "Dev Relief 00",
+        "rgb_sha256": "17682203a4372c0a677e34f7da95c18cb82acde6d1b92363697905fb6a90f7f5",
+        "pack_sha256": "d51ecba5801e1fb3949ae15b7975e1c86c9c7556626380f6a016beab775e8f14",
+        "f1": 0.8370044052863436,
+        "correct": 380,
+        "target": 480,
+        "placed": 428,
+        "extras": 48,
+        "missed": 100
+      },
+      "frame_ids": [
+        "signed-relief-26.3--dev--dev-relief-00-oblique-right"
+      ],
+      "rank": 7,
+      "sheet": "structure-07.jpg"
+    },
+    {
+      "name": "Shopfront",
+      "shape_sha256": "8411a82982c6a87f13423261f90514c8a2a9f1701cbfd56408dd24ec6c41dfae",
+      "frames": 8,
+      "correct": 1275,
+      "target": 1540,
+      "placed": 1423,
+      "extras": 148,
+      "missed": 265,
+      "f1": 0.8606142423219709,
+      "representative": {
+        "split": "regression",
+        "id": "legacy-light_gray_concrete-dev-shopfront-plaster-low-left",
+        "name": "Shopfront",
+        "rgb_sha256": "299e0228de74d2cc7d3a18deaba9f61c82560a0ddd0b8557e5c91728c964a993",
+        "pack_sha256": "0abf521ed30ea4029122b901004bb5189998df5233943a13ed63b2e1bf369971",
+        "f1": 0.7030716723549488,
+        "correct": 103,
+        "target": 169,
+        "placed": 124,
+        "extras": 21,
+        "missed": 66
+      },
+      "frame_ids": [
+        "legacy-light_gray_concrete-dev-shopfront-masonry-high-right",
+        "legacy-light_gray_concrete-dev-shopfront-masonry-low-left",
+        "legacy-light_gray_concrete-dev-shopfront-plaster-high-right",
+        "legacy-light_gray_concrete-dev-shopfront-plaster-low-left",
+        "legacy-smooth_stone-dev-shopfront-masonry-high-right",
+        "legacy-smooth_stone-dev-shopfront-masonry-low-left",
+        "legacy-smooth_stone-dev-shopfront-plaster-high-right",
+        "legacy-smooth_stone-dev-shopfront-plaster-low-left"
+      ],
+      "rank": 8,
+      "sheet": "structure-08.jpg"
+    },
+    {
+      "name": "Facade",
+      "shape_sha256": "9481bb30d3408e606e34ba44d32e187cb333a8116ecb332f1b46634943e8fcaf",
+      "frames": 2,
+      "correct": 587,
+      "target": 717,
+      "placed": 645,
+      "extras": 58,
+      "missed": 130,
+      "f1": 0.8619676945668135,
+      "representative": {
+        "split": "native",
+        "id": "heldout-facade-oblique-right",
+        "name": "Facade",
+        "rgb_sha256": "0828c9d164392fe0bad9a1a709c1f321eb73f7bb7d08739f3b99382493df5ad0",
+        "pack_sha256": "4fb6b93d0edc027618c4ebf2a82b0b63871a4435728db1ebe801efeb56f67ff5",
+        "f1": 0.826865671641791,
+        "correct": 277,
+        "target": 361,
+        "placed": 309,
+        "extras": 32,
+        "missed": 84
+      },
+      "frame_ids": [
+        "heldout-facade-oblique-left",
+        "heldout-facade-oblique-right"
+      ],
+      "rank": 9,
+      "sheet": "structure-09.jpg"
+    },
+    {
+      "name": "Relief 00",
+      "shape_sha256": "d1ff59fa7f956e59d24a30d8c5e0cc53a447acc2d3a5d7576dae2feb65745e58",
+      "frames": 1,
+      "correct": 394,
+      "target": 482,
+      "placed": 432,
+      "extras": 38,
+      "missed": 88,
+      "f1": 0.862144420131291,
+      "representative": {
+        "split": "old",
+        "id": "signed-relief-26.3--test--test-relief-00-oblique-left",
+        "name": "Relief 00",
+        "rgb_sha256": "54145a22b48ba5eb35581125363469a3024172b1e9ae95cb6dff00ca9a673854",
+        "pack_sha256": "9aef05257639c8627528b968175a075ae162c0db15373b89d47c55ca09b8d4ed",
+        "f1": 0.862144420131291,
+        "correct": 394,
+        "target": 482,
+        "placed": 432,
+        "extras": 38,
+        "missed": 88
+      },
+      "frame_ids": [
+        "signed-relief-26.3--test--test-relief-00-oblique-left"
+      ],
+      "rank": 10,
+      "sheet": "structure-10.jpg"
+    }
+  ],
+  "all_layouts": [
+    {
+      "name": "Canopy 00 (open)",
+      "shape_sha256": "339e88da37ce427f3904c2986d92f4079933ce9a8f4ca3170f974139c6130fe6",
+      "frames": 1,
+      "correct": 27,
+      "target": 50,
+      "placed": 27,
+      "extras": 0,
+      "missed": 23,
+      "f1": 0.7012987012987013,
+      "representative": {
+        "split": "fresh",
+        "id": "shape-benchmark-open-26.3--train-canopy-00-right",
+        "name": "Canopy 00 (open)",
+        "rgb_sha256": "647ddfc70562de0effeb54a865677408f5b1595fb8ce1d8f67e2d36077c2d1e4",
+        "pack_sha256": "b45341a871bc6adac6b2c1cce4db97ad7bf5f4c8579786e8a7933d92c626908d",
+        "f1": 0.7012987012987013,
+        "correct": 27,
+        "target": 50,
+        "placed": 27,
+        "extras": 0,
+        "missed": 23
+      },
+      "frame_ids": [
+        "shape-benchmark-open-26.3--train-canopy-00-right"
+      ],
+      "rank": 1,
+      "sheet": "structure-01.jpg"
+    },
+    {
+      "name": "Canopy 04",
+      "shape_sha256": "7f0dabd97bf0d785be6757298dc6fd80d013e23ef7833aab59afe15fb4d333f9",
+      "frames": 1,
+      "correct": 36,
+      "target": 60,
+      "placed": 39,
+      "extras": 3,
+      "missed": 24,
+      "f1": 0.7272727272727273,
+      "representative": {
+        "split": "old",
+        "id": "shape-benchmark-26.3--train-canopy-04-left",
+        "name": "Canopy 04",
+        "rgb_sha256": "15fa8537e6b6f095ba50c7e24a71f6b823806a6fb236f80641daf9bc714c0823",
+        "pack_sha256": "25155c7385c458f1d1b53bbe0669d6497919289223d56eefa738000ee4d2276c",
+        "f1": 0.7272727272727273,
+        "correct": 36,
+        "target": 60,
+        "placed": 39,
+        "extras": 3,
+        "missed": 24
+      },
+      "frame_ids": [
+        "shape-benchmark-26.3--train-canopy-04-left"
+      ],
+      "rank": 2,
+      "sheet": "structure-02.jpg"
+    },
+    {
+      "name": "Colonnade 01",
+      "shape_sha256": "768c0c3907efd118a650bb27f62c61facc7932ac40427e50b9c5a066fd638bfc",
+      "frames": 1,
+      "correct": 126,
+      "target": 191,
+      "placed": 144,
+      "extras": 18,
+      "missed": 65,
+      "f1": 0.7522388059701492,
+      "representative": {
+        "split": "fresh",
+        "id": "inverse-voxels-26.3--confirm--test-colonnade-01-oblique-right",
+        "name": "Colonnade 01",
+        "rgb_sha256": "56f1d5c1feb17dcee4ab530954cd05a37bf86ef178aead769afe90c9ce6307e6",
+        "pack_sha256": "0abaef41f6b6e1c256d90902308b03ac9265276ca4365f6062182a47221fa032",
+        "f1": 0.7522388059701492,
+        "correct": 126,
+        "target": 191,
+        "placed": 144,
+        "extras": 18,
+        "missed": 65
+      },
+      "frame_ids": [
+        "inverse-voxels-26.3--confirm--test-colonnade-01-oblique-right"
+      ],
+      "rank": 3,
+      "sheet": "structure-03.jpg"
+    },
+    {
+      "name": "Galleries",
+      "shape_sha256": "85807f95e26614ef6d248a05df4458c5ddcc43d905cbbfbe4c775b044215b535",
+      "frames": 4,
+      "correct": 787,
+      "target": 1142,
+      "placed": 867,
+      "extras": 80,
+      "missed": 355,
+      "f1": 0.7834743653558984,
+      "representative": {
+        "split": "regression",
+        "id": "legacy-light_gray_concrete-holdout-galleries-plaster-low-left",
+        "name": "Galleries",
+        "rgb_sha256": "0fec6765b63937520e2a731a9171eef73e631ce1d47734e3925e2165b64a26c0",
+        "pack_sha256": "f5599de78c523e2c1c87c6019e1261ab89b984a30a07ee92bbec4dc8166e9e2d",
+        "f1": 0.7504990019960079,
+        "correct": 188,
+        "target": 274,
+        "placed": 227,
+        "extras": 39,
+        "missed": 86
+      },
+      "frame_ids": [
+        "legacy-light_gray_concrete-holdout-galleries-masonry-high-right",
+        "legacy-light_gray_concrete-holdout-galleries-masonry-low-left",
+        "legacy-light_gray_concrete-holdout-galleries-plaster-high-right",
+        "legacy-light_gray_concrete-holdout-galleries-plaster-low-left"
+      ],
+      "rank": 4,
+      "sheet": "structure-04.jpg"
+    },
+    {
+      "name": "Canopy 07",
+      "shape_sha256": "54ea1e26c082b02dd5b7a0a4b1fd7d30eccc603e1890c2f000f3b211cb7e303a",
+      "frames": 1,
+      "correct": 59,
+      "target": 83,
+      "placed": 60,
+      "extras": 1,
+      "missed": 24,
+      "f1": 0.8251748251748252,
+      "representative": {
+        "split": "old",
+        "id": "shape-benchmark-26.3--train-canopy-07-left",
+        "name": "Canopy 07",
+        "rgb_sha256": "15984215f0265a4c447ab14c02d913d2b564639d84a739c6c0c1e4e6db47d396",
+        "pack_sha256": "f701055c7a1068d6be27034bcd363a5c8c26ec7c62307d0e87fbb56027a88620",
+        "f1": 0.8251748251748252,
+        "correct": 59,
+        "target": 83,
+        "placed": 60,
+        "extras": 1,
+        "missed": 24
+      },
+      "frame_ids": [
+        "shape-benchmark-26.3--train-canopy-07-left"
+      ],
+      "rank": 5,
+      "sheet": "structure-05.jpg"
+    },
+    {
+      "name": "Physical Shade",
+      "shape_sha256": "1e9a6cd426e510d529ddc6fe461235f72d886343edf8afad68c8ef328bd428f9",
+      "frames": 2,
+      "correct": 513,
+      "target": 711,
+      "placed": 516,
+      "extras": 3,
+      "missed": 198,
+      "f1": 0.8361858190709046,
+      "representative": {
+        "split": "native",
+        "id": "physical-shade-oblique-left",
+        "name": "Physical Shade",
+        "rgb_sha256": "bd7bca183c7a5ca32ce59edcba2c9341ca600e3bf4779d17ddce9025145a68d2",
+        "pack_sha256": "7242871f82405fb6d379e59350593ee85cb73e599a52b509ef579d91ff879dd1",
+        "f1": 0.819935691318328,
+        "correct": 255,
+        "target": 365,
+        "placed": 257,
+        "extras": 2,
+        "missed": 110
+      },
+      "frame_ids": [
+        "physical-shade-oblique-left",
+        "physical-shade-oblique-right"
+      ],
+      "rank": 6,
+      "sheet": "structure-06.jpg"
+    },
+    {
+      "name": "Dev Relief 00",
+      "shape_sha256": "4dc0165245a0fc4b9d3bf1eb5d38ac89489ec6acc55e52ddec3d2809857c1c99",
+      "frames": 1,
+      "correct": 380,
+      "target": 480,
+      "placed": 428,
+      "extras": 48,
+      "missed": 100,
+      "f1": 0.8370044052863436,
+      "representative": {
+        "split": "old",
+        "id": "signed-relief-26.3--dev--dev-relief-00-oblique-right",
+        "name": "Dev Relief 00",
+        "rgb_sha256": "17682203a4372c0a677e34f7da95c18cb82acde6d1b92363697905fb6a90f7f5",
+        "pack_sha256": "d51ecba5801e1fb3949ae15b7975e1c86c9c7556626380f6a016beab775e8f14",
+        "f1": 0.8370044052863436,
+        "correct": 380,
+        "target": 480,
+        "placed": 428,
+        "extras": 48,
+        "missed": 100
+      },
+      "frame_ids": [
+        "signed-relief-26.3--dev--dev-relief-00-oblique-right"
+      ],
+      "rank": 7,
+      "sheet": "structure-07.jpg"
+    },
+    {
+      "name": "Shopfront",
+      "shape_sha256": "8411a82982c6a87f13423261f90514c8a2a9f1701cbfd56408dd24ec6c41dfae",
+      "frames": 8,
+      "correct": 1275,
+      "target": 1540,
+      "placed": 1423,
+      "extras": 148,
+      "missed": 265,
+      "f1": 0.8606142423219709,
+      "representative": {
+        "split": "regression",
+        "id": "legacy-light_gray_concrete-dev-shopfront-plaster-low-left",
+        "name": "Shopfront",
+        "rgb_sha256": "299e0228de74d2cc7d3a18deaba9f61c82560a0ddd0b8557e5c91728c964a993",
+        "pack_sha256": "0abf521ed30ea4029122b901004bb5189998df5233943a13ed63b2e1bf369971",
+        "f1": 0.7030716723549488,
+        "correct": 103,
+        "target": 169,
+        "placed": 124,
+        "extras": 21,
+        "missed": 66
+      },
+      "frame_ids": [
+        "legacy-light_gray_concrete-dev-shopfront-masonry-high-right",
+        "legacy-light_gray_concrete-dev-shopfront-masonry-low-left",
+        "legacy-light_gray_concrete-dev-shopfront-plaster-high-right",
+        "legacy-light_gray_concrete-dev-shopfront-plaster-low-left",
+        "legacy-smooth_stone-dev-shopfront-masonry-high-right",
+        "legacy-smooth_stone-dev-shopfront-masonry-low-left",
+        "legacy-smooth_stone-dev-shopfront-plaster-high-right",
+        "legacy-smooth_stone-dev-shopfront-plaster-low-left"
+      ],
+      "rank": 8,
+      "sheet": "structure-08.jpg"
+    },
+    {
+      "name": "Facade",
+      "shape_sha256": "9481bb30d3408e606e34ba44d32e187cb333a8116ecb332f1b46634943e8fcaf",
+      "frames": 2,
+      "correct": 587,
+      "target": 717,
+      "placed": 645,
+      "extras": 58,
+      "missed": 130,
+      "f1": 0.8619676945668135,
+      "representative": {
+        "split": "native",
+        "id": "heldout-facade-oblique-right",
+        "name": "Facade",
+        "rgb_sha256": "0828c9d164392fe0bad9a1a709c1f321eb73f7bb7d08739f3b99382493df5ad0",
+        "pack_sha256": "4fb6b93d0edc027618c4ebf2a82b0b63871a4435728db1ebe801efeb56f67ff5",
+        "f1": 0.826865671641791,
+        "correct": 277,
+        "target": 361,
+        "placed": 309,
+        "extras": 32,
+        "missed": 84
+      },
+      "frame_ids": [
+        "heldout-facade-oblique-left",
+        "heldout-facade-oblique-right"
+      ],
+      "rank": 9,
+      "sheet": "structure-09.jpg"
+    },
+    {
+      "name": "Relief 00",
+      "shape_sha256": "d1ff59fa7f956e59d24a30d8c5e0cc53a447acc2d3a5d7576dae2feb65745e58",
+      "frames": 1,
+      "correct": 394,
+      "target": 482,
+      "placed": 432,
+      "extras": 38,
+      "missed": 88,
+      "f1": 0.862144420131291,
+      "representative": {
+        "split": "old",
+        "id": "signed-relief-26.3--test--test-relief-00-oblique-left",
+        "name": "Relief 00",
+        "rgb_sha256": "54145a22b48ba5eb35581125363469a3024172b1e9ae95cb6dff00ca9a673854",
+        "pack_sha256": "9aef05257639c8627528b968175a075ae162c0db15373b89d47c55ca09b8d4ed",
+        "f1": 0.862144420131291,
+        "correct": 394,
+        "target": 482,
+        "placed": 432,
+        "extras": 38,
+        "missed": 88
+      },
+      "frame_ids": [
+        "signed-relief-26.3--test--test-relief-00-oblique-left"
+      ],
+      "rank": 10,
+      "sheet": "structure-10.jpg"
+    },
+    {
+      "name": "Facade",
+      "shape_sha256": "705e1ed4f6619eec173e040861de98784297decbd283cceb0ef0bf7cb8b575a1",
+      "frames": 1,
+      "correct": 284,
+      "target": 315,
+      "placed": 336,
+      "extras": 52,
+      "missed": 31,
+      "f1": 0.8725038402457758,
+      "representative": {
+        "split": "fresh",
+        "id": "corner-mixed-26.3--heldout-facade-oblique-left",
+        "name": "Facade",
+        "rgb_sha256": "e032733de969dd76bc991a10d55472951892eef53caa419400f8702893f3b25c",
+        "pack_sha256": "12b374628733ea74617838bc0931e5178d101cc5093e1753e2aab1b576c58986",
+        "f1": 0.8725038402457758,
+        "correct": 284,
+        "target": 315,
+        "placed": 336,
+        "extras": 52,
+        "missed": 31
+      },
+      "frame_ids": [
+        "corner-mixed-26.3--heldout-facade-oblique-left"
+      ],
+      "rank": 11
+    },
+    {
+      "name": "Recess 02",
+      "shape_sha256": "af9197f778bd94342d8ce2695a031291b8c55c78af325c07f6d5e55cc38739f2",
+      "frames": 1,
+      "correct": 302,
+      "target": 340,
+      "placed": 352,
+      "extras": 50,
+      "missed": 38,
+      "f1": 0.8728323699421965,
+      "representative": {
+        "split": "old",
+        "id": "shape-benchmark-26.3--train-recess-02-right",
+        "name": "Recess 02",
+        "rgb_sha256": "3dae3737c077d483a91e35e525af829d34b1262ca51a4287b5b1214988c2e7df",
+        "pack_sha256": "65e868cd0b81a896e5763aacfb95ceae5e86a730a2d3f44ab49bfd2723a9eee7",
+        "f1": 0.8728323699421965,
+        "correct": 302,
+        "target": 340,
+        "placed": 352,
+        "extras": 50,
+        "missed": 38
+      },
+      "frame_ids": [
+        "shape-benchmark-26.3--train-recess-02-right"
+      ],
+      "rank": 12
+    },
+    {
+      "name": "Facade",
+      "shape_sha256": "fe1358894e652c3e8b6f142e8e96a514031ea3e1e7dd07b7548d2b28bd0e2d70",
+      "frames": 1,
+      "correct": 351,
+      "target": 408,
+      "placed": 388,
+      "extras": 37,
+      "missed": 57,
+      "f1": 0.8819095477386935,
+      "representative": {
+        "split": "fresh",
+        "id": "entrance-confirm-26.3--positive--heldout-facade-oblique-right",
+        "name": "Facade",
+        "rgb_sha256": "8564e2bfba0ca890cde2498fb1e698cf28b41d7f65bcddc6907a34b6dab2674b",
+        "pack_sha256": "e7f870f52e50912a95fe3efd2b181e00edfa8d9ea88090199a68c7baccf94f1b",
+        "f1": 0.8819095477386935,
+        "correct": 351,
+        "target": 408,
+        "placed": 388,
+        "extras": 37,
+        "missed": 57
+      },
+      "frame_ids": [
+        "entrance-confirm-26.3--positive--heldout-facade-oblique-right"
+      ],
+      "rank": 13
+    },
+    {
+      "name": "Dark Inlay",
+      "shape_sha256": "8499d13fa310e225eff3383a8cab8f33b87d49b6e7466396336fb20a6f207416",
+      "frames": 2,
+      "correct": 470,
+      "target": 587,
+      "placed": 471,
+      "extras": 1,
+      "missed": 117,
+      "f1": 0.888468809073724,
+      "representative": {
+        "split": "native",
+        "id": "dark-inlay-oblique-left",
+        "name": "Dark Inlay",
+        "rgb_sha256": "67880a7c6d8860b3460581227f8638c0014b6c0e00ed231e16c905b66b73413d",
+        "pack_sha256": "6678f9f62043c5d36ed8d47e87f483695fdbe4680bd2e24e1b71e86fb53f6651",
+        "f1": 0.8804554079696395,
+        "correct": 232,
+        "target": 295,
+        "placed": 232,
+        "extras": 0,
+        "missed": 63
+      },
+      "frame_ids": [
+        "dark-inlay-oblique-left",
+        "dark-inlay-oblique-right"
+      ],
+      "rank": 14
+    },
+    {
+      "name": "Dev Canopy 18",
+      "shape_sha256": "2b3c6d4a690d194b3a80ed0c5666b5bba5e03c133b288f914d899cbbdee5366d",
+      "frames": 1,
+      "correct": 36,
+      "target": 43,
+      "placed": 38,
+      "extras": 2,
+      "missed": 7,
+      "f1": 0.8888888888888888,
+      "representative": {
+        "split": "old",
+        "id": "shape-benchmark-26.3--dev-canopy-18-left",
+        "name": "Dev Canopy 18",
+        "rgb_sha256": "4d35db3a32845f60f0d8a72a8d55a6baf7afab96cabb7002cb211bc9b71efaed",
+        "pack_sha256": "89fb8aacc5db6be76b4764b3c49734b2d303fd08be1db39abb17d0c4d31a974f",
+        "f1": 0.8888888888888888,
+        "correct": 36,
+        "target": 43,
+        "placed": 38,
+        "extras": 2,
+        "missed": 7
+      },
+      "frame_ids": [
+        "shape-benchmark-26.3--dev-canopy-18-left"
+      ],
+      "rank": 15
+    },
+    {
+      "name": "Workshop",
+      "shape_sha256": "c21980a4f072002059d2d936d36c6c78efa5912003fb999ecde4cd926eb87416",
+      "frames": 4,
+      "correct": 841,
+      "target": 1000,
+      "placed": 887,
+      "extras": 46,
+      "missed": 159,
+      "f1": 0.8913619501854796,
+      "representative": {
+        "split": "regression",
+        "id": "legacy-light_gray_concrete-holdout-workshop-plaster-high-right",
+        "name": "Workshop",
+        "rgb_sha256": "d35ab308820f92501ec898cafb1f50939f3f0ed1141e3d9ee38a00eae1199aa0",
+        "pack_sha256": "92e7dbe1144668ddd5638081bf4f7bd3d677e1c545beb7132806b27fb65503a9",
+        "f1": 0.8525252525252526,
+        "correct": 211,
+        "target": 265,
+        "placed": 230,
+        "extras": 19,
+        "missed": 54
+      },
+      "frame_ids": [
+        "legacy-light_gray_concrete-holdout-workshop-masonry-high-right",
+        "legacy-light_gray_concrete-holdout-workshop-masonry-low-left",
+        "legacy-light_gray_concrete-holdout-workshop-plaster-high-right",
+        "legacy-light_gray_concrete-holdout-workshop-plaster-low-left"
+      ],
+      "rank": 16
+    },
+    {
+      "name": "Portico",
+      "shape_sha256": "1058a0d439e195ecf2f77af13935a09ff054d0eb9275155673ac56081a99169e",
+      "frames": 8,
+      "correct": 1517,
+      "target": 1788,
+      "placed": 1611,
+      "extras": 94,
+      "missed": 271,
+      "f1": 0.892615475139747,
+      "representative": {
+        "split": "regression",
+        "id": "legacy-light_gray_concrete-holdout-portico-plaster-low-left",
+        "name": "Portico",
+        "rgb_sha256": "318e6e654ece8e6ab93aea0fa5c0cccecdb727faf743b5fbb5eb31da2f2b05f2",
+        "pack_sha256": "3be5334ae8386b98e28df808329e8c99cfa189462f7e88d97af7cddad09539ae",
+        "f1": 0.7648578811369509,
+        "correct": 148,
+        "target": 209,
+        "placed": 178,
+        "extras": 30,
+        "missed": 61
+      },
+      "frame_ids": [
+        "legacy-light_gray_concrete-holdout-portico-masonry-high-right",
+        "legacy-light_gray_concrete-holdout-portico-masonry-low-left",
+        "legacy-light_gray_concrete-holdout-portico-plaster-high-right",
+        "legacy-light_gray_concrete-holdout-portico-plaster-low-left",
+        "legacy-smooth_stone-holdout-portico-masonry-high-right",
+        "legacy-smooth_stone-holdout-portico-masonry-low-left",
+        "legacy-smooth_stone-holdout-portico-plaster-high-right",
+        "legacy-smooth_stone-holdout-portico-plaster-low-left"
+      ],
+      "rank": 17
+    },
+    {
+      "name": "Canopy 01 (open)",
+      "shape_sha256": "f384be360740b07c11918722d27ecfe21211f66e299515a6f983d50deb5070a6",
+      "frames": 1,
+      "correct": 68,
+      "target": 83,
+      "placed": 69,
+      "extras": 1,
+      "missed": 15,
+      "f1": 0.8947368421052632,
+      "representative": {
+        "split": "old",
+        "id": "shape-benchmark-open-26.3--train-canopy-01-left",
+        "name": "Canopy 01 (open)",
+        "rgb_sha256": "1d61d60139891f20f433cdeadb0cd57a32505a1e2f057f246748c519bc69b652",
+        "pack_sha256": "e2729005806455a7f0ef2d17d8732627c5191680492fa4953e58eb0393f186d9",
+        "f1": 0.8947368421052632,
+        "correct": 68,
+        "target": 83,
+        "placed": 69,
+        "extras": 1,
+        "missed": 15
+      },
+      "frame_ids": [
+        "shape-benchmark-open-26.3--train-canopy-01-left"
+      ],
+      "rank": 18
+    },
+    {
+      "name": "Canopy 08",
+      "shape_sha256": "a333fd7aacf99750bf70dc443a27854093044ededbec79d9d997838470ad53f3",
+      "frames": 1,
+      "correct": 82,
+      "target": 98,
+      "placed": 85,
+      "extras": 3,
+      "missed": 16,
+      "f1": 0.8961748633879781,
+      "representative": {
+        "split": "old",
+        "id": "shape-benchmark-26.3--train-canopy-08-right",
+        "name": "Canopy 08",
+        "rgb_sha256": "3a40da0b3e1512610339dc8c7ce551b79a449d428f7e1e64c465d67369562053",
+        "pack_sha256": "9250679de0696dd6c8ba07d0961649748007e4cc33981353d87e9388d7c5bdbc",
+        "f1": 0.8961748633879781,
+        "correct": 82,
+        "target": 98,
+        "placed": 85,
+        "extras": 3,
+        "missed": 16
+      },
+      "frame_ids": [
+        "shape-benchmark-26.3--train-canopy-08-right"
+      ],
+      "rank": 19
+    },
+    {
+      "name": "Canopy 05",
+      "shape_sha256": "c3c763ea594f5d17508b4ff615c19865673021a73e83be21782be38ca5edf9b0",
+      "frames": 1,
+      "correct": 61,
+      "target": 72,
+      "placed": 64,
+      "extras": 3,
+      "missed": 11,
+      "f1": 0.8970588235294118,
+      "representative": {
+        "split": "fresh",
+        "id": "shape-benchmark-26.3--train-canopy-05-left",
+        "name": "Canopy 05",
+        "rgb_sha256": "8b1d25761a70308f38309a63ff1a277830e638c40bb98031ca36ed75b5824c59",
+        "pack_sha256": "6ade281286959ee6a3271dd90a6292680a5c18f6fc7d814be316332628949615",
+        "f1": 0.8970588235294118,
+        "correct": 61,
+        "target": 72,
+        "placed": 64,
+        "extras": 3,
+        "missed": 11
+      },
+      "frame_ids": [
+        "shape-benchmark-26.3--train-canopy-05-left"
+      ],
+      "rank": 20
+    },
+    {
+      "name": "Facade",
+      "shape_sha256": "25e7bc0392eed6bf12a9ac3b846e8933449ff2b69036db2deeb14858b6d57f98",
+      "frames": 1,
+      "correct": 289,
+      "target": 310,
+      "placed": 326,
+      "extras": 37,
+      "missed": 21,
+      "f1": 0.9088050314465409,
+      "representative": {
+        "split": "old",
+        "id": "rim-views-26.3--positive--heldout-facade-oblique-right",
+        "name": "Facade",
+        "rgb_sha256": "3451b9f015c6d3ac847e96098387c8645b60fdc7f053197ac7d927201decca73",
+        "pack_sha256": "b0f7148680294c957bec3ea1096f2b6dd09cc085307381046a67ac2e5534197b",
+        "f1": 0.9088050314465409,
+        "correct": 289,
+        "target": 310,
+        "placed": 326,
+        "extras": 37,
+        "missed": 21
+      },
+      "frame_ids": [
+        "rim-views-26.3--positive--heldout-facade-oblique-right"
+      ],
+      "rank": 21
+    },
+    {
+      "name": "Registry",
+      "shape_sha256": "7899f0f81e5eb6fecf5fc4abeb3e8d5b9b7f5de4fbd05322e2c05d2e5cd252d7",
+      "frames": 4,
+      "correct": 918,
+      "target": 1050,
+      "placed": 964,
+      "extras": 46,
+      "missed": 132,
+      "f1": 0.9116186693147964,
+      "representative": {
+        "split": "regression",
+        "id": "legacy-light_gray_concrete-holdout-registry-plaster-high-right",
+        "name": "Registry",
+        "rgb_sha256": "8634b14394486c2fb709ea678008fbaf2314344280b5a13d3582d433125d589d",
+        "pack_sha256": "02752db0e434d75157868fadab41f018175c5aeb1d7a85dc0127e914a0afd61b",
+        "f1": 0.8428835489833642,
+        "correct": 228,
+        "target": 300,
+        "placed": 241,
+        "extras": 13,
+        "missed": 72
+      },
+      "frame_ids": [
+        "legacy-light_gray_concrete-holdout-registry-masonry-high-right",
+        "legacy-light_gray_concrete-holdout-registry-masonry-low-left",
+        "legacy-light_gray_concrete-holdout-registry-plaster-high-right",
+        "legacy-light_gray_concrete-holdout-registry-plaster-low-left"
+      ],
+      "rank": 22
+    },
+    {
+      "name": "Crossing",
+      "shape_sha256": "855761dc993e3e3add1f3c1a364cf7221245b51b4e9bc7bca4df9d5f5e4d54c2",
+      "frames": 4,
+      "correct": 760,
+      "target": 870,
+      "placed": 785,
+      "extras": 25,
+      "missed": 110,
+      "f1": 0.918429003021148,
+      "representative": {
+        "split": "regression",
+        "id": "legacy-light_gray_concrete-holdout-crossing-plaster-high-right",
+        "name": "Crossing",
+        "rgb_sha256": "a7e9cd44bd97237bd3cbf88b11fdfa3575deee7473ef820b30e19bc5fe37698e",
+        "pack_sha256": "cb5cc468cf5fdb2090aa48b87021cda631c5529a50a71c80235481df08a2214c",
+        "f1": 0.8791773778920309,
+        "correct": 171,
+        "target": 212,
+        "placed": 177,
+        "extras": 6,
+        "missed": 41
+      },
+      "frame_ids": [
+        "legacy-light_gray_concrete-holdout-crossing-masonry-high-right",
+        "legacy-light_gray_concrete-holdout-crossing-masonry-low-left",
+        "legacy-light_gray_concrete-holdout-crossing-plaster-high-right",
+        "legacy-light_gray_concrete-holdout-crossing-plaster-low-left"
+      ],
+      "rank": 23
+    },
+    {
+      "name": "Courtyard",
+      "shape_sha256": "5a50af2c59e2fb43494a511fc79580a356ec5a44c3cdc054044a3bfd78ecb068",
+      "frames": 8,
+      "correct": 1445,
+      "target": 1588,
+      "placed": 1546,
+      "extras": 101,
+      "missed": 143,
+      "f1": 0.9221442246330568,
+      "representative": {
+        "split": "regression",
+        "id": "legacy-light_gray_concrete-holdout-courtyard-plaster-low-left",
+        "name": "Courtyard",
+        "rgb_sha256": "1995d3af4ecbdd7b22bc4ada179009147a5b389379edd6142b99dcaa6446d9c0",
+        "pack_sha256": "cdd6ab5a7e7d18e8873fdb32f3cf5a404e2fe3af401e22f93dd7b47e7fd7ea7d",
+        "f1": 0.8295454545454546,
+        "correct": 146,
+        "target": 176,
+        "placed": 176,
+        "extras": 30,
+        "missed": 30
+      },
+      "frame_ids": [
+        "legacy-light_gray_concrete-holdout-courtyard-masonry-high-right",
+        "legacy-light_gray_concrete-holdout-courtyard-masonry-low-left",
+        "legacy-light_gray_concrete-holdout-courtyard-plaster-high-right",
+        "legacy-light_gray_concrete-holdout-courtyard-plaster-low-left",
+        "legacy-smooth_stone-holdout-courtyard-masonry-high-right",
+        "legacy-smooth_stone-holdout-courtyard-masonry-low-left",
+        "legacy-smooth_stone-holdout-courtyard-plaster-high-right",
+        "legacy-smooth_stone-holdout-courtyard-plaster-low-left"
+      ],
+      "rank": 24
+    },
+    {
+      "name": "Recess 28",
+      "shape_sha256": "8431117aba518ce4927097b201f4a6031ca3a3cd799e2b03df6a2c0abc59a76e",
+      "frames": 2,
+      "correct": 629,
+      "target": 683,
+      "placed": 674,
+      "extras": 45,
+      "missed": 54,
+      "f1": 0.9270449521002211,
+      "representative": {
+        "split": "native",
+        "id": "test-recess-28-left",
+        "name": "Recess 28",
+        "rgb_sha256": "d4891492a4b325a1eb7c3e1ce9f3124b2815e72fb29038f5086afd9b91fc4dc6",
+        "pack_sha256": "76f541e1d13e1bd3f476cb67a9035106adc71efc0b2eddf7ecb23ca82df74d4c",
+        "f1": 0.8989751098096632,
+        "correct": 307,
+        "target": 349,
+        "placed": 334,
+        "extras": 27,
+        "missed": 42
+      },
+      "frame_ids": [
+        "test-recess-28-left",
+        "test-recess-28-right"
+      ],
+      "rank": 25
+    },
+    {
+      "name": "Dev Canopy 19",
+      "shape_sha256": "9023107a568e71ff03ad6febbbeb409d6c77eee696deddd6d61e68dd76bc73fd",
+      "frames": 1,
+      "correct": 39,
+      "target": 45,
+      "placed": 39,
+      "extras": 0,
+      "missed": 6,
+      "f1": 0.9285714285714286,
+      "representative": {
+        "split": "fresh",
+        "id": "shape-benchmark-26.3--dev-canopy-19-right",
+        "name": "Dev Canopy 19",
+        "rgb_sha256": "9c375a4c0127fd942d7932e6eadcd08c27ab151adfdf8167cda164e741614a0d",
+        "pack_sha256": "948eb5aa07fb790d36be7b07baa185cde7437ee0b4180a4974da4f8a31d7311d",
+        "f1": 0.9285714285714286,
+        "correct": 39,
+        "target": 45,
+        "placed": 39,
+        "extras": 0,
+        "missed": 6
+      },
+      "frame_ids": [
+        "shape-benchmark-26.3--dev-canopy-19-right"
+      ],
+      "rank": 26
+    },
+    {
+      "name": "Twinspire 2",
+      "shape_sha256": "856e36b94bb11bc177097dcec667f22dd8722d644ca8fe6b30ffc6385648e8da",
+      "frames": 4,
+      "correct": 1016,
+      "target": 1144,
+      "placed": 1034,
+      "extras": 18,
+      "missed": 128,
+      "f1": 0.9329660238751147,
+      "representative": {
+        "split": "test",
+        "id": "test-twinspire2-cool-low-left",
+        "name": "Twinspire 2",
+        "rgb_sha256": "fd012a40918665b1bbe3660dec678a6b0b252934e4107adbf34bb95102226789",
+        "pack_sha256": "debeb5e92ee911fcd9a5b6804a7e275cded2f15dd5d795380b51d0ba5f22d4ad",
+        "f1": 0.9174664107485605,
+        "correct": 239,
+        "target": 278,
+        "placed": 243,
+        "extras": 4,
+        "missed": 39
+      },
+      "frame_ids": [
+        "test-twinspire2-cool-high-right",
+        "test-twinspire2-cool-low-left",
+        "test-twinspire2-earth-high-right",
+        "test-twinspire2-earth-low-left"
+      ],
+      "rank": 27
+    },
+    {
+      "name": "Twinspire 3",
+      "shape_sha256": "94706594829c14ff270093c2aa42910038efa142d0479160e6d59780e7df22ad",
+      "frames": 4,
+      "correct": 1291,
+      "target": 1418,
+      "placed": 1347,
+      "extras": 56,
+      "missed": 127,
+      "f1": 0.9338155515370705,
+      "representative": {
+        "split": "test",
+        "id": "test-twinspire3-cool-low-left",
+        "name": "Twinspire 3",
+        "rgb_sha256": "105ca0401e7a25246d35564647b91c7c86c41aee3e088b5a0749d915d49c9d0b",
+        "pack_sha256": "a34e61dfd7a53518838cefb9b5d52dba3fa0732b5acde02f35c902b445d5ce39",
+        "f1": 0.8688046647230321,
+        "correct": 298,
+        "target": 353,
+        "placed": 333,
+        "extras": 35,
+        "missed": 55
+      },
+      "frame_ids": [
+        "test-twinspire3-cool-high-right",
+        "test-twinspire3-cool-low-left",
+        "test-twinspire3-earth-high-right",
+        "test-twinspire3-earth-low-left"
+      ],
+      "rank": 28
+    },
+    {
+      "name": "Cloister 3",
+      "shape_sha256": "803ee7912faee8b1463746818421b95322923fcc7790cd367a9290d9e0c7338c",
+      "frames": 4,
+      "correct": 959,
+      "target": 1048,
+      "placed": 993,
+      "extras": 34,
+      "missed": 89,
+      "f1": 0.9397354238118569,
+      "representative": {
+        "split": "validation",
+        "id": "validation-cloister3-cool-high-right",
+        "name": "Cloister 3",
+        "rgb_sha256": "5e41490e98d263b75ec35836087592a46e7827ef51b528e1ac4c3a562caf8a1e",
+        "pack_sha256": "ddd070724dcc69be12605f5b765377c41086825e92b6daf4abebeef7862c1626",
+        "f1": 0.9176882661996497,
+        "correct": 262,
+        "target": 298,
+        "placed": 273,
+        "extras": 11,
+        "missed": 36
+      },
+      "frame_ids": [
+        "validation-cloister3-cool-high-right",
+        "validation-cloister3-cool-low-left",
+        "validation-cloister3-earth-high-right",
+        "validation-cloister3-earth-low-left"
+      ],
+      "rank": 29
+    },
+    {
+      "name": "Cloister 1",
+      "shape_sha256": "72af8d9cf75cb74561f5a3de4492fe89a8817f21d12928d2bb7293622d116645",
+      "frames": 4,
+      "correct": 565,
+      "target": 622,
+      "placed": 580,
+      "extras": 15,
+      "missed": 57,
+      "f1": 0.940099833610649,
+      "representative": {
+        "split": "validation",
+        "id": "validation-cloister1-earth-low-left",
+        "name": "Cloister 1",
+        "rgb_sha256": "e7277a48a55059a5705a7001dc4db0ace8fafd8ccfd14a20919e45e797889405",
+        "pack_sha256": "e2099c182ca3ee6a28ac1d683185574e883604bff1336b7d476012200dc8c276",
+        "f1": 0.937984496124031,
+        "correct": 121,
+        "target": 137,
+        "placed": 121,
+        "extras": 0,
+        "missed": 16
+      },
+      "frame_ids": [
+        "validation-cloister1-cool-high-right",
+        "validation-cloister1-cool-low-left",
+        "validation-cloister1-earth-high-right",
+        "validation-cloister1-earth-low-left"
+      ],
+      "rank": 30
+    },
+    {
+      "name": "Canopy 06",
+      "shape_sha256": "7894bab9d4806dc496c01bcc45a248787d248ee606dc3c4f4433d828293e8b42",
+      "frames": 1,
+      "correct": 76,
+      "target": 84,
+      "placed": 77,
+      "extras": 1,
+      "missed": 8,
+      "f1": 0.9440993788819876,
+      "representative": {
+        "split": "old",
+        "id": "shape-benchmark-26.3--train-canopy-06-left",
+        "name": "Canopy 06",
+        "rgb_sha256": "2a4eedaba2cc410e6d3b6ea161179312f2b9b666dbe9cf12587b9176df381bac",
+        "pack_sha256": "a9a017ae9c583c60954c256ba4727c26625f1d64fa8497de37eaa441b2c0ab07",
+        "f1": 0.9440993788819876,
+        "correct": 76,
+        "target": 84,
+        "placed": 77,
+        "extras": 1,
+        "missed": 8
+      },
+      "frame_ids": [
+        "shape-benchmark-26.3--train-canopy-06-left"
+      ],
+      "rank": 31
+    },
+    {
+      "name": "Corner 29",
+      "shape_sha256": "64cab0d57c936f01737142c01a68b964ff21d7441e2f5179bb26fea7f8b4204e",
+      "frames": 2,
+      "correct": 354,
+      "target": 392,
+      "placed": 357,
+      "extras": 3,
+      "missed": 38,
+      "f1": 0.945260347129506,
+      "representative": {
+        "split": "native",
+        "id": "test-corner-29-left",
+        "name": "Corner 29",
+        "rgb_sha256": "93ca442b933fa21083f39a5963301b6277184c570a9f61e01ba4cb6d88f35c96",
+        "pack_sha256": "086db4cea933124c7db509596ae5119071102046aa4af5037075ce4a1cb8f535",
+        "f1": 0.9337349397590361,
+        "correct": 155,
+        "target": 175,
+        "placed": 157,
+        "extras": 2,
+        "missed": 20
+      },
+      "frame_ids": [
+        "test-corner-29-left",
+        "test-corner-29-right"
+      ],
+      "rank": 32
+    },
+    {
+      "name": "Cloister 2",
+      "shape_sha256": "980b7e8bde2c21907522ffca72a7df2ebfe3673cd3b9c256435dfe0bb8fe4fde",
+      "frames": 4,
+      "correct": 750,
+      "target": 806,
+      "placed": 777,
+      "extras": 27,
+      "missed": 56,
+      "f1": 0.9475679090334808,
+      "representative": {
+        "split": "validation",
+        "id": "validation-cloister2-earth-high-right",
+        "name": "Cloister 2",
+        "rgb_sha256": "d6158887502cad46d0c123c5d81419216d0d647de03f5cc894ce38fcb824fc03",
+        "pack_sha256": "576c9e64aef0761668fe04e33d3c6768f297880407775f3981d3bf064e4daf67",
+        "f1": 0.9082774049217002,
+        "correct": 203,
+        "target": 229,
+        "placed": 218,
+        "extras": 15,
+        "missed": 26
+      },
+      "frame_ids": [
+        "validation-cloister2-cool-high-right",
+        "validation-cloister2-cool-low-left",
+        "validation-cloister2-earth-high-right",
+        "validation-cloister2-earth-low-left"
+      ],
+      "rank": 33
+    },
+    {
+      "name": "Wing",
+      "shape_sha256": "3fecc20ac664dcf73aff63409ad53b849677fac73d3e924f11694bbd123fdc8f",
+      "frames": 8,
+      "correct": 1147,
+      "target": 1264,
+      "placed": 1156,
+      "extras": 9,
+      "missed": 117,
+      "f1": 0.9479338842975207,
+      "representative": {
+        "split": "regression",
+        "id": "legacy-light_gray_concrete-dev-wing-masonry-high-right",
+        "name": "Wing",
+        "rgb_sha256": "5ccd9115fd2a70784e0e1ab6819d37fc5c4af54cf965605143b3817e1f3a3efd",
+        "pack_sha256": "4573270c29b6670744a7533a59db4463e11d777fda03d53cb622b1c99ef51b89",
+        "f1": 0.9153605015673981,
+        "correct": 146,
+        "target": 172,
+        "placed": 147,
+        "extras": 1,
+        "missed": 26
+      },
+      "frame_ids": [
+        "legacy-light_gray_concrete-dev-wing-masonry-high-right",
+        "legacy-light_gray_concrete-dev-wing-masonry-low-left",
+        "legacy-light_gray_concrete-dev-wing-plaster-high-right",
+        "legacy-light_gray_concrete-dev-wing-plaster-low-left",
+        "legacy-smooth_stone-dev-wing-masonry-high-right",
+        "legacy-smooth_stone-dev-wing-masonry-low-left",
+        "legacy-smooth_stone-dev-wing-plaster-high-right",
+        "legacy-smooth_stone-dev-wing-plaster-low-left"
+      ],
+      "rank": 34
+    },
+    {
+      "name": "Dev Corner 16",
+      "shape_sha256": "ba97f24d5a7bea0d68c1bb0079fb0c2c7eb6fd7eda4a779ea95ddfd0c03e4a73",
+      "frames": 1,
+      "correct": 174,
+      "target": 189,
+      "placed": 175,
+      "extras": 1,
+      "missed": 15,
+      "f1": 0.9560439560439561,
+      "representative": {
+        "split": "fresh",
+        "id": "shape-benchmark-26.3--dev-corner-16-right",
+        "name": "Dev Corner 16",
+        "rgb_sha256": "753a868e072dae0eb53267e1a5f9b015f4e8b40b93de558cea1f0fa3d5366079",
+        "pack_sha256": "a2a54dd60eb8cf4de77d6a8b3f91ab5e54ed9f9f01dde0997886a810ebb1a859",
+        "f1": 0.9560439560439561,
+        "correct": 174,
+        "target": 189,
+        "placed": 175,
+        "extras": 1,
+        "missed": 15
+      },
+      "frame_ids": [
+        "shape-benchmark-26.3--dev-corner-16-right"
+      ],
+      "rank": 35
+    },
+    {
+      "name": "Twinspire 1",
+      "shape_sha256": "fe17dc3ce619089e4067af8e4af6d12e527e269d3292816ae2222824aa425b13",
+      "frames": 4,
+      "correct": 788,
+      "target": 852,
+      "placed": 792,
+      "extras": 4,
+      "missed": 64,
+      "f1": 0.9586374695863747,
+      "representative": {
+        "split": "test",
+        "id": "test-twinspire1-cool-low-left",
+        "name": "Twinspire 1",
+        "rgb_sha256": "042ce5059691039efe691a2cf61d174f6f46eaed1196d21c9d76516f9956ef73",
+        "pack_sha256": "df80dcc63540fd80e4593f8a16e059c453ea56be71d5ba7a4b567ddfbd356633",
+        "f1": 0.9533678756476683,
+        "correct": 184,
+        "target": 200,
+        "placed": 186,
+        "extras": 2,
+        "missed": 16
+      },
+      "frame_ids": [
+        "test-twinspire1-cool-high-right",
+        "test-twinspire1-cool-low-left",
+        "test-twinspire1-earth-high-right",
+        "test-twinspire1-earth-low-left"
+      ],
+      "rank": 36
+    },
+    {
+      "name": "Adjacency 26",
+      "shape_sha256": "3b824ebed1e813584707750a9575c3fcf226198c80b2b335548e551448c30433",
+      "frames": 2,
+      "correct": 679,
+      "target": 690,
+      "placed": 725,
+      "extras": 46,
+      "missed": 11,
+      "f1": 0.9597173144876325,
+      "representative": {
+        "split": "native",
+        "id": "test-adjacency-26-right",
+        "name": "Adjacency 26",
+        "rgb_sha256": "020e3114962331500352eb2dbec1a0b5b4b9572c0571b1bba3debac74d439092",
+        "pack_sha256": "bb717f0685761f45c6fdec60388e1e5a7c63519395ea16d2dc699c223e8c0c9f",
+        "f1": 0.9423347398030942,
+        "correct": 335,
+        "target": 345,
+        "placed": 366,
+        "extras": 31,
+        "missed": 10
+      },
+      "frame_ids": [
+        "test-adjacency-26-left",
+        "test-adjacency-26-right"
+      ],
+      "rank": 37
+    },
+    {
+      "name": "Corner 03",
+      "shape_sha256": "b1460367784ab15d74b8bc23f55f136252f38aac6d17d5308bb7206234c495d5",
+      "frames": 1,
+      "correct": 149,
+      "target": 161,
+      "placed": 149,
+      "extras": 0,
+      "missed": 12,
+      "f1": 0.9612903225806452,
+      "representative": {
+        "split": "fresh",
+        "id": "shape-benchmark-26.3--train-corner-03-right",
+        "name": "Corner 03",
+        "rgb_sha256": "969109275306ef7885ed2acc832de1e2ea57e939586a4e128be0f9082c7c9195",
+        "pack_sha256": "ab1e1ca7ac34c204f198e33bd21952e4c2ae3878e0f3fe97f422e5391a41be49",
+        "f1": 0.9612903225806452,
+        "correct": 149,
+        "target": 161,
+        "placed": 149,
+        "extras": 0,
+        "missed": 12
+      },
+      "frame_ids": [
+        "shape-benchmark-26.3--train-corner-03-right"
+      ],
+      "rank": 38
+    },
+    {
+      "name": "Canopy 09",
+      "shape_sha256": "14775ba386d4e717087cf74640f62cfb5916f68fde9e395dd648b420221d1883",
+      "frames": 1,
+      "correct": 108,
+      "target": 112,
+      "placed": 111,
+      "extras": 3,
+      "missed": 4,
+      "f1": 0.968609865470852,
+      "representative": {
+        "split": "old",
+        "id": "shape-benchmark-26.3--train-canopy-09-right",
+        "name": "Canopy 09",
+        "rgb_sha256": "25487746567e273b6c6d3e9cff9b860b814d717d9ebcc6a7501376a266a9d3fd",
+        "pack_sha256": "58d8b72b8fc7f7768430ab0b82c75d4e488d87e69467e5a53ce0cd7ea7466961",
+        "f1": 0.968609865470852,
+        "correct": 108,
+        "target": 112,
+        "placed": 111,
+        "extras": 3,
+        "missed": 4
+      },
+      "frame_ids": [
+        "shape-benchmark-26.3--train-canopy-09-right"
+      ],
+      "rank": 39
+    },
+    {
+      "name": "Bays 02",
+      "shape_sha256": "a1135050030c5363311320aad952ac017dc6f244f5fc17429396e8d8699d04e1",
+      "frames": 1,
+      "correct": 178,
+      "target": 184,
+      "placed": 178,
+      "extras": 0,
+      "missed": 6,
+      "f1": 0.9834254143646409,
+      "representative": {
+        "split": "old",
+        "id": "inverse-voxels-26.3--confirm--test-bays-02-oblique-right",
+        "name": "Bays 02",
+        "rgb_sha256": "43a4f0df1fcda1638a368df1fab42e457f26f147e2d2f2cb7dcc296acdb83c9b",
+        "pack_sha256": "77380e689e2cda620bc6a8129bd9065698cfdede87e147338b28a45816897788",
+        "f1": 0.9834254143646409,
+        "correct": 178,
+        "target": 184,
+        "placed": 178,
+        "extras": 0,
+        "missed": 6
+      },
+      "frame_ids": [
+        "inverse-voxels-26.3--confirm--test-bays-02-oblique-right"
+      ],
+      "rank": 40
+    }
+  ],
+  "lowest_views": [
+    {
+      "split": "fresh",
+      "id": "shape-benchmark-open-26.3--train-canopy-00-right",
+      "name": "Canopy 00 (open)",
+      "rgb_sha256": "647ddfc70562de0effeb54a865677408f5b1595fb8ce1d8f67e2d36077c2d1e4",
+      "pack_sha256": "b45341a871bc6adac6b2c1cce4db97ad7bf5f4c8579786e8a7933d92c626908d",
+      "f1": 0.7012987012987013,
+      "correct": 27,
+      "target": 50,
+      "placed": 27,
+      "extras": 0,
+      "missed": 23
+    },
+    {
+      "split": "regression",
+      "id": "legacy-light_gray_concrete-dev-shopfront-plaster-low-left",
+      "name": "Shopfront",
+      "rgb_sha256": "299e0228de74d2cc7d3a18deaba9f61c82560a0ddd0b8557e5c91728c964a993",
+      "pack_sha256": "0abf521ed30ea4029122b901004bb5189998df5233943a13ed63b2e1bf369971",
+      "f1": 0.7030716723549488,
+      "correct": 103,
+      "target": 169,
+      "placed": 124,
+      "extras": 21,
+      "missed": 66
+    },
+    {
+      "split": "old",
+      "id": "shape-benchmark-26.3--train-canopy-04-left",
+      "name": "Canopy 04",
+      "rgb_sha256": "15fa8537e6b6f095ba50c7e24a71f6b823806a6fb236f80641daf9bc714c0823",
+      "pack_sha256": "25155c7385c458f1d1b53bbe0669d6497919289223d56eefa738000ee4d2276c",
+      "f1": 0.7272727272727273,
+      "correct": 36,
+      "target": 60,
+      "placed": 39,
+      "extras": 3,
+      "missed": 24
+    },
+    {
+      "split": "regression",
+      "id": "legacy-light_gray_concrete-holdout-galleries-plaster-low-left",
+      "name": "Galleries",
+      "rgb_sha256": "0fec6765b63937520e2a731a9171eef73e631ce1d47734e3925e2165b64a26c0",
+      "pack_sha256": "f5599de78c523e2c1c87c6019e1261ab89b984a30a07ee92bbec4dc8166e9e2d",
+      "f1": 0.7504990019960079,
+      "correct": 188,
+      "target": 274,
+      "placed": 227,
+      "extras": 39,
+      "missed": 86
+    },
+    {
+      "split": "fresh",
+      "id": "inverse-voxels-26.3--confirm--test-colonnade-01-oblique-right",
+      "name": "Colonnade 01",
+      "rgb_sha256": "56f1d5c1feb17dcee4ab530954cd05a37bf86ef178aead769afe90c9ce6307e6",
+      "pack_sha256": "0abaef41f6b6e1c256d90902308b03ac9265276ca4365f6062182a47221fa032",
+      "f1": 0.7522388059701492,
+      "correct": 126,
+      "target": 191,
+      "placed": 144,
+      "extras": 18,
+      "missed": 65
+    },
+    {
+      "split": "regression",
+      "id": "legacy-light_gray_concrete-holdout-galleries-masonry-high-right",
+      "name": "Galleries",
+      "rgb_sha256": "21916862012e6b47e6dbe426fd7a8930bd7fdd51651238d8ad4d3e8860f57a7b",
+      "pack_sha256": "ff36702f8fae24a5f6cb64aee7ac15b39c9573a9d6abdc540b1d9f855070b5bb",
+      "f1": 0.7535641547861507,
+      "correct": 185,
+      "target": 297,
+      "placed": 194,
+      "extras": 9,
+      "missed": 112
+    },
+    {
+      "split": "regression",
+      "id": "legacy-light_gray_concrete-holdout-galleries-masonry-low-left",
+      "name": "Galleries",
+      "rgb_sha256": "d0fba67900a91a20d0120f298c8783829953bc21c7d45fb4413a8cb829cfddc3",
+      "pack_sha256": "7b6a56bee4036b177d386265a1f318d5c905bfaa91fa048a0a59c5183982c5fc",
+      "f1": 0.7581967213114754,
+      "correct": 185,
+      "target": 274,
+      "placed": 214,
+      "extras": 29,
+      "missed": 89
+    },
+    {
+      "split": "regression",
+      "id": "legacy-light_gray_concrete-holdout-portico-plaster-low-left",
+      "name": "Portico",
+      "rgb_sha256": "318e6e654ece8e6ab93aea0fa5c0cccecdb727faf743b5fbb5eb31da2f2b05f2",
+      "pack_sha256": "3be5334ae8386b98e28df808329e8c99cfa189462f7e88d97af7cddad09539ae",
+      "f1": 0.7648578811369509,
+      "correct": 148,
+      "target": 209,
+      "placed": 178,
+      "extras": 30,
+      "missed": 61
+    },
+    {
+      "split": "regression",
+      "id": "legacy-smooth_stone-holdout-portico-plaster-low-left",
+      "name": "Portico",
+      "rgb_sha256": "8f7b6cf572ea617a0efa47c002f4f9221df201dcde9d20595a10fb2915228445",
+      "pack_sha256": "182f80924caa750e35881079441b4040c5fc6c9b4ce7d2289eb76fc08e521c68",
+      "f1": 0.7789473684210526,
+      "correct": 148,
+      "target": 209,
+      "placed": 171,
+      "extras": 23,
+      "missed": 61
+    },
+    {
+      "split": "regression",
+      "id": "legacy-light_gray_concrete-dev-shopfront-masonry-high-right",
+      "name": "Shopfront",
+      "rgb_sha256": "bb588b0b0d1cdb05b720ff5bc3b515479426c7772fd98fb7fadb8a55b79ca9db",
+      "pack_sha256": "7fc75c6596ae7b4b3f1282ff4d8d17a1daa7b7e1d5c89cf45a9e680935de3a98",
+      "f1": 0.8135593220338984,
+      "correct": 192,
+      "target": 216,
+      "placed": 256,
+      "extras": 64,
+      "missed": 24
+    }
+  ]
+}

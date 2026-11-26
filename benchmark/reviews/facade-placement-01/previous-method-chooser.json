@@ -1,0 +1,847 @@
+{
+  "methods": [
+    "default",
+    "atlas",
+    "support",
+    "band",
+    "unrestricted",
+    "rim"
+  ],
+  "case_manifests": {
+    "default": {
+      "production": "0bd0c5188df399801fef997b114537e39d8d1d7a064b38c6642dd12a61772045",
+      "transfer-production": "b7bd369134663ea359ecac5aa15fc8fb07d4ddb405fc18961fa20cfdd1ed61b9"
+    },
+    "atlas": {
+      "atlas": "d312c5d08b5631afbb37236f21c47f998c9f7b193017464ecf950352d0410422",
+      "transfer-atlas": "e75b1a6791678bf12b4cc9734c4c70456b5fd3a76f77111b23003cbb266d8433"
+    },
+    "support": {
+      "supported": "0e7e0bf588abdac5468878c101d1a05520f9e1710dd589a9cd54265fbd001d3a",
+      "transfer-supported": "dd7938aed2e389d1366564fae92391dd92bdb51465728360a2f31f5039aab783"
+    },
+    "band": {
+      "band": "6d0d837b45f78c54024955a8db64278873c5dfce1e267278edc7a3a02c5c427e",
+      "transfer-band": "3eb11f872f08e110f1c89a360904e14cb6a27febfa5beed2e5924126e4f45d11"
+    },
+    "unrestricted": {
+      "early": "f5989415c4c8ad6964ae317b4b2644d455066e6febe146ee4ddcdead754ff8b7",
+      "transfer-early": "ca44b0ddb5dd33fd5f7d60e85d1733f3bdb707494bc2cfdfe8f244e9cf5e422a"
+    },
+    "rim": {
+      "rim-exchange": "d2a2ab4bec1f3f55e24aa3fcd8dedabb654a32b1b094626911208c8761f684e8",
+      "transfer-rim-exchange": "c374526864b4b6ac6ddcc432642ff37cb9c8dd78d521e7c44eacc43e3692444a"
+    }
+  },
+  "rule": {
+    "method": "unrestricted",
+    "feature": "removed",
+    "threshold": 37,
+    "direction": "at_most"
+  },
+  "held_out_rules": {
+    "arcade": {
+      "method": "unrestricted",
+      "feature": "removed",
+      "threshold": 37,
+      "direction": "at_most"
+    },
+    "arcbridge": {
+      "method": "unrestricted",
+      "feature": "removed",
+      "threshold": 37,
+      "direction": "at_most"
+    },
+    "sawtooth": {
+      "method": "unrestricted",
+      "feature": "removed",
+      "threshold": 37,
+      "direction": "at_most"
+    },
+    "steppedhall": {
+      "method": "unrestricted",
+      "feature": "removed",
+      "threshold": 37,
+      "direction": "at_most"
+    },
+    "terrace": {
+      "method": "unrestricted",
+      "feature": "removed",
+      "threshold": 22,
+      "direction": "at_most"
+    },
+    "watchpost": {
+      "method": "unrestricted",
+      "feature": "removed",
+      "threshold": 3,
+      "direction": "above"
+    }
+  },
+  "groups": {
+    "train": {
+      "default": {
+        "frames": 72,
+        "correct": 16000,
+        "target": 18322,
+        "extras": 781,
+        "hidden_extras": 82,
+        "f1": 0.9116029968948522,
+        "choices": {
+          "default": 72
+        }
+      },
+      "trained": {
+        "frames": 72,
+        "correct": 15992,
+        "target": 18322,
+        "extras": 608,
+        "hidden_extras": 81,
+        "f1": 0.9158696523681347,
+        "choices": {
+          "unrestricted": 71,
+          "default": 1
+        }
+      },
+      "oracle": {
+        "frames": 72,
+        "correct": 16069,
+        "target": 18322,
+        "extras": 616,
+        "hidden_extras": 83,
+        "f1": 0.9180449624360842,
+        "choices": {
+          "default": 46,
+          "support": 3,
+          "band": 5,
+          "atlas": 3,
+          "unrestricted": 15
+        }
+      },
+      "each": {
+        "default": {
+          "frames": 72,
+          "correct": 16000,
+          "target": 18322,
+          "extras": 781,
+          "hidden_extras": 82,
+          "f1": 0.9116029968948522,
+          "choices": {
+            "default": 72
+          }
+        },
+        "atlas": {
+          "frames": 72,
+          "correct": 16011,
+          "target": 18322,
+          "extras": 781,
+          "hidden_extras": 82,
+          "f1": 0.9119439539784702,
+          "choices": {
+            "atlas": 72
+          }
+        },
+        "support": {
+          "frames": 72,
+          "correct": 16030,
+          "target": 18322,
+          "extras": 781,
+          "hidden_extras": 82,
+          "f1": 0.9125323769675234,
+          "choices": {
+            "support": 72
+          }
+        },
+        "band": {
+          "frames": 72,
+          "correct": 16005,
+          "target": 18322,
+          "extras": 784,
+          "hidden_extras": 84,
+          "f1": 0.9116801002534818,
+          "choices": {
+            "band": 72
+          }
+        },
+        "unrestricted": {
+          "frames": 72,
+          "correct": 15887,
+          "target": 18322,
+          "extras": 609,
+          "hidden_extras": 81,
+          "f1": 0.9125739559997702,
+          "choices": {
+            "unrestricted": 72
+          }
+        },
+        "rim": {
+          "frames": 72,
+          "correct": 16003,
+          "target": 18322,
+          "extras": 782,
+          "hidden_extras": 83,
+          "f1": 0.9116700373144957,
+          "choices": {
+            "rim": 72
+          }
+        }
+      },
+      "family_held_out": {
+        "frames": 72,
+        "correct": 15898,
+        "target": 18322,
+        "extras": 662,
+        "hidden_extras": 81,
+        "f1": 0.9115303021615733,
+        "choices": {
+          "unrestricted": 64,
+          "default": 8
+        }
+      }
+    },
+    "fixed": {
+      "default": {
+        "frames": 104,
+        "correct": 20462,
+        "target": 23702,
+        "extras": 1157,
+        "hidden_extras": 106,
+        "f1": 0.9029809580547649,
+        "choices": {
+          "default": 104
+        }
+      },
+      "trained": {
+        "frames": 104,
+        "correct": 20428,
+        "target": 23702,
+        "extras": 1156,
+        "hidden_extras": 108,
+        "f1": 0.9021772733295058,
+        "choices": {
+          "unrestricted": 104
+        }
+      },
+      "oracle": {
+        "frames": 104,
+        "correct": 20547,
+        "target": 23702,
+        "extras": 1166,
+        "hidden_extras": 106,
+        "f1": 0.904855224044919,
+        "choices": {
+          "default": 78,
+          "rim": 3,
+          "band": 9,
+          "support": 6,
+          "unrestricted": 1,
+          "atlas": 7
+        }
+      },
+      "each": {
+        "default": {
+          "frames": 104,
+          "correct": 20462,
+          "target": 23702,
+          "extras": 1157,
+          "hidden_extras": 106,
+          "f1": 0.9029809580547649,
+          "choices": {
+            "default": 104
+          }
+        },
+        "atlas": {
+          "frames": 104,
+          "correct": 20436,
+          "target": 23702,
+          "extras": 1191,
+          "hidden_extras": 105,
+          "f1": 0.9016744247611904,
+          "choices": {
+            "atlas": 104
+          }
+        },
+        "support": {
+          "frames": 104,
+          "correct": 20470,
+          "target": 23702,
+          "extras": 1202,
+          "hidden_extras": 106,
+          "f1": 0.9022788381011152,
+          "choices": {
+            "support": 104
+          }
+        },
+        "band": {
+          "frames": 104,
+          "correct": 20435,
+          "target": 23702,
+          "extras": 1216,
+          "hidden_extras": 106,
+          "f1": 0.901153176195621,
+          "choices": {
+            "band": 104
+          }
+        },
+        "unrestricted": {
+          "frames": 104,
+          "correct": 20428,
+          "target": 23702,
+          "extras": 1156,
+          "hidden_extras": 108,
+          "f1": 0.9021772733295058,
+          "choices": {
+            "unrestricted": 104
+          }
+        },
+        "rim": {
+          "frames": 104,
+          "correct": 20436,
+          "target": 23702,
+          "extras": 1204,
+          "hidden_extras": 106,
+          "f1": 0.901415905782718,
+          "choices": {
+            "rim": 104
+          }
+        }
+      }
+    },
+    "extra": {
+      "default": {
+        "frames": 20,
+        "correct": 3554,
+        "target": 4098,
+        "extras": 381,
+        "hidden_extras": 59,
+        "f1": 0.8848499937756753,
+        "choices": {
+          "default": 20
+        }
+      },
+      "trained": {
+        "frames": 20,
+        "correct": 3539,
+        "target": 4098,
+        "extras": 380,
+        "hidden_extras": 59,
+        "f1": 0.882873892977423,
+        "choices": {
+          "unrestricted": 20
+        }
+      },
+      "oracle": {
+        "frames": 20,
+        "correct": 3566,
+        "target": 4098,
+        "extras": 381,
+        "hidden_extras": 59,
+        "f1": 0.8865133623368552,
+        "choices": {
+          "support": 1,
+          "default": 16,
+          "atlas": 3
+        }
+      },
+      "each": {
+        "default": {
+          "frames": 20,
+          "correct": 3554,
+          "target": 4098,
+          "extras": 381,
+          "hidden_extras": 59,
+          "f1": 0.8848499937756753,
+          "choices": {
+            "default": 20
+          }
+        },
+        "atlas": {
+          "frames": 20,
+          "correct": 3564,
+          "target": 4098,
+          "extras": 381,
+          "hidden_extras": 59,
+          "f1": 0.886236478925774,
+          "choices": {
+            "atlas": 20
+          }
+        },
+        "support": {
+          "frames": 20,
+          "correct": 3566,
+          "target": 4098,
+          "extras": 381,
+          "hidden_extras": 59,
+          "f1": 0.8865133623368552,
+          "choices": {
+            "support": 20
+          }
+        },
+        "band": {
+          "frames": 20,
+          "correct": 3541,
+          "target": 4098,
+          "extras": 381,
+          "hidden_extras": 59,
+          "f1": 0.8830423940149625,
+          "choices": {
+            "band": 20
+          }
+        },
+        "unrestricted": {
+          "frames": 20,
+          "correct": 3539,
+          "target": 4098,
+          "extras": 380,
+          "hidden_extras": 59,
+          "f1": 0.882873892977423,
+          "choices": {
+            "unrestricted": 20
+          }
+        },
+        "rim": {
+          "frames": 20,
+          "correct": 3542,
+          "target": 4098,
+          "extras": 391,
+          "hidden_extras": 59,
+          "f1": 0.8820819325115179,
+          "choices": {
+            "rim": 20
+          }
+        }
+      }
+    },
+    "new": {
+      "default": {
+        "frames": 4,
+        "correct": 621,
+        "target": 747,
+        "extras": 118,
+        "hidden_extras": 0,
+        "f1": 0.8358008075370121,
+        "choices": {
+          "default": 4
+        }
+      },
+      "trained": {
+        "frames": 4,
+        "correct": 632,
+        "target": 747,
+        "extras": 98,
+        "hidden_extras": 0,
+        "f1": 0.8557887610020312,
+        "choices": {
+          "unrestricted": 4
+        }
+      },
+      "oracle": {
+        "frames": 4,
+        "correct": 642,
+        "target": 747,
+        "extras": 100,
+        "hidden_extras": 0,
+        "f1": 0.8623237071860309,
+        "choices": {
+          "default": 1,
+          "unrestricted": 1,
+          "band": 2
+        }
+      },
+      "each": {
+        "default": {
+          "frames": 4,
+          "correct": 621,
+          "target": 747,
+          "extras": 118,
+          "hidden_extras": 0,
+          "f1": 0.8358008075370121,
+          "choices": {
+            "default": 4
+          }
+        },
+        "atlas": {
+          "frames": 4,
+          "correct": 621,
+          "target": 747,
+          "extras": 120,
+          "hidden_extras": 0,
+          "f1": 0.8346774193548387,
+          "choices": {
+            "atlas": 4
+          }
+        },
+        "support": {
+          "frames": 4,
+          "correct": 621,
+          "target": 747,
+          "extras": 120,
+          "hidden_extras": 0,
+          "f1": 0.8346774193548387,
+          "choices": {
+            "support": 4
+          }
+        },
+        "band": {
+          "frames": 4,
+          "correct": 623,
+          "target": 747,
+          "extras": 117,
+          "hidden_extras": 0,
+          "f1": 0.8379287155346334,
+          "choices": {
+            "band": 4
+          }
+        },
+        "unrestricted": {
+          "frames": 4,
+          "correct": 632,
+          "target": 747,
+          "extras": 98,
+          "hidden_extras": 0,
+          "f1": 0.8557887610020312,
+          "choices": {
+            "unrestricted": 4
+          }
+        },
+        "rim": {
+          "frames": 4,
+          "correct": 621,
+          "target": 747,
+          "extras": 117,
+          "hidden_extras": 0,
+          "f1": 0.8363636363636363,
+          "choices": {
+            "rim": 4
+          }
+        }
+      }
+    },
+    "transfer": {
+      "default": {
+        "frames": 4,
+        "correct": 686,
+        "target": 764,
+        "extras": 202,
+        "hidden_extras": 10,
+        "f1": 0.8305084745762712,
+        "choices": {
+          "default": 4
+        }
+      },
+      "trained": {
+        "frames": 4,
+        "correct": 686,
+        "target": 764,
+        "extras": 202,
+        "hidden_extras": 10,
+        "f1": 0.8305084745762712,
+        "choices": {
+          "default": 1,
+          "unrestricted": 3
+        }
+      },
+      "oracle": {
+        "frames": 4,
+        "correct": 690,
+        "target": 764,
+        "extras": 202,
+        "hidden_extras": 10,
+        "f1": 0.8333333333333334,
+        "choices": {
+          "default": 3,
+          "atlas": 1
+        }
+      },
+      "each": {
+        "default": {
+          "frames": 4,
+          "correct": 686,
+          "target": 764,
+          "extras": 202,
+          "hidden_extras": 10,
+          "f1": 0.8305084745762712,
+          "choices": {
+            "default": 4
+          }
+        },
+        "atlas": {
+          "frames": 4,
+          "correct": 690,
+          "target": 764,
+          "extras": 202,
+          "hidden_extras": 10,
+          "f1": 0.8333333333333334,
+          "choices": {
+            "atlas": 4
+          }
+        },
+        "support": {
+          "frames": 4,
+          "correct": 690,
+          "target": 764,
+          "extras": 202,
+          "hidden_extras": 10,
+          "f1": 0.8333333333333334,
+          "choices": {
+            "support": 4
+          }
+        },
+        "band": {
+          "frames": 4,
+          "correct": 686,
+          "target": 764,
+          "extras": 203,
+          "hidden_extras": 10,
+          "f1": 0.8300060496067756,
+          "choices": {
+            "band": 4
+          }
+        },
+        "unrestricted": {
+          "frames": 4,
+          "correct": 592,
+          "target": 764,
+          "extras": 196,
+          "hidden_extras": 7,
+          "f1": 0.7628865979381443,
+          "choices": {
+            "unrestricted": 4
+          }
+        },
+        "rim": {
+          "frames": 4,
+          "correct": 686,
+          "target": 764,
+          "extras": 203,
+          "hidden_extras": 10,
+          "f1": 0.8300060496067756,
+          "choices": {
+            "rim": 4
+          }
+        }
+      }
+    }
+  },
+  "switches": [
+    {
+      "id": "train-arcade3-earth-high-right",
+      "split": "train",
+      "method": "unrestricted"
+    },
+    {
+      "id": "train-arcbridge1-cool-high-right",
+      "split": "train",
+      "method": "unrestricted"
+    },
+    {
+      "id": "train-arcbridge2-cool-high-right",
+      "split": "train",
+      "method": "unrestricted"
+    },
+    {
+      "id": "train-arcbridge2-earth-high-right",
+      "split": "train",
+      "method": "unrestricted"
+    },
+    {
+      "id": "train-arcbridge3-cool-high-right",
+      "split": "train",
+      "method": "unrestricted"
+    },
+    {
+      "id": "train-sawtooth1-cool-high-right",
+      "split": "train",
+      "method": "unrestricted"
+    },
+    {
+      "id": "train-sawtooth1-earth-high-right",
+      "split": "train",
+      "method": "unrestricted"
+    },
+    {
+      "id": "train-sawtooth2-earth-high-right",
+      "split": "train",
+      "method": "unrestricted"
+    },
+    {
+      "id": "train-sawtooth2-earth-low-left",
+      "split": "train",
+      "method": "unrestricted"
+    },
+    {
+      "id": "train-steppedhall2-cool-low-left",
+      "split": "train",
+      "method": "unrestricted"
+    },
+    {
+      "id": "train-steppedhall2-earth-high-right",
+      "split": "train",
+      "method": "unrestricted"
+    },
+    {
+      "id": "train-steppedhall3-earth-high-right",
+      "split": "train",
+      "method": "unrestricted"
+    },
+    {
+      "id": "train-terrace1-cool-high-right",
+      "split": "train",
+      "method": "unrestricted"
+    },
+    {
+      "id": "train-terrace1-earth-high-right",
+      "split": "train",
+      "method": "unrestricted"
+    },
+    {
+      "id": "train-terrace2-cool-high-right",
+      "split": "train",
+      "method": "unrestricted"
+    },
+    {
+      "id": "train-terrace2-earth-high-right",
+      "split": "train",
+      "method": "unrestricted"
+    },
+    {
+      "id": "train-terrace3-cool-high-right",
+      "split": "train",
+      "method": "unrestricted"
+    },
+    {
+      "id": "train-watchpost1-cool-high-right",
+      "split": "train",
+      "method": "unrestricted"
+    },
+    {
+      "id": "train-watchpost1-cool-low-left",
+      "split": "train",
+      "method": "unrestricted"
+    },
+    {
+      "id": "train-watchpost1-earth-high-right",
+      "split": "train",
+      "method": "unrestricted"
+    },
+    {
+      "id": "train-watchpost1-earth-low-left",
+      "split": "train",
+      "method": "unrestricted"
+    },
+    {
+      "id": "train-watchpost2-earth-high-right",
+      "split": "train",
+      "method": "unrestricted"
+    },
+    {
+      "id": "train-watchpost3-cool-high-right",
+      "split": "train",
+      "method": "unrestricted"
+    },
+    {
+      "id": "train-watchpost3-earth-high-right",
+      "split": "train",
+      "method": "unrestricted"
+    },
+    {
+      "id": "validation-cloister3-earth-high-right",
+      "split": "validation",
+      "method": "unrestricted"
+    },
+    {
+      "id": "test-twinspire1-cool-high-right",
+      "split": "test",
+      "method": "unrestricted"
+    },
+    {
+      "id": "legacy-light_gray_concrete-dev-shopfront-masonry-low-left",
+      "split": "regression",
+      "method": "unrestricted"
+    },
+    {
+      "id": "legacy-light_gray_concrete-dev-shopfront-plaster-high-right",
+      "split": "regression",
+      "method": "unrestricted"
+    },
+    {
+      "id": "legacy-light_gray_concrete-holdout-courtyard-plaster-high-right",
+      "split": "regression",
+      "method": "unrestricted"
+    },
+    {
+      "id": "legacy-light_gray_concrete-holdout-portico-masonry-high-right",
+      "split": "regression",
+      "method": "unrestricted"
+    },
+    {
+      "id": "heldout-facade-oblique-left",
+      "split": "native",
+      "method": "unrestricted"
+    },
+    {
+      "id": "test-adjacency-26-right",
+      "split": "native",
+      "method": "unrestricted"
+    },
+    {
+      "id": "test-corner-29-left",
+      "split": "native",
+      "method": "unrestricted"
+    },
+    {
+      "id": "shape-benchmark-26.3--train-canopy-04-left",
+      "split": "old",
+      "method": "unrestricted"
+    },
+    {
+      "id": "shape-benchmark-open-26.3--train-canopy-01-left",
+      "split": "old",
+      "method": "unrestricted"
+    },
+    {
+      "id": "inverse-voxels-26.3--confirm--test-bays-02-oblique-right",
+      "split": "old",
+      "method": "unrestricted"
+    },
+    {
+      "id": "shape-benchmark-26.3--dev-corner-16-right",
+      "split": "fresh",
+      "method": "unrestricted"
+    },
+    {
+      "id": "shape-benchmark-26.3--train-canopy-05-left",
+      "split": "fresh",
+      "method": "unrestricted"
+    },
+    {
+      "id": "shape-benchmark-26.3--train-canopy-08-left",
+      "split": "extra",
+      "method": "unrestricted"
+    },
+    {
+      "id": "inverse-voxels-26.3--confirm--test-bays-02-oblique-left",
+      "split": "extra",
+      "method": "unrestricted"
+    },
+    {
+      "id": "inverse-voxels-26.3--confirm--test-colonnade-01-oblique-left",
+      "split": "extra",
+      "method": "unrestricted"
+    },
+    {
+      "id": "shape-benchmark-open-26.3--train-canopy-00-left",
+      "split": "extra",
+      "method": "unrestricted"
+    },
+    {
+      "id": "holdout-switchback-brick-high-right",
+      "split": "new",
+      "method": "unrestricted"
+    },
+    {
+      "id": "holdout-loadingdock-timber-high-right",
+      "split": "new",
+      "method": "unrestricted"
+    }
+  ]
+}

@@ -1,0 +1,342 @@
+{
+  "input_hashes": {
+    "default": {
+      "control": "6f0994ddcfc9452e7c48190754e058211bedc08bc492419374c28d2d819ab253"
+    },
+    "edge_contact": {
+      "layout": "49c96d9cddfcf58e6b1adbf0fd574c109579a033ec5471d9f3fe8167523dacdb"
+    },
+    "textured_rectangle": {
+      "recover": "e0b1ef10641ec401e524869431f44ac2b86e9fa2e36cee19c7c66aaa344e2581"
+    },
+    "facade_last": {
+      "last-dev": "3b70c014f3522cec7d3d07038d2998e978a019e544790f6fa40f9b24960ccad8",
+      "last": "1783df3e4ad3d8f864c754e59f41f0a1deb510d93b5b8cc5fdcfdff9b296063c"
+    }
+  },
+  "features": [
+    "edge_contact",
+    "textured_rectangle",
+    "facade_last",
+    "votes",
+    "horizontal_neighbors",
+    "both_horizontal_axes",
+    "supported_below",
+    "supported_above"
+  ],
+  "model": {
+    "accept": true
+  },
+  "fold_models": {
+    "arcade": {
+      "accept": true
+    },
+    "arcbridge": {
+      "accept": true
+    },
+    "sawtooth": {
+      "accept": true
+    },
+    "steppedhall": {
+      "accept": true
+    },
+    "terrace": {
+      "accept": true
+    },
+    "watchpost": {
+      "accept": true
+    }
+  },
+  "groups": {
+    "train": {
+      "learned": {
+        "target": 18322,
+        "placed": 16881,
+        "correct": 16099,
+        "extras": 782,
+        "missed": 2223,
+        "hidden_extras": 83,
+        "gained": 99,
+        "lost": 0,
+        "extra_added": 1,
+        "extra_removed": 0,
+        "hidden_added": 1,
+        "hidden_removed": 0,
+        "joint_correct": 0,
+        "frames": 72,
+        "tied": 50,
+        "improved": 22,
+        "precision": 0.9536757301107754,
+        "recall": 0.8786704508241459,
+        "f1": 0.9146379569923018,
+        "previous_f1": 0.9116029968948522
+      },
+      "all": {
+        "target": 18322,
+        "placed": 16881,
+        "correct": 16099,
+        "extras": 782,
+        "missed": 2223,
+        "hidden_extras": 83,
+        "gained": 99,
+        "lost": 0,
+        "extra_added": 1,
+        "extra_removed": 0,
+        "hidden_added": 1,
+        "hidden_removed": 0,
+        "joint_correct": 0,
+        "frames": 72,
+        "tied": 50,
+        "improved": 22,
+        "precision": 0.9536757301107754,
+        "recall": 0.8786704508241459,
+        "f1": 0.9146379569923018,
+        "previous_f1": 0.9116029968948522
+      },
+      "perfect_additions_at_existing_alignment": {
+        "target": 18322,
+        "placed": 16880,
+        "correct": 16099,
+        "extras": 781,
+        "missed": 2223,
+        "hidden_extras": 82,
+        "gained": 99,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0,
+        "joint_correct": 0,
+        "frames": 72,
+        "tied": 50,
+        "improved": 22,
+        "precision": 0.9537322274881517,
+        "recall": 0.8786704508241459,
+        "f1": 0.9146639395488892,
+        "previous_f1": 0.9116029968948522
+      },
+      "family_held_out": {
+        "target": 18322,
+        "placed": 16881,
+        "correct": 16099,
+        "extras": 782,
+        "missed": 2223,
+        "hidden_extras": 83,
+        "gained": 99,
+        "lost": 0,
+        "extra_added": 1,
+        "extra_removed": 0,
+        "hidden_added": 1,
+        "hidden_removed": 0,
+        "joint_correct": 0,
+        "frames": 72,
+        "tied": 50,
+        "improved": 22,
+        "precision": 0.9536757301107754,
+        "recall": 0.8786704508241459,
+        "f1": 0.9146379569923018,
+        "previous_f1": 0.9116029968948522
+      }
+    },
+    "fixed": {
+      "learned": {
+        "target": 23702,
+        "placed": 21752,
+        "correct": 20585,
+        "extras": 1167,
+        "missed": 3117,
+        "hidden_extras": 116,
+        "gained": 123,
+        "lost": 0,
+        "extra_added": 10,
+        "extra_removed": 0,
+        "hidden_added": 10,
+        "hidden_removed": 0,
+        "joint_correct": 0,
+        "frames": 104,
+        "tied": 70,
+        "improved": 34,
+        "precision": 0.9463497609415226,
+        "recall": 0.8684921103704328,
+        "f1": 0.9057508690104281,
+        "previous_f1": 0.9029809580547649
+      },
+      "all": {
+        "target": 23702,
+        "placed": 21752,
+        "correct": 20585,
+        "extras": 1167,
+        "missed": 3117,
+        "hidden_extras": 116,
+        "gained": 123,
+        "lost": 0,
+        "extra_added": 10,
+        "extra_removed": 0,
+        "hidden_added": 10,
+        "hidden_removed": 0,
+        "joint_correct": 0,
+        "frames": 104,
+        "tied": 70,
+        "improved": 34,
+        "precision": 0.9463497609415226,
+        "recall": 0.8684921103704328,
+        "f1": 0.9057508690104281,
+        "previous_f1": 0.9029809580547649
+      },
+      "perfect_additions_at_existing_alignment": {
+        "target": 23702,
+        "placed": 21742,
+        "correct": 20585,
+        "extras": 1157,
+        "missed": 3117,
+        "hidden_extras": 106,
+        "gained": 123,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0,
+        "joint_correct": 0,
+        "frames": 104,
+        "tied": 70,
+        "improved": 34,
+        "precision": 0.9467850243767822,
+        "recall": 0.8684921103704328,
+        "f1": 0.9059501804418625,
+        "previous_f1": 0.9029809580547649
+      }
+    },
+    "extra": {
+      "learned": {
+        "target": 4098,
+        "placed": 3970,
+        "correct": 3587,
+        "extras": 383,
+        "missed": 511,
+        "hidden_extras": 61,
+        "gained": 33,
+        "lost": 0,
+        "extra_added": 2,
+        "extra_removed": 0,
+        "hidden_added": 2,
+        "hidden_removed": 0,
+        "joint_correct": 0,
+        "frames": 20,
+        "improved": 7,
+        "tied": 12,
+        "regressed": 1,
+        "precision": 0.9035264483627204,
+        "recall": 0.8753050268423621,
+        "f1": 0.8891918691125433,
+        "previous_f1": 0.8848499937756753
+      },
+      "all": {
+        "target": 4098,
+        "placed": 3970,
+        "correct": 3587,
+        "extras": 383,
+        "missed": 511,
+        "hidden_extras": 61,
+        "gained": 33,
+        "lost": 0,
+        "extra_added": 2,
+        "extra_removed": 0,
+        "hidden_added": 2,
+        "hidden_removed": 0,
+        "joint_correct": 0,
+        "frames": 20,
+        "improved": 7,
+        "tied": 12,
+        "regressed": 1,
+        "precision": 0.9035264483627204,
+        "recall": 0.8753050268423621,
+        "f1": 0.8891918691125433,
+        "previous_f1": 0.8848499937756753
+      },
+      "perfect_additions_at_existing_alignment": {
+        "target": 4098,
+        "placed": 3968,
+        "correct": 3587,
+        "extras": 381,
+        "missed": 511,
+        "hidden_extras": 59,
+        "gained": 33,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0,
+        "joint_correct": 0,
+        "frames": 20,
+        "improved": 8,
+        "tied": 12,
+        "precision": 0.9039818548387096,
+        "recall": 0.8753050268423621,
+        "f1": 0.8894123481279445,
+        "previous_f1": 0.8848499937756753
+      }
+    },
+    "new": {
+      "learned": {
+        "target": 747,
+        "placed": 739,
+        "correct": 621,
+        "extras": 118,
+        "missed": 126,
+        "hidden_extras": 0,
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0,
+        "frames": 4,
+        "tied": 4,
+        "precision": 0.8403247631935047,
+        "recall": 0.8313253012048193,
+        "f1": 0.8358008075370121,
+        "previous_f1": 0.8358008075370121
+      },
+      "all": {
+        "target": 747,
+        "placed": 739,
+        "correct": 621,
+        "extras": 118,
+        "missed": 126,
+        "hidden_extras": 0,
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0,
+        "frames": 4,
+        "tied": 4,
+        "precision": 0.8403247631935047,
+        "recall": 0.8313253012048193,
+        "f1": 0.8358008075370121,
+        "previous_f1": 0.8358008075370121
+      },
+      "perfect_additions_at_existing_alignment": {
+        "target": 747,
+        "placed": 739,
+        "correct": 621,
+        "extras": 118,
+        "missed": 126,
+        "hidden_extras": 0,
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0,
+        "frames": 4,
+        "tied": 4,
+        "precision": 0.8403247631935047,
+        "recall": 0.8313253012048193,
+        "f1": 0.8358008075370121,
+        "previous_f1": 0.8358008075370121
+      }
+    }
+  }
+}

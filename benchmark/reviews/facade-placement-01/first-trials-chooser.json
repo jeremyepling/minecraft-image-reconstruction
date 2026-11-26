@@ -1,0 +1,683 @@
+{
+  "methods": [
+    "default",
+    "edge_contact",
+    "textured_rectangle",
+    "facade_last"
+  ],
+  "case_manifests": {
+    "default": {
+      "control": "6f0994ddcfc9452e7c48190754e058211bedc08bc492419374c28d2d819ab253",
+      "transfer-control": "cdd5b415d866edf149bb691c995114b141587ad50bb458f5e6b71a1f1caffa9c"
+    },
+    "edge_contact": {
+      "layout": "49c96d9cddfcf58e6b1adbf0fd574c109579a033ec5471d9f3fe8167523dacdb",
+      "transfer-layout": "27268ced8e33ae366732bb4dbc236c1a52674f24e4012d8e42c8e5de32634409"
+    },
+    "textured_rectangle": {
+      "recover": "e0b1ef10641ec401e524869431f44ac2b86e9fa2e36cee19c7c66aaa344e2581",
+      "transfer-recover": "190687151f61bb7e9701180491299313aab21774b44ff6a83ab8604417903a4d"
+    },
+    "facade_last": {
+      "last-dev": "3b70c014f3522cec7d3d07038d2998e978a019e544790f6fa40f9b24960ccad8",
+      "last": "1783df3e4ad3d8f864c754e59f41f0a1deb510d93b5b8cc5fdcfdff9b296063c",
+      "transfer-facade_last": "849d268e1c7682ed13de29595bb410aeeaee40d83d0d49f0e858cb54e037e7bd"
+    }
+  },
+  "rule": {
+    "method": "edge_contact"
+  },
+  "held_out_rules": {
+    "arcade": {
+      "method": "edge_contact"
+    },
+    "arcbridge": {
+      "method": "edge_contact"
+    },
+    "sawtooth": {
+      "method": "edge_contact"
+    },
+    "steppedhall": {
+      "method": "edge_contact"
+    },
+    "terrace": {
+      "method": "edge_contact"
+    },
+    "watchpost": {
+      "method": "edge_contact"
+    }
+  },
+  "groups": {
+    "train": {
+      "default": {
+        "frames": 72,
+        "correct": 16000,
+        "target": 18322,
+        "extras": 781,
+        "hidden_extras": 82,
+        "f1": 0.9116029968948522,
+        "choices": {
+          "default": 72
+        }
+      },
+      "trained": {
+        "frames": 72,
+        "correct": 16083,
+        "target": 18322,
+        "extras": 782,
+        "hidden_extras": 83,
+        "f1": 0.914144428340012,
+        "choices": {
+          "edge_contact": 72
+        }
+      },
+      "oracle": {
+        "frames": 72,
+        "correct": 16099,
+        "target": 18322,
+        "extras": 782,
+        "hidden_extras": 83,
+        "f1": 0.9146379569923018,
+        "choices": {
+          "default": 50,
+          "edge_contact": 11,
+          "facade_last": 11
+        }
+      },
+      "each": {
+        "default": {
+          "frames": 72,
+          "correct": 16000,
+          "target": 18322,
+          "extras": 781,
+          "hidden_extras": 82,
+          "f1": 0.9116029968948522,
+          "choices": {
+            "default": 72
+          }
+        },
+        "edge_contact": {
+          "frames": 72,
+          "correct": 16083,
+          "target": 18322,
+          "extras": 782,
+          "hidden_extras": 83,
+          "f1": 0.914144428340012,
+          "choices": {
+            "edge_contact": 72
+          }
+        },
+        "textured_rectangle": {
+          "frames": 72,
+          "correct": 16013,
+          "target": 18322,
+          "extras": 781,
+          "hidden_extras": 82,
+          "f1": 0.9120059232258799,
+          "choices": {
+            "textured_rectangle": 72
+          }
+        },
+        "facade_last": {
+          "frames": 72,
+          "correct": 16016,
+          "target": 18322,
+          "extras": 781,
+          "hidden_extras": 82,
+          "f1": 0.9120988638628662,
+          "choices": {
+            "facade_last": 72
+          }
+        }
+      },
+      "family_held_out": {
+        "frames": 72,
+        "correct": 16083,
+        "target": 18322,
+        "extras": 782,
+        "hidden_extras": 83,
+        "f1": 0.914144428340012,
+        "choices": {
+          "edge_contact": 72
+        }
+      }
+    },
+    "fixed": {
+      "default": {
+        "frames": 104,
+        "correct": 20462,
+        "target": 23702,
+        "extras": 1157,
+        "hidden_extras": 106,
+        "f1": 0.9029809580547649,
+        "choices": {
+          "default": 104
+        }
+      },
+      "trained": {
+        "frames": 104,
+        "correct": 20557,
+        "target": 23702,
+        "extras": 1166,
+        "hidden_extras": 115,
+        "f1": 0.9050963126031921,
+        "choices": {
+          "edge_contact": 104
+        }
+      },
+      "oracle": {
+        "frames": 104,
+        "correct": 20578,
+        "target": 23702,
+        "extras": 1166,
+        "hidden_extras": 115,
+        "f1": 0.905602253223606,
+        "choices": {
+          "default": 70,
+          "edge_contact": 21,
+          "facade_last": 13
+        }
+      },
+      "each": {
+        "default": {
+          "frames": 104,
+          "correct": 20462,
+          "target": 23702,
+          "extras": 1157,
+          "hidden_extras": 106,
+          "f1": 0.9029809580547649,
+          "choices": {
+            "default": 104
+          }
+        },
+        "edge_contact": {
+          "frames": 104,
+          "correct": 20557,
+          "target": 23702,
+          "extras": 1166,
+          "hidden_extras": 115,
+          "f1": 0.9050963126031921,
+          "choices": {
+            "edge_contact": 104
+          }
+        },
+        "textured_rectangle": {
+          "frames": 104,
+          "correct": 20477,
+          "target": 23702,
+          "extras": 1159,
+          "hidden_extras": 108,
+          "f1": 0.9033040716396842,
+          "choices": {
+            "textured_rectangle": 104
+          }
+        },
+        "facade_last": {
+          "frames": 104,
+          "correct": 20488,
+          "target": 23702,
+          "extras": 1157,
+          "hidden_extras": 106,
+          "f1": 0.9036099411206916,
+          "choices": {
+            "facade_last": 104
+          }
+        }
+      }
+    },
+    "extra": {
+      "default": {
+        "frames": 20,
+        "correct": 3554,
+        "target": 4098,
+        "extras": 381,
+        "hidden_extras": 59,
+        "f1": 0.8848499937756753,
+        "choices": {
+          "default": 20
+        }
+      },
+      "trained": {
+        "frames": 20,
+        "correct": 3584,
+        "target": 4098,
+        "extras": 381,
+        "hidden_extras": 59,
+        "f1": 0.8889991318367854,
+        "choices": {
+          "edge_contact": 20
+        }
+      },
+      "oracle": {
+        "frames": 20,
+        "correct": 3585,
+        "target": 4098,
+        "extras": 381,
+        "hidden_extras": 59,
+        "f1": 0.8891369047619048,
+        "choices": {
+          "edge_contact": 7,
+          "default": 12,
+          "facade_last": 1
+        }
+      },
+      "each": {
+        "default": {
+          "frames": 20,
+          "correct": 3554,
+          "target": 4098,
+          "extras": 381,
+          "hidden_extras": 59,
+          "f1": 0.8848499937756753,
+          "choices": {
+            "default": 20
+          }
+        },
+        "edge_contact": {
+          "frames": 20,
+          "correct": 3584,
+          "target": 4098,
+          "extras": 381,
+          "hidden_extras": 59,
+          "f1": 0.8889991318367854,
+          "choices": {
+            "edge_contact": 20
+          }
+        },
+        "textured_rectangle": {
+          "frames": 20,
+          "correct": 3557,
+          "target": 4098,
+          "extras": 381,
+          "hidden_extras": 59,
+          "f1": 0.8852663016426082,
+          "choices": {
+            "textured_rectangle": 20
+          }
+        },
+        "facade_last": {
+          "frames": 20,
+          "correct": 3557,
+          "target": 4098,
+          "extras": 383,
+          "hidden_extras": 61,
+          "f1": 0.8850460313510824,
+          "choices": {
+            "facade_last": 20
+          }
+        }
+      }
+    },
+    "new": {
+      "default": {
+        "frames": 4,
+        "correct": 621,
+        "target": 747,
+        "extras": 118,
+        "hidden_extras": 0,
+        "f1": 0.8358008075370121,
+        "choices": {
+          "default": 4
+        }
+      },
+      "trained": {
+        "frames": 4,
+        "correct": 621,
+        "target": 747,
+        "extras": 118,
+        "hidden_extras": 0,
+        "f1": 0.8358008075370121,
+        "choices": {
+          "edge_contact": 4
+        }
+      },
+      "oracle": {
+        "frames": 4,
+        "correct": 621,
+        "target": 747,
+        "extras": 118,
+        "hidden_extras": 0,
+        "f1": 0.8358008075370121,
+        "choices": {
+          "default": 4
+        }
+      },
+      "each": {
+        "default": {
+          "frames": 4,
+          "correct": 621,
+          "target": 747,
+          "extras": 118,
+          "hidden_extras": 0,
+          "f1": 0.8358008075370121,
+          "choices": {
+            "default": 4
+          }
+        },
+        "edge_contact": {
+          "frames": 4,
+          "correct": 621,
+          "target": 747,
+          "extras": 118,
+          "hidden_extras": 0,
+          "f1": 0.8358008075370121,
+          "choices": {
+            "edge_contact": 4
+          }
+        },
+        "textured_rectangle": {
+          "frames": 4,
+          "correct": 621,
+          "target": 747,
+          "extras": 118,
+          "hidden_extras": 0,
+          "f1": 0.8358008075370121,
+          "choices": {
+            "textured_rectangle": 4
+          }
+        },
+        "facade_last": {
+          "frames": 4,
+          "correct": 621,
+          "target": 747,
+          "extras": 118,
+          "hidden_extras": 0,
+          "f1": 0.8358008075370121,
+          "choices": {
+            "facade_last": 4
+          }
+        }
+      }
+    },
+    "transfer": {
+      "default": {
+        "frames": 4,
+        "correct": 686,
+        "target": 764,
+        "extras": 202,
+        "hidden_extras": 10,
+        "f1": 0.8305084745762712,
+        "choices": {
+          "default": 4
+        }
+      },
+      "trained": {
+        "frames": 4,
+        "correct": 691,
+        "target": 764,
+        "extras": 203,
+        "hidden_extras": 11,
+        "f1": 0.8335343787696019,
+        "choices": {
+          "edge_contact": 4
+        }
+      },
+      "oracle": {
+        "frames": 4,
+        "correct": 694,
+        "target": 764,
+        "extras": 203,
+        "hidden_extras": 11,
+        "f1": 0.8356411800120409,
+        "choices": {
+          "edge_contact": 1,
+          "facade_last": 1,
+          "default": 2
+        }
+      },
+      "each": {
+        "default": {
+          "frames": 4,
+          "correct": 686,
+          "target": 764,
+          "extras": 202,
+          "hidden_extras": 10,
+          "f1": 0.8305084745762712,
+          "choices": {
+            "default": 4
+          }
+        },
+        "edge_contact": {
+          "frames": 4,
+          "correct": 691,
+          "target": 764,
+          "extras": 203,
+          "hidden_extras": 11,
+          "f1": 0.8335343787696019,
+          "choices": {
+            "edge_contact": 4
+          }
+        },
+        "textured_rectangle": {
+          "frames": 4,
+          "correct": 686,
+          "target": 764,
+          "extras": 202,
+          "hidden_extras": 10,
+          "f1": 0.8305084745762712,
+          "choices": {
+            "textured_rectangle": 4
+          }
+        },
+        "facade_last": {
+          "frames": 4,
+          "correct": 692,
+          "target": 764,
+          "extras": 202,
+          "hidden_extras": 10,
+          "f1": 0.8347406513872135,
+          "choices": {
+            "facade_last": 4
+          }
+        }
+      }
+    }
+  },
+  "switches": [
+    {
+      "id": "train-arcade3-cool-high-right",
+      "split": "train",
+      "method": "edge_contact"
+    },
+    {
+      "id": "train-arcade3-earth-high-right",
+      "split": "train",
+      "method": "edge_contact"
+    },
+    {
+      "id": "train-terrace1-earth-high-right",
+      "split": "train",
+      "method": "edge_contact"
+    },
+    {
+      "id": "train-terrace2-cool-high-right",
+      "split": "train",
+      "method": "edge_contact"
+    },
+    {
+      "id": "train-terrace2-earth-high-right",
+      "split": "train",
+      "method": "edge_contact"
+    },
+    {
+      "id": "train-terrace3-cool-high-right",
+      "split": "train",
+      "method": "edge_contact"
+    },
+    {
+      "id": "train-terrace3-earth-high-right",
+      "split": "train",
+      "method": "edge_contact"
+    },
+    {
+      "id": "train-watchpost1-cool-high-right",
+      "split": "train",
+      "method": "edge_contact"
+    },
+    {
+      "id": "train-watchpost1-earth-high-right",
+      "split": "train",
+      "method": "edge_contact"
+    },
+    {
+      "id": "train-watchpost2-cool-high-right",
+      "split": "train",
+      "method": "edge_contact"
+    },
+    {
+      "id": "train-watchpost2-earth-high-right",
+      "split": "train",
+      "method": "edge_contact"
+    },
+    {
+      "id": "validation-cloister3-cool-high-right",
+      "split": "validation",
+      "method": "edge_contact"
+    },
+    {
+      "id": "validation-cloister3-earth-high-right",
+      "split": "validation",
+      "method": "edge_contact"
+    },
+    {
+      "id": "test-twinspire2-earth-high-right",
+      "split": "test",
+      "method": "edge_contact"
+    },
+    {
+      "id": "legacy-light_gray_concrete-holdout-courtyard-masonry-high-right",
+      "split": "regression",
+      "method": "edge_contact"
+    },
+    {
+      "id": "legacy-light_gray_concrete-holdout-galleries-plaster-high-right",
+      "split": "regression",
+      "method": "edge_contact"
+    },
+    {
+      "id": "legacy-light_gray_concrete-holdout-portico-plaster-high-right",
+      "split": "regression",
+      "method": "edge_contact"
+    },
+    {
+      "id": "legacy-smooth_stone-dev-shopfront-masonry-high-right",
+      "split": "regression",
+      "method": "edge_contact"
+    },
+    {
+      "id": "legacy-smooth_stone-dev-wing-masonry-high-right",
+      "split": "regression",
+      "method": "edge_contact"
+    },
+    {
+      "id": "legacy-smooth_stone-holdout-portico-plaster-high-right",
+      "split": "regression",
+      "method": "edge_contact"
+    },
+    {
+      "id": "physical-shade-oblique-left",
+      "split": "native",
+      "method": "edge_contact"
+    },
+    {
+      "id": "test-adjacency-26-right",
+      "split": "native",
+      "method": "edge_contact"
+    },
+    {
+      "id": "test-recess-28-left",
+      "split": "native",
+      "method": "edge_contact"
+    },
+    {
+      "id": "test-recess-28-right",
+      "split": "native",
+      "method": "edge_contact"
+    },
+    {
+      "id": "shape-benchmark-26.3--train-canopy-04-left",
+      "split": "old",
+      "method": "edge_contact"
+    },
+    {
+      "id": "shape-benchmark-open-26.3--train-canopy-01-left",
+      "split": "old",
+      "method": "edge_contact"
+    },
+    {
+      "id": "shape-benchmark-26.3--train-canopy-09-right",
+      "split": "old",
+      "method": "edge_contact"
+    },
+    {
+      "id": "shape-benchmark-26.3--train-canopy-06-left",
+      "split": "old",
+      "method": "edge_contact"
+    },
+    {
+      "id": "shape-benchmark-26.3--train-canopy-08-right",
+      "split": "old",
+      "method": "edge_contact"
+    },
+    {
+      "id": "shape-benchmark-26.3--train-recess-02-right",
+      "split": "old",
+      "method": "edge_contact"
+    },
+    {
+      "id": "inverse-voxels-26.3--confirm--test-colonnade-01-oblique-right",
+      "split": "fresh",
+      "method": "edge_contact"
+    },
+    {
+      "id": "shape-benchmark-26.3--train-canopy-05-left",
+      "split": "fresh",
+      "method": "edge_contact"
+    },
+    {
+      "id": "shape-benchmark-open-26.3--train-canopy-01-right",
+      "split": "extra",
+      "method": "edge_contact"
+    },
+    {
+      "id": "shape-benchmark-26.3--train-canopy-08-left",
+      "split": "extra",
+      "method": "edge_contact"
+    },
+    {
+      "id": "shape-benchmark-26.3--train-canopy-09-left",
+      "split": "extra",
+      "method": "edge_contact"
+    },
+    {
+      "id": "inverse-voxels-26.3--confirm--test-colonnade-01-oblique-left",
+      "split": "extra",
+      "method": "edge_contact"
+    },
+    {
+      "id": "shape-benchmark-open-26.3--train-canopy-00-left",
+      "split": "extra",
+      "method": "edge_contact"
+    },
+    {
+      "id": "shape-benchmark-26.3--train-canopy-05-right",
+      "split": "extra",
+      "method": "edge_contact"
+    },
+    {
+      "id": "shape-benchmark-26.3--train-recess-02-left",
+      "split": "extra",
+      "method": "edge_contact"
+    },
+    {
+      "id": "holdout-platformshelter-copper-low-left",
+      "split": "transfer",
+      "method": "edge_contact"
+    },
+    {
+      "id": "holdout-platformshelter-copper-high-right",
+      "split": "transfer",
+      "method": "edge_contact"
+    }
+  ]
+}

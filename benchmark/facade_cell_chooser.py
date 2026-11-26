@@ -9,7 +9,7 @@ from benchmark.facade_placement_chooser import predictions
 from benchmark.mask_blocks import decoded_pack
 from benchmark.nearby_thin_comparison import EVALUATION
 from benchmark.relative_geometry import placement_scores
-from benchmark.texture_camera_eval import checked, digest, save
+from benchmark.texture_camera_eval import checked, save
 from benchmark.visible_recovery_report import summarize
 
 
