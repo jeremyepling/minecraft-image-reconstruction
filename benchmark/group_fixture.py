@@ -22,10 +22,9 @@ def read(path): return json.loads(path.read_bytes())
 def sha(path): return hashlib.sha256(path.read_bytes()).hexdigest()
 def save(path,data): path.write_text(json.dumps(data,separators=(',',':')))
 def observed(task):
-    case,image,mask_hash=task
-    mask=BASE/case['predictions']
+    case,image,mask,mask_hash,variant=task
     assert sha(mask)==mask_hash and sha(image)==case['sha256']
-    surfaces=json.loads(gzip.decompress(mask.read_bytes()))['split']
+    surfaces=json.loads(gzip.decompress(mask.read_bytes()))[variant]
     with Image.open(image) as im:
         rgb=im.convert('RGB')
     rows=[]
@@ -33,8 +32,11 @@ def observed(task):
         sample=sample_surface(rgb,surface)
         for cell,q in complete_footprints(sample,count(sample)):
             rows.append(dict(id=len(rows),quad=q.tolist(),proposal=surface['id'],normal_camera=surface.get('normal_camera'),cell=cell))
-    return dict(kind='predicted',key=case['key'],image=str(image),sha256=case['sha256'],mask_sha256=mask_hash,
-                width=rgb.width,height=rgb.height,surfaces=len(surfaces),faces=rows)
+    frame=dict(kind='predicted',key=case['key'],image=str(image),sha256=case['sha256'],mask_sha256=mask_hash,
+               width=rgb.width,height=rgb.height,surfaces=len(surfaces),faces=rows)
+    if variant=='sky':
+        frame.update(masks=str(mask.resolve()),mask_variant=variant)
+    return frame
 
 def label(frame, labels):
     records=read(labels)['faces']
@@ -86,16 +88,22 @@ def diagnostic(frame,refs):
     return dict(frame,kind='recorded',faces=obs),dict(key=frame['key'],kind='recorded',faces=targets)
 
 if __name__=='__main__':
-    parser=argparse.ArgumentParser();parser.add_argument('out',type=Path);args=parser.parse_args()
+    parser=argparse.ArgumentParser();parser.add_argument('out',type=Path)
+    parser.add_argument('--sky-checkout',type=Path,help='Checkout containing the frozen sky-01 predictions')
+    args=parser.parse_args()
     args.out.mkdir(parents=True,exist_ok=True)
-    meta=read(BASE/'manifest.json')
-    m=ROOT/'benchmark/reviews/mask-four-01'
+    source_root=args.sky_checkout.resolve() if args.sky_checkout else ROOT
+    archive=source_root/'benchmark/reviews/sky-01' if args.sky_checkout else BASE
+    variant='sky' if args.sky_checkout else 'split'
+    meta=read(archive/'manifest.json')
+    assert sha(archive/'cases.json')==meta['artifacts']['cases.json']
+    m=source_root/'benchmark/reviews/mask-four-01'
     sources={r['key']:(m/r['source']).resolve() for r in read(m/'cases.json')}
     labels={}
-    for idx in (ROOT/'benchmark/data').glob('*/index.json'):
+    for idx in (source_root/'benchmark/data').glob('*/index.json'):
         for r in read(idx).get('frames',[]):
             if 'labels' in r:labels[(idx.parent,r['image_sha256'])]=idx.parent/r['labels']
-    tasks=[(r,sources[r['key']],meta['artifacts'][r['predictions']]) for r in read(BASE/'cases.json')]
+    tasks=[(r,sources[r['key']],archive/r['predictions'],meta['artifacts'][r['predictions']],variant) for r in read(archive/'cases.json')]
     with ThreadPoolExecutor(4) as pool: frames=list(pool.map(observed,tasks))
     save(args.out/'faces.json',dict(frames=frames))
     diag=[];ds=[];truth=[]
