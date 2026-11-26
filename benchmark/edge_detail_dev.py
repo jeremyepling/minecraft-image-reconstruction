@@ -66,6 +66,7 @@ def run(settings,out,workers):
             tally.update(row['methods'][method])
         tally['net_correct_edits']=tally['add_target']+tally['drop_other_plane']+tally['drop_background']-tally['drop_target']-tally['add_other_plane']-tally['add_background']
         summary[method]=tally
+    out.parent.mkdir(parents=True,exist_ok=True)
     save(out,dict(revision=revision(),source_sha256=BASE_SHA,settings={s:edge_detail.SETTINGS[s] for s in settings},summary=summary,frames=results))
     print(summary,flush=True)
 

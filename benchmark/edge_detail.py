@@ -10,7 +10,10 @@ from engine.surface_perimeter import _native_alpha
 
 
 SETTINGS = {name: dict(BASE, radius=radius, units='source pixels') for name,radius in
-            [('native2',2), ('native4',4)]}
+            [('native2',2), ('native3',3), ('native4',4)]}
+
+
+SETTINGS['native4-count-guard'] = dict(SETTINGS['native4'], fallback='native2 then original if an existing complete count changes')
 
 
 def protected_background(labels):
@@ -26,6 +29,31 @@ def protected_background(labels):
 
 def predict(photo, parts, frame_sha, setting):
     """Use one common label image; freeze overlap pixels already claimed by multiple surfaces."""
+    if setting == 'native4-count-guard':
+        from engine.masked_count import count
+        from engine.surface_dimensions import dimensions
+        from engine.surface_sample import sample_surface
+
+        def size(part):
+            sample = sample_surface(photo,part)
+            if sample is None:
+                return [None,None]
+            return dimensions(part,sample['quad'],photo.size,count(sample)['counts'])['blocks']
+
+        known = {}
+        # Apply a whole-frame fallback so an edge shared by two surfaces always moves together.
+        for candidate in ('native4','native2'):
+            improved = predict(photo,parts,frame_sha,candidate)
+            for index,(before,after) in enumerate(zip(parts,improved)):
+                if before is after:
+                    continue
+                if index not in known:
+                    known[index] = size(before)
+                if None not in known[index] and known[index] != size(after):
+                    break
+            else:
+                return improved
+        return parts
     config = SETTINGS[setting]
     raw = [_native_alpha(p['support'],photo.size) for p in parts]
     extents = [box for native in raw if native is not None for _,box in [native]]
