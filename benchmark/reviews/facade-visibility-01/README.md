@@ -27,10 +27,25 @@ Of **3,240 missed visible positions**, 1,009 had only a top face, 508 only an un
 
 A separate perfect chooser moved only **existing extras** exactly one cell along a single grid axis into unclaimed missed targets. Bipartite maximum matching prevents one extra from correcting two misses. With the existing translation frozen and all other cells untouched, at most 350 such moves are available, yielding **91.84% strict F1**. Restricting moves to horizontal X/Z gives 299 (91.62%) and vertical Y gives 59 (90.56%). At most 283 one-step moves can recover positions with a visible vertical face. These ceilings use the reference answers. An image-only model must still identify the correct moves, and generating other candidates could raise the ceiling.
 
+## Did the Surface Finder see the missed walls?
+
+Among the 1,466 missed blocks with at least 64 native vertical-face pixels, the Surface Finder covered at least half those pixels on **1,209 blocks (82.5%)**. On **1,052 (71.8%)** a single surface, with a normal within 20 degrees of the correct wall axis, covered half the evidence. Shopfront on concrete had 42 eligible misses. Some mask covered at least half on 35 and a single correctly oriented mask covered half on 28. A trace of grid registration, plane depth and placement filtering on these 1,052 blocks would distinguish failures downstream of detection. Coverage can include a merged or oversized surface and says nothing by itself about depth. [All 104 per-frame coverage records](wall-masks.json)
+
+| Predicted surface evidence | ≥50% of block's visible wall pixels | ≥75% |
+| --- | ---: | ---: |
+| Any masks combined | 1,209 | 1,172 |
+| Any vertical masks combined | 1,197 | 1,150 |
+| Masks with the matching wall axis combined | 1,078 | 967 |
+| One mask of any orientation | 1,169 | 963 |
+| One mask within 20° of the matching wall axis | 1,052 | 891 |
+
+Each support mask was projected to native pixel centers using its stored resolution. At corners, evidence is counted against the actual owning face pixel by pixel. Orientation is graded against the unsigned world-space wall axis through the recorded camera rotation, after the image-only predictions are frozen. The 64-pixel minimum and either coverage threshold apply per block.
+
 ## Replay
 
 Run in a Windows reconstruction worktree with the frozen suite restored. The paper trail checks the camera, readback, labels and archive hashes through the standard fixed-view loader. Per-frame records include the RGB hash, pack hash, translation and optional counts. Use a separate output path for a challenger run with the same 104 views.
 
 ```powershell
 python -m benchmark.facade_visibility --run ../roof-height-round/runs/production --out benchmark/reviews/facade-visibility-01 --workers 4
+python -m benchmark.facade_mask_coverage --run ../roof-height-round/runs/production --out benchmark/reviews/facade-visibility-01/wall-masks.json --workers 4
 ```
