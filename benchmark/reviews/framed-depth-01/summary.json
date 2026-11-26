@@ -1,0 +1,439 @@
+{
+  "control": "acfe46b",
+  "default_engine": "36d406a",
+  "candidate": "benchmark.framed_geometry_order:production",
+  "revision": "0e0c2295c75a93dc691c2cdabf11e8f4c5b5ee16",
+  "predictions": null,
+  "primary": "Pooled visible-block F1 after one common XYZ translation",
+  "sources": {
+    "visible-builds-v2.json": "cd8bfb2953dd3418d0c3666a76cd12f2e0c2193f31e7545a93c1dca13d01e34f",
+    "nearby-thin-01": "30d795a761e933d4682930f47f1c7d92749850fbb12263038c779f65abac06ca",
+    "blind-shapes-01": "7f2fda2d61dbf7dfb56a9062f9fa9cdacb28e58bf8f1b585ee58c7294470d5a9",
+    "whole-structure-framing-01": "4f9cd583406d982d0160f64407e7ca5146fbdf40c6b0769d22cdfbfdacaba863"
+  },
+  "groups": {
+    "train": {
+      "target": 18322,
+      "placed": 16733,
+      "correct": 15952,
+      "extras": 781,
+      "missed": 2370,
+      "hidden_extras": 82,
+      "gained": 216,
+      "lost": 6,
+      "extra_added": 5,
+      "extra_removed": 815,
+      "hidden_added": 5,
+      "hidden_removed": 12,
+      "frames": 72,
+      "improved": 61,
+      "tied": 11,
+      "precision": 0.9533257634614235,
+      "recall": 0.8706473092457155,
+      "f1": 0.9101126800741691,
+      "previous_f1": 0.883017809563876,
+      "changed": 62,
+      "outside_source_xz": {
+        "before": 984,
+        "after": 307
+      }
+    },
+    "validation": {
+      "target": 2476,
+      "placed": 2331,
+      "correct": 2255,
+      "extras": 76,
+      "missed": 221,
+      "hidden_extras": 7,
+      "gained": 13,
+      "lost": 4,
+      "extra_added": 2,
+      "extra_removed": 71,
+      "hidden_added": 0,
+      "hidden_removed": 1,
+      "frames": 12,
+      "improved": 9,
+      "regressed": 1,
+      "tied": 2,
+      "precision": 0.9673959673959674,
+      "recall": 0.9107431340872375,
+      "f1": 0.9382151029748284,
+      "previous_f1": 0.9229504828436409,
+      "changed": 10,
+      "outside_source_xz": {
+        "before": 93,
+        "after": 25
+      }
+    },
+    "test": {
+      "target": 3414,
+      "placed": 3167,
+      "correct": 3089,
+      "extras": 78,
+      "missed": 325,
+      "hidden_extras": 11,
+      "gained": 26,
+      "lost": 1,
+      "extra_added": 0,
+      "extra_removed": 42,
+      "hidden_added": 0,
+      "hidden_removed": 0,
+      "frames": 12,
+      "tied": 2,
+      "improved": 10,
+      "precision": 0.9753710135775182,
+      "recall": 0.9048037492677211,
+      "f1": 0.9387631059109558,
+      "previous_f1": 0.9287662928160049,
+      "changed": 10,
+      "outside_source_xz": {
+        "before": 40,
+        "after": 8
+      }
+    },
+    "regression": {
+      "target": 10242,
+      "placed": 9208,
+      "correct": 8659,
+      "extras": 549,
+      "missed": 1583,
+      "hidden_extras": 35,
+      "gained": 126,
+      "lost": 22,
+      "extra_added": 4,
+      "extra_removed": 357,
+      "hidden_added": 2,
+      "hidden_removed": 3,
+      "frames": 48,
+      "improved": 44,
+      "regressed": 1,
+      "tied": 3,
+      "precision": 0.940377932232841,
+      "recall": 0.8454403436828745,
+      "f1": 0.8903856041131105,
+      "previous_f1": 0.8685720087314077,
+      "changed": 45,
+      "outside_source_xz": {
+        "before": 524,
+        "after": 228
+      }
+    },
+    "native": {
+      "target": 3780,
+      "placed": 3382,
+      "correct": 3226,
+      "extras": 156,
+      "missed": 554,
+      "hidden_extras": 5,
+      "gained": 32,
+      "lost": 2,
+      "extra_added": 0,
+      "extra_removed": 92,
+      "hidden_added": 0,
+      "hidden_removed": 0,
+      "frames": 12,
+      "tied": 3,
+      "improved": 9,
+      "precision": 0.9538734476641041,
+      "recall": 0.8534391534391534,
+      "f1": 0.9008656799776599,
+      "previous_f1": 0.884828349944629,
+      "changed": 9,
+      "outside_source_xz": {
+        "before": 144,
+        "after": 67
+      }
+    },
+    "old": {
+      "target": 2359,
+      "placed": 2156,
+      "correct": 1936,
+      "extras": 220,
+      "missed": 423,
+      "hidden_extras": 44,
+      "gained": 19,
+      "lost": 22,
+      "extra_added": 1,
+      "extra_removed": 116,
+      "hidden_added": 0,
+      "hidden_removed": 0,
+      "frames": 12,
+      "improved": 8,
+      "tied": 2,
+      "regressed": 2,
+      "precision": 0.8979591836734694,
+      "recall": 0.8206867316659602,
+      "f1": 0.8575858250276855,
+      "previous_f1": 0.8370386358730844,
+      "changed": 11,
+      "outside_source_xz": {
+        "before": 196,
+        "after": 93
+      }
+    },
+    "fresh": {
+      "target": 1431,
+      "placed": 1320,
+      "correct": 1208,
+      "extras": 112,
+      "missed": 223,
+      "hidden_extras": 3,
+      "gained": 9,
+      "lost": 4,
+      "extra_added": 1,
+      "extra_removed": 33,
+      "hidden_added": 0,
+      "hidden_removed": 3,
+      "frames": 8,
+      "improved": 5,
+      "tied": 3,
+      "precision": 0.9151515151515152,
+      "recall": 0.8441649196366178,
+      "f1": 0.8782260996001454,
+      "previous_f1": 0.8660907127429806,
+      "changed": 5,
+      "outside_source_xz": {
+        "before": 87,
+        "after": 57
+      }
+    },
+    "extra": {
+      "target": 4098,
+      "placed": 3916,
+      "correct": 3535,
+      "extras": 381,
+      "missed": 563,
+      "hidden_extras": 59,
+      "gained": 32,
+      "lost": 21,
+      "extra_added": 5,
+      "extra_removed": 132,
+      "hidden_added": 3,
+      "hidden_removed": 1,
+      "frames": 20,
+      "improved": 16,
+      "regressed": 3,
+      "tied": 1,
+      "precision": 0.9027068437180796,
+      "recall": 0.8626159102000976,
+      "f1": 0.8822061392563014,
+      "previous_f1": 0.8669126691266913,
+      "changed": 19,
+      "outside_source_xz": {
+        "before": 309,
+        "after": 197
+      }
+    },
+    "new": {
+      "target": 747,
+      "placed": 738,
+      "correct": 621,
+      "extras": 117,
+      "missed": 126,
+      "hidden_extras": 0,
+      "gained": 4,
+      "lost": 1,
+      "extra_added": 0,
+      "extra_removed": 11,
+      "hidden_added": 0,
+      "hidden_removed": 0,
+      "frames": 4,
+      "tied": 1,
+      "improved": 3,
+      "precision": 0.8414634146341463,
+      "recall": 0.8313253012048193,
+      "f1": 0.8363636363636363,
+      "previous_f1": 0.8278633623576691,
+      "changed": 3,
+      "outside_source_xz": {
+        "before": 24,
+        "after": 23
+      }
+    },
+    "fixed": {
+      "target": 23702,
+      "placed": 21564,
+      "correct": 20373,
+      "extras": 1191,
+      "missed": 3329,
+      "hidden_extras": 105,
+      "gained": 225,
+      "lost": 55,
+      "extra_added": 8,
+      "extra_removed": 711,
+      "hidden_added": 2,
+      "hidden_removed": 7,
+      "frames": 104,
+      "improved": 85,
+      "regressed": 4,
+      "tied": 15,
+      "precision": 0.944769059543684,
+      "recall": 0.8595477174921947,
+      "f1": 0.9001458047983034,
+      "previous_f1": 0.882246337256272,
+      "changed": 90,
+      "outside_source_xz": {
+        "before": 1084,
+        "after": 478
+      }
+    }
+  },
+  "canopies": {
+    "old": {
+      "previous_roof": {
+        "frames": 7,
+        "visible_roof": 362,
+        "anchored_roof": 227,
+        "target_triples": 1823,
+        "matching_triples": 1148,
+        "exact_widths": 7,
+        "unresolved_widths": 0,
+        "clear_rays": 106,
+        "filled_clear_rays": 0
+      },
+      "roof": {
+        "frames": 7,
+        "visible_roof": 362,
+        "anchored_roof": 226,
+        "target_triples": 1823,
+        "matching_triples": 1143,
+        "exact_widths": 7,
+        "unresolved_widths": 0,
+        "clear_rays": 106,
+        "filled_clear_rays": 0
+      }
+    },
+    "fresh": {
+      "previous_roof": {
+        "frames": 3,
+        "visible_roof": 97,
+        "anchored_roof": 67,
+        "target_triples": 500,
+        "matching_triples": 350,
+        "exact_widths": 3,
+        "unresolved_widths": 0,
+        "clear_rays": 31,
+        "filled_clear_rays": 0
+      },
+      "roof": {
+        "frames": 3,
+        "visible_roof": 97,
+        "anchored_roof": 67,
+        "target_triples": 500,
+        "matching_triples": 350,
+        "exact_widths": 3,
+        "unresolved_widths": 0,
+        "clear_rays": 31,
+        "filled_clear_rays": 0
+      }
+    },
+    "extra": {
+      "previous_roof": {
+        "frames": 8,
+        "visible_roof": 398,
+        "anchored_roof": 232,
+        "target_triples": 2005,
+        "matching_triples": 1141,
+        "exact_widths": 8,
+        "unresolved_widths": 0,
+        "clear_rays": 106,
+        "filled_clear_rays": 0
+      },
+      "roof": {
+        "frames": 8,
+        "visible_roof": 398,
+        "anchored_roof": 308,
+        "target_triples": 2005,
+        "matching_triples": 1521,
+        "exact_widths": 8,
+        "unresolved_widths": 0,
+        "clear_rays": 106,
+        "filled_clear_rays": 0
+      }
+    },
+    "fixed": {
+      "previous_roof": {
+        "frames": 10,
+        "visible_roof": 459,
+        "anchored_roof": 294,
+        "target_triples": 2323,
+        "matching_triples": 1498,
+        "exact_widths": 10,
+        "unresolved_widths": 0,
+        "clear_rays": 137,
+        "filled_clear_rays": 0
+      },
+      "roof": {
+        "frames": 10,
+        "visible_roof": 459,
+        "anchored_roof": 293,
+        "target_triples": 2323,
+        "matching_triples": 1493,
+        "exact_widths": 10,
+        "unresolved_widths": 0,
+        "clear_rays": 137,
+        "filled_clear_rays": 0
+      }
+    }
+  },
+  "worst": {
+    "train": [
+      "train-arcade3-cool-low-left",
+      "train-watchpost2-earth-high-right",
+      "train-arcbridge3-earth-high-right"
+    ],
+    "validation": [
+      "validation-cloister3-cool-high-right",
+      "validation-cloister2-earth-high-right",
+      "validation-cloister3-earth-high-right"
+    ],
+    "test": [
+      "test-twinspire3-cool-low-left",
+      "test-twinspire2-cool-low-left",
+      "test-twinspire2-earth-low-left"
+    ],
+    "regression": [
+      "legacy-light_gray_concrete-dev-shopfront-plaster-low-left",
+      "legacy-light_gray_concrete-holdout-galleries-masonry-high-right",
+      "legacy-light_gray_concrete-holdout-galleries-plaster-low-left"
+    ],
+    "native": [
+      "physical-shade-oblique-left",
+      "heldout-facade-oblique-right",
+      "physical-shade-oblique-right"
+    ],
+    "old": [
+      "shape-benchmark-26.3--train-canopy-06-left",
+      "shape-benchmark-26.3--train-canopy-04-left",
+      "shape-benchmark-26.3--train-canopy-07-left"
+    ],
+    "fresh": [
+      "shape-benchmark-open-26.3--train-canopy-00-right",
+      "inverse-voxels-26.3--confirm--test-colonnade-01-oblique-right",
+      "corner-mixed-26.3--heldout-facade-oblique-left"
+    ],
+    "extra": [
+      "inverse-voxels-26.3--confirm--test-colonnade-01-oblique-left",
+      "shape-benchmark-open-26.3--train-canopy-00-left",
+      "shape-benchmark-26.3--train-canopy-04-right"
+    ],
+    "new": [
+      "holdout-switchback-brick-high-right",
+      "holdout-loadingdock-timber-high-right",
+      "holdout-switchback-brick-low-left"
+    ],
+    "fixed": [
+      "shape-benchmark-26.3--train-canopy-06-left",
+      "shape-benchmark-26.3--train-canopy-04-left",
+      "shape-benchmark-open-26.3--train-canopy-00-right"
+    ]
+  },
+  "adapter_sha256": "b5df80ddccf708b4139e0e4877471c9a416c543e395efc538aed5434e05d9c28",
+  "candidate_worktree_status": [
+    " M benchmark/framed_depth_sheet.py",
+    "?? benchmark/framed_depth_report.py",
+    "?? benchmark/framed_depth_timing.py",
+    "?? benchmark/reviews/framed-depth-01/depth-comparison.jpg"
+  ],
+  "cases_sha256": "a1472c7a9c0e22171adda23b55445539d0f994fb8bd865d28d077cdf99acbfbe"
+}

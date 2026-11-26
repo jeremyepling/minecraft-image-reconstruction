@@ -1,6 +1,5 @@
 """Show the photographed structures and horizontally aligned footprints of both exports."""
 import argparse
-from io import BytesIO
 import json
 from pathlib import Path
 
@@ -47,7 +46,7 @@ def sheet(args):
     keys=dict(VIEWS)
     switchback=next(r['id'] for r in measured if r['split']=='new' and 'switchback' in r['id'] and 'high' in r['id'])
     keys[switchback]=('Switchback landing', 'High right')
-    canvas=Image.new('RGB',(1272,1055),'#13232c')
+    canvas=Image.new('RGB',(1272,1096),'#13232c')
     pen=ImageDraw.Draw(canvas)
     def label(x,y,text,size=19,fill='#eef4f6'):
         pen.text((x,y),text,font=font(size),fill=fill)
@@ -73,7 +72,7 @@ def sheet(args):
         all_cells=truth|before|after
         bounds=min(p[0] for p in all_cells),min(p[2] for p in all_cells),max(p[0] for p in all_cells),max(p[2] for p in all_cells)
         row=by_id[key]
-        for y,title,cells,metric in [(440,'Before',before,row['previous_f1']),(740,'After',after,row['f1'])]:
+        for y,title,cells,metric in [(440,'Before',before,row['previous_f1']),(770,'After',after,row['f1'])]:
             label(x,y,f'{title}   {metric:.1%} F1',21)
             label(x,y+30,f'{len(cells&truth)}/{len(truth)} visible blocks   {len(cells-truth)} extra',17,'#b5c8d0')
             draw_footprint(canvas,cells,truth,bounds,x,y+52)
