@@ -1,0 +1,370 @@
+{
+  "recipe_revision": "434f44b",
+  "geometry_split": "unseen structures, confirmation only",
+  "selected": [
+    {
+      "id": "holdout-switchback-brick-low-left",
+      "source_id": "holdout-switchback-brick-low-left",
+      "directory": "scoring",
+      "shape": "c7fe72aae45958b090f3135a6f4e1fc278a472cb9a707cb26cac38027e518aed",
+      "family": "switchback",
+      "angle": "low-left",
+      "palette": "brick",
+      "origin_world": [
+        -2,
+        65,
+        -5
+      ],
+      "blocks": 164,
+      "ground_y": 64,
+      "camera": {
+        "P": [
+          [
+            1112.517825919904,
+            77.81721205638485,
+            -148.94060222033852,
+            6362.71669976146
+          ],
+          [
+            286.5746292745146,
+            -810.8174540894322,
+            -458.61204315161905,
+            8091.948243465908
+          ],
+          [
+            0.5268040712331575,
+            0.1080794611894234,
+            -0.8430568053440558,
+            9.919851591438942
+          ]
+        ],
+        "scale_status": "supported",
+        "reason": "two floor texel pencils registered to a vanilla sprite in both image halves",
+        "evidence": {
+          "horizon_px": 543.9871195446399,
+          "phase_strength": [
+            0.9953358278446127,
+            0.9620141760129821
+          ],
+          "frequencies": [
+            42.30799036093433,
+            26.437152783242805
+          ],
+          "lower_bound_fraction": 0.83,
+          "atlas_matches": [
+            [
+              12,
+              8,
+              "light_gray_concrete",
+              0,
+              0.9799995629279286,
+              0.698078335907028
+            ],
+            [
+              12,
+              8,
+              "light_gray_concrete",
+              0,
+              0.9911059943917778,
+              0.7096911310659269
+            ]
+          ],
+          "atlas_sha256": "49b477fbfe5f2171c2529e3ffe1722f09fee5a094de2b6b99831512b8601c950",
+          "focal_px": 864.5173306990824,
+          "axis_length_disagreement": 0.00011889976107249249
+        },
+        "camera_source": "atlas-floor",
+        "seam_reason": "Insufficient support for repeated seam centers"
+      },
+      "target": {
+        "labels": "labels.json",
+        "raster": "labels.npz",
+        "visible_blocks": 98,
+        "visible_faces": 149,
+        "visible_pixels": 119989,
+        "visible_surfaces": 27
+      },
+      "files": {
+        "rgb.png": "b2d145e026728a431b94ace0a36343ba5a1111d2d4edeb616d2053c1838813b3",
+        "camera.json": "d8aa020af190de4b32c34ac3268edee20097c05fc130f485ad053498aee46500",
+        "world-readback.json": "b360f14838174588b47331f4ccc226779f4f72e5fb66d5720c022b03309c7c65",
+        "raw-readback.json": "500270279fd656eb4d376b683ed08d3cdebfac21eab5c1d134911bd555e46ab3",
+        "labels.json": "bd57e9bf8a0b03f22c095892a47b1296f3c0f6cf6e61a3db914018cb3fac01c2",
+        "labels.npz": "385094b5c0caafd8bf6f434ddea21361d18e41c977bffbc92c029f441f16a26a"
+      }
+    },
+    {
+      "id": "holdout-switchback-brick-high-right",
+      "source_id": "holdout-switchback-brick-high-right",
+      "directory": "scoring",
+      "shape": "c7fe72aae45958b090f3135a6f4e1fc278a472cb9a707cb26cac38027e518aed",
+      "family": "switchback",
+      "angle": "high-right",
+      "palette": "brick",
+      "origin_world": [
+        -2,
+        65,
+        -5
+      ],
+      "blocks": 164,
+      "ground_y": 64,
+      "camera": {
+        "P": [
+          [
+            283.2614470189585,
+            -145.96838913909488,
+            1077.7857833883106,
+            11947.895001514891
+          ],
+          [
+            -156.2044102914703,
+            -935.993206846753,
+            215.0358723817224,
+            13640.204580268839
+          ],
+          [
+            -0.575556512274915,
+            -0.20273387380429841,
+            0.7923290801525865,
+            17.558737403345066
+          ]
+        ],
+        "scale_status": "supported",
+        "reason": "two floor texel pencils registered to a vanilla sprite in both image halves",
+        "evidence": {
+          "horizon_px": 271.39717292758064,
+          "phase_strength": [
+            0.9894338676567653,
+            0.9774527566702633
+          ],
+          "frequencies": [
+            133.18335384770995,
+            96.74584532338724
+          ],
+          "lower_bound_fraction": 0.74,
+          "atlas_matches": [
+            [
+              10,
+              8,
+              "light_gray_concrete",
+              6,
+              0.9921599632250746,
+              0.7040282763776866
+            ],
+            [
+              10,
+              8,
+              "light_gray_concrete",
+              6,
+              0.9294220243831293,
+              0.6684605170657087
+            ]
+          ],
+          "atlas_sha256": "49b477fbfe5f2171c2529e3ffe1722f09fee5a094de2b6b99831512b8601c950",
+          "focal_px": 862.677433491567,
+          "axis_length_disagreement": 0.0005120849727666869
+        },
+        "camera_source": "atlas-floor",
+        "seam_reason": "Insufficient support for repeated seam centers"
+      },
+      "target": {
+        "labels": "labels.json",
+        "raster": "labels.npz",
+        "visible_blocks": 129,
+        "visible_faces": 188,
+        "visible_pixels": 124779,
+        "visible_surfaces": 25
+      },
+      "files": {
+        "rgb.png": "91a5d591c8776106d6cabd7d9bee1b9ac1bb06ae4908f8bd764c3331cbc439aa",
+        "camera.json": "f70e6f4d8858097f5dcfe63104bd1e44a9e2bd33f4c450b108a7b4f9e8e5d63c",
+        "world-readback.json": "b360f14838174588b47331f4ccc226779f4f72e5fb66d5720c022b03309c7c65",
+        "raw-readback.json": "500270279fd656eb4d376b683ed08d3cdebfac21eab5c1d134911bd555e46ab3",
+        "labels.json": "908d2766a11a10e2287143836ba9039b6abf2254db1c2be7d9138cac27b64661",
+        "labels.npz": "8fb06d637daac8a6aa5d4b8ede8de8fb0cc4166958ce09d1efb76bb8c1c41747"
+      }
+    },
+    {
+      "id": "holdout-loadingdock-timber-low-left",
+      "source_id": "holdout-loadingdock-timber-low-left",
+      "directory": "scoring",
+      "shape": "41ab1263ad802b63aa2c650d7fe7d0a98e9cc2d6f5009b22628d73435b414685",
+      "family": "loadingdock",
+      "angle": "low-left",
+      "palette": "timber",
+      "origin_world": [
+        256,
+        65,
+        -8
+      ],
+      "blocks": 666,
+      "ground_y": 64,
+      "camera": {
+        "P": [
+          [
+            1114.999019143286,
+            40.518033909536875,
+            -151.0923115129885,
+            6124.951236177811
+          ],
+          [
+            263.90174112328083,
+            -838.7093438176263,
+            -422.27320064956314,
+            7125.708672871501
+          ],
+          [
+            0.5290966173534974,
+            0.05627504709657899,
+            -0.8466155665049103,
+            8.890975718171953
+          ]
+        ],
+        "scale_status": "supported",
+        "reason": "two floor texel pencils registered to a vanilla sprite in both image halves",
+        "evidence": {
+          "horizon_px": 498.77797828929243,
+          "phase_strength": [
+            0.9972064708783217,
+            0.9865760918155108
+          ],
+          "frequencies": [
+            42.1894045267707,
+            26.366478607788796
+          ],
+          "lower_bound_fraction": 0.83,
+          "atlas_matches": [
+            [
+              1,
+              8,
+              "light_gray_concrete",
+              0,
+              0.9956928609523259,
+              0.7132993953398605
+            ],
+            [
+              1,
+              8,
+              "light_gray_concrete",
+              0,
+              0.9965475598473447,
+              0.7171840578329209
+            ]
+          ],
+          "atlas_sha256": "49b477fbfe5f2171c2529e3ffe1722f09fee5a094de2b6b99831512b8601c950",
+          "focal_px": 865.4045181705155,
+          "axis_length_disagreement": 0.00030191991025396627
+        },
+        "camera_source": "atlas-floor",
+        "seam_reason": "Insufficient support for repeated seam centers"
+      },
+      "target": {
+        "labels": "labels.json",
+        "raster": "labels.npz",
+        "visible_blocks": 264,
+        "visible_faces": 331,
+        "visible_pixels": 194006,
+        "visible_surfaces": 29
+      },
+      "files": {
+        "rgb.png": "d32e3474498373d3ec1ea2003b82c7cb885d02db72981eef20aff1790a17ed7f",
+        "camera.json": "d88be2bcaaef1506de5e92c25cfa93611823dfc3e54a8437de1c7491a324dc75",
+        "world-readback.json": "7701ade831c20e11bc3af9667bed7d283b693ced42cf23727ada9c6de49da69d",
+        "raw-readback.json": "ded5b8ad57dbe59354ec443c01059b03d3adf16b1209d3580af6946e0eeca323",
+        "labels.json": "36522023ebd9330fea8c20ffaaefdfbbacd6d439c69268c1fdeb56e4400e3717",
+        "labels.npz": "fda7b2825f4052d28f30e59afddeb692171d57c48bea356f9738513314315488"
+      }
+    },
+    {
+      "id": "holdout-loadingdock-timber-high-right",
+      "source_id": "holdout-loadingdock-timber-high-right",
+      "directory": "scoring",
+      "shape": "41ab1263ad802b63aa2c650d7fe7d0a98e9cc2d6f5009b22628d73435b414685",
+      "family": "loadingdock",
+      "angle": "high-right",
+      "palette": "timber",
+      "origin_world": [
+        256,
+        65,
+        -8
+      ],
+      "blocks": 666,
+      "ground_y": 64,
+      "camera": {
+        "P": [
+          [
+            284.42594448112436,
+            -158.8672610651744,
+            1074.5670822590757,
+            11534.51621321775
+          ],
+          [
+            -146.25480437024655,
+            -939.9280954060893,
+            201.1768897598761,
+            13308.359607923756
+          ],
+          [
+            -0.5734991907851286,
+            -0.22064897370163117,
+            0.7888614940120853,
+            17.29170200223485
+          ]
+        ],
+        "scale_status": "supported",
+        "reason": "two floor texel pencils registered to a vanilla sprite in both image halves",
+        "evidence": {
+          "horizon_px": 255.02181471262708,
+          "phase_strength": [
+            0.9947171635316104,
+            0.9807906598764572
+          ],
+          "frequencies": [
+            133.60857988586434,
+            97.13290993173959
+          ],
+          "lower_bound_fraction": 0.74,
+          "atlas_matches": [
+            [
+              15,
+              8,
+              "light_gray_concrete",
+              6,
+              0.9937349153177204,
+              0.7134153142643728
+            ],
+            [
+              15,
+              8,
+              "light_gray_concrete",
+              6,
+              0.9580169555752519,
+              0.6955382032208539
+            ]
+          ],
+          "atlas_sha256": "49b477fbfe5f2171c2529e3ffe1722f09fee5a094de2b6b99831512b8601c950",
+          "focal_px": 861.8785318483086,
+          "axis_length_disagreement": 0.00037535848484807283
+        },
+        "camera_source": "atlas-floor",
+        "seam_reason": "Insufficient support for repeated seam centers"
+      },
+      "target": {
+        "labels": "labels.json",
+        "raster": "labels.npz",
+        "visible_blocks": 256,
+        "visible_faces": 322,
+        "visible_pixels": 182670,
+        "visible_surfaces": 24
+      },
+      "files": {
+        "rgb.png": "05b57b37e071efdd67304d0f81345987bc5c0bcda039e4a9f5e9c260105c9fe7",
+        "camera.json": "abec2c4aafab018e99462787c13f0c04971d781f8a11a81892c06e9c0dd593eb",
+        "world-readback.json": "7701ade831c20e11bc3af9667bed7d283b693ced42cf23727ada9c6de49da69d",
+        "raw-readback.json": "ded5b8ad57dbe59354ec443c01059b03d3adf16b1209d3580af6946e0eeca323",
+        "labels.json": "48bd87e65755de5c910551f775deead6456d63b5e54cc4ee95a901aaedbfb47a",
+        "labels.npz": "f517b8f197538e622f8ce74f3a4de2d685eb36a5224e00813ab77f02f8775a82"
+      }
+    }
+  ]
+}
