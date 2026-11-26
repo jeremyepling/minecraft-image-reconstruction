@@ -38,6 +38,14 @@ def stock(image, version, parts, counts, camera):
     return visible_placement.place_with_camera(image,version,parts,counts,camera)
 
 
+def integrated(image, version, parts, counts, camera):
+    """Replay the public placement entry point with the frozen image-derived camera."""
+    from unittest.mock import patch
+    from engine import visible_placement
+    with patch.object(visible_placement, 'seam_camera', return_value=camera):
+        return visible_placement.place(image, version, parts, counts=counts)
+
+
 def strict_only(image,version,parts,counts,camera):
     """Plain control retaining cells supported by the original grounded chart logic."""
     from engine.visible_placement import _charts, _blocks, _carriers, observed_support, SAMPLE_STRIDE
