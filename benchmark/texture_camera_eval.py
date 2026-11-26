@@ -23,6 +23,8 @@ STABLE = Path(subprocess.check_output(["git", "worktree", "list", "--porcelain"]
                                       text=True).splitlines()[0].removeprefix("worktree "))
 RELEASE = ROOT / "training/visible-builds-v1.json"
 DATA = STABLE / "runs/visible-builds-v1"
+TRAINING_RELEASE = ROOT / "training/visible-builds-v2.json"
+TRAINING_DATA = STABLE / "runs/visible-builds-v2"
 BASE = STABLE / "runs/texture-camera-rounds/baseline"
 SPLITS = ("train", "validation", "test", "regression")
 
@@ -33,8 +35,8 @@ def checked(path, expected):
     return path
 
 
-def frames(data, split):
-    release = read(RELEASE)
+def frames(data, split, manifest=RELEASE):
+    release = read(manifest)
     ids = {r["id"]: r for r in release["frames"] if r["split"] == split}
     shard = release["shards"][split]
     with ZipFile(checked(data / shard["file"], shard["sha256"])) as z:

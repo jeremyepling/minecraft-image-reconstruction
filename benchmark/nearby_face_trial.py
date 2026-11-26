@@ -13,7 +13,7 @@ from benchmark import visible_depth_transfer as transfer
 from benchmark.camera_metrics import registration
 from benchmark.mask_blocks import decoded_pack, registered, _write_read
 from benchmark.relative_geometry import placement_scores
-from benchmark.texture_camera_eval import DATA, ROOT, STABLE, read, save, checked, frames, digest
+from benchmark.texture_camera_eval import DATA, TRAINING_DATA, TRAINING_RELEASE, ROOT, STABLE, read, save, checked, frames, digest
 from engine import nearby_face_decision as method
 from training.visible_labels import visible_labels
 
@@ -30,7 +30,10 @@ def cases(split):
         ff=read(source/'screen.json')['selected']
     else:
         source=STABLE/'runs/visible-depth-rounds'
-        ff=native.rows() if split=='native' else frames(DATA,split)
+        if split == 'train':
+            ff = frames(TRAINING_DATA, split, TRAINING_RELEASE)
+        else:
+            ff=native.rows() if split=='native' else frames(DATA,split)
     base=EXTRA/'candidate' if split=='extra' else BASE/split
     rows={r['id']:r for r in read(base/'cases.json')}
     return [(split,f,source,base,rows[f['id']]) for f in ff]
@@ -46,7 +49,7 @@ def load_prediction(job):
     else:
         data=read(checked(source/'inputs'/(key+'.json'),row['input_sha256']))
         parts,camera=data['parts'],data['camera']
-        path=native.rgb_path(f,native.BUILDS) if split=='native' else DATA/'data'/split/f['directory']/'rgb.png'
+        path=native.rgb_path(f,native.BUILDS) if split=='native' else (TRAINING_DATA if split == 'train' else DATA)/'data'/split/f['directory']/'rgb.png'
     with Image.open(checked(path,f['files']['rgb.png'])) as im:
         image=im.convert('RGB')
     prior=set(decoded_pack(checked(base/key/'reconstruction.zip',row['pack_sha256'])))
@@ -64,7 +67,7 @@ def labels(job,P):
         visible,_,_=visible_labels(pose,states,(0,0,0))
         occupied=set(transfer.structure(raw,64))
     else:
-        folder=DATA/'data'/split/f['directory']
+        folder=(TRAINING_DATA if split == 'train' else DATA)/'data'/split/f['directory']
         pose=read(checked(folder/'camera.json',f['files']['camera.json']))
         visible=read(checked(folder/'labels.json',f['files']['labels.json']))
         raw=read(checked(folder/'world-readback.json',f['files']['world-readback.json']))

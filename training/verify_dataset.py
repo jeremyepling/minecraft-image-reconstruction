@@ -1,4 +1,4 @@
-"""Check a visible-builds-v1 download against its manifest and geometric evidence."""
+"""Check a Visible Builds download against its manifest and geometric evidence."""
 import argparse
 import hashlib
 import io
@@ -8,6 +8,7 @@ from zipfile import ZipFile
 
 import numpy as np
 from PIL import Image
+from training.framing import MIN_MARGIN_FRACTION, measure_framing
 
 
 def require(condition, message):
@@ -43,7 +44,7 @@ def face_depths(face_ids, depth, labels, fid):
             f"Sampled depths fail face-plane/bounds check: {fid}")
 
 
-def verify_frame(archive, row, listed, source):
+def verify_frame(archive, row, listed, source, dataset):
     fid = row["id"]
     directory = row["directory"] + "/"
     require(row["directory"] == "frames/" + fid, f"Frame path mismatch: {fid}")
@@ -51,6 +52,7 @@ def verify_frame(archive, row, listed, source):
         return archive.read(directory + name)
 
     require(json.loads(read("frame.json")) == row, f"Frame index mismatch: {fid}")
+    require(row["dataset"] == dataset, f"Frame release mismatch: {fid}")
     assets = {name: read(name) for name in row["files"]}
     for name, payload in assets.items():
         require(digest(payload) == row["files"][name], f"Asset checksum mismatch: {fid}/{name}")
@@ -88,6 +90,9 @@ def verify_frame(archive, row, listed, source):
         require(face_ids.dtype == np.uint16 and depth.dtype == np.float32 and
                 face_ids.shape == depth.shape == tuple(reversed(pose["image_size"])), f"Invalid raster: {fid}")
         face_depths(face_ids, depth, labels, fid)
+        if dataset == "visible-builds-v2":
+            framing = measure_framing(pose, actual.values(), row["ground_y"], face_ids)
+            require(framing["accepted"], f"Ineligible training frame: {fid} ({framing['reason']})")
     if "reference-faces.json" in assets:
         reference = assets["reference-faces.json"]
         if row["split"] == "regression":
@@ -103,8 +108,12 @@ def verify_frame(archive, row, listed, source):
 
 def verify(manifest_path, archive_dir, source=None):
     manifest = json.loads(manifest_path.read_bytes())
-    require(manifest["dataset"] == "visible-builds-v1" and manifest["schema_version"] == 1,
+    dataset = manifest["dataset"]
+    require(dataset in {"visible-builds-v1", "visible-builds-v2"} and manifest["schema_version"] == 1,
             "Unsupported dataset/version")
+    require(set(manifest["shards"]) == {"train", "validation", "test", "regression"}, "Invalid split set")
+    if dataset == "visible-builds-v2":
+        require(manifest["min_margin_fraction"] == MIN_MARGIN_FRACTION, "Unexpected framing policy")
     capture_record = manifest["capture_records"]
     capture_path = archive_dir / capture_record["file"]
     require(capture_path.stat().st_size == capture_record["bytes"] and
@@ -112,6 +121,16 @@ def verify(manifest_path, archive_dir, source=None):
     with ZipFile(capture_path) as capture:
         require(capture.testzip() is None, "Corrupt capture records")
         new_rows = {r["id"]: r for r in json.loads(capture.read("index.json"))["frames"]}
+        if dataset == "visible-builds-v2":
+            require(sorted(capture.namelist()) == sorted(["index.json", "views.json", "layout.json",
+                    "buildings.json", "saved-client-options.json"]), "Unexpected capture records member")
+            views = json.loads(capture.read("views.json"))
+            require(len(views) == len(new_rows) and {v["id"] for v in views} == new_rows.keys(),
+                    "Capture views do not match capture frames")
+            pages = {v["page"] for v in views}
+            require({b["page"] for b in json.loads(capture.read("buildings.json"))} == pages and
+                    {b["page"] for b in json.loads(capture.read("layout.json"))["blocks"]} == pages,
+                    "Capture layouts do not match accepted pages")
     listed = {row["id"]: row for row in manifest["frames"]}
     require(len(listed) == len(manifest["frames"]), "Duplicate manifest frame")
     seen, layout_splits, family_splits, image_splits = set(), {}, {}, {}
@@ -124,6 +143,7 @@ def verify(manifest_path, archive_dir, source=None):
         with ZipFile(path) as archive:
             require(len(archive.namelist()) == len(set(archive.namelist())), f"Duplicate ZIP entry: {path.name}")
             rows = [json.loads(line) for line in archive.read("frames.jsonl").splitlines()]
+            expected_paths = {"frames.jsonl"}
             require(len(rows) == shard["frames"] and len({r["layout"] for r in rows}) == shard["layouts"],
                     f"Incorrect shard counts: {split}")
             for row in rows:
@@ -143,13 +163,16 @@ def verify(manifest_path, archive_dir, source=None):
                             original["source_sha256"]["pose"] == row["files"]["camera.json"] and
                             original["source_sha256"]["readback"] == row["files"]["world-readback.json"],
                             f"Capture records disagree with split: {fid}")
-                blocks, faces = verify_frame(archive, row, listed[fid], source)
+                expected_paths.update(row["directory"] + "/" + name for name in (*row["files"], "frame.json"))
+                blocks, faces = verify_frame(archive, row, listed[fid], source, dataset)
                 total_blocks += blocks
                 total_faces += faces
                 seen.add(fid)
+            require(set(archive.namelist()) == expected_paths, f"Unindexed ZIP member: {split}")
     require(seen == set(listed), "Manifest and shard membership differ")
     require(not new_rows, "Capture index contains extra frames")
-    return dict(frames=len(seen), layouts=len(layout_splits), visible_block_appearances=total_blocks,
+    return dict(frames=len(seen), layouts=len(layout_splits), complete_framing_checked=dataset == "visible-builds-v2",
+                visible_block_appearances=total_blocks,
                 visible_face_appearances=total_faces, checked_archived_face_counts=bool(source))
 
 

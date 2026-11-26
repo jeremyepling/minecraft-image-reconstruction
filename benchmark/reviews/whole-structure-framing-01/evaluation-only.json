@@ -1,0 +1,409 @@
+{
+  "rule": "2% continuous projected gap and 2% observed background pixels on all 4 sides; all occupied block corners in front",
+  "extra_unique": 56,
+  "cross_set_duplicate_rgbs": [],
+  "cohorts": {
+    "native": [
+      {
+        "id": "heldout-facade-oblique-left",
+        "rgb_sha256": "54915ed9fe65b45353a8ab6089ed9f1a7ffd07268270c0578445da29fa2a5768",
+        "minimum_margin_percent": 19.3444,
+        "closest_edge": "left",
+        "admitted": true
+      },
+      {
+        "id": "heldout-facade-oblique-right",
+        "rgb_sha256": "0828c9d164392fe0bad9a1a709c1f321eb73f7bb7d08739f3b99382493df5ad0",
+        "minimum_margin_percent": 19.5041,
+        "closest_edge": "right",
+        "admitted": true
+      },
+      {
+        "id": "dark-inlay-oblique-left",
+        "rgb_sha256": "67880a7c6d8860b3460581227f8638c0014b6c0e00ed231e16c905b66b73413d",
+        "minimum_margin_percent": 22.1929,
+        "closest_edge": "left",
+        "admitted": true
+      },
+      {
+        "id": "dark-inlay-oblique-right",
+        "rgb_sha256": "46dc2c2c96f265722d8d655a5070c348059e12a02bcbde49add8216de37ed755",
+        "minimum_margin_percent": 22.2917,
+        "closest_edge": "right",
+        "admitted": true
+      },
+      {
+        "id": "physical-shade-oblique-left",
+        "rgb_sha256": "bd7bca183c7a5ca32ce59edcba2c9341ca600e3bf4779d17ddce9025145a68d2",
+        "minimum_margin_percent": 22.1929,
+        "closest_edge": "left",
+        "admitted": true
+      },
+      {
+        "id": "physical-shade-oblique-right",
+        "rgb_sha256": "2542fa7beb579fd696a961bbd72082170a834e7459ca05d431a1c4c2ecf075bd",
+        "minimum_margin_percent": 20.2083,
+        "closest_edge": "left",
+        "admitted": true
+      },
+      {
+        "id": "test-adjacency-26-left",
+        "rgb_sha256": "be25476a7d52878bb52f7d69c7a7d00f85c29f78b0e9b22226346153968d0ce0",
+        "minimum_margin_percent": 15.1815,
+        "closest_edge": "left",
+        "admitted": true
+      },
+      {
+        "id": "test-adjacency-26-right",
+        "rgb_sha256": "020e3114962331500352eb2dbec1a0b5b4b9572c0571b1bba3debac74d439092",
+        "minimum_margin_percent": 15.4526,
+        "closest_edge": "right",
+        "admitted": true
+      },
+      {
+        "id": "test-recess-28-left",
+        "rgb_sha256": "d4891492a4b325a1eb7c3e1ce9f3124b2815e72fb29038f5086afd9b91fc4dc6",
+        "minimum_margin_percent": 15.5207,
+        "closest_edge": "left",
+        "admitted": true
+      },
+      {
+        "id": "test-recess-28-right",
+        "rgb_sha256": "920d8a23dea473f3064517315f8a9dbf943253af141ae61ea4d0367eb133f9d6",
+        "minimum_margin_percent": 15.2083,
+        "closest_edge": "right",
+        "admitted": true
+      },
+      {
+        "id": "test-corner-29-left",
+        "rgb_sha256": "93ca442b933fa21083f39a5963301b6277184c570a9f61e01ba4cb6d88f35c96",
+        "minimum_margin_percent": 18.6806,
+        "closest_edge": "left",
+        "admitted": true
+      },
+      {
+        "id": "test-corner-29-right",
+        "rgb_sha256": "dd2ec5551859a61d800d68d157c6092fb796743ec5036d8310a60d131853bf74",
+        "minimum_margin_percent": 16.7172,
+        "closest_edge": "right",
+        "admitted": true
+      }
+    ],
+    "old": [
+      {
+        "id": "shape-benchmark-26.3--train-canopy-07-left",
+        "rgb_sha256": "15984215f0265a4c447ab14c02d913d2b564639d84a739c6c0c1e4e6db47d396",
+        "minimum_margin_percent": 20.6667,
+        "closest_edge": "bottom",
+        "admitted": true
+      },
+      {
+        "id": "shape-benchmark-26.3--train-canopy-04-left",
+        "rgb_sha256": "15fa8537e6b6f095ba50c7e24a71f6b823806a6fb236f80641daf9bc714c0823",
+        "minimum_margin_percent": 22.7279,
+        "closest_edge": "bottom",
+        "admitted": true
+      },
+      {
+        "id": "signed-relief-26.3--dev--dev-relief-00-oblique-right",
+        "rgb_sha256": "17682203a4372c0a677e34f7da95c18cb82acde6d1b92363697905fb6a90f7f5",
+        "minimum_margin_percent": 15.9349,
+        "closest_edge": "right",
+        "admitted": true
+      },
+      {
+        "id": "shape-benchmark-open-26.3--train-canopy-01-left",
+        "rgb_sha256": "1d61d60139891f20f433cdeadb0cd57a32505a1e2f057f246748c519bc69b652",
+        "minimum_margin_percent": 23.2916,
+        "closest_edge": "bottom",
+        "admitted": true
+      },
+      {
+        "id": "shape-benchmark-26.3--train-canopy-09-right",
+        "rgb_sha256": "25487746567e273b6c6d3e9cff9b860b814d717d9ebcc6a7501376a266a9d3fd",
+        "minimum_margin_percent": 23.8661,
+        "closest_edge": "left",
+        "admitted": true
+      },
+      {
+        "id": "shape-benchmark-26.3--train-canopy-06-left",
+        "rgb_sha256": "2a4eedaba2cc410e6d3b6ea161179312f2b9b666dbe9cf12587b9176df381bac",
+        "minimum_margin_percent": 26.5278,
+        "closest_edge": "right",
+        "admitted": true
+      },
+      {
+        "id": "rim-views-26.3--positive--heldout-facade-oblique-right",
+        "rgb_sha256": "3451b9f015c6d3ac847e96098387c8645b60fdc7f053197ac7d927201decca73",
+        "minimum_margin_percent": 15.4167,
+        "closest_edge": "right",
+        "admitted": true
+      },
+      {
+        "id": "shape-benchmark-26.3--train-canopy-08-right",
+        "rgb_sha256": "3a40da0b3e1512610339dc8c7ce551b79a449d428f7e1e64c465d67369562053",
+        "minimum_margin_percent": 23.0,
+        "closest_edge": "bottom",
+        "admitted": true
+      },
+      {
+        "id": "shape-benchmark-26.3--train-recess-02-right",
+        "rgb_sha256": "3dae3737c077d483a91e35e525af829d34b1262ca51a4287b5b1214988c2e7df",
+        "minimum_margin_percent": 15.2083,
+        "closest_edge": "right",
+        "admitted": true
+      },
+      {
+        "id": "inverse-voxels-26.3--confirm--test-bays-02-oblique-right",
+        "rgb_sha256": "43a4f0df1fcda1638a368df1fab42e457f26f147e2d2f2cb7dcc296acdb83c9b",
+        "minimum_margin_percent": 26.6508,
+        "closest_edge": "bottom",
+        "admitted": true
+      },
+      {
+        "id": "shape-benchmark-26.3--dev-canopy-18-left",
+        "rgb_sha256": "4d35db3a32845f60f0d8a72a8d55a6baf7afab96cabb7002cb211bc9b71efaed",
+        "minimum_margin_percent": 21.8411,
+        "closest_edge": "bottom",
+        "admitted": true
+      },
+      {
+        "id": "signed-relief-26.3--test--test-relief-00-oblique-left",
+        "rgb_sha256": "54145a22b48ba5eb35581125363469a3024172b1e9ae95cb6dff00ca9a673854",
+        "minimum_margin_percent": 15.6944,
+        "closest_edge": "left",
+        "admitted": true
+      }
+    ],
+    "fresh": [
+      {
+        "id": "inverse-voxels-26.3--confirm--test-colonnade-01-oblique-right",
+        "rgb_sha256": "56f1d5c1feb17dcee4ab530954cd05a37bf86ef178aead769afe90c9ce6307e6",
+        "minimum_margin_percent": 27.6133,
+        "closest_edge": "right",
+        "admitted": true
+      },
+      {
+        "id": "shape-benchmark-open-26.3--train-canopy-00-right",
+        "rgb_sha256": "647ddfc70562de0effeb54a865677408f5b1595fb8ce1d8f67e2d36077c2d1e4",
+        "minimum_margin_percent": 22.6667,
+        "closest_edge": "bottom",
+        "admitted": true
+      },
+      {
+        "id": "shape-benchmark-26.3--dev-corner-16-right",
+        "rgb_sha256": "753a868e072dae0eb53267e1a5f9b015f4e8b40b93de558cea1f0fa3d5366079",
+        "minimum_margin_percent": 16.5269,
+        "closest_edge": "right",
+        "admitted": true
+      },
+      {
+        "id": "entrance-confirm-26.3--positive--heldout-facade-oblique-right",
+        "rgb_sha256": "8564e2bfba0ca890cde2498fb1e698cf28b41d7f65bcddc6907a34b6dab2674b",
+        "minimum_margin_percent": 16.3572,
+        "closest_edge": "right",
+        "admitted": true
+      },
+      {
+        "id": "shape-benchmark-26.3--train-canopy-05-left",
+        "rgb_sha256": "8b1d25761a70308f38309a63ff1a277830e638c40bb98031ca36ed75b5824c59",
+        "minimum_margin_percent": 25.0972,
+        "closest_edge": "bottom",
+        "admitted": true
+      },
+      {
+        "id": "shape-benchmark-26.3--train-corner-03-right",
+        "rgb_sha256": "969109275306ef7885ed2acc832de1e2ea57e939586a4e128be0f9082c7c9195",
+        "minimum_margin_percent": 16.25,
+        "closest_edge": "right",
+        "admitted": true
+      },
+      {
+        "id": "shape-benchmark-26.3--dev-canopy-19-right",
+        "rgb_sha256": "9c375a4c0127fd942d7932e6eadcd08c27ab151adfdf8167cda164e741614a0d",
+        "minimum_margin_percent": 25.9486,
+        "closest_edge": "bottom",
+        "admitted": true
+      },
+      {
+        "id": "corner-mixed-26.3--heldout-facade-oblique-left",
+        "rgb_sha256": "e032733de969dd76bc991a10d55472951892eef53caa419400f8702893f3b25c",
+        "minimum_margin_percent": 15.6944,
+        "closest_edge": "left",
+        "admitted": true
+      }
+    ],
+    "extra": [
+      {
+        "id": "shape-benchmark-open-26.3--train-canopy-01-right",
+        "rgb_sha256": "38924069a1d38d4ec2969e9420f9cda65d2845b9667e112fc7cf1f3ddcfdc94a",
+        "minimum_margin_percent": 23.0,
+        "closest_edge": "bottom",
+        "admitted": true
+      },
+      {
+        "id": "corner-views-26.3--positive--heldout-facade-oblique-left",
+        "rgb_sha256": "4bdc8634f679a27b086d55f60ee6356be1d84015de590a07b9bf96d621eb6c18",
+        "minimum_margin_percent": 15.0469,
+        "closest_edge": "left",
+        "admitted": true
+      },
+      {
+        "id": "shape-benchmark-26.3--train-canopy-08-left",
+        "rgb_sha256": "5714484f146d32eebcc0da009d3154b6489a3b636911d14a5b8588848710834e",
+        "minimum_margin_percent": 23.2916,
+        "closest_edge": "bottom",
+        "admitted": true
+      },
+      {
+        "id": "shape-benchmark-26.3--train-canopy-06-right",
+        "rgb_sha256": "5ceca6afcb49cabf590d9942f720b1c9857c283c10d22349748fc93bae2b1153",
+        "minimum_margin_percent": 26.3889,
+        "closest_edge": "left",
+        "admitted": true
+      },
+      {
+        "id": "shape-benchmark-26.3--train-canopy-09-left",
+        "rgb_sha256": "6168d6bd78b6a75df9650080074b6a80ef6bcac35a8970cd3412c8674774000d",
+        "minimum_margin_percent": 23.7218,
+        "closest_edge": "right",
+        "admitted": true
+      },
+      {
+        "id": "inverse-voxels-26.3--confirm--test-bays-02-oblique-left",
+        "rgb_sha256": "64d69e49a926b9bd113ebe4570f3c90d9f520e59c0ffb99631bf5cb8652a4c12",
+        "minimum_margin_percent": 27.4222,
+        "closest_edge": "left",
+        "admitted": true
+      },
+      {
+        "id": "signed-relief-26.3--test--test-relief-00-oblique-right",
+        "rgb_sha256": "858b89c080aa6199cab23e507db89e187ef71dccbe6d3689602d8659c13ae9bc",
+        "minimum_margin_percent": 15.9548,
+        "closest_edge": "right",
+        "admitted": true
+      },
+      {
+        "id": "shape-benchmark-26.3--train-canopy-04-right",
+        "rgb_sha256": "98c5f84a2892a852b140f45dbac3e6ae4ea3dc95c9a8ba31bcb447deb51e5a48",
+        "minimum_margin_percent": 22.6667,
+        "closest_edge": "bottom",
+        "admitted": true
+      },
+      {
+        "id": "corner-views-26.3--positive--heldout-facade-oblique-right",
+        "rgb_sha256": "a4dd10cfffd1e26d8fa87815fe29fee9468590d036a82d73002df7fe1c1ea044",
+        "minimum_margin_percent": 15.625,
+        "closest_edge": "right",
+        "admitted": true
+      },
+      {
+        "id": "inverse-voxels-26.3--confirm--test-colonnade-01-oblique-left",
+        "rgb_sha256": "b8b09e516a816f842a90b24c9b5a24a297e049509dc4a0dca0b7e980b82f2fbb",
+        "minimum_margin_percent": 27.7653,
+        "closest_edge": "right",
+        "admitted": true
+      },
+      {
+        "id": "shape-benchmark-26.3--dev-canopy-19-left",
+        "rgb_sha256": "bcfdda6a3cc52a8b2882f1551335ff1242e334670cd80a8f629421d3e00edea0",
+        "minimum_margin_percent": 26.1111,
+        "closest_edge": "bottom",
+        "admitted": true
+      },
+      {
+        "id": "shape-benchmark-open-26.3--train-canopy-00-left",
+        "rgb_sha256": "be19118d37b024c5f4974e93590a1bab39cc9ca02a7e767aeb024824fb99ccb9",
+        "minimum_margin_percent": 22.7279,
+        "closest_edge": "bottom",
+        "admitted": true
+      },
+      {
+        "id": "shape-benchmark-26.3--train-corner-03-left",
+        "rgb_sha256": "c5b6ab85e883d34f8e1627ea39b5a9b464872af141b82e3b28617941d4f2d889",
+        "minimum_margin_percent": 17.9861,
+        "closest_edge": "left",
+        "admitted": true
+      },
+      {
+        "id": "recess-positive-control-26.3--heldout-facade-left",
+        "rgb_sha256": "d070b9e756b105dd3e37b38a4ff921eedf6ec0c47c126f619d747a8f31498dc6",
+        "minimum_margin_percent": 15.5207,
+        "closest_edge": "left",
+        "admitted": true
+      },
+      {
+        "id": "shape-benchmark-26.3--dev-corner-16-left",
+        "rgb_sha256": "d5642b4c5575c925f734028c4460dea8d7692ea4cfafff9ab83ca214c53fa6a3",
+        "minimum_margin_percent": 18.3964,
+        "closest_edge": "left",
+        "admitted": true
+      },
+      {
+        "id": "recess-positive-control-26.3--heldout-facade-right",
+        "rgb_sha256": "d91571964453eeebddbed19af060e98c7aa87900a966f2a3b2ad6e6cd5c903de",
+        "minimum_margin_percent": 15.2083,
+        "closest_edge": "right",
+        "admitted": true
+      },
+      {
+        "id": "rim-views-26.3--positive--heldout-facade-oblique-left",
+        "rgb_sha256": "e601a54ee06fe27391847e07b00e3aecca8e68f1d29f0ac955a123a8e3705185",
+        "minimum_margin_percent": 15.4167,
+        "closest_edge": "left",
+        "admitted": true
+      },
+      {
+        "id": "signed-relief-26.3--dev--dev-relief-00-oblique-left",
+        "rgb_sha256": "e94cb8666e38682c89c766d5ceb2c25b4c7b85f471db64de0e8a6e021b618420",
+        "minimum_margin_percent": 15.9722,
+        "closest_edge": "left",
+        "admitted": true
+      },
+      {
+        "id": "shape-benchmark-26.3--train-canopy-05-right",
+        "rgb_sha256": "ec60d1ba3f34ae290141f880b478e4fce13595214383e412dd6328b6417fe7ce",
+        "minimum_margin_percent": 25.0,
+        "closest_edge": "bottom",
+        "admitted": true
+      },
+      {
+        "id": "shape-benchmark-26.3--train-recess-02-left",
+        "rgb_sha256": "fbacce85bff62e314335841ce03867de193c2553bbbf3f24bccdeec4cd5007bb",
+        "minimum_margin_percent": 15.5207,
+        "closest_edge": "left",
+        "admitted": true
+      }
+    ],
+    "new": [
+      {
+        "id": "holdout-switchback-brick-low-left",
+        "rgb_sha256": "b2d145e026728a431b94ace0a36343ba5a1111d2d4edeb616d2053c1838813b3",
+        "minimum_margin_percent": 19.8397,
+        "closest_edge": "bottom",
+        "admitted": true
+      },
+      {
+        "id": "holdout-switchback-brick-high-right",
+        "rgb_sha256": "91a5d591c8776106d6cabd7d9bee1b9ac1bb06ae4908f8bd764c3331cbc439aa",
+        "minimum_margin_percent": 16.1111,
+        "closest_edge": "bottom",
+        "admitted": true
+      },
+      {
+        "id": "holdout-loadingdock-timber-low-left",
+        "rgb_sha256": "d32e3474498373d3ec1ea2003b82c7cb885d02db72981eef20aff1790a17ed7f",
+        "minimum_margin_percent": 26.8889,
+        "closest_edge": "bottom",
+        "admitted": true
+      },
+      {
+        "id": "holdout-loadingdock-timber-high-right",
+        "rgb_sha256": "05b57b37e071efdd67304d0f81345987bc5c0bcda039e4a9f5e9c260105c9fe7",
+        "minimum_margin_percent": 15.876,
+        "closest_edge": "bottom",
+        "admitted": true
+      }
+    ]
+  }
+}

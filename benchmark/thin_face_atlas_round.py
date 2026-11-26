@@ -5,7 +5,7 @@ from concurrent.futures import ProcessPoolExecutor
 import json
 from pathlib import Path
 
-from benchmark.texture_camera_eval import DATA, ROOT, STABLE, checked, digest, frames, read, save
+from benchmark.texture_camera_eval import DATA, TRAINING_DATA, TRAINING_RELEASE, ROOT, STABLE, checked, digest, frames, read, save
 from benchmark import visible_depth_native as native
 from benchmark.camera_metrics import registration
 from benchmark.mask_blocks import _write_read, decoded_pack, registered
@@ -35,7 +35,10 @@ def job_list(split,out,modes,count):
     base = EXTRA/'candidate' if split=='extra' else PREVIOUS/split
     baseline = {r['id']:r for r in read(base/'cases.json')}
     source = fixture(split)
-    samples = read(source/'screen.json')['selected'] if source else (native.rows() if split=='native' else frames(DATA,split))
+    if split == 'train':
+        samples = frames(TRAINING_DATA, split, TRAINING_RELEASE)
+    else:
+        samples = read(source/'screen.json')['selected'] if source else (native.rows() if split=='native' else frames(DATA,split))
     return [(split,f,source,base,baseline[f['id']],out,modes) for f in samples[:count]]
 
 
@@ -55,7 +58,7 @@ def evaluate(job):
         folder = native.BUILDS/f['directory']/'captures'
         rgb,pose,world = [folder/(stem+s) for s in ('.png','.json','-blocks.json')]
     else:
-        folder = DATA/'data'/split/f['directory']
+        folder = (TRAINING_DATA if split == 'train' else DATA)/'data'/split/f['directory']
         rgb,pose,world = [folder/s for s in ('rgb.png','camera.json','world-readback.json')]
     prior = set(decoded_pack(checked(base/key/'reconstruction.zip',ref['pack_sha256'])))
     assert h['rgb.png']==ref['rgb_sha256']

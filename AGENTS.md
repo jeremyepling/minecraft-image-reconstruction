@@ -1,6 +1,6 @@
 # Single-image exterior experiments
 
-Report structure geometry on the fixed 104 building views, with the historical 112-view score alongside it when comparing prior work. The eight whole-frame texture controls check abstention, material and local grid estimates. Identify these cases from the frozen input annotations. Count a camera failure on a structure view as a geometry miss. Follow the same distinction between a full texture-only image and a surface cropped from a building when choosing training targets.
+Report structure geometry on the fixed 104 building views, with the historical 112-view score alongside it when comparing prior work. The eight whole-frame wall images belong only to historical benchmark replay. Use Visible Builds v2 for all training and counts. Require the full build in frame with the specified margin on every edge. Identify these cases from the frozen input annotations. Count a camera failure on a structure view as a geometry miss. Follow the same distinction between a full texture-only image and a surface cropped from a building when choosing training targets.
 
 Rank placement methods by visible-block F1 after one whole-build integer XYZ translation. Report the camera-registered score as a diagnostic. Preserve the spacing between all visible parts, including disconnected pieces, under that same shift. For canopies also measure roof positions relative to both pillars and the opening width. [Relative placement evaluation](benchmark/reviews/relative-build-01/README.md)
 

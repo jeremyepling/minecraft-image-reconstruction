@@ -4,6 +4,8 @@ These entries cover model inputs, rules around model outputs, and evaluation cha
 
 ### November 26, 2026
 
+- **Training data.** Visible Builds v2 keeps 144 well-framed views and removes the eight wall close-ups from the regression archive. All 72 training, 12 validation and 12 test images passed. Packaging and verification check the entire building against all image edges. [Release contract and audit](training/DATASET.md#whole-structure-admission)
+
 - **Evaluation scope.** The eight Wing and Courtyard close-ups are full-frame textures. The ordinary build abstained on all eight. On the 104 fixed structure views, the current default scores 88.22% versus 86.44% for its predecessor. The original 112-view result is 87.49% versus 85.71%. Use the texture-only frames to test local tile spacing and alignment. [Scope and source images](benchmark/reviews/nearby-thin-01/worst/README.md)
 
 - **Shipped nearby depth and face-direction decisions and thin-face atlas verification.** Fixed-suite F1 rose from 85.71% to 87.49%, and roof cells positioned correctly against both posts rose from 194 to 294 of 459. Four views of two new structures gained 20 correct blocks and 18 extras. The high-right switchback declined. Excessive depth remains a prominent failure on canopies. [Paired evaluations and worst screenshots](benchmark/reviews/nearby-thin-01/README.md)

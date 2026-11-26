@@ -3,7 +3,7 @@ import argparse
 from pathlib import Path
 from collections import Counter
 
-from benchmark.texture_camera_eval import read,save
+from benchmark.texture_camera_eval import TRAINING_RELEASE,read,save
 from engine.thin_atlas_faces import FEATURES,features
 import numpy as np
 
@@ -64,8 +64,9 @@ def boost(X,y):
 
 def main(args):
     files=sorted((args.source/'train').glob('*/trace.json'))
-    if len(files)!=72:
-        raise ValueError('Expected 72 completed training views')
+    admitted = {r['id'] for r in read(TRAINING_RELEASE)['frames'] if r['split'] == 'train'}
+    if {p.parent.name for p in files} != admitted:
+        raise ValueError('Training traces must match the whole-structure training split')
     X,ys,groups,eligible,candidates=[],[],[],[],Counter()
     for path in files:
         group=path.parent.name.split('-')[1].rstrip('0123456789')

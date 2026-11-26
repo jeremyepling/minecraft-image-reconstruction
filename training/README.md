@@ -2,7 +2,7 @@
 
 Use the [reconstruction adjustment log](../MODEL_CHANGELOG.md) when choosing training examples and evaluation cases. It tracks observed failures and measured changes from the existing pipeline.
 
-The first training dataset is available in [Visible Builds v1](DATASET.md). It contains exact screenshots, per-frame visible blocks and camera calibration. The proposed learning experiment below uses the same [visible-only product intent](../PRODUCT_INTENT.md) as the existing pipeline.
+The active training dataset is available in [Visible Builds v2](DATASET.md). It contains exact screenshots, per-frame visible blocks and camera calibration. The proposed learning experiment below uses the same [visible-only product intent](../PRODUCT_INTENT.md) as the existing pipeline.
 
 ## Objective
 
@@ -14,7 +14,7 @@ Do not train this project to complete backs, interiors, occluded continuations, 
 
 ## Training data
 
-Use texture-filled whole frames for material and local block-grid targets. Score structure placement on views that show a build. A crop extracted from such a view can supply texture scale and tile alignment while its parent image supplies spatial context.
+Use the whole-structure framing rule for every training task, including texture and block counting. A full screenshot must contain the entire build and the required margin on every edge. A local measurement may sample a surface within an admitted screenshot while retaining its parent view and spatial context.
 
 Source worlds can contain complete structures. For each example, capture the image together with aligned camera parameters, visible depth, normals, surface IDs, projected block corners and visible block-state labels. Use full world data to determine visibility and generate correct labels; restrict reconstruction targets to evidence visible in that example's supplied input view(s).
 

@@ -1,25 +1,39 @@
-# Visible Builds v1
+# Visible Builds v2
 
-A reusable pilot for recovering the visible blocks of a Minecraft structure from one screenshot. The release contains 152 original Minecraft Java 26.3 framebuffer PNGs with per-view block labels. Each split downloads independently. [GitHub release](https://github.com/jeremyepling/minecraft-image-reconstruction/releases/tag/visible-builds-v1) · [Checksums and frame index](visible-builds-v1.json)
+A reusable pilot for recovering the visible blocks of a Minecraft structure from one screenshot. The release contains 144 original Minecraft Java 26.3 framebuffer PNGs with per-view block labels. Each split downloads independently. [GitHub release](https://github.com/jeremyepling/minecraft-image-reconstruction/releases/tag/visible-builds-v2) · [Checksums and frame index](visible-builds-v2.json)
 
 | Split | Layouts | Frames | Use |
 | --- | ---: | ---: | --- |
 | Train | 18 | 72 | Six new families, with three layouts in each |
 | Validation | 3 | 12 | Cloisters, for choosing settings |
 | Test | 3 | 12 | Twin spires, for evaluating a frozen method |
-| Regression | 8 | 56 | Original exterior screenshots, including their floor, palette and angle variants |
+| Regression | 8 | 48 | Whole-structure views from the original exterior suite |
 
 ![Four training layouts shown from the same camera in two different block palettes](visible-builds-v1-preview.jpg)
 
 The new families in training are arcades, stepped halls, sawtooth roofs, terraces, watchposts and arched bridges. Each new layout appears with two material palettes at two camera positions. Eight wall/trim/accent combinations rotate across the layouts. Paired views let a researcher measure sensitivity to appearance while the geometry stays fixed. Each frame is its own single-image example. One held-out family per evaluation split gives a first transfer check. Broader accuracy claims will need additional families and player-authored builds.
 
+## Whole-structure admission
+
+Every image used for learning, including local counting and material decisions, comes from a frame that contains the complete build with background on all four sides. V2 requires a horizontal gap of at least 2% of image width on each side and a vertical gap of at least 2% of image height above and below. At 1440 by 900 this requires at least 29 empty pixel columns and 18 empty pixel rows. The packager projects all eight corners of each occupied source building block and separately measures the full-resolution visible silhouette. Floor probes are excluded. This catches an entirely off-screen component even when the visible portion fits. Only visible block faces supply learning targets.
+
+We audited all 152 original entries. The eight removed views were the front close-ups of Wing and Courtyard on both palettes and floor settings. All eight were regression examples. Every training, validation and test image passed, and every surviving screenshot has at least 10% clearance on all four sides. The smallest margin is 93 pixels above the low-left Watchpost 1, in both palettes. An independent check of the 56 additional benchmark photos found no further failures. [Per-frame dataset audit](framing-audit-v2.json) and [additional evaluation views](../benchmark/reviews/whole-structure-framing-01/evaluation-only.json).
+
+The v2 archives omit the eight rejected frame directories and their labels. The original release is an archive for replaying previously published scores. Use v2 for training and count evaluation.
+
 ## Get the files
 
-From a checkout of the repository, download the v1 assets to a new directory. The four data ZIPs are self-contained. Extract each into its own split directory if working with uncompressed files.
+From a checkout of the repository, download the v2 assets to a new directory. The four data ZIPs are self-contained. Extract each into its own split directory if working with uncompressed files.
 
 ```powershell
-gh release download visible-builds-v1 --repo jeremyepling/minecraft-image-reconstruction --dir runs/visible-builds-v1
-python -m training.verify_dataset --manifest runs/visible-builds-v1/manifest.json --source .
+gh release download visible-builds-v2 --repo jeremyepling/minecraft-image-reconstruction --dir runs/visible-builds-v2
+python -m training.verify_dataset --manifest runs/visible-builds-v2/manifest.json --source .
+```
+
+If the five original v1 ZIPs are already on disk, reproduce the v2 assets from them in a fresh output directory.
+
+```powershell
+python -m training.package_dataset --from-v1 runs/visible-builds-v1 --out runs/rebuilt-visible-builds-v2
 ```
 
 Read a training example directly from its archive with Python, Pillow and NumPy.
@@ -32,7 +46,7 @@ from zipfile import ZipFile
 import numpy as np
 from PIL import Image
 
-with ZipFile("runs/visible-builds-v1/visible-builds-v1-train.zip") as archive:
+with ZipFile("runs/visible-builds-v2/visible-builds-v2-train.zip") as archive:
     row = json.loads(archive.read("frames.jsonl").splitlines()[0])
     folder = row["directory"]
     rgb = np.asarray(Image.open(io.BytesIO(archive.read(f"{folder}/rgb.png"))).convert("RGB"))
@@ -74,5 +88,5 @@ From the repository root, the pipeline for a fresh acquisition uses the installe
 ```powershell
 python -m training.import_legacy --out runs/dataset-legacy
 python -m training.capture_pilot --out runs/dataset-capture
-python -m training.package_dataset --sources runs/dataset-legacy runs/dataset-capture --out runs/visible-builds-v1
+python -m training.package_dataset --sources runs/dataset-legacy runs/dataset-capture --out runs/visible-builds-v2
 ```

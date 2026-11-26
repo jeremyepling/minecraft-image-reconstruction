@@ -4,7 +4,7 @@
 
 The Java 26.3 camera measures pavement seams first. If those give insufficient evidence, it registers visible floor texels against the vanilla texture atlas. This recovered 4,017 visible block coordinates across the 24 Cloister and Twin Spires screenshots that previously exported empty packs. See the [current camera and placement evaluation](benchmark/TEXTURE_CAMERA.md) and the [earlier 92-pack material evaluation](benchmark/COMBINED_DEFAULT_EVALUATION.md).
 
-Download the versioned [Visible Builds dataset](training/DATASET.md) for per-frame screenshots, camera calibration, visible block coordinates and material states.
+Download [Visible Builds v2](training/DATASET.md) for 144 whole-structure screenshots with camera calibration, visible block coordinates and material states. All four splits require a clear border around the complete build.
 
 A build can be placed anywhere in the world. We score its visible blocks after shifting the whole build together. This gives full credit for a translated copy while preserving the roof height, pillar spacing and offsets between parts. [Relative geometry results and one-block control](benchmark/reviews/relative-build-01/README.md)
 
