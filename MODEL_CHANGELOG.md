@@ -4,6 +4,8 @@ These entries cover model inputs, rules around model outputs, and evaluation cha
 
 ### November 26, 2026
 
+- **Experiment — pair a vertical seam run with visible floor texture.** On the right Adjacency 26 view, the guarded rule removed eight of 26 known duplicate side placements and retained all 257 correct blocks. Across the other 67 frozen screenshots it removed seven more incorrect coordinates, all on the right Corner view, and lost zero correct coordinates. The broader floor-color rule recovered more duplicates but eroded the visible silhouette on the Corner and Portico views. [Decision rule and results](benchmark/SEAM_RUN_OWNERSHIP.md)
+
 - **Experiment — straighten crops using their outlines and check texture repeats in separate bands.** With the current Surface Finder, this added 23 correct block sizes and 12 wrong sizes across the 56 reviewed views. The counter default stays in place. Texture alignment across a crop is the next test. [Portico and suite results](benchmark/TEXTURE_REPEATS.md)
 
 - **Experiment — count whole-tile texture repeats.** Portico spruce and cobblestone were both countable from the original screenshot after correcting only the straightening corners in a labeled diagnostic. Across 82 pure cobblestone surface appearances, exact sizes went from 19 on predicted crops to 71 with recorded corners and masks. Crop-only repeat voting added four correct sizes and seven wrong ones. Atlas confirmation added one wrong size. Keep the current Block Counter and use the full vanilla tile as a check on candidate spacing. [Examples, controls and replay](benchmark/TEXTURE_REPEATS.md)
