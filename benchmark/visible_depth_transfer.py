@@ -133,9 +133,10 @@ def score_case(job):
     from benchmark.camera_metrics import registration
     from benchmark.mask_blocks import _write_read,registered
     from training.visible_labels import visible_labels
-    f,out,method=job
+    f,out,method,*paths=job
     key=f['id']
-    dest=out/'results'/method/key
+    results,baseline=paths if paths else (out/'results'/method,out/'results'/'prior')
+    dest=results/key
     dest.mkdir(parents=True,exist_ok=True)
     upstream=out/'upstream'/key
     manifest=read(upstream/'build-manifest.json')
@@ -156,7 +157,7 @@ def score_case(job):
     occupied=structure(raw,64).keys()
     assert truth.keys()<=occupied
     world=registered(local,registration(np.asarray(f['camera']['P']),pose))
-    before=world if method=='prior' else set(map(tuple,read(out/'results'/'prior'/key/'cells.json')['world']))
+    before=world if baseline is None or method=='prior' else set(map(tuple,read(baseline/key/'cells.json')['world']))
     correct=world & truth.keys()
     extras=world-truth.keys()
     new,removed=world-before,before-world
