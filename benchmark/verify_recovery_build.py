@@ -7,17 +7,19 @@ from pathlib import Path
 
 from benchmark.camera_round import ROOT, digest, read
 from benchmark.mask_metrics import measure
-from benchmark.normal_round import groups
 from benchmark.surface_reference import recorded
+from benchmark.wall_join_test import capture_index
+from engine.planarity_entry import METHOD as PLANE_RECOVERY
 
 
-def verify(build, key, source_run=None):
+def verify(build, key, source_run=None, data=None):
     manifest = read(build/'build-manifest.json')
     boundary=manifest['stages']['surface_boundary']
-    methods={'wall-recovery-single-v2':'single-v2','wall-recovery-single-pro':'single-pro'}
+    methods={'wall-recovery-single-v2':'single-v2','wall-recovery-single-pro':'single-pro',PLANE_RECOVERY:'planarity'}
     method=methods.get(boundary)
     if method:
-        archive=source_run or ROOT/'benchmark/reviews/single-wall-depth-01'
+        review = 'afterpass-models-01' if boundary==PLANE_RECOVERY else 'single-wall-depth-01'
+        archive=source_run or ROOT/'benchmark/reviews'/review
         source=read(archive/'manifest.json')
         if digest(archive/'cases.json')!=source['artifacts']['cases.json']:
             raise ValueError('Archived single-wall scores changed')
@@ -43,8 +45,9 @@ def verify(build, key, source_run=None):
     comparable = [{k: actual.get(k) for k in frozen} for actual, frozen in zip(predicted, expected)]
     if comparable != expected:
         raise ValueError('At least one saved region property differs')
-    case = next(c for cohort in groups()[0].values() for c in cohort if f'{c.floor}/{c.id}' == key)
-    scores, pairs = measure(predicted, recorded(case)[1], use_mask=True)
+    data = data or ROOT/'benchmark/data'
+    case = capture_index(data)[key]
+    scores, pairs = measure(predicted, recorded(case,data/'visible-geometry-v1.zip')[1], use_mask=True)
     assignments = {predicted[i]['id']: pid for i, pid in pairs}
     expected_scores=row['scores'][method] if method else row['split']
     expected_ids=row['scopes'][method]['matched'] if method else list(row['assignments'].values())
@@ -57,7 +60,9 @@ def verify(build, key, source_run=None):
                 stage_order=manifest['stages']['boundary_sequence'], model_sha256=manifest['model_sha256'],
                 visible_proposals=len(predicted), reference_surfaces=scores['eligible'], matched=len(assignments),
                 assignments=assignments,
-                **({'single_wall_additional_reference_ids':row['scopes'][method]['gained']} if method else
+                **({'planarity_additional_reference_ids':row['scopes'][method]['gained'],
+                    'planarity':manifest['surface_finder']['boundary_settings']['planarity']} if boundary==PLANE_RECOVERY else
+                   {'single_wall_additional_reference_ids':row['scopes'][method]['gained']} if method else
                    {'mobile_additional_reference_ids':row['gained']}),
                 all_saved_region_properties_equal=True, canonical_regions_sha256=hashlib.sha256(
                     json.dumps(comparable, sort_keys=True, separators=(',', ':')).encode()).hexdigest(),
@@ -71,8 +76,9 @@ if __name__ == '__main__':
     parser.add_argument('--case', required=True)
     parser.add_argument('--out', type=Path)
     parser.add_argument('--source-run',type=Path,help='Optional source review directory for archived predictions.')
+    parser.add_argument('--data',type=Path,help='Optional root of the frozen fixture data for evaluation.')
     args = parser.parse_args()
-    result = json.dumps(verify(args.build, args.case,args.source_run), indent=2) + '\n'
+    result = json.dumps(verify(args.build, args.case,args.source_run,args.data), indent=2) + '\n'
     if args.out:
         args.out.write_text(result, encoding='utf8')
     print(result, end='')
