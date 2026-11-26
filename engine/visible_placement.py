@@ -144,5 +144,9 @@ def place(image, version, parts, *, counts=None):
         visible = owner[mask]
         sample_counts = np.bincount(visible[visible >= 0], minlength=len(cells))
         accepted.update(cells[i] for i in np.flatnonzero(sample_counts >= MINIMUM_SAMPLES) if cells[i] in evidence)
-    status.update(strict_blocks=len(strict), added_blocks=len(accepted - strict), placed_blocks=len(accepted))
+    from engine.seam_ownership import duplicate_sides
+    duplicates=duplicate_sides(image,projection,eye,cells,owner,accepted,strict,_sample_face)
+    accepted-=duplicates
+    status.update(strict_blocks=len(strict), added_blocks=len(accepted - strict), placed_blocks=len(accepted),
+                  projected_duplicate_sides=len(duplicates))
     return accepted, status
