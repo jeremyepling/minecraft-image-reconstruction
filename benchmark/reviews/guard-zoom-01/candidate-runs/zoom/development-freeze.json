@@ -1,0 +1,60 @@
+{
+  "selected": "fixed-overlapping-half-frames",
+  "tuning": "fixed before scoring; zero settings selected with labels",
+  "frames": [
+    "smooth_stone/dev-shopfront-masonry-high-right",
+    "light_gray_concrete/dev-shopfront-masonry-high-right",
+    "smooth_stone/dev-shopfront-masonry-low-left",
+    "light_gray_concrete/dev-shopfront-masonry-low-left",
+    "smooth_stone/dev-shopfront-plaster-high-right",
+    "light_gray_concrete/dev-shopfront-plaster-high-right",
+    "smooth_stone/dev-shopfront-plaster-low-left",
+    "light_gray_concrete/dev-shopfront-plaster-low-left",
+    "smooth_stone/dev-wing-masonry-close-front",
+    "light_gray_concrete/dev-wing-masonry-close-front",
+    "smooth_stone/dev-wing-masonry-high-right",
+    "light_gray_concrete/dev-wing-masonry-high-right",
+    "smooth_stone/dev-wing-masonry-low-left",
+    "light_gray_concrete/dev-wing-masonry-low-left",
+    "smooth_stone/dev-wing-plaster-close-front",
+    "light_gray_concrete/dev-wing-plaster-close-front",
+    "smooth_stone/dev-wing-plaster-high-right",
+    "light_gray_concrete/dev-wing-plaster-high-right",
+    "smooth_stone/dev-wing-plaster-low-left",
+    "light_gray_concrete/dev-wing-plaster-low-left"
+  ],
+  "tiling": {
+    "grid": [
+      3,
+      3
+    ],
+    "crop_fraction": 0.5,
+    "stride": 4,
+    "artificial_edge": "discard touching region",
+    "geometry": "Average full-image camera normals and points under registered tile labels",
+    "order": "row-major; for each parent retain one accepted split with the most supporting samples"
+  },
+  "fusion_preset": "relaxed-add-split",
+  "fusion_settings": {
+    "min_samples": 24,
+    "max_add_area_fraction": 0.22,
+    "min_novel_fraction": 0.6,
+    "contact_radius": 4,
+    "min_contact_samples": 3,
+    "max_duplicate_iou": 0.45,
+    "min_split_containment": 0.72,
+    "min_split_share": 0.12,
+    "min_split_coverage": 0.72,
+    "split_angle_deg": 18,
+    "split_plane_distance_fraction": 0.035
+  },
+  "model_settings": {
+    "max_width": 800,
+    "tokens": 1600,
+    "stride": 4,
+    "planarity": 0.3,
+    "relative_depth": 0.025,
+    "normal_degrees": 20,
+    "minimum_neighbors": 8
+  }
+}
