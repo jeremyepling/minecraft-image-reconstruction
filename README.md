@@ -4,6 +4,8 @@ Reconstruct a Minecraft Java build from a screenshot and place it in a real worl
 
 [Architecture, call paths, defaults and experimental modes](ARCHITECTURE.md)
 
+Use `main` for the integrated reconstruction pipeline. The original camera, grid, face, depth and material experiments are preserved in Git and their saved reviews. The named stages are **Surface Finder**, **Surface Straightener**, **Block Counter** and **Material Matcher**. The archived label **B** means **Rectangle Finder**. [Branch and experiment history](benchmark/RECONSTRUCTION_LINEAGE.md)
+
 ## Single-image exterior benchmark
 
 Run `.\Invoke-WallRecovery.ps1 .\screenshot.png -Out .\runs\my-build` to use the full surface-recovery sequence on a new image. It writes the outlines, crops and block count estimates and records which models ran. [Single-image build and local models](benchmark/WALL_RECOVERY_BUILD.md)
