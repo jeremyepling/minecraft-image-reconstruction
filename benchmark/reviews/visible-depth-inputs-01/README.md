@@ -4,6 +4,16 @@ The release fixes the input photograph, metric camera, Surface Finder output and
 
 The predictor receives one RGB image, game version, surface list, count report and image-estimated camera. Surface evidence and camera estimates come from that single image. Metadata in the cache identifies fixtures for the runner. Scoring opens recorded poses and block readbacks after the method produces a datapack and the runner decodes it. The decoded geometry uses smooth stone. Exact material-and-position matches count only where the target actually uses that ID.
 
+| Cohort | Visible truth | Ordinary correct | Ordinary extras (hidden) | Grounded charts alone, correct | Grounded charts alone, extras (hidden) |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| Train, 72 | 18,322 | 10,056 | 7,330 (1,878) | 1,855 | 571 (4) |
+| Cloister, 12 | 2,476 | 1,799 | 713 (140) | 321 | 220 (0) |
+| Twin Spires, 12 | 3,414 | 2,218 | 1,064 (518) | 592 | 157 (0) |
+| Fixed exteriors, 56 | 10,626 | 5,967 | 3,508 (978) | 650 | 109 (29) |
+| Additional camera-supported native views, 12 | 3,780 | 2,760 | 489 (27) | 395 | 7 (0) |
+
+The grounded-chart-only control discards 8,201 correct training placements to remove 6,759 extras. Its training F1 is 0.179, compared with 0.563 for the ordinary placer. A perfect per-frame chooser between those two methods would select the ordinary result or an equal result on every Cloister, Twin Spires and fixed exterior screenshot. These inputs give a cell-level decision model room to improve on a frame-level switch.
+
 For every proposed coordinate, the evaluator compares the registered world cell against the target cells visible from this image. Every other placement counts as an extra. The hidden subset overlaps an occupied building cell that lacks a visible face in the image. The scorer reports correct cells gained/lost and extras added/removed relative to the same baseline, including swaps whose aggregate count is unchanged. It weights each block appearance equally for pooled precision, recall and F1 and reports counts by family.
 
 ## Replay from the frozen inputs
