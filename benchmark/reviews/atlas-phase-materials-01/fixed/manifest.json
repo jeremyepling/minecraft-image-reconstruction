@@ -1,0 +1,451 @@
+{
+  "code": {
+    "commit": "8980726ef866109bff91756f3fef8b2121dacc57",
+    "predictor_and_runner_sha256": "9e78960bdf488700790bd261cb23539501cc6402dd8e6d98ab6cb5ca7c004dae",
+    "source_dirty": false
+  },
+  "suite": "fixed",
+  "inputs": {
+    "pool_manifest": "ab9016856bd11e4fc0a2c6fae28f8287816da62e03d9cd137640c1d9a9d6d53a",
+    "reference_sha256": "91efa6d3e992b1a68672eae1fdd6d380e87724742a1a4b6cbe5f84d284f731a1",
+    "outline_signatures_sha256": "689ccfed4ccd61a1572382961e134792bb6761f2fe689c15a6a5bb90312c1ce6"
+  },
+  "rule": "Primary endpoint is correctly located visible faces with exact top-1 block ID from the production Texture matcher. Compare gained and lost faces and wrong IDs across development, regression, and separate families. Require fresh-family evidence before promoting a default.",
+  "frames": [
+    {
+      "key": "smooth_stone/dev-shopfront-masonry-high-right",
+      "sha256": "f15cd0e471a9a2e375c9f801df171bb8f5ee44d95374f02f1174c7938a94cc79",
+      "cohort": "development",
+      "layout": "shopfront",
+      "outline_signature": "2cc8f7cda3c9f3634848a05ad90472ef33a51e0a4ed74970d25938217bf1e0cb"
+    },
+    {
+      "key": "light_gray_concrete/dev-shopfront-masonry-high-right",
+      "sha256": "bb588b0b0d1cdb05b720ff5bc3b515479426c7772fd98fb7fadb8a55b79ca9db",
+      "cohort": "development",
+      "layout": "shopfront",
+      "outline_signature": "1b95e5ec2b369501e5e1d5af7015f5ae4ff73828f3fe0cbee2ad031d0866ecd6"
+    },
+    {
+      "key": "smooth_stone/dev-shopfront-masonry-low-left",
+      "sha256": "17691e7909ee0e9384db83c3a729f8763e21a281eb89b8dcebe61fc7675d1405",
+      "cohort": "development",
+      "layout": "shopfront",
+      "outline_signature": "eb6bd97f70b70dbbbbbf12f4aa6b5db211ed7dd112604a3e6941a12dc643c5c5"
+    },
+    {
+      "key": "light_gray_concrete/dev-shopfront-masonry-low-left",
+      "sha256": "0359c24dea1b318ec9cd002a1523ae8fc0d7d59fc9d7418972cf9ce9af8d4d57",
+      "cohort": "development",
+      "layout": "shopfront",
+      "outline_signature": "7f8366affc39563a9e4b6e7ccae72e98bf59269d0d7d3306c79d4605f356aa4a"
+    },
+    {
+      "key": "smooth_stone/dev-shopfront-plaster-high-right",
+      "sha256": "ae58f28554348d924798e23bd492b88db06c2a099f590e325c514ecc5c8f9c7e",
+      "cohort": "development",
+      "layout": "shopfront",
+      "outline_signature": "44b0225083972a4d3757e92b5277a72b5fda1e1c16ffcfd57ceca400d815125f"
+    },
+    {
+      "key": "light_gray_concrete/dev-shopfront-plaster-high-right",
+      "sha256": "4cc1d5687db72eef74f23fc291fb7916b3f481ed4998d9e1c850024039d38cce",
+      "cohort": "development",
+      "layout": "shopfront",
+      "outline_signature": "73ce8480d9333b7fa6de3c7c3884a1ea7915da027b44a32b648e6f3b5be9a473"
+    },
+    {
+      "key": "smooth_stone/dev-shopfront-plaster-low-left",
+      "sha256": "5d0c9120de4ca16f35758f90a31e176e50a3cf166358dd9833ee2213d1ff2f72",
+      "cohort": "development",
+      "layout": "shopfront",
+      "outline_signature": "ecc2ded702a890b20c6dd3177d7358d288b48b39906dd987e62b5a9a65e4f629"
+    },
+    {
+      "key": "light_gray_concrete/dev-shopfront-plaster-low-left",
+      "sha256": "299e0228de74d2cc7d3a18deaba9f61c82560a0ddd0b8557e5c91728c964a993",
+      "cohort": "development",
+      "layout": "shopfront",
+      "outline_signature": "04c0041dfc322d3308a54968d38eb947cc619691e8df474f08335f7943e9b7b6"
+    },
+    {
+      "key": "smooth_stone/dev-wing-masonry-close-front",
+      "sha256": "9ce65a1c07694c1d3e57019c07b422d7a6a0771ed0d46f579891eae8a61463a9",
+      "cohort": "development",
+      "layout": "wing",
+      "outline_signature": "20f8d96f762f56251f8212f0606a1d065a76fd9380499725b929c03c0fbab5e5"
+    },
+    {
+      "key": "light_gray_concrete/dev-wing-masonry-close-front",
+      "sha256": "9ce65a1c07694c1d3e57019c07b422d7a6a0771ed0d46f579891eae8a61463a9",
+      "cohort": "development",
+      "layout": "wing",
+      "outline_signature": "20f8d96f762f56251f8212f0606a1d065a76fd9380499725b929c03c0fbab5e5"
+    },
+    {
+      "key": "smooth_stone/dev-wing-masonry-high-right",
+      "sha256": "8cd9e20f608db25df6d141941051d30afcbf80733ea4c6f2058874c02019bf9f",
+      "cohort": "development",
+      "layout": "wing",
+      "outline_signature": "680cfc17a9e503076f379513b3dbd1c28a9a081fe97dfede1a0007cebc12e356"
+    },
+    {
+      "key": "light_gray_concrete/dev-wing-masonry-high-right",
+      "sha256": "5ccd9115fd2a70784e0e1ab6819d37fc5c4af54cf965605143b3817e1f3a3efd",
+      "cohort": "development",
+      "layout": "wing",
+      "outline_signature": "cf6c0a39f3bb9a8dd33063b3f88ff7b8f0cd1ffa5d4f23792e1e05fbd9580510"
+    },
+    {
+      "key": "smooth_stone/dev-wing-masonry-low-left",
+      "sha256": "0c7bc49ce3c736391d7954a9c069aee29586f03fd33a2a88926b40257ccae6ce",
+      "cohort": "development",
+      "layout": "wing",
+      "outline_signature": "20e20c1e8e10b1c5d0f6910aed343c9589c840a44f043bf804d2f21fe69dc09a"
+    },
+    {
+      "key": "light_gray_concrete/dev-wing-masonry-low-left",
+      "sha256": "4e8817361e24c3f05e835d7af6c8bab3da96d50c8821828144f33bb1ea0e87d3",
+      "cohort": "development",
+      "layout": "wing",
+      "outline_signature": "4acac99be1e22932b07a6ff5c796c86a70119a578cb7cce6ba3a11c3e653184a"
+    },
+    {
+      "key": "smooth_stone/dev-wing-plaster-close-front",
+      "sha256": "b3154136e855e9d005a993b8afdb3989e3fb156b102aed46ce0d99e761d2f2b8",
+      "cohort": "development",
+      "layout": "wing",
+      "outline_signature": "95c8e987cf89d5ccc3066abd56c5f8ef4df1e0859e2dcd9ca0d3bbe2661a9ec8"
+    },
+    {
+      "key": "light_gray_concrete/dev-wing-plaster-close-front",
+      "sha256": "b3154136e855e9d005a993b8afdb3989e3fb156b102aed46ce0d99e761d2f2b8",
+      "cohort": "development",
+      "layout": "wing",
+      "outline_signature": "95c8e987cf89d5ccc3066abd56c5f8ef4df1e0859e2dcd9ca0d3bbe2661a9ec8"
+    },
+    {
+      "key": "smooth_stone/dev-wing-plaster-high-right",
+      "sha256": "49832e903f4455c88c44f51da20abc550516d208783af9e3d05edc85ff4116a9",
+      "cohort": "development",
+      "layout": "wing",
+      "outline_signature": "00e4f462338e4b04b18d37dc74dcf37cd25ff77545d198ed625ccdaccc00412e"
+    },
+    {
+      "key": "light_gray_concrete/dev-wing-plaster-high-right",
+      "sha256": "64d4fec367d669912de294146c1fa3e0bf871816ec4f52e57213e35db2968564",
+      "cohort": "development",
+      "layout": "wing",
+      "outline_signature": "bc7ee89a247a7186c09a5728001290c873ad3f9382eec62f8dab750056d7f2ae"
+    },
+    {
+      "key": "smooth_stone/dev-wing-plaster-low-left",
+      "sha256": "b564e5c3bb2def9511c27cf483dbb01dbe760b1bce8b6060be578c97b2083019",
+      "cohort": "development",
+      "layout": "wing",
+      "outline_signature": "4789dfa82fc6e9db995c2c8aefad4e267156013cf24e63e0dd9facdd42d06b86"
+    },
+    {
+      "key": "light_gray_concrete/dev-wing-plaster-low-left",
+      "sha256": "b1aa96442f2858b5435fc9af424de374ffafbade3cc74d059b85b6c1bfd7e13c",
+      "cohort": "development",
+      "layout": "wing",
+      "outline_signature": "707bfe049c1bc83b49cdcc8a223682a29d1d638c2fbe0499a56c900647083134"
+    },
+    {
+      "key": "smooth_stone/holdout-courtyard-masonry-close-front",
+      "sha256": "655531c2d8fecce752ea93fac3aa6a6e4429bb7ce8a629cb409532583694c678",
+      "cohort": "regression",
+      "layout": "courtyard",
+      "outline_signature": "30fc0b057bf66742376134091ff98fd73900f851ea0439681525a4a11d2118cb"
+    },
+    {
+      "key": "light_gray_concrete/holdout-courtyard-masonry-close-front",
+      "sha256": "655531c2d8fecce752ea93fac3aa6a6e4429bb7ce8a629cb409532583694c678",
+      "cohort": "regression",
+      "layout": "courtyard",
+      "outline_signature": "30fc0b057bf66742376134091ff98fd73900f851ea0439681525a4a11d2118cb"
+    },
+    {
+      "key": "smooth_stone/holdout-courtyard-masonry-high-right",
+      "sha256": "252fa7c481e990bbbada46717d6e10c6b66c4f9c65846b94a94cd1b40cea0fcd",
+      "cohort": "regression",
+      "layout": "courtyard",
+      "outline_signature": "0b08640df98e8866b377fc9e35f74ea01a8297be4d160eb6e02eca239312d5a8"
+    },
+    {
+      "key": "light_gray_concrete/holdout-courtyard-masonry-high-right",
+      "sha256": "b5b2bb5300687da8d904fb129043b5d2df0ae56e9ba4e14afb932b3e6d44dd3b",
+      "cohort": "regression",
+      "layout": "courtyard",
+      "outline_signature": "3050fba884473b0ebc9640abcc0c7743f17abd89ad6628dbe82571628b007e67"
+    },
+    {
+      "key": "smooth_stone/holdout-courtyard-masonry-low-left",
+      "sha256": "c80356e1b7d96bdc796ed982f09ed908059399d23fe98c873eecbb6e623a4216",
+      "cohort": "regression",
+      "layout": "courtyard",
+      "outline_signature": "df0b55237d078218622d2aad1f73be09633c12829f8ec4a62782d4a1aa8fb2a3"
+    },
+    {
+      "key": "light_gray_concrete/holdout-courtyard-masonry-low-left",
+      "sha256": "5b0b16edd7e5207c275e3277db0d65620891c50024735061783d4a175957ff9a",
+      "cohort": "regression",
+      "layout": "courtyard",
+      "outline_signature": "ce1a57dfd736a7ea38add1b98df9e017d7dad7e6be82d51a0e23cc2dcdbad8a5"
+    },
+    {
+      "key": "smooth_stone/holdout-courtyard-plaster-close-front",
+      "sha256": "319503ad2c8fbdc7f33f283d4e35b0f3abe43684bdd8341ace1ac1745696abee",
+      "cohort": "regression",
+      "layout": "courtyard",
+      "outline_signature": "fa75bdd5957bb2b79118c675f7b2026ea3fe216a5d05e27864eccc1a6c85bbbe"
+    },
+    {
+      "key": "light_gray_concrete/holdout-courtyard-plaster-close-front",
+      "sha256": "319503ad2c8fbdc7f33f283d4e35b0f3abe43684bdd8341ace1ac1745696abee",
+      "cohort": "regression",
+      "layout": "courtyard",
+      "outline_signature": "fa75bdd5957bb2b79118c675f7b2026ea3fe216a5d05e27864eccc1a6c85bbbe"
+    },
+    {
+      "key": "smooth_stone/holdout-courtyard-plaster-high-right",
+      "sha256": "7152899302d1721578a01412063a0cafc072986ba9a4acb5c03aa5ecbdde05f1",
+      "cohort": "regression",
+      "layout": "courtyard",
+      "outline_signature": "1f01dedf197d7fe236913a1ad8c7c43feb4b383df509d5f119536fe5d3649d5b"
+    },
+    {
+      "key": "light_gray_concrete/holdout-courtyard-plaster-high-right",
+      "sha256": "de9e33d3bdb1f64318fbc1dec03fef52cde19a331c90fd1f7bb0b7a322b3bd94",
+      "cohort": "regression",
+      "layout": "courtyard",
+      "outline_signature": "7fdcd91cc8c8e57c45dd96aeb6e2c6d7f1ab460b49e4f885df81d3bf46a6dbd9"
+    },
+    {
+      "key": "smooth_stone/holdout-courtyard-plaster-low-left",
+      "sha256": "c8129500a7c473e23666de5470d535f650fb1ac61ae8dcb702f09707ba68949f",
+      "cohort": "regression",
+      "layout": "courtyard",
+      "outline_signature": "a8c312a67c5f5b374d962f10b250b158f5e07b970297a8ab14e0c0ba9323b7a5"
+    },
+    {
+      "key": "light_gray_concrete/holdout-courtyard-plaster-low-left",
+      "sha256": "1995d3af4ecbdd7b22bc4ada179009147a5b389379edd6142b99dcaa6446d9c0",
+      "cohort": "regression",
+      "layout": "courtyard",
+      "outline_signature": "9dd6dea8b970ab7349e62a9ba7941f7c25466bea10ebd62d726738b370469b36"
+    },
+    {
+      "key": "smooth_stone/holdout-portico-masonry-high-right",
+      "sha256": "54819d55b59d36a91e891bf2ff6148104d917d5ca59084f4f73edc43d623e390",
+      "cohort": "regression",
+      "layout": "portico",
+      "outline_signature": "403ea6665710d7cb5ff32abf5ec5e23d08dc50be6e011924d90c9f509366a785"
+    },
+    {
+      "key": "light_gray_concrete/holdout-portico-masonry-high-right",
+      "sha256": "f6c57a6cca3c952e2134e27f6ca75816487c4817800f504acaa6aa0240a24329",
+      "cohort": "regression",
+      "layout": "portico",
+      "outline_signature": "1b6929c83c042b766adb78916762f40d98b5d0d50360f0ebe5fb626023637bcd"
+    },
+    {
+      "key": "smooth_stone/holdout-portico-masonry-low-left",
+      "sha256": "eb35fef82a3ed8b7f34c39d7be768ae94123884428038310ea19e578228d83be",
+      "cohort": "regression",
+      "layout": "portico",
+      "outline_signature": "45b15514bf1c2dc21d0936dbf51b2b4afc844d962a88a68f222d0a5f710c9526"
+    },
+    {
+      "key": "light_gray_concrete/holdout-portico-masonry-low-left",
+      "sha256": "00daa00ce6d344d9c00205a65b67ed60af6e0f908e1993e842417450928e55b5",
+      "cohort": "regression",
+      "layout": "portico",
+      "outline_signature": "183975375fc7879477a39f7406169e66f2667a43a5e59cd944308d6704625659"
+    },
+    {
+      "key": "smooth_stone/holdout-portico-plaster-high-right",
+      "sha256": "fb687c20c5df87e79d9dd17ce48566c7f9fca2a092234bedff15fbe3f83b2e8c",
+      "cohort": "regression",
+      "layout": "portico",
+      "outline_signature": "beb1b186a08b3c8ba2cb5035aa3383e49c6717831c4751c4033d1c950a777cd4"
+    },
+    {
+      "key": "light_gray_concrete/holdout-portico-plaster-high-right",
+      "sha256": "fbe284f3ab8d1e0d517c81853c4a6121d359eb023c6f9882769d27605edb9b84",
+      "cohort": "regression",
+      "layout": "portico",
+      "outline_signature": "a0fda777bb31913a1d9cbb87e8b952793c47368fb28a820f8913ec822acfe3b9"
+    },
+    {
+      "key": "smooth_stone/holdout-portico-plaster-low-left",
+      "sha256": "8f7b6cf572ea617a0efa47c002f4f9221df201dcde9d20595a10fb2915228445",
+      "cohort": "regression",
+      "layout": "portico",
+      "outline_signature": "4d8a34df5176309fa6c0a1f0ece6b670f95e48f26e4bdac089595259e78507ed"
+    },
+    {
+      "key": "light_gray_concrete/holdout-portico-plaster-low-left",
+      "sha256": "318e6e654ece8e6ab93aea0fa5c0cccecdb727faf743b5fbb5eb31da2f2b05f2",
+      "cohort": "regression",
+      "layout": "portico",
+      "outline_signature": "c09c3c819f59e9e4c5ccd5999622f84729a93bfd4a202e6d4dbbaf0dea262c6c"
+    },
+    {
+      "key": "light_gray_concrete/holdout-workshop-masonry-low-left",
+      "sha256": "ae86fd9911640c7397bc929d3e0ca1076d84312b5500712cf2c4ec25e7c9112f",
+      "cohort": "regression",
+      "layout": "workshop",
+      "outline_signature": "e86727195915fbedf63faaa1486d023641c259ea81c8579dce48f13d6fabdd17"
+    },
+    {
+      "key": "light_gray_concrete/holdout-workshop-masonry-high-right",
+      "sha256": "3aefcb242fdda8a6d4c40adb9a7d2632c8de998b076b1d4ec09a100db95119d4",
+      "cohort": "regression",
+      "layout": "workshop",
+      "outline_signature": "7657a777f1282e2fd6795274a79af1bc70396073c74a8fd3d53d3ed35c9f6fd7"
+    },
+    {
+      "key": "light_gray_concrete/holdout-workshop-plaster-low-left",
+      "sha256": "91c686215bb3105c779a45302ed5b43bf16a2faa32fbfe1f0f2be10f0e161c42",
+      "cohort": "regression",
+      "layout": "workshop",
+      "outline_signature": "d8a3047ae7eda80302d47b45cc71be38057e43aa5d7c092e516ab4912a6b7511"
+    },
+    {
+      "key": "light_gray_concrete/holdout-workshop-plaster-high-right",
+      "sha256": "d35ab308820f92501ec898cafb1f50939f3f0ed1141e3d9ee38a00eae1199aa0",
+      "cohort": "regression",
+      "layout": "workshop",
+      "outline_signature": "3edb443575af05903ff726406ccf06cda19df971011dcf770e2482313159b258"
+    },
+    {
+      "key": "light_gray_concrete/holdout-crossing-masonry-low-left",
+      "sha256": "93c9a45dbb4d6bc59edc6c18ac8007ad4f99ac340844cb0ed8f171640936fa88",
+      "cohort": "regression",
+      "layout": "crossing",
+      "outline_signature": "c605e5de43dea07b35d3ec39a99aebe4efe2e57ea334e04915bd16903c754025"
+    },
+    {
+      "key": "light_gray_concrete/holdout-crossing-masonry-high-right",
+      "sha256": "7ea5b36aa3c25b3ab4c58dcb773d8c3476c5f2d28048fd72a62970888be31320",
+      "cohort": "regression",
+      "layout": "crossing",
+      "outline_signature": "eb7628da222cbdff2685218714a4f2879b197f78ea8b9fa8b04e201eb05ccc0f"
+    },
+    {
+      "key": "light_gray_concrete/holdout-crossing-plaster-low-left",
+      "sha256": "d348ddef0010267fdffc0d628654ef6ce256329400dec3e1cfd271bfaf764144",
+      "cohort": "regression",
+      "layout": "crossing",
+      "outline_signature": "7b4acdae10650efbb1b8e8a4085ed87c5e83b73262f95a72f17c5c15b93e05fc"
+    },
+    {
+      "key": "light_gray_concrete/holdout-crossing-plaster-high-right",
+      "sha256": "a7e9cd44bd97237bd3cbf88b11fdfa3575deee7473ef820b30e19bc5fe37698e",
+      "cohort": "regression",
+      "layout": "crossing",
+      "outline_signature": "955fb85a5eb7f2e98d222cc0776ad5e070c3c866453964562e77ab930c35440b"
+    },
+    {
+      "key": "light_gray_concrete/holdout-registry-masonry-low-left",
+      "sha256": "3f7e9e1b5d577667b157664dd3f37a40e8c7e64a3db0d60ac6c30b294d2ba9e6",
+      "cohort": "regression",
+      "layout": "registry",
+      "outline_signature": "119f808106c6b2daba4b57b61997bc74e8588a91e53ebfce3b949434e1ecf60b"
+    },
+    {
+      "key": "light_gray_concrete/holdout-registry-masonry-high-right",
+      "sha256": "e20bfd5e2588ed117375acb3e2f7c42cebb2fdd1ab7167caf35b0b4298a98e19",
+      "cohort": "regression",
+      "layout": "registry",
+      "outline_signature": "da1422ccfdfb7593b69d48212c11cc420e2ba3d4cc9fc008296360ba48feb469"
+    },
+    {
+      "key": "light_gray_concrete/holdout-registry-plaster-low-left",
+      "sha256": "23e91937ee67563c1c4a463676a43c7d4800f82581a3188aa7125e32001be5e9",
+      "cohort": "regression",
+      "layout": "registry",
+      "outline_signature": "91596f86864ede2fcad70c1becb0cca7f7215ba5203563f7d272a775d3549d76"
+    },
+    {
+      "key": "light_gray_concrete/holdout-registry-plaster-high-right",
+      "sha256": "8634b14394486c2fb709ea678008fbaf2314344280b5a13d3582d433125d589d",
+      "cohort": "regression",
+      "layout": "registry",
+      "outline_signature": "5367585447f33e96cc861d07ab6949af32231103d6d1d3ad1117c79c856a0306"
+    },
+    {
+      "key": "light_gray_concrete/holdout-galleries-masonry-low-left",
+      "sha256": "d0fba67900a91a20d0120f298c8783829953bc21c7d45fb4413a8cb829cfddc3",
+      "cohort": "regression",
+      "layout": "galleries",
+      "outline_signature": "28e3e9b70f453eb0e70b1932cf3cfd55ac6f991def4d0223a3e657916f73f7a0"
+    },
+    {
+      "key": "light_gray_concrete/holdout-galleries-masonry-high-right",
+      "sha256": "21916862012e6b47e6dbe426fd7a8930bd7fdd51651238d8ad4d3e8860f57a7b",
+      "cohort": "regression",
+      "layout": "galleries",
+      "outline_signature": "b26bfeceb766db74dee585d4735f6927deb4f35165c5cb7a28e1cb8223e57922"
+    },
+    {
+      "key": "light_gray_concrete/holdout-galleries-plaster-low-left",
+      "sha256": "0fec6765b63937520e2a731a9171eef73e631ce1d47734e3925e2165b64a26c0",
+      "cohort": "regression",
+      "layout": "galleries",
+      "outline_signature": "46a8edac6813b4d2a7db0913c32553183ebf30967edce63727109740ecc69837"
+    },
+    {
+      "key": "light_gray_concrete/holdout-galleries-plaster-high-right",
+      "sha256": "a40a75765e0d99508a283686b4484a510d8ca0404656939017fb6d4a85f49832",
+      "cohort": "regression",
+      "layout": "galleries",
+      "outline_signature": "7e06f53ae496030820aaec80f5ded173c91f684761d03494483d4e13b2b89332"
+    }
+  ],
+  "matchers": {
+    "shape": {
+      "method": "shape",
+      "version": "26.3",
+      "atlas_sha256": "49b477fbfe5f2171c2529e3ffe1722f09fee5a094de2b6b99831512b8601c950",
+      "atlas_json_sha256": "f33529ac90984827e82bf8720d8bd122e11f1386fb6c49a70379437a3c4c54a2",
+      "placement_index_sha256": "32f95873f5b10e0fa36023c149b4277a4b1f7a59fb77940ede120f9292f37ac6",
+      "client_sha256": "4508d006323f24fa02876310c192d739af56516eb259000ac50f0909a68c9a2d",
+      "minimum_source_width": 5.0,
+      "group_method": "convex-shared-edges",
+      "sample_size": 32,
+      "source_sha256": {
+        "blocker_shape": "b154280d4fa7db27c94272b5801b27cc754b12dcfad79108dc00cd430e3eda7f",
+        "block_face_groups": "a50e532ca5d603c0adca2fcbbcb1b332ebc35d75a0d865407bd3a2a1336c0460",
+        "face_evidence": "c81d93812e9c4b975f5050221ff62d3db4499f35c3496df14fe522fba42db1c9",
+        "surface_tiles": "d32bc38e3e05262d517a409a0b0f11e5f2fd1b7f4782084e4a4431b1f57ac396",
+        "surface_model": "0287331cf95cdd4b1ff4ca740c62ee66b58fd721526dabd15f8afbc8daa731a9"
+      }
+    },
+    "atlas": {
+      "method": "atlas",
+      "version": "26.3",
+      "atlas_sha256": "49b477fbfe5f2171c2529e3ffe1722f09fee5a094de2b6b99831512b8601c950",
+      "atlas_json_sha256": "f33529ac90984827e82bf8720d8bd122e11f1386fb6c49a70379437a3c4c54a2",
+      "placement_index_sha256": "32f95873f5b10e0fa36023c149b4277a4b1f7a59fb77940ede120f9292f37ac6",
+      "client_sha256": "4508d006323f24fa02876310c192d739af56516eb259000ac50f0909a68c9a2d",
+      "minimum_source_width": 5.0,
+      "group_method": "convex-shared-edges",
+      "sample_size": 32,
+      "source_sha256": {
+        "atlas_count": "728d0105924eca6137f92e56e85fc3f0f9e192f92b6b72a4326421a82204d628",
+        "block_face_groups": "a50e532ca5d603c0adca2fcbbcb1b332ebc35d75a0d865407bd3a2a1336c0460",
+        "face_evidence": "c81d93812e9c4b975f5050221ff62d3db4499f35c3496df14fe522fba42db1c9",
+        "surface_tiles": "d32bc38e3e05262d517a409a0b0f11e5f2fd1b7f4782084e4a4431b1f57ac396",
+        "surface_model": "0287331cf95cdd4b1ff4ca740c62ee66b58fd721526dabd15f8afbc8daa731a9"
+      }
+    }
+  },
+  "reference_sample_per_frame": 8,
+  "artifacts": {
+    "scores.json": "9c5648db467df326b950ed084acc9bba5830ac1a3ffef21d084b6dbabc680f80",
+    "cases.json": "4d795b8c22b3c3a432d35df29b32992ec959b9089bb27879f474e749228bcfb6"
+  }
+}

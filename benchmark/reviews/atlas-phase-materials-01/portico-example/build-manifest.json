@@ -1,0 +1,574 @@
+{
+  "version": "26.3",
+  "through": "surfaces",
+  "image_sha256": "eb35fef82a3ed8b7f34c39d7be768ae94123884428038310ea19e578228d83be",
+  "stages": {
+    "outlines": "mask-first",
+    "initial_boundary": "color-edges",
+    "split_hints": "rectangle-finder",
+    "split_depth": "depth-anything-v2",
+    "junction_line_detector": "ScaleLSD v2",
+    "wall_partition_model": "MobileSAM TinyViT",
+    "line_detector": "NAVER M-LSD Tiny 512 FP16",
+    "boundary_sequence": [
+      "color-edges",
+      "wall-depth-anything",
+      "junction-cuts",
+      "strip-mlsd",
+      "mobile-wall-split",
+      "single-wall-split",
+      "plane-recovery",
+      "plane-recovery-crop-splits",
+      "clear-noon-sky",
+      "row-sky-with-horizon",
+      "neighbor-supported-strip"
+    ],
+    "single_wall_depth": "depth-anything-v2",
+    "plane_model": "Pixel-wise Planarity",
+    "plane_fusion": "relaxed-add-split",
+    "surface_boundary": "plane-recovery-crop-splits",
+    "background_filter": "clear-noon-sky",
+    "opening_sky_filter": "row-sky-with-horizon",
+    "strip_cleanup": "neighbor-supported-strip"
+  },
+  "artifact": "surfaces.json",
+  "artifacts": {
+    "surfaces": "surfaces.json",
+    "source_crops": "surface-crops/"
+  },
+  "model_sha256": {
+    "normal": "24eacb5dc7a2c54c7bc98f7de085ffbed79ad006ea5b664c2c2cdc02ff3a52f0",
+    "depth": "fcf51f1b230362b28690bb9d1809bf0431f29cad20534e3f589bd7285547f20d",
+    "mlsd": "e869f90601ffa263f21ac47e09ff0d65dc936d1aeb47126b8499d5504adfb100",
+    "scalelsd": "d0a7333c4de518a70af7d6ea4a283aa0ce9ffe1047525373b94070b1d1d4003f",
+    "mobilesam": "6dbb90523a35330fedd7f1d3dfc66f995213d81b29a5ca8108dbcdd4e37d6c2f",
+    "pixelwise_planarity": "305325096a80f541e430ccbb1b6581af67b3ef9d3c92f8d9384dc7aaae9f3952"
+  },
+  "inference_settings": {
+    "provider": "CPUExecutionProvider",
+    "normal_max_side": 720,
+    "normal_tokens": 1200,
+    "depth_size": 518,
+    "threads": 4,
+    "normal_resize": "Lanczos",
+    "depth_resize": "DPT aspect-preserving, bicubic"
+  },
+  "surface_finder": {
+    "name": "Surface Finder",
+    "method": "Regions First",
+    "directions": "MoGe-2",
+    "relative_depth": "Depth Anything V2",
+    "settings": {
+      "analysis_width": 720,
+      "max_angle_deg": 44.0,
+      "min_area": 48,
+      "foreground_step": 0.035,
+      "depth_step": 0.025,
+      "depth_radius": 3,
+      "full_frame_depth_step": 0.16
+    },
+    "boundary": "plane-recovery-crop-splits",
+    "boundary_settings": {
+      "contrast_alignment": {
+        "radius": 3,
+        "blur": 0.7,
+        "color_step": 6.0,
+        "change_cost": 1.5,
+        "iterations": 12,
+        "minimum_boundary_contrast": 10.0,
+        "minimum_contrast_gain": 3.0,
+        "units": "analysis-mask samples",
+        "method": "color-guided-boundary"
+      },
+      "rectangle_finder": {
+        "analysis_width": 540,
+        "max_angle_deg": 30.0,
+        "min_area": 28,
+        "min_quad_purity": 0.58,
+        "boundary_search_px": 4.0,
+        "rgb_subdivision_blur": 2.8,
+        "min_subdivision_subject_fraction": 0.018,
+        "min_subdivision_contrast": 15.0,
+        "min_turn_coverage": 0.4
+      },
+      "rectangle_lift": {
+        "assumed_vertical_fov_degrees": 70,
+        "shared_edge_tolerance_px": 5,
+        "minimum_shared_edge_px": 10,
+        "max_relative_edge_disagreement": 0.2,
+        "max_pitch_anisotropy": 1.25,
+        "min_fold_degrees": 12
+      },
+      "depth_vote": {
+        "min_child_area": 96,
+        "min_child_fraction": 0.06,
+        "min_core_coverage": 0.92,
+        "min_shared_edge": 12,
+        "min_step": 0.008,
+        "min_local_step": 0.003,
+        "min_rgb_jump": 7.0,
+        "min_joint_fraction": 0.5,
+        "sample_radius": 5
+      },
+      "wall_split": {
+        "min_area": 96,
+        "min_fraction": 0.05,
+        "min_shared_samples": 12,
+        "min_step": 0.007,
+        "min_rect_agreement": 0.76,
+        "max_fragments": 6,
+        "min_plane_gain": 0.38,
+        "min_broad_step": 0.012,
+        "min_edge_contrast": 9.0,
+        "rectangle_offsets": [
+          0.0,
+          -2.0,
+          2.0
+        ]
+      },
+      "junction_split": {
+        "detector": "scalelsd",
+        "minimum_segment": 9.0,
+        "minimum_chain": 14.0,
+        "max_gap": 5.0,
+        "max_angle": 6.0,
+        "collinear_distance": 2.0,
+        "cross_angle": 24.0,
+        "junction_radius": 3.5,
+        "min_shared": 10,
+        "min_covered": 0.78,
+        "endpoint_margin": 3.0,
+        "barrier_width": 3,
+        "barrier_extension": 2.0,
+        "cell_core_fraction": 0.7
+      },
+      "recovery_inference": {
+        "device": "cuda",
+        "model_environment": {
+          "torch": "2.8.0+cu128",
+          "torchvision": "0.23.0+cu128",
+          "timm": "1.0.15",
+          "numpy": "2.2.6",
+          "Pillow": "13.0.0"
+        },
+        "scalelsd": {
+          "source_revision": "e2751fcd0eb82694abeb12ef7ec9d46237e2ca06",
+          "checkpoint_revision": "f0a119fb3d4a12c53c317a8746db80d267fb2a0f",
+          "checkpoint_sha256": "d0a7333c4de518a70af7d6ea4a283aa0ce9ffe1047525373b94070b1d1d4003f",
+          "settings": {
+            "input_size": [
+              512,
+              512
+            ],
+            "line_support_strictly_above": 10,
+            "junction_heatmap_threshold": 0.008,
+            "max_junctions": 512,
+            "use_nms": false,
+            "use_lsd": false,
+            "seed": 0
+          },
+          "line_count": 560,
+          "native_transform": {
+            "grayscale": "OpenCV IMREAD_GRAYSCALE",
+            "resize": "OpenCV INTER_LINEAR",
+            "input_size": [
+              512,
+              512
+            ],
+            "padding_ltrb": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "input_to_native_xy": [
+              2.8125,
+              1.7578125
+            ],
+            "coordinates": "native XY via official forward_test jscales"
+          },
+          "model_seconds": 0.3662534999893978
+        },
+        "mobilesam": {
+          "source_revision": "f706ad9c4eb7f219c00d9050e46328518ffb65d2",
+          "checkpoint_sha256": "6dbb90523a35330fedd7f1d3dfc66f995213d81b29a5ca8108dbcdd4e37d6c2f",
+          "settings": {
+            "grid_step_native_px": 32,
+            "near_centroid_per_existing_region": true,
+            "batch": 12,
+            "minimum_mask_area_samples": 24,
+            "predicted_iou_cutoff": 0.88,
+            "stability_cutoff": 0.95,
+            "max_mask_iou_after_nms": 0.8,
+            "minimum_building_fraction": 0.8
+          },
+          "prompts_from": "wall-depth-anything",
+          "prompt_count": 141,
+          "candidates": 389,
+          "filtered": 9,
+          "model_seconds": 0.7554035000212025
+        }
+      },
+      "strip_split": {
+        "min_length": 15,
+        "maximum_slope": 0.75,
+        "minimum_width": 18,
+        "minimum_area": 48,
+        "minimum_aspect": 3.5,
+        "direction_cosine": 0.43,
+        "line_radius": 2,
+        "boundary_coverage": 0.3,
+        "shadow_step": 6.0,
+        "depth_step": 0.006,
+        "max_band_thickness": 16,
+        "parallel_tolerance": 0.14,
+        "pair_relative_darkening": 0.08,
+        "redundant_iou": 0.65,
+        "min_flank_disagreement": 0.2,
+        "min_pair_turn": 0.15,
+        "min_turn_gain": 0.1,
+        "min_pair_occupied": 0.88,
+        "min_dark_flat_fraction": 0.65,
+        "internal_down_cosine": 0.3,
+        "internal_turn_gain": 0.25,
+        "existing_down_cosine": 0.7,
+        "existing_purity": 0.8,
+        "absorb_coverage": 0.65,
+        "units": "Surface-mask pixels, normalized within-image inverse depth; native RGB on 0-255"
+      },
+      "line_inference": {
+        "runtime": "ai-edge-litert 2.4.0",
+        "num_threads": 1,
+        "preprocessing": "Pillow BOX resize to 512 square, float32 RGB plus 1.0 alpha",
+        "score_threshold": 0.1,
+        "min_length_output_pixels": 20
+      },
+      "detected_segments": 105,
+      "mobile_split": {
+        "maximum_vertical_normal_y": 0.5,
+        "minimum_containment": 0.6,
+        "minimum_parent_share": 0.1,
+        "minimum_samples": 32,
+        "maximum_overlap_with_smaller": 0.05,
+        "minimum_explained": 0.8
+      },
+      "mobile_splits": [],
+      "single_wall_rule": {
+        "max_vertical_normal_y": 0.5,
+        "min_parent_share": 0.035,
+        "min_side_area": 24,
+        "min_containment": 0.55,
+        "max_parent_share": 0.92,
+        "min_sample_pairs": 6,
+        "near_distance": 0,
+        "far_distance": 2,
+        "min_step": 0.001,
+        "min_agreement": 0.7,
+        "min_seed_samples": 12
+      },
+      "single_wall_votes": [
+        {
+          "parent": "mask-2",
+          "proposal": 83,
+          "accepted": false,
+          "children": [],
+          "median_jump": 0.002128794268880775,
+          "median_step": -0.010401795915198929,
+          "sign_agreement": 0.16666666666666666,
+          "sample_count": 6
+        },
+        {
+          "parent": "mask-4",
+          "proposal": 336,
+          "accepted": false,
+          "children": [],
+          "median_jump": 0.013600567601331937,
+          "median_step": 0.009485977428962657,
+          "sign_agreement": 0.8947368421052632,
+          "sample_count": 38
+        },
+        {
+          "parent": "mask-4",
+          "proposal": 359,
+          "accepted": true,
+          "children": [
+            "mask-4-single-359-0",
+            "mask-4-single-359-1",
+            "mask-4-single-359-2"
+          ],
+          "median_jump": -0.013718400016948323,
+          "median_step": -0.00991530702047811,
+          "sign_agreement": 0.9459459459459459,
+          "sample_count": 37
+        }
+      ],
+      "planarity": {
+        "inference": {
+          "upstream": "6bdd3a5d334bd716faae515a48e4408336d29b47",
+          "moge": "8147f21883be489543e47e7a4d6134833ef992c7",
+          "utils3d": "3fab839f0be9931dac7c8488eb0e1600c236e183",
+          "model_revision": "c09bd3361e64ff0dec473d6adc9456472e698d97",
+          "checkpoint_sha256": "305325096a80f541e430ccbb1b6581af67b3ef9d3c92f8d9384dc7aaae9f3952",
+          "source": "fresh screenshot inference",
+          "image_sha256": "eb35fef82a3ed8b7f34c39d7be768ae94123884428038310ea19e578228d83be",
+          "device": "cuda",
+          "torch_version": "2.8.0+cu128",
+          "settings": {
+            "max_width": 800,
+            "tokens": 1600,
+            "stride": 4,
+            "planarity": 0.3,
+            "relative_depth": 0.025,
+            "normal_degrees": 20,
+            "minimum_neighbors": 8
+          },
+          "load_s": 4.654692899988731,
+          "field_sha256": "e6c0609a342d1a8e42580846c8c5b8121ee60c976a9cd2bc1c861007071ac7ee",
+          "seed": 0,
+          "inference_s": 1.6931605999998283,
+          "segmentation_s": 0.06183079999755137,
+          "crops": {
+            "settings": {
+              "grid": [
+                3,
+                3
+              ],
+              "crop_fraction": 0.5,
+              "stride": 4,
+              "artificial_edge": "discard touching region",
+              "geometry": "Average full-image camera normals and points under registered tile labels",
+              "order": "row-major; for each parent retain one accepted split with the most supporting samples"
+            },
+            "boxes": [
+              [
+                0,
+                0,
+                720,
+                452
+              ],
+              [
+                360,
+                0,
+                1080,
+                452
+              ],
+              [
+                720,
+                0,
+                1440,
+                452
+              ],
+              [
+                0,
+                224,
+                720,
+                676
+              ],
+              [
+                360,
+                224,
+                1080,
+                676
+              ],
+              [
+                720,
+                224,
+                1440,
+                676
+              ],
+              [
+                0,
+                448,
+                720,
+                900
+              ],
+              [
+                360,
+                448,
+                1080,
+                900
+              ],
+              [
+                720,
+                448,
+                1440,
+                900
+              ]
+            ],
+            "count": 9,
+            "geometry_source": "same full-image inference",
+            "crop_inference_s": 0.7214022999978624,
+            "crop_segmentation_s": 0.10822520003421232
+          }
+        },
+        "rule": {
+          "min_samples": 24,
+          "max_add_area_fraction": 0.22,
+          "min_novel_fraction": 0.6,
+          "contact_radius": 4,
+          "min_contact_samples": 3,
+          "max_duplicate_iou": 0.45,
+          "min_split_containment": 0.72,
+          "min_split_share": 0.12,
+          "min_split_coverage": 0.72,
+          "split_angle_deg": 18,
+          "split_plane_distance_fraction": 0.035
+        },
+        "input_surfaces": 21,
+        "output_surfaces": 21,
+        "events": []
+      },
+      "crop_splits": {
+        "input_surfaces": 21,
+        "output_surfaces": 21,
+        "events": [],
+        "inference": {
+          "settings": {
+            "grid": [
+              3,
+              3
+            ],
+            "crop_fraction": 0.5,
+            "stride": 4,
+            "artificial_edge": "discard touching region",
+            "geometry": "Average full-image camera normals and points under registered tile labels",
+            "order": "row-major; for each parent retain one accepted split with the most supporting samples"
+          },
+          "boxes": [
+            [
+              0,
+              0,
+              720,
+              452
+            ],
+            [
+              360,
+              0,
+              1080,
+              452
+            ],
+            [
+              720,
+              0,
+              1440,
+              452
+            ],
+            [
+              0,
+              224,
+              720,
+              676
+            ],
+            [
+              360,
+              224,
+              1080,
+              676
+            ],
+            [
+              720,
+              224,
+              1440,
+              676
+            ],
+            [
+              0,
+              448,
+              720,
+              900
+            ],
+            [
+              360,
+              448,
+              1080,
+              900
+            ],
+            [
+              720,
+              448,
+              1440,
+              900
+            ]
+          ],
+          "count": 9,
+          "geometry_source": "same full-image inference",
+          "crop_inference_s": 0.7214022999978624,
+          "crop_segmentation_s": 0.10822520003421232
+        }
+      },
+      "background_filter": {
+        "blue_pixels": 452450,
+        "cloud_pixels": 195057,
+        "removed": [],
+        "trimmed": [
+          "mask-0",
+          "mask-2",
+          "mask-4-single-359-1",
+          "mask-8",
+          "mask-9",
+          "mask-14",
+          "mask-17",
+          "mask-18"
+        ],
+        "removed_blue_pixels": 1352,
+        "removed_cloud_pixels": 455
+      },
+      "opening_sky_filter": {
+        "settings": {
+          "margin_fraction": 0.2,
+          "color_tolerance": 1,
+          "min_reference_pixels": 4,
+          "min_area": 16,
+          "min_rows": 4,
+          "min_gradient_span": 3,
+          "horizon_tolerance_fraction": 0.012,
+          "horizon_probe_fraction": 0.008,
+          "horizon_ground_tolerance": 10,
+          "min_horizon_columns": 4
+        },
+        "blue_pixels": 0,
+        "cloud_pixels": 0,
+        "removed": [],
+        "trimmed": [],
+        "removed_blue_pixels": 0,
+        "removed_cloud_pixels": 0
+      },
+      "strip_cleanup": {
+        "settings": {
+          "shape": {
+            "radius_at_900px": 4,
+            "minimum_tail_length_in_radii": 4,
+            "maximum_mean_width_in_diameters": 1,
+            "minimum_aspect_ratio": 3,
+            "minimum_core_fraction": 0.6,
+            "maximum_tail_fraction": 0.14,
+            "maximum_contact_extent_fraction": 0.3
+          },
+          "color": {
+            "outside_radius": 2,
+            "body_radius": 8,
+            "minimum_pixels": 8,
+            "minimum_color_advantage": 6.0,
+            "maximum_outside_error": 18.0
+          },
+          "neighbor": {
+            "neighbor_radius_at_900px": 3,
+            "length_sections": 4,
+            "minimum_section_fraction": 0.75,
+            "minimum_near_fraction": 0.9,
+            "maximum_neighbor_color_error": 18.0
+          }
+        },
+        "changed_surfaces": 0,
+        "removed_pixels": 0,
+        "decisions": []
+      }
+    },
+    "outline": "exact-support-perimeter",
+    "context_crop": {
+      "margin_px": 8,
+      "coordinates": "source image pixels",
+      "purpose": "context only; support and counting input unchanged"
+    }
+  }
+}

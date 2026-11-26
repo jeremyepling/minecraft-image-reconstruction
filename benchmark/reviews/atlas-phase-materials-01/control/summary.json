@@ -1,0 +1,69 @@
+{
+  "baseline": "engine.surface_model._count_regions",
+  "paired_records_equal": true,
+  "reference_sha256": "91efa6d3e992b1a68672eae1fdd6d380e87724742a1a4b6cbe5f84d284f731a1",
+  "approved_outlines_sha256": "689ccfed4ccd61a1572382961e134792bb6761f2fe689c15a6a5bb90312c1ce6",
+  "fixtures": {
+    "smooth_stone": "660d1e535ae134452bca903a9d7cbe8d37953927fa118d9ffb327afad0885bc2",
+    "light_gray_concrete": "321505e15563f8efc0da868baa27409837aaa474410a61f3513b3dac0030f066",
+    "surface_confirm_v1": "0a479a8264f2c0f714284928354ff6ff5f9729491709676f07e2033d25e48fc3",
+    "normal_confirm_v1": "61bdf3a89a505a8be3757efe480185bec9c1888a1c72ffb69ef0093623e27dda"
+  },
+  "per_frame_sha256": "48272c763d6461401aa53ca7529d4ad3b79ff18930ff71df35651ed931ecf09a",
+  "scores": {
+    "all": {
+      "shape": {
+        "eligible": 10438,
+        "proposed": 101,
+        "aligned": 100,
+        "correct": 100,
+        "wrong": 0,
+        "missed_alignment": 1
+      },
+      "atlas": {
+        "eligible": 10438,
+        "proposed": 101,
+        "aligned": 100,
+        "correct": 15,
+        "wrong": 85,
+        "missed_alignment": 1
+      }
+    },
+    "development": {
+      "shape": {
+        "eligible": 3072,
+        "proposed": 18,
+        "aligned": 18,
+        "correct": 18,
+        "wrong": 0,
+        "missed_alignment": 0
+      },
+      "atlas": {
+        "eligible": 3072,
+        "proposed": 18,
+        "aligned": 18,
+        "correct": 1,
+        "wrong": 17,
+        "missed_alignment": 0
+      }
+    },
+    "regression": {
+      "shape": {
+        "eligible": 7366,
+        "proposed": 83,
+        "aligned": 82,
+        "correct": 82,
+        "wrong": 0,
+        "missed_alignment": 1
+      },
+      "atlas": {
+        "eligible": 7366,
+        "proposed": 83,
+        "aligned": 82,
+        "correct": 14,
+        "wrong": 68,
+        "missed_alignment": 1
+      }
+    }
+  }
+}

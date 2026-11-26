@@ -4,7 +4,7 @@ from math import isfinite
 from benchmark import template_block_seam
 
 
-def predict(sample, baseline):
+def predict(sample, baseline, *, atlas=None):
     counts = list(baseline['counts'])
     phase = list(baseline['phase'])
     result = dict(counts=counts, phase=phase)
@@ -14,7 +14,12 @@ def predict(sample, baseline):
 
     # With both counts measured, the template matcher tests just that pair at
     # shifted origins. Its normal correlation and ambiguity checks still apply.
-    registration = template_block_seam.predict(sample, baseline)
+    if atlas is None:
+        registration = template_block_seam.predict(sample, baseline)
+    else:
+        if atlas.provenance['atlas_sha256'] != template_block_seam.ATLAS_SHA256:
+            raise ValueError('Unexpected texture atlas for measured-spacing registration')
+        registration = template_block_seam.register(sample, baseline, atlas)
     for axis, offset in enumerate(registration['phase']):
         if phase[axis] is None:
             phase[axis] = offset

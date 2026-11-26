@@ -1,0 +1,86 @@
+{
+  "code": {
+    "commit": "8980726ef866109bff91756f3fef8b2121dacc57",
+    "predictor_and_runner_sha256": "9e78960bdf488700790bd261cb23539501cc6402dd8e6d98ab6cb5ca7c004dae",
+    "source_dirty": false
+  },
+  "suite": "twinspire1",
+  "inputs": {
+    "shard_sha256": "97b6a87b1198f6a0ac1baeb7d4f15a433c2ce6bbde302f61f9c225e1d0ff6dee",
+    "surfaces_sha256": "5aa58720cb21ca36de969adc85276061a23bcb6b258fb2eff82b3522bf6c4b4f"
+  },
+  "rule": "Primary endpoint is correctly located visible faces with exact top-1 block ID from the production Texture matcher. Compare gained and lost faces and wrong IDs across development, regression, and separate families. Require fresh-family evidence before promoting a default.",
+  "frames": [
+    {
+      "key": "test-twinspire1-cool-high-right",
+      "sha256": "02e58fb693b6a95ffc35c2ba212ec4b150d2670c0b016c747e287afce5723cdf",
+      "cohort": "twinspire1",
+      "layout": "twinspire1",
+      "outline_signature": "7de1422aae0b4cb87dfd705adbf08f1dc12674bdb27665f631abe93fbd9bff47"
+    },
+    {
+      "key": "test-twinspire1-cool-low-left",
+      "sha256": "042ce5059691039efe691a2cf61d174f6f46eaed1196d21c9d76516f9956ef73",
+      "cohort": "twinspire1",
+      "layout": "twinspire1",
+      "outline_signature": "ab9667118462ae6aa329a7b0527ffe46f9727c6935068687fc0cf1b5bb4905ab"
+    },
+    {
+      "key": "test-twinspire1-earth-high-right",
+      "sha256": "45c87bd2a1d91d4f1d7bedbbf238cef410c3f762a55a453fd18959b8bff68a55",
+      "cohort": "twinspire1",
+      "layout": "twinspire1",
+      "outline_signature": "e77e9f7a161de02d3b9dc3905074976018152e4ad29e9374713c85d441e4bd03"
+    },
+    {
+      "key": "test-twinspire1-earth-low-left",
+      "sha256": "c5d7e3dda67c0ce99472bbad4d84bdd7adf03c1ef9b4c3aa07961ddd12a6b235",
+      "cohort": "twinspire1",
+      "layout": "twinspire1",
+      "outline_signature": "2712cdbadbceebee72a0e99c7c665eee6607fe7146ef092a8a347e09c60ad783"
+    }
+  ],
+  "matchers": {
+    "shape": {
+      "method": "shape",
+      "version": "26.3",
+      "atlas_sha256": "49b477fbfe5f2171c2529e3ffe1722f09fee5a094de2b6b99831512b8601c950",
+      "atlas_json_sha256": "f33529ac90984827e82bf8720d8bd122e11f1386fb6c49a70379437a3c4c54a2",
+      "placement_index_sha256": "32f95873f5b10e0fa36023c149b4277a4b1f7a59fb77940ede120f9292f37ac6",
+      "client_sha256": "4508d006323f24fa02876310c192d739af56516eb259000ac50f0909a68c9a2d",
+      "minimum_source_width": 5.0,
+      "group_method": "convex-shared-edges",
+      "sample_size": 32,
+      "source_sha256": {
+        "blocker_shape": "b154280d4fa7db27c94272b5801b27cc754b12dcfad79108dc00cd430e3eda7f",
+        "block_face_groups": "a50e532ca5d603c0adca2fcbbcb1b332ebc35d75a0d865407bd3a2a1336c0460",
+        "face_evidence": "c81d93812e9c4b975f5050221ff62d3db4499f35c3496df14fe522fba42db1c9",
+        "surface_tiles": "d32bc38e3e05262d517a409a0b0f11e5f2fd1b7f4782084e4a4431b1f57ac396",
+        "surface_model": "0287331cf95cdd4b1ff4ca740c62ee66b58fd721526dabd15f8afbc8daa731a9"
+      }
+    },
+    "atlas": {
+      "method": "atlas",
+      "version": "26.3",
+      "atlas_sha256": "49b477fbfe5f2171c2529e3ffe1722f09fee5a094de2b6b99831512b8601c950",
+      "atlas_json_sha256": "f33529ac90984827e82bf8720d8bd122e11f1386fb6c49a70379437a3c4c54a2",
+      "placement_index_sha256": "32f95873f5b10e0fa36023c149b4277a4b1f7a59fb77940ede120f9292f37ac6",
+      "client_sha256": "4508d006323f24fa02876310c192d739af56516eb259000ac50f0909a68c9a2d",
+      "minimum_source_width": 5.0,
+      "group_method": "convex-shared-edges",
+      "sample_size": 32,
+      "source_sha256": {
+        "atlas_count": "728d0105924eca6137f92e56e85fc3f0f9e192f92b6b72a4326421a82204d628",
+        "block_face_groups": "a50e532ca5d603c0adca2fcbbcb1b332ebc35d75a0d865407bd3a2a1336c0460",
+        "face_evidence": "c81d93812e9c4b975f5050221ff62d3db4499f35c3496df14fe522fba42db1c9",
+        "surface_tiles": "d32bc38e3e05262d517a409a0b0f11e5f2fd1b7f4782084e4a4431b1f57ac396",
+        "surface_model": "0287331cf95cdd4b1ff4ca740c62ee66b58fd721526dabd15f8afbc8daa731a9"
+      }
+    }
+  },
+  "reference_sample_per_frame": 8,
+  "artifacts": {
+    "scores.json": "a2a21e207c9298a084e694ef8bdfa93acd2bd1db32393fdb129a255c0dca36fd",
+    "cases.json": "abb5ee68f99a5f8360cdf89c8edafb7a8048b1335983ded176a89a8c0bae144f"
+  }
+}
