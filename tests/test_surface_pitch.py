@@ -4,7 +4,7 @@ import numpy as np
 from PIL import Image
 
 from engine.geometry import UNIT, project
-from engine.surface_pitch import fit
+from engine.surface_pitch import _axis, fit
 
 
 def repeating_surface(two_courses=False):
@@ -19,6 +19,12 @@ def repeating_surface(two_courses=False):
 
 
 class SurfacePitchTest(unittest.TestCase):
+    def test_periodic_stripes_without_off_grid_samples_are_unresolved(self):
+        line = np.tile([0., 0., 0., 200., 200., 200.], 8)
+        rgb = np.tile(line[None, :, None], (10, 1, 3)).astype(np.float32)
+        result = _axis(rgb, np.ones(rgb.shape[:2], dtype=bool), len(line))
+        self.assertIsNone(result['count'])
+
     def test_fractional_spans_and_seams_of_an_off_phase_crop(self):
         image = repeating_surface()
         start, end = np.array([25., 46.]), np.array([379., 365.])
