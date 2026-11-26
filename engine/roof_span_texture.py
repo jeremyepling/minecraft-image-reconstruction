@@ -146,10 +146,10 @@ def observations(image,parts,camera,prior,atlas_path=None):
     return ctx, rows
 
 
-def proposed(ctx,rows,prior,mode):
+def screened(ctx,rows,prior,mode):
     selected=continuous(rows,prior,mode)
     if not selected:
-        return prior
+        return set()
     joint=ctx.joint(selected)
     checked={}
     for (c,axis) in rows:
@@ -159,7 +159,7 @@ def proposed(ctx,rows,prior,mode):
                 checked[c,axis]=row
     final=continuous(checked,prior,mode)
     if not final:
-        return prior
+        return set()
     if mode in ('guarded','conservative'):
         # Check *all* projected faces, including vertical ends of accepted top
         # strips. Every newly intercepted ray must stay within the photographed
@@ -175,7 +175,12 @@ def proposed(ctx,rows,prior,mode):
             if kept==final:
                 break
             final=kept
-    return _keep_prior_visible(ctx.size,ctx.P,ctx.eye,prior,final)
+    return final
+
+
+def proposed(ctx,rows,prior,mode):
+    final=screened(ctx,rows,prior,mode)
+    return _keep_prior_visible(ctx.size,ctx.P,ctx.eye,prior,final) if final else prior
 
 
 def recover(image,parts,counts,camera,prior,*,atlas_path=None,mode='guarded'):
