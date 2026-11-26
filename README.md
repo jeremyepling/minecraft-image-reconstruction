@@ -24,6 +24,8 @@ The protected-edge test found 524 surfaces and kept the Workshop ledge, but lost
 
 Limiting closer views to splitting existing walls retained all 513 original matches and added three across Shopfront and Workshop. Opening coverage and block-size accuracy stayed level in every picture. This 516-surface candidate is recommended for the next default. Run `.\Invoke-SurfaceRound.ps1 -Round crop-split` to replay the comparison. [Results and visual review](benchmark/CROP_SPLIT.md)
 
+The one-wall split test found and counted a 1 × 5 Portico face, kept the Crossing wall, and added six extra guesses. Split-only zoom remains the recommended Surface Finder. Run `.\Invoke-SurfaceRound.ps1 -Round contained` to replay the test. [Comparison sheet and decision](benchmark/CONTAINED.md)
+
 ## Create a calibration world for a new version
 
 The saved benchmarks above run with Python and their listed dependencies. Use the following live procedure when building new reference displays for a game version. It needs an installed vanilla client and compatible JDK. Live verification has run on Windows with JDK 25 and Minecraft Java 26.1, 26.2 and 26.3.

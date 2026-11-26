@@ -1,0 +1,38 @@
+{
+  "selection": "One fixed gate before suite scoring",
+  "rule": "Keep every split-only zoom match, gain at least one on the six regression buildings, and preserve or improve extra guesses, opening coverage and correct block dimensions.",
+  "settings": {
+    "min_side_samples": 24,
+    "max_spill_fraction": 0.05,
+    "max_spill_radius_cells": 1,
+    "min_samples": 6,
+    "min_normal_angle_deg": 18,
+    "min_depth_step": 0.001,
+    "min_agreement": 0.7,
+    "near_distance": 0,
+    "far_distance": 2,
+    "selection": "One confirmed seam per starting parent. Prefer more sampled crossings, then larger intersection, then input order."
+  },
+  "development_frames": [
+    "smooth_stone/dev-shopfront-masonry-high-right",
+    "light_gray_concrete/dev-shopfront-masonry-high-right",
+    "smooth_stone/dev-shopfront-masonry-low-left",
+    "light_gray_concrete/dev-shopfront-masonry-low-left",
+    "smooth_stone/dev-shopfront-plaster-high-right",
+    "light_gray_concrete/dev-shopfront-plaster-high-right",
+    "smooth_stone/dev-shopfront-plaster-low-left",
+    "light_gray_concrete/dev-shopfront-plaster-low-left",
+    "smooth_stone/dev-wing-masonry-close-front",
+    "light_gray_concrete/dev-wing-masonry-close-front",
+    "smooth_stone/dev-wing-masonry-high-right",
+    "light_gray_concrete/dev-wing-masonry-high-right",
+    "smooth_stone/dev-wing-masonry-low-left",
+    "light_gray_concrete/dev-wing-masonry-low-left",
+    "smooth_stone/dev-wing-plaster-close-front",
+    "light_gray_concrete/dev-wing-plaster-close-front",
+    "smooth_stone/dev-wing-plaster-high-right",
+    "light_gray_concrete/dev-wing-plaster-high-right",
+    "smooth_stone/dev-wing-plaster-low-left",
+    "light_gray_concrete/dev-wing-plaster-low-left"
+  ]
+}
