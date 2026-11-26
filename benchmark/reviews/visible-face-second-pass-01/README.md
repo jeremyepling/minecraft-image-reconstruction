@@ -1,5 +1,7 @@
 # Testing a second pass over visible horizontal faces
 
+Replay the standalone experiment using its [frozen experiment checkout](https://github.com/jeremyepling/minecraft-image-reconstruction/tree/f478162). See the [combined production results](../nearby-thin-01/README.md) for the promoted configuration.
+
 On `cebbffa`, the first two-pixel pass can supply a measured neighbor for another top or underside. The second pass asks for the same pixel evidence and rerenders competing candidates. Each new block must retain visible evidence, and earlier placements keep their native-pixel witnesses.
 
 We compared three variants on 72 training screenshots. One additional horizontal pass recovered 102 visible positions for 35 extras. Up to four additional horizontal passes recovered 106 for 44 extras. Two additional rounds of both photographic texture and horizontal checks recovered 107 for 39 extras. We froze one additional horizontal pass at `275a94a` for its similar F1, smaller extra count, and lower work. Arcade and watchpost accounted for 94 of its 102 correct additions. The arch bridge accounted for 16 extras and no correct additions. [Training scores](training.json)
