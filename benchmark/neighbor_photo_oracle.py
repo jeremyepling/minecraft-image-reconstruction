@@ -10,7 +10,7 @@ from PIL import Image
 
 from benchmark.camera_metrics import registration
 from benchmark.texture_camera_eval import DATA, STABLE, checked, frames, read, save
-from benchmark.visible_depth_transfer import rgb_path, structure
+from benchmark.visible_depth_transfer import rgb_path
 from training.visible_labels import visible_labels
 
 

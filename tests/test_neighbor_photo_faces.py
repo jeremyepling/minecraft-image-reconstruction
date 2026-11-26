@@ -20,10 +20,14 @@ class NeighborPhotoTests(unittest.TestCase):
         self.assertEqual(recover(Image.fromarray(self.rgb), self.region, self.projection, self.base),
                          {(1, 0, 0)})
 
-    def test_same_color_and_occluded_texture_do_not_supply_a_phase_match(self):
+    def test_uniform_color_does_not_supply_a_phase_match(self):
         self.rgb[35:55,40:80] = 86
         self.assertEqual(recover(Image.fromarray(self.rgb), self.region, self.projection, self.base), set())
 
     def test_pixels_beyond_the_observed_mask_supply_no_target(self):
         self.region[0]['support']['runs'] = [[y, 40, 60] for y in range(35,55)]
         self.assertEqual(recover(Image.fromarray(self.rgb), self.region, self.projection, self.base), set())
+
+    def test_an_extension_cannot_hide_the_last_pixel_of_an_existing_cube(self):
+        self.base.add((2, 0, -7))
+        self.assertNotIn((1, 0, 0), recover(Image.fromarray(self.rgb), self.region, self.projection, self.base))
