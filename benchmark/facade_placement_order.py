@@ -41,7 +41,7 @@ def facade_last(image, parts, counts, camera, prior):
     return cells, dict(verified_after_roof=len(cells-prior))
 
 
-def facade_repeat(image, parts, counts, camera, prior):
+def facade_repeat(image, parts, counts, camera, prior, *, threshold=.80):
     """Check newly exposed vertical neighbors up to three times after the roof pass."""
     if not prior or camera.get('P') is None:
         return prior, dict(verified_per_pass=[])
@@ -49,7 +49,7 @@ def facade_repeat(image, parts, counts, camera, prior):
     current = prior
     increments = []
     for _ in range(3):
-        checked = vertical_atlas_faces.recover(image, parts, camera, current, atlas)
+        checked = vertical_atlas_faces.recover(image, parts, camera, current, atlas, mode=threshold)
         increments.append(len(checked - current))
         if checked == current:
             break
@@ -64,3 +64,7 @@ def facade_strict(image, parts, counts, camera, prior):
     atlas = _atlas('26.3', ATLAS)
     cells = vertical_atlas_faces.recover(image, parts, camera, prior, atlas, mode=.95)
     return cells, dict(verified_after_roof=len(cells-prior))
+
+
+def strict_repeat(image, parts, counts, camera, prior):
+    return facade_repeat(image, parts, counts, camera, prior, threshold=.95)
