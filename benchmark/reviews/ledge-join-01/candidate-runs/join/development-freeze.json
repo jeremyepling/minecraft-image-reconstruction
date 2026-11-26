@@ -1,0 +1,28 @@
+{
+  "selected": "conservative",
+  "settings": {
+    "conservative": {
+      "min_union_iou": 0.58,
+      "max_depth_at_midpoint": 0.01
+    },
+    "moderate": {
+      "min_union_iou": 0.45,
+      "max_depth_at_midpoint": 0.022
+    }
+  },
+  "scores": {
+    "conservative": {
+      "matched": 132,
+      "proposed": 187,
+      "eligible": 156,
+      "correct_pixels": 456386
+    },
+    "moderate": {
+      "matched": 130,
+      "proposed": 185,
+      "eligible": 156,
+      "correct_pixels": 453538
+    }
+  },
+  "rule": "Most development matches, then highest surface F1, then most correctly assigned pixels; conservative on ties."
+}
