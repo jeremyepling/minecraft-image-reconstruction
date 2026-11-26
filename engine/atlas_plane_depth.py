@@ -89,12 +89,12 @@ def _edge_score(samples, eye_uv, distance):
     return float(np.mean(correlations)) if correlations else 0.
 
 
-def _patch_scores(mask, origins, axis, free, level, P, rgb, atlas):
+def _patch_scores(mask, origins, axis, free, level, P, rgb, atlas, *, by_cell=False):
     if atlas is None:
         return []
     origins = origins[np.isfinite(origins).all(1)]
     cells = np.unique(np.floor(origins).astype(int), axis=0)
-    cells = _sample(cells, 30)
+    cells = _sample(cells, 120 if by_cell else 30)
     if not len(cells):
         return []
     u,v = np.meshgrid((np.arange(16)+.5)/16, (np.arange(16)+.5)/16)
@@ -124,6 +124,8 @@ def _patch_scores(mask, origins, axis, free, level, P, rgb, atlas):
     ref = atlas.patterns[short].reshape(len(x),24,8,256)
     corr = np.einsum('nkod,nd->nko',ref,gray).max(2)/16
     scores = (corr-np.take_along_axis(loss,short,axis=1)/60).max(1)
+    if by_cell:
+        return dict(zip(map(tuple,cells[good][full].tolist()),scores.tolist()))
     return np.sort(scores)[::-1].tolist()
 
 
