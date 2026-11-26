@@ -21,9 +21,13 @@ param(
 $ErrorActionPreference = 'Stop'
 $sourceImage = (Resolve-Path -LiteralPath $Image).Path
 $destination = $ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($Out)
-$scaleRun = Join-Path $PSScriptRoot '../mask-scalelsd/runs'
+$worktrees = Split-Path -Parent $PSScriptRoot
+if (Test-Path -LiteralPath "$PSScriptRoot-worktrees" -PathType Container) {
+    $worktrees = "$PSScriptRoot-worktrees"
+}
+$scaleRun = Join-Path $worktrees 'mask-scalelsd/runs'
 $localDeps = Join-Path $PSScriptRoot '.deps'
-$installedModels = Join-Path $PSScriptRoot '../surface-strip-entry/.deps'
+$installedModels = Join-Path $worktrees 'surface-strip-entry/.deps'
 $changes = @{}
 
 function Set-ModelOption([string]$Name, [string]$Explicit, [string[]]$Candidates) {
@@ -51,11 +55,11 @@ try {
     Set-ModelOption 'MCIR_SCALELSD_SOURCE' $ScaleSource @((Join-Path $localDeps 'scalelsd'), (Join-Path $scaleRun 'upstream'))
     $checkpointName = 'scalelsd-vitbase-v2-train-sa1b.pt'
     Set-ModelOption 'MCIR_SCALELSD_CHECKPOINT' $ScaleCheckpoint @((Join-Path $localDeps $checkpointName), (Join-Path $scaleRun $checkpointName))
-    Set-ModelOption 'MCIR_MOBILESAM_SOURCE' $MobileSource @((Join-Path $localDeps 'MobileSAM'), (Join-Path $PSScriptRoot '../surface-recovery-round/runs/mobile-sam-source'))
-    $depthProDeps=Join-Path $PSScriptRoot '../surface-one-depth-pro/.deps'
+    Set-ModelOption 'MCIR_MOBILESAM_SOURCE' $MobileSource @((Join-Path $localDeps 'MobileSAM'), (Join-Path $worktrees 'surface-recovery-round/runs/mobile-sam-source'))
+    $depthProDeps=Join-Path $worktrees 'surface-one-depth-pro/.deps'
     Set-ModelOption 'MCIR_DEPTH_PRO_SOURCE' $DepthProSource @((Join-Path $localDeps 'ml-depth-pro'), (Join-Path $depthProDeps 'ml-depth-pro'))
     Set-ModelOption 'MCIR_DEPTH_PRO_CHECKPOINT' $DepthProCheckpoint @((Join-Path $localDeps 'depth_pro.pt'), (Join-Path $depthProDeps 'depth_pro.pt'))
-    $planeDeps = Join-Path $PSScriptRoot '../afterpass-planarity/runs/assets'
+    $planeDeps = Join-Path $worktrees 'afterpass-planarity/runs/assets'
     Set-ModelOption 'MCIR_PLANARITY_SOURCE' $PlanaritySource @((Join-Path $localDeps 'PixelwisePlanarity'), (Join-Path $planeDeps 'PixelwisePlanarity'))
     Set-ModelOption 'MCIR_PLANARITY_UTILS3D' $PlanarityUtils3D @((Join-Path $localDeps 'utils3d'), (Join-Path $planeDeps 'utils3d'))
     Set-ModelOption 'MCIR_PLANARITY_CHECKPOINT' $PlanarityCheckpoint @((Join-Path $localDeps 'pixelwise-planarity.pt'), (Join-Path $planeDeps 'model.pt'))
@@ -69,8 +73,8 @@ try {
     }.GetEnumerator()) {
         Set-ModelOption $model.Key '' @((Join-Path $localDeps $model.Value), (Join-Path $installedModels $model.Value))
     }
-    $extra = @('../surface-round/runs/depth-probe/runtime','../surface-round/runs/mlsd-probe/lib') |
-        ForEach-Object { Join-Path $PSScriptRoot $_ } | Where-Object { Test-Path -LiteralPath $_ }
+    $extra = @('surface-round/runs/depth-probe/runtime','surface-round/runs/mlsd-probe/lib') |
+        ForEach-Object { Join-Path $worktrees $_ } | Where-Object { Test-Path -LiteralPath $_ }
     if ($extra) {
         $changes['PYTHONPATH'] = $env:PYTHONPATH
         $env:PYTHONPATH = (@($env:PYTHONPATH) + @($extra) | Where-Object { $_ }) -join [IO.Path]::PathSeparator
