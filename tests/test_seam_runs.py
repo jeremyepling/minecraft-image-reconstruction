@@ -4,7 +4,7 @@ import numpy as np
 from PIL import Image
 
 from engine.seam_runs import remove_duplicate_runs
-from engine.visible_placement import _sample_face
+from engine.visible_placement import _frontmost_cells, _sample_face
 
 
 class VerticalSeamTests(unittest.TestCase):
@@ -27,7 +27,11 @@ class VerticalSeamTests(unittest.TestCase):
         cls.masks={}
         for key,cells in [('shared',cls.wall),('distinct',cls.wall | cls.extension)]:
             depth = np.full((height,width),np.inf)
-            rgb=np.full((height,width,3),164,dtype=np.uint8)
+            with np.errstate(divide='ignore',invalid='ignore'):
+                ground = cls.eye - rays*(cls.eye[1]/rays[:,:,1,None])
+            # A visible checker on the floor is repeated at unit spacing.
+            pattern = (np.floor(4*ground[:,:,0])+np.floor(4*ground[:,:,2])) % 2
+            rgb=np.repeat((145+35*pattern)[:,:,None],3,axis=2).astype(np.uint8)
             for coord in cells:
                 near=(np.array(coord)-cls.eye)/rays
                 far=(np.array(coord)+1-cls.eye)/rays
@@ -40,7 +44,7 @@ class VerticalSeamTests(unittest.TestCase):
 
     def removals(self,key,cells):
         return remove_duplicate_runs(self.images[key],cells,set(),self.masks[key],self.projection,
-                                     self.eye,_sample_face)
+                                     self.eye,_sample_face,_frontmost_cells)
 
     def test_extra_column_replaced_by_exposed_neighbor_side(self):
         self.assertEqual(self.extension,self.removals('shared',self.wall | self.extension))
@@ -51,3 +55,12 @@ class VerticalSeamTests(unittest.TestCase):
     def test_elevated_strip_stays_even_when_floor_below_is_visible(self):
         raised = {p for p in self.extension if p[1]>=2}
         self.assertEqual(set(),self.removals('shared',self.wall | raised))
+
+    def test_flat_matching_floor_and_wall_colors_do_not_establish_a_seam(self):
+        same_color=Image.new('RGB',self.images['shared'].size,(85,85,85))
+        self.assertEqual(set(),remove_duplicate_runs(same_color,self.wall|self.extension,set(),
+            self.masks['shared'],self.projection,self.eye,_sample_face,_frontmost_cells))
+
+    def test_alternative_must_preserve_observed_coverage(self):
+        self.assertEqual(set(),remove_duplicate_runs(self.images['shared'],self.wall|self.extension,set(),
+            self.masks['distinct'],self.projection,self.eye,_sample_face,_frontmost_cells))
