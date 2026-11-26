@@ -1,8 +1,8 @@
 {
   "run_id": "crop-coverage-01",
   "code": {
-    "commit": "ee7fc821cd3c4ba1b04b36f1b14b243947cb36cc",
-    "predictor_and_runner_sha256": "0f258cb98954ebb1873ce6f57bbf744491384565e07e2aca7a95e81b8c2341ee",
+    "commit": "98a807bcc00eb69092f72fe13b9701e557190065",
+    "predictor_and_runner_sha256": "6e26b7fdf914a2751c0dd6657f72ac6428b4d6302a653368dc74e1ce0f132088",
     "source_dirty": false
   },
   "source_manifest": "b300caff403e517e09003376a112254bc1d72a87e3e52c1b53224c6a892f1850",
@@ -10,9 +10,9 @@
   "method": "plane-recovery-crop-splits",
   "game_version": "26.3",
   "reference_sha256": "91efa6d3e992b1a68672eae1fdd6d380e87724742a1a4b6cbe5f84d284f731a1",
-  "sample_stride_px": 4,
+  "sample_stride_px": 1,
   "scope": "Eligible, matched surface appearances only.",
-  "measure": "Fraction of owned scoring samples inside the chart, before filtering the interpolation taps. A usable sample contains at least one accepted output pixel.",
+  "measure": "Fraction of native source-mask pixels inside the chart, before filtering the interpolation taps. A usable sample contains at least one accepted output pixel.",
   "summary": {
     "matched": 516,
     "usable": 505,
@@ -22,8 +22,8 @@
       "wall normal + assumed-70-degree-vertical-fov": 16,
       "supplied quad": 489
     },
-    "usable_below_90_percent": 121,
-    "usable_below_80_percent": 22
+    "usable_below_90_percent": 104,
+    "usable_below_80_percent": 15
   },
   "frames": [
     {
@@ -33,113 +33,113 @@
         {
           "reference_id": 4,
           "proposal": "mask-0",
-          "source_mask_samples": 1936,
+          "source_mask_samples": 30704,
           "chart_kind": "wall normal + assumed-70-degree-vertical-fov",
-          "chart_covered_samples": 1936,
+          "chart_covered_samples": 30704,
           "valid_output_pixels": 35992
         },
         {
           "reference_id": 7,
           "proposal": "mask-1-junction-0",
-          "source_mask_samples": 550,
+          "source_mask_samples": 8708,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 499,
+          "chart_covered_samples": 8062,
           "valid_output_pixels": 8990
         },
         {
           "reference_id": 6,
           "proposal": "mask-1-junction-1-single-265-0",
-          "source_mask_samples": 298,
+          "source_mask_samples": 4728,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 276,
+          "chart_covered_samples": 4523,
           "valid_output_pixels": 4197
         },
         {
           "reference_id": 8,
           "proposal": "mask-1-junction-1-single-265-1",
-          "source_mask_samples": 1065,
+          "source_mask_samples": 17012,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 954,
+          "chart_covered_samples": 15218,
           "valid_output_pixels": 14546
         },
         {
           "reference_id": 5,
           "proposal": "mask-2",
-          "source_mask_samples": 1494,
+          "source_mask_samples": 23632,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 1444,
+          "chart_covered_samples": 22803,
           "valid_output_pixels": 22637
         },
         {
           "reference_id": 19,
           "proposal": "mask-3",
-          "source_mask_samples": 1237,
+          "source_mask_samples": 19776,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 1087,
+          "chart_covered_samples": 17407,
           "valid_output_pixels": 21296
         },
         {
           "reference_id": 12,
           "proposal": "mask-5",
-          "source_mask_samples": 523,
+          "source_mask_samples": 8436,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 484,
+          "chart_covered_samples": 7858,
           "valid_output_pixels": 13185
         },
         {
           "reference_id": 16,
           "proposal": "mask-6",
-          "source_mask_samples": 389,
+          "source_mask_samples": 6428,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 389,
+          "chart_covered_samples": 6427,
           "valid_output_pixels": 6522
         },
         {
           "reference_id": 13,
           "proposal": "mask-7",
-          "source_mask_samples": 321,
+          "source_mask_samples": 5332,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 258,
+          "chart_covered_samples": 4217,
           "valid_output_pixels": 22037
         },
         {
           "reference_id": 18,
           "proposal": "mask-8",
-          "source_mask_samples": 299,
+          "source_mask_samples": 4880,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 264,
+          "chart_covered_samples": 4313,
           "valid_output_pixels": 4880
         },
         {
           "reference_id": 15,
           "proposal": "mask-9",
-          "source_mask_samples": 296,
+          "source_mask_samples": 4864,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 257,
+          "chart_covered_samples": 4246,
           "valid_output_pixels": 4308
         },
         {
           "reference_id": 17,
           "proposal": "mask-10",
-          "source_mask_samples": 287,
+          "source_mask_samples": 4640,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 287,
+          "chart_covered_samples": 4609,
           "valid_output_pixels": 4688
         },
         {
           "reference_id": 14,
           "proposal": "mask-11",
-          "source_mask_samples": 161,
+          "source_mask_samples": 2664,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 156,
+          "chart_covered_samples": 2605,
           "valid_output_pixels": 2456
         },
         {
           "reference_id": 10,
           "proposal": "mask-14",
-          "source_mask_samples": 78,
+          "source_mask_samples": 1280,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 72,
+          "chart_covered_samples": 1261,
           "valid_output_pixels": 923
         }
       ]
@@ -151,113 +151,113 @@
         {
           "reference_id": 6,
           "proposal": "mask-0-mobile-0-single-238-0",
-          "source_mask_samples": 274,
+          "source_mask_samples": 4472,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 248,
+          "chart_covered_samples": 4243,
           "valid_output_pixels": 4084
         },
         {
           "reference_id": 8,
           "proposal": "mask-0-mobile-0-single-238-1",
-          "source_mask_samples": 1097,
+          "source_mask_samples": 17448,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 1005,
+          "chart_covered_samples": 15947,
           "valid_output_pixels": 15242
         },
         {
           "reference_id": 7,
           "proposal": "mask-0-mobile-1",
-          "source_mask_samples": 522,
+          "source_mask_samples": 8328,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 508,
+          "chart_covered_samples": 8234,
           "valid_output_pixels": 8076
         },
         {
           "reference_id": 4,
           "proposal": "mask-1",
-          "source_mask_samples": 1770,
+          "source_mask_samples": 28348,
           "chart_kind": "wall normal + assumed-70-degree-vertical-fov",
-          "chart_covered_samples": 1770,
+          "chart_covered_samples": 28348,
           "valid_output_pixels": 34141
         },
         {
           "reference_id": 5,
           "proposal": "mask-2",
-          "source_mask_samples": 1459,
+          "source_mask_samples": 23072,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 1434,
+          "chart_covered_samples": 22744,
           "valid_output_pixels": 23033
         },
         {
           "reference_id": 19,
           "proposal": "mask-3",
-          "source_mask_samples": 1221,
+          "source_mask_samples": 19576,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 1121,
+          "chart_covered_samples": 18112,
           "valid_output_pixels": 22649
         },
         {
           "reference_id": 12,
           "proposal": "mask-5",
-          "source_mask_samples": 505,
+          "source_mask_samples": 8152,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 461,
+          "chart_covered_samples": 7530,
           "valid_output_pixels": 15713
         },
         {
           "reference_id": 13,
           "proposal": "mask-6",
-          "source_mask_samples": 457,
+          "source_mask_samples": 7260,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 374,
+          "chart_covered_samples": 6139,
           "valid_output_pixels": 39826
         },
         {
           "reference_id": 16,
           "proposal": "mask-8",
-          "source_mask_samples": 392,
+          "source_mask_samples": 6416,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 388,
+          "chart_covered_samples": 6416,
           "valid_output_pixels": 6449
         },
         {
           "reference_id": 15,
           "proposal": "mask-9",
-          "source_mask_samples": 295,
+          "source_mask_samples": 4868,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 238,
+          "chart_covered_samples": 4117,
           "valid_output_pixels": 3851
         },
         {
           "reference_id": 18,
           "proposal": "mask-10",
-          "source_mask_samples": 288,
+          "source_mask_samples": 4668,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 259,
+          "chart_covered_samples": 4472,
           "valid_output_pixels": 5798
         },
         {
           "reference_id": 17,
           "proposal": "mask-11",
-          "source_mask_samples": 282,
+          "source_mask_samples": 4580,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 279,
+          "chart_covered_samples": 4532,
           "valid_output_pixels": 4756
         },
         {
           "reference_id": 14,
           "proposal": "mask-12",
-          "source_mask_samples": 162,
+          "source_mask_samples": 2656,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 155,
+          "chart_covered_samples": 2587,
           "valid_output_pixels": 2328
         },
         {
           "reference_id": 10,
           "proposal": "mask-13",
-          "source_mask_samples": 97,
+          "source_mask_samples": 1564,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 89,
+          "chart_covered_samples": 1481,
           "valid_output_pixels": 1264
         }
       ]
@@ -269,103 +269,103 @@
         {
           "reference_id": 11,
           "proposal": "mask-0-wall-0",
-          "source_mask_samples": 504,
+          "source_mask_samples": 7920,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 489,
+          "chart_covered_samples": 7879,
           "valid_output_pixels": 7548
         },
         {
           "reference_id": 16,
           "proposal": "mask-0-wall-1-junction-0",
-          "source_mask_samples": 1242,
+          "source_mask_samples": 20148,
           "chart_kind": "wall normal + assumed-70-degree-vertical-fov",
-          "chart_covered_samples": 1242,
+          "chart_covered_samples": 20148,
           "valid_output_pixels": 20863
         },
         {
           "reference_id": 12,
           "proposal": "mask-0-wall-1-junction-1",
-          "source_mask_samples": 4105,
+          "source_mask_samples": 65904,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 3973,
+          "chart_covered_samples": 64312,
           "valid_output_pixels": 80450
         },
         {
           "reference_id": 13,
           "proposal": "mask-1-single-283-1",
-          "source_mask_samples": 1339,
+          "source_mask_samples": 21780,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 1313,
+          "chart_covered_samples": 21296,
           "valid_output_pixels": 20596
         },
         {
           "reference_id": 14,
           "proposal": "mask-1-single-283-2",
-          "source_mask_samples": 548,
+          "source_mask_samples": 8636,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 537,
+          "chart_covered_samples": 8535,
           "valid_output_pixels": 8252
         },
         {
           "reference_id": 1,
           "proposal": "mask-2",
-          "source_mask_samples": 565,
+          "source_mask_samples": 9056,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 524,
+          "chart_covered_samples": 8458,
           "valid_output_pixels": 10805
         },
         {
           "reference_id": 4,
           "proposal": "mask-3",
-          "source_mask_samples": 560,
+          "source_mask_samples": 8696,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 560,
+          "chart_covered_samples": 8696,
           "valid_output_pixels": 8393
         },
         {
           "reference_id": 6,
           "proposal": "mask-4",
-          "source_mask_samples": 407,
+          "source_mask_samples": 6336,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 382,
+          "chart_covered_samples": 6065,
           "valid_output_pixels": 5696
         },
         {
           "reference_id": 3,
           "proposal": "mask-5",
-          "source_mask_samples": 393,
+          "source_mask_samples": 6096,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 315,
+          "chart_covered_samples": 5149,
           "valid_output_pixels": 5384
         },
         {
           "reference_id": 5,
           "proposal": "mask-6",
-          "source_mask_samples": 256,
+          "source_mask_samples": 4088,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 255,
+          "chart_covered_samples": 4065,
           "valid_output_pixels": 3783
         },
         {
           "reference_id": 8,
           "proposal": "mask-7",
-          "source_mask_samples": 192,
+          "source_mask_samples": 3012,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 166,
+          "chart_covered_samples": 2705,
           "valid_output_pixels": 6540
         },
         {
           "reference_id": 2,
           "proposal": "mask-8",
-          "source_mask_samples": 127,
+          "source_mask_samples": 2180,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 47,
+          "chart_covered_samples": 895,
           "valid_output_pixels": 550
         },
         {
           "reference_id": 18,
           "proposal": "mask-10",
-          "source_mask_samples": 47,
+          "source_mask_samples": 752,
           "chart_kind": null,
           "chart_covered_samples": null,
           "valid_output_pixels": 0
@@ -379,105 +379,105 @@
         {
           "reference_id": 16,
           "proposal": "mask-0-junction-0",
-          "source_mask_samples": 496,
+          "source_mask_samples": 7996,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 395,
+          "chart_covered_samples": 6365,
           "valid_output_pixels": 6612
         },
         {
           "reference_id": 12,
           "proposal": "mask-0-junction-1",
-          "source_mask_samples": 4897,
+          "source_mask_samples": 78624,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 4776,
+          "chart_covered_samples": 77098,
           "valid_output_pixels": 82999
         },
         {
           "reference_id": 13,
           "proposal": "mask-1",
-          "source_mask_samples": 1351,
+          "source_mask_samples": 21780,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 1326,
+          "chart_covered_samples": 21291,
           "valid_output_pixels": 20014
         },
         {
           "reference_id": 11,
           "proposal": "mask-2",
-          "source_mask_samples": 700,
+          "source_mask_samples": 11204,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 693,
+          "chart_covered_samples": 11160,
           "valid_output_pixels": 10845
         },
         {
           "reference_id": 4,
           "proposal": "mask-3",
-          "source_mask_samples": 572,
+          "source_mask_samples": 8880,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 571,
+          "chart_covered_samples": 8880,
           "valid_output_pixels": 8571
         },
         {
           "reference_id": 1,
           "proposal": "mask-4",
-          "source_mask_samples": 552,
+          "source_mask_samples": 8580,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 523,
+          "chart_covered_samples": 8315,
           "valid_output_pixels": 10325
         },
         {
           "reference_id": 6,
           "proposal": "mask-5",
-          "source_mask_samples": 417,
+          "source_mask_samples": 6496,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 411,
+          "chart_covered_samples": 6453,
           "valid_output_pixels": 6075
         },
         {
           "reference_id": 15,
           "proposal": "mask-6",
-          "source_mask_samples": 376,
+          "source_mask_samples": 5980,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 347,
+          "chart_covered_samples": 5493,
           "valid_output_pixels": 5041
         },
         {
           "reference_id": 3,
           "proposal": "mask-7",
-          "source_mask_samples": 353,
+          "source_mask_samples": 5684,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 289,
+          "chart_covered_samples": 4868,
           "valid_output_pixels": 4886
         },
         {
           "reference_id": 5,
           "proposal": "mask-8",
-          "source_mask_samples": 237,
+          "source_mask_samples": 3904,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 204,
+          "chart_covered_samples": 3472,
           "valid_output_pixels": 5713
         },
         {
           "reference_id": 8,
           "proposal": "mask-9",
-          "source_mask_samples": 182,
+          "source_mask_samples": 2880,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 131,
+          "chart_covered_samples": 2181,
           "valid_output_pixels": 6724
         },
         {
           "reference_id": 2,
           "proposal": "mask-10",
-          "source_mask_samples": 138,
+          "source_mask_samples": 2268,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 59,
+          "chart_covered_samples": 999,
           "valid_output_pixels": 588
         },
         {
           "reference_id": 18,
           "proposal": "mask-12",
-          "source_mask_samples": 39,
+          "source_mask_samples": 656,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 34,
+          "chart_covered_samples": 635,
           "valid_output_pixels": 562
         }
       ]
@@ -489,111 +489,111 @@
         {
           "reference_id": 8,
           "proposal": "mask-0-wall-0",
-          "source_mask_samples": 1361,
+          "source_mask_samples": 21796,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 1130,
+          "chart_covered_samples": 18174,
           "valid_output_pixels": 24123
         },
         {
           "reference_id": 6,
           "proposal": "mask-0-wall-1-single-349-0-planarity-split-0",
-          "source_mask_samples": 495,
+          "source_mask_samples": 7896,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 442,
+          "chart_covered_samples": 7055,
           "valid_output_pixels": 6642
         },
         {
           "reference_id": 5,
           "proposal": "mask-0-wall-1-single-349-0-planarity-split-1",
-          "source_mask_samples": 1419,
+          "source_mask_samples": 22488,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 1361,
+          "chart_covered_samples": 21861,
           "valid_output_pixels": 21546
         },
         {
           "reference_id": 7,
           "proposal": "mask-0-wall-1-single-349-1",
-          "source_mask_samples": 615,
+          "source_mask_samples": 10016,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 567,
+          "chart_covered_samples": 9307,
           "valid_output_pixels": 9215
         },
         {
           "reference_id": 19,
           "proposal": "mask-1",
-          "source_mask_samples": 1198,
+          "source_mask_samples": 19200,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 1069,
+          "chart_covered_samples": 17223,
           "valid_output_pixels": 21000
         },
         {
           "reference_id": 4,
           "proposal": "mask-2",
-          "source_mask_samples": 1066,
+          "source_mask_samples": 16920,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 983,
+          "chart_covered_samples": 15733,
           "valid_output_pixels": 15467
         },
         {
           "reference_id": 16,
           "proposal": "mask-3",
-          "source_mask_samples": 402,
+          "source_mask_samples": 6520,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 380,
+          "chart_covered_samples": 6329,
           "valid_output_pixels": 6139
         },
         {
           "reference_id": 13,
           "proposal": "mask-5",
-          "source_mask_samples": 332,
+          "source_mask_samples": 5312,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 267,
+          "chart_covered_samples": 4532,
           "valid_output_pixels": 15907
         },
         {
           "reference_id": 12,
           "proposal": "mask-7",
-          "source_mask_samples": 282,
+          "source_mask_samples": 4652,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 262,
+          "chart_covered_samples": 4318,
           "valid_output_pixels": 12770
         },
         {
           "reference_id": 17,
           "proposal": "mask-8",
-          "source_mask_samples": 290,
+          "source_mask_samples": 4608,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 279,
+          "chart_covered_samples": 4529,
           "valid_output_pixels": 4576
         },
         {
           "reference_id": 18,
           "proposal": "mask-9",
-          "source_mask_samples": 245,
+          "source_mask_samples": 3820,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 222,
+          "chart_covered_samples": 3572,
           "valid_output_pixels": 4747
         },
         {
           "reference_id": 15,
           "proposal": "mask-10",
-          "source_mask_samples": 219,
+          "source_mask_samples": 3540,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 219,
+          "chart_covered_samples": 3494,
           "valid_output_pixels": 3669
         },
         {
           "reference_id": 14,
           "proposal": "mask-11",
-          "source_mask_samples": 161,
+          "source_mask_samples": 2556,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 155,
+          "chart_covered_samples": 2485,
           "valid_output_pixels": 2451
         },
         {
           "reference_id": 10,
           "proposal": "mask-12",
-          "source_mask_samples": 74,
+          "source_mask_samples": 1224,
           "chart_kind": null,
           "chart_covered_samples": null,
           "valid_output_pixels": 0
@@ -607,89 +607,89 @@
         {
           "reference_id": 4,
           "proposal": "mask-0",
-          "source_mask_samples": 1904,
+          "source_mask_samples": 30232,
           "chart_kind": "wall normal + assumed-70-degree-vertical-fov",
-          "chart_covered_samples": 1904,
+          "chart_covered_samples": 30232,
           "valid_output_pixels": 34588
         },
         {
           "reference_id": 7,
           "proposal": "mask-1-wall-0",
-          "source_mask_samples": 619,
+          "source_mask_samples": 9960,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 559,
+          "chart_covered_samples": 9168,
           "valid_output_pixels": 8646
         },
         {
           "reference_id": 8,
           "proposal": "mask-2",
-          "source_mask_samples": 1299,
+          "source_mask_samples": 20920,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 1047,
+          "chart_covered_samples": 16900,
           "valid_output_pixels": 21867
         },
         {
           "reference_id": 6,
           "proposal": "mask-5",
-          "source_mask_samples": 410,
+          "source_mask_samples": 6620,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 323,
+          "chart_covered_samples": 5224,
           "valid_output_pixels": 6788
         },
         {
           "reference_id": 16,
           "proposal": "mask-6",
-          "source_mask_samples": 404,
+          "source_mask_samples": 6524,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 384,
+          "chart_covered_samples": 6321,
           "valid_output_pixels": 6254
         },
         {
           "reference_id": 12,
           "proposal": "mask-8",
-          "source_mask_samples": 312,
+          "source_mask_samples": 5028,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 279,
+          "chart_covered_samples": 4444,
           "valid_output_pixels": 13143
         },
         {
           "reference_id": 17,
           "proposal": "mask-9",
-          "source_mask_samples": 295,
+          "source_mask_samples": 4636,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 275,
+          "chart_covered_samples": 4499,
           "valid_output_pixels": 4632
         },
         {
           "reference_id": 18,
           "proposal": "mask-10",
-          "source_mask_samples": 209,
+          "source_mask_samples": 3312,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 195,
+          "chart_covered_samples": 3139,
           "valid_output_pixels": 3199
         },
         {
           "reference_id": 15,
           "proposal": "mask-11",
-          "source_mask_samples": 199,
+          "source_mask_samples": 3224,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 198,
+          "chart_covered_samples": 3153,
           "valid_output_pixels": 3928
         },
         {
           "reference_id": 14,
           "proposal": "mask-12",
-          "source_mask_samples": 153,
+          "source_mask_samples": 2412,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 146,
+          "chart_covered_samples": 2355,
           "valid_output_pixels": 2201
         },
         {
           "reference_id": 19,
           "proposal": "planarity-new-5-0",
-          "source_mask_samples": 674,
+          "source_mask_samples": 10784,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 645,
+          "chart_covered_samples": 10242,
           "valid_output_pixels": 13418
         }
       ]
@@ -701,95 +701,95 @@
         {
           "reference_id": 11,
           "proposal": "mask-0-wall-0",
-          "source_mask_samples": 739,
+          "source_mask_samples": 11752,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 732,
+          "chart_covered_samples": 11721,
           "valid_output_pixels": 11412
         },
         {
           "reference_id": 12,
           "proposal": "mask-0-wall-1-single-244-0-planarity-split-0",
-          "source_mask_samples": 3147,
+          "source_mask_samples": 50760,
           "chart_kind": "wall normal + assumed-70-degree-vertical-fov",
-          "chart_covered_samples": 3147,
+          "chart_covered_samples": 50760,
           "valid_output_pixels": 38704
         },
         {
           "reference_id": 16,
           "proposal": "mask-0-wall-1-single-244-0-planarity-split-1",
-          "source_mask_samples": 948,
+          "source_mask_samples": 15104,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 872,
+          "chart_covered_samples": 13829,
           "valid_output_pixels": 13117
         },
         {
           "reference_id": 13,
           "proposal": "mask-0-wall-1-single-244-1-planarity-split-0",
-          "source_mask_samples": 1474,
+          "source_mask_samples": 23844,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 1469,
+          "chart_covered_samples": 23523,
           "valid_output_pixels": 22718
         },
         {
           "reference_id": 15,
           "proposal": "mask-0-wall-1-single-244-1-planarity-split-1",
-          "source_mask_samples": 399,
+          "source_mask_samples": 6404,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 345,
+          "chart_covered_samples": 5597,
           "valid_output_pixels": 5087
         },
         {
           "reference_id": 14,
           "proposal": "mask-0-wall-1-single-244-2",
-          "source_mask_samples": 591,
+          "source_mask_samples": 9264,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 492,
+          "chart_covered_samples": 8136,
           "valid_output_pixels": 7650
         },
         {
           "reference_id": 1,
           "proposal": "mask-1",
-          "source_mask_samples": 578,
+          "source_mask_samples": 8944,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 545,
+          "chart_covered_samples": 8751,
           "valid_output_pixels": 12424
         },
         {
           "reference_id": 4,
           "proposal": "mask-2",
-          "source_mask_samples": 521,
+          "source_mask_samples": 8228,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 521,
+          "chart_covered_samples": 8228,
           "valid_output_pixels": 7823
         },
         {
           "reference_id": 6,
           "proposal": "mask-3",
-          "source_mask_samples": 411,
+          "source_mask_samples": 6412,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 411,
+          "chart_covered_samples": 6398,
           "valid_output_pixels": 5986
         },
         {
           "reference_id": 5,
           "proposal": "mask-4",
-          "source_mask_samples": 213,
+          "source_mask_samples": 3544,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 204,
+          "chart_covered_samples": 3424,
           "valid_output_pixels": 3229
         },
         {
           "reference_id": 2,
           "proposal": "mask-7",
-          "source_mask_samples": 123,
+          "source_mask_samples": 1868,
           "chart_kind": "wall normal + assumed-70-degree-vertical-fov",
-          "chart_covered_samples": 123,
+          "chart_covered_samples": 1868,
           "valid_output_pixels": 1759
         },
         {
           "reference_id": 18,
           "proposal": "mask-9",
-          "source_mask_samples": 24,
+          "source_mask_samples": 340,
           "chart_kind": null,
           "chart_covered_samples": null,
           "valid_output_pixels": 0
@@ -797,9 +797,9 @@
         {
           "reference_id": 8,
           "proposal": "underside-0",
-          "source_mask_samples": 180,
+          "source_mask_samples": 2872,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 160,
+          "chart_covered_samples": 2423,
           "valid_output_pixels": 4994
         }
       ]
@@ -811,79 +811,79 @@
         {
           "reference_id": 11,
           "proposal": "mask-0-wall-0",
-          "source_mask_samples": 738,
+          "source_mask_samples": 11704,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 731,
+          "chart_covered_samples": 11639,
           "valid_output_pixels": 11214
         },
         {
           "reference_id": 12,
           "proposal": "mask-0-wall-1-single-339-0",
-          "source_mask_samples": 3549,
+          "source_mask_samples": 56848,
           "chart_kind": "wall normal + assumed-70-degree-vertical-fov",
-          "chart_covered_samples": 3549,
+          "chart_covered_samples": 56848,
           "valid_output_pixels": 42620
         },
         {
           "reference_id": 16,
           "proposal": "mask-0-wall-1-single-339-2",
-          "source_mask_samples": 906,
+          "source_mask_samples": 14728,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 810,
+          "chart_covered_samples": 13072,
           "valid_output_pixels": 14518
         },
         {
           "reference_id": 9,
           "proposal": "mask-1-mobile-0",
-          "source_mask_samples": 86,
+          "source_mask_samples": 1216,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 86,
+          "chart_covered_samples": 1216,
           "valid_output_pixels": 979
         },
         {
           "reference_id": 4,
           "proposal": "mask-1-mobile-1",
-          "source_mask_samples": 486,
+          "source_mask_samples": 7704,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 473,
+          "chart_covered_samples": 7488,
           "valid_output_pixels": 7081
         },
         {
           "reference_id": 6,
           "proposal": "mask-2",
-          "source_mask_samples": 438,
+          "source_mask_samples": 6812,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 436,
+          "chart_covered_samples": 6750,
           "valid_output_pixels": 6368
         },
         {
           "reference_id": 1,
           "proposal": "mask-3",
-          "source_mask_samples": 393,
+          "source_mask_samples": 6240,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 362,
+          "chart_covered_samples": 6054,
           "valid_output_pixels": 12000
         },
         {
           "reference_id": 5,
           "proposal": "mask-4",
-          "source_mask_samples": 225,
+          "source_mask_samples": 3748,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 211,
+          "chart_covered_samples": 3567,
           "valid_output_pixels": 3441
         },
         {
           "reference_id": 2,
           "proposal": "mask-7",
-          "source_mask_samples": 116,
+          "source_mask_samples": 1816,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 111,
+          "chart_covered_samples": 1669,
           "valid_output_pixels": 2853
         },
         {
           "reference_id": 18,
           "proposal": "mask-10",
-          "source_mask_samples": 24,
+          "source_mask_samples": 340,
           "chart_kind": null,
           "chart_covered_samples": null,
           "valid_output_pixels": 0
@@ -891,9 +891,9 @@
         {
           "reference_id": 8,
           "proposal": "underside-0",
-          "source_mask_samples": 193,
+          "source_mask_samples": 3132,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 133,
+          "chart_covered_samples": 2229,
           "valid_output_pixels": 3708
         }
       ]
@@ -905,9 +905,9 @@
         {
           "reference_id": 1,
           "proposal": "mask-0",
-          "source_mask_samples": 80784,
+          "source_mask_samples": 1292812,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 79344,
+          "chart_covered_samples": 1272652,
           "valid_output_pixels": 249347
         }
       ]
@@ -919,9 +919,9 @@
         {
           "reference_id": 1,
           "proposal": "mask-0",
-          "source_mask_samples": 80784,
+          "source_mask_samples": 1292812,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 79344,
+          "chart_covered_samples": 1272652,
           "valid_output_pixels": 249347
         }
       ]
@@ -933,39 +933,39 @@
         {
           "reference_id": 2,
           "proposal": "mask-0",
-          "source_mask_samples": 6406,
+          "source_mask_samples": 102516,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 6370,
+          "chart_covered_samples": 102215,
           "valid_output_pixels": 102911
         },
         {
           "reference_id": 1,
           "proposal": "mask-1",
-          "source_mask_samples": 1578,
+          "source_mask_samples": 25388,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 1559,
+          "chart_covered_samples": 25140,
           "valid_output_pixels": 24846
         },
         {
           "reference_id": 7,
           "proposal": "mask-2",
-          "source_mask_samples": 1017,
+          "source_mask_samples": 16156,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 888,
+          "chart_covered_samples": 14426,
           "valid_output_pixels": 23969
         },
         {
           "reference_id": 8,
           "proposal": "mask-3",
-          "source_mask_samples": 543,
+          "source_mask_samples": 8668,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 540,
+          "chart_covered_samples": 8632,
           "valid_output_pixels": 10804
         },
         {
           "reference_id": 3,
           "proposal": "mask-4",
-          "source_mask_samples": 353,
+          "source_mask_samples": 5516,
           "chart_kind": null,
           "chart_covered_samples": null,
           "valid_output_pixels": 0
@@ -979,33 +979,33 @@
         {
           "reference_id": 2,
           "proposal": "mask-0",
-          "source_mask_samples": 6437,
+          "source_mask_samples": 102748,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 6375,
+          "chart_covered_samples": 102264,
           "valid_output_pixels": 103304
         },
         {
           "reference_id": 1,
           "proposal": "mask-1",
-          "source_mask_samples": 1584,
+          "source_mask_samples": 25464,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 1564,
+          "chart_covered_samples": 25240,
           "valid_output_pixels": 25015
         },
         {
           "reference_id": 7,
           "proposal": "mask-2",
-          "source_mask_samples": 1022,
+          "source_mask_samples": 16340,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 906,
+          "chart_covered_samples": 14943,
           "valid_output_pixels": 24400
         },
         {
           "reference_id": 8,
           "proposal": "mask-3",
-          "source_mask_samples": 534,
+          "source_mask_samples": 8604,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 531,
+          "chart_covered_samples": 8512,
           "valid_output_pixels": 10625
         }
       ]
@@ -1017,25 +1017,25 @@
         {
           "reference_id": 3,
           "proposal": "mask-0-single-453-0",
-          "source_mask_samples": 10124,
+          "source_mask_samples": 161916,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 10017,
+          "chart_covered_samples": 160390,
           "valid_output_pixels": 159214
         },
         {
           "reference_id": 2,
           "proposal": "mask-0-single-453-1",
-          "source_mask_samples": 634,
+          "source_mask_samples": 10204,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 621,
+          "chart_covered_samples": 9957,
           "valid_output_pixels": 9475
         },
         {
           "reference_id": 1,
           "proposal": "mask-1",
-          "source_mask_samples": 578,
+          "source_mask_samples": 9276,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 555,
+          "chart_covered_samples": 9115,
           "valid_output_pixels": 13154
         }
       ]
@@ -1047,25 +1047,25 @@
         {
           "reference_id": 3,
           "proposal": "mask-0-single-474-0",
-          "source_mask_samples": 10096,
+          "source_mask_samples": 161628,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 9999,
+          "chart_covered_samples": 160186,
           "valid_output_pixels": 159125
         },
         {
           "reference_id": 2,
           "proposal": "mask-0-single-474-1",
-          "source_mask_samples": 637,
+          "source_mask_samples": 10284,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 625,
+          "chart_covered_samples": 10103,
           "valid_output_pixels": 9757
         },
         {
           "reference_id": 1,
           "proposal": "mask-1",
-          "source_mask_samples": 633,
+          "source_mask_samples": 9972,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 597,
+          "chart_covered_samples": 9769,
           "valid_output_pixels": 15860
         }
       ]
@@ -1077,9 +1077,9 @@
         {
           "reference_id": 1,
           "proposal": "mask-0",
-          "source_mask_samples": 81000,
+          "source_mask_samples": 1296000,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 81000,
+          "chart_covered_samples": 1296000,
           "valid_output_pixels": 253924
         }
       ]
@@ -1091,9 +1091,9 @@
         {
           "reference_id": 1,
           "proposal": "mask-0",
-          "source_mask_samples": 81000,
+          "source_mask_samples": 1296000,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 81000,
+          "chart_covered_samples": 1296000,
           "valid_output_pixels": 253924
         }
       ]
@@ -1105,41 +1105,41 @@
         {
           "reference_id": 1,
           "proposal": "mask-0",
-          "source_mask_samples": 1636,
+          "source_mask_samples": 26152,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 1610,
+          "chart_covered_samples": 25979,
           "valid_output_pixels": 25656
         },
         {
           "reference_id": 7,
           "proposal": "mask-2",
-          "source_mask_samples": 970,
+          "source_mask_samples": 15368,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 892,
+          "chart_covered_samples": 14522,
           "valid_output_pixels": 27296
         },
         {
           "reference_id": 8,
           "proposal": "mask-4",
-          "source_mask_samples": 529,
+          "source_mask_samples": 8360,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 512,
+          "chart_covered_samples": 8248,
           "valid_output_pixels": 10316
         },
         {
           "reference_id": 3,
           "proposal": "mask-5",
-          "source_mask_samples": 325,
+          "source_mask_samples": 5236,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 307,
+          "chart_covered_samples": 4991,
           "valid_output_pixels": 7501
         },
         {
           "reference_id": 2,
           "proposal": "planarity-new-1-0",
-          "source_mask_samples": 4972,
+          "source_mask_samples": 79552,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 4966,
+          "chart_covered_samples": 79345,
           "valid_output_pixels": 80701
         }
       ]
@@ -1151,41 +1151,41 @@
         {
           "reference_id": 2,
           "proposal": "mask-0",
-          "source_mask_samples": 6172,
+          "source_mask_samples": 98672,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 6093,
+          "chart_covered_samples": 97755,
           "valid_output_pixels": 98101
         },
         {
           "reference_id": 1,
           "proposal": "mask-1",
-          "source_mask_samples": 1630,
+          "source_mask_samples": 26120,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 1606,
+          "chart_covered_samples": 25995,
           "valid_output_pixels": 25742
         },
         {
           "reference_id": 7,
           "proposal": "mask-2",
-          "source_mask_samples": 629,
+          "source_mask_samples": 10072,
           "chart_kind": "wall normal + assumed-70-degree-vertical-fov",
-          "chart_covered_samples": 629,
+          "chart_covered_samples": 10072,
           "valid_output_pixels": 9975
         },
         {
           "reference_id": 8,
           "proposal": "mask-3",
-          "source_mask_samples": 523,
+          "source_mask_samples": 8320,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 501,
+          "chart_covered_samples": 8193,
           "valid_output_pixels": 10441
         },
         {
           "reference_id": 3,
           "proposal": "mask-4",
-          "source_mask_samples": 331,
+          "source_mask_samples": 5340,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 314,
+          "chart_covered_samples": 5044,
           "valid_output_pixels": 6622
         }
       ]
@@ -1197,25 +1197,25 @@
         {
           "reference_id": 2,
           "proposal": "mask-0-wall-0",
-          "source_mask_samples": 671,
+          "source_mask_samples": 10608,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 662,
+          "chart_covered_samples": 10584,
           "valid_output_pixels": 10085
         },
         {
           "reference_id": 3,
           "proposal": "mask-0-wall-1",
-          "source_mask_samples": 7903,
+          "source_mask_samples": 126152,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 7858,
+          "chart_covered_samples": 125881,
           "valid_output_pixels": 125068
         },
         {
           "reference_id": 1,
           "proposal": "mask-1",
-          "source_mask_samples": 623,
+          "source_mask_samples": 10024,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 607,
+          "chart_covered_samples": 9848,
           "valid_output_pixels": 12295
         }
       ]
@@ -1227,25 +1227,25 @@
         {
           "reference_id": 2,
           "proposal": "mask-0-wall-0",
-          "source_mask_samples": 669,
+          "source_mask_samples": 10548,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 660,
+          "chart_covered_samples": 10465,
           "valid_output_pixels": 10132
         },
         {
           "reference_id": 3,
           "proposal": "mask-0-wall-1",
-          "source_mask_samples": 9746,
+          "source_mask_samples": 155992,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 9609,
+          "chart_covered_samples": 153921,
           "valid_output_pixels": 151763
         },
         {
           "reference_id": 1,
           "proposal": "mask-1",
-          "source_mask_samples": 463,
+          "source_mask_samples": 7472,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 448,
+          "chart_covered_samples": 7251,
           "valid_output_pixels": 15602
         }
       ]
@@ -1257,9 +1257,9 @@
         {
           "reference_id": 2,
           "proposal": "mask-0",
-          "source_mask_samples": 80953,
+          "source_mask_samples": 1295212,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 79531,
+          "chart_covered_samples": 1274892,
           "valid_output_pixels": 249990
         }
       ]
@@ -1271,9 +1271,9 @@
         {
           "reference_id": 2,
           "proposal": "mask-0",
-          "source_mask_samples": 80953,
+          "source_mask_samples": 1295212,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 79531,
+          "chart_covered_samples": 1274892,
           "valid_output_pixels": 249990
         }
       ]
@@ -1285,63 +1285,63 @@
         {
           "reference_id": 1,
           "proposal": "mask-0",
-          "source_mask_samples": 4204,
+          "source_mask_samples": 67368,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 3709,
+          "chart_covered_samples": 59452,
           "valid_output_pixels": 70586
         },
         {
           "reference_id": 2,
           "proposal": "mask-1",
-          "source_mask_samples": 2071,
+          "source_mask_samples": 33108,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 1998,
+          "chart_covered_samples": 32196,
           "valid_output_pixels": 31755
         },
         {
           "reference_id": 10,
           "proposal": "mask-2-wall-0",
-          "source_mask_samples": 1631,
+          "source_mask_samples": 26120,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 1586,
+          "chart_covered_samples": 25603,
           "valid_output_pixels": 25652
         },
         {
           "reference_id": 11,
           "proposal": "mask-2-wall-1",
-          "source_mask_samples": 268,
+          "source_mask_samples": 4324,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 236,
+          "chart_covered_samples": 3878,
           "valid_output_pixels": 3646
         },
         {
           "reference_id": 3,
           "proposal": "mask-3",
-          "source_mask_samples": 1442,
+          "source_mask_samples": 23044,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 1419,
+          "chart_covered_samples": 22714,
           "valid_output_pixels": 22765
         },
         {
           "reference_id": 12,
           "proposal": "mask-4",
-          "source_mask_samples": 1032,
+          "source_mask_samples": 16480,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 990,
+          "chart_covered_samples": 15823,
           "valid_output_pixels": 31270
         },
         {
           "reference_id": 4,
           "proposal": "mask-5",
-          "source_mask_samples": 288,
+          "source_mask_samples": 4592,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 264,
+          "chart_covered_samples": 4387,
           "valid_output_pixels": 8036
         },
         {
           "reference_id": 5,
           "proposal": "mask-6",
-          "source_mask_samples": 130,
+          "source_mask_samples": 2224,
           "chart_kind": null,
           "chart_covered_samples": null,
           "valid_output_pixels": 0
@@ -1355,57 +1355,57 @@
         {
           "reference_id": 1,
           "proposal": "mask-0",
-          "source_mask_samples": 4232,
+          "source_mask_samples": 67560,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 3744,
+          "chart_covered_samples": 60472,
           "valid_output_pixels": 72218
         },
         {
           "reference_id": 2,
           "proposal": "mask-1",
-          "source_mask_samples": 2096,
+          "source_mask_samples": 33408,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 2071,
+          "chart_covered_samples": 32994,
           "valid_output_pixels": 32570
         },
         {
           "reference_id": 11,
           "proposal": "mask-2-single-95-0",
-          "source_mask_samples": 310,
+          "source_mask_samples": 5008,
           "chart_kind": "wall normal + assumed-70-degree-vertical-fov",
-          "chart_covered_samples": 310,
+          "chart_covered_samples": 5008,
           "valid_output_pixels": 4616
         },
         {
           "reference_id": 10,
           "proposal": "mask-2-single-95-1",
-          "source_mask_samples": 1603,
+          "source_mask_samples": 25668,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 1584,
+          "chart_covered_samples": 25589,
           "valid_output_pixels": 25815
         },
         {
           "reference_id": 3,
           "proposal": "mask-3",
-          "source_mask_samples": 1446,
+          "source_mask_samples": 23128,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 1369,
+          "chart_covered_samples": 22219,
           "valid_output_pixels": 21923
         },
         {
           "reference_id": 12,
           "proposal": "mask-4",
-          "source_mask_samples": 1033,
+          "source_mask_samples": 16500,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 994,
+          "chart_covered_samples": 15852,
           "valid_output_pixels": 31929
         },
         {
           "reference_id": 4,
           "proposal": "mask-5",
-          "source_mask_samples": 265,
+          "source_mask_samples": 4156,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 230,
+          "chart_covered_samples": 3788,
           "valid_output_pixels": 6702
         }
       ]
@@ -1417,41 +1417,41 @@
         {
           "reference_id": 7,
           "proposal": "mask-0-wall-0",
-          "source_mask_samples": 3998,
+          "source_mask_samples": 63964,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 3978,
+          "chart_covered_samples": 63656,
           "valid_output_pixels": 62804
         },
         {
           "reference_id": 5,
           "proposal": "mask-0-wall-1",
-          "source_mask_samples": 3111,
+          "source_mask_samples": 49496,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 2981,
+          "chart_covered_samples": 47552,
           "valid_output_pixels": 54025
         },
         {
           "reference_id": 6,
           "proposal": "mask-1",
-          "source_mask_samples": 1149,
+          "source_mask_samples": 18512,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 1113,
+          "chart_covered_samples": 18156,
           "valid_output_pixels": 17674
         },
         {
           "reference_id": 1,
           "proposal": "mask-2",
-          "source_mask_samples": 1051,
+          "source_mask_samples": 17048,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 1018,
+          "chart_covered_samples": 16214,
           "valid_output_pixels": 18569
         },
         {
           "reference_id": 2,
           "proposal": "mask-3",
-          "source_mask_samples": 813,
+          "source_mask_samples": 12964,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 765,
+          "chart_covered_samples": 12208,
           "valid_output_pixels": 11944
         }
       ]
@@ -1463,41 +1463,41 @@
         {
           "reference_id": 7,
           "proposal": "mask-0-wall-0",
-          "source_mask_samples": 3996,
+          "source_mask_samples": 63760,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 3969,
+          "chart_covered_samples": 63471,
           "valid_output_pixels": 62826
         },
         {
           "reference_id": 5,
           "proposal": "mask-0-wall-1",
-          "source_mask_samples": 3136,
+          "source_mask_samples": 50008,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 3021,
+          "chart_covered_samples": 48203,
           "valid_output_pixels": 56280
         },
         {
           "reference_id": 6,
           "proposal": "mask-1",
-          "source_mask_samples": 1138,
+          "source_mask_samples": 18400,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 1113,
+          "chart_covered_samples": 18101,
           "valid_output_pixels": 17700
         },
         {
           "reference_id": 1,
           "proposal": "mask-2",
-          "source_mask_samples": 999,
+          "source_mask_samples": 16268,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 981,
+          "chart_covered_samples": 15678,
           "valid_output_pixels": 17371
         },
         {
           "reference_id": 2,
           "proposal": "mask-3",
-          "source_mask_samples": 823,
+          "source_mask_samples": 13036,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 798,
+          "chart_covered_samples": 12497,
           "valid_output_pixels": 12295
         }
       ]
@@ -1509,9 +1509,9 @@
         {
           "reference_id": 2,
           "proposal": "mask-0",
-          "source_mask_samples": 81000,
+          "source_mask_samples": 1296000,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 81000,
+          "chart_covered_samples": 1296000,
           "valid_output_pixels": 253924
         }
       ]
@@ -1523,9 +1523,9 @@
         {
           "reference_id": 2,
           "proposal": "mask-0",
-          "source_mask_samples": 81000,
+          "source_mask_samples": 1296000,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 81000,
+          "chart_covered_samples": 1296000,
           "valid_output_pixels": 253924
         }
       ]
@@ -1537,57 +1537,57 @@
         {
           "reference_id": 2,
           "proposal": "mask-0",
-          "source_mask_samples": 2075,
+          "source_mask_samples": 33332,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 2059,
+          "chart_covered_samples": 33162,
           "valid_output_pixels": 32747
         },
         {
           "reference_id": 11,
           "proposal": "mask-2-wall-0",
-          "source_mask_samples": 306,
+          "source_mask_samples": 4864,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 261,
+          "chart_covered_samples": 4279,
           "valid_output_pixels": 4274
         },
         {
           "reference_id": 10,
           "proposal": "mask-2-wall-1",
-          "source_mask_samples": 1597,
+          "source_mask_samples": 25472,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 1585,
+          "chart_covered_samples": 25371,
           "valid_output_pixels": 25678
         },
         {
           "reference_id": 3,
           "proposal": "mask-3-single-68-2",
-          "source_mask_samples": 1155,
+          "source_mask_samples": 18352,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 1144,
+          "chart_covered_samples": 18256,
           "valid_output_pixels": 18040
         },
         {
           "reference_id": 12,
           "proposal": "mask-4-single-437-0",
-          "source_mask_samples": 645,
+          "source_mask_samples": 10172,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 623,
+          "chart_covered_samples": 9959,
           "valid_output_pixels": 12731
         },
         {
           "reference_id": 4,
           "proposal": "mask-5",
-          "source_mask_samples": 292,
+          "source_mask_samples": 4648,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 265,
+          "chart_covered_samples": 4357,
           "valid_output_pixels": 7264
         },
         {
           "reference_id": 5,
           "proposal": "mask-7",
-          "source_mask_samples": 118,
+          "source_mask_samples": 1924,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 97,
+          "chart_covered_samples": 1532,
           "valid_output_pixels": 7680
         }
       ]
@@ -1599,57 +1599,57 @@
         {
           "reference_id": 1,
           "proposal": "mask-0",
-          "source_mask_samples": 4031,
+          "source_mask_samples": 64144,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 3731,
+          "chart_covered_samples": 59044,
           "valid_output_pixels": 65415
         },
         {
           "reference_id": 2,
           "proposal": "mask-1",
-          "source_mask_samples": 2097,
+          "source_mask_samples": 33572,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 2032,
+          "chart_covered_samples": 32711,
           "valid_output_pixels": 32069
         },
         {
           "reference_id": 10,
           "proposal": "mask-2-junction-0",
-          "source_mask_samples": 1614,
+          "source_mask_samples": 25776,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 1602,
+          "chart_covered_samples": 25726,
           "valid_output_pixels": 25924
         },
         {
           "reference_id": 11,
           "proposal": "mask-2-junction-1",
-          "source_mask_samples": 208,
+          "source_mask_samples": 3268,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 172,
+          "chart_covered_samples": 2808,
           "valid_output_pixels": 2543
         },
         {
           "reference_id": 3,
           "proposal": "mask-3-wall-0",
-          "source_mask_samples": 1200,
+          "source_mask_samples": 19308,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 1182,
+          "chart_covered_samples": 18990,
           "valid_output_pixels": 18822
         },
         {
           "reference_id": 12,
           "proposal": "mask-4",
-          "source_mask_samples": 815,
+          "source_mask_samples": 12984,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 731,
+          "chart_covered_samples": 11892,
           "valid_output_pixels": 22827
         },
         {
           "reference_id": 4,
           "proposal": "mask-5",
-          "source_mask_samples": 287,
+          "source_mask_samples": 4584,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 269,
+          "chart_covered_samples": 4400,
           "valid_output_pixels": 8384
         }
       ]
@@ -1661,41 +1661,41 @@
         {
           "reference_id": 7,
           "proposal": "mask-0-wall-0-mobile-1",
-          "source_mask_samples": 3382,
+          "source_mask_samples": 53772,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 3358,
+          "chart_covered_samples": 53373,
           "valid_output_pixels": 52680
         },
         {
           "reference_id": 5,
           "proposal": "mask-0-wall-1",
-          "source_mask_samples": 2678,
+          "source_mask_samples": 43056,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 2573,
+          "chart_covered_samples": 41480,
           "valid_output_pixels": 39843
         },
         {
           "reference_id": 6,
           "proposal": "mask-1",
-          "source_mask_samples": 1133,
+          "source_mask_samples": 18400,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 1123,
+          "chart_covered_samples": 18220,
           "valid_output_pixels": 17659
         },
         {
           "reference_id": 1,
           "proposal": "mask-2",
-          "source_mask_samples": 1051,
+          "source_mask_samples": 16844,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 1029,
+          "chart_covered_samples": 16404,
           "valid_output_pixels": 17271
         },
         {
           "reference_id": 2,
           "proposal": "mask-3",
-          "source_mask_samples": 820,
+          "source_mask_samples": 13100,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 810,
+          "chart_covered_samples": 12940,
           "valid_output_pixels": 12499
         }
       ]
@@ -1707,41 +1707,41 @@
         {
           "reference_id": 5,
           "proposal": "mask-0-junction-0-single-457-0",
-          "source_mask_samples": 3012,
+          "source_mask_samples": 48000,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 2885,
+          "chart_covered_samples": 46252,
           "valid_output_pixels": 45000
         },
         {
           "reference_id": 6,
           "proposal": "mask-0-junction-0-single-457-2",
-          "source_mask_samples": 1122,
+          "source_mask_samples": 17988,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 1110,
+          "chart_covered_samples": 17852,
           "valid_output_pixels": 17326
         },
         {
           "reference_id": 7,
           "proposal": "mask-0-junction-1-mobile-1",
-          "source_mask_samples": 3408,
+          "source_mask_samples": 54292,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 3267,
+          "chart_covered_samples": 51819,
           "valid_output_pixels": 51300
         },
         {
           "reference_id": 1,
           "proposal": "mask-1-junction-1",
-          "source_mask_samples": 835,
+          "source_mask_samples": 13400,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 695,
+          "chart_covered_samples": 11576,
           "valid_output_pixels": 13140
         },
         {
           "reference_id": 2,
           "proposal": "mask-2",
-          "source_mask_samples": 822,
+          "source_mask_samples": 13000,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 814,
+          "chart_covered_samples": 12858,
           "valid_output_pixels": 12571
         }
       ]
@@ -1753,121 +1753,121 @@
         {
           "reference_id": 6,
           "proposal": "mask-0-junction-0",
-          "source_mask_samples": 198,
+          "source_mask_samples": 3172,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 189,
+          "chart_covered_samples": 3102,
           "valid_output_pixels": 2935
         },
         {
           "reference_id": 9,
           "proposal": "mask-0-junction-1-single-234-0",
-          "source_mask_samples": 1635,
+          "source_mask_samples": 25988,
           "chart_kind": "wall normal + assumed-70-degree-vertical-fov",
-          "chart_covered_samples": 1635,
+          "chart_covered_samples": 25988,
           "valid_output_pixels": 26492
         },
         {
           "reference_id": 8,
           "proposal": "mask-0-junction-1-single-234-1",
-          "source_mask_samples": 356,
+          "source_mask_samples": 5868,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 345,
+          "chart_covered_samples": 5705,
           "valid_output_pixels": 5365
         },
         {
           "reference_id": 4,
           "proposal": "mask-1",
-          "source_mask_samples": 1239,
+          "source_mask_samples": 19792,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 1229,
+          "chart_covered_samples": 19644,
           "valid_output_pixels": 19188
         },
         {
           "reference_id": 10,
           "proposal": "mask-2",
-          "source_mask_samples": 836,
+          "source_mask_samples": 13328,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 761,
+          "chart_covered_samples": 12006,
           "valid_output_pixels": 54631
         },
         {
           "reference_id": 3,
           "proposal": "mask-3",
-          "source_mask_samples": 790,
+          "source_mask_samples": 12584,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 771,
+          "chart_covered_samples": 12534,
           "valid_output_pixels": 12098
         },
         {
           "reference_id": 16,
           "proposal": "mask-4-wall-0",
-          "source_mask_samples": 546,
+          "source_mask_samples": 8788,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 496,
+          "chart_covered_samples": 8068,
           "valid_output_pixels": 9967
         },
         {
           "reference_id": 17,
           "proposal": "mask-4-wall-1",
-          "source_mask_samples": 193,
+          "source_mask_samples": 3168,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 179,
+          "chart_covered_samples": 3019,
           "valid_output_pixels": 3388
         },
         {
           "reference_id": 2,
           "proposal": "mask-5",
-          "source_mask_samples": 453,
+          "source_mask_samples": 7280,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 436,
+          "chart_covered_samples": 7211,
           "valid_output_pixels": 7102
         },
         {
           "reference_id": 1,
           "proposal": "mask-6",
-          "source_mask_samples": 329,
+          "source_mask_samples": 5228,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 318,
+          "chart_covered_samples": 5166,
           "valid_output_pixels": 4828
         },
         {
           "reference_id": 13,
           "proposal": "mask-7",
-          "source_mask_samples": 273,
+          "source_mask_samples": 4444,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 259,
+          "chart_covered_samples": 4161,
           "valid_output_pixels": 3905
         },
         {
           "reference_id": 12,
           "proposal": "mask-8",
-          "source_mask_samples": 222,
+          "source_mask_samples": 3572,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 187,
+          "chart_covered_samples": 3103,
           "valid_output_pixels": 2745
         },
         {
           "reference_id": 14,
           "proposal": "mask-9",
-          "source_mask_samples": 207,
+          "source_mask_samples": 3540,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 184,
+          "chart_covered_samples": 3197,
           "valid_output_pixels": 2862
         },
         {
           "reference_id": 15,
           "proposal": "mask-10",
-          "source_mask_samples": 211,
+          "source_mask_samples": 3160,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 169,
+          "chart_covered_samples": 2952,
           "valid_output_pixels": 2946
         },
         {
           "reference_id": 11,
           "proposal": "mask-11",
-          "source_mask_samples": 189,
+          "source_mask_samples": 3012,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 174,
+          "chart_covered_samples": 2846,
           "valid_output_pixels": 2542
         }
       ]
@@ -1879,121 +1879,121 @@
         {
           "reference_id": 1,
           "proposal": "mask-0-junction-0-planarity-split-0",
-          "source_mask_samples": 323,
+          "source_mask_samples": 5124,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 312,
+          "chart_covered_samples": 5058,
           "valid_output_pixels": 4891
         },
         {
           "reference_id": 7,
           "proposal": "mask-0-junction-0-planarity-split-1",
-          "source_mask_samples": 258,
+          "source_mask_samples": 4156,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 250,
+          "chart_covered_samples": 4068,
           "valid_output_pixels": 3837
         },
         {
           "reference_id": 9,
           "proposal": "mask-0-junction-1",
-          "source_mask_samples": 1394,
+          "source_mask_samples": 22156,
           "chart_kind": "wall normal + assumed-70-degree-vertical-fov",
-          "chart_covered_samples": 1394,
+          "chart_covered_samples": 22156,
           "valid_output_pixels": 22988
         },
         {
           "reference_id": 4,
           "proposal": "mask-1",
-          "source_mask_samples": 1240,
+          "source_mask_samples": 19804,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 1234,
+          "chart_covered_samples": 19700,
           "valid_output_pixels": 19303
         },
         {
           "reference_id": 3,
           "proposal": "mask-2",
-          "source_mask_samples": 796,
+          "source_mask_samples": 12632,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 791,
+          "chart_covered_samples": 12533,
           "valid_output_pixels": 12116
         },
         {
           "reference_id": 16,
           "proposal": "mask-3",
-          "source_mask_samples": 527,
+          "source_mask_samples": 8520,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 523,
+          "chart_covered_samples": 8350,
           "valid_output_pixels": 9665
         },
         {
           "reference_id": 2,
           "proposal": "mask-4",
-          "source_mask_samples": 444,
+          "source_mask_samples": 7248,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 434,
+          "chart_covered_samples": 7198,
           "valid_output_pixels": 6914
         },
         {
           "reference_id": 8,
           "proposal": "mask-6",
-          "source_mask_samples": 340,
+          "source_mask_samples": 5276,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 327,
+          "chart_covered_samples": 5228,
           "valid_output_pixels": 4993
         },
         {
           "reference_id": 13,
           "proposal": "mask-7",
-          "source_mask_samples": 275,
+          "source_mask_samples": 4476,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 275,
+          "chart_covered_samples": 4342,
           "valid_output_pixels": 4033
         },
         {
           "reference_id": 14,
           "proposal": "mask-8",
-          "source_mask_samples": 237,
+          "source_mask_samples": 3812,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 196,
+          "chart_covered_samples": 3264,
           "valid_output_pixels": 2939
         },
         {
           "reference_id": 12,
           "proposal": "mask-9",
-          "source_mask_samples": 230,
+          "source_mask_samples": 3740,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 185,
+          "chart_covered_samples": 3130,
           "valid_output_pixels": 2778
         },
         {
           "reference_id": 17,
           "proposal": "mask-10",
-          "source_mask_samples": 213,
+          "source_mask_samples": 3464,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 206,
+          "chart_covered_samples": 3356,
           "valid_output_pixels": 3243
         },
         {
           "reference_id": 15,
           "proposal": "mask-11",
-          "source_mask_samples": 219,
+          "source_mask_samples": 3480,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 172,
+          "chart_covered_samples": 2919,
           "valid_output_pixels": 2639
         },
         {
           "reference_id": 11,
           "proposal": "mask-12",
-          "source_mask_samples": 198,
+          "source_mask_samples": 3076,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 188,
+          "chart_covered_samples": 3009,
           "valid_output_pixels": 2779
         },
         {
           "reference_id": 6,
           "proposal": "mask-13",
-          "source_mask_samples": 185,
+          "source_mask_samples": 2948,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 174,
+          "chart_covered_samples": 2882,
           "valid_output_pixels": 2731
         }
       ]
@@ -2005,145 +2005,145 @@
         {
           "reference_id": 20,
           "proposal": "mask-0",
-          "source_mask_samples": 1385,
+          "source_mask_samples": 22156,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 1156,
+          "chart_covered_samples": 18802,
           "valid_output_pixels": 19040
         },
         {
           "reference_id": 11,
           "proposal": "mask-1",
-          "source_mask_samples": 1035,
+          "source_mask_samples": 16656,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 1021,
+          "chart_covered_samples": 16560,
           "valid_output_pixels": 16008
         },
         {
           "reference_id": 13,
           "proposal": "mask-2",
-          "source_mask_samples": 897,
+          "source_mask_samples": 14368,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 864,
+          "chart_covered_samples": 13727,
           "valid_output_pixels": 13218
         },
         {
           "reference_id": 12,
           "proposal": "mask-3",
-          "source_mask_samples": 775,
+          "source_mask_samples": 12300,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 733,
+          "chart_covered_samples": 12020,
           "valid_output_pixels": 11490
         },
         {
           "reference_id": 19,
           "proposal": "mask-4-single-359-0",
-          "source_mask_samples": 256,
+          "source_mask_samples": 3872,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 250,
+          "chart_covered_samples": 3848,
           "valid_output_pixels": 3912
         },
         {
           "reference_id": 15,
           "proposal": "mask-4-single-359-2",
-          "source_mask_samples": 287,
+          "source_mask_samples": 4716,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 267,
+          "chart_covered_samples": 4326,
           "valid_output_pixels": 4035
         },
         {
           "reference_id": 16,
           "proposal": "mask-5",
-          "source_mask_samples": 546,
+          "source_mask_samples": 8508,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 526,
+          "chart_covered_samples": 8330,
           "valid_output_pixels": 8050
         },
         {
           "reference_id": 7,
           "proposal": "mask-6",
-          "source_mask_samples": 445,
+          "source_mask_samples": 7220,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 429,
+          "chart_covered_samples": 6872,
           "valid_output_pixels": 6676
         },
         {
           "reference_id": 17,
           "proposal": "mask-7",
-          "source_mask_samples": 415,
+          "source_mask_samples": 6856,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 387,
+          "chart_covered_samples": 6459,
           "valid_output_pixels": 6763
         },
         {
           "reference_id": 9,
           "proposal": "mask-8",
-          "source_mask_samples": 407,
+          "source_mask_samples": 6564,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 348,
+          "chart_covered_samples": 5831,
           "valid_output_pixels": 7451
         },
         {
           "reference_id": 10,
           "proposal": "mask-9",
-          "source_mask_samples": 405,
+          "source_mask_samples": 6500,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 389,
+          "chart_covered_samples": 6331,
           "valid_output_pixels": 6506
         },
         {
           "reference_id": 18,
           "proposal": "mask-10",
-          "source_mask_samples": 379,
+          "source_mask_samples": 5796,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 324,
+          "chart_covered_samples": 4918,
           "valid_output_pixels": 4836
         },
         {
           "reference_id": 8,
           "proposal": "mask-11",
-          "source_mask_samples": 193,
+          "source_mask_samples": 3216,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 180,
+          "chart_covered_samples": 2939,
           "valid_output_pixels": 3024
         },
         {
           "reference_id": 14,
           "proposal": "mask-12",
-          "source_mask_samples": 154,
+          "source_mask_samples": 2496,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 151,
+          "chart_covered_samples": 2415,
           "valid_output_pixels": 2206
         },
         {
           "reference_id": 6,
           "proposal": "mask-13",
-          "source_mask_samples": 135,
+          "source_mask_samples": 2212,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 122,
+          "chart_covered_samples": 2147,
           "valid_output_pixels": 2067
         },
         {
           "reference_id": 1,
           "proposal": "mask-14",
-          "source_mask_samples": 109,
+          "source_mask_samples": 1700,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 86,
+          "chart_covered_samples": 1412,
           "valid_output_pixels": 1564
         },
         {
           "reference_id": 3,
           "proposal": "mask-16",
-          "source_mask_samples": 76,
+          "source_mask_samples": 1388,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 66,
+          "chart_covered_samples": 1091,
           "valid_output_pixels": 1405
         },
         {
           "reference_id": 4,
           "proposal": "mask-17",
-          "source_mask_samples": 85,
+          "source_mask_samples": 1252,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 82,
+          "chart_covered_samples": 1217,
           "valid_output_pixels": 1287
         }
       ]
@@ -2155,145 +2155,145 @@
         {
           "reference_id": 20,
           "proposal": "mask-0-planarity-split-1",
-          "source_mask_samples": 967,
+          "source_mask_samples": 15432,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 892,
+          "chart_covered_samples": 14273,
           "valid_output_pixels": 16141
         },
         {
           "reference_id": 11,
           "proposal": "mask-1",
-          "source_mask_samples": 1042,
+          "source_mask_samples": 16744,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 1032,
+          "chart_covered_samples": 16633,
           "valid_output_pixels": 16134
         },
         {
           "reference_id": 13,
           "proposal": "mask-2",
-          "source_mask_samples": 889,
+          "source_mask_samples": 14276,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 852,
+          "chart_covered_samples": 13597,
           "valid_output_pixels": 13053
         },
         {
           "reference_id": 12,
           "proposal": "mask-3",
-          "source_mask_samples": 771,
+          "source_mask_samples": 12144,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 731,
+          "chart_covered_samples": 11828,
           "valid_output_pixels": 11374
         },
         {
           "reference_id": 19,
           "proposal": "mask-4-single-364-0",
-          "source_mask_samples": 247,
+          "source_mask_samples": 3732,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 245,
+          "chart_covered_samples": 3697,
           "valid_output_pixels": 3741
         },
         {
           "reference_id": 15,
           "proposal": "mask-4-single-364-2",
-          "source_mask_samples": 284,
+          "source_mask_samples": 4664,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 265,
+          "chart_covered_samples": 4298,
           "valid_output_pixels": 4004
         },
         {
           "reference_id": 16,
           "proposal": "mask-5",
-          "source_mask_samples": 533,
+          "source_mask_samples": 8352,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 491,
+          "chart_covered_samples": 7788,
           "valid_output_pixels": 7851
         },
         {
           "reference_id": 7,
           "proposal": "mask-6",
-          "source_mask_samples": 452,
+          "source_mask_samples": 7380,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 420,
+          "chart_covered_samples": 6719,
           "valid_output_pixels": 6506
         },
         {
           "reference_id": 17,
           "proposal": "mask-7",
-          "source_mask_samples": 415,
+          "source_mask_samples": 6768,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 370,
+          "chart_covered_samples": 6170,
           "valid_output_pixels": 6247
         },
         {
           "reference_id": 9,
           "proposal": "mask-8",
-          "source_mask_samples": 408,
+          "source_mask_samples": 6596,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 356,
+          "chart_covered_samples": 6010,
           "valid_output_pixels": 8433
         },
         {
           "reference_id": 10,
           "proposal": "mask-9",
-          "source_mask_samples": 384,
+          "source_mask_samples": 6224,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 377,
+          "chart_covered_samples": 6123,
           "valid_output_pixels": 5905
         },
         {
           "reference_id": 18,
           "proposal": "mask-10",
-          "source_mask_samples": 353,
+          "source_mask_samples": 5524,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 328,
+          "chart_covered_samples": 5035,
           "valid_output_pixels": 5056
         },
         {
           "reference_id": 8,
           "proposal": "mask-11",
-          "source_mask_samples": 205,
+          "source_mask_samples": 3380,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 191,
+          "chart_covered_samples": 2972,
           "valid_output_pixels": 2634
         },
         {
           "reference_id": 6,
           "proposal": "mask-12",
-          "source_mask_samples": 144,
+          "source_mask_samples": 2336,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 144,
+          "chart_covered_samples": 2254,
           "valid_output_pixels": 2020
         },
         {
           "reference_id": 14,
           "proposal": "mask-13",
-          "source_mask_samples": 137,
+          "source_mask_samples": 2192,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 128,
+          "chart_covered_samples": 1977,
           "valid_output_pixels": 1880
         },
         {
           "reference_id": 1,
           "proposal": "mask-15",
-          "source_mask_samples": 106,
+          "source_mask_samples": 1660,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 82,
+          "chart_covered_samples": 1406,
           "valid_output_pixels": 1453
         },
         {
           "reference_id": 3,
           "proposal": "mask-17",
-          "source_mask_samples": 83,
+          "source_mask_samples": 1432,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 65,
+          "chart_covered_samples": 1245,
           "valid_output_pixels": 1260
         },
         {
           "reference_id": 4,
           "proposal": "mask-18",
-          "source_mask_samples": 85,
+          "source_mask_samples": 1252,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 82,
+          "chart_covered_samples": 1217,
           "valid_output_pixels": 1291
         }
       ]
@@ -2305,121 +2305,121 @@
         {
           "reference_id": 7,
           "proposal": "mask-0-junction-0",
-          "source_mask_samples": 303,
+          "source_mask_samples": 4800,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 296,
+          "chart_covered_samples": 4582,
           "valid_output_pixels": 4238
         },
         {
           "reference_id": 9,
           "proposal": "mask-0-junction-1-single-206-0",
-          "source_mask_samples": 1677,
+          "source_mask_samples": 26772,
           "chart_kind": "wall normal + assumed-70-degree-vertical-fov",
-          "chart_covered_samples": 1677,
+          "chart_covered_samples": 26772,
           "valid_output_pixels": 29782
         },
         {
           "reference_id": 8,
           "proposal": "mask-0-junction-1-single-206-1",
-          "source_mask_samples": 391,
+          "source_mask_samples": 6308,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 367,
+          "chart_covered_samples": 5897,
           "valid_output_pixels": 5476
         },
         {
           "reference_id": 4,
           "proposal": "mask-1",
-          "source_mask_samples": 1214,
+          "source_mask_samples": 19424,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 1196,
+          "chart_covered_samples": 19369,
           "valid_output_pixels": 18947
         },
         {
           "reference_id": 3,
           "proposal": "mask-2",
-          "source_mask_samples": 788,
+          "source_mask_samples": 12604,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 754,
+          "chart_covered_samples": 12269,
           "valid_output_pixels": 11765
         },
         {
           "reference_id": 17,
           "proposal": "mask-3-wall-0",
-          "source_mask_samples": 214,
+          "source_mask_samples": 3468,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 194,
+          "chart_covered_samples": 3234,
           "valid_output_pixels": 3369
         },
         {
           "reference_id": 16,
           "proposal": "mask-3-wall-1",
-          "source_mask_samples": 532,
+          "source_mask_samples": 8512,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 496,
+          "chart_covered_samples": 8198,
           "valid_output_pixels": 9821
         },
         {
           "reference_id": 10,
           "proposal": "mask-4",
-          "source_mask_samples": 714,
+          "source_mask_samples": 11336,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 668,
+          "chart_covered_samples": 10483,
           "valid_output_pixels": 45573
         },
         {
           "reference_id": 2,
           "proposal": "mask-5",
-          "source_mask_samples": 481,
+          "source_mask_samples": 7640,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 466,
+          "chart_covered_samples": 7524,
           "valid_output_pixels": 7237
         },
         {
           "reference_id": 1,
           "proposal": "mask-6",
-          "source_mask_samples": 325,
+          "source_mask_samples": 5316,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 311,
+          "chart_covered_samples": 5124,
           "valid_output_pixels": 4948
         },
         {
           "reference_id": 13,
           "proposal": "mask-7",
-          "source_mask_samples": 276,
+          "source_mask_samples": 4320,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 267,
+          "chart_covered_samples": 4259,
           "valid_output_pixels": 4023
         },
         {
           "reference_id": 12,
           "proposal": "mask-8",
-          "source_mask_samples": 217,
+          "source_mask_samples": 3348,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 195,
+          "chart_covered_samples": 3135,
           "valid_output_pixels": 2758
         },
         {
           "reference_id": 14,
           "proposal": "mask-9",
-          "source_mask_samples": 179,
+          "source_mask_samples": 3036,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 178,
+          "chart_covered_samples": 3015,
           "valid_output_pixels": 2844
         },
         {
           "reference_id": 11,
           "proposal": "mask-10",
-          "source_mask_samples": 191,
+          "source_mask_samples": 3048,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 166,
+          "chart_covered_samples": 2736,
           "valid_output_pixels": 2595
         },
         {
           "reference_id": 15,
           "proposal": "mask-11",
-          "source_mask_samples": 163,
+          "source_mask_samples": 2664,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 163,
+          "chart_covered_samples": 2645,
           "valid_output_pixels": 2573
         }
       ]
@@ -2431,129 +2431,129 @@
         {
           "reference_id": 6,
           "proposal": "mask-0-junction-0",
-          "source_mask_samples": 200,
+          "source_mask_samples": 3164,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 190,
+          "chart_covered_samples": 3105,
           "valid_output_pixels": 2890
         },
         {
           "reference_id": 5,
           "proposal": "mask-0-junction-1-single-250-0",
-          "source_mask_samples": 163,
+          "source_mask_samples": 2596,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 148,
+          "chart_covered_samples": 2475,
           "valid_output_pixels": 2224
         },
         {
           "reference_id": 7,
           "proposal": "mask-0-junction-1-single-250-1",
-          "source_mask_samples": 289,
+          "source_mask_samples": 4700,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 287,
+          "chart_covered_samples": 4524,
           "valid_output_pixels": 4167
         },
         {
           "reference_id": 8,
           "proposal": "mask-0-junction-1-single-250-2",
-          "source_mask_samples": 365,
+          "source_mask_samples": 5976,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 344,
+          "chart_covered_samples": 5732,
           "valid_output_pixels": 5343
         },
         {
           "reference_id": 9,
           "proposal": "mask-0-junction-1-single-250-3",
-          "source_mask_samples": 1348,
+          "source_mask_samples": 21472,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 1262,
+          "chart_covered_samples": 20231,
           "valid_output_pixels": 19414
         },
         {
           "reference_id": 3,
           "proposal": "mask-1",
-          "source_mask_samples": 788,
+          "source_mask_samples": 12604,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 758,
+          "chart_covered_samples": 12200,
           "valid_output_pixels": 11817
         },
         {
           "reference_id": 4,
           "proposal": "mask-2",
-          "source_mask_samples": 741,
+          "source_mask_samples": 11824,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 712,
+          "chart_covered_samples": 11402,
           "valid_output_pixels": 10401
         },
         {
           "reference_id": 10,
           "proposal": "mask-3",
-          "source_mask_samples": 685,
+          "source_mask_samples": 10888,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 661,
+          "chart_covered_samples": 10614,
           "valid_output_pixels": 45397
         },
         {
           "reference_id": 2,
           "proposal": "mask-4",
-          "source_mask_samples": 476,
+          "source_mask_samples": 7572,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 450,
+          "chart_covered_samples": 7221,
           "valid_output_pixels": 6906
         },
         {
           "reference_id": 1,
           "proposal": "mask-6",
-          "source_mask_samples": 250,
+          "source_mask_samples": 4072,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 231,
+          "chart_covered_samples": 3766,
           "valid_output_pixels": 3378
         },
         {
           "reference_id": 13,
           "proposal": "mask-7",
-          "source_mask_samples": 254,
+          "source_mask_samples": 4084,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 246,
+          "chart_covered_samples": 3913,
           "valid_output_pixels": 3692
         },
         {
           "reference_id": 12,
           "proposal": "mask-8",
-          "source_mask_samples": 236,
+          "source_mask_samples": 3692,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 200,
+          "chart_covered_samples": 3251,
           "valid_output_pixels": 2887
         },
         {
           "reference_id": 17,
           "proposal": "mask-9",
-          "source_mask_samples": 222,
+          "source_mask_samples": 3548,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 190,
+          "chart_covered_samples": 3165,
           "valid_output_pixels": 3026
         },
         {
           "reference_id": 15,
           "proposal": "mask-10",
-          "source_mask_samples": 201,
+          "source_mask_samples": 3208,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 180,
+          "chart_covered_samples": 3128,
           "valid_output_pixels": 2993
         },
         {
           "reference_id": 14,
           "proposal": "mask-11",
-          "source_mask_samples": 201,
+          "source_mask_samples": 3200,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 201,
+          "chart_covered_samples": 3188,
           "valid_output_pixels": 2994
         },
         {
           "reference_id": 11,
           "proposal": "mask-12",
-          "source_mask_samples": 194,
+          "source_mask_samples": 3120,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 187,
+          "chart_covered_samples": 3059,
           "valid_output_pixels": 2803
         }
       ]
@@ -2565,137 +2565,137 @@
         {
           "reference_id": 15,
           "proposal": "mask-0-mobile-0",
-          "source_mask_samples": 289,
+          "source_mask_samples": 4880,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 272,
+          "chart_covered_samples": 4462,
           "valid_output_pixels": 4085
         },
         {
           "reference_id": 20,
           "proposal": "mask-0-mobile-1",
-          "source_mask_samples": 1340,
+          "source_mask_samples": 21308,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 1217,
+          "chart_covered_samples": 19488,
           "valid_output_pixels": 21892
         },
         {
           "reference_id": 19,
           "proposal": "mask-0-mobile-3",
-          "source_mask_samples": 301,
+          "source_mask_samples": 4708,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 254,
+          "chart_covered_samples": 4047,
           "valid_output_pixels": 3758
         },
         {
           "reference_id": 17,
           "proposal": "mask-0-mobile-5",
-          "source_mask_samples": 442,
+          "source_mask_samples": 7080,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 371,
+          "chart_covered_samples": 6097,
           "valid_output_pixels": 6329
         },
         {
           "reference_id": 11,
           "proposal": "mask-1",
-          "source_mask_samples": 972,
+          "source_mask_samples": 15524,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 943,
+          "chart_covered_samples": 15245,
           "valid_output_pixels": 14789
         },
         {
           "reference_id": 13,
           "proposal": "mask-2",
-          "source_mask_samples": 854,
+          "source_mask_samples": 13672,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 837,
+          "chart_covered_samples": 13518,
           "valid_output_pixels": 13056
         },
         {
           "reference_id": 12,
           "proposal": "mask-3",
-          "source_mask_samples": 762,
+          "source_mask_samples": 12076,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 735,
+          "chart_covered_samples": 11703,
           "valid_output_pixels": 11209
         },
         {
           "reference_id": 16,
           "proposal": "mask-4",
-          "source_mask_samples": 565,
+          "source_mask_samples": 9016,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 554,
+          "chart_covered_samples": 8813,
           "valid_output_pixels": 8572
         },
         {
           "reference_id": 7,
           "proposal": "mask-5",
-          "source_mask_samples": 417,
+          "source_mask_samples": 6908,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 407,
+          "chart_covered_samples": 6738,
           "valid_output_pixels": 6473
         },
         {
           "reference_id": 18,
           "proposal": "mask-6",
-          "source_mask_samples": 398,
+          "source_mask_samples": 6292,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 339,
+          "chart_covered_samples": 5151,
           "valid_output_pixels": 5031
         },
         {
           "reference_id": 10,
           "proposal": "mask-7",
-          "source_mask_samples": 318,
+          "source_mask_samples": 5136,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 301,
+          "chart_covered_samples": 4836,
           "valid_output_pixels": 4964
         },
         {
           "reference_id": 14,
           "proposal": "mask-9",
-          "source_mask_samples": 182,
+          "source_mask_samples": 2744,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 178,
+          "chart_covered_samples": 2600,
           "valid_output_pixels": 2362
         },
         {
           "reference_id": 8,
           "proposal": "mask-10",
-          "source_mask_samples": 149,
+          "source_mask_samples": 2368,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 136,
+          "chart_covered_samples": 2244,
           "valid_output_pixels": 1971
         },
         {
           "reference_id": 6,
           "proposal": "mask-12",
-          "source_mask_samples": 106,
+          "source_mask_samples": 1820,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 94,
+          "chart_covered_samples": 1613,
           "valid_output_pixels": 2338
         },
         {
           "reference_id": 4,
           "proposal": "mask-13",
-          "source_mask_samples": 98,
+          "source_mask_samples": 1588,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 80,
+          "chart_covered_samples": 1482,
           "valid_output_pixels": 1491
         },
         {
           "reference_id": 1,
           "proposal": "mask-14",
-          "source_mask_samples": 90,
+          "source_mask_samples": 1420,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 82,
+          "chart_covered_samples": 1398,
           "valid_output_pixels": 1467
         },
         {
           "reference_id": 9,
           "proposal": "underside-0",
-          "source_mask_samples": 492,
+          "source_mask_samples": 7932,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 410,
+          "chart_covered_samples": 6706,
           "valid_output_pixels": 34667
         }
       ]
@@ -2707,137 +2707,137 @@
         {
           "reference_id": 20,
           "proposal": "mask-0-single-333-0",
-          "source_mask_samples": 1335,
+          "source_mask_samples": 21180,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 1162,
+          "chart_covered_samples": 18548,
           "valid_output_pixels": 18553
         },
         {
           "reference_id": 17,
           "proposal": "mask-0-single-333-1",
-          "source_mask_samples": 443,
+          "source_mask_samples": 7100,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 351,
+          "chart_covered_samples": 5711,
           "valid_output_pixels": 5595
         },
         {
           "reference_id": 15,
           "proposal": "mask-0-single-333-2",
-          "source_mask_samples": 169,
+          "source_mask_samples": 2876,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 166,
+          "chart_covered_samples": 2609,
           "valid_output_pixels": 2703
         },
         {
           "reference_id": 19,
           "proposal": "mask-0-single-333-4",
-          "source_mask_samples": 253,
+          "source_mask_samples": 3904,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 241,
+          "chart_covered_samples": 3772,
           "valid_output_pixels": 3559
         },
         {
           "reference_id": 11,
           "proposal": "mask-1",
-          "source_mask_samples": 966,
+          "source_mask_samples": 15408,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 938,
+          "chart_covered_samples": 15143,
           "valid_output_pixels": 14623
         },
         {
           "reference_id": 13,
           "proposal": "mask-2",
-          "source_mask_samples": 854,
+          "source_mask_samples": 13668,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 831,
+          "chart_covered_samples": 13494,
           "valid_output_pixels": 13208
         },
         {
           "reference_id": 12,
           "proposal": "mask-3",
-          "source_mask_samples": 757,
+          "source_mask_samples": 12032,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 745,
+          "chart_covered_samples": 11732,
           "valid_output_pixels": 11312
         },
         {
           "reference_id": 16,
           "proposal": "mask-4",
-          "source_mask_samples": 557,
+          "source_mask_samples": 8936,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 547,
+          "chart_covered_samples": 8728,
           "valid_output_pixels": 8416
         },
         {
           "reference_id": 7,
           "proposal": "mask-5",
-          "source_mask_samples": 420,
+          "source_mask_samples": 6968,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 404,
+          "chart_covered_samples": 6681,
           "valid_output_pixels": 6426
         },
         {
           "reference_id": 18,
           "proposal": "mask-6",
-          "source_mask_samples": 388,
+          "source_mask_samples": 6072,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 282,
+          "chart_covered_samples": 4338,
           "valid_output_pixels": 4464
         },
         {
           "reference_id": 10,
           "proposal": "mask-8",
-          "source_mask_samples": 227,
+          "source_mask_samples": 3580,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 199,
+          "chart_covered_samples": 3175,
           "valid_output_pixels": 2976
         },
         {
           "reference_id": 8,
           "proposal": "mask-9",
-          "source_mask_samples": 208,
+          "source_mask_samples": 3296,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 169,
+          "chart_covered_samples": 2931,
           "valid_output_pixels": 2724
         },
         {
           "reference_id": 14,
           "proposal": "mask-12",
-          "source_mask_samples": 140,
+          "source_mask_samples": 2316,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 138,
+          "chart_covered_samples": 2248,
           "valid_output_pixels": 2109
         },
         {
           "reference_id": 6,
           "proposal": "mask-13",
-          "source_mask_samples": 115,
+          "source_mask_samples": 1908,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 105,
+          "chart_covered_samples": 1714,
           "valid_output_pixels": 2845
         },
         {
           "reference_id": 4,
           "proposal": "mask-14",
-          "source_mask_samples": 98,
+          "source_mask_samples": 1592,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 83,
+          "chart_covered_samples": 1508,
           "valid_output_pixels": 1487
         },
         {
           "reference_id": 1,
           "proposal": "mask-16",
-          "source_mask_samples": 67,
+          "source_mask_samples": 1060,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 60,
+          "chart_covered_samples": 1043,
           "valid_output_pixels": 1030
         },
         {
           "reference_id": 9,
           "proposal": "underside-0",
-          "source_mask_samples": 520,
+          "source_mask_samples": 8444,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 435,
+          "chart_covered_samples": 7206,
           "valid_output_pixels": 9178
         }
       ]
@@ -2849,55 +2849,55 @@
         {
           "reference_id": 14,
           "proposal": "mask-0-mobile-1",
-          "source_mask_samples": 4263,
+          "source_mask_samples": 68084,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 4137,
+          "chart_covered_samples": 66383,
           "valid_output_pixels": 68413
         },
         {
           "reference_id": 15,
           "proposal": "mask-0-mobile-5",
-          "source_mask_samples": 3588,
+          "source_mask_samples": 57368,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 3344,
+          "chart_covered_samples": 53861,
           "valid_output_pixels": 57303
         },
         {
           "reference_id": 2,
           "proposal": "mask-2",
-          "source_mask_samples": 1153,
+          "source_mask_samples": 18544,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 1142,
+          "chart_covered_samples": 18211,
           "valid_output_pixels": 18456
         },
         {
           "reference_id": 11,
           "proposal": "mask-3",
-          "source_mask_samples": 638,
+          "source_mask_samples": 10256,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 612,
+          "chart_covered_samples": 9857,
           "valid_output_pixels": 9522
         },
         {
           "reference_id": 1,
           "proposal": "mask-4-planarity-split-1",
-          "source_mask_samples": 270,
+          "source_mask_samples": 4300,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 234,
+          "chart_covered_samples": 3860,
           "valid_output_pixels": 4692
         },
         {
           "reference_id": 7,
           "proposal": "mask-5",
-          "source_mask_samples": 445,
+          "source_mask_samples": 7360,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 445,
+          "chart_covered_samples": 7314,
           "valid_output_pixels": 7070
         },
         {
           "reference_id": 10,
           "proposal": "underside-0",
-          "source_mask_samples": 303,
+          "source_mask_samples": 4764,
           "chart_kind": null,
           "chart_covered_samples": null,
           "valid_output_pixels": 0
@@ -2911,121 +2911,121 @@
         {
           "reference_id": 4,
           "proposal": "mask-0-mobile-0",
-          "source_mask_samples": 3068,
+          "source_mask_samples": 49200,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 3043,
+          "chart_covered_samples": 48888,
           "valid_output_pixels": 46703
         },
         {
           "reference_id": 5,
           "proposal": "mask-0-mobile-1",
-          "source_mask_samples": 3160,
+          "source_mask_samples": 50612,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 3039,
+          "chart_covered_samples": 48920,
           "valid_output_pixels": 59447
         },
         {
           "reference_id": 3,
           "proposal": "mask-1-wall-0",
-          "source_mask_samples": 432,
+          "source_mask_samples": 6884,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 372,
+          "chart_covered_samples": 5931,
           "valid_output_pixels": 6392
         },
         {
           "reference_id": 2,
           "proposal": "mask-1-wall-1",
-          "source_mask_samples": 1286,
+          "source_mask_samples": 20648,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 1283,
+          "chart_covered_samples": 20504,
           "valid_output_pixels": 20127
         },
         {
           "reference_id": 13,
           "proposal": "mask-2-wall-0-mobile-0",
-          "source_mask_samples": 191,
+          "source_mask_samples": 2976,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 167,
+          "chart_covered_samples": 2669,
           "valid_output_pixels": 2564
         },
         {
           "reference_id": 14,
           "proposal": "mask-2-wall-0-mobile-1",
-          "source_mask_samples": 187,
+          "source_mask_samples": 3124,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 183,
+          "chart_covered_samples": 3031,
           "valid_output_pixels": 2839
         },
         {
           "reference_id": 12,
           "proposal": "mask-2-wall-1",
-          "source_mask_samples": 215,
+          "source_mask_samples": 3380,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 198,
+          "chart_covered_samples": 3211,
           "valid_output_pixels": 2884
         },
         {
           "reference_id": 17,
           "proposal": "mask-3-wall-0",
-          "source_mask_samples": 183,
+          "source_mask_samples": 2924,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 165,
+          "chart_covered_samples": 2719,
           "valid_output_pixels": 3424
         },
         {
           "reference_id": 15,
           "proposal": "mask-3-wall-1",
-          "source_mask_samples": 279,
+          "source_mask_samples": 4356,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 263,
+          "chart_covered_samples": 4163,
           "valid_output_pixels": 6380
         },
         {
           "reference_id": 11,
           "proposal": "mask-4",
-          "source_mask_samples": 341,
+          "source_mask_samples": 5404,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 335,
+          "chart_covered_samples": 5390,
           "valid_output_pixels": 5332
         },
         {
           "reference_id": 1,
           "proposal": "mask-5",
-          "source_mask_samples": 288,
+          "source_mask_samples": 4644,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 286,
+          "chart_covered_samples": 4620,
           "valid_output_pixels": 4407
         },
         {
           "reference_id": 16,
           "proposal": "mask-8",
-          "source_mask_samples": 178,
+          "source_mask_samples": 2832,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 154,
+          "chart_covered_samples": 2550,
           "valid_output_pixels": 2412
         },
         {
           "reference_id": 18,
           "proposal": "mask-9",
-          "source_mask_samples": 165,
+          "source_mask_samples": 2672,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 127,
+          "chart_covered_samples": 2073,
           "valid_output_pixels": 3208
         },
         {
           "reference_id": 8,
           "proposal": "mask-12",
-          "source_mask_samples": 49,
+          "source_mask_samples": 756,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 26,
+          "chart_covered_samples": 515,
           "valid_output_pixels": 568
         },
         {
           "reference_id": 6,
           "proposal": "planarity-new-20-1",
-          "source_mask_samples": 221,
+          "source_mask_samples": 3536,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 220,
+          "chart_covered_samples": 3466,
           "valid_output_pixels": 3301
         }
       ]
@@ -3037,63 +3037,63 @@
         {
           "reference_id": 14,
           "proposal": "mask-0-mobile-1-single-514-0",
-          "source_mask_samples": 3546,
+          "source_mask_samples": 56320,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 3311,
+          "chart_covered_samples": 52496,
           "valid_output_pixels": 53005
         },
         {
           "reference_id": 12,
           "proposal": "mask-0-mobile-1-single-514-1",
-          "source_mask_samples": 354,
+          "source_mask_samples": 5720,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 348,
+          "chart_covered_samples": 5522,
           "valid_output_pixels": 5146
         },
         {
           "reference_id": 15,
           "proposal": "mask-0-mobile-2",
-          "source_mask_samples": 3384,
+          "source_mask_samples": 54228,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 3218,
+          "chart_covered_samples": 51611,
           "valid_output_pixels": 61478
         },
         {
           "reference_id": 2,
           "proposal": "mask-1",
-          "source_mask_samples": 1144,
+          "source_mask_samples": 18272,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 1138,
+          "chart_covered_samples": 18012,
           "valid_output_pixels": 18253
         },
         {
           "reference_id": 11,
           "proposal": "mask-2",
-          "source_mask_samples": 685,
+          "source_mask_samples": 11172,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 659,
+          "chart_covered_samples": 10716,
           "valid_output_pixels": 13462
         },
         {
           "reference_id": 1,
           "proposal": "mask-3-planarity-split-1",
-          "source_mask_samples": 289,
+          "source_mask_samples": 4488,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 241,
+          "chart_covered_samples": 3855,
           "valid_output_pixels": 4372
         },
         {
           "reference_id": 7,
           "proposal": "mask-4",
-          "source_mask_samples": 475,
+          "source_mask_samples": 7684,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 452,
+          "chart_covered_samples": 7443,
           "valid_output_pixels": 7018
         },
         {
           "reference_id": 10,
           "proposal": "underside-0",
-          "source_mask_samples": 293,
+          "source_mask_samples": 4612,
           "chart_kind": null,
           "chart_covered_samples": null,
           "valid_output_pixels": 0
@@ -3107,95 +3107,95 @@
         {
           "reference_id": 4,
           "proposal": "mask-0-wall-0",
-          "source_mask_samples": 2759,
+          "source_mask_samples": 43932,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 2752,
+          "chart_covered_samples": 43767,
           "valid_output_pixels": 40808
         },
         {
           "reference_id": 5,
           "proposal": "mask-0-wall-1",
-          "source_mask_samples": 3186,
+          "source_mask_samples": 51312,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 2815,
+          "chart_covered_samples": 45675,
           "valid_output_pixels": 50532
         },
         {
           "reference_id": 3,
           "proposal": "mask-1-junction-0",
-          "source_mask_samples": 403,
+          "source_mask_samples": 6392,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 366,
+          "chart_covered_samples": 5901,
           "valid_output_pixels": 5826
         },
         {
           "reference_id": 2,
           "proposal": "mask-1-junction-1",
-          "source_mask_samples": 1296,
+          "source_mask_samples": 20732,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 1261,
+          "chart_covered_samples": 20334,
           "valid_output_pixels": 19500
         },
         {
           "reference_id": 6,
           "proposal": "mask-2",
-          "source_mask_samples": 466,
+          "source_mask_samples": 7400,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 449,
+          "chart_covered_samples": 7142,
           "valid_output_pixels": 10244
         },
         {
           "reference_id": 11,
           "proposal": "mask-4",
-          "source_mask_samples": 349,
+          "source_mask_samples": 5552,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 343,
+          "chart_covered_samples": 5335,
           "valid_output_pixels": 5218
         },
         {
           "reference_id": 1,
           "proposal": "mask-5",
-          "source_mask_samples": 293,
+          "source_mask_samples": 4644,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 289,
+          "chart_covered_samples": 4585,
           "valid_output_pixels": 4391
         },
         {
           "reference_id": 12,
           "proposal": "mask-7",
-          "source_mask_samples": 216,
+          "source_mask_samples": 3416,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 198,
+          "chart_covered_samples": 3119,
           "valid_output_pixels": 2879
         },
         {
           "reference_id": 13,
           "proposal": "mask-8",
-          "source_mask_samples": 196,
+          "source_mask_samples": 3236,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 166,
+          "chart_covered_samples": 2810,
           "valid_output_pixels": 2521
         },
         {
           "reference_id": 14,
           "proposal": "mask-9",
-          "source_mask_samples": 198,
+          "source_mask_samples": 3084,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 161,
+          "chart_covered_samples": 2527,
           "valid_output_pixels": 2369
         },
         {
           "reference_id": 16,
           "proposal": "mask-10",
-          "source_mask_samples": 175,
+          "source_mask_samples": 2808,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 152,
+          "chart_covered_samples": 2505,
           "valid_output_pixels": 2287
         },
         {
           "reference_id": 8,
           "proposal": "mask-14",
-          "source_mask_samples": 66,
+          "source_mask_samples": 1072,
           "chart_kind": null,
           "chart_covered_samples": null,
           "valid_output_pixels": 0
@@ -3209,97 +3209,97 @@
         {
           "reference_id": 11,
           "proposal": "mask-0",
-          "source_mask_samples": 3508,
+          "source_mask_samples": 56476,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 3446,
+          "chart_covered_samples": 55574,
           "valid_output_pixels": 54332
         },
         {
           "reference_id": 14,
           "proposal": "mask-1-single-436-0",
-          "source_mask_samples": 2784,
+          "source_mask_samples": 44780,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 2486,
+          "chart_covered_samples": 39924,
           "valid_output_pixels": 39306
         },
         {
           "reference_id": 10,
           "proposal": "mask-1-single-436-1",
-          "source_mask_samples": 183,
+          "source_mask_samples": 2828,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 161,
+          "chart_covered_samples": 2523,
           "valid_output_pixels": 2374
         },
         {
           "reference_id": 1,
           "proposal": "mask-2",
-          "source_mask_samples": 1564,
+          "source_mask_samples": 24856,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 1534,
+          "chart_covered_samples": 24530,
           "valid_output_pixels": 27576
         },
         {
           "reference_id": 9,
           "proposal": "mask-3-planarity-split-0",
-          "source_mask_samples": 949,
+          "source_mask_samples": 15168,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 885,
+          "chart_covered_samples": 14271,
           "valid_output_pixels": 13934
         },
         {
           "reference_id": 5,
           "proposal": "mask-4-planarity-split-0",
-          "source_mask_samples": 321,
+          "source_mask_samples": 5248,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 315,
+          "chart_covered_samples": 5081,
           "valid_output_pixels": 4790
         },
         {
           "reference_id": 4,
           "proposal": "mask-4-planarity-split-1",
-          "source_mask_samples": 432,
+          "source_mask_samples": 6876,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 384,
+          "chart_covered_samples": 6140,
           "valid_output_pixels": 7032
         },
         {
           "reference_id": 8,
           "proposal": "mask-5",
-          "source_mask_samples": 722,
+          "source_mask_samples": 11484,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 709,
+          "chart_covered_samples": 11208,
           "valid_output_pixels": 10759
         },
         {
           "reference_id": 7,
           "proposal": "mask-6",
-          "source_mask_samples": 481,
+          "source_mask_samples": 7716,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 401,
+          "chart_covered_samples": 6540,
           "valid_output_pixels": 13048
         },
         {
           "reference_id": 2,
           "proposal": "mask-7",
-          "source_mask_samples": 284,
+          "source_mask_samples": 4472,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 246,
+          "chart_covered_samples": 3933,
           "valid_output_pixels": 4057
         },
         {
           "reference_id": 3,
           "proposal": "mask-8",
-          "source_mask_samples": 184,
+          "source_mask_samples": 2928,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 166,
+          "chart_covered_samples": 2695,
           "valid_output_pixels": 2392
         },
         {
           "reference_id": 6,
           "proposal": "mask-9",
-          "source_mask_samples": 68,
+          "source_mask_samples": 1112,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 57,
+          "chart_covered_samples": 1023,
           "valid_output_pixels": 782
         }
       ]
@@ -3311,73 +3311,73 @@
         {
           "reference_id": 6,
           "proposal": "mask-0-wall-0",
-          "source_mask_samples": 3796,
+          "source_mask_samples": 60764,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 3646,
+          "chart_covered_samples": 57907,
           "valid_output_pixels": 56861
         },
         {
           "reference_id": 3,
           "proposal": "mask-0-wall-1",
-          "source_mask_samples": 1427,
+          "source_mask_samples": 22860,
           "chart_kind": "wall normal + assumed-70-degree-vertical-fov",
-          "chart_covered_samples": 1427,
+          "chart_covered_samples": 22860,
           "valid_output_pixels": 25828
         },
         {
           "reference_id": 2,
           "proposal": "mask-1-single-254-0",
-          "source_mask_samples": 3056,
+          "source_mask_samples": 49040,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 3039,
+          "chart_covered_samples": 48848,
           "valid_output_pixels": 48312
         },
         {
           "reference_id": 1,
           "proposal": "mask-1-single-254-1",
-          "source_mask_samples": 188,
+          "source_mask_samples": 2940,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 185,
+          "chart_covered_samples": 2883,
           "valid_output_pixels": 2671
         },
         {
           "reference_id": 14,
           "proposal": "mask-2",
-          "source_mask_samples": 731,
+          "source_mask_samples": 11844,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 731,
+          "chart_covered_samples": 11742,
           "valid_output_pixels": 12247
         },
         {
           "reference_id": 18,
           "proposal": "mask-3",
-          "source_mask_samples": 420,
+          "source_mask_samples": 6680,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 353,
+          "chart_covered_samples": 5734,
           "valid_output_pixels": 14531
         },
         {
           "reference_id": 16,
           "proposal": "mask-7",
-          "source_mask_samples": 170,
+          "source_mask_samples": 2764,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 142,
+          "chart_covered_samples": 2469,
           "valid_output_pixels": 3739
         },
         {
           "reference_id": 17,
           "proposal": "mask-9",
-          "source_mask_samples": 112,
+          "source_mask_samples": 1772,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 96,
+          "chart_covered_samples": 1530,
           "valid_output_pixels": 3172
         },
         {
           "reference_id": 12,
           "proposal": "mask-14",
-          "source_mask_samples": 34,
+          "source_mask_samples": 516,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 25,
+          "chart_covered_samples": 413,
           "valid_output_pixels": 814
         }
       ]
@@ -3389,97 +3389,97 @@
         {
           "reference_id": 11,
           "proposal": "mask-0",
-          "source_mask_samples": 3292,
+          "source_mask_samples": 52780,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 3213,
+          "chart_covered_samples": 51742,
           "valid_output_pixels": 50285
         },
         {
           "reference_id": 14,
           "proposal": "mask-1-wall-0",
-          "source_mask_samples": 1683,
+          "source_mask_samples": 26924,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 1583,
+          "chart_covered_samples": 25329,
           "valid_output_pixels": 24968
         },
         {
           "reference_id": 9,
           "proposal": "mask-2-planarity-split-0",
-          "source_mask_samples": 991,
+          "source_mask_samples": 15832,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 925,
+          "chart_covered_samples": 14945,
           "valid_output_pixels": 14652
         },
         {
           "reference_id": 1,
           "proposal": "mask-3",
-          "source_mask_samples": 1155,
+          "source_mask_samples": 18332,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 1103,
+          "chart_covered_samples": 17816,
           "valid_output_pixels": 22124
         },
         {
           "reference_id": 5,
           "proposal": "mask-4-planarity-split-0",
-          "source_mask_samples": 321,
+          "source_mask_samples": 5144,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 310,
+          "chart_covered_samples": 4984,
           "valid_output_pixels": 4698
         },
         {
           "reference_id": 4,
           "proposal": "mask-4-planarity-split-1",
-          "source_mask_samples": 396,
+          "source_mask_samples": 6368,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 385,
+          "chart_covered_samples": 6190,
           "valid_output_pixels": 6166
         },
         {
           "reference_id": 8,
           "proposal": "mask-5",
-          "source_mask_samples": 610,
+          "source_mask_samples": 9536,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 585,
+          "chart_covered_samples": 9480,
           "valid_output_pixels": 9034
         },
         {
           "reference_id": 7,
           "proposal": "mask-6",
-          "source_mask_samples": 557,
+          "source_mask_samples": 8992,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 455,
+          "chart_covered_samples": 7620,
           "valid_output_pixels": 6915
         },
         {
           "reference_id": 2,
           "proposal": "mask-7-wall-0",
-          "source_mask_samples": 233,
+          "source_mask_samples": 3640,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 221,
+          "chart_covered_samples": 3565,
           "valid_output_pixels": 3509
         },
         {
           "reference_id": 10,
           "proposal": "mask-8",
-          "source_mask_samples": 211,
+          "source_mask_samples": 3312,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 177,
+          "chart_covered_samples": 2854,
           "valid_output_pixels": 2544
         },
         {
           "reference_id": 3,
           "proposal": "mask-10",
-          "source_mask_samples": 110,
+          "source_mask_samples": 1888,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 87,
+          "chart_covered_samples": 1591,
           "valid_output_pixels": 1313
         },
         {
           "reference_id": 6,
           "proposal": "mask-12",
-          "source_mask_samples": 57,
+          "source_mask_samples": 908,
           "chart_kind": "wall normal + assumed-70-degree-vertical-fov",
-          "chart_covered_samples": 57,
+          "chart_covered_samples": 908,
           "valid_output_pixels": 866
         }
       ]
@@ -3491,73 +3491,73 @@
         {
           "reference_id": 6,
           "proposal": "mask-0-wall-0-junction-0",
-          "source_mask_samples": 4102,
+          "source_mask_samples": 65580,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 4087,
+          "chart_covered_samples": 65362,
           "valid_output_pixels": 64769
         },
         {
           "reference_id": 3,
           "proposal": "mask-0-wall-0-junction-1",
-          "source_mask_samples": 946,
+          "source_mask_samples": 15100,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 914,
+          "chart_covered_samples": 14636,
           "valid_output_pixels": 14110
         },
         {
           "reference_id": 2,
           "proposal": "mask-0-wall-1-single-277-0",
-          "source_mask_samples": 3134,
+          "source_mask_samples": 50556,
           "chart_kind": "wall normal + assumed-70-degree-vertical-fov",
-          "chart_covered_samples": 3134,
+          "chart_covered_samples": 50556,
           "valid_output_pixels": 41616
         },
         {
           "reference_id": 1,
           "proposal": "mask-0-wall-1-single-277-1",
-          "source_mask_samples": 169,
+          "source_mask_samples": 2656,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 162,
+          "chart_covered_samples": 2596,
           "valid_output_pixels": 2327
         },
         {
           "reference_id": 14,
           "proposal": "mask-1",
-          "source_mask_samples": 691,
+          "source_mask_samples": 11044,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 677,
+          "chart_covered_samples": 10983,
           "valid_output_pixels": 10432
         },
         {
           "reference_id": 18,
           "proposal": "mask-2",
-          "source_mask_samples": 332,
+          "source_mask_samples": 5308,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 262,
+          "chart_covered_samples": 4466,
           "valid_output_pixels": 13834
         },
         {
           "reference_id": 16,
           "proposal": "mask-6",
-          "source_mask_samples": 173,
+          "source_mask_samples": 2780,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 148,
+          "chart_covered_samples": 2455,
           "valid_output_pixels": 3687
         },
         {
           "reference_id": 17,
           "proposal": "mask-7",
-          "source_mask_samples": 138,
+          "source_mask_samples": 2112,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 105,
+          "chart_covered_samples": 1798,
           "valid_output_pixels": 2316
         },
         {
           "reference_id": 12,
           "proposal": "mask-11",
-          "source_mask_samples": 51,
+          "source_mask_samples": 840,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 43,
+          "chart_covered_samples": 683,
           "valid_output_pixels": 2502
         }
       ]
@@ -3569,57 +3569,57 @@
         {
           "reference_id": 4,
           "proposal": "mask-0-junction-0",
-          "source_mask_samples": 877,
+          "source_mask_samples": 14120,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 873,
+          "chart_covered_samples": 14120,
           "valid_output_pixels": 13795
         },
         {
           "reference_id": 5,
           "proposal": "mask-0-junction-1-planarity-split-0",
-          "source_mask_samples": 3556,
+          "source_mask_samples": 56916,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 3441,
+          "chart_covered_samples": 54771,
           "valid_output_pixels": 59176
         },
         {
           "reference_id": 6,
           "proposal": "mask-0-junction-1-planarity-split-1",
-          "source_mask_samples": 4273,
+          "source_mask_samples": 68352,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 4054,
+          "chart_covered_samples": 64786,
           "valid_output_pixels": 69251
         },
         {
           "reference_id": 7,
           "proposal": "mask-1",
-          "source_mask_samples": 1721,
+          "source_mask_samples": 27660,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 1703,
+          "chart_covered_samples": 27306,
           "valid_output_pixels": 26812
         },
         {
           "reference_id": 1,
           "proposal": "mask-2",
-          "source_mask_samples": 630,
+          "source_mask_samples": 10028,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 570,
+          "chart_covered_samples": 9087,
           "valid_output_pixels": 11801
         },
         {
           "reference_id": 3,
           "proposal": "mask-3",
-          "source_mask_samples": 238,
+          "source_mask_samples": 3720,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 208,
+          "chart_covered_samples": 3339,
           "valid_output_pixels": 3236
         },
         {
           "reference_id": 2,
           "proposal": "mask-4",
-          "source_mask_samples": 247,
+          "source_mask_samples": 3828,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 188,
+          "chart_covered_samples": 2825,
           "valid_output_pixels": 2770
         }
       ]
@@ -3631,65 +3631,65 @@
         {
           "reference_id": 2,
           "proposal": "mask-0-single-588-0",
-          "source_mask_samples": 5188,
+          "source_mask_samples": 82956,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 5077,
+          "chart_covered_samples": 81587,
           "valid_output_pixels": 80102
         },
         {
           "reference_id": 1,
           "proposal": "mask-0-single-588-1",
-          "source_mask_samples": 1218,
+          "source_mask_samples": 19688,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 1208,
+          "chart_covered_samples": 19413,
           "valid_output_pixels": 19075
         },
         {
           "reference_id": 10,
           "proposal": "mask-1",
-          "source_mask_samples": 2483,
+          "source_mask_samples": 39664,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 2253,
+          "chart_covered_samples": 36099,
           "valid_output_pixels": 49027
         },
         {
           "reference_id": 3,
           "proposal": "mask-2",
-          "source_mask_samples": 1533,
+          "source_mask_samples": 24660,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 1513,
+          "chart_covered_samples": 24220,
           "valid_output_pixels": 29028
         },
         {
           "reference_id": 8,
           "proposal": "mask-3",
-          "source_mask_samples": 1210,
+          "source_mask_samples": 19288,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 1191,
+          "chart_covered_samples": 19114,
           "valid_output_pixels": 19181
         },
         {
           "reference_id": 4,
           "proposal": "mask-4",
-          "source_mask_samples": 694,
+          "source_mask_samples": 11088,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 658,
+          "chart_covered_samples": 10734,
           "valid_output_pixels": 10748
         },
         {
           "reference_id": 7,
           "proposal": "mask-5",
-          "source_mask_samples": 437,
+          "source_mask_samples": 6948,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 423,
+          "chart_covered_samples": 6853,
           "valid_output_pixels": 6911
         },
         {
           "reference_id": 5,
           "proposal": "mask-7",
-          "source_mask_samples": 116,
+          "source_mask_samples": 1936,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 95,
+          "chart_covered_samples": 1652,
           "valid_output_pixels": 3408
         }
       ]
@@ -3701,49 +3701,49 @@
         {
           "reference_id": 6,
           "proposal": "mask-0-wall-0-junction-0",
-          "source_mask_samples": 3493,
+          "source_mask_samples": 55580,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 3298,
+          "chart_covered_samples": 52554,
           "valid_output_pixels": 46839
         },
         {
           "reference_id": 5,
           "proposal": "mask-0-wall-1-junction-1",
-          "source_mask_samples": 3856,
+          "source_mask_samples": 61720,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 3627,
+          "chart_covered_samples": 58118,
           "valid_output_pixels": 62957
         },
         {
           "reference_id": 7,
           "proposal": "mask-1",
-          "source_mask_samples": 1740,
+          "source_mask_samples": 27776,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 1712,
+          "chart_covered_samples": 27625,
           "valid_output_pixels": 27173
         },
         {
           "reference_id": 1,
           "proposal": "mask-2",
-          "source_mask_samples": 429,
+          "source_mask_samples": 7064,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 358,
+          "chart_covered_samples": 5788,
           "valid_output_pixels": 10429
         },
         {
           "reference_id": 2,
           "proposal": "mask-3",
-          "source_mask_samples": 232,
+          "source_mask_samples": 3872,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 227,
+          "chart_covered_samples": 3759,
           "valid_output_pixels": 4497
         },
         {
           "reference_id": 3,
           "proposal": "mask-4",
-          "source_mask_samples": 229,
+          "source_mask_samples": 3680,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 213,
+          "chart_covered_samples": 3523,
           "valid_output_pixels": 2435
         }
       ]
@@ -3755,55 +3755,55 @@
         {
           "reference_id": 1,
           "proposal": "mask-0-junction-0",
-          "source_mask_samples": 1247,
+          "source_mask_samples": 19928,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 1234,
+          "chart_covered_samples": 19814,
           "valid_output_pixels": 19578
         },
         {
           "reference_id": 2,
           "proposal": "mask-0-junction-1-mobile-0",
-          "source_mask_samples": 4434,
+          "source_mask_samples": 71328,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 4220,
+          "chart_covered_samples": 67824,
           "valid_output_pixels": 67458
         },
         {
           "reference_id": 3,
           "proposal": "mask-1",
-          "source_mask_samples": 1520,
+          "source_mask_samples": 24184,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 1488,
+          "chart_covered_samples": 23855,
           "valid_output_pixels": 28774
         },
         {
           "reference_id": 8,
           "proposal": "mask-3",
-          "source_mask_samples": 731,
+          "source_mask_samples": 11880,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 689,
+          "chart_covered_samples": 11389,
           "valid_output_pixels": 11506
         },
         {
           "reference_id": 4,
           "proposal": "mask-4",
-          "source_mask_samples": 688,
+          "source_mask_samples": 11076,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 663,
+          "chart_covered_samples": 10786,
           "valid_output_pixels": 10741
         },
         {
           "reference_id": 7,
           "proposal": "mask-5",
-          "source_mask_samples": 450,
+          "source_mask_samples": 7216,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 436,
+          "chart_covered_samples": 7101,
           "valid_output_pixels": 7010
         },
         {
           "reference_id": 5,
           "proposal": "mask-7",
-          "source_mask_samples": 128,
+          "source_mask_samples": 2000,
           "chart_kind": null,
           "chart_covered_samples": null,
           "valid_output_pixels": 0
@@ -3817,145 +3817,145 @@
         {
           "reference_id": 28,
           "proposal": "mask-0-junction-0",
-          "source_mask_samples": 687,
+          "source_mask_samples": 10728,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 656,
+          "chart_covered_samples": 10570,
           "valid_output_pixels": 10497
         },
         {
           "reference_id": 29,
           "proposal": "mask-0-junction-1-mobile-2",
-          "source_mask_samples": 440,
+          "source_mask_samples": 7316,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 437,
+          "chart_covered_samples": 7270,
           "valid_output_pixels": 7081
         },
         {
           "reference_id": 30,
           "proposal": "mask-0-junction-1-mobile-4",
-          "source_mask_samples": 1579,
+          "source_mask_samples": 25232,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 1438,
+          "chart_covered_samples": 22798,
           "valid_output_pixels": 27817
         },
         {
           "reference_id": 27,
           "proposal": "mask-0-junction-1-mobile-7",
-          "source_mask_samples": 952,
+          "source_mask_samples": 15048,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 926,
+          "chart_covered_samples": 14820,
           "valid_output_pixels": 14418
         },
         {
           "reference_id": 26,
           "proposal": "mask-1",
-          "source_mask_samples": 992,
+          "source_mask_samples": 15808,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 940,
+          "chart_covered_samples": 14856,
           "valid_output_pixels": 15847
         },
         {
           "reference_id": 19,
           "proposal": "mask-2",
-          "source_mask_samples": 787,
+          "source_mask_samples": 12496,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 747,
+          "chart_covered_samples": 11773,
           "valid_output_pixels": 11060
         },
         {
           "reference_id": 20,
           "proposal": "mask-3",
-          "source_mask_samples": 692,
+          "source_mask_samples": 11040,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 692,
+          "chart_covered_samples": 11018,
           "valid_output_pixels": 10720
         },
         {
           "reference_id": 16,
           "proposal": "mask-4",
-          "source_mask_samples": 622,
+          "source_mask_samples": 9976,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 592,
+          "chart_covered_samples": 9627,
           "valid_output_pixels": 22905
         },
         {
           "reference_id": 24,
           "proposal": "mask-5",
-          "source_mask_samples": 493,
+          "source_mask_samples": 7920,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 464,
+          "chart_covered_samples": 7537,
           "valid_output_pixels": 7092
         },
         {
           "reference_id": 8,
           "proposal": "mask-6",
-          "source_mask_samples": 407,
+          "source_mask_samples": 6604,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 388,
+          "chart_covered_samples": 6315,
           "valid_output_pixels": 5389
         },
         {
           "reference_id": 12,
           "proposal": "mask-7",
-          "source_mask_samples": 372,
+          "source_mask_samples": 5728,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 362,
+          "chart_covered_samples": 5552,
           "valid_output_pixels": 5219
         },
         {
           "reference_id": 25,
           "proposal": "mask-8",
-          "source_mask_samples": 335,
+          "source_mask_samples": 5432,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 311,
+          "chart_covered_samples": 5046,
           "valid_output_pixels": 4637
         },
         {
           "reference_id": 23,
           "proposal": "mask-9",
-          "source_mask_samples": 326,
+          "source_mask_samples": 5224,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 324,
+          "chart_covered_samples": 5160,
           "valid_output_pixels": 4989
         },
         {
           "reference_id": 11,
           "proposal": "mask-11",
-          "source_mask_samples": 208,
+          "source_mask_samples": 3268,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 194,
+          "chart_covered_samples": 3086,
           "valid_output_pixels": 2868
         },
         {
           "reference_id": 9,
           "proposal": "mask-13",
-          "source_mask_samples": 161,
+          "source_mask_samples": 2596,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 140,
+          "chart_covered_samples": 2338,
           "valid_output_pixels": 2394
         },
         {
           "reference_id": 4,
           "proposal": "mask-14",
-          "source_mask_samples": 117,
+          "source_mask_samples": 1896,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 106,
+          "chart_covered_samples": 1738,
           "valid_output_pixels": 1903
         },
         {
           "reference_id": 1,
           "proposal": "mask-15",
-          "source_mask_samples": 93,
+          "source_mask_samples": 1472,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 80,
+          "chart_covered_samples": 1281,
           "valid_output_pixels": 1314
         },
         {
           "reference_id": 10,
           "proposal": "mask-16",
-          "source_mask_samples": 65,
+          "source_mask_samples": 1068,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 63,
+          "chart_covered_samples": 1055,
           "valid_output_pixels": 459
         }
       ]
@@ -3967,31 +3967,31 @@
         {
           "reference_id": 13,
           "proposal": "mask-0-wall-0",
-          "source_mask_samples": 1116,
+          "source_mask_samples": 17944,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 1003,
+          "chart_covered_samples": 15978,
           "valid_output_pixels": 15590
         },
         {
           "reference_id": 12,
           "proposal": "mask-0-wall-1",
-          "source_mask_samples": 689,
+          "source_mask_samples": 11052,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 671,
+          "chart_covered_samples": 10779,
           "valid_output_pixels": 10538
         },
         {
           "reference_id": 9,
           "proposal": "mask-1",
-          "source_mask_samples": 1078,
+          "source_mask_samples": 17064,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 1008,
+          "chart_covered_samples": 15999,
           "valid_output_pixels": 15402
         },
         {
           "reference_id": 14,
           "proposal": "mask-2",
-          "source_mask_samples": 917,
+          "source_mask_samples": 15028,
           "chart_kind": null,
           "chart_covered_samples": null,
           "valid_output_pixels": 0
@@ -3999,145 +3999,145 @@
         {
           "reference_id": 23,
           "proposal": "mask-3",
-          "source_mask_samples": 610,
+          "source_mask_samples": 9732,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 576,
+          "chart_covered_samples": 9141,
           "valid_output_pixels": 8726
         },
         {
           "reference_id": 8,
           "proposal": "mask-4",
-          "source_mask_samples": 420,
+          "source_mask_samples": 6684,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 408,
+          "chart_covered_samples": 6584,
           "valid_output_pixels": 6259
         },
         {
           "reference_id": 11,
           "proposal": "mask-5",
-          "source_mask_samples": 411,
+          "source_mask_samples": 6488,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 394,
+          "chart_covered_samples": 6279,
           "valid_output_pixels": 6121
         },
         {
           "reference_id": 2,
           "proposal": "mask-6",
-          "source_mask_samples": 416,
+          "source_mask_samples": 6592,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 394,
+          "chart_covered_samples": 6331,
           "valid_output_pixels": 6065
         },
         {
           "reference_id": 26,
           "proposal": "mask-7",
-          "source_mask_samples": 400,
+          "source_mask_samples": 6364,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 339,
+          "chart_covered_samples": 5570,
           "valid_output_pixels": 5250
         },
         {
           "reference_id": 1,
           "proposal": "mask-8-single-210-2",
-          "source_mask_samples": 284,
+          "source_mask_samples": 4392,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 268,
+          "chart_covered_samples": 4215,
           "valid_output_pixels": 3849
         },
         {
           "reference_id": 6,
           "proposal": "mask-9",
-          "source_mask_samples": 339,
+          "source_mask_samples": 5388,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 275,
+          "chart_covered_samples": 4442,
           "valid_output_pixels": 4378
         },
         {
           "reference_id": 25,
           "proposal": "mask-10",
-          "source_mask_samples": 315,
+          "source_mask_samples": 5020,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 313,
+          "chart_covered_samples": 4915,
           "valid_output_pixels": 5090
         },
         {
           "reference_id": 20,
           "proposal": "mask-11",
-          "source_mask_samples": 312,
+          "source_mask_samples": 4932,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 312,
+          "chart_covered_samples": 4911,
           "valid_output_pixels": 4809
         },
         {
           "reference_id": 17,
           "proposal": "mask-12",
-          "source_mask_samples": 291,
+          "source_mask_samples": 4628,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 279,
+          "chart_covered_samples": 4512,
           "valid_output_pixels": 4485
         },
         {
           "reference_id": 22,
           "proposal": "mask-13",
-          "source_mask_samples": 288,
+          "source_mask_samples": 4596,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 281,
+          "chart_covered_samples": 4510,
           "valid_output_pixels": 4544
         },
         {
           "reference_id": 10,
           "proposal": "mask-14",
-          "source_mask_samples": 266,
+          "source_mask_samples": 4212,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 252,
+          "chart_covered_samples": 4102,
           "valid_output_pixels": 4133
         },
         {
           "reference_id": 18,
           "proposal": "mask-15",
-          "source_mask_samples": 234,
+          "source_mask_samples": 3748,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 234,
+          "chart_covered_samples": 3746,
           "valid_output_pixels": 3525
         },
         {
           "reference_id": 3,
           "proposal": "mask-16-single-204-0",
-          "source_mask_samples": 60,
+          "source_mask_samples": 924,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 60,
+          "chart_covered_samples": 907,
           "valid_output_pixels": 878
         },
         {
           "reference_id": 5,
           "proposal": "mask-16-single-204-1",
-          "source_mask_samples": 127,
+          "source_mask_samples": 2080,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 127,
+          "chart_covered_samples": 2068,
           "valid_output_pixels": 1952
         },
         {
           "reference_id": 24,
           "proposal": "mask-17",
-          "source_mask_samples": 167,
+          "source_mask_samples": 2692,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 158,
+          "chart_covered_samples": 2546,
           "valid_output_pixels": 2825
         },
         {
           "reference_id": 4,
           "proposal": "mask-18",
-          "source_mask_samples": 179,
+          "source_mask_samples": 2824,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 175,
+          "chart_covered_samples": 2750,
           "valid_output_pixels": 2271
         },
         {
           "reference_id": 19,
           "proposal": "mask-20",
-          "source_mask_samples": 57,
+          "source_mask_samples": 936,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 56,
+          "chart_covered_samples": 916,
           "valid_output_pixels": 864
         }
       ]
@@ -4149,161 +4149,161 @@
         {
           "reference_id": 25,
           "proposal": "mask-0-junction-0",
-          "source_mask_samples": 357,
+          "source_mask_samples": 5840,
           "chart_kind": "wall normal + assumed-70-degree-vertical-fov",
-          "chart_covered_samples": 357,
+          "chart_covered_samples": 5840,
           "valid_output_pixels": 4689
         },
         {
           "reference_id": 28,
           "proposal": "mask-0-junction-1-mobile-1",
-          "source_mask_samples": 684,
+          "source_mask_samples": 10692,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 624,
+          "chart_covered_samples": 10166,
           "valid_output_pixels": 9875
         },
         {
           "reference_id": 30,
           "proposal": "mask-0-junction-1-mobile-2",
-          "source_mask_samples": 1480,
+          "source_mask_samples": 23684,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 1349,
+          "chart_covered_samples": 21441,
           "valid_output_pixels": 25606
         },
         {
           "reference_id": 29,
           "proposal": "mask-0-junction-1-mobile-5",
-          "source_mask_samples": 450,
+          "source_mask_samples": 7408,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 450,
+          "chart_covered_samples": 7392,
           "valid_output_pixels": 7030
         },
         {
           "reference_id": 27,
           "proposal": "mask-0-junction-1-mobile-6",
-          "source_mask_samples": 949,
+          "source_mask_samples": 14996,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 840,
+          "chart_covered_samples": 13783,
           "valid_output_pixels": 13261
         },
         {
           "reference_id": 22,
           "proposal": "mask-1-single-147-0",
-          "source_mask_samples": 390,
+          "source_mask_samples": 6140,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 389,
+          "chart_covered_samples": 6019,
           "valid_output_pixels": 7388
         },
         {
           "reference_id": 19,
           "proposal": "mask-1-single-147-1",
-          "source_mask_samples": 554,
+          "source_mask_samples": 8912,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 534,
+          "chart_covered_samples": 8586,
           "valid_output_pixels": 8231
         },
         {
           "reference_id": 26,
           "proposal": "mask-2",
-          "source_mask_samples": 913,
+          "source_mask_samples": 14652,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 797,
+          "chart_covered_samples": 12747,
           "valid_output_pixels": 12964
         },
         {
           "reference_id": 20,
           "proposal": "mask-3",
-          "source_mask_samples": 690,
+          "source_mask_samples": 11004,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 667,
+          "chart_covered_samples": 10584,
           "valid_output_pixels": 10270
         },
         {
           "reference_id": 16,
           "proposal": "mask-4",
-          "source_mask_samples": 660,
+          "source_mask_samples": 10472,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 580,
+          "chart_covered_samples": 9409,
           "valid_output_pixels": 18403
         },
         {
           "reference_id": 24,
           "proposal": "mask-5",
-          "source_mask_samples": 509,
+          "source_mask_samples": 8180,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 454,
+          "chart_covered_samples": 7366,
           "valid_output_pixels": 6908
         },
         {
           "reference_id": 12,
           "proposal": "mask-6",
-          "source_mask_samples": 369,
+          "source_mask_samples": 5684,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 354,
+          "chart_covered_samples": 5620,
           "valid_output_pixels": 5350
         },
         {
           "reference_id": 23,
           "proposal": "mask-7",
-          "source_mask_samples": 335,
+          "source_mask_samples": 5416,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 325,
+          "chart_covered_samples": 5343,
           "valid_output_pixels": 5116
         },
         {
           "reference_id": 21,
           "proposal": "mask-8",
-          "source_mask_samples": 298,
+          "source_mask_samples": 4896,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 288,
+          "chart_covered_samples": 4760,
           "valid_output_pixels": 5544
         },
         {
           "reference_id": 8,
           "proposal": "mask-9",
-          "source_mask_samples": 284,
+          "source_mask_samples": 4728,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 281,
+          "chart_covered_samples": 4690,
           "valid_output_pixels": 4620
         },
         {
           "reference_id": 11,
           "proposal": "mask-10",
-          "source_mask_samples": 196,
+          "source_mask_samples": 3136,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 186,
+          "chart_covered_samples": 3071,
           "valid_output_pixels": 2831
         },
         {
           "reference_id": 9,
           "proposal": "mask-12",
-          "source_mask_samples": 172,
+          "source_mask_samples": 2716,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 167,
+          "chart_covered_samples": 2672,
           "valid_output_pixels": 2610
         },
         {
           "reference_id": 1,
           "proposal": "mask-13",
-          "source_mask_samples": 89,
+          "source_mask_samples": 1388,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 84,
+          "chart_covered_samples": 1320,
           "valid_output_pixels": 1385
         },
         {
           "reference_id": 4,
           "proposal": "mask-14",
-          "source_mask_samples": 94,
+          "source_mask_samples": 1460,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 65,
+          "chart_covered_samples": 1024,
           "valid_output_pixels": 1219
         },
         {
           "reference_id": 10,
           "proposal": "mask-15",
-          "source_mask_samples": 73,
+          "source_mask_samples": 1148,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 55,
+          "chart_covered_samples": 962,
           "valid_output_pixels": 692
         }
       ]
@@ -4315,177 +4315,177 @@
         {
           "reference_id": 7,
           "proposal": "mask-0-junction-1-mobile-0-single-339-0",
-          "source_mask_samples": 249,
+          "source_mask_samples": 4068,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 230,
+          "chart_covered_samples": 3761,
           "valid_output_pixels": 3493
         },
         {
           "reference_id": 9,
           "proposal": "mask-0-junction-1-mobile-0-single-339-2",
-          "source_mask_samples": 807,
+          "source_mask_samples": 12564,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 790,
+          "chart_covered_samples": 12448,
           "valid_output_pixels": 12110
         },
         {
           "reference_id": 8,
           "proposal": "mask-0-junction-1-mobile-1",
-          "source_mask_samples": 423,
+          "source_mask_samples": 6916,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 413,
+          "chart_covered_samples": 6707,
           "valid_output_pixels": 6306
         },
         {
           "reference_id": 14,
           "proposal": "mask-1",
-          "source_mask_samples": 1561,
+          "source_mask_samples": 25004,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 1475,
+          "chart_covered_samples": 23583,
           "valid_output_pixels": 63707
         },
         {
           "reference_id": 10,
           "proposal": "mask-2-wall-0",
-          "source_mask_samples": 272,
+          "source_mask_samples": 4396,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 247,
+          "chart_covered_samples": 3876,
           "valid_output_pixels": 5856
         },
         {
           "reference_id": 13,
           "proposal": "mask-2-wall-1",
-          "source_mask_samples": 1168,
+          "source_mask_samples": 18688,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 1012,
+          "chart_covered_samples": 16428,
           "valid_output_pixels": 22813
         },
         {
           "reference_id": 22,
           "proposal": "mask-3-junction-0",
-          "source_mask_samples": 274,
+          "source_mask_samples": 4332,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 244,
+          "chart_covered_samples": 3949,
           "valid_output_pixels": 4063
         },
         {
           "reference_id": 12,
           "proposal": "mask-4",
-          "source_mask_samples": 691,
+          "source_mask_samples": 11144,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 646,
+          "chart_covered_samples": 10450,
           "valid_output_pixels": 10132
         },
         {
           "reference_id": 2,
           "proposal": "mask-5",
-          "source_mask_samples": 429,
+          "source_mask_samples": 6852,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 388,
+          "chart_covered_samples": 6130,
           "valid_output_pixels": 5864
         },
         {
           "reference_id": 11,
           "proposal": "mask-6",
-          "source_mask_samples": 414,
+          "source_mask_samples": 6564,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 402,
+          "chart_covered_samples": 6346,
           "valid_output_pixels": 6213
         },
         {
           "reference_id": 26,
           "proposal": "mask-7",
-          "source_mask_samples": 405,
+          "source_mask_samples": 6436,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 360,
+          "chart_covered_samples": 5905,
           "valid_output_pixels": 8058
         },
         {
           "reference_id": 6,
           "proposal": "mask-8",
-          "source_mask_samples": 333,
+          "source_mask_samples": 5376,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 328,
+          "chart_covered_samples": 5290,
           "valid_output_pixels": 5293
         },
         {
           "reference_id": 20,
           "proposal": "mask-9",
-          "source_mask_samples": 318,
+          "source_mask_samples": 5076,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 318,
+          "chart_covered_samples": 5059,
           "valid_output_pixels": 5018
         },
         {
           "reference_id": 25,
           "proposal": "mask-10",
-          "source_mask_samples": 304,
+          "source_mask_samples": 4804,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 304,
+          "chart_covered_samples": 4730,
           "valid_output_pixels": 4933
         },
         {
           "reference_id": 1,
           "proposal": "mask-11",
-          "source_mask_samples": 287,
+          "source_mask_samples": 4728,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 266,
+          "chart_covered_samples": 4395,
           "valid_output_pixels": 4022
         },
         {
           "reference_id": 17,
           "proposal": "mask-12",
-          "source_mask_samples": 294,
+          "source_mask_samples": 4628,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 293,
+          "chart_covered_samples": 4616,
           "valid_output_pixels": 4605
         },
         {
           "reference_id": 18,
           "proposal": "mask-13",
-          "source_mask_samples": 246,
+          "source_mask_samples": 3860,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 246,
+          "chart_covered_samples": 3832,
           "valid_output_pixels": 3682
         },
         {
           "reference_id": 4,
           "proposal": "mask-14",
-          "source_mask_samples": 207,
+          "source_mask_samples": 3372,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 207,
+          "chart_covered_samples": 3372,
           "valid_output_pixels": 3360
         },
         {
           "reference_id": 3,
           "proposal": "mask-16-mobile-0",
-          "source_mask_samples": 54,
+          "source_mask_samples": 872,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 49,
+          "chart_covered_samples": 786,
           "valid_output_pixels": 668
         },
         {
           "reference_id": 5,
           "proposal": "mask-16-mobile-2",
-          "source_mask_samples": 137,
+          "source_mask_samples": 2232,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 137,
+          "chart_covered_samples": 2195,
           "valid_output_pixels": 2079
         },
         {
           "reference_id": 24,
           "proposal": "mask-17",
-          "source_mask_samples": 172,
+          "source_mask_samples": 2732,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 164,
+          "chart_covered_samples": 2545,
           "valid_output_pixels": 2452
         },
         {
           "reference_id": 19,
           "proposal": "mask-19",
-          "source_mask_samples": 41,
+          "source_mask_samples": 684,
           "chart_kind": "supplied quad",
-          "chart_covered_samples": 29,
+          "chart_covered_samples": 532,
           "valid_output_pixels": 431
         }
       ]

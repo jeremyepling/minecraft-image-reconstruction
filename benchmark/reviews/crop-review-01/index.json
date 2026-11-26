@@ -1,0 +1,3238 @@
+{
+  "examples": [
+    {
+      "reference": 8,
+      "reference_size_blocks": [
+        10,
+        1
+      ],
+      "proposal": "mask-0-mobile-0-single-238-1",
+      "finder_iou": 0.9227504244482173,
+      "quad_native": [
+        [
+          559.22,
+          368.14
+        ],
+        [
+          939.69,
+          405.14
+        ],
+        [
+          929.14,
+          451.91
+        ],
+        [
+          546.6,
+          403.14
+        ]
+      ],
+      "predicted_mask_inside_chart_fraction": 0.9139729481889042,
+      "tight_xyxy": [
+        544,
+        366,
+        938,
+        456
+      ],
+      "crop_xyxy": [
+        536,
+        358,
+        946,
+        464
+      ],
+      "detail_xyxy": [
+        530,
+        352,
+        952,
+        470
+      ],
+      "scene_xyxy": [
+        472,
+        284,
+        1076,
+        696
+      ],
+      "margins_ltrb": [
+        8,
+        8,
+        8,
+        8
+      ],
+      "chart_source": "supplied quad",
+      "straightened_wh": [
+        384,
+        43
+      ],
+      "counts": [
+        9.621270314296043,
+        0.9902155337811545
+      ],
+      "grid_phase": [
+        null,
+        null
+      ],
+      "grid_lines": [
+        [],
+        []
+      ],
+      "blocks": [
+        10,
+        1
+      ],
+      "straightened_valid_fraction": 0.9230862403100775,
+      "id": "Shopfront A",
+      "layout": "shopfront",
+      "frame": "light_gray_concrete/dev-shopfront-masonry-high-right",
+      "sha256": "bb588b0b0d1cdb05b720ff5bc3b515479426c7772fd98fb7fadb8a55b79ca9db",
+      "source_wh": [
+        1440,
+        900
+      ],
+      "predictions": "predictions/light_gray_concrete/dev-shopfront-masonry-high-right.json.gz",
+      "prediction_sha256": "481eb08debacab6fadf84dd79c4d5c292b76779146242343c718dad70c67a1e1",
+      "alternate_view": false,
+      "stages": {
+        "Source": [
+          239,
+          245,
+          664,
+          487
+        ],
+        "Reference": [
+          239,
+          487,
+          664,
+          729
+        ],
+        "Surface Finder": [
+          239,
+          729,
+          664,
+          971
+        ],
+        "Context crop": [
+          239,
+          971,
+          664,
+          1213
+        ],
+        "Sampling window": [
+          239,
+          1213,
+          664,
+          1455
+        ],
+        "Straightened crop": [
+          239,
+          1455,
+          664,
+          1697
+        ],
+        "Block Counter": [
+          239,
+          1697,
+          664,
+          1939
+        ]
+      }
+    },
+    {
+      "reference": 2,
+      "reference_size_blocks": [
+        1,
+        4
+      ],
+      "proposal": "mask-8",
+      "finder_iou": 0.6358024691358025,
+      "quad_native": [
+        [
+          602.27,
+          382.25
+        ],
+        [
+          606.92,
+          379.98
+        ],
+        [
+          607.15,
+          554.37
+        ],
+        [
+          599.36,
+          552.13
+        ]
+      ],
+      "predicted_mask_inside_chart_fraction": 0.4105504587155963,
+      "tight_xyxy": [
+        592,
+        386,
+        608,
+        552
+      ],
+      "crop_xyxy": [
+        584,
+        378,
+        616,
+        560
+      ],
+      "detail_xyxy": [
+        578,
+        372,
+        622,
+        566
+      ],
+      "scene_xyxy": [
+        349,
+        232,
+        1094,
+        662
+      ],
+      "margins_ltrb": [
+        8,
+        8,
+        8,
+        8
+      ],
+      "chart_source": "supplied quad",
+      "straightened_wh": [
+        7,
+        172
+      ],
+      "counts": [
+        null,
+        null
+      ],
+      "grid_phase": [
+        null,
+        null
+      ],
+      "grid_lines": [
+        [],
+        []
+      ],
+      "blocks": [
+        null,
+        null
+      ],
+      "straightened_valid_fraction": 0.4568106312292359,
+      "id": "Shopfront B",
+      "layout": "shopfront",
+      "frame": "smooth_stone/dev-shopfront-masonry-low-left",
+      "sha256": "17691e7909ee0e9384db83c3a729f8763e21a281eb89b8dcebe61fc7675d1405",
+      "source_wh": [
+        1440,
+        900
+      ],
+      "predictions": "predictions/smooth_stone/dev-shopfront-masonry-low-left.json.gz",
+      "prediction_sha256": "440b9668fea910106ef51ead5e812358ddaaae0f73ef67f70a2eac212d65b42e",
+      "alternate_view": true,
+      "stages": {
+        "Source": [
+          239,
+          2009,
+          664,
+          2251
+        ],
+        "Reference": [
+          239,
+          2251,
+          664,
+          2493
+        ],
+        "Surface Finder": [
+          239,
+          2493,
+          664,
+          2735
+        ],
+        "Context crop": [
+          239,
+          2735,
+          664,
+          2977
+        ],
+        "Sampling window": [
+          239,
+          2977,
+          664,
+          3219
+        ],
+        "Straightened crop": [
+          239,
+          3219,
+          664,
+          3461
+        ],
+        "Block Counter": [
+          239,
+          3461,
+          664,
+          3703
+        ]
+      }
+    },
+    {
+      "reference": 13,
+      "reference_size_blocks": [
+        15,
+        5
+      ],
+      "proposal": "mask-6",
+      "finder_iou": 0.6094674556213018,
+      "quad_native": [
+        [
+          511.0,
+          306.0
+        ],
+        [
+          913.0,
+          310.0
+        ],
+        [
+          1055.0,
+          342.0
+        ],
+        [
+          793.0,
+          336.0
+        ]
+      ],
+      "predicted_mask_inside_chart_fraction": 0.8455922865013774,
+      "tight_xyxy": [
+        496,
+        306,
+        1056,
+        336
+      ],
+      "crop_xyxy": [
+        488,
+        298,
+        1064,
+        344
+      ],
+      "detail_xyxy": [
+        482,
+        292,
+        1070,
+        350
+      ],
+      "scene_xyxy": [
+        472,
+        284,
+        1076,
+        696
+      ],
+      "margins_ltrb": [
+        8,
+        8,
+        8,
+        8
+      ],
+      "chart_source": "supplied quad",
+      "straightened_wh": [
+        332,
+        215
+      ],
+      "counts": [
+        null,
+        null
+      ],
+      "grid_phase": [
+        null,
+        null
+      ],
+      "grid_lines": [
+        [],
+        []
+      ],
+      "blocks": [
+        null,
+        null
+      ],
+      "straightened_valid_fraction": 0.5579434015130289,
+      "id": "Shopfront C",
+      "layout": "shopfront",
+      "frame": "light_gray_concrete/dev-shopfront-masonry-high-right",
+      "sha256": "bb588b0b0d1cdb05b720ff5bc3b515479426c7772fd98fb7fadb8a55b79ca9db",
+      "source_wh": [
+        1440,
+        900
+      ],
+      "predictions": "predictions/light_gray_concrete/dev-shopfront-masonry-high-right.json.gz",
+      "prediction_sha256": "481eb08debacab6fadf84dd79c4d5c292b76779146242343c718dad70c67a1e1",
+      "alternate_view": false,
+      "stages": {
+        "Source": [
+          239,
+          3773,
+          664,
+          4015
+        ],
+        "Reference": [
+          239,
+          4015,
+          664,
+          4257
+        ],
+        "Surface Finder": [
+          239,
+          4257,
+          664,
+          4499
+        ],
+        "Context crop": [
+          239,
+          4499,
+          664,
+          4741
+        ],
+        "Sampling window": [
+          239,
+          4741,
+          664,
+          4983
+        ],
+        "Straightened crop": [
+          239,
+          4983,
+          664,
+          5225
+        ],
+        "Block Counter": [
+          239,
+          5225,
+          664,
+          5467
+        ]
+      }
+    },
+    {
+      "reference": 2,
+      "reference_size_blocks": [
+        13,
+        8
+      ],
+      "proposal": "mask-0",
+      "finder_iou": 0.9760110718130094,
+      "quad_native": [
+        [
+          411.43,
+          313.93
+        ],
+        [
+          772.07,
+          321.1
+        ],
+        [
+          769.09,
+          655.32
+        ],
+        [
+          425.47,
+          567.47
+        ]
+      ],
+      "predicted_mask_inside_chart_fraction": 0.9970638729564165,
+      "tight_xyxy": [
+        410,
+        316,
+        772,
+        654
+      ],
+      "crop_xyxy": [
+        402,
+        308,
+        780,
+        662
+      ],
+      "detail_xyxy": [
+        396,
+        302,
+        786,
+        668
+      ],
+      "scene_xyxy": [
+        388,
+        292,
+        1032,
+        704
+      ],
+      "margins_ltrb": [
+        8,
+        8,
+        8,
+        8
+      ],
+      "chart_source": "supplied quad",
+      "straightened_wh": [
+        358,
+        294
+      ],
+      "counts": [
+        12.903849431390132,
+        8.054561115011365
+      ],
+      "grid_phase": [
+        null,
+        null
+      ],
+      "grid_lines": [
+        [],
+        []
+      ],
+      "blocks": [
+        13,
+        8
+      ],
+      "straightened_valid_fraction": 0.9777581423630904,
+      "id": "Wing A",
+      "layout": "wing",
+      "frame": "smooth_stone/dev-wing-masonry-high-right",
+      "sha256": "8cd9e20f608db25df6d141941051d30afcbf80733ea4c6f2058874c02019bf9f",
+      "source_wh": [
+        1440,
+        900
+      ],
+      "predictions": "predictions/smooth_stone/dev-wing-masonry-high-right.json.gz",
+      "prediction_sha256": "013c8dea0c9eb4d4328b5e03ca22bf4bea46ac1cd2842770483b4649bdd07544",
+      "alternate_view": false,
+      "stages": {
+        "Source": [
+          680,
+          245,
+          1105,
+          487
+        ],
+        "Reference": [
+          680,
+          487,
+          1105,
+          729
+        ],
+        "Surface Finder": [
+          680,
+          729,
+          1105,
+          971
+        ],
+        "Context crop": [
+          680,
+          971,
+          1105,
+          1213
+        ],
+        "Sampling window": [
+          680,
+          1213,
+          1105,
+          1455
+        ],
+        "Straightened crop": [
+          680,
+          1455,
+          1105,
+          1697
+        ],
+        "Block Counter": [
+          680,
+          1697,
+          1105,
+          1939
+        ]
+      }
+    },
+    {
+      "reference": 7,
+      "reference_size_blocks": [
+        4,
+        8
+      ],
+      "proposal": "mask-2",
+      "finder_iou": 0.8947368421052632,
+      "quad_native": [
+        [
+          772.71,
+          328.59
+        ],
+        [
+          850.44,
+          312.17
+        ],
+        [
+          845.19,
+          457.75
+        ],
+        [
+          769.37,
+          634.46
+        ]
+      ],
+      "predicted_mask_inside_chart_fraction": 0.8929190393661798,
+      "tight_xyxy": [
+        766,
+        320,
+        852,
+        654
+      ],
+      "crop_xyxy": [
+        758,
+        312,
+        860,
+        662
+      ],
+      "detail_xyxy": [
+        752,
+        306,
+        866,
+        668
+      ],
+      "scene_xyxy": [
+        388,
+        292,
+        1032,
+        704
+      ],
+      "margins_ltrb": [
+        8,
+        8,
+        8,
+        8
+      ],
+      "chart_source": "supplied quad",
+      "straightened_wh": [
+        136,
+        226
+      ],
+      "counts": [
+        null,
+        null
+      ],
+      "grid_phase": [
+        null,
+        null
+      ],
+      "grid_lines": [
+        [],
+        []
+      ],
+      "blocks": [
+        null,
+        null
+      ],
+      "straightened_valid_fraction": 0.7798347214992192,
+      "id": "Wing B",
+      "layout": "wing",
+      "frame": "smooth_stone/dev-wing-masonry-high-right",
+      "sha256": "8cd9e20f608db25df6d141941051d30afcbf80733ea4c6f2058874c02019bf9f",
+      "source_wh": [
+        1440,
+        900
+      ],
+      "predictions": "predictions/smooth_stone/dev-wing-masonry-high-right.json.gz",
+      "prediction_sha256": "013c8dea0c9eb4d4328b5e03ca22bf4bea46ac1cd2842770483b4649bdd07544",
+      "alternate_view": false,
+      "stages": {
+        "Source": [
+          680,
+          2009,
+          1105,
+          2251
+        ],
+        "Reference": [
+          680,
+          2251,
+          1105,
+          2493
+        ],
+        "Surface Finder": [
+          680,
+          2493,
+          1105,
+          2735
+        ],
+        "Context crop": [
+          680,
+          2735,
+          1105,
+          2977
+        ],
+        "Sampling window": [
+          680,
+          2977,
+          1105,
+          3219
+        ],
+        "Straightened crop": [
+          680,
+          3219,
+          1105,
+          3461
+        ],
+        "Block Counter": [
+          680,
+          3461,
+          1105,
+          3703
+        ]
+      }
+    },
+    {
+      "reference": 3,
+      "reference_size_blocks": [
+        4,
+        4
+      ],
+      "proposal": "mask-4",
+      "finder_iou": 0.8969359331476323,
+      "quad_native": null,
+      "predicted_mask_inside_chart_fraction": null,
+      "tight_xyxy": [
+        796,
+        412,
+        1006,
+        510
+      ],
+      "crop_xyxy": [
+        788,
+        404,
+        1014,
+        518
+      ],
+      "detail_xyxy": [
+        782,
+        398,
+        1020,
+        524
+      ],
+      "scene_xyxy": [
+        388,
+        292,
+        1032,
+        704
+      ],
+      "margins_ltrb": [
+        8,
+        8,
+        8,
+        8
+      ],
+      "chart_source": null,
+      "straightened_wh": null,
+      "grid_phase": null,
+      "counts": null,
+      "blocks": null,
+      "id": "Wing C",
+      "layout": "wing",
+      "frame": "smooth_stone/dev-wing-masonry-high-right",
+      "sha256": "8cd9e20f608db25df6d141941051d30afcbf80733ea4c6f2058874c02019bf9f",
+      "source_wh": [
+        1440,
+        900
+      ],
+      "predictions": "predictions/smooth_stone/dev-wing-masonry-high-right.json.gz",
+      "prediction_sha256": "013c8dea0c9eb4d4328b5e03ca22bf4bea46ac1cd2842770483b4649bdd07544",
+      "alternate_view": false,
+      "stages": {
+        "Source": [
+          680,
+          3773,
+          1105,
+          4015
+        ],
+        "Reference": [
+          680,
+          4015,
+          1105,
+          4257
+        ],
+        "Surface Finder": [
+          680,
+          4257,
+          1105,
+          4499
+        ],
+        "Context crop": [
+          680,
+          4499,
+          1105,
+          4741
+        ],
+        "Sampling window": [
+          680,
+          4741,
+          1105,
+          4983
+        ],
+        "Straightened crop": [
+          680,
+          4983,
+          1105,
+          5225
+        ],
+        "Block Counter": [
+          680,
+          5225,
+          1105,
+          5467
+        ]
+      }
+    },
+    {
+      "reference": 10,
+      "reference_size_blocks": [
+        6,
+        6
+      ],
+      "proposal": "mask-2-single-95-1",
+      "finder_iou": 0.9713239780353874,
+      "quad_native": [
+        [
+          514.3,
+          386.98
+        ],
+        [
+          652.26,
+          373.07
+        ],
+        [
+          655.11,
+          547.31
+        ],
+        [
+          523.52,
+          597.88
+        ]
+      ],
+      "predicted_mask_inside_chart_fraction": 0.9969222378058282,
+      "tight_xyxy": [
+        512,
+        376,
+        654,
+        596
+      ],
+      "crop_xyxy": [
+        504,
+        368,
+        662,
+        604
+      ],
+      "detail_xyxy": [
+        498,
+        362,
+        668,
+        610
+      ],
+      "scene_xyxy": [
+        392,
+        280,
+        1080,
+        696
+      ],
+      "margins_ltrb": [
+        8,
+        8,
+        8,
+        8
+      ],
+      "chart_source": "supplied quad",
+      "straightened_wh": [
+        140,
+        193
+      ],
+      "counts": [
+        5.988734167145157,
+        5.93125493504073
+      ],
+      "grid_phase": [
+        null,
+        null
+      ],
+      "grid_lines": [
+        [],
+        []
+      ],
+      "blocks": [
+        6,
+        6
+      ],
+      "straightened_valid_fraction": 0.9554034048852702,
+      "id": "Courtyard A",
+      "layout": "courtyard",
+      "frame": "light_gray_concrete/holdout-courtyard-masonry-high-right",
+      "sha256": "b5b2bb5300687da8d904fb129043b5d2df0ae56e9ba4e14afb932b3e6d44dd3b",
+      "source_wh": [
+        1440,
+        900
+      ],
+      "predictions": "predictions/light_gray_concrete/holdout-courtyard-masonry-high-right.json.gz",
+      "prediction_sha256": "5f3cfe18c0cf93739ee1ffbe19c3245ea30211d6dc9305f6704d7f74b9dcc775",
+      "alternate_view": false,
+      "stages": {
+        "Source": [
+          1121,
+          245,
+          1546,
+          487
+        ],
+        "Reference": [
+          1121,
+          487,
+          1546,
+          729
+        ],
+        "Surface Finder": [
+          1121,
+          729,
+          1546,
+          971
+        ],
+        "Context crop": [
+          1121,
+          971,
+          1546,
+          1213
+        ],
+        "Sampling window": [
+          1121,
+          1213,
+          1546,
+          1455
+        ],
+        "Straightened crop": [
+          1121,
+          1455,
+          1546,
+          1697
+        ],
+        "Block Counter": [
+          1121,
+          1697,
+          1546,
+          1939
+        ]
+      }
+    },
+    {
+      "reference": 11,
+      "reference_size_blocks": [
+        6,
+        1
+      ],
+      "proposal": "mask-2-single-95-0",
+      "finder_iou": 0.8819875776397516,
+      "quad_native": [
+        [
+          535.771208144108,
+          337.9046339285636
+        ],
+        [
+          675.8842445269951,
+          338.0027191398822
+        ],
+        [
+          677.4461940540216,
+          472.9012920164184
+        ],
+        [
+          544.248450251032,
+          513.2290264517288
+        ]
+      ],
+      "predicted_mask_inside_chart_fraction": 1.0,
+      "tight_xyxy": [
+        538,
+        338,
+        676,
+        480
+      ],
+      "crop_xyxy": [
+        530,
+        330,
+        684,
+        488
+      ],
+      "detail_xyxy": [
+        524,
+        324,
+        690,
+        520
+      ],
+      "scene_xyxy": [
+        392,
+        280,
+        1080,
+        696
+      ],
+      "margins_ltrb": [
+        8,
+        8,
+        8,
+        8
+      ],
+      "chart_source": "wall normal + assumed-70-degree-vertical-fov",
+      "straightened_wh": [
+        140,
+        155
+      ],
+      "counts": [
+        null,
+        null
+      ],
+      "grid_phase": [
+        null,
+        null
+      ],
+      "grid_lines": [
+        [],
+        []
+      ],
+      "blocks": [
+        null,
+        null
+      ],
+      "straightened_valid_fraction": 0.2127188940092166,
+      "id": "Courtyard B",
+      "layout": "courtyard",
+      "frame": "light_gray_concrete/holdout-courtyard-masonry-high-right",
+      "sha256": "b5b2bb5300687da8d904fb129043b5d2df0ae56e9ba4e14afb932b3e6d44dd3b",
+      "source_wh": [
+        1440,
+        900
+      ],
+      "predictions": "predictions/light_gray_concrete/holdout-courtyard-masonry-high-right.json.gz",
+      "prediction_sha256": "5f3cfe18c0cf93739ee1ffbe19c3245ea30211d6dc9305f6704d7f74b9dcc775",
+      "alternate_view": false,
+      "stages": {
+        "Source": [
+          1121,
+          2009,
+          1546,
+          2251
+        ],
+        "Reference": [
+          1121,
+          2251,
+          1546,
+          2493
+        ],
+        "Surface Finder": [
+          1121,
+          2493,
+          1546,
+          2735
+        ],
+        "Context crop": [
+          1121,
+          2735,
+          1546,
+          2977
+        ],
+        "Sampling window": [
+          1121,
+          2977,
+          1546,
+          3219
+        ],
+        "Straightened crop": [
+          1121,
+          3219,
+          1546,
+          3461
+        ],
+        "Block Counter": [
+          1121,
+          3461,
+          1546,
+          3703
+        ]
+      }
+    },
+    {
+      "reference": 4,
+      "reference_size_blocks": [
+        4,
+        4
+      ],
+      "proposal": "mask-5",
+      "finder_iou": 0.7625418060200669,
+      "quad_native": [
+        [
+          880.57,
+          418.23
+        ],
+        [
+          1019.24,
+          431.03
+        ],
+        [
+          973.21,
+          459.04
+        ],
+        [
+          815.65,
+          435.93
+        ]
+      ],
+      "predicted_mask_inside_chart_fraction": 0.9114533205004812,
+      "tight_xyxy": [
+        822,
+        418,
+        1022,
+        458
+      ],
+      "crop_xyxy": [
+        814,
+        410,
+        1030,
+        466
+      ],
+      "detail_xyxy": [
+        808,
+        404,
+        1036,
+        472
+      ],
+      "scene_xyxy": [
+        392,
+        280,
+        1080,
+        696
+      ],
+      "margins_ltrb": [
+        8,
+        8,
+        8,
+        8
+      ],
+      "chart_source": "supplied quad",
+      "straightened_wh": [
+        149,
+        61
+      ],
+      "counts": [
+        null,
+        null
+      ],
+      "grid_phase": [
+        null,
+        null
+      ],
+      "grid_lines": [
+        [],
+        []
+      ],
+      "blocks": [
+        null,
+        null
+      ],
+      "straightened_valid_fraction": 0.7373748487182308,
+      "id": "Courtyard C",
+      "layout": "courtyard",
+      "frame": "light_gray_concrete/holdout-courtyard-masonry-high-right",
+      "sha256": "b5b2bb5300687da8d904fb129043b5d2df0ae56e9ba4e14afb932b3e6d44dd3b",
+      "source_wh": [
+        1440,
+        900
+      ],
+      "predictions": "predictions/light_gray_concrete/holdout-courtyard-masonry-high-right.json.gz",
+      "prediction_sha256": "5f3cfe18c0cf93739ee1ffbe19c3245ea30211d6dc9305f6704d7f74b9dcc775",
+      "alternate_view": false,
+      "stages": {
+        "Source": [
+          1121,
+          3773,
+          1546,
+          4015
+        ],
+        "Reference": [
+          1121,
+          4015,
+          1546,
+          4257
+        ],
+        "Surface Finder": [
+          1121,
+          4257,
+          1546,
+          4499
+        ],
+        "Context crop": [
+          1121,
+          4499,
+          1546,
+          4741
+        ],
+        "Sampling window": [
+          1121,
+          4741,
+          1546,
+          4983
+        ],
+        "Straightened crop": [
+          1121,
+          4983,
+          1546,
+          5225
+        ],
+        "Block Counter": [
+          1121,
+          5225,
+          1546,
+          5467
+        ]
+      }
+    },
+    {
+      "reference": 3,
+      "reference_size_blocks": [
+        6,
+        3
+      ],
+      "proposal": "mask-3",
+      "finder_iou": 0.9574468085106383,
+      "quad_native": [
+        [
+          596.15,
+          306.53
+        ],
+        [
+          737.0,
+          305.86
+        ],
+        [
+          737.0,
+          399.56
+        ],
+        [
+          595.91,
+          393.13
+        ]
+      ],
+      "predicted_mask_inside_chart_fraction": 0.9960267005721551,
+      "tight_xyxy": [
+        594,
+        306,
+        736,
+        400
+      ],
+      "crop_xyxy": [
+        586,
+        298,
+        744,
+        408
+      ],
+      "detail_xyxy": [
+        580,
+        292,
+        750,
+        414
+      ],
+      "scene_xyxy": [
+        404,
+        280,
+        1068,
+        672
+      ],
+      "margins_ltrb": [
+        8,
+        8,
+        8,
+        8
+      ],
+      "chart_source": "supplied quad",
+      "straightened_wh": [
+        141,
+        90
+      ],
+      "counts": [
+        5.988714863642483,
+        3.017224216316791
+      ],
+      "grid_phase": [
+        null,
+        null
+      ],
+      "grid_lines": [
+        [],
+        []
+      ],
+      "blocks": [
+        6,
+        3
+      ],
+      "straightened_valid_fraction": 0.9533490937746257,
+      "id": "Portico A",
+      "layout": "portico",
+      "frame": "smooth_stone/holdout-portico-masonry-high-right",
+      "sha256": "54819d55b59d36a91e891bf2ff6148104d917d5ca59084f4f73edc43d623e390",
+      "source_wh": [
+        1440,
+        900
+      ],
+      "predictions": "predictions/smooth_stone/holdout-portico-masonry-high-right.json.gz",
+      "prediction_sha256": "00b779516759e66cdbabc37837c02536dd4ea0f3456c3021362e0352e48ec83f",
+      "alternate_view": false,
+      "stages": {
+        "Source": [
+          1562,
+          245,
+          1987,
+          487
+        ],
+        "Reference": [
+          1562,
+          487,
+          1987,
+          729
+        ],
+        "Surface Finder": [
+          1562,
+          729,
+          1987,
+          971
+        ],
+        "Context crop": [
+          1562,
+          971,
+          1987,
+          1213
+        ],
+        "Sampling window": [
+          1562,
+          1213,
+          1987,
+          1455
+        ],
+        "Straightened crop": [
+          1562,
+          1455,
+          1987,
+          1697
+        ],
+        "Block Counter": [
+          1562,
+          1697,
+          1987,
+          1939
+        ]
+      }
+    },
+    {
+      "reference": 9,
+      "reference_size_blocks": [
+        18,
+        1
+      ],
+      "proposal": "mask-0-junction-1-single-234-0",
+      "finder_iou": 0.699469652327637,
+      "quad_native": [
+        [
+          427.1055405144519,
+          397.0832466957274
+        ],
+        [
+          959.0761204923725,
+          425.94985751496034
+        ],
+        [
+          944.2347753532441,
+          686.725344505335
+        ],
+        [
+          438.54833728899933,
+          562.3269334538718
+        ]
+      ],
+      "predicted_mask_inside_chart_fraction": 1.0,
+      "tight_xyxy": [
+        428,
+        398,
+        956,
+        620
+      ],
+      "crop_xyxy": [
+        420,
+        390,
+        964,
+        628
+      ],
+      "detail_xyxy": [
+        414,
+        384,
+        970,
+        693
+      ],
+      "scene_xyxy": [
+        404,
+        280,
+        1068,
+        672
+      ],
+      "margins_ltrb": [
+        8,
+        8,
+        8,
+        8
+      ],
+      "chart_source": "wall normal + assumed-70-degree-vertical-fov",
+      "straightened_wh": [
+        527,
+        213
+      ],
+      "counts": [
+        2.314082473163159,
+        null
+      ],
+      "grid_phase": [
+        null,
+        null
+      ],
+      "grid_lines": [
+        [],
+        []
+      ],
+      "blocks": [
+        2,
+        null
+      ],
+      "straightened_valid_fraction": 0.2360068061754461,
+      "id": "Portico B",
+      "layout": "portico",
+      "frame": "smooth_stone/holdout-portico-masonry-high-right",
+      "sha256": "54819d55b59d36a91e891bf2ff6148104d917d5ca59084f4f73edc43d623e390",
+      "source_wh": [
+        1440,
+        900
+      ],
+      "predictions": "predictions/smooth_stone/holdout-portico-masonry-high-right.json.gz",
+      "prediction_sha256": "00b779516759e66cdbabc37837c02536dd4ea0f3456c3021362e0352e48ec83f",
+      "alternate_view": false,
+      "stages": {
+        "Source": [
+          1562,
+          2009,
+          1987,
+          2251
+        ],
+        "Reference": [
+          1562,
+          2251,
+          1987,
+          2493
+        ],
+        "Surface Finder": [
+          1562,
+          2493,
+          1987,
+          2735
+        ],
+        "Context crop": [
+          1562,
+          2735,
+          1987,
+          2977
+        ],
+        "Sampling window": [
+          1562,
+          2977,
+          1987,
+          3219
+        ],
+        "Straightened crop": [
+          1562,
+          3219,
+          1987,
+          3461
+        ],
+        "Block Counter": [
+          1562,
+          3461,
+          1987,
+          3703
+        ]
+      }
+    },
+    {
+      "reference": 6,
+      "reference_size_blocks": [
+        1,
+        5
+      ],
+      "proposal": "mask-0-junction-0",
+      "finder_iou": 0.7637130801687764,
+      "quad_native": [
+        [
+          559.51,
+          438.94
+        ],
+        [
+          581.71,
+          441.71
+        ],
+        [
+          590.23,
+          598.51
+        ],
+        [
+          562.69,
+          588.16
+        ]
+      ],
+      "predicted_mask_inside_chart_fraction": 0.9779319041614124,
+      "tight_xyxy": [
+        558,
+        440,
+        586,
+        594
+      ],
+      "crop_xyxy": [
+        550,
+        432,
+        594,
+        602
+      ],
+      "detail_xyxy": [
+        544,
+        426,
+        600,
+        608
+      ],
+      "scene_xyxy": [
+        404,
+        280,
+        1068,
+        672
+      ],
+      "margins_ltrb": [
+        8,
+        8,
+        8,
+        8
+      ],
+      "chart_source": "supplied quad",
+      "straightened_wh": [
+        26,
+        153
+      ],
+      "counts": [
+        null,
+        null
+      ],
+      "grid_phase": [
+        null,
+        null
+      ],
+      "grid_lines": [
+        [],
+        []
+      ],
+      "blocks": [
+        null,
+        null
+      ],
+      "straightened_valid_fraction": 0.7378079436902967,
+      "id": "Portico C",
+      "layout": "portico",
+      "frame": "smooth_stone/holdout-portico-masonry-high-right",
+      "sha256": "54819d55b59d36a91e891bf2ff6148104d917d5ca59084f4f73edc43d623e390",
+      "source_wh": [
+        1440,
+        900
+      ],
+      "predictions": "predictions/smooth_stone/holdout-portico-masonry-high-right.json.gz",
+      "prediction_sha256": "00b779516759e66cdbabc37837c02536dd4ea0f3456c3021362e0352e48ec83f",
+      "alternate_view": false,
+      "stages": {
+        "Source": [
+          1562,
+          3773,
+          1987,
+          4015
+        ],
+        "Reference": [
+          1562,
+          4015,
+          1987,
+          4257
+        ],
+        "Surface Finder": [
+          1562,
+          4257,
+          1987,
+          4499
+        ],
+        "Context crop": [
+          1562,
+          4499,
+          1987,
+          4741
+        ],
+        "Sampling window": [
+          1562,
+          4741,
+          1987,
+          4983
+        ],
+        "Straightened crop": [
+          1562,
+          4983,
+          1987,
+          5225
+        ],
+        "Block Counter": [
+          1562,
+          5225,
+          1987,
+          5467
+        ]
+      }
+    },
+    {
+      "reference": 5,
+      "reference_size_blocks": [
+        14,
+        5
+      ],
+      "proposal": "mask-0-wall-1",
+      "finder_iou": 0.9287446937537902,
+      "quad_native": [
+        [
+          497.3,
+          278.81
+        ],
+        [
+          658.06,
+          271.85
+        ],
+        [
+          798.65,
+          454.0
+        ],
+        [
+          440.6,
+          454.0
+        ]
+      ],
+      "predicted_mask_inside_chart_fraction": 0.8901426566884939,
+      "tight_xyxy": [
+        392,
+        272,
+        796,
+        454
+      ],
+      "crop_xyxy": [
+        384,
+        264,
+        804,
+        462
+      ],
+      "detail_xyxy": [
+        378,
+        258,
+        810,
+        468
+      ],
+      "scene_xyxy": [
+        368,
+        248,
+        1052,
+        684
+      ],
+      "margins_ltrb": [
+        8,
+        8,
+        8,
+        8
+      ],
+      "chart_source": "supplied quad",
+      "straightened_wh": [
+        259,
+        207
+      ],
+      "counts": [
+        null,
+        null
+      ],
+      "grid_phase": [
+        null,
+        null
+      ],
+      "grid_lines": [
+        [],
+        []
+      ],
+      "blocks": [
+        null,
+        null
+      ],
+      "straightened_valid_fraction": 0.9425325947065077,
+      "id": "Workshop A",
+      "layout": "workshop",
+      "frame": "light_gray_concrete/holdout-workshop-plaster-high-right",
+      "sha256": "d35ab308820f92501ec898cafb1f50939f3f0ed1141e3d9ee38a00eae1199aa0",
+      "source_wh": [
+        1440,
+        900
+      ],
+      "predictions": "predictions/light_gray_concrete/holdout-workshop-plaster-high-right.json.gz",
+      "prediction_sha256": "fd2e457fbcee357dc6f6010a4e2b610452697d71a94f3bb6288fcf69a2a57f20",
+      "alternate_view": false,
+      "stages": {
+        "Source": [
+          2003,
+          245,
+          2428,
+          487
+        ],
+        "Reference": [
+          2003,
+          487,
+          2428,
+          729
+        ],
+        "Surface Finder": [
+          2003,
+          729,
+          2428,
+          971
+        ],
+        "Context crop": [
+          2003,
+          971,
+          2428,
+          1213
+        ],
+        "Sampling window": [
+          2003,
+          1213,
+          2428,
+          1455
+        ],
+        "Straightened crop": [
+          2003,
+          1455,
+          2428,
+          1697
+        ],
+        "Block Counter": [
+          2003,
+          1697,
+          2428,
+          1939
+        ]
+      }
+    },
+    {
+      "reference": 12,
+      "reference_size_blocks": [
+        9,
+        1
+      ],
+      "proposal": "mask-7",
+      "finder_iou": 0.8894009216589862,
+      "quad_native": [
+        [
+          670.74,
+          272.24
+        ],
+        [
+          774.31,
+          289.81
+        ],
+        [
+          777.24,
+          315.2
+        ],
+        [
+          662.8,
+          304.78
+        ]
+      ],
+      "predicted_mask_inside_chart_fraction": 0.913056206088993,
+      "tight_xyxy": [
+        664,
+        272,
+        776,
+        316
+      ],
+      "crop_xyxy": [
+        656,
+        264,
+        784,
+        324
+      ],
+      "detail_xyxy": [
+        650,
+        258,
+        790,
+        330
+      ],
+      "scene_xyxy": [
+        368,
+        248,
+        1052,
+        684
+      ],
+      "margins_ltrb": [
+        8,
+        8,
+        8,
+        8
+      ],
+      "chart_source": "supplied quad",
+      "straightened_wh": [
+        110,
+        30
+      ],
+      "counts": [
+        9.068609608078718,
+        0.9300518555328635
+      ],
+      "grid_phase": [
+        null,
+        null
+      ],
+      "grid_lines": [
+        [],
+        []
+      ],
+      "blocks": [
+        10,
+        1
+      ],
+      "straightened_valid_fraction": 0.8724242424242424,
+      "id": "Workshop B",
+      "layout": "workshop",
+      "frame": "light_gray_concrete/holdout-workshop-plaster-high-right",
+      "sha256": "d35ab308820f92501ec898cafb1f50939f3f0ed1141e3d9ee38a00eae1199aa0",
+      "source_wh": [
+        1440,
+        900
+      ],
+      "predictions": "predictions/light_gray_concrete/holdout-workshop-plaster-high-right.json.gz",
+      "prediction_sha256": "fd2e457fbcee357dc6f6010a4e2b610452697d71a94f3bb6288fcf69a2a57f20",
+      "alternate_view": false,
+      "stages": {
+        "Source": [
+          2003,
+          2009,
+          2428,
+          2251
+        ],
+        "Reference": [
+          2003,
+          2251,
+          2428,
+          2493
+        ],
+        "Surface Finder": [
+          2003,
+          2493,
+          2428,
+          2735
+        ],
+        "Context crop": [
+          2003,
+          2735,
+          2428,
+          2977
+        ],
+        "Sampling window": [
+          2003,
+          2977,
+          2428,
+          3219
+        ],
+        "Straightened crop": [
+          2003,
+          3219,
+          2428,
+          3461
+        ],
+        "Block Counter": [
+          2003,
+          3461,
+          2428,
+          3703
+        ]
+      }
+    },
+    {
+      "reference": 8,
+      "reference_size_blocks": [
+        1,
+        9
+      ],
+      "proposal": "mask-12",
+      "finder_iou": 0.5714285714285714,
+      "quad_native": [
+        [
+          786.34,
+          416.1
+        ],
+        [
+          854.32,
+          402.4
+        ],
+        [
+          875.15,
+          403.72
+        ],
+        [
+          787.66,
+          424.05
+        ]
+      ],
+      "predicted_mask_inside_chart_fraction": 0.6812169312169312,
+      "tight_xyxy": [
+        774,
+        400,
+        880,
+        426
+      ],
+      "crop_xyxy": [
+        766,
+        392,
+        888,
+        434
+      ],
+      "detail_xyxy": [
+        760,
+        386,
+        894,
+        440
+      ],
+      "scene_xyxy": [
+        340,
+        220,
+        1078,
+        713
+      ],
+      "margins_ltrb": [
+        8,
+        8,
+        8,
+        8
+      ],
+      "chart_source": "supplied quad",
+      "straightened_wh": [
+        80,
+        14
+      ],
+      "counts": [
+        null,
+        null
+      ],
+      "grid_phase": [
+        null,
+        null
+      ],
+      "grid_lines": [
+        [],
+        []
+      ],
+      "blocks": [
+        null,
+        null
+      ],
+      "straightened_valid_fraction": 0.5071428571428571,
+      "id": "Workshop C",
+      "layout": "workshop",
+      "frame": "light_gray_concrete/holdout-workshop-masonry-high-right",
+      "sha256": "3aefcb242fdda8a6d4c40adb9a7d2632c8de998b076b1d4ec09a100db95119d4",
+      "source_wh": [
+        1440,
+        900
+      ],
+      "predictions": "predictions/light_gray_concrete/holdout-workshop-masonry-high-right.json.gz",
+      "prediction_sha256": "2e85ae6a003fc437b11f75e9755aa16b9db23f3d8949d0d709211ab76496a0b0",
+      "alternate_view": true,
+      "stages": {
+        "Source": [
+          2003,
+          3773,
+          2428,
+          4015
+        ],
+        "Reference": [
+          2003,
+          4015,
+          2428,
+          4257
+        ],
+        "Surface Finder": [
+          2003,
+          4257,
+          2428,
+          4499
+        ],
+        "Context crop": [
+          2003,
+          4499,
+          2428,
+          4741
+        ],
+        "Sampling window": [
+          2003,
+          4741,
+          2428,
+          4983
+        ],
+        "Straightened crop": [
+          2003,
+          4983,
+          2428,
+          5225
+        ],
+        "Block Counter": [
+          2003,
+          5225,
+          2428,
+          5467
+        ]
+      }
+    },
+    {
+      "reference": 14,
+      "reference_size_blocks": [
+        12,
+        3
+      ],
+      "proposal": "mask-1-single-436-0",
+      "finder_iou": 0.9604700854700855,
+      "quad_native": [
+        [
+          676.73,
+          290.02
+        ],
+        [
+          1005.74,
+          356.89
+        ],
+        [
+          1010.63,
+          450.99
+        ],
+        [
+          640.0,
+          419.9
+        ]
+      ],
+      "predicted_mask_inside_chart_fraction": 0.8915587315765967,
+      "tight_xyxy": [
+        640,
+        270,
+        1010,
+        460
+      ],
+      "crop_xyxy": [
+        632,
+        262,
+        1018,
+        468
+      ],
+      "detail_xyxy": [
+        626,
+        256,
+        1024,
+        474
+      ],
+      "scene_xyxy": [
+        372,
+        260,
+        1032,
+        688
+      ],
+      "margins_ltrb": [
+        8,
+        8,
+        8,
+        8
+      ],
+      "chart_source": "supplied quad",
+      "straightened_wh": [
+        354,
+        115
+      ],
+      "counts": [
+        11.855449162588188,
+        2.8323868657104723
+      ],
+      "grid_phase": [
+        null,
+        0.8541666666666666
+      ],
+      "grid_lines": [
+        [],
+        [
+          0.30157132735199593,
+          0.6546304423006741
+        ]
+      ],
+      "blocks": [
+        13,
+        4
+      ],
+      "straightened_valid_fraction": 0.9655121591746499,
+      "id": "Crossing A",
+      "layout": "crossing",
+      "frame": "light_gray_concrete/holdout-crossing-masonry-low-left",
+      "sha256": "93c9a45dbb4d6bc59edc6c18ac8007ad4f99ac340844cb0ed8f171640936fa88",
+      "source_wh": [
+        1440,
+        900
+      ],
+      "predictions": "predictions/light_gray_concrete/holdout-crossing-masonry-low-left.json.gz",
+      "prediction_sha256": "8f062a7aca9684ea9842822f66003368fea9a1d952a41260f88564098758f96b",
+      "alternate_view": false,
+      "stages": {
+        "Source": [
+          2444,
+          245,
+          2869,
+          487
+        ],
+        "Reference": [
+          2444,
+          487,
+          2869,
+          729
+        ],
+        "Surface Finder": [
+          2444,
+          729,
+          2869,
+          971
+        ],
+        "Context crop": [
+          2444,
+          971,
+          2869,
+          1213
+        ],
+        "Sampling window": [
+          2444,
+          1213,
+          2869,
+          1455
+        ],
+        "Straightened crop": [
+          2444,
+          1455,
+          2869,
+          1697
+        ],
+        "Block Counter": [
+          2444,
+          1697,
+          2869,
+          1939
+        ]
+      }
+    },
+    {
+      "reference": 7,
+      "reference_size_blocks": [
+        12,
+        7
+      ],
+      "proposal": "mask-6",
+      "finder_iou": 0.882703777335984,
+      "quad_native": [
+        [
+          635.0,
+          422.0
+        ],
+        [
+          883.0,
+          440.0
+        ],
+        [
+          963.0,
+          458.0
+        ],
+        [
+          657.0,
+          458.0
+        ]
+      ],
+      "predicted_mask_inside_chart_fraction": 0.8475894245723172,
+      "tight_xyxy": [
+        616,
+        422,
+        990,
+        462
+      ],
+      "crop_xyxy": [
+        608,
+        414,
+        998,
+        470
+      ],
+      "detail_xyxy": [
+        598,
+        408,
+        1013,
+        476
+      ],
+      "scene_xyxy": [
+        372,
+        260,
+        1032,
+        688
+      ],
+      "margins_ltrb": [
+        8,
+        8,
+        8,
+        8
+      ],
+      "chart_source": "supplied quad",
+      "straightened_wh": [
+        277,
+        62
+      ],
+      "counts": [
+        null,
+        null
+      ],
+      "grid_phase": [
+        null,
+        null
+      ],
+      "grid_lines": [
+        [],
+        []
+      ],
+      "blocks": [
+        null,
+        null
+      ],
+      "straightened_valid_fraction": 0.7597531151741004,
+      "id": "Crossing B",
+      "layout": "crossing",
+      "frame": "light_gray_concrete/holdout-crossing-masonry-low-left",
+      "sha256": "93c9a45dbb4d6bc59edc6c18ac8007ad4f99ac340844cb0ed8f171640936fa88",
+      "source_wh": [
+        1440,
+        900
+      ],
+      "predictions": "predictions/light_gray_concrete/holdout-crossing-masonry-low-left.json.gz",
+      "prediction_sha256": "8f062a7aca9684ea9842822f66003368fea9a1d952a41260f88564098758f96b",
+      "alternate_view": false,
+      "stages": {
+        "Source": [
+          2444,
+          2009,
+          2869,
+          2251
+        ],
+        "Reference": [
+          2444,
+          2251,
+          2869,
+          2493
+        ],
+        "Surface Finder": [
+          2444,
+          2493,
+          2869,
+          2735
+        ],
+        "Context crop": [
+          2444,
+          2735,
+          2869,
+          2977
+        ],
+        "Sampling window": [
+          2444,
+          2977,
+          2869,
+          3219
+        ],
+        "Straightened crop": [
+          2444,
+          3219,
+          2869,
+          3461
+        ],
+        "Block Counter": [
+          2444,
+          3461,
+          2869,
+          3703
+        ]
+      }
+    },
+    {
+      "reference": 9,
+      "reference_size_blocks": [
+        4,
+        6
+      ],
+      "proposal": "mask-3-planarity-split-0",
+      "finder_iou": 0.6555323590814196,
+      "quad_native": [
+        [
+          860.95,
+          456.11
+        ],
+        [
+          955.39,
+          459.7
+        ],
+        [
+          950.36,
+          615.65
+        ],
+        [
+          834.94,
+          591.85
+        ]
+      ],
+      "predicted_mask_inside_chart_fraction": 0.9408623417721519,
+      "tight_xyxy": [
+        822,
+        454,
+        956,
+        616
+      ],
+      "crop_xyxy": [
+        814,
+        446,
+        964,
+        624
+      ],
+      "detail_xyxy": [
+        808,
+        440,
+        970,
+        630
+      ],
+      "scene_xyxy": [
+        372,
+        260,
+        1032,
+        688
+      ],
+      "margins_ltrb": [
+        8,
+        8,
+        8,
+        8
+      ],
+      "chart_source": "supplied quad",
+      "straightened_wh": [
+        106,
+        147
+      ],
+      "counts": [
+        null,
+        null
+      ],
+      "grid_phase": [
+        null,
+        null
+      ],
+      "grid_lines": [
+        [],
+        []
+      ],
+      "blocks": [
+        null,
+        null
+      ],
+      "straightened_valid_fraction": 0.8942369400590425,
+      "id": "Crossing C",
+      "layout": "crossing",
+      "frame": "light_gray_concrete/holdout-crossing-masonry-low-left",
+      "sha256": "93c9a45dbb4d6bc59edc6c18ac8007ad4f99ac340844cb0ed8f171640936fa88",
+      "source_wh": [
+        1440,
+        900
+      ],
+      "predictions": "predictions/light_gray_concrete/holdout-crossing-masonry-low-left.json.gz",
+      "prediction_sha256": "8f062a7aca9684ea9842822f66003368fea9a1d952a41260f88564098758f96b",
+      "alternate_view": false,
+      "stages": {
+        "Source": [
+          2444,
+          3773,
+          2869,
+          4015
+        ],
+        "Reference": [
+          2444,
+          4015,
+          2869,
+          4257
+        ],
+        "Surface Finder": [
+          2444,
+          4257,
+          2869,
+          4499
+        ],
+        "Context crop": [
+          2444,
+          4499,
+          2869,
+          4741
+        ],
+        "Sampling window": [
+          2444,
+          4741,
+          2869,
+          4983
+        ],
+        "Straightened crop": [
+          2444,
+          4983,
+          2869,
+          5225
+        ],
+        "Block Counter": [
+          2444,
+          5225,
+          2869,
+          5467
+        ]
+      }
+    },
+    {
+      "reference": 27,
+      "reference_size_blocks": [
+        2,
+        4
+      ],
+      "proposal": "mask-0-junction-1-mobile-7",
+      "finder_iou": 0.9626168224299065,
+      "quad_native": [
+        [
+          488.53,
+          473.18
+        ],
+        [
+          574.17,
+          476.22
+        ],
+        [
+          571.16,
+          648.13
+        ],
+        [
+          483.07,
+          654.28
+        ]
+      ],
+      "predicted_mask_inside_chart_fraction": 0.9848484848484849,
+      "tight_xyxy": [
+        482,
+        478,
+        578,
+        652
+      ],
+      "crop_xyxy": [
+        474,
+        470,
+        586,
+        660
+      ],
+      "detail_xyxy": [
+        468,
+        464,
+        592,
+        666
+      ],
+      "scene_xyxy": [
+        392,
+        252,
+        1080,
+        676
+      ],
+      "margins_ltrb": [
+        8,
+        8,
+        8,
+        8
+      ],
+      "chart_source": "supplied quad",
+      "straightened_wh": [
+        87,
+        177
+      ],
+      "counts": [
+        2.011882096805523,
+        4.077355177166647
+      ],
+      "grid_phase": [
+        null,
+        null
+      ],
+      "grid_lines": [
+        [],
+        []
+      ],
+      "blocks": [
+        2,
+        4
+      ],
+      "straightened_valid_fraction": 0.9362945645821157,
+      "id": "Galleries A",
+      "layout": "galleries",
+      "frame": "light_gray_concrete/holdout-galleries-masonry-low-left",
+      "sha256": "d0fba67900a91a20d0120f298c8783829953bc21c7d45fb4413a8cb829cfddc3",
+      "source_wh": [
+        1440,
+        900
+      ],
+      "predictions": "predictions/light_gray_concrete/holdout-galleries-masonry-low-left.json.gz",
+      "prediction_sha256": "84d2530e0a68d9281e086eb43d560c6a15ea063ce90fc146bb4811e5479eddca",
+      "alternate_view": false,
+      "stages": {
+        "Source": [
+          2885,
+          245,
+          3310,
+          487
+        ],
+        "Reference": [
+          2885,
+          487,
+          3310,
+          729
+        ],
+        "Surface Finder": [
+          2885,
+          729,
+          3310,
+          971
+        ],
+        "Context crop": [
+          2885,
+          971,
+          3310,
+          1213
+        ],
+        "Sampling window": [
+          2885,
+          1213,
+          3310,
+          1455
+        ],
+        "Straightened crop": [
+          2885,
+          1455,
+          3310,
+          1697
+        ],
+        "Block Counter": [
+          2885,
+          1697,
+          3310,
+          1939
+        ]
+      }
+    },
+    {
+      "reference": 16,
+      "reference_size_blocks": [
+        12,
+        7
+      ],
+      "proposal": "mask-4",
+      "finder_iou": 0.8462709284627092,
+      "quad_native": [
+        [
+          524.23,
+          313.72
+        ],
+        [
+          950.73,
+          350.78
+        ],
+        [
+          773.29,
+          371.67
+        ],
+        [
+          489.91,
+          362.93
+        ]
+      ],
+      "predicted_mask_inside_chart_fraction": 0.9650160384923817,
+      "tight_xyxy": [
+        484,
+        316,
+        926,
+        372
+      ],
+      "crop_xyxy": [
+        476,
+        308,
+        934,
+        380
+      ],
+      "detail_xyxy": [
+        470,
+        302,
+        957,
+        386
+      ],
+      "scene_xyxy": [
+        392,
+        252,
+        1080,
+        676
+      ],
+      "margins_ltrb": [
+        8,
+        8,
+        8,
+        8
+      ],
+      "chart_source": "supplied quad",
+      "straightened_wh": [
+        356,
+        119
+      ],
+      "counts": [
+        null,
+        null
+      ],
+      "grid_phase": [
+        null,
+        null
+      ],
+      "grid_lines": [
+        [],
+        []
+      ],
+      "blocks": [
+        null,
+        null
+      ],
+      "straightened_valid_fraction": 0.5406713247096592,
+      "id": "Galleries B",
+      "layout": "galleries",
+      "frame": "light_gray_concrete/holdout-galleries-masonry-low-left",
+      "sha256": "d0fba67900a91a20d0120f298c8783829953bc21c7d45fb4413a8cb829cfddc3",
+      "source_wh": [
+        1440,
+        900
+      ],
+      "predictions": "predictions/light_gray_concrete/holdout-galleries-masonry-low-left.json.gz",
+      "prediction_sha256": "84d2530e0a68d9281e086eb43d560c6a15ea063ce90fc146bb4811e5479eddca",
+      "alternate_view": false,
+      "stages": {
+        "Source": [
+          2885,
+          2009,
+          3310,
+          2251
+        ],
+        "Reference": [
+          2885,
+          2251,
+          3310,
+          2493
+        ],
+        "Surface Finder": [
+          2885,
+          2493,
+          3310,
+          2735
+        ],
+        "Context crop": [
+          2885,
+          2735,
+          3310,
+          2977
+        ],
+        "Sampling window": [
+          2885,
+          2977,
+          3310,
+          3219
+        ],
+        "Straightened crop": [
+          2885,
+          3219,
+          3310,
+          3461
+        ],
+        "Block Counter": [
+          2885,
+          3461,
+          3310,
+          3703
+        ]
+      }
+    },
+    {
+      "reference": 8,
+      "reference_size_blocks": [
+        2,
+        4
+      ],
+      "proposal": "mask-6",
+      "finder_iou": 0.5157657657657657,
+      "quad_native": [
+        [
+          653.03,
+          477.28
+        ],
+        [
+          727.34,
+          476.29
+        ],
+        [
+          725.35,
+          641.61
+        ],
+        [
+          649.04,
+          587.91
+        ]
+      ],
+      "predicted_mask_inside_chart_fraction": 0.9562386432465173,
+      "tight_xyxy": [
+        648,
+        480,
+        730,
+        634
+      ],
+      "crop_xyxy": [
+        640,
+        472,
+        738,
+        642
+      ],
+      "detail_xyxy": [
+        634,
+        466,
+        744,
+        648
+      ],
+      "scene_xyxy": [
+        392,
+        252,
+        1080,
+        676
+      ],
+      "margins_ltrb": [
+        8,
+        8,
+        8,
+        8
+      ],
+      "chart_source": "supplied quad",
+      "straightened_wh": [
+        84,
+        138
+      ],
+      "counts": [
+        null,
+        null
+      ],
+      "grid_phase": [
+        null,
+        null
+      ],
+      "grid_lines": [
+        [],
+        []
+      ],
+      "blocks": [
+        null,
+        null
+      ],
+      "straightened_valid_fraction": 0.4648895790200138,
+      "id": "Galleries C",
+      "layout": "galleries",
+      "frame": "light_gray_concrete/holdout-galleries-masonry-low-left",
+      "sha256": "d0fba67900a91a20d0120f298c8783829953bc21c7d45fb4413a8cb829cfddc3",
+      "source_wh": [
+        1440,
+        900
+      ],
+      "predictions": "predictions/light_gray_concrete/holdout-galleries-masonry-low-left.json.gz",
+      "prediction_sha256": "84d2530e0a68d9281e086eb43d560c6a15ea063ce90fc146bb4811e5479eddca",
+      "alternate_view": false,
+      "stages": {
+        "Source": [
+          2885,
+          3773,
+          3310,
+          4015
+        ],
+        "Reference": [
+          2885,
+          4015,
+          3310,
+          4257
+        ],
+        "Surface Finder": [
+          2885,
+          4257,
+          3310,
+          4499
+        ],
+        "Context crop": [
+          2885,
+          4499,
+          3310,
+          4741
+        ],
+        "Sampling window": [
+          2885,
+          4741,
+          3310,
+          4983
+        ],
+        "Straightened crop": [
+          2885,
+          4983,
+          3310,
+          5225
+        ],
+        "Block Counter": [
+          2885,
+          5225,
+          3310,
+          5467
+        ]
+      }
+    },
+    {
+      "reference": 4,
+      "reference_size_blocks": [
+        4,
+        4
+      ],
+      "proposal": "mask-4",
+      "finder_iou": 0.9686162624821684,
+      "quad_native": [
+        [
+          439.69,
+          510.26
+        ],
+        [
+          523.57,
+          529.41
+        ],
+        [
+          526.6,
+          665.38
+        ],
+        [
+          444.02,
+          636.96
+        ]
+      ],
+      "predicted_mask_inside_chart_fraction": 0.9680735930735931,
+      "tight_xyxy": [
+        438,
+        506,
+        526,
+        664
+      ],
+      "crop_xyxy": [
+        430,
+        498,
+        534,
+        672
+      ],
+      "detail_xyxy": [
+        424,
+        492,
+        540,
+        678
+      ],
+      "scene_xyxy": [
+        408,
+        240,
+        1084,
+        700
+      ],
+      "margins_ltrb": [
+        8,
+        8,
+        8,
+        8
+      ],
+      "chart_source": "supplied quad",
+      "straightened_wh": [
+        87,
+        131
+      ],
+      "counts": [
+        3.9449622592172706,
+        3.9987211125217956
+      ],
+      "grid_phase": [
+        0.8333333333333334,
+        0.9166666666666666
+      ],
+      "grid_lines": [
+        [
+          0.2112398747000122,
+          0.4647277243400269,
+          0.7182155739800415,
+          0.9717034236200562
+        ],
+        [
+          0.2292399596951562,
+          0.47931991572623567,
+          0.7293998717573152,
+          0.9794798277883946
+        ]
+      ],
+      "blocks": [
+        4,
+        4
+      ],
+      "straightened_valid_fraction": 0.9430551899622708,
+      "id": "Registry A",
+      "layout": "registry",
+      "frame": "light_gray_concrete/holdout-registry-masonry-high-right",
+      "sha256": "e20bfd5e2588ed117375acb3e2f7c42cebb2fdd1ab7167caf35b0b4298a98e19",
+      "source_wh": [
+        1440,
+        900
+      ],
+      "predictions": "predictions/light_gray_concrete/holdout-registry-masonry-high-right.json.gz",
+      "prediction_sha256": "08e3c5d8b65e9b3c111e514a8522577054efb2fadb00d7bcc2f7d24693062089",
+      "alternate_view": false,
+      "stages": {
+        "Source": [
+          3326,
+          245,
+          3751,
+          487
+        ],
+        "Reference": [
+          3326,
+          487,
+          3751,
+          729
+        ],
+        "Surface Finder": [
+          3326,
+          729,
+          3751,
+          971
+        ],
+        "Context crop": [
+          3326,
+          971,
+          3751,
+          1213
+        ],
+        "Sampling window": [
+          3326,
+          1213,
+          3751,
+          1455
+        ],
+        "Straightened crop": [
+          3326,
+          1455,
+          3751,
+          1697
+        ],
+        "Block Counter": [
+          3326,
+          1697,
+          3751,
+          1939
+        ]
+      }
+    },
+    {
+      "reference": 3,
+      "reference_size_blocks": [
+        8,
+        8
+      ],
+      "proposal": "mask-2",
+      "finder_iou": 0.9641255605381166,
+      "quad_native": [
+        [
+          430.34,
+          370.53
+        ],
+        [
+          595.67,
+          380.38
+        ],
+        [
+          603.51,
+          655.7
+        ],
+        [
+          437.41,
+          500.22
+        ]
+      ],
+      "predicted_mask_inside_chart_fraction": 0.9821573398215734,
+      "tight_xyxy": [
+        432,
+        372,
+        604,
+        652
+      ],
+      "crop_xyxy": [
+        424,
+        364,
+        612,
+        660
+      ],
+      "detail_xyxy": [
+        418,
+        358,
+        618,
+        666
+      ],
+      "scene_xyxy": [
+        408,
+        240,
+        1084,
+        700
+      ],
+      "margins_ltrb": [
+        8,
+        8,
+        8,
+        8
+      ],
+      "chart_source": "supplied quad",
+      "straightened_wh": [
+        197,
+        203
+      ],
+      "counts": [
+        null,
+        null
+      ],
+      "grid_phase": [
+        null,
+        null
+      ],
+      "grid_lines": [
+        [],
+        []
+      ],
+      "blocks": [
+        null,
+        null
+      ],
+      "straightened_valid_fraction": 0.7258633192468306,
+      "id": "Registry B",
+      "layout": "registry",
+      "frame": "light_gray_concrete/holdout-registry-masonry-high-right",
+      "sha256": "e20bfd5e2588ed117375acb3e2f7c42cebb2fdd1ab7167caf35b0b4298a98e19",
+      "source_wh": [
+        1440,
+        900
+      ],
+      "predictions": "predictions/light_gray_concrete/holdout-registry-masonry-high-right.json.gz",
+      "prediction_sha256": "08e3c5d8b65e9b3c111e514a8522577054efb2fadb00d7bcc2f7d24693062089",
+      "alternate_view": false,
+      "stages": {
+        "Source": [
+          3326,
+          2009,
+          3751,
+          2251
+        ],
+        "Reference": [
+          3326,
+          2251,
+          3751,
+          2493
+        ],
+        "Surface Finder": [
+          3326,
+          2493,
+          3751,
+          2735
+        ],
+        "Context crop": [
+          3326,
+          2735,
+          3751,
+          2977
+        ],
+        "Sampling window": [
+          3326,
+          2977,
+          3751,
+          3219
+        ],
+        "Straightened crop": [
+          3326,
+          3219,
+          3751,
+          3461
+        ],
+        "Block Counter": [
+          3326,
+          3461,
+          3751,
+          3703
+        ]
+      }
+    },
+    {
+      "reference": 5,
+      "reference_size_blocks": [
+        4,
+        2
+      ],
+      "proposal": "mask-7",
+      "finder_iou": 0.7575757575757576,
+      "quad_native": [
+        [
+          487.55,
+          500.31
+        ],
+        [
+          571.29,
+          513.39
+        ],
+        [
+          531.02,
+          529.5
+        ],
+        [
+          430.37,
+          507.93
+        ]
+      ],
+      "predicted_mask_inside_chart_fraction": 0.8533057851239669,
+      "tight_xyxy": [
+        444,
+        500,
+        570,
+        526
+      ],
+      "crop_xyxy": [
+        436,
+        492,
+        578,
+        534
+      ],
+      "detail_xyxy": [
+        424,
+        486,
+        584,
+        540
+      ],
+      "scene_xyxy": [
+        408,
+        240,
+        1084,
+        700
+      ],
+      "margins_ltrb": [
+        8,
+        8,
+        8,
+        8
+      ],
+      "chart_source": "supplied quad",
+      "straightened_wh": [
+        94,
+        51
+      ],
+      "counts": [
+        null,
+        null
+      ],
+      "grid_phase": [
+        null,
+        null
+      ],
+      "grid_lines": [
+        [],
+        []
+      ],
+      "blocks": [
+        null,
+        null
+      ],
+      "straightened_valid_fraction": 0.7108886107634543,
+      "id": "Registry C",
+      "layout": "registry",
+      "frame": "light_gray_concrete/holdout-registry-masonry-high-right",
+      "sha256": "e20bfd5e2588ed117375acb3e2f7c42cebb2fdd1ab7167caf35b0b4298a98e19",
+      "source_wh": [
+        1440,
+        900
+      ],
+      "predictions": "predictions/light_gray_concrete/holdout-registry-masonry-high-right.json.gz",
+      "prediction_sha256": "08e3c5d8b65e9b3c111e514a8522577054efb2fadb00d7bcc2f7d24693062089",
+      "alternate_view": false,
+      "stages": {
+        "Source": [
+          3326,
+          3773,
+          3751,
+          4015
+        ],
+        "Reference": [
+          3326,
+          4015,
+          3751,
+          4257
+        ],
+        "Surface Finder": [
+          3326,
+          4257,
+          3751,
+          4499
+        ],
+        "Context crop": [
+          3326,
+          4499,
+          3751,
+          4741
+        ],
+        "Sampling window": [
+          3326,
+          4741,
+          3751,
+          4983
+        ],
+        "Straightened crop": [
+          3326,
+          4983,
+          3751,
+          5225
+        ],
+        "Block Counter": [
+          3326,
+          5225,
+          3751,
+          5467
+        ]
+      }
+    }
+  ],
+  "image_wh": [
+    3767,
+    5500
+  ],
+  "stages": [
+    "Source",
+    "Reference",
+    "Surface Finder",
+    "Context crop",
+    "Sampling window",
+    "Straightened crop",
+    "Block Counter"
+  ],
+  "coordinates": "Source boxes use half-open native screenshot pixels. Sheet stage boxes are in comparison.jpg.",
+  "selection": "Three matched examples per building. Shopfront B and Workshop C use two additional saved views to show clipping. Recorded IDs select and grade illustrations only."
+}

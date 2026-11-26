@@ -4,6 +4,12 @@
 
 Pick a building column and follow one lettered surface down the stage rows. Zoom in on the first row where it looks wrong. A reply like **“Workshop B, straightened crop — the top row of blocks disappears”** identifies the example, stage, and edge. A good crop is worth marking too, especially if it has a hole or a steep viewing angle.
 
+**Start with Wing A, Shopfront B and Workshop C.** Wing A shows a wall where the window includes almost all of the outline and both dimensions come out right at 13 × 8 blocks. In Shopfront B, the violet window contains only 41% of the cyan mask. Workshop C shows a thin angled face where the window contains 68%. In each case the percentage measures how much of the *predicted* surface fits inside the window. The separate gold reference lets you check whether that prediction starts on the right face.
+
+**Courtyard B and Wing C show two other cases.** Courtyard B’s window encloses the entire predicted mask, but much of the rectangular image is dark because the surface is irregular. Wing C has a matched roof surface and no usable straightened crop. There are 24 selected examples from ten existing screenshots. Shopfront B and Workshop C use alternate saved views labeled on the sheet. The other 22 use the usual eight building views.
+
+Across the whole suite, **505 of 516** matched surfaces produced a usable straightened sample. For **104 of those 505**, the sampling window left more than 10% of the finder’s own pixels outside. For 15, it left more than 20% outside. This measures coverage at original screenshot resolution before edge masking. It makes window size a good first experiment. To judge success, compare recovered surface pixels, neighboring pixels accidentally admitted, and block-size accuracy with the finder held fixed. [Coverage for every matched surface](reviews/crop-coverage-01/coverage.json)
+
 | What you see | What to compare | What we could test |
 | --- | --- | --- |
 | A strip of a neighboring wall or sky appears | Check whether the finder already included it inside the outline. Neighboring pixels in the padded source view are intentional. | If those pixels also enter the face-on sample, compare the source mask and the pixels accepted for sampling. |
