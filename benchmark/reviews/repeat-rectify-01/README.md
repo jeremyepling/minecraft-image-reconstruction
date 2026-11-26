@@ -22,3 +22,15 @@ Retain this as an experimental proposal for better texture measurement. Its addi
 ```powershell
 python -m benchmark.texture_count_round --method rectify --out runs/my-mask-envelope-count
 ```
+
+### Does atlas confirmation weed out the wrong refits?
+
+We withheld both estimated spans on each of the 36 newly complete refits, remeasured the same predicted quadrilateral, and included its measured repeats among the atlas hypotheses. The frozen atlas matcher challenges half, full, and double pitches and tests its best texture scale and phase on separate regions of the crop. A confirmation requires the same rounded width and height as the refit.
+
+The atlas confirmed **three** refits. Two correct 5 × 7 counts belong to the same Courtyard masonry surface R3 from the high-right angle on both floors; both ranked tuff first. One wrong 2 × 2 count belongs to Crossing R1 on concrete (actual 2 × 3), where stone bricks ranked first. The other 33 checks abstained. Final exact sizes increased from 95 to 97, wrong sizes increased from 50 to 51, and unmatched complete guesses stayed at 10. None of the three confirmations were on development layouts.
+
+Of the 21 new correct sizes, two passed (9.5%). Of the 11 new wrong sizes, one passed (9.1%). None of the four unmatched proposals passed. The confirmation reduced output volume, but the accepted fraction for wrong and right proposals was nearly the same. Keep this test diagnostic. [Every proposal, confirmation, and atlas score](atlas-confirmation.json)
+
+```powershell
+python -m benchmark.refit_atlas_check --out runs/my-refit-atlas-check.json
+```
