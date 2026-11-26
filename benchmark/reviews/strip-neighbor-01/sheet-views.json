@@ -1,0 +1,202 @@
+{
+  "views": [
+    {
+      "title": "Courtyard beam",
+      "frame": "light_gray_concrete/holdout-courtyard-masonry-high-right",
+      "image_sha256": "b5b2bb5300687da8d904fb129043b5d2df0ae56e9ba4e14afb932b3e6d44dd3b",
+      "reference": 11,
+      "proposal": "mask-2-single-95-0",
+      "crop": [
+        521,
+        321,
+        693,
+        523
+      ],
+      "actual": [
+        6,
+        1
+      ],
+      "methods": {
+        "current": {
+          "correct": 4554,
+          "extra": 454,
+          "correct_removed": 0,
+          "extra_removed": 0,
+          "blocks": [
+            null,
+            null
+          ]
+        },
+        "color": {
+          "correct": 4554,
+          "extra": 246,
+          "correct_removed": 0,
+          "extra_removed": 208,
+          "blocks": [
+            null,
+            null
+          ]
+        },
+        "neighbor": {
+          "correct": 4554,
+          "extra": 246,
+          "correct_removed": 0,
+          "extra_removed": 208,
+          "blocks": [
+            null,
+            null
+          ]
+        }
+      },
+      "decisions": [
+        {
+          "donor": "mask-2-single-95-0",
+          "tail_xyxy": [
+            652,
+            376,
+            654,
+            480
+          ],
+          "pixels": 208,
+          "receiver": "mask-2-single-95-1",
+          "overlap_fraction": 0.0,
+          "near_fraction": 1.0,
+          "neighbor_color_error": 4.222222222222222,
+          "retrospective_proximity": {
+            "closest": "mask-2-single-95-1",
+            "near_pixels": 208,
+            "overlapping_pixels": 0,
+            "tail_pixels": 208,
+            "radius_px": 3
+          }
+        }
+      ]
+    },
+    {
+      "title": "Courtyard wall",
+      "frame": "light_gray_concrete/holdout-courtyard-plaster-low-left",
+      "image_sha256": "1995d3af4ecbdd7b22bc4ada179009147a5b389379edd6142b99dcaa6446d9c0",
+      "reference": 5,
+      "proposal": "mask-0-junction-0-single-457-0",
+      "crop": [
+        729,
+        507,
+        813,
+        593
+      ],
+      "actual": [
+        10,
+        8
+      ],
+      "methods": {
+        "current": {
+          "correct": 45649,
+          "extra": 2095,
+          "correct_removed": 0,
+          "extra_removed": 0,
+          "blocks": [
+            null,
+            null
+          ]
+        },
+        "color": {
+          "correct": 45062,
+          "extra": 2086,
+          "correct_removed": 587,
+          "extra_removed": 9,
+          "blocks": [
+            null,
+            null
+          ]
+        },
+        "neighbor": {
+          "correct": 45649,
+          "extra": 2095,
+          "correct_removed": 0,
+          "extra_removed": 0,
+          "blocks": [
+            null,
+            null
+          ]
+        }
+      },
+      "decisions": [
+        {
+          "donor": "mask-0-junction-0-single-457-0",
+          "tail_xyxy": [
+            740,
+            518,
+            802,
+            582
+          ],
+          "pixels": 596,
+          "receiver": null,
+          "overlap_fraction": null,
+          "near_fraction": null,
+          "neighbor_color_error": null,
+          "retrospective_proximity": {
+            "closest": "mask-2",
+            "near_pixels": 168,
+            "overlapping_pixels": 0,
+            "tail_pixels": 596,
+            "radius_px": 3
+          }
+        }
+      ]
+    },
+    {
+      "title": "Shopfront side",
+      "frame": "smooth_stone/dev-shopfront-masonry-low-left",
+      "image_sha256": "17691e7909ee0e9384db83c3a729f8763e21a281eb89b8dcebe61fc7675d1405",
+      "reference": 2,
+      "proposal": "mask-8",
+      "crop": [
+        575,
+        369,
+        625,
+        569
+      ],
+      "actual": [
+        1,
+        4
+      ],
+      "methods": {
+        "current": {
+          "correct": 1994,
+          "extra": 186,
+          "correct_removed": 0,
+          "extra_removed": 0,
+          "blocks": [
+            null,
+            null
+          ]
+        },
+        "color": {
+          "correct": 1994,
+          "extra": 186,
+          "correct_removed": 0,
+          "extra_removed": 0,
+          "blocks": [
+            null,
+            null
+          ]
+        },
+        "neighbor": {
+          "correct": 1994,
+          "extra": 186,
+          "correct_removed": 0,
+          "extra_removed": 0,
+          "blocks": [
+            null,
+            null
+          ]
+        }
+      },
+      "decisions": []
+    }
+  ],
+  "source_reports": {
+    "strip-views.json": "48b51bba618ebd9305982cefa677e155703fc15e70e0ef1b2b9182191e9d607e",
+    "strip-failure.json": "b895dede1d5d2727470a0a697c56b489e558d9d7767f099846d84953ce04afd1"
+  }
+}
