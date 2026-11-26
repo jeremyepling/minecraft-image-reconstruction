@@ -73,3 +73,23 @@ def filtered(image,version,parts,counts,camera):
 
 def art_filtered(image,version,parts,counts,camera):
     return apply_gate(image,parts,camera,art(image,version,parts,counts,camera),'tree')
+
+
+def family_rule(image,version,parts,counts,camera):
+    return apply_gate(image,parts,camera,art(image,version,parts,counts,camera),'family_rule')
+
+
+def conjunctions(image,version,parts,counts,camera):
+    return apply_gate(image,parts,camera,art(image,version,parts,counts,camera),'conjunctions')
+
+
+def invisible(image,version,parts,counts,camera):
+    return apply_gate(image,parts,camera,art(image,version,parts,counts,camera),'occluded')
+
+
+def confirmed(image,version,parts,counts,camera):
+    proposal=art(image,version,parts,counts,camera)
+    visible,_=apply_gate(image,parts,camera,proposal,'occluded')
+    tree,status=apply_gate(image,parts,camera,proposal,'tree')
+    cells=visible|tree
+    return cells,{**status,'placed_blocks':len(cells),'cell_gate':'tree-and-zero-visible-pixels'}
