@@ -133,7 +133,7 @@ def _patch_scores(mask, origins, axis, free, level, P, rgb, atlas, *, by_cell=Fa
     return np.sort(scores)[::-1].tolist()
 
 
-def options(mask, P, eye, rays, axis, baseline, rgb, atlas, scene_distance=None, radius=6):
+def options(mask, P, eye, rays, axis, baseline, rgb, atlas, scene_distance=None, radius=6, *, extra_levels=()):
     free = [i for i in range(3) if i != axis]
     inv = np.linalg.inv(P[:,:3])
     boundary = _boundary(mask,inv,axis,free)
@@ -144,6 +144,7 @@ def options(mask, P, eye, rays, axis, baseline, rgb, atlas, scene_distance=None,
     uv = eye[free]
     rows = []
     levels=set(range(baseline-radius,baseline+radius+1))
+    levels.update(extra_levels)
     scene_level=baseline
     if scene_distance is not None:
         scene_level=round(float(eye[axis]+np.median(rays[mask,axis])*scene_distance))
@@ -165,7 +166,7 @@ def options(mask, P, eye, rays, axis, baseline, rgb, atlas, scene_distance=None,
 
 def place_ranked(image, version, parts, counts, camera, *, atlas_path=None):
     """Place image-supported grid cells and remove cells with no visible ray."""
-    return _place(image, version, parts, counts, camera, atlas_path, remove_occluded=True)
+    return _place(image, version, parts, counts, camera, atlas_path, remove_occluded=True, junction='creases')
 
 
 def place_ranked_without_ray(image, version, parts, counts, camera, *, atlas_path=None):
@@ -173,7 +174,7 @@ def place_ranked_without_ray(image, version, parts, counts, camera, *, atlas_pat
     return _place(image, version, parts, counts, camera, atlas_path, remove_occluded=False)
 
 
-def _place(image, version, parts, counts, camera, atlas_path, *, remove_occluded):
+def _place(image, version, parts, counts, camera, atlas_path, *, remove_occluded, junction=None):
     if camera['P'] is None or not parts:
         return place_with_camera(image, version, parts, counts, camera)
     weights = frozen_weights()
@@ -185,10 +186,26 @@ def _place(image, version, parts, counts, camera, atlas_path, *, remove_occluded
         return cells, status
     rgb = np.asarray(image.convert('RGB'))
     decisions = []
+    if junction is not None:
+        from engine.junction_depth import JunctionDepth
+        from engine.plane_repeat_evidence import fit_weights, near_levels, pick_with_fit, repeat_scores
+        repeat_weights = fit_weights()
+        junction = JunctionDepth(image.size, parts, junction)
 
     def select(part, mask, projection, eye, rays, axis, baseline, scene_distance):
-        rows = options(mask, projection, eye, rays, axis, baseline, rgb, atlas, scene_distance)
-        level = ranked_choice(rows, baseline, weights)
+        extra = junction.levels(mask, projection, eye, rays, axis) if junction is not None else ()
+        if junction is None:
+            rows = options(mask, projection, eye, rays, axis, baseline, rgb, atlas, scene_distance)
+            level = ranked_choice(rows, baseline, weights)
+        else:
+            more = set(extra).union(near_levels(eye[axis],baseline))
+            rows = options(mask,projection,eye,rays,axis,baseline,rgb,atlas,scene_distance,18,extra_levels=more)
+            for row,(hi,lo) in zip(rows,repeat_scores(rgb,mask,projection,eye,axis,[r['level'] for r in rows]),strict=True):
+                row.update(repeat_high=hi,repeat_low=lo)
+            before = pick_with_fit(rows,baseline,baseline,repeat_weights,'learned') if rows else baseline
+            level = junction.choose(part, mask, projection, eye, rays, axis, baseline, scene_distance, rows, weights,
+                                    chosen_before=before)
+            junction.record(part, mask, axis, level, rows)
         decisions.append(dict(id=part['id'], axis=axis, baseline=baseline, level=level))
         return level
 
@@ -200,6 +217,7 @@ def _place(image, version, parts, counts, camera, atlas_path, *, remove_occluded
         return verify(rgb, atlas, mask, projection, cell, axis, sign)
 
     cells, status = place_with_camera(image, version, parts, counts, camera, select_level,
-                                      partial=partial, refine_candidates=refine, remove_occluded=remove_occluded)
+                                      partial=partial, refine_candidates=refine, remove_occluded=remove_occluded,
+                                      walls_first=junction is not None)
     status.update(plane_depth_method='ranked', plane_offsets=decisions)
     return cells, status
