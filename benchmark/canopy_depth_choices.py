@@ -15,7 +15,7 @@ from PIL import Image
 import numpy as np
 
 
-DEST=ROOT/'runs/plane-choices'
+DEST=Path(__file__).resolve().parents[1]/'runs/plane-choices'
 
 
 def extract(job):
