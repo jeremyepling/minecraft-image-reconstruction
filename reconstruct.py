@@ -7,7 +7,6 @@ import sys
 
 from engine import catalog
 from engine.reconstruction import reconstruct, analyze
-from engine.surface_model import BOUNDARY_METHODS
 from runtime.mode import image_only, require_game_runtime
 
 ROOT=Path(__file__).resolve().parent
@@ -70,21 +69,7 @@ def main():
             for key in ('minecraft-dir','manifest','java-home','install-dir'): p.add_argument('--'+key,type=Path)
         else:
             p.add_argument('--registry',type=Path,help='Include default-state faces from a matching runtime registry')
-    p=cmds.add_parser('inspect-openings',help='Run the experimental entrance check and write its decisions and review overlay')
-    p.add_argument('image',type=Path)
-    p.add_argument('--out',type=Path,required=True)
-    p=cmds.add_parser('inspect-form',help='Trace the whole-frame outline, then inspect smaller line junctions')
-    p.add_argument('--cube-turns',action='store_true',help='Fit projected block axes to the outline, face corners and depth edges')
-    p.add_argument('image',type=Path)
-    p.add_argument('--out',type=Path,required=True)
-    p=cmds.add_parser('fit-voxels',help='Fit experimental solid geometry to a single screenshot')
-    p.add_argument('image',type=Path)
-    p.add_argument('--out',type=Path,required=True)
-    p.add_argument('--atlas',type=Path,help='Also export a smooth-stone structure pack for this atlas version')
-    p.add_argument('--method',choices=['sheet','cone','symmetric','boxes','carving','layers','recess'],default='symmetric')
-    p.add_argument('--relative',action='store_true',help='Allow an arbitrary model scale when the metric ground grid is missing')
     p=cmds.add_parser('analyze')
-    p.add_argument('--geometry-method',choices=['baseline','texel','remap','cube'],default='baseline')
     p.add_argument('image',type=Path)
     p.add_argument('--scene',type=Path)
     p.add_argument('--out',type=Path,required=True)
@@ -97,20 +82,11 @@ def main():
     p=cmds.add_parser('build')
     p.add_argument('--through',choices=['camera','surfaces','counts','assembly'],default='assembly',
                    help='Fit the camera, find visible surfaces, measure block counts, or build a datapack')
-    p.add_argument('--surface-outlines',choices=['mask-first','edges+shade','normal-rank','rectangle-finder','normal-regions'],
-                   help='Replay an outline method from the visible-plane comparison')
     p.add_argument('--surface-context-px', type=int,
                    help='Include this many neighboring source pixels per side in Regions First context crops (default 8)')
-    p.add_argument('--surface-boundary', choices=BOUNDARY_METHODS,
-                   help='Choose how Surface Finder refines its preserved regions')
-    p.add_argument('--surface-order',choices=['geometry','depth-anything'],
-                   help='Select the relative depth ordering method for a surface build')
-    p.add_argument('--block-counter', choices=['legacy-repeat','masked-repeat','atlas-repeat'],
-                   help='Select the measuring method for --through counts')
     p.add_argument('--material-match', choices=['atlas'],
                    help='Identify complete visible cells against the versioned atlas with --through counts')
     p.add_argument('--version',help='Target Java version')
-    p.add_argument('--geometry-method',choices=['baseline','texel','remap','cube'],default='baseline')
     p.add_argument('image',type=Path)
     p.add_argument('--atlas',type=Path,help='Versioned atlas directory for assembly or counting with material matching')
     p.add_argument('--out',type=Path,required=True)
@@ -136,33 +112,21 @@ def main():
 
 @image_only()
 def run_image_command(parser,args):
-    if (args.command=='build' and args.through not in ('surfaces','counts')
-            and any(v is not None for v in (args.surface_outlines,args.surface_order,args.surface_context_px,args.surface_boundary))):
-        parser.error('Choose --through surfaces or counts when selecting a surface method')
-    if args.command=='build' and args.surface_context_px is not None and (
-            args.surface_context_px < 0 or args.surface_outlines not in (None, 'mask-first')):
-        parser.error('--surface-context-px requires Regions First and a nonnegative margin')
-    if args.command=='build' and args.through!='counts' and (args.block_counter or args.material_match):
-        parser.error('--block-counter and --material-match apply to --through counts')
-    if args.command=='fit-voxels':
-        from engine.voxel_fit import fit
-        fit(args.image,args.method,args.out,args.atlas,args.relative)
-    elif args.command=='inspect-form':
-        from benchmark.line_form import inspect_file
-        inspect_file(args.image,args.out,cube_turns=args.cube_turns)
-    elif args.command=='inspect-openings':
-        from benchmark.entrances import inspect_to_folder
-        inspect_to_folder(args.image,args.out)
-    elif args.command=='atlas':
+    if args.command=='build' and args.surface_context_px is not None:
+        if args.through not in ('surfaces','counts') or args.surface_context_px < 0:
+            parser.error('--surface-context-px requires surfaces or counts and a nonnegative margin')
+    if args.command=='build' and args.through!='counts' and args.material_match:
+        parser.error('--material-match applies to --through counts')
+    if args.command=='atlas':
         defaults=json.loads(args.registry.read_text()) if args.registry else None
         info=catalog.build(args.version,args.out,args.jar,defaults)
         print(f"{args.version}: {len(info['choices']['south'])} placeable south-face textures")
     elif args.command=='analyze':
-        analyze(args.image,args.scene,args.out,args.geometry_method)
+        analyze(args.image,args.scene,args.out)
     elif args.through in ('camera', 'surfaces', 'counts'):
         if not args.version:
             parser.error('Camera and surface builds need --version')
-        if (args.scene or args.geometry or args.geometry_method!='baseline' or args.depth is not None
+        if (args.scene or args.geometry or args.depth is not None
                 or args.library or (args.atlas and args.through!='counts') or args.match_exposure
                 or args.white_balance or args.match_appearance):
             parser.error('Choose assembly for the supplied geometry or material placement options')
@@ -171,16 +135,15 @@ def run_image_command(parser,args):
             build_camera(args.image,args.version,args.out)
         else:
             from engine.surface_model import build
-            build(args.image,args.version,args.out,outlines=args.surface_outlines,order_method=args.surface_order,
-                  through=args.through,counter=args.block_counter,atlas_path=args.atlas,material_match=args.material_match,
-                  context_px=args.surface_context_px,boundary=args.surface_boundary)
+            build(args.image,args.version,args.out,through=args.through,atlas_path=args.atlas,
+                  material_match=args.material_match,context_px=args.surface_context_px)
     else:
         if not args.atlas:
             parser.error('An assembly build needs --atlas')
         if args.version and args.version!=json.loads((args.atlas/'placement-index.json').read_text())['version']:
             parser.error('--version and the atlas version differ')
         reconstruct(args.image,args.atlas,args.scene,args.library,args.out,args.depth,args.geometry,
-                    args.white_balance,match_exposure=args.match_exposure,geometry_method=args.geometry_method,match_appearance=args.match_appearance)
+                    args.white_balance,match_exposure=args.match_exposure,match_appearance=args.match_appearance)
 
 
 if __name__=='__main__':

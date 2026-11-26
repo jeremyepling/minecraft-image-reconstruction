@@ -8,13 +8,10 @@ param(
     [string] $ScaleSource,
     [string] $ScaleCheckpoint,
     [string] $MobileSource,
-    [string] $DepthProSource,
-    [string] $DepthProCheckpoint,
     [string] $PlanaritySource,
     [string] $PlanarityCheckpoint,
     [string] $PlanarityUtils3D,
     [string] $PlanarityFields,
-    [ValidateSet('wall-recovery','wall-recovery-single-v2','wall-recovery-single-pro','plane-recovery')][string] $SurfaceBoundary,
     [ValidateSet('cuda','cpu')][string] $Device
 )
 
@@ -56,9 +53,6 @@ try {
     $checkpointName = 'scalelsd-vitbase-v2-train-sa1b.pt'
     Set-ModelOption 'MCIR_SCALELSD_CHECKPOINT' $ScaleCheckpoint @((Join-Path $localDeps $checkpointName), (Join-Path $scaleRun $checkpointName))
     Set-ModelOption 'MCIR_MOBILESAM_SOURCE' $MobileSource @((Join-Path $localDeps 'MobileSAM'), (Join-Path $worktrees 'surface-recovery-round/runs/mobile-sam-source'))
-    $depthProDeps=Join-Path $worktrees 'surface-one-depth-pro/.deps'
-    Set-ModelOption 'MCIR_DEPTH_PRO_SOURCE' $DepthProSource @((Join-Path $localDeps 'ml-depth-pro'), (Join-Path $depthProDeps 'ml-depth-pro'))
-    Set-ModelOption 'MCIR_DEPTH_PRO_CHECKPOINT' $DepthProCheckpoint @((Join-Path $localDeps 'depth_pro.pt'), (Join-Path $depthProDeps 'depth_pro.pt'))
     $planeDeps = Join-Path $worktrees 'afterpass-planarity/runs/assets'
     Set-ModelOption 'MCIR_PLANARITY_SOURCE' $PlanaritySource @((Join-Path $localDeps 'PixelwisePlanarity'), (Join-Path $planeDeps 'PixelwisePlanarity'))
     Set-ModelOption 'MCIR_PLANARITY_UTILS3D' $PlanarityUtils3D @((Join-Path $localDeps 'utils3d'), (Join-Path $planeDeps 'utils3d'))
@@ -79,9 +73,7 @@ try {
         $changes['PYTHONPATH'] = $env:PYTHONPATH
         $env:PYTHONPATH = (@($env:PYTHONPATH) + @($extra) | Where-Object { $_ }) -join [IO.Path]::PathSeparator
     }
-    $options=@()
-    if ($SurfaceBoundary) { $options+=@('--surface-boundary',$SurfaceBoundary) }
-    & $Python (Join-Path $PSScriptRoot 'reconstruct.py') build $sourceImage --version 26.3 --through $Through @options --out $destination
+    & $Python (Join-Path $PSScriptRoot 'reconstruct.py') build $sourceImage --version 26.3 --through $Through --out $destination
     if ($LASTEXITCODE -ne 0) { throw "Wall Recovery exited with code $LASTEXITCODE" }
 } finally {
     foreach ($name in $changes.Keys) { [Environment]::SetEnvironmentVariable($name, $changes[$name]) }
