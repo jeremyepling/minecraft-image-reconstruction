@@ -10,6 +10,7 @@ from PIL import Image, ImageDraw
 from benchmark.camera_round import ROOT, digest, read, revision, save
 from benchmark.camera_sheet import label
 from benchmark.count_metrics import reference_planes
+from benchmark.crop_chart_coverage import chart_covered_pixels
 from benchmark.current_misses_sheet import scene_box
 from benchmark.ledge_join_sheet import picture
 from benchmark.normal_round import groups
@@ -50,17 +51,6 @@ def clipped_box(points, size, pad):
     return list(map(int, np.r_[low, high]))
 
 
-def inside_chart(alpha, bounds, quad):
-    """Test the predicted mask's native source-pixel centers against the convex sampling quad."""
-    yy, xx = np.nonzero(np.asarray(alpha))
-    xx = xx + bounds[0] + .5
-    yy = yy + bounds[1] + .5
-    signs = []
-    for a, b in zip(quad, np.roll(quad, -1, axis=0)):
-        signs.append((b[0]-a[0])*(yy-a[1]) - (b[1]-a[1])*(xx-a[0]))
-    return float(np.mean(np.all(np.asarray(signs)>=-1.e-8, axis=0) | np.all(np.asarray(signs)<=1.e-8, axis=0)))
-
-
 def panels(photo, part, rid, native, whole_size, iou, scene):
     cropped, tight = surface_perimeter.masked_crop(photo, part)
     context, window, local = surface_perimeter.context_crop(photo, part, mask_box=tight)
@@ -82,7 +72,8 @@ def panels(photo, part, rid, native, whole_size, iou, scene):
         pen = ImageDraw.Draw(chart)
         pen.line([*q, q[0]], fill='#35163f', width=4)
         pen.line([*q, q[0]], fill=VIOLET, width=2)
-        frac = inside_chart(cropped.getchannel('A'), tight, np.asarray(quad))
+        alpha = cropped.getchannel('A')
+        frac = chart_covered_pixels(alpha, tight, quad) / int(np.count_nonzero(alpha))
     panels = [
         (locator.crop(scene), 'Location in building'),
         (truth.crop(detail), f'Recorded R{rid}   ·   {whole_size[0]} × {whole_size[1]} blocks'),

@@ -7,10 +7,11 @@ import numpy as np
 from PIL import Image
 
 from benchmark.camera_round import ROOT, read, revision, save
-from benchmark.mask_metrics import PROTOCOL, footprint, measure
+from benchmark.mask_metrics import PROTOCOL, measure
 from benchmark.normal_round import groups
 from benchmark.surface_reference import ARCHIVE, recorded
 from benchmark.wall_join_test import checked, read_gzip
+from engine.surface_perimeter import _native_alpha
 from engine.surface_sample import sample_surface
 from runtime.mode import image_only
 
@@ -19,15 +20,25 @@ SOURCE = ROOT / 'benchmark/reviews/crop-split-01'
 SOURCE_MANIFEST = 'b300caff403e517e09003376a112254bc1d72a87e3e52c1b53224c6a892f1850'
 
 
-def sample_record(image, region, rid, reference):
-    shape = reference['id_map'].shape
-    owned = footprint(region, shape, image.size, use_mask=True)
+def chart_covered_pixels(alpha, bounds, quad):
+    """Count native source-pixel centers inside both the visible mask and the sampling window."""
+    yy, xx = np.nonzero(np.asarray(alpha))
+    xx = xx + bounds[0] + .5
+    yy = yy + bounds[1] + .5
+    signs = []
+    for a, b in zip(quad, np.roll(quad, -1, axis=0)):
+        signs.append((b[0]-a[0])*(yy-a[1]) - (b[1]-a[1])*(xx-a[0]))
+    signed = np.asarray(signs)
+    return int(np.count_nonzero(np.all(signed>=-1.e-8, axis=0) | np.all(signed<=1.e-8, axis=0)))
+
+
+def sample_record(image, region, rid):
+    alpha, bounds = _native_alpha(region['support'], image.size)
     sample = sample_surface(image, region)
-    record = dict(reference_id=rid, proposal=region['id'], source_mask_samples=int(owned.sum()),
+    record = dict(reference_id=rid, proposal=region['id'], source_mask_samples=int(np.count_nonzero(alpha)),
                   chart_kind=None, chart_covered_samples=None, valid_output_pixels=0)
     if sample is not None:
-        chart = footprint({'quad': sample['quad']}, shape, image.size, use_mask=False)
-        record.update(chart_kind=sample['chart_source'], chart_covered_samples=int((owned & chart).sum()),
+        record.update(chart_kind=sample['chart_source'], chart_covered_samples=chart_covered_pixels(alpha, bounds, sample['quad']),
                       valid_output_pixels=int(sample['mask'].sum()))
     return record
 
@@ -55,7 +66,7 @@ def run(out):
         _, pairs = measure(parts, reference, use_mask=True)
         if sorted(rid for _, rid in pairs) != case['scopes']['split']['matched']:
             raise ValueError(f"Matched surfaces changed for {case['key']}")
-        rows = [sample_record(image, parts[i], rid, reference) for i, rid in pairs]
+        rows = [sample_record(image, parts[i], rid) for i, rid in pairs]
         frames.append(dict(frame=case['key'], sha256=case['sha256'], matched=rows))
     records = [r for frame in frames for r in frame['matched']]
     usable = [r for r in records if r['valid_output_pixels']]
@@ -71,8 +82,8 @@ def run(out):
     save(out, dict(run_id='crop-coverage-01', code=revision(), source_manifest=SOURCE_MANIFEST,
                    source_run=SOURCE.relative_to(ROOT).as_posix(), method='plane-recovery-crop-splits',
                    game_version=source['version'], reference_sha256=source['reference_sha256'],
-                   sample_stride_px=PROTOCOL['sample_stride'], scope='Eligible, matched surface appearances only.',
-                   measure='Fraction of owned scoring samples inside the chart, before filtering the interpolation taps. '
+                   sample_stride_px=1, scope='Eligible, matched surface appearances only.',
+                   measure='Fraction of native source-mask pixels inside the chart, before filtering the interpolation taps. '
                            'A usable sample contains at least one accepted output pixel.',
                    summary=summary, frames=frames))
     print(summary)
