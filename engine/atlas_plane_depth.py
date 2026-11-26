@@ -1,10 +1,34 @@
 """Select the integer depth of an observed surface from its projected texture."""
+from functools import lru_cache
+import json
+from pathlib import Path
+
 import numpy as np
 
 from engine.camera_atlas_floor import _atlas
 from engine.visible_placement import place_with_camera
 from engine.visible_raster import SAMPLE_STRIDE
-from engine.plane_offset_features import ranked_choice
+from engine.plane_offset_features import NAMES, ranked_choice
+
+
+WEIGHTS = Path(__file__).with_name('plane_offset_weights.json')
+
+
+@lru_cache(maxsize=2)
+def _model(path, fingerprint):
+    data = json.loads(path.read_bytes())
+    weights = np.asarray(data['weights'], float)
+    if tuple(data['features']) != NAMES or weights.shape != (len(NAMES),) or not np.isfinite(weights).all():
+        raise ValueError('Unsupported plane-offset model')
+    return weights
+
+
+def frozen_weights():
+    try:
+        stat = WEIGHTS.stat()
+        return _model(WEIGHTS, (stat.st_mtime_ns,stat.st_size))
+    except (OSError,ValueError,TypeError,KeyError):
+        return None
 
 
 def _sample(items, limit):
@@ -188,3 +212,12 @@ def edge_only(image,version,parts,counts,camera):
 
 def combined(image,version,parts,counts,camera):
     return place(image,version,parts,counts,camera,'combined')
+
+
+def frozen(image,version,parts,counts,camera,*,atlas_path=None):
+    weights = frozen_weights()
+    if weights is None:
+        cells,status = place_with_camera(image,version,parts,counts,camera)
+        status['plane_depth_reason']='trained plane model unavailable'
+        return cells,status
+    return place(image,version,parts,counts,camera,'ranked',atlas_path,weights)

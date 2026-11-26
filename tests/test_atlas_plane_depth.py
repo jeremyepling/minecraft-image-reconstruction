@@ -1,3 +1,6 @@
+import json
+from pathlib import Path
+from tempfile import TemporaryDirectory
 import unittest
 from unittest.mock import patch
 
@@ -5,7 +8,7 @@ import numpy as np
 from PIL import Image
 
 from engine.atlas_count import _prepare
-from engine.atlas_plane_depth import choose, options, place
+from engine.atlas_plane_depth import choose, frozen, frozen_weights, options, place
 from engine.plane_offset_features import NAMES, ranked_choice
 
 
@@ -51,3 +54,23 @@ class AtlasPlaneDepthTests(unittest.TestCase):
         rows=[dict(level=k,atlas=.5,edge=.1,boundary=.2,tiles=3,distinct_votes=0,scene_delta=0)
               for k in (2,3)]
         self.assertEqual(ranked_choice(rows,3,np.zeros(len(NAMES))),3)
+
+    def test_unavailable_assets_leave_the_original_candidates_in_place(self):
+        rgb=Image.new('RGB',(33,25))
+        cells={(1,2,3)}
+        with patch('engine.atlas_plane_depth._atlas',return_value=None), \
+             patch('engine.atlas_plane_depth.place_with_camera',return_value=(cells,{})) as original:
+            output,status=place(rgb,'26.3',[{}],None,{'P':np.eye(3,4)},'ranked',weights=np.ones(len(NAMES)))
+            self.assertIs(output,cells)
+            self.assertIn('atlas',status['plane_depth_reason'])
+            self.assertEqual(len(original.call_args.args),5)
+
+    def test_missing_or_malformed_weights_can_be_repaired(self):
+        with TemporaryDirectory() as temp:
+            path=Path(temp)/'model.json'
+            with patch('engine.atlas_plane_depth.WEIGHTS',path):
+                self.assertIsNone(frozen_weights())
+                path.write_text('{"features":[],"weights":[]}')
+                self.assertIsNone(frozen_weights())
+                path.write_text(json.dumps(dict(features=NAMES,weights=[1.]*len(NAMES))))
+                self.assertEqual(frozen_weights().tolist(),[1.]*len(NAMES))
