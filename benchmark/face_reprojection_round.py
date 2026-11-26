@@ -48,3 +48,28 @@ def loose(image,version,parts,counts,camera):
 
 def art(image,version,parts,counts,camera):
     return run(image,version,parts,counts,camera,'art')
+
+
+def plane(image,version,parts,counts,camera):
+    return run(image,version,parts,counts,camera,None)
+
+
+def apply_gate(image,parts,camera,result,mode):
+    # Load the independently frozen cell-gate experiment for this composition.
+    import engine,benchmark
+    source=Path(os.environ['MCIR_CELL_GATE_ROOT'])
+    for package in (engine,benchmark):
+        path=str(source/package.__name__)
+        if path not in package.__path__:package.__path__=[*package.__path__,path]
+    from benchmark.visible_cell_decisions import after_placement
+    cells,status=result
+    result=after_placement(image,parts,camera,cells,mode)
+    return result,{**status,'cell_gate':mode,'placed_blocks':len(result)}
+
+
+def filtered(image,version,parts,counts,camera):
+    return apply_gate(image,parts,camera,plane(image,version,parts,counts,camera),'tree')
+
+
+def art_filtered(image,version,parts,counts,camera):
+    return apply_gate(image,parts,camera,art(image,version,parts,counts,camera),'tree')
