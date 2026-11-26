@@ -8,7 +8,6 @@ from pathlib import Path
 import subprocess
 import sys
 from time import perf_counter
-from unittest.mock import patch
 from zipfile import ZipFile
 
 from benchmark.texture_camera_eval import DATA, ROOT, STABLE, SPLITS, frames, checked, digest, read, save
@@ -36,8 +35,7 @@ def init_candidate(root, method):
 
 def stock(image, version, parts, counts, camera):
     from engine import visible_placement
-    with patch.object(visible_placement,'seam_camera',return_value=camera):
-        return visible_placement.place(image,version,parts,counts=counts)
+    return visible_placement.place_with_camera(image,version,parts,counts,camera)
 
 
 def strict_only(image,version,parts,counts,camera):

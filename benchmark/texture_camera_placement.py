@@ -5,7 +5,6 @@ from concurrent.futures import ProcessPoolExecutor
 import gzip
 import json
 from pathlib import Path
-from unittest.mock import patch
 
 from benchmark.texture_camera_eval import BASE, DATA, ROOT, checked, digest, frames, mark_image_only, read, save
 import numpy as np
@@ -55,8 +54,7 @@ def evaluate(job):
         counts = _count_regions(rgb, parts, "26.3", read(DEFAULTS)["block_count"], None, frame_out)
     else:
         parts, counts = [], None
-    with patch.object(visible_placement, "seam_camera", return_value=camera):
-        cells, status = visible_placement.place(rgb, "26.3", parts, counts=counts)
+    cells, status = visible_placement.place_with_camera(rgb, "26.3", parts, counts, camera)
     pack = frame_out / "reconstruction.zip"
     decoded = _write_read(pack, cells)
     # Open scoring-only camera and labels after creating and verifying the output pack.

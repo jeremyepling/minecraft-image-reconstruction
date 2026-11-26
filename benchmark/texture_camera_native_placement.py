@@ -4,7 +4,6 @@ import json
 from collections import Counter
 from concurrent.futures import ProcessPoolExecutor
 from pathlib import Path
-from unittest.mock import patch
 from zipfile import ZIP_DEFLATED, ZipFile
 
 from benchmark.texture_camera_eval import ROOT, checked, digest, mark_image_only, read, save
@@ -51,8 +50,7 @@ def evaluate(job):
     assert manifest["image_sha256"] == f["rgb_sha256"] and manifest["through"] == "counts"
     parts, counts = read(source / "surfaces.json")["planes"], read(source / "counts.json")
     def export(name, camera):
-        with patch.object(visible_placement, "seam_camera", return_value=camera):
-            cells, _ = visible_placement.place(photo, "26.3", parts, counts=counts)
+        cells, _ = visible_placement.place_with_camera(photo, "26.3", parts, counts, camera)
         path = output / (name + ".zip")
         _write_read(path, cells)
         return decoded_pack(path)
