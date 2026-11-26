@@ -1,0 +1,45 @@
+{
+  "run_id": "crop-review-02",
+  "code": {
+    "commit": "3768de94010e7f70a3de4710d74211a897b8d342",
+    "predictor_and_runner_sha256": "19bec6b5ec2d06b91c512c5cb6d328cd9a40b1827ba2020fd6f99d83432ea8d3",
+    "source_dirty": false
+  },
+  "version": "26.3",
+  "fixtures": {
+    "smooth_stone": "660d1e535ae134452bca903a9d7cbe8d37953927fa118d9ffb327afad0885bc2",
+    "light_gray_concrete": "321505e15563f8efc0da868baa27409837aaa474410a61f3513b3dac0030f066",
+    "surface_confirm_v1": "0a479a8264f2c0f714284928354ff6ff5f9729491709676f07e2033d25e48fc3",
+    "normal_confirm_v1": "61bdf3a89a505a8be3757efe480185bec9c1888a1c72ffb69ef0093623e27dda"
+  },
+  "source_run": "benchmark/reviews/crop-split-01",
+  "source_manifest_sha256": "b300caff403e517e09003376a112254bc1d72a87e3e52c1b53224c6a892f1850",
+  "reference_sha256": "91efa6d3e992b1a68672eae1fdd6d380e87724742a1a4b6cbe5f84d284f731a1",
+  "frame_ids": [
+    "light_gray_concrete/dev-shopfront-masonry-high-right",
+    "light_gray_concrete/holdout-courtyard-masonry-high-right",
+    "light_gray_concrete/holdout-crossing-masonry-low-left",
+    "light_gray_concrete/holdout-galleries-masonry-low-left",
+    "light_gray_concrete/holdout-registry-masonry-high-right",
+    "light_gray_concrete/holdout-workshop-masonry-high-right",
+    "light_gray_concrete/holdout-workshop-plaster-high-right",
+    "smooth_stone/dev-shopfront-masonry-low-left",
+    "smooth_stone/dev-wing-masonry-high-right",
+    "smooth_stone/holdout-portico-masonry-high-right"
+  ],
+  "finder": "plane-recovery-crop-splits",
+  "prediction_key": "split",
+  "sample": "engine.surface_sample.sample_surface",
+  "context_margin_px": 8,
+  "counter": "masked-repeat",
+  "stage_status": {
+    "material": "unrun",
+    "placement": "unrun"
+  },
+  "new_inference_s": 0,
+  "reproduce": "python -m benchmark.crop_review_sheet --out runs/crop-review-repeat",
+  "artifacts": {
+    "comparison.jpg": "d4d62fe219c3ea3609d772b8f511826c293b3d23d6b2709e176fe827f5b68065",
+    "index.json": "b54a0dde6fdaf64efe292aee233ec91179143b248456eff3596ed1e70d21c77f"
+  }
+}

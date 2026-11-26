@@ -1,6 +1,8 @@
 # Review the crops from split-only zoom
 
-[Open the full-size portrait sheet](reviews/crop-review-01/comparison.jpg) · [Look up a picture, surface and source rectangle](reviews/crop-review-01/index.json)
+[Open the full-size portrait sheet](reviews/crop-review-02/comparison.jpg) · [Look up a picture, surface and source rectangle](reviews/crop-review-02/index.json)
+
+Each Block Counter panel shows **Counter** for the estimated dimensions and **Actual** for the recorded surface dimensions, both in blocks across × blocks down the face. A question mark marks an unresolved estimate on that axis.
 
 Pick a building column and follow one lettered surface down the stage rows. Zoom in on the first row where it looks wrong. A reply like **“Workshop B, straightened crop — the top row of blocks disappears”** identifies the example, stage, and edge. A good crop is worth marking too, especially if it has a hole or a steep viewing angle.
 
