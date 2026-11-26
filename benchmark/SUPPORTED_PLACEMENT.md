@@ -6,6 +6,8 @@ The pavement seam estimator must recover a camera with scale in blocks. The plac
 
 ## Exact placement checks
 
+Before export, the placer projects a neighboring block's front and side and compares the rectified textures against the proposed second front. Strong side evidence can establish a shared edge. The decision can extend along consecutive rows when the same owner is confirmed on the run, the exposed floor agrees, and removing the column preserves the observed silhouette. Strict placements and blocks used to explain another face are retained. [Seam experiments and source-view comparison](SEAM_OWNERSHIP.md)
+
 Each screenshot has its own visible target coordinates. The evaluator decodes the exported Minecraft structures and uses the saved camera to align the local compass and origin for scoring. Hidden blocks are excluded from the target. A placed block at any other coordinate counts as an extra.
 
 | Saved screenshots | Visible target blocks | Strict correct | Strict extras | New correct | New extras |

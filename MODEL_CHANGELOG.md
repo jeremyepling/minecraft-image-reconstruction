@@ -4,6 +4,8 @@ These entries cover model inputs, rules around model outputs, and evaluation cha
 
 ### November 26, 2026
 
+- **Shipped — check whether a neighbor's side already explains a proposed block.** On Adjacency 26 right, the placer removed 16 of 26 confirmed duplicate side cells and preserved all 258 correct placements in the ordinary build. On current masks for all 68 regression views it removed 19 extras and preserved all 4,826 correct coordinates. Requiring a texture match on the same vertical seam protected the displaced wall on Corner 29 right. [Comparison and replay](benchmark/SEAM_OWNERSHIP.md)
+
 - **Experiment — straighten crops using their outlines and check texture repeats in separate bands.** With the current Surface Finder, this added 23 correct block sizes and 12 wrong sizes across the 56 reviewed views. The counter default stays in place. Texture alignment across a crop is the next test. [Portico and suite results](benchmark/TEXTURE_REPEATS.md)
 
 - **Experiment — count whole-tile texture repeats.** Portico spruce and cobblestone were both countable from the original screenshot after correcting only the straightening corners in a labeled diagnostic. Across 82 pure cobblestone surface appearances, exact sizes went from 19 on predicted crops to 71 with recorded corners and masks. Crop-only repeat voting added four correct sizes and seven wrong ones. Atlas confirmation added one wrong size. Keep the current Block Counter and use the full vanilla tile as a check on candidate spacing. [Examples, controls and replay](benchmark/TEXTURE_REPEATS.md)
