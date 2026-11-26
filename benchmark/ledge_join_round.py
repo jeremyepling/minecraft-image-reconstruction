@@ -101,14 +101,14 @@ def evaluate(job):
     return result
 
 
-def score_dimensions(capture, row, predictions, result):
-    if result['scopes']['current']['matched'] != row['scopes']['single-v2']['matched']:
+def score_dimensions(capture, row, predictions, result, baseline_method='single-v2'):
+    if result['scopes']['current']['matched'] != row['scopes'][baseline_method]['matched']:
         raise ValueError('Baseline matches changed')
     with Image.open(capture.path('image')) as source:
         sizes, _ = count_frame(capture, source.convert('RGB'), result, predictions, tuple(predictions))
     result['sizes'] = {m: {k: sizes[m]['totals'][k] for k in ('correct','incorrect','missing','unmatched_returned')}
                        for m in predictions}
-    if result['sizes']['current'] != row['sizes']['single-v2']:
+    if result['sizes']['current'] != row['sizes'][baseline_method]:
         raise ValueError('Baseline block counts changed')
     result['size_changes'] = {m: sizes[m]['comparisons'] for m in predictions}
 

@@ -39,7 +39,7 @@ def grade(job):
     return result
 
 
-def picture_table(rows, methods):
+def picture_table(rows, methods, names=NAMES):
     lines = ['# Surface and block counts by screenshot', '',
              'An R number identifies a recorded visible surface in that picture. Each candidate starts from the same default. '
              'Both dimensions must be correct for a block-count match.', '',
@@ -50,7 +50,7 @@ def picture_table(rows, methods):
             scope = row['scopes'][m]
             stats = row['scores'][m]
             ids = [' '.join(f'R{i}' for i in scope[k]) or '—' for k in ('gained','lost')]
-            cells = [row['key'], NAMES[m], f'{stats["matched"]} / {stats["eligible"]}', *ids,
+            cells = [row['key'], names[m], f'{stats["matched"]} / {stats["eligible"]}', *ids,
                      scope['unpaired'], row['sizes'][m]['correct']]
             lines.append('| '+' | '.join(map(str,cells))+' |')
     return '\n'.join(lines)+'\n'
