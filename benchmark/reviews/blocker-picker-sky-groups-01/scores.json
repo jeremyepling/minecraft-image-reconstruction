@@ -1,0 +1,272 @@
+{
+  "source_sha256": "334a49d6859de3a2c322bf939a53143dbac11c65654a7157535c0d475ee5ddac",
+  "minimum_width": 5.0,
+  "grouping_unit": "one physical block per picture",
+  "under_five_only_blocks": "excluded",
+  "fixtures": {
+    "faces.json": "6b1c15bfef919d0cd11be7e835f66169009e8e8b15ab8fa45b9b1858f3289625",
+    "truth.json": "cd8aa118d1f4720f37394c51602ae6379212ed0606b34e9c1b974b63802c9491",
+    "diagnostic-faces.json": "a1e4e58e742655a4c28e3a95a981e54cc99abbd773353596859e7e41e0460828",
+    "diagnostic-truth.json": "abf6522e7b0a7da9bea166d703266d2bb6727bd0a5e36606e8d75acde8cc830d"
+  },
+  "scores": {
+    "predicted": {
+      "coverage": {
+        "frames": 56,
+        "populated_frames": 12,
+        "faces": 101,
+        "matched_faces": 101,
+        "blocks": 101,
+        "predicted_groups": 101,
+        "ranked_groups": 101,
+        "predicted_pairs": 0,
+        "true_pairs": 0,
+        "true_positive": 0,
+        "false_positive": 0,
+        "false_negative": 0,
+        "unmatched_pairs": 0,
+        "eligible_blocks": 101,
+        "under_five_only_blocks": 0,
+        "eligible_faces": 101,
+        "under_five_faces": 0
+      },
+      "material": {
+        "atlas": {
+          "correct_blocks": 16,
+          "correct_eligible_faces": 16,
+          "correct_inherited_thin_faces": 0
+        },
+        "exposure": {
+          "correct_blocks": 74,
+          "correct_eligible_faces": 74,
+          "correct_inherited_thin_faces": 0
+        },
+        "texture": {
+          "correct_blocks": 101,
+          "correct_eligible_faces": 101,
+          "correct_inherited_thin_faces": 0
+        },
+        "shadow": {
+          "correct_blocks": 101,
+          "correct_eligible_faces": 101,
+          "correct_inherited_thin_faces": 0
+        }
+      }
+    },
+    "predicted development": {
+      "coverage": {
+        "frames": 20,
+        "populated_frames": 4,
+        "faces": 18,
+        "matched_faces": 18,
+        "blocks": 18,
+        "predicted_groups": 18,
+        "ranked_groups": 18,
+        "predicted_pairs": 0,
+        "true_pairs": 0,
+        "true_positive": 0,
+        "false_positive": 0,
+        "false_negative": 0,
+        "unmatched_pairs": 0,
+        "eligible_blocks": 18,
+        "under_five_only_blocks": 0,
+        "eligible_faces": 18,
+        "under_five_faces": 0
+      },
+      "material": {
+        "atlas": {
+          "correct_blocks": 1,
+          "correct_eligible_faces": 1,
+          "correct_inherited_thin_faces": 0
+        },
+        "exposure": {
+          "correct_blocks": 13,
+          "correct_eligible_faces": 13,
+          "correct_inherited_thin_faces": 0
+        },
+        "texture": {
+          "correct_blocks": 18,
+          "correct_eligible_faces": 18,
+          "correct_inherited_thin_faces": 0
+        },
+        "shadow": {
+          "correct_blocks": 18,
+          "correct_eligible_faces": 18,
+          "correct_inherited_thin_faces": 0
+        }
+      }
+    },
+    "predicted regression": {
+      "coverage": {
+        "frames": 36,
+        "populated_frames": 8,
+        "faces": 83,
+        "matched_faces": 83,
+        "blocks": 83,
+        "predicted_groups": 83,
+        "ranked_groups": 83,
+        "predicted_pairs": 0,
+        "true_pairs": 0,
+        "true_positive": 0,
+        "false_positive": 0,
+        "false_negative": 0,
+        "unmatched_pairs": 0,
+        "eligible_blocks": 83,
+        "under_five_only_blocks": 0,
+        "eligible_faces": 83,
+        "under_five_faces": 0
+      },
+      "material": {
+        "atlas": {
+          "correct_blocks": 15,
+          "correct_eligible_faces": 15,
+          "correct_inherited_thin_faces": 0
+        },
+        "exposure": {
+          "correct_blocks": 61,
+          "correct_eligible_faces": 61,
+          "correct_inherited_thin_faces": 0
+        },
+        "texture": {
+          "correct_blocks": 83,
+          "correct_eligible_faces": 83,
+          "correct_inherited_thin_faces": 0
+        },
+        "shadow": {
+          "correct_blocks": 83,
+          "correct_eligible_faces": 83,
+          "correct_inherited_thin_faces": 0
+        }
+      }
+    },
+    "recorded": {
+      "coverage": {
+        "frames": 56,
+        "populated_frames": 56,
+        "faces": 863,
+        "matched_faces": 863,
+        "blocks": 672,
+        "predicted_groups": 672,
+        "ranked_groups": 562,
+        "predicted_pairs": 198,
+        "true_pairs": 198,
+        "true_positive": 198,
+        "false_positive": 0,
+        "false_negative": 0,
+        "unmatched_pairs": 0,
+        "eligible_blocks": 562,
+        "under_five_only_blocks": 110,
+        "eligible_faces": 681,
+        "under_five_faces": 182
+      },
+      "material": {
+        "atlas": {
+          "correct_blocks": 439,
+          "correct_eligible_faces": 544,
+          "correct_inherited_thin_faces": 56
+        },
+        "exposure": {
+          "correct_blocks": 425,
+          "correct_eligible_faces": 530,
+          "correct_inherited_thin_faces": 52
+        },
+        "texture": {
+          "correct_blocks": 433,
+          "correct_eligible_faces": 536,
+          "correct_inherited_thin_faces": 59
+        },
+        "shadow": {
+          "correct_blocks": 431,
+          "correct_eligible_faces": 535,
+          "correct_inherited_thin_faces": 59
+        }
+      }
+    },
+    "recorded development": {
+      "coverage": {
+        "frames": 20,
+        "populated_frames": 20,
+        "faces": 306,
+        "matched_faces": 306,
+        "blocks": 240,
+        "predicted_groups": 240,
+        "ranked_groups": 205,
+        "predicted_pairs": 67,
+        "true_pairs": 67,
+        "true_positive": 67,
+        "false_positive": 0,
+        "false_negative": 0,
+        "unmatched_pairs": 0,
+        "eligible_blocks": 205,
+        "under_five_only_blocks": 35,
+        "eligible_faces": 247,
+        "under_five_faces": 59
+      },
+      "material": {
+        "atlas": {
+          "correct_blocks": 163,
+          "correct_eligible_faces": 201,
+          "correct_inherited_thin_faces": 20
+        },
+        "exposure": {
+          "correct_blocks": 171,
+          "correct_eligible_faces": 209,
+          "correct_inherited_thin_faces": 20
+        },
+        "texture": {
+          "correct_blocks": 162,
+          "correct_eligible_faces": 199,
+          "correct_inherited_thin_faces": 20
+        },
+        "shadow": {
+          "correct_blocks": 163,
+          "correct_eligible_faces": 200,
+          "correct_inherited_thin_faces": 20
+        }
+      }
+    },
+    "recorded regression": {
+      "coverage": {
+        "frames": 36,
+        "populated_frames": 36,
+        "faces": 557,
+        "matched_faces": 557,
+        "blocks": 432,
+        "predicted_groups": 432,
+        "ranked_groups": 357,
+        "predicted_pairs": 131,
+        "true_pairs": 131,
+        "true_positive": 131,
+        "false_positive": 0,
+        "false_negative": 0,
+        "unmatched_pairs": 0,
+        "eligible_blocks": 357,
+        "under_five_only_blocks": 75,
+        "eligible_faces": 434,
+        "under_five_faces": 123
+      },
+      "material": {
+        "atlas": {
+          "correct_blocks": 276,
+          "correct_eligible_faces": 343,
+          "correct_inherited_thin_faces": 36
+        },
+        "exposure": {
+          "correct_blocks": 254,
+          "correct_eligible_faces": 321,
+          "correct_inherited_thin_faces": 32
+        },
+        "texture": {
+          "correct_blocks": 271,
+          "correct_eligible_faces": 337,
+          "correct_inherited_thin_faces": 39
+        },
+        "shadow": {
+          "correct_blocks": 268,
+          "correct_eligible_faces": 335,
+          "correct_inherited_thin_faces": 39
+        }
+      }
+    }
+  }
+}
