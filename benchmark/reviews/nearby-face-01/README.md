@@ -26,6 +26,12 @@ On the 112 fixed rows the individual scorer generated 78,409 distinct novel per-
 
 Against the same unmodified baseline, the thin-face atlas and nearby decision pools together contain 3,124 distinct missed targets, including 1,055 shared by both. The estimated upper bound is 93.08% F1 with perfect additions and 96.67% if every old extra also disappears. Among the 27,954 shared proposals that neither standalone output selected, 715 were true. New iterations of a placer can generate different candidates. [Per-frame overlap and optimistic bounds](joint-candidate-headroom.json)
 
+## Shared-proposal consensus
+
+We tested whether agreement between lower-confidence depth and atlas predictions could accept more of the 715 shared true misses. The depth and atlas confidence cutoffs were selected using predictions from models fitted without each photographed training family. Each candidate required horizontal-face witnesses from both methods and fresh native-pixel support after all proposed additions competed for visibility. The comparison build combined the independent individual-depth placements and single-pass rank85 atlas additions generated from the same source build.
+
+The best of 16 threshold pairs added two correct positions on the 72 family-held-out training images, both on Watchpost. On the fixed 112 it added three correct and zero extras. On the separate 20 it added zero correct and one extra. Keep this gate experimental: the marginal gains were small, concentrated in one training family, and did not repeat on the alternate views. This diagnostic used the single-pass atlas output. It did not measure a new production composite. [Family selection](consensus-train.json) · [Per-frame paired check](consensus-evaluation.json)
+
 ## Replay
 
 Start from `cebbffa` frozen upstream inputs, the previous combined release packs in `combined-visible-recovery/runs/triple` and the separate 20-view fixture. The benchmark accepts the standard training, validation, test, regression, native, old, fresh and extra split names. The commands below replay the first model from its frozen weights.
