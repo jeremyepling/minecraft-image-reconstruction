@@ -4,6 +4,10 @@ These entries cover model inputs, rules around model outputs, and evaluation cha
 
 ### November 26, 2026
 
+- **Experiment — use repeated texture to straighten a crop and check an unused strip.** Across 56 regression views and 24 separate views this added 40 correct visible sizes and 18 wrong ones. The Portico spruce beam measured 18 by 1. Requiring an atlas match kept only seven new correct sizes. Recommend the repeat-only fallback for counting. [Results and visual review](benchmark/COUNT_TRANSFER.md)
+
+- **Experiment — borrow a grid from another proposed surface on the same plane.** One Portico pair recovered both the 1 by 5 count and four-block offset. On Twin Spires four transfers crossed a two-block setback. Keep independent depth evidence as a prerequisite for using transferred positions. [Donor checks](benchmark/reviews/coplanar-transfer-01/README.md)
+
 - **Experiment — straighten crops using their outlines and check texture repeats in separate bands.** With the current Surface Finder, this added 23 correct block sizes and 12 wrong sizes across the 56 reviewed views. The counter default stays in place. Texture alignment across a crop is the next test. [Portico and suite results](benchmark/TEXTURE_REPEATS.md)
 
 - **Experiment — count whole-tile texture repeats.** Portico spruce and cobblestone were both countable from the original screenshot after correcting only the straightening corners in a labeled diagnostic. Across 82 pure cobblestone surface appearances, exact sizes went from 19 on predicted crops to 71 with recorded corners and masks. Crop-only repeat voting added four correct sizes and seven wrong ones. Atlas confirmation added one wrong size. Keep the current Block Counter and use the full vanilla tile as a check on candidate spacing. [Examples, controls and replay](benchmark/TEXTURE_REPEATS.md)

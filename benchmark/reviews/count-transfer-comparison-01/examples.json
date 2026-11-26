@@ -1,0 +1,447 @@
+{
+  "courtyard": {
+    "key": "smooth_stone/holdout-courtyard-masonry-high-right",
+    "sha256": "252fa7c481e990bbbada46717d6e10c6b66c4f9c65846b94a94cd1b40cea0fcd",
+    "proposal": "mask-3",
+    "reference": 3,
+    "actual": [
+      5,
+      7
+    ],
+    "guess": {
+      "current": [
+        null,
+        null
+      ],
+      "self_repeat": [
+        5,
+        7
+      ],
+      "phase": [
+        null,
+        null
+      ],
+      "coplanar": [
+        null,
+        null
+      ]
+    }
+  },
+  "crossing": {
+    "key": "light_gray_concrete/holdout-crossing-masonry-high-right",
+    "sha256": "7ea5b36aa3c25b3ab4c58dcb773d8c3476c5f2d28048fd72a62970888be31320",
+    "proposal": "mask-1-single-254-1",
+    "reference": 1,
+    "actual": [
+      2,
+      3
+    ],
+    "guess": {
+      "current": [
+        null,
+        null
+      ],
+      "self_repeat": [
+        2,
+        2
+      ],
+      "phase": [
+        null,
+        null
+      ],
+      "coplanar": [
+        null,
+        null
+      ]
+    }
+  },
+  "galleries": {
+    "key": "light_gray_concrete/holdout-galleries-masonry-low-left",
+    "sha256": "d0fba67900a91a20d0120f298c8783829953bc21c7d45fb4413a8cb829cfddc3",
+    "proposal": "mask-2",
+    "reference": 19,
+    "actual": [
+      3,
+      4
+    ],
+    "guess": {
+      "current": [
+        null,
+        null
+      ],
+      "self_repeat": [
+        null,
+        null
+      ],
+      "phase": [
+        null,
+        null
+      ],
+      "coplanar": [
+        4,
+        4
+      ]
+    },
+    "donor_example": {
+      "frame": "light_gray_concrete/holdout-galleries-masonry-low-left",
+      "proposal": "mask-2",
+      "transfer": {
+        "donor": "mask-9",
+        "recipient_offset": [
+          -9,
+          0
+        ],
+        "donor_grid_to_image": [
+          [
+            45.69651740532213,
+            -3.6219551464477284,
+            989.0509995151165
+          ],
+          [
+            10.697708277059112,
+            31.932565611021943,
+            568.7179593090891
+          ],
+          [
+            0.020071887868917934,
+            -0.004011084849577053,
+            1.1741876621426282
+          ]
+        ],
+        "depth_log_error": 0.09074123737885505,
+        "edge_residual": 0.2558086906807997,
+        "gap_blocks": 5.2558086906808,
+        "raw_bounds": [
+          [
+            -9.216410369819826,
+            0.12734455271424702
+          ],
+          [
+            -5.2558086906808,
+            3.9655214957143383
+          ]
+        ]
+      },
+      "truth": {
+        "donor_reference": 23,
+        "parallel": true,
+        "coplanar": false,
+        "materials": [
+          [
+            "minecraft:tuff"
+          ],
+          [
+            "minecraft:stone_bricks"
+          ]
+        ]
+      }
+    }
+  },
+  "portico": {
+    "key": "smooth_stone/holdout-portico-plaster-low-left",
+    "sha256": "8f7b6cf572ea617a0efa47c002f4f9221df201dcde9d20595a10fb2915228445",
+    "proposal": "mask-0-mobile-1",
+    "reference": 20,
+    "actual": [
+      18,
+      1
+    ],
+    "guess": {
+      "current": [
+        null,
+        5
+      ],
+      "self_repeat": [
+        18,
+        1
+      ],
+      "phase": [
+        null,
+        5
+      ],
+      "coplanar": [
+        null,
+        5
+      ]
+    },
+    "donor_example": {
+      "frame": "smooth_stone/holdout-portico-masonry-low-left",
+      "proposal": "mask-7",
+      "transfer": {
+        "donor": "mask-5",
+        "recipient_offset": [
+          4,
+          0
+        ],
+        "donor_grid_to_image": [
+          [
+            54.00582973051321,
+            -3.1286536704286245,
+            451.414277170515
+          ],
+          [
+            13.327550377850102,
+            38.410107601071815,
+            391.71976973587675
+          ],
+          [
+            0.025137102554590583,
+            -0.002131608908859376,
+            0.9398318133880373
+          ]
+        ],
+        "depth_log_error": 0.02668591109636795,
+        "edge_residual": 0.17553735420186412,
+        "gap_blocks": 2.656898458733351,
+        "raw_bounds": [
+          [
+            3.824462645798136,
+            -0.1111880170375621
+          ],
+          [
+            5.045488243513918,
+            4.924638446677584
+          ]
+        ]
+      },
+      "truth": {
+        "donor_reference": 16,
+        "parallel": true,
+        "coplanar": true,
+        "materials": [
+          [
+            "minecraft:tuff"
+          ],
+          [
+            "minecraft:tuff"
+          ]
+        ],
+        "actual_offset": [
+          4,
+          0
+        ],
+        "offset_correct": true
+      }
+    }
+  },
+  "registry": {
+    "key": "light_gray_concrete/holdout-registry-masonry-low-left",
+    "sha256": "3f7e9e1b5d577667b157664dd3f37a40e8c7e64a3db0d60ac6c30b294d2ba9e6",
+    "proposal": "mask-0-junction-1-planarity-split-0",
+    "reference": 5,
+    "actual": [
+      11,
+      8
+    ],
+    "guess": {
+      "current": [
+        11,
+        8
+      ],
+      "self_repeat": [
+        11,
+        8
+      ],
+      "phase": [
+        11,
+        8
+      ],
+      "coplanar": [
+        11,
+        8
+      ]
+    }
+  },
+  "shopfront": {
+    "key": "light_gray_concrete/dev-shopfront-plaster-low-left",
+    "sha256": "299e0228de74d2cc7d3a18deaba9f61c82560a0ddd0b8557e5c91728c964a993",
+    "proposal": "mask-0-wall-1-single-339-2",
+    "reference": 16,
+    "actual": [
+      10,
+      1
+    ],
+    "guess": {
+      "current": [
+        null,
+        null
+      ],
+      "self_repeat": [
+        10,
+        1
+      ],
+      "phase": [
+        10,
+        1
+      ],
+      "coplanar": [
+        null,
+        null
+      ]
+    },
+    "donor_example": {
+      "frame": "light_gray_concrete/dev-shopfront-masonry-low-left",
+      "proposal": "mask-1",
+      "transfer": {
+        "donor": "mask-2",
+        "recipient_offset": [
+          5,
+          0
+        ],
+        "donor_grid_to_image": [
+          [
+            54.66011608399117,
+            1.8266992352789913,
+            494.4241055755107
+          ],
+          [
+            9.212813114313638,
+            40.32006817821471,
+            370.0747672352474
+          ],
+          [
+            0.02423952497890231,
+            -2.3367033050530115e-05,
+            0.9585526725070372
+          ]
+        ],
+        "depth_log_error": 0.07160792599151333,
+        "edge_residual": 0.2641729702127851,
+        "gap_blocks": 3.1183934453566824,
+        "raw_bounds": [
+          [
+            5.002451786411191,
+            0.13774878500156756
+          ],
+          [
+            12.735827029787215,
+            5.822768538096618
+          ]
+        ]
+      },
+      "truth": {
+        "donor_reference": 11,
+        "parallel": true,
+        "coplanar": false,
+        "materials": [
+          [
+            "minecraft:tuff"
+          ],
+          [
+            "minecraft:stone_bricks"
+          ]
+        ]
+      }
+    }
+  },
+  "wing": {
+    "key": "light_gray_concrete/dev-wing-plaster-low-left",
+    "sha256": "b1aa96442f2858b5435fc9af424de374ffafbade3cc74d059b85b6c1bfd7e13c",
+    "proposal": "mask-0-wall-1",
+    "reference": 3,
+    "actual": [
+      13,
+      8
+    ],
+    "guess": {
+      "current": [
+        null,
+        null
+      ],
+      "self_repeat": [
+        null,
+        null
+      ],
+      "phase": [
+        null,
+        null
+      ],
+      "coplanar": [
+        13,
+        8
+      ]
+    },
+    "donor_example": {
+      "frame": "light_gray_concrete/dev-wing-plaster-low-left",
+      "proposal": "mask-0-wall-1",
+      "transfer": {
+        "donor": "mask-0-wall-0",
+        "recipient_offset": [
+          -13,
+          -4
+        ],
+        "donor_grid_to_image": [
+          [
+            61.45245208646416,
+            -2.888623438160226,
+            1216.071661318838
+          ],
+          [
+            14.043326453016794,
+            42.84726705080549,
+            582.3127720273733
+          ],
+          [
+            0.028829929679986047,
+            -0.004011976997444717,
+            1.3001562979182286
+          ]
+        ],
+        "depth_log_error": 0.09171978320822025,
+        "edge_residual": 0.24254239660665267,
+        "gap_blocks": 0.0,
+        "raw_bounds": [
+          [
+            -12.946470433290374,
+            -4.242542396606653
+          ],
+          [
+            0.13099160513565053,
+            4.184221501931327
+          ]
+        ]
+      },
+      "truth": {
+        "donor_reference": 2,
+        "parallel": true,
+        "coplanar": false,
+        "materials": [
+          [
+            "minecraft:spruce_planks"
+          ],
+          [
+            "minecraft:white_concrete"
+          ]
+        ]
+      }
+    }
+  },
+  "workshop": {
+    "key": "light_gray_concrete/holdout-workshop-masonry-low-left",
+    "sha256": "ae86fd9911640c7397bc929d3e0ca1076d84312b5500712cf2c4ec25e7c9112f",
+    "proposal": "mask-2",
+    "reference": 2,
+    "actual": [
+      7,
+      6
+    ],
+    "guess": {
+      "current": [
+        7,
+        null
+      ],
+      "self_repeat": [
+        10,
+        6
+      ],
+      "phase": [
+        7,
+        null
+      ],
+      "coplanar": [
+        7,
+        null
+      ]
+    }
+  }
+}

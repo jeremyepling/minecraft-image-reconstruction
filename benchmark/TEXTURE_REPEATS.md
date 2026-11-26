@@ -4,6 +4,8 @@ On Portico the cobblestone pillar and spruce beam have measurable whole-block re
 
 [Original, vanilla tile, predicted crop, measured grids and recorded-corner control](reviews/texture-count-01/portico.jpg) · [Four-way corners and mask control](reviews/portico-atlas-01/controls.json)
 
+The follow-up tested texture-guided crop corners and borrowing scale from another visible surface on 80 views. [Results and recommendation](COUNT_TRANSFER.md)
+
 ## What repeats in these crops?
 
 * **Spruce beam.** The experimental crop-only matcher found the same patch again 32.46 pixels to the right. The average width of a recorded block in that chart was 32.56 pixels. This supports about 18 blocks across. The strong vertical repeat at 9.42 pixels is about one-quarter of a block: several plank courses occur within one vanilla sprite. A chart that admits these conflicting scales should record competing hypotheses. Reporting independent axes without a confidence check would have added 12 right and 33 wrong measurements across the suite. [Pitch evidence and independent-axis trial](reviews/portico-repeat-01/README.md)
