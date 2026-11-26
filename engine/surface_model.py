@@ -231,8 +231,9 @@ def proposals_for(image, version, method, normals=None, depth=None):
 def _count_regions(image, planes, version, method, atlas, out, shape_matcher=None, shadow_field=None):
     from engine.surface_sample import sample_surface
     from engine.surface_dimensions import dimensions
+    from engine import texture_guided_count
 
-    if method not in ('legacy-repeat', 'masked-repeat', 'atlas-repeat'):
+    if method not in ('legacy-repeat', 'masked-repeat', 'atlas-repeat', texture_guided_count.METHOD):
         raise ValueError(f'Unknown Block Counter method {method}')
     measurements = []
     faces = []
@@ -242,23 +243,27 @@ def _count_regions(image, planes, version, method, atlas, out, shape_matcher=Non
         sample = sample_surface(image, plane)
         row = dict(id=plane['id'], method=method)
         if sample is None:
+            if method == texture_guided_count.METHOD:
+                row['method'] = 'masked-repeat'
             row.update(counts=[None, None], phase=[None, None], reason='No usable sampling chart',
                        dimensions=dict(spans=[None, None], blocks=[None, None]))
         else:
-            rectified = Image.fromarray(np.asarray(sample['rgb'], dtype=np.uint8))
-            rectified.putalpha(Image.fromarray(np.asarray(sample['mask'], dtype=np.uint8)*255))
-            path = samples_dir / f'surface-{i:03}.png'
-            rectified.save(path)
-            row.update(quad=np.asarray(sample['quad']).tolist(), sample=path.relative_to(out).as_posix())
             if method == 'atlas-repeat':
                 from engine.atlas_count import count
                 result = count(sample, atlas, version=version)
+            elif method == texture_guided_count.METHOD:
+                result, sample = texture_guided_count.count_surface(image, plane, sample, version=version)
             elif method == 'legacy-repeat':
                 from engine.legacy_count import count
                 result = count(sample, version=version)
             else:
                 from engine.masked_count import count
                 result = count(sample, version=version)
+            rectified = Image.fromarray(np.asarray(sample['rgb'], dtype=np.uint8))
+            rectified.putalpha(Image.fromarray(np.asarray(sample['mask'], dtype=np.uint8)*255))
+            path = samples_dir / f'surface-{i:03}.png'
+            rectified.save(path)
+            row.update(quad=np.asarray(sample['quad']).tolist(), sample=path.relative_to(out).as_posix())
             row.update(result)
             row['dimensions'] = dimensions(plane, sample['quad'], image.size, result['counts'])
             from engine.surface_tiles import complete_footprints
@@ -551,6 +556,12 @@ def build(image_path, version, out, *, outlines=None, order_method=None, through
         manifest['artifact'] = 'counts.json'
         manifest['artifacts'].update(counts='counts.json', samples='samples/')
         methods['block_count'] = counter
+        from engine import texture_guided_count
+        if counter == texture_guided_count.METHOD:
+            manifest['block_counter'] = dict(primary='masked-repeat', fallback=counter,
+                primary_settings=texture_guided_count.MASKED_SETTINGS, fallback_settings=texture_guided_count.SETTINGS,
+                envelope_settings=texture_guided_count.ENVELOPE_SETTINGS,
+                accepted_fallbacks=sum(r['method']==counter and 'sample' in r for r in counts['surfaces']))
         if through == 'placement':
             from engine.export import JAVA_26_3_FORMAT, write_pack
             from engine.visible_placement import place
