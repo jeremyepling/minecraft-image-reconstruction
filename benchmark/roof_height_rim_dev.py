@@ -13,7 +13,9 @@ def example(job):
     split,f,prior,base,out,exchange=job
     image,parts,counts,camera=ev.photo(split,f,prior)
     before=set(decoded_pack(base/split/f['id']/'reconstruction.zip'))
-    if exchange:
+    if exchange=='band':
+        from engine import roof_height_rim_band as candidate
+    elif exchange:
         from engine import roof_height_rim_exchange as candidate
     else:
         candidate=model
@@ -35,9 +37,10 @@ if __name__=='__main__':
     p.add_argument('--out',type=Path,required=True)
     p.add_argument('--workers',type=int,default=4)
     p.add_argument('--exchange',action='store_true')
+    p.add_argument('--band',action='store_true')
     a=p.parse_args()
     a.out.mkdir(parents=True,exist_ok=True)
-    jobs=[(*j,a.base,a.out,a.exchange) for j in ev.cases(['train'])]
+    jobs=[(*j,a.base,a.out,'band' if a.band else a.exchange) for j in ev.cases(['train'])]
     with ProcessPoolExecutor(a.workers) as pool:
         rows=list(pool.map(example,jobs))
     ev.save(a.out/'cases.json',rows)
