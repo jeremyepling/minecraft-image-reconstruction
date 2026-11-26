@@ -89,6 +89,8 @@ def _axis(colors, valid, length):
         indices = np.rint(cycles).astype(int)
         near = np.abs(cycles - indices) < .22
         far = np.abs(cycles - indices) > .34
+        if not np.any(far):
+            continue  # This sampled frequency has no off-grid contrast control.
         background = np.average(edge[far], weights=taper[far])
         energy = np.maximum(edge - background, 0.) * taper
         bins = np.bincount(indices[near] % 16, energy[near], minlength=16)
