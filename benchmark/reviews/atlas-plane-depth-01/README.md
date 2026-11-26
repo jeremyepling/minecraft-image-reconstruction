@@ -35,6 +35,24 @@ The training targets use only mask samples assigned to visible faces in the supp
 
 ## Replay
 
+### Secondary depths inside merged masks
+
+After freezing the ranker, we tested whether a patch judged to occupy one plane contains a second, visibly offset region. The trial requires at least two good primary atlas matches. It tests offsets one and two units on either side. A secondary match needs a neighboring tile with its own atlas match, stronger texture agreement than the primary reading at the same image location and complete original-mask coverage at the placement raster samples. Reallocated cells still pass through the ordinary occlusion and duplicate checks. Missing atlas data and nonfinite geometry preserve the primary estimate.
+
+For the frozen guarded version `ce4701e`, the comparison below uses the final primary model fit on all 72 training views. These training counts differ slightly from the excluded-family comparison above.
+
+| Versus the primary ranker | Correct gained / lost | Extras added / removed | Hidden extras added / removed |
+| --- | ---: | ---: | ---: |
+| Training, 72 | 68 / 3 | 1 / 69 | 0 / 20 |
+| Cloister, 12 | 0 / 0 | 0 / 0 | 0 / 0 |
+| Twin Spires, 12 | 4 / 2 | 1 / 5 | 1 / 5 |
+| Fixed exterior, 56 | 19 / 0 | 0 / 20 | 0 / 0 |
+| Native camera-supported, 12 | 0 / 0 | 0 / 0 | 0 / 0 |
+
+The gain transferred to Twin Spires and multiple fixed exterior buildings. Recommend adding this refinement if the benefit survives the combined placement pipeline. Replay with candidate `benchmark.atlas_depth_regions` and the primary ranker's output as `--baseline`. [Paired decoded packs and intermediate variants](secondary-depths.zip)
+
+### Commands
+
 Prepare the common frozen inputs with the `review/visible-depth-rounds` harness. Use its checkout to launch `benchmark.visible_depth_score`; its `--candidate-root` argument selects this checkout. For native scoring use `--split native`. Keep all views of one building family together for fitting.
 
 ```powershell
