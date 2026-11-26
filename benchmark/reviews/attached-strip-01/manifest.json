@@ -1,8 +1,8 @@
 {
   "run_id": "attached-strip-01",
   "code": {
-    "commit": "b20972fa99a9b900bf254439bb7c42339609c3c3",
-    "predictor_and_runner_sha256": "3662b7b3c01f13e696d5cdf461eb4cee1aa66464b6456dabdaf16e5c193e2932",
+    "commit": "08c2a49304ebca9865c0f3b357f9c8f98ea71194",
+    "predictor_and_runner_sha256": "5e467cc5ad1a367f4570f82c2c61ff068edfb4a7d90ebbf0801c5382b778c34d",
     "source_dirty": false
   },
   "version": "26.3",
@@ -390,7 +390,7 @@
   },
   "predictions": "gap",
   "new_inference_s": 0,
-  "workers": 8,
+  "workers": 6,
   "methods": [
     "current",
     "shape",
@@ -415,15 +415,22 @@
     }
   },
   "module_sha256": {
-    "attached_strip": "2b12d28c2bb59648a025c08912a2eb23723edcb9dc7eb0f8f30feafaf3cfd511",
+    "attached_strip": "2ce527f1eafbd0bc627334ccc9092d76e8872b0123d1482363f6a6d4ee135969",
     "strip_evidence": "f7b7f6463b9d1297e1a145248094238d5b68e6717a499886c07cb393ef5c2231",
-    "attached_strip_round": "8b842445125cadfa0da91667ca7009e6a78d2ce1976adbff2ffdbc3ee99d7bdf"
+    "attached_strip_round": "201c6a54cf6deeaf41256f4fd51420e8c2b5b8d7638140ad01f1c99189a37929",
+    "strip_review_sheet": "6b09f6ebd5104395f22591b954b853314e9d9582061f59fa28241c2126fd8666",
+    "strip_failure_sheet": "6dde2dfec7b9fdc085206353dafc4e6ccdf03bce85c9165e1aa1c5f6042c7cc7"
   },
   "rule": "Freeze without suite tuning. Reject default if existing matches or exact sizes lost, new incorrect sizes or openings covered, or native ownership worsens. Review collateral removals.",
   "native_metric": "Per baseline-matched proposal, measure removed native pixel centers against its matched reference. Unmatched proposal changes are recorded separately. Opening fill uses the established sampled scorer.",
   "reproduce": "python -m benchmark.attached_strip_round --out runs/attached-strip-replay",
   "artifacts": {
-    "cases.json": "2b78e68e7a1d60b3bb216b3d6980f404548c9aba9bd7a5489b89f1df13e5b2bd",
-    "scores.json": "ca9acca79040ce1b367502344fe5eb4ddc3f90b7b28637e2ca012648765715ab"
+    "cases.json": "feffb1245117ab531d125d267175d7c4377f7e00f7d192d51bfaf0710368c238",
+    "feedback.jsonl": "09b694457115febf873ed568cbd829f03a792280c5039a8c489168c759f72e18",
+    "scores.json": "891c84966a2ed5d72971cd4ae71c90d81eedcc82a06b1e6aab8ab86ad495e32b",
+    "strip-comparison.png": "44975e433c49aaf0caf93d58fefd371961dbb42a5917f0bc43063ac69a926efe",
+    "strip-failure.json": "b895dede1d5d2727470a0a697c56b489e558d9d7767f099846d84953ce04afd1",
+    "strip-failure.png": "20ae2f4ef9eb464a8dee610528eed760ed973f0b5a0517d8b10b733c0bf539f1",
+    "strip-views.json": "48b51bba618ebd9305982cefa677e155703fc15e70e0ef1b2b9182191e9d607e"
   }
 }
