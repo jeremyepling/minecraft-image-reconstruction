@@ -94,7 +94,9 @@ def run(out, workers):
                 all_correct=sum(d['removed_correct']==d['removed'] for d in matched))
     save(out/'cases.json',results)
     save(out/'scores.json',table)
-    modules = ['attached_strip','strip_evidence','attached_strip_round']
+    from benchmark.strip_review_sheet import render
+    render(out)
+    modules = ['attached_strip','strip_evidence','attached_strip_round','strip_review_sheet']
     save(out/'manifest.json',dict(run_id=out.name,code=revision(),version=suite['version'],fixtures=fixtures,
          frames=source['frames'],splits=source['splits'],capture=source['capture'],protocol=PROTOCOL,
          reference_sha256=source['reference_sha256'],source_manifest='benchmark/reviews/sky-gap-01/manifest.json',
