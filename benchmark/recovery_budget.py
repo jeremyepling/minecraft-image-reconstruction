@@ -89,13 +89,14 @@ def parts_and_labels(split, frame, data, runs, fixtures, score):
 
 
 def measure(job):
-    split, frame, score, data, runs, fixtures = job
+    split, frame, score, data, runs, fixtures, *result_paths = job
     key = frame['id']
     camera, parts, pose, labels, ids, depth = parts_and_labels(split, frame, data, runs, fixtures, score)
     truth = {tuple(b['xyz_world']) for b in labels['blocks']}
     frozen = score['methods']['current']
-    assert frozen['offset'] == [0,0,0]
-    folder = runs/'canopy-placement/release'/split/key
+    if not result_paths:
+        assert frozen['offset'] == [0,0,0]
+    folder = (result_paths[0] if result_paths else runs/'canopy-placement/release')/split/key
     archive = read(checked(folder/'cells.json', frozen['world_cells_sha256']))
     emitted = decoded_pack(checked(folder/'reconstruction.zip', frozen['pack_sha256']))
     assert set(emitted) == set(map(tuple, archive['local']))
@@ -103,6 +104,9 @@ def measure(job):
     assert not emitted or transform is not None
     world = registered(emitted, transform)
     assert world == set(map(tuple, archive['world']))
+    if any(frozen['offset']):
+        dx, dy, dz = frozen['offset']
+        world = {(x+dx,y+dy,z+dz) for x,y,z in world}
     misses, extras = truth-world, world-truth
     correct = len(world & truth)
     expected = frozen['aligned']
@@ -191,6 +195,9 @@ def measure(job):
         counts['fully_blocked_by_extra'] += int(blocked[i] == native_pixels[i])
         if bucket == 'strong_axis_support':
             counts['strong_and_majority_blocked'] += int(2*blocked[i] >= native_pixels[i])
+    if result_paths:
+        from benchmark.neighbor_depth_headroom import projected_depth_pairs
+        counts.update(projected_depth_pairs(world, misses, extras, pose, labels, ids, native_oriented))
     return row
 
 

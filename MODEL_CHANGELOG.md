@@ -4,6 +4,8 @@ These entries cover model inputs, rules around model outputs, and evaluation cha
 
 ### November 26, 2026
 
+- **Geometry placement.** Checking adjacent surfaces for depth conflicts, matching visible texture on neighboring faces and measuring horizontal faces on a two-pixel grid raised relative F1 from 83.95% to 85.71% on 112 screenshots. The public placer recovered 705 net visible positions with 24 net extras. Roof positions anchored to both posts rose from 170 to 194 of 459. The close-up atlas counter remains experimental because a frame-filling texture can leave the face orientation unresolved. [Combined results and rollback](benchmark/reviews/visible-recovery-01/README.md) · [Remaining errors and implications for training](benchmark/reviews/post-placement-budget-01/README.md)
+
 - **Experiment — transfer repeated photographic texture between neighboring visible faces.** Native RGB correspondences and a joint visibility check added 80 correct coordinates and seven extras on the 112 evaluation images, including six correctly anchored roof blocks across the ten canopy probes. One added block was hidden on the masonry shopfront. Carry the rule into a combined placement test. [Native phase ablations, exported packs and replay](benchmark/reviews/neighbor-photo-01/README.md)
 
 - **Evaluation — make internal geometry the primary placement criterion.** The scorer grants one translation of the entire visible build. Across 112 evaluation screenshots the current method retained 18,703 correct positions and 1,770 extras. The previous default gained four matches, all on canopy 09. The geometry method ranking was unchanged. [Translation test, part spacing and replay](benchmark/reviews/relative-build-01/README.md)

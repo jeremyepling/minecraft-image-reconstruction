@@ -1,0 +1,661 @@
+{
+  "summary": {
+    "regression": {
+      "target": 1060,
+      "coordinate_present": 542,
+      "recovered_face": 536
+    },
+    "test": {
+      "target": 382,
+      "coordinate_present": 226,
+      "recovered_face": 226
+    },
+    "validation": {
+      "target": 30,
+      "coordinate_present": 18,
+      "recovered_face": 16
+    }
+  },
+  "cases": [
+    {
+      "id": "test-twinspire1-cool-high-right",
+      "split": "test",
+      "target": 0,
+      "coordinate_present": 0,
+      "recovered_face": 0,
+      "cells_sha256": "7a5775d3bac28d0bfe94c8086567d5c6c36544f8f6925a3253418e60a712ce48"
+    },
+    {
+      "id": "test-twinspire1-cool-low-left",
+      "split": "test",
+      "target": 27,
+      "coordinate_present": 23,
+      "recovered_face": 23,
+      "cells_sha256": "f7c3acb19f1cf5c71aedcef2364c456c2a016a9a0f58a9b6eb60ba0615812574"
+    },
+    {
+      "id": "test-twinspire1-earth-high-right",
+      "split": "test",
+      "target": 0,
+      "coordinate_present": 0,
+      "recovered_face": 0,
+      "cells_sha256": "8b0804a0ca18ae26b6a1a17da03a3c0f5c72ce72a1e5ba14a6c573ecd6a3f83f"
+    },
+    {
+      "id": "test-twinspire1-earth-low-left",
+      "split": "test",
+      "target": 27,
+      "coordinate_present": 24,
+      "recovered_face": 24,
+      "cells_sha256": "0531623e5045bb6ecee5838fae42c33f1e33f64300220040e722f27582ea4954"
+    },
+    {
+      "id": "test-twinspire2-cool-high-right",
+      "split": "test",
+      "target": 0,
+      "coordinate_present": 0,
+      "recovered_face": 0,
+      "cells_sha256": "24c7d18b033679452969f458b533eda09bf091e25928c6500c09143dc3915652"
+    },
+    {
+      "id": "test-twinspire2-cool-low-left",
+      "split": "test",
+      "target": 60,
+      "coordinate_present": 25,
+      "recovered_face": 25,
+      "cells_sha256": "b8ce8aa2176f762011ba27bc1752f5da53848b11be960fd6ec10207a41fc7800"
+    },
+    {
+      "id": "test-twinspire2-earth-high-right",
+      "split": "test",
+      "target": 0,
+      "coordinate_present": 0,
+      "recovered_face": 0,
+      "cells_sha256": "23d8036347b061807c8a27f6d46c18222d6c00aa455b13546a300197ba875bb9"
+    },
+    {
+      "id": "test-twinspire2-earth-low-left",
+      "split": "test",
+      "target": 60,
+      "coordinate_present": 25,
+      "recovered_face": 25,
+      "cells_sha256": "3b88b6c8bf1519f12ab6002d3e00c5fa0662ebea2c5fab89417be573428bd26c"
+    },
+    {
+      "id": "test-twinspire3-cool-high-right",
+      "split": "test",
+      "target": 19,
+      "coordinate_present": 16,
+      "recovered_face": 16,
+      "cells_sha256": "e72ebcd2faa8fc220708fe0e2a9412fc70fe11d07a0eae7c28d6d2b5cba0df93"
+    },
+    {
+      "id": "test-twinspire3-cool-low-left",
+      "split": "test",
+      "target": 85,
+      "coordinate_present": 47,
+      "recovered_face": 47,
+      "cells_sha256": "5aefd2ae029e71fff1830ae4f4c520d2ecfe82b35563f45319cef87497d8de89"
+    },
+    {
+      "id": "test-twinspire3-earth-high-right",
+      "split": "test",
+      "target": 19,
+      "coordinate_present": 16,
+      "recovered_face": 16,
+      "cells_sha256": "28b5b1f790462c6823cf75ced54afaa47bc739a6d6252958c6e58a197b03936c"
+    },
+    {
+      "id": "test-twinspire3-earth-low-left",
+      "split": "test",
+      "target": 85,
+      "coordinate_present": 50,
+      "recovered_face": 50,
+      "cells_sha256": "2bb662aaf85a25001fa4710017ad618075bf3b9f771cd16bc3c940733118f19e"
+    },
+    {
+      "id": "validation-cloister1-cool-high-right",
+      "split": "validation",
+      "target": 0,
+      "coordinate_present": 0,
+      "recovered_face": 0,
+      "cells_sha256": "5a0fb16604f820a28f6f1a6135c4c2f137fc7209f6221d7c7190034979b90a66"
+    },
+    {
+      "id": "validation-cloister1-cool-low-left",
+      "split": "validation",
+      "target": 5,
+      "coordinate_present": 3,
+      "recovered_face": 3,
+      "cells_sha256": "1a87072dd96049ed86de02b12e34b8339c9af1ed0c12caef7ea93778fa1f79d3"
+    },
+    {
+      "id": "validation-cloister1-earth-high-right",
+      "split": "validation",
+      "target": 0,
+      "coordinate_present": 0,
+      "recovered_face": 0,
+      "cells_sha256": "f6ce613f46292d9877d30aa53886761fc5ec51786f8f1dfd6a772bc258b7257a"
+    },
+    {
+      "id": "validation-cloister1-earth-low-left",
+      "split": "validation",
+      "target": 5,
+      "coordinate_present": 3,
+      "recovered_face": 3,
+      "cells_sha256": "61e9e94d412beffed520c349da99ee08f7ee75c87425fc2d25cb3a398682e220"
+    },
+    {
+      "id": "validation-cloister2-cool-high-right",
+      "split": "validation",
+      "target": 0,
+      "coordinate_present": 0,
+      "recovered_face": 0,
+      "cells_sha256": "ddd0f2bac3b4701604ac213ef17e1be951e350fcd3dfed12f6f88eeba8f13e4e"
+    },
+    {
+      "id": "validation-cloister2-cool-low-left",
+      "split": "validation",
+      "target": 5,
+      "coordinate_present": 3,
+      "recovered_face": 3,
+      "cells_sha256": "f4337720443d68c9612908dfc1f77048d3b261149b7645b23f5c1799456492c4"
+    },
+    {
+      "id": "validation-cloister2-earth-high-right",
+      "split": "validation",
+      "target": 0,
+      "coordinate_present": 0,
+      "recovered_face": 0,
+      "cells_sha256": "c49fb1ef843b5542054d7b78ecc307a082e84f8d8318bb251869a6818cff1ddd"
+    },
+    {
+      "id": "validation-cloister2-earth-low-left",
+      "split": "validation",
+      "target": 5,
+      "coordinate_present": 3,
+      "recovered_face": 3,
+      "cells_sha256": "01a84f96fecd6c7a0206dc47e812c83d7bb0c9c13042c672f91281b02ab6ded1"
+    },
+    {
+      "id": "validation-cloister3-cool-high-right",
+      "split": "validation",
+      "target": 0,
+      "coordinate_present": 0,
+      "recovered_face": 0,
+      "cells_sha256": "f36bee2d08f0393929278624f95f5e57e3d27aee699967279ec90ab515173aa7"
+    },
+    {
+      "id": "validation-cloister3-cool-low-left",
+      "split": "validation",
+      "target": 5,
+      "coordinate_present": 3,
+      "recovered_face": 2,
+      "cells_sha256": "af287e1ba7b5f766c5078c045d2c164a39c673aa01e40d217cfbcfcc93d3208c"
+    },
+    {
+      "id": "validation-cloister3-earth-high-right",
+      "split": "validation",
+      "target": 0,
+      "coordinate_present": 0,
+      "recovered_face": 0,
+      "cells_sha256": "14f1c4af5b498918c62d3ee2494a487dced198fcf2bbc585d47dc194b136c430"
+    },
+    {
+      "id": "validation-cloister3-earth-low-left",
+      "split": "validation",
+      "target": 5,
+      "coordinate_present": 3,
+      "recovered_face": 2,
+      "cells_sha256": "2d06e5c39779b57aebe9a252fc99fa47addfbe8998e6560ec6705a55d04b7d6f"
+    },
+    {
+      "id": "legacy-light_gray_concrete-dev-shopfront-masonry-high-right",
+      "split": "regression",
+      "target": 0,
+      "coordinate_present": 0,
+      "recovered_face": 0,
+      "cells_sha256": "91f452406c8716a7e81520e8459bbd1191058b33baf299db735be61ba5fc2270"
+    },
+    {
+      "id": "legacy-light_gray_concrete-dev-shopfront-masonry-low-left",
+      "split": "regression",
+      "target": 38,
+      "coordinate_present": 22,
+      "recovered_face": 20,
+      "cells_sha256": "0f8f66b400c2ff9b0a5d7ac8c3d1fbd27fe530d5dde6ac4a173c770e7bb59f3a"
+    },
+    {
+      "id": "legacy-light_gray_concrete-dev-shopfront-plaster-high-right",
+      "split": "regression",
+      "target": 0,
+      "coordinate_present": 0,
+      "recovered_face": 0,
+      "cells_sha256": "ce2aec10f2ed105eb300fbdb5767cf1581fcf87c7e378185a34f452112cb30c4"
+    },
+    {
+      "id": "legacy-light_gray_concrete-dev-shopfront-plaster-low-left",
+      "split": "regression",
+      "target": 38,
+      "coordinate_present": 13,
+      "recovered_face": 13,
+      "cells_sha256": "b117623dd606b703e551ff787ce295255d5461e2fed53989947586e81a318bfe"
+    },
+    {
+      "id": "legacy-light_gray_concrete-dev-wing-masonry-close-front",
+      "split": "regression",
+      "target": 0,
+      "coordinate_present": 0,
+      "recovered_face": 0,
+      "cells_sha256": "7cda578c5060ae86692ba4bda81b8cf4e933872dba2227826155e72f161e1fe9"
+    },
+    {
+      "id": "legacy-light_gray_concrete-dev-wing-masonry-high-right",
+      "split": "regression",
+      "target": 0,
+      "coordinate_present": 0,
+      "recovered_face": 0,
+      "cells_sha256": "94b1fc4ead9e655fa5eabc592a82bce01db6a75bca55db69ec69db117aadb192"
+    },
+    {
+      "id": "legacy-light_gray_concrete-dev-wing-masonry-low-left",
+      "split": "regression",
+      "target": 0,
+      "coordinate_present": 0,
+      "recovered_face": 0,
+      "cells_sha256": "dad7d0d0eb02841a7b0a2a0c5ccadf28b489e457e0a84b942f9ab6f7df511824"
+    },
+    {
+      "id": "legacy-light_gray_concrete-dev-wing-plaster-close-front",
+      "split": "regression",
+      "target": 0,
+      "coordinate_present": 0,
+      "recovered_face": 0,
+      "cells_sha256": "6bf8e0ab0977a6d3cf3d48a774d60866c5f68141629908b2c21bd8e0dffd2bbc"
+    },
+    {
+      "id": "legacy-light_gray_concrete-dev-wing-plaster-high-right",
+      "split": "regression",
+      "target": 0,
+      "coordinate_present": 0,
+      "recovered_face": 0,
+      "cells_sha256": "c69284918767fffc15c13cd133eaaee9baabf449f0ae29c11410d03f7f417c3e"
+    },
+    {
+      "id": "legacy-light_gray_concrete-dev-wing-plaster-low-left",
+      "split": "regression",
+      "target": 0,
+      "coordinate_present": 0,
+      "recovered_face": 0,
+      "cells_sha256": "628d6d3cb0ff762dbd59c9539e0b13ad3634b879e107003af5156b5eec0d386d"
+    },
+    {
+      "id": "legacy-light_gray_concrete-holdout-courtyard-masonry-close-front",
+      "split": "regression",
+      "target": 1,
+      "coordinate_present": 0,
+      "recovered_face": 0,
+      "cells_sha256": "7de5050cd4daca7cf91c5bfb42466ba1f73f6e1bc0f2d5623aa44739175b90d3"
+    },
+    {
+      "id": "legacy-light_gray_concrete-holdout-courtyard-masonry-high-right",
+      "split": "regression",
+      "target": 0,
+      "coordinate_present": 0,
+      "recovered_face": 0,
+      "cells_sha256": "1ca5b48c2b221b5d233645dd1181cb28641e9ee475bccd8d1b5c56f0818bc08d"
+    },
+    {
+      "id": "legacy-light_gray_concrete-holdout-courtyard-masonry-low-left",
+      "split": "regression",
+      "target": 3,
+      "coordinate_present": 1,
+      "recovered_face": 1,
+      "cells_sha256": "6eb19e8dc9af2150b4c70560c67df80e70416b08bad972baa2c0536819d0e24a"
+    },
+    {
+      "id": "legacy-light_gray_concrete-holdout-courtyard-plaster-close-front",
+      "split": "regression",
+      "target": 1,
+      "coordinate_present": 0,
+      "recovered_face": 0,
+      "cells_sha256": "f83e7a0a920374f1e5055144b4d1158597653d2774be38e36db1c7c42816ecd4"
+    },
+    {
+      "id": "legacy-light_gray_concrete-holdout-courtyard-plaster-high-right",
+      "split": "regression",
+      "target": 0,
+      "coordinate_present": 0,
+      "recovered_face": 0,
+      "cells_sha256": "98e595e850b5cf967ab1d655a3154eb8b29dad95a2057f0469030de4d81e7a3e"
+    },
+    {
+      "id": "legacy-light_gray_concrete-holdout-courtyard-plaster-low-left",
+      "split": "regression",
+      "target": 3,
+      "coordinate_present": 1,
+      "recovered_face": 1,
+      "cells_sha256": "32f038ae3d2221a45f143d30443cec868e4e65cf23c4aee203ca876f9d89da12"
+    },
+    {
+      "id": "legacy-light_gray_concrete-holdout-crossing-masonry-high-right",
+      "split": "regression",
+      "target": 0,
+      "coordinate_present": 0,
+      "recovered_face": 0,
+      "cells_sha256": "e97b9dfbf9f76eddaf22d592e12a804d03623d094645100d2578c6566c93d553"
+    },
+    {
+      "id": "legacy-light_gray_concrete-holdout-crossing-masonry-low-left",
+      "split": "regression",
+      "target": 63,
+      "coordinate_present": 47,
+      "recovered_face": 47,
+      "cells_sha256": "197eecd25366aa00122ad9cd8bc5569c6e4e40bfe6013dd9a379cf90503c38da"
+    },
+    {
+      "id": "legacy-light_gray_concrete-holdout-crossing-plaster-high-right",
+      "split": "regression",
+      "target": 0,
+      "coordinate_present": 0,
+      "recovered_face": 0,
+      "cells_sha256": "3ee90c086b0d00df514716e20c223c153fead0e70f4ca5989cf0387cd19e4712"
+    },
+    {
+      "id": "legacy-light_gray_concrete-holdout-crossing-plaster-low-left",
+      "split": "regression",
+      "target": 63,
+      "coordinate_present": 48,
+      "recovered_face": 48,
+      "cells_sha256": "8ad0dc558cc67895393b29fceb3c497e062330c177d256ad057e95e5316f690d"
+    },
+    {
+      "id": "legacy-light_gray_concrete-holdout-galleries-masonry-high-right",
+      "split": "regression",
+      "target": 0,
+      "coordinate_present": 0,
+      "recovered_face": 0,
+      "cells_sha256": "6cb507fe47015773154a9e7d632820f6709248d498c4b712146fa7bba40d5f0a"
+    },
+    {
+      "id": "legacy-light_gray_concrete-holdout-galleries-masonry-low-left",
+      "split": "regression",
+      "target": 151,
+      "coordinate_present": 70,
+      "recovered_face": 70,
+      "cells_sha256": "9b3867073a77ca588d59baf8d1ef49c62b2a87d2bf48b72b0de673fa42c8be3a"
+    },
+    {
+      "id": "legacy-light_gray_concrete-holdout-galleries-plaster-high-right",
+      "split": "regression",
+      "target": 0,
+      "coordinate_present": 0,
+      "recovered_face": 0,
+      "cells_sha256": "c2cb44bd326805a21e5e752b4d566d86855fa3edacd6b665058723b7b9d4f803"
+    },
+    {
+      "id": "legacy-light_gray_concrete-holdout-galleries-plaster-low-left",
+      "split": "regression",
+      "target": 151,
+      "coordinate_present": 69,
+      "recovered_face": 69,
+      "cells_sha256": "f9fb46a91f1d510d233068594b33623edc948673f23e8ecf0b5fca07d8427b48"
+    },
+    {
+      "id": "legacy-light_gray_concrete-holdout-portico-masonry-high-right",
+      "split": "regression",
+      "target": 0,
+      "coordinate_present": 0,
+      "recovered_face": 0,
+      "cells_sha256": "c30883153b1fff9c47fa2ea70a0a870b43229d892c2ea42a33b26937b6ae7cbd"
+    },
+    {
+      "id": "legacy-light_gray_concrete-holdout-portico-masonry-low-left",
+      "split": "regression",
+      "target": 95,
+      "coordinate_present": 40,
+      "recovered_face": 40,
+      "cells_sha256": "981dba9c2f10de82cb45f6af04bc9f90035cdcb31eb6d43966f70aee16524e38"
+    },
+    {
+      "id": "legacy-light_gray_concrete-holdout-portico-plaster-high-right",
+      "split": "regression",
+      "target": 0,
+      "coordinate_present": 0,
+      "recovered_face": 0,
+      "cells_sha256": "f31d4f8eb983b0cae1f0bddc03e03a9609fffb093a0718daffe43e54d6eff075"
+    },
+    {
+      "id": "legacy-light_gray_concrete-holdout-portico-plaster-low-left",
+      "split": "regression",
+      "target": 95,
+      "coordinate_present": 45,
+      "recovered_face": 45,
+      "cells_sha256": "7c6ca991d855e59c58c3f4f2e5550af69883dfbf32e68f555846c63efff8958f"
+    },
+    {
+      "id": "legacy-light_gray_concrete-holdout-registry-masonry-high-right",
+      "split": "regression",
+      "target": 0,
+      "coordinate_present": 0,
+      "recovered_face": 0,
+      "cells_sha256": "73201a17ada51666bb4e48ed5e0136b6e16e5fedc7e204c3873058b8dce3a6fc"
+    },
+    {
+      "id": "legacy-light_gray_concrete-holdout-registry-masonry-low-left",
+      "split": "regression",
+      "target": 0,
+      "coordinate_present": 0,
+      "recovered_face": 0,
+      "cells_sha256": "a2c4d18704a3ed46d6006fd981d55ffcd92004c31a80464c899486d4cff9c207"
+    },
+    {
+      "id": "legacy-light_gray_concrete-holdout-registry-plaster-high-right",
+      "split": "regression",
+      "target": 0,
+      "coordinate_present": 0,
+      "recovered_face": 0,
+      "cells_sha256": "bcbfaf86784d4952144418a8939bc8937f6201c20291e53b37d45f6ba198b124"
+    },
+    {
+      "id": "legacy-light_gray_concrete-holdout-registry-plaster-low-left",
+      "split": "regression",
+      "target": 0,
+      "coordinate_present": 0,
+      "recovered_face": 0,
+      "cells_sha256": "6c0582cacae2d768604bb8b1ce98fbd9e2ad4aa9ebc1da5e0c4991d7849f5c40"
+    },
+    {
+      "id": "legacy-light_gray_concrete-holdout-workshop-masonry-high-right",
+      "split": "regression",
+      "target": 0,
+      "coordinate_present": 0,
+      "recovered_face": 0,
+      "cells_sha256": "f89d5eb58e70812e0a36d7b50eaa9984f5fe5582ebbf87a94a58192d2f20742d"
+    },
+    {
+      "id": "legacy-light_gray_concrete-holdout-workshop-masonry-low-left",
+      "split": "regression",
+      "target": 42,
+      "coordinate_present": 26,
+      "recovered_face": 25,
+      "cells_sha256": "585405f76a040ea08df6145a7b2abdb423f7ee65811c61c3a60709a6efe17a25"
+    },
+    {
+      "id": "legacy-light_gray_concrete-holdout-workshop-plaster-high-right",
+      "split": "regression",
+      "target": 0,
+      "coordinate_present": 0,
+      "recovered_face": 0,
+      "cells_sha256": "5b05fed8fef9ec0f66d41d69a40fd5cdb95dcdb2c76a87ca5e194d8c38919cd7"
+    },
+    {
+      "id": "legacy-light_gray_concrete-holdout-workshop-plaster-low-left",
+      "split": "regression",
+      "target": 42,
+      "coordinate_present": 29,
+      "recovered_face": 29,
+      "cells_sha256": "c9a64c5898ce1cbc2ca08090e1cbc5ab1897f837aa6d73b35f0c6b981b6a6c1c"
+    },
+    {
+      "id": "legacy-smooth_stone-dev-shopfront-masonry-high-right",
+      "split": "regression",
+      "target": 0,
+      "coordinate_present": 0,
+      "recovered_face": 0,
+      "cells_sha256": "6686059ba1ceb531927ee787272e889fe64e9c6506425875d7b461c050426890"
+    },
+    {
+      "id": "legacy-smooth_stone-dev-shopfront-masonry-low-left",
+      "split": "regression",
+      "target": 38,
+      "coordinate_present": 23,
+      "recovered_face": 20,
+      "cells_sha256": "88e35ec0187c386b96b03155b50fd4ce44d91c591817705324a67b45f5fe4a04"
+    },
+    {
+      "id": "legacy-smooth_stone-dev-shopfront-plaster-high-right",
+      "split": "regression",
+      "target": 0,
+      "coordinate_present": 0,
+      "recovered_face": 0,
+      "cells_sha256": "ad5a901dbb7a1b228cd08028e394822af3753af56d22df801041b9d3c8c2e3aa"
+    },
+    {
+      "id": "legacy-smooth_stone-dev-shopfront-plaster-low-left",
+      "split": "regression",
+      "target": 38,
+      "coordinate_present": 23,
+      "recovered_face": 23,
+      "cells_sha256": "6689f19febc4b9689005093d77ce4891cda25a510ac2b2f805330360cb8a7328"
+    },
+    {
+      "id": "legacy-smooth_stone-dev-wing-masonry-close-front",
+      "split": "regression",
+      "target": 0,
+      "coordinate_present": 0,
+      "recovered_face": 0,
+      "cells_sha256": "f460efb8b705c2eb9fe256083ba8a9c1b288581e907a39fe29ea6a3aad2e1d97"
+    },
+    {
+      "id": "legacy-smooth_stone-dev-wing-masonry-high-right",
+      "split": "regression",
+      "target": 0,
+      "coordinate_present": 0,
+      "recovered_face": 0,
+      "cells_sha256": "2aa826314ee943d0cc2f4bfe07786b2342eaf8d14bea82f4b35e2d2f3abd04a4"
+    },
+    {
+      "id": "legacy-smooth_stone-dev-wing-masonry-low-left",
+      "split": "regression",
+      "target": 0,
+      "coordinate_present": 0,
+      "recovered_face": 0,
+      "cells_sha256": "04b186413f354ff899dda1af4b5ba6b1eca1b2d1086e0052093e6a3edfe14657"
+    },
+    {
+      "id": "legacy-smooth_stone-dev-wing-plaster-close-front",
+      "split": "regression",
+      "target": 0,
+      "coordinate_present": 0,
+      "recovered_face": 0,
+      "cells_sha256": "6a95a03567b8d51025812fd2ace12ef44749b592eda717fe2053652efb85ce7e"
+    },
+    {
+      "id": "legacy-smooth_stone-dev-wing-plaster-high-right",
+      "split": "regression",
+      "target": 0,
+      "coordinate_present": 0,
+      "recovered_face": 0,
+      "cells_sha256": "ee5e7512808a5606a20828fcb149746ba8866160fed098b3e8d50eb090502877"
+    },
+    {
+      "id": "legacy-smooth_stone-dev-wing-plaster-low-left",
+      "split": "regression",
+      "target": 0,
+      "coordinate_present": 0,
+      "recovered_face": 0,
+      "cells_sha256": "9f1575f2fc16e5b184d2763c8a16f1b876d4044200bd1df2a5ea431fabdcce0a"
+    },
+    {
+      "id": "legacy-smooth_stone-holdout-courtyard-masonry-close-front",
+      "split": "regression",
+      "target": 1,
+      "coordinate_present": 0,
+      "recovered_face": 0,
+      "cells_sha256": "67d2ac665a4e2a6db6f8fe3f0d9b88b70034b664f715a06b881c431f79e081fa"
+    },
+    {
+      "id": "legacy-smooth_stone-holdout-courtyard-masonry-high-right",
+      "split": "regression",
+      "target": 0,
+      "coordinate_present": 0,
+      "recovered_face": 0,
+      "cells_sha256": "b8eb68fd3441a1fdbf63f06edb1c1bb3fb24b944b35d50c2f345a2005a442266"
+    },
+    {
+      "id": "legacy-smooth_stone-holdout-courtyard-masonry-low-left",
+      "split": "regression",
+      "target": 3,
+      "coordinate_present": 1,
+      "recovered_face": 1,
+      "cells_sha256": "ceb0afb3c9b42773f75bcfbed606c5c5072ee48e4468bbec312b646ac819e012"
+    },
+    {
+      "id": "legacy-smooth_stone-holdout-courtyard-plaster-close-front",
+      "split": "regression",
+      "target": 1,
+      "coordinate_present": 0,
+      "recovered_face": 0,
+      "cells_sha256": "bb8d37532645f786836ab9743879ca25dc4437d597441df94b87bd862e9d0a71"
+    },
+    {
+      "id": "legacy-smooth_stone-holdout-courtyard-plaster-high-right",
+      "split": "regression",
+      "target": 0,
+      "coordinate_present": 0,
+      "recovered_face": 0,
+      "cells_sha256": "21a0eb62da99619925754859a2e54792158c930fcb03240f8072f53e1ba0008f"
+    },
+    {
+      "id": "legacy-smooth_stone-holdout-courtyard-plaster-low-left",
+      "split": "regression",
+      "target": 3,
+      "coordinate_present": 1,
+      "recovered_face": 1,
+      "cells_sha256": "a383a5e9a64e3e178198839b676a5e749c9aaa4932a749a37013eb2190af6974"
+    },
+    {
+      "id": "legacy-smooth_stone-holdout-portico-masonry-high-right",
+      "split": "regression",
+      "target": 0,
+      "coordinate_present": 0,
+      "recovered_face": 0,
+      "cells_sha256": "c9c0473a5a91ab5e67c88f2271e3f0c4f0085b61676678e473c407c61dcfc745"
+    },
+    {
+      "id": "legacy-smooth_stone-holdout-portico-masonry-low-left",
+      "split": "regression",
+      "target": 95,
+      "coordinate_present": 40,
+      "recovered_face": 40,
+      "cells_sha256": "f5b906b09c714a52aef8b728e66919f338714628dd0e32256f83302c3530a7fc"
+    },
+    {
+      "id": "legacy-smooth_stone-holdout-portico-plaster-high-right",
+      "split": "regression",
+      "target": 0,
+      "coordinate_present": 0,
+      "recovered_face": 0,
+      "cells_sha256": "febfdb90795d3a99528ef891defdc01a44b40f3a43752e32ae9f8f08d98a5296"
+    },
+    {
+      "id": "legacy-smooth_stone-holdout-portico-plaster-low-left",
+      "split": "regression",
+      "target": 95,
+      "coordinate_present": 43,
+      "recovered_face": 43,
+      "cells_sha256": "ec1ac66249d42fcde8234701ebecfc93640809329bb27fae1772b49a95a56b84"
+    }
+  ]
+}

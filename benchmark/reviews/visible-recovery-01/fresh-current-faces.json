@@ -1,0 +1,378 @@
+{
+  "summary": {
+    "frames": 3,
+    "face_counts": {
+      "roof_top_target": 82,
+      "roof_top_recovered": 32,
+      "roof_rim_target": 43,
+      "roof_rim_recovered": 43,
+      "front_post_target": 64,
+      "front_post_recovered": 64
+    },
+    "clear_rays": 31,
+    "foreground_filled": 0,
+    "background_rays": 22,
+    "background_filled": 0,
+    "gap_mae": 0.0,
+    "gap_measured": 3,
+    "gap_missing": 0
+  },
+  "cases": [
+    {
+      "id": "shape-benchmark-open-26.3--train-canopy-00-right",
+      "faces": {
+        "roof_top_target": 35,
+        "roof_top_recovered": 12,
+        "roof_rim_target": 13,
+        "roof_rim_recovered": 13,
+        "front_post_target": 20,
+        "front_post_recovered": 20
+      },
+      "rays": [
+        {
+          "point": [
+            1.5,
+            65.5,
+            0.5
+          ],
+          "foreground_filled": false,
+          "background": true,
+          "projected_filled": false
+        },
+        {
+          "point": [
+            1.5,
+            66.5,
+            0.5
+          ],
+          "foreground_filled": false,
+          "background": true,
+          "projected_filled": false
+        },
+        {
+          "point": [
+            1.5,
+            67.5,
+            0.5
+          ],
+          "foreground_filled": false,
+          "background": true,
+          "projected_filled": false
+        },
+        {
+          "point": [
+            1.5,
+            68.5,
+            0.5
+          ],
+          "foreground_filled": false,
+          "background": true,
+          "projected_filled": false
+        },
+        {
+          "point": [
+            1.5,
+            69.5,
+            0.5
+          ],
+          "foreground_filled": false,
+          "background": true,
+          "projected_filled": false
+        },
+        {
+          "point": [
+            2.5,
+            65.5,
+            0.5
+          ],
+          "foreground_filled": false,
+          "background": true,
+          "projected_filled": false
+        },
+        {
+          "point": [
+            2.5,
+            66.5,
+            0.5
+          ],
+          "foreground_filled": false,
+          "background": true,
+          "projected_filled": false
+        },
+        {
+          "point": [
+            2.5,
+            67.5,
+            0.5
+          ],
+          "foreground_filled": false,
+          "background": true,
+          "projected_filled": false
+        },
+        {
+          "point": [
+            2.5,
+            68.5,
+            0.5
+          ],
+          "foreground_filled": false,
+          "background": true,
+          "projected_filled": false
+        },
+        {
+          "point": [
+            2.5,
+            69.5,
+            0.5
+          ],
+          "foreground_filled": false,
+          "background": true,
+          "projected_filled": false
+        }
+      ],
+      "gap_target": 2,
+      "gap_estimate": 2,
+      "cells_sha256": "9748a752c15d3c4aeeb2ece435f3ebc941bd66c183a0bb222a8cc59e4ebc7716"
+    },
+    {
+      "id": "shape-benchmark-26.3--train-canopy-05-left",
+      "faces": {
+        "roof_rim_target": 14,
+        "roof_rim_recovered": 14,
+        "roof_top_target": 47,
+        "roof_top_recovered": 20,
+        "front_post_target": 20,
+        "front_post_recovered": 20
+      },
+      "rays": [
+        {
+          "point": [
+            481.5,
+            65.5,
+            0.5
+          ],
+          "foreground_filled": false,
+          "background": true,
+          "projected_filled": false
+        },
+        {
+          "point": [
+            481.5,
+            66.5,
+            0.5
+          ],
+          "foreground_filled": false,
+          "background": false,
+          "projected_filled": false
+        },
+        {
+          "point": [
+            481.5,
+            67.5,
+            0.5
+          ],
+          "foreground_filled": false,
+          "background": false,
+          "projected_filled": false
+        },
+        {
+          "point": [
+            481.5,
+            68.5,
+            0.5
+          ],
+          "foreground_filled": false,
+          "background": false,
+          "projected_filled": false
+        },
+        {
+          "point": [
+            481.5,
+            69.5,
+            0.5
+          ],
+          "foreground_filled": false,
+          "background": false,
+          "projected_filled": true
+        },
+        {
+          "point": [
+            482.5,
+            65.5,
+            0.5
+          ],
+          "foreground_filled": false,
+          "background": true,
+          "projected_filled": false
+        },
+        {
+          "point": [
+            482.5,
+            66.5,
+            0.5
+          ],
+          "foreground_filled": false,
+          "background": true,
+          "projected_filled": false
+        },
+        {
+          "point": [
+            482.5,
+            67.5,
+            0.5
+          ],
+          "foreground_filled": false,
+          "background": true,
+          "projected_filled": false
+        },
+        {
+          "point": [
+            482.5,
+            68.5,
+            0.5
+          ],
+          "foreground_filled": false,
+          "background": true,
+          "projected_filled": false
+        },
+        {
+          "point": [
+            482.5,
+            69.5,
+            0.5
+          ],
+          "foreground_filled": false,
+          "background": true,
+          "projected_filled": false
+        }
+      ],
+      "gap_target": 2,
+      "gap_estimate": 2,
+      "cells_sha256": "b5901b33e7e6c823faab0c6b0186cc7d78605d0d49913611e3e516e9b518c984"
+    },
+    {
+      "id": "shape-benchmark-26.3--dev-canopy-19-right",
+      "faces": {
+        "roof_rim_target": 16,
+        "roof_rim_recovered": 16,
+        "front_post_target": 24,
+        "front_post_recovered": 24
+      },
+      "rays": [
+        {
+          "point": [
+            1825.5,
+            65.5,
+            0.5
+          ],
+          "foreground_filled": false,
+          "background": true,
+          "projected_filled": false
+        },
+        {
+          "point": [
+            1825.5,
+            66.5,
+            0.5
+          ],
+          "foreground_filled": false,
+          "background": true,
+          "projected_filled": false
+        },
+        {
+          "point": [
+            1825.5,
+            67.5,
+            0.5
+          ],
+          "foreground_filled": false,
+          "background": true,
+          "projected_filled": false
+        },
+        {
+          "point": [
+            1825.5,
+            68.5,
+            0.5
+          ],
+          "foreground_filled": false,
+          "background": true,
+          "projected_filled": false
+        },
+        {
+          "point": [
+            1825.5,
+            69.5,
+            0.5
+          ],
+          "foreground_filled": false,
+          "background": true,
+          "projected_filled": false
+        },
+        {
+          "point": [
+            1826.5,
+            65.5,
+            0.5
+          ],
+          "foreground_filled": false,
+          "background": true,
+          "projected_filled": false
+        },
+        {
+          "point": [
+            1826.5,
+            66.5,
+            0.5
+          ],
+          "foreground_filled": false,
+          "background": false,
+          "projected_filled": false
+        },
+        {
+          "point": [
+            1826.5,
+            67.5,
+            0.5
+          ],
+          "foreground_filled": false,
+          "background": false,
+          "projected_filled": false
+        },
+        {
+          "point": [
+            1826.5,
+            68.5,
+            0.5
+          ],
+          "foreground_filled": false,
+          "background": false,
+          "projected_filled": false
+        },
+        {
+          "point": [
+            1826.5,
+            69.5,
+            0.5
+          ],
+          "foreground_filled": false,
+          "background": false,
+          "projected_filled": false
+        },
+        {
+          "point": [
+            1826.5,
+            70.5,
+            0.5
+          ],
+          "foreground_filled": false,
+          "background": false,
+          "projected_filled": false
+        }
+      ],
+      "gap_target": 2,
+      "gap_estimate": 2.0,
+      "cells_sha256": "63f64a343da70c7401844a9773dfd439be048e7fae2fbb219af12a24c0503880"
+    }
+  ]
+}
