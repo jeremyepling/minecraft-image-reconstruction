@@ -2,7 +2,7 @@
 from unittest.mock import patch
 
 from benchmark.texture_camera_eval import STABLE
-from engine import atlas_plane_depth, neighbor_photo_faces, vertical_atlas_faces
+from engine import atlas_plane_depth, neighbor_photo_faces, vertical_atlas_faces, visible_roof_rectangle
 from engine.camera_atlas_floor import _atlas
 
 
@@ -27,7 +27,8 @@ def facade_first(image, parts, counts, camera, prior):
         return cells
 
     with patch.object(neighbor_photo_faces, 'recover', verify_after_neighbors), \
-         patch.object(vertical_atlas_faces, 'recover', skip_late):
+         patch.object(vertical_atlas_faces, 'recover', skip_late), \
+         patch.object(visible_roof_rectangle, 'contiguous', side_effect=lambda i,p,n,c,prior,**kw: (prior, {})):
         cells, status = atlas_plane_depth.place_ranked(image, '26.3', parts, counts, camera, atlas_path=ATLAS)
     return cells, dict(vertical_at_first_pass=added, height_revisions=status.get('roof_height_revisions', {}))
 

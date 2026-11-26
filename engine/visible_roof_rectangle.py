@@ -188,5 +188,5 @@ def uncovered(image,parts,counts,camera,prior):
     return recover(image,parts,counts,camera,prior,texture=False,unclaimed=True)
 
 
-def contiguous(image,parts,counts,camera,prior):
-    return recover(image,parts,counts,camera,prior,texture=False,unclaimed=True,shared_patch=True)
+def contiguous(image,parts,counts,camera,prior,*,atlas_path=None):
+    return recover(image,parts,counts,camera,prior,texture=False,unclaimed=True,shared_patch=True,atlas_path=atlas_path)
