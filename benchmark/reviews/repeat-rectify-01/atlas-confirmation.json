@@ -1,0 +1,1660 @@
+{
+  "scope": "Only previously unresolved proposals yielding a new complete refit. Frozen atlas settings, same fitted crop, spans withheld. Challenge full, half and double pitch. Require identical final size.",
+  "code": {
+    "commit": "bc5cb90fa9516b075466115dc7968dec80d71cad",
+    "predictor_and_runner_sha256": "b2a3f3937a7a630042c7c6bb8278d5018933f68a6515c46accd082e0e0d5b728",
+    "source_dirty": false
+  },
+  "source_manifest_sha256": "fd1a81a37d0ba79189e0d614da7a807bd3d4548a3d211bf2e97c1e0193d992ef",
+  "settings": {
+    "texture_shortlist": 20,
+    "axis_candidates": 3,
+    "max_pairs": 38,
+    "max_pixels": 2400,
+    "minimum_samples": 96,
+    "minimum_cell_coverage": 64,
+    "min_period": 5.0,
+    "min_train_correlation": 0.65,
+    "min_check_correlation": 0.55,
+    "min_scale_margin": 0.1,
+    "relative_scale_separation": 0.1,
+    "old_axis_tolerance": 0.1
+  },
+  "atlas": {
+    "version": "26.3",
+    "atlas_sha256": "49b477fbfe5f2171c2529e3ffe1722f09fee5a094de2b6b99831512b8601c950",
+    "client_sha256": "4508d006323f24fa02876310c192d739af56516eb259000ac50f0909a68c9a2d",
+    "placement_index_sha256": "32f95873f5b10e0fa36023c149b4277a4b1f7a59fb77940ede120f9292f37ac6",
+    "atlas_json_sha256": "f33529ac90984827e82bf8720d8bd122e11f1386fb6c49a70379437a3c4c54a2",
+    "texture_count": 448,
+    "block_count": 384,
+    "scope": "all opaque untinted full-cube face sprites in the placement index, all six directions"
+  },
+  "scores": {
+    "all": {
+      "current": {
+        "correct": 95,
+        "incorrect": 50,
+        "unmatched_returned": 10,
+        "axis_correct": 238,
+        "axis_wrong": 84,
+        "prior_correct_lost": 0,
+        "new_correct": 0,
+        "new_wrong": 0,
+        "eligible": 598,
+        "matched": 517,
+        "missing": 453
+      },
+      "rectify": {
+        "correct": 116,
+        "incorrect": 61,
+        "unmatched_returned": 14,
+        "axis_correct": 280,
+        "axis_wrong": 95,
+        "prior_correct_lost": 0,
+        "new_correct": 21,
+        "new_wrong": 11,
+        "eligible": 598,
+        "matched": 517,
+        "missing": 421
+      },
+      "confirmed": {
+        "correct": 97,
+        "incorrect": 51,
+        "unmatched_returned": 10,
+        "axis_correct": 242,
+        "axis_wrong": 85,
+        "prior_correct_lost": 0,
+        "new_correct": 2,
+        "new_wrong": 1,
+        "eligible": 598,
+        "matched": 517,
+        "missing": 450
+      }
+    },
+    "development": {
+      "current": {
+        "correct": 17,
+        "incorrect": 13,
+        "unmatched_returned": 0,
+        "axis_correct": 46,
+        "axis_wrong": 22,
+        "prior_correct_lost": 0,
+        "new_correct": 0,
+        "new_wrong": 0,
+        "eligible": 156,
+        "matched": 138,
+        "missing": 126
+      },
+      "rectify": {
+        "correct": 19,
+        "incorrect": 15,
+        "unmatched_returned": 1,
+        "axis_correct": 49,
+        "axis_wrong": 24,
+        "prior_correct_lost": 0,
+        "new_correct": 2,
+        "new_wrong": 2,
+        "eligible": 156,
+        "matched": 138,
+        "missing": 122
+      },
+      "confirmed": {
+        "correct": 17,
+        "incorrect": 13,
+        "unmatched_returned": 0,
+        "axis_correct": 46,
+        "axis_wrong": 22,
+        "prior_correct_lost": 0,
+        "new_correct": 0,
+        "new_wrong": 0,
+        "eligible": 156,
+        "matched": 138,
+        "missing": 126
+      }
+    },
+    "previously_reviewed_regression": {
+      "current": {
+        "correct": 78,
+        "incorrect": 37,
+        "unmatched_returned": 10,
+        "axis_correct": 192,
+        "axis_wrong": 62,
+        "prior_correct_lost": 0,
+        "new_correct": 0,
+        "new_wrong": 0,
+        "eligible": 442,
+        "matched": 379,
+        "missing": 327
+      },
+      "rectify": {
+        "correct": 97,
+        "incorrect": 46,
+        "unmatched_returned": 13,
+        "axis_correct": 231,
+        "axis_wrong": 71,
+        "prior_correct_lost": 0,
+        "new_correct": 19,
+        "new_wrong": 9,
+        "eligible": 442,
+        "matched": 379,
+        "missing": 299
+      },
+      "confirmed": {
+        "correct": 80,
+        "incorrect": 38,
+        "unmatched_returned": 10,
+        "axis_correct": 196,
+        "axis_wrong": 63,
+        "prior_correct_lost": 0,
+        "new_correct": 2,
+        "new_wrong": 1,
+        "eligible": 442,
+        "matched": 379,
+        "missing": 324
+      }
+    }
+  },
+  "tested": [
+    {
+      "key": "smooth_stone/dev-shopfront-masonry-high-right",
+      "sha256": "f15cd0e471a9a2e375c9f801df171bb8f5ee44d95374f02f1174c7938a94cc79",
+      "proposal": "mask-11",
+      "baseline": [
+        null,
+        7
+      ],
+      "refit": [
+        2,
+        7
+      ],
+      "atlas_size": [
+        null,
+        null
+      ],
+      "confirmed": false,
+      "reference": 14,
+      "actual": [
+        1,
+        4
+      ],
+      "evidence": {
+        "reason": "ambiguous whole-tile spacing",
+        "accepted": false,
+        "atlas_texture": "polished_basalt_side",
+        "span": [
+          0.716281580976817,
+          1.080860929276904
+        ],
+        "train": 0.6824977329005026,
+        "check": 0.5930865058256811,
+        "margin": -0.04356745996905831,
+        "best_distinct_scale_correlation": 0.726065192869561,
+        "orientation": 0,
+        "phase": [
+          0.5625,
+          0.9375
+        ],
+        "candidate_grids": 38
+      }
+    },
+    {
+      "key": "light_gray_concrete/dev-shopfront-masonry-high-right",
+      "sha256": "bb588b0b0d1cdb05b720ff5bc3b515479426c7772fd98fb7fadb8a55b79ca9db",
+      "proposal": "mask-4",
+      "baseline": [
+        null,
+        null
+      ],
+      "refit": [
+        1,
+        5
+      ],
+      "atlas_size": [
+        null,
+        null
+      ],
+      "confirmed": false,
+      "reference": null,
+      "actual": null,
+      "evidence": {
+        "reason": "ambiguous whole-tile spacing",
+        "accepted": false,
+        "atlas_texture": "furnace_top",
+        "span": [
+          0.69921875,
+          1.0
+        ],
+        "train": 0.43948116329618336,
+        "check": 0.3636963654063606,
+        "margin": -0.0037145062735243206,
+        "best_distinct_scale_correlation": 0.4431956695697077,
+        "orientation": 1,
+        "phase": [
+          0.875,
+          0.9375
+        ],
+        "candidate_grids": 38
+      }
+    },
+    {
+      "key": "light_gray_concrete/dev-shopfront-masonry-high-right",
+      "sha256": "bb588b0b0d1cdb05b720ff5bc3b515479426c7772fd98fb7fadb8a55b79ca9db",
+      "proposal": "mask-12",
+      "baseline": [
+        null,
+        7
+      ],
+      "refit": [
+        2,
+        7
+      ],
+      "atlas_size": [
+        null,
+        null
+      ],
+      "confirmed": false,
+      "reference": 14,
+      "actual": [
+        1,
+        4
+      ],
+      "evidence": {
+        "reason": "ambiguous whole-tile spacing",
+        "accepted": false,
+        "atlas_texture": "netherite_block",
+        "span": [
+          1.0800730945141241,
+          1.6159231108201904
+        ],
+        "train": 0.6286203929461817,
+        "check": 0.406016626479328,
+        "margin": -0.13446226048802168,
+        "best_distinct_scale_correlation": 0.7630826534342033,
+        "orientation": 5,
+        "phase": [
+          0.9375,
+          0.5625
+        ],
+        "candidate_grids": 27
+      }
+    },
+    {
+      "key": "light_gray_concrete/dev-shopfront-masonry-low-left",
+      "sha256": "0359c24dea1b318ec9cd002a1523ae8fc0d7d59fc9d7418972cf9ce9af8d4d57",
+      "proposal": "mask-6",
+      "baseline": [
+        null,
+        null
+      ],
+      "refit": [
+        1,
+        5
+      ],
+      "atlas_size": [
+        null,
+        null
+      ],
+      "confirmed": false,
+      "reference": 15,
+      "actual": [
+        1,
+        5
+      ],
+      "evidence": {
+        "reason": "ambiguous whole-tile spacing",
+        "accepted": false,
+        "atlas_texture": "tuff",
+        "span": [
+          1.0384672202537628,
+          4.884293289506938
+        ],
+        "train": 0.6060137445955724,
+        "check": 0.5497065389230084,
+        "margin": 0.1883392480613006,
+        "best_distinct_scale_correlation": 0.41767449653427186,
+        "orientation": 0,
+        "phase": [
+          0.0625,
+          0.9375
+        ],
+        "candidate_grids": 20
+      }
+    },
+    {
+      "key": "smooth_stone/dev-wing-masonry-high-right",
+      "sha256": "8cd9e20f608db25df6d141941051d30afcbf80733ea4c6f2058874c02019bf9f",
+      "proposal": "mask-3",
+      "baseline": [
+        null,
+        4
+      ],
+      "refit": [
+        4,
+        4
+      ],
+      "atlas_size": [
+        null,
+        null
+      ],
+      "confirmed": false,
+      "reference": 8,
+      "actual": [
+        4,
+        4
+      ],
+      "evidence": {
+        "reason": "ambiguous whole-tile spacing",
+        "accepted": false,
+        "atlas_texture": "polished_basalt_side",
+        "span": [
+          2.0890960741988436,
+          1.0
+        ],
+        "train": 0.6402302563355105,
+        "check": 0.5052663045803555,
+        "margin": 0.008322103684014981,
+        "best_distinct_scale_correlation": 0.6319081526514955,
+        "orientation": 5,
+        "phase": [
+          0.5,
+          0.9375
+        ],
+        "candidate_grids": 26
+      }
+    },
+    {
+      "key": "smooth_stone/holdout-courtyard-masonry-high-right",
+      "sha256": "252fa7c481e990bbbada46717d6e10c6b66c4f9c65846b94a94cd1b40cea0fcd",
+      "proposal": "mask-3",
+      "baseline": [
+        null,
+        null
+      ],
+      "refit": [
+        5,
+        7
+      ],
+      "atlas_size": [
+        5,
+        7
+      ],
+      "confirmed": true,
+      "reference": 3,
+      "actual": [
+        5,
+        7
+      ],
+      "evidence": {
+        "reason": "validated whole-tile spacing",
+        "accepted": true,
+        "atlas_texture": "tuff",
+        "span": [
+          4.011069275668746,
+          6.887490021812285
+        ],
+        "train": 0.6574950767585684,
+        "check": 0.6680550850414585,
+        "margin": 0.29870690775322295,
+        "best_distinct_scale_correlation": 0.3587881690053455,
+        "orientation": 0,
+        "phase": [
+          0.0,
+          0.875
+        ],
+        "candidate_grids": 38
+      }
+    },
+    {
+      "key": "light_gray_concrete/holdout-courtyard-masonry-high-right",
+      "sha256": "b5b2bb5300687da8d904fb129043b5d2df0ae56e9ba4e14afb932b3e6d44dd3b",
+      "proposal": "mask-2-single-95-0",
+      "baseline": [
+        null,
+        null
+      ],
+      "refit": [
+        6,
+        1
+      ],
+      "atlas_size": [
+        null,
+        null
+      ],
+      "confirmed": false,
+      "reference": 11,
+      "actual": [
+        6,
+        1
+      ],
+      "evidence": {
+        "reason": "ambiguous whole-tile spacing",
+        "accepted": false,
+        "atlas_texture": "polished_basalt_side",
+        "span": [
+          2.925482561014348,
+          2.0
+        ],
+        "train": 0.6221125863035153,
+        "check": 0.4030606293142843,
+        "margin": 0.009579961116691349,
+        "best_distinct_scale_correlation": 0.6125326251868239,
+        "orientation": 7,
+        "phase": [
+          0.3125,
+          0.75
+        ],
+        "candidate_grids": 25
+      }
+    },
+    {
+      "key": "light_gray_concrete/holdout-courtyard-masonry-high-right",
+      "sha256": "b5b2bb5300687da8d904fb129043b5d2df0ae56e9ba4e14afb932b3e6d44dd3b",
+      "proposal": "mask-3",
+      "baseline": [
+        5,
+        null
+      ],
+      "refit": [
+        5,
+        7
+      ],
+      "atlas_size": [
+        5,
+        7
+      ],
+      "confirmed": true,
+      "reference": 3,
+      "actual": [
+        5,
+        7
+      ],
+      "evidence": {
+        "reason": "validated whole-tile spacing",
+        "accepted": true,
+        "atlas_texture": "tuff",
+        "span": [
+          3.9942978448211264,
+          6.905979336258162
+        ],
+        "train": 0.6866107909914296,
+        "check": 0.6774687016599115,
+        "margin": 0.3268331992811777,
+        "best_distinct_scale_correlation": 0.3597775917102519,
+        "orientation": 0,
+        "phase": [
+          0.0,
+          0.9375
+        ],
+        "candidate_grids": 38
+      }
+    },
+    {
+      "key": "light_gray_concrete/holdout-portico-masonry-high-right",
+      "sha256": "f6c57a6cca3c952e2134e27f6ca75816487c4817800f504acaa6aa0240a24329",
+      "proposal": "mask-3",
+      "baseline": [
+        5,
+        null
+      ],
+      "refit": [
+        5,
+        5
+      ],
+      "atlas_size": [
+        null,
+        null
+      ],
+      "confirmed": false,
+      "reference": 16,
+      "actual": [
+        5,
+        6
+      ],
+      "evidence": {
+        "reason": "ambiguous whole-tile spacing",
+        "accepted": false,
+        "atlas_texture": "polished_basalt_side",
+        "span": [
+          1.2645319231929626,
+          1.0
+        ],
+        "train": 0.5605383876024577,
+        "check": 0.4588841441859321,
+        "margin": 0.0003854366095368267,
+        "best_distinct_scale_correlation": 0.5601529509929208,
+        "orientation": 1,
+        "phase": [
+          0.4375,
+          0.9375
+        ],
+        "candidate_grids": 38
+      }
+    },
+    {
+      "key": "light_gray_concrete/holdout-portico-masonry-high-right",
+      "sha256": "f6c57a6cca3c952e2134e27f6ca75816487c4817800f504acaa6aa0240a24329",
+      "proposal": "mask-6",
+      "baseline": [
+        null,
+        null
+      ],
+      "refit": [
+        1,
+        5
+      ],
+      "atlas_size": [
+        null,
+        null
+      ],
+      "confirmed": false,
+      "reference": 8,
+      "actual": [
+        1,
+        5
+      ],
+      "evidence": {
+        "reason": "ambiguous whole-tile spacing",
+        "accepted": false,
+        "atlas_texture": "tuff",
+        "span": [
+          0.823151560582767,
+          4.666369780151791
+        ],
+        "train": 0.5910822928060805,
+        "check": 0.5512920083913792,
+        "margin": 0.09919350781958208,
+        "best_distinct_scale_correlation": 0.4918887849864984,
+        "orientation": 0,
+        "phase": [
+          0.0,
+          0.6875
+        ],
+        "candidate_grids": 21
+      }
+    },
+    {
+      "key": "smooth_stone/holdout-portico-masonry-low-left",
+      "sha256": "eb35fef82a3ed8b7f34c39d7be768ae94123884428038310ea19e578228d83be",
+      "proposal": "mask-4-single-359-0",
+      "baseline": [
+        null,
+        null
+      ],
+      "refit": [
+        2,
+        5
+      ],
+      "atlas_size": [
+        null,
+        null
+      ],
+      "confirmed": false,
+      "reference": 19,
+      "actual": [
+        1,
+        5
+      ],
+      "evidence": {
+        "reason": "ambiguous whole-tile spacing",
+        "accepted": false,
+        "atlas_texture": "tuff",
+        "span": [
+          0.8074033529139504,
+          4.794610275095721
+        ],
+        "train": 0.5248297753073653,
+        "check": 0.513966288713828,
+        "margin": 0.06120828790705196,
+        "best_distinct_scale_correlation": 0.46362148740031334,
+        "orientation": 0,
+        "phase": [
+          0.875,
+          0.9375
+        ],
+        "candidate_grids": 21
+      }
+    },
+    {
+      "key": "smooth_stone/holdout-portico-masonry-low-left",
+      "sha256": "eb35fef82a3ed8b7f34c39d7be768ae94123884428038310ea19e578228d83be",
+      "proposal": "mask-12",
+      "baseline": [
+        null,
+        null
+      ],
+      "refit": [
+        1,
+        5
+      ],
+      "atlas_size": [
+        null,
+        null
+      ],
+      "confirmed": false,
+      "reference": 14,
+      "actual": [
+        1,
+        5
+      ],
+      "evidence": {
+        "reason": "ambiguous whole-tile spacing",
+        "accepted": false,
+        "atlas_texture": "polished_basalt_side",
+        "span": [
+          0.6123215684887506,
+          1.0
+        ],
+        "train": 0.6342612203313343,
+        "check": 0.5836105936518468,
+        "margin": 0.003987576724357678,
+        "best_distinct_scale_correlation": 0.6302736436069766,
+        "orientation": 5,
+        "phase": [
+          0.8125,
+          0.0
+        ],
+        "candidate_grids": 26
+      }
+    },
+    {
+      "key": "light_gray_concrete/holdout-portico-masonry-low-left",
+      "sha256": "00daa00ce6d344d9c00205a65b67ed60af6e0f908e1993e842417450928e55b5",
+      "proposal": "mask-4-single-364-0",
+      "baseline": [
+        null,
+        null
+      ],
+      "refit": [
+        2,
+        5
+      ],
+      "atlas_size": [
+        null,
+        null
+      ],
+      "confirmed": false,
+      "reference": 19,
+      "actual": [
+        1,
+        5
+      ],
+      "evidence": {
+        "reason": "ambiguous whole-tile spacing",
+        "accepted": false,
+        "atlas_texture": "tuff",
+        "span": [
+          0.8305658929722332,
+          4.751034190542963
+        ],
+        "train": 0.6178091302850106,
+        "check": 0.628310687345859,
+        "margin": 0.0882255076354238,
+        "best_distinct_scale_correlation": 0.5295836226495868,
+        "orientation": 0,
+        "phase": [
+          0.875,
+          0.875
+        ],
+        "candidate_grids": 21
+      }
+    },
+    {
+      "key": "light_gray_concrete/holdout-portico-masonry-low-left",
+      "sha256": "00daa00ce6d344d9c00205a65b67ed60af6e0f908e1993e842417450928e55b5",
+      "proposal": "mask-5",
+      "baseline": [
+        null,
+        null
+      ],
+      "refit": [
+        1,
+        5
+      ],
+      "atlas_size": [
+        null,
+        null
+      ],
+      "confirmed": false,
+      "reference": 16,
+      "actual": [
+        1,
+        5
+      ],
+      "evidence": {
+        "reason": "ambiguous whole-tile spacing",
+        "accepted": false,
+        "atlas_texture": "tuff",
+        "span": [
+          1.0,
+          4.817116954258528
+        ],
+        "train": 0.6478703812926725,
+        "check": 0.6384247211924631,
+        "margin": 0.251014956113636,
+        "best_distinct_scale_correlation": 0.3968554251790365,
+        "orientation": 0,
+        "phase": [
+          0.0,
+          0.875
+        ],
+        "candidate_grids": 21
+      }
+    },
+    {
+      "key": "light_gray_concrete/holdout-portico-masonry-low-left",
+      "sha256": "00daa00ce6d344d9c00205a65b67ed60af6e0f908e1993e842417450928e55b5",
+      "proposal": "mask-12",
+      "baseline": [
+        null,
+        null
+      ],
+      "refit": [
+        1,
+        5
+      ],
+      "atlas_size": [
+        null,
+        null
+      ],
+      "confirmed": false,
+      "reference": 6,
+      "actual": [
+        1,
+        5
+      ],
+      "evidence": {
+        "reason": "ambiguous whole-tile spacing",
+        "accepted": false,
+        "atlas_texture": "chiseled_tuff_bricks_top",
+        "span": [
+          0.6913550579432547,
+          1.0
+        ],
+        "train": 0.455201712184249,
+        "check": 0.20819840465780184,
+        "margin": 0.0432741943372848,
+        "best_distinct_scale_correlation": 0.4119275178469642,
+        "orientation": 0,
+        "phase": [
+          0.9375,
+          0.75
+        ],
+        "candidate_grids": 21
+      }
+    },
+    {
+      "key": "smooth_stone/holdout-portico-plaster-high-right",
+      "sha256": "fb687c20c5df87e79d9dd17ce48566c7f9fca2a092234bedff15fbe3f83b2e8c",
+      "proposal": "mask-0-junction-0",
+      "baseline": [
+        null,
+        null
+      ],
+      "refit": [
+        2,
+        5
+      ],
+      "atlas_size": [
+        null,
+        null
+      ],
+      "confirmed": false,
+      "reference": 7,
+      "actual": [
+        1,
+        5
+      ],
+      "evidence": {
+        "reason": "ambiguous whole-tile spacing",
+        "accepted": false,
+        "atlas_texture": "cobblestone",
+        "span": [
+          1.0,
+          4.817532042882634
+        ],
+        "train": 0.6230275136045815,
+        "check": 0.6291228820953672,
+        "margin": 0.10582341096788483,
+        "best_distinct_scale_correlation": 0.5172041026366967,
+        "orientation": 0,
+        "phase": [
+          0.0,
+          0.875
+        ],
+        "candidate_grids": 21
+      }
+    },
+    {
+      "key": "light_gray_concrete/holdout-portico-plaster-high-right",
+      "sha256": "fbe284f3ab8d1e0d517c81853c4a6121d359eb023c6f9882769d27605edb9b84",
+      "proposal": "mask-0-junction-1-single-250-1",
+      "baseline": [
+        null,
+        null
+      ],
+      "refit": [
+        2,
+        5
+      ],
+      "atlas_size": [
+        null,
+        null
+      ],
+      "confirmed": false,
+      "reference": 7,
+      "actual": [
+        1,
+        5
+      ],
+      "evidence": {
+        "reason": "ambiguous whole-tile spacing",
+        "accepted": false,
+        "atlas_texture": "cobblestone",
+        "span": [
+          1.0056808255716903,
+          4.791422111843126
+        ],
+        "train": 0.5564024267171163,
+        "check": 0.527131680740117,
+        "margin": 0.023642161875934153,
+        "best_distinct_scale_correlation": 0.5327602648411821,
+        "orientation": 0,
+        "phase": [
+          0.0,
+          0.8125
+        ],
+        "candidate_grids": 12
+      }
+    },
+    {
+      "key": "light_gray_concrete/holdout-portico-plaster-high-right",
+      "sha256": "fbe284f3ab8d1e0d517c81853c4a6121d359eb023c6f9882769d27605edb9b84",
+      "proposal": "mask-0-junction-1-single-250-2",
+      "baseline": [
+        null,
+        5
+      ],
+      "refit": [
+        1,
+        5
+      ],
+      "atlas_size": [
+        null,
+        null
+      ],
+      "confirmed": false,
+      "reference": 8,
+      "actual": [
+        1,
+        5
+      ],
+      "evidence": {
+        "reason": "ambiguous whole-tile spacing",
+        "accepted": false,
+        "atlas_texture": "cobblestone",
+        "span": [
+          0.9630773890738905,
+          4.783628234642001
+        ],
+        "train": 0.5084629541025684,
+        "check": 0.4762187495191091,
+        "margin": 0.01551794005727597,
+        "best_distinct_scale_correlation": 0.4929450140452924,
+        "orientation": 0,
+        "phase": [
+          0.0,
+          0.8125
+        ],
+        "candidate_grids": 21
+      }
+    },
+    {
+      "key": "smooth_stone/holdout-portico-plaster-low-left",
+      "sha256": "8f7b6cf572ea617a0efa47c002f4f9221df201dcde9d20595a10fb2915228445",
+      "proposal": "mask-0-mobile-5",
+      "baseline": [
+        null,
+        null
+      ],
+      "refit": [
+        1,
+        5
+      ],
+      "atlas_size": [
+        null,
+        null
+      ],
+      "confirmed": false,
+      "reference": 17,
+      "actual": [
+        1,
+        5
+      ],
+      "evidence": {
+        "reason": "ambiguous whole-tile spacing",
+        "accepted": false,
+        "atlas_texture": "cobblestone",
+        "span": [
+          0.9976040811432666,
+          4.89474208727165
+        ],
+        "train": 0.5983587066327087,
+        "check": 0.5683716690379207,
+        "margin": 0.12664676429322186,
+        "best_distinct_scale_correlation": 0.4717119423394869,
+        "orientation": 0,
+        "phase": [
+          0.0625,
+          0.9375
+        ],
+        "candidate_grids": 11
+      }
+    },
+    {
+      "key": "light_gray_concrete/holdout-workshop-masonry-low-left",
+      "sha256": "ae86fd9911640c7397bc929d3e0ca1076d84312b5500712cf2c4ec25e7c9112f",
+      "proposal": "mask-2",
+      "baseline": [
+        7,
+        null
+      ],
+      "refit": [
+        7,
+        6
+      ],
+      "atlas_size": [
+        null,
+        null
+      ],
+      "confirmed": false,
+      "reference": 2,
+      "actual": [
+        7,
+        6
+      ],
+      "evidence": {
+        "reason": "ambiguous whole-tile spacing",
+        "accepted": false,
+        "atlas_texture": "polished_basalt_side",
+        "span": [
+          3.4493676222056657,
+          1.0
+        ],
+        "train": 0.5779986460659384,
+        "check": 0.5566358172620948,
+        "margin": 0.003082268923568332,
+        "best_distinct_scale_correlation": 0.5749163771423701,
+        "orientation": 7,
+        "phase": [
+          0.75,
+          0.0
+        ],
+        "candidate_grids": 38
+      }
+    },
+    {
+      "key": "light_gray_concrete/holdout-workshop-masonry-low-left",
+      "sha256": "ae86fd9911640c7397bc929d3e0ca1076d84312b5500712cf2c4ec25e7c9112f",
+      "proposal": "mask-5",
+      "baseline": [
+        null,
+        8
+      ],
+      "refit": [
+        3,
+        4
+      ],
+      "atlas_size": [
+        null,
+        null
+      ],
+      "confirmed": false,
+      "reference": 7,
+      "actual": [
+        3,
+        4
+      ],
+      "evidence": {
+        "reason": "ambiguous whole-tile spacing",
+        "accepted": false,
+        "atlas_texture": "polished_basalt_side",
+        "span": [
+          0.8227989822448112,
+          0.9896153017468068
+        ],
+        "train": 0.6237831188720575,
+        "check": 0.4600097306978456,
+        "margin": -0.02794464181254641,
+        "best_distinct_scale_correlation": 0.6517277606846039,
+        "orientation": 1,
+        "phase": [
+          0.0625,
+          0.0
+        ],
+        "candidate_grids": 38
+      }
+    },
+    {
+      "key": "light_gray_concrete/holdout-workshop-masonry-high-right",
+      "sha256": "3aefcb242fdda8a6d4c40adb9a7d2632c8de998b076b1d4ec09a100db95119d4",
+      "proposal": "mask-1-wall-0",
+      "baseline": [
+        6,
+        null
+      ],
+      "refit": [
+        6,
+        1
+      ],
+      "atlas_size": [
+        null,
+        null
+      ],
+      "confirmed": false,
+      "reference": 3,
+      "actual": [
+        6,
+        1
+      ],
+      "evidence": {
+        "reason": "ambiguous whole-tile spacing",
+        "accepted": false,
+        "atlas_texture": "iron_block",
+        "span": [
+          1.0,
+          0.980879690174412
+        ],
+        "train": 0.6279329161234583,
+        "check": 0.5681958493495499,
+        "margin": -0.003151031769127899,
+        "best_distinct_scale_correlation": 0.6310839478925862,
+        "orientation": 0,
+        "phase": [
+          0.0625,
+          0.9375
+        ],
+        "candidate_grids": 20
+      }
+    },
+    {
+      "key": "light_gray_concrete/holdout-workshop-masonry-high-right",
+      "sha256": "3aefcb242fdda8a6d4c40adb9a7d2632c8de998b076b1d4ec09a100db95119d4",
+      "proposal": "mask-2-wall-0-mobile-0",
+      "baseline": [
+        null,
+        null
+      ],
+      "refit": [
+        9,
+        1
+      ],
+      "atlas_size": [
+        null,
+        null
+      ],
+      "confirmed": false,
+      "reference": 13,
+      "actual": [
+        9,
+        1
+      ],
+      "evidence": {
+        "reason": "ambiguous whole-tile spacing",
+        "accepted": false,
+        "atlas_texture": "chiseled_tuff_bricks_top",
+        "span": [
+          2.0,
+          0.7454747286666358
+        ],
+        "train": 0.4614685303234065,
+        "check": 0.17258425897709112,
+        "margin": -0.05149320201285479,
+        "best_distinct_scale_correlation": 0.5129617323362613,
+        "orientation": 3,
+        "phase": [
+          0.8125,
+          0.3125
+        ],
+        "candidate_grids": 20
+      }
+    },
+    {
+      "key": "light_gray_concrete/holdout-workshop-masonry-high-right",
+      "sha256": "3aefcb242fdda8a6d4c40adb9a7d2632c8de998b076b1d4ec09a100db95119d4",
+      "proposal": "mask-2-wall-0-mobile-1",
+      "baseline": [
+        null,
+        null
+      ],
+      "refit": [
+        9,
+        1
+      ],
+      "atlas_size": [
+        null,
+        null
+      ],
+      "confirmed": false,
+      "reference": 14,
+      "actual": [
+        9,
+        1
+      ],
+      "evidence": {
+        "reason": "ambiguous whole-tile spacing",
+        "accepted": false,
+        "atlas_texture": "chiseled_tuff_bricks_top",
+        "span": [
+          1.0,
+          0.7680898072337151
+        ],
+        "train": 0.48280468261423803,
+        "check": 0.20261855737530832,
+        "margin": -0.12393184412599634,
+        "best_distinct_scale_correlation": 0.6067365267402344,
+        "orientation": 3,
+        "phase": [
+          0.0,
+          0.375
+        ],
+        "candidate_grids": 20
+      }
+    },
+    {
+      "key": "light_gray_concrete/holdout-workshop-masonry-high-right",
+      "sha256": "3aefcb242fdda8a6d4c40adb9a7d2632c8de998b076b1d4ec09a100db95119d4",
+      "proposal": "mask-3-wall-0",
+      "baseline": [
+        null,
+        null
+      ],
+      "refit": [
+        10,
+        2
+      ],
+      "atlas_size": [
+        null,
+        null
+      ],
+      "confirmed": false,
+      "reference": 17,
+      "actual": [
+        9,
+        1
+      ],
+      "evidence": {
+        "reason": "ambiguous whole-tile spacing",
+        "accepted": false,
+        "atlas_texture": "blast_furnace_top",
+        "span": [
+          1.0,
+          0.8540514934425516
+        ],
+        "train": 0.4060999452064209,
+        "check": 0.20428366230794215,
+        "margin": -0.02811833131834962,
+        "best_distinct_scale_correlation": 0.4342182765247705,
+        "orientation": 5,
+        "phase": [
+          0.0625,
+          0.875
+        ],
+        "candidate_grids": 26
+      }
+    },
+    {
+      "key": "light_gray_concrete/holdout-workshop-plaster-high-right",
+      "sha256": "d35ab308820f92501ec898cafb1f50939f3f0ed1141e3d9ee38a00eae1199aa0",
+      "proposal": "mask-1-junction-0",
+      "baseline": [
+        null,
+        null
+      ],
+      "refit": [
+        6,
+        1
+      ],
+      "atlas_size": [
+        null,
+        null
+      ],
+      "confirmed": false,
+      "reference": 3,
+      "actual": [
+        6,
+        1
+      ],
+      "evidence": {
+        "reason": "ambiguous whole-tile spacing",
+        "accepted": false,
+        "atlas_texture": "jungle_log_top",
+        "span": [
+          1.0,
+          1.7544650465984455
+        ],
+        "train": 0.6193542605398975,
+        "check": 0.4702686261978008,
+        "margin": -0.058086114895328556,
+        "best_distinct_scale_correlation": 0.6774403754352261,
+        "orientation": 3,
+        "phase": [
+          0.0625,
+          0.75
+        ],
+        "candidate_grids": 34
+      }
+    },
+    {
+      "key": "light_gray_concrete/holdout-workshop-plaster-high-right",
+      "sha256": "d35ab308820f92501ec898cafb1f50939f3f0ed1141e3d9ee38a00eae1199aa0",
+      "proposal": "mask-7",
+      "baseline": [
+        null,
+        null
+      ],
+      "refit": [
+        9,
+        1
+      ],
+      "atlas_size": [
+        null,
+        null
+      ],
+      "confirmed": false,
+      "reference": 12,
+      "actual": [
+        9,
+        1
+      ],
+      "evidence": {
+        "reason": "ambiguous whole-tile spacing",
+        "accepted": false,
+        "atlas_texture": "polished_basalt_side",
+        "span": [
+          5.955016691656087,
+          0.6412090838296503
+        ],
+        "train": 0.5695324910595465,
+        "check": 0.5516803214862764,
+        "margin": -0.014209148900501622,
+        "best_distinct_scale_correlation": 0.5837416399600481,
+        "orientation": 5,
+        "phase": [
+          0.25,
+          0.5625
+        ],
+        "candidate_grids": 32
+      }
+    },
+    {
+      "key": "light_gray_concrete/holdout-workshop-plaster-high-right",
+      "sha256": "d35ab308820f92501ec898cafb1f50939f3f0ed1141e3d9ee38a00eae1199aa0",
+      "proposal": "mask-9",
+      "baseline": [
+        null,
+        null
+      ],
+      "refit": [
+        9,
+        1
+      ],
+      "atlas_size": [
+        null,
+        null
+      ],
+      "confirmed": false,
+      "reference": 14,
+      "actual": [
+        9,
+        1
+      ],
+      "evidence": {
+        "reason": "ambiguous whole-tile spacing",
+        "accepted": false,
+        "atlas_texture": "polished_basalt_side",
+        "span": [
+          9.137115106277674,
+          0.8033462362812925
+        ],
+        "train": 0.5959485676199764,
+        "check": 0.5680117634173294,
+        "margin": -0.0675334220825754,
+        "best_distinct_scale_correlation": 0.6634819897025518,
+        "orientation": 5,
+        "phase": [
+          0.1875,
+          0.625
+        ],
+        "candidate_grids": 30
+      }
+    },
+    {
+      "key": "light_gray_concrete/holdout-crossing-masonry-high-right",
+      "sha256": "7ea5b36aa3c25b3ab4c58dcb773d8c3476c5f2d28048fd72a62970888be31320",
+      "proposal": "mask-1-single-254-1",
+      "baseline": [
+        null,
+        null
+      ],
+      "refit": [
+        2,
+        2
+      ],
+      "atlas_size": [
+        2,
+        2
+      ],
+      "confirmed": true,
+      "reference": 1,
+      "actual": [
+        2,
+        3
+      ],
+      "evidence": {
+        "reason": "validated whole-tile spacing",
+        "accepted": true,
+        "atlas_texture": "stone_bricks",
+        "span": [
+          1.910662278426257,
+          1.5566030864861558
+        ],
+        "train": 0.7060016650149697,
+        "check": 0.7122252988751844,
+        "margin": 0.1286685837170849,
+        "best_distinct_scale_correlation": 0.5773330812978849,
+        "orientation": 0,
+        "phase": [
+          0.0,
+          0.5625
+        ],
+        "candidate_grids": 20
+      }
+    },
+    {
+      "key": "light_gray_concrete/holdout-crossing-plaster-low-left",
+      "sha256": "d348ddef0010267fdffc0d628654ef6ce256329400dec3e1cfd271bfaf764144",
+      "proposal": "mask-2-planarity-split-1",
+      "baseline": [
+        3,
+        null
+      ],
+      "refit": [
+        3,
+        1
+      ],
+      "atlas_size": [
+        null,
+        null
+      ],
+      "confirmed": false,
+      "reference": null,
+      "actual": null,
+      "evidence": {
+        "reason": "ambiguous whole-tile spacing",
+        "accepted": false,
+        "atlas_texture": "polished_basalt_side",
+        "span": [
+          2.9541077486290113,
+          0.5841710938148966
+        ],
+        "train": 0.6002644041877135,
+        "check": 0.579622191331951,
+        "margin": -0.022608346124971868,
+        "best_distinct_scale_correlation": 0.6228727503126854,
+        "orientation": 5,
+        "phase": [
+          0.9375,
+          0.5
+        ],
+        "candidate_grids": 18
+      }
+    },
+    {
+      "key": "light_gray_concrete/holdout-crossing-plaster-high-right",
+      "sha256": "a7e9cd44bd97237bd3cbf88b11fdfa3575deee7473ef820b30e19bc5fe37698e",
+      "proposal": "mask-3",
+      "baseline": [
+        null,
+        null
+      ],
+      "refit": [
+        3,
+        1
+      ],
+      "atlas_size": [
+        null,
+        null
+      ],
+      "confirmed": false,
+      "reference": null,
+      "actual": null,
+      "evidence": {
+        "reason": "ambiguous whole-tile spacing",
+        "accepted": false,
+        "atlas_texture": "cobblestone",
+        "span": [
+          2.913694641218665,
+          1.078125
+        ],
+        "train": 0.6239611112970602,
+        "check": 0.6276945597851264,
+        "margin": 0.049579431504432114,
+        "best_distinct_scale_correlation": 0.5743816797926281,
+        "orientation": 0,
+        "phase": [
+          0.9375,
+          0.0625
+        ],
+        "candidate_grids": 28
+      }
+    },
+    {
+      "key": "light_gray_concrete/holdout-crossing-plaster-high-right",
+      "sha256": "a7e9cd44bd97237bd3cbf88b11fdfa3575deee7473ef820b30e19bc5fe37698e",
+      "proposal": "mask-4",
+      "baseline": [
+        null,
+        null
+      ],
+      "refit": [
+        3,
+        1
+      ],
+      "atlas_size": [
+        null,
+        null
+      ],
+      "confirmed": false,
+      "reference": null,
+      "actual": null,
+      "evidence": {
+        "reason": "ambiguous whole-tile spacing",
+        "accepted": false,
+        "atlas_texture": "cobblestone",
+        "span": [
+          3.003909772537801,
+          1.0
+        ],
+        "train": 0.5863303909378946,
+        "check": 0.5865141313056333,
+        "margin": 0.020844330216531426,
+        "best_distinct_scale_correlation": 0.5654860607213632,
+        "orientation": 0,
+        "phase": [
+          0.0,
+          0.0
+        ],
+        "candidate_grids": 15
+      }
+    },
+    {
+      "key": "light_gray_concrete/holdout-galleries-masonry-low-left",
+      "sha256": "d0fba67900a91a20d0120f298c8783829953bc21c7d45fb4413a8cb829cfddc3",
+      "proposal": "mask-11",
+      "baseline": [
+        null,
+        null
+      ],
+      "refit": [
+        3,
+        4
+      ],
+      "atlas_size": [
+        null,
+        null
+      ],
+      "confirmed": false,
+      "reference": 11,
+      "actual": [
+        2,
+        4
+      ],
+      "evidence": {
+        "reason": "ambiguous whole-tile spacing",
+        "accepted": false,
+        "atlas_texture": "chiseled_tuff_bricks_top",
+        "span": [
+          0.9662491102461678,
+          0.9717894140749235
+        ],
+        "train": 0.5473250978497215,
+        "check": 0.37230729663998496,
+        "margin": -0.05270007325753323,
+        "best_distinct_scale_correlation": 0.6000251711072547,
+        "orientation": 2,
+        "phase": [
+          0.0,
+          0.1875
+        ],
+        "candidate_grids": 38
+      }
+    },
+    {
+      "key": "light_gray_concrete/holdout-galleries-masonry-high-right",
+      "sha256": "21916862012e6b47e6dbe426fd7a8930bd7fdd51651238d8ad4d3e8860f57a7b",
+      "proposal": "mask-0-wall-1",
+      "baseline": [
+        null,
+        4
+      ],
+      "refit": [
+        2,
+        4
+      ],
+      "atlas_size": [
+        null,
+        null
+      ],
+      "confirmed": false,
+      "reference": 12,
+      "actual": [
+        2,
+        4
+      ],
+      "evidence": {
+        "reason": "ambiguous whole-tile spacing",
+        "accepted": false,
+        "atlas_texture": "tuff",
+        "span": [
+          1.9957045158716875,
+          3.560862368596952
+        ],
+        "train": 0.597787074451037,
+        "check": 0.5606562429930146,
+        "margin": 0.16759267038152897,
+        "best_distinct_scale_correlation": 0.430194404069508,
+        "orientation": 0,
+        "phase": [
+          0.0,
+          0.5625
+        ],
+        "candidate_grids": 29
+      }
+    },
+    {
+      "key": "light_gray_concrete/holdout-galleries-masonry-high-right",
+      "sha256": "21916862012e6b47e6dbe426fd7a8930bd7fdd51651238d8ad4d3e8860f57a7b",
+      "proposal": "mask-17",
+      "baseline": [
+        3,
+        null
+      ],
+      "refit": [
+        3,
+        3
+      ],
+      "atlas_size": [
+        null,
+        null
+      ],
+      "confirmed": false,
+      "reference": 24,
+      "actual": [
+        2,
+        4
+      ],
+      "evidence": {
+        "reason": "ambiguous whole-tile spacing",
+        "accepted": false,
+        "atlas_texture": "chiseled_tuff_bricks_top",
+        "span": [
+          1.9536232984063724,
+          1.0
+        ],
+        "train": 0.523280702376626,
+        "check": 0.18477266150273228,
+        "margin": -0.10717705889820983,
+        "best_distinct_scale_correlation": 0.6304577612748359,
+        "orientation": 0,
+        "phase": [
+          0.4375,
+          0.75
+        ],
+        "candidate_grids": 15
+      }
+    },
+    {
+      "key": "light_gray_concrete/holdout-galleries-plaster-high-right",
+      "sha256": "a40a75765e0d99508a283686b4484a510d8ca0404656939017fb6d4a85f49832",
+      "proposal": "mask-4",
+      "baseline": [
+        null,
+        null
+      ],
+      "refit": [
+        2,
+        4
+      ],
+      "atlas_size": [
+        null,
+        null
+      ],
+      "confirmed": false,
+      "reference": 12,
+      "actual": [
+        2,
+        4
+      ],
+      "evidence": {
+        "reason": "ambiguous whole-tile spacing",
+        "accepted": false,
+        "atlas_texture": "cobblestone",
+        "span": [
+          1.916685446852565,
+          3.5980095347116277
+        ],
+        "train": 0.6165622348720001,
+        "check": 0.6505281244779186,
+        "margin": 0.14346494969747364,
+        "best_distinct_scale_correlation": 0.4730972851745265,
+        "orientation": 0,
+        "phase": [
+          0.9375,
+          0.5625
+        ],
+        "candidate_grids": 29
+      }
+    }
+  ]
+}
