@@ -1,5 +1,7 @@
 """Reserve the unused RGB views of previously evaluated native building geometries."""
+import argparse
 from pathlib import Path
+from zipfile import ZipFile, ZIP_DEFLATED
 
 from benchmark import canopy_fixture, visible_depth_transfer as transfer
 from benchmark.texture_camera_eval import STABLE, checked, digest, read, save
@@ -45,5 +47,65 @@ def reserve():
     print([f['id'] for f in frames])
 
 
+
+def package(run, archive):
+    """Pack the original frames and exactly the frozen prediction/scoring inputs."""
+    archive.parent.mkdir(parents=True, exist_ok=True)
+    rows = read(DEST/'screen.json')['selected']
+    with ZipFile(archive, 'w', ZIP_DEFLATED) as zipped:
+        zipped.write(DEST/'screen.json', 'confirmation/screen.json')
+        for row in rows:
+            png = transfer.rgb_path(row)
+            for path, label in ((png, 'rgb.png'), (png.with_suffix('.json'), 'camera.json'),
+                                (png.with_name(row['source_id']+'-blocks.json'), 'world-readback.json')):
+                checked(path, row['files'][label])
+                zipped.write(path, 'fixtures/'+path.relative_to(transfer.BUILDS).as_posix())
+            upstream = run/'upstream'/row['id']
+            manifest = read(upstream/'build-manifest.json')
+            if manifest['image_sha256'] != row['files']['rgb.png'] or manifest['through'] != 'counts':
+                raise ValueError(f"Upstream image mismatch for {row['id']}")
+            for name in ('build-manifest.json', 'surfaces.json', 'counts.json'):
+                zipped.write(upstream/name, f"confirmation/upstream/{row['id']}/{name}")
+    return dict(bytes=archive.stat().st_size, sha256=digest(archive))
+
+
+def roof_checks(run):
+    from benchmark import relative_canopy_spacing as roof
+    specs = read(roof.PROBES)
+    examples = {f['id']:f for p in (transfer.OUT, canopy_fixture.OUT) for f in read(p/'screen.json')['selected']}
+    rows = []
+    for f in read(DEST/'screen.json')['selected']:
+        equivalent = [k for k in specs if k.rsplit('-',1)[0] == f['id'].rsplit('-',1)[0]]
+        if not equivalent:
+            continue
+        def occupied(frame):
+            path = transfer.rgb_path(frame).with_name(frame['source_id']+'-blocks.json')
+            return transfer.structure(read(checked(path,frame['files']['world-readback.json'])),64)
+        original = examples[equivalent[0]]
+        source = occupied(f)
+        if source != occupied(original):
+            raise ValueError('Matched canopy views have different world-coordinate geometry')
+        spec = specs[original['id']]
+        pose = read(checked(transfer.rgb_path(f).with_suffix('.json'), f['files']['camera.json']))
+        faces,_ = roof.raster(pose, source)
+        visible = {tuple(face['xyz_world']) for face in faces}
+        row = dict(id=f['id'], previous_probe=original['id'])
+        for method in ('previous', 'candidate'):
+            cells, pack_sha = roof.verify_pack(f, run/method, pose)
+            row[method] = dict(roof.score(cells,visible,spec), pack_sha256=pack_sha)
+        rows.append(row)
+    return rows
+
+
 if __name__=='__main__':
-    reserve()
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('stage', choices=('reserve','package','roofs'), default='reserve', nargs='?')
+    parser.add_argument('--run', type=Path, default=Path('runs/extra-views'))
+    parser.add_argument('--archive', type=Path, default=Path('runs/extra-views-v1.zip'))
+    args = parser.parse_args()
+    if args.stage == 'reserve':
+        reserve()
+    elif args.stage == 'package':
+        print(package(args.run, args.archive))
+    else:
+        save(DEST/'roofs.json', roof_checks(args.run))
