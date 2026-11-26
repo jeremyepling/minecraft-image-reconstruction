@@ -1,0 +1,4156 @@
+[
+  {
+    "key": "smooth_stone/dev-shopfront-masonry-high-right",
+    "sha256": "f15cd0e471a9a2e375c9f801df171bb8f5ee44d95374f02f1174c7938a94cc79",
+    "cohort": "development",
+    "layout": "shopfront",
+    "eligible": 14,
+    "surfaces": [
+      {
+        "proposal": "mask-0",
+        "guess": {
+          "current": [
+            14,
+            null
+          ],
+          "coplanar": [
+            14,
+            null
+          ]
+        },
+        "reference": 4,
+        "actual": [
+          15,
+          7
+        ]
+      },
+      {
+        "proposal": "mask-1-junction-0",
+        "guess": {
+          "current": [
+            null,
+            null
+          ],
+          "coplanar": [
+            2,
+            5
+          ]
+        },
+        "reference": 7,
+        "actual": [
+          1,
+          5
+        ],
+        "transfer": {
+          "donor": "mask-0",
+          "recipient_offset": [
+            11,
+            3
+          ],
+          "donor_grid_to_image": [
+            [
+              14.336643346640134,
+              11.579146148483312,
+              703.632936158534
+            ],
+            [
+              -11.352726600749936,
+              53.73543179867101,
+              449.0697703338001
+            ],
+            [
+              -0.036961373014990404,
+              0.01608214742844905,
+              1.436637611687345
+            ]
+          ],
+          "depth_log_error": 0.13229571239737822,
+          "edge_residual": 0.39095395911173547,
+          "gap_blocks": 0.0,
+          "raw_bounds": [
+            [
+              11.390953959111735,
+              2.7073460189562604
+            ],
+            [
+              13.338198194792687,
+              8.079560788985038
+            ]
+          ]
+        },
+        "quad": [
+          [
+            848.1214430103137,
+            439.24921193657246
+          ],
+          [
+            938.2353936969364,
+            448.8801594399112
+          ],
+          [
+            920.6727567090188,
+            681.6503139943134
+          ],
+          [
+            838.4585859317311,
+            658.1211901731137
+          ]
+        ],
+        "phase": [
+          0.6090460408882645,
+          0.29265398104373963
+        ],
+        "transfer_truth": {
+          "donor_reference": 4,
+          "parallel": true,
+          "coplanar": false,
+          "materials": [
+            [
+              "minecraft:stone_bricks"
+            ],
+            [
+              "minecraft:tuff"
+            ]
+          ]
+        }
+      },
+      {
+        "proposal": "mask-1-junction-1-single-265-0",
+        "guess": {
+          "current": [
+            null,
+            null
+          ],
+          "coplanar": [
+            null,
+            null
+          ]
+        },
+        "reference": 6,
+        "actual": [
+          1,
+          5
+        ]
+      },
+      {
+        "proposal": "mask-1-junction-1-single-265-1",
+        "guess": {
+          "current": [
+            null,
+            null
+          ],
+          "coplanar": [
+            null,
+            null
+          ]
+        },
+        "reference": 8,
+        "actual": [
+          10,
+          1
+        ]
+      },
+      {
+        "proposal": "mask-2",
+        "guess": {
+          "current": [
+            null,
+            null
+          ],
+          "coplanar": [
+            7,
+            5
+          ]
+        },
+        "reference": 5,
+        "actual": [
+          10,
+          5
+        ],
+        "transfer": {
+          "donor": "mask-0",
+          "recipient_offset": [
+            5,
+            3
+          ],
+          "donor_grid_to_image": [
+            [
+              14.336643346640134,
+              11.579146148483312,
+              703.632936158534
+            ],
+            [
+              -11.352726600749936,
+              53.73543179867101,
+              449.0697703338001
+            ],
+            [
+              -0.036961373014990404,
+              0.01608214742844905,
+              1.436637611687345
+            ]
+          ],
+          "depth_log_error": 0.026869856858787868,
+          "edge_residual": 0.3484253428114261,
+          "gap_blocks": 0.0,
+          "raw_bounds": [
+            [
+              5.155478871382498,
+              2.651574657188574
+            ],
+            [
+              11.759056490538867,
+              7.188714927713425
+            ]
+          ]
+        },
+        "quad": [
+          [
+            627.1678470412583,
+            413.6054550404404
+          ],
+          [
+            864.3292194830728,
+            438.4779920284762
+          ],
+          [
+            854.9062535488048,
+            627.9980518088502
+          ],
+          [
+            632.1422978632708,
+            570.4877342060607
+          ]
+        ],
+        "phase": [
+          0.8445211286175018,
+          0.3484253428114261
+        ],
+        "transfer_truth": {
+          "donor_reference": 4,
+          "parallel": true,
+          "coplanar": true,
+          "materials": [
+            [
+              "minecraft:stone_bricks"
+            ],
+            [
+              "minecraft:stone_bricks"
+            ]
+          ],
+          "actual_offset": [
+            5,
+            2
+          ],
+          "offset_correct": false
+        }
+      },
+      {
+        "proposal": "mask-3",
+        "guess": {
+          "current": [
+            null,
+            null
+          ],
+          "coplanar": [
+            null,
+            null
+          ]
+        },
+        "reference": 19,
+        "actual": [
+          8,
+          7
+        ]
+      },
+      {
+        "proposal": "mask-4",
+        "guess": {
+          "current": [
+            null,
+            9
+          ],
+          "coplanar": [
+            null,
+            9
+          ]
+        }
+      },
+      {
+        "proposal": "mask-5",
+        "guess": {
+          "current": [
+            null,
+            null
+          ],
+          "coplanar": [
+            null,
+            null
+          ]
+        },
+        "reference": 12,
+        "actual": [
+          10,
+          3
+        ]
+      },
+      {
+        "proposal": "mask-6",
+        "guess": {
+          "current": [
+            null,
+            null
+          ],
+          "coplanar": [
+            null,
+            null
+          ]
+        },
+        "reference": 16,
+        "actual": [
+          3,
+          4
+        ]
+      },
+      {
+        "proposal": "mask-7",
+        "guess": {
+          "current": [
+            null,
+            null
+          ],
+          "coplanar": [
+            null,
+            null
+          ]
+        },
+        "reference": 13,
+        "actual": [
+          15,
+          5
+        ]
+      },
+      {
+        "proposal": "mask-8",
+        "guess": {
+          "current": [
+            null,
+            null
+          ],
+          "coplanar": [
+            null,
+            null
+          ]
+        },
+        "reference": 18,
+        "actual": [
+          1,
+          5
+        ]
+      },
+      {
+        "proposal": "mask-9",
+        "guess": {
+          "current": [
+            null,
+            null
+          ],
+          "coplanar": [
+            null,
+            null
+          ]
+        },
+        "reference": 15,
+        "actual": [
+          1,
+          5
+        ]
+      },
+      {
+        "proposal": "mask-10",
+        "guess": {
+          "current": [
+            null,
+            6
+          ],
+          "coplanar": [
+            null,
+            6
+          ]
+        },
+        "reference": 17,
+        "actual": [
+          2,
+          4
+        ]
+      },
+      {
+        "proposal": "mask-11",
+        "guess": {
+          "current": [
+            null,
+            7
+          ],
+          "coplanar": [
+            null,
+            7
+          ]
+        },
+        "reference": 14,
+        "actual": [
+          1,
+          4
+        ]
+      },
+      {
+        "proposal": "mask-12",
+        "guess": {
+          "current": [
+            null,
+            null
+          ],
+          "coplanar": [
+            null,
+            null
+          ]
+        }
+      },
+      {
+        "proposal": "mask-13",
+        "guess": {
+          "current": [
+            null,
+            null
+          ],
+          "coplanar": [
+            null,
+            null
+          ]
+        }
+      },
+      {
+        "proposal": "mask-14",
+        "guess": {
+          "current": [
+            null,
+            null
+          ],
+          "coplanar": [
+            null,
+            null
+          ]
+        },
+        "reference": 10,
+        "actual": [
+          2,
+          3
+        ]
+      },
+      {
+        "proposal": "mask-15",
+        "guess": {
+          "current": [
+            null,
+            null
+          ],
+          "coplanar": [
+            null,
+            null
+          ]
+        }
+      },
+      {
+        "proposal": "mask-16",
+        "guess": {
+          "current": [
+            null,
+            null
+          ],
+          "coplanar": [
+            null,
+            null
+          ]
+        }
+      },
+      {
+        "proposal": "mask-17",
+        "guess": {
+          "current": [
+            null,
+            null
+          ],
+          "coplanar": [
+            null,
+            null
+          ]
+        }
+      }
+    ],
+    "depth_gate": {
+      "unpaired_pass": 5,
+      "parallel_other_depth_pass": 2,
+      "parallel_other_depth_reject": 1,
+      "unpaired_reject": 1,
+      "same_plane_pass": 1
+    },
+    "processing_s": 0.023716700001386926
+  },
+  {
+    "key": "light_gray_concrete/dev-shopfront-masonry-high-right",
+    "sha256": "bb588b0b0d1cdb05b720ff5bc3b515479426c7772fd98fb7fadb8a55b79ca9db",
+    "cohort": "development",
+    "layout": "shopfront",
+    "eligible": 14,
+    "surfaces": [
+      {
+        "proposal": "mask-0-mobile-0-single-238-0",
+        "guess": {
+          "current": [
+            null,
+            null
+          ],
+          "coplanar": [
+            2,
+            5
+          ]
+        },
+        "reference": 6,
+        "actual": [
+          1,
+          5
+        ],
+        "transfer": {
+          "donor": "mask-0-mobile-0-single-238-1",
+          "recipient_offset": [
+            1,
+            1
+          ],
+          "donor_grid_to_image": [
+            [
+              16.303247512693172,
+              13.882134839385685,
+              753.2084442761435
+            ],
+            [
+              -11.557348281428546,
+              61.11271138828687,
+              505.4182635570541
+            ],
+            [
+              -0.04136124072486709,
+              0.020040055389164473,
+              1.388275856978317
+            ]
+          ],
+          "depth_log_error": 0.19910036912397439,
+          "edge_residual": 0.40245348334216713,
+          "gap_blocks": 0.0,
+          "raw_bounds": [
+            [
+              0.7912083170182888,
+              1.0261692420992174
+            ],
+            [
+              2.402453483342167,
+              6.0181667007095
+            ]
+          ]
+        },
+        "quad": [
+          [
+            567.0697114903785,
+            406.20586446046576
+          ],
+          [
+            615.9900528434864,
+            412.65815735579037
+          ],
+          [
+            621.4359066133738,
+            599.8096362853519
+          ],
+          [
+            575.5850654712883,
+            585.3454011098096
+          ]
+        ],
+        "phase": [
+          0.20879168298171125,
+          0.9738307579007826
+        ],
+        "transfer_truth": {
+          "donor_reference": 8,
+          "parallel": true,
+          "coplanar": false,
+          "materials": [
+            [
+              "minecraft:polished_andesite"
+            ],
+            [
+              "minecraft:tuff"
+            ]
+          ]
+        }
+      },
+      {
+        "proposal": "mask-0-mobile-0-single-238-1",
+        "guess": {
+          "current": [
+            10,
+            1
+          ],
+          "coplanar": [
+            10,
+            1
+          ]
+        },
+        "reference": 8,
+        "actual": [
+          10,
+          1
+        ]
+      },
+      {
+        "proposal": "mask-0-mobile-1",
+        "guess": {
+          "current": [
+            null,
+            null
+          ],
+          "coplanar": [
+            1,
+            5
+          ]
+        },
+        "reference": 7,
+        "actual": [
+          1,
+          5
+        ],
+        "transfer": {
+          "donor": "mask-1",
+          "recipient_offset": [
+            12,
+            3
+          ],
+          "donor_grid_to_image": [
+            [
+              14.431100841770213,
+              12.586355735691786,
+              704.4590311967303
+            ],
+            [
+              -10.982881404616148,
+              54.52439115696411,
+              450.72800172745735
+            ],
+            [
+              -0.03719781677375253,
+              0.017481049632905272,
+              1.4424457523860044
+            ]
+          ],
+          "depth_log_error": 0.11838647574918203,
+          "edge_residual": 0.3731839410455189,
+          "gap_blocks": 0.0,
+          "raw_bounds": [
+            [
+              11.63750790564136,
+              2.626816058954481
+            ],
+            [
+              12.82195837832836,
+              7.963544058579972
+            ]
+          ]
+        },
+        "quad": [
+          [
+            857.8723393939468,
+            441.64003556915225
+          ],
+          [
+            912.1426651750427,
+            448.01676306399764
+          ],
+          [
+            895.9163882149812,
+            673.5837368628999
+          ],
+          [
+            846.6756977832439,
+            659.0736333592395
+          ]
+        ],
+        "phase": [
+          0.3624920943586396,
+          0.3731839410455189
+        ],
+        "transfer_truth": {
+          "donor_reference": 4,
+          "parallel": true,
+          "coplanar": false,
+          "materials": [
+            [
+              "minecraft:stone_bricks"
+            ],
+            [
+              "minecraft:tuff"
+            ]
+          ]
+        }
+      },
+      {
+        "proposal": "mask-0-mobile-2",
+        "guess": {
+          "current": [
+            null,
+            null
+          ],
+          "coplanar": [
+            null,
+            null
+          ]
+        }
+      },
+      {
+        "proposal": "mask-1",
+        "guess": {
+          "current": [
+            14,
+            7
+          ],
+          "coplanar": [
+            14,
+            7
+          ]
+        },
+        "reference": 4,
+        "actual": [
+          15,
+          7
+        ]
+      },
+      {
+        "proposal": "mask-2",
+        "guess": {
+          "current": [
+            null,
+            null
+          ],
+          "coplanar": [
+            null,
+            null
+          ]
+        },
+        "reference": 5,
+        "actual": [
+          10,
+          5
+        ]
+      },
+      {
+        "proposal": "mask-3",
+        "guess": {
+          "current": [
+            null,
+            null
+          ],
+          "coplanar": [
+            null,
+            null
+          ]
+        },
+        "reference": 19,
+        "actual": [
+          8,
+          7
+        ]
+      },
+      {
+        "proposal": "mask-4",
+        "guess": {
+          "current": [
+            null,
+            null
+          ],
+          "coplanar": [
+            null,
+            null
+          ]
+        }
+      },
+      {
+        "proposal": "mask-5",
+        "guess": {
+          "current": [
+            null,
+            null
+          ],
+          "coplanar": [
+            null,
+            null
+          ]
+        },
+        "reference": 12,
+        "actual": [
+          10,
+          3
+        ]
+      },
+      {
+        "proposal": "mask-6",
+        "guess": {
+          "current": [
+            null,
+            null
+          ],
+          "coplanar": [
+            null,
+            null
+          ]
+        },
+        "reference": 13,
+        "actual": [
+          15,
+          5
+        ]
+      },
+      {
+        "proposal": "mask-7",
+        "guess": {
+          "current": [
+            null,
+            null
+          ],
+          "coplanar": [
+            null,
+            null
+          ]
+        }
+      },
+      {
+        "proposal": "mask-8",
+        "guess": {
+          "current": [
+            null,
+            null
+          ],
+          "coplanar": [
+            null,
+            null
+          ]
+        },
+        "reference": 16,
+        "actual": [
+          3,
+          4
+        ]
+      },
+      {
+        "proposal": "mask-9",
+        "guess": {
+          "current": [
+            null,
+            null
+          ],
+          "coplanar": [
+            null,
+            null
+          ]
+        },
+        "reference": 15,
+        "actual": [
+          1,
+          5
+        ]
+      },
+      {
+        "proposal": "mask-10",
+        "guess": {
+          "current": [
+            null,
+            null
+          ],
+          "coplanar": [
+            null,
+            null
+          ]
+        },
+        "reference": 18,
+        "actual": [
+          1,
+          5
+        ]
+      },
+      {
+        "proposal": "mask-11",
+        "guess": {
+          "current": [
+            null,
+            null
+          ],
+          "coplanar": [
+            null,
+            null
+          ]
+        },
+        "reference": 17,
+        "actual": [
+          2,
+          4
+        ]
+      },
+      {
+        "proposal": "mask-12",
+        "guess": {
+          "current": [
+            null,
+            7
+          ],
+          "coplanar": [
+            null,
+            7
+          ]
+        },
+        "reference": 14,
+        "actual": [
+          1,
+          4
+        ]
+      },
+      {
+        "proposal": "mask-13",
+        "guess": {
+          "current": [
+            null,
+            null
+          ],
+          "coplanar": [
+            null,
+            null
+          ]
+        },
+        "reference": 10,
+        "actual": [
+          2,
+          3
+        ]
+      },
+      {
+        "proposal": "mask-14",
+        "guess": {
+          "current": [
+            null,
+            null
+          ],
+          "coplanar": [
+            null,
+            null
+          ]
+        }
+      },
+      {
+        "proposal": "mask-15",
+        "guess": {
+          "current": [
+            null,
+            null
+          ],
+          "coplanar": [
+            null,
+            null
+          ]
+        }
+      }
+    ],
+    "depth_gate": {
+      "parallel_other_depth_pass": 4,
+      "parallel_other_depth_reject": 1,
+      "unpaired_pass": 4,
+      "same_plane_pass": 1
+    },
+    "processing_s": 0.021621699997922406
+  },
+  {
+    "key": "smooth_stone/dev-shopfront-masonry-low-left",
+    "sha256": "17691e7909ee0e9384db83c3a729f8763e21a281eb89b8dcebe61fc7675d1405",
+    "cohort": "development",
+    "layout": "shopfront",
+    "eligible": 16,
+    "surfaces": [
+      {
+        "proposal": "mask-0-wall-0",
+        "guess": {
+          "current": [
+            null,
+            3
+          ],
+          "coplanar": [
+            null,
+            3
+          ]
+        },
+        "reference": 11,
+        "actual": [
+          2,
+          4
+        ]
+      },
+      {
+        "proposal": "mask-0-wall-1-junction-0",
+        "guess": {
+          "current": [
+            null,
+            6
+          ],
+          "coplanar": [
+            null,
+            6
+          ]
+        },
+        "reference": 16,
+        "actual": [
+          10,
+          1
+        ]
+      },
+      {
+        "proposal": "mask-0-wall-1-junction-1",
+        "guess": {
+          "current": [
+            15,
+            7
+          ],
+          "coplanar": [
+            15,
+            7
+          ]
+        },
+        "reference": 12,
+        "actual": [
+          15,
+          7
+        ]
+      },
+      {
+        "proposal": "mask-1-single-283-0",
+        "guess": {
+          "current": [
+            null,
+            null
+          ],
+          "coplanar": [
+            null,
+            null
+          ]
+        }
+      },
+      {
+        "proposal": "mask-1-single-283-1",
+        "guess": {
+          "current": [
+            null,
+            null
+          ],
+          "coplanar": [
+            null,
+            null
+          ]
+        },
+        "reference": 13,
+        "actual": [
+          7,
+          5
+        ]
+      },
+      {
+        "proposal": "mask-1-single-283-2",
+        "guess": {
+          "current": [
+            null,
+            5
+          ],
+          "coplanar": [
+            null,
+            5
+          ]
+        },
+        "reference": 14,
+        "actual": [
+          1,
+          5
+        ]
+      },
+      {
+        "proposal": "mask-2",
+        "guess": {
+          "current": [
+            null,
+            null
+          ],
+          "coplanar": [
+            null,
+            null
+          ]
+        },
+        "reference": 1,
+        "actual": [
+          5,
+          7
+        ]
+      },
+      {
+        "proposal": "mask-3",
+        "guess": {
+          "current": [
+            4,
+            4
+          ],
+          "coplanar": [
+            4,
+            4
+          ]
+        },
+        "reference": 4,
+        "actual": [
+          3,
+          4
+        ]
+      },
+      {
+        "proposal": "mask-4",
+        "guess": {
+          "current": [
+            null,
+            null
+          ],
+          "coplanar": [
+            null,
+            null
+          ]
+        },
+        "reference": 6,
+        "actual": [
+          2,
+          4
+        ]
+      },
+      {
+        "proposal": "mask-5",
+        "guess": {
+          "current": [
+            null,
+            null
+          ],
+          "coplanar": [
+            null,
+            null
+          ]
+        },
+        "reference": 3,
+        "actual": [
+          3,
+          6
+        ]
+      },
+      {
+        "proposal": "mask-6",
+        "guess": {
+          "current": [
+            null,
+            null
+          ],
+          "coplanar": [
+            null,
+            null
+          ]
+        },
+        "reference": 5,
+        "actual": [
+          1,
+          5
+        ]
+      },
+      {
+        "proposal": "mask-7",
+        "guess": {
+          "current": [
+            null,
+            null
+          ],
+          "coplanar": [
+            null,
+            null
+          ]
+        },
+        "reference": 8,
+        "actual": [
+          10,
+          6
+        ]
+      },
+      {
+        "proposal": "mask-8",
+        "guess": {
+          "current": [
+            null,
+            null
+          ],
+          "coplanar": [
+            null,
+            null
+          ]
+        },
+        "reference": 2,
+        "actual": [
+          1,
+          4
+        ]
+      },
+      {
+        "proposal": "mask-9",
+        "guess": {
+          "current": [
+            null,
+            null
+          ],
+          "coplanar": [
+            null,
+            null
+          ]
+        }
+      },
+      {
+        "proposal": "mask-10",
+        "guess": {
+          "current": [
+            null,
+            null
+          ],
+          "coplanar": [
+            null,
+            null
+          ]
+        },
+        "reference": 18,
+        "actual": [
+          2,
+          3
+        ]
+      },
+      {
+        "proposal": "mask-11",
+        "guess": {
+          "current": [
+            null,
+            null
+          ],
+          "coplanar": [
+            null,
+            null
+          ]
+        }
+      }
+    ],
+    "depth_gate": {
+      "parallel_other_depth_reject": 4
+    },
+    "processing_s": 0.0044003000075463206
+  },
+  {
+    "key": "light_gray_concrete/dev-shopfront-masonry-low-left",
+    "sha256": "0359c24dea1b318ec9cd002a1523ae8fc0d7d59fc9d7418972cf9ce9af8d4d57",
+    "cohort": "development",
+    "layout": "shopfront",
+    "eligible": 16,
+    "surfaces": [
+      {
+        "proposal": "mask-0-junction-0",
+        "guess": {
+          "current": [
+            6,
+            1
+          ],
+          "coplanar": [
+            6,
+            1
+          ]
+        },
+        "reference": 16,
+        "actual": [
+          10,
+          1
+        ]
+      },
+      {
+        "proposal": "mask-0-junction-1",
+        "guess": {
+          "current": [
+            5,
+            2
+          ],
+          "coplanar": [
+            5,
+            2
+          ]
+        },
+        "reference": 12,
+        "actual": [
+          15,
+          7
+        ]
+      },
+      {
+        "proposal": "mask-1",
+        "guess": {
+          "current": [
+            null,
+            null
+          ],
+          "coplanar": [
+            null,
+            null
+          ]
+        },
+        "reference": 13,
+        "actual": [
+          7,
+          5
+        ]
+      },
+      {
+        "proposal": "mask-2",
+        "guess": {
+          "current": [
+            2,
+            4
+          ],
+          "coplanar": [
+            2,
+            4
+          ]
+        },
+        "reference": 11,
+        "actual": [
+          2,
+          4
+        ]
+      },
+      {
+        "proposal": "mask-3",
+        "guess": {
+          "current": [
+            4,
+            4
+          ],
+          "coplanar": [
+            4,
+            4
+          ]
+        },
+        "reference": 4,
+        "actual": [
+          3,
+          4
+        ]
+      },
+      {
+        "proposal": "mask-4",
+        "guess": {
+          "current": [
+            null,
+            null
+          ],
+          "coplanar": [
+            null,
+            null
+          ]
+        },
+        "reference": 1,
+        "actual": [
+          5,
+          7
+        ]
+      },
+      {
+        "proposal": "mask-5",
+        "guess": {
+          "current": [
+            null,
+            null
+          ],
+          "coplanar": [
+            null,
+            null
+          ]
+        },
+        "reference": 6,
+        "actual": [
+          2,
+          4
+        ]
+      },
+      {
+        "proposal": "mask-6",
+        "guess": {
+          "current": [
+            null,
+            null
+          ],
+          "coplanar": [
+            1,
+            5
+          ]
+        },
+        "reference": 15,
+        "actual": [
+          1,
+          5
+        ],
+        "transfer": {
+          "donor": "mask-0-junction-0",
+          "recipient_offset": [
+            3,
+            1
+          ],
+          "donor_grid_to_image": [
+            [
+              68.35058218022675,
+              -1.1005119484530503,
+              1013.628057568578
+            ],
+            [
+              13.995227010463987,
+              49.76565084418768,
+              402.6382447482664
+            ],
+            [
+              0.03025913513403193,
+              -0.0015284888172958982,
+              1.189942897729035
+            ]
+          ],
+          "depth_log_error": 0.012642479228189977,
+          "edge_residual": 0.20097348718502328,
+          "gap_blocks": 0.0,
+          "raw_bounds": [
+            [
+              3.0267714262791467,
+              1.1497923151432836
+            ],
+            [
+              4.200973487185023,
+              5.985800259583425
+            ]
+          ]
+        },
+        "quad": [
+          [
+            952.7036005271035,
+            392.42802039555096
+          ],
+          [
+            987.9863474936792,
+            394.3212140855027
+          ],
+          [
+            989.5008973868465,
+            580.5584490479882
+          ],
+          [
+            954.0554711986325,
+            583.8547993553864
+          ]
+        ],
+        "phase": [
+          0.9732285737208533,
+          0.8502076848567164
+        ],
+        "transfer_truth": {
+          "donor_reference": 16,
+          "parallel": true,
+          "coplanar": false,
+          "materials": [
+            [
+              "minecraft:polished_andesite"
+            ],
+            [
+              "minecraft:tuff"
+            ]
+          ]
+        }
+      },
+      {
+        "proposal": "mask-7",
+        "guess": {
+          "current": [
+            null,
+            null
+          ],
+          "coplanar": [
+            null,
+            null
+          ]
+        },
+        "reference": 3,
+        "actual": [
+          3,
+          6
+        ]
+      },
+      {
+        "proposal": "mask-8",
+        "guess": {
+          "current": [
+            null,
+            null
+          ],
+          "coplanar": [
+            null,
+            null
+          ]
+        },
+        "reference": 5,
+        "actual": [
+          1,
+          5
+        ]
+      },
+      {
+        "proposal": "mask-9",
+        "guess": {
+          "current": [
+            null,
+            null
+          ],
+          "coplanar": [
+            null,
+            null
+          ]
+        },
+        "reference": 8,
+        "actual": [
+          10,
+          6
+        ]
+      },
+      {
+        "proposal": "mask-10",
+        "guess": {
+          "current": [
+            null,
+            null
+          ],
+          "coplanar": [
+            null,
+            null
+          ]
+        },
+        "reference": 2,
+        "actual": [
+          1,
+          4
+        ]
+      },
+      {
+        "proposal": "mask-11",
+        "guess": {
+          "current": [
+            null,
+            null
+          ],
+          "coplanar": [
+            null,
+            null
+          ]
+        }
+      },
+      {
+        "proposal": "mask-12",
+        "guess": {
+          "current": [
+            null,
+            null
+          ],
+          "coplanar": [
+            null,
+            null
+          ]
+        },
+        "reference": 18,
+        "actual": [
+          2,
+          3
+        ]
+      },
+      {
+        "proposal": "mask-13",
+        "guess": {
+          "current": [
+            null,
+            null
+          ],
+          "coplanar": [
+            null,
+            null
+          ]
+        }
+      },
+      {
+        "proposal": "mask-14",
+        "guess": {
+          "current": [
+            null,
+            null
+          ],
+          "coplanar": [
+            null,
+            null
+          ]
+        }
+      },
+      {
+        "proposal": "mask-15",
+        "guess": {
+          "current": [
+            null,
+            null
+          ],
+          "coplanar": [
+            null,
+            null
+          ]
+        }
+      }
+    ],
+    "depth_gate": {
+      "parallel_other_depth_pass": 4,
+      "parallel_other_depth_reject": 4
+    },
+    "processing_s": 0.021963000006508082
+  },
+  {
+    "key": "smooth_stone/dev-shopfront-plaster-high-right",
+    "sha256": "ae58f28554348d924798e23bd492b88db06c2a099f590e325c514ecc5c8f9c7e",
+    "cohort": "development",
+    "layout": "shopfront",
+    "eligible": 14,
+    "surfaces": [
+      {
+        "proposal": "mask-0-wall-0",
+        "guess": {
+          "current": [
+            null,
+            null
+          ],
+          "coplanar": [
+            null,
+            null
+          ]
+        },
+        "reference": 8,
+        "actual": [
+          10,
+          1
+        ]
+      },
+      {
+        "proposal": "mask-0-wall-1-single-349-0-planarity-split-0",
+        "guess": {
+          "current": [
+            null,
+            null
+          ],
+          "coplanar": [
+            null,
+            null
+          ]
+        },
+        "reference": 6,
+        "actual": [
+          1,
+          5
+        ]
+      },
+      {
+        "proposal": "mask-0-wall-1-single-349-0-planarity-split-1",
+        "guess": {
+          "current": [
+            null,
+            null
+          ],
+          "coplanar": [
+            null,
+            null
+          ]
+        },
+        "reference": 5,
+        "actual": [
+          10,
+          5
+        ]
+      },
+      {
+        "proposal": "mask-0-wall-1-single-349-1",
+        "guess": {
+          "current": [
+            null,
+            null
+          ],
+          "coplanar": [
+            null,
+            null
+          ]
+        },
+        "reference": 7,
+        "actual": [
+          1,
+          5
+        ]
+      },
+      {
+        "proposal": "mask-1",
+        "guess": {
+          "current": [
+            null,
+            null
+          ],
+          "coplanar": [
+            null,
+            null
+          ]
+        },
+        "reference": 19,
+        "actual": [
+          8,
+          7
+        ]
+      },
+      {
+        "proposal": "mask-2",
+        "guess": {
+          "current": [
+            null,
+            null
+          ],
+          "coplanar": [
+            null,
+            null
+          ]
+        },
+        "reference": 4,
+        "actual": [
+          15,
+          7
+        ]
+      },
+      {
+        "proposal": "mask-3",
+        "guess": {
+          "current": [
+            null,
+            null
+          ],
+          "coplanar": [
+            null,
+            null
+          ]
+        },
+        "reference": 16,
+        "actual": [
+          3,
+          4
+        ]
+      },
+      {
+        "proposal": "mask-4",
+        "guess": {
+          "current": [
+            null,
+            null
+          ],
+          "coplanar": [
+            null,
+            null
+          ]
+        }
+      },
+      {
+        "proposal": "mask-5",
+        "guess": {
+          "current": [
+            null,
+            null
+          ],
+          "coplanar": [
+            null,
+            null
+          ]
+        },
+        "reference": 13,
+        "actual": [
+          15,
+          5
+        ]
+      },
+      {
+        "proposal": "mask-6",
+        "guess": {
+          "current": [
+            null,
+            null
+          ],
+          "coplanar": [
+            null,
+            null
+          ]
+        }
+      },
+      {
+        "proposal": "mask-7",
+        "guess": {
+          "current": [
+            null,
+            null
+          ],
+          "coplanar": [
+            null,
+            null
+          ]
+        },
+        "reference": 12,
+        "actual": [
+          10,
+          3
+        ]
+      },
+      {
+        "proposal": "mask-8",
+        "guess": {
+          "current": [
+            null,
+            null
+          ],
+          "coplanar": [
+            null,
+            null
+          ]
+        },
+        "reference": 17,
+        "actual": [
+          2,
+          4
+        ]
+      },
+      {
+        "proposal": "mask-9",
+        "guess": {
+          "current": [
+            null,
+            null
+          ],
+          "coplanar": [
+            null,
+            null
+          ]
+        },
+        "reference": 18,
+        "actual": [
+          1,
+          5
+        ]
+      },
+      {
+        "proposal": "mask-10",
+        "guess": {
+          "current": [
+            null,
+            null
+          ],
+          "coplanar": [
+            null,
+            null
+          ]
+        },
+        "reference": 15,
+        "actual": [
+          1,
+          5
+        ]
+      },
+      {
+        "proposal": "mask-11",
+        "guess": {
+          "current": [
+            null,
+            null
+          ],
+          "coplanar": [
+            null,
+            null
+          ]
+        },
+        "reference": 14,
+        "actual": [
+          1,
+          4
+        ]
+      },
+      {
+        "proposal": "mask-12",
+        "guess": {
+          "current": [
+            null,
+            null
+          ],
+          "coplanar": [
+            null,
+            null
+          ]
+        },
+        "reference": 10,
+        "actual": [
+          2,
+          3
+        ]
+      },
+      {
+        "proposal": "mask-13",
+        "guess": {
+          "current": [
+            null,
+            null
+          ],
+          "coplanar": [
+            null,
+            null
+          ]
+        }
+      },
+      {
+        "proposal": "mask-14",
+        "guess": {
+          "current": [
+            null,
+            null
+          ],
+          "coplanar": [
+            null,
+            null
+          ]
+        }
+      },
+      {
+        "proposal": "mask-15",
+        "guess": {
+          "current": [
+            null,
+            null
+          ],
+          "coplanar": [
+            null,
+            null
+          ]
+        }
+      }
+    ],
+    "depth_gate": {},
+    "processing_s": 0.006208700011484325
+  },
+  {
+    "key": "light_gray_concrete/dev-shopfront-plaster-high-right",
+    "sha256": "4cc1d5687db72eef74f23fc291fb7916b3f481ed4998d9e1c850024039d38cce",
+    "cohort": "development",
+    "layout": "shopfront",
+    "eligible": 14,
+    "surfaces": [
+      {
+        "proposal": "mask-0",
+        "guess": {
+          "current": [
+            null,
+            null
+          ],
+          "coplanar": [
+            null,
+            null
+          ]
+        },
+        "reference": 4,
+        "actual": [
+          15,
+          7
+        ]
+      },
+      {
+        "proposal": "mask-1-wall-0",
+        "guess": {
+          "current": [
+            null,
+            null
+          ],
+          "coplanar": [
+            null,
+            null
+          ]
+        },
+        "reference": 7,
+        "actual": [
+          1,
+          5
+        ]
+      },
+      {
+        "proposal": "mask-1-wall-1",
+        "guess": {
+          "current": [
+            null,
+            null
+          ],
+          "coplanar": [
+            null,
+            null
+          ]
+        }
+      },
+      {
+        "proposal": "mask-2",
+        "guess": {
+          "current": [
+            null,
+            null
+          ],
+          "coplanar": [
+            null,
+            null
+          ]
+        },
+        "reference": 8,
+        "actual": [
+          10,
+          1
+        ]
+      },
+      {
+        "proposal": "mask-3",
+        "guess": {
+          "current": [
+            null,
+            null
+          ],
+          "coplanar": [
+            null,
+            null
+          ]
+        }
+      },
+      {
+        "proposal": "mask-4",
+        "guess": {
+          "current": [
+            null,
+            null
+          ],
+          "coplanar": [
+            null,
+            null
+          ]
+        }
+      },
+      {
+        "proposal": "mask-5",
+        "guess": {
+          "current": [
+            null,
+            null
+          ],
+          "coplanar": [
+            null,
+            null
+          ]
+        },
+        "reference": 6,
+        "actual": [
+          1,
+          5
+        ]
+      },
+      {
+        "proposal": "mask-6",
+        "guess": {
+          "current": [
+            null,
+            null
+          ],
+          "coplanar": [
+            null,
+            null
+          ]
+        },
+        "reference": 16,
+        "actual": [
+          3,
+          4
+        ]
+      },
+      {
+        "proposal": "mask-7",
+        "guess": {
+          "current": [
+            null,
+            null
+          ],
+          "coplanar": [
+            null,
+            null
+          ]
+        }
+      },
+      {
+        "proposal": "mask-8",
+        "guess": {
+          "current": [
+            null,
+            null
+          ],
+          "coplanar": [
+            null,
+            null
+          ]
+        },
+        "reference": 12,
+        "actual": [
+          10,
+          3
+        ]
+      },
+      {
+        "proposal": "mask-9",
+        "guess": {
+          "current": [
+            null,
+            null
+          ],
+          "coplanar": [
+            null,
+            null
+          ]
+        },
+        "reference": 17,
+        "actual": [
+          2,
+          4
+        ]
+      },
+      {
+        "proposal": "mask-10",
+        "guess": {
+          "current": [
+            null,
+            null
+          ],
+          "coplanar": [
+            null,
+            null
+          ]
+        },
+        "reference": 18,
+        "actual": [
+          1,
+          5
+        ]
+      },
+      {
+        "proposal": "mask-11",
+        "guess": {
+          "current": [
+            null,
+            null
+          ],
+          "coplanar": [
+            null,
+            null
+          ]
+        },
+        "reference": 15,
+        "actual": [
+          1,
+          5
+        ]
+      },
+      {
+        "proposal": "mask-12",
+        "guess": {
+          "current": [
+            null,
+            null
+          ],
+          "coplanar": [
+            null,
+            null
+          ]
+        },
+        "reference": 14,
+        "actual": [
+          1,
+          4
+        ]
+      },
+      {
+        "proposal": "mask-13",
+        "guess": {
+          "current": [
+            null,
+            null
+          ],
+          "coplanar": [
+            null,
+            null
+          ]
+        }
+      },
+      {
+        "proposal": "mask-14",
+        "guess": {
+          "current": [
+            null,
+            null
+          ],
+          "coplanar": [
+            null,
+            null
+          ]
+        }
+      },
+      {
+        "proposal": "mask-15",
+        "guess": {
+          "current": [
+            null,
+            null
+          ],
+          "coplanar": [
+            null,
+            null
+          ]
+        }
+      },
+      {
+        "proposal": "mask-16",
+        "guess": {
+          "current": [
+            null,
+            null
+          ],
+          "coplanar": [
+            null,
+            null
+          ]
+        }
+      },
+      {
+        "proposal": "mask-17",
+        "guess": {
+          "current": [
+            null,
+            null
+          ],
+          "coplanar": [
+            null,
+            null
+          ]
+        }
+      },
+      {
+        "proposal": "mask-18",
+        "guess": {
+          "current": [
+            null,
+            null
+          ],
+          "coplanar": [
+            null,
+            null
+          ]
+        }
+      },
+      {
+        "proposal": "mask-19",
+        "guess": {
+          "current": [
+            null,
+            null
+          ],
+          "coplanar": [
+            null,
+            null
+          ]
+        }
+      },
+      {
+        "proposal": "mask-20",
+        "guess": {
+          "current": [
+            null,
+            null
+          ],
+          "coplanar": [
+            null,
+            null
+          ]
+        }
+      },
+      {
+        "proposal": "planarity-new-5-0",
+        "guess": {
+          "current": [
+            null,
+            null
+          ],
+          "coplanar": [
+            null,
+            null
+          ]
+        },
+        "reference": 19,
+        "actual": [
+          8,
+          7
+        ]
+      }
+    ],
+    "depth_gate": {},
+    "processing_s": 0.006576300016604364
+  },
+  {
+    "key": "smooth_stone/dev-shopfront-plaster-low-left",
+    "sha256": "5d0c9120de4ca16f35758f90a31e176e50a3cf166358dd9833ee2213d1ff2f72",
+    "cohort": "development",
+    "layout": "shopfront",
+    "eligible": 16,
+    "surfaces": [
+      {
+        "proposal": "mask-0-wall-0",
+        "guess": {
+          "current": [
+            2,
+            4
+          ],
+          "coplanar": [
+            2,
+            4
+          ]
+        },
+        "reference": 11,
+        "actual": [
+          2,
+          4
+        ]
+      },
+      {
+        "proposal": "mask-0-wall-1-single-244-0-planarity-split-0",
+        "guess": {
+          "current": [
+            null,
+            null
+          ],
+          "coplanar": [
+            13,
+            7
+          ]
+        },
+        "reference": 12,
+        "actual": [
+          15,
+          7
+        ],
+        "transfer": {
+          "donor": "mask-0-wall-1-single-244-2",
+          "recipient_offset": [
+            -5,
+            -2
+          ],
+          "donor_grid_to_image": [
+            [
+              65.04873266076875,
+              -4.146166788274796,
+              715.8815689767009
+            ],
+            [
+              16.283491390092443,
+              46.872717319462254,
+              398.6177746207519
+            ],
+            [
+              0.02947607385265864,
+              -0.0019378289999377382,
+              1.0584918315722132
+            ]
+          ],
+          "depth_log_error": 0.08320128841237283,
+          "edge_residual": 0.09880896633276137,
+          "gap_blocks": 0.0,
+          "raw_bounds": [
+            [
+              -4.997801817776907,
+              -2.065613709050212
+            ],
+            [
+              8.098808966332761,
+              4.966641469205621
+            ]
+          ]
+        },
+        "quad": [
+          [
+            436.35752835264174,
+            240.84377950795698
+          ],
+          [
+            961.6108839113485,
+            333.2835006344201
+          ],
+          [
+            949.143596309038,
+            592.809495574001
+          ],
+          [
+            410.61244570741826,
+            610.0992991147618
+          ]
+        ],
+        "phase": [
+          0.9978018177769066,
+          0.0656137090502118
+        ],
+        "transfer_truth": {
+          "donor_reference": 14,
+          "parallel": true,
+          "coplanar": false,
+          "materials": [
+            [
+              "minecraft:cobblestone"
+            ],
+            [
+              "minecraft:white_concrete"
+            ]
+          ]
+        }
+      },
+      {
+        "proposal": "mask-0-wall-1-single-244-0-planarity-split-1",
+        "guess": {
+          "current": [
+            10,
+            1
+          ],
+          "coplanar": [
+            10,
+            1
+          ]
+        },
+        "reference": 16,
+        "actual": [
+          10,
+          1
+        ]
+      },
+      {
+        "proposal": "mask-0-wall-1-single-244-1-planarity-split-0",
+        "guess": {
+          "current": [
+            null,
+            null
+          ],
+          "coplanar": [
+            null,
+            null
+          ]
+        },
+        "reference": 13,
+        "actual": [
+          7,
+          5
+        ]
+      },
+      {
+        "proposal": "mask-0-wall-1-single-244-1-planarity-split-1",
+        "guess": {
+          "current": [
+            null,
+            null
+          ],
+          "coplanar": [
+            2,
+            5
+          ]
+        },
+        "reference": 15,
+        "actual": [
+          1,
+          5
+        ],
+        "transfer": {
+          "donor": "mask-0-wall-1-single-244-0-planarity-split-1",
+          "recipient_offset": [
+            7,
+            1
+          ],
+          "donor_grid_to_image": [
+            [
+              65.99275963079309,
+              1.4204599372959432,
+              744.3412233497825
+            ],
+            [
+              12.428200658384563,
+              49.82008670652422,
+              347.2943344845935
+            ],
+            [
+              0.028679507418760092,
+              0.001972861024022142,
+              1.061835712235847
+            ]
+          ],
+          "depth_log_error": 0.08110109928388373,
+          "edge_residual": 0.41917095347842537,
+          "gap_blocks": 0.0,
+          "raw_bounds": [
+            [
+              6.580829046521575,
+              1.2734731050481876
+            ],
+            [
+              8.108427892183613,
+              6.247944285643019
+            ]
+          ]
+        },
+        "quad": [
+          [
+            942.0263295295057,
+            393.05195733646934
+          ],
+          [
+            987.9356801296005,
+            394.4132030859693
+          ],
+          [
+            985.9233673081998,
+            581.1097592256363
+          ],
+          [
+            940.3009685614705,
+            586.2357262556618
+          ]
+        ],
+        "phase": [
+          0.41917095347842537,
+          0.7265268949518124
+        ],
+        "transfer_truth": {
+          "donor_reference": 16,
+          "parallel": true,
+          "coplanar": false,
+          "materials": [
+            [
+              "minecraft:spruce_planks"
+            ],
+            [
+              "minecraft:cobblestone"
+            ]
+          ]
+        }
+      },
+      {
+        "proposal": "mask-0-wall-1-single-244-2",
+        "guess": {
+          "current": [
+            1,
+            5
+          ],
+          "coplanar": [
+            1,
+            5
+          ]
+        },
+        "reference": 14,
+        "actual": [
+          1,
+          5
+        ]
+      },
+      {
+        "proposal": "mask-1",
+        "guess": {
+          "current": [
+            null,
+            null
+          ],
+          "coplanar": [
+            null,
+            null
+          ]
+        },
+        "reference": 1,
+        "actual": [
+          5,
+          7
+        ]
+      },
+      {
+        "proposal": "mask-2",
+        "guess": {
+          "current": [
+            null,
+            null
+          ],
+          "coplanar": [
+            null,
+            null
+          ]
+        },
+        "reference": 4,
+        "actual": [
+          3,
+          4
+        ]
+      },
+      {
+        "proposal": "mask-3",
+        "guess": {
+          "current": [
+            null,
+            null
+          ],
+          "coplanar": [
+            null,
+            null
+          ]
+        },
+        "reference": 6,
+        "actual": [
+          2,
+          4
+        ]
+      },
+      {
+        "proposal": "mask-4",
+        "guess": {
+          "current": [
+            null,
+            null
+          ],
+          "coplanar": [
+            null,
+            null
+          ]
+        },
+        "reference": 5,
+        "actual": [
+          1,
+          5
+        ]
+      },
+      {
+        "proposal": "mask-5",
+        "guess": {
+          "current": [
+            null,
+            null
+          ],
+          "coplanar": [
+            null,
+            null
+          ]
+        }
+      },
+      {
+        "proposal": "mask-6",
+        "guess": {
+          "current": [
+            null,
+            null
+          ],
+          "coplanar": [
+            null,
+            null
+          ]
+        }
+      },
+      {
+        "proposal": "mask-7",
+        "guess": {
+          "current": [
+            null,
+            null
+          ],
+          "coplanar": [
+            null,
+            null
+          ]
+        },
+        "reference": 2,
+        "actual": [
+          1,
+          4
+        ]
+      },
+      {
+        "proposal": "mask-9",
+        "guess": {
+          "current": [
+            null,
+            null
+          ],
+          "coplanar": [
+            null,
+            null
+          ]
+        },
+        "reference": 18,
+        "actual": [
+          2,
+          3
+        ]
+      },
+      {
+        "proposal": "underside-0",
+        "guess": {
+          "current": [
+            null,
+            null
+          ],
+          "coplanar": [
+            null,
+            null
+          ]
+        },
+        "reference": 8,
+        "actual": [
+          10,
+          6
+        ]
+      }
+    ],
+    "depth_gate": {
+      "parallel_other_depth_pass": 5,
+      "same_plane_pass": 1
+    },
+    "processing_s": 0.007777999999234453
+  },
+  {
+    "key": "light_gray_concrete/dev-shopfront-plaster-low-left",
+    "sha256": "299e0228de74d2cc7d3a18deaba9f61c82560a0ddd0b8557e5c91728c964a993",
+    "cohort": "development",
+    "layout": "shopfront",
+    "eligible": 16,
+    "surfaces": [
+      {
+        "proposal": "mask-0-wall-0",
+        "guess": {
+          "current": [
+            2,
+            4
+          ],
+          "coplanar": [
+            2,
+            4
+          ]
+        },
+        "reference": 11,
+        "actual": [
+          2,
+          4
+        ]
+      },
+      {
+        "proposal": "mask-0-wall-1-single-339-0",
+        "guess": {
+          "current": [
+            null,
+            null
+          ],
+          "coplanar": [
+            16,
+            7
+          ]
+        },
+        "reference": 12,
+        "actual": [
+          15,
+          7
+        ],
+        "transfer": {
+          "donor": "mask-0-wall-0",
+          "recipient_offset": [
+            -2,
+            -2
+          ],
+          "donor_grid_to_image": [
+            [
+              55.96787201491657,
+              0.08097021406374101,
+              505.351952169019
+            ],
+            [
+              11.464591122836499,
+              40.22911928501323,
+              370.4447394850299
+            ],
+            [
+              0.026434166667449844,
+              -0.000926216414774525,
+              0.9667500245265173
+            ]
+          ],
+          "depth_log_error": 0.05297875951960364,
+          "edge_residual": 0.15933809489098527,
+          "gap_blocks": 0.0,
+          "raw_bounds": [
+            [
+              -2.05281260491024,
+              -2.1593380948909853
+            ],
+            [
+              13.928291364581828,
+              5.143022159304506
+            ]
+          ]
+        },
+        "quad": [
+          [
+            426.7815002351117,
+            284.3585495109739
+          ],
+          [
+            960.9412865759422,
+            331.54892340337307
+          ],
+          [
+            966.2719341100646,
+            554.0844955564087
+          ],
+          [
+            430.6128915348008,
+            610.1089143472896
+          ]
+        ],
+        "phase": [
+          0.05281260491023998,
+          0.15933809489098527
+        ],
+        "transfer_truth": {
+          "donor_reference": 11,
+          "parallel": true,
+          "coplanar": false,
+          "materials": [
+            [
+              "minecraft:cobblestone"
+            ],
+            [
+              "minecraft:white_concrete"
+            ]
+          ]
+        }
+      },
+      {
+        "proposal": "mask-0-wall-1-single-339-1",
+        "guess": {
+          "current": [
+            null,
+            null
+          ],
+          "coplanar": [
+            11,
+            6
+          ]
+        },
+        "transfer": {
+          "donor": "mask-0-wall-0",
+          "recipient_offset": [
+            4,
+            0
+          ],
+          "donor_grid_to_image": [
+            [
+              55.96787201491657,
+              0.08097021406374101,
+              505.351952169019
+            ],
+            [
+              11.464591122836499,
+              40.22911928501323,
+              370.4447394850299
+            ],
+            [
+              0.026434166667449844,
+              -0.000926216414774525,
+              0.9667500245265173
+            ]
+          ],
+          "depth_log_error": 0.23277166030619234,
+          "edge_residual": 0.21726963340837474,
+          "gap_blocks": 1.982879011241791,
+          "raw_bounds": [
+            [
+              3.834063673200766,
+              -0.21726963340837474
+            ],
+            [
+              14.942093682991137,
+              6.0878501523620585
+            ]
+          ]
+        },
+        "quad": [
+          [
+            673.8909538875434,
+            379.72438504055935
+          ],
+          [
+            985.0789205827823,
+            391.36223689386486
+          ],
+          [
+            989.6975521544566,
+            580.0918488249623
+          ],
+          [
+            678.0755627221297,
+            620.5490527902205
+          ]
+        ],
+        "phase": [
+          0.1659363267992342,
+          0.21726963340837474
+        ]
+      },
+      {
+        "proposal": "mask-0-wall-1-single-339-2",
+        "guess": {
+          "current": [
+            null,
+            null
+          ],
+          "coplanar": [
+            null,
+            null
+          ]
+        },
+        "reference": 16,
+        "actual": [
+          10,
+          1
+        ]
+      },
+      {
+        "proposal": "mask-1-mobile-0",
+        "guess": {
+          "current": [
+            null,
+            null
+          ],
+          "coplanar": [
+            null,
+            null
+          ]
+        },
+        "reference": 9,
+        "actual": [
+          1,
+          4
+        ]
+      },
+      {
+        "proposal": "mask-1-mobile-1",
+        "guess": {
+          "current": [
+            null,
+            null
+          ],
+          "coplanar": [
+            null,
+            null
+          ]
+        },
+        "reference": 4,
+        "actual": [
+          3,
+          4
+        ]
+      },
+      {
+        "proposal": "mask-2",
+        "guess": {
+          "current": [
+            null,
+            null
+          ],
+          "coplanar": [
+            null,
+            null
+          ]
+        },
+        "reference": 6,
+        "actual": [
+          2,
+          4
+        ]
+      },
+      {
+        "proposal": "mask-3",
+        "guess": {
+          "current": [
+            null,
+            null
+          ],
+          "coplanar": [
+            null,
+            null
+          ]
+        },
+        "reference": 1,
+        "actual": [
+          5,
+          7
+        ]
+      },
+      {
+        "proposal": "mask-4",
+        "guess": {
+          "current": [
+            null,
+            null
+          ],
+          "coplanar": [
+            null,
+            null
+          ]
+        },
+        "reference": 5,
+        "actual": [
+          1,
+          5
+        ]
+      },
+      {
+        "proposal": "mask-5",
+        "guess": {
+          "current": [
+            null,
+            5
+          ],
+          "coplanar": [
+            null,
+            5
+          ]
+        },
+        "reference": 3,
+        "actual": [
+          3,
+          6
+        ]
+      },
+      {
+        "proposal": "mask-6",
+        "guess": {
+          "current": [
+            null,
+            4
+          ],
+          "coplanar": [
+            null,
+            4
+          ]
+        }
+      },
+      {
+        "proposal": "mask-7",
+        "guess": {
+          "current": [
+            null,
+            null
+          ],
+          "coplanar": [
+            null,
+            null
+          ]
+        },
+        "reference": 2,
+        "actual": [
+          1,
+          4
+        ]
+      },
+      {
+        "proposal": "mask-9",
+        "guess": {
+          "current": [
+            null,
+            null
+          ],
+          "coplanar": [
+            null,
+            null
+          ]
+        }
+      },
+      {
+        "proposal": "mask-10",
+        "guess": {
+          "current": [
+            null,
+            null
+          ],
+          "coplanar": [
+            null,
+            null
+          ]
+        },
+        "reference": 18,
+        "actual": [
+          2,
+          3
+        ]
+      },
+      {
+        "proposal": "underside-0",
+        "guess": {
+          "current": [
+            null,
+            null
+          ],
+          "coplanar": [
+            null,
+            null
+          ]
+        },
+        "reference": 8,
+        "actual": [
+          10,
+          6
+        ]
+      }
+    ],
+    "depth_gate": {
+      "parallel_other_depth_pass": 1,
+      "unpaired_pass": 2,
+      "parallel_other_depth_reject": 5,
+      "different_direction_reject": 1
+    },
+    "processing_s": 0.005005800019716844
+  },
+  {
+    "key": "smooth_stone/dev-wing-masonry-close-front",
+    "sha256": "9ce65a1c07694c1d3e57019c07b422d7a6a0771ed0d46f579891eae8a61463a9",
+    "cohort": "development",
+    "layout": "wing",
+    "eligible": 1,
+    "surfaces": [
+      {
+        "proposal": "mask-0",
+        "guess": {
+          "current": [
+            6,
+            4
+          ],
+          "coplanar": [
+            6,
+            4
+          ]
+        },
+        "reference": 1,
+        "actual": [
+          8,
+          6
+        ]
+      }
+    ],
+    "depth_gate": {},
+    "processing_s": 0.0011593000090215355
+  },
+  {
+    "key": "light_gray_concrete/dev-wing-masonry-close-front",
+    "sha256": "9ce65a1c07694c1d3e57019c07b422d7a6a0771ed0d46f579891eae8a61463a9",
+    "cohort": "development",
+    "layout": "wing",
+    "eligible": 1,
+    "surfaces": [
+      {
+        "proposal": "mask-0",
+        "guess": {
+          "current": [
+            6,
+            4
+          ],
+          "coplanar": [
+            6,
+            4
+          ]
+        },
+        "reference": 1,
+        "actual": [
+          8,
+          6
+        ]
+      }
+    ],
+    "depth_gate": {},
+    "processing_s": 0.0012737000070046633
+  },
+  {
+    "key": "smooth_stone/dev-wing-masonry-high-right",
+    "sha256": "8cd9e20f608db25df6d141941051d30afcbf80733ea4c6f2058874c02019bf9f",
+    "cohort": "development",
+    "layout": "wing",
+    "eligible": 5,
+    "surfaces": [
+      {
+        "proposal": "mask-0",
+        "guess": {
+          "current": [
+            13,
+            8
+          ],
+          "coplanar": [
+            13,
+            8
+          ]
+        },
+        "reference": 2,
+        "actual": [
+          13,
+          8
+        ]
+      },
+      {
+        "proposal": "mask-1",
+        "guess": {
+          "current": [
+            4,
+            4
+          ],
+          "coplanar": [
+            4,
+            4
+          ]
+        },
+        "reference": 1,
+        "actual": [
+          4,
+          4
+        ]
+      },
+      {
+        "proposal": "mask-2",
+        "guess": {
+          "current": [
+            null,
+            null
+          ],
+          "coplanar": [
+            null,
+            null
+          ]
+        },
+        "reference": 7,
+        "actual": [
+          4,
+          8
+        ]
+      },
+      {
+        "proposal": "mask-3",
+        "guess": {
+          "current": [
+            null,
+            4
+          ],
+          "coplanar": [
+            null,
+            4
+          ]
+        },
+        "reference": 8,
+        "actual": [
+          4,
+          4
+        ]
+      },
+      {
+        "proposal": "mask-4",
+        "guess": {
+          "current": [
+            null,
+            null
+          ],
+          "coplanar": [
+            null,
+            null
+          ]
+        },
+        "reference": 3,
+        "actual": [
+          4,
+          4
+        ]
+      },
+      {
+        "proposal": "mask-5",
+        "guess": {
+          "current": [
+            null,
+            null
+          ],
+          "coplanar": [
+            null,
+            null
+          ]
+        }
+      },
+      {
+        "proposal": "mask-6",
+        "guess": {
+          "current": [
+            null,
+            null
+          ],
+          "coplanar": [
+            null,
+            null
+          ]
+        }
+      },
+      {
+        "proposal": "mask-7",
+        "guess": {
+          "current": [
+            null,
+            null
+          ],
+          "coplanar": [
+            null,
+            null
+          ]
+        }
+      }
+    ],
+    "depth_gate": {},
+    "processing_s": 0.001313500019023195
+  },
+  {
+    "key": "light_gray_concrete/dev-wing-masonry-high-right",
+    "sha256": "5ccd9115fd2a70784e0e1ab6819d37fc5c4af54cf965605143b3817e1f3a3efd",
+    "cohort": "development",
+    "layout": "wing",
+    "eligible": 5,
+    "surfaces": [
+      {
+        "proposal": "mask-0",
+        "guess": {
+          "current": [
+            13,
+            8
+          ],
+          "coplanar": [
+            13,
+            8
+          ]
+        },
+        "reference": 2,
+        "actual": [
+          13,
+          8
+        ]
+      },
+      {
+        "proposal": "mask-1",
+        "guess": {
+          "current": [
+            4,
+            4
+          ],
+          "coplanar": [
+            4,
+            4
+          ]
+        },
+        "reference": 1,
+        "actual": [
+          4,
+          4
+        ]
+      },
+      {
+        "proposal": "mask-2",
+        "guess": {
+          "current": [
+            null,
+            null
+          ],
+          "coplanar": [
+            null,
+            null
+          ]
+        },
+        "reference": 7,
+        "actual": [
+          4,
+          8
+        ]
+      },
+      {
+        "proposal": "mask-3",
+        "guess": {
+          "current": [
+            4,
+            4
+          ],
+          "coplanar": [
+            4,
+            4
+          ]
+        },
+        "reference": 8,
+        "actual": [
+          4,
+          4
+        ]
+      },
+      {
+        "proposal": "mask-4",
+        "guess": {
+          "current": [
+            null,
+            null
+          ],
+          "coplanar": [
+            null,
+            null
+          ]
+        }
+      },
+      {
+        "proposal": "mask-5",
+        "guess": {
+          "current": [
+            null,
+            null
+          ],
+          "coplanar": [
+            null,
+            null
+          ]
+        }
+      }
+    ],
+    "depth_gate": {},
+    "processing_s": 0.001977800013264641
+  },
+  {
+    "key": "smooth_stone/dev-wing-masonry-low-left",
+    "sha256": "0c7bc49ce3c736391d7954a9c069aee29586f03fd33a2a88926b40257ccae6ce",
+    "cohort": "development",
+    "layout": "wing",
+    "eligible": 3,
+    "surfaces": [
+      {
+        "proposal": "mask-0-single-453-0",
+        "guess": {
+          "current": [
+            14,
+            8
+          ],
+          "coplanar": [
+            14,
+            8
+          ]
+        },
+        "reference": 3,
+        "actual": [
+          13,
+          8
+        ]
+      },
+      {
+        "proposal": "mask-0-single-453-1",
+        "guess": {
+          "current": [
+            3,
+            4
+          ],
+          "coplanar": [
+            3,
+            4
+          ]
+        },
+        "reference": 2,
+        "actual": [
+          4,
+          4
+        ]
+      },
+      {
+        "proposal": "mask-1",
+        "guess": {
+          "current": [
+            null,
+            null
+          ],
+          "coplanar": [
+            null,
+            null
+          ]
+        },
+        "reference": 1,
+        "actual": [
+          4,
+          8
+        ]
+      },
+      {
+        "proposal": "mask-2",
+        "guess": {
+          "current": [
+            null,
+            null
+          ],
+          "coplanar": [
+            null,
+            null
+          ]
+        }
+      }
+    ],
+    "depth_gate": {},
+    "processing_s": 0.0015106000064406544
+  },
+  {
+    "key": "light_gray_concrete/dev-wing-masonry-low-left",
+    "sha256": "4e8817361e24c3f05e835d7af6c8bab3da96d50c8821828144f33bb1ea0e87d3",
+    "cohort": "development",
+    "layout": "wing",
+    "eligible": 3,
+    "surfaces": [
+      {
+        "proposal": "mask-0-single-474-0",
+        "guess": {
+          "current": [
+            14,
+            8
+          ],
+          "coplanar": [
+            14,
+            8
+          ]
+        },
+        "reference": 3,
+        "actual": [
+          13,
+          8
+        ]
+      },
+      {
+        "proposal": "mask-0-single-474-1",
+        "guess": {
+          "current": [
+            3,
+            4
+          ],
+          "coplanar": [
+            3,
+            4
+          ]
+        },
+        "reference": 2,
+        "actual": [
+          4,
+          4
+        ]
+      },
+      {
+        "proposal": "mask-1",
+        "guess": {
+          "current": [
+            null,
+            null
+          ],
+          "coplanar": [
+            null,
+            null
+          ]
+        },
+        "reference": 1,
+        "actual": [
+          4,
+          8
+        ]
+      }
+    ],
+    "depth_gate": {},
+    "processing_s": 0.001433299999916926
+  },
+  {
+    "key": "smooth_stone/dev-wing-plaster-close-front",
+    "sha256": "b3154136e855e9d005a993b8afdb3989e3fb156b102aed46ce0d99e761d2f2b8",
+    "cohort": "development",
+    "layout": "wing",
+    "eligible": 1,
+    "surfaces": [
+      {
+        "proposal": "mask-0",
+        "guess": {
+          "current": [
+            null,
+            null
+          ],
+          "coplanar": [
+            null,
+            null
+          ]
+        },
+        "reference": 1,
+        "actual": [
+          8,
+          6
+        ]
+      }
+    ],
+    "depth_gate": {},
+    "processing_s": 0.0004878999898210168
+  },
+  {
+    "key": "light_gray_concrete/dev-wing-plaster-close-front",
+    "sha256": "b3154136e855e9d005a993b8afdb3989e3fb156b102aed46ce0d99e761d2f2b8",
+    "cohort": "development",
+    "layout": "wing",
+    "eligible": 1,
+    "surfaces": [
+      {
+        "proposal": "mask-0",
+        "guess": {
+          "current": [
+            null,
+            null
+          ],
+          "coplanar": [
+            null,
+            null
+          ]
+        },
+        "reference": 1,
+        "actual": [
+          8,
+          6
+        ]
+      }
+    ],
+    "depth_gate": {},
+    "processing_s": 0.0008280999900307506
+  },
+  {
+    "key": "smooth_stone/dev-wing-plaster-high-right",
+    "sha256": "49832e903f4455c88c44f51da20abc550516d208783af9e3d05edc85ff4116a9",
+    "cohort": "development",
+    "layout": "wing",
+    "eligible": 5,
+    "surfaces": [
+      {
+        "proposal": "mask-0",
+        "guess": {
+          "current": [
+            4,
+            4
+          ],
+          "coplanar": [
+            4,
+            4
+          ]
+        },
+        "reference": 1,
+        "actual": [
+          4,
+          4
+        ]
+      },
+      {
+        "proposal": "mask-1",
+        "guess": {
+          "current": [
+            null,
+            null
+          ],
+          "coplanar": [
+            null,
+            null
+          ]
+        }
+      },
+      {
+        "proposal": "mask-2",
+        "guess": {
+          "current": [
+            null,
+            null
+          ],
+          "coplanar": [
+            null,
+            null
+          ]
+        },
+        "reference": 7,
+        "actual": [
+          4,
+          8
+        ]
+      },
+      {
+        "proposal": "mask-3",
+        "guess": {
+          "current": [
+            null,
+            null
+          ],
+          "coplanar": [
+            null,
+            null
+          ]
+        }
+      },
+      {
+        "proposal": "mask-4",
+        "guess": {
+          "current": [
+            4,
+            4
+          ],
+          "coplanar": [
+            4,
+            4
+          ]
+        },
+        "reference": 8,
+        "actual": [
+          4,
+          4
+        ]
+      },
+      {
+        "proposal": "mask-5",
+        "guess": {
+          "current": [
+            null,
+            null
+          ],
+          "coplanar": [
+            null,
+            null
+          ]
+        },
+        "reference": 3,
+        "actual": [
+          4,
+          4
+        ]
+      },
+      {
+        "proposal": "mask-6",
+        "guess": {
+          "current": [
+            null,
+            null
+          ],
+          "coplanar": [
+            null,
+            null
+          ]
+        }
+      },
+      {
+        "proposal": "planarity-new-1-0",
+        "guess": {
+          "current": [
+            null,
+            null
+          ],
+          "coplanar": [
+            null,
+            null
+          ]
+        },
+        "reference": 2,
+        "actual": [
+          13,
+          8
+        ]
+      }
+    ],
+    "depth_gate": {
+      "unpaired_pass": 2
+    },
+    "processing_s": 0.0016208000015467405
+  },
+  {
+    "key": "light_gray_concrete/dev-wing-plaster-high-right",
+    "sha256": "64d4fec367d669912de294146c1fa3e0bf871816ec4f52e57213e35db2968564",
+    "cohort": "development",
+    "layout": "wing",
+    "eligible": 5,
+    "surfaces": [
+      {
+        "proposal": "mask-0",
+        "guess": {
+          "current": [
+            null,
+            null
+          ],
+          "coplanar": [
+            null,
+            null
+          ]
+        },
+        "reference": 2,
+        "actual": [
+          13,
+          8
+        ]
+      },
+      {
+        "proposal": "mask-1",
+        "guess": {
+          "current": [
+            4,
+            4
+          ],
+          "coplanar": [
+            4,
+            4
+          ]
+        },
+        "reference": 1,
+        "actual": [
+          4,
+          4
+        ]
+      },
+      {
+        "proposal": "mask-2",
+        "guess": {
+          "current": [
+            null,
+            25
+          ],
+          "coplanar": [
+            null,
+            25
+          ]
+        },
+        "reference": 7,
+        "actual": [
+          4,
+          8
+        ]
+      },
+      {
+        "proposal": "mask-3",
+        "guess": {
+          "current": [
+            4,
+            4
+          ],
+          "coplanar": [
+            4,
+            4
+          ]
+        },
+        "reference": 8,
+        "actual": [
+          4,
+          4
+        ]
+      },
+      {
+        "proposal": "mask-4",
+        "guess": {
+          "current": [
+            null,
+            null
+          ],
+          "coplanar": [
+            null,
+            null
+          ]
+        },
+        "reference": 3,
+        "actual": [
+          4,
+          4
+        ]
+      },
+      {
+        "proposal": "mask-5",
+        "guess": {
+          "current": [
+            null,
+            null
+          ],
+          "coplanar": [
+            null,
+            null
+          ]
+        }
+      },
+      {
+        "proposal": "mask-6",
+        "guess": {
+          "current": [
+            null,
+            null
+          ],
+          "coplanar": [
+            null,
+            null
+          ]
+        }
+      },
+      {
+        "proposal": "mask-7",
+        "guess": {
+          "current": [
+            null,
+            null
+          ],
+          "coplanar": [
+            null,
+            null
+          ]
+        }
+      }
+    ],
+    "depth_gate": {
+      "parallel_other_depth_pass": 1,
+      "unpaired_pass": 1
+    },
+    "processing_s": 0.0033561000018380582
+  },
+  {
+    "key": "smooth_stone/dev-wing-plaster-low-left",
+    "sha256": "b564e5c3bb2def9511c27cf483dbb01dbe760b1bce8b6060be578c97b2083019",
+    "cohort": "development",
+    "layout": "wing",
+    "eligible": 3,
+    "surfaces": [
+      {
+        "proposal": "mask-0-wall-0",
+        "guess": {
+          "current": [
+            3,
+            4
+          ],
+          "coplanar": [
+            3,
+            4
+          ]
+        },
+        "reference": 2,
+        "actual": [
+          4,
+          4
+        ]
+      },
+      {
+        "proposal": "mask-0-wall-1",
+        "guess": {
+          "current": [
+            13,
+            8
+          ],
+          "coplanar": [
+            13,
+            8
+          ]
+        },
+        "reference": 3,
+        "actual": [
+          13,
+          8
+        ]
+      },
+      {
+        "proposal": "mask-1",
+        "guess": {
+          "current": [
+            null,
+            null
+          ],
+          "coplanar": [
+            null,
+            null
+          ]
+        },
+        "reference": 1,
+        "actual": [
+          4,
+          8
+        ]
+      }
+    ],
+    "depth_gate": {},
+    "processing_s": 0.001750199997331947
+  },
+  {
+    "key": "light_gray_concrete/dev-wing-plaster-low-left",
+    "sha256": "b1aa96442f2858b5435fc9af424de374ffafbade3cc74d059b85b6c1bfd7e13c",
+    "cohort": "development",
+    "layout": "wing",
+    "eligible": 3,
+    "surfaces": [
+      {
+        "proposal": "mask-0-wall-0",
+        "guess": {
+          "current": [
+            3,
+            4
+          ],
+          "coplanar": [
+            3,
+            4
+          ]
+        },
+        "reference": 2,
+        "actual": [
+          4,
+          4
+        ]
+      },
+      {
+        "proposal": "mask-0-wall-1",
+        "guess": {
+          "current": [
+            null,
+            null
+          ],
+          "coplanar": [
+            13,
+            8
+          ]
+        },
+        "reference": 3,
+        "actual": [
+          13,
+          8
+        ],
+        "transfer": {
+          "donor": "mask-0-wall-0",
+          "recipient_offset": [
+            -13,
+            -4
+          ],
+          "donor_grid_to_image": [
+            [
+              61.45245208646416,
+              -2.888623438160226,
+              1216.071661318838
+            ],
+            [
+              14.043326453016794,
+              42.84726705080549,
+              582.3127720273733
+            ],
+            [
+              0.028829929679986047,
+              -0.004011976997444717,
+              1.3001562979182286
+            ]
+          ],
+          "depth_log_error": 0.09171978320822025,
+          "edge_residual": 0.24254239660665267,
+          "gap_blocks": 0.0,
+          "raw_bounds": [
+            [
+              -12.946470433290374,
+              -4.242542396606653
+            ],
+            [
+              0.13099160513565053,
+              4.184221501931327
+            ]
+          ]
+        },
+        "quad": [
+          [
+            458.43839141567935,
+            231.71165097539279
+          ],
+          [
+            935.9725996923821,
+            304.6064103759518
+          ],
+          [
+            941.6453044450661,
+            593.1222399759457
+          ],
+          [
+            448.7222696655489,
+            637.0385332470811
+          ]
+        ],
+        "phase": [
+          0.946470433290374,
+          0.24254239660665267
+        ],
+        "transfer_truth": {
+          "donor_reference": 2,
+          "parallel": true,
+          "coplanar": false,
+          "materials": [
+            [
+              "minecraft:spruce_planks"
+            ],
+            [
+              "minecraft:white_concrete"
+            ]
+          ]
+        }
+      },
+      {
+        "proposal": "mask-1",
+        "guess": {
+          "current": [
+            null,
+            null
+          ],
+          "coplanar": [
+            null,
+            null
+          ]
+        },
+        "reference": 1,
+        "actual": [
+          4,
+          8
+        ]
+      },
+      {
+        "proposal": "mask-2",
+        "guess": {
+          "current": [
+            null,
+            null
+          ],
+          "coplanar": [
+            null,
+            null
+          ]
+        }
+      }
+    ],
+    "depth_gate": {
+      "parallel_other_depth_pass": 1
+    },
+    "processing_s": 0.0019730999774765223
+  }
+]
