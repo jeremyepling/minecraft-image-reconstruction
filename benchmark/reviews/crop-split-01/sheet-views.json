@@ -1,0 +1,1363 @@
+{
+  "views": [
+    {
+      "layout": "shopfront",
+      "cohort": "development",
+      "overview": {
+        "frame": "light_gray_concrete/dev-shopfront-masonry-high-right",
+        "sha256": "bb588b0b0d1cdb05b720ff5bc3b515479426c7772fd98fb7fadb8a55b79ca9db",
+        "scene_xyxy": [
+          472,
+          284,
+          1076,
+          696
+        ],
+        "methods": {
+          "current": {
+            "found": [
+              4,
+              5,
+              6,
+              7,
+              8,
+              10,
+              12,
+              13,
+              14,
+              15,
+              16,
+              17,
+              18,
+              19
+            ],
+            "missed": [],
+            "counts": {
+              "visible": 19,
+              "scored": 14,
+              "found": 14,
+              "missed": 0,
+              "small": 5,
+              "small_found": 2,
+              "unsampled": 0,
+              "proposed": 19,
+              "unmatched": 5,
+              "unpaired": 3
+            }
+          },
+          "split": {
+            "found": [
+              4,
+              5,
+              6,
+              7,
+              8,
+              10,
+              12,
+              13,
+              14,
+              15,
+              16,
+              17,
+              18,
+              19
+            ],
+            "missed": [],
+            "counts": {
+              "visible": 19,
+              "scored": 14,
+              "found": 14,
+              "missed": 0,
+              "small": 5,
+              "small_found": 2,
+              "unsampled": 0,
+              "proposed": 19,
+              "unmatched": 5,
+              "unpaired": 3
+            }
+          }
+        },
+        "raw_fields": {
+          "whole_image_fields_sha256": "639498d855d98130658c424b2b56344896a82be0f54ec9ded3ce9592db3e846e",
+          "crop_fields_sha256": "a2234c25c1deb814eae564902efeaa1522019d4dd5a1c5ac4605306354aec9fa"
+        }
+      },
+      "close_up": {
+        "frame": "smooth_stone/dev-shopfront-plaster-low-left",
+        "sha256": "5d0c9120de4ca16f35758f90a31e176e50a3cf166358dd9833ee2213d1ff2f72",
+        "different_view": true,
+        "focus_reference": 15,
+        "focus_reason": "Revisited miss",
+        "crop_xyxy": [
+          842,
+          357,
+          1100,
+          619
+        ],
+        "scene_xyxy": [
+          349,
+          232,
+          1153,
+          672
+        ],
+        "methods": {
+          "current": {
+            "found": false,
+            "overlap": 0.17177589852008457,
+            "proposal": "mask-0-wall-1-single-244-1",
+            "index": 4,
+            "visible_in_crop": true
+          },
+          "split": {
+            "found": true,
+            "overlap": 0.777511961722488,
+            "proposal": "mask-0-wall-1-single-244-1-planarity-split-1",
+            "index": 5,
+            "visible_in_crop": true
+          }
+        },
+        "raw_fields": {
+          "whole_image_fields_sha256": "cbd494a005cf37c5a081a718caddc6fea08d4821b1a7ccc443b6d31a97523369",
+          "crop_fields_sha256": "8b72c1d813fbf08943b2c9aa92f9aa1b4643eff5b50a3d65e1f78a8f1dd723b6"
+        },
+        "downstream": {
+          "surfaces": {
+            "current": {
+              "reference": 15,
+              "expected": [
+                1,
+                5
+              ],
+              "found": false,
+              "proposal": "mask-0-wall-1-single-244-1",
+              "blocks": [
+                null,
+                null
+              ]
+            },
+            "split": {
+              "reference": 15,
+              "expected": [
+                1,
+                5
+              ],
+              "found": true,
+              "proposal": "mask-0-wall-1-single-244-1-planarity-split-1",
+              "blocks": [
+                null,
+                null
+              ]
+            }
+          },
+          "openings": {
+            "frame": "smooth_stone/dev-shopfront-plaster-low-left",
+            "crop_xyxy": [
+              474,
+              522,
+              1002,
+              654
+            ],
+            "opening_samples": 127,
+            "filled_samples": {
+              "current": 11,
+              "split": 11,
+              "previous_zoom": 11
+            }
+          }
+        }
+      }
+    },
+    {
+      "layout": "wing",
+      "cohort": "development",
+      "overview": {
+        "frame": "smooth_stone/dev-wing-masonry-high-right",
+        "sha256": "8cd9e20f608db25df6d141941051d30afcbf80733ea4c6f2058874c02019bf9f",
+        "scene_xyxy": [
+          388,
+          292,
+          1032,
+          704
+        ],
+        "methods": {
+          "current": {
+            "found": [
+              1,
+              2,
+              3,
+              7,
+              8
+            ],
+            "missed": [],
+            "counts": {
+              "visible": 8,
+              "scored": 5,
+              "found": 5,
+              "missed": 0,
+              "small": 3,
+              "small_found": 0,
+              "unsampled": 2,
+              "proposed": 8,
+              "unmatched": 3,
+              "unpaired": 3
+            }
+          },
+          "split": {
+            "found": [
+              1,
+              2,
+              3,
+              7,
+              8
+            ],
+            "missed": [],
+            "counts": {
+              "visible": 8,
+              "scored": 5,
+              "found": 5,
+              "missed": 0,
+              "small": 3,
+              "small_found": 0,
+              "unsampled": 2,
+              "proposed": 8,
+              "unmatched": 3,
+              "unpaired": 3
+            }
+          }
+        },
+        "raw_fields": {
+          "whole_image_fields_sha256": "4c799d932fb106785656ebb163883baa96dac503c5c07abb9eefbf539e261bae",
+          "crop_fields_sha256": "499f034f9b1a9e6dc8cf98cc737164033a41345314085e7b02e3ff180d2e36d3"
+        }
+      },
+      "close_up": {
+        "frame": "smooth_stone/dev-wing-plaster-high-right",
+        "sha256": "49832e903f4455c88c44f51da20abc550516d208783af9e3d05edc85ff4116a9",
+        "different_view": true,
+        "focus_reference": 2,
+        "focus_reason": "Revisited miss",
+        "crop_xyxy": [
+          346,
+          253,
+          839,
+          719
+        ],
+        "scene_xyxy": [
+          297,
+          204,
+          1055,
+          768
+        ],
+        "methods": {
+          "current": {
+            "found": true,
+            "overlap": 0.771570453134699,
+            "proposal": "planarity-new-1-0",
+            "index": 8,
+            "visible_in_crop": true
+          },
+          "split": {
+            "found": true,
+            "overlap": 0.771570453134699,
+            "proposal": "planarity-new-1-0",
+            "index": 8,
+            "visible_in_crop": true
+          }
+        },
+        "raw_fields": {
+          "whole_image_fields_sha256": "dab965866fff6b9eeaea60ed67d65de4e9e859670d810f64011784ecac7c6c44",
+          "crop_fields_sha256": "040b4924413507cd4a5b33d1547459e38893979e6a0dc2918a1759227411c3cd"
+        },
+        "downstream": {
+          "surfaces": {
+            "current": {
+              "reference": 2,
+              "expected": [
+                13,
+                8
+              ],
+              "found": true,
+              "proposal": "planarity-new-1-0",
+              "blocks": [
+                null,
+                null
+              ]
+            },
+            "split": {
+              "reference": 2,
+              "expected": [
+                13,
+                8
+              ],
+              "found": true,
+              "proposal": "planarity-new-1-0",
+              "blocks": [
+                null,
+                null
+              ]
+            }
+          },
+          "openings": {
+            "frame": "light_gray_concrete/dev-wing-plaster-high-right",
+            "crop_xyxy": [
+              726,
+              594,
+              882,
+              706
+            ],
+            "opening_samples": 33,
+            "filled_samples": {
+              "current": 1,
+              "split": 1,
+              "previous_zoom": 27
+            }
+          }
+        }
+      }
+    },
+    {
+      "layout": "courtyard",
+      "cohort": "previously_reviewed_regression",
+      "overview": {
+        "frame": "light_gray_concrete/holdout-courtyard-masonry-high-right",
+        "sha256": "b5b2bb5300687da8d904fb129043b5d2df0ae56e9ba4e14afb932b3e6d44dd3b",
+        "scene_xyxy": [
+          392,
+          280,
+          1080,
+          696
+        ],
+        "methods": {
+          "current": {
+            "found": [
+              1,
+              2,
+              3,
+              4,
+              10,
+              11,
+              12
+            ],
+            "missed": [
+              5
+            ],
+            "counts": {
+              "visible": 12,
+              "scored": 8,
+              "found": 7,
+              "missed": 1,
+              "small": 4,
+              "small_found": 0,
+              "unsampled": 4,
+              "proposed": 8,
+              "unmatched": 1,
+              "unpaired": 1
+            }
+          },
+          "split": {
+            "found": [
+              1,
+              2,
+              3,
+              4,
+              10,
+              11,
+              12
+            ],
+            "missed": [
+              5
+            ],
+            "counts": {
+              "visible": 12,
+              "scored": 8,
+              "found": 7,
+              "missed": 1,
+              "small": 4,
+              "small_found": 0,
+              "unsampled": 4,
+              "proposed": 8,
+              "unmatched": 1,
+              "unpaired": 1
+            }
+          }
+        },
+        "raw_fields": {
+          "whole_image_fields_sha256": "521236fe55840e879c8f554fae5540145996ac8af5590252666e6579e4719da1",
+          "crop_fields_sha256": "be7d69bfac7701194c86178d65854bae16f357524e7daeb96a086d764ec85e8b"
+        }
+      },
+      "close_up": {
+        "frame": "light_gray_concrete/holdout-courtyard-masonry-high-right",
+        "sha256": "b5b2bb5300687da8d904fb129043b5d2df0ae56e9ba4e14afb932b3e6d44dd3b",
+        "different_view": false,
+        "focus_reference": 5,
+        "focus_reason": "Revisited miss",
+        "crop_xyxy": [
+          379,
+          224,
+          714,
+          458
+        ],
+        "scene_xyxy": [
+          326,
+          171,
+          1108,
+          726
+        ],
+        "methods": {
+          "current": {
+            "found": false,
+            "overlap": 0.39316239316239315,
+            "proposal": "mask-6",
+            "index": 8,
+            "visible_in_crop": true
+          },
+          "split": {
+            "found": false,
+            "overlap": 0.39316239316239315,
+            "proposal": "mask-6",
+            "index": 8,
+            "visible_in_crop": true
+          }
+        },
+        "raw_fields": {
+          "whole_image_fields_sha256": "521236fe55840e879c8f554fae5540145996ac8af5590252666e6579e4719da1",
+          "crop_fields_sha256": "be7d69bfac7701194c86178d65854bae16f357524e7daeb96a086d764ec85e8b"
+        },
+        "downstream": {
+          "surfaces": {
+            "current": {
+              "reference": 5,
+              "expected": [
+                5,
+                6
+              ],
+              "found": false,
+              "proposal": "mask-6",
+              "blocks": [
+                null,
+                null
+              ]
+            },
+            "split": {
+              "reference": 5,
+              "expected": [
+                5,
+                6
+              ],
+              "found": false,
+              "proposal": "mask-6",
+              "blocks": [
+                null,
+                null
+              ]
+            }
+          },
+          "openings": {
+            "frame": "light_gray_concrete/holdout-courtyard-plaster-high-right",
+            "crop_xyxy": [
+              478,
+              498,
+              858,
+              646
+            ],
+            "opening_samples": 529,
+            "filled_samples": {
+              "current": 11,
+              "split": 11,
+              "previous_zoom": 11
+            }
+          }
+        }
+      }
+    },
+    {
+      "layout": "portico",
+      "cohort": "previously_reviewed_regression",
+      "overview": {
+        "frame": "smooth_stone/holdout-portico-masonry-high-right",
+        "sha256": "54819d55b59d36a91e891bf2ff6148104d917d5ca59084f4f73edc43d623e390",
+        "scene_xyxy": [
+          404,
+          280,
+          1068,
+          672
+        ],
+        "methods": {
+          "current": {
+            "found": [
+              1,
+              2,
+              3,
+              4,
+              6,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15,
+              16,
+              17
+            ],
+            "missed": [
+              5,
+              7
+            ],
+            "counts": {
+              "visible": 17,
+              "scored": 17,
+              "found": 15,
+              "missed": 2,
+              "small": 0,
+              "small_found": 0,
+              "unsampled": 0,
+              "proposed": 17,
+              "unmatched": 2,
+              "unpaired": 2
+            }
+          },
+          "split": {
+            "found": [
+              1,
+              2,
+              3,
+              4,
+              6,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15,
+              16,
+              17
+            ],
+            "missed": [
+              5,
+              7
+            ],
+            "counts": {
+              "visible": 17,
+              "scored": 17,
+              "found": 15,
+              "missed": 2,
+              "small": 0,
+              "small_found": 0,
+              "unsampled": 0,
+              "proposed": 17,
+              "unmatched": 2,
+              "unpaired": 2
+            }
+          }
+        },
+        "raw_fields": {
+          "whole_image_fields_sha256": "e0758a56cc1955a4f5e50f2f9ccff1ca38bac2fc9a7d3f7ef2a88d9b0d725b94",
+          "crop_fields_sha256": "6d91654f892d7905f8f885aff6b6d2b00d5059e097e363a161c872ea4e89a4dc"
+        }
+      },
+      "close_up": {
+        "frame": "smooth_stone/holdout-portico-plaster-high-right",
+        "sha256": "fb687c20c5df87e79d9dd17ce48566c7f9fca2a092234bedff15fbe3f83b2e8c",
+        "different_view": true,
+        "focus_reference": 5,
+        "focus_reason": "Revisited miss",
+        "crop_xyxy": [
+          389,
+          405,
+          584,
+          603
+        ],
+        "scene_xyxy": [
+          338,
+          255,
+          1093,
+          700
+        ],
+        "methods": {
+          "current": {
+            "found": false,
+            "overlap": 0.09386068476977567,
+            "proposal": "mask-0-junction-1-single-206-0",
+            "index": 2,
+            "visible_in_crop": true
+          },
+          "split": {
+            "found": false,
+            "overlap": 0.09386068476977567,
+            "proposal": "mask-0-junction-1-single-206-0",
+            "index": 2,
+            "visible_in_crop": true
+          }
+        },
+        "raw_fields": {
+          "whole_image_fields_sha256": "2ef52498b50fadd507a7456c8c153558d166f40e164f5ddb6c7f9fb132c02ce0",
+          "crop_fields_sha256": "2f97208177d45b90d3306f35b5ae112b6f9fbb7abd849746a048a3c31ccf2f6e"
+        },
+        "downstream": {
+          "surfaces": {
+            "current": {
+              "reference": 5,
+              "expected": [
+                1,
+                5
+              ],
+              "found": false,
+              "proposal": "mask-0-junction-1-single-206-0",
+              "blocks": [
+                null,
+                null
+              ]
+            },
+            "split": {
+              "reference": 5,
+              "expected": [
+                1,
+                5
+              ],
+              "found": false,
+              "proposal": "mask-0-junction-1-single-206-0",
+              "blocks": [
+                null,
+                null
+              ]
+            }
+          },
+          "openings": {
+            "frame": "light_gray_concrete/holdout-portico-plaster-high-right",
+            "crop_xyxy": [
+              454,
+              386,
+              990,
+              698
+            ],
+            "opening_samples": 899,
+            "filled_samples": {
+              "current": 60,
+              "split": 60,
+              "previous_zoom": 60
+            }
+          }
+        }
+      }
+    },
+    {
+      "layout": "workshop",
+      "cohort": "previously_reviewed_regression",
+      "overview": {
+        "frame": "light_gray_concrete/holdout-workshop-plaster-high-right",
+        "sha256": "d35ab308820f92501ec898cafb1f50939f3f0ed1141e3d9ee38a00eae1199aa0",
+        "scene_xyxy": [
+          368,
+          248,
+          1052,
+          684
+        ],
+        "methods": {
+          "current": {
+            "found": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              8,
+              11,
+              12,
+              13,
+              14,
+              16
+            ],
+            "missed": [
+              15,
+              17,
+              18,
+              19
+            ],
+            "counts": {
+              "visible": 19,
+              "scored": 16,
+              "found": 12,
+              "missed": 4,
+              "small": 3,
+              "small_found": 0,
+              "unsampled": 1,
+              "proposed": 19,
+              "unmatched": 7,
+              "unpaired": 7
+            }
+          },
+          "split": {
+            "found": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              8,
+              11,
+              12,
+              13,
+              14,
+              16
+            ],
+            "missed": [
+              15,
+              17,
+              18,
+              19
+            ],
+            "counts": {
+              "visible": 19,
+              "scored": 16,
+              "found": 12,
+              "missed": 4,
+              "small": 3,
+              "small_found": 0,
+              "unsampled": 1,
+              "proposed": 19,
+              "unmatched": 7,
+              "unpaired": 7
+            }
+          }
+        },
+        "raw_fields": {
+          "whole_image_fields_sha256": "7b2edbf42e96667ce561a87c39396a5a126c2a57e39c34b02a9898f9e4272a69",
+          "crop_fields_sha256": "1fb2721f68d5bf814a1cdcf3bb67afcb790bc5cc629e4791b523808a37bc0830"
+        }
+      },
+      "close_up": {
+        "frame": "light_gray_concrete/holdout-workshop-masonry-low-left",
+        "sha256": "ae86fd9911640c7397bc929d3e0ca1076d84312b5500712cf2c4ec25e7c9112f",
+        "different_view": true,
+        "focus_reference": 1,
+        "focus_reason": "Revisited miss",
+        "crop_xyxy": [
+          381,
+          332,
+          518,
+          443
+        ],
+        "scene_xyxy": [
+          333,
+          166,
+          1027,
+          696
+        ],
+        "methods": {
+          "current": {
+            "found": false,
+            "overlap": 0.3269537480063796,
+            "proposal": "mask-4",
+            "index": 10,
+            "visible_in_crop": true
+          },
+          "split": {
+            "found": true,
+            "overlap": 0.7010309278350515,
+            "proposal": "mask-4-planarity-split-1",
+            "index": 11,
+            "visible_in_crop": true
+          }
+        },
+        "raw_fields": {
+          "whole_image_fields_sha256": "9e7f85c40e56f00821af75466a34749d921e29045bbd51331f66dae4f36d3cec",
+          "crop_fields_sha256": "17ab72994e7fb48cb870ff511b0842b034c4063619c322a0bd3ab23b6f2015a7"
+        },
+        "downstream": {
+          "surfaces": {
+            "current": {
+              "reference": 1,
+              "expected": [
+                9,
+                1
+              ],
+              "found": false,
+              "proposal": "mask-4",
+              "blocks": [
+                null,
+                null
+              ]
+            },
+            "split": {
+              "reference": 1,
+              "expected": [
+                9,
+                1
+              ],
+              "found": true,
+              "proposal": "mask-4-planarity-split-1",
+              "blocks": [
+                null,
+                null
+              ]
+            }
+          },
+          "openings": {
+            "frame": "light_gray_concrete/holdout-workshop-plaster-high-right",
+            "crop_xyxy": [
+              454,
+              402,
+              994,
+              710
+            ],
+            "opening_samples": 210,
+            "filled_samples": {
+              "current": 5,
+              "split": 5,
+              "previous_zoom": 5
+            }
+          }
+        }
+      }
+    },
+    {
+      "layout": "crossing",
+      "cohort": "previously_reviewed_regression",
+      "overview": {
+        "frame": "light_gray_concrete/holdout-crossing-masonry-low-left",
+        "sha256": "93c9a45dbb4d6bc59edc6c18ac8007ad4f99ac340844cb0ed8f171640936fa88",
+        "scene_xyxy": [
+          372,
+          260,
+          1032,
+          688
+        ],
+        "methods": {
+          "current": {
+            "found": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              14
+            ],
+            "missed": [],
+            "counts": {
+              "visible": 17,
+              "scored": 12,
+              "found": 12,
+              "missed": 0,
+              "small": 5,
+              "small_found": 1,
+              "unsampled": 0,
+              "proposed": 14,
+              "unmatched": 2,
+              "unpaired": 1
+            }
+          },
+          "split": {
+            "found": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              14
+            ],
+            "missed": [],
+            "counts": {
+              "visible": 17,
+              "scored": 12,
+              "found": 12,
+              "missed": 0,
+              "small": 5,
+              "small_found": 1,
+              "unsampled": 0,
+              "proposed": 14,
+              "unmatched": 2,
+              "unpaired": 1
+            }
+          }
+        },
+        "raw_fields": {
+          "whole_image_fields_sha256": "923b3cebc813c4912dce85c670019297b21ea2daa2456f6bd375bd8c1ddcba63",
+          "crop_fields_sha256": "8d2854407021b9343561fabc10513278bc38ee59801e52a0edbe49a4586571f6"
+        }
+      },
+      "close_up": {
+        "frame": "light_gray_concrete/holdout-crossing-plaster-high-right",
+        "sha256": "a7e9cd44bd97237bd3cbf88b11fdfa3575deee7473ef820b30e19bc5fe37698e",
+        "different_view": true,
+        "focus_reference": 6,
+        "focus_reason": "Revisited miss",
+        "crop_xyxy": [
+          389,
+          199,
+          1033,
+          649
+        ],
+        "scene_xyxy": [
+          340,
+          150,
+          1082,
+          748
+        ],
+        "methods": {
+          "current": {
+            "found": true,
+            "overlap": 0.8970340004822763,
+            "proposal": "mask-0-wall-0-junction-0",
+            "index": 1,
+            "visible_in_crop": true
+          },
+          "split": {
+            "found": true,
+            "overlap": 0.8970340004822763,
+            "proposal": "mask-0-wall-0-junction-0",
+            "index": 1,
+            "visible_in_crop": true
+          }
+        },
+        "raw_fields": {
+          "whole_image_fields_sha256": "7dfc28ba59b5a16c2d461e94e26aa21b10d6bc8542c4172175b5d0fa0f11875a",
+          "crop_fields_sha256": "33fb664c453a7e2822e1a3fa9803f7156b17bae3e95a01d29a1b6865ddc69fcd"
+        },
+        "downstream": {
+          "surfaces": {
+            "current": {
+              "reference": 6,
+              "expected": [
+                12,
+                3
+              ],
+              "found": true,
+              "proposal": "mask-0-wall-0-junction-0",
+              "blocks": [
+                null,
+                null
+              ]
+            },
+            "split": {
+              "reference": 6,
+              "expected": [
+                12,
+                3
+              ],
+              "found": true,
+              "proposal": "mask-0-wall-0-junction-0",
+              "blocks": [
+                null,
+                null
+              ]
+            }
+          },
+          "openings": {
+            "frame": "light_gray_concrete/holdout-crossing-plaster-high-right",
+            "crop_xyxy": [
+              694,
+              450,
+              826,
+              574
+            ],
+            "opening_samples": 1055,
+            "filled_samples": {
+              "current": 19,
+              "split": 19,
+              "previous_zoom": 60
+            }
+          }
+        }
+      }
+    },
+    {
+      "layout": "galleries",
+      "cohort": "previously_reviewed_regression",
+      "overview": {
+        "frame": "light_gray_concrete/holdout-galleries-masonry-low-left",
+        "sha256": "d0fba67900a91a20d0120f298c8783829953bc21c7d45fb4413a8cb829cfddc3",
+        "scene_xyxy": [
+          392,
+          252,
+          1080,
+          676
+        ],
+        "methods": {
+          "current": {
+            "found": [
+              1,
+              4,
+              8,
+              9,
+              10,
+              11,
+              12,
+              16,
+              19,
+              20,
+              23,
+              24,
+              25,
+              26,
+              27,
+              28,
+              29,
+              30
+            ],
+            "missed": [
+              2,
+              3,
+              6,
+              7,
+              13,
+              21,
+              22
+            ],
+            "counts": {
+              "visible": 30,
+              "scored": 25,
+              "found": 18,
+              "missed": 7,
+              "small": 5,
+              "small_found": 0,
+              "unsampled": 2,
+              "proposed": 29,
+              "unmatched": 11,
+              "unpaired": 11
+            }
+          },
+          "split": {
+            "found": [
+              1,
+              4,
+              8,
+              9,
+              10,
+              11,
+              12,
+              16,
+              19,
+              20,
+              23,
+              24,
+              25,
+              26,
+              27,
+              28,
+              29,
+              30
+            ],
+            "missed": [
+              2,
+              3,
+              6,
+              7,
+              13,
+              21,
+              22
+            ],
+            "counts": {
+              "visible": 30,
+              "scored": 25,
+              "found": 18,
+              "missed": 7,
+              "small": 5,
+              "small_found": 0,
+              "unsampled": 2,
+              "proposed": 29,
+              "unmatched": 11,
+              "unpaired": 11
+            }
+          }
+        },
+        "raw_fields": {
+          "whole_image_fields_sha256": "3ad044c0c66a9cfbde79cbbc113919000a29f69145b6ec6113345f3f97fbbbab",
+          "crop_fields_sha256": "761dff8139f50851cfe4826a20d1dbe2cca7fb3914329910ff8ab78356e16bbd"
+        }
+      },
+      "close_up": {
+        "frame": "light_gray_concrete/holdout-galleries-masonry-low-left",
+        "sha256": "d0fba67900a91a20d0120f298c8783829953bc21c7d45fb4413a8cb829cfddc3",
+        "different_view": false,
+        "focus_reference": 13,
+        "focus_reason": "Revisited miss",
+        "crop_xyxy": [
+          796,
+          429,
+          984,
+          546
+        ],
+        "scene_xyxy": [
+          362,
+          223,
+          1109,
+          706
+        ],
+        "methods": {
+          "current": {
+            "found": false,
+            "overlap": 0.36363636363636365,
+            "proposal": "underside-0",
+            "index": 28,
+            "visible_in_crop": true
+          },
+          "split": {
+            "found": false,
+            "overlap": 0.36363636363636365,
+            "proposal": "underside-0",
+            "index": 28,
+            "visible_in_crop": true
+          }
+        },
+        "raw_fields": {
+          "whole_image_fields_sha256": "3ad044c0c66a9cfbde79cbbc113919000a29f69145b6ec6113345f3f97fbbbab",
+          "crop_fields_sha256": "761dff8139f50851cfe4826a20d1dbe2cca7fb3914329910ff8ab78356e16bbd"
+        },
+        "downstream": {
+          "surfaces": {
+            "current": {
+              "reference": 13,
+              "expected": [
+                17,
+                10
+              ],
+              "found": false,
+              "proposal": "underside-0",
+              "blocks": [
+                null,
+                null
+              ]
+            },
+            "split": {
+              "reference": 13,
+              "expected": [
+                17,
+                10
+              ],
+              "found": false,
+              "proposal": "underside-0",
+              "blocks": [
+                null,
+                null
+              ]
+            }
+          },
+          "openings": {
+            "frame": "light_gray_concrete/holdout-galleries-plaster-high-right",
+            "crop_xyxy": [
+              470,
+              266,
+              1010,
+              698
+            ],
+            "opening_samples": 828,
+            "filled_samples": {
+              "current": 79,
+              "split": 79,
+              "previous_zoom": 79
+            }
+          }
+        }
+      }
+    },
+    {
+      "layout": "registry",
+      "cohort": "previously_reviewed_regression",
+      "overview": {
+        "frame": "light_gray_concrete/holdout-registry-masonry-high-right",
+        "sha256": "e20bfd5e2588ed117375acb3e2f7c42cebb2fdd1ab7167caf35b0b4298a98e19",
+        "scene_xyxy": [
+          408,
+          240,
+          1084,
+          700
+        ],
+        "methods": {
+          "current": {
+            "found": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              7,
+              8,
+              10
+            ],
+            "missed": [
+              6,
+              9
+            ],
+            "counts": {
+              "visible": 10,
+              "scored": 10,
+              "found": 8,
+              "missed": 2,
+              "small": 0,
+              "small_found": 0,
+              "unsampled": 0,
+              "proposed": 10,
+              "unmatched": 2,
+              "unpaired": 2
+            }
+          },
+          "split": {
+            "found": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              7,
+              8,
+              10
+            ],
+            "missed": [
+              6,
+              9
+            ],
+            "counts": {
+              "visible": 10,
+              "scored": 10,
+              "found": 8,
+              "missed": 2,
+              "small": 0,
+              "small_found": 0,
+              "unsampled": 0,
+              "proposed": 10,
+              "unmatched": 2,
+              "unpaired": 2
+            }
+          }
+        },
+        "raw_fields": {
+          "whole_image_fields_sha256": "77da0ec2c64d731d5e3934fd3d17d3624308f31d2de2147277135fe1b35be3cd",
+          "crop_fields_sha256": "2831a4aff3fbd1c8f433e08e786b7e4d77bf5898efc521687b24da138d639b1e"
+        }
+      },
+      "close_up": {
+        "frame": "light_gray_concrete/holdout-registry-plaster-low-left",
+        "sha256": "23e91937ee67563c1c4a463676a43c7d4800f82581a3188aa7125e32001be5e9",
+        "different_view": true,
+        "focus_reference": 4,
+        "focus_reason": "Revisited miss",
+        "crop_xyxy": [
+          748,
+          500,
+          960,
+          648
+        ],
+        "scene_xyxy": [
+          390,
+          215,
+          1017,
+          713
+        ],
+        "methods": {
+          "current": {
+            "found": false,
+            "overlap": 0.2203040453491368,
+            "proposal": "mask-0-wall-1-junction-1",
+            "index": 4,
+            "visible_in_crop": true
+          },
+          "split": {
+            "found": false,
+            "overlap": 0.2203040453491368,
+            "proposal": "mask-0-wall-1-junction-1",
+            "index": 4,
+            "visible_in_crop": true
+          }
+        },
+        "raw_fields": {
+          "whole_image_fields_sha256": "06cf34822085bcda608e9ec515d848b4ed2820666798e080c80aaebb34d004c4",
+          "crop_fields_sha256": "886a9ff65cc110ea69c6aa7be3cc86717ae6a405f655c458189f2043d99f5e6e"
+        },
+        "downstream": {
+          "surfaces": {
+            "current": {
+              "reference": 4,
+              "expected": [
+                6,
+                3
+              ],
+              "found": false,
+              "proposal": "mask-0-wall-1-junction-1",
+              "blocks": [
+                null,
+                null
+              ]
+            },
+            "split": {
+              "reference": 4,
+              "expected": [
+                6,
+                3
+              ],
+              "found": false,
+              "proposal": "mask-0-wall-1-junction-1",
+              "blocks": [
+                null,
+                null
+              ]
+            }
+          },
+          "openings": {
+            "frame": "light_gray_concrete/holdout-registry-masonry-high-right",
+            "crop_xyxy": [
+              486,
+              570,
+              906,
+              714
+            ],
+            "opening_samples": 482,
+            "filled_samples": {
+              "current": 0,
+              "split": 0,
+              "previous_zoom": 260
+            }
+          }
+        }
+      }
+    }
+  ],
+  "methods": {
+    "current": "Main default",
+    "split": "Split-only zoom"
+  },
+  "fixed_views_sha256": "e052002cfd6cb993b162fc8d9bb46131e75a186d53310a70dcf4fa5ebd775bdb",
+  "prior_misses_sha256": "79d422a2a83d914772aeb517cf65720da816302a0943a71fc90051b1d395f7c6",
+  "reference_sha256": "91efa6d3e992b1a68672eae1fdd6d380e87724742a1a4b6cbe5f84d284f731a1",
+  "matched": {
+    "current": 513,
+    "split": 516
+  },
+  "eligible": 598,
+  "definition": "Scores and gained/lost status use full surfaces, including regions beyond an enlarged crop.",
+  "selection": "Use the prior close-ups except for the named targets from the preceding experiment.",
+  "prior_detail_sheet_sha256": "18638aefdb3a030b74923ed9115cd8de343a54a5f1d0e87dedb5182d89a379a3",
+  "selected_detail_targets": {
+    "shopfront": [
+      "smooth_stone/dev-shopfront-plaster-low-left",
+      15
+    ],
+    "workshop": [
+      "light_gray_concrete/holdout-workshop-masonry-low-left",
+      1
+    ]
+  },
+  "image": {
+    "file": "comparison.jpg",
+    "width": 3504,
+    "height": 7732,
+    "sha256": "11813814f8a62b15b52cf54e23de10b8ed35117cfa612ee66def87177f8a699d"
+  }
+}

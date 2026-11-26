@@ -1,0 +1,60 @@
+{
+  "selection": "Previously proposed after reviewing guard-zoom-01; one rule fixed before this replay.",
+  "standalone_additions": false,
+  "counter": "masked-repeat",
+  "fields_manifest_sha256": "5dfa0b9bcf59c71ebed2c381349e0b9379a1931c327ba9550a887df8219cad75",
+  "backend_model": {
+    "upstream": "6bdd3a5d334bd716faae515a48e4408336d29b47",
+    "moge": "8147f21883be489543e47e7a4d6134833ef992c7",
+    "utils3d": "3fab839f0be9931dac7c8488eb0e1600c236e183",
+    "model_revision": "c09bd3361e64ff0dec473d6adc9456472e698d97",
+    "checkpoint_sha256": "305325096a80f541e430ccbb1b6581af67b3ef9d3c92f8d9384dc7aaae9f3952"
+  },
+  "tiling": {
+    "grid": [
+      3,
+      3
+    ],
+    "crop_fraction": 0.5,
+    "stride": 4,
+    "artificial_edge": "discard touching region",
+    "geometry": "Average full-image camera normals and points under registered tile labels",
+    "order": "row-major; for each parent retain one accepted split with the most supporting samples"
+  },
+  "preset": "relaxed-add-split",
+  "settings": {
+    "min_samples": 24,
+    "max_add_area_fraction": 0.22,
+    "min_novel_fraction": 0.6,
+    "contact_radius": 4,
+    "min_contact_samples": 3,
+    "max_duplicate_iou": 0.45,
+    "min_split_containment": 0.72,
+    "min_split_share": 0.12,
+    "min_split_coverage": 0.72,
+    "split_angle_deg": 18,
+    "split_plane_distance_fraction": 0.035
+  },
+  "frames": [
+    "smooth_stone/dev-shopfront-masonry-high-right",
+    "light_gray_concrete/dev-shopfront-masonry-high-right",
+    "smooth_stone/dev-shopfront-masonry-low-left",
+    "light_gray_concrete/dev-shopfront-masonry-low-left",
+    "smooth_stone/dev-shopfront-plaster-high-right",
+    "light_gray_concrete/dev-shopfront-plaster-high-right",
+    "smooth_stone/dev-shopfront-plaster-low-left",
+    "light_gray_concrete/dev-shopfront-plaster-low-left",
+    "smooth_stone/dev-wing-masonry-close-front",
+    "light_gray_concrete/dev-wing-masonry-close-front",
+    "smooth_stone/dev-wing-masonry-high-right",
+    "light_gray_concrete/dev-wing-masonry-high-right",
+    "smooth_stone/dev-wing-masonry-low-left",
+    "light_gray_concrete/dev-wing-masonry-low-left",
+    "smooth_stone/dev-wing-plaster-close-front",
+    "light_gray_concrete/dev-wing-plaster-close-front",
+    "smooth_stone/dev-wing-plaster-high-right",
+    "light_gray_concrete/dev-wing-plaster-high-right",
+    "smooth_stone/dev-wing-plaster-low-left",
+    "light_gray_concrete/dev-wing-plaster-low-left"
+  ]
+}

@@ -1,0 +1,149 @@
+{
+  "fixture": "light_gray_concrete/holdout-registry-masonry-high-right",
+  "screenshot_sha256": "e20bfd5e2588ed117375acb3e2f7c42cebb2fdd1ab7167caf35b0b4298a98e19",
+  "original_png_basename": "holdout-registry-masonry-high-right.png",
+  "stage_order": [
+    "color-edges",
+    "wall-depth-anything",
+    "junction-cuts",
+    "strip-mlsd",
+    "mobile-wall-split",
+    "single-wall-split",
+    "plane-recovery",
+    "plane-recovery-crop-splits"
+  ],
+  "model_sha256": {
+    "normal": "24eacb5dc7a2c54c7bc98f7de085ffbed79ad006ea5b664c2c2cdc02ff3a52f0",
+    "depth": "fcf51f1b230362b28690bb9d1809bf0431f29cad20534e3f589bd7285547f20d",
+    "mlsd": "e869f90601ffa263f21ac47e09ff0d65dc936d1aeb47126b8499d5504adfb100",
+    "scalelsd": "d0a7333c4de518a70af7d6ea4a283aa0ce9ffe1047525373b94070b1d1d4003f",
+    "mobilesam": "6dbb90523a35330fedd7f1d3dfc66f995213d81b29a5ca8108dbcdd4e37d6c2f",
+    "pixelwise_planarity": "305325096a80f541e430ccbb1b6581af67b3ef9d3c92f8d9384dc7aaae9f3952"
+  },
+  "visible_proposals": 10,
+  "reference_surfaces": 10,
+  "matched": 8,
+  "assignments": {
+    "mask-0-single-588-0": 2,
+    "mask-0-single-588-1": 1,
+    "mask-1": 10,
+    "mask-2": 3,
+    "mask-3": 8,
+    "mask-4": 4,
+    "mask-5": 7,
+    "mask-7": 5
+  },
+  "split_additional_reference_ids": [],
+  "crop_splits": {
+    "input_surfaces": 10,
+    "output_surfaces": 10,
+    "events": [],
+    "inference": {
+      "settings": {
+        "grid": [
+          3,
+          3
+        ],
+        "crop_fraction": 0.5,
+        "stride": 4,
+        "artificial_edge": "discard touching region",
+        "geometry": "Average full-image camera normals and points under registered tile labels",
+        "order": "row-major; for each parent retain one accepted split with the most supporting samples"
+      },
+      "boxes": [
+        [
+          0,
+          0,
+          720,
+          452
+        ],
+        [
+          360,
+          0,
+          1080,
+          452
+        ],
+        [
+          720,
+          0,
+          1440,
+          452
+        ],
+        [
+          0,
+          224,
+          720,
+          676
+        ],
+        [
+          360,
+          224,
+          1080,
+          676
+        ],
+        [
+          720,
+          224,
+          1440,
+          676
+        ],
+        [
+          0,
+          448,
+          720,
+          900
+        ],
+        [
+          360,
+          448,
+          1080,
+          900
+        ],
+        [
+          720,
+          448,
+          1440,
+          900
+        ]
+      ],
+      "count": 9,
+      "geometry_source": "same full-image inference",
+      "crop_inference_s": 0.7201150000328198,
+      "crop_segmentation_s": 0.1151644000201486
+    }
+  },
+  "all_saved_region_properties_equal": true,
+  "canonical_regions_sha256": "56b6134764a31abc016613a2ea2ec1183dd599c81664f65bdec8291ab85858cf",
+  "source_prediction_sha256": "08e3c5d8b65e9b3c111e514a8522577054efb2fadb00d7bcc2f7d24693062089",
+  "counter": "masked-repeat",
+  "block_count_records": 10,
+  "same_count_phase_and_dimensions_for_every_proposal": true,
+  "candidate_build": {
+    "input_basename": "screenshot-b.png",
+    "code": {
+      "commit": "c965f26e1298b611cc9955bc7c8e50d324bd4f17",
+      "predictor_and_runner_sha256": "bf747c0e5fc7db2cba0f88d586d317f6756c273e13ec08bb717103e39cebe6b9",
+      "source_dirty": false
+    },
+    "elapsed_s": 43.746717400004854,
+    "predictor_inputs": [
+      "source RGB",
+      "Java 26.3",
+      "pinned model weights"
+    ]
+  },
+  "raw_model_source": "fresh screenshot inference",
+  "model_revision": "c09bd3361e64ff0dec473d6adc9456472e698d97",
+  "model_load_s": 4.8556780999933835,
+  "full_frame_inference_s": 1.4364409999980126,
+  "full_frame_segmentation_s": 0.0675485999963712,
+  "baseline_opening_samples_covered": 0,
+  "candidate_opening_samples_covered": 0,
+  "opening_samples": 482,
+  "paired_sizes": {
+    "correct": 3,
+    "incorrect": 0,
+    "missing": 7,
+    "unmatched_returned": 0
+  }
+}
