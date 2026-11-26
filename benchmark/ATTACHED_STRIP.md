@@ -31,7 +31,7 @@ Reproduce from the repository root using a fresh output directory.
 
 The follow-up kept the shape and color tests and added one requirement. A single, independently predicted surface must run within three pixels of at least 90% of the strip, cover at least 75% of each quarter of its length at that distance, and have similar colors. The trim removes pixels from the original surface. It adds no pixels to the neighboring surface.
 
-| Across the same 56 views | Default | Shape and color | Also require a neighbor |
+| Across the same 56 views | Previous default | Shape and color | New default with neighbor check |
 |---|---:|---:|---:|
 | Correct surfaces out of 598 | 517 | 518 | 517 |
 | Incorrectly assigned pixels removed from matched surfaces | 0 | 2,390 | 516 |
@@ -41,7 +41,7 @@ The follow-up kept the shape and color tests and added one requirement. A single
 
 The neighbor check changed five surfaces across five pictures. On Courtyard B, another predicted surface ran alongside all 208 pixels removed from the beam. It had zero direct overlap with them. On the genuine Courtyard R5 wall extension, the closest surface reached just 168 of 596 candidate pixels. The rule kept that extension intact, including all 587 correctly assigned pixels. It also preserved the genuine 1 × 4 Shopfront face. The reviewed beam itself still had no complete block count. The newly correct count came from Registry R2.
 
-**Recommendation.** Promote the neighbor check as a conservative Surface Finder cleanup. It fixed the requested example and kept all previously matched surfaces and exact sizes. The current default still uses the original finder. These eight buildings have been reviewed before, so the observed zero collateral damage applies to this suite. On development buildings, the default and neighbor check each had 138 matches and 17 exact sizes. On the other reviewed buildings, both had 379 matches and exact sizes increased from 77 to 78.
+**Decision.** The neighbor check is the default Surface Finder cleanup after sky removal and before cropping. It fixed the requested example and kept all previously matched surfaces and exact sizes. These eight buildings have been reviewed before, so the observed zero collateral damage applies to this suite. On development buildings, the default and neighbor check each had 138 matches and 17 exact sizes. On the other reviewed buildings, both had 379 matches and exact sizes increased from 77 to 78.
 
 [Zoomable comparison](reviews/strip-neighbor-01/comparison.png) · [Per-picture results](reviews/strip-neighbor-01/cases.json) · [Scores and splits](reviews/strip-neighbor-01/scores.json) · [Manifest](reviews/strip-neighbor-01/manifest.json)
 

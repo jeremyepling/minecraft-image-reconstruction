@@ -30,12 +30,14 @@ For Pixel-wise Planarity, the wrapper accepts `-PlanaritySource`, `-PlanarityChe
 
 ```powershell
 New-Item -ItemType Directory -Force .\runs\plane-proof | Out-Null
-Copy-Item .\benchmark\data\surface-confirm-v1\captures\holdout-workshop-masonry-low-left.png .\runs\plane-proof\source.png
+Copy-Item .\benchmark\data\camera-gray-concrete-v1\captures\holdout-courtyard-masonry-high-right.png .\runs\plane-proof\source.png
 .\Invoke-WallRecovery.ps1 .\runs\plane-proof\source.png -Out .\runs\plane-proof\build
-python -m benchmark.verify_recovery_build --build runs/plane-proof/build --case light_gray_concrete/holdout-workshop-masonry-low-left
+python -m benchmark.verify_recovery_build --build runs/plane-proof/build --case light_gray_concrete/holdout-courtyard-masonry-high-right
 ```
 
-The sky-filtered Workshop build passed 13 regions to the Block Counter, down from 28 before the filter. Every saved region and block-count result matched the offline replay. The separate verification command reads the finished predictions and recorded building. [Current Workshop build](reviews/sky-entry-01/fresh-workshop.json) · [Earlier split-only zoom verification](reviews/default-zoom-workshop-01.json)
+On Courtyard, check the final `neighbor-supported-strip` entry in the build manifest. The beam should lose 208 stray pixels before straightening. [Default verification](reviews/default-strip-neighbor-01/)
+
+The earlier sky-filtered Workshop build passed 13 regions to the Block Counter, down from 28 before the filter. Every saved region and block-count result matched the offline replay. The separate verification command reads the finished predictions and recorded building. [Earlier Workshop build](reviews/sky-entry-01/fresh-workshop.json) · [Earlier split-only zoom verification](reviews/default-zoom-workshop-01.json)
 
 ### Earlier five-model result
 
