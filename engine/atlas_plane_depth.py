@@ -166,10 +166,37 @@ def options(mask, P, eye, rays, axis, baseline, rgb, atlas, scene_distance=None,
 
 def place_ranked(image, version, parts, counts, camera, *, atlas_path=None, joint_foreground=True, refine_faces=True):
     """Place image-supported grid cells and remove cells with no visible ray."""
-    from engine.foreground_conflicts import ForegroundConflicts
+    from engine import roof_height_atlas, roof_height_consensus
     strict = set()
+    resolved = {}
+    cells, status = _place_ranked_once(image, version, parts, counts, camera, atlas_path=atlas_path,
+                                      joint_foreground=joint_foreground, refine_faces=refine_faces,
+                                      strict_output=strict, resolved_output=resolved)
+    if not (version == '26.3' and cells and refine_faces and status['foreground_depth']['method'] == 'joint'):
+        return cells, status
+    evidence = roof_height_consensus.select(image, parts, counts, camera, cells, atlas_path)
+    overrides = roof_height_consensus.one_course_override(evidence['primary_height'], resolved)
+    if overrides:
+        strict.clear()
+        cells, status = _place_ranked_once(image, version, parts, counts, camera, atlas_path=atlas_path,
+                                          height_overrides=overrides, strict_output=strict)
+    verified, _ = roof_height_atlas.recover(image, parts, counts, camera, cells, atlas_path=atlas_path, mode='strict')
+    status['roof_height_revisions'] = {key: [resolved[key], level] for key, level in overrides.items()}
+    status['roof_height_added'] = len(verified - cells)
+    status['roof_height_removed'] = len(cells - verified)
+    status['strict_blocks'] = len(verified & strict)
+    status['added_blocks'] = len(verified) - status['strict_blocks']
+    status['placed_blocks'] = len(verified)
+    return verified, status
+
+
+def _place_ranked_once(image, version, parts, counts, camera, *, atlas_path=None, joint_foreground=True,
+                       refine_faces=True, height_overrides=None, strict_output=None, resolved_output=None):
+    from engine.foreground_conflicts import ForegroundConflicts
+    strict = set() if strict_output is None else strict_output
     cells, status = _place(image, version, parts, counts, camera, atlas_path, remove_occluded=True,
-                           scene_policy=ForegroundConflicts() if joint_foreground else None, strict_output=strict)
+                           scene_policy=ForegroundConflicts() if joint_foreground else None, strict_output=strict,
+                           height_overrides=height_overrides, resolved_output=resolved_output)
     if cells and status['foreground_depth']['method'] == 'joint':
         from engine import neighbor_photo_faces, visible_horizontal_faces
         textured = cells | neighbor_photo_faces.recover(image, parts, camera['P'], cells)
@@ -231,7 +258,7 @@ def place_ranked_without_ray(image, version, parts, counts, camera, *, atlas_pat
 
 
 def _place(image, version, parts, counts, camera, atlas_path, *, remove_occluded, recover_edges=True, scene_policy=None,
-           strict_output=None):
+           strict_output=None, height_overrides=None, resolved_output=None):
     if camera['P'] is None or not parts:
         cells, status = place_with_camera(image, version, parts, counts, camera)
         status['foreground_depth'] = dict(method='unavailable', changed_planes=0, reason='no supported camera or surfaces')
@@ -283,6 +310,11 @@ def _place(image, version, parts, counts, camera, atlas_path, *, remove_occluded
             scene_policy.levels.clear()
             foreground_status.update(method='independent', reason=f'foreground evidence unusable: {err}')
             return selections
+        if resolved_output is not None:
+            resolved_output.update(levels)
+        if height_overrides:
+            levels.update(height_overrides)
+            scene_policy.levels.update(height_overrides)
         foreground_status['changed_planes'] = sum(levels.get(row['id'], row['level']) != row['level']
                                                   for row in decisions)
         for row in decisions:

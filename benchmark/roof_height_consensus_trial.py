@@ -25,7 +25,7 @@ def consensus(image,parts,counts,camera,prior):
         return chosen
     try:
         with patch.object(ForegroundConflicts,'resolve',resolve):
-            cells,_=atlas_plane_depth.place_ranked(image,'26.3',parts,counts,camera,atlas_path=atlas_path)
+            cells,_=atlas_plane_depth._place_ranked_once(image,'26.3',parts,counts,camera,atlas_path=atlas_path)
     except UnchangedPlanes:
         cells=prior
     return cells,status

@@ -97,7 +97,7 @@ def recover(image,parts,counts,camera,prior,*,require_contacts=False):
         return chosen
     try:
         with patch.object(ForegroundConflicts,'resolve',resolve):
-            cells,_=atlas_plane_depth.place_ranked(image,'26.3',parts,counts,camera)
+            cells,_=atlas_plane_depth._place_ranked_once(image,'26.3',parts,counts,camera)
     except UnchangedPlanes:
         cells=prior
     return cells,status
