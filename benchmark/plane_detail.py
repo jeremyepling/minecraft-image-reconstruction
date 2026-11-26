@@ -14,7 +14,15 @@ from engine.surface_perimeter import _native_alpha
 
 SETTINGS = dict(minimum_region_iou=.70, radius_px=3, additions='Only inside previous visible proposal union')
 FIELD_DIR = ROOT/'benchmark/reviews/plane-detail-fields-01'
-METHODS = {'stride4': (4,1600), 'stride2': (2,1600), 'raw': (1,1600)}
+METHODS = {'stride4': (4,1600), 'stride2': (2,1600), 'raw': (1,1600),
+           'add2': (2,1600), 'add2-t2500': (2,2500)}
+
+
+def provenance(setting):
+    stride,tokens = METHODS[setting]
+    folder = FIELD_DIR if tokens == 1600 else ROOT/f'benchmark/reviews/plane-detail-fields-{tokens}'
+    return dict(field_manifests=[(folder/'manifest.json').relative_to(ROOT).as_posix()],
+                stride=stride, tokens=tokens, add_only=setting.startswith('add'), **SETTINGS)
 
 
 @lru_cache(maxsize=3)
@@ -73,6 +81,8 @@ def predict(photo, parts, frame_sha, setting):
         full = (2*radius+1)**2
         band = (around>0)&(around<full)&(near_plane>0)&(near_plane<full)
         revised = np.where(band,plane & union[box],parent)
+        if setting.startswith('add'):
+            revised |= parent
         if not revised.any() or np.array_equal(revised,parent):
             updated.append(part)
             continue
