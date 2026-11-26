@@ -101,16 +101,36 @@ def build(f,root,out):
     return dict(id=key,files={name:digest(dest/name) for name in ('surfaces.json','counts.json','build-manifest.json','reconstruction.zip')})
 
 
+def elevated(paired,out):
+    selected=[]
+    _,prior_images=known()
+    for row in read(paired)['selected']:
+        if row['source_id'].endswith('-left'):
+            name=row['source_id'].removesuffix('-left')+'-elevated'
+            f=frame(row['directory'],name)
+            assert f['shape']==row['shape'] and f['target_block_y']==row['target_block_y']
+            assert f['files']['rgb.png'] not in prior_images
+            if f['framing']['accepted']:
+                selected.append(f)
+    assert len(selected)==6
+    out.parent.mkdir(parents=True,exist_ok=True)
+    save(out,dict(selection='Elevated view of each of the six frozen layouts; separate visibility diagnostic.',
+                  paired_selection_sha256=digest(paired),selected=selected))
+
+
 if __name__=='__main__':
     p=argparse.ArgumentParser(description=__doc__)
-    p.add_argument('stage',choices=('select','build'))
+    p.add_argument('stage',choices=('select','elevated','build'))
     p.add_argument('--selection',type=Path,required=True)
     p.add_argument('--out',type=Path)
     p.add_argument('--previous-root',type=Path)
+    p.add_argument('--paired-selection',type=Path)
     p.add_argument('--workers',type=int,default=2)
     a=p.parse_args()
     if a.stage=='select':
         select(a.selection)
+    elif a.stage=='elevated':
+        elevated(a.paired_selection,a.selection)
     else:
         root=a.previous_root.resolve()
         revision=subprocess.check_output(['git','rev-parse','HEAD'],cwd=root,text=True).strip()

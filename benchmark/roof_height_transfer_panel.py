@@ -81,7 +81,7 @@ def score(f, assets, data, sources, out, pose_prior=None):
               for d in status.get('height_decisions',[]) if d.get('accepted')]
     elevated=Counter(y for x,y,z in before if y>0)
     modal=max(elevated,key=lambda y:(elevated[y],y)) if elevated else None
-    geometry=placement_scores(after_world,before_world,visible,occupied)
+    geometry=placement_scores(after_world,before_world,visible,occupied.keys())
     geometry['relative_geometry'].pop('joint_correct')
     roof_result=spacing.score(after_world,set(visible),spec)
     with patch.object(transfer,'BUILDS',sources):
@@ -114,7 +114,7 @@ def run(args):
     data=args.data
     sources=args.sources or (data/'sources' if (data/'sources').is_dir() else transfer.BUILDS)
     manifest=read(data/'builds.json')
-    frames=read(checked(SELECTION,manifest['selection_sha256']))['selected']
+    frames=read(checked(args.selection,manifest['selection_sha256']))['selected']
     builds={r['id']:r['files'] for r in manifest['rows']}
     assert builds.keys()=={f['id'] for f in frames}
     root=args.candidate_root.resolve()
@@ -133,7 +133,7 @@ def run(args):
     summary=dict(method=args.candidate,control='54c9fee',control_build_revision=manifest['revision'],
                  camera_mode='supplied-pose diagnostic' if args.pose_diagnostic else 'ordinary photograph only',
                  candidate_revision=subprocess.check_output(['git','rev-parse','HEAD'],cwd=root,text=True).strip(),
-                 selection_sha256=digest(SELECTION),input_manifest_sha256=digest(data/'builds.json'),
+                 selection_sha256=digest(args.selection),input_manifest_sha256=digest(data/'builds.json'),
                  cases_sha256=digest(args.out/'cases.json'),groups=groups)
     if args.candidate:
         summary['adapter_sha256']=digest(root.joinpath(*args.candidate.partition(':')[0].split('.')).with_suffix('.py'))
@@ -146,6 +146,7 @@ def run(args):
 if __name__=='__main__':
     p=argparse.ArgumentParser(description=__doc__)
     p.add_argument('--data',type=Path,required=True)
+    p.add_argument('--selection',type=Path,default=SELECTION)
     p.add_argument('--sources',type=Path)
     p.add_argument('--out',type=Path,required=True)
     p.add_argument('--candidate-root',type=Path,default=ROOT)

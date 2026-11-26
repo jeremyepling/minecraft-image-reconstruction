@@ -41,6 +41,7 @@ def prepare(job):
 if __name__=='__main__':
     p=argparse.ArgumentParser(description=__doc__)
     p.add_argument('--data',type=Path,required=True)
+    p.add_argument('--selection',type=Path,default=SELECTION)
     p.add_argument('--previous-root',type=Path,required=True)
     p.add_argument('--out',type=Path,required=True)
     p.add_argument('--workers',type=int,default=3)
@@ -49,7 +50,7 @@ if __name__=='__main__':
     rev=subprocess.check_output(['git','rev-parse','HEAD'],cwd=root,text=True).strip()
     assert rev.startswith('54c9fee')
     base=read(a.data/'builds.json')
-    frames=read(checked(SELECTION,base['selection_sha256']))['selected']
+    frames=read(checked(a.selection,base['selection_sha256']))['selected']
     index={r['id']:r['files'] for r in base['rows']}
     sources=a.data/'sources' if (a.data/'sources').is_dir() else transfer.BUILDS
     with ProcessPoolExecutor(max_workers=a.workers,initializer=scorer.init_candidate,
