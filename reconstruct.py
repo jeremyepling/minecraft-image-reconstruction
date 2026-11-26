@@ -84,7 +84,7 @@ def main():
                    help='Fit the camera, find visible surfaces, measure block counts, or build a datapack')
     p.add_argument('--surface-context-px', type=int,
                    help='Include this many neighboring source pixels per side in Regions First context crops (default 8)')
-    p.add_argument('--material-match', choices=['atlas','shape','shape-shadow'],
+    p.add_argument('--material-match', choices=['atlas','exposure','shape','shape-shadow'],
                    help='Identify complete visible cells against the versioned atlas with --through counts')
     p.add_argument('--version',help='Target Java version')
     p.add_argument('image',type=Path)
@@ -117,6 +117,8 @@ def run_image_command(parser,args):
             parser.error('--surface-context-px requires surfaces or counts and a nonnegative margin')
     if args.command=='build' and args.material_match in ('shape','shape-shadow') and not args.atlas:
         parser.error('--material-match shape and shape-shadow require --atlas')
+    if args.command=='build' and args.material_match=='exposure' and not (args.atlas and args.library):
+        parser.error('--material-match exposure requires --atlas and --library')
     if args.command=='build' and args.through!='counts' and args.material_match:
         parser.error('--material-match applies to --through counts')
     if args.command=='atlas':
@@ -129,7 +131,7 @@ def run_image_command(parser,args):
         if not args.version:
             parser.error('Camera and surface builds need --version')
         if (args.scene or args.geometry or args.depth is not None
-                or args.library or (args.atlas and args.through!='counts') or args.match_exposure
+                or (args.library and args.material_match!='exposure') or (args.atlas and args.through!='counts') or args.match_exposure
                 or args.white_balance or args.match_appearance):
             parser.error('Choose assembly for the supplied geometry or material placement options')
         if args.through == 'camera':
@@ -138,7 +140,7 @@ def run_image_command(parser,args):
         else:
             from engine.surface_model import build
             build(args.image,args.version,args.out,through=args.through,atlas_path=args.atlas,
-                  material_match=args.material_match,context_px=args.surface_context_px)
+                  material_match=args.material_match,context_px=args.surface_context_px,library=args.library)
     else:
         if not args.atlas:
             parser.error('An assembly build needs --atlas')

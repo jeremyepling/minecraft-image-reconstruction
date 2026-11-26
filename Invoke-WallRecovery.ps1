@@ -13,8 +13,9 @@ param(
     [string] $PlanarityUtils3D,
     [string] $PlanarityFields,
     [ValidateSet('cuda','cpu')][string] $Device,
-    [ValidateSet('atlas','shape','shape-shadow')][string] $MaterialMatch,
-    [string] $Atlas
+    [ValidateSet('atlas','exposure','shape','shape-shadow')][string] $MaterialMatch,
+    [string] $Atlas,
+    [string] $Library
 )
 
 $ErrorActionPreference = 'Stop'
@@ -77,6 +78,7 @@ try {
     }
     $materialOptions = @()
     if ($MaterialMatch) { $materialOptions += @('--material-match', $MaterialMatch) }
+    if ($Library) { $materialOptions += @('--library', (Resolve-Path -LiteralPath $Library).Path) }
     if ($Atlas) { $materialOptions += @('--atlas', (Resolve-Path -LiteralPath $Atlas).Path) }
     & $Python (Join-Path $PSScriptRoot 'reconstruct.py') build $sourceImage --version 26.3 --through $Through --out $destination @materialOptions
     if ($LASTEXITCODE -ne 0) { throw "Wall Recovery exited with code $LASTEXITCODE" }

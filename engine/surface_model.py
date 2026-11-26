@@ -272,6 +272,9 @@ def _count_regions(image, planes, version, method, atlas, out, shape_matcher=Non
                         from engine.blocker_shadow import cell_shadow, corrected
                         gains, shadow = cell_shadow(shadow_field, tile['quad'], len(patch))
                         patch = corrected(patch, gains)
+                    if getattr(shape_matcher, 'sample_size', None) == 16:
+                        from engine.geometry import face
+                        patch = face(np.asarray(image), tile['quad'], 16)
                     result = shape_matcher.rank_patch(patch)
                     result['block_id'] = 'minecraft:' + result['block_id']
                     result['ranked_ids'] = ['minecraft:' + b for b in result['ranked_ids']]
@@ -298,7 +301,7 @@ def _count_regions(image, planes, version, method, atlas, out, shape_matcher=Non
 
 
 def build(image_path, version, out, *, outlines=None, order_method=None, through='surfaces',
-          counter=None, atlas_path=None, material_match=None, context_px=None, boundary=None):
+          counter=None, atlas_path=None, material_match=None, context_px=None, boundary=None, library=None):
     from engine.atlas import digest
     from engine.surface_fields import MODELS, SETTINGS as inference, infer
     if version != '26.3':
@@ -495,6 +498,11 @@ def build(image_path, version, out, *, outlines=None, order_method=None, through
             if material_match == 'shape-shadow':
                 from engine.blocker_shadow import surface_shadow_map
                 shadow_field = surface_shadow_map(np.asarray(image.convert('RGB')), [p for p in patches if p.get('support')])
+        if material_match == 'exposure':
+            from engine.block_exposure import ExposureMatcher
+            shape_matcher = ExposureMatcher(atlas_path, library)
+            methods['material_matching'] = 'exposure'
+            manifest['material_library_sha256'] = digest(library)
         counts = _count_regions(image, patches, version, counter, atlas, out, shape_matcher, shadow_field)
         (out/'counts.json').write_text(json.dumps(counts, allow_nan=False, indent=2))
         manifest['artifact'] = 'counts.json'
