@@ -15,7 +15,7 @@ from engine.surface_perimeter import _native_alpha
 SETTINGS = dict(minimum_region_iou=.70, radius_px=3, additions='Only inside previous visible proposal union')
 FIELD_DIR = ROOT/'benchmark/reviews/plane-detail-fields-01'
 METHODS = {'stride4': (4,1600), 'stride2': (2,1600), 'raw': (1,1600),
-           'add2': (2,1600), 'add2-t2500': (2,2500)}
+           'add4': (4,1600), 'add2': (2,1600), 'add2-t2500': (2,2500)}
 
 
 def provenance(setting):
