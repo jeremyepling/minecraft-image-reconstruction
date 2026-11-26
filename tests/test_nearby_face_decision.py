@@ -36,6 +36,15 @@ class NearbyFaceDecisionTest(unittest.TestCase):
                    add=.7,drop=.2,margin=.2)
         self.assertEqual(rule.choose(data,model),(set(),set(),set()))
 
+    def test_unavailable_versioned_atlas_retains_original(self):
+        size=(100,80)
+        image=Image.new('RGB',size)
+        P,rot=camera(size,np.array([.5,.5,-5.]),[.5,.5,2.])
+        mask=dict(support=mask_runs(np.ones(size[::-1],bool)),normal_camera=rot[:,2])
+        prior={(0,0,0)}
+        with TemporaryDirectory() as empty:
+            self.assertIs(rule.recover(image,[mask],{'P':P},prior,atlas_path=Path(empty)),prior)
+
     def test_reprojection_competes_with_observed_source(self):
         size=(100,80)
         image=Image.new('RGB',size)

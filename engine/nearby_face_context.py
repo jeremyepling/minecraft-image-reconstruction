@@ -36,7 +36,7 @@ def enrich(data):
                 xyz=origin[candidates].copy()
                 xyz[:,direction]+=step
                 request=np.column_stack((xyz,keys[candidates]))
-                matches=np.array([table.get(tuple(row),-1) for row in request])
+                matches=np.array([table.get(tuple(row),-1) for row in request],dtype=int)
                 good=matches>=0
                 ids=candidates[good]
                 neighbors=metrics[matches[good]]
