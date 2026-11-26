@@ -14,7 +14,7 @@ from benchmark.strip_review_sheet import GOLD, overlay
 from benchmark.surface_detection_maps import _native_reference
 from benchmark.surface_pipeline_sheet import _picture, _straight_photo
 from benchmark.surface_reference import recorded
-from benchmark.texture_count_round import SOURCE
+from benchmark.texture_count_round import FINDERS
 from benchmark.wall_join_test import checked, read_gzip
 from engine.atlas_count import load_atlas
 from engine.geometry import UNIT, project
@@ -34,11 +34,12 @@ def measured(sample,part,photo,result):
     return dimensions(part,sample['quad'] if sample else None,photo.size,result['counts'])['blocks']
 
 
-def render(out):
+def render(out,finder='neighbor'):
     from benchmark.portico_repeat import predict as local_count
     from benchmark.portico_atlas import predict as atlas_count
 
-    rows={r['key']:r for r in read(SOURCE/'cases.json')}
+    source,source_method=FINDERS[finder]
+    rows={r['key']:r for r in read(source/'cases.json')}
     captures={c.floor+'/'+c.id:c for g in groups()[0].values() for c in g}
     atlas=load_atlas()
     width,height,left,top=392,210,230,141
@@ -63,7 +64,7 @@ def render(out):
         native=_native_reference(pose,ref,faces)
         target=reference_planes(ref,faces)[rid]
         part_id=next(p['proposal'] for p in row['paired_surfaces'] if p['reference']==rid)
-        part=next(p for p in read_gzip(SOURCE/row['predictions'])['current'] if p['id']==part_id)
+        part=next(p for p in read_gzip(source/row['predictions'])[source_method] if p['id']==part_id)
         truth=native==rid
         l,t,r,b=Image.fromarray(truth).getbbox()
         bx=(max(0,l-8),max(0,t-8),min(photo.width,r+8),min(photo.height,b+8))

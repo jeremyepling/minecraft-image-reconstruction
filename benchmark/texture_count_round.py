@@ -25,6 +25,8 @@ from runtime.mode import image_only, mark_image_only
 
 
 SOURCE = ROOT/'benchmark/reviews/detail-01'
+FINDERS = {'neighbor':(SOURCE,'current'),
+           'photo':(ROOT/'benchmark/reviews/edge-detail-stable-01','edge_detail:native4-stable-counts')}
 MODULES = {'repeat':'portico_repeat','atlas':'portico_atlas','rectify':'repeat_rectify'}
 
 
@@ -37,8 +39,9 @@ def scalar(x):
 
 
 def evaluate(job):
-    capture,row,pred_hash,methods,out = job
-    parts = read_gzip(checked(SOURCE/row['predictions'],pred_hash))['current']
+    capture,row,pred_hash,methods,out,finder = job
+    source,method = FINDERS[finder]
+    parts = read_gzip(checked(source/row['predictions'],pred_hash))[method]
     with Image.open(checked(capture.path('image'),row['sha256'])) as opened:
         photo = opened.convert('RGB')
     functions = {m:importlib.import_module('benchmark.'+MODULES[m]) for m in methods}
@@ -76,9 +79,9 @@ def evaluate(job):
     path.parent.mkdir(parents=True,exist_ok=True)
     path.write_bytes(gzip.compress(json.dumps(preds,allow_nan=False,default=scalar,separators=(',',':')).encode(),mtime=0))
     frame=dict(key=row['key'],layout=row['layout'],cohort=row['cohort'],sha256=row['sha256'],
-               eligible=row['scores']['current']['eligible'],predictions=rel,surfaces=records,processing_s=dict(timing))
+               eligible=row['scores'][method]['eligible'],predictions=rel,surfaces=records,processing_s=dict(timing))
     frame['scores']=summarize([frame],['current',*methods])
-    if any(frame['scores']['current'][k]!=v for k,v in row['sizes']['current'].items()):
+    if any(frame['scores']['current'][k]!=v for k,v in row['sizes'][method].items()):
         raise ValueError('Baseline size scores changed: '+row['key'])
     return frame
 
@@ -111,9 +114,10 @@ def summarize(rows,methods):
 
 
 @image_only()
-def run(out,methods,split,workers,sheet=False):
-    manifest=read(SOURCE/'manifest.json')
-    rows=read(checked(SOURCE/'cases.json',manifest['artifacts']['cases.json']))
+def run(out,methods,split,workers,sheet=False,finder='neighbor'):
+    source,source_method = FINDERS[finder]
+    manifest=read(source/'manifest.json')
+    rows=read(checked(source/'cases.json',manifest['artifacts']['cases.json']))
     cohorts,suite,fixtures=groups()
     cases={c.floor+'/'+c.id:c for group in cohorts.values() for c in group}
     if len(cases)!=56 or fixtures!=manifest['fixtures'] or set(cases)!={r['key'] for r in rows}:
@@ -122,7 +126,7 @@ def run(out,methods,split,workers,sheet=False):
     out.mkdir(parents=True,exist_ok=False)
     code=revision()
     with ProcessPoolExecutor(max_workers=workers,initializer=mark_image_only) as pool:
-        results=list(pool.map(evaluate,[(cases[r['key']],r,manifest['artifacts'][r['predictions']],methods,out) for r in rows]))
+        results=list(pool.map(evaluate,[(cases[r['key']],r,manifest['artifacts'][r['predictions']],methods,out,finder) for r in rows]))
     names=['current',*methods]
     scores={k:summarize([r for r in results if k in ('all',r['cohort'],r['layout'])],names)
             for k in dict.fromkeys(['all',*[r['cohort'] for r in rows],*[r['layout'] for r in rows]])}
@@ -130,18 +134,19 @@ def run(out,methods,split,workers,sheet=False):
     save(out/'cases.json',results)
     if sheet:
         from benchmark.texture_count_sheet import render
-        render(out)
+        render(out,finder)
     atlas_source = {}
     if 'atlas' in methods:
         from benchmark.portico_atlas import atlas
         atlas_source = atlas().provenance
     save(out/'manifest.json',dict(run_id=out.name,atlas=atlas_source,code=code,version=suite['version'],fixtures=fixtures,
          frames=[{k:r[k] for k in ('key','sha256','layout','cohort')} for r in rows],
-         source_manifest_sha256=digest(SOURCE/'manifest.json'),source_manifest='benchmark/reviews/detail-01/manifest.json',
+         source_manifest_sha256=digest(source/'manifest.json'),source_manifest=(source/'manifest.json').relative_to(ROOT).as_posix(),
+         source_method=source_method,
          reference_sha256=manifest['reference_sha256'],methods=names,split=split,workers=workers,
          settings={m:getattr(importlib.import_module('benchmark.'+MODULES[m]),'SETTINGS',{}) for m in methods},
          reproduce='python -m benchmark.texture_count_round '+' '.join('--method '+m for m in methods)
-                   +' --split '+split+' --out runs/my-texture-count'+(' --sheet' if sheet else ''),
+                   +' --finder '+finder+' --split '+split+' --out runs/my-texture-count'+(' --sheet' if sheet else ''),
          method_sha256={m:digest(ROOT/'benchmark'/(MODULES[m]+'.py')) for m in methods},
          timing='Per-frame CPU wall time per method. Candidate processing follows the shared baseline.',
          artifacts={p.relative_to(out).as_posix():digest(p) for p in sorted(out.rglob('*')) if p.is_file()}))
@@ -154,8 +159,9 @@ if __name__=='__main__':
     parser.add_argument('--split',choices=['development','previously_reviewed_regression','all'],default='all')
     parser.add_argument('--out',type=Path,required=True)
     parser.add_argument('--workers',type=int,default=4)
+    parser.add_argument('--finder',choices=FINDERS,default='neighbor')
     parser.add_argument('--sheet',action='store_true')
     args=parser.parse_args()
     if args.sheet and (set(args.method)!=set(MODULES) or args.split!='all'):
         parser.error('--sheet needs both methods on all views')
-    run(args.out.resolve(),args.method,args.split,args.workers,args.sheet)
+    run(args.out.resolve(),args.method,args.split,args.workers,args.sheet,args.finder)

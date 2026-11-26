@@ -22,6 +22,10 @@ Every method received the same single-image surface mask and face-on crop. The c
 
 **Keep the ordinary counter.** The extra crop-only matches supplied four new correct answers and seven new wrong ones. The atlas fallback supplied one extra wrong answer. It recognized stone bricks on Crossing and estimated 2 × 2 for a 2 × 3 wall. Finding a tile can establish a pitch without establishing where the whole surface starts or stops. [All image-only scores](reviews/texture-count-01/scores.json) · [Per-picture evidence and manifest](reviews/texture-count-01/manifest.json)
 
+## Image-only straightening follow-up
+
+We also fitted four edges from the predicted surface outline, resampled the original screenshot, and required a repeat to appear in two disjoint bands. This produced **116 exact sizes and 61 incorrect**, up from 95 and 50. It preserved every earlier correct pair. Of the 36 new complete estimates, 21 were correct, 11 were wrong and four belonged to unmatched surface proposals. The three featured Portico surfaces still had no correct complete count. Better crop coverage by itself cannot guarantee the correct perspective. [Per-picture results and settings](reviews/repeat-rectify-01/README.md)
+
 ## How much could better straightening help?
 
 The following diagnostic kept the counter fixed and gave it recorded plane corners, then recorded corners plus the true visible mask. Each cell lists exact / incorrect / unresolved sizes. Only surfaces already matched by the finder are included. The known-corner chart uses its vanishing directions for aspect; the Portico control above separately holds the predicted normal fixed.
