@@ -30,3 +30,24 @@ Review comments belong to this sheet’s run, image hash, proposal, stage and na
 ```
 
 Use a new output directory. The review reads the frozen screenshots and the selected finder’s archived predictions from `crop-split-01`. Minecraft stays closed.
+
+### Crop expansion
+
+Run `crop-fit-01` kept the finder, perspective axes, mask and Block Counter fixed on 56 saved views of eight previously reviewed buildings. Both challengers enlarged the window in the surface plane. Full expansion included the outermost mask edges. Guarded expansion skipped windows already covering 90% of the mask, ignored the extreme 1% at either end of each axis and limited the distance each side could grow.
+
+| On the same 56 views | Current crop | Full expansion | Guarded expansion |
+|---|---:|---:|---:|
+| Usable crops missing more than 10% of their detected surface | 67 | 0 | 2 |
+| Correct width and height in blocks | 94 | 90 | 93 |
+| Incorrect width or height | 51 | 51 | 51 |
+| Eligible surfaces without a complete size | 453 | 457 | 454 |
+
+All three methods started with 517 matched surfaces out of 598 and produced 456 usable crops. In the development buildings, exact/incorrect counts were 17/13, 17/14 and 17/13. On the previously reviewed regression buildings they were 77/38, 73/37 and 76/38. In the high-right plaster view of Portico on concrete, the current crop counted R12 correctly at 1 × 5. Both expansions still found five blocks vertically but lost the width. Full expansion added 168,654 pixels belonging to the correct recorded surfaces and 56,382 pixels from elsewhere already inside the predicted masks. Window coverage measures what the chart encloses before the sampler rejects boundary pixels. Neither alternative added an exact size. The ordinary crop remains the default.
+
+[Eight-building comparison](reviews/crop-fit-01/comparison.jpg) · [Per-picture measurements](reviews/crop-fit-01/cases.json) · [Building and split scores](reviews/crop-fit-01/scores.json) · [Manifest](reviews/crop-fit-01/manifest.json)
+
+Reproduce offline with a fresh output directory:
+
+```powershell
+.\Invoke-SurfaceRound.ps1 -Round crop-fit -Out runs/my-crop-fit
+```
