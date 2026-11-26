@@ -76,6 +76,14 @@ def postprocess(image,parts,counts,camera,prior):
     return policy.recover(image,parts,camera,prior,atlas_path=ATLAS)
 
 
+def trim(image,parts,counts,camera,prior):
+    return policy.recover(image,parts,camera,prior,atlas_path=ATLAS,mode='trim')
+
+
+def deeper(image,parts,counts,camera,prior):
+    return policy.recover(image,parts,camera,prior,atlas_path=ATLAS,mode='deeper')
+
+
 if __name__=='__main__':
     ap=argparse.ArgumentParser()
     ap.add_argument('--workers',type=int,default=4)
