@@ -55,7 +55,7 @@ The Wall Separator originally missed 175 surfaces. Of those, 138 were merged wit
 
 ## Replay
 
-This round introduced the five-model **Wall Recovery** build. Its original settings remain available as `-SurfaceBoundary wall-recovery`. The [single-outline round](SINGLE_WALL_DEPTH.md) selected the current surface default. [Single-image command and setup](WALL_RECOVERY_BUILD.md) · [Original build verification](reviews/wall-recovery-entry-01.json)
+This round introduced the five-model **Wall Recovery** build. Its masks and measured results are preserved in the `recovery-summary` replay below. The single-outline and Pixel-wise Planarity experiments later extended it. [Single-outline comparison](SINGLE_WALL_DEPTH.md) · [Selected six-model build](WALL_RECOVERY_BUILD.md) · [Original verification](reviews/wall-recovery-entry-01.json)
 
 From this checkout, regrade every saved prediction, run the Block Counter and regenerate the zoomable portrait sheet together.
 

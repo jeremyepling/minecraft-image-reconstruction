@@ -1,5 +1,7 @@
 # Tracing the visible form before estimating relief
 
+The command below documents the line-form prototype at its archived revision. The `benchmark.line_form_trials` commands at the end replay the experiment. [CLI snapshot at ca0a60c](https://github.com/jeremyepling/minecraft-image-reconstruction/tree/ca0a60c)
+
 ```console
 python reconstruct.py inspect-form IMAGE --out REVIEW
 ```

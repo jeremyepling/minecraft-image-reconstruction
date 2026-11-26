@@ -61,11 +61,6 @@ From the checkout on this PC, run one command. It verifies both downloaded check
 .\Invoke-SurfaceRound.ps1 -Round normals
 ```
 
-For an ordinary single-image surface build, use the first command. The second explicitly runs both learned components from this experiment. Each build writes `surfaces.json` and a `build-manifest.json` naming the applied methods. Material recognition, voxel placement and Minecraft recapture are separate from this geometry round.
-
-```console
-python reconstruct.py build IMAGE.png --version 26.3 --through surfaces --out runs/visible-default
-python reconstruct.py build IMAGE.png --version 26.3 --through surfaces --surface-outlines normal-regions --surface-order depth-anything --out runs/visible-models
-```
+The `normals` replay runs this round’s original outline and depth-order methods. For the selected six-model finder on one image, use the single-image build. [Surface Finder command and outputs](SURFACE_FINDER.md)
 
 Use `benchmark.camera_feedback` to record a visual preference against the run, source frame, floor, native-pixel rectangle and stage. Review entries go into the run's journal alongside the frozen scores. They do not feed into predictions. [Review regions](reviews/normals-01/review-regions.json) · [Feedback command](camera_feedback.py)

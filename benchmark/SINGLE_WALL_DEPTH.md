@@ -1,6 +1,6 @@
 # Can one outline separate a wall?
 
-**Yes. The default Surface Finder now finds 501 of 598 scored surfaces on the 56 saved pictures.** The previous five-model Wall Recovery pipeline found 471. The new rule keeps all five models and lets one MobileSAM outline divide a wall when Depth Anything V2 sees a consistent step across its edge. Allowing that single cut helped on all eight buildings. [Zoomable comparison](reviews/single-wall-depth-01/comparison.jpg) · [Every picture](reviews/single-wall-depth-01/pictures.md)
+**Yes. The single-outline method found 501 of 598 scored surfaces on the 56 saved pictures.** The previous five-model Wall Recovery pipeline found 471. The new rule keeps all five models and lets one MobileSAM outline divide a wall when Depth Anything V2 sees a consistent step across its edge. Allowing that single cut helped on all eight buildings. [Zoomable comparison](reviews/single-wall-depth-01/comparison.jpg) · [Every picture](reviews/single-wall-depth-01/pictures.md)
 
 ## What changed in the pictures?
 
@@ -14,7 +14,7 @@ Look down the **Courtyard** column. The previous finder merged a ledge with the 
 
 The Depth Anything version gained 31 distinct matches and lost one. Average border error on matched surfaces fell from 5.71 to 4.32 source pixels. It assigned 93.3% of scored surface pixels correctly, up from 92.0%, and recovered 406 of 606 true connections, up from 377. Depth Pro gained 29 matches and lost the same one. It recovered 408 connections. All three methods matched 14 of 18 eligible undersides and covered the same 601 of 16,630 opening samples. The extra-guess count excludes guesses that pair with a real below-cutoff surface. [All geometry and dimension scores](reviews/single-wall-depth-01/scores.json)
 
-**For surface accuracy, use Depth Anything V2. For block dimensions, Depth Pro scored highest.** Depth Pro kept all 73 previously correct sizes and added ten. Depth Anything added six and lost one. The ordinary Surface Finder uses the same outlines for its surface and count stages. Select `-SurfaceBoundary wall-recovery-single-pro` to use the Depth Pro outlines for a build. World-coordinate placement and in-game resemblance were outside this test.
+**Depth Anything V2 found the most surfaces in this comparison. Depth Pro got the most block dimensions right.** Depth Pro kept all 73 previously correct sizes and added ten. Depth Anything added six and lost one. The counter used the outlines from each method. The `single-wall` benchmark replays both depth models on those same images. World-coordinate placement and in-game resemblance were outside this test.
 
 | Building | Existing finder | One outline + V2 | One outline + Pro | Scored |
 | --- | ---: | ---: | ---: | ---: |
@@ -42,7 +42,7 @@ The new pass considered 66 possible cuts. At 31 of them, a majority of the paire
 
 Of the 41 previously missed surfaces with a matching MobileSAM suggestion, Depth Anything recovered 23 and Depth Pro recovered 22. The other gains included neighboring surfaces exposed as the remainder of a cut. Sixteen of the 41 had no matching outline reach the depth vote. Changing the depth model alone cannot move those outlines through the earlier filtering step. [Per-picture diagnostic](reviews/single-wall-depth-01/opportunities.json)
 
-## Run the comparison or build one screenshot
+## Replay the single-outline comparison
 
 ```powershell
 .\Invoke-SurfaceRound.ps1 -Round single-wall
@@ -50,8 +50,4 @@ Of the 41 previously missed surfaces with a matching MobileSAM suggestion, Depth
 
 This command regenerates predictions from the frozen numerical evidence, scores block counts, writes the per-picture grades and produces the portrait sheet in a new run directory. All 56 images are Java 26.3 screenshots captured in clear weather at noon. The replay runs with Minecraft closed and needs no checkpoint downloads. `-Round detection-sheet` redraws just the saved visual. [Run manifest](reviews/single-wall-depth-01/manifest.json)
 
-```powershell
-.\Invoke-WallRecovery.ps1 .\screenshot.png -Out .\runs\my-build
-```
-
-The ordinary build uses the selected single-outline method. To run the frozen control, pass `-SurfaceBoundary wall-recovery`. Fresh builds reproduced all saved masks and IDs. On the same smooth-floor Portico picture, the previous method found 14 of 17 surfaces, the new default found 15, and Depth Pro found all 17. [Build instructions](WALL_RECOVERY_BUILD.md) · [Fresh-image verification](reviews/single-wall-entry-01.json)
+Fresh builds at the time of this experiment reproduced all saved masks and IDs. On the same smooth-floor Portico picture, the previous method found 14 of 17 surfaces, the single-outline rule found 15, and Depth Pro found all 17. The current build adds Pixel-wise Planarity to the selected Depth Anything V2 method. [Current build](WALL_RECOVERY_BUILD.md) · [Single-outline verification](reviews/single-wall-entry-01.json)

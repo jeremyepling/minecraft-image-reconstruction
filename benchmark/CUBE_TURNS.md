@@ -1,5 +1,7 @@
 # Perspective-aware cube turns
 
+The single-image commands below document the cube-turn prototype at its archived revision. The `benchmark.cube_trials` commands at the end replay the experiment. [CLI snapshot at ca0a60c](https://github.com/jeremyepling/minecraft-image-reconstruction/tree/ca0a60c)
+
 ```console
 python reconstruct.py inspect-form IMAGE --cube-turns --out REVIEW
 python reconstruct.py analyze IMAGE --geometry-method cube --out GRID

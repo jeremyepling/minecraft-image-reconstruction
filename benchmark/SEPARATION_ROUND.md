@@ -1,6 +1,6 @@
 # Separating walls and recovering overhangs
 
-The **Wall Separator** became the default Surface Finder refinement on this branch. It recovered 25 additional vertical surfaces across eight buildings and lost none of the earlier matches. The separate **Underside Finder** recovered six additional undersides across Shopfront, Portico and Workshop. The thin Galleries underside still fell short of a match in both palettes. [Zoomable eight-building sheet](reviews/separation-01/comparison.jpg)
+The **Wall Separator** was selected in this round. It recovered 25 additional vertical surfaces across eight buildings and lost none of the earlier matches. The separate **Underside Finder** recovered six additional undersides across Shopfront, Portico and Workshop. The thin Galleries underside still fell short of a match in both palettes. [Zoomable eight-building sheet](reviews/separation-01/comparison.jpg)
 
 ## Which models helped?
 
@@ -44,7 +44,7 @@ The ordinary Block Counter got both dimensions right for 64 surfaces with the Wa
 
 The alternate MoGe-2 depth test uses the installed checkpoint’s 3D point output. The adapter estimates its forward offset from the projection of the predicted points, then takes reciprocal depth. It does not use a recorded camera or the model’s metric scale. This comparison measures that relative-depth adapter under the same wall rules. [Official MoGe ONNX output documentation](https://github.com/microsoft/MoGe/blob/main/docs/onnx.md)
 
-## Replay or build one image
+## Replay the wall and underside comparison
 
 We checked the ordinary build with its default settings against all 56 saved pictures. Reusing verified neural fields reproduced all 626 region records, including every mask and sampling corner. Separate direct builds also reproduced the expected outputs with fresh model inference on two pictures for the Wall Separator and two for the Underside Finder. [Ordinary build verification](reviews/separation-01/build-verification.json)
 
@@ -54,9 +54,4 @@ We checked the ordinary build with its default settings against all 56 saved pic
 
 The round is image-only. It verifies the 56 captures and 52 distinct screenshot hashes, uses the frozen line segments, reads compatible cached MoGe-2 and Depth Anything V2 fields and caches the MoGe-2 point-head result. Its CPU picture jobs run in parallel. Use `-Round detection-sheet` for the quicker replay of just the saved comparison sheet. [Model checkpoints, settings, runtime and artifacts](reviews/separation-01/manifest.json)
 
-```powershell
-python reconstruct.py build screenshot.png --version 26.3 --through surfaces --out runs/walls
-python reconstruct.py build screenshot.png --version 26.3 --through surfaces --surface-boundary strip-mlsd --out runs/undersides
-```
-
-The first build uses the default Wall Separator and pinned local MoGe-2 and Depth Anything V2 models. For the optional underside build, install `ai-edge-litert==2.4.0` in the build environment and run `python -m benchmark.normal_assets --mlsd --download` to prepare the M-LSD Tiny 512 FP16 checkpoint. Use `--surface-boundary color-edges` for the previous contrast-aligned baseline. [Local models and checkpoints](LOCAL_VISION_MODELS.md)
+The `separation` replay compares the Wall Separator, Underside Finder and contrast-aligned masks as tested here. The current build uses both wall and underside evidence and adds Pixel-wise Planarity. [Selected Surface Finder](SURFACE_FINDER.md) · [Model sources](LOCAL_VISION_MODELS.md)

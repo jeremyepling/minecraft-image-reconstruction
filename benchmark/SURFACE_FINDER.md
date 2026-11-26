@@ -1,53 +1,36 @@
 # From a screenshot to visible surfaces and block counts
 
-**Surface Finder** answers “which pixels belong to the same flat, connected surface?” Regions First groups MoGe-2 directions and Depth Anything V2 depths. Wall Recovery adds ScaleLSD v2 junctions, M-LSD Tiny undersides and MobileSAM wall outlines. The final pass can divide a wall using one MobileSAM shape when samples on both sides show a consistent depth step. Each partition retains its parent’s support and openings. Depth is relative. [Current method and accuracy](SINGLE_WALL_DEPTH.md)
+The ordinary Java 26.3 build uses one **Surface Finder**. **Regions First** is its way of grouping pixels. It found **513 of 598** eligible surface appearances across 56 views of eight Minecraft buildings. On those surfaces the **Block Counter** got width and height exactly right 80 times. The sheet gives each picture its own surface count. [See the prediction and reference outlines](reviews/afterpass-models-01/comparison.jpg) · [Scores for each picture](reviews/afterpass-models-01/pictures.md)
 
-**Surface Straightener** turns one visible surface toward the viewer using a four-corner perspective transform. Its output is a face-on image with transparency outside the surface. Pixels from a pillar gap or doorway stay out of the sample. A wall can remain a measured surface even when a sampling transform cannot be established.
+## What the Surface Finder sees
 
-**Block Counter** estimates how many block widths lie across and down the rectified sample. A repeated texture can reveal the spacing even when the first pixel is partway through a block. The position of the first grid line (phase) is a separate estimate. The count report distinguishes the dimensions of the visible surface from the span of the sampling chart. A masked wall with a doorway can have an overall width and height without every grid cell being occupied.
+1. **Group visible pixels.** MoGe-2 estimates which way the photographed surfaces face. Depth Anything V2 estimates relative depth, which helps distinguish two parallel walls. Regions First keeps disconnected regions separate and preserves the holes in their masks.
+2. **Refine walls and thin undersides.** The Wall Separator checks image contrast and relative depth along proposed boundaries. ScaleLSD v2 supplies lines and junctions, M-LSD Tiny supplies line evidence for undersides, and MobileSAM proposes wall outlines. A single outline can divide a wall when the depth samples support a step across it.
+3. **Find missed planes.** Pixel-wise Planarity checks the full screenshot for a nearby unclaimed surface or evidence of a split within an existing wall. Splits stay within the parent mask. This step raised the score from 501 to 513, kept every earlier match and covered the same 601 of 16,630 sampled opening pixels. [Method and measured tradeoffs](AFTERPASS_MODELS.md)
 
-**Material Matcher** ranks vanilla block IDs by comparing visible texture against the Java 26.3 atlas. Once a cell's position is supported, the matcher can sample it individually. One large coplanar surface can contain several materials. Blocks with identical visible textures can have tied IDs.
+An eligible reference surface is a connected patch with at least four visible block faces and 24 scoring samples. It matches one prediction when their overlap is at least half their combined area. The same wall can count again when seen in another picture. Across the suite, 85 eligible surfaces were missed. There were 204 extra proposals after smaller visible surfaces were accounted for. [Run manifest and scores](reviews/afterpass-models-01/manifest.json)
 
-## What did the Rectangle Finder do?
-
-Older sheets call this method **B**. Its archived run ID is `current-b`. It groups pixels using MoGe-2 surface directions and image color, then fits four-corner rectangles.
-
-| Part of the previous experiment | What it did | Use in the current path |
-| --- | --- | --- |
-| MoGe-2 and orientation grouping | Proposed front, side and underside regions. The Rectangle Finder could use image color to subdivide a group. | The Surface Finder uses the numerical directions with relative depth and connected regions. |
-| Rectangle fitting and filtering | Tried to turn each group into four corners. A region could disappear at this step or a rectangle could bridge an opening. | A four-corner chart can guide rectification. The saved pixel mask defines the outline and survives a failed fit. |
-| Vanilla texture-spacing check | Rectified a four-corner chart, sought a repeating 16-texel grid and tested possible joint locations. | Available independently as the Block Counter's `legacy-repeat` baseline. This pass runs independently of the Rectangle Finder. |
-| Relative depth ordering | Compared nearby surface edges in camera space or sampled relative depth. | The new grouping uses relative depth immediately. Explicit `--surface-order` requests an extra ordering pass. |
-| Camera-space lift and block exporter | Used measured spacing and shared edges to lift charts into 3D. The separate placement benchmark also needed a scaled camera to export occupied cells. | Surface finding, rectification, counting and texture matching can all finish with metric world placement still unresolved. |
-
-On the 56 saved screenshots, Regions First matched **394 of 598** eligible surfaces and the Rectangle Finder matched **281**. A match requires a predicted mask and a recorded surface to cover at least half their combined area. Each can match only once. Eligible connected surfaces have at least four visible block faces and 24 scoring samples. The reports also grade covered openings, incorrectly assigned pixels and boundary distance. Regions First covered **3.9%** of the sampled opening area, compared with **29.2%** for the Rectangle Finder. These figures grade the Surface Finder. Correct block counts and material IDs have their own scores. [Per-picture surface results](reviews/mask-four-01/report.html)
-
-## Use the stages on one image
-
-Surface Finder writes outer and inner perimeter rings and a full-resolution, transparent PNG of every visible region. A second RGB crop includes neighboring pixels on every side, with eight native pixels of margin by default. `--surface-context-px 0` requests the tight bounding box for the RGB crop. The JSON gives the native location of both crops and the mask location inside the context photo. The Block Counter ordinarily samples the owned mask. The saved RGB context supports separate tests of grid alignment.
-
-The default **Wall Separator** first aligns region boundaries to nearby changes in color. It uses a depth change, an image edge and optional Rectangle Finder hints to split merged faces while keeping the mask and its openings. Its build ID is `wall-depth-anything`. Select `--surface-boundary color-edges` to reproduce the previous default, or `--surface-boundary strip-mlsd` for the separate **Underside Finder**. The latter uses M-LSD Tiny lines and shading to form thin surfaces. Both start from the same contrast-aligned regions. [Model inputs, results and setup](SEPARATION_ROUND.md)
-
-With the pinned models in this checkout and the dependencies from `benchmark/suites/normal-requirements.txt`, this writes one mask per surface in `surfaces.json`. Each mask records its dimensions and half-open pixel runs `[row, start, end]`. `build-manifest.json` identifies the finder, model hashes and settings.
+## Inspect one screenshot
 
 ```powershell
-python -m benchmark.normal_assets --download
-python reconstruct.py build screenshot.png --version 26.3 --through surfaces --out runs/my-surfaces
+.\Invoke-WallRecovery.ps1 .\screenshot.png -Out .\runs\my-build
 ```
 
-For the thin-underside test, M-LSD Tiny looks for line segments in the supplied PNG. The finder combines these with shading, orientation and relative depth to propose narrow surfaces. Prepare the extra model once, then select `strip-mlsd` when building. The setup command reuses the pinned files on this PC or downloads missing weights. [Model source](https://huggingface.co/spaces/navervision/MLSD/blob/main/tflite_models/M-LSD_512_tiny_fp16.tflite)
+| Output | What to look for |
+| --- | --- |
+| `surfaces.json` and `surface-crops/` | Check the actual mask around a wall, recess or opening. Each surface records pixel runs and outer and inner perimeter rings. A transparent crop shows its owned pixels. An RGB crop includes up to eight neighboring source pixels per side so you can check an edge in context. |
+| `samples/` | The **Surface Straightener** uses a four-corner chart to produce a face-on sample where possible. Gaps remain masked out. A region without a chart still appears in `surfaces.json`. |
+| `counts.json` | The **Block Counter** looks for repeated texture inside the straightened mask, then estimates the grid offset and block span. An opening can lie within the measured width and height. The report records unresolved measurements. |
+| `build-manifest.json` | The stages record `mask-first`, `plane-recovery` and `masked-repeat`, plus the settings and hashes of the six model checkpoints. |
 
-```powershell
-python -m pip install ai-edge-litert==2.4.0
-python -m benchmark.normal_assets --mlsd --download
-python reconstruct.py build screenshot.png --version 26.3 --through surfaces --surface-boundary strip-mlsd --out runs/my-undersides
+Pass `-Through surfaces` to the wrapper to stop after the outlines. In the configured Python environment, `build --through counts --material-match atlas` also asks the **Material Matcher** to rank vanilla block IDs for complete cells. The atlas can name multiple materials on one coplanar wall. On a saved suite image, use the scorer below to check the predicted masks against the reference geometry. [Model setup and Python commands](WALL_RECOVERY_BUILD.md)
+
+```console
+python -m benchmark.score_saved_planes --surfaces runs/my-build/surfaces.json --image PATH_TO_ORIGINAL_SUITE_PNG
 ```
 
-Continue through counting to save the masked, straightened samples and measurements. The first command uses the named default counter. The second independently requests atlas matching on complete cells. A calibrated atlas directory can be given with `--atlas PATH`. Each run records the actual counter used.
+## Compare to older finders
 
-```powershell
-python reconstruct.py build screenshot.png --version 26.3 --through counts --out runs/my-counts
-python reconstruct.py build screenshot.png --version 26.3 --through counts --material-match atlas --out runs/my-materials
-```
+Older sheets call the **Rectangle Finder** “B.” It grouped pixels by direction and color, then required a four-corner fit. Rectangles could span openings and some visible patches failed the fit. Regions First keeps the mask as the outline and uses four corners only when a surface needs a sampling chart. In the original comparison, Regions First matched **394 of 598** surfaces and covered **3.9%** of the sampled openings. The Rectangle Finder matched **281** and covered **29.2%**. Its texture-spacing check was also tested independently against masked repetition. [Original four-method review](reviews/mask-four-01/report.html) · [Block Counter comparison](COUNT_ROUND.md)
 
-Select a counter explicitly with `--block-counter legacy-repeat`, `masked-repeat` or `atlas-repeat`. Use `--through surfaces --surface-outlines rectangle-finder` to reproduce the legacy method. Older commands using `normal-regions` remain valid. To grade a new default surface prediction on a saved suite image, run `python -m benchmark.score_saved_planes --surfaces runs/my-surfaces/surfaces.json`. The scorer checks the screenshot hash and compares the masks to recorded geometry.
+Use `.\Invoke-SurfaceRound.ps1 -Round afterpass` to compare the selected method with the previous 501-surface finder and the ECT edge challenger. The replay uses saved screenshots and numerical model evidence, and keeps the world geometry on the scoring side. Earlier wall splits and counting comparisons have their own benchmark runs. [Separation replay](SEPARATION_ROUND.md) · [Single-outline replay](SINGLE_WALL_DEPTH.md) · [History](RECONSTRUCTION_LINEAGE.md)
