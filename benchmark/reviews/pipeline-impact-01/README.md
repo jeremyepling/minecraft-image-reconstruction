@@ -2,7 +2,7 @@
 
 [Open the interactive stage impact assessment](viewer.html) to compare the same source images under each intervention. Choose placement, exact material ID, or overall F1 to see which stage can use a correction.
 
-The cohort scorecard now shows the default whole-tile and wider boundary-guided camera fallback: fixed strict/facade placement 91.27%/93.42%, v3 21.84%/22.75% and decorative 63.46%/65.23%. The camera table lists the remaining 70 v3 failures and their latest fallback reasons. Experiment plots retain their own original paired baseline; the joint camera/grid plot uses the new default as its control. GeoCalib, MoGe and joint refinement remain experimental. [Camera-model round and validation](../camera-model-round-01/README.md)
+The cohort scorecard now shows the native-pixel atlas camera default: fixed strict/facade placement 91.27%/93.42%, v3 46.63%/48.04%, and decorative 63.46%/65.23%. The camera table lists seven remaining v3 failures with the native-fit rejection reason. Camera coverage is 95.14%; supported v3 views still score only 50.60% strict placement, so surface ownership, face direction and depth are the main next priorities. Each experiment plot retains its own measured control. The added GeoCalib seed, silhouette ruler, learned confidence gate and wall-color partition remain experimental. [Native camera round and validation](../camera-native-round-01/README.md) · [Source images beside decoded exports](../camera-recovery-next-01/decoded-castle-harbor.jpg)
 
 ## Dataset coverage
 

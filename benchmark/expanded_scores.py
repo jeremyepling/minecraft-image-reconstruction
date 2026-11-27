@@ -79,7 +79,8 @@ def camera_fields(camera):
     return dict(camera_status=scale, camera_usable=scale == 'supported' and projection is not None,
                 camera_source=camera.get('camera_source'), camera_reason=camera.get('reason'),
                 atlas_camera_reason=camera.get('atlas_camera_reason', camera.get('atlas_reason')),
-                repeat_camera_reason=camera.get('repeat_camera_reason', camera.get('repeat_reason')))
+                repeat_camera_reason=camera.get('repeat_camera_reason', camera.get('repeat_reason')),
+                native_floor_camera_reason=camera.get('native_floor_camera_reason', camera.get('native_floor_reason')))
 
 
 def evaluate_pack(entry, pack, camera, *, assignment=None, reference=None):

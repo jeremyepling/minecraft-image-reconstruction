@@ -83,6 +83,7 @@ def camera_tables(cases, summary):
                        f"<td>{escape(row['camera_reason'] or 'Reason unavailable')}</td>"
                        f"<td>{escape(row.get('atlas_camera_reason') or '—')}</td>"
                        f"<td>{escape(row.get('repeat_camera_reason') or '—')}</td>"
+                       f"<td>{escape(row.get('native_floor_camera_reason') or '—')}</td>"
                        f"<td>{row['visible_truth']:,}</td><td>{row['required_truth']:,}</td></tr>")
     return "".join(totals), "".join(details)
 
@@ -200,8 +201,8 @@ def main():
     template = Path(__file__).with_name("pipeline_impact.html").read_text(encoding="utf-8")
     OUT.mkdir(exist_ok=True)
     html = template.replace("__MEASURED__", json.dumps(rows)).replace("__MASK_CASES__", json.dumps(by_image))
-    expanded = read("camera-model-controls-01/independent-matched-cases.json.gz")
-    expanded_summary = read("camera-model-controls-01/independent-matched-summary.json")["datasets"]
+    expanded = read("camera-native-recovery-controls-01/independent-default-cases.json.gz")
+    expanded_summary = read("camera-native-recovery-controls-01/independent-default-summary.json")["datasets"]
     cohorts = measured_cohorts(expanded_summary)
     table = []
     for name, coverage, scores in cohorts:

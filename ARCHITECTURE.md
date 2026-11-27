@@ -17,6 +17,26 @@ The [pipeline diagram in the README](README.md#from-source-image-to-placed-block
 | Block Grouper and per-face matching | Two or three adjoining faces can belong to one cube. Their textures can look different because they face different directions. The grouper uses shared convex edges to associate them. The optional counting-stage matcher compares an eligible face with atlas or rendered examples. | `counts.json` records face groups and requested matches. |
 | Placement and export | A **candidate** is a proposed position or surface pending a check. The placer tests possible plane depths, uses texture and contacts, and **reprojects** candidate cubes into the source image to check which face should appear first. It resolves conflicts and applies local edits inside measured recesses. At a framed opening, it compares the source pixels to the pavement grid outside. When they agree, it reprojects elevated cubes and removes those that visibly obstruct the opening. The outlines and measured floor tiles remain available because a real floor can share that grid. Hidden space stays **unknown**. A visible face can justify placing its whole cube. | `placements.json` lists accepted local **XYZ** block coordinates (X and Z along the ground, Y upward). `reconstruction.zip` places those blocks relative to the point where you run the build function. |
 
+## Camera recovery and its fallbacks
+
+The camera stage estimates how a one-block distance appears in the source image. It needs that scale to distinguish a small nearby wall from a larger distant wall. Its world origin can be arbitrary; all parts of the structure must agree on the same grid.
+
+```mermaid
+flowchart LR
+    S["Visible pavement seams"] -->|unresolved| A["Register atlas texels"]
+    A -->|unresolved| R["Whole-tile repeats and wider boundary search"]
+    R -->|unresolved| N["Fit atlas appearance directly to source pixels"]
+    N -->|unresolved| U["Report camera failure; export no guessed geometry"]
+    S -->|supported| P["One camera and block grid for downstream stages"]
+    A -->|supported| P
+    R -->|supported| P
+    N -->|supported| P
+```
+
+The last fallback currently recognizes the Java 26.3 light-gray concrete floor texture. It tests viewing angle, block scale, texture phase, and filtering resolution against the original pixels. Four separated floor regions must agree, and competing half-size, double-size, and slightly changed scales must fit worse. Two regions are excluded from the final parameter fit, although proposal search uses a broader image area. Earlier successful camera fits are returned immediately. The floor is a calibration cue; it is not added to the reconstructed structure.
+
+This path uses local numerical code and the existing atlas. It downloads no model. If OpenCV is absent from the main Python environment, it can use the already configured recovery interpreter; unavailable dependencies or a missing atlas leave the camera unresolved. `build-manifest.json` records the native-floor reason, fit evidence, and atlas provenance. Camera-check overlays project reference corners using the inferred camera; they are diagnostics, not illustrations of the exported blocks. [Native camera round and actual placement scores](benchmark/reviews/camera-native-round-01/README.md)
+
 ## One block on two surfaces
 
 The ordinary **Material Matcher** runs after placement has resolved overlaps. It projects the final cubes with the estimated camera, collects source pixels from their frontmost faces, and compares their colors and texture patterns with game sprites. It writes a material ID at each exported coordinate, such as `minecraft:tuff`. Its evidence comes from the supplied view. The separate capture camera and world readback enter only during evaluation.
@@ -53,7 +73,7 @@ flowchart LR
 
 | Decision | Evidence the current implementation reads |
 | --- | --- |
-| Camera and scale | Visible pavement seams first. A weak fit can trigger registration against floor texels from the atlas. |
+| Camera and scale | Visible pavement seams, atlas texels, and whole-tile repeats are tried in order. If those fail, a native-pixel atlas fit tests the texture pattern at the estimated viewing angle and filtering resolution. Successful earlier fits are preserved. |
 | Surface boundaries | Local refiners compare the textures on adjoining masks or test a smooth patch against atlas candidates, the surrounding wall, and background samples. Surface normals, relative depth, rims and openings supply complementary evidence. |
 | Counting | The default counter measures repetition on a straightened crop. With a prepared atlas and an atlas-enabled counting run, it can recover a missing grid origin once the spacings are known. Recovering an origin does not itself change the dimensions. |
 | Placement | The main placer reads the counted surface's corners and dimensions. Candidate plane depths and partial or thin faces have separate projection and texture tests. The per-face IDs and grid origins in the optional count report are not general inputs to the placer. |
