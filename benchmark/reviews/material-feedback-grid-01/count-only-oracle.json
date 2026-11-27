@@ -1,0 +1,2141 @@
+{
+  "archive_sha256": "339e9cee2d0f9f82408607b25a6b01f455f7d9bc7964943ce6c3e8d3e55dc4c5",
+  "summary": {
+    "control": {
+      "metrics": {
+        "geometry_strict": {
+          "correct": 644,
+          "missed": 176,
+          "extras": 42,
+          "f1": 0.8552456839309429
+        },
+        "geometry_facade": {
+          "correct": 599,
+          "missed": 74,
+          "extras": 42,
+          "f1": 0.9117199391171994
+        },
+        "typed_strict": {
+          "correct": 627,
+          "missed": 193,
+          "extras": 59,
+          "f1": 0.8326693227091634
+        },
+        "typed_facade": {
+          "correct": 583,
+          "missed": 90,
+          "extras": 58,
+          "f1": 0.8873668188736682
+        }
+      },
+      "count_edits": 0,
+      "coords_added": 0,
+      "coords_removed": 0,
+      "ids_changed": 0
+    },
+    "sham": {
+      "metrics": {
+        "geometry_strict": {
+          "correct": 644,
+          "missed": 176,
+          "extras": 42,
+          "f1": 0.8552456839309429
+        },
+        "geometry_facade": {
+          "correct": 599,
+          "missed": 74,
+          "extras": 42,
+          "f1": 0.9117199391171994
+        },
+        "typed_strict": {
+          "correct": 627,
+          "missed": 193,
+          "extras": 59,
+          "f1": 0.8326693227091634
+        },
+        "typed_facade": {
+          "correct": 583,
+          "missed": 90,
+          "extras": 58,
+          "f1": 0.8873668188736682
+        }
+      },
+      "count_edits": 0,
+      "coords_added": 0,
+      "coords_removed": 0,
+      "ids_changed": 0
+    },
+    "feedback": {
+      "metrics": {
+        "geometry_strict": {
+          "correct": 644,
+          "missed": 176,
+          "extras": 42,
+          "f1": 0.8552456839309429
+        },
+        "geometry_facade": {
+          "correct": 599,
+          "missed": 74,
+          "extras": 42,
+          "f1": 0.9117199391171994
+        },
+        "typed_strict": {
+          "correct": 627,
+          "missed": 193,
+          "extras": 59,
+          "f1": 0.8326693227091634
+        },
+        "typed_facade": {
+          "correct": 583,
+          "missed": 90,
+          "extras": 58,
+          "f1": 0.8873668188736682
+        }
+      },
+      "count_edits": 2,
+      "coords_added": 0,
+      "coords_removed": 0,
+      "ids_changed": 0
+    },
+    "oracle": {
+      "metrics": {
+        "geometry_strict": {
+          "correct": 644,
+          "missed": 176,
+          "extras": 42,
+          "f1": 0.8552456839309429
+        },
+        "geometry_facade": {
+          "correct": 599,
+          "missed": 74,
+          "extras": 42,
+          "f1": 0.9117199391171994
+        },
+        "typed_strict": {
+          "correct": 627,
+          "missed": 193,
+          "extras": 59,
+          "f1": 0.8326693227091634
+        },
+        "typed_facade": {
+          "correct": 583,
+          "missed": 90,
+          "extras": 58,
+          "f1": 0.8873668188736682
+        }
+      },
+      "count_edits": 28,
+      "coords_added": 0,
+      "coords_removed": 0,
+      "ids_changed": 0
+    },
+    "disabled": {
+      "metrics": {
+        "geometry_strict": {
+          "correct": 644,
+          "missed": 176,
+          "extras": 42,
+          "f1": 0.8552456839309429
+        },
+        "geometry_facade": {
+          "correct": 599,
+          "missed": 74,
+          "extras": 42,
+          "f1": 0.9117199391171994
+        },
+        "typed_strict": {
+          "correct": 627,
+          "missed": 193,
+          "extras": 59,
+          "f1": 0.8326693227091634
+        },
+        "typed_facade": {
+          "correct": 583,
+          "missed": 90,
+          "extras": 58,
+          "f1": 0.8873668188736682
+        }
+      },
+      "count_edits": 30,
+      "coords_added": 0,
+      "coords_removed": 0,
+      "ids_changed": 0,
+      "complete_spacings_disabled": 25,
+      "partial_spacings_disabled": 5
+    }
+  },
+  "frames": [
+    {
+      "id": "inverse-voxels-26.3--confirm--test-colonnade-01-oblique-right",
+      "source_hash": "56f1d5c1feb17dcee4ab530954cd05a37bf86ef178aead769afe90c9ce6307e6",
+      "matched_release": true,
+      "cases": {
+        "control": {
+          "geometry": {
+            "strict": {
+              "correct": 128,
+              "missed": 63,
+              "extras": 10,
+              "f1": 0.7781155015197568
+            },
+            "facade": {
+              "correct": 90,
+              "missed": 2,
+              "extras": 10,
+              "f1": 0.9375
+            }
+          },
+          "typed": {
+            "strict": {
+              "correct": 128,
+              "missed": 63,
+              "extras": 10,
+              "f1": 0.7781155015197568
+            },
+            "facade": {
+              "correct": 90,
+              "missed": 2,
+              "extras": 10,
+              "f1": 0.9375
+            },
+            "material": {
+              "correct": 128,
+              "positions": 128,
+              "accuracy": 1.0
+            }
+          },
+          "translation": [
+            0,
+            0,
+            0
+          ],
+          "pack_sha256": "cf7a2f4ac2cda0740d1e5cce1a56507ee611b6c2468552b41225832ff7d34902",
+          "changes": [],
+          "local_coordinates_added": 0,
+          "local_coordinates_removed": 0,
+          "local_ids_changed": 0,
+          "id_sources": {
+            "source-atlas": 137,
+            "fallback": 1
+          },
+          "ranked_strict_blocks": 0,
+          "ranked_added_blocks": 144
+        },
+        "sham": {
+          "geometry": {
+            "strict": {
+              "correct": 128,
+              "missed": 63,
+              "extras": 10,
+              "f1": 0.7781155015197568
+            },
+            "facade": {
+              "correct": 90,
+              "missed": 2,
+              "extras": 10,
+              "f1": 0.9375
+            }
+          },
+          "typed": {
+            "strict": {
+              "correct": 128,
+              "missed": 63,
+              "extras": 10,
+              "f1": 0.7781155015197568
+            },
+            "facade": {
+              "correct": 90,
+              "missed": 2,
+              "extras": 10,
+              "f1": 0.9375
+            },
+            "material": {
+              "correct": 128,
+              "positions": 128,
+              "accuracy": 1.0
+            }
+          },
+          "translation": [
+            0,
+            0,
+            0
+          ],
+          "pack_sha256": "1d3ccc1b8c5d1fc480b0733db99208bc06f89b497ccffaaefd16f99b2e390315",
+          "changes": [],
+          "local_coordinates_added": 0,
+          "local_coordinates_removed": 0,
+          "local_ids_changed": 0,
+          "id_sources": {
+            "source-atlas": 137,
+            "fallback": 1
+          },
+          "ranked_strict_blocks": 0,
+          "ranked_added_blocks": 144
+        },
+        "feedback": {
+          "geometry": {
+            "strict": {
+              "correct": 128,
+              "missed": 63,
+              "extras": 10,
+              "f1": 0.7781155015197568
+            },
+            "facade": {
+              "correct": 90,
+              "missed": 2,
+              "extras": 10,
+              "f1": 0.9375
+            }
+          },
+          "typed": {
+            "strict": {
+              "correct": 128,
+              "missed": 63,
+              "extras": 10,
+              "f1": 0.7781155015197568
+            },
+            "facade": {
+              "correct": 90,
+              "missed": 2,
+              "extras": 10,
+              "f1": 0.9375
+            },
+            "material": {
+              "correct": 128,
+              "positions": 128,
+              "accuracy": 1.0
+            }
+          },
+          "translation": [
+            0,
+            0,
+            0
+          ],
+          "pack_sha256": "2c8eff4a041e7e35df4a8e49ff3a16ed74f36df0b82181f55a4fbe26ec3b7819",
+          "changes": [],
+          "local_coordinates_added": 0,
+          "local_coordinates_removed": 0,
+          "local_ids_changed": 0,
+          "id_sources": {
+            "source-atlas": 137,
+            "fallback": 1
+          },
+          "ranked_strict_blocks": 0,
+          "ranked_added_blocks": 144
+        },
+        "oracle": {
+          "geometry": {
+            "strict": {
+              "correct": 128,
+              "missed": 63,
+              "extras": 10,
+              "f1": 0.7781155015197568
+            },
+            "facade": {
+              "correct": 90,
+              "missed": 2,
+              "extras": 10,
+              "f1": 0.9375
+            }
+          },
+          "typed": {
+            "strict": {
+              "correct": 128,
+              "missed": 63,
+              "extras": 10,
+              "f1": 0.7781155015197568
+            },
+            "facade": {
+              "correct": 90,
+              "missed": 2,
+              "extras": 10,
+              "f1": 0.9375
+            },
+            "material": {
+              "correct": 128,
+              "positions": 128,
+              "accuracy": 1.0
+            }
+          },
+          "translation": [
+            0,
+            0,
+            0
+          ],
+          "pack_sha256": "ae8c2fefcc7c8b7951c1a8009f5dface30466a33ac077cdf7ed90c6455de1bb5",
+          "changes": [
+            [
+              "mask-0-junction-0",
+              [
+                null,
+                null
+              ],
+              [
+                1,
+                5
+              ]
+            ],
+            [
+              "mask-0-junction-1-mobile-2",
+              [
+                null,
+                null
+              ],
+              [
+                1,
+                5
+              ]
+            ],
+            [
+              "mask-1",
+              [
+                6,
+                4
+              ],
+              [
+                6,
+                5
+              ]
+            ],
+            [
+              "mask-3",
+              [
+                null,
+                null
+              ],
+              [
+                2,
+                5
+              ]
+            ],
+            [
+              "mask-4",
+              [
+                null,
+                null
+              ],
+              [
+                1,
+                5
+              ]
+            ],
+            [
+              "mask-7",
+              [
+                null,
+                null
+              ],
+              [
+                1,
+                5
+              ]
+            ],
+            [
+              "mask-8",
+              [
+                3,
+                4
+              ],
+              [
+                1,
+                3
+              ]
+            ]
+          ],
+          "local_coordinates_added": 0,
+          "local_coordinates_removed": 0,
+          "local_ids_changed": 0,
+          "id_sources": {
+            "source-atlas": 137,
+            "fallback": 1
+          },
+          "ranked_strict_blocks": 0,
+          "ranked_added_blocks": 144
+        },
+        "disabled": {
+          "geometry": {
+            "strict": {
+              "correct": 128,
+              "missed": 63,
+              "extras": 10,
+              "f1": 0.7781155015197568
+            },
+            "facade": {
+              "correct": 90,
+              "missed": 2,
+              "extras": 10,
+              "f1": 0.9375
+            }
+          },
+          "typed": {
+            "strict": {
+              "correct": 128,
+              "missed": 63,
+              "extras": 10,
+              "f1": 0.7781155015197568
+            },
+            "facade": {
+              "correct": 90,
+              "missed": 2,
+              "extras": 10,
+              "f1": 0.9375
+            },
+            "material": {
+              "correct": 128,
+              "positions": 128,
+              "accuracy": 1.0
+            }
+          },
+          "translation": [
+            0,
+            0,
+            0
+          ],
+          "pack_sha256": "b5f3219e049846c589fcc2de8b6872e6242771de0544173382cbeb5b12a498e2",
+          "changes": [
+            [
+              "mask-0-junction-1-mobile-0",
+              [
+                17.202700246965495,
+                2.263257383261744
+              ],
+              [
+                null,
+                null
+              ]
+            ],
+            [
+              "mask-0-junction-1-mobile-1",
+              [
+                1.060403786630711,
+                4.799036311647669
+              ],
+              [
+                null,
+                null
+              ]
+            ],
+            [
+              "mask-1",
+              [
+                5.76634553364265,
+                2.2247017046121877
+              ],
+              [
+                null,
+                null
+              ]
+            ],
+            [
+              "mask-5",
+              [
+                1.0197001334225686,
+                4.8160597550852255
+              ],
+              [
+                null,
+                null
+              ]
+            ],
+            [
+              "mask-8",
+              [
+                2.9243286171028804,
+                3.4535563277134163
+              ],
+              [
+                null,
+                null
+              ]
+            ],
+            [
+              "mask-12",
+              [
+                null,
+                4.254934854488015
+              ],
+              [
+                null,
+                null
+              ]
+            ]
+          ],
+          "local_coordinates_added": 0,
+          "local_coordinates_removed": 0,
+          "local_ids_changed": 0,
+          "id_sources": {
+            "source-atlas": 137,
+            "fallback": 1
+          },
+          "ranked_strict_blocks": 0,
+          "ranked_added_blocks": 144
+        }
+      },
+      "masks_sha256": "87978d5d1a71deb14c6d97d9edd325c1056c0c5dd3a3acfd0746e74e774a5001",
+      "counts_sha256": "396a030d00560774785b489155cef479ffc5a507638c1543f5b3a46e7148e521"
+    },
+    {
+      "id": "legacy-light_gray_concrete-dev-shopfront-plaster-low-left",
+      "source_hash": "299e0228de74d2cc7d3a18deaba9f61c82560a0ddd0b8557e5c91728c964a993",
+      "matched_release": true,
+      "cases": {
+        "control": {
+          "geometry": {
+            "strict": {
+              "correct": 105,
+              "missed": 64,
+              "extras": 21,
+              "f1": 0.711864406779661
+            },
+            "facade": {
+              "correct": 104,
+              "missed": 52,
+              "extras": 21,
+              "f1": 0.7402135231316725
+            }
+          },
+          "typed": {
+            "strict": {
+              "correct": 88,
+              "missed": 81,
+              "extras": 38,
+              "f1": 0.5966101694915255
+            },
+            "facade": {
+              "correct": 88,
+              "missed": 68,
+              "extras": 37,
+              "f1": 0.6263345195729537
+            },
+            "material": {
+              "correct": 88,
+              "positions": 105,
+              "accuracy": 0.8380952380952381
+            }
+          },
+          "translation": [
+            0,
+            0,
+            0
+          ],
+          "pack_sha256": "d8a5c8f4d63776c48b10fc4ad735503c62a528cbdf0639ff543d176cf48c4b72",
+          "changes": [],
+          "local_coordinates_added": 0,
+          "local_coordinates_removed": 0,
+          "local_ids_changed": 0,
+          "id_sources": {
+            "source-atlas": 126
+          },
+          "ranked_strict_blocks": 0,
+          "ranked_added_blocks": 124
+        },
+        "sham": {
+          "geometry": {
+            "strict": {
+              "correct": 105,
+              "missed": 64,
+              "extras": 21,
+              "f1": 0.711864406779661
+            },
+            "facade": {
+              "correct": 104,
+              "missed": 52,
+              "extras": 21,
+              "f1": 0.7402135231316725
+            }
+          },
+          "typed": {
+            "strict": {
+              "correct": 88,
+              "missed": 81,
+              "extras": 38,
+              "f1": 0.5966101694915255
+            },
+            "facade": {
+              "correct": 88,
+              "missed": 68,
+              "extras": 37,
+              "f1": 0.6263345195729537
+            },
+            "material": {
+              "correct": 88,
+              "positions": 105,
+              "accuracy": 0.8380952380952381
+            }
+          },
+          "translation": [
+            0,
+            0,
+            0
+          ],
+          "pack_sha256": "ff70ee06c9e5b92cb57071c7aa6181de295ad978a95a0095c7db227bea557399",
+          "changes": [],
+          "local_coordinates_added": 0,
+          "local_coordinates_removed": 0,
+          "local_ids_changed": 0,
+          "id_sources": {
+            "source-atlas": 126
+          },
+          "ranked_strict_blocks": 0,
+          "ranked_added_blocks": 124
+        },
+        "feedback": {
+          "geometry": {
+            "strict": {
+              "correct": 105,
+              "missed": 64,
+              "extras": 21,
+              "f1": 0.711864406779661
+            },
+            "facade": {
+              "correct": 104,
+              "missed": 52,
+              "extras": 21,
+              "f1": 0.7402135231316725
+            }
+          },
+          "typed": {
+            "strict": {
+              "correct": 88,
+              "missed": 81,
+              "extras": 38,
+              "f1": 0.5966101694915255
+            },
+            "facade": {
+              "correct": 88,
+              "missed": 68,
+              "extras": 37,
+              "f1": 0.6263345195729537
+            },
+            "material": {
+              "correct": 88,
+              "positions": 105,
+              "accuracy": 0.8380952380952381
+            }
+          },
+          "translation": [
+            0,
+            0,
+            0
+          ],
+          "pack_sha256": "555004dd39f7776173d28345450f24c07e7fdaa0549047c1945f26f70845c6de",
+          "changes": [
+            [
+              "mask-5",
+              [
+                null,
+                5
+              ],
+              [
+                1,
+                5
+              ]
+            ]
+          ],
+          "local_coordinates_added": 0,
+          "local_coordinates_removed": 0,
+          "local_ids_changed": 0,
+          "id_sources": {
+            "source-atlas": 126
+          },
+          "ranked_strict_blocks": 0,
+          "ranked_added_blocks": 124
+        },
+        "oracle": {
+          "geometry": {
+            "strict": {
+              "correct": 105,
+              "missed": 64,
+              "extras": 21,
+              "f1": 0.711864406779661
+            },
+            "facade": {
+              "correct": 104,
+              "missed": 52,
+              "extras": 21,
+              "f1": 0.7402135231316725
+            }
+          },
+          "typed": {
+            "strict": {
+              "correct": 88,
+              "missed": 81,
+              "extras": 38,
+              "f1": 0.5966101694915255
+            },
+            "facade": {
+              "correct": 88,
+              "missed": 68,
+              "extras": 37,
+              "f1": 0.6263345195729537
+            },
+            "material": {
+              "correct": 88,
+              "positions": 105,
+              "accuracy": 0.8380952380952381
+            }
+          },
+          "translation": [
+            0,
+            0,
+            0
+          ],
+          "pack_sha256": "c018664d0a8197feaa6cfc19cbc9a504c8735eb3c11b3f045e619a5b2411e8b3",
+          "changes": [
+            [
+              "mask-0-wall-1-single-339-0",
+              [
+                null,
+                null
+              ],
+              [
+                15,
+                7
+              ]
+            ],
+            [
+              "mask-1-mobile-0",
+              [
+                null,
+                null
+              ],
+              [
+                1,
+                4
+              ]
+            ],
+            [
+              "mask-1-mobile-1",
+              [
+                null,
+                null
+              ],
+              [
+                3,
+                4
+              ]
+            ],
+            [
+              "mask-2",
+              [
+                null,
+                null
+              ],
+              [
+                2,
+                4
+              ]
+            ],
+            [
+              "mask-4",
+              [
+                null,
+                null
+              ],
+              [
+                1,
+                5
+              ]
+            ],
+            [
+              "mask-5",
+              [
+                null,
+                5
+              ],
+              [
+                3,
+                6
+              ]
+            ],
+            [
+              "mask-7",
+              [
+                null,
+                null
+              ],
+              [
+                1,
+                4
+              ]
+            ]
+          ],
+          "local_coordinates_added": 0,
+          "local_coordinates_removed": 0,
+          "local_ids_changed": 0,
+          "id_sources": {
+            "source-atlas": 126
+          },
+          "ranked_strict_blocks": 0,
+          "ranked_added_blocks": 124
+        },
+        "disabled": {
+          "geometry": {
+            "strict": {
+              "correct": 105,
+              "missed": 64,
+              "extras": 21,
+              "f1": 0.711864406779661
+            },
+            "facade": {
+              "correct": 104,
+              "missed": 52,
+              "extras": 21,
+              "f1": 0.7402135231316725
+            }
+          },
+          "typed": {
+            "strict": {
+              "correct": 88,
+              "missed": 81,
+              "extras": 38,
+              "f1": 0.5966101694915255
+            },
+            "facade": {
+              "correct": 88,
+              "missed": 68,
+              "extras": 37,
+              "f1": 0.6263345195729537
+            },
+            "material": {
+              "correct": 88,
+              "positions": 105,
+              "accuracy": 0.8380952380952381
+            }
+          },
+          "translation": [
+            0,
+            0,
+            0
+          ],
+          "pack_sha256": "cbd1656ac65b14410e03bcb6e7d9c7f98059aae3cdefd8888e1498ae0da53b1b",
+          "changes": [
+            [
+              "mask-0-wall-0",
+              [
+                1.9752357890357597,
+                4.00563430609291
+              ],
+              [
+                null,
+                null
+              ]
+            ],
+            [
+              "mask-0-wall-1-single-339-2",
+              [
+                9.881949804405513,
+                0.9811172985913819
+              ],
+              [
+                null,
+                null
+              ]
+            ],
+            [
+              "mask-5",
+              [
+                null,
+                4.40153060008302
+              ],
+              [
+                null,
+                null
+              ]
+            ],
+            [
+              "mask-6",
+              [
+                null,
+                4.147099425339869
+              ],
+              [
+                null,
+                null
+              ]
+            ]
+          ],
+          "local_coordinates_added": 0,
+          "local_coordinates_removed": 0,
+          "local_ids_changed": 0,
+          "id_sources": {
+            "source-atlas": 126
+          },
+          "ranked_strict_blocks": 0,
+          "ranked_added_blocks": 124
+        }
+      },
+      "masks_sha256": "cba1c502ef1fcc6dd2b4fd7a80d97eb2f587ac52af06f2de7f9b839380ed651b",
+      "counts_sha256": "b8888a3b5d6743c57d7b55341aaf0cdf12fb51cf60b70c21b4313d226026c908"
+    },
+    {
+      "id": "shape-benchmark-26.3--train-canopy-04-left",
+      "source_hash": "15fa8537e6b6f095ba50c7e24a71f6b823806a6fb236f80641daf9bc714c0823",
+      "matched_release": true,
+      "cases": {
+        "control": {
+          "geometry": {
+            "strict": {
+              "correct": 41,
+              "missed": 19,
+              "extras": 3,
+              "f1": 0.7884615384615384
+            },
+            "facade": {
+              "correct": 37,
+              "missed": 0,
+              "extras": 3,
+              "f1": 0.961038961038961
+            }
+          },
+          "typed": {
+            "strict": {
+              "correct": 41,
+              "missed": 19,
+              "extras": 3,
+              "f1": 0.7884615384615384
+            },
+            "facade": {
+              "correct": 37,
+              "missed": 0,
+              "extras": 3,
+              "f1": 0.961038961038961
+            },
+            "material": {
+              "correct": 41,
+              "positions": 41,
+              "accuracy": 1.0
+            }
+          },
+          "translation": [
+            0,
+            0,
+            0
+          ],
+          "pack_sha256": "0e86050134ef4f9901870ad23f5e1352fc2f28d0ab64ffc2f129bedcf3fc6a39",
+          "changes": [],
+          "local_coordinates_added": 0,
+          "local_coordinates_removed": 0,
+          "local_ids_changed": 0,
+          "id_sources": {
+            "source-atlas": 44
+          },
+          "ranked_strict_blocks": 0,
+          "ranked_added_blocks": 44
+        },
+        "sham": {
+          "geometry": {
+            "strict": {
+              "correct": 41,
+              "missed": 19,
+              "extras": 3,
+              "f1": 0.7884615384615384
+            },
+            "facade": {
+              "correct": 37,
+              "missed": 0,
+              "extras": 3,
+              "f1": 0.961038961038961
+            }
+          },
+          "typed": {
+            "strict": {
+              "correct": 41,
+              "missed": 19,
+              "extras": 3,
+              "f1": 0.7884615384615384
+            },
+            "facade": {
+              "correct": 37,
+              "missed": 0,
+              "extras": 3,
+              "f1": 0.961038961038961
+            },
+            "material": {
+              "correct": 41,
+              "positions": 41,
+              "accuracy": 1.0
+            }
+          },
+          "translation": [
+            0,
+            0,
+            0
+          ],
+          "pack_sha256": "43c8eb150828a3f4f8b6b9f6d89b57e9bf51db031c79a225cdd150eff977a64d",
+          "changes": [],
+          "local_coordinates_added": 0,
+          "local_coordinates_removed": 0,
+          "local_ids_changed": 0,
+          "id_sources": {
+            "source-atlas": 44
+          },
+          "ranked_strict_blocks": 0,
+          "ranked_added_blocks": 44
+        },
+        "feedback": {
+          "geometry": {
+            "strict": {
+              "correct": 41,
+              "missed": 19,
+              "extras": 3,
+              "f1": 0.7884615384615384
+            },
+            "facade": {
+              "correct": 37,
+              "missed": 0,
+              "extras": 3,
+              "f1": 0.961038961038961
+            }
+          },
+          "typed": {
+            "strict": {
+              "correct": 41,
+              "missed": 19,
+              "extras": 3,
+              "f1": 0.7884615384615384
+            },
+            "facade": {
+              "correct": 37,
+              "missed": 0,
+              "extras": 3,
+              "f1": 0.961038961038961
+            },
+            "material": {
+              "correct": 41,
+              "positions": 41,
+              "accuracy": 1.0
+            }
+          },
+          "translation": [
+            0,
+            0,
+            0
+          ],
+          "pack_sha256": "a8bdd55a70f3e9d676fb5f49c01c7fc0f8ab2f24db201fd1206bfdf179b52b1a",
+          "changes": [],
+          "local_coordinates_added": 0,
+          "local_coordinates_removed": 0,
+          "local_ids_changed": 0,
+          "id_sources": {
+            "source-atlas": 44
+          },
+          "ranked_strict_blocks": 0,
+          "ranked_added_blocks": 44
+        },
+        "oracle": {
+          "geometry": {
+            "strict": {
+              "correct": 41,
+              "missed": 19,
+              "extras": 3,
+              "f1": 0.7884615384615384
+            },
+            "facade": {
+              "correct": 37,
+              "missed": 0,
+              "extras": 3,
+              "f1": 0.961038961038961
+            }
+          },
+          "typed": {
+            "strict": {
+              "correct": 41,
+              "missed": 19,
+              "extras": 3,
+              "f1": 0.7884615384615384
+            },
+            "facade": {
+              "correct": 37,
+              "missed": 0,
+              "extras": 3,
+              "f1": 0.961038961038961
+            },
+            "material": {
+              "correct": 41,
+              "positions": 41,
+              "accuracy": 1.0
+            }
+          },
+          "translation": [
+            0,
+            0,
+            0
+          ],
+          "pack_sha256": "6c3db29254f9d6924887aaba92985cf9f136e4ea5b5441ce0b47e8150419ec81",
+          "changes": [
+            [
+              "mask-0-junction-0",
+              [
+                null,
+                null
+              ],
+              [
+                1,
+                5
+              ]
+            ],
+            [
+              "mask-4",
+              [
+                null,
+                null
+              ],
+              [
+                1,
+                5
+              ]
+            ],
+            [
+              "mask-5",
+              [
+                null,
+                null
+              ],
+              [
+                1,
+                5
+              ]
+            ],
+            [
+              "mask-6",
+              [
+                null,
+                10
+              ],
+              [
+                1,
+                5
+              ]
+            ]
+          ],
+          "local_coordinates_added": 0,
+          "local_coordinates_removed": 0,
+          "local_ids_changed": 0,
+          "id_sources": {
+            "source-atlas": 44
+          },
+          "ranked_strict_blocks": 0,
+          "ranked_added_blocks": 44
+        },
+        "disabled": {
+          "geometry": {
+            "strict": {
+              "correct": 41,
+              "missed": 19,
+              "extras": 3,
+              "f1": 0.7884615384615384
+            },
+            "facade": {
+              "correct": 37,
+              "missed": 0,
+              "extras": 3,
+              "f1": 0.961038961038961
+            }
+          },
+          "typed": {
+            "strict": {
+              "correct": 41,
+              "missed": 19,
+              "extras": 3,
+              "f1": 0.7884615384615384
+            },
+            "facade": {
+              "correct": 37,
+              "missed": 0,
+              "extras": 3,
+              "f1": 0.961038961038961
+            },
+            "material": {
+              "correct": 41,
+              "positions": 41,
+              "accuracy": 1.0
+            }
+          },
+          "translation": [
+            0,
+            0,
+            0
+          ],
+          "pack_sha256": "615528f6e09bff3c008862faf83c2c9fcb45bccbe6c704caacf2990152e3316a",
+          "changes": [
+            [
+              "mask-0-junction-1",
+              [
+                6.06243425378526,
+                1.223196677357582
+              ],
+              [
+                null,
+                null
+              ]
+            ],
+            [
+              "mask-1-junction-0",
+              [
+                0.9117137129401087,
+                2.3203125
+              ],
+              [
+                null,
+                null
+              ]
+            ],
+            [
+              "mask-1-junction-1",
+              [
+                1.1796875,
+                2.3768247114774965
+              ],
+              [
+                null,
+                null
+              ]
+            ],
+            [
+              "mask-2",
+              [
+                1.416878448687433,
+                4.524634747563943
+              ],
+              [
+                null,
+                null
+              ]
+            ],
+            [
+              "mask-6",
+              [
+                null,
+                10.230699296790982
+              ],
+              [
+                null,
+                null
+              ]
+            ]
+          ],
+          "local_coordinates_added": 0,
+          "local_coordinates_removed": 0,
+          "local_ids_changed": 0,
+          "id_sources": {
+            "source-atlas": 44
+          },
+          "ranked_strict_blocks": 0,
+          "ranked_added_blocks": 44
+        }
+      },
+      "masks_sha256": "22502274a78eeca931bf453ba6067675b2bafb9d0f02a09d657be43faafd5d0b",
+      "counts_sha256": "912eb44d4fe2ffee98344dd10e4b5a493fbc65fa946c86f516251aca8168cab8"
+    },
+    {
+      "id": "test-twinspire1-cool-high-right",
+      "source_hash": "02e58fb693b6a95ffc35c2ba212ec4b150d2670c0b016c747e287afce5723cdf",
+      "matched_release": true,
+      "cases": {
+        "control": {
+          "geometry": {
+            "strict": {
+              "correct": 208,
+              "missed": 18,
+              "extras": 0,
+              "f1": 0.9585253456221198
+            },
+            "facade": {
+              "correct": 206,
+              "missed": 8,
+              "extras": 0,
+              "f1": 0.9809523809523809
+            }
+          },
+          "typed": {
+            "strict": {
+              "correct": 208,
+              "missed": 18,
+              "extras": 0,
+              "f1": 0.9585253456221198
+            },
+            "facade": {
+              "correct": 206,
+              "missed": 8,
+              "extras": 0,
+              "f1": 0.9809523809523809
+            },
+            "material": {
+              "correct": 208,
+              "positions": 208,
+              "accuracy": 1.0
+            }
+          },
+          "translation": [
+            0,
+            0,
+            0
+          ],
+          "pack_sha256": "662665f7c5d0b8438cb73455b0dba5e649044ded22e4c1dd70ac4bd0d4c44e81",
+          "changes": [],
+          "local_coordinates_added": 0,
+          "local_coordinates_removed": 0,
+          "local_ids_changed": 0,
+          "id_sources": {
+            "source-atlas": 208
+          },
+          "ranked_strict_blocks": 68,
+          "ranked_added_blocks": 140
+        },
+        "sham": {
+          "geometry": {
+            "strict": {
+              "correct": 208,
+              "missed": 18,
+              "extras": 0,
+              "f1": 0.9585253456221198
+            },
+            "facade": {
+              "correct": 206,
+              "missed": 8,
+              "extras": 0,
+              "f1": 0.9809523809523809
+            }
+          },
+          "typed": {
+            "strict": {
+              "correct": 208,
+              "missed": 18,
+              "extras": 0,
+              "f1": 0.9585253456221198
+            },
+            "facade": {
+              "correct": 206,
+              "missed": 8,
+              "extras": 0,
+              "f1": 0.9809523809523809
+            },
+            "material": {
+              "correct": 208,
+              "positions": 208,
+              "accuracy": 1.0
+            }
+          },
+          "translation": [
+            0,
+            0,
+            0
+          ],
+          "pack_sha256": "cdf8a15174c1c9e591d8465a732bbeeb3798601803b7859e3a446d4ff11b5c43",
+          "changes": [],
+          "local_coordinates_added": 0,
+          "local_coordinates_removed": 0,
+          "local_ids_changed": 0,
+          "id_sources": {
+            "source-atlas": 208
+          },
+          "ranked_strict_blocks": 68,
+          "ranked_added_blocks": 140
+        },
+        "feedback": {
+          "geometry": {
+            "strict": {
+              "correct": 208,
+              "missed": 18,
+              "extras": 0,
+              "f1": 0.9585253456221198
+            },
+            "facade": {
+              "correct": 206,
+              "missed": 8,
+              "extras": 0,
+              "f1": 0.9809523809523809
+            }
+          },
+          "typed": {
+            "strict": {
+              "correct": 208,
+              "missed": 18,
+              "extras": 0,
+              "f1": 0.9585253456221198
+            },
+            "facade": {
+              "correct": 206,
+              "missed": 8,
+              "extras": 0,
+              "f1": 0.9809523809523809
+            },
+            "material": {
+              "correct": 208,
+              "positions": 208,
+              "accuracy": 1.0
+            }
+          },
+          "translation": [
+            0,
+            0,
+            0
+          ],
+          "pack_sha256": "049415ad019a159a779650811d8636d20a2c406597ff5fb4d16596b5c520663e",
+          "changes": [
+            [
+              "mask-4",
+              [
+                null,
+                null
+              ],
+              [
+                6,
+                1
+              ]
+            ]
+          ],
+          "local_coordinates_added": 0,
+          "local_coordinates_removed": 0,
+          "local_ids_changed": 0,
+          "id_sources": {
+            "source-atlas": 208
+          },
+          "ranked_strict_blocks": 68,
+          "ranked_added_blocks": 140
+        },
+        "oracle": {
+          "geometry": {
+            "strict": {
+              "correct": 208,
+              "missed": 18,
+              "extras": 0,
+              "f1": 0.9585253456221198
+            },
+            "facade": {
+              "correct": 206,
+              "missed": 8,
+              "extras": 0,
+              "f1": 0.9809523809523809
+            }
+          },
+          "typed": {
+            "strict": {
+              "correct": 208,
+              "missed": 18,
+              "extras": 0,
+              "f1": 0.9585253456221198
+            },
+            "facade": {
+              "correct": 206,
+              "missed": 8,
+              "extras": 0,
+              "f1": 0.9809523809523809
+            },
+            "material": {
+              "correct": 208,
+              "positions": 208,
+              "accuracy": 1.0
+            }
+          },
+          "translation": [
+            0,
+            0,
+            0
+          ],
+          "pack_sha256": "4d5d4db3c83cd8e0592075029b51e4a203b081bdf5255a296d3f93d597ec784d",
+          "changes": [
+            [
+              "mask-2",
+              [
+                5,
+                8
+              ],
+              [
+                6,
+                7
+              ]
+            ],
+            [
+              "mask-4",
+              [
+                null,
+                null
+              ],
+              [
+                6,
+                1
+              ]
+            ],
+            [
+              "mask-5",
+              [
+                29,
+                10
+              ],
+              [
+                5,
+                2
+              ]
+            ],
+            [
+              "mask-9",
+              [
+                11,
+                4
+              ],
+              [
+                5,
+                2
+              ]
+            ]
+          ],
+          "local_coordinates_added": 0,
+          "local_coordinates_removed": 0,
+          "local_ids_changed": 0,
+          "id_sources": {
+            "source-atlas": 208
+          },
+          "ranked_strict_blocks": 68,
+          "ranked_added_blocks": 140
+        },
+        "disabled": {
+          "geometry": {
+            "strict": {
+              "correct": 208,
+              "missed": 18,
+              "extras": 0,
+              "f1": 0.9585253456221198
+            },
+            "facade": {
+              "correct": 206,
+              "missed": 8,
+              "extras": 0,
+              "f1": 0.9809523809523809
+            }
+          },
+          "typed": {
+            "strict": {
+              "correct": 208,
+              "missed": 18,
+              "extras": 0,
+              "f1": 0.9585253456221198
+            },
+            "facade": {
+              "correct": 206,
+              "missed": 8,
+              "extras": 0,
+              "f1": 0.9809523809523809
+            },
+            "material": {
+              "correct": 208,
+              "positions": 208,
+              "accuracy": 1.0
+            }
+          },
+          "translation": [
+            0,
+            0,
+            0
+          ],
+          "pack_sha256": "6c2152b788662e808c527bfdcca08140df080325728478485b13c48e36eeb657",
+          "changes": [
+            [
+              "mask-0",
+              [
+                3.9571329933655486,
+                9.009809036273971
+              ],
+              [
+                null,
+                null
+              ]
+            ],
+            [
+              "mask-1",
+              [
+                7.093822335241994,
+                8.914391804236633
+              ],
+              [
+                null,
+                null
+              ]
+            ],
+            [
+              "mask-2",
+              [
+                5.13457424239507,
+                7.842662799929236
+              ],
+              [
+                null,
+                null
+              ]
+            ],
+            [
+              "mask-3",
+              [
+                4.029538572632875,
+                6.833677168429384
+              ],
+              [
+                null,
+                null
+              ]
+            ],
+            [
+              "mask-5",
+              [
+                28.638750783463163,
+                10.218225857704093
+              ],
+              [
+                null,
+                null
+              ]
+            ],
+            [
+              "mask-6",
+              [
+                2.0546875,
+                2.113248746676944
+              ],
+              [
+                null,
+                null
+              ]
+            ],
+            [
+              "mask-8",
+              [
+                5.9586034694939505,
+                0.9659987101411748
+              ],
+              [
+                null,
+                null
+              ]
+            ],
+            [
+              "mask-9",
+              [
+                11.302049187534081,
+                4.255685123485783
+              ],
+              [
+                null,
+                null
+              ]
+            ],
+            [
+              "mask-10",
+              [
+                2.47751845079566,
+                2.1667744130262183
+              ],
+              [
+                null,
+                null
+              ]
+            ],
+            [
+              "mask-11",
+              [
+                2.1567917533297982,
+                2.099581010048107
+              ],
+              [
+                null,
+                null
+              ]
+            ]
+          ],
+          "local_coordinates_added": 0,
+          "local_coordinates_removed": 0,
+          "local_ids_changed": 0,
+          "id_sources": {
+            "source-atlas": 208
+          },
+          "ranked_strict_blocks": 0,
+          "ranked_added_blocks": 208
+        }
+      },
+      "masks_sha256": "cd7e9c0f284a348119bc737fec00caa5731965023ec0932cbecef9cde5e63a2b",
+      "counts_sha256": "fd71f4232b423a34978da9c654a873d32fc41725be5b4151e86f7ecaecf6aafa"
+    },
+    {
+      "id": "validation-cloister1-cool-high-right",
+      "source_hash": "d070a5b17327f7984b08d4878ef38b1ca8bfc34cc88e8ecf8c0b532e449581e3",
+      "matched_release": true,
+      "cases": {
+        "control": {
+          "geometry": {
+            "strict": {
+              "correct": 162,
+              "missed": 12,
+              "extras": 8,
+              "f1": 0.9418604651162791
+            },
+            "facade": {
+              "correct": 162,
+              "missed": 12,
+              "extras": 8,
+              "f1": 0.9418604651162791
+            }
+          },
+          "typed": {
+            "strict": {
+              "correct": 162,
+              "missed": 12,
+              "extras": 8,
+              "f1": 0.9418604651162791
+            },
+            "facade": {
+              "correct": 162,
+              "missed": 12,
+              "extras": 8,
+              "f1": 0.9418604651162791
+            },
+            "material": {
+              "correct": 162,
+              "positions": 162,
+              "accuracy": 1.0
+            }
+          },
+          "translation": [
+            0,
+            0,
+            0
+          ],
+          "pack_sha256": "2df6d00779ec78fa5547131eafcd75ea48032b29716a25694caa1a02edee34d6",
+          "changes": [],
+          "local_coordinates_added": 0,
+          "local_coordinates_removed": 0,
+          "local_ids_changed": 0,
+          "id_sources": {
+            "source-atlas": 170
+          },
+          "ranked_strict_blocks": 10,
+          "ranked_added_blocks": 160
+        },
+        "sham": {
+          "geometry": {
+            "strict": {
+              "correct": 162,
+              "missed": 12,
+              "extras": 8,
+              "f1": 0.9418604651162791
+            },
+            "facade": {
+              "correct": 162,
+              "missed": 12,
+              "extras": 8,
+              "f1": 0.9418604651162791
+            }
+          },
+          "typed": {
+            "strict": {
+              "correct": 162,
+              "missed": 12,
+              "extras": 8,
+              "f1": 0.9418604651162791
+            },
+            "facade": {
+              "correct": 162,
+              "missed": 12,
+              "extras": 8,
+              "f1": 0.9418604651162791
+            },
+            "material": {
+              "correct": 162,
+              "positions": 162,
+              "accuracy": 1.0
+            }
+          },
+          "translation": [
+            0,
+            0,
+            0
+          ],
+          "pack_sha256": "7b8972ed8a7d143e792b8c7829b7723d3a6ae59421d18308225599f989a7cf0f",
+          "changes": [],
+          "local_coordinates_added": 0,
+          "local_coordinates_removed": 0,
+          "local_ids_changed": 0,
+          "id_sources": {
+            "source-atlas": 170
+          },
+          "ranked_strict_blocks": 10,
+          "ranked_added_blocks": 160
+        },
+        "feedback": {
+          "geometry": {
+            "strict": {
+              "correct": 162,
+              "missed": 12,
+              "extras": 8,
+              "f1": 0.9418604651162791
+            },
+            "facade": {
+              "correct": 162,
+              "missed": 12,
+              "extras": 8,
+              "f1": 0.9418604651162791
+            }
+          },
+          "typed": {
+            "strict": {
+              "correct": 162,
+              "missed": 12,
+              "extras": 8,
+              "f1": 0.9418604651162791
+            },
+            "facade": {
+              "correct": 162,
+              "missed": 12,
+              "extras": 8,
+              "f1": 0.9418604651162791
+            },
+            "material": {
+              "correct": 162,
+              "positions": 162,
+              "accuracy": 1.0
+            }
+          },
+          "translation": [
+            0,
+            0,
+            0
+          ],
+          "pack_sha256": "b6b4f67c535cc6b0fb160103e31680821f8d173e6d073f548e922a2d1fccd875",
+          "changes": [],
+          "local_coordinates_added": 0,
+          "local_coordinates_removed": 0,
+          "local_ids_changed": 0,
+          "id_sources": {
+            "source-atlas": 170
+          },
+          "ranked_strict_blocks": 10,
+          "ranked_added_blocks": 160
+        },
+        "oracle": {
+          "geometry": {
+            "strict": {
+              "correct": 162,
+              "missed": 12,
+              "extras": 8,
+              "f1": 0.9418604651162791
+            },
+            "facade": {
+              "correct": 162,
+              "missed": 12,
+              "extras": 8,
+              "f1": 0.9418604651162791
+            }
+          },
+          "typed": {
+            "strict": {
+              "correct": 162,
+              "missed": 12,
+              "extras": 8,
+              "f1": 0.9418604651162791
+            },
+            "facade": {
+              "correct": 162,
+              "missed": 12,
+              "extras": 8,
+              "f1": 0.9418604651162791
+            },
+            "material": {
+              "correct": 162,
+              "positions": 162,
+              "accuracy": 1.0
+            }
+          },
+          "translation": [
+            0,
+            0,
+            0
+          ],
+          "pack_sha256": "615b6699cfca70b45f71059e61fa478a3cbf490c90a4ded64920d95894fbd479",
+          "changes": [
+            [
+              "mask-0-wall-0",
+              [
+                null,
+                null
+              ],
+              [
+                12,
+                7
+              ]
+            ],
+            [
+              "mask-1-wall-0",
+              [
+                null,
+                null
+              ],
+              [
+                8,
+                7
+              ]
+            ],
+            [
+              "mask-3",
+              [
+                null,
+                null
+              ],
+              [
+                7,
+                2
+              ]
+            ],
+            [
+              "mask-4",
+              [
+                null,
+                null
+              ],
+              [
+                2,
+                4
+              ]
+            ],
+            [
+              "mask-7",
+              [
+                null,
+                null
+              ],
+              [
+                4,
+                2
+              ]
+            ],
+            [
+              "mask-8",
+              [
+                null,
+                null
+              ],
+              [
+                4,
+                1
+              ]
+            ]
+          ],
+          "local_coordinates_added": 0,
+          "local_coordinates_removed": 0,
+          "local_ids_changed": 0,
+          "id_sources": {
+            "source-atlas": 170
+          },
+          "ranked_strict_blocks": 10,
+          "ranked_added_blocks": 160
+        },
+        "disabled": {
+          "geometry": {
+            "strict": {
+              "correct": 162,
+              "missed": 12,
+              "extras": 8,
+              "f1": 0.9418604651162791
+            },
+            "facade": {
+              "correct": 162,
+              "missed": 12,
+              "extras": 8,
+              "f1": 0.9418604651162791
+            }
+          },
+          "typed": {
+            "strict": {
+              "correct": 162,
+              "missed": 12,
+              "extras": 8,
+              "f1": 0.9418604651162791
+            },
+            "facade": {
+              "correct": 162,
+              "missed": 12,
+              "extras": 8,
+              "f1": 0.9418604651162791
+            },
+            "material": {
+              "correct": 162,
+              "positions": 162,
+              "accuracy": 1.0
+            }
+          },
+          "translation": [
+            0,
+            0,
+            0
+          ],
+          "pack_sha256": "aceb0f48383d85e329f4db6c784535257ac1553d8393b0cee9627521be9b8118",
+          "changes": [
+            [
+              "mask-0-wall-1",
+              [
+                3.0347370607364237,
+                2.015992669788266
+              ],
+              [
+                null,
+                null
+              ]
+            ],
+            [
+              "mask-0-wall-2",
+              [
+                2.9825291772444795,
+                2.027722985427658
+              ],
+              [
+                null,
+                null
+              ]
+            ],
+            [
+              "mask-1-wall-1",
+              [
+                6.06035293977474,
+                2.6003362784986837
+              ],
+              [
+                null,
+                null
+              ]
+            ],
+            [
+              "mask-2",
+              [
+                null,
+                7.021339751748384
+              ],
+              [
+                null,
+                null
+              ]
+            ],
+            [
+              "mask-10",
+              [
+                19.833826475384317,
+                12.751029229398412
+              ],
+              [
+                null,
+                null
+              ]
+            ]
+          ],
+          "local_coordinates_added": 0,
+          "local_coordinates_removed": 0,
+          "local_ids_changed": 0,
+          "id_sources": {
+            "source-atlas": 170
+          },
+          "ranked_strict_blocks": 0,
+          "ranked_added_blocks": 170
+        }
+      },
+      "masks_sha256": "4a0969a1d686700461fc9e49ad234146bc6a2eb4d25e4ee927cc9f13cee92be9",
+      "counts_sha256": "170a26d77a7b0b9038694c4614a108825b9d005b4cbdce1f56c63577a410232d"
+    }
+  ]
+}
