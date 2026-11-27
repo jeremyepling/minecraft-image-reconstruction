@@ -1,0 +1,316 @@
+{
+  "control_cases_sha256": "2c438afaf07a0d95c152b5268e2999dc2b2817a0c671c0219bb9b6cc5099570c",
+  "candidates": {
+    "broad": {
+      "primary_packs": 200,
+      "changed_primary_packs": 23,
+      "transfer_packs": 4
+    },
+    "horizontal": {
+      "primary_packs": 200,
+      "changed_primary_packs": 2,
+      "transfer_packs": 4
+    },
+    "corroborated": {
+      "primary_packs": 200,
+      "changed_primary_packs": 1,
+      "transfer_packs": 4
+    },
+    "texture_join": {
+      "primary_packs": 200,
+      "changed_primary_packs": 2,
+      "transfer_packs": 4
+    },
+    "reference_join": {
+      "primary_packs": 200,
+      "changed_primary_packs": 13
+    },
+    "projected_join": {
+      "primary_packs": 200,
+      "changed_primary_packs": 4,
+      "transfer_packs": 4
+    }
+  },
+  "independent_local_4x4": "Direct 16-pixel equality on recorded first-hit face IDs, recorded cube coordinates, and geometry decoded from each export after its one shared translation.",
+  "priority_reference_views": 104,
+  "priority_baseline": {
+    "correct": 18714,
+    "missed": 1862,
+    "extras": 1146,
+    "views": 104,
+    "f1": 0.9256108418241171
+  },
+  "priority_candidates": {
+    "broad": {
+      "correct": 18716,
+      "missed": 1860,
+      "extras": 1158,
+      "views": 104,
+      "f1": 0.925389369592089
+    },
+    "horizontal": {
+      "correct": 18714,
+      "missed": 1862,
+      "extras": 1146,
+      "views": 104,
+      "f1": 0.9256108418241171
+    },
+    "corroborated": {
+      "correct": 18714,
+      "missed": 1862,
+      "extras": 1146,
+      "views": 104,
+      "f1": 0.9256108418241171
+    },
+    "texture_join": {
+      "correct": 18714,
+      "missed": 1862,
+      "extras": 1146,
+      "views": 104,
+      "f1": 0.9256108418241171
+    },
+    "reference_join": {
+      "correct": 18732,
+      "missed": 1844,
+      "extras": 1133,
+      "views": 104,
+      "f1": 0.9263865878687471
+    },
+    "projected_join": {
+      "correct": 18732,
+      "missed": 1844,
+      "extras": 1133,
+      "views": 104,
+      "f1": 0.9263865878687471
+    }
+  },
+  "full_control_replay": {
+    "primary": 200,
+    "shelter_gate": 4,
+    "comparison": "Exact screenshot, reference, input hashes, case coordinates and per-frame strict counts match production. Primary packs match bytewise; transfer replay packs were reserialized and were compared by decoding exact coordinates and block IDs."
+  },
+  "fixed_priority_replays": {
+    "control": {
+      "packs": 104,
+      "cases_sha256": "1cc0dfb7a92551e7dfbe496f75ba8943d18c9182733b59ab95aafe47b005221e",
+      "correct": 18714,
+      "missed": 1862,
+      "extras": 1146,
+      "optional_correct": 1821,
+      "optional_missed": 1305
+    },
+    "broad": {
+      "packs": 104,
+      "cases_sha256": "f911ed145a73d841265dd59a00a01d77af28dc36d699b1e6cb17431036914a44",
+      "correct": 18716,
+      "missed": 1860,
+      "extras": 1158,
+      "optional_correct": 1826,
+      "optional_missed": 1300
+    },
+    "reference_join": {
+      "packs": 104,
+      "cases_sha256": "c4080a65b75bed68fc57d796b0aa18a38162490d3c5ac9c412c7aeaf5289307d",
+      "correct": 18732,
+      "missed": 1844,
+      "extras": 1133,
+      "optional_correct": 1821,
+      "optional_missed": 1305
+    }
+  },
+  "verified_archives": {
+    "benchmark/reviews/strip-face-directions-01/comparisons.zip": {
+      "sha256": "444930efec4d1d903c35e45c28937b9a5a2d7280e125dff599cf36fc03da8c5b",
+      "methods": {
+        "conservative": {
+          "cases_sha256": "8bf50b70d6a44b2a1256d271c6d4e7b7351c76f7d8f5f7aec97ade448c4fa344",
+          "resolved_to_control": 177,
+          "verified_packs": 200,
+          "stored_packs": 23,
+          "stored_cell_tables": 23
+        },
+        "conservative/transfer": {
+          "cases_sha256": "66798def2e5b1281e424d75a4aa9469bc76ad061fa0ff5837b3fa16a8973ace2",
+          "stored_packs": 4,
+          "verified_packs": 4
+        },
+        "control": {
+          "cases_sha256": "95db686e009e9777be0d52cbe9ecd3264ccf83f2ea51708b45e2eddd6cb14bca",
+          "resolved_to_control": 200,
+          "verified_packs": 200
+        },
+        "control/transfer": {
+          "cases_sha256": "8a70bff03bec46404030f7cce54f89d01e74fdc361ac0a12ac9d237da4c971f5",
+          "stored_packs": 4,
+          "verified_packs": 4
+        },
+        "corroborated": {
+          "cases_sha256": "2f18c697ffe315aec7ab64d6ceba7bf820af32053719852a8deae3b89d8c5b21",
+          "resolved_to_control": 199,
+          "verified_packs": 200,
+          "stored_packs": 1,
+          "stored_cell_tables": 1
+        },
+        "corroborated/transfer": {
+          "cases_sha256": "08d3472419dec4231c2df24e49433d69d974135a2fa2cda9ff43104ee4540a1c",
+          "stored_packs": 4,
+          "verified_packs": 4
+        },
+        "horizontal": {
+          "cases_sha256": "c03a36e8524159cd6dfb79441d9019334a56cb2e640c40748223971832819143",
+          "resolved_to_control": 198,
+          "verified_packs": 200,
+          "stored_packs": 2,
+          "stored_cell_tables": 2
+        },
+        "horizontal/transfer": {
+          "cases_sha256": "9f4484a888c6549944b385210d715145873a6bc9af172811d6256bcd12d52b1b",
+          "stored_packs": 4,
+          "verified_packs": 4
+        }
+      },
+      "members": 84
+    },
+    "benchmark/reviews/coplanar-fragments-01/exports.zip": {
+      "sha256": "b5574448062d962bb6719632b5444859f1e1dc7c4dec6359bc46da8074593011",
+      "methods": {
+        "diagonal": {
+          "cases_sha256": "79641531398fdedf2e9d1b5e8d868755494d838658c896823d0e0786f4b11ac5",
+          "resolved_to_control": 200,
+          "verified_packs": 200
+        },
+        "ideal": {
+          "cases_sha256": "1ea761ff25ff9ec2dbec2d93d6327087febf10b24427ea76923420e9d8b2cf38",
+          "resolved_to_control": 187,
+          "verified_packs": 200,
+          "stored_packs": 13,
+          "stored_cell_tables": 13
+        },
+        "photo": {
+          "cases_sha256": "35b41a63dd5ef990a7aebbe043c3f7c77d7efc937ed75c1f4b28b4eff609811b",
+          "resolved_to_control": 198,
+          "verified_packs": 200,
+          "stored_packs": 2,
+          "stored_cell_tables": 2
+        },
+        "transfer-diagonal": {
+          "cases_sha256": "fd66858762f58ebe2236e664132f7f3014d8affbea13045e826265f95693e00e",
+          "stored_packs": 4,
+          "verified_packs": 4,
+          "stored_cell_tables": 4
+        },
+        "transfer-photo": {
+          "cases_sha256": "c2807321a92b4d36795ad90183180709de4cb5711f9381007d762ca717cbe7d4",
+          "stored_packs": 4,
+          "verified_packs": 4,
+          "stored_cell_tables": 4
+        },
+        "transfer-transition": {
+          "cases_sha256": "96b85e7f1358f4bb07becd77cffe1e50ebb0363062e36663a4a9a75c550b05b4",
+          "stored_packs": 4,
+          "verified_packs": 4,
+          "stored_cell_tables": 4
+        },
+        "transition": {
+          "cases_sha256": "bb10f162aa710f16437bccf15d52b106da5e87969f5647c666b8d128bcc4251a",
+          "resolved_to_control": 196,
+          "verified_packs": 200,
+          "stored_packs": 4,
+          "stored_cell_tables": 4
+        }
+      },
+      "members": 76
+    }
+  },
+  "diagonal_guard_priority": {
+    "case_sha256": "79641531398fdedf2e9d1b5e8d868755494d838658c896823d0e0786f4b11ac5",
+    "byte_identical_production_packs": 104,
+    "correct": 18714,
+    "missed": 1862,
+    "extras": 1146,
+    "views": 104,
+    "f1": 0.9256108418241171
+  },
+  "priority_reference_hashes": {
+    "sliver_counts": "a3476c827832647b3b4e03578d59408909b07c35c2379d41b926e70c785476b7",
+    "layout_identity": "7076a37423249af05509679fcfa765d8125f19c97164685899f99c36defab7fc",
+    "fixed_layouts": 40,
+    "fixed_views": 104,
+    "merge_audit": "c113be0f0ef9265c9e3134229bc3ccea2395e54abd1aea7b457c6897e38df383"
+  },
+  "links_and_images": {
+    "strip-orientation-01": {
+      "local_markdown_link_occurrences": 15,
+      "decoded_images": {
+        "sliver-colonnade.jpg": [
+          1180,
+          716
+        ],
+        "wall-extent.jpg": [
+          1100,
+          310
+        ],
+        "canopy-04-corner.jpg": [
+          1190,
+          304
+        ],
+        "colonnade-01-wrong_top.jpg": [
+          1190,
+          304
+        ],
+        "depth-and-direction.jpg": [
+          1190,
+          725
+        ],
+        "facade-same_depth_error.jpg": [
+          1190,
+          304
+        ],
+        "face-directions.jpg": [
+          1190,
+          1637
+        ],
+        "galleries-wrong_under.jpg": [
+          1190,
+          304
+        ],
+        "shopfront-exact.jpg": [
+          1190,
+          304
+        ]
+      }
+    },
+    "strip-face-directions-01": {
+      "local_markdown_link_occurrences": 3,
+      "decoded_images": {}
+    },
+    "coplanar-fragments-01": {
+      "local_markdown_link_occurrences": 9,
+      "decoded_images": {
+        "split-surfaces.jpg": [
+          1350,
+          730
+        ]
+      }
+    }
+  },
+  "cohort_crosschecks": {
+    "low_horizontal_coverage": 632,
+    "with_vertical_majority": 608,
+    "required_after_local_4x4": 17,
+    "required_with_vertical_majority": 10,
+    "touched_required": 12,
+    "offered_required": 11,
+    "oracle_retained_required": 1
+  },
+  "fixed_scoring_splits": [
+    "validation",
+    "test",
+    "regression",
+    "native",
+    "old",
+    "fresh"
+  ],
+  "production_engine": "edb10a3",
+  "scope": "Java 26.3 saved screenshot exports. The reference-assisted join is a diagnostic and has no four-frame transfer trial. Byte comparisons use packed build contents; execution timing and renderer reproducibility are outside this replay."
+}
