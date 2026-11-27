@@ -4,6 +4,7 @@ from PIL import ImageFilter
 
 from engine.diagonal_texture_join import texture_fit
 from engine.geometry import project
+from engine.guarded_wall_outlines import _remap_junctions
 from engine.pillar_seams import orientation
 from engine.plane_consensus import with_mask
 from engine.surface_perimeter import _native_alpha
@@ -223,6 +224,21 @@ def back_surface(data,group,lo,hi,rows,gray,table,observations=None):
 
 def refine(image,parts,camera,*,candidate_log=None):
     """Partition only foreground already owned by a strongly registered photographed wall."""
+    return _refine(image, parts, camera, candidate_log, None)
+
+
+def supplemental(image, parts, camera, return_events):
+    """Inspect residuals of hosts where two photographed returns already established a plane."""
+    levels = {}
+    for event in return_events:
+        if all(event.get(key) is not None for key in ('host', 'side', 'sill', 'output', 'level')):
+            levels.setdefault(event['host'], set()).add(event['level'])
+    if not levels:
+        return parts, []
+    return _refine(image, parts, camera, None, levels)
+
+
+def _refine(image, parts, camera, candidate_log, host_levels):
     if not camera or camera.get('P') is None:
         return parts,[]
     try:
@@ -234,11 +250,14 @@ def refine(image,parts,camera,*,candidate_log=None):
     result,events=[],[]
     smooth=None
     for part in parts:
+        if host_levels is not None and (part['id'] not in host_levels or part.get('phase_inset_children')):
+            result.append(part)
+            continue
         if part.get('normal_camera') is None or not part.get('support'):
             result.append(part)
             continue
         data=host_grid(image,part,camera)
-        if data is None:
+        if data is None or (host_levels is not None and host_levels[part['id']] != {data['plane']}):
             result.append(part)
             continue
         rows,gray,table=tiles(image,data)
@@ -267,13 +286,25 @@ def refine(image,parts,camera,*,candidate_log=None):
         for i,(pixels,evidence) in enumerate(panels):
             key=f"{part['id']}-phase-inset-{i}"
             remaining &= ~pixels
-            children.append(rewrite(pixels,key))
+            child = rewrite(pixels,key)
+            child['parent_id'] = part['id']
+            children.append(child)
             events.append(dict(parent=part['id'],output=key,axis=data['axis'],host_level=int(data['plane']),**evidence))
-        result.append(rewrite(remaining,part['id']+'-phase-rim'))
+        host_id = part['id'] if host_levels is not None else part['id']+'-phase-rim'
+        remainder = rewrite(remaining,host_id)
+        if host_levels is not None:
+            remainder['phase_inset_children'] = [child['id'] for child in children]
+            if 'diagonal_join' in part:
+                remainder['diagonal_join'] = part['diagonal_join']
+        result.append(remainder)
         result.extend(children)
     if not events:
         return parts,[]
     retired={e['parent'] for e in events}
+    if host_levels is not None:
+        if any(part.get('corner_junctions') for part in parts):
+            result = _remap_junctions(parts,result,{key:key for key in retired})
+        return result, events
     for i,part in enumerate(result):
         old=part.get('corner_junctions',[])
         live=[j for j in old if j.get('neighbor') not in retired]
