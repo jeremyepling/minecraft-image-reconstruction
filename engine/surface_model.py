@@ -579,6 +579,9 @@ def build(image_path, version, out, *, outlines=None, order_method=None, through
             methods['boundary_sequence'].append(smooth_atlas_outline.METHOD)
             boundary_settings['smooth_atlas_outline'] = smooth_outline
             from engine import exterior_foreground
+            if metric_camera is None and any(part.get('normal_camera') is not None for part in patches):
+                from engine.visible_placement import seam_camera
+                metric_camera = seam_camera(image, version, atlas_path=camera_atlas_path)
             revised, exterior_events = exterior_foreground.refine(image, patches, metric_camera)
             if exterior_events:
                 scene_context = [with_outline(p) for p in patches]
