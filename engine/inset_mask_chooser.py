@@ -4,7 +4,6 @@ from collections import defaultdict
 import numpy as np
 from PIL import ImageFilter
 
-from engine.inset_mask_proposals import proposals
 from engine.pillar_seams import native_mask
 from engine.plane_consensus import with_mask
 
@@ -15,6 +14,7 @@ MIN_JAMB_IOU = 0.6846031124048366
 
 
 def _select(image, original_parts, camera, surface_parts, confirmed, native):
+    from engine.inset_mask_proposals import proposals
     used={(e['host'],e['side'],e['sill']) for e in confirmed}
     groups=defaultdict(list)
     for row in proposals(image,original_parts,camera,masks=native):
