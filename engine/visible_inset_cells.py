@@ -7,7 +7,7 @@ from engine.visible_raster import SAMPLE_STRIDE
 
 
 def _back_cells(mask, inverse, eye, axis, level, rim):
-    """Use native interior samples to keep boundary leakage from spawning new cells."""
+    """Require four interior native pixels after a small exclusion at the detected cell edge."""
     y,x = np.nonzero(mask)
     rays = np.stack([x+.5,y+.5,np.ones_like(x)],axis=1) @ inverse.T
     depths = np.divide(level-eye[axis],rays[:,axis],out=np.zeros(len(x)),where=abs(rays[:,axis])>1.e-7)
@@ -16,11 +16,11 @@ def _back_cells(mask, inverse, eye, axis, level, rim):
     xx,yy=points[:,tangent],points[:,1]
     good=(depths>1.5)&(depths<150)&(xx>=rim[0])&(xx<rim[1])&(yy>=rim[2])&(yy<rim[3])
     frac=points[:,[tangent,1]]%1
-    good&=((frac>=.10)&(frac<=.90)).all(1)
+    good&=((frac>=.015)&(frac<=.985)).all(1)
     cells=np.floor(points[good]).astype(int)
     cells[:,axis]=level-int(eye[axis]>level)
     cells,hits=np.unique(cells,axis=0,return_counts=True)
-    return set(map(tuple,cells[(hits>=9)&(cells[:,1]>=0)].tolist()))
+    return set(map(tuple,cells[(hits>=4)&(cells[:,1]>=0)].tolist()))
 
 
 def _clear_front(cells, owner, covered, axis, front, depth, rim, eye):
@@ -31,7 +31,7 @@ def _clear_front(cells, owner, covered, axis, front, depth, rim, eye):
     inside=np.bincount(owner[covered&(owner>=0)],minlength=len(cells))
     return {c for j,c in enumerate(cells)
             if 0<=(c[axis]-face)*sign<abs(depth) and rim[0]<=c[tang]<rim[1] and rim[2]<=c[1]<rim[3]
-            and total[j]>=4 and inside[j]==total[j]}
+            and total[j]>=4 and 100*inside[j]>=90*total[j]}
 
 
 def inset_edits(size, camera, parts, events, original):
