@@ -138,6 +138,16 @@ def sprite_candidates(part, rgb, linear):
     if result is None:
         return []
     chart, mask, loc, H, factor = result
+    hits = rectified_sprite_hits(chart, mask, H, rgb, horizontal=part['axis'] == 1)
+    for hit in hits:
+        corners = hit.pop('corners')
+        xyz = (np.column_stack((corners, np.ones(4))) @ loc.T) * factor / hit['pitch_px']
+        hit.update(surface=part['id'], axis=part['axis'], xyz=xyz.tolist())
+    return hits
+
+
+def rectified_sprite_hits(chart, mask, H, rgb, *, horizontal=False):
+    """Search a rectified 2D patch across unit sizes, then verify each hit in the source."""
     if mask.sum() < 100:
         return []
     cat = atlas()
@@ -159,7 +169,7 @@ def sprite_candidates(part, rgb, linear):
         for key in shortlist[:8]:
             if loss[key] > 20 or cat.spreads[key].mean() < 2.5:
                 continue
-            for rotation in (0, 2, 4, 6, 1, 3, 5, 7) if part['axis'] == 1 else (0, 2, 4, 6):
+            for rotation in (0, 2, 4, 6, 1, 3, 5, 7) if horizontal else (0, 2, 4, 6):
                 tile = cv2.resize(cat.patterns[key, rotation], (size, size), interpolation=cv2.INTER_LINEAR)
                 corr = cv2.matchTemplate(gray, tile, cv2.TM_CCOEFF_NORMED)
                 corr[~allowed] = -1
@@ -186,15 +196,13 @@ def sprite_candidates(part, rgb, linear):
         if peak < max(.65, quality-.14):
             break
         corners = np.array([x, y]) + UNIT * size
-        # XYZ coordinates are relative to the optical center and measured in source-derived blocks.
-        xyz = (np.column_stack((corners, np.ones(4))) @ loc.T) * factor / size
         quad = project(H, corners)
         verified = verify_sprite(rgb,quad)
         if verified:
             block,texture,native_corr = verified
-            out.append(dict(surface=part['id'], axis=part['axis'], texture=texture, block=block,
+            out.append(dict(corners=corners, texture=texture, block=block,
                             corr=round(native_corr, 5), rectified_corr=round(float(peak),5),
-                            xyz=xyz.tolist(), quad=quad.tolist(), pitch_px=size))
+                            quad=quad.tolist(), pitch_px=size))
         radius = max(3, int(.78*size))
         work[max(0,y-radius):y+radius+1, max(0,x-radius):x+radius+1] = -1
     return out

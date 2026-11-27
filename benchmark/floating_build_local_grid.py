@@ -32,7 +32,7 @@ def chart_projection(chart, size):
     return np.column_stack((chart[:, 0], -chart[:, 1], k@z, chart[:, 2]))
 
 
-def planar_witnesses(rgb, part, row, size):
+def planar_charts(rgb, part, row, size):
     normal = part.get("normal_camera")
     quad = row.get("quad")
     if not quad or normal is None or abs(normal[1]) > .63:
@@ -46,9 +46,6 @@ def planar_witnesses(rgb, part, row, size):
     lib = atlas()
     for counts in count_options(row):
         chart = transform(quad)@np.diag([1/counts[0], 1/counts[1], 1])
-        p = chart_projection(chart, size)
-        if p is None:
-            continue
         # Rectify at eight samples per block, search all possible sprite phases.
         w,h = np.ceil(counts*8).astype(int)
         if min(w,h) < 8:
@@ -102,9 +99,16 @@ def planar_witnesses(rgb, part, row, size):
                 todo.extend(((x-8,y),(x+8,y),(x,y-8),(x,y+8)))
             if len(accepted)>=2 or (accepted and accepted[0]['corr']>=.83):
                 # This is an observed sheet; its two tangents alone do not register other sheets.
-                p_seed = p.copy()
-                p_seed[:,3] += (p[:,0]*i - p[:,1]*j)/8
-                yield accepted, p_seed
+                translation = np.array([[1, 0, i/8], [0, -1, j/8], [0, 0, 1]])
+                yield accepted, chart @ translation
+
+
+def planar_witnesses(rgb, part, row, size):
+    for accepted, chart in planar_charts(rgb, part, row, size):
+        # Preserve the historical up-oriented evaluator transform.
+        projection = chart_projection(chart @ np.diag([1, -1, 1]), size)
+        if projection is not None:
+            yield accepted, projection
 
 
 def native_sheet(rgb, part, anchors, linear):
