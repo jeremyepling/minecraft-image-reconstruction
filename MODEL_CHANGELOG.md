@@ -4,6 +4,8 @@ These entries cover model inputs, rules around model outputs, and evaluation cha
 
 ### November 27, 2026
 
+- **Diagnostic, complete visible wall grids.** On 38 original held-out views, independently rebased exact wall grids with measured directions raised strict placement F1 from 8.47% with exact masks alone to 87.76%. A one-edge image coincidence moved 1,104 castle face cells by 24 blocks in X and 25 in Z. [Wall charts, junction gates and decoded exports](benchmark/reviews/expanded-wall-grids-01/README.md)
+
 - **Diagnostic, floating surface masks.** On 38 original test images, supplying the exact native visible surfaces before counting raised strict placement F1 from 3.72% to 8.47%. The crop intervention recovered 1,505 more correct placements across the paired totals. [Per-cohort results and ceilings](benchmark/reviews/expanded-crop-ceiling-01/README.md)
 
 - **Experimental crop correction and downstream replay.** A held-out crop-IoU gain coexisted with a placement regression on Castle. Retaining the existing counted grid as a candidate recovered part of that loss. [Stage controls and decoded comparison](benchmark/reviews/sky-crop-downstream-01/README.md)
