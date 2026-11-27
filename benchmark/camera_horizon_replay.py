@@ -30,9 +30,6 @@ def camera_validation(entry, camera):
     a, b = np.linalg.solve(estimated_K, aligned[:, :3]), np.linalg.solve(K, true[:, :3])
     axis = np.sum(a*b, axis=0) / (np.linalg.norm(a, axis=0)*np.linalg.norm(b, axis=0))
     axes = np.rad2deg(np.arccos(np.clip(abs(axis), 0, 1)))
-    optics = P[:, :3] @ P[:, :3].T
-    optics /= optics[2, 2]
-    inferred_f = np.sqrt(max(0., optics[1, 1] - optics[1, 2]**2))
     inferred_height = -np.linalg.solve(P[:, :3], P[:, 3])[1]
     height = pose['eye_world'][1] - (GROUND + 1)
     vertices = {tuple(c): xy for face in faces for c, xy, visible in
@@ -41,7 +38,7 @@ def camera_validation(entry, camera):
     errors = np.linalg.norm(projected - np.array(list(vertices.values())).reshape(-1, 2), axis=1)
     if not np.isfinite(errors).all():
         raise ValueError("Nonfinite visible corner reprojection")
-    return dict(fov_error_deg=abs(float(np.rad2deg(2*np.arctan2(h, 2*inferred_f))) - pose['vertical_fov_deg']),
+    return dict(fov_error_deg=abs(float(np.rad2deg(2*np.arctan2(h, 2*fy))) - pose['vertical_fov_deg']),
                 axis_errors_deg=axes.tolist(), ground_height_error_blocks=float(inferred_height-height),
                 relative_scale_error=float(inferred_height/height-1), vertices=len(errors),
                 median_reprojection_px=float(np.median(errors)) if len(errors) else None,
@@ -63,4 +60,3 @@ def replay(entry, camera, baseline_folder, output_folder):
     if camera['P'] is not None:
         case['camera_validation'] = camera_validation(entry, camera)
     return case
-

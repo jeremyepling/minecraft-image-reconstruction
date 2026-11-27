@@ -170,4 +170,3 @@ def solve_repeat(image, *, use_boundary=True):
         if len(tried)>=5:
             break
     return dict(P=None,scale_status='uncertain',reason='no bilaterally registered tile translation pair',evidence=evidence)
-
