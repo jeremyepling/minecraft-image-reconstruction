@@ -1,0 +1,3895 @@
+{
+  "frames": 204,
+  "workers": 5,
+  "engine_sha256": "37235bcf188bb73638f7597544c916af09caf96093b150c3803b4b739fa4e650",
+  "scope": "wall clock inside each worker with original image, masks, camera and prior already in RAM",
+  "seconds": {
+    "photo": {
+      "median": 0.10871405000216328,
+      "p95": 0.20311369503033344,
+      "maximum": 0.24794970004586503
+    },
+    "diagonal": {
+      "median": 0.006072599993785843,
+      "p95": 0.011858514984487556,
+      "maximum": 0.07883169996785
+    },
+    "transition": {
+      "median": 0.2484027999744285,
+      "p95": 0.3437747950258199,
+      "maximum": 0.3882625999976881
+    }
+  },
+  "rows": [
+    {
+      "split": "train",
+      "id": "train-arcade1-cool-high-right",
+      "methods": {
+        "photo": {
+          "seconds": 0.11075210000853986,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.022177200007718056,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.22729919996345416,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "train",
+      "id": "train-arcade1-cool-low-left",
+      "methods": {
+        "photo": {
+          "seconds": 0.13537940004607663,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.00489370001014322,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.21029810002073646,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "train",
+      "id": "train-arcade1-earth-high-right",
+      "methods": {
+        "photo": {
+          "seconds": 0.10800159996142611,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.0048534999950788915,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.22865940001793206,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "train",
+      "id": "train-arcade1-earth-low-left",
+      "methods": {
+        "photo": {
+          "seconds": 0.1425621000234969,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.006845099967904389,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.21690899995155632,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "train",
+      "id": "train-arcade2-cool-high-right",
+      "methods": {
+        "photo": {
+          "seconds": 0.1433429000317119,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.00506549997953698,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.30094559997087345,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "train",
+      "id": "train-arcade2-cool-low-left",
+      "methods": {
+        "photo": {
+          "seconds": 0.11447979998774827,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.006043000030331314,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.23566659999778494,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "train",
+      "id": "train-arcade2-earth-high-right",
+      "methods": {
+        "photo": {
+          "seconds": 0.14338470000075176,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.005342299991752952,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.29500340000959113,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "train",
+      "id": "train-arcade2-earth-low-left",
+      "methods": {
+        "photo": {
+          "seconds": 0.11489540000911802,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.008274399966467172,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.238873100024648,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "train",
+      "id": "train-arcade3-cool-high-right",
+      "methods": {
+        "photo": {
+          "seconds": 0.12828290002653375,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.00609239999903366,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.33623469999292865,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "train",
+      "id": "train-arcade3-cool-low-left",
+      "methods": {
+        "photo": {
+          "seconds": 0.15507589996559545,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.007753600017167628,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.2639068000135012,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "train",
+      "id": "train-arcade3-earth-high-right",
+      "methods": {
+        "photo": {
+          "seconds": 0.15064019995043054,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.012436899996828288,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.34759479999775067,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "train",
+      "id": "train-arcade3-earth-low-left",
+      "methods": {
+        "photo": {
+          "seconds": 0.1426470999722369,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.007641899981535971,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.23278040002333,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "train",
+      "id": "train-arcbridge1-cool-high-right",
+      "methods": {
+        "photo": {
+          "seconds": 0.13827039999887347,
+          "groups": [
+            [
+              "mask-3",
+              "planarity-new-2-0"
+            ]
+          ]
+        },
+        "diagonal": {
+          "seconds": 0.0037042999756522477,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.2093303999863565,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "train",
+      "id": "train-arcbridge1-cool-low-left",
+      "methods": {
+        "photo": {
+          "seconds": 0.15945000003557652,
+          "groups": [
+            [
+              "mask-0-wall-1-junction-0",
+              "mask-0-wall-1-junction-1"
+            ]
+          ]
+        },
+        "diagonal": {
+          "seconds": 0.005953499989118427,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.1920848999870941,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "train",
+      "id": "train-arcbridge1-earth-high-right",
+      "methods": {
+        "photo": {
+          "seconds": 0.0969833999988623,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.004409099987242371,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.22936889994889498,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "train",
+      "id": "train-arcbridge1-earth-low-left",
+      "methods": {
+        "photo": {
+          "seconds": 0.11305730004096404,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.005382500006817281,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.2009396000066772,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "train",
+      "id": "train-arcbridge2-cool-high-right",
+      "methods": {
+        "photo": {
+          "seconds": 0.11758329998701811,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.005790499970316887,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.23825659998692572,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "train",
+      "id": "train-arcbridge2-cool-low-left",
+      "methods": {
+        "photo": {
+          "seconds": 0.11484010005369782,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.008976400014944375,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.2806890999781899,
+          "groups": [
+            [
+              "mask-0-wall-0-planarity-split-3",
+              "mask-0-wall-1-single-428-2"
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "split": "train",
+      "id": "train-arcbridge2-earth-high-right",
+      "methods": {
+        "photo": {
+          "seconds": 0.17301540001062676,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.006909699994139373,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.2945019000326283,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "train",
+      "id": "train-arcbridge2-earth-low-left",
+      "methods": {
+        "photo": {
+          "seconds": 0.160078999993857,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.008397300029173493,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.2553986000129953,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "train",
+      "id": "train-arcbridge3-cool-high-right",
+      "methods": {
+        "photo": {
+          "seconds": 0.06527950003510341,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.0027442999999038875,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.20042990002548322,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "train",
+      "id": "train-arcbridge3-cool-low-left",
+      "methods": {
+        "photo": {
+          "seconds": 0.08371619996614754,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.004065099987201393,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.19681619998300448,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "train",
+      "id": "train-arcbridge3-earth-high-right",
+      "methods": {
+        "photo": {
+          "seconds": 0.10745080001652241,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.005554799980018288,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.23757260001730174,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "train",
+      "id": "train-arcbridge3-earth-low-left",
+      "methods": {
+        "photo": {
+          "seconds": 0.1400495000416413,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.007364499964751303,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.3067636000341736,
+          "groups": [
+            [
+              "mask-0-single-300-2",
+              "mask-0-single-300-9"
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "split": "train",
+      "id": "train-sawtooth1-cool-high-right",
+      "methods": {
+        "photo": {
+          "seconds": 0.1559640999766998,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.012730300019029528,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.30204919999232516,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "train",
+      "id": "train-sawtooth1-cool-low-left",
+      "methods": {
+        "photo": {
+          "seconds": 0.14944050001213327,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.00972990004811436,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.2885699000325985,
+          "groups": [
+            [
+              "mask-2-wall-0",
+              "mask-2-wall-1-planarity-split-1"
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "split": "train",
+      "id": "train-sawtooth1-earth-high-right",
+      "methods": {
+        "photo": {
+          "seconds": 0.1682456000125967,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.011846700042951852,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.2846162000205368,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "train",
+      "id": "train-sawtooth1-earth-low-left",
+      "methods": {
+        "photo": {
+          "seconds": 0.18351510004140437,
+          "groups": [
+            [
+              "mask-0-junction-1-planarity-split-0",
+              "mask-0-junction-1-planarity-split-1"
+            ]
+          ]
+        },
+        "diagonal": {
+          "seconds": 0.007433700026012957,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.25125069997739047,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "train",
+      "id": "train-sawtooth2-cool-high-right",
+      "methods": {
+        "photo": {
+          "seconds": 0.18942599999718368,
+          "groups": [
+            [
+              "mask-0-wall-1-junction-0-single-330-0",
+              "mask-0-wall-1-junction-1"
+            ],
+            [
+              "mask-3-single-240-0",
+              "mask-3-single-240-1"
+            ]
+          ]
+        },
+        "diagonal": {
+          "seconds": 0.009686300007160753,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.2811002000235021,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "train",
+      "id": "train-sawtooth2-cool-low-left",
+      "methods": {
+        "photo": {
+          "seconds": 0.14463170000817627,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.007817899982910603,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.23271389998262748,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "train",
+      "id": "train-sawtooth2-earth-high-right",
+      "methods": {
+        "photo": {
+          "seconds": 0.1823226999840699,
+          "groups": [
+            [
+              "mask-3-single-238-0",
+              "mask-3-single-238-1"
+            ]
+          ]
+        },
+        "diagonal": {
+          "seconds": 0.006633899989537895,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.3169082999811508,
+          "groups": [
+            [
+              "mask-1-wall-0",
+              "mask-1-wall-1"
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "split": "train",
+      "id": "train-sawtooth2-earth-low-left",
+      "methods": {
+        "photo": {
+          "seconds": 0.22672829998191446,
+          "groups": [
+            [
+              "mask-0-wall-1-mobile-1-single-539-0",
+              "mask-0-wall-1-mobile-1-single-539-1"
+            ]
+          ]
+        },
+        "diagonal": {
+          "seconds": 0.01283799996599555,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.2738450000179,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "train",
+      "id": "train-sawtooth3-cool-high-right",
+      "methods": {
+        "photo": {
+          "seconds": 0.13716660003410652,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.011539899976924062,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.31536189996404573,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "train",
+      "id": "train-sawtooth3-cool-low-left",
+      "methods": {
+        "photo": {
+          "seconds": 0.14600379997864366,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.011278500023763627,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.28845300001557916,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "train",
+      "id": "train-sawtooth3-earth-high-right",
+      "methods": {
+        "photo": {
+          "seconds": 0.13568149995990098,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.006936600024346262,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.38547310000285506,
+          "groups": [
+            [
+              "mask-1-wall-0",
+              "mask-1-wall-1"
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "split": "train",
+      "id": "train-sawtooth3-earth-low-left",
+      "methods": {
+        "photo": {
+          "seconds": 0.11042690003523603,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.010133100033272058,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.25073140003951266,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "train",
+      "id": "train-steppedhall1-cool-high-right",
+      "methods": {
+        "photo": {
+          "seconds": 0.10165279998909682,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.008161399979144335,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.20452620001742616,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "train",
+      "id": "train-steppedhall1-cool-low-left",
+      "methods": {
+        "photo": {
+          "seconds": 0.09147520002443343,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.005426999996416271,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.188609600008931,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "train",
+      "id": "train-steppedhall1-earth-high-right",
+      "methods": {
+        "photo": {
+          "seconds": 0.10242499999003485,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.005794299999251962,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.2535949000157416,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "train",
+      "id": "train-steppedhall1-earth-low-left",
+      "methods": {
+        "photo": {
+          "seconds": 0.055586199974641204,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.007629799947608262,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.15317320002941415,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "train",
+      "id": "train-steppedhall2-cool-high-right",
+      "methods": {
+        "photo": {
+          "seconds": 0.14570589998038486,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.010974399978294969,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.326384500018321,
+          "groups": [
+            [
+              "mask-1-wall-1-junction-0",
+              "mask-1-wall-1-junction-1"
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "split": "train",
+      "id": "train-steppedhall2-cool-low-left",
+      "methods": {
+        "photo": {
+          "seconds": 0.08388160000322387,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.008423499995842576,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.22142000001622364,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "train",
+      "id": "train-steppedhall2-earth-high-right",
+      "methods": {
+        "photo": {
+          "seconds": 0.11079060001065955,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.004613999975845218,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.28181899996707216,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "train",
+      "id": "train-steppedhall2-earth-low-left",
+      "methods": {
+        "photo": {
+          "seconds": 0.0901210000156425,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.00524640001822263,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.2263138999696821,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "train",
+      "id": "train-steppedhall3-cool-high-right",
+      "methods": {
+        "photo": {
+          "seconds": 0.16070860001491383,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.0058512999676167965,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.30490550003014505,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "train",
+      "id": "train-steppedhall3-cool-low-left",
+      "methods": {
+        "photo": {
+          "seconds": 0.09823609999148175,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.005398900015279651,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.25222939997911453,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "train",
+      "id": "train-steppedhall3-earth-high-right",
+      "methods": {
+        "photo": {
+          "seconds": 0.18099219998111948,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.01026299997465685,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.3882625999976881,
+          "groups": [
+            [
+              "mask-1-wall-0",
+              "mask-1-wall-1"
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "split": "train",
+      "id": "train-steppedhall3-earth-low-left",
+      "methods": {
+        "photo": {
+          "seconds": 0.12017740000737831,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.011573099996894598,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.292478299990762,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "train",
+      "id": "train-terrace1-cool-high-right",
+      "methods": {
+        "photo": {
+          "seconds": 0.06816249998519197,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.004399799974635243,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.23011900001438335,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "train",
+      "id": "train-terrace1-cool-low-left",
+      "methods": {
+        "photo": {
+          "seconds": 0.10008679999737069,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.005381499999202788,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.18933439999818802,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "train",
+      "id": "train-terrace1-earth-high-right",
+      "methods": {
+        "photo": {
+          "seconds": 0.0826371000148356,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.009953100001439452,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.22999319998780265,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "train",
+      "id": "train-terrace1-earth-low-left",
+      "methods": {
+        "photo": {
+          "seconds": 0.11792619997868314,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.0051435999921523035,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.26839889999246225,
+          "groups": [
+            [
+              "mask-0-wall-0-mobile-0",
+              "mask-0-wall-0-mobile-1"
+            ],
+            [
+              "mask-0-wall-1-mobile-0",
+              "mask-0-wall-1-mobile-1"
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "split": "train",
+      "id": "train-terrace2-cool-high-right",
+      "methods": {
+        "photo": {
+          "seconds": 0.05695729999570176,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.0034479000023566186,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.2591801000526175,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "train",
+      "id": "train-terrace2-cool-low-left",
+      "methods": {
+        "photo": {
+          "seconds": 0.11397609999403358,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.0035385999944992363,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.21983199997339398,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "train",
+      "id": "train-terrace2-earth-high-right",
+      "methods": {
+        "photo": {
+          "seconds": 0.0495319000328891,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.0037296999944373965,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.05099209997570142,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "train",
+      "id": "train-terrace2-earth-low-left",
+      "methods": {
+        "photo": {
+          "seconds": 0.10479070001747459,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.005629399965982884,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.21056699997279793,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "train",
+      "id": "train-terrace3-cool-high-right",
+      "methods": {
+        "photo": {
+          "seconds": 0.05874730000505224,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.00569980003638193,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.23917929996969178,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "train",
+      "id": "train-terrace3-cool-low-left",
+      "methods": {
+        "photo": {
+          "seconds": 0.09292269998695701,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.0030263999942690134,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.18954570003552362,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "train",
+      "id": "train-terrace3-earth-high-right",
+      "methods": {
+        "photo": {
+          "seconds": 0.07097239996073768,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.0036149999941699207,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.21886480000102893,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "train",
+      "id": "train-terrace3-earth-low-left",
+      "methods": {
+        "photo": {
+          "seconds": 0.09144570003263652,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.003389700024854392,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.20410329999867827,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "train",
+      "id": "train-watchpost1-cool-high-right",
+      "methods": {
+        "photo": {
+          "seconds": 0.16985140001634136,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.005626400001347065,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.2876627999939956,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "train",
+      "id": "train-watchpost1-cool-low-left",
+      "methods": {
+        "photo": {
+          "seconds": 0.1065579000278376,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.006973100011236966,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.2709925000090152,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "train",
+      "id": "train-watchpost1-earth-high-right",
+      "methods": {
+        "photo": {
+          "seconds": 0.16119489999255165,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.006237699999473989,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.28378289996180683,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "train",
+      "id": "train-watchpost1-earth-low-left",
+      "methods": {
+        "photo": {
+          "seconds": 0.13589279999723658,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.006446700019296259,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.29618559998925775,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "train",
+      "id": "train-watchpost2-cool-high-right",
+      "methods": {
+        "photo": {
+          "seconds": 0.16053049999754876,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.00593089999165386,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.35258580005029216,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "train",
+      "id": "train-watchpost2-cool-low-left",
+      "methods": {
+        "photo": {
+          "seconds": 0.11612999998033047,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.005949700018391013,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.29901729995617643,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "train",
+      "id": "train-watchpost2-earth-high-right",
+      "methods": {
+        "photo": {
+          "seconds": 0.2038707000319846,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.007288799970410764,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.3148862000089139,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "train",
+      "id": "train-watchpost2-earth-low-left",
+      "methods": {
+        "photo": {
+          "seconds": 0.08862990001216531,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.008226300007663667,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.261779899999965,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "train",
+      "id": "train-watchpost3-cool-high-right",
+      "methods": {
+        "photo": {
+          "seconds": 0.14342049998231232,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.006393900024704635,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.3574277000152506,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "train",
+      "id": "train-watchpost3-cool-low-left",
+      "methods": {
+        "photo": {
+          "seconds": 0.0942405000096187,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.0055948999943211675,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.3302947000483982,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "train",
+      "id": "train-watchpost3-earth-high-right",
+      "methods": {
+        "photo": {
+          "seconds": 0.17237540002679452,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.00793250004062429,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.35806449997471645,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "train",
+      "id": "train-watchpost3-earth-low-left",
+      "methods": {
+        "photo": {
+          "seconds": 0.09893939999165013,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.004598099971190095,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.3222366999834776,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "validation",
+      "id": "validation-cloister1-cool-high-right",
+      "methods": {
+        "photo": {
+          "seconds": 0.1339925000211224,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.005624399986118078,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.3261462000082247,
+          "groups": [
+            [
+              "mask-0-wall-0",
+              "mask-0-wall-1",
+              "mask-0-wall-2"
+            ],
+            [
+              "mask-1-wall-0",
+              "mask-1-wall-1"
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "split": "validation",
+      "id": "validation-cloister1-cool-low-left",
+      "methods": {
+        "photo": {
+          "seconds": 0.06757049995940179,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.005696100008208305,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.2128841999801807,
+          "groups": [
+            [
+              "mask-1-wall-0",
+              "mask-1-wall-1"
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "split": "validation",
+      "id": "validation-cloister1-earth-high-right",
+      "methods": {
+        "photo": {
+          "seconds": 0.06600209994940087,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.004483300028368831,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.19771069998387247,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "validation",
+      "id": "validation-cloister1-earth-low-left",
+      "methods": {
+        "photo": {
+          "seconds": 0.03816210001241416,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.0057758999755606055,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.14063330000499263,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "validation",
+      "id": "validation-cloister2-cool-high-right",
+      "methods": {
+        "photo": {
+          "seconds": 0.1171681999694556,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.004678599943872541,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.23546080000232905,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "validation",
+      "id": "validation-cloister2-cool-low-left",
+      "methods": {
+        "photo": {
+          "seconds": 0.10953800001880154,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.006272499973420054,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.20267869997769594,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "validation",
+      "id": "validation-cloister2-earth-high-right",
+      "methods": {
+        "photo": {
+          "seconds": 0.1239075000048615,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.005418599990662187,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.25958180002635345,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "validation",
+      "id": "validation-cloister2-earth-low-left",
+      "methods": {
+        "photo": {
+          "seconds": 0.15878280001925305,
+          "groups": [
+            [
+              "mask-0-wall-1-mobile-0-single-457-1",
+              "mask-0-wall-1-mobile-0-single-457-3",
+              "mask-0-wall-1-mobile-10"
+            ]
+          ]
+        },
+        "diagonal": {
+          "seconds": 0.006143400038126856,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.3224194999784231,
+          "groups": [
+            [
+              "mask-0-wall-0",
+              "mask-0-wall-1-mobile-10"
+            ],
+            [
+              "mask-0-wall-1-mobile-0-single-457-0",
+              "mask-0-wall-1-mobile-0-single-457-3"
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "split": "validation",
+      "id": "validation-cloister3-cool-high-right",
+      "methods": {
+        "photo": {
+          "seconds": 0.0811027999734506,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.004015800019260496,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.25580809998791665,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "validation",
+      "id": "validation-cloister3-cool-low-left",
+      "methods": {
+        "photo": {
+          "seconds": 0.08167290000710636,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.0036696000024676323,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.20413179998286068,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "validation",
+      "id": "validation-cloister3-earth-high-right",
+      "methods": {
+        "photo": {
+          "seconds": 0.11081709997961298,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.004565700015518814,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.2870354000478983,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "validation",
+      "id": "validation-cloister3-earth-low-left",
+      "methods": {
+        "photo": {
+          "seconds": 0.08728099998552352,
+          "groups": [
+            [
+              "mask-0-junction-1-mobile-0",
+              "mask-0-junction-1-mobile-1"
+            ]
+          ]
+        },
+        "diagonal": {
+          "seconds": 0.006816499982960522,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.24838499998440966,
+          "groups": [
+            [
+              "mask-0-junction-0",
+              "mask-0-junction-1-mobile-1"
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "split": "test",
+      "id": "test-twinspire1-cool-high-right",
+      "methods": {
+        "photo": {
+          "seconds": 0.12475700001232326,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.008534800028428435,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.2553982000099495,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "test",
+      "id": "test-twinspire1-cool-low-left",
+      "methods": {
+        "photo": {
+          "seconds": 0.14618739997968078,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.006242999981623143,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.24180700001306832,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "test",
+      "id": "test-twinspire1-earth-high-right",
+      "methods": {
+        "photo": {
+          "seconds": 0.1392043000087142,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.008222199976444244,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.2469460000284016,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "test",
+      "id": "test-twinspire1-earth-low-left",
+      "methods": {
+        "photo": {
+          "seconds": 0.12895429995842278,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.007901300035882741,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.24842059996444732,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "test",
+      "id": "test-twinspire2-cool-high-right",
+      "methods": {
+        "photo": {
+          "seconds": 0.15602779999608174,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.031133899989072233,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.3019019999774173,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "test",
+      "id": "test-twinspire2-cool-low-left",
+      "methods": {
+        "photo": {
+          "seconds": 0.15415560000110418,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.006307400006335229,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.26465640001697466,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "test",
+      "id": "test-twinspire2-earth-high-right",
+      "methods": {
+        "photo": {
+          "seconds": 0.16576679999707267,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.005404199997428805,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.2863419000059366,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "test",
+      "id": "test-twinspire2-earth-low-left",
+      "methods": {
+        "photo": {
+          "seconds": 0.14436219999333844,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.009729100042022765,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.2760168999666348,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "test",
+      "id": "test-twinspire3-cool-high-right",
+      "methods": {
+        "photo": {
+          "seconds": 0.16159430000698194,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.007988099998328835,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.31356949999462813,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "test",
+      "id": "test-twinspire3-cool-low-left",
+      "methods": {
+        "photo": {
+          "seconds": 0.13911720004398376,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.008411399961914867,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.31417500000679865,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "test",
+      "id": "test-twinspire3-earth-high-right",
+      "methods": {
+        "photo": {
+          "seconds": 0.1676570000126958,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.005050000036135316,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.33881649997783825,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "test",
+      "id": "test-twinspire3-earth-low-left",
+      "methods": {
+        "photo": {
+          "seconds": 0.11619059997610748,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.007090600032825023,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.30398470000363886,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "regression",
+      "id": "legacy-light_gray_concrete-dev-shopfront-masonry-high-right",
+      "methods": {
+        "photo": {
+          "seconds": 0.1422636999632232,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.006434699986129999,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.2820579000399448,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "regression",
+      "id": "legacy-light_gray_concrete-dev-shopfront-masonry-low-left",
+      "methods": {
+        "photo": {
+          "seconds": 0.09985729999607429,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.00959619996137917,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.20154029998229817,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "regression",
+      "id": "legacy-light_gray_concrete-dev-shopfront-plaster-high-right",
+      "methods": {
+        "photo": {
+          "seconds": 0.15163850004319102,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.011860599974170327,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.26937780005391687,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "regression",
+      "id": "legacy-light_gray_concrete-dev-shopfront-plaster-low-left",
+      "methods": {
+        "photo": {
+          "seconds": 0.09933709999313578,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.008266799966804683,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.22506690002046525,
+          "groups": [
+            [
+              "mask-5",
+              "mask-6"
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "split": "regression",
+      "id": "legacy-light_gray_concrete-dev-wing-masonry-high-right",
+      "methods": {
+        "photo": {
+          "seconds": 0.028933299996424466,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.0029522000113502145,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.026909300009720027,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "regression",
+      "id": "legacy-light_gray_concrete-dev-wing-masonry-low-left",
+      "methods": {
+        "photo": {
+          "seconds": 0.03296270000282675,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.0035242000012658536,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.12901929998770356,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "regression",
+      "id": "legacy-light_gray_concrete-dev-wing-plaster-high-right",
+      "methods": {
+        "photo": {
+          "seconds": 0.029254900000523776,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.0031920999754220247,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.030077299976255745,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "regression",
+      "id": "legacy-light_gray_concrete-dev-wing-plaster-low-left",
+      "methods": {
+        "photo": {
+          "seconds": 0.036868900002446026,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.0029961999971419573,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.13224090001313016,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "regression",
+      "id": "legacy-light_gray_concrete-holdout-courtyard-masonry-high-right",
+      "methods": {
+        "photo": {
+          "seconds": 0.06667590001598,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.00359139998909086,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.20934280002256855,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "regression",
+      "id": "legacy-light_gray_concrete-holdout-courtyard-masonry-low-left",
+      "methods": {
+        "photo": {
+          "seconds": 0.06590139999752864,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.003991700010374188,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.1698509000125341,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "regression",
+      "id": "legacy-light_gray_concrete-holdout-courtyard-plaster-high-right",
+      "methods": {
+        "photo": {
+          "seconds": 0.09113570000045002,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.003632000007200986,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.20677309995517135,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "regression",
+      "id": "legacy-light_gray_concrete-holdout-courtyard-plaster-low-left",
+      "methods": {
+        "photo": {
+          "seconds": 0.08437719999346882,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.0058034000103361905,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.18407960003241897,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "regression",
+      "id": "legacy-light_gray_concrete-holdout-crossing-masonry-high-right",
+      "methods": {
+        "photo": {
+          "seconds": 0.09015519998501986,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.006062000000383705,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.2222176999785006,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "regression",
+      "id": "legacy-light_gray_concrete-holdout-crossing-masonry-low-left",
+      "methods": {
+        "photo": {
+          "seconds": 0.09579910000320524,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.007641500036697835,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.20366089994786307,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "regression",
+      "id": "legacy-light_gray_concrete-holdout-crossing-plaster-high-right",
+      "methods": {
+        "photo": {
+          "seconds": 0.08531970001058653,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.005620400013867766,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.20705810002982616,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "regression",
+      "id": "legacy-light_gray_concrete-holdout-crossing-plaster-low-left",
+      "methods": {
+        "photo": {
+          "seconds": 0.12792739999713376,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.006840299989562482,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.2505032999906689,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "regression",
+      "id": "legacy-light_gray_concrete-holdout-galleries-masonry-high-right",
+      "methods": {
+        "photo": {
+          "seconds": 0.21268689999124035,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.011763700051233172,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.2882334999740124,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "regression",
+      "id": "legacy-light_gray_concrete-holdout-galleries-masonry-low-left",
+      "methods": {
+        "photo": {
+          "seconds": 0.139663300011307,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.006374199991114438,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.263332000002265,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "regression",
+      "id": "legacy-light_gray_concrete-holdout-galleries-plaster-high-right",
+      "methods": {
+        "photo": {
+          "seconds": 0.24685820000013337,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.007783800014294684,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.3228300000191666,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "regression",
+      "id": "legacy-light_gray_concrete-holdout-galleries-plaster-low-left",
+      "methods": {
+        "photo": {
+          "seconds": 0.1867488999851048,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.009304199949838221,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.283576300018467,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "regression",
+      "id": "legacy-light_gray_concrete-holdout-portico-masonry-high-right",
+      "methods": {
+        "photo": {
+          "seconds": 0.17178319999948144,
+          "groups": [
+            [
+              "mask-5",
+              "planarity-new-10-0"
+            ]
+          ]
+        },
+        "diagonal": {
+          "seconds": 0.007886900042649359,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.24039200000697747,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "regression",
+      "id": "legacy-light_gray_concrete-holdout-portico-masonry-low-left",
+      "methods": {
+        "photo": {
+          "seconds": 0.1988240000209771,
+          "groups": [
+            [
+              "mask-0-planarity-split-0",
+              "mask-0-planarity-split-1"
+            ]
+          ]
+        },
+        "diagonal": {
+          "seconds": 0.006969300040509552,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.2632926999940537,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "regression",
+      "id": "legacy-light_gray_concrete-holdout-portico-plaster-high-right",
+      "methods": {
+        "photo": {
+          "seconds": 0.16000079998048022,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.005108199955429882,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.273873400001321,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "regression",
+      "id": "legacy-light_gray_concrete-holdout-portico-plaster-low-left",
+      "methods": {
+        "photo": {
+          "seconds": 0.15775309997843578,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.007270900008734316,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.24156950000906363,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "regression",
+      "id": "legacy-light_gray_concrete-holdout-registry-masonry-high-right",
+      "methods": {
+        "photo": {
+          "seconds": 0.05684630002360791,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.005850899964570999,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.2696962999762036,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "regression",
+      "id": "legacy-light_gray_concrete-holdout-registry-masonry-low-left",
+      "methods": {
+        "photo": {
+          "seconds": 0.06695760000729933,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.005107599950861186,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.20957520004594699,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "regression",
+      "id": "legacy-light_gray_concrete-holdout-registry-plaster-high-right",
+      "methods": {
+        "photo": {
+          "seconds": 0.06822600000305101,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.005434999999124557,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.23541630001273006,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "regression",
+      "id": "legacy-light_gray_concrete-holdout-registry-plaster-low-left",
+      "methods": {
+        "photo": {
+          "seconds": 0.08633720001671463,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.005970700003672391,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.21545489999698475,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "regression",
+      "id": "legacy-light_gray_concrete-holdout-workshop-masonry-high-right",
+      "methods": {
+        "photo": {
+          "seconds": 0.20561599999200553,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.00471750000724569,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.31209199997829273,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "regression",
+      "id": "legacy-light_gray_concrete-holdout-workshop-masonry-low-left",
+      "methods": {
+        "photo": {
+          "seconds": 0.08497859997441992,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.008268999983556569,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.21974840003531426,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "regression",
+      "id": "legacy-light_gray_concrete-holdout-workshop-plaster-high-right",
+      "methods": {
+        "photo": {
+          "seconds": 0.16176619997713715,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.00947200000518933,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.2847495999885723,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "regression",
+      "id": "legacy-light_gray_concrete-holdout-workshop-plaster-low-left",
+      "methods": {
+        "photo": {
+          "seconds": 0.09272499999497086,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.005036999995354563,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.2011894999886863,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "regression",
+      "id": "legacy-smooth_stone-dev-shopfront-masonry-high-right",
+      "methods": {
+        "photo": {
+          "seconds": 0.16031979996478185,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.008613099984358996,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.2871355999959633,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "regression",
+      "id": "legacy-smooth_stone-dev-shopfront-masonry-low-left",
+      "methods": {
+        "photo": {
+          "seconds": 0.10173259995644912,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.01410490000853315,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.21206460002576932,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "regression",
+      "id": "legacy-smooth_stone-dev-shopfront-plaster-high-right",
+      "methods": {
+        "photo": {
+          "seconds": 0.12879899999825284,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.005674100015312433,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.32149960001697764,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "regression",
+      "id": "legacy-smooth_stone-dev-shopfront-plaster-low-left",
+      "methods": {
+        "photo": {
+          "seconds": 0.10853319999296218,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.01156700000865385,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.31964869995135814,
+          "groups": [
+            [
+              "mask-5",
+              "mask-6"
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "split": "regression",
+      "id": "legacy-smooth_stone-dev-wing-masonry-high-right",
+      "methods": {
+        "photo": {
+          "seconds": 0.03091349999886006,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.0021246999967843294,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.03187419997993857,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "regression",
+      "id": "legacy-smooth_stone-dev-wing-masonry-low-left",
+      "methods": {
+        "photo": {
+          "seconds": 0.04531379998661578,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.005598400020971894,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.2350389999919571,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "regression",
+      "id": "legacy-smooth_stone-dev-wing-plaster-high-right",
+      "methods": {
+        "photo": {
+          "seconds": 0.06986259995028377,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.01396989997010678,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.21956060000229627,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "regression",
+      "id": "legacy-smooth_stone-dev-wing-plaster-low-left",
+      "methods": {
+        "photo": {
+          "seconds": 0.049843600019812584,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.009059900010470301,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.19744209997588769,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "regression",
+      "id": "legacy-smooth_stone-holdout-courtyard-masonry-high-right",
+      "methods": {
+        "photo": {
+          "seconds": 0.09006730001419783,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.004259000008460134,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.25258109997957945,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "regression",
+      "id": "legacy-smooth_stone-holdout-courtyard-masonry-low-left",
+      "methods": {
+        "photo": {
+          "seconds": 0.05351260001771152,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.003910699975676835,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.17514619999565184,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "regression",
+      "id": "legacy-smooth_stone-holdout-courtyard-plaster-high-right",
+      "methods": {
+        "photo": {
+          "seconds": 0.15407629997935146,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.006586200033780187,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.29824730003019795,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "regression",
+      "id": "legacy-smooth_stone-holdout-courtyard-plaster-low-left",
+      "methods": {
+        "photo": {
+          "seconds": 0.06201679998775944,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.004644899978302419,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.17429190000984818,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "regression",
+      "id": "legacy-smooth_stone-holdout-portico-masonry-high-right",
+      "methods": {
+        "photo": {
+          "seconds": 0.14690210000844672,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.006405000051017851,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.32697180000832304,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "regression",
+      "id": "legacy-smooth_stone-holdout-portico-masonry-low-left",
+      "methods": {
+        "photo": {
+          "seconds": 0.16842259996337816,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.010025799972936511,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.3022971000173129,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "regression",
+      "id": "legacy-smooth_stone-holdout-portico-plaster-high-right",
+      "methods": {
+        "photo": {
+          "seconds": 0.15336679999018088,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.006520299997646362,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.32372300000861287,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "regression",
+      "id": "legacy-smooth_stone-holdout-portico-plaster-low-left",
+      "methods": {
+        "photo": {
+          "seconds": 0.18183189997216687,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.013099500036332756,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.24524870002642274,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "native",
+      "id": "heldout-facade-oblique-left",
+      "methods": {
+        "photo": {
+          "seconds": 0.10342190001392737,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.009035900002345443,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.3434597000014037,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "native",
+      "id": "heldout-facade-oblique-right",
+      "methods": {
+        "photo": {
+          "seconds": 0.1421916000545025,
+          "groups": [
+            [
+              "mask-0-junction-0",
+              "mask-0-junction-1"
+            ]
+          ]
+        },
+        "diagonal": {
+          "seconds": 0.07883169996785,
+          "groups": [
+            [
+              "mask-0-junction-0",
+              "mask-0-junction-1"
+            ]
+          ]
+        },
+        "transition": {
+          "seconds": 0.29248619999270886,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "native",
+      "id": "dark-inlay-oblique-left",
+      "methods": {
+        "photo": {
+          "seconds": 0.01563550002174452,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.0030685000238008797,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.017444800003431737,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "native",
+      "id": "dark-inlay-oblique-right",
+      "methods": {
+        "photo": {
+          "seconds": 0.015960999997332692,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.001961300033144653,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.020266200008336455,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "native",
+      "id": "physical-shade-oblique-left",
+      "methods": {
+        "photo": {
+          "seconds": 0.06532549997791648,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.003570100001525134,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.2325258000055328,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "native",
+      "id": "physical-shade-oblique-right",
+      "methods": {
+        "photo": {
+          "seconds": 0.04442300001392141,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.003468699986115098,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.20680450001964346,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "native",
+      "id": "test-adjacency-26-left",
+      "methods": {
+        "photo": {
+          "seconds": 0.14118610002333298,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.007087600009981543,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.34383040003012866,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "native",
+      "id": "test-adjacency-26-right",
+      "methods": {
+        "photo": {
+          "seconds": 0.11059799999929965,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.010811899963300675,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.3094197000027634,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "native",
+      "id": "test-recess-28-left",
+      "methods": {
+        "photo": {
+          "seconds": 0.09881140000652522,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.01198609999846667,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.2991139000514522,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "native",
+      "id": "test-recess-28-right",
+      "methods": {
+        "photo": {
+          "seconds": 0.11090640001930296,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.010169100016355515,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.341867099981755,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "native",
+      "id": "test-corner-29-left",
+      "methods": {
+        "photo": {
+          "seconds": 0.06695949996355921,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.0033254000009037554,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.15402030001860112,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "native",
+      "id": "test-corner-29-right",
+      "methods": {
+        "photo": {
+          "seconds": 0.027170500019565225,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.002374500036239624,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.18991319998167455,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "old",
+      "id": "shape-benchmark-26.3--train-canopy-07-left",
+      "methods": {
+        "photo": {
+          "seconds": 0.08285599999362603,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.004406099964398891,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.1393099999986589,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "old",
+      "id": "shape-benchmark-26.3--train-canopy-04-left",
+      "methods": {
+        "photo": {
+          "seconds": 0.12762870005099103,
+          "groups": [
+            [
+              "mask-1-junction-0",
+              "mask-1-junction-1"
+            ]
+          ]
+        },
+        "diagonal": {
+          "seconds": 0.004152099951170385,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.12590839999029413,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "old",
+      "id": "signed-relief-26.3--dev--dev-relief-00-oblique-right",
+      "methods": {
+        "photo": {
+          "seconds": 0.06283180002355948,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.005936300032772124,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.3415454999776557,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "old",
+      "id": "shape-benchmark-open-26.3--train-canopy-01-left",
+      "methods": {
+        "photo": {
+          "seconds": 0.10889490001136437,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.007707800017669797,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.1580118999700062,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "old",
+      "id": "shape-benchmark-26.3--train-canopy-09-right",
+      "methods": {
+        "photo": {
+          "seconds": 0.08211769995978102,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.0055692000314593315,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.1604341000202112,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "old",
+      "id": "shape-benchmark-26.3--train-canopy-06-left",
+      "methods": {
+        "photo": {
+          "seconds": 0.08206780004547909,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.006751100008841604,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.1260568000143394,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "old",
+      "id": "rim-views-26.3--positive--heldout-facade-oblique-right",
+      "methods": {
+        "photo": {
+          "seconds": 0.07746190001489595,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.006021699984557927,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.3215014999732375,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "old",
+      "id": "shape-benchmark-26.3--train-canopy-08-right",
+      "methods": {
+        "photo": {
+          "seconds": 0.08861829998204485,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.0067710000439547,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.15070870000636205,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "old",
+      "id": "shape-benchmark-26.3--train-recess-02-right",
+      "methods": {
+        "photo": {
+          "seconds": 0.08771820005495101,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.007653200009372085,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.3351050000055693,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "old",
+      "id": "inverse-voxels-26.3--confirm--test-bays-02-oblique-right",
+      "methods": {
+        "photo": {
+          "seconds": 0.06900680001126602,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.004419299948494881,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.18477180000627413,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "old",
+      "id": "shape-benchmark-26.3--dev-canopy-18-left",
+      "methods": {
+        "photo": {
+          "seconds": 0.08911709999665618,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.0042774000321514904,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.1046280000009574,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "old",
+      "id": "signed-relief-26.3--test--test-relief-00-oblique-left",
+      "methods": {
+        "photo": {
+          "seconds": 0.08731889998307452,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.005287899984978139,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.363438899978064,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "fresh",
+      "id": "inverse-voxels-26.3--confirm--test-colonnade-01-oblique-right",
+      "methods": {
+        "photo": {
+          "seconds": 0.14008219999959692,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.006457999988924712,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.21770060004200786,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "fresh",
+      "id": "shape-benchmark-open-26.3--train-canopy-00-right",
+      "methods": {
+        "photo": {
+          "seconds": 0.13091459998395294,
+          "groups": [
+            [
+              "mask-4-junction-0",
+              "mask-4-junction-1"
+            ]
+          ]
+        },
+        "diagonal": {
+          "seconds": 0.004002099973149598,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.11796189995948225,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "fresh",
+      "id": "shape-benchmark-26.3--dev-corner-16-right",
+      "methods": {
+        "photo": {
+          "seconds": 0.03216430003521964,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.0028610999579541385,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.03809059999184683,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "fresh",
+      "id": "entrance-confirm-26.3--positive--heldout-facade-oblique-right",
+      "methods": {
+        "photo": {
+          "seconds": 0.07791130000259727,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.00787480000872165,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.3694895000080578,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "fresh",
+      "id": "shape-benchmark-26.3--train-canopy-05-left",
+      "methods": {
+        "photo": {
+          "seconds": 0.09617410000646487,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.004412800015415996,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.14997650001896545,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "fresh",
+      "id": "shape-benchmark-26.3--train-corner-03-right",
+      "methods": {
+        "photo": {
+          "seconds": 0.045467999996617436,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.003441500011831522,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.1750787000055425,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "fresh",
+      "id": "shape-benchmark-26.3--dev-canopy-19-right",
+      "methods": {
+        "photo": {
+          "seconds": 0.08492880000267178,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.008597500040195882,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.1097923000343144,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "fresh",
+      "id": "corner-mixed-26.3--heldout-facade-oblique-left",
+      "methods": {
+        "photo": {
+          "seconds": 0.08732739998959005,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.00975939998170361,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.33488779998151585,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "extra",
+      "id": "shape-benchmark-open-26.3--train-canopy-01-right",
+      "methods": {
+        "photo": {
+          "seconds": 0.12367440003436059,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.006083199987187982,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.1777148999972269,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "extra",
+      "id": "corner-views-26.3--positive--heldout-facade-oblique-left",
+      "methods": {
+        "photo": {
+          "seconds": 0.0960103000397794,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.008655000012367964,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.3010704000480473,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "extra",
+      "id": "shape-benchmark-26.3--train-canopy-08-left",
+      "methods": {
+        "photo": {
+          "seconds": 0.09974259999580681,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.00689100002637133,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.16357229999266565,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "extra",
+      "id": "shape-benchmark-26.3--train-canopy-06-right",
+      "methods": {
+        "photo": {
+          "seconds": 0.0742098999908194,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.007144999981392175,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.13148380001075566,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "extra",
+      "id": "shape-benchmark-26.3--train-canopy-09-left",
+      "methods": {
+        "photo": {
+          "seconds": 0.06528119998984039,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.00483150000218302,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.1530223999870941,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "extra",
+      "id": "inverse-voxels-26.3--confirm--test-bays-02-oblique-left",
+      "methods": {
+        "photo": {
+          "seconds": 0.069833799963817,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.004738899995572865,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.17420539999147877,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "extra",
+      "id": "signed-relief-26.3--test--test-relief-00-oblique-right",
+      "methods": {
+        "photo": {
+          "seconds": 0.06852199998684227,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.006922899978235364,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.33405119995586574,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "extra",
+      "id": "shape-benchmark-26.3--train-canopy-04-right",
+      "methods": {
+        "photo": {
+          "seconds": 0.09810819994891062,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.00568200001725927,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.11909069999819621,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "extra",
+      "id": "corner-views-26.3--positive--heldout-facade-oblique-right",
+      "methods": {
+        "photo": {
+          "seconds": 0.10128620004979894,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.006534199987072498,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.3047002999810502,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "extra",
+      "id": "inverse-voxels-26.3--confirm--test-colonnade-01-oblique-left",
+      "methods": {
+        "photo": {
+          "seconds": 0.1806308999657631,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.005135499988682568,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.23488030000589788,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "extra",
+      "id": "shape-benchmark-26.3--dev-canopy-19-left",
+      "methods": {
+        "photo": {
+          "seconds": 0.09685630002059042,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.00505090004298836,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.12289230001624674,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "extra",
+      "id": "shape-benchmark-open-26.3--train-canopy-00-left",
+      "methods": {
+        "photo": {
+          "seconds": 0.08639499999117106,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.003976399952080101,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.11486180004430935,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "extra",
+      "id": "shape-benchmark-26.3--train-corner-03-left",
+      "methods": {
+        "photo": {
+          "seconds": 0.07024239999009296,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.0031423000036738813,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.16668419999768957,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "extra",
+      "id": "recess-positive-control-26.3--heldout-facade-left",
+      "methods": {
+        "photo": {
+          "seconds": 0.07223150000208989,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.005128599994350225,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.2861824000137858,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "extra",
+      "id": "shape-benchmark-26.3--dev-corner-16-left",
+      "methods": {
+        "photo": {
+          "seconds": 0.03652550000697374,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.003992200014181435,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.1482815000344999,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "extra",
+      "id": "recess-positive-control-26.3--heldout-facade-right",
+      "methods": {
+        "photo": {
+          "seconds": 0.09032670001033694,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.011189499986357987,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.28239659999962896,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "extra",
+      "id": "rim-views-26.3--positive--heldout-facade-oblique-left",
+      "methods": {
+        "photo": {
+          "seconds": 0.14956580003490672,
+          "groups": [
+            [
+              "mask-0-wall-0-single-78-0",
+              "mask-0-wall-1"
+            ]
+          ]
+        },
+        "diagonal": {
+          "seconds": 0.0063381000072695315,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.28037439996842295,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "extra",
+      "id": "signed-relief-26.3--dev--dev-relief-00-oblique-left",
+      "methods": {
+        "photo": {
+          "seconds": 0.06212229997618124,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.004141699988394976,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.2976135000353679,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "extra",
+      "id": "shape-benchmark-26.3--train-canopy-05-right",
+      "methods": {
+        "photo": {
+          "seconds": 0.051359200035221875,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.005114300001878291,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.0930792999570258,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "extra",
+      "id": "shape-benchmark-26.3--train-recess-02-left",
+      "methods": {
+        "photo": {
+          "seconds": 0.08759130001999438,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.010702800005674362,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.3150540000060573,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "new",
+      "id": "holdout-switchback-brick-low-left",
+      "methods": {
+        "photo": {
+          "seconds": 0.21139369998127222,
+          "groups": [
+            [
+              "mask-16",
+              "mask-18",
+              "mask-19"
+            ]
+          ]
+        },
+        "diagonal": {
+          "seconds": 0.006574900005944073,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.2669731000205502,
+          "groups": [
+            [
+              "mask-0",
+              "mask-11"
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "split": "new",
+      "id": "holdout-switchback-brick-high-right",
+      "methods": {
+        "photo": {
+          "seconds": 0.20578959997510538,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.005135499988682568,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.35890930000459775,
+          "groups": [
+            [
+              "mask-0-wall-0",
+              "mask-0-wall-1"
+            ],
+            [
+              "mask-1",
+              "mask-8"
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "split": "new",
+      "id": "holdout-loadingdock-timber-low-left",
+      "methods": {
+        "photo": {
+          "seconds": 0.21154869999736547,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.008610500022768974,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.32146609999472275,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "new",
+      "id": "holdout-loadingdock-timber-high-right",
+      "methods": {
+        "photo": {
+          "seconds": 0.2282629999681376,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.00738429999910295,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.31648529996164143,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "shelter_gate",
+      "id": "holdout-platformshelter-copper-low-left",
+      "methods": {
+        "photo": {
+          "seconds": 0.1927797999815084,
+          "groups": [
+            [
+              "mask-0-wall-0-mobile-1",
+              "mask-0-wall-0-mobile-3"
+            ]
+          ]
+        },
+        "diagonal": {
+          "seconds": 0.004619899962563068,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.24200690002180636,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "shelter_gate",
+      "id": "holdout-platformshelter-copper-high-right",
+      "methods": {
+        "photo": {
+          "seconds": 0.24794970004586503,
+          "groups": [
+            [
+              "mask-0-wall-0-planarity-split-0",
+              "mask-0-wall-0-planarity-split-1"
+            ]
+          ]
+        },
+        "diagonal": {
+          "seconds": 0.007186700007878244,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.30612769996514544,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "shelter_gate",
+      "id": "holdout-offsetgate-quartz-low-left",
+      "methods": {
+        "photo": {
+          "seconds": 0.10822789999656379,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.005635000008624047,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.17095850000623614,
+          "groups": []
+        }
+      }
+    },
+    {
+      "split": "shelter_gate",
+      "id": "holdout-offsetgate-quartz-high-right",
+      "methods": {
+        "photo": {
+          "seconds": 0.2418658000533469,
+          "groups": []
+        },
+        "diagonal": {
+          "seconds": 0.005780200008302927,
+          "groups": []
+        },
+        "transition": {
+          "seconds": 0.364463199977763,
+          "groups": [
+            [
+              "mask-3-wall-0",
+              "mask-3-wall-1"
+            ]
+          ]
+        }
+      }
+    }
+  ]
+}

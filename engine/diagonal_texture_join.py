@@ -112,7 +112,10 @@ def refine(image, parts, camera):
     """Return the original parts on insufficient image, camera or texture evidence."""
     if not parts or camera is None or camera.get('P') is None:
         return parts, []
-    projection = np.asarray(camera['P'], float)
+    try:
+        projection = np.asarray(camera['P'], float)
+    except (ValueError, TypeError):
+        return parts, []
     if projection.shape != (3,4) or not np.isfinite(projection).all() or np.linalg.matrix_rank(projection[:,:3]) < 3:
         return parts, []
     p, rotation = orientation(camera, image.size)
@@ -189,5 +192,3 @@ def refine(image, parts, camera):
         result.append(dict(item, id=parts[largest]['id']+'-phase-union'))
         groups.append([parts[i]['id'], parts[j]['id']])
     return result, groups
-
-
