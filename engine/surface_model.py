@@ -2,6 +2,7 @@
 import json
 import logging
 from pathlib import Path
+from tempfile import TemporaryDirectory
 
 import numpy as np
 from PIL import Image
@@ -376,6 +377,9 @@ def build(image_path, version, out, *, outlines=None, order_method=None, through
           counter=None, atlas_path=None, material_match=None, context_px=None, boundary=None, library=None,
           joint_foreground=True):
     camera_atlas_path = atlas_path
+    metric_camera = None
+    inset_events = []
+    pre_inset = None
     from engine.atlas import digest
     from engine.surface_fields import MODELS, SETTINGS as inference, infer
     if version != '26.3':
@@ -516,6 +520,15 @@ def build(image_path, version, out, *, outlines=None, order_method=None, through
             boundary_settings['skyline_extent'] = dict(events=events)
             methods['skyline_extent'] = skyline_extent.METHOD
             methods['boundary_sequence'].append(skyline_extent.METHOD)
+            from engine import inset_returns
+            if inset_returns.possible(image.size, patches):
+                from engine.visible_placement import seam_camera
+                metric_camera = seam_camera(image, version, atlas_path=camera_atlas_path)
+                pre_inset = patches
+                patches, inset_events = inset_returns.refine(image, patches, metric_camera)
+            methods['visible_insets'] = inset_returns.METHOD
+            methods['boundary_sequence'].append(inset_returns.METHOD)
+            boundary_settings['visible_insets'] = dict(events=inset_events)
         context_px = DEFAULT_CONTEXT_PX if context_px is None else context_px
         patches = [with_outline(part) for part in patches]
         crop_dir = out/'surface-crops'
@@ -632,8 +645,26 @@ def build(image_path, version, out, *, outlines=None, order_method=None, through
         if through == 'placement':
             from engine.export import JAVA_26_3_FORMAT, write_pack
             from engine.visible_placement import place
-            cells, status = place(image, version, patches, counts=counts, atlas_path=camera_atlas_path,
-                                  joint_foreground=joint_foreground)
+            placement_parts, placement_counts = patches, counts
+            if inset_events:
+                # Preserve the established relative layout. Measure the unsplit
+                # host for that layout, and use the observed backs only locally.
+                placement_parts = [with_outline(p) for p in pre_inset]
+                hosts = {e['host'] for e in inset_events}
+                original_hosts = [p for p in placement_parts if p['id'] in hosts]
+                with TemporaryDirectory() as tmp:
+                    host_rows = _count_regions(image, original_hosts, version, counter, atlas, Path(tmp))['surfaces']
+                by_id = {r['id']:r for r in counts['surfaces']}
+                by_id.update((r['id'],r) for r in host_rows)
+                placement_counts = dict(counts, surfaces=[by_id[p['id']] for p in placement_parts])
+            cells, status = place(image, version, placement_parts, counts=placement_counts,
+                                  atlas_path=camera_atlas_path, joint_foreground=joint_foreground, camera=metric_camera)
+            if inset_events:
+                from engine.visible_inset_cells import inset_edits
+                added, removed = inset_edits(image.size, metric_camera, patches, inset_events, cells)
+                cells = (set(cells) | added) - removed
+                status.update(placed_blocks=len(cells), inset_placement=dict(added=len(added), removed=len(removed),
+                    source='photographed backs and occluding cells inside measured rims'))
             material = 'smooth_stone'
             blocks = {tuple(map(int, pos)): material for pos in cells}
             rows = [dict(x=x, y=y, z=z, block_id=material) for x,y,z in sorted(blocks)]

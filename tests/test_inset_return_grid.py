@@ -2,7 +2,7 @@ import unittest
 
 import numpy as np
 
-from benchmark.inset_return_grid import _brightness, _fit, _labels
+from engine.inset_returns import _brightness, _fit, _labels
 
 
 class InsetReturnGridTest(unittest.TestCase):

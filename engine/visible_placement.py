@@ -137,11 +137,12 @@ def _charts(image, version, parts, counts):
     return charts
 
 
-def place(image, version, parts, *, counts=None, atlas_path=None, joint_foreground=True):
+def place(image, version, parts, *, counts=None, atlas_path=None, joint_foreground=True, camera=None):
     """Return local (x, y, z) block coordinates and camera/placement diagnostics."""
     from engine.atlas_plane_depth import place_ranked
     image = image.convert('RGB')
-    camera = seam_camera(image, version, atlas_path=atlas_path)
+    if camera is None:
+        camera = seam_camera(image, version, atlas_path=atlas_path)
     return place_ranked(image, version, parts, counts, camera, atlas_path=atlas_path, joint_foreground=joint_foreground)
 
 

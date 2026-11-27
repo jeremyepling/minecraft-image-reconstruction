@@ -9,7 +9,7 @@ from itertools import product
 import numpy as np
 from PIL import ImageFilter
 
-from benchmark.inset_return_grid import _brightness, _fit, _front, _iou, _labels, _level
+from engine.inset_returns import _brightness, _fit, _front, _iou, _labels, _level
 from engine.pillar_seams import bounds, native_mask, orientation
 
 
