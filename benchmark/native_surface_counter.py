@@ -9,7 +9,7 @@ from PIL import Image
 
 
 from benchmark import relative_face_round as ordinary
-from benchmark.expanded_baseline import ROOT, WORKTREES, digest, read, save
+from benchmark.expanded_baseline import ROOT, digest, read, save
 from benchmark.full_block_lattice import atlas, verify_sprite
 from benchmark.shared_corner_rows import HANDOFF, unpack
 from engine.atlas_count import _shortlist
@@ -17,7 +17,7 @@ from engine.geometry import UNIT, project
 from engine.surface_model import lens
 
 OUTPUT = ROOT / 'runs/surface-crop-first-01'
-BASE = WORKTREES / 'shared-corner-rows/runs/shared-corner-rows-01/sky'
+BASE = ROOT / 'runs/shared-corner-rows-01/sky'
 FRACTIONS = (np.arange(16) + .5) / 16
 SAMPLES = np.stack(np.meshgrid(FRACTIONS, FRACTIONS), axis=-1)
 MAX_POINTS = 1536

@@ -20,6 +20,7 @@ OUTPUT = ROOT / 'runs/relative-face-assembly-01'
 ATLAS = WORKTREES / 'relative-face-source-charts/runs/relative-face-assembly-01'
 CONTROL = WORKTREES / 'relative-face-junction-control/runs/relative-face-assembly-01'
 MODES = {
+    'registered-seam': (ROOT/'runs/surface-crop-first-01/registered-seam','charts.json',False,1,2.5,.5,False),
     'atlas': (ATLAS,'charts.json',False,2,3.5,None,False),
     'atlas-one-edge': (ATLAS,'charts.json',False,1,3.5,None,False),
     'count-exploratory': (ATLAS,'counter-charts.json',False,1,3.5,.5,False),

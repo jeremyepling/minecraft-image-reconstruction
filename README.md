@@ -1,5 +1,7 @@
 # Minecraft Image Reconstruction
 
+This checkout hosts the **floating-build reconstruction branch**. It assembles visible block faces on an arbitrary local origin from the build's own surfaces. Local viewing angles can help measure texture and shape. A floor, absolute world position, and global camera recovery are unnecessary. Start with the [floating branch baseline and replay](benchmark/FLOATING_BRANCH.md). The ordinary production pipeline is documented below.
+
 ## From source image to placed blocks
 
 The **source image** is the full Minecraft screenshot supplied to the build command. A **surface crop** is a piece taken from that same image. Solid arrows show how the ordinary build uses the source. Dotted arrows show diagnostics and evaluation.
