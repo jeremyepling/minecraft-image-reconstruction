@@ -149,6 +149,21 @@ class AtlasFallbackBuildTests(unittest.TestCase):
         self.assertEqual(manifest['atlas_search_errors'][0]['path'], str(dirs[0]))
         self.assertEqual(counts['atlas_phase']['status'], 'enabled')
 
+    def test_required_counter_tries_all_discovered_copies_but_respects_explicit_path(self):
+        dirs = [self.root/'damaged', self.root/'valid']
+        atlas = example_atlas()
+        with patch('engine.atlas_count.prepared_atlas_paths', return_value=dirs), \
+                patch('engine.atlas_count.load_atlas', side_effect=[ValueError('bad checksum'), atlas]):
+            found, _, path, failures = surface_model._material_assets('26.3', 'atlas-repeat', 'atlas', None)
+        self.assertIs(found, atlas)
+        self.assertEqual(path, dirs[1])
+        self.assertEqual(failures[0]['path'], str(dirs[0]))
+        with patch('engine.atlas_count.prepared_atlas_paths') as search, \
+                patch('engine.atlas_count.load_atlas', side_effect=ValueError('bad checksum')):
+            with self.assertRaisesRegex(ValueError, 'bad checksum'):
+                surface_model._material_assets('26.3', 'atlas-repeat', 'atlas', dirs[0])
+            search.assert_not_called()
+
     def test_registration_exception_preserves_counter_and_working_material_matcher(self):
         atlas = example_atlas()
         pixels = np.roll(np.tile(atlas.tiles[0], (4, 6, 1)), (4, 7), axis=(0, 1))

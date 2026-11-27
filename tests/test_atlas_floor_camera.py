@@ -42,8 +42,8 @@ class AtlasFloorCameraTests(unittest.TestCase):
             broken.mkdir()
             repaired.mkdir()
             for folder in [broken, repaired]:
-                (folder/"atlas.json").write_text("{}")
-                (folder/"atlas.png").write_bytes(b"test")
+                (folder/"atlas.json").write_text('{"atlas":"sprites.png"}')
+                (folder/"sprites.png").write_bytes(b"test")
             with patch.object(camera, "prepared_atlas_paths") as paths, patch.object(camera, "load_atlas") as load:
                 paths.return_value = []
                 self.assertIsNone(camera._atlas("26.3"))
@@ -55,9 +55,13 @@ class AtlasFloorCameraTests(unittest.TestCase):
                     self.assertIs(camera._atlas("26.3"), sentinel)
                 # Same process picks up an updated local atlas.
                 paths.return_value = [repaired]
-                (repaired/"atlas.json").write_text('{"updated": true}')
+                (repaired/"sprites.png").write_bytes(b"damaged sheet")
                 load.side_effect = [EOFError()]
                 self.assertIsNone(camera._atlas("26.3"))
+                (repaired/"second.png").write_bytes(b"repaired")
+                (repaired/"atlas.json").write_text('{"atlas":"second.png"}')
+                load.side_effect = [sentinel]
+                self.assertIs(camera._atlas("26.3"), sentinel)
                 # An explicit broken path never falls through to a discovered one.
                 paths.reset_mock()
                 self.assertIsNone(camera._atlas("26.3", root/"missing"))
