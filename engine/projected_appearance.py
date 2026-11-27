@@ -182,5 +182,3 @@ class FaceRenderer:
         old=np.abs(src-self.image[idx[kept]]).mean(1)
         new=np.abs(src-updated[kept]).mean(1)
         return round(float((old-new).mean()),3),len(src)
-
-

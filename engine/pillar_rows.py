@@ -137,5 +137,3 @@ def recover(image,parts,camera,prior,atlas,*,border=2):
             break
         kept=result
     return prior|kept,dict(proposed=len(proposed),added=len(kept))
-
-
