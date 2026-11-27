@@ -168,9 +168,9 @@ def pair(parts,size,labels,ids):
     return result
 
 
-def expected(faces,quad):
+def expected(faces,quad,*,include_horizontal=False):
     axis=int(np.argmax(abs(np.asarray(faces[0]['normal_world']))))
-    if axis==1 or quad is None:
+    if (axis==1 and not include_horizontal) or quad is None:
         return None
     free=[d for d in range(3) if d!=axis]
     pos=np.array([f['xyz_world'] for f in faces])[:,free]
