@@ -4,6 +4,8 @@ These entries cover model inputs, rules around model outputs, and evaluation cha
 
 ### November 27, 2026
 
+- **Experimental sequential crop corrections.** A fixed student trained on pixel errors from Pillars and Viaduct edited the current crop on four successive passes. On 124 matched held-out crops, ordinary masks rose from 42.30% to 47.43% mean IoU. Starting from the source-only chooser yielded 50.70% to 50.84% and regressed Harbor. [Round-by-round scores and native edit traces](benchmark/reviews/sky-crop-correction-policy-01/README.md)
+
 - **Experimental surface-crop chooser.** A source-only chooser fitted on Pillars and Viaduct raised native fixed-target crop IoU from 40.66% to 48.74% on four other sky-background buildings. It recovered ten more half-overlap surface targets across all six pictures, but six more targets lost all pixel coverage. [Candidate masks, oracle headroom and per-building results](benchmark/reviews/sky-crop-chooser-01/README.md)
 
 - **Floating branch default.** Surface Finder now rejects a proposal whose entire native support matches connected sky or cloud before it creates crops or counts blocks. The six open-sky handoffs retained 193 of 216 proposals. All surviving supports and crop pixels matched the prior handoffs. [Floating pipeline and replay](benchmark/FLOATING_BRANCH.md)
