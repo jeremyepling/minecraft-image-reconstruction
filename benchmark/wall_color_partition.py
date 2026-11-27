@@ -72,7 +72,7 @@ def baseline_folder(entry, case):
     raise ValueError(f'No hash-matched baseline pack for {key}')
 
 
-def install_trial(mode, audit):
+def install_trial(mode, audit, depth_gate=None):
     estimate = visible_placement._estimate_plane_cells
     atlas = _atlas('26.3', None)
     weights = frozen_repeat_weights()
@@ -124,8 +124,11 @@ def install_trial(mode, audit):
                     if (winner and incumbent and winner['boundary'] >= .60
                             and winner['boundary']-incumbent['boundary'] >= .15):
                         level = winner['level']
+            evidence = {}
+            if depth_gate is not None and level != initial:
+                level, evidence = depth_gate(image, mask, region, rays[:, :, axis], eye[axis], initial, level)
             resolved[level] = resolved.get(level, np.zeros_like(mask)) | region
-            decisions.append(dict(group=int(group), samples=int(region.sum()), level=int(level), options=rows))
+            decisions.append(dict(group=int(group), samples=int(region.sum()), level=int(level), options=rows, **evidence))
         before = cells[index]
         if any(level != initial for level in resolved):
             replacement = set()
