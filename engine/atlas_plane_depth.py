@@ -312,6 +312,9 @@ def _place(image, version, parts, counts, camera, atlas_path, *, remove_occluded
     if junction is None:
         foreground_status.update(method='unavailable', reason='repeat plane model unavailable')
 
+    from engine.inset_depth_handoff import levels as inset_levels
+    measured_insets = inset_levels(parts, camera)
+
     def reconcile(selections):
         try:
             levels = scene_policy.resolve()
@@ -324,6 +327,11 @@ def _place(image, version, parts, counts, camera, atlas_path, *, remove_occluded
         if height_overrides:
             levels.update(height_overrides)
             scene_policy.levels.update(height_overrides)
+        selected_insets = {key: measured_insets[key][1] for i, axis, _ in selections
+                           if (key := parts[i]['id']) in measured_insets and measured_insets[key][0] == axis}
+        if selected_insets:
+            levels.update(selected_insets)
+            scene_policy.levels.update(selected_insets)
         foreground_status['changed_planes'] = sum(levels.get(row['id'], row['level']) != row['level']
                                                   for row in decisions)
         for row in decisions:

@@ -1,0 +1,72 @@
+{
+  "id": "shape-benchmark-26.3--train-recess-02-right",
+  "rgb": "3dae3737c077d483a91e35e525af829d34b1262ca51a4287b5b1214988c2e7df",
+  "model_sha256": {
+    "normal": "24eacb5dc7a2c54c7bc98f7de085ffbed79ad006ea5b664c2c2cdc02ff3a52f0",
+    "depth": "fcf51f1b230362b28690bb9d1809bf0431f29cad20534e3f589bd7285547f20d",
+    "mlsd": "e869f90601ffa263f21ac47e09ff0d65dc936d1aeb47126b8499d5504adfb100",
+    "scalelsd": "d0a7333c4de518a70af7d6ea4a283aa0ce9ffe1047525373b94070b1d1d4003f",
+    "mobilesam": "6dbb90523a35330fedd7f1d3dfc66f995213d81b29a5ca8108dbcdd4e37d6c2f",
+    "pixelwise_planarity": "305325096a80f541e430ccbb1b6581af67b3ef9d3c92f8d9384dc7aaae9f3952"
+  },
+  "artifacts": {
+    "surfaces.json": "09a1b582c050179ed38a0fb8b8073236110b8be9a47877b15833ac38d44aaa43",
+    "counts.json": "fd3651660c5bb02d979cb358f02879eff3b3baccaf5ddbb1057abffd073cb154",
+    "placements.json": "4277f6f0245eac18d87fc72a395a180f5a3a802ca6cd258b1f956c99b2e8b182",
+    "reconstruction.zip": "0ba3ec1a0382eae69bfeb41292657d3075320a883170eb8b4a8386f3dcb5c00c"
+  },
+  "measured": {
+    "mask-0-inset-0": {
+      "method": "paired-visible-returns",
+      "projection": "e7d966d00bd0f8cdc90ec19e00a8ca0cffd1091e91e7b7d77fe487e83593b2f0",
+      "axis": 2,
+      "host": "mask-0",
+      "side": "mask-11",
+      "sill": "mask-13",
+      "front": -1,
+      "signed_depth": 1,
+      "rim": [
+        6,
+        9,
+        3,
+        6
+      ]
+    },
+    "mask-0-inset-1": {
+      "method": "paired-visible-returns",
+      "projection": "e7d966d00bd0f8cdc90ec19e00a8ca0cffd1091e91e7b7d77fe487e83593b2f0",
+      "axis": 2,
+      "host": "mask-0",
+      "side": "mask-9",
+      "sill": "mask-12",
+      "front": -1,
+      "signed_depth": 2,
+      "rim": [
+        -2,
+        1,
+        3,
+        6
+      ]
+    }
+  },
+  "chosen": {
+    "mask-0-inset-0": 0,
+    "mask-0-inset-1": 1
+  },
+  "placed": 355,
+  "source_only_matches_full_replay": true,
+  "placement_delta": {
+    "target": 340,
+    "placed": 355,
+    "correct": 316,
+    "extras": 39,
+    "missed": 24,
+    "hidden_extras": 0,
+    "gained": 9,
+    "lost": 1,
+    "extra_added": 0,
+    "extra_removed": 6,
+    "hidden_added": 0,
+    "hidden_removed": 0
+  }
+}

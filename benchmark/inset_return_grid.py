@@ -170,6 +170,8 @@ def refine(image, parts, camera):
                 continue
             output_id=p['id']+'-inset-'+str(len(events))
             new=with_mask(dict(clean,id=output_id,parent_id=p['id']),selected,image.size,gray,np.ones(2))
+            from engine.inset_depth_handoff import measurement
+            new['inset_back_plane']=measurement(camera,axis,fit)
             out.append(new)
             remainder&=~selected
             fit.update(output=output_id,reassigned=int(selected.sum()))
