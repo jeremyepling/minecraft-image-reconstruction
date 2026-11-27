@@ -16,6 +16,25 @@ class VisibleInsetTests(unittest.TestCase):
         self.assertIs(result,parts)
         self.assertEqual((events,secondary,outlines,camera),([],[],[],None))
 
+    def test_public_counts_skip_removed_backdrop_and_validate_same_host_at_placement(self):
+        from copy import deepcopy
+        from engine.surface_model import _inset_host_counts, _inset_layout_counts
+
+        original = [dict(id='host'), dict(id='backdrop')]
+        prior_host = dict(id='host', dimensions=dict(blocks=[None, None], spans=[None, None]))
+        public = dict(surfaces=[dict(id='host', dimensions=dict(blocks=[13, None], spans=[12.7, None])),
+                                dict(id='visible inset')])
+        placement_public = deepcopy(public)
+        context = dict(surfaces=[dict(id='host'), dict(id='backdrop')])
+        with patch('engine.surface_model._count_regions', return_value=dict(surfaces=[prior_host])):
+            _inset_host_counts(None, '26.3', original, public, {'host'}, 'masked-repeat', None)
+            fit = _inset_layout_counts(None, '26.3', original, context, {'host'}, 'masked-repeat',
+                                       None, public_counts=placement_public)
+        self.assertEqual(public, placement_public)
+        self.assertEqual(public['surfaces'][0]['dimensions']['blocks'], [None, None])
+        self.assertEqual([r['id'] for r in public['surfaces']], ['host', 'visible inset'])
+        self.assertEqual(fit['surfaces'], [prior_host, dict(id='backdrop')])
+
     def test_unusable_projection_keeps_original_parts(self):
         image = Image.new('RGB',(32,32))
         parts = [{}, {}, {}]

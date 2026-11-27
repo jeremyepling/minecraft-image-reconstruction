@@ -349,14 +349,16 @@ def _count_regions(image, planes, version, method, atlas, out, shape_matcher=Non
     return report
 
 
-def _inset_layout_counts(image, version, original, counts, hosts, counter, atlas):
-    """Keep the original global layout and recount just the owners of new holes."""
+def _inset_host_counts(image, version, original, counts, hosts, counter, atlas):
+    """Check the public host dimensions against the same surfaces before cutting holes."""
     with TemporaryDirectory() as tmp:
         old_rows = _count_regions(image, [p for p in original if p['id'] in hosts],
                                   version, counter, atlas, Path(tmp))['surfaces']
-    updated = {r['id']:r for r in counts['surfaces']}
+    public_rows = {r['id']:r for r in counts['surfaces']}
     for old in old_rows:
-        row = updated[old['id']]
+        row = public_rows.get(old['id'])
+        if row is None:
+            continue
         dims = row['dimensions']
         if None in dims['blocks']:
             for axis, value in enumerate(dims['blocks']):
@@ -366,7 +368,15 @@ def _inset_layout_counts(image, version, original, counts, hosts, counter, atlas
                     row.setdefault('unconfirmed_host_dimension', []).append(dict(axis=axis, estimate=value))
                     dims['blocks'][axis] = None
                     dims['spans'][axis] = None
-        updated[old['id']] = old
+    return old_rows
+
+
+def _inset_layout_counts(image, version, original, counts, hosts, counter, atlas, *, public_counts=None):
+    """Reassemble the placement fit with its original surfaces, including scene context."""
+    old_rows = _inset_host_counts(image, version, original, counts if public_counts is None else public_counts,
+                                  hosts, counter, atlas)
+    updated = {r['id']:r for r in counts['surfaces']}
+    updated.update((r['id'], r) for r in old_rows)
     return dict(counts, surfaces=[updated[p['id']] for p in original])
 
 
@@ -711,9 +721,13 @@ def build(image_path, version, out, *, outlines=None, order_method=None, through
                 placement_counts = _count_regions(image, placement_parts, version, counter, atlas,
                                                   Path(temporary), shape_matcher, shadow_field)
         if inset_events or count_confirmed_outlines:
-            placement_parts = [with_outline(p) for p in pre_inset]
-            placement_counts = _inset_layout_counts(image, version, placement_parts, placement_counts,
-                {e['host'] for e in inset_events + count_confirmed_outlines}, counter, atlas)
+            hosts = {e['host'] for e in inset_events + count_confirmed_outlines}
+            if through == 'placement':
+                placement_parts = [with_outline(p) for p in pre_inset]
+                placement_counts = _inset_layout_counts(image, version, placement_parts, placement_counts,
+                                                        hosts, counter, atlas, public_counts=counts)
+            else:
+                _inset_host_counts(image, version, pre_inset, counts, hosts, counter, atlas)
         if inset_events:
             from engine.visible_inset_cells import observed_back_spans
             visible_spans = observed_back_spans(image.size, metric_camera, measured_patches, inset_events, phase_events)
