@@ -96,7 +96,7 @@ def misplaced(image, parts, camera, cells, background=None):
     scene = Scene(image, [], camera, cells)
     available = available.ravel()
     return {scene.cells[i] for i, pixels in scene.owned.items()
-            if scene.cells[i][1] > 0 and len(pixels) >= 4 and available[pixels].all()}
+            if (camera.get("floating_grid") or scene.cells[i][1] > 0) and len(pixels) >= 4 and available[pixels].all()}
 
 def roof_edits(image, original, cleaned, events, status, cells, background=None):
     """Use the adjacent measured roof's own plane to recover faces behind a false shelf."""

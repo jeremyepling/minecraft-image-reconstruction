@@ -5,6 +5,7 @@ from hashlib import sha256
 from pathlib import Path
 import json
 
+from engine import floating_grid_policy as floating
 import numpy as np
 
 from engine.nearby_face_decision import predict_forest
@@ -23,6 +24,7 @@ def observations(data):
     pp,owner,P,eye,hits=data
     points=list(map(tuple,pp.tolist()))
     prior=set(points)
+    base_y=min(p[1] for p in prior) if floating.active() else 0
     hits=np.array(hits)
     targets=[tuple(p) for p in hits[:,4:7].astype(int).tolist()]
     by_target,oppose,supporting=defaultdict(list),defaultdict(list),defaultdict(list)
@@ -62,7 +64,7 @@ def observations(data):
            len(ids)/max(1,previous_rays),len(ids)/max(1,area),close,sum(n>=3 for n in neighbor),
            sum(n>=10 for n in neighbor),max(neighbor),len(bands),peak,sample[:,7].mean(),margin,
            sample[:,8].max(),sample[:,9].mean(),sum(sample[:,7]>.85),sum(sample[:,8]>.15),
-           axis.max()/len(ids),primary==1,c[1],dist,len(set(partners)),np.median(displacement),
+           axis.max()/len(ids),primary==1,c[1]-base_y,dist,len(set(partners)),np.median(displacement),
            sum(t in prior for t in cells)/len(ids),sum(old<0)/len(ids),
            np.ptp(sample[:,0]),np.ptp(sample[:,1])]
         result[c]=(exists,np.array(f,float))

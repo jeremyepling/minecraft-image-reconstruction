@@ -1,4 +1,5 @@
 """Select the integer depth of an observed surface from its projected texture."""
+from engine import floating_grid_policy as floating
 from functools import lru_cache
 import json
 from pathlib import Path
@@ -151,7 +152,7 @@ def options(mask, P, eye, rays, axis, baseline, rgb, atlas, scene_distance=None,
         levels.update(range(scene_level-radius,scene_level+radius+1))
     for level in sorted(levels):
         distance = level-eye[axis]
-        if (baseline-eye[axis])*distance <= 0 or (axis==1 and level-int(distance<0)<0):
+        if (baseline-eye[axis])*distance <= 0 or (not floating.active() and axis==1 and level-int(distance<0)<0):
             continue
         delta = abs((uv+boundary*distance+.5)%1-.5).min(1)
         boundary_score = float(np.maximum(0,1-delta/.18).mean()) if len(delta) else 0.
@@ -164,6 +165,7 @@ def options(mask, P, eye, rays, axis, baseline, rgb, atlas, scene_distance=None,
 
 
 
+@floating.ranked_policy
 def place_ranked(image, version, parts, counts, camera, *, atlas_path=None, joint_foreground=True, refine_faces=True):
     """Place image-supported grid cells and remove cells with no visible ray."""
     from engine import local_panel_depth, pillar_rows, roof_height_atlas, roof_height_consensus, vertical_atlas_faces, visible_roof_rectangle
@@ -249,7 +251,7 @@ def refine_framed_depth(image, parts, camera, prior, atlas, atlas_path=None):
     from engine import grounded_depth_envelope, grounded_exposed_faces, section_decision, vertical_atlas_faces
     if not prior or atlas is None or camera.get('P') is None:
         return prior, {}
-    grounded, evidence = grounded_depth_envelope.recover(image, parts, camera, prior, atlas_path=atlas_path)
+    grounded, evidence = (prior, dict(removed=0)) if floating.active() else grounded_depth_envelope.recover(image, parts, camera, prior, atlas_path=atlas_path)
     adjusted = section_decision.recover(image, parts, camera, grounded, atlas_path=atlas_path, mode='deeper')
     exposed = grounded_exposed_faces.recover(image, parts, camera, prior, adjusted, atlas_path=atlas_path)
     verified = vertical_atlas_faces.recover(image, parts, camera, exposed, atlas)

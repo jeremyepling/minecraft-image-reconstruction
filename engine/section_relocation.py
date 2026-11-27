@@ -1,4 +1,5 @@
 """Register photographed sections to integer planes using atlas art seen on the build."""
+from engine import floating_grid_policy as floating
 from collections import Counter
 from functools import lru_cache
 
@@ -79,7 +80,7 @@ def sections(image, parts, camera, prior, *, atlas_path=None):
         if not entries:
             continue
         lo, hi = np.percentile(points[:,axis], [1,99])
-        levels=np.arange(max(0 if axis==1 else -9999,int(lo)-4),int(hi)+6)
+        levels=np.arange(max(0 if axis==1 and not floating.active() else -9999,int(lo)-4),int(hi)+6)
         if len(levels)>85:
             continue
         levels=levels[abs(levels-eye[axis])>.5]
@@ -138,7 +139,7 @@ def sections(image, parts, camera, prior, *, atlas_path=None):
         cells=np.floor(xyz).astype(int)
         cells[:,axis]=level-int(eye[axis]>level)
         supported=oriented[axis,y[chunk],x[chunk]]
-        for i in np.flatnonzero(valid & (cells[:,1]>=0)):
+        for i in np.flatnonzero(valid & (floating.active() | (cells[:,1]>=0))):
             votes.append((int(v[i]),int(u[i]),int(owner[y[chunk[i]],x[chunk[i]]]),axis,*cells[i],
                           quality,gap,int(supported[i])))
     return points, owner, P, eye, votes

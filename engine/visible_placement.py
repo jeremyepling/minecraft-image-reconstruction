@@ -1,4 +1,5 @@
 """Place visible surface cells in the block grid estimated from one screenshot."""
+from engine import floating_grid_policy as floating
 import numpy as np
 
 from engine.camera_metric import predict as seam_camera
@@ -63,12 +64,16 @@ def _estimate_plane_cells(image, parts, masks, projection, eye, select_level=Non
     yy, xx = np.indices(shape)
     pixels = np.stack([(xx + .5) * SAMPLE_STRIDE, (yy + .5) * SAMPLE_STRIDE, np.ones(shape)], axis=-1)
     rays = pixels @ np.linalg.inv(projection[:, :3]).T
-    union = np.logical_or.reduce(masks)
-    bottom = np.where(union, yy, -1).max(axis=0)
-    boundary = union & (yy == bottom) & (yy < shape[0] - 1)
-    floor_depth = np.divide(-eye[1], rays[:, :, 1], out=np.full(shape, np.nan), where=abs(rays[:, :, 1]) > 1e-7)
-    contacts = boundary & (floor_depth > 1) & (floor_depth < 150)
-    distance = np.median(floor_depth[contacts]) if contacts.any() else focal / (image.height / 24)
+    if floating.active():
+        contacts = np.zeros(shape, dtype=bool)
+        distance = floating.scene_distance.get()
+    else:
+        union = np.logical_or.reduce(masks)
+        bottom = np.where(union, yy, -1).max(axis=0)
+        boundary = union & (yy == bottom) & (yy < shape[0] - 1)
+        floor_depth = np.divide(-eye[1], rays[:, :, 1], out=np.full(shape, np.nan), where=abs(rays[:, :, 1]) > 1e-7)
+        contacts = boundary & (floor_depth > 1) & (floor_depth < 150)
+        distance = np.median(floor_depth[contacts]) if contacts.any() else focal / (image.height / 24)
     depths = [p['relative_inverse_depth'] for p in parts if (p.get('relative_inverse_depth') or 0) > 0]
     typical = np.median(depths) if depths else 1
     candidates = [set() for _ in parts]
@@ -107,7 +112,7 @@ def _estimate_plane_cells(image, parts, masks, projection, eye, select_level=Non
         coords = np.floor(eye + depth[inside, None] * rays[inside]).astype(int)
         sign = 1 if eye[axis] > level else -1
         coords[:, axis] = level - int(sign > 0)
-        coords, counts = np.unique(coords[coords[:, 1] >= 0], axis=0, return_counts=True)
+        coords, counts = np.unique(coords if floating.active() else coords[coords[:, 1] >= 0], axis=0, return_counts=True)
         for cell in coords[counts >= MINIMUM_SAMPLES]:
             hit = _sample_face(projection, cell, axis, sign, shape)
             if hit is None:
@@ -152,6 +157,7 @@ def place_with_camera(image, version, parts, counts, camera, select_level=None, 
     status = dict(camera_status=camera['scale_status'], reason=camera['reason'], P=camera['P'],
                   strict_blocks=0, added_blocks=0, placed_blocks=0, duplicate_side_cells=0,
                   textured_side_cells=0, grounded_side_cells=0, shared_side_cells=0)
+    status['floating_grid'] = bool(camera.get('floating_grid'))
     status['camera_source'] = camera.get('camera_source')
     if camera.get('atlas_reason'):
         status['atlas_camera_reason'] = camera['atlas_reason']
@@ -195,7 +201,7 @@ def place_with_camera(image, version, parts, counts, camera, select_level=None, 
         from engine.seam_ownership import corroborated_runs, textured_side_owners, resolve_side_owners
         from engine.seam_runs import grounded_side_owners
         textured = textured_side_owners(image, projection, eye, cells, owner, accepted, strict, _sample_face)
-        runs = grounded_side_owners(image, accepted, strict, masks, projection, eye, _sample_face,
+        runs = {} if floating.active() else grounded_side_owners(image, accepted, strict, masks, projection, eye, _sample_face,
                                     _frontmost_cells, textured)
         grounded = corroborated_runs(runs, textured)
         duplicates = resolve_side_owners(textured, grounded, strict)

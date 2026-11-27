@@ -1,4 +1,5 @@
 """Use local atlas matches to resolve visible depth changes inside merged masks."""
+from engine import floating_grid_policy as floating
 import numpy as np
 
 from engine.atlas_plane_depth import _coefficients, _patch_scores
@@ -13,7 +14,7 @@ def coordinates(uv,axis,level,eye):
 
 
 def supported_face(cell,axis,level,eye,P,mask):
-    if cell[1]<0:
+    if cell[1]<0 and not floating.active():
         return False
     hit=_sample_face(P,cell,axis,1 if eye[axis]>level else -1,mask.shape)
     if hit is None:

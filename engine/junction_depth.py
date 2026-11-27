@@ -1,4 +1,5 @@
 """Propose visible wall depths from observed contacts between the build and floor."""
+from engine import floating_grid_policy as floating
 import numpy as np
 
 from engine.plane_offset_features import features
@@ -15,6 +16,10 @@ class JunctionDepth:
         self.walls = []
 
     def prepare(self, P, eye, rays):
+        if floating.active():
+            self.anchors = {}
+            self.ground_points = []
+            return
         shape = rays.shape[:2]
         masks = [observed_support(p['support'], shape, self.size) if p.get('support')
                  else np.zeros(shape, bool) for p in self.parts]
@@ -80,7 +85,7 @@ class JunctionDepth:
                 continue
             heights = eye[1]+(level-eye[axis])*rays[edge,1]/rays[edge,axis]
             height = round(float(np.median(heights)))
-            if height < 0 or np.quantile(abs(heights-height), .8) > .23:
+            if (height < 0 and not floating.active()) or np.quantile(abs(heights-height), .8) > .23:
                 continue
             votes.setdefault(height, set()).add((axis,level))
         self.votes = votes

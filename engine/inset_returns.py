@@ -16,6 +16,9 @@ OUTLINE_METHOD = 'visible-inset-count-confirmed-outline'
 
 def detect(image, parts, version, *, atlas_path=None, camera=None):
     from engine import inset_mask_chooser
+    if camera and camera.get("floating_grid"):
+        # Both inset proposers derive their host plane by intersecting Y=0.
+        return parts, [], [], [], camera
     strict_possible = possible(image.size, parts)
     mask_possible = inset_mask_chooser.possible(image.size, parts)
     if not (strict_possible or mask_possible):

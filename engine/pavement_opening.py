@@ -151,4 +151,6 @@ def inspect_openings(image, parts, camera):
 
 def detect(image, parts, camera):
     """Return framed horizontal surface IDs whose pixels match the surrounding pavement."""
+    if camera and camera.get('floating_grid'):
+        return []
     return [record['id'] for record in inspect_openings(image, parts, camera) if record['reject']]

@@ -1,4 +1,5 @@
 """Fit one integer horizontal plane to an observed roof perimeter and grounded wall tops."""
+from engine import floating_grid_policy as floating
 from collections import defaultdict
 
 import numpy as np
@@ -19,6 +20,8 @@ def pixels(mask, step):
 
 def tops(masks, axes, eye, inverse, step):
     """Recover support termination points by intersecting a grounded wall plane."""
+    if floating.active():
+        return {}
     union=np.logical_or.reduce(masks)
     floor=np.where(union,np.arange(union.shape[0])[:,None],-1).max(axis=0)
     tips=defaultdict(set)
@@ -92,7 +95,7 @@ def hypotheses(mask,rim,inverse,eye,tips,prior,step):
         x,y=x[take],y[take]
     dirs=rays(x,y,inverse)
     results=[]
-    for height in range(1,min(40,max(c[1] for c in prior)+5)):
+    for height in floating.roof_heights(prior, 39, 4):
         if abs(height-eye[1])<.05:
             continue
         t=(height-eye[1])/dirs[:,1]

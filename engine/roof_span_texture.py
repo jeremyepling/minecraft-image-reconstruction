@@ -1,4 +1,5 @@
 """Measure the integer extents of photographed roof strips against projected atlas texels."""
+from engine import floating_grid_policy as floating
 from collections import defaultdict
 
 import numpy as np
@@ -14,7 +15,7 @@ def strip_lines(prior):
     """Both a roof fragment and a vertical contact can nominate its visible span."""
     layers = defaultdict(set)
     for x, y, z in prior:
-        if y > 0 and (x, y + 1, z) not in prior:
+        if (floating.active() or y > 0) and (x, y + 1, z) not in prior:
             layers[y].add((x, z))
             if (x, y-1, z) in prior:
                 layers[y+1].add((x, z))

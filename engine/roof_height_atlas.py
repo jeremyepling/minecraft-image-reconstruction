@@ -1,4 +1,5 @@
 """Locate an observed horizontal patch on the integer height grid before assigning pixels to blocks."""
+from engine import floating_grid_policy as floating
 import numpy as np
 
 from engine.atlas_phase import ATLAS_SHA256
@@ -213,7 +214,7 @@ def recover(image,parts,counts,camera,prior,*,atlas_path=None,mode='loose',cours
     rotation=np.linalg.solve(intrinsic(image.size,focal),P[:,:3])
     maps=None
     tips=None
-    heights=range(1,min(64,max(p[1] for p in prior)+6)+1)
+    heights=floating.roof_heights(prior, 64, 6)
     rgb=np.asarray(image.convert('RGB'))
     witnesses={}
     strict=mode=='strict'

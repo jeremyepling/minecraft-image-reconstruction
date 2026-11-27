@@ -1,4 +1,5 @@
 """Rank local face-direction and integer-depth alternatives on photographed surface rays."""
+from engine import floating_grid_policy as floating
 from functools import lru_cache
 from hashlib import sha256
 from pathlib import Path
@@ -122,7 +123,7 @@ def observations(image, parts, camera, prior):
             target=np.floor(eye+ray*d[:,None]).astype(int)
             target[:,axis]=c
             valid=(d>1)&((c>eye[axis])|(c+1<eye[axis]))&(abs(target-base).max(axis=1)<=4)
-            valid &= (target[:,1]>=0)&(target!=base).any(axis=1)
+            valid &= (floating.active() | (target[:,1]>=0))&(target!=base).any(axis=1)
             if not np.any(valid):
                 continue
             # Aggregate observed support by source and reprojected coordinate.

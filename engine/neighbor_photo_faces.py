@@ -1,4 +1,5 @@
 """Recover visible block faces using repeated texture phase in adjacent image regions."""
+from engine import floating_grid_policy as floating
 from collections import defaultdict
 
 import numpy as np
@@ -84,7 +85,7 @@ def rows(image, parts, P, original, competing=None):
         src = np.array(cells[idx])
         for delta in _offsets(axis):
             target = tuple((src-delta).tolist())
-            if target in indices or target[1] < 0 or (competing is not None and target not in competing):
+            if target in indices or (not floating.active() and target[1] < 0) or (competing is not None and target not in competing):
                 continue
             candidates[target, axis].append((idx, delta))
     rgb = np.asarray(image.convert('RGB')).astype(np.float32)

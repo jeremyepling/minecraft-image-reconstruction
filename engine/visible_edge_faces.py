@@ -1,4 +1,5 @@
 """Recover visible edge faces from photographed pixels left unclaimed by the first pass."""
+from engine import floating_grid_policy as floating
 from itertools import product
 
 import numpy as np
@@ -70,7 +71,7 @@ def _verify_neighbors(cells, rgb, projection, eye, available, native, atlas, pro
             for offset in (-1, 1):
                 point = list(cell)
                 point[dim] += offset
-                if point[1] >= 0:
+                if floating.active() or point[1] >= 0:
                     neighbors.add(tuple(point))
     for cell in _near_unclaimed(neighbors - cells, projection, available):
         for axis in range(3):
@@ -152,7 +153,7 @@ def extend(image, parts, P, cells, offsets, atlas):
             matches = set()
             for point in candidates[counts >= 2]:
                 cell = tuple(point.tolist())
-                if cell[1] >= 0 and cell not in cells and verify(
+                if (floating.active() or cell[1] >= 0) and cell not in cells and verify(
                         rgb, atlas, mask, projection, cell, axis, sign, native_mask=native,
                         threshold=.60 if plane == level else .72, minimum=42):
                     matches.add(cell)

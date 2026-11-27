@@ -1,4 +1,5 @@
 """Measure integer pillar depths independently on alternating photographed block rows."""
+from engine import floating_grid_policy as floating
 import numpy as np
 from PIL import Image,ImageFilter
 
@@ -113,7 +114,7 @@ def recover(image,parts,camera,prior,atlas,*,border=2):
             values,n=np.unique(q['ijk'],axis=0,return_counts=True)
             for xyz in values[n>=24]:
                 cell=tuple(map(int,xyz))
-                if cell[1]>=0 and cell not in prior:
+                if (floating.active() or cell[1]>=0) and cell not in prior:
                     supported[cell]=(mask,q['axis'])
     proposed=set(supported)
     baseline=_frontmost_cells(sorted(prior),native,eye,size) if proposed else None

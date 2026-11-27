@@ -88,6 +88,8 @@ def grounded_pairs(image, charts, parts, masks, P):
 
 
 def edits(image, parts, counts, status, placed):
+    if status.get("floating_grid"):
+        return set(), set(), []
     """Keep edits within the two source masks and preserve independently supported seeds."""
     from engine.visible_placement import MINIMUM_SAMPLES, _charts, _frontmost_cells, _sample_face
 

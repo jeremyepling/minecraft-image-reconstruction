@@ -1,6 +1,7 @@
 """Propose a roof from two contiguous perpendicular photographed rims at one height."""
 from collections import defaultdict
 
+from engine import floating_grid_policy as floating
 import numpy as np
 
 from engine.atlas_phase import ATLAS_SHA256
@@ -130,7 +131,7 @@ def recover(image, parts, counts, camera, prior, *, texture=True, unclaimed=Fals
         return prior, stats
     P = np.asarray(camera['P'],float)
     eye = np.linalg.solve(P[:,:3],-P[:,3])
-    upper = {c for c in prior if 0 < c[1] < eye[1]-1 and (c[0],c[1]+1,c[2]) not in prior}
+    upper = {c for c in prior if (floating.active() or c[1] > 0) and c[1] < eye[1]-1 and (c[0],c[1]+1,c[2]) not in prior}
     if not rects({0:upper,2:upper},eye,prior)[0]:
         return prior, stats
     atlas = _atlas('26.3',atlas_path)

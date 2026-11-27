@@ -1,6 +1,7 @@
 """Test coherent depth changes for image-supported, connected wall patches."""
 from collections import defaultdict
 
+from engine import floating_grid_policy as floating
 import numpy as np
 
 from engine.atlas_phase import ATLAS_SHA256
@@ -193,7 +194,7 @@ def trials(image,parts,camera,prior,atlas):
         ids=[index[c] for c in group]
         for shift in shifts(scene,group,axis):
             dest=[tuple(map(int,np.array(c)+shift)) for c in group]
-            if min(c[1] for c in dest)<0 or not set(dest).isdisjoint(prior):
+            if (not floating.active() and min(c[1] for c in dest)<0) or not set(dest).isdisjoint(prior):
                 continue
             result=render(scene,stack,group,ids,dest,axis)
             if result is None:
