@@ -74,3 +74,46 @@ def inset_edits(size, camera, parts, events, original):
         removed.update(_clear_front(cells,owner,covered,axis,level,depth,rim,eye))
     return added-original,(removed & original)-added
 
+
+
+def observed_back_spans(size, camera, parts, events, texture_events=()):
+    """Measure the tangent width and vertical span of supported back cells in local grid units.
+
+    A span describes the extent of the photographed cells. Occluded cells and gaps
+    between the two extremes need no occupancy assumption.
+    """
+    if not (events or texture_events) or camera.get('P') is None:
+        return {}
+    p, rotation = orientation(camera, size)
+    inverse = np.linalg.inv(p[:, :3])
+    eye = -inverse @ p[:, 3]
+    by_id = {part['id']:part for part in parts}
+    planes = []
+    for e in events:
+        part = by_id.get(e['output'])
+        if part is None or part.get('normal_camera') is None:
+            continue
+        axis = int(np.argmax(abs(rotation.T @ part['normal_camera'])))
+        planes.append((part, axis, e['level'], e['depth'], e['rim']))
+    for e in texture_events:
+        part = by_id.get(e['output'])
+        if part is None or not e.get('accepted'):
+            continue
+        axis = e['axis']
+        if axis not in (0, 2):
+            continue
+        level = e['host_level']
+        depth = e['depth'] * int(np.sign(level - eye[axis]))
+        (x0,y0),(x1,y1) = e['opening']
+        planes.append((part, axis, level, depth, (x0,x1,y0,y1)))
+    spans = {}
+    for part, axis, level, depth, rim in planes:
+        if axis not in (0, 2) or depth * (level - eye[axis]) <= 0:
+            continue
+        mask = native_mask(part, size)
+        cells = _back_cells(mask, inverse, eye, axis, level + depth, rim)
+        if cells:
+            uv = np.array(sorted(cells))[:,[2-axis,1]]
+            spans[part['id']] = dict(blocks=(np.ptp(uv,axis=0)+1).tolist(), supported_cells=len(cells))
+    return spans
+
