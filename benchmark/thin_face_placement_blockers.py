@@ -58,12 +58,15 @@ def case(job):
     result=dict(id=f['id'],split=split,rgb=raw['rgb'],pack=pack,pairs=[],methods={})
     if not proposed:return result
     consistency=consistent_blockers(im,parts,cam,base,proposed)
+    net=consistent_blockers(im,parts,cam,base,proposed,net=True)
     truth,occupied,T,_=ref_inputs(job)
     shift=np.array(original.get('translation',ctl['translation']))
     optional=set()
-    methods={m:set() for m in ('broad','protected','reprojected','oracle')}
+    methods={m:set() for m in ('broad','protected','reprojected','net_reprojected','oracle')}
     methods['reprojected']={tuple(r['cell']) for r in consistency if r['accepted']}
+    methods['net_reprojected']={tuple(r['cell']) for r in net if r['accepted']}
     result['reprojection']=consistency
+    result['net_reprojection']=net
     valid=lambda c:tuple(next(iter(registered([c],T)))+shift) in truth
     for r in proposed:
         # broad and protected selection depend exclusively on source-derived features.
@@ -93,7 +96,7 @@ def case(job):
     return result
 
 
-def consistent_blockers(im,parts,camera,cells,proposals):
+def consistent_blockers(im,parts,camera,cells,proposals,*,net=False):
     """Re-render all of each disputed block. Preserve coverage and correctly oriented visible rays."""
     P,rot=orientation(camera,im.size)
     eye=np.linalg.solve(P[:,:3],-P[:,3])
@@ -119,7 +122,7 @@ def consistent_blockers(im,parts,camera,cells,proposals):
         uncovered=int((source & covered & ~next_covered).sum())
         gain=int((next_correct&~correct).sum())
         loss=int((correct&~next_correct).sum())
-        accept=uncovered==0 and gain>=4 and loss==0
+        accept=uncovered==0 and gain>=4 and (gain>=4*loss if net else loss==0)
         result.append(dict(cell=c,lost_coverage=uncovered,lost_correct_axis=loss,gained_correct_axis=gain,accepted=accept))
         if accept:
             kept.remove(c)
@@ -140,4 +143,4 @@ if __name__=='__main__':
         if not group:continue
         print(name,len(group),sum(len(r['pairs']) for r in group),
              {k:dict(sum((Counter(r['methods'].get(k,{})) for r in group),Counter()))
-              for k in ('broad','protected','reprojected','oracle')})
+              for k in ('broad','protected','reprojected','net_reprojected','oracle')})
