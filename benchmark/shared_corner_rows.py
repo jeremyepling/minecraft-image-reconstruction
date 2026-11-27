@@ -49,6 +49,46 @@ def confident_count(row, axis):
     return None
 
 
+def row_strength(row):
+    if confident_count(row, 1) is None:
+        return 0.
+    evidence = row['evidence']['axes'][1]
+    return float(evidence['agreement']) * min(1., (evidence['rows'] / 24) ** .5)
+
+
+def compare_rows(a, b, sides, heights):
+    """Compare independent row grids at the same five native image heights."""
+    measured = []
+    for p, index in zip((a,b), sides):
+        boundary = side(p['q'], index)
+        xy = np.column_stack((x_at(boundary, heights), heights))
+        uv = project(np.linalg.inv(transform(p['q'])), xy)
+        measured.append((1-uv[:,1]) * p['rows'])
+    delta = measured[0]-measured[1]
+    offset = int(round(np.median(delta)))
+    phase_error = float(np.max(np.abs(delta-offset)))
+    span_error = float(np.ptp(delta))
+    report = dict(donor_shared_span=float(np.ptp(measured[0])),
+                  receiver_shared_span=float(np.ptp(measured[1])), integer_offset=offset,
+                  phase_error_rows=phase_error, drift_rows=span_error,
+                  donor_strength=a['strength'], receiver_strength=b['strength'])
+    if phase_error <= .35 and span_error <= .4:
+        return 'confirmed', report
+    if a['strength'] >= .65 and a['strength'] - b['strength'] >= .15:
+        return 'stronger-donor', report
+    return 'ambiguous', report
+
+
+def rotate_across(H, normal, K):
+    """Use the source wall normal for the orthogonal one-block tangent."""
+    tangent = np.array(normal) * np.linalg.norm(np.linalg.solve(K, H[:,1]))
+    rotated = H.copy()
+    rotated[:,0] = K @ tangent
+    if project(rotated, [[1,0]])[0,0] < project(rotated, [[0,0]])[0,0]:
+        rotated[:,0] *= -1
+    return rotated
+
+
 def contact(a, b, scale):
     touching = a['mask'] & b['near']
     y, x = np.nonzero(touching)
@@ -106,10 +146,11 @@ def pair(a, b, rgb, scale, K):
     if edge is None:
         return
     # One measured side is enough; choose it before checking any scores.
-    a, b = sorted((a, b), key=lambda p: (p['rows'] is None, -p['support_area']))
+    a, b = sorted((a, b), key=lambda p: (p['rows'] is None, -p['strength'], -p['support_area']))
     n = a['rows']
     result = dict(donor=a['label'], receiver=b['label'], donor_id=a['id'], receiver_id=b['id'],
-                  donor_rows=n, receiver_rows=None, endpoints=edge.tolist(), decision='rejected',
+                  donor_rows=n, receiver_rows=None, receiver_measured_rows=b['rows'],
+                  endpoints=edge.tolist(), decision='rejected',
                   geometry={})
     def reject(reason):
         result['reason'] = reason
@@ -122,9 +163,7 @@ def pair(a, b, rgb, scale, K):
         return reject('source depth changes across the contact')
     if n is None:
         return reject('neither side has a confident vertical repeat count')
-    if b['rows'] is not None:
-        return reject('receiver already has its own measured rows')
-    if a['width'] is None or a['q'] is None or b['q'] is None:
+    if a['q'] is None or b['q'] is None or (a['width'] is None and b['rows'] is None):
         return reject('missing measured donor width or quadrilateral')
     sides = []
     for p in (a, b):
@@ -145,9 +184,19 @@ def pair(a, b, rgb, scale, K):
     bottom = min(left[1,1], right[1,1], edge[1,1]+scale[1])
     if bottom <= top:
         return reject('no boundary overlap')
-    width = a['width']
+    reason = 'observed contact with a one-sided row period'
+    if b['rows'] is not None:
+        outcome, evidence = compare_rows(a, b, sides, np.linspace(top, bottom, 5))
+        result['row_comparison'] = dict(outcome=outcome, **evidence)
+        if outcome == 'ambiguous':
+            return reject('measured row grids disagree without a reliable winner')
+        reason = ('both measured row grids agree on the shared segment' if outcome == 'confirmed'
+                  else 'stronger measured row grid overrides the conflicting receiver on the shared segment')
+    width = a['width'] or MAX_RECEIVER_WIDTH
     # Keep the original donor grid and put its corner at u=0 on both charts.
     H = transform(a['q']) @ np.array([[1/width,0,sides[0]],[0,-1/n,1.],[0,0,1.]])
+    if a['width'] is None:
+        H = rotate_across(H, b['normal_camera'], K)
     ends = np.column_stack((x_at(left, np.array([top,bottom])), [top,bottom]))
     result['endpoints'] = ends.tolist()
     vtop, vbottom = project(np.linalg.inv(H), ends)[:,1]
@@ -158,11 +207,7 @@ def pair(a, b, rgb, scale, K):
     # Rotate the measured unit tangent about the vertical seam. Its new
     # direction is the donor wall normal; its magnitude is one donor row
     # expressed in homogeneous camera coordinates at the assumed source lens.
-    tangent = np.array(a['normal_camera']) * np.linalg.norm(np.linalg.solve(K, H[:,1]))
-    R = H.copy()
-    R[:,0] = K @ tangent
-    if project(R, [[1,0]])[0,0] < project(R, [[0,0]])[0,0]:
-        R[:,0] *= -1
+    R = rotate_across(H, a['normal_camera'], K)
     us = range(-width,0) if sides[0] else range(width)
     rs = range(-MAX_RECEIVER_WIDTH,0) if sides[1] else range(MAX_RECEIVER_WIDTH)
     donor = chart_cells(a, H, us, range(n), rgb, scale)
@@ -179,7 +224,7 @@ def pair(a, b, rgb, scale, K):
                               row_ticks=project(H, [[0,v] for v in range(vlo,vhi+1)]).tolist())
     if len(shared) < 2:
         return reject('fewer than two common row edges have supported cells')
-    result.update(decision='accepted', reason='observed contact with a one-sided row period',
+    result.update(decision='accepted', reason=reason,
                   receiver_rows=vhi-vlo)
     return result, [donor, receiver]
 
@@ -206,7 +251,7 @@ def predict(case):
         row = rows.get(p['id'], {})
         mask = unpack(p)
         parts.append(dict(p, label=f'S{i+1:02d}', q=np.array(row['quad']) if row.get('quad') else None,
-                          rows=confident_count(row,1), width=confident_count(row,0), mask=mask,
+                          rows=confident_count(row,1), strength=row_strength(row), width=confident_count(row,0), mask=mask,
                           near=cv2.dilate(mask,np.ones((5,5),'uint8'))))
     seams = []
     replacement = {}
