@@ -11,7 +11,8 @@ from zipfile import ZIP_DEFLATED, ZipFile
 from calibration.world import GROUND, PACK, create_world
 
 
-LIGHTING = (dict(name="morning", ticks=2500), dict(name="afternoon", ticks=9500))
+# Near the ends of daytime, vanilla changes structure lighting as well as the sky.
+LIGHTING = (dict(name="morning", ticks=400), dict(name="afternoon", ticks=11600))
 COHORTS = {
     "pilot": 96,
     "camera-round-01": 20,
