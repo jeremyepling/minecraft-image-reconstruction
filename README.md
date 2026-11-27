@@ -32,7 +32,7 @@ The **[illustrated stage and term guide](ARCHITECTURE.md#pipeline-terms-in-readi
 
 ## Current placement score
 
-The fixed 104 views track progress across releases. Visible Builds v3 and Decorative Builds v1 appear alongside that trend with separate scores and coverage counts in the [dataset scorecard](benchmark/reviews/pipeline-impact-01/viewer.html#cohorts).
+The fixed 104 views track progress across releases. On the full 144-view Visible Builds v3 set the ordinary pipeline scored **8.08% strict placement F1**, with 108 camera failures. On the 40-view Decorative Builds v1 set it scored **54.33%**, with ten camera failures. All failed-camera views are included. The [dataset scorecard](benchmark/reviews/pipeline-impact-01/viewer.html#cohorts) shows all three cohorts, split results and the misses attributable to the camera gate. [Baseline scores and exports](benchmark/reviews/expanded-baseline-01/README.md)
 
 [Explore what a perfect input or a removed sub-stage does to the exported build](benchmark/reviews/pipeline-impact-01/viewer.html). Correct visible surface masks raised fixed paired placement F1 from 91.38% to 94.76%. The impact assessment separates reference-only replays, source-only feedback and actual sub-stage bypasses. [Results and work priorities](benchmark/reviews/pipeline-impact-01/README.md)
 

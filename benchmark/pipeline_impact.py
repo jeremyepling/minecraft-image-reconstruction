@@ -1,5 +1,6 @@
 """Build the offline sub-stage impact chart from the paired replay scores."""
 import json
+from html import escape
 from pathlib import Path
 
 REVIEWS = Path(__file__).resolve().parent / "reviews"
@@ -24,17 +25,91 @@ def early_metrics(row):
     return metrics(row["geometry"], row["material"], row["typed"])
 
 
-def pooled_decorative(cases, arm):
+def pooled_metrics(cases, geometry_key, result_key):
     def f1(section, metric):
-        scores = [case[arm][section][metric] for case in cases]
+        scores = [case[section][metric] for case in cases]
         correct = sum(score["correct"] for score in scores)
         errors = sum(score["missed"] + score["extras"] for score in scores)
         return 2 * correct / (2 * correct + errors)
 
-    materials = [case[arm]["result"]["material"] for case in cases]
-    accuracy = sum(row["correct"] for row in materials) / sum(row["positions"] for row in materials)
-    return [f1("geometry", "strict"), accuracy, f1("result", "strict"),
-            f1("result", "facade"), f1("geometry", "facade")]
+    materials = [case[result_key]["material"] for case in cases]
+    positions = sum(row["positions"] for row in materials)
+    accuracy = sum(row["correct"] for row in materials) / positions if positions else None
+    return [f1(geometry_key, "strict"), accuracy, f1(result_key, "strict"),
+            f1(result_key, "facade"), f1(geometry_key, "facade")]
+
+
+DATASETS = {"fixed-104": "Fixed trend", "visible-builds-v3": "Visible Builds v3",
+            "decorative-builds-v1": "Decorative Builds v1"}
+
+
+def measured_cohorts(summary):
+    rows, splits = [], []
+    for key, name in DATASETS.items():
+        cohort = summary[key]
+        if cohort["tested"] != cohort["available"]:
+            raise ValueError(f"Incomplete frame set for {key}")
+        def entry(label, group):
+            scores = metrics(group["geometry"], group["scores"]["material"], group["scores"])
+            return label, f"{group['tested']} / {group['available']}", scores
+        rows.append(entry(name, cohort))
+        if key != "fixed-104":
+            for split in ("train", "validation", "test"):
+                splits.append(entry(f"{name} · {split}", cohort["splits"][split]))
+    return rows + splits
+
+
+def camera_tables(cases, summary):
+    totals, failures = [], []
+    for dataset, name in DATASETS.items():
+        group = [row for row in cases if row["dataset"] == dataset]
+        failed = [row for row in group if not row["camera_usable"]]
+        camera = summary[dataset]["camera"]
+        if any(row["exported"] for row in failed) or camera["unusable"] != len(failed):
+            raise ValueError("Camera failure counts differ from the scored exports")
+        supported = camera["usable_geometry"]["strict"]
+        conditional = f"{supported['f1']:.2%}" if camera["usable"] else "—"
+        empty = sum(row["exported"] == 0 and row["camera_usable"] for row in group)
+        totals.append(f"<tr><th scope='row'>{name}</th><td>{len(failed)} / {len(group)}</td>"
+                      f"<td>{camera['misses_strict']:,}</td><td>{supported['missed']:,}</td>"
+                      f"<td>{empty}</td><td>{conditional}</td></tr>")
+        for row in failed:
+            failures.append((row["visible_truth"], name, row))
+    details = []
+    for _, name, row in sorted(failures, key=lambda entry: (-entry[0], entry[2]["id"])):
+        details.append(f"<tr><td>{name}</td><td>{escape(row['id'])}</td>"
+                       f"<td>{escape(row['camera_reason'] or 'Reason unavailable')}</td>"
+                       f"<td>{escape(row.get('atlas_camera_reason') or '—')}</td>"
+                       f"<td>{row['visible_truth']:,}</td><td>{row['required_truth']:,}</td></tr>")
+    return "".join(totals), "".join(details)
+
+
+def challenger_rows(report, rows):
+    """Attach each intervention to its own same-image control and verified final metrics."""
+    labels = {"baseline": "Same-path control", "source": "Source-image decision",
+              "oracle": "Best offered choice using reference labels"}
+    options, specs, gains = [], {}, []
+    for method in report["experiments"]:
+        for dataset, name in DATASETS.items():
+            cohort = method["cohorts"][dataset]
+            ids = cohort["arms"]
+            control = ids["baseline"]
+            item = ids["source"]
+            key = method["id"] + "-" + dataset
+            modes = {arm: labels[arm] for arm in labels if arm in ids}
+            rows[key] = {arm: metrics(ids[arm]["geometry"], ids[arm]["scores"]["material"], ids[arm]["scores"])
+                         for arm in modes}
+            title = f"{method['name']} · {name}"
+            options.append(f'<option value="{escape(key)}">{escape(title)}</option>')
+            specs[key] = [modes, title, cohort["note"]]
+            cells = []
+            for section, metric in (("geometry", "strict"), ("geometry", "facade"),
+                                    ("scores", "strict"), ("scores", "facade")):
+                delta = (item[section][metric]["f1"] - control[section][metric]["f1"]) * 100
+                cells.append(f"<td>{delta:+.2f}</td>" if abs(delta) >= 0.005 else "<td>0.00</td>")
+            gains.append(f"<tr><th scope='row'>{escape(method['name'])}</th><td>{name}</td>"
+                         f"<td>{cohort['views']}</td>{''.join(cells)}</tr>")
+    return "".join(options), specs, "".join(gains)
 
 
 def main():
@@ -103,27 +178,36 @@ def main():
     decorative = read("material-feedback-geometry-01/decorative.json")
     for group in ("development", "confirmation"):
         subset = [case for case in decorative if case["id"].startswith("train-") == (group == "development")]
-        rows["decorative-" + group] = {arm: pooled_decorative(subset, arm) for arm in ("baseline", "after")}
+        rows["decorative-" + group] = {
+            arm: pooled_metrics([case[arm] for case in subset], "geometry", "result")
+            for arm in ("baseline", "after")
+        }
     for source, group in retries.items():
         rows["retry-" + source] = {
             name: metrics(group[name]["geometry"], group[name]["typed"]["material"], group[name]["typed"])
             for name in ("with_retry", "without_retry")
         }
+    round_path = REVIEWS / "expanded-round-01" / "summary.json"
+    report = json.loads(round_path.read_bytes()) if round_path.is_file() else {"experiments": []}
+    options, descriptions, gains = challenger_rows(report, rows)
     template = Path(__file__).with_name("pipeline_impact.html").read_text(encoding="utf-8")
     OUT.mkdir(exist_ok=True)
     html = template.replace("__MEASURED__", json.dumps(rows)).replace("__MASK_CASES__", json.dumps(by_image))
-    cohorts = [
-        ("Fixed trend", "104 / 104", rows["late-fixed"]["default"]),
-        ("Visible Builds v3", "0 / 144", None),
-        ("Decorative Builds v1 · development", "4 / 40", rows["decorative-development"]["baseline"]),
-        ("Decorative Builds v1 · confirmation", "4 / 40", rows["decorative-confirmation"]["baseline"]),
-    ]
+    expanded = read("expanded-baseline-01/cases.json")
+    expanded_summary = read("expanded-baseline-01/summary.json")["cohorts"]
+    cohorts = measured_cohorts(expanded_summary)
     table = []
     for name, coverage, scores in cohorts:
         values = ('<td colspan="4">Unmeasured</td>' if scores is None else
                   "".join(f"<td>{scores[i]:.2%}</td>" for i in (0, 4, 2, 3)))
         table.append(f"<tr><th scope='row'>{name}</th><td>{coverage}</td>{values}</tr>")
     html = html.replace("__COHORT_ROWS__", "".join(table))
+    camera_summary, camera_cases = camera_tables(expanded, expanded_summary)
+    html = html.replace("__CAMERA_SUMMARY__", camera_summary).replace("__CAMERA_CASES__", camera_cases)
+    html = html.replace("__ROUND_OPTIONS__", options).replace("__ROUND_DESCRIPTIONS__", json.dumps(descriptions))
+    html = html.replace("__ROUND_GAINS__", gains)
+    if not gains:
+        html = html.replace('<section id="experiment-gains">', '<section id="experiment-gains" hidden>')
     (OUT / "viewer.html").write_text(html, encoding="utf-8")
 
 

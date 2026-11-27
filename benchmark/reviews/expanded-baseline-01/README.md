@@ -31,6 +31,8 @@ Visible Builds v3 had 108 unusable cameras and 187,656 strict misses on those vi
 
 Decorative Builds v1 had 10 unusable cameras and 4,226 strict misses on those views. The atlas fallback reported incomplete floor texel coverage on six of the ten. The 30 camera-supported views had 64.78% strict and 67.01% facade placement F1. The ordinary exporter located 6,690 of 15,296 visible full cubes and named 5,691 of those correctly. It located 430 of 1,630 visible partial-model coordinates and named zero correctly. All 1,630 partial-model positions were required by the facade scorer. [Atlas coverage and reference target audit](score-validation.json)
 
+[Camera failures and their causes](camera-diagnosis.md) · [Paired source images](camera-examples.jpg) · [Interactive camera failures by source image](../pipeline-impact-01/viewer.html#camera-failures)
+
 ## Reproduce
 
 In the checkout, run the local launcher with the ordinary Java 26.3 atlas and pinned model files installed. The launcher uses seven builder workers and limits concurrent GPU model processes to three on this PC. Successful build receipts and model fields from interrupted jobs can be reused after verifying the frozen source manifest and production revision.

@@ -4,7 +4,7 @@ Start with the question Jeremy asked about the build. A score update can come st
 
 ## When a perfect-answer test earns its cost
 
-Label each score with its dataset version, split and tested frame count. Lead with the fixed 104 trend and show Visible Builds v3 (144 new views) and Decorative Builds v1 (40 views) alongside it in every results summary. For each cohort give coverage, strict and facade placement F1, and strict and facade position-plus-ID F1. Identify development and held-out results separately. Mark an unmeasured cohort explicitly and date or identify the revision of any carried-forward score. Compare candidates on identical images within each cohort. Report paired lighting changes separately when measured.
+Label each score with its dataset version, split and tested frame count. Lead with the fixed 104 trend and show Visible Builds v3 (144 new views) and Decorative Builds v1 (40 views) alongside it in every results summary. For each cohort give coverage, strict and facade placement F1, and strict and facade position-plus-ID F1. Identify development and held-out results separately. Mark an unmeasured cohort explicitly and date or identify the revision of any carried-forward score. Compare candidates on identical images within each cohort. Report paired lighting changes separately when measured. Report camera failures as their own outcome alongside overall placement. Give failed views and the visible misses on them, placement F1 on camera-supported views, and supported views that exported zero blocks. Preserve the per-image camera reason and atlas fallback reason. Keep every camera failure in the overall denominator.
 
 For an expensive model, a low-scoring handoff, or a feedback rule, run a small paired diagnostic first. Choose the test that answers the decision Jeremy needs to make.
 
@@ -33,6 +33,8 @@ Use frame-identical controls and the same visible-only scoring and alignment. St
 [Examples and per-view evidence from the pipeline review](reviews/pipeline-consistency-01/README.md)
 
 ## Produce the result
+
+When launching or reassigning a worker, tell Jeremy its task, model and reasoning effort in chat.
 
 1. **Freeze the comparison.** Use identical frame IDs, source hashes, visible targets and scoring rules. Report the fixed 104 whole-structure views and the other 100 controls separately. Use the historical 112 only for comparison with older work. Training uses the documented Visible Builds v2 split and its full-structure framing checks. Keep the visible-only scope and a single whole-build translation throughout.
 2. **Parallelize independent work.** Fan out the baseline, independent hypotheses, per-image replays and regression checks as their inputs become available. Reuse a verified baseline and immutable model fields when their inputs, settings and code match. Give each writer its own outputs. When geometry or counting changes, rerun that stage and its consumers. Run the ordinary single-image command on affected cases and a relevant control. For an ordering or sharing change, compare the affected exits, matcher modes or fallbacks. Read the current manifest for artifact paths.
