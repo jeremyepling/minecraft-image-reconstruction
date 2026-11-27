@@ -31,4 +31,3 @@ python -m benchmark.inset_local_placement --workers 4
 ```
 
 The helper `engine.visible_inset_cells.inset_edits(size, camera, parts, events, original)` takes the photograph size, its estimated camera, detected surfaces, strict detector events and ordinary local coordinate set. Apply the returned additions and removals to that ordinary set. Empty events produce empty edits. When the detector yields an event for only part of a build, recomputing unrelated ordinary placement from the split masks can affect unrelated chart choices. Preserve the pre-inset surfaces and counts for the baseline placement before applying the photographed patch.
-

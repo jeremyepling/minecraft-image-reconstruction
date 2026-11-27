@@ -349,6 +349,27 @@ def _count_regions(image, planes, version, method, atlas, out, shape_matcher=Non
     return report
 
 
+def _inset_layout_counts(image, version, original, counts, hosts, counter, atlas):
+    """Keep the original global layout and recount just the owners of new holes."""
+    with TemporaryDirectory() as tmp:
+        old_rows = _count_regions(image, [p for p in original if p['id'] in hosts],
+                                  version, counter, atlas, Path(tmp))['surfaces']
+    updated = {r['id']:r for r in counts['surfaces']}
+    for old in old_rows:
+        row = updated[old['id']]
+        dims = row['dimensions']
+        if None in dims['blocks']:
+            for axis, value in enumerate(dims['blocks']):
+                if value is not None and old['dimensions']['blocks'][axis] is None:
+                    # Cutting a hole cannot independently confirm a new axis
+                    # of the host when the other axis is still unmeasured.
+                    row.setdefault('unconfirmed_host_dimension', []).append(dict(axis=axis, estimate=value))
+                    dims['blocks'][axis] = None
+                    dims['spans'][axis] = None
+        updated[old['id']] = old
+    return dict(counts, surfaces=[updated[p['id']] for p in original])
+
+
 def _material_assets(version, counter, matcher, explicit_path):
     """Use the requested directory or the first usable installation, in search order."""
     from engine.atlas_count import load_atlas, prepared_atlas_paths
@@ -379,6 +400,8 @@ def build(image_path, version, out, *, outlines=None, order_method=None, through
     camera_atlas_path = atlas_path
     metric_camera = None
     inset_events = []
+    phase_events = []
+    count_confirmed_outlines = []
     pre_inset = None
     from engine.atlas import digest
     from engine.surface_fields import MODELS, SETTINGS as inference, infer
@@ -522,12 +545,13 @@ def build(image_path, version, out, *, outlines=None, order_method=None, through
             methods['boundary_sequence'].append(skyline_extent.METHOD)
             from engine import inset_returns
             pre_inset = patches
-            patches, inset_events, phase_events, metric_camera = inset_returns.detect(
+            patches, inset_events, phase_events, count_confirmed_outlines, metric_camera = inset_returns.detect(
                 image, patches, version, atlas_path=camera_atlas_path)
             methods['visible_insets'] = inset_returns.METHOD
             methods['inset_texture'] = inset_returns.TEXTURE_METHOD
-            methods['boundary_sequence'].extend([inset_returns.METHOD, inset_returns.TEXTURE_METHOD])
-            boundary_settings['visible_insets'] = dict(events=inset_events, texture_events=phase_events)
+            methods['inset_outlines'] = inset_returns.OUTLINE_METHOD
+            methods['boundary_sequence'].extend([inset_returns.METHOD, inset_returns.TEXTURE_METHOD, inset_returns.OUTLINE_METHOD])
+            boundary_settings['visible_insets'] = dict(events=inset_events, texture_events=phase_events, count_confirmed_outlines=count_confirmed_outlines)
         context_px = DEFAULT_CONTEXT_PX if context_px is None else context_px
         patches = [with_outline(part) for part in patches]
         crop_dir = out/'surface-crops'
@@ -624,6 +648,17 @@ def build(image_path, version, out, *, outlines=None, order_method=None, through
             manifest['material_library_sha256'] = digest(library)
         methods['block_grouping'] = 'convex-shared-edges'
         counts = _count_regions(image, patches, version, counter, atlas, out, shape_matcher, shadow_field)
+        placement_parts, placement_counts = patches, counts
+        if inset_events or count_confirmed_outlines:
+            placement_parts = [with_outline(p) for p in pre_inset]
+            placement_counts = _inset_layout_counts(image, version, placement_parts, counts,
+                {e['host'] for e in inset_events + count_confirmed_outlines}, counter, atlas)
+        if inset_events:
+            from engine.visible_inset_cells import observed_back_spans
+            visible_spans = observed_back_spans(image.size, metric_camera, patches, inset_events, phase_events)
+            for row in counts['surfaces']:
+                if row['id'] in visible_spans:
+                    row['observed_visible_grid_span'] = visible_spans[row['id']]
         if atlas_error is not None:
             counts['atlas_phase'] = atlas_error
         if 'atlas_phase' in counts:
@@ -644,18 +679,6 @@ def build(image_path, version, out, *, outlines=None, order_method=None, through
         if through == 'placement':
             from engine.export import JAVA_26_3_FORMAT, write_pack
             from engine.visible_placement import place
-            placement_parts, placement_counts = patches, counts
-            if inset_events:
-                # Preserve the established relative layout. Measure the unsplit
-                # host for that layout, and use the observed backs only locally.
-                placement_parts = [with_outline(p) for p in pre_inset]
-                hosts = {e['host'] for e in inset_events}
-                original_hosts = [p for p in placement_parts if p['id'] in hosts]
-                with TemporaryDirectory() as tmp:
-                    host_rows = _count_regions(image, original_hosts, version, counter, atlas, Path(tmp))['surfaces']
-                by_id = {r['id']:r for r in counts['surfaces']}
-                by_id.update((r['id'],r) for r in host_rows)
-                placement_counts = dict(counts, surfaces=[by_id[p['id']] for p in placement_parts])
             cells, status = place(image, version, placement_parts, counts=placement_counts,
                                   atlas_path=camera_atlas_path, joint_foreground=joint_foreground, camera=metric_camera)
             if inset_events:

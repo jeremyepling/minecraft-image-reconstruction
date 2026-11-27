@@ -69,5 +69,5 @@ def timed(job):
 if __name__=='__main__':
     with ProcessPoolExecutor(max_workers=5) as pool:
         rows=list(pool.map(timed,suite.jobs([*suite.framed.SIZES,'shelter'])))
-    save(OUT/'engine-parity.json',dict(views=len(rows),viable=sum(r['possible'] for r in rows),
+    save(OUT/'default-parity.json',dict(views=len(rows),viable=sum(r['possible'] for r in rows),
         events=sum(len(r['events']) for r in rows),estimated_camera_changes=sum(not r['own_camera_same_events'] for r in rows),frames=rows))

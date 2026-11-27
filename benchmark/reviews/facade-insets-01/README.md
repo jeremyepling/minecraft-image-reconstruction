@@ -36,4 +36,3 @@ python -m benchmark.facade_inset_evidence --surfaces runs/candidate/surfaces.jso
 ```
 
 Add `--comparison` to draw the four-column source, original, proposed and reference figure. For a surface-only probe, supply just `--surfaces` and `--out`. Use the same RGB and estimated camera for all candidates. Review the loss of correct host-wall pixels and the seven visible openings alongside mask IoU and recovered coordinates. Keep the eight flat panel cells as a negative control. Use the fixed 104 and the separate transfer buildings for claims beyond this reviewed example. [Frozen suite and single-shift scoring](../strip-orientation-01/README.md)
-

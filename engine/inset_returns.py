@@ -11,20 +11,31 @@ from engine.surface_perimeter import _native_alpha
 
 METHOD = 'visible-inset-jamb-and-sill'
 TEXTURE_METHOD = 'visible-inset-host-texture-phase'
+OUTLINE_METHOD = 'visible-inset-count-confirmed-outline'
 
 
 def detect(image, parts, version, *, atlas_path=None, camera=None):
-    if not possible(image.size, parts):
-        return parts, [], [], camera
+    from engine import inset_mask_chooser
+    strict_possible = possible(image.size, parts)
+    mask_possible = inset_mask_chooser.possible(image.size, parts)
+    if not (strict_possible or mask_possible):
+        return parts, [], [], [], camera
     if camera is None:
         from engine.visible_placement import seam_camera
         camera = seam_camera(image, version, atlas_path=atlas_path)
-    updated, returns = refine(image, parts, camera)
-    if not returns:
-        return updated, [], [], camera
-    from engine.facade_inset_phase import supplemental
-    updated, texture = supplemental(image, updated, camera, returns)
-    return updated, returns, texture, camera
+    projection = np.asarray(camera['P'], dtype=float) if camera and camera.get('P') is not None else None
+    if (projection is None or projection.shape != (3, 4) or not np.isfinite(projection).all()
+            or np.linalg.matrix_rank(projection[:, :3]) != 3):
+        return parts, [], [], [], camera
+    updated, returns = refine(image, parts, camera) if strict_possible else (parts, [])
+    texture = []
+    if returns:
+        from engine.facade_inset_phase import supplemental
+        updated, texture = supplemental(image, updated, camera, returns)
+    outlines = []
+    if mask_possible:
+        updated, outlines = inset_mask_chooser.supplemental(image, parts, camera, updated, returns)
+    return updated, returns, texture, outlines, camera
 
 
 def possible(size, parts):

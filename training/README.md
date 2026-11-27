@@ -41,3 +41,5 @@ The [reported placement issues and region scorecard](../benchmark/reviews/visibl
 Progress means more correct visible blocks, fewer incorrect or unsupported placements, better dimensions and material identification, and preserved openings on new buildings. Hidden world truth is excluded from required recovery. Any unsupported added cell is an error even if it makes a building look plausible. No completion model or full-world occupancy objective should enter this plan as an automatic next stage.
 
 Read [AGENTS.md](AGENTS.md) before implementing the training work and [the current architecture](../ARCHITECTURE.md) before integrating a model.
+
+When testing a learned decision for a recessed wall, score its outline, visible block count and setback separately. Compare the final outputs with the tree switched on and off while keeping the photographic checks identical. On the first 204-image test the tree found the same five additional outlines as the count checks alone, and a separate tree trained to choose depth misplaced two deep openings. [Facade experiment and paired comparison](../benchmark/reviews/facade-inset-round-01/README.md)

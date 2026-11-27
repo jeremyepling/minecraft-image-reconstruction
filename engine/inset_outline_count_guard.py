@@ -1,4 +1,4 @@
-"""Admit a learned outline only when its independent chart count fits its visible grid span."""
+"""Admit an inset outline only when its independent chart count fits its visible grid span."""
 from collections import defaultdict
 from pathlib import Path
 from tempfile import TemporaryDirectory

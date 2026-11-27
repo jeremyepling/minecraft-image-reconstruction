@@ -8,11 +8,6 @@ from engine.pillar_seams import native_mask
 from engine.plane_consensus import with_mask
 
 
-# The accepted leaf of the frozen development tree. All other leaves fall
-# below its 0.90 acceptance threshold; the held-out shapes did not tune it.
-MIN_JAMB_IOU = 0.6846031124048366
-
-
 def _select(image, original_parts, camera, surface_parts, confirmed, native):
     from engine.inset_mask_proposals import proposals
     used={(e['host'],e['side'],e['sill']) for e in confirmed}
@@ -23,16 +18,17 @@ def _select(image, original_parts, camera, surface_parts, confirmed, native):
         if (key in used or row['strict'] or f['rim_min']<.55
                 or f['host_fraction']<.90):
             continue
-        if f['side_iou']>MIN_JAMB_IOU:
-            groups[key].append((.95,f['depth_margin'],row))
+        groups[key].append(row)
     if not groups:
         return surface_parts,[]
     originals={id(p):mask for p,mask in zip(original_parts,native)}
     masks={p['id']:originals[id(p)] if id(p) in originals else native_mask(p,image.size) for p in surface_parts}
     areas={k:int(v.sum()) for k,v in masks.items()}
     additions=defaultdict(list)
-    proposals_by_group=[max(group,key=lambda t:t[:2]) for group in groups.values()]
-    for probability,margin,row in sorted(proposals_by_group,key=lambda t:t[:2],reverse=True):
+    def depth_margin(row):
+        return row['features']['depth_margin']
+    proposals_by_group=[max(group,key=depth_margin) for group in groups.values()]
+    for row in sorted(proposals_by_group,key=depth_margin,reverse=True):
         host=row['host']
         if host not in masks:
             continue
@@ -53,7 +49,7 @@ def _select(image, original_parts, camera, surface_parts, confirmed, native):
         areas[host]-=area
         masks[host]=masks[host]&~full
         record=dict(output=ident,host=host,side=row['side'],sill=row['sill'],evidence=row['features'],
-                    probability=probability,pixels=area, photo_grid_level=row['level']+row['depth'])
+                    pixels=area, photo_grid_level=row['level']+row['depth'])
         additions[host].append(record)
     if not additions:
         return surface_parts,[]

@@ -12,9 +12,9 @@ class VisibleInsetTests(unittest.TestCase):
         image = Image.new('RGB', (32,32))
         parts = [{'id':'wall'}]
         with patch('engine.visible_placement.seam_camera', side_effect=AssertionError):
-            result, events, secondary, camera = inset_returns.detect(image,parts,'26.3')
+            result, events, secondary, outlines, camera = inset_returns.detect(image,parts,'26.3')
         self.assertIs(result,parts)
-        self.assertEqual((events,secondary,camera),([],[],None))
+        self.assertEqual((events,secondary,outlines,camera),([],[],[],None))
 
     def test_unusable_projection_keeps_original_parts(self):
         image = Image.new('RGB',(32,32))
@@ -23,6 +23,20 @@ class VisibleInsetTests(unittest.TestCase):
             result, events = inset_returns.refine(image,parts,camera)
             self.assertIs(result,parts)
             self.assertEqual(events,[])
+
+    def test_recount_preserves_partial_host_uncertainty_and_uses_previous_layout(self):
+        from engine.surface_model import _inset_layout_counts
+        image = Image.new('RGB', (32, 32))
+        original = [dict(id='host'), dict(id='other')]
+        before = dict(id='host', dimensions=dict(blocks=[None, None], spans=[None, None]))
+        host = dict(id='host', dimensions=dict(blocks=[13, None], spans=[12.7, None]))
+        counts = dict(surfaces=[host, dict(id='new'), dict(id='other')])
+        with patch('engine.surface_model._count_regions', return_value=dict(surfaces=[before])):
+            stable = _inset_layout_counts(image, '26.3', original, counts, {'host'}, 'test', None)
+        self.assertEqual([r['id'] for r in stable['surfaces']], ['host', 'other'])
+        self.assertIs(stable['surfaces'][0], before)
+        self.assertEqual(host['dimensions'], dict(blocks=[None, None], spans=[None, None]))
+        self.assertEqual(host['unconfirmed_host_dimension'], [dict(axis=0, estimate=13)])
 
     def test_clear_only_frontmost_cell_with_90_percent_support_in_rim(self):
         cells = [(0,1,4),(1,1,4),(2,1,4),(0,1,2)]

@@ -116,4 +116,3 @@ def observed_back_spans(size, camera, parts, events, texture_events=()):
             uv = np.array(sorted(cells))[:,[2-axis,1]]
             spans[part['id']] = dict(blocks=(np.ptp(uv,axis=0)+1).tolist(), supported_cells=len(cells))
     return spans
-

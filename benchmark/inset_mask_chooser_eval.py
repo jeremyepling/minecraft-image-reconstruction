@@ -7,21 +7,18 @@ from tempfile import TemporaryDirectory
 
 import numpy as np
 
-from benchmark.inset_mask_chooser_train import COORD, OUT
+from benchmark.inset_mask_chooser_train import ROOT, OUT
 from benchmark import facade_inset_round as suite
-suite.ORDINARY=COORD/'benchmark/reviews/facade-inset-round-01/baseline-stages.zip'
 from benchmark.inset_mask_chooser import refine
 from benchmark.texture_camera_eval import checked,digest,read,save
 from benchmark.wall_texture_evaluate import metrics
-import engine
-engine.__path__.append(str(COORD/'engine'))
 from engine import inset_returns,surface_model,texture_guided_count
 from engine.pillar_seams import native_mask
 
 
 @lru_cache(maxsize=1)
 def shipped():
-    return {r['id']:r for r in read(COORD/'benchmark/reviews/facade-inset-round-01/combined.json')['rows']}
+    return {r['id']:r for r in read(ROOT/'benchmark/reviews/facade-inset-round-01/geometry-and-texture.json')['rows']}
 
 
 def count(image, parts, atlas_enabled):
@@ -117,7 +114,7 @@ def main(workers,learned,count_guard,collar):
                            paired=sum(r['paired'] for r in changed),background=sum(r['background'] for r in changed),
                            gained=sum(len(r['gained']) for r in changed),lost=sum(len(r['lost']) for r in changed))
     filename='collar.json' if collar else 'count-guard.json' if count_guard else 'results.json' if learned else 'no-tree.json'
-    save(OUT/filename,dict(baseline_sha256=digest(COORD/'benchmark/reviews/facade-inset-round-01/combined.json'),
+    save(OUT/filename,dict(baseline_sha256=digest(ROOT/'benchmark/reviews/facade-inset-round-01/geometry-and-texture.json'),
             model_sha256=digest(OUT/'model.json'),groups=summary,frames=rows))
     print(summary)
 

@@ -1,16 +1,15 @@
 """Fit a depth-two tree on surface identity and overlap; geometry depth is never its label."""
 from collections import defaultdict
-from pathlib import Path
+from hashlib import sha256
+import json
+from zipfile import ZipFile
 
-import benchmark
-from benchmark.texture_camera_eval import ROOT, checked, digest, read, save
+from benchmark.texture_camera_eval import ROOT, read, save
 
-COORD=ROOT.parent/'facade-inset-round'
-benchmark.__path__.append(str(COORD/'benchmark'))
 from benchmark import inset_decision_model as model
 
 OUT=ROOT/'benchmark/reviews/inset-mask-chooser-01'
-SOURCE=COORD/'runs/chooser/rows.json'
+SOURCE=ROOT/'benchmark/reviews/facade-inset-round-01/candidate-scores.zip'
 
 
 def target(grade):
@@ -39,13 +38,16 @@ def cv(rows,col):
 
 
 def main():
-    expected=read(COORD/'benchmark/reviews/facade-inset-round-01/model.json')['source_sha256']
-    rows=[r for r in model.flatten(read(checked(SOURCE,expected))) if r['split']=='train']
+    expected=read(ROOT/'benchmark/reviews/facade-inset-round-01/model.json')['source_sha256']
+    with ZipFile(SOURCE) as archive:
+        raw=archive.read('chooser/rows.json')
+    assert sha256(raw).hexdigest()==expected
+    rows=[r for r in model.flatten(json.loads(raw)) if r['split']=='train']
     for r in rows:
         r['grade']=dict(r['grade'],correct=target(r['grade']))
     tree=model.train(rows)
     result=dict(train_views=72,proposals=len(rows),positive_proposals=sum(r['grade']['correct'] for r in rows),
-                contributing_layouts=sorted({r['layout'] for r in rows}), source_sha256=digest(SOURCE),
+                contributing_layouts=sorted({r['layout'] for r in rows}), source_sha256=expected,
                 tree=tree,probability=.90,min_rim_side=.55,min_host_share=.90,min_remaining_share=.90,
                 max_other_foreground_overlap=.10,
                 cross_validation={key:cv(rows,key) for key in ['layout','family']})
