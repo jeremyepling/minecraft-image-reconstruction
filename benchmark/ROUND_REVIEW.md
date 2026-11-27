@@ -27,7 +27,7 @@ Generate a score report from a release containing paired `cases.json` and `summa
 python -m benchmark.round_report benchmark/reviews/workshop-foreground-01
 ```
 
-Use `python -m benchmark.current_placement_viewer` to regenerate the published review from its configured scored releases. To inspect a compatible placement challenger against the same upstream evidence before promotion, render a private page. Repeat `--release` in order for a chain of changes.
+Use `python -m benchmark.current_placement_viewer` to regenerate the published review from its configured scored releases. To inspect a compatible placement challenger against the same upstream evidence before promotion, render a private page in a new directory. Repeat `--release` in order for a chain of changes. The fixed-view regrade uses parallel workers. Use `--workers N` to adjust concurrency for the machine.
 
 ```powershell
 python -m benchmark.current_placement_viewer --out runs/my-preview --release PATH_TO_SCORED_RELEASE --revision CANDIDATE_REVISION
