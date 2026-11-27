@@ -3,26 +3,27 @@
 <title>Surface crops and counter samples</title>
 <style>
 :root{color-scheme:dark;font:16px/1.45 system-ui;background:#101920;color:#edf2f5}main{max-width:1000px;margin:auto;padding:12px}h1{font-size:1.65rem;margin:.5em 0}h2{font-size:1.12rem;margin:.4em 0}p,figure{margin:.4em 0}.tools,.row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:10px 0}.tools{position:sticky;top:0;z-index:2;background:#17252e;padding:8px;border-radius:6px}button,select,textarea{background:#23343e;color:inherit;border:1px solid #627885;border-radius:5px;font:inherit;padding:6px}button:disabled{opacity:.4}a{color:#a0dcff}.muted,small{color:#b8c8cf}.scene{display:grid;place-items:center;background:#18252e}.scene>*{grid-area:1/1;width:100%;height:auto}.scene canvas{cursor:crosshair}.compare{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.card,section.notes{padding:12px;background:#1a2831;border-radius:8px;min-width:0}.photo{display:flex;justify-content:center;align-items:center;height:clamp(170px,33vh,330px);background:repeating-conic-gradient(#29363c 0 25%,#344249 0 50%) 0 0/16px 16px;margin-top:6px}.photo img{max-width:100%;max-height:100%;object-fit:contain}.photo img[hidden]{display:none}.photo span{padding:8px}.notes{margin:12px 0}.notes label{display:block;margin-top:8px}textarea{box-sizing:border-box;width:100%;resize:vertical}label{display:inline-block}.row small{flex:1}select{max-width:100%}summary{cursor:pointer}@media(max-width:540px){main{padding:4px}.compare{gap:4px}.card{padding:5px}.photo{height:155px}.tools{gap:5px}button,select{font-size:.9rem}}
-.stages{display:grid;grid-template-columns:repeat(auto-fit,minmax(175px,1fr));gap:10px}.stages svg{width:100%;height:165px;background:#111b22}.stages p{font-size:.85rem}.compare h2{font-size:1rem}@media(max-width:680px){.compare{grid-template-columns:1fr 1fr}.compare .contextCard{grid-column:1/-1}.photo{height:180px}} </style>
+.stages{display:grid;grid-template-columns:repeat(auto-fit,minmax(175px,1fr));gap:10px}.stages svg{width:100%;height:165px;background:#111b22}.stages p{font-size:.85rem}.compare h2{font-size:1rem}@media(max-width:680px){.compare{grid-template-columns:1fr 1fr}.compare .contextCard{grid-column:1/-1}.photo{height:180px}} section>h2{margin-top:1.3em}.card h3{font-size:1rem;margin:.2em 0}.vote{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:12px 0}.vote select{border-color:#85b9c4} </style>
 <main><a href="index.html">Shared-corner placement review</a><h1>Surface crops and counter samples</h1>
 <div class="tools"><label>Build <select id="build"></select></label><button id="prev">← Previous</button><label>Surface <select id="surface"></select></label><button id="next">Next →</button><small id="progress"></small></div>
 <div class="row"><label><input type="checkbox" checked id="all"> Label all surfaces</label><label><input type="checkbox" checked id="quad"> Outline counter area</label></div>
 <div class="scene"><img id="source" alt="Full source image"><canvas id="overlay" aria-label="Click a detected surface to inspect its crop and counter sample"></canvas></div>
 <p class="muted" id="caption"></p>
-<div class="compare"><figure class="card contextCard"><h2>Surrounding context</h2><span>Original perspective</span><a class="photo" id="contextLink" target="_blank"><img id="context" alt="Surface and its surroundings"><span id="contextEmpty" hidden></span></a></figure>
-<figure class="card"><h2>Surface crop</h2><span>Accepted mask pixels</span><a class="photo" id="cropLink" target="_blank"><img id="crop" alt="Selected surface in source perspective"><span id="cropEmpty" hidden></span></a></figure>
-<figure class="card"><h2>Counter sample</h2><span id="dims"></span><a class="photo" id="sampleLink" target="_blank"><img id="sample" alt="Rectified sample used by Block Counter"><span id="sampleEmpty" hidden></span></a></figure></div>
-<p id="measure" class="muted"></p>
-<section id="linePanel" hidden><h2>Level rows from visible edges</h2><div class="compare">
-<figure class="card"><h2>Supporting lines</h2><svg style="width:100%;height:225px" id="linePlot" aria-label="Source crop and measured near-horizontal line segments"></svg></figure>
-<figure class="card"><h2>Row-leveled crop</h2><a id="levelLink" class="photo" target="_blank"><img id="level" alt="Crop after the measured row correction"></a></figure>
-<div class="card"><p id="lineMethod"></p><p id="lineMetric"></p></div></div></section>
-<section id="nativePanel" hidden><h2>Crop-first experiment</h2><div class="compare">
+<details><summary>Shared source evidence · surrounding context</summary><a class="photo" id="contextLink" target="_blank"><img id="context" alt="Surface and its surroundings"><span id="contextEmpty" hidden></span></a></details>
+<section><h2>Which view makes the block rows easiest to count?</h2>
+<p class="muted">All three use the selected surface and source image. Compare the same row or seam across the views.</p>
+<div class="compare">
+<figure class="card"><h3>Original crop</h3><span>Source perspective</span><a class="photo" id="cropLink" target="_blank"><img id="crop" alt="Selected surface in source perspective"><span id="cropEmpty" hidden></span></a></figure>
+<figure class="card"><h3>Counter warp</h3><span id="dims"></span><a class="photo" id="sampleLink" target="_blank"><img id="sample" alt="Four-corner warp used by the counter"><span id="sampleEmpty" hidden></span></a></figure>
+<figure class="card"><h3>Row-leveled crop</h3><span id="levelStatus"></span><a id="levelLink" class="photo" target="_blank"><img id="level" alt="Crop after row leveling"></a></figure></div>
+<label class="vote">My preferred view <select id="viewVote"><option value="">Choose a view…</option><option>Original crop</option><option>Counter warp</option><option>Row-leveled crop</option><option>Equally clear</option><option>None are usable</option><option>Unsure</option></select></label>
+<details><summary>Inspect the measured lines and block counts</summary><div id="linePanel"><svg style="width:100%;height:185px" id="linePlot" aria-label="Source crop and measured lines"></svg><p id="lineMethod"></p><p id="lineMetric"></p></div><p id="measure"></p></details></section>
+<section id="nativePanel" hidden><h2>Do the atlas outlines fit individual blocks?</h2><p class="muted">The atlas matcher uses the original crop. Judge whether its green outlines follow visible block boundaries.</p><div class="compare">
 <figure class="card"><h2>Native atlas search</h2><svg id="nativePlot" style="width:100%;height:240px" role="img" aria-label="Original surface crop with native atlas matches"></svg><p id="nativeText"></p></figure>
 <figure class="card"><h2>Texture repeat spacing</h2><p id="pitchRaw"></p><p id="pitchRect"></p><small>Spacing is measured in each image’s own pixels. Width comes first. A dash means no repeat passed the check.</small></figure>
 <figure class="card" id="referencePanel" hidden><h2>Recorded plane</h2><a class="photo" id="refLink" target="_blank"><img id="referenceCrop" alt="Surface straightened with recorded visible geometry"></a><small>Reference geometry supplies this comparison. It is excluded from prediction.</small></figure>
-</div></section>
-<div id="stages" class="stages"></div><details><summary>How the counter makes this sample</summary><p>The surface crop keeps the source perspective. The context version also shows neighboring pixels. The counter reads the full source image and detected mask directly. It maps a four-corner region to a rectangle, using the estimated wall direction if it needs to construct the corners. The checkerboard shows pixels excluded from the sample. The counter searches the remaining pixels for repeating texture along each axis.</p></details>
+</div><label class="vote">Atlas outline assessment <select id="atlasVote"><option value="">Choose an assessment…</option><option>Outlines fit</option><option>Outlines fit but miss visible blocks</option><option>Some outlines cross block edges</option><option>Outlines mostly misplaced</option><option>Missed visible blocks · no outlines</option><option>No matches expected</option><option>Unsure</option></select></label></section>
+<h2>Pipeline results</h2><div id="stages" class="stages"></div><details><summary>How the counter makes this sample</summary><p>The surface crop keeps the source perspective. The context version also shows neighboring pixels. The counter reads the full source image and detected mask directly. It maps a four-corner region to a rectangle, using the estimated wall direction if it needs to construct the corners. The checkerboard shows pixels excluded from the sample. The counter searches the remaining pixels for repeating texture along each axis.</p></details>
 <section class="notes"><h2 id="notesHeading">Surface feedback</h2><label for="note">Feedback</label><textarea id="note" rows="2"></textarea><label for="question">Question</label><textarea id="question" rows="2"></textarea><div class="row"><button id="copy">Copy this surface for chat</button><button id="download">Export all feedback</button><small id="status" role="status">Notes save per surface in this browser. Attach the exported JSON in chat to share a batch.</small></div></section></main>
 <script src="sample-data.js"></script><script>
 const $=id=>document.getElementById(id), storeKey='minecraft-surface-review-v1';
@@ -30,8 +31,8 @@ let b=0,m=0,token=0,hitPixels=null,notes={};
 try{notes=JSON.parse(localStorage.getItem(storeKey)||'{}')||{}}catch{$('status').textContent='Browser storage unavailable. Export notes before closing.'}
 const scene=()=>scenes[b],mask=()=>scene().masks[m];
 const key=()=>[scene().id,scene().sha,scene().revision,mask().id].join('/');
-function save(){const item={build:scene().title,frame:scene().id,surface:mask().label,mask:mask().id,source_sha256:scene().sha,handoffs:scene().revision,feedback:$('note').value,question:$('question').value};
- if(item.feedback||item.question)notes[key()]=item;else delete notes[key()];
+function save(){const item={build:scene().title,frame:scene().id,surface:mask().label,mask:mask().id,source_sha256:scene().sha,handoffs:scene().revision,feedback:$('note').value,question:$('question').value,preferred_view:$('viewVote').value,atlas_assessment:$('atlasVote').value};
+ if(item.feedback||item.question||item.preferred_view||item.atlas_assessment)notes[key()]=item;else delete notes[key()];
  try{localStorage.setItem(storeKey,JSON.stringify(notes));$('status').textContent='Saved in this browser.'}catch{$('status').textContent='In memory only. Export feedback before closing.'}}
 function photo(id,url,missing){const img=$(id),a=$(id+'Link'),empty=$(id+'Empty');img.hidden=!url;empty.hidden=!!url;
  if(url){img.src=url;a.href=url}else{img.removeAttribute('src');a.removeAttribute('href');empty.textContent=missing}}
@@ -42,6 +43,12 @@ function draw(){if(!hitPixels)return;const cv=$('overlay'),w=cv.width,h=cv.heigh
 
 function nativeReview(r){
  const review=r.lineReview;
+ const leveled=review?.slope!=null&&!!r.images.level;
+ $('viewVote').options[2].disabled=!r.images.sample;
+ $('viewVote').options[3].disabled=!leveled;
+ $('levelStatus').textContent=leveled?'Straightened using visible lines':review?'Same as original · no line consensus':'No row-leveling trial';
+ $('level').hidden=!review;
+ if(!review)$('levelLink').removeAttribute('href');
  $('linePanel').hidden=!review;
  if(review&&r.cropBox){
  const [x,y,right,bottom]=r.cropBox, w=right-x,h=bottom-y;
@@ -64,6 +71,10 @@ function nativeReview(r){
  add('image',{x,y,width:right-x,height:bottom-y,href:r.images.crop});
  for(const hit of r.native?.matches||[]){if(hit.quad)add('polygon',{points:hit.quad.map(p=>p.join(',')).join(' '),fill:'none',stroke:'#6bf8b0','stroke-width':1.1})}}
  const n=r.native;
+ const hasMatches=!!n?.matches?.length;
+ for(const opt of Array.from($('atlasVote').options).slice(1,5))opt.disabled=!hasMatches;
+ $('atlasVote').options[5].disabled=hasMatches;
+ $('atlasVote').disabled=!n;
  $('nativeText').textContent=n?[n.decision+' · '+n.reason,
    n.matches?.length?n.matches.length+' local atlas matches (green outlines).':'',
    n.pitch_at_origin_px?'Estimated block spacing near the search center: '+n.pitch_at_origin_px.join(' × ')+' source pixels.':'',
@@ -97,17 +108,18 @@ function show(){const c=scene(),r=mask();$('build').value=b;$('surface').value=m
  $('caption').textContent=c.title+' · '+r.label+' · Turquoise marks the selected mask.'+(r.quad?' Gold outlines the sampling area.':' No sampling area was saved.')+(r.skyNote?' '+r.skyNote:'');
  $('dims').textContent='Block count '+r.dimensions.map(v=>v??'?').join(' × ');
  photo('context',r.images.context,'No saved context');photo('crop',r.images.crop,'No saved crop');photo('sample',r.images.sample,r.reason||'No sample was produced.');
- $('notesHeading').textContent='Feedback on '+c.title+' · '+r.label;const saved=notes[key()]||{};$('note').value=saved.feedback||'';$('question').value=saved.question||'';
+ $('notesHeading').textContent='Feedback on '+c.title+' · '+r.label;const saved=notes[key()]||{};$('note').value=saved.feedback||'';$('question').value=saved.question||'';$('viewVote').value=saved.preferred_view||'';$('atlasVote').value=saved.atlas_assessment||'';
  downstream(c,r);history.replaceState(null,'','#'+encodeURIComponent(c.id)+'/'+r.label);draw()}
 async function chooseBuild(i,j=0){b=i;m=j;const t=++token;hitPixels=null;$('overlay').getContext('2d').clearRect(0,0,$('overlay').width,$('overlay').height);
  $('surface').replaceChildren(...scene().masks.map((r,k)=>new Option(r.label,k)));show();const hit=new Image();hit.src=scene().hit;await hit.decode();if(t!==token)return;
  const cv=$('overlay');cv.width=hit.width;cv.height=hit.height;const scratch=document.createElement('canvas');scratch.width=hit.width;scratch.height=hit.height;const ctx=scratch.getContext('2d');ctx.drawImage(hit,0,0);hitPixels=ctx.getImageData(0,0,hit.width,hit.height);draw()}
 function move(step){const j=m+step;if(j<0&&b>0)return chooseBuild(b-1,scenes[b-1].masks.length-1);if(j>=scene().masks.length&&b+1<scenes.length)return chooseBuild(b+1);if(j>=0&&j<scene().masks.length){m=j;show()}}
 $('overlay').onclick=e=>{if(!hitPixels)return;const c=e.currentTarget,r=c.getBoundingClientRect();const x=Math.floor((e.clientX-r.left)*c.width/r.width),y=Math.floor((e.clientY-r.top)*c.height/r.height);const n=hitPixels.data[(y*c.width+x)*4];const j=scene().masks.findIndex(v=>v.index===n);if(j>=0){m=j;show()}else $('caption').textContent='No detected surface at this pixel. '+mask().label+' remains selected.'};
+for(const id of ['viewVote','atlasVote'])$(id).onchange=save;
 $('prev').onclick=()=>move(-1);$('next').onclick=()=>move(1);$('surface').onchange=e=>{m=Number(e.target.value);show()};$('build').onchange=e=>chooseBuild(Number(e.target.value));
 for(const id of ['all','quad'])$(id).onchange=show;for(const id of ['note','question'])$(id).oninput=save;
 document.addEventListener('keydown',e=>{if(e.ctrlKey||e.metaKey||e.altKey||['INPUT','SELECT','TEXTAREA'].includes(e.target.tagName))return;if(['ArrowLeft','ArrowRight'].includes(e.key)){e.preventDefault();move(e.key==='ArrowLeft'?-1:1)}});
-$('copy').onclick=async()=>{const r=mask(),v=notes[key()]||{};const text=[scene().title+' · '+r.label+' ('+r.id+')',location.href,'Block count '+r.dimensions.map(n=>n??'?').join(' × '),v.feedback&&'Feedback: '+v.feedback,v.question&&'Question: '+v.question].filter(Boolean).join('\n');try{await navigator.clipboard.writeText(text);$('status').textContent='Copied. Paste into this chat.'}catch{window.prompt('Copy this surface for chat',text)}};
+$('copy').onclick=async()=>{const r=mask(),v=notes[key()]||{};const text=[scene().title+' · '+r.label+' ('+r.id+')',location.href,'Block count '+r.dimensions.map(n=>n??'?').join(' × '),v.preferred_view&&'Preferred view: '+v.preferred_view,v.atlas_assessment&&'Atlas outlines: '+v.atlas_assessment,v.feedback&&'Feedback: '+v.feedback,v.question&&'Question: '+v.question].filter(Boolean).join('\n');try{await navigator.clipboard.writeText(text);$('status').textContent='Copied. Paste into this chat.'}catch{window.prompt('Copy this surface for chat',text)}};
 $('download').onclick=()=>{const url=URL.createObjectURL(new Blob([JSON.stringify({version:1,surfaces:Object.values(notes)},null,2)],{type:'application/json'}));const a=document.createElement('a');a.href=url;a.download='surface-review-feedback.json';a.click();document.getElementById("status").textContent='Downloaded. Attach the JSON file in chat to share your review.';setTimeout(()=>URL.revokeObjectURL(url),1000)};
 scenes.forEach((s,i)=>$('build').add(new Option(s.title,i)));const [frame,label]=location.hash.slice(1).split('/');const first=Math.max(0,scenes.findIndex(s=>s.id===frame));chooseBuild(first,Math.max(0,scenes[first].masks.findIndex(r=>r.label===label)));
 </script></html>
