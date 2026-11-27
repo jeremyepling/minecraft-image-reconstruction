@@ -91,9 +91,11 @@ function draw(){
   review.append(link);
  }
  if(v.id==='inverse-voxels-26.3--confirm--test-colonnade-01-oblique-right'){
-  const link=document.createElement('a');link.href='colonnade-01-window-wall.png';
-  link.textContent='Trace the two missing blocks below the window';
-  review.append(link);
+  const current=document.createElement('a');current.href='../window-wall-01/colonnade.png';
+  current.textContent='Compare the two recovered wall blocks below the window';
+  const trace=document.createElement('a');trace.href='colonnade-01-window-wall.png';
+  trace.textContent='Trace the gap in the previous export';
+  review.append(current,' · ',trace);
  }
  mix.disabled=stage===0;el('overlay').style.opacity=mix.value/100;el('pct').value=mix.value+'%';
  [...nav.children].forEach((b,i)=>b.setAttribute('aria-pressed',String(i===stage)));el('legend').textContent=s[2];

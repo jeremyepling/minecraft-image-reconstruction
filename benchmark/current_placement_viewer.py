@@ -29,7 +29,7 @@ ROOT = suite.ROOT/'benchmark/reviews'
 PAGE = ROOT/'shared-face-round-01'
 RELEASE = ROOT/'pavement-local-01'
 ASSETS = RELEASE/'viewer-overlays'
-REVISION = 'a804f6e'
+REVISION = 'c9ba974'
 SMOOTH_LAYOUTS = {'Shopfront','Registry','Portico','Courtyard'}
 
 
@@ -151,7 +151,8 @@ def required_overlay(image, labels, ids, missing, metric):
 
 
 def main():
-    release,changed,payloads = read_releases([RELEASE,ROOT/'smooth-local-placement-01',ROOT/'smooth-joint-placement-01'])
+    release,changed,payloads = read_releases([RELEASE,ROOT/'smooth-local-placement-01',ROOT/'smooth-joint-placement-01',
+                                             ROOT/'window-wall-01'])
     fixed = read(PAGE/'error-budget.json')['frames']
     jobs = {j[1]['id']:j for j in suite.jobs(suite.framed.EVALUATION)}
     assert len(fixed)==len(jobs)==104 and {r['id'] for r in fixed}==set(jobs)
