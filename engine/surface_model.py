@@ -507,11 +507,15 @@ def build(image_path, version, out, *, outlines=None, order_method=None, through
             patches, boundary_settings['photo_edges'] = photo_edges.refine_surfaces(image, patches)
             methods['photo_edges'] = photo_edges.METHOD
             methods['boundary_sequence'].append(photo_edges.METHOD)
-            from engine import guarded_wall_outlines
+            from engine import guarded_wall_outlines, skyline_extent
             patches, events = guarded_wall_outlines.refine(image, patches)
             boundary_settings['diagonal_wall_join'] = dict(settings=guarded_wall_outlines.SETTINGS, events=events)
             methods['diagonal_wall_join'] = guarded_wall_outlines.METHOD
             methods['boundary_sequence'].append(guarded_wall_outlines.METHOD)
+            patches, events = skyline_extent.refine(image, patches, blue | cloud)
+            boundary_settings['skyline_extent'] = dict(events=events)
+            methods['skyline_extent'] = skyline_extent.METHOD
+            methods['boundary_sequence'].append(skyline_extent.METHOD)
         context_px = DEFAULT_CONTEXT_PX if context_px is None else context_px
         patches = [with_outline(part) for part in patches]
         crop_dir = out/'surface-crops'
