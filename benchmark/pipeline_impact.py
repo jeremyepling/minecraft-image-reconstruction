@@ -24,6 +24,19 @@ def early_metrics(row):
     return metrics(row["geometry"], row["material"], row["typed"])
 
 
+def pooled_decorative(cases, arm):
+    def f1(section, metric):
+        scores = [case[arm][section][metric] for case in cases]
+        correct = sum(score["correct"] for score in scores)
+        errors = sum(score["missed"] + score["extras"] for score in scores)
+        return 2 * correct / (2 * correct + errors)
+
+    materials = [case[arm]["result"]["material"] for case in cases]
+    accuracy = sum(row["correct"] for row in materials) / sum(row["positions"] for row in materials)
+    return [f1("geometry", "strict"), accuracy, f1("result", "strict"),
+            f1("result", "facade"), f1("geometry", "facade")]
+
+
 def main():
     early = read("reference-surface-feedback-01/summary.json")["cohorts"]
     late = read("material-feedback-surfaces-01/material-oracle-summary.json")
@@ -56,6 +69,13 @@ def main():
 
     fixed = read("reference-surface-feedback-01/fixed-confirmation.json")
     rows["full-masks"] = {name: early_metrics(fixed[name]) for name in ("baseline", "mask")}
+    by_image = []
+    for case in fixed["cases"]:
+        pair = {}
+        for name in ("baseline", "mask"):
+            row = case[name]
+            pair[name] = metrics(row["geometry"], row["scores"]["material"], row["scores"])
+        by_image.append(dict(id=case["id"], changes=case["changes"], **pair))
     for group, filename in [
         ("bypass-ranked", "component-bypass-summary.json"),
         ("sampling", "primary-ray-calibration-summary.json"),
@@ -75,6 +95,15 @@ def main():
             scores["typed_facade"]["f1"], scores["geometry_facade"]["f1"],
         ]
     retries = read("material-feedback-surfaces-01/retry-bypass.json")["summary"]["all"]
+    fixed_retry = read("material-feedback-grid-01/retry-bypass-fixed.json")["summary"]
+    rows["retry-fixed"] = {
+        name: metrics(fixed_retry[name]["geometry"], fixed_retry[name]["scores"]["material"], fixed_retry[name]["scores"])
+        for name in ("ordinary", "without_retry")
+    }
+    decorative = read("material-feedback-geometry-01/decorative.json")
+    for group in ("development", "confirmation"):
+        subset = [case for case in decorative if case["id"].startswith("train-") == (group == "development")]
+        rows["decorative-" + group] = {arm: pooled_decorative(subset, arm) for arm in ("baseline", "after")}
     for source, group in retries.items():
         rows["retry-" + source] = {
             name: metrics(group[name]["geometry"], group[name]["typed"]["material"], group[name]["typed"])
@@ -82,7 +111,8 @@ def main():
         }
     template = Path(__file__).with_name("pipeline_impact.html").read_text(encoding="utf-8")
     OUT.mkdir(exist_ok=True)
-    (OUT / "viewer.html").write_text(template.replace("__MEASURED__", json.dumps(rows)), encoding="utf-8")
+    html = template.replace("__MEASURED__", json.dumps(rows)).replace("__MASK_CASES__", json.dumps(by_image))
+    (OUT / "viewer.html").write_text(html, encoding="utf-8")
 
 
 if __name__ == "__main__":

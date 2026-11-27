@@ -4,6 +4,8 @@ Start with the question Jeremy asked about the build. A score update can come st
 
 ## When a perfect-answer test earns its cost
 
+Label each score with its dataset version, split and tested frame count. Keep the established 104-view trend and report newer large structures, decorative shapes and same-camera lighting pairs separately. State which of the available cohorts the experiment actually covered.
+
 For an expensive model, a low-scoring handoff, or a feedback rule, run a small paired diagnostic first. Choose the test that answers the decision Jeremy needs to make.
 
 | Question | Test |
