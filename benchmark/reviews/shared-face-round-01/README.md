@@ -1,6 +1,6 @@
 # Where visible block placement fails
 
-The starting default at `abfc0be` places **20,619** blocks correctly, misses **3,083** visible positions and places **1,097** extras across 104 fixed whole-structure source images. Strict F1 is **90.80%**, and facade-priority F1 is **92.90%**. One integer translation of each entire build is allowed. The saved exports and scored visible coordinates were checked again for this round. All 104 have a supported camera.
+The starting default at `abfc0be` places **20,619** blocks correctly, misses **3,083** visible positions and places **1,097** extras across 104 fixed whole-structure source images. Strict F1 is **90.80%**, and facade-priority F1 is **92.90%**. One integer translation of each entire build is allowed. The saved exports and scored visible coordinates were checked again for this round. All 104 have a supported camera. The best whole-build translation was zero on every fixed input, so camera-registered strict F1 also measured 90.80%. The 112-view historical score, which includes the eight retired frame-filling wall images, was 90.04%.
 
 [Open the five-source-image viewer locally](viewer.html) · [Zoomable stage map](stage-map.jpg) · [Five per-stage traces](stage-examples.json)
 
@@ -50,3 +50,13 @@ Only **172** of the 3,083 missed cubes have two or more visible faces in their s
 A larger opportunity is to use an edge to position a **whole connected wall patch**. Of the 507 right-axis required misses mostly covered by extras, 444 have one dominant extra face with the same outward direction. Using the known answers to measure connected patches of at least three cells, 51 misses pair with 51 extras where the entire patch needs only one common shift in depth. Allow a common displacement of up to two additional blocks along the wall and the pool grows to **250 misses and 219 distinct extras**, distributed over 42 patches in 21 views. The counts overlap and are upper bounds for these patch definitions. Perfectly fixing the larger pool would bring strict F1 to **91.83%**. The benchmark labels locate these patches for diagnosis; they are unavailable to the placer.
 
 On the two low-left Portico floor variants the same 3 × 5 region accounts for 14 and 12 depth-only pairs. On the cool Twinspire 3 and Relief 00 examples, large patches are displaced both in depth and along the wall. A next test should propose nearby wall depths **and** grid offsets, hold out rows of the source texture to verify the fit, and check visible openings and occupied sightlines on the rerendered patch. Shopfront’s incomplete grids need a separate test. [Signed offsets, patch sizes and source-image IDs](panel-opportunity.json)
+
+## Reproduce the audit and source overlays
+
+From the repository with the registered fixed-suite and frame caches, run the error audit first. The panel analysis reads its output. The final command regenerates the five source-image columns and the local overlay viewer. The two experiment reports above contain their candidate and control replay commands.
+
+```powershell
+python -m benchmark.shared_face_error_budget
+python -m benchmark.shared_face_panel_opportunity
+python -m benchmark.shared_face_examples
+```
