@@ -4,6 +4,8 @@ These entries cover model inputs, rules around model outputs, and evaluation cha
 
 ### November 27, 2026
 
+- **Experimental surface-crop chooser.** A source-only chooser fitted on Pillars and Viaduct raised native fixed-target crop IoU from 40.66% to 48.74% on four other sky-background buildings. It recovered ten more half-overlap surface targets across all six pictures, but six more targets lost all pixel coverage. [Candidate masks, oracle headroom and per-building results](benchmark/reviews/sky-crop-chooser-01/README.md)
+
 - **Floating branch default.** Surface Finder now rejects a proposal whose entire native support matches connected sky or cloud before it creates crops or counts blocks. The six open-sky handoffs retained 193 of 216 proposals. All surviving supports and crop pixels matched the prior handoffs. [Floating pipeline and replay](benchmark/FLOATING_BRANCH.md)
 
 - **Experimental connected native atlas patches.** Projective texture repeats and neighboring full-face atlas matches recovered 28 smooth red sandstone blocks on Garden and 11 prismarine bricks on Harbor. Across the six open-sky exports this gained 34 correct positions and 39 exact position-plus-ID matches without increasing extra positions. Garden’s permissive mixed-material chart combined three depths. Require a connected same-texture patch before exporting this challenger. [Source-only runner](benchmark/garden_anchor_extension.py)
