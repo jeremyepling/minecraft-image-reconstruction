@@ -18,7 +18,7 @@ button[aria-pressed=true]{color:#132623;background:#ccf1df}button{cursor:pointer
 <label>Overlay opacity <input id="mix" type="range" min="0" max="100" value="100"><output id="pct"></output></label></div>
 <nav aria-label="Pipeline stage"></nav><p id="legend"></p>
 <div class="frame"><img id="base" width="1440" height="900" alt=""><img id="overlay" width="1440" height="900" alt=""></div>
-<p id="measures" aria-live="polite"></p><footer><a href="stage-map.jpg">Compare every stage for all five buildings</a></footer></main>
+<p id="measures" aria-live="polite"></p><footer><a href="stage-map.jpg">Compare every stage for all five buildings</a> · <a href="../pavement-local-01/openings.jpg">Colonnade 01 after the pavement fix</a> (the viewer above shows the earlier baseline)</footer></main>
 <script>
 const views=__DATA__;
 const stages=[

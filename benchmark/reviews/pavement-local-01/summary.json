@@ -1,0 +1,429 @@
+{
+  "baseline": "a6e0195",
+  "frames": 204,
+  "changed": [
+    {
+      "id": "inverse-voxels-26.3--confirm--test-colonnade-01-oblique-right",
+      "source_hash": "56f1d5c1feb17dcee4ab530954cd05a37bf86ef178aead769afe90c9ce6307e6",
+      "previous_pack_sha256": "0abaef41f6b6e1c256d90902308b03ac9265276ca4365f6062182a47221fa032",
+      "pack_sha256": "7fb94c38259b0012e751c89f9900bba12b83ff2e4e28cbdff10543362c6c867c",
+      "ordinary_placements_equal": true,
+      "removed": [
+        [
+          -5,
+          4,
+          -6
+        ],
+        [
+          -5,
+          4,
+          -5
+        ],
+        [
+          -5,
+          4,
+          -4
+        ],
+        [
+          -5,
+          4,
+          -3
+        ],
+        [
+          -4,
+          4,
+          -4
+        ],
+        [
+          -4,
+          4,
+          -3
+        ],
+        [
+          -4,
+          4,
+          -2
+        ],
+        [
+          -3,
+          4,
+          -3
+        ]
+      ],
+      "baseline": {
+        "strict": {
+          "correct": 126,
+          "missed": 65,
+          "extras": 18,
+          "hidden_extras": 3
+        },
+        "registered": {
+          "correct": 126,
+          "missed": 65,
+          "extras": 18,
+          "hidden_extras": 3
+        },
+        "facade": {
+          "correct": 88,
+          "missed": 4,
+          "extras": 18
+        }
+      },
+      "result": {
+        "strict": {
+          "correct": 126,
+          "missed": 65,
+          "extras": 10,
+          "hidden_extras": 3
+        },
+        "registered": {
+          "correct": 126,
+          "missed": 65,
+          "extras": 10,
+          "hidden_extras": 3
+        },
+        "facade": {
+          "correct": 88,
+          "missed": 4,
+          "extras": 10
+        }
+      },
+      "sightlines": {
+        "opening_pixels": 5456,
+        "blocked_before": 5349,
+        "blocked_after": 0
+      },
+      "evidence": [
+        {
+          "id": "planarity-new-14-0",
+          "rim": [
+            0.8913043478260869,
+            0.9782608695652174,
+            1.0,
+            1.0
+          ],
+          "samples": 5456,
+          "ground_depth": 47.706253755067095,
+          "folds": [
+            [
+              0.9134203657679502,
+              0.11675402813570523,
+              2.3453698022292877,
+              0.025811209439528023
+            ],
+            [
+              0.917734220270427,
+              0.12093149376197565,
+              2.2432361039653963,
+              0.02295918367346939
+            ],
+            [
+              0.935852921437475,
+              0.23470775744362948,
+              2.024721306982085,
+              0.01032448377581121
+            ],
+            [
+              0.9352028444083763,
+              0.2510492248416337,
+              1.9775695628283816,
+              0.01239067055393586
+            ]
+          ],
+          "reject": true
+        }
+      ]
+    },
+    {
+      "id": "inverse-voxels-26.3--confirm--test-colonnade-01-oblique-left",
+      "source_hash": "b8b09e516a816f842a90b24c9b5a24a297e049509dc4a0dca0b7e980b82f2fbb",
+      "previous_pack_sha256": "efbe99fcce59ddae5b7d370b06bf0463d19bbd671868de6aa3ccde180315be26",
+      "pack_sha256": "962657cddbac645e60f9efed751191ba22b27073ec9c17310455814cc21391a6",
+      "ordinary_placements_equal": true,
+      "removed": [
+        [
+          5,
+          2,
+          1
+        ],
+        [
+          6,
+          2,
+          1
+        ],
+        [
+          6,
+          2,
+          2
+        ],
+        [
+          7,
+          2,
+          2
+        ],
+        [
+          8,
+          2,
+          2
+        ],
+        [
+          9,
+          2,
+          9
+        ]
+      ],
+      "baseline": {
+        "strict": {
+          "correct": 118,
+          "missed": 69,
+          "extras": 53,
+          "hidden_extras": 5
+        },
+        "registered": {
+          "correct": 118,
+          "missed": 69,
+          "extras": 53,
+          "hidden_extras": 5
+        },
+        "facade": {
+          "correct": 90,
+          "missed": 2,
+          "extras": 53
+        }
+      },
+      "result": {
+        "strict": {
+          "correct": 118,
+          "missed": 69,
+          "extras": 47,
+          "hidden_extras": 5
+        },
+        "registered": {
+          "correct": 118,
+          "missed": 69,
+          "extras": 47,
+          "hidden_extras": 5
+        },
+        "facade": {
+          "correct": 90,
+          "missed": 2,
+          "extras": 47
+        }
+      },
+      "sightlines": {
+        "opening_pixels": 4048,
+        "blocked_before": 3543,
+        "blocked_after": 2963
+      },
+      "evidence": [
+        {
+          "id": "planarity-new-9-0",
+          "rim": [
+            1.0,
+            1.0,
+            1.0,
+            0.9583333333333334
+          ],
+          "samples": 2800,
+          "ground_depth": 53.01968266624625,
+          "folds": [
+            [
+              0.9676071663055646,
+              0.21050510021719027,
+              1.3292725166653396,
+              0.002167630057803468
+            ],
+            [
+              0.9590041663276283,
+              0.2094461060145083,
+              1.4681332855093487,
+              0.0049435028248587575
+            ],
+            [
+              0.9668890459230134,
+              0.18297638624063806,
+              1.3259827718569337,
+              0.002890173410404624
+            ],
+            [
+              0.9579891341369431,
+              0.18185731419527706,
+              1.462867999363619,
+              0.005649717514124294
+            ]
+          ],
+          "reject": true
+        },
+        {
+          "id": "planarity-new-12-1",
+          "rim": [
+            1.0,
+            1.0,
+            0.9545454545454546,
+            0.9545454545454546
+          ],
+          "samples": 1248,
+          "ground_depth": 49.597668346295976,
+          "folds": [
+            [
+              0.9671509361155352,
+              0.23483047023644765,
+              1.425674624776421,
+              0.0016233766233766235
+            ],
+            [
+              0.962033264902329,
+              0.20498105449978932,
+              1.4811711324049814,
+              0.00949367088607595
+            ],
+            [
+              0.968285962955943,
+              0.2131429648544323,
+              1.4092490160800994,
+              0.0016233766233766235
+            ],
+            [
+              0.9596808244029739,
+              0.198838517901736,
+              1.479600001649817,
+              0.00949367088607595
+            ]
+          ],
+          "reject": true
+        }
+      ]
+    }
+  ],
+  "cohorts": {
+    "development": {
+      "strict": {
+        "correct": 16063,
+        "missed": 2259,
+        "extras": 761,
+        "hidden_extras": 82,
+        "f1": 0.9140727252034371
+      },
+      "facade": {
+        "correct": 14620,
+        "missed": 1040,
+        "extras": 761,
+        "f1": 0.9419799619857607
+      },
+      "registered": {
+        "correct": 16063,
+        "missed": 2259,
+        "extras": 761,
+        "hidden_extras": 82,
+        "f1": 0.9140727252034371
+      }
+    },
+    "fixed": {
+      "strict": {
+        "correct": 20619,
+        "missed": 3083,
+        "extras": 1089,
+        "hidden_extras": 104,
+        "f1": 0.9081259634441753
+      },
+      "facade": {
+        "correct": 18798,
+        "missed": 1778,
+        "extras": 1089,
+        "f1": 0.9291451449472358
+      },
+      "registered": {
+        "correct": 20619,
+        "missed": 3083,
+        "extras": 1089,
+        "hidden_extras": 104,
+        "f1": 0.9081259634441753
+      }
+    },
+    "alternate": {
+      "strict": {
+        "correct": 3632,
+        "missed": 466,
+        "extras": 333,
+        "hidden_extras": 59,
+        "f1": 0.9009053702095994
+      },
+      "facade": {
+        "correct": 2850,
+        "missed": 282,
+        "extras": 333,
+        "f1": 0.9026128266033254
+      },
+      "registered": {
+        "correct": 3632,
+        "missed": 466,
+        "extras": 333,
+        "hidden_extras": 59,
+        "f1": 0.9009053702095994
+      }
+    },
+    "new": {
+      "strict": {
+        "correct": 621,
+        "missed": 126,
+        "extras": 118,
+        "hidden_extras": 0,
+        "f1": 0.8358008075370121
+      },
+      "facade": {
+        "correct": 579,
+        "missed": 74,
+        "extras": 118,
+        "f1": 0.8577777777777778
+      },
+      "registered": {
+        "correct": 621,
+        "missed": 126,
+        "extras": 118,
+        "hidden_extras": 0,
+        "f1": 0.8358008075370121
+      }
+    },
+    "shelter": {
+      "strict": {
+        "correct": 692,
+        "missed": 72,
+        "extras": 202,
+        "hidden_extras": 10,
+        "f1": 0.8347406513872135
+      },
+      "facade": {
+        "correct": 582,
+        "missed": 47,
+        "extras": 202,
+        "f1": 0.8237791932059448
+      },
+      "registered": {
+        "correct": 692,
+        "missed": 72,
+        "extras": 202,
+        "hidden_extras": 10,
+        "f1": 0.8347406513872135
+      }
+    }
+  },
+  "ordinary_platforms": [
+    {
+      "id": "holdout-loadingdock-timber-high-right",
+      "source_hash": "05b57b37e071efdd67304d0f81345987bc5c0bcda039e4a9f5e9c260105c9fe7",
+      "blocks": 255,
+      "ordinary_pack_equal": true,
+      "pack_sha256": "69ebf3a13b4b22fe9aaa3e0e6f2bf6fc867fcde53d202782b12193020b272598"
+    },
+    {
+      "id": "holdout-platformshelter-copper-high-right",
+      "source_hash": "d71207192aeb69b67e066da82c59d8d830ca54053220d2005f2f4d4c748bc06a",
+      "blocks": 253,
+      "ordinary_pack_equal": true,
+      "pack_sha256": "57ccecd0903d2a64d481fccb451841edf3f1e5b66778a007766037788dc9b2d5"
+    }
+  ],
+  "cases_sha256": "51fcb8cc609b3bf4e25cd03f6ff8f6eee748952a0b9979209431653cc3d5944c",
+  "historical_112_strict_f1": 0.9005109839716994,
+  "archive_sha256": "9ff759f1c42fd4f19187561c6e3a15e72aa0101949e3c317d744e6ab2580393a"
+}

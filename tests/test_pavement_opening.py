@@ -27,3 +27,9 @@ class PavementOpeningTests(unittest.TestCase):
         region = dict(support=dict(size=size, runs=[[y, 0, size[0]] for y in range(size[1])]))
         cells = {(0, -1, 0), (0, 0, 0), (0, 1, 0), (8, 1, 0)}
         self.assertEqual({(0, 1, 0)}, window_obstructions(size, camera, [region], cells))
+
+    def test_hidden_second_cube_needs_new_first_hit_evidence(self):
+        camera = dict(P=[[160, 0, 50, 320], [0, -160, 50, 800], [0, 0, 1, 8]])
+        opening = self.patch('window', 39, 39, 61, 61)
+        cells = {(0, 2, 0), (0, 2, 1), (1, 2, 1)}
+        self.assertEqual({(0, 2, 0), (0, 2, 1)}, window_obstructions(self.size, camera, [opening], cells))

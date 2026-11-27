@@ -1,12 +1,12 @@
 # Would a real platform survive the pavement check?
 
-**The placement-only rule preserved the tested platforms. The rule that discards a whole surface failed on a bordered flush floor.** The controls use the saved right-hand Colonnade 01 source image, the ordinary estimated camera and the same detected post and sill masks as the original opening. They exercise the frozen pavement check from `experiment/pavement-opening-grid` and the local block check from `experiment/pavement-local-placement` against the default at `a6e0195`. [Controlled source comparisons](platform-comparison.jpg) · [Per-control inputs, texture scores and outcomes](controls.json)
+**The placement-only rule preserved the tested platforms. The rule that discards a whole surface failed on a bordered flush floor.** The controls use the saved right-hand Colonnade 01 source image, the ordinary estimated camera and the same detected post and sill masks as the original opening. They compare the final placement rule, including repeated reprojection and its three-pixel rim guard, with the previous default at `a6e0195`. [Controlled source comparisons](platform-comparison.jpg) · [Per-control inputs, texture scores and outcomes](controls.json)
 
 | Input behind the measured rim | Phase check identifies pavement | Effect on placed blocks |
 | --- | --- | --- |
-| Actual Colonnade opening | Yes | Removed seven of the eight phantom shelf blocks and kept every correct coordinate. |
-| Top of a raised platform in the opening, rendered with the same pavement texture three blocks above the ground | No | Retained 60 of 60 visible platform cells. Overriding the phase check would erase 35, showing that the platform presented a real deletion opportunity. |
-| Same-pavement floor flush with the ground, bordered with a contrasting one-block-wide trim | Yes | Retained all 320 supplied floor and trim cells. Removed seven original shelf extras in front. Discarding the detected surface would erase the mask on 5,396 real floor pixels. |
+| Actual Colonnade opening | Yes | Removed all eight phantom shelf blocks and kept every correct coordinate. |
+| Top of a raised platform in the opening, rendered with the same pavement texture three blocks above the ground | No | Retained 60 of 60 visible platform cells. Overriding the phase check would erase 48, showing that the platform presented a real deletion opportunity. |
+| Same-pavement floor flush with the ground, bordered with a contrasting one-block-wide trim | Yes | Retained all 320 supplied floor and trim cells. Removed eight original shelf extras in front. Discarding the detected surface would erase the mask on 5,396 real floor pixels. |
 | Separate 3 × 3 flush pad in the unobstructed foreground | No | Retained all nine cells, including when its mask was forced through to the coordinate check. |
 | Original opening mask spilling onto 15 real foreground pixels along its border | No | Every previously correct neighboring block remained in the coordinate map. |
 
@@ -32,10 +32,4 @@ Use the registered fixed inputs and candidate modules identified by SHA-256 in `
 
 ```powershell
 python -m benchmark.pavement_platform_controls
-```
-
-For worktree development, select each module's checkout explicitly.
-
-```powershell
-python -m benchmark.pavement_platform_controls --candidate-root ../pavement-opening-grid --local-root ../pavement-local-placement
 ```

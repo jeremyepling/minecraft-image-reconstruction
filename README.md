@@ -28,16 +28,16 @@ The **[illustrated stage and term guide](ARCHITECTURE.md#pipeline-terms-in-readi
 
 ## Current placement score
 
-[Where placement fails on the weakest source images](benchmark/reviews/shared-face-round-01/README.md) groups the current misses by visible coverage, face direction and 3D position. The [stage map](benchmark/reviews/shared-face-round-01/stage-map.jpg) follows five buildings from source pixels through block counting and the exported geometry. The [required-miss overlay](benchmark/reviews/shared-face-round-01/wall-examples.jpg) shows which errors remain after optional roof slivers are excluded.
+[Where placement fails on the weakest source images](benchmark/reviews/shared-face-round-01/README.md) groups the misses at `a6e0195` by visible coverage, face direction and 3D position. The [stage map](benchmark/reviews/shared-face-round-01/stage-map.jpg) follows five buildings from source pixels through block counting and the exported geometry. The [required-miss overlay](benchmark/reviews/shared-face-round-01/wall-examples.jpg) shows which errors remain after optional roof slivers are excluded.
 
-On the **104 fixed whole-structure source images**, the default at `9ce2f10` placed **20,619** blocks at the correct relative coordinates, missed **3,083** visible positions, and placed **1,097** extras. The last placement change gained 84 correct positions and removed 49 extras. [Frozen placement counts](benchmark/reviews/facade-local-placement-01/summary.json)
+On the **104 fixed whole-structure source images**, the current default places **20,619** blocks at the correct relative coordinates, misses **3,083** visible positions and places **1,089** extras. Checking the pavement grid through openings removed eight misplaced blocks on the fixed Colonnade 01 view and six on its alternate view. It preserved every previously correct coordinate across 204 images. [Placement scores and before/after source images](benchmark/reviews/pavement-local-01/README.md)
 
 | Measure | What it asks | Current |
 | --- | --- | ---: |
-| Precision | Of the positions we placed, what fraction were correct? | 94.95% |
+| Precision | Of the positions we placed, what fraction were correct? | 94.98% |
 | Recall | Of the visible positions in the reference, what fraction did we place correctly? | 86.99% |
-| Strict visible-block F1 | How well did placement balance precision and recall across all visible blocks? | 90.80% |
-| Facade-priority F1 | How well did we do when very thin top-only or underside-only targets are optional? | 92.90% |
+| Strict visible-block F1 | How well did placement balance precision and recall across all visible blocks? | 90.81% |
+| Facade-priority F1 | How well did we do when very thin top-only or underside-only targets are optional? | 92.91% |
 
 **F1** combines precision and recall using their harmonic mean. In block counts, **F1 = 2 × correct / (2 × correct + extras + misses)**. On these images, if you pick a placed block, roughly 95 in 100 are right. If you pick a visible reference block, roughly 87 in 100 were recovered. Both matter. The reference allows one whole-build shift per image so a different world origin gets full credit and misplaced parts still count as errors. [Scoring details and examples](ARCHITECTURE.md#evaluation-terms)
 
