@@ -2,6 +2,11 @@
 
 These entries cover model inputs, rules around model outputs, and evaluation changes. **Shipped** means ordinary builds use the adjustment. **Experiment** means it was tested and left out of the default. **Diagnostic** means we learned something about errors without changing predictions.
 
+### November 27, 2026
+
+- **Shipped local placement on smooth walls.** Compare a neighboring smooth-color proposal with the source image after projecting both the existing build and the proposed cubes. This recovered 77 required blocks across eight fixed views with zero lost positions and zero added extras. The upper-right plaster Registry view gained 43. The 100 additional views tied. Facade-priority F1 rose from 92.9145% to 93.1179% and strict F1 from 90.8126% to 90.9974%. [Four-layout comparison](benchmark/reviews/shopfront-outline-review-01/README.md) · [Placement release](benchmark/reviews/smooth-local-placement-01/summary.json)
+- **Shipped visible outline repairs and review flags.** Repeated sharp turns now flag masks for review. A continuous ring of matching underside pixels repaired 316 correctly assigned eave pixels in 204 views. A continuous repeated texture on independently fitted depths joined three split surfaces, including a Portico roof. Preserve real openings, depth steps and sampling evidence when refining training outlines. [Eave controls](benchmark/reviews/shopfront-eave-01/README.md) · [Seam and count checks](benchmark/reviews/shopfront-seam-continuity-01/README.md)
+
 ### November 26, 2026
 
 - **Experimental smooth and repeating texture seams.** A smooth seam merged a real Shopfront side wall but yielded a count of 35 along one axis of an 8 × 7 plane. The front-wall hump on its low-left view is 2,676 unsupported pixels in one inspected patch. Guarding existing junctions preserved fixed placement (90.8126% strict and 92.9145% facade-priority) while a separate Canopy 08 view lost four required blocks and gained two extras. [Masks, counts and placement replay](benchmark/reviews/shopfront-seam-continuity-01/README.md)
