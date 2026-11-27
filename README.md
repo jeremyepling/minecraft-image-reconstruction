@@ -32,6 +32,8 @@ The **[illustrated stage and term guide](ARCHITECTURE.md#pipeline-terms-in-readi
 
 ## Current placement score
 
+The fixed 104 views track progress across releases. Visible Builds v3 and Decorative Builds v1 appear alongside that trend with separate scores and coverage counts in the [dataset scorecard](benchmark/reviews/pipeline-impact-01/viewer.html#cohorts).
+
 [Explore what a perfect input or a removed sub-stage does to the exported build](benchmark/reviews/pipeline-impact-01/viewer.html). Correct visible surface masks raised fixed paired placement F1 from 91.38% to 94.76%. The impact assessment separates reference-only replays, source-only feedback and actual sub-stage bypasses. [Results and work priorities](benchmark/reviews/pipeline-impact-01/README.md)
 
 The [round review guide](benchmark/ROUND_REVIEW.md) shows how to trace a missing block, compare scored releases, and see which steps use local scripts, vision models or Codex tokens.

@@ -4,7 +4,7 @@ Start with the question Jeremy asked about the build. A score update can come st
 
 ## When a perfect-answer test earns its cost
 
-Label each score with its dataset version, split and tested frame count. Keep the established 104-view trend and report newer large structures, decorative shapes and same-camera lighting pairs separately. State which of the available cohorts the experiment actually covered.
+Label each score with its dataset version, split and tested frame count. Lead with the fixed 104 trend and show Visible Builds v3 (144 new views) and Decorative Builds v1 (40 views) alongside it in every results summary. For each cohort give coverage, strict and facade placement F1, and strict and facade position-plus-ID F1. Identify development and held-out results separately. Mark an unmeasured cohort explicitly and date or identify the revision of any carried-forward score. Compare candidates on identical images within each cohort. Report paired lighting changes separately when measured.
 
 For an expensive model, a low-scoring handoff, or a feedback rule, run a small paired diagnostic first. Choose the test that answers the decision Jeremy needs to make.
 

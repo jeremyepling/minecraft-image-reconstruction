@@ -112,6 +112,18 @@ def main():
     template = Path(__file__).with_name("pipeline_impact.html").read_text(encoding="utf-8")
     OUT.mkdir(exist_ok=True)
     html = template.replace("__MEASURED__", json.dumps(rows)).replace("__MASK_CASES__", json.dumps(by_image))
+    cohorts = [
+        ("Fixed trend", "104 / 104", rows["late-fixed"]["default"]),
+        ("Visible Builds v3", "0 / 144", None),
+        ("Decorative Builds v1 · development", "4 / 40", rows["decorative-development"]["baseline"]),
+        ("Decorative Builds v1 · confirmation", "4 / 40", rows["decorative-confirmation"]["baseline"]),
+    ]
+    table = []
+    for name, coverage, scores in cohorts:
+        values = ('<td colspan="4">Unmeasured</td>' if scores is None else
+                  "".join(f"<td>{scores[i]:.2%}</td>" for i in (0, 4, 2, 3)))
+        table.append(f"<tr><th scope='row'>{name}</th><td>{coverage}</td>{values}</tr>")
+    html = html.replace("__COHORT_ROWS__", "".join(table))
     (OUT / "viewer.html").write_text(html, encoding="utf-8")
 
 
