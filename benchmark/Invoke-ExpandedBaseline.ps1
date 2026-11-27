@@ -9,6 +9,9 @@ param(
 $ErrorActionPreference = 'Stop'
 $root = Split-Path -Parent $PSScriptRoot
 $worktrees = Split-Path -Parent $root
+if (Test-Path -LiteralPath "$root-worktrees" -PathType Container) {
+    $worktrees = "$root-worktrees"
+}
 $scale = Join-Path $worktrees 'mask-scalelsd/runs'
 $planarity = Join-Path $worktrees 'afterpass-planarity/runs/assets'
 $models = Join-Path $worktrees 'surface-strip-entry/.deps'

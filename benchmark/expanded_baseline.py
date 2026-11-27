@@ -18,7 +18,9 @@ from zipfile import BadZipFile
 
 
 ROOT = Path(__file__).resolve().parents[1]
-SOURCE = ROOT.parent.parent / 'minecraft-image-reconstruction' / 'runs'
+STABLE = ROOT.parent.parent / 'minecraft-image-reconstruction' if ROOT.parent.name.endswith('-worktrees') else ROOT
+WORKTREES = STABLE.with_name(STABLE.name + '-worktrees')
+SOURCE = STABLE / 'runs'
 OUTPUT = ROOT / 'runs/expanded-baseline-01'
 COHORTS = {'visible-builds-v3': 144, 'decorative-builds-v1': 40}
 MANIFEST_SHA256 = {

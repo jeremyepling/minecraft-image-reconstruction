@@ -12,7 +12,7 @@ from zipfile import ZipFile
 import numpy as np
 
 from benchmark.camera_metrics import registration
-from benchmark.expanded_baseline import COHORTS, MEASURED_REVISION, OUTPUT, ROOT, SOURCE, digest, frames, read, save
+from benchmark.expanded_baseline import COHORTS, MEASURED_REVISION, OUTPUT, ROOT, SOURCE, WORKTREES, digest, frames, read, save
 from benchmark.expanded_score_validation import best_translation_fast
 from benchmark.mask_blocks import decoded_pack
 from benchmark.strip_visibility_audit import horizontal_slivers
@@ -22,6 +22,7 @@ from calibration.world import GROUND
 
 RELEASE = ROOT / 'benchmark/reviews'
 FIXED_DATASET = 'fixed-104'
+ASSIGNMENT_FIELDS = ('assigned', 'fallback', 'assigned_correct', 'assigned_positions')
 
 
 @dataclass
@@ -73,11 +74,11 @@ def target_breakdown(predictions, reference):
 
 
 def camera_fields(camera):
-    scale = camera.get('camera_status')
+    scale = camera.get('camera_status', camera.get('scale_status'))
     projection = camera.get('P')
     return dict(camera_status=scale, camera_usable=scale == 'supported' and projection is not None,
                 camera_source=camera.get('camera_source'), camera_reason=camera.get('reason'),
-                atlas_camera_reason=camera.get('atlas_camera_reason'))
+                atlas_camera_reason=camera.get('atlas_camera_reason', camera.get('atlas_reason')))
 
 
 def evaluate_pack(entry, pack, camera, *, assignment=None, reference=None):
@@ -119,7 +120,7 @@ def evaluate_pack(entry, pack, camera, *, assignment=None, reference=None):
         raise ValueError(f'Whole-build translation does not match the exact optimum: {entry["id"]}')
     if assignment is None:
         for row in (scores, registered_scores):
-            row.update({key: None for key in ('assigned', 'fallback', 'assigned_correct', 'assigned_positions')})
+            row.update(dict.fromkeys(ASSIGNMENT_FIELDS))
     case = {name: entry[name] for name in ('id', 'dataset', 'split', 'layout', 'family', 'palette')}
     return dict(case, source_sha256=entry['rgb_sha256'], dataset_manifest_sha256=entry['dataset_manifest_sha256'],
                 reference_sha256=reference.hashes, pack_sha256=sha256(payload).hexdigest(),
@@ -151,6 +152,8 @@ def score_task(task):
     entry, root = task
     folder = root / entry['dataset'] / entry['id']
     receipt = read(folder / 'receipt.json')
+    if receipt['revision'] != MEASURED_REVISION:
+        raise ValueError(f'Ordinary build revision differs for {entry["id"]}')
     row = score_build(entry, folder)
     if row['pack_sha256'] != receipt['pack_sha256'] or row['source_sha256'] != receipt['source_sha256']:
         raise ValueError(f'Scored pack differs from the completed-build receipt: {entry["id"]}')
@@ -199,6 +202,15 @@ def fixed_cases():
                        **camera_fields(control['status']))
 
 
+def pooled_typed(scores):
+    if all(row['assigned'] is not None for row in scores):
+        return pooled_scores(scores)
+    placeholders = dict.fromkeys(ASSIGNMENT_FIELDS, 0)
+    result = pooled_scores([row | placeholders for row in scores])
+    result.update(dict.fromkeys(ASSIGNMENT_FIELDS))
+    return result
+
+
 def pooled(cases, available):
     targets = defaultdict(Counter)
     for row in cases:
@@ -207,10 +219,10 @@ def pooled(cases, available):
     result = dict(tested=len(cases), available=available, empty_exports=sum(r['exported'] == 0 for r in cases),
                   visible_truth=sum(r['visible_truth'] for r in cases), required_truth=sum(r['required_truth'] for r in cases),
                   exported=sum(r['exported'] for r in cases), geometry=pooled_scores([r['geometry'] for r in cases]),
-                  scores=pooled_scores([r['scores'] for r in cases]), targets=dict(targets))
+                  scores=pooled_typed([r['scores'] for r in cases]), targets=dict(targets))
     if cases and all('scores' in row['registration'] for row in cases):
         result['registration'] = dict(geometry=pooled_scores([r['registration']['geometry'] for r in cases]),
-                                      scores=pooled_scores([r['registration']['scores'] for r in cases]))
+                                      scores=pooled_typed([r['registration']['scores'] for r in cases]))
     elif cases:
         result['registration'] = dict(geometry=dict(strict=overlap(*(
             sum(r['registration']['geometry']['strict'][k] for r in cases) for k in ('correct', 'missed', 'extras')))))
@@ -220,7 +232,7 @@ def pooled(cases, available):
                             misses_strict=sum(row['geometry']['strict']['missed'] for row in unusable),
                             misses_facade=sum(row['geometry']['facade']['missed'] for row in unusable),
                             usable_geometry=pooled_scores([r['geometry'] for r in supported]),
-                            usable_scores=pooled_scores([r['scores'] for r in supported]))
+                            usable_scores=pooled_typed([r['scores'] for r in supported]))
     return result
 
 
@@ -261,7 +273,7 @@ def confirmation(cases, builds):
         pack = builds / row['dataset'] / row['id'] / 'reconstruction.zip'
         decoded = decoded_pack(pack)
         stable_typed_hash = pack_hash({p: name.removeprefix('minecraft:') for p, name in decoded.items()})
-        previous_pack = ROOT.parent / 'material-seam-confirmation/runs/decorative' / row['id'] / 'reconstruction.zip'
+        previous_pack = WORKTREES / 'material-seam-confirmation/runs/decorative' / row['id'] / 'reconstruction.zip'
         equal_geometry = None
         if previous_pack.is_file():
             if digest(previous_pack) != old['pack_sha256']:
