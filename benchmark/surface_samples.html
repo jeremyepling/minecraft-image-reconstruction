@@ -12,8 +12,14 @@
 <div class="compare"><figure class="card contextCard"><h2>Surrounding context</h2><span>Original perspective</span><a class="photo" id="contextLink" target="_blank"><img id="context" alt="Surface and its surroundings"><span id="contextEmpty" hidden></span></a></figure>
 <figure class="card"><h2>Surface crop</h2><span>Accepted mask pixels</span><a class="photo" id="cropLink" target="_blank"><img id="crop" alt="Selected surface in source perspective"><span id="cropEmpty" hidden></span></a></figure>
 <figure class="card"><h2>Counter sample</h2><span id="dims"></span><a class="photo" id="sampleLink" target="_blank"><img id="sample" alt="Rectified sample used by Block Counter"><span id="sampleEmpty" hidden></span></a></figure></div>
-<p id="measure" class="muted"></p><div id="stages" class="stages"></div><details><summary>How the counter makes this sample</summary><p>The surface crop keeps the source perspective. The context version also shows neighboring pixels. The counter reads the full source image and detected mask directly. It maps a four-corner region to a rectangle, using the estimated wall direction if it needs to construct the corners. The checkerboard shows pixels excluded from the sample. The counter searches the remaining pixels for repeating texture along each axis.</p></details>
-<section class="notes"><h2 id="notesHeading">Surface feedback</h2><label for="note">Feedback</label><textarea id="note" rows="2"></textarea><label for="question">Question</label><textarea id="question" rows="2"></textarea><div class="row"><button id="copy">Copy this surface for chat</button><button id="download">Export all feedback</button><small id="status" role="status"></small></div></section></main>
+<p id="measure" class="muted"></p>
+<section id="nativePanel" hidden><h2>Crop-first experiment</h2><div class="compare">
+<figure class="card"><h2>Native atlas search</h2><svg id="nativePlot" style="width:100%;height:240px" role="img" aria-label="Original surface crop with native atlas matches"></svg><p id="nativeText"></p></figure>
+<figure class="card"><h2>Texture repeat spacing</h2><p id="pitchRaw"></p><p id="pitchRect"></p><small>Spacing is measured in each image’s own pixels. Width comes first. A dash means no repeat passed the check.</small></figure>
+<figure class="card" id="referencePanel" hidden><h2>Recorded plane</h2><a class="photo" id="refLink" target="_blank"><img id="referenceCrop" alt="Surface straightened with recorded visible geometry"></a><small>Reference geometry supplies this comparison. It is excluded from prediction.</small></figure>
+</div></section>
+<div id="stages" class="stages"></div><details><summary>How the counter makes this sample</summary><p>The surface crop keeps the source perspective. The context version also shows neighboring pixels. The counter reads the full source image and detected mask directly. It maps a four-corner region to a rectangle, using the estimated wall direction if it needs to construct the corners. The checkerboard shows pixels excluded from the sample. The counter searches the remaining pixels for repeating texture along each axis.</p></details>
+<section class="notes"><h2 id="notesHeading">Surface feedback</h2><label for="note">Feedback</label><textarea id="note" rows="2"></textarea><label for="question">Question</label><textarea id="question" rows="2"></textarea><div class="row"><button id="copy">Copy this surface for chat</button><button id="download">Export all feedback</button><small id="status" role="status">Notes save per surface in this browser. Attach the exported JSON in chat to share a batch.</small></div></section></main>
 <script src="sample-data.js"></script><script>
 const $=id=>document.getElementById(id), storeKey='minecraft-surface-review-v1';
 let b=0,m=0,token=0,hitPixels=null,notes={};
@@ -30,12 +36,35 @@ function draw(){if(!hitPixels)return;const cv=$('overlay'),w=cv.width,h=cv.heigh
  layer.data[i]=78;layer.data[i+1]=243;layer.data[i+2]=221;layer.data[i+3]=edge?255:78}
  ctx.putImageData(layer,0,0);const q=mask().quad;if($('quad').checked&&q){ctx.beginPath();q.forEach(([x,y],i)=>i?ctx.lineTo(x,y):ctx.moveTo(x,y));ctx.closePath();ctx.strokeStyle='#17212a';ctx.lineWidth=5;ctx.stroke();ctx.lineWidth=3;ctx.strokeStyle='#ffcd63';ctx.stroke()}}
 
+function nativeReview(r){
+ const panel=$('nativePanel');panel.hidden=!r.pitch&&!r.native;if(panel.hidden)return;
+ const pitch=a=>(a||[null,null]).map(v=>Number.isFinite(v?.lag)?v.lag.toFixed(1)+' px':'—').join(' × ');
+ const spacing=(values,peaks)=>pitch(values)+(peaks?.some((p,i)=>p&&!values?.[i])?' (strongest candidates before filtering: '+pitch(peaks)+')':'');
+ $('pitchRaw').textContent='Original crop · '+spacing(r.pitch?.raw,r.pitch?.raw_peak);
+ $('pitchRect').textContent='Straightened sample · '+spacing(r.pitch?.rectified,r.pitch?.rectified_peak);
+ const svg=$('nativePlot');svg.replaceChildren();
+ if(r.cropBox&&r.images.crop){const [x,y,right,bottom]=r.cropBox;
+ svg.setAttribute('viewBox',[x,y,right-x,bottom-y].join(' '));
+ function add(tag,attrs){const n=document.createElementNS(svg.namespaceURI,tag);Object.entries(attrs).forEach(([k,v])=>n.setAttribute(k,v));svg.append(n)}
+ add('image',{x,y,width:right-x,height:bottom-y,href:r.images.crop});
+ for(const hit of r.native?.matches||[]){if(hit.quad)add('polygon',{points:hit.quad.map(p=>p.join(',')).join(' '),fill:'none',stroke:'#6bf8b0','stroke-width':1.1})}}
+ const n=r.native;
+ $('nativeText').textContent=n?[n.decision+' · '+n.reason,
+   n.matches?.length?n.matches.length+' local atlas matches (green outlines).':'',
+   n.pitch_at_origin_px?'Estimated block spacing near the search center: '+n.pitch_at_origin_px.join(' × ')+' source pixels.':'',
+   n.matched_columns?.length&&n.matched_rows?.length?'Local support spans '+n.matched_columns.length+' columns and '+n.matched_rows.length+' rows.':''
+ ].filter(Boolean).join(' '):'No native atlas search recorded.';
+ $('referencePanel').hidden=!r.referenceSample;
+ if(r.referenceSample){$('refLink').href=r.referenceSample;$('referenceCrop').src=r.referenceSample}
+}
 function downstream(c,r){
+ nativeReview(r);
  const captions={directions:['Face direction','Blue = wall, green = top, purple = underside. Selected surface: '+r.direction+'.'],
  depth:['Relative depth','Warmer colors indicate a closer estimated surface.'],
  grids:['Atlas face grids','Colored outlines show faces measured before the row-transfer test.'],
  joins:['After row transfer','Green = exported cells, blue = unjoined cells, gold = matched edges.'],
  placed:['Scored placement','Green = correct block and material, amber = correct position, blue = missed, pink = extra.']};
+ if(c.panels.cropPlaced)captions.cropPlaced=['Placement with crop-first matches','Scored after aligning the native face grid to the existing corner. Uses the same colors as Scored placement.'];
  const accepted=c.joins.filter(v=>v.decision==='accepted'&&[v.donor,v.receiver].includes(r.label));
  captions.joins[1]+=' '+(accepted.length?accepted.map(v=>v.donor+' → '+v.receiver+' ('+v.receiver_rows+' rows)').join(', '):'No accepted transfer for '+r.label+'.');
  $('measure').textContent=['Width','Height'].map((name,i)=>{const a=r.axes?.[i];return name+' · '+(a?.source||'no recorded measurement')+(Number.isFinite(a?.count)?' ('+a.count.toFixed(2)+' blocks)':'')}).join('    /    ');
@@ -64,6 +93,6 @@ $('prev').onclick=()=>move(-1);$('next').onclick=()=>move(1);$('surface').onchan
 for(const id of ['all','quad'])$(id).onchange=show;for(const id of ['note','question'])$(id).oninput=save;
 document.addEventListener('keydown',e=>{if(e.ctrlKey||e.metaKey||e.altKey||['INPUT','SELECT','TEXTAREA'].includes(e.target.tagName))return;if(['ArrowLeft','ArrowRight'].includes(e.key)){e.preventDefault();move(e.key==='ArrowLeft'?-1:1)}});
 $('copy').onclick=async()=>{const r=mask(),v=notes[key()]||{};const text=[scene().title+' · '+r.label+' ('+r.id+')',location.href,'Block count '+r.dimensions.map(n=>n??'?').join(' × '),v.feedback&&'Feedback: '+v.feedback,v.question&&'Question: '+v.question].filter(Boolean).join('\n');try{await navigator.clipboard.writeText(text);$('status').textContent='Copied. Paste into this chat.'}catch{window.prompt('Copy this surface for chat',text)}};
-$('download').onclick=()=>{const url=URL.createObjectURL(new Blob([JSON.stringify({version:1,surfaces:Object.values(notes)},null,2)],{type:'application/json'}));const a=document.createElement('a');a.href=url;a.download='surface-review-feedback.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000)};
+$('download').onclick=()=>{const url=URL.createObjectURL(new Blob([JSON.stringify({version:1,surfaces:Object.values(notes)},null,2)],{type:'application/json'}));const a=document.createElement('a');a.href=url;a.download='surface-review-feedback.json';a.click();document.getElementById("status").textContent='Downloaded. Attach the JSON file in chat to share your review.';setTimeout(()=>URL.revokeObjectURL(url),1000)};
 scenes.forEach((s,i)=>$('build').add(new Option(s.title,i)));const [frame,label]=location.hash.slice(1).split('/');const first=Math.max(0,scenes.findIndex(s=>s.id===frame));chooseBuild(first,Math.max(0,scenes[first].masks.findIndex(r=>r.label===label)));
 </script></html>
