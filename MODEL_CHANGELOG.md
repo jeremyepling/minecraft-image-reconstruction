@@ -4,6 +4,8 @@ These entries cover model inputs, rules around model outputs, and evaluation cha
 
 ### November 27, 2026
 
+- **Surface feedback trials.** Leveling near-horizontal image lines improved measured row orientation on 21 of 26 comparable walls; it worsened five. Cloud filtering cleared 90,620 background pixels across six synthetic sky views without losing visible structure pixels or changing the decoded placement. [Castle and Viaduct annotations, measurements and decisions](benchmark/reviews/castle-feedback-01/README.md)
+
 - **Experimental atlas matching in the native surface crop.** The warped Castle S04 counter sample stretched an occlusion boundary into a full-height edge. Source-pixel atlas matches identified 38 correct visible faces. Registering those cells to the existing shared corner recovered 31 additional correct positions with no extra positions or geometry losses. Only Castle changed on the six open-sky views. [Ablations and paired scores](benchmark/reviews/crop-first-01/README.md)
 
 - **Experimental row transfer across a visible corner.** Castle S04 borrowed the 27-row spacing from S03. Joining it to a rebuilt donor added nine correct blocks without additional extras. The other five sky views had no accepted transfer. Keep the experiment separate while testing less textured donors and improving material assignment. [Paired scores and controls](benchmark/reviews/shared-corner-rows-01/README.md)

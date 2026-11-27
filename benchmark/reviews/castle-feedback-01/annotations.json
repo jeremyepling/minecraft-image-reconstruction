@@ -1,0 +1,135 @@
+{
+  "version": 1,
+  "surfaces": [
+    {
+      "build": "Castle 01",
+      "frame": "test-castle-01-ashlar-high-right",
+      "surface": "S04",
+      "mask": "mask-3",
+      "source_sha256": "37ad53b347c9c5fb3bce3198159fb058f2270b2ffe03173a747aec3805a8f0c4",
+      "handoffs": "ea772cd80a7f9ad416df89ccb517ce7673051d41559174e3d6e8cee7dfc15a55/aca1b76dff405a8840c3277c05c91667f74c762df2b546b72e2ef66c40f03e9e",
+      "feedback": "The surface crop is good, but the counter sample destorts it really bad. surface crop shows that wall going away from me left to right. the counter sample shows it coming towawrd me really close from left to right. maybe this is the direction being wrong? given the low distortion. can you try to match the atlas and texture block counts for the surface croup first before trying to skew it?",
+      "question": ""
+    },
+    {
+      "build": "Castle 01",
+      "frame": "test-castle-01-ashlar-high-right",
+      "surface": "S08",
+      "mask": "mask-7",
+      "source_sha256": "37ad53b347c9c5fb3bce3198159fb058f2270b2ffe03173a747aec3805a8f0c4",
+      "handoffs": "ea772cd80a7f9ad416df89ccb517ce7673051d41559174e3d6e8cee7dfc15a55/aca1b76dff405a8840c3277c05c91667f74c762df2b546b72e2ef66c40f03e9e",
+      "feedback": "surface crop is a little to the right and misses some part of a block on the left. the counter sample changes the skew too much and now it's going the wrong way. I'd try to sample/atlas/texture match from the surface crop. it isn't the skewed and would only need some minor correction of any. when it correct. ",
+      "question": "looks for close to horizontal lines and the uses those to be the thing to make flat and skew the entire image off that. you should be able to put a gride on these blocks from the atlas\n"
+    },
+    {
+      "build": "Castle 01",
+      "frame": "test-castle-01-ashlar-high-right",
+      "surface": "S03",
+      "mask": "mask-2",
+      "source_sha256": "37ad53b347c9c5fb3bce3198159fb058f2270b2ffe03173a747aec3805a8f0c4",
+      "handoffs": "ea772cd80a7f9ad416df89ccb517ce7673051d41559174e3d6e8cee7dfc15a55/aca1b76dff405a8840c3277c05c91667f74c762df2b546b72e2ef66c40f03e9e",
+      "feedback": "why didn't atlas face gride identify all the other blocks. they're clear matches. it identified other blocks thats the look the same. the 'after row transfer' is correct. why didn't all the blocks get placed.",
+      "question": "after row tranferw looks good, but scored placement is all blue. why did the after row transfer blocks get placed or be scored correctly?"
+    },
+    {
+      "build": "Castle 01",
+      "frame": "test-castle-01-ashlar-high-right",
+      "surface": "S05",
+      "mask": "mask-4",
+      "source_sha256": "37ad53b347c9c5fb3bce3198159fb058f2270b2ffe03173a747aec3805a8f0c4",
+      "handoffs": "ea772cd80a7f9ad416df89ccb517ce7673051d41559174e3d6e8cee7dfc15a55/aca1b76dff405a8840c3277c05c91667f74c762df2b546b72e2ef66c40f03e9e",
+      "feedback": "",
+      "question": "I'd use surfaces around it and their grids to guess how many blocks and try to place them vs. not place anyting."
+    },
+    {
+      "build": "Castle 01",
+      "frame": "test-castle-01-ashlar-high-right",
+      "surface": "S06",
+      "mask": "mask-5",
+      "source_sha256": "37ad53b347c9c5fb3bce3198159fb058f2270b2ffe03173a747aec3805a8f0c4",
+      "handoffs": "ea772cd80a7f9ad416df89ccb517ce7673051d41559174e3d6e8cee7dfc15a55/aca1b76dff405a8840c3277c05c91667f74c762df2b546b72e2ef66c40f03e9e",
+      "feedback": "this is cloud. it sholdn't match any blocks.",
+      "question": ""
+    },
+    {
+      "build": "Castle 01",
+      "frame": "test-castle-01-ashlar-high-right",
+      "surface": "S07",
+      "mask": "mask-6",
+      "source_sha256": "37ad53b347c9c5fb3bce3198159fb058f2270b2ffe03173a747aec3805a8f0c4",
+      "handoffs": "ea772cd80a7f9ad416df89ccb517ce7673051d41559174e3d6e8cee7dfc15a55/aca1b76dff405a8840c3277c05c91667f74c762df2b546b72e2ef66c40f03e9e",
+      "feedback": "this is cloud. it sholdn't match any blocks.",
+      "question": "my some cloud identify decision model or algo"
+    },
+    {
+      "build": "Castle 01",
+      "frame": "test-castle-01-ashlar-high-right",
+      "surface": "S09",
+      "mask": "mask-8",
+      "source_sha256": "37ad53b347c9c5fb3bce3198159fb058f2270b2ffe03173a747aec3805a8f0c4",
+      "handoffs": "ea772cd80a7f9ad416df89ccb517ce7673051d41559174e3d6e8cee7dfc15a55/aca1b76dff405a8840c3277c05c91667f74c762df2b546b72e2ef66c40f03e9e",
+      "feedback": "surface croup missed some a 3 tall and 1 wide separate surface. it's a big overskewed and counter sample is cropped to tight and loses information.",
+      "question": "this shoudl be easy to count if the counter crop wasn't too tight"
+    },
+    {
+      "build": "Castle 01",
+      "frame": "test-castle-01-ashlar-high-right",
+      "surface": "S11",
+      "mask": "mask-10",
+      "source_sha256": "37ad53b347c9c5fb3bce3198159fb058f2270b2ffe03173a747aec3805a8f0c4",
+      "handoffs": "ea772cd80a7f9ad416df89ccb517ce7673051d41559174e3d6e8cee7dfc15a55/aca1b76dff405a8840c3277c05c91667f74c762df2b546b72e2ef66c40f03e9e",
+      "feedback": "this is a cloud",
+      "question": ""
+    },
+    {
+      "build": "Castle 01",
+      "frame": "test-castle-01-ashlar-high-right",
+      "surface": "S12",
+      "mask": "mask-12",
+      "source_sha256": "37ad53b347c9c5fb3bce3198159fb058f2270b2ffe03173a747aec3805a8f0c4",
+      "handoffs": "ea772cd80a7f9ad416df89ccb517ce7673051d41559174e3d6e8cee7dfc15a55/aca1b76dff405a8840c3277c05c91667f74c762df2b546b72e2ef66c40f03e9e",
+      "feedback": "",
+      "question": "counter sample is overskews and now in the opposite skew "
+    },
+    {
+      "build": "Castle 01",
+      "frame": "test-castle-01-ashlar-high-right",
+      "surface": "S13",
+      "mask": "mask-13",
+      "source_sha256": "37ad53b347c9c5fb3bce3198159fb058f2270b2ffe03173a747aec3805a8f0c4",
+      "handoffs": "ea772cd80a7f9ad416df89ccb517ce7673051d41559174e3d6e8cee7dfc15a55/aca1b76dff405a8840c3277c05c91667f74c762df2b546b72e2ef66c40f03e9e",
+      "feedback": "this surface shouldn't be here it's alread covered by s03",
+      "question": "maybe a pass to see and resolve overlaps based on a confidence score?"
+    },
+    {
+      "build": "Castle 01",
+      "frame": "test-castle-01-ashlar-high-right",
+      "surface": "S14",
+      "mask": "mask-11",
+      "source_sha256": "37ad53b347c9c5fb3bce3198159fb058f2270b2ffe03173a747aec3805a8f0c4",
+      "handoffs": "ea772cd80a7f9ad416df89ccb517ce7673051d41559174e3d6e8cee7dfc15a55/aca1b76dff405a8840c3277c05c91667f74c762df2b546b72e2ef66c40f03e9e",
+      "feedback": "this surface shouldn't be here it's alread covered by s03",
+      "question": "maybe a pass to see and resolve overlaps based on a confidence score?"
+    },
+    {
+      "build": "Castle 01",
+      "frame": "test-castle-01-ashlar-high-right",
+      "surface": "S15",
+      "mask": "mask-14",
+      "source_sha256": "37ad53b347c9c5fb3bce3198159fb058f2270b2ffe03173a747aec3805a8f0c4",
+      "handoffs": "ea772cd80a7f9ad416df89ccb517ce7673051d41559174e3d6e8cee7dfc15a55/aca1b76dff405a8840c3277c05c91667f74c762df2b546b72e2ef66c40f03e9e",
+      "feedback": "accept maks too tight. counter sample is whay to side skewed. the default mask crops is fine. it doesn't need correction.",
+      "question": ""
+    },
+    {
+      "build": "Castle 01",
+      "frame": "test-castle-01-ashlar-high-right",
+      "surface": "S21",
+      "mask": "mask-20",
+      "source_sha256": "37ad53b347c9c5fb3bce3198159fb058f2270b2ffe03173a747aec3805a8f0c4",
+      "handoffs": "ea772cd80a7f9ad416df89ccb517ce7673051d41559174e3d6e8cee7dfc15a55/aca1b76dff405a8840c3277c05c91667f74c762df2b546b72e2ef66c40f03e9e",
+      "feedback": "cloud",
+      "question": ""
+    }
+  ]
+}

@@ -13,6 +13,10 @@
 <figure class="card"><h2>Surface crop</h2><span>Accepted mask pixels</span><a class="photo" id="cropLink" target="_blank"><img id="crop" alt="Selected surface in source perspective"><span id="cropEmpty" hidden></span></a></figure>
 <figure class="card"><h2>Counter sample</h2><span id="dims"></span><a class="photo" id="sampleLink" target="_blank"><img id="sample" alt="Rectified sample used by Block Counter"><span id="sampleEmpty" hidden></span></a></figure></div>
 <p id="measure" class="muted"></p>
+<section id="linePanel" hidden><h2>Level rows from visible edges</h2><div class="compare">
+<figure class="card"><h2>Supporting lines</h2><svg style="width:100%;height:225px" id="linePlot" aria-label="Source crop and measured near-horizontal line segments"></svg></figure>
+<figure class="card"><h2>Row-leveled crop</h2><a id="levelLink" class="photo" target="_blank"><img id="level" alt="Crop after the measured row correction"></a></figure>
+<div class="card"><p id="lineMethod"></p><p id="lineMetric"></p></div></div></section>
 <section id="nativePanel" hidden><h2>Crop-first experiment</h2><div class="compare">
 <figure class="card"><h2>Native atlas search</h2><svg id="nativePlot" style="width:100%;height:240px" role="img" aria-label="Original surface crop with native atlas matches"></svg><p id="nativeText"></p></figure>
 <figure class="card"><h2>Texture repeat spacing</h2><p id="pitchRaw"></p><p id="pitchRect"></p><small>Spacing is measured in each image’s own pixels. Width comes first. A dash means no repeat passed the check.</small></figure>
@@ -37,6 +41,17 @@ function draw(){if(!hitPixels)return;const cv=$('overlay'),w=cv.width,h=cv.heigh
  ctx.putImageData(layer,0,0);const q=mask().quad;if($('quad').checked&&q){ctx.beginPath();q.forEach(([x,y],i)=>i?ctx.lineTo(x,y):ctx.moveTo(x,y));ctx.closePath();ctx.strokeStyle='#17212a';ctx.lineWidth=5;ctx.stroke();ctx.lineWidth=3;ctx.strokeStyle='#ffcd63';ctx.stroke()}}
 
 function nativeReview(r){
+ const review=r.lineReview;
+ $('linePanel').hidden=!review;
+ if(review&&r.cropBox){
+ const [x,y,right,bottom]=r.cropBox, w=right-x,h=bottom-y;
+ const plot=$('linePlot');plot.replaceChildren();plot.setAttribute('viewBox',[0,0,w,h].join(' '));
+ const im=document.createElementNS(plot.namespaceURI,'image');im.setAttribute('href',r.images.crop);im.setAttribute('width',w);im.setAttribute('height',h);plot.append(im);
+ for(const [a,b] of review.lines||[]){const l=document.createElementNS(plot.namespaceURI,'line');for(const [k,v] of Object.entries({x1:a[0],y1:a[1],x2:b[0],y2:b[1],stroke:'#ffe060','stroke-width':1.3}))l.setAttribute(k,v);plot.append(l)}
+ $('level').src=$('levelLink').href=r.images.level||r.images.crop;
+ $('lineMethod').textContent=review.slope===null?'Insufficient agreement. This trial retains the source crop.':review.lines.length+' source segments agreed. Applied a vertical shear of '+(Math.atan(review.slope)*180/Math.PI).toFixed(1)+'°.';
+ $('lineMetric').textContent=review.old_angle==null?'No comparable recorded wall-row measurement.':'Recorded row tilt, in degrees: original '+review.raw_angle+'°, current counter '+review.old_angle+'°, trial '+review.candidate_angle+'°. Zero is horizontal.';
+ }
  const panel=$('nativePanel');panel.hidden=!r.pitch&&!r.native;if(panel.hidden)return;
  const pitch=a=>(a||[null,null]).map(v=>Number.isFinite(v?.lag)?v.lag.toFixed(1)+' px':'—').join(' × ');
  const spacing=(values,peaks)=>pitch(values)+(peaks?.some((p,i)=>p&&!values?.[i])?' (strongest candidates before filtering: '+pitch(peaks)+')':'');
@@ -79,7 +94,7 @@ function downstream(c,r){
 
 function show(){const c=scene(),r=mask();$('build').value=b;$('surface').value=m;$('prev').disabled=!b&&!m;$('next').disabled=b===scenes.length-1&&m===c.masks.length-1;
  $('source').src=$('all').checked?c.masksImage:c.source;$('progress').textContent=(m+1)+' of '+c.masks.length;
- $('caption').textContent=c.title+' · '+r.label+' · Turquoise marks the selected mask.'+(r.quad?' Gold outlines the sampling area.':' No sampling area was saved.');
+ $('caption').textContent=c.title+' · '+r.label+' · Turquoise marks the selected mask.'+(r.quad?' Gold outlines the sampling area.':' No sampling area was saved.')+(r.skyNote?' '+r.skyNote:'');
  $('dims').textContent='Block count '+r.dimensions.map(v=>v??'?').join(' × ');
  photo('context',r.images.context,'No saved context');photo('crop',r.images.crop,'No saved crop');photo('sample',r.images.sample,r.reason||'No sample was produced.');
  $('notesHeading').textContent='Feedback on '+c.title+' · '+r.label;const saved=notes[key()]||{};$('note').value=saved.feedback||'';$('question').value=saved.question||'';

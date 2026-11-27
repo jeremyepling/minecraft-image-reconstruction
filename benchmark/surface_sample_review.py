@@ -19,6 +19,10 @@ def main():
     stages = json.loads(raw.split('=', 1)[1].strip().rstrip(';'))
     pitch_path = ROOT / 'runs/native-crop-audit-01/pitch-controls.json'
     pitch = read(pitch_path) if pitch_path.exists() else {}
+    line_dir = ROOT / 'runs/castle-feedback-01/rows'
+    line_report = read(line_dir / 'measurements.json') if (line_dir / 'measurements.json').exists() else {}
+    sky_path = WORKTREES / 'sky-mask-feedback/runs/sky-mask-feedback-01/report.json'
+    sky_cases = {s['id']: s for s in read(sky_path)['frames']} if sky_path.exists() else {}
     audit_dir = pitch_path.parent
     audit_path = audit_dir / 'castle-S04-distortion.json'
     audit = read(audit_path) if audit_path.exists() else {}
@@ -32,6 +36,8 @@ def main():
         joins = read(ROOT / 'runs/shared-corner-rows-01/sky' / ident / 'seams.json')['seams']
         sha = digest(PRIOR / scene['source'])
         assert sha == read(handoff / 'build-manifest.json')['image_sha256']
+        sky_case = sky_cases.get(ident, {})
+        assert sky_case.get('source_sha256', sha) == sha
         native_path = WORKTREES / 'surface-crop-first/runs/surface-crop-first-01/sky' / ident / 'native-evidence.json'
         evidence = read(native_path) if native_path.exists() else {}
         if evidence.get('source_sha256', sha) != sha:
@@ -53,6 +59,18 @@ def main():
                     shutil.copyfile(handoff / path, dest)
                     images[key] = dest.relative_to(OUTPUT).as_posix()
             reference_sample = None
+            level = line_report.get(ident, {}).get(mask['label'])
+            trim = sky_case.get('mixed_trim', {}).get(mask['id'])
+            sky_removed = mask['id'] in sky_case.get('removed_ids', [])
+            sky_note = None
+            if trim:
+                sky_note = f"Cloud filter trial removed {trim['rejected']:,} background pixels and preserved {trim['retained']} pixels."
+            if sky_removed:
+                sky_note = 'Cloud filter trial excluded this entire mask. The reference records no visible build pixels in it.'
+            if level and level['slope'] is not None:
+                target = folder / f'{mask["label"]}-row-level.png'
+                shutil.copyfile(line_dir / ident / f'{mask["label"]}.png', target)
+                images['level'] = target.relative_to(OUTPUT).as_posix()
             if audit.get('frame') == ident and audit['surface_mask'] == mask['id']:
                 assert audit['source']['source_sha256'] == sha
                 target = folder / f'{mask["label"]}-reference.png'
@@ -64,6 +82,8 @@ def main():
                               cropBox=plane.get('source_crop', {}).get('xyxy'),
                               pitch=pitch.get(ident, {}).get(mask['id']),
                               native=native.get(mask['id']),
+                              lineReview=level,
+                              skyNote=sky_note,
                               referenceSample=reference_sample,
                               axes=counter.get('evidence', {}).get('axes', []),
                               quad=counter.get('quad'), reason=counter.get('reason')))
