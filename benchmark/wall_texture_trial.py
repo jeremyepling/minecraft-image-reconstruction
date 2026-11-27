@@ -10,6 +10,11 @@ from engine import atlas_plane_depth, surface_model, texture_guided_count
 def run(image,parts,counts,camera,prior,mode):
     regions,edits=rewrite(image,parts,camera,mode)
     if not edits:return prior,dict(edits=[])
+    cells,detail=rebuild(image,counts,camera,regions)
+    return cells,dict(edits=edits,**detail)
+
+
+def rebuild(image,counts,camera,regions):
     by_id={c['id']:c for c in counts['surfaces']}
     created=[p for p in regions if p['id'] not in by_id]
     if created:
@@ -25,7 +30,7 @@ def run(image,parts,counts,camera,prior,mode):
         by_id.update((c['id'],c) for c in new['surfaces'])
     next_counts=dict(counts,surfaces=[by_id[p['id']] for p in regions])
     cells,_=atlas_plane_depth.place_ranked(image,'26.3',regions,next_counts,camera,atlas_path=STABLE/'runs/26.3/atlas')
-    return cells,dict(edits=edits,recomputed=[dict(id=p['id'],counts=by_id[p['id']]['counts']) for p in created])
+    return cells,dict(recomputed=[dict(id=p['id'],counts=by_id[p['id']]['counts']) for p in created])
 
 
 def split(image,parts,counts,camera,prior):return run(image,parts,counts,camera,prior,'split')
