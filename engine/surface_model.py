@@ -707,7 +707,8 @@ def build(image_path, version, out, *, outlines=None, order_method=None, through
             from engine.export import JAVA_26_3_FORMAT, write_pack
             from engine.visible_placement import place
             cells, status = place(image, version, placement_parts, counts=placement_counts,
-                                  atlas_path=camera_atlas_path, joint_foreground=joint_foreground, camera=metric_camera)
+                                  atlas_path=camera_atlas_path, joint_foreground=joint_foreground, camera=metric_camera,
+                                  opening_parts=pre_inset)
             if inset_events:
                 from engine.visible_inset_cells import inset_edits
                 added, removed = inset_edits(image.size, metric_camera, measured_patches, inset_events, cells)
@@ -715,11 +716,10 @@ def build(image_path, version, out, *, outlines=None, order_method=None, through
                 status.update(placed_blocks=len(cells), inset_placement=dict(added=len(added), removed=len(removed),
                     source='photographed backs and occluding cells inside measured rims'))
             if pre_inset is not None and cells and joint_foreground:
-                from engine import pavement_opening
                 from engine.pavement_obstructions import window_obstructions
                 # A flush platform can share the pavement grid. Keep its surface
                 # and counts, and test only elevated cubes obstructing those rays.
-                matched = set(pavement_opening.detect(image, pre_inset, status))
+                matched = set(status.get('pavement_surface_ids', []))
                 if matched:
                     regions = [part for part in pre_inset if part['id'] in matched]
                     blocked = window_obstructions(image.size, status, regions, cells)

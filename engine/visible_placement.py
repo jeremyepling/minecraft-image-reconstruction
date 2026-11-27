@@ -137,13 +137,22 @@ def _charts(image, version, parts, counts):
     return charts
 
 
-def place(image, version, parts, *, counts=None, atlas_path=None, joint_foreground=True, camera=None):
+def place(image, version, parts, *, counts=None, atlas_path=None, joint_foreground=True, camera=None, opening_parts=None):
     """Return local (x, y, z) block coordinates and camera/placement diagnostics."""
     from engine.atlas_plane_depth import place_ranked
     image = image.convert('RGB')
     if camera is None:
         camera = seam_camera(image, version, atlas_path=atlas_path)
-    return place_ranked(image, version, parts, counts, camera, atlas_path=atlas_path, joint_foreground=joint_foreground)
+    matched = []
+    if opening_parts is not None and joint_foreground and camera.get('P') is not None:
+        from engine.pavement_opening import detect
+        matched = detect(image, opening_parts, camera)
+        if matched:
+            parts = [dict(part, pavement_through_opening=True) if part['id'] in matched else part for part in parts]
+    cells, status = place_ranked(image, version, parts, counts, camera, atlas_path=atlas_path, joint_foreground=joint_foreground)
+    if matched:
+        status['pavement_surface_ids'] = matched
+    return cells, status
 
 
 def place_with_camera(image, version, parts, counts, camera, select_level=None, *,
@@ -171,6 +180,11 @@ def place_with_camera(image, version, parts, counts, camera, select_level=None, 
                                        partial=partial, axes=axes, walls_first=walls_first, reconcile=reconcile)
     if refine_candidates is not None:
         status['secondary_depths'] = refine_candidates(parts, masks, projection, eye, candidates)
+    # Ground tiles seen through a verified opening cannot be evidence for an
+    # elevated platform. Keep the base course and all other surfaces' proposals.
+    for part, evidence in zip(parts, candidates, strict=True):
+        if part.get('pavement_through_opening'):
+            evidence.difference_update({cell for cell in evidence if cell[1] > 0})
     cells = sorted(strict.union(*candidates))
     if axes is None:
         owner = _frontmost_cells(cells, projection, eye, shape)
