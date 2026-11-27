@@ -203,3 +203,63 @@ def recover(image,parts,counts,camera,prior):
     ctx,pool,predicted=proposals(image,parts,camera,prior)
     kept=ctx.finalize(predicted,True) if predicted else set()
     return prior|kept,dict(proposed=len(pool),matched=len(predicted),kept=len(kept))
+
+
+def supported(ctx,cells,*,between):
+    """Require the new top to repair a photographed gap between measured rim cells."""
+    accepted=set(cells)
+    while accepted:
+        ordered=sorted(ctx.prior|accepted)
+        owner,axes=_frontmost_cells(ordered,ctx.native,ctx.eye,ctx.shape,face_axes=True)
+        idx={c:i for i,c in enumerate(ordered)}
+        keep=set()
+        for c in accepted:
+            x,y,z=c
+            anchors=ctx.levels[y]
+            # These bounds measure the footprint along both image-derived grid axes.
+            if not (any(a<=x for a,b in anchors) and any(a>=x for a,b in anchors)
+                    and any(b<=z for a,b in anchors) and any(b>=z for a,b in anchors)):
+                continue
+            if between and not any(
+                any((x+dx*k,z+dz*k) in anchors for k in range(1,6))
+                and any((x-dx*k,z-dz*k) in anchors for k in range(1,6))
+                for dx,dz in ((1,0),(0,1))):
+                continue
+            xx,yy=(None,None)
+            face=ctx.face(c,(owner,axes,idx))
+            if face is None:
+                continue
+            xx,yy=face
+            fresh=ctx.owner[yy,xx]<0
+            if fresh.sum()<3 or fresh.mean()<.8:
+                continue
+            vv,uu=np.nonzero(owner==idx[c])
+            if np.any(ctx.sky[vv,uu]):
+                continue
+            sides=axes[vv,uu]!=1
+            if sides.sum()>2:
+                oriented=ctx.masks[axes[vv[sides],uu[sides]],vv[sides],uu[sides]]
+                if oriented.mean()<.94:
+                    continue
+            if not between and not ctx.repeated(c,face):
+                continue
+            if between and ctx.masks[1,yy,xx].mean()<.95:
+                continue
+            keep.add(c)
+        keep=ctx.finalize(keep,not between)
+        if keep==accepted:
+            break
+        accepted=keep
+    return accepted
+
+
+def strict(image,parts,counts,camera,prior):
+    ctx,pool,predicted=proposals(image,parts,camera,prior)
+    kept=supported(ctx,predicted,between=False) if predicted else set()
+    return prior|kept,dict(proposed=len(pool),matched=len(predicted),kept=len(kept))
+
+
+def bracket(image,parts,counts,camera,prior):
+    ctx,pool,_=proposals(image,parts,camera,prior)
+    kept=supported(ctx,pool,between=True) if pool else set()
+    return prior|kept,dict(proposed=len(pool),kept=len(kept))
