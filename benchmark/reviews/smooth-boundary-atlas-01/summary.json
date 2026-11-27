@@ -1,0 +1,393 @@
+{
+  "baseline": "a95816d",
+  "stage": "Surface Finder",
+  "placement_rerun": false,
+  "proposal_sha256": "b4697d8d908df9a23f457d57304936c13c9eba9ae503aa4454611d79d0b43560",
+  "source_manifests": {
+    "raw/.": "21f5c73448d659dd74950fab3269e762b3d8a28b5d8f705a2863a3408b4b692e",
+    "raw/transfer": "b91ed0590b41b2a7fe0a625c833aa07292c17ef9a71ad308e033ad2bcc4e3597",
+    "row/row-fixed": "d482a295a1a6e3a5a412da449efbb54f7c2e72b1f4738c9de82c31519ff7ba48",
+    "row/row-transfer": "c66c399686039d9e0f2cf620854d376a885ca997fcae05fa900bd7c2b6d949cb"
+  },
+  "atlas": {
+    "version": "26.3",
+    "atlas_sha256": "49b477fbfe5f2171c2529e3ffe1722f09fee5a094de2b6b99831512b8601c950",
+    "client_sha256": "4508d006323f24fa02876310c192d739af56516eb259000ac50f0909a68c9a2d",
+    "placement_index_sha256": "32f95873f5b10e0fa36023c149b4277a4b1f7a59fb77940ede120f9292f37ac6",
+    "atlas_json_sha256": "f33529ac90984827e82bf8720d8bd122e11f1386fb6c49a70379437a3c4c54a2",
+    "texture_count": 448,
+    "block_count": 384,
+    "scope": "all opaque untinted full-cube face sprites in the placement index, all six directions"
+  },
+  "smooth_sprites": 33,
+  "results": {
+    "fixed": {
+      "raw/proposals": {
+        "views": 104,
+        "affected_views": 17,
+        "events": 26,
+        "abstentions": 0,
+        "pixels": 84733,
+        "on_host": 84401,
+        "background": 312,
+        "neighbor": 20,
+        "roi_pixels": 18464
+      },
+      "raw/atlas": {
+        "views": 104,
+        "affected_views": 14,
+        "events": 19,
+        "abstentions": 7,
+        "pixels": 82943,
+        "on_host": 82923,
+        "background": 0,
+        "neighbor": 20,
+        "roi_pixels": 18464
+      },
+      "raw/atlas_ground": {
+        "views": 104,
+        "affected_views": 14,
+        "events": 19,
+        "abstentions": 7,
+        "pixels": 82943,
+        "on_host": 82923,
+        "background": 0,
+        "neighbor": 20,
+        "roi_pixels": 18464
+      },
+      "row/proposals": {
+        "views": 104,
+        "affected_views": 4,
+        "events": 7,
+        "abstentions": 0,
+        "pixels": 15542,
+        "on_host": 15542,
+        "background": 0,
+        "neighbor": 0,
+        "roi_pixels": 0
+      },
+      "row/atlas": {
+        "views": 104,
+        "affected_views": 4,
+        "events": 7,
+        "abstentions": 0,
+        "pixels": 15542,
+        "on_host": 15542,
+        "background": 0,
+        "neighbor": 0,
+        "roi_pixels": 0
+      },
+      "row/atlas_ground": {
+        "views": 104,
+        "affected_views": 4,
+        "events": 7,
+        "abstentions": 0,
+        "pixels": 15542,
+        "on_host": 15542,
+        "background": 0,
+        "neighbor": 0,
+        "roi_pixels": 0
+      }
+    },
+    "transfer": {
+      "raw/proposals": {
+        "views": 100,
+        "affected_views": 4,
+        "events": 6,
+        "abstentions": 0,
+        "pixels": 3029,
+        "on_host": 580,
+        "background": 2449,
+        "neighbor": 0,
+        "roi_pixels": 0
+      },
+      "raw/atlas": {
+        "views": 100,
+        "affected_views": 2,
+        "events": 2,
+        "abstentions": 4,
+        "pixels": 574,
+        "on_host": 67,
+        "background": 507,
+        "neighbor": 0,
+        "roi_pixels": 0
+      },
+      "raw/atlas_ground": {
+        "views": 100,
+        "affected_views": 1,
+        "events": 1,
+        "abstentions": 5,
+        "pixels": 67,
+        "on_host": 67,
+        "background": 0,
+        "neighbor": 0,
+        "roi_pixels": 0
+      },
+      "row/proposals": {
+        "views": 100,
+        "affected_views": 2,
+        "events": 2,
+        "abstentions": 0,
+        "pixels": 569,
+        "on_host": 569,
+        "background": 0,
+        "neighbor": 0,
+        "roi_pixels": 0
+      },
+      "row/atlas": {
+        "views": 100,
+        "affected_views": 1,
+        "events": 1,
+        "abstentions": 1,
+        "pixels": 67,
+        "on_host": 67,
+        "background": 0,
+        "neighbor": 0,
+        "roi_pixels": 0
+      },
+      "row/atlas_ground": {
+        "views": 100,
+        "affected_views": 1,
+        "events": 1,
+        "abstentions": 1,
+        "pixels": 67,
+        "on_host": 67,
+        "background": 0,
+        "neighbor": 0,
+        "roi_pixels": 0
+      }
+    },
+    "shopfront": {
+      "raw/proposals": {
+        "views": 8,
+        "affected_views": 3,
+        "events": 4,
+        "abstentions": 0,
+        "pixels": 11477,
+        "on_host": 11458,
+        "background": 0,
+        "neighbor": 19,
+        "roi_pixels": 2676
+      },
+      "raw/atlas": {
+        "views": 8,
+        "affected_views": 3,
+        "events": 3,
+        "abstentions": 1,
+        "pixels": 11283,
+        "on_host": 11264,
+        "background": 0,
+        "neighbor": 19,
+        "roi_pixels": 2676
+      },
+      "raw/atlas_ground": {
+        "views": 8,
+        "affected_views": 3,
+        "events": 3,
+        "abstentions": 1,
+        "pixels": 11283,
+        "on_host": 11264,
+        "background": 0,
+        "neighbor": 19,
+        "roi_pixels": 2676
+      },
+      "row/proposals": {
+        "views": 8,
+        "affected_views": 0,
+        "events": 0,
+        "abstentions": 0
+      },
+      "row/atlas": {
+        "views": 8,
+        "affected_views": 0,
+        "events": 0,
+        "abstentions": 0
+      },
+      "row/atlas_ground": {
+        "views": 8,
+        "affected_views": 0,
+        "events": 0,
+        "abstentions": 0
+      }
+    },
+    "registry": {
+      "raw/proposals": {
+        "views": 4,
+        "affected_views": 2,
+        "events": 3,
+        "abstentions": 0,
+        "pixels": 24863,
+        "on_host": 24863,
+        "background": 0,
+        "neighbor": 0,
+        "roi_pixels": 15788
+      },
+      "raw/atlas": {
+        "views": 4,
+        "affected_views": 2,
+        "events": 3,
+        "abstentions": 0,
+        "pixels": 24863,
+        "on_host": 24863,
+        "background": 0,
+        "neighbor": 0,
+        "roi_pixels": 15788
+      },
+      "raw/atlas_ground": {
+        "views": 4,
+        "affected_views": 2,
+        "events": 3,
+        "abstentions": 0,
+        "pixels": 24863,
+        "on_host": 24863,
+        "background": 0,
+        "neighbor": 0,
+        "roi_pixels": 15788
+      },
+      "row/proposals": {
+        "views": 4,
+        "affected_views": 1,
+        "events": 1,
+        "abstentions": 0,
+        "pixels": 7620,
+        "on_host": 7620,
+        "background": 0,
+        "neighbor": 0,
+        "roi_pixels": 0
+      },
+      "row/atlas": {
+        "views": 4,
+        "affected_views": 1,
+        "events": 1,
+        "abstentions": 0,
+        "pixels": 7620,
+        "on_host": 7620,
+        "background": 0,
+        "neighbor": 0,
+        "roi_pixels": 0
+      },
+      "row/atlas_ground": {
+        "views": 4,
+        "affected_views": 1,
+        "events": 1,
+        "abstentions": 0,
+        "pixels": 7620,
+        "on_host": 7620,
+        "background": 0,
+        "neighbor": 0,
+        "roi_pixels": 0
+      }
+    },
+    "portico": {
+      "raw/proposals": {
+        "views": 8,
+        "affected_views": 3,
+        "events": 5,
+        "abstentions": 0,
+        "pixels": 4702,
+        "on_host": 4701,
+        "background": 0,
+        "neighbor": 1,
+        "roi_pixels": 0
+      },
+      "raw/atlas": {
+        "views": 8,
+        "affected_views": 2,
+        "events": 4,
+        "abstentions": 1,
+        "pixels": 4637,
+        "on_host": 4636,
+        "background": 0,
+        "neighbor": 1,
+        "roi_pixels": 0
+      },
+      "raw/atlas_ground": {
+        "views": 8,
+        "affected_views": 2,
+        "events": 4,
+        "abstentions": 1,
+        "pixels": 4637,
+        "on_host": 4636,
+        "background": 0,
+        "neighbor": 1,
+        "roi_pixels": 0
+      },
+      "row/proposals": {
+        "views": 8,
+        "affected_views": 1,
+        "events": 3,
+        "abstentions": 0,
+        "pixels": 4144,
+        "on_host": 4144,
+        "background": 0,
+        "neighbor": 0,
+        "roi_pixels": 0
+      },
+      "row/atlas": {
+        "views": 8,
+        "affected_views": 1,
+        "events": 3,
+        "abstentions": 0,
+        "pixels": 4144,
+        "on_host": 4144,
+        "background": 0,
+        "neighbor": 0,
+        "roi_pixels": 0
+      },
+      "row/atlas_ground": {
+        "views": 8,
+        "affected_views": 1,
+        "events": 3,
+        "abstentions": 0,
+        "pixels": 4144,
+        "on_host": 4144,
+        "background": 0,
+        "neighbor": 0,
+        "roi_pixels": 0
+      }
+    },
+    "courtyard": {
+      "raw/proposals": {
+        "views": 8,
+        "affected_views": 1,
+        "events": 1,
+        "abstentions": 0,
+        "pixels": 65,
+        "on_host": 65,
+        "background": 0,
+        "neighbor": 0,
+        "roi_pixels": 0
+      },
+      "raw/atlas": {
+        "views": 8,
+        "affected_views": 0,
+        "events": 0,
+        "abstentions": 1
+      },
+      "raw/atlas_ground": {
+        "views": 8,
+        "affected_views": 0,
+        "events": 0,
+        "abstentions": 1
+      },
+      "row/proposals": {
+        "views": 8,
+        "affected_views": 0,
+        "events": 0,
+        "abstentions": 0
+      },
+      "row/atlas": {
+        "views": 8,
+        "affected_views": 0,
+        "events": 0,
+        "abstentions": 0
+      },
+      "row/atlas_ground": {
+        "views": 8,
+        "affected_views": 0,
+        "events": 0,
+        "abstentions": 0
+      }
+    }
+  }
+}
