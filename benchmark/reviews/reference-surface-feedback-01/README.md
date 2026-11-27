@@ -2,6 +2,19 @@
 
 On 20 source images, replacing the finder's surface masks brought strict placement F1 from **89.95% to 95.19%**, and strict position-plus-material F1 from **86.42% to 91.79%**. This intervention supplied the correct grouping of visible pixels while carrying forward the most overlapping predicted surface's normal and relative depth wherever available. Seventeen views improved, two tied and one regressed. All seven arms produced and decoded a typed Minecraft pack on every view.
 
+## Confirmation on all 104 fixed views
+
+| Supplied surfaces | Strict placement | Facade placement | Strict position + ID | Facade position + ID |
+| --- | ---: | ---: | ---: | ---: |
+| Original finder, paired replay | 91.38% | 93.52% | 84.67% | 88.43% |
+| Exact reference masks, estimated directions and depth | **94.76%** | **96.55%** | **87.54%** | **91.34%** |
+
+The exact visible masks raised strict placement from 20,777 correct, 2,925 misses and 997 extras to **21,740 correct, 1,962 misses and 443 extras**. The paired difference recovered 1,272 correct positions, lost 309, removed 810 extras and introduced 256. Strict placement improved on 84 source images, tied on seven and declined on 13. Galleries gained 115 correct positions net, Portico gained 100, Registry 85 and Shopfront 77. Shopfront also shed 97 extras net. Nine of the 1,462 reference surfaces had no overlapping original proposal from which to inherit a normal or relative depth.
+
+Material accuracy among correctly placed blocks moved from 92.66% to 92.38%, while the **number of exact position-and-ID matches rose from 19,252 to 20,084**. The newly positioned cubes include additional materials for the matcher to identify. The 83 controls which matched published typed packs byte-for-byte also improved, from 91.85% to 94.52% strict placement and from 94.75% to 96.91% facade placement. The remaining 21 public-context controls differed from the published packs and are identified in the case records. [All 104 per-view scores, hashes, and 40 structure summaries](fixed-confirmation.json) · [Aligned positions and material evidence](fixed-scored-sites.json.gz)
+
+The 20-image results below examine additional handoffs separately. Their 12 sampled fixed views are included in the 104-view confirmation.
+
 ## Where the improvement travels
 
 | Supplied evidence | Placement F1 | Facade placement F1 | Position + ID F1 | Facade position + ID F1 |
@@ -38,11 +51,14 @@ Two of the 322 supplied reference charts were subsequently revised by the ordina
 
 Portico masonry low-left illustrates why an improved stage metric can be insufficient. The mask treatment recovers 17 more correct positions and removes all eight extras. Reference charts with measured counts then lose 15 correct positions on this view and introduce one extra. Correcting the corresponding chart dimensions recovers that difference. The counter's number of surfaces with both correct spans on this image actually **increases** from 10 to 11 with reference charts. Which charts anchor which geometry matters more here than the sum of correctly counted surfaces.
 
+Canopy 04 left illustrates the opposite interaction. The same-path baseline has 41 correct positions and three extras. Reference masks with the inherited normals give 32 correct and two extras. Supplying the correct directions brings it to 47 correct and four extras, and supplying all geometry-stage inputs reaches 52 correct with zero extras. A split surface can inherit the wrong face direction from its original proposal.
+
 ## What the replay supplies
 
 - Selection took the two smallest source SHA-256s from each of the 10 locked cohorts at code revision `5818a37`, independent of the outcomes. These are 20 distinct images, including multiple views from some families. The fixed cohort's full 104-view placement scores remain 91.27% strict and 93.42% facade-priority.
 - Every reference mask uses only native first-hit pixels. Each mask groups connected visible cube faces on the same plane and direction, across materials. Ordinary source-image chart fitting runs on the new footprint. Each reference region inherits its greatest-overlap predicted region's relative depth and, in the mask-only arm, its predicted normal. A region without overlap gets neither inferred attribute. The directions arm supplies recorded face normals in camera coordinates. Ground-truth depths and materials are never passed to the placer in these interventions.
-- The chart arm supplies the projected four corners of the bounding cell span of faces that have visible pixels. These may extend past an irregular mask. Each crop keeps the actual visible support and excludes holes. The grids and joint arms also supply both counts for that whole chart. The chart does not directly set a placement level. The camera arms use `P_capture_world × local_to_world`, placing the capture camera in the registered local coordinate system.
+- Native ground truth assigns each pixel center (x + 0.5, y + 0.5) to the foremost visible face. The intervention copies these labels into half-open row intervals at the source image resolution. The ordinary placer evaluates the masks on its own four-pixel sampling grid.
+- The chart arm supplies the projected four corners of the bounding cell span of faces that have visible pixels. These may extend past an irregular mask. Each crop keeps the actual visible support and excludes holes. The grids and joint arms also supply both counts for that whole chart. The recorded projection supplies floating-point pixel coordinates on physical block edges. Canonicalization reorders the four vertices. It leaves their coordinates intact. Ordinary fitted mask charts can round corners to 0.01 pixel. The reference chart does not directly set a placement level. The camera arms use `P_capture_world × local_to_world`, placing the capture camera in the registered local coordinate system.
 - Every arm calls the ordinary surface counter, ranked visible placer, applicable pavement/extent/corner/exterior checks and production material matcher. It serializes and decodes the typed pack, then scores the same visible targets and optional slivers after the best single whole-build integer translation. The replay operates at the public surface handoff. Production also retains scene-specific pre-inset and pre-exterior context for some late fixes. The paired baseline reproduced **18/20 published typed packs byte-for-byte**. On Facade oblique-right the strict geometry counts tied but the replay had two more correct IDs. On Offset Gate quartz high-right it placed 15 fewer extras. The tables compare each intervention against its own same-path control.
 - This study supplies answers unavailable from a user's image. It establishes experimental headroom. It does not implement a deployable source-only improvement. We recommend improving mask coverage first, then testing the handoff from chart counts to depth choices before promoting an upstream change. [Per-source geometry, typed scores, hashes and changes](cases.json) · [Scored position and material maps](scored-sites.json.gz)
 
@@ -55,5 +71,7 @@ python -m benchmark.reference_surface_feedback --per-split 2 --out runs/surface-
 python -m benchmark.reference_surface_summary --in runs/surface-feedback --per-split 2
 python -m benchmark.reference_counter_handoffs --per-split 2
 python -m benchmark.reference_surface_sheet --in runs/surface-feedback
+python -m benchmark.reference_surface_feedback --fixed --modes baseline mask --out runs/surface-feedback
+python -m benchmark.reference_surface_fixed --in runs/surface-feedback
 ```
 
