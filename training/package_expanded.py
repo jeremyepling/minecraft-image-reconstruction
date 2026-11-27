@@ -1,5 +1,6 @@
 """Package and verify the native full-cube and decorative datasets."""
 import argparse
+import json
 import re
 import shutil
 import time
@@ -9,9 +10,10 @@ from pathlib import Path
 from tempfile import TemporaryDirectory
 from zipfile import ZipFile
 
+import numpy as np
 from PIL import Image, ImageDraw
 
-from training.framing import MIN_MARGIN_FRACTION, check_frame
+from training.framing import MIN_MARGIN_FRACTION, measure_framing
 from training.package_dataset import add, digest, encode, read
 from training.verify_dataset import require, verify_frame
 from training.visible_labels import write_labels
@@ -35,18 +37,22 @@ def properties(state):
     return dict(field.split("=", 1) for field in match[1].split(",")) if match and match[1] else {}
 
 
+def read_pose(path, wait):
+    deadline = time.monotonic() + 180
+    while True:
+        try:
+            return read(path)
+        except (FileNotFoundError, json.JSONDecodeError):
+            if not wait or time.monotonic() >= deadline:
+                raise
+            time.sleep(0.5)
+
+
 def prepare(job):
     source, data, dataset, row, expected, site, ground, client_hash, wait = job
     fid = row["id"]
     stem = source / "captures" / fid
-    pose_file = stem.with_suffix(".json")
-    if wait:
-        deadline = time.monotonic() + 180
-        while not pose_file.is_file() or not pose_file.stat().st_size:
-            if time.monotonic() >= deadline:
-                raise TimeoutError(f"Capture did not arrive: {fid}")
-            time.sleep(0.5)
-    pose = read(pose_file)
+    pose = read_pose(stem.with_suffix(".json"), wait)
     require(pose["id"] == fid and pose["minecraft_version"] == "26.3"
             and pose["clock_ticks"] % 24_000 == 6000 and pose["hud_hidden"]
             and not pose["raining"] and not pose["thundering"],
@@ -87,17 +93,12 @@ def prepare(job):
                     counts={k: v for k, v in counts.items() if k.startswith("visible_")},
                     material_ids=sorted(materials), clock_ticks=pose["clock_ticks"] % 24_000,
                     files={name: digest(frame / name) for name in (*ASSETS, "labels.json", "labels.npz")})
-    check = check_frame_with_metadata(frame, metadata)
-    metadata["framing"] = check
+    with np.load(frame / "labels.npz", allow_pickle=False) as raster:
+        framing = measure_framing(pose, readback, ground, raster["face_id"])
+    require(framing["accepted"], f"Incomplete framing for {fid}: {framing}")
+    metadata["framing"] = framing
     (frame / "frame.json").write_bytes(encode(metadata))
     return metadata
-
-
-def check_frame_with_metadata(frame, metadata):
-    (frame / "frame.json").write_bytes(encode(metadata))
-    framing = check_frame(frame)
-    require(framing["accepted"], f"Incomplete framing for {metadata['id']}: {framing}")
-    return framing
 
 
 def contact_sheet(data, rows, destination):
@@ -133,8 +134,6 @@ def verify(manifest_path):
         path = root / shard["file"]
         require(path.stat().st_size == shard["bytes"] and digest(path) == shard["sha256"], f"Corrupt shard: {split}")
         with ZipFile(path) as archive:
-            import json
-
             rows = [json.loads(line) for line in archive.read("frames.jsonl").splitlines()]
             require(len(rows) == shard["frames"] and len({r["layout"] for r in rows}) == shard["layouts"],
                     f"Unexpected shard size: {split}")
@@ -158,6 +157,8 @@ def verify(manifest_path):
             require(set(archive.namelist()) == paths and len(archive.namelist()) == len(paths),
                     f"Unexpected archive entries: {split}")
     require(seen == listed.keys() and (len(layouts), len(seen)) == DATASETS[dataset], "Wrong dataset membership")
+    if dataset == "decorative-builds-v1":
+        require(overlaps == len(seen), "Decorative foreground overlap is missing from some views")
     provenance = manifest["capture_records"]
     path = root / provenance["file"]
     require(path.stat().st_size == provenance["bytes"] and digest(path) == provenance["sha256"],

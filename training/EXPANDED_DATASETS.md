@@ -1,0 +1,38 @@
+# Expanded Minecraft capture datasets
+
+The datasets use Minecraft Java 26.3 native framebuffer PNGs. Each screenshot is one reconstruction input. The camera, world readback and visible geometry are evaluation and supervision data. Every new structure view includes the complete build with at least 2% clearance on each edge.
+
+| Dataset | New images | Layouts | Train / validation / test |
+| --- | ---: | ---: | --- |
+| Visible Builds v3 | 144 | 24 | 108 / 18 / 18 |
+| Decorative Builds v1 | 40 | 10 | 24 / 8 / 8 |
+
+## Visible Builds v3
+
+The expansion adds pillar arrays, viaducts, factories, amphitheaters, shrines, observatories, harbors and castles. Each layout has two palettes and three viewpoints. A palette assigns separate materials to masonry, facing, trim, roofing, infill and accents. The largest castle measures 100 blocks wide, 50 high and 36 deep. The largest pillar array measures 88 wide and 42 high. Harbors are the validation family and castles are the test family.
+
+Use the original 204-image placement benchmark as a companion set. It preserves the 104-image fixed score and the 100 comparison views, so a future run can report a result on the original benchmark and one on the 144 new views. The original cases have already been reviewed in previous rounds. New views and their labels are stored in separate archives by split.
+
+## Decorative Builds v1
+
+The pilot uses market courts, stable yards, riverside mills, hillside chapels and walled gardens. Each layout has two palettes and two oblique views. Chapels are the validation family and gardens are the test family.
+
+Opaque full cubes appear together with walls, fences, fence gates, trapdoors, slabs and stairs. Connected pieces, open and closed gates, and front-mounted shutters exercise overlapping objects. The labeler resolves the exact state-selected opaque geometry from the vanilla client assets. A pixel belongs to its nearest modeled face. In every example, a foreground decoration hides some pixels of a full block that retains visible pixels elsewhere in the same image. Report decorative blocks and full blocks separately when evaluating the pilot.
+
+The two datasets use the same frame layout. See [the v2 data contract](DATASET.md) for camera axes and basic label fields. Decorative faces use the coordinates of the actual model quadrilateral. Each block records its geometry kind. The dense maps store `face_id` and `depth_z`. A depth is the distance along the camera forward axis in blocks. Occluded cells stay unknown. The recipe and world readback remain available for the scorer and capture replay.
+
+## Capture, package and verify
+
+Run each command from a checkout containing the corresponding recipes. Capture opens a private client. Packaging and archive verification operate on files.
+
+```powershell
+python -m training.capture_expanded full --out runs/visible-builds-v3-capture
+python -m training.package_expanded --capture runs/visible-builds-v3-capture --dataset visible-builds-v3 --out runs/visible-builds-v3
+python -m training.package_expanded --verify-only --out runs/visible-builds-v3
+
+python -m training.capture_expanded decorative --out runs/decorative-builds-v1-capture
+python -m training.package_expanded --capture runs/decorative-builds-v1-capture --dataset decorative-builds-v1 --out runs/decorative-builds-v1
+python -m training.package_expanded --verify-only --out runs/decorative-builds-v1
+```
+
+The manifest indexes checksummed split archives. Each archive contains its own index and per-frame PNG, native camera, readback, visible block labels, and dense raster. A separate archive contains the capture recipes. `preview.jpg` shows a source image from each layout.
