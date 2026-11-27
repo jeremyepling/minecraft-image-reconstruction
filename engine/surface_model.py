@@ -748,6 +748,11 @@ def build(image_path, version, out, *, outlines=None, order_method=None, through
                         cells = set(cells) | added
                         status.update(placed_blocks=len(cells),common_wall_placement=dict(
                             added=len(added),candidate_patches=len(common_wall_regions)))
+            if joint_foreground and status.get('foreground_depth', {}).get('method') == 'joint':
+                from engine.corner_reprojection import recheck
+                cells, corner = recheck(image, placement_parts, status, set(cells))
+                if corner:
+                    status.update(placed_blocks=len(cells), corner_reprojection=corner)
             material = 'smooth_stone'
             blocks = {tuple(map(int, pos)): material for pos in cells}
             rows = [dict(x=x, y=y, z=z, block_id=material) for x,y,z in sorted(blocks)]
