@@ -142,16 +142,45 @@ def measurement_parts(parts):
     return measured
 
 
-def refine(image, parts, version, *, atlas_loader):
-    regions = proposals(image,parts)
-    if not regions:
-        return parts, dict(events=[], proposals=0)
-    atlas = atlas_loader()
+def extra_interior(image, common, baseline):
+    """Keep all previously accepted pixels with their original owner."""
+    if not common or not baseline:
+        return common
+    occupied = np.zeros(image.size[::-1],bool)
+    for row in baseline:
+        for y,l,r in row['runs']:
+            occupied[y,l:r] = True
+    result=[]
+    for row in common:
+        keep=[]
+        for y,l,r in row['runs']:
+            for _,a,b in row_runs((~occupied[y,l:r])[None,:]):
+                keep.append((y,a+l,b+l))
+        if keep:
+            result.append(dict(row,runs=keep,pixels=sum(b-a for _,a,b in keep)))
+    return result
+
+
+def with_common_wall(image, parts, version, *, atlas_loader):
+    original = proposals(image,parts)
+    extra = proposals(image,parts,common_wall=True)
+    proposal_count = len(original)+len(extra)
+    if not proposal_count:
+        return parts, dict(events=[],proposals=0), []
+    atlas=atlas_loader()
     if atlas is None:
-        return parts, dict(events=[], proposals=len(regions), status='atlas unavailable')
+        return parts, dict(events=[],proposals=proposal_count,status='atlas unavailable'), []
     if atlas.provenance['version']!=version:
         raise ValueError('Surface and texture atlas versions must match')
-    checked = checked_regions(image,parts,regions,atlas)
-    events = [{k:v for k,v in region.items() if k!='runs'} for region in checked]
-    return apply_regions(image,parts,checked),dict(events=events, proposals=len(regions),
-                        atlas_sha256=atlas.provenance['atlas_sha256'])
+    baseline=checked_regions(image,parts,original,atlas)
+    common=extra_interior(image,checked_regions(image,parts,extra,atlas),baseline)
+    common=[dict(r,common_wall=True) for r in common]
+    combined=baseline+common
+    events=[{k:v for k,v in r.items() if k!='runs'} for r in combined]
+    return apply_regions(image,parts,combined),dict(events=events,proposals=proposal_count,
+                        atlas_sha256=atlas.provenance['atlas_sha256']),common
+
+
+def refine(image, parts, version, *, atlas_loader):
+    updated,status,_=with_common_wall(image,parts,version,atlas_loader=atlas_loader)
+    return updated,status
