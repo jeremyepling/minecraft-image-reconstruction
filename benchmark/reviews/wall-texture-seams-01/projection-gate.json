@@ -1,0 +1,177 @@
+{
+  "original": "b94818d5f3287fa86e9ea5f2f3e6d5c757a31c98505a785e7f087556c3476a8f",
+  "alternative": "bb9e915c132e77245de1490a00bb9fd888d8109b8332f7836690215f8675bc3a",
+  "totals": {
+    "development": {
+      "frames": 72,
+      "changed": 0,
+      "accepted": 0,
+      "control": {
+        "target": 18322,
+        "placed": 16798,
+        "correct": 16017,
+        "extras": 781,
+        "hidden_extras": 82,
+        "f1": 0.912129840546697
+      },
+      "ungated": {
+        "target": 18322,
+        "placed": 16798,
+        "correct": 16017,
+        "extras": 781,
+        "hidden_extras": 82,
+        "f1": 0.912129840546697
+      },
+      "gate": {
+        "target": 18322,
+        "placed": 16798,
+        "correct": 16017,
+        "extras": 781,
+        "hidden_extras": 82,
+        "f1": 0.912129840546697
+      }
+    },
+    "fixed": {
+      "frames": 104,
+      "changed": 2,
+      "accepted": 0,
+      "control": {
+        "target": 23702,
+        "placed": 21667,
+        "correct": 20510,
+        "extras": 1157,
+        "hidden_extras": 106,
+        "f1": 0.9041415944808129
+      },
+      "ungated": {
+        "target": 23702,
+        "placed": 21673,
+        "correct": 20515,
+        "extras": 1158,
+        "hidden_extras": 110,
+        "f1": 0.9042424242424243
+      },
+      "gate": {
+        "target": 23702,
+        "placed": 21667,
+        "correct": 20510,
+        "extras": 1157,
+        "hidden_extras": 106,
+        "f1": 0.9041415944808129
+      }
+    },
+    "alternate": {
+      "frames": 20,
+      "changed": 1,
+      "accepted": 0,
+      "control": {
+        "target": 4098,
+        "placed": 3940,
+        "correct": 3559,
+        "extras": 381,
+        "hidden_extras": 59,
+        "f1": 0.8855436675789997
+      },
+      "ungated": {
+        "target": 4098,
+        "placed": 3941,
+        "correct": 3559,
+        "extras": 382,
+        "hidden_extras": 59,
+        "f1": 0.8854335116307999
+      },
+      "gate": {
+        "target": 4098,
+        "placed": 3940,
+        "correct": 3559,
+        "extras": 381,
+        "hidden_extras": 59,
+        "f1": 0.8855436675789997
+      }
+    },
+    "new": {
+      "frames": 4,
+      "changed": 0,
+      "accepted": 0,
+      "control": {
+        "target": 747,
+        "placed": 739,
+        "correct": 621,
+        "extras": 118,
+        "hidden_extras": 0,
+        "f1": 0.8358008075370121
+      },
+      "ungated": {
+        "target": 747,
+        "placed": 739,
+        "correct": 621,
+        "extras": 118,
+        "hidden_extras": 0,
+        "f1": 0.8358008075370121
+      },
+      "gate": {
+        "target": 747,
+        "placed": 739,
+        "correct": 621,
+        "extras": 118,
+        "hidden_extras": 0,
+        "f1": 0.8358008075370121
+      }
+    }
+  },
+  "decisions": [
+    {
+      "split": "old",
+      "id": "shape-benchmark-26.3--dev-canopy-18-left",
+      "accept": false,
+      "changed_pixels": 1516,
+      "added_cells": 7,
+      "silhouette_gain": -88,
+      "orientation_gain": -22,
+      "geometry_gain_per_pixel": -0.0674802110817942,
+      "heldout_texture_pixels": 278,
+      "old_texture_mae": 10.115058898925781,
+      "new_texture_mae": 5.19118070602417,
+      "added_cells_supported_pixels": [
+        176,
+        23,
+        183,
+        13,
+        187,
+        195,
+        100
+      ],
+      "reason": "abstain"
+    },
+    {
+      "split": "fresh",
+      "id": "shape-benchmark-26.3--train-canopy-05-left",
+      "accept": false,
+      "changed_pixels": 1375,
+      "added_cells": 6,
+      "silhouette_gain": 44,
+      "orientation_gain": -55,
+      "geometry_gain_per_pixel": 0.006,
+      "heldout_texture_pixels": 163,
+      "old_texture_mae": 10.17197322845459,
+      "new_texture_mae": 3.531524181365967,
+      "added_cells_supported_pixels": [
+        174,
+        16,
+        180,
+        12,
+        185,
+        189
+      ],
+      "reason": "abstain"
+    },
+    {
+      "split": "extra",
+      "id": "shape-benchmark-open-26.3--train-canopy-00-left",
+      "accept": false,
+      "changed_pixels": 9,
+      "added_cells": 1,
+      "reason": "too_few_changed_first_hits"
+    }
+  ]
+}
