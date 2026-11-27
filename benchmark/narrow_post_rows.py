@@ -15,7 +15,8 @@ from benchmark.wall_texture_masks import native_mask, orientation, rewrite
 from engine.camera_atlas_floor import _atlas
 from benchmark.framed_geometry_order import ATLAS
 from benchmark.mask_blocks import decoded_pack
-from engine.thin_atlas_faces import _match, _mips, _corr
+from engine.thin_atlas_faces import _mips
+from engine.pillar_rows import predict
 
 CONTROL=Path('../wall-section-round/runs/control')
 CANOPY='shape-benchmark-26.3--train-canopy-04-left'
@@ -25,76 +26,6 @@ CANOPY='shape-benchmark-26.3--train-canopy-04-left'
 def atlas_maps():
     atlas=_atlas('26.3',ATLAS)
     return atlas,_mips(atlas)
-
-
-def sample_mask(region,size):
-    mask=native_mask(region,size)
-    padded=np.pad(mask,1)
-    inner=mask & padded[1:-1,:-2] & padded[1:-1,2:] & padded[:-2,1:-1] & padded[2:,1:-1]
-    y,x=np.nonzero(inner)
-    if len(x)>4000:
-        take=np.random.default_rng(5681).choice(len(x),4000,replace=False)
-        y,x=y[take],x[take]
-    return y,x
-
-
-def predict(image,region,camera,cells):
-    y,x=sample_mask(region,image.size)
-    if len(x)<60:
-        return None
-    p,rotation=orientation(camera,image.size)
-    axis=int(np.argmax(abs(rotation.T@region['normal_camera'])))
-    if axis==1:
-        return None
-    free=[i for i in range(3) if i!=axis]
-    yi=free.index(1)
-    inv=np.linalg.inv(p[:,:3])
-    eye=-inv@p[:,3]
-    rays=np.column_stack((x+.5,y+.5,np.ones(len(x))))@inv.T
-    rgb=np.asarray(image.convert('RGB'))[y,x].astype(float)
-    atlas,maps=atlas_maps()
-    levels=[q[axis] for q in cells]
-    plans=[]
-    for level in range(min(levels)-3,max(levels)+4):
-        plane=level+int(eye[axis]>level+1)
-        if level<=eye[axis]<=level+1 or np.min((plane-eye[axis])/rays[:,axis])<=0:
-            continue
-        xyz=eye+(plane-eye[axis])*rays/rays[:,[axis]]
-        texel=np.floor(xyz[:,free]*16).astype(int)
-        ijk=np.floor(xyz).astype(int)
-        ijk[:,axis]=level
-        if np.quantile(ijk[:,1],.98)-np.quantile(ijk[:,1],.02)<1:
-            continue
-        phase=texel%16
-        keys=16*phase[:,1]+phase[:,0]
-        folds=ijk[:,1]%2
-        metrics=[]
-        for fold in (0,1):
-            seen=folds==fold
-            if min(seen.sum(),(~seen).sum())<32:
-                break
-            # Fit a sprite only on alternating block courses, then compare
-            # the unused courses with its projected texels at that depth.
-            fit=_match(texel[seen],rgb[seen],atlas,maps)
-            if not fit:
-                break
-            tested=~seen
-            unique,groups,n=np.unique(keys[tested],return_inverse=True,return_counts=True)
-            if len(unique)<10:
-                break
-            gray=np.bincount(groups,weights=rgb[tested].mean(1))/n
-            template=maps[fit['sprite'],fit['mip'],fit['turn']]
-            metrics.append(float(_corr(template[unique],gray)))
-        if len(metrics)==2:
-            plans.append((min(metrics),level,ijk,texel[:,yi]))
-    if not plans:
-        return None
-    plans.sort(key=lambda v:v[0],reverse=True)
-    best,level,ijk,tex=plans[0]
-    margin=best-plans[1][0] if len(plans)>1 else 0.
-    accepted=best>=.77 and margin>=.12
-    return dict(y=y,x=x,score=best,margin=margin,level=level,ijk=ijk,
-                plans=plans,accepted=accepted,tex=tex,axis=axis)
 
 
 def score_job(job):
@@ -108,7 +39,7 @@ def score_job(job):
     if not prior:
         return record
     new_ids={p['id'] for p in pieces}-{p['id'] for p in parts}
-    predictions=[(piece,predict(image,piece,cam,prior)) for piece in pieces if piece['id'] in new_ids]
+    predictions=[(piece,predict(image,piece,cam,prior,*atlas_maps(),audit=True)) for piece in pieces if piece['id'] in new_ids]
     # Coordinates and surface IDs are opened after all image-only predictions.
     source='old' if s in ('new','extra') else s
     builds=framed.NEW_INPUTS if s=='new' else framed.transfer.BUILDS
