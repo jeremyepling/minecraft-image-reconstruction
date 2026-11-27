@@ -15,7 +15,7 @@ from benchmark.camera_horizon_replay import replay
 from engine import visible_placement
 from engine.atlas_plane_depth import options
 from engine.camera_atlas_floor import _atlas
-from engine.plane_repeat_evidence import frozen_repeat_weights, repeat_scores, select_repeat
+from engine.plane_repeat_evidence import feature_rows, frozen_repeat_weights, repeat_scores, select_repeat
 from engine.visible_raster import SAMPLE_STRIDE
 
 BASE = WORKTREES / 'full-expanded-controls/runs/expanded-baseline-01'
@@ -111,8 +111,13 @@ def install_trial(mode, audit):
                 repeats = repeat_scores(rgb, region, projection, eye, axis, [r['level'] for r in rows])
                 for row, (hi, lo) in zip(rows, repeats, strict=True):
                     row.update(repeat_high=hi, repeat_low=lo)
-                if mode == 'ranked':
+                if mode in ('ranked', 'guarded'):
                     level = select_repeat(rows, initial, weights)
+                    if mode == 'guarded' and rows:
+                        scores = feature_rows(rows, initial) @ weights
+                        prior = next((j for j, r in enumerate(rows) if r['level'] == initial), None)
+                        if prior is None or float(scores.max()-scores[prior]) < .5:
+                            level = initial
                 elif mode == 'boundary':
                     incumbent = next((r for r in rows if r['level'] == initial), None)
                     winner = max(rows, key=lambda r: r['boundary'], default=None)
@@ -137,6 +142,8 @@ def install_trial(mode, audit):
 
 def run(job):
     entry, case, mode = job
+    if 'frame' not in entry:
+        return run_fixed(entry, case, mode)
     original = baseline_folder(entry, case)
     status = read(original / 'build-manifest.json')['placement']
     camera = dict(P=status['P'], scale_status=status['camera_status'], reason=status['reason'],
@@ -164,14 +171,50 @@ def run(job):
     print(entry['id'], mode, result['geometry']['strict'], result['paired'], flush=True)
 
 
+def run_fixed(entry, case, mode):
+    from io import BytesIO
+    from zipfile import ZipFile
+    from benchmark.expanded_fixed_handoffs import inference_inputs, replay_placement, score_result, fixed_reference, _release
+    from benchmark.mask_blocks import decoded_pack
+    from benchmark.typed_structures import aligned_sites
+    target = ROOT / 'runs/wall-color-partition-01' / entry['id'] / mode
+    target.mkdir(parents=True, exist_ok=True)
+    inputs = inference_inputs(entry)
+    audit = []
+    with install_trial(mode, audit):
+        output = replay_placement(inputs)
+    (target / 'reconstruction.zip').write_bytes(output.pack)
+    save(target / 'placement-status.json', output.status)
+    result, _ = score_result(entry, output)
+    _, _, released = _release()
+    with ZipFile(released) as archive:
+        prior = archive.read(entry['id'] + '/reconstruction.zip')
+    before_raw, after_raw = decoded_pack(BytesIO(prior)), decoded_pack(BytesIO(output.pack))
+    if mode == 'control' and before_raw != after_raw:
+        raise ValueError('No-op fixed export differs from verified default')
+    labels, _, transform = fixed_reference(entry)
+    before = set(aligned_sites(list(before_raw), transform, case['translation']))
+    after = set(aligned_sites(list(after_raw), transform, result['translation']))
+    truth = {tuple(b['xyz_world']) for b in labels['blocks']}
+    result.update(mode=mode, source_only=True, baseline_revision='62611ee', baseline=case,
+                  handoff=audit, paired=dict(gained=len((after-before)&truth), lost=len((before-after)&truth),
+                  extras_added=len((after-before)-truth), extras_removed=len((before-after)-truth)))
+    save(REVIEW / f"{entry['id']}-{mode}.json", result)
+    print(entry['id'], mode, result['geometry']['strict'], result['paired'], flush=True)
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('ids', nargs='+')
-    parser.add_argument('--modes', nargs='+', choices=['control', 'ranked', 'boundary'], required=True)
+    parser.add_argument('--modes', nargs='+', choices=['control', 'ranked', 'guarded', 'boundary'], required=True)
     parser.add_argument('--workers', type=int, default=3)
     args = parser.parse_args()
     cases = {c['id']: c for c in read(CASES)}
-    jobs = [(e, cases[e['id']], m) for e in frames(SOURCE, ['visible-builds-v3', 'decorative-builds-v1'])
+    entries = list(frames(SOURCE, ['visible-builds-v3', 'decorative-builds-v1']))
+    if not set(args.ids) <= {e['id'] for e in entries}:
+        from benchmark.expanded_fixed_handoffs import fixed_frames
+        entries.extend(fixed_frames())
+    jobs = [(e, cases[e['id']], m) for e in entries
             if e['id'] in args.ids for m in args.modes]
     if len(jobs) != len(args.ids)*len(args.modes):
         raise ValueError('One or more requested frames is missing')
