@@ -1,0 +1,1030 @@
+{
+  "cohorts": {
+    "all": {
+      "baseline": {
+        "views": 20,
+        "geometry": {
+          "strict": {
+            "correct": 3293,
+            "missed": 477,
+            "extras": 259,
+            "f1": 0.8994810161158153
+          },
+          "facade": {
+            "correct": 2949,
+            "missed": 240,
+            "extras": 259,
+            "f1": 0.9219946850085978
+          }
+        },
+        "typed": {
+          "strict": {
+            "correct": 3164,
+            "missed": 606,
+            "extras": 388,
+            "f1": 0.864244741873805
+          },
+          "facade": {
+            "correct": 2857,
+            "missed": 332,
+            "extras": 351,
+            "f1": 0.8932312021259966
+          }
+        },
+        "material": {
+          "correct": 3164,
+          "positions": 3293,
+          "accuracy": 0.9608259945338598
+        },
+        "changes": {},
+        "exact_spans": 0,
+        "regions": 329,
+        "improved": 0,
+        "worse": 0
+      },
+      "mask": {
+        "views": 20,
+        "geometry": {
+          "strict": {
+            "correct": 3472,
+            "missed": 298,
+            "extras": 53,
+            "f1": 0.9518848526387937
+          },
+          "facade": {
+            "correct": 3060,
+            "missed": 129,
+            "extras": 53,
+            "f1": 0.9711202792764202
+          }
+        },
+        "typed": {
+          "strict": {
+            "correct": 3348,
+            "missed": 422,
+            "extras": 177,
+            "f1": 0.9178889650445511
+          },
+          "facade": {
+            "correct": 2974,
+            "missed": 215,
+            "extras": 139,
+            "f1": 0.9438273563947953
+          }
+        },
+        "material": {
+          "correct": 3348,
+          "positions": 3472,
+          "accuracy": 0.9642857142857143
+        },
+        "changes": {
+          "gained": 205,
+          "extras_added": 22,
+          "extras_removed": 228,
+          "typed_gained": 209,
+          "lost": 26,
+          "typed_lost": 25
+        },
+        "exact_spans": 132,
+        "regions": 322,
+        "improved": 17,
+        "worse": 1
+      },
+      "directions": {
+        "views": 20,
+        "geometry": {
+          "strict": {
+            "correct": 3516,
+            "missed": 254,
+            "extras": 48,
+            "f1": 0.95882192527952
+          },
+          "facade": {
+            "correct": 3067,
+            "missed": 122,
+            "extras": 48,
+            "f1": 0.9730329949238579
+          }
+        },
+        "typed": {
+          "strict": {
+            "correct": 3392,
+            "missed": 378,
+            "extras": 172,
+            "f1": 0.9250068175620398
+          },
+          "facade": {
+            "correct": 2982,
+            "missed": 207,
+            "extras": 133,
+            "f1": 0.9460659898477157
+          }
+        },
+        "material": {
+          "correct": 3392,
+          "positions": 3516,
+          "accuracy": 0.9647326507394767
+        },
+        "changes": {
+          "gained": 246,
+          "extras_removed": 240,
+          "typed_gained": 250,
+          "extras_added": 29,
+          "lost": 23,
+          "typed_lost": 22
+        },
+        "exact_spans": 134,
+        "regions": 322,
+        "improved": 20,
+        "worse": 0
+      },
+      "chart": {
+        "views": 20,
+        "geometry": {
+          "strict": {
+            "correct": 3493,
+            "missed": 277,
+            "extras": 53,
+            "f1": 0.9548933843630399
+          },
+          "facade": {
+            "correct": 3057,
+            "missed": 132,
+            "extras": 53,
+            "f1": 0.9706302587712335
+          }
+        },
+        "typed": {
+          "strict": {
+            "correct": 3368,
+            "missed": 402,
+            "extras": 178,
+            "f1": 0.9207217058501913
+          },
+          "facade": {
+            "correct": 2973,
+            "missed": 216,
+            "extras": 137,
+            "f1": 0.9439593586283537
+          }
+        },
+        "material": {
+          "correct": 3368,
+          "positions": 3493,
+          "accuracy": 0.964214142570856
+        },
+        "changes": {
+          "gained": 234,
+          "lost": 34,
+          "extras_removed": 235,
+          "typed_gained": 232,
+          "typed_lost": 28,
+          "extras_added": 29
+        },
+        "exact_spans": 172,
+        "regions": 322,
+        "improved": 20,
+        "worse": 0
+      },
+      "grids": {
+        "views": 20,
+        "geometry": {
+          "strict": {
+            "correct": 3518,
+            "missed": 252,
+            "extras": 47,
+            "f1": 0.9592365371506476
+          },
+          "facade": {
+            "correct": 3069,
+            "missed": 120,
+            "extras": 47,
+            "f1": 0.973513084853291
+          }
+        },
+        "typed": {
+          "strict": {
+            "correct": 3393,
+            "missed": 377,
+            "extras": 172,
+            "f1": 0.9251533742331288
+          },
+          "facade": {
+            "correct": 2983,
+            "missed": 206,
+            "extras": 133,
+            "f1": 0.9462331482950039
+          }
+        },
+        "material": {
+          "correct": 3393,
+          "positions": 3518,
+          "accuracy": 0.9644684479818079
+        },
+        "changes": {
+          "gained": 248,
+          "extras_removed": 240,
+          "typed_gained": 251,
+          "extras_added": 28,
+          "lost": 23,
+          "typed_lost": 22
+        },
+        "exact_spans": 172,
+        "regions": 322,
+        "improved": 20,
+        "worse": 0
+      },
+      "camera": {
+        "views": 20,
+        "geometry": {
+          "strict": {
+            "correct": 3359,
+            "missed": 411,
+            "extras": 264,
+            "f1": 0.908697416475044
+          },
+          "facade": {
+            "correct": 2974,
+            "missed": 215,
+            "extras": 264,
+            "f1": 0.925470670608371
+          }
+        },
+        "typed": {
+          "strict": {
+            "correct": 3227,
+            "missed": 543,
+            "extras": 396,
+            "f1": 0.8729879615852834
+          },
+          "facade": {
+            "correct": 2888,
+            "missed": 301,
+            "extras": 350,
+            "f1": 0.8987085732067839
+          }
+        },
+        "material": {
+          "correct": 3227,
+          "positions": 3359,
+          "accuracy": 0.9607025900565644
+        },
+        "changes": {
+          "gained": 110,
+          "lost": 44,
+          "extras_added": 57,
+          "extras_removed": 52,
+          "typed_gained": 117,
+          "typed_lost": 54
+        },
+        "exact_spans": 0,
+        "regions": 329,
+        "improved": 15,
+        "worse": 4
+      },
+      "joint": {
+        "views": 20,
+        "geometry": {
+          "strict": {
+            "correct": 3584,
+            "missed": 186,
+            "extras": 26,
+            "f1": 0.9712737127371274
+          },
+          "facade": {
+            "correct": 3091,
+            "missed": 98,
+            "extras": 26,
+            "f1": 0.980336187757691
+          }
+        },
+        "typed": {
+          "strict": {
+            "correct": 3449,
+            "missed": 321,
+            "extras": 161,
+            "f1": 0.9346883468834688
+          },
+          "facade": {
+            "correct": 3006,
+            "missed": 183,
+            "extras": 111,
+            "f1": 0.9533777354900095
+          }
+        },
+        "material": {
+          "correct": 3449,
+          "positions": 3584,
+          "accuracy": 0.9623325892857143
+        },
+        "changes": {
+          "gained": 318,
+          "extras_added": 17,
+          "extras_removed": 250,
+          "typed_gained": 319,
+          "lost": 27,
+          "typed_lost": 34
+        },
+        "exact_spans": 172,
+        "regions": 322,
+        "improved": 20,
+        "worse": 0
+      }
+    },
+    "fixed": {
+      "baseline": {
+        "views": 12,
+        "geometry": {
+          "strict": {
+            "correct": 1945,
+            "missed": 312,
+            "extras": 83,
+            "f1": 0.9078179696616102
+          },
+          "facade": {
+            "correct": 1765,
+            "missed": 130,
+            "extras": 83,
+            "f1": 0.943093775046754
+          }
+        },
+        "typed": {
+          "strict": {
+            "correct": 1826,
+            "missed": 431,
+            "extras": 202,
+            "f1": 0.8522753792298716
+          },
+          "facade": {
+            "correct": 1683,
+            "missed": 212,
+            "extras": 165,
+            "f1": 0.8992786534865082
+          }
+        },
+        "material": {
+          "correct": 1826,
+          "positions": 1945,
+          "accuracy": 0.9388174807197943
+        },
+        "changes": {},
+        "exact_spans": 0,
+        "regions": 179,
+        "improved": 0,
+        "worse": 0
+      },
+      "mask": {
+        "views": 12,
+        "geometry": {
+          "strict": {
+            "correct": 2031,
+            "missed": 226,
+            "extras": 38,
+            "f1": 0.9389736477115118
+          },
+          "facade": {
+            "correct": 1806,
+            "missed": 89,
+            "extras": 38,
+            "f1": 0.9660336988499599
+          }
+        },
+        "typed": {
+          "strict": {
+            "correct": 1917,
+            "missed": 340,
+            "extras": 152,
+            "f1": 0.8862690707350902
+          },
+          "facade": {
+            "correct": 1730,
+            "missed": 165,
+            "extras": 114,
+            "f1": 0.9253811179459749
+          }
+        },
+        "material": {
+          "correct": 1917,
+          "positions": 2031,
+          "accuracy": 0.9438700147710487
+        },
+        "changes": {
+          "gained": 105,
+          "extras_added": 14,
+          "extras_removed": 59,
+          "typed_gained": 109,
+          "lost": 19,
+          "typed_lost": 18
+        },
+        "exact_spans": 82,
+        "regions": 187,
+        "improved": 10,
+        "worse": 1
+      },
+      "directions": {
+        "views": 12,
+        "geometry": {
+          "strict": {
+            "correct": 2073,
+            "missed": 184,
+            "extras": 34,
+            "f1": 0.9500458295142071
+          },
+          "facade": {
+            "correct": 1812,
+            "missed": 83,
+            "extras": 34,
+            "f1": 0.9687249398556536
+          }
+        },
+        "typed": {
+          "strict": {
+            "correct": 1960,
+            "missed": 297,
+            "extras": 147,
+            "f1": 0.8982584784601283
+          },
+          "facade": {
+            "correct": 1737,
+            "missed": 158,
+            "extras": 109,
+            "f1": 0.9286287089013633
+          }
+        },
+        "material": {
+          "correct": 1960,
+          "positions": 2073,
+          "accuracy": 0.945489628557646
+        },
+        "changes": {
+          "gained": 144,
+          "extras_added": 22,
+          "extras_removed": 71,
+          "typed_gained": 149,
+          "lost": 16,
+          "typed_lost": 15
+        },
+        "exact_spans": 83,
+        "regions": 187,
+        "improved": 12,
+        "worse": 0
+      },
+      "chart": {
+        "views": 12,
+        "geometry": {
+          "strict": {
+            "correct": 2055,
+            "missed": 202,
+            "extras": 37,
+            "f1": 0.9450448378937687
+          },
+          "facade": {
+            "correct": 1806,
+            "missed": 89,
+            "extras": 37,
+            "f1": 0.9662921348314607
+          }
+        },
+        "typed": {
+          "strict": {
+            "correct": 1941,
+            "missed": 316,
+            "extras": 151,
+            "f1": 0.8926189928719246
+          },
+          "facade": {
+            "correct": 1732,
+            "missed": 163,
+            "extras": 111,
+            "f1": 0.9266987693953986
+          }
+        },
+        "material": {
+          "correct": 1941,
+          "positions": 2055,
+          "accuracy": 0.9445255474452555
+        },
+        "changes": {
+          "gained": 136,
+          "extras_added": 24,
+          "extras_removed": 70,
+          "typed_gained": 135,
+          "lost": 26,
+          "typed_lost": 20
+        },
+        "exact_spans": 95,
+        "regions": 187,
+        "improved": 12,
+        "worse": 0
+      },
+      "grids": {
+        "views": 12,
+        "geometry": {
+          "strict": {
+            "correct": 2074,
+            "missed": 183,
+            "extras": 35,
+            "f1": 0.9500687127805771
+          },
+          "facade": {
+            "correct": 1813,
+            "missed": 82,
+            "extras": 35,
+            "f1": 0.9687416510820198
+          }
+        },
+        "typed": {
+          "strict": {
+            "correct": 1960,
+            "missed": 297,
+            "extras": 149,
+            "f1": 0.8978469995419148
+          },
+          "facade": {
+            "correct": 1737,
+            "missed": 158,
+            "extras": 111,
+            "f1": 0.9281325140261822
+          }
+        },
+        "material": {
+          "correct": 1960,
+          "positions": 2074,
+          "accuracy": 0.9450337512054002
+        },
+        "changes": {
+          "gained": 145,
+          "extras_added": 23,
+          "extras_removed": 71,
+          "typed_gained": 149,
+          "lost": 16,
+          "typed_lost": 15
+        },
+        "exact_spans": 95,
+        "regions": 187,
+        "improved": 12,
+        "worse": 0
+      },
+      "camera": {
+        "views": 12,
+        "geometry": {
+          "strict": {
+            "correct": 1987,
+            "missed": 270,
+            "extras": 85,
+            "f1": 0.917994917994918
+          },
+          "facade": {
+            "correct": 1782,
+            "missed": 113,
+            "extras": 85,
+            "f1": 0.9473684210526315
+          }
+        },
+        "typed": {
+          "strict": {
+            "correct": 1867,
+            "missed": 390,
+            "extras": 205,
+            "f1": 0.8625548625548626
+          },
+          "facade": {
+            "correct": 1708,
+            "missed": 187,
+            "extras": 159,
+            "f1": 0.9080276448697502
+          }
+        },
+        "material": {
+          "correct": 1867,
+          "positions": 1987,
+          "accuracy": 0.9396074484146956
+        },
+        "changes": {
+          "gained": 72,
+          "lost": 30,
+          "extras_removed": 20,
+          "typed_gained": 80,
+          "typed_lost": 39,
+          "extras_added": 22
+        },
+        "exact_spans": 0,
+        "regions": 179,
+        "improved": 9,
+        "worse": 2
+      },
+      "joint": {
+        "views": 12,
+        "geometry": {
+          "strict": {
+            "correct": 2111,
+            "missed": 146,
+            "extras": 19,
+            "f1": 0.9623888762252109
+          },
+          "facade": {
+            "correct": 1819,
+            "missed": 76,
+            "extras": 19,
+            "f1": 0.9745512992231449
+          }
+        },
+        "typed": {
+          "strict": {
+            "correct": 1988,
+            "missed": 269,
+            "extras": 142,
+            "f1": 0.9063141098700707
+          },
+          "facade": {
+            "correct": 1745,
+            "missed": 150,
+            "extras": 93,
+            "f1": 0.9349049022234128
+          }
+        },
+        "material": {
+          "correct": 1988,
+          "positions": 2111,
+          "accuracy": 0.9417337754618664
+        },
+        "changes": {
+          "gained": 189,
+          "extras_removed": 79,
+          "typed_gained": 191,
+          "lost": 23,
+          "extras_added": 15,
+          "typed_lost": 29
+        },
+        "exact_spans": 95,
+        "regions": 187,
+        "improved": 12,
+        "worse": 0
+      }
+    },
+    "other": {
+      "baseline": {
+        "views": 8,
+        "geometry": {
+          "strict": {
+            "correct": 1348,
+            "missed": 165,
+            "extras": 176,
+            "f1": 0.8877181429041817
+          },
+          "facade": {
+            "correct": 1184,
+            "missed": 110,
+            "extras": 176,
+            "f1": 0.8922381311228335
+          }
+        },
+        "typed": {
+          "strict": {
+            "correct": 1338,
+            "missed": 175,
+            "extras": 186,
+            "f1": 0.8811326967402041
+          },
+          "facade": {
+            "correct": 1174,
+            "missed": 120,
+            "extras": 186,
+            "f1": 0.8847023360964582
+          }
+        },
+        "material": {
+          "correct": 1338,
+          "positions": 1348,
+          "accuracy": 0.9925816023738873
+        },
+        "changes": {},
+        "exact_spans": 0,
+        "regions": 150,
+        "improved": 0,
+        "worse": 0
+      },
+      "mask": {
+        "views": 8,
+        "geometry": {
+          "strict": {
+            "correct": 1441,
+            "missed": 72,
+            "extras": 15,
+            "f1": 0.9706972044459414
+          },
+          "facade": {
+            "correct": 1254,
+            "missed": 40,
+            "extras": 15,
+            "f1": 0.9785407725321889
+          }
+        },
+        "typed": {
+          "strict": {
+            "correct": 1431,
+            "missed": 82,
+            "extras": 25,
+            "f1": 0.9639609296059279
+          },
+          "facade": {
+            "correct": 1244,
+            "missed": 50,
+            "extras": 25,
+            "f1": 0.9707374170893485
+          }
+        },
+        "material": {
+          "correct": 1431,
+          "positions": 1441,
+          "accuracy": 0.993060374739764
+        },
+        "changes": {
+          "gained": 100,
+          "extras_added": 8,
+          "extras_removed": 169,
+          "typed_gained": 100,
+          "lost": 7,
+          "typed_lost": 7
+        },
+        "exact_spans": 50,
+        "regions": 135,
+        "improved": 7,
+        "worse": 0
+      },
+      "directions": {
+        "views": 8,
+        "geometry": {
+          "strict": {
+            "correct": 1443,
+            "missed": 70,
+            "extras": 14,
+            "f1": 0.9717171717171718
+          },
+          "facade": {
+            "correct": 1255,
+            "missed": 39,
+            "extras": 14,
+            "f1": 0.9793211080764729
+          }
+        },
+        "typed": {
+          "strict": {
+            "correct": 1432,
+            "missed": 81,
+            "extras": 25,
+            "f1": 0.9643097643097643
+          },
+          "facade": {
+            "correct": 1245,
+            "missed": 49,
+            "extras": 24,
+            "f1": 0.9715177526336325
+          }
+        },
+        "material": {
+          "correct": 1432,
+          "positions": 1443,
+          "accuracy": 0.9923769923769924
+        },
+        "changes": {
+          "gained": 102,
+          "extras_removed": 169,
+          "typed_gained": 101,
+          "lost": 7,
+          "extras_added": 7,
+          "typed_lost": 7
+        },
+        "exact_spans": 51,
+        "regions": 135,
+        "improved": 8,
+        "worse": 0
+      },
+      "chart": {
+        "views": 8,
+        "geometry": {
+          "strict": {
+            "correct": 1438,
+            "missed": 75,
+            "extras": 16,
+            "f1": 0.9693292888439501
+          },
+          "facade": {
+            "correct": 1251,
+            "missed": 43,
+            "extras": 16,
+            "f1": 0.976962124170246
+          }
+        },
+        "typed": {
+          "strict": {
+            "correct": 1427,
+            "missed": 86,
+            "extras": 27,
+            "f1": 0.9619143916413886
+          },
+          "facade": {
+            "correct": 1241,
+            "missed": 53,
+            "extras": 26,
+            "f1": 0.9691526747364311
+          }
+        },
+        "material": {
+          "correct": 1427,
+          "positions": 1438,
+          "accuracy": 0.9923504867872045
+        },
+        "changes": {
+          "gained": 98,
+          "lost": 8,
+          "extras_removed": 165,
+          "typed_gained": 97,
+          "typed_lost": 8,
+          "extras_added": 5
+        },
+        "exact_spans": 77,
+        "regions": 135,
+        "improved": 8,
+        "worse": 0
+      },
+      "grids": {
+        "views": 8,
+        "geometry": {
+          "strict": {
+            "correct": 1444,
+            "missed": 69,
+            "extras": 12,
+            "f1": 0.9727180868979455
+          },
+          "facade": {
+            "correct": 1256,
+            "missed": 38,
+            "extras": 12,
+            "f1": 0.9804839968774395
+          }
+        },
+        "typed": {
+          "strict": {
+            "correct": 1433,
+            "missed": 80,
+            "extras": 23,
+            "f1": 0.9653081845739306
+          },
+          "facade": {
+            "correct": 1246,
+            "missed": 48,
+            "extras": 22,
+            "f1": 0.9726775956284153
+          }
+        },
+        "material": {
+          "correct": 1433,
+          "positions": 1444,
+          "accuracy": 0.9923822714681441
+        },
+        "changes": {
+          "gained": 103,
+          "extras_removed": 169,
+          "typed_gained": 102,
+          "lost": 7,
+          "extras_added": 5,
+          "typed_lost": 7
+        },
+        "exact_spans": 77,
+        "regions": 135,
+        "improved": 8,
+        "worse": 0
+      },
+      "camera": {
+        "views": 8,
+        "geometry": {
+          "strict": {
+            "correct": 1372,
+            "missed": 141,
+            "extras": 179,
+            "f1": 0.8955613577023499
+          },
+          "facade": {
+            "correct": 1192,
+            "missed": 102,
+            "extras": 179,
+            "f1": 0.8945590994371482
+          }
+        },
+        "typed": {
+          "strict": {
+            "correct": 1360,
+            "missed": 153,
+            "extras": 191,
+            "f1": 0.8877284595300261
+          },
+          "facade": {
+            "correct": 1180,
+            "missed": 114,
+            "extras": 191,
+            "f1": 0.8855534709193246
+          }
+        },
+        "material": {
+          "correct": 1360,
+          "positions": 1372,
+          "accuracy": 0.9912536443148688
+        },
+        "changes": {
+          "gained": 38,
+          "lost": 14,
+          "extras_added": 35,
+          "extras_removed": 32,
+          "typed_gained": 37,
+          "typed_lost": 15
+        },
+        "exact_spans": 0,
+        "regions": 150,
+        "improved": 6,
+        "worse": 2
+      },
+      "joint": {
+        "views": 8,
+        "geometry": {
+          "strict": {
+            "correct": 1473,
+            "missed": 40,
+            "extras": 7,
+            "f1": 0.9842966922819913
+          },
+          "facade": {
+            "correct": 1272,
+            "missed": 22,
+            "extras": 7,
+            "f1": 0.9887291099883404
+          }
+        },
+        "typed": {
+          "strict": {
+            "correct": 1461,
+            "missed": 52,
+            "extras": 19,
+            "f1": 0.9762779819579017
+          },
+          "facade": {
+            "correct": 1261,
+            "missed": 33,
+            "extras": 18,
+            "f1": 0.9801787796346677
+          }
+        },
+        "material": {
+          "correct": 1461,
+          "positions": 1473,
+          "accuracy": 0.9918533604887984
+        },
+        "changes": {
+          "gained": 129,
+          "extras_added": 2,
+          "extras_removed": 171,
+          "typed_gained": 128,
+          "lost": 4,
+          "typed_lost": 5
+        },
+        "exact_spans": 77,
+        "regions": 135,
+        "improved": 8,
+        "worse": 0
+      }
+    }
+  },
+  "paired_handoffs": {
+    "mask -> directions": {
+      "extras_removed": 22,
+      "gained": 48,
+      "typed_gained": 48,
+      "lost": 4,
+      "typed_lost": 4,
+      "extras_added": 17
+    },
+    "directions -> chart": {
+      "lost": 24,
+      "extras_added": 7,
+      "typed_lost": 25,
+      "extras_removed": 2,
+      "gained": 1,
+      "typed_gained": 1
+    },
+    "chart -> grids": {
+      "gained": 25,
+      "extras_removed": 7,
+      "typed_gained": 25,
+      "extras_added": 1
+    },
+    "grids -> joint": {
+      "gained": 106,
+      "lost": 40,
+      "extras_added": 8,
+      "typed_gained": 111,
+      "typed_lost": 55,
+      "extras_removed": 29
+    }
+  },
+  "verified_packs": 18
+}
