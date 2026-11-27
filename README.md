@@ -28,6 +28,8 @@ The **[illustrated stage and term guide](ARCHITECTURE.md#pipeline-terms-in-readi
 
 ## Current placement score
 
+The [round review guide](benchmark/ROUND_REVIEW.md) shows how to trace a missing block, compare scored releases, and see which steps use local scripts, vision models or Codex tokens.
+
 The [pipeline consistency review](benchmark/reviews/pipeline-consistency-01/README.md) traces the ordinary build through scoring, tests three placement order changes, and compares optional material matchers and atlas fallbacks. In the interactive viewer’s **Block Counter**, switch between geometry-only and atlas-assisted grids to see where the atlas supplies a missing offset.
 
 [Open the interactive weakest-structures viewer](benchmark/reviews/shared-face-round-01/viewer.html) to inspect the current source overlays and the layout and source-image scenarios for reaching 95% facade-priority F1.

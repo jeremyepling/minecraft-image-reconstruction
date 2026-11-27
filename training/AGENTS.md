@@ -7,3 +7,5 @@ The user explicitly excludes predicting hidden areas. Train and evaluate recover
 Keep source worlds and camera metadata available for labeling and scoring, without leaking them into ordinary evaluation predictions. Preserve building-level splits. Compare a learned stage with the existing stage on identical inputs, and evaluate the resulting visible block placements as well as intermediate measurements. Count unsupported added cells as errors and retain unresolved outputs rather than filling unseen space.
 
 Use the shared `minecraft-algorithm-benchmark` skill for controlled comparisons. Preserve historical results and mark proposed work, diagnostics and implemented behavior accurately.
+
+Before training a placement chooser, measure its headroom on proposed alternatives and join improved 2D matches to currently missed visible block positions. Keep the candidate inputs available at inference time and freeze building-level splits before fitting. Report the change against the ordinary pipeline on the same source images. [Round review guide](../benchmark/ROUND_REVIEW.md)
