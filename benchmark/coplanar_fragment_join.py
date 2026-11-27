@@ -85,7 +85,7 @@ def correlation(a,b):
     return float(a@b/max(1.e-7,np.linalg.norm(a)*np.linalg.norm(b)))
 
 
-def photograph(image,parts,counts,camera,prior):
+def photograph(image,parts,counts,camera,prior,*,change_of_material=False):
     if not prior or camera.get('P') is None:
         return prior,dict(groups=[])
     p,rot=orientation(camera,image.size)
@@ -94,6 +94,8 @@ def photograph(image,parts,counts,camera,prior):
     boxes=[bounds(m) if m.sum()>=80 else None for m in masks]
     rgb=np.asarray(image.convert('RGB'))
     fits={}
+    supported={}
+    scene=None
     edges=[]
     for a,b in combinations(range(len(parts)),2):
         if boxes[a] is None or boxes[b] is None:
@@ -105,12 +107,40 @@ def photograph(image,parts,counts,camera,prior):
         if axis!=int(np.argmax(abs(rot.T@nb))):
             continue
         contact=edge_contact(masks[a],masks[b],boxes[a],boxes[b])
-        if contact is None or len(contact[0])<24:
+        if contact is None or len(contact[0])<(8 if change_of_material else 24):
             continue
+        if change_of_material:
+            from engine.projected_appearance import Scene,STEP
+            if scene is None:
+                scene=Scene(image,parts,camera,prior)
+            for i in (a,b):
+                if i in supported:
+                    continue
+                m=masks[i][::STEP,::STEP].ravel()
+                own=scene.owner[m&(scene.owner>=0)&(scene.axes==axis)]
+                supported[i]=None
+                if len(own)<.9*m.sum() or len(own)<32:
+                    continue
+                xyz=np.asarray(scene.cells)[own]
+                values,n=np.unique(xyz[:,axis],return_counts=True)
+                level=values[np.argmax(n)]
+                keep=xyz[:,axis]==level
+                if keep.sum()<.9*m.sum() or (np.unique(own[keep],return_counts=True)[1]>=12).sum()<2:
+                    continue
+                color=np.median(rgb[masks[i]],axis=0)
+                supported[i]=(int(level+int(eye[axis]>level+1)),color/max(1.,color.sum()))
+            left,right=supported[a],supported[b]
+            if left is None or right is None or left[0]!=right[0] or np.linalg.norm(left[1]-right[1])<.08:
+                continue
         for i in (a,b):
             if i not in fits:
                 fits[i]=planes(rgb,masks[i],axis,p,eye,inv,prior)
         A,B=fits[a],fits[b]
+        if change_of_material:
+            decisive=[q for q in (A,B) if q and q['corr']>=.80 and q['margin']>=.12]
+            if decisive and all(q['level']==left[0] for q in decisive):
+                edges.append((a,b))
+            continue
         if not A or not B or A['level']!=B['level']:
             continue
         if min(A['corr'],B['corr'])<.70 or min(A['margin'],B['margin'])<.12:
@@ -127,3 +157,7 @@ def photograph(image,parts,counts,camera,prior):
         return prior,dict(groups=[])
     cells,detail=rebuild(image,counts,camera,join_regions(image,parts,groups))
     return cells,dict(groups=groups,**detail)
+
+
+def material_transition(image,parts,counts,camera,prior):
+    return photograph(image,parts,counts,camera,prior,change_of_material=True)
