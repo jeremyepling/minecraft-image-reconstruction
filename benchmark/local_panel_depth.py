@@ -148,7 +148,7 @@ def render(scene,stack,group,ids,dest,axis):
         return sil,int(bad.sum())
     old_sil,old_norm=mismatches(old,orig_axis)
     sil,norm=mismatches(owners,axes)
-    return idx,owners,axes,dict(pixels=len(idx),sil=old_sil-sil,normal=old_norm-norm,
+    return idx,owners,axes,dict(pixels=len(idx),sil=int(old_sil-sil),normal=old_norm-norm,
                                 returns=int((new&inside&(axes!=axis)&scene.masks[axes,idx]).sum()))
 
 
