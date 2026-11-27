@@ -1,0 +1,66 @@
+{
+  "unit_tests": 386,
+  "skyline_rows": 204,
+  "examples": [
+    {
+      "example": "facade",
+      "rgb": "0828c9d164392fe0bad9a1a709c1f321eb73f7bb7d08739f3b99382493df5ad0",
+      "crops_checked": 28,
+      "source_and_context_crops_identical_across_entry_points": true,
+      "surfaces_identical_across_entry_points": true,
+      "standalone_candidate_stages_identical": true,
+      "baseline_export_identical_after_decode": true,
+      "block_count": 309,
+      "hashes": {
+        "surfaces.json": "adaba61806957a2cd7beb4a238b4d5896cb2097c96540dec4def1e895e7a1ab8",
+        "counts.json": "3d768314b989ea44c9aa5c3b85bec795781297db24bd59ebc9a686c5aaa44922",
+        "placements.json": "c89e0c7dfa00ff88d35f27dd0ab57d507c254e9077c7ec7a9f92063696064f08",
+        "reconstruction.zip": "05ea3ed3415a7f169ada78bb3f5ef3367633fd9ad9ea301cf1ccd8e4b75c88da"
+      },
+      "joins": [
+        {
+          "inputs": [
+            "mask-0-junction-1",
+            "mask-0-junction-0"
+          ],
+          "output": "mask-0-junction-1-joined",
+          "input_areas_px": [
+            173364,
+            31832
+          ],
+          "output_area_px": 205196,
+          "border_pixels": 261,
+          "minimum_angle_deg": 24.72,
+          "median_step": 4.0,
+          "contrast": 11.6,
+          "within": 8.7
+        }
+      ],
+      "skyline": []
+    },
+    {
+      "example": "watchpost",
+      "rgb": "0d17871ae2e55c231c25ae74fad1c260bd845d16b86211fc172d89f915ca90ef",
+      "crops_checked": 32,
+      "source_and_context_crops_identical_across_entry_points": true,
+      "surfaces_identical_across_entry_points": true,
+      "standalone_candidate_stages_identical": true,
+      "baseline_export_identical_after_decode": true,
+      "block_count": 384,
+      "hashes": {
+        "surfaces.json": "afba9b8801fe9a1774eb4a007dd33de1c91554967779b33397804048ef191f97",
+        "counts.json": "8381241bb9ad67d713fe6d10050628dc1d390d1b2422b51c9b2e65d7af772248",
+        "placements.json": "8afc9789d965e6b47fc61c1edb76f3b6363ba4b0d9da1d3128c207e5a1e7a06b",
+        "reconstruction.zip": "055b55b48854089067c392bf532ad518049aba62a5d1957ad90b09193e8166b3"
+      },
+      "joins": [],
+      "skyline": [
+        {
+          "surface": "mask-4",
+          "added_pixels": 225
+        }
+      ]
+    }
+  ],
+  "skyline_rows_sha256": "9b2622e5ee677504a7552d1aa75b88ef83d043d70a68e0a44b8125b2ceaccee3"
+}

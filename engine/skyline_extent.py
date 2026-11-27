@@ -68,7 +68,8 @@ def refine(image, parts, sky):
         for step in range(1, MAX_GAP + 1):
             color = rgb[y - step, xs]
             error = np.maximum(abs(color - inside), abs(color - neighbor))
-            use &= (step > distance[xs]) | (error.max(axis=1) <= 4)
+            supported = ~sky[y - step, xs] & (error.max(axis=1) <= 4)
+            use &= (step > distance[xs]) | supported
         xs = xs[use]
         groups = [g for g in np.split(xs, np.flatnonzero(np.diff(xs) != 1) + 1)
                   if len(g) >= MIN_SPAN and np.max(abs(np.diff(sky_end[g]))) <= 1]

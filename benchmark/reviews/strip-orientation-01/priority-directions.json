@@ -1,0 +1,262 @@
+{
+  "sliver_audit_sha256": "a3476c827832647b3b4e03578d59408909b07c35c2379d41b926e70c785476b7",
+  "baseline_cases_sha256": "2c438afaf07a0d95c152b5268e2999dc2b2817a0c671c0219bb9b6cc5099570c",
+  "methods": {
+    "broad": {
+      "correct": 18716,
+      "missed": 1860,
+      "extras": 1158,
+      "views": 104,
+      "required_gained": 2,
+      "required_lost": 0,
+      "optional_gained": 5,
+      "optional_lost": 0,
+      "extras_added": 12,
+      "extras_removed": 0,
+      "f1": 0.925389369592089,
+      "cases_sha256": "8bf50b70d6a44b2a1256d271c6d4e7b7351c76f7d8f5f7aec97ade448c4fa344"
+    },
+    "horizontal": {
+      "correct": 18714,
+      "missed": 1862,
+      "extras": 1146,
+      "views": 104,
+      "required_gained": 0,
+      "required_lost": 0,
+      "optional_gained": 1,
+      "optional_lost": 0,
+      "extras_added": 0,
+      "extras_removed": 0,
+      "f1": 0.9256108418241171,
+      "cases_sha256": "c03a36e8524159cd6dfb79441d9019334a56cb2e640c40748223971832819143"
+    },
+    "corroborated": {
+      "correct": 18714,
+      "missed": 1862,
+      "extras": 1146,
+      "views": 104,
+      "f1": 0.9256108418241171,
+      "cases_sha256": "2f18c697ffe315aec7ab64d6ceba7bf820af32053719852a8deae3b89d8c5b21"
+    },
+    "texture_join": {
+      "correct": 18714,
+      "missed": 1862,
+      "extras": 1146,
+      "views": 104,
+      "f1": 0.9256108418241171,
+      "cases_sha256": "35b41a63dd5ef990a7aebbe043c3f7c77d7efc937ed75c1f4b28b4eff609811b"
+    },
+    "reference_join": {
+      "correct": 18732,
+      "missed": 1844,
+      "extras": 1133,
+      "views": 104,
+      "required_gained": 18,
+      "required_lost": 0,
+      "optional_gained": 0,
+      "optional_lost": 0,
+      "extras_added": 2,
+      "extras_removed": 15,
+      "f1": 0.9263865878687471,
+      "cases_sha256": "1ea761ff25ff9ec2dbec2d93d6327087febf10b24427ea76923420e9d8b2cf38"
+    },
+    "projected_join": {
+      "correct": 18732,
+      "missed": 1844,
+      "extras": 1133,
+      "views": 104,
+      "required_gained": 18,
+      "required_lost": 0,
+      "optional_gained": 0,
+      "optional_lost": 0,
+      "extras_added": 2,
+      "extras_removed": 15,
+      "f1": 0.9263865878687471,
+      "cases_sha256": "bb10f162aa710f16437bccf15d52b106da5e87969f5647c666b8d128bcc4251a"
+    }
+  },
+  "changed": [
+    {
+      "id": "test-twinspire3-cool-low-left",
+      "method": "broad",
+      "changes": {
+        "required_gained": 0,
+        "required_lost": 0,
+        "optional_gained": 1,
+        "optional_lost": 0,
+        "extras_added": 0,
+        "extras_removed": 0
+      },
+      "pack_sha256": "9ebaf729bb5cd622e649ad5dd22a8a181d58eca342878ce17f24a2ac6e5e6ea3"
+    },
+    {
+      "id": "test-twinspire3-cool-low-left",
+      "method": "horizontal",
+      "changes": {
+        "required_gained": 0,
+        "required_lost": 0,
+        "optional_gained": 1,
+        "optional_lost": 0,
+        "extras_added": 0,
+        "extras_removed": 0
+      },
+      "pack_sha256": "a6cc41d1678202c66ce7654b59f34a8b7b7c353fa6003207bdc8a2c61acf97af"
+    },
+    {
+      "id": "legacy-light_gray_concrete-dev-shopfront-masonry-high-right",
+      "method": "broad",
+      "changes": {
+        "required_gained": 0,
+        "required_lost": 0,
+        "optional_gained": 0,
+        "optional_lost": 0,
+        "extras_added": 5,
+        "extras_removed": 0
+      },
+      "pack_sha256": "7f5bd68dfe6989a8679f2be4868f840c5e71942b8c5bfb76899a3332e845b8ed"
+    },
+    {
+      "id": "legacy-light_gray_concrete-dev-shopfront-plaster-low-left",
+      "method": "reference_join",
+      "changes": {
+        "required_gained": 18,
+        "required_lost": 0,
+        "optional_gained": 0,
+        "optional_lost": 0,
+        "extras_added": 2,
+        "extras_removed": 15
+      },
+      "pack_sha256": "c47758740c401970bb1dd6def5b36f371de31b92fd70fdd8a2adce2012abf644"
+    },
+    {
+      "id": "legacy-light_gray_concrete-dev-shopfront-plaster-low-left",
+      "method": "projected_join",
+      "changes": {
+        "required_gained": 18,
+        "required_lost": 0,
+        "optional_gained": 0,
+        "optional_lost": 0,
+        "extras_added": 2,
+        "extras_removed": 15
+      },
+      "pack_sha256": "c619e4a3706a5aeeab1a8ec5ffe3f40842ab11364ca45fff3641f16bb0038900"
+    },
+    {
+      "id": "legacy-light_gray_concrete-holdout-crossing-masonry-high-right",
+      "method": "broad",
+      "changes": {
+        "required_gained": 1,
+        "required_lost": 0,
+        "optional_gained": 0,
+        "optional_lost": 0,
+        "extras_added": 0,
+        "extras_removed": 0
+      },
+      "pack_sha256": "b69c555c5e7241ba4f7d425dcac3ada9c6b50ef4add9921e66b9cf4acb48be0e"
+    },
+    {
+      "id": "legacy-light_gray_concrete-holdout-crossing-plaster-high-right",
+      "method": "broad",
+      "changes": {
+        "required_gained": 1,
+        "required_lost": 0,
+        "optional_gained": 0,
+        "optional_lost": 0,
+        "extras_added": 0,
+        "extras_removed": 0
+      },
+      "pack_sha256": "4cf94f5e73d82e325c5c78c1c02afdb06593b34546eed3bd4df67457fdd2c66d"
+    },
+    {
+      "id": "legacy-light_gray_concrete-holdout-portico-masonry-low-left",
+      "method": "broad",
+      "changes": {
+        "required_gained": 0,
+        "required_lost": 0,
+        "optional_gained": 1,
+        "optional_lost": 0,
+        "extras_added": 1,
+        "extras_removed": 0
+      },
+      "pack_sha256": "f318294fccf4a5698523d00c1076755563878e4cae39bc7b798e2c41e7952cca"
+    },
+    {
+      "id": "legacy-smooth_stone-holdout-portico-plaster-low-left",
+      "method": "broad",
+      "changes": {
+        "required_gained": 0,
+        "required_lost": 0,
+        "optional_gained": 0,
+        "optional_lost": 0,
+        "extras_added": 1,
+        "extras_removed": 0
+      },
+      "pack_sha256": "4a3006be8016a454d74f2f57c90974ae1cde9c1c155be62bcc4c6f4c8719ac2d"
+    },
+    {
+      "id": "dark-inlay-oblique-left",
+      "method": "broad",
+      "changes": {
+        "required_gained": 0,
+        "required_lost": 0,
+        "optional_gained": 1,
+        "optional_lost": 0,
+        "extras_added": 1,
+        "extras_removed": 0
+      },
+      "pack_sha256": "2726aa58b5b8fa5e1a2aa02f8c0cb9a99c1e1feb405974769a61753bd5784d44"
+    },
+    {
+      "id": "physical-shade-oblique-left",
+      "method": "broad",
+      "changes": {
+        "required_gained": 0,
+        "required_lost": 0,
+        "optional_gained": 2,
+        "optional_lost": 0,
+        "extras_added": 0,
+        "extras_removed": 0
+      },
+      "pack_sha256": "0a45665797e9f2745d7aff6d61c68d7dd923fb507db7c5382cf1a78b38520631"
+    },
+    {
+      "id": "test-adjacency-26-left",
+      "method": "broad",
+      "changes": {
+        "required_gained": 0,
+        "required_lost": 0,
+        "optional_gained": 0,
+        "optional_lost": 0,
+        "extras_added": 2,
+        "extras_removed": 0
+      },
+      "pack_sha256": "d094539cbe04d5e563ed5387c7a60f0f3679495940c5267b0ce27e2fae2ed0f9"
+    },
+    {
+      "id": "test-adjacency-26-right",
+      "method": "broad",
+      "changes": {
+        "required_gained": 0,
+        "required_lost": 0,
+        "optional_gained": 0,
+        "optional_lost": 0,
+        "extras_added": 1,
+        "extras_removed": 0
+      },
+      "pack_sha256": "98802a5fe8b85cc72dcb0ed54f00b3a9b428dbd46d1cb72225e7f48e364588db"
+    },
+    {
+      "id": "corner-mixed-26.3--heldout-facade-oblique-left",
+      "method": "broad",
+      "changes": {
+        "required_gained": 0,
+        "required_lost": 0,
+        "optional_gained": 0,
+        "optional_lost": 0,
+        "extras_added": 1,
+        "extras_removed": 0
+      },
+      "pack_sha256": "ee0809cc3dd104a9123ed8a31b260f79c5876eb745aae37fa38226730109ded4"
+    }
+  ]
+}
