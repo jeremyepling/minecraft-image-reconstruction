@@ -46,3 +46,29 @@ python -m benchmark.material_feedback_geometry ablate
 python -m benchmark.material_feedback_decorative --workers 4 --data PATH_TO_DECORATIVE_DATASET --builds PATH_TO_EIGHT_BUILDS
 python -m benchmark.material_feedback_examples
 ```
+
+## What if the earlier depth ranker had the correct answers?
+
+We also tested the standard Java 26.3 ranked depth proposals on ten source images, one per split. Within each split we selected the lexicographically lowest source-image SHA-256 before measuring accuracy. This test uses the estimated camera, observed masks and normal directions, and the source-only depth offers from the ordinary algorithm. The reference supplies just the choice among those offers. This is a diagnostic for the earlier ranker; the 104-view material-feedback results above come from a separate image-only experiment.
+
+Of 165 ranked masks, **157** had one visible reference plane covering more than half their source samples. **155** also had the matching estimated axis and facing direction. All 155 correct depths were in the generated set, 154 were in the short list retained for joint foreground arbitration, and **143 were already chosen**. Depth level and direction are measured in the same single frozen alignment as the corresponding geometry release.
+
+We reran primary candidate generation and the subsequent ranked-geometry checks with the other 12 selections forced to that reference plane. A second oracle scored *every* offered level by the exact XYZ of the visible reference cube reached by each sampled source ray, weighting each reference cube equally within a mask. It changed 11 depths and produced the same pooled scores. Neither oracle could change masks, axes, increments or the acceptance rules.
+
+| Measured ten-view stage | Ordinary strict correct / missed / extra | With reference depths | Strict F1 before → after | Facade F1 before → after |
+| --- | ---: | ---: | ---: | ---: |
+| Union of initial primary plane candidate cells | 1,449 / 439 / 161 | 1,445 / 443 / 147 | 82.85 → 83.05% | 90.91 → 91.18% |
+| After strict-grid union, secondary proposals, frontmost support, side ownership and edge checks | 1,436 / 452 / 130 | 1,432 / 456 / 130 | 83.15 → 83.01% | 91.41 → 91.27% |
+| After the ordinary ranked-placement refinements | 1,657 / 231 / 127 | 1,649 / 239 / 126 | 90.25 → 90.04% | 93.41 → 93.30% |
+
+The first stage pools the primary proposed cells before strict-grid, secondary-depth and occlusion logic. Between stages the ordinary code both adds and rejects candidates. The last row ends at `atlas_plane_depth.place_ranked`. Later build-level local edits still follow in an ordinary export; the scored release's final positions differ from this stage on two of the ten views. No improvement to exported geometry is claimed by this oracle.
+
+Toggling each of the 12 true-plane substitutions individually gave **ten ties and two strict regressions** in the ranked placement counts. A chooser allowed to keep the baseline for each such test recovered zero additional blocks. On Colonnade 01, 270 of 432 mask samples supported the dominant plane; assigning that plane to the whole mask removed seven correct blocks and two extras. On Adjacency 26, one changed horizontal level lost one correct position and added an extra. On Portico three offered depths were correctable in principle, yet their masks contained only one to three samples on the four-pixel analysis grid. None changed the final counts.
+
+This measures choosing one level for an existing mask. Geometry could still benefit from improved mask coverage, a different face direction, a split into two depths, or competing whole-structure placements. We did not enumerate the combinatorial optimum over joint surface assignments or run a new learned ranker. [Offered levels, shortlist and per-image stages](plane-depth-cases.json) · [Pooled plane-depth counts](plane-depth-summary.json) · [Individual interventions](plane-depth-individual.json) · [Reference ray-to-block chooser](plane-depth-ray-oracle.json)
+
+```powershell
+python -m benchmark.material_feedback_depth_oracle --workers 6
+python -m benchmark.material_feedback_depth_oracle --individual --workers 6
+python -m benchmark.material_feedback_depth_oracle --ray-oracle --workers 6
+```
