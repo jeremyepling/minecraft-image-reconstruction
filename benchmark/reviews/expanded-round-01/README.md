@@ -1,5 +1,7 @@
 # Geometry and material trials across the three datasets
 
+The latest [camera-model round](../camera-model-round-01/README.md) promotes the guarded image-only whole-tile and wider boundary search. GeoCalib, MoGe surface-first and joint camera/grid refinement remain experimental. The interactive cohort scorecard shows the new default; historical trial plots retain their original control, while joint refinement is compared with the new default. [Updated scorecard and comparisons](../pipeline-impact-01/viewer.html#cohorts)
+
 The control is the ordinary Java 26.3 image-to-build pipeline at `1ca8822`. Compare the same source image, visible targets and decoded export in each arm. Each comparison uses all 104 fixed views, all 144 Visible Builds v3 views, and all 40 Decorative Builds v1 views unless an individual diagnostic specifies a smaller sample. The reports also separate the development and held-out building families.
 
 The fixed replay matched all **104 released material packs byte for byte**, including the 21 that differed in the earlier public-context replay. Restoring the original inset and exterior context and running the downstream placement checks reproduced the ordinary builds. The reproducible command is `python -m benchmark.expanded_fixed_handoffs --workers 4`.

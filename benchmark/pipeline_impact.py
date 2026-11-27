@@ -1,4 +1,5 @@
 """Build the offline sub-stage impact chart from the paired replay scores."""
+import gzip
 import json
 from html import escape
 from pathlib import Path
@@ -8,7 +9,8 @@ OUT = REVIEWS / "pipeline-impact-01"
 
 
 def read(name):
-    return json.loads((REVIEWS / name).read_bytes())
+    payload = (REVIEWS / name).read_bytes()
+    return json.loads(gzip.decompress(payload) if name.endswith('.gz') else payload)
 
 
 def metrics(geometry, material, overall):
@@ -80,6 +82,7 @@ def camera_tables(cases, summary):
         details.append(f"<tr><td>{name}</td><td>{escape(row['id'])}</td>"
                        f"<td>{escape(row['camera_reason'] or 'Reason unavailable')}</td>"
                        f"<td>{escape(row.get('atlas_camera_reason') or '—')}</td>"
+                       f"<td>{escape(row.get('repeat_camera_reason') or '—')}</td>"
                        f"<td>{row['visible_truth']:,}</td><td>{row['required_truth']:,}</td></tr>")
     return "".join(totals), "".join(details)
 
@@ -197,8 +200,8 @@ def main():
     template = Path(__file__).with_name("pipeline_impact.html").read_text(encoding="utf-8")
     OUT.mkdir(exist_ok=True)
     html = template.replace("__MEASURED__", json.dumps(rows)).replace("__MASK_CASES__", json.dumps(by_image))
-    expanded = read("expanded-baseline-01/cases.json")
-    expanded_summary = read("expanded-baseline-01/summary.json")["cohorts"]
+    expanded = read("camera-model-controls-01/independent-matched-cases.json.gz")
+    expanded_summary = read("camera-model-controls-01/independent-matched-summary.json")["datasets"]
     cohorts = measured_cohorts(expanded_summary)
     table = []
     for name, coverage, scores in cohorts:

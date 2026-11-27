@@ -2,6 +2,8 @@
 
 [Open the interactive stage impact assessment](viewer.html) to compare the same source images under each intervention. Choose placement, exact material ID, or overall F1 to see which stage can use a correction.
 
+The cohort scorecard now shows the default whole-tile and wider boundary-guided camera fallback: fixed strict/facade placement 91.27%/93.42%, v3 21.84%/22.75% and decorative 63.46%/65.23%. The camera table lists the remaining 70 v3 failures and their latest fallback reasons. Experiment plots retain their own original paired baseline; the joint camera/grid plot uses the new default as its control. GeoCalib, MoGe and joint refinement remain experimental. [Camera-model round and validation](../camera-model-round-01/README.md)
+
 ## Dataset coverage
 
 The **104 fixed** score views are part of the established **204-image** companion collection, which includes the 144 whole-structure Visible Builds v2 frames. The 104, the smaller sampled replays and the 28 comparison views are subsets of the established collection. The independent pixel and perfect-export controls cover all 204.
