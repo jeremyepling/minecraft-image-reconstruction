@@ -58,7 +58,7 @@ def visible_candidates(ctx, lines):
                 yield cell,axis
 
 
-def measure(ctx, cell, axis, joint=None):
+def measure(ctx, cell, axis, joint=None, *, palette=None):
     sign = 1 if ctx.eye[axis]>cell[axis]+1 else -1
     hit = _sample_face(ctx.native, cell, axis, sign, ctx.shape)
     if hit is None:
@@ -86,7 +86,8 @@ def measure(ctx, cell, axis, joint=None):
     uv = ctx.eye[free] + (cell[axis]+int(sign>0)-ctx.eye[axis])*slope
     # Neighboring photographed materials shortlist sprites. Individual blocks
     # may select different sprites across material transitions on the same roof.
-    palette = list(ctx.anchors)
+    if palette is None:
+        palette = list(ctx.anchors)
     match = _match(np.floor(uv*16).astype(int),colors,ctx.atlas,ctx.maps,palette)
     if not match or match['texels']<10 or match['split']<.52 or match['color']>12:
         return None

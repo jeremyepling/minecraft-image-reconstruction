@@ -11,12 +11,20 @@ from engine.visible_horizontal_faces import _keep_prior_visible
 from engine.visible_placement import _sample_face
 
 
-def adjacent_proposals(ctx):
+def adjacent_proposals(ctx, use_texture_edges=False):
     # Back-project orientation disagreements. Neighboring rendered depths only nominate planes.
     step=3
     result=set()
+    if use_texture_edges:
+        gray=ctx.rgb.mean(2)
+        edge=np.zeros(ctx.shape,bool)
+        edge[:,1:] |= abs(np.diff(gray,axis=1))>=12
+        edge[1:,:] |= abs(np.diff(gray,axis=0))>=12
     for axis in range(3):
-        yy,xx=np.nonzero(ctx.masks[axis,1::step,1::step] & (ctx.axes[1::step,1::step]!=axis))
+        samples=ctx.masks[axis] & (ctx.axes!=axis)
+        if use_texture_edges:
+            samples |= edge & ctx.union
+        yy,xx=np.nonzero(samples[1::step,1::step])
         if not len(xx):
             continue
         x,y=1+step*xx,1+step*yy
@@ -43,7 +51,7 @@ def adjacent_proposals(ctx):
     return result-ctx.prior
 
 
-def witness(ctx,cell,axis,joint=None):
+def witness(ctx,cell,axis,joint=None,use_texture_edges=False):
     if cell[axis]<=ctx.eye[axis]<=cell[axis]+1:
         return None
     hit=_sample_face(ctx.native,cell,axis,1 if ctx.eye[axis]>cell[axis]+1 else -1,ctx.shape)
@@ -54,7 +62,7 @@ def witness(ctx,cell,axis,joint=None):
     if joint is not None:
         owner,axes,index=joint
         visible &= (owner[box]==index[cell]) & (axes[box]==axis)
-    aligned=visible & ctx.masks[axis][box]
+    aligned=visible & (ctx.union[box] if use_texture_edges else ctx.masks[axis][box])
     n=int(aligned.sum())
     if n<8 or n<.75*visible.sum():
         return None
@@ -63,16 +71,19 @@ def witness(ctx,cell,axis,joint=None):
     return n,new
 
 
-def corners(ctx,pool,strict,joint=None):
+def corners(ctx,pool,strict,joint=None,use_texture_edges=False):
     cells={}
     for cell in pool:
-        evidence={a:w for a in range(3) if (w:=witness(ctx,cell,a,joint)) is not None}
+        evidence={a:w for a in range(3) if (w:=witness(ctx,cell,a,joint,use_texture_edges)) is not None}
         if len(evidence)<2 or not any(n>=8 and n>=.60*total for total,n in evidence.values()):
             continue
         scores={}
         for axis in evidence:
-            fit=measure(ctx,cell,axis,joint)
-            if fit and fit['oriented']>=.80 and fit['depth']>=.085 and fit['phase']>=.06:
+            fit=measure(ctx,cell,axis,joint,palette=() if use_texture_edges else None)
+            if use_texture_edges:
+                if fit and fit['split']>=.80 and fit['depth']>=.18 and fit['phase']>=.12 and fit['color']<=8:
+                    scores[axis]=fit
+            elif fit and fit['oriented']>=.80 and fit['depth']>=.085 and fit['phase']>=.06:
                 scores[axis]=fit
         for axis,fit in scores.items():
             if axis==1 or fit['split']<(.75 if strict else .62) or fit['color']>10:
@@ -85,7 +96,7 @@ def corners(ctx,pool,strict,joint=None):
     return cells
 
 
-def recover(image,parts,counts,camera,prior,*,strict=True,atlas_path=None):
+def recover(image,parts,counts,camera,prior,*,strict=True,atlas_path=None,use_texture_edges=False):
     stats=dict(proposals=0,paired=0,accepted=0)
     if not prior or not parts or camera.get('P') is None:
         return prior,stats
@@ -93,15 +104,15 @@ def recover(image,parts,counts,camera,prior,*,strict=True,atlas_path=None):
     if atlas is None or atlas.provenance.get('atlas_sha256')!=ATLAS_SHA256:
         return prior,stats
     ctx=StripEvidence(image,parts,camera,prior,atlas)
-    pool=adjacent_proposals(ctx)
+    pool=adjacent_proposals(ctx,use_texture_edges)
     stats['proposals']=len(pool)
-    kept=set(corners(ctx,pool,strict))
+    kept=set(corners(ctx,pool,strict,use_texture_edges=use_texture_edges))
     stats['paired']=len(kept)
     while kept:
         joint=ctx.joint(kept)
         owner,_,index=joint
         outside=set(np.unique(owner[(ctx.depth==0)&~ctx.union]))
-        supported=set(corners(ctx,{c for c in kept if index[c] not in outside},strict,joint))
+        supported=set(corners(ctx,{c for c in kept if index[c] not in outside},strict,joint,use_texture_edges))
         supported=_keep_prior_visible(ctx.size,ctx.P,ctx.eye,prior,supported)-prior if supported else set()
         if supported==kept:
             break
@@ -112,6 +123,10 @@ def recover(image,parts,counts,camera,prior,*,strict=True,atlas_path=None):
 
 def one_texture(image,parts,counts,camera,prior):
     return recover(image,parts,counts,camera,prior,strict=False)
+
+
+def two_textures(image,parts,counts,camera,prior):
+    return recover(image,parts,counts,camera,prior,use_texture_edges=True)
 
 
 def return_anchors(ctx):
