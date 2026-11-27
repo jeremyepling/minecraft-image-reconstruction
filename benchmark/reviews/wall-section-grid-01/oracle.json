@@ -1,0 +1,2956 @@
+{
+  "control": "028819a",
+  "hash": "046f33b794e85d822e9b989b8091da5d2be955e4d09e240deefd521987ea8b4b",
+  "groups": {
+    "all": {
+      "target": 46869,
+      "placed": 43144,
+      "control_correct": 40707,
+      "extras": 2437,
+      "candidates": 4160,
+      "positive": 856,
+      "groups": 1022,
+      "choices": 3630,
+      "pure_chooser_without_joint_visibility": 718,
+      "actual_oracle_unique_correct": 673,
+      "f1": 0.9125995192201662,
+      "before_f1": 0.9044693544265828
+    },
+    "fixed": {
+      "target": 23702,
+      "placed": 21667,
+      "control_correct": 20510,
+      "extras": 1157,
+      "candidates": 2461,
+      "positive": 454,
+      "groups": 606,
+      "choices": 2188,
+      "pure_chooser_without_joint_visibility": 376,
+      "actual_oracle_unique_correct": 348,
+      "f1": 0.9124833213027976,
+      "before_f1": 0.9041415944808129
+    },
+    "train": {
+      "target": 18322,
+      "placed": 16798,
+      "control_correct": 16017,
+      "extras": 781,
+      "candidates": 1237,
+      "positive": 315,
+      "groups": 295,
+      "choices": 1042,
+      "pure_chooser_without_joint_visibility": 262,
+      "actual_oracle_unique_correct": 246,
+      "f1": 0.9196968840128937,
+      "before_f1": 0.912129840546697
+    },
+    "validation": {
+      "target": 2476,
+      "placed": 2350,
+      "control_correct": 2274,
+      "extras": 76,
+      "candidates": 284,
+      "positive": 20,
+      "groups": 66,
+      "choices": 262,
+      "pure_chooser_without_joint_visibility": 19,
+      "actual_oracle_unique_correct": 19,
+      "f1": 0.9465428276573787,
+      "before_f1": 0.9423953584749275
+    },
+    "test": {
+      "target": 3414,
+      "placed": 3173,
+      "control_correct": 3095,
+      "extras": 78,
+      "candidates": 151,
+      "positive": 30,
+      "groups": 42,
+      "choices": 143,
+      "pure_chooser_without_joint_visibility": 26,
+      "actual_oracle_unique_correct": 25,
+      "f1": 0.9437386569872959,
+      "before_f1": 0.9397297707605891
+    },
+    "regression": {
+      "target": 10242,
+      "placed": 9239,
+      "control_correct": 8690,
+      "extras": 549,
+      "candidates": 1235,
+      "positive": 229,
+      "groups": 299,
+      "choices": 1122,
+      "pure_chooser_without_joint_visibility": 196,
+      "actual_oracle_unique_correct": 176,
+      "f1": 0.902070509233352,
+      "before_f1": 0.8921513269339356
+    },
+    "native": {
+      "target": 3780,
+      "placed": 3388,
+      "control_correct": 3232,
+      "extras": 156,
+      "candidates": 437,
+      "positive": 96,
+      "groups": 121,
+      "choices": 366,
+      "pure_chooser_without_joint_visibility": 63,
+      "actual_oracle_unique_correct": 60,
+      "f1": 0.9109020475926951,
+      "before_f1": 0.9017857142857143
+    },
+    "old": {
+      "target": 2359,
+      "placed": 2195,
+      "control_correct": 2008,
+      "extras": 187,
+      "candidates": 231,
+      "positive": 53,
+      "groups": 55,
+      "choices": 196,
+      "pure_chooser_without_joint_visibility": 49,
+      "actual_oracle_unique_correct": 47,
+      "f1": 0.8932840686807216,
+      "before_f1": 0.8818620992534036
+    },
+    "fresh": {
+      "target": 1431,
+      "placed": 1322,
+      "control_correct": 1211,
+      "extras": 111,
+      "candidates": 123,
+      "positive": 26,
+      "groups": 23,
+      "choices": 99,
+      "pure_chooser_without_joint_visibility": 23,
+      "actual_oracle_unique_correct": 21,
+      "f1": 0.8882480173035328,
+      "before_f1": 0.8797675263349074
+    },
+    "extra": {
+      "target": 4098,
+      "placed": 3940,
+      "control_correct": 3559,
+      "extras": 381,
+      "candidates": 423,
+      "positive": 74,
+      "groups": 106,
+      "choices": 362,
+      "pure_chooser_without_joint_visibility": 67,
+      "actual_oracle_unique_correct": 66,
+      "f1": 0.8946199407699901,
+      "before_f1": 0.8855436675789997
+    },
+    "new": {
+      "target": 747,
+      "placed": 739,
+      "control_correct": 621,
+      "extras": 118,
+      "candidates": 39,
+      "positive": 13,
+      "groups": 15,
+      "choices": 38,
+      "pure_chooser_without_joint_visibility": 13,
+      "actual_oracle_unique_correct": 13,
+      "f1": 0.8458972648432288,
+      "before_f1": 0.8358008075370121
+    }
+  },
+  "ablations": {
+    "train": {
+      "base": 37,
+      "origin": 52,
+      "depth": 187,
+      "joint": 262
+    },
+    "validation": {
+      "base": 4,
+      "origin": 7,
+      "depth": 13,
+      "joint": 19
+    },
+    "fixed": {
+      "base": 134,
+      "origin": 180,
+      "depth": 274,
+      "joint": 376
+    },
+    "test": {
+      "base": 18,
+      "origin": 20,
+      "depth": 23,
+      "joint": 26
+    },
+    "regression": {
+      "base": 76,
+      "origin": 101,
+      "depth": 134,
+      "joint": 196
+    },
+    "native": {
+      "base": 17,
+      "origin": 29,
+      "depth": 43,
+      "joint": 63
+    },
+    "old": {
+      "base": 10,
+      "origin": 12,
+      "depth": 40,
+      "joint": 49
+    },
+    "fresh": {
+      "base": 9,
+      "origin": 11,
+      "depth": 21,
+      "joint": 23
+    },
+    "extra": {
+      "base": 13,
+      "origin": 18,
+      "depth": 52,
+      "joint": 67
+    },
+    "new": {
+      "base": 2,
+      "origin": 3,
+      "depth": 12,
+      "joint": 13
+    }
+  },
+  "frames": {
+    "train-arcade1-cool-high-right": {
+      "split": "train",
+      "before_final_render": {
+        "base": 0,
+        "origin": 0,
+        "depth": 0,
+        "joint": 0
+      },
+      "clean_actual": 0,
+      "candidate_positive": 0,
+      "candidate_total": 1
+    },
+    "train-arcade1-cool-low-left": {
+      "split": "train",
+      "before_final_render": {
+        "base": 0,
+        "origin": 0,
+        "depth": 0,
+        "joint": 0
+      },
+      "clean_actual": 0,
+      "candidate_positive": 0,
+      "candidate_total": 0
+    },
+    "train-arcade1-earth-high-right": {
+      "split": "train",
+      "before_final_render": {
+        "base": 0,
+        "origin": 0,
+        "depth": 0,
+        "joint": 0
+      },
+      "clean_actual": 0,
+      "candidate_positive": 0,
+      "candidate_total": 7
+    },
+    "train-arcade1-earth-low-left": {
+      "split": "train",
+      "before_final_render": {
+        "base": 0,
+        "origin": 0,
+        "depth": 1,
+        "joint": 1
+      },
+      "clean_actual": 1,
+      "candidate_positive": 2,
+      "candidate_total": 9
+    },
+    "train-arcade2-cool-high-right": {
+      "split": "train",
+      "before_final_render": {
+        "base": 0,
+        "origin": 0,
+        "depth": 0,
+        "joint": 0
+      },
+      "clean_actual": 0,
+      "candidate_positive": 0,
+      "candidate_total": 3
+    },
+    "train-arcade2-cool-low-left": {
+      "split": "train",
+      "before_final_render": {
+        "base": 2,
+        "origin": 2,
+        "depth": 2,
+        "joint": 2
+      },
+      "clean_actual": 2,
+      "candidate_positive": 2,
+      "candidate_total": 11
+    },
+    "train-arcade2-earth-high-right": {
+      "split": "train",
+      "before_final_render": {
+        "base": 3,
+        "origin": 5,
+        "depth": 3,
+        "joint": 5
+      },
+      "clean_actual": 5,
+      "candidate_positive": 5,
+      "candidate_total": 35
+    },
+    "train-arcade2-earth-low-left": {
+      "split": "train",
+      "before_final_render": {
+        "base": 4,
+        "origin": 4,
+        "depth": 4,
+        "joint": 4
+      },
+      "clean_actual": 4,
+      "candidate_positive": 5,
+      "candidate_total": 84
+    },
+    "train-arcade3-cool-high-right": {
+      "split": "train",
+      "before_final_render": {
+        "base": 0,
+        "origin": 0,
+        "depth": 0,
+        "joint": 0
+      },
+      "clean_actual": 0,
+      "candidate_positive": 0,
+      "candidate_total": 69
+    },
+    "train-arcade3-cool-low-left": {
+      "split": "train",
+      "before_final_render": {
+        "base": 1,
+        "origin": 1,
+        "depth": 10,
+        "joint": 16
+      },
+      "clean_actual": 13,
+      "candidate_positive": 18,
+      "candidate_total": 82
+    },
+    "train-arcade3-earth-high-right": {
+      "split": "train",
+      "before_final_render": {
+        "base": 2,
+        "origin": 4,
+        "depth": 2,
+        "joint": 4
+      },
+      "clean_actual": 4,
+      "candidate_positive": 4,
+      "candidate_total": 19
+    },
+    "train-arcade3-earth-low-left": {
+      "split": "train",
+      "before_final_render": {
+        "base": 1,
+        "origin": 1,
+        "depth": 13,
+        "joint": 14
+      },
+      "clean_actual": 9,
+      "candidate_positive": 15,
+      "candidate_total": 102
+    },
+    "train-arcbridge1-cool-high-right": {
+      "split": "train",
+      "before_final_render": {
+        "base": 0,
+        "origin": 0,
+        "depth": 0,
+        "joint": 0
+      },
+      "clean_actual": 0,
+      "candidate_positive": 0,
+      "candidate_total": 0
+    },
+    "train-arcbridge1-cool-low-left": {
+      "split": "train",
+      "before_final_render": {
+        "base": 1,
+        "origin": 1,
+        "depth": 1,
+        "joint": 4
+      },
+      "clean_actual": 3,
+      "candidate_positive": 6,
+      "candidate_total": 26
+    },
+    "train-arcbridge1-earth-high-right": {
+      "split": "train",
+      "before_final_render": {
+        "base": 0,
+        "origin": 0,
+        "depth": 0,
+        "joint": 0
+      },
+      "clean_actual": 0,
+      "candidate_positive": 0,
+      "candidate_total": 1
+    },
+    "train-arcbridge1-earth-low-left": {
+      "split": "train",
+      "before_final_render": {
+        "base": 0,
+        "origin": 0,
+        "depth": 2,
+        "joint": 2
+      },
+      "clean_actual": 2,
+      "candidate_positive": 5,
+      "candidate_total": 13
+    },
+    "train-arcbridge2-cool-high-right": {
+      "split": "train",
+      "before_final_render": {
+        "base": 0,
+        "origin": 0,
+        "depth": 0,
+        "joint": 0
+      },
+      "clean_actual": 0,
+      "candidate_positive": 0,
+      "candidate_total": 2
+    },
+    "train-arcbridge2-cool-low-left": {
+      "split": "train",
+      "before_final_render": {
+        "base": 0,
+        "origin": 0,
+        "depth": 0,
+        "joint": 0
+      },
+      "clean_actual": 0,
+      "candidate_positive": 0,
+      "candidate_total": 16
+    },
+    "train-arcbridge2-earth-high-right": {
+      "split": "train",
+      "before_final_render": {
+        "base": 0,
+        "origin": 0,
+        "depth": 2,
+        "joint": 3
+      },
+      "clean_actual": 3,
+      "candidate_positive": 3,
+      "candidate_total": 19
+    },
+    "train-arcbridge2-earth-low-left": {
+      "split": "train",
+      "before_final_render": {
+        "base": 0,
+        "origin": 0,
+        "depth": 0,
+        "joint": 0
+      },
+      "clean_actual": 0,
+      "candidate_positive": 0,
+      "candidate_total": 13
+    },
+    "train-arcbridge3-cool-high-right": {
+      "split": "train",
+      "before_final_render": {
+        "base": 0,
+        "origin": 0,
+        "depth": 6,
+        "joint": 7
+      },
+      "clean_actual": 4,
+      "candidate_positive": 7,
+      "candidate_total": 26
+    },
+    "train-arcbridge3-cool-low-left": {
+      "split": "train",
+      "before_final_render": {
+        "base": 0,
+        "origin": 0,
+        "depth": 2,
+        "joint": 2
+      },
+      "clean_actual": 2,
+      "candidate_positive": 2,
+      "candidate_total": 26
+    },
+    "train-arcbridge3-earth-high-right": {
+      "split": "train",
+      "before_final_render": {
+        "base": 1,
+        "origin": 1,
+        "depth": 4,
+        "joint": 4
+      },
+      "clean_actual": 3,
+      "candidate_positive": 11,
+      "candidate_total": 40
+    },
+    "train-arcbridge3-earth-low-left": {
+      "split": "train",
+      "before_final_render": {
+        "base": 0,
+        "origin": 0,
+        "depth": 0,
+        "joint": 0
+      },
+      "clean_actual": 0,
+      "candidate_positive": 0,
+      "candidate_total": 33
+    },
+    "train-sawtooth1-cool-high-right": {
+      "split": "train",
+      "before_final_render": {
+        "base": 0,
+        "origin": 0,
+        "depth": 1,
+        "joint": 1
+      },
+      "clean_actual": 1,
+      "candidate_positive": 1,
+      "candidate_total": 14
+    },
+    "train-sawtooth1-cool-low-left": {
+      "split": "train",
+      "before_final_render": {
+        "base": 0,
+        "origin": 0,
+        "depth": 1,
+        "joint": 2
+      },
+      "clean_actual": 2,
+      "candidate_positive": 4,
+      "candidate_total": 24
+    },
+    "train-sawtooth1-earth-high-right": {
+      "split": "train",
+      "before_final_render": {
+        "base": 0,
+        "origin": 0,
+        "depth": 2,
+        "joint": 2
+      },
+      "clean_actual": 2,
+      "candidate_positive": 2,
+      "candidate_total": 8
+    },
+    "train-sawtooth1-earth-low-left": {
+      "split": "train",
+      "before_final_render": {
+        "base": 0,
+        "origin": 0,
+        "depth": 3,
+        "joint": 4
+      },
+      "clean_actual": 4,
+      "candidate_positive": 4,
+      "candidate_total": 13
+    },
+    "train-sawtooth2-cool-high-right": {
+      "split": "train",
+      "before_final_render": {
+        "base": 0,
+        "origin": 0,
+        "depth": 0,
+        "joint": 0
+      },
+      "clean_actual": 0,
+      "candidate_positive": 0,
+      "candidate_total": 4
+    },
+    "train-sawtooth2-cool-low-left": {
+      "split": "train",
+      "before_final_render": {
+        "base": 0,
+        "origin": 0,
+        "depth": 8,
+        "joint": 12
+      },
+      "clean_actual": 12,
+      "candidate_positive": 14,
+      "candidate_total": 16
+    },
+    "train-sawtooth2-earth-high-right": {
+      "split": "train",
+      "before_final_render": {
+        "base": 1,
+        "origin": 1,
+        "depth": 7,
+        "joint": 7
+      },
+      "clean_actual": 6,
+      "candidate_positive": 7,
+      "candidate_total": 25
+    },
+    "train-sawtooth2-earth-low-left": {
+      "split": "train",
+      "before_final_render": {
+        "base": 0,
+        "origin": 0,
+        "depth": 11,
+        "joint": 17
+      },
+      "clean_actual": 17,
+      "candidate_positive": 22,
+      "candidate_total": 70
+    },
+    "train-sawtooth3-cool-high-right": {
+      "split": "train",
+      "before_final_render": {
+        "base": 5,
+        "origin": 8,
+        "depth": 6,
+        "joint": 9
+      },
+      "clean_actual": 9,
+      "candidate_positive": 10,
+      "candidate_total": 35
+    },
+    "train-sawtooth3-cool-low-left": {
+      "split": "train",
+      "before_final_render": {
+        "base": 3,
+        "origin": 5,
+        "depth": 11,
+        "joint": 19
+      },
+      "clean_actual": 19,
+      "candidate_positive": 24,
+      "candidate_total": 29
+    },
+    "train-sawtooth3-earth-high-right": {
+      "split": "train",
+      "before_final_render": {
+        "base": 1,
+        "origin": 2,
+        "depth": 2,
+        "joint": 3
+      },
+      "clean_actual": 3,
+      "candidate_positive": 3,
+      "candidate_total": 14
+    },
+    "train-sawtooth3-earth-low-left": {
+      "split": "train",
+      "before_final_render": {
+        "base": 0,
+        "origin": 0,
+        "depth": 14,
+        "joint": 19
+      },
+      "clean_actual": 19,
+      "candidate_positive": 21,
+      "candidate_total": 30
+    },
+    "train-steppedhall1-cool-high-right": {
+      "split": "train",
+      "before_final_render": {
+        "base": 0,
+        "origin": 0,
+        "depth": 0,
+        "joint": 0
+      },
+      "clean_actual": 0,
+      "candidate_positive": 0,
+      "candidate_total": 0
+    },
+    "train-steppedhall1-cool-low-left": {
+      "split": "train",
+      "before_final_render": {
+        "base": 0,
+        "origin": 0,
+        "depth": 0,
+        "joint": 0
+      },
+      "clean_actual": 0,
+      "candidate_positive": 0,
+      "candidate_total": 1
+    },
+    "train-steppedhall1-earth-high-right": {
+      "split": "train",
+      "before_final_render": {
+        "base": 1,
+        "origin": 1,
+        "depth": 1,
+        "joint": 1
+      },
+      "clean_actual": 1,
+      "candidate_positive": 1,
+      "candidate_total": 7
+    },
+    "train-steppedhall1-earth-low-left": {
+      "split": "train",
+      "before_final_render": {
+        "base": 0,
+        "origin": 0,
+        "depth": 5,
+        "joint": 5
+      },
+      "clean_actual": 5,
+      "candidate_positive": 5,
+      "candidate_total": 14
+    },
+    "train-steppedhall2-cool-high-right": {
+      "split": "train",
+      "before_final_render": {
+        "base": 1,
+        "origin": 1,
+        "depth": 1,
+        "joint": 1
+      },
+      "clean_actual": 1,
+      "candidate_positive": 1,
+      "candidate_total": 7
+    },
+    "train-steppedhall2-cool-low-left": {
+      "split": "train",
+      "before_final_render": {
+        "base": 0,
+        "origin": 0,
+        "depth": 7,
+        "joint": 8
+      },
+      "clean_actual": 8,
+      "candidate_positive": 8,
+      "candidate_total": 8
+    },
+    "train-steppedhall2-earth-high-right": {
+      "split": "train",
+      "before_final_render": {
+        "base": 0,
+        "origin": 0,
+        "depth": 0,
+        "joint": 0
+      },
+      "clean_actual": 0,
+      "candidate_positive": 0,
+      "candidate_total": 1
+    },
+    "train-steppedhall2-earth-low-left": {
+      "split": "train",
+      "before_final_render": {
+        "base": 0,
+        "origin": 0,
+        "depth": 6,
+        "joint": 8
+      },
+      "clean_actual": 8,
+      "candidate_positive": 10,
+      "candidate_total": 25
+    },
+    "train-steppedhall3-cool-high-right": {
+      "split": "train",
+      "before_final_render": {
+        "base": 1,
+        "origin": 1,
+        "depth": 3,
+        "joint": 4
+      },
+      "clean_actual": 4,
+      "candidate_positive": 5,
+      "candidate_total": 22
+    },
+    "train-steppedhall3-cool-low-left": {
+      "split": "train",
+      "before_final_render": {
+        "base": 2,
+        "origin": 7,
+        "depth": 18,
+        "joint": 29
+      },
+      "clean_actual": 29,
+      "candidate_positive": 35,
+      "candidate_total": 44
+    },
+    "train-steppedhall3-earth-high-right": {
+      "split": "train",
+      "before_final_render": {
+        "base": 1,
+        "origin": 1,
+        "depth": 1,
+        "joint": 1
+      },
+      "clean_actual": 1,
+      "candidate_positive": 1,
+      "candidate_total": 10
+    },
+    "train-steppedhall3-earth-low-left": {
+      "split": "train",
+      "before_final_render": {
+        "base": 1,
+        "origin": 1,
+        "depth": 8,
+        "joint": 13
+      },
+      "clean_actual": 13,
+      "candidate_positive": 18,
+      "candidate_total": 18
+    },
+    "train-terrace1-cool-high-right": {
+      "split": "train",
+      "before_final_render": {
+        "base": 0,
+        "origin": 0,
+        "depth": 0,
+        "joint": 0
+      },
+      "clean_actual": 0,
+      "candidate_positive": 0,
+      "candidate_total": 0
+    },
+    "train-terrace1-cool-low-left": {
+      "split": "train",
+      "before_final_render": {
+        "base": 0,
+        "origin": 0,
+        "depth": 0,
+        "joint": 0
+      },
+      "clean_actual": 0,
+      "candidate_positive": 0,
+      "candidate_total": 4
+    },
+    "train-terrace1-earth-high-right": {
+      "split": "train",
+      "before_final_render": {
+        "base": 0,
+        "origin": 0,
+        "depth": 0,
+        "joint": 0
+      },
+      "clean_actual": 0,
+      "candidate_positive": 0,
+      "candidate_total": 0
+    },
+    "train-terrace1-earth-low-left": {
+      "split": "train",
+      "before_final_render": {
+        "base": 1,
+        "origin": 1,
+        "depth": 1,
+        "joint": 1
+      },
+      "clean_actual": 1,
+      "candidate_positive": 1,
+      "candidate_total": 11
+    },
+    "train-terrace2-cool-high-right": {
+      "split": "train",
+      "before_final_render": {
+        "base": 0,
+        "origin": 0,
+        "depth": 0,
+        "joint": 0
+      },
+      "clean_actual": 0,
+      "candidate_positive": 0,
+      "candidate_total": 0
+    },
+    "train-terrace2-cool-low-left": {
+      "split": "train",
+      "before_final_render": {
+        "base": 0,
+        "origin": 0,
+        "depth": 0,
+        "joint": 0
+      },
+      "clean_actual": 0,
+      "candidate_positive": 0,
+      "candidate_total": 0
+    },
+    "train-terrace2-earth-high-right": {
+      "split": "train",
+      "before_final_render": {
+        "base": 0,
+        "origin": 0,
+        "depth": 0,
+        "joint": 0
+      },
+      "clean_actual": 0,
+      "candidate_positive": 0,
+      "candidate_total": 0
+    },
+    "train-terrace2-earth-low-left": {
+      "split": "train",
+      "before_final_render": {
+        "base": 0,
+        "origin": 0,
+        "depth": 0,
+        "joint": 0
+      },
+      "clean_actual": 0,
+      "candidate_positive": 0,
+      "candidate_total": 0
+    },
+    "train-terrace3-cool-high-right": {
+      "split": "train",
+      "before_final_render": {
+        "base": 0,
+        "origin": 0,
+        "depth": 2,
+        "joint": 2
+      },
+      "clean_actual": 2,
+      "candidate_positive": 3,
+      "candidate_total": 3
+    },
+    "train-terrace3-cool-low-left": {
+      "split": "train",
+      "before_final_render": {
+        "base": 0,
+        "origin": 0,
+        "depth": 0,
+        "joint": 0
+      },
+      "clean_actual": 0,
+      "candidate_positive": 0,
+      "candidate_total": 1
+    },
+    "train-terrace3-earth-high-right": {
+      "split": "train",
+      "before_final_render": {
+        "base": 0,
+        "origin": 0,
+        "depth": 2,
+        "joint": 8
+      },
+      "clean_actual": 8,
+      "candidate_positive": 9,
+      "candidate_total": 9
+    },
+    "train-terrace3-earth-low-left": {
+      "split": "train",
+      "before_final_render": {
+        "base": 0,
+        "origin": 0,
+        "depth": 2,
+        "joint": 3
+      },
+      "clean_actual": 3,
+      "candidate_positive": 3,
+      "candidate_total": 15
+    },
+    "train-watchpost1-cool-high-right": {
+      "split": "train",
+      "before_final_render": {
+        "base": 0,
+        "origin": 0,
+        "depth": 1,
+        "joint": 1
+      },
+      "clean_actual": 1,
+      "candidate_positive": 1,
+      "candidate_total": 7
+    },
+    "train-watchpost1-cool-low-left": {
+      "split": "train",
+      "before_final_render": {
+        "base": 0,
+        "origin": 0,
+        "depth": 0,
+        "joint": 0
+      },
+      "clean_actual": 0,
+      "candidate_positive": 0,
+      "candidate_total": 1
+    },
+    "train-watchpost1-earth-high-right": {
+      "split": "train",
+      "before_final_render": {
+        "base": 0,
+        "origin": 0,
+        "depth": 0,
+        "joint": 0
+      },
+      "clean_actual": 0,
+      "candidate_positive": 0,
+      "candidate_total": 1
+    },
+    "train-watchpost1-earth-low-left": {
+      "split": "train",
+      "before_final_render": {
+        "base": 0,
+        "origin": 0,
+        "depth": 0,
+        "joint": 0
+      },
+      "clean_actual": 0,
+      "candidate_positive": 0,
+      "candidate_total": 0
+    },
+    "train-watchpost2-cool-high-right": {
+      "split": "train",
+      "before_final_render": {
+        "base": 1,
+        "origin": 1,
+        "depth": 1,
+        "joint": 2
+      },
+      "clean_actual": 2,
+      "candidate_positive": 2,
+      "candidate_total": 19
+    },
+    "train-watchpost2-cool-low-left": {
+      "split": "train",
+      "before_final_render": {
+        "base": 0,
+        "origin": 0,
+        "depth": 0,
+        "joint": 0
+      },
+      "clean_actual": 0,
+      "candidate_positive": 0,
+      "candidate_total": 5
+    },
+    "train-watchpost2-earth-high-right": {
+      "split": "train",
+      "before_final_render": {
+        "base": 0,
+        "origin": 0,
+        "depth": 1,
+        "joint": 1
+      },
+      "clean_actual": 1,
+      "candidate_positive": 1,
+      "candidate_total": 4
+    },
+    "train-watchpost2-earth-low-left": {
+      "split": "train",
+      "before_final_render": {
+        "base": 1,
+        "origin": 1,
+        "depth": 1,
+        "joint": 1
+      },
+      "clean_actual": 1,
+      "candidate_positive": 1,
+      "candidate_total": 10
+    },
+    "train-watchpost3-cool-high-right": {
+      "split": "train",
+      "before_final_render": {
+        "base": 1,
+        "origin": 1,
+        "depth": 3,
+        "joint": 3
+      },
+      "clean_actual": 3,
+      "candidate_positive": 5,
+      "candidate_total": 34
+    },
+    "train-watchpost3-cool-low-left": {
+      "split": "train",
+      "before_final_render": {
+        "base": 0,
+        "origin": 0,
+        "depth": 0,
+        "joint": 0
+      },
+      "clean_actual": 0,
+      "candidate_positive": 0,
+      "candidate_total": 1
+    },
+    "train-watchpost3-earth-high-right": {
+      "split": "train",
+      "before_final_render": {
+        "base": 1,
+        "origin": 1,
+        "depth": 4,
+        "joint": 6
+      },
+      "clean_actual": 4,
+      "candidate_positive": 7,
+      "candidate_total": 32
+    },
+    "train-watchpost3-earth-low-left": {
+      "split": "train",
+      "before_final_render": {
+        "base": 0,
+        "origin": 0,
+        "depth": 1,
+        "joint": 1
+      },
+      "clean_actual": 1,
+      "candidate_positive": 1,
+      "candidate_total": 4
+    },
+    "validation-cloister1-cool-high-right": {
+      "split": "validation",
+      "before_final_render": {
+        "base": 0,
+        "origin": 0,
+        "depth": 2,
+        "joint": 2
+      },
+      "clean_actual": 2,
+      "candidate_positive": 2,
+      "candidate_total": 18
+    },
+    "validation-cloister1-cool-low-left": {
+      "split": "validation",
+      "before_final_render": {
+        "base": 0,
+        "origin": 0,
+        "depth": 0,
+        "joint": 0
+      },
+      "clean_actual": 0,
+      "candidate_positive": 0,
+      "candidate_total": 12
+    },
+    "validation-cloister1-earth-high-right": {
+      "split": "validation",
+      "before_final_render": {
+        "base": 1,
+        "origin": 1,
+        "depth": 4,
+        "joint": 4
+      },
+      "clean_actual": 4,
+      "candidate_positive": 4,
+      "candidate_total": 25
+    },
+    "validation-cloister1-earth-low-left": {
+      "split": "validation",
+      "before_final_render": {
+        "base": 0,
+        "origin": 0,
+        "depth": 0,
+        "joint": 0
+      },
+      "clean_actual": 0,
+      "candidate_positive": 0,
+      "candidate_total": 12
+    },
+    "validation-cloister2-cool-high-right": {
+      "split": "validation",
+      "before_final_render": {
+        "base": 0,
+        "origin": 0,
+        "depth": 1,
+        "joint": 1
+      },
+      "clean_actual": 1,
+      "candidate_positive": 1,
+      "candidate_total": 20
+    },
+    "validation-cloister2-cool-low-left": {
+      "split": "validation",
+      "before_final_render": {
+        "base": 0,
+        "origin": 0,
+        "depth": 0,
+        "joint": 0
+      },
+      "clean_actual": 0,
+      "candidate_positive": 0,
+      "candidate_total": 30
+    },
+    "validation-cloister2-earth-high-right": {
+      "split": "validation",
+      "before_final_render": {
+        "base": 0,
+        "origin": 0,
+        "depth": 1,
+        "joint": 2
+      },
+      "clean_actual": 2,
+      "candidate_positive": 2,
+      "candidate_total": 27
+    },
+    "validation-cloister2-earth-low-left": {
+      "split": "validation",
+      "before_final_render": {
+        "base": 0,
+        "origin": 0,
+        "depth": 0,
+        "joint": 0
+      },
+      "clean_actual": 0,
+      "candidate_positive": 0,
+      "candidate_total": 19
+    },
+    "validation-cloister3-cool-high-right": {
+      "split": "validation",
+      "before_final_render": {
+        "base": 0,
+        "origin": 0,
+        "depth": 1,
+        "joint": 2
+      },
+      "clean_actual": 2,
+      "candidate_positive": 2,
+      "candidate_total": 40
+    },
+    "validation-cloister3-cool-low-left": {
+      "split": "validation",
+      "before_final_render": {
+        "base": 2,
+        "origin": 4,
+        "depth": 2,
+        "joint": 4
+      },
+      "clean_actual": 4,
+      "candidate_positive": 4,
+      "candidate_total": 25
+    },
+    "validation-cloister3-earth-high-right": {
+      "split": "validation",
+      "before_final_render": {
+        "base": 0,
+        "origin": 0,
+        "depth": 1,
+        "joint": 2
+      },
+      "clean_actual": 2,
+      "candidate_positive": 3,
+      "candidate_total": 25
+    },
+    "validation-cloister3-earth-low-left": {
+      "split": "validation",
+      "before_final_render": {
+        "base": 1,
+        "origin": 2,
+        "depth": 1,
+        "joint": 2
+      },
+      "clean_actual": 2,
+      "candidate_positive": 2,
+      "candidate_total": 31
+    },
+    "test-twinspire1-cool-high-right": {
+      "split": "test",
+      "before_final_render": {
+        "base": 3,
+        "origin": 4,
+        "depth": 3,
+        "joint": 4
+      },
+      "clean_actual": 4,
+      "candidate_positive": 4,
+      "candidate_total": 16
+    },
+    "test-twinspire1-cool-low-left": {
+      "split": "test",
+      "before_final_render": {
+        "base": 3,
+        "origin": 4,
+        "depth": 3,
+        "joint": 4
+      },
+      "clean_actual": 4,
+      "candidate_positive": 4,
+      "candidate_total": 23
+    },
+    "test-twinspire1-earth-high-right": {
+      "split": "test",
+      "before_final_render": {
+        "base": 1,
+        "origin": 1,
+        "depth": 1,
+        "joint": 1
+      },
+      "clean_actual": 1,
+      "candidate_positive": 1,
+      "candidate_total": 11
+    },
+    "test-twinspire1-earth-low-left": {
+      "split": "test",
+      "before_final_render": {
+        "base": 4,
+        "origin": 4,
+        "depth": 4,
+        "joint": 4
+      },
+      "clean_actual": 4,
+      "candidate_positive": 5,
+      "candidate_total": 19
+    },
+    "test-twinspire2-cool-high-right": {
+      "split": "test",
+      "before_final_render": {
+        "base": 1,
+        "origin": 1,
+        "depth": 1,
+        "joint": 1
+      },
+      "clean_actual": 1,
+      "candidate_positive": 1,
+      "candidate_total": 11
+    },
+    "test-twinspire2-cool-low-left": {
+      "split": "test",
+      "before_final_render": {
+        "base": 2,
+        "origin": 2,
+        "depth": 3,
+        "joint": 4
+      },
+      "clean_actual": 4,
+      "candidate_positive": 7,
+      "candidate_total": 25
+    },
+    "test-twinspire2-earth-high-right": {
+      "split": "test",
+      "before_final_render": {
+        "base": 2,
+        "origin": 2,
+        "depth": 2,
+        "joint": 2
+      },
+      "clean_actual": 2,
+      "candidate_positive": 2,
+      "candidate_total": 26
+    },
+    "test-twinspire2-earth-low-left": {
+      "split": "test",
+      "before_final_render": {
+        "base": 0,
+        "origin": 0,
+        "depth": 0,
+        "joint": 0
+      },
+      "clean_actual": 0,
+      "candidate_positive": 0,
+      "candidate_total": 3
+    },
+    "test-twinspire3-cool-high-right": {
+      "split": "test",
+      "before_final_render": {
+        "base": 0,
+        "origin": 0,
+        "depth": 1,
+        "joint": 1
+      },
+      "clean_actual": 1,
+      "candidate_positive": 1,
+      "candidate_total": 3
+    },
+    "test-twinspire3-cool-low-left": {
+      "split": "test",
+      "before_final_render": {
+        "base": 0,
+        "origin": 0,
+        "depth": 0,
+        "joint": 0
+      },
+      "clean_actual": 0,
+      "candidate_positive": 0,
+      "candidate_total": 0
+    },
+    "test-twinspire3-earth-high-right": {
+      "split": "test",
+      "before_final_render": {
+        "base": 1,
+        "origin": 1,
+        "depth": 3,
+        "joint": 3
+      },
+      "clean_actual": 2,
+      "candidate_positive": 3,
+      "candidate_total": 6
+    },
+    "test-twinspire3-earth-low-left": {
+      "split": "test",
+      "before_final_render": {
+        "base": 1,
+        "origin": 1,
+        "depth": 2,
+        "joint": 2
+      },
+      "clean_actual": 2,
+      "candidate_positive": 2,
+      "candidate_total": 8
+    },
+    "legacy-light_gray_concrete-dev-shopfront-masonry-high-right": {
+      "split": "regression",
+      "before_final_render": {
+        "base": 0,
+        "origin": 0,
+        "depth": 0,
+        "joint": 0
+      },
+      "clean_actual": 0,
+      "candidate_positive": 0,
+      "candidate_total": 37
+    },
+    "legacy-light_gray_concrete-dev-shopfront-masonry-low-left": {
+      "split": "regression",
+      "before_final_render": {
+        "base": 1,
+        "origin": 2,
+        "depth": 3,
+        "joint": 6
+      },
+      "clean_actual": 6,
+      "candidate_positive": 6,
+      "candidate_total": 41
+    },
+    "legacy-light_gray_concrete-dev-shopfront-plaster-high-right": {
+      "split": "regression",
+      "before_final_render": {
+        "base": 3,
+        "origin": 4,
+        "depth": 3,
+        "joint": 4
+      },
+      "clean_actual": 4,
+      "candidate_positive": 4,
+      "candidate_total": 49
+    },
+    "legacy-light_gray_concrete-dev-shopfront-plaster-low-left": {
+      "split": "regression",
+      "before_final_render": {
+        "base": 7,
+        "origin": 14,
+        "depth": 7,
+        "joint": 14
+      },
+      "clean_actual": 14,
+      "candidate_positive": 15,
+      "candidate_total": 95
+    },
+    "legacy-light_gray_concrete-dev-wing-masonry-high-right": {
+      "split": "regression",
+      "before_final_render": {
+        "base": 0,
+        "origin": 0,
+        "depth": 0,
+        "joint": 0
+      },
+      "clean_actual": 0,
+      "candidate_positive": 0,
+      "candidate_total": 1
+    },
+    "legacy-light_gray_concrete-dev-wing-masonry-low-left": {
+      "split": "regression",
+      "before_final_render": {
+        "base": 0,
+        "origin": 0,
+        "depth": 0,
+        "joint": 0
+      },
+      "clean_actual": 0,
+      "candidate_positive": 0,
+      "candidate_total": 0
+    },
+    "legacy-light_gray_concrete-dev-wing-plaster-high-right": {
+      "split": "regression",
+      "before_final_render": {
+        "base": 0,
+        "origin": 0,
+        "depth": 0,
+        "joint": 0
+      },
+      "clean_actual": 0,
+      "candidate_positive": 0,
+      "candidate_total": 1
+    },
+    "legacy-light_gray_concrete-dev-wing-plaster-low-left": {
+      "split": "regression",
+      "before_final_render": {
+        "base": 0,
+        "origin": 0,
+        "depth": 0,
+        "joint": 0
+      },
+      "clean_actual": 0,
+      "candidate_positive": 0,
+      "candidate_total": 1
+    },
+    "legacy-light_gray_concrete-holdout-courtyard-masonry-high-right": {
+      "split": "regression",
+      "before_final_render": {
+        "base": 0,
+        "origin": 0,
+        "depth": 0,
+        "joint": 0
+      },
+      "clean_actual": 0,
+      "candidate_positive": 0,
+      "candidate_total": 2
+    },
+    "legacy-light_gray_concrete-holdout-courtyard-masonry-low-left": {
+      "split": "regression",
+      "before_final_render": {
+        "base": 0,
+        "origin": 0,
+        "depth": 0,
+        "joint": 0
+      },
+      "clean_actual": 0,
+      "candidate_positive": 0,
+      "candidate_total": 0
+    },
+    "legacy-light_gray_concrete-holdout-courtyard-plaster-high-right": {
+      "split": "regression",
+      "before_final_render": {
+        "base": 0,
+        "origin": 0,
+        "depth": 0,
+        "joint": 0
+      },
+      "clean_actual": 0,
+      "candidate_positive": 0,
+      "candidate_total": 2
+    },
+    "legacy-light_gray_concrete-holdout-courtyard-plaster-low-left": {
+      "split": "regression",
+      "before_final_render": {
+        "base": 1,
+        "origin": 1,
+        "depth": 2,
+        "joint": 4
+      },
+      "clean_actual": 1,
+      "candidate_positive": 5,
+      "candidate_total": 29
+    },
+    "legacy-light_gray_concrete-holdout-crossing-masonry-high-right": {
+      "split": "regression",
+      "before_final_render": {
+        "base": 3,
+        "origin": 3,
+        "depth": 6,
+        "joint": 7
+      },
+      "clean_actual": 7,
+      "candidate_positive": 9,
+      "candidate_total": 28
+    },
+    "legacy-light_gray_concrete-holdout-crossing-masonry-low-left": {
+      "split": "regression",
+      "before_final_render": {
+        "base": 1,
+        "origin": 1,
+        "depth": 4,
+        "joint": 4
+      },
+      "clean_actual": 4,
+      "candidate_positive": 4,
+      "candidate_total": 7
+    },
+    "legacy-light_gray_concrete-holdout-crossing-plaster-high-right": {
+      "split": "regression",
+      "before_final_render": {
+        "base": 5,
+        "origin": 5,
+        "depth": 8,
+        "joint": 8
+      },
+      "clean_actual": 8,
+      "candidate_positive": 8,
+      "candidate_total": 35
+    },
+    "legacy-light_gray_concrete-holdout-crossing-plaster-low-left": {
+      "split": "regression",
+      "before_final_render": {
+        "base": 1,
+        "origin": 1,
+        "depth": 1,
+        "joint": 1
+      },
+      "clean_actual": 1,
+      "candidate_positive": 1,
+      "candidate_total": 11
+    },
+    "legacy-light_gray_concrete-holdout-galleries-masonry-high-right": {
+      "split": "regression",
+      "before_final_render": {
+        "base": 2,
+        "origin": 2,
+        "depth": 3,
+        "joint": 6
+      },
+      "clean_actual": 5,
+      "candidate_positive": 7,
+      "candidate_total": 37
+    },
+    "legacy-light_gray_concrete-holdout-galleries-masonry-low-left": {
+      "split": "regression",
+      "before_final_render": {
+        "base": 5,
+        "origin": 6,
+        "depth": 5,
+        "joint": 9
+      },
+      "clean_actual": 9,
+      "candidate_positive": 13,
+      "candidate_total": 74
+    },
+    "legacy-light_gray_concrete-holdout-galleries-plaster-high-right": {
+      "split": "regression",
+      "before_final_render": {
+        "base": 4,
+        "origin": 5,
+        "depth": 7,
+        "joint": 12
+      },
+      "clean_actual": 10,
+      "candidate_positive": 20,
+      "candidate_total": 88
+    },
+    "legacy-light_gray_concrete-holdout-galleries-plaster-low-left": {
+      "split": "regression",
+      "before_final_render": {
+        "base": 7,
+        "origin": 11,
+        "depth": 9,
+        "joint": 15
+      },
+      "clean_actual": 13,
+      "candidate_positive": 18,
+      "candidate_total": 96
+    },
+    "legacy-light_gray_concrete-holdout-portico-masonry-high-right": {
+      "split": "regression",
+      "before_final_render": {
+        "base": 1,
+        "origin": 1,
+        "depth": 1,
+        "joint": 1
+      },
+      "clean_actual": 1,
+      "candidate_positive": 1,
+      "candidate_total": 4
+    },
+    "legacy-light_gray_concrete-holdout-portico-masonry-low-left": {
+      "split": "regression",
+      "before_final_render": {
+        "base": 2,
+        "origin": 2,
+        "depth": 5,
+        "joint": 5
+      },
+      "clean_actual": 4,
+      "candidate_positive": 5,
+      "candidate_total": 26
+    },
+    "legacy-light_gray_concrete-holdout-portico-plaster-high-right": {
+      "split": "regression",
+      "before_final_render": {
+        "base": 5,
+        "origin": 6,
+        "depth": 5,
+        "joint": 6
+      },
+      "clean_actual": 6,
+      "candidate_positive": 6,
+      "candidate_total": 37
+    },
+    "legacy-light_gray_concrete-holdout-portico-plaster-low-left": {
+      "split": "regression",
+      "before_final_render": {
+        "base": 3,
+        "origin": 4,
+        "depth": 8,
+        "joint": 10
+      },
+      "clean_actual": 6,
+      "candidate_positive": 11,
+      "candidate_total": 59
+    },
+    "legacy-light_gray_concrete-holdout-registry-masonry-high-right": {
+      "split": "regression",
+      "before_final_render": {
+        "base": 0,
+        "origin": 0,
+        "depth": 2,
+        "joint": 4
+      },
+      "clean_actual": 4,
+      "candidate_positive": 4,
+      "candidate_total": 4
+    },
+    "legacy-light_gray_concrete-holdout-registry-masonry-low-left": {
+      "split": "regression",
+      "before_final_render": {
+        "base": 0,
+        "origin": 0,
+        "depth": 0,
+        "joint": 0
+      },
+      "clean_actual": 0,
+      "candidate_positive": 0,
+      "candidate_total": 0
+    },
+    "legacy-light_gray_concrete-holdout-registry-plaster-high-right": {
+      "split": "regression",
+      "before_final_render": {
+        "base": 0,
+        "origin": 0,
+        "depth": 2,
+        "joint": 3
+      },
+      "clean_actual": 3,
+      "candidate_positive": 3,
+      "candidate_total": 7
+    },
+    "legacy-light_gray_concrete-holdout-registry-plaster-low-left": {
+      "split": "regression",
+      "before_final_render": {
+        "base": 2,
+        "origin": 2,
+        "depth": 3,
+        "joint": 3
+      },
+      "clean_actual": 3,
+      "candidate_positive": 3,
+      "candidate_total": 21
+    },
+    "legacy-light_gray_concrete-holdout-workshop-masonry-high-right": {
+      "split": "regression",
+      "before_final_render": {
+        "base": 6,
+        "origin": 7,
+        "depth": 8,
+        "joint": 9
+      },
+      "clean_actual": 9,
+      "candidate_positive": 11,
+      "candidate_total": 39
+    },
+    "legacy-light_gray_concrete-holdout-workshop-masonry-low-left": {
+      "split": "regression",
+      "before_final_render": {
+        "base": 1,
+        "origin": 1,
+        "depth": 5,
+        "joint": 10
+      },
+      "clean_actual": 10,
+      "candidate_positive": 13,
+      "candidate_total": 34
+    },
+    "legacy-light_gray_concrete-holdout-workshop-plaster-high-right": {
+      "split": "regression",
+      "before_final_render": {
+        "base": 1,
+        "origin": 1,
+        "depth": 5,
+        "joint": 6
+      },
+      "clean_actual": 5,
+      "candidate_positive": 7,
+      "candidate_total": 34
+    },
+    "legacy-light_gray_concrete-holdout-workshop-plaster-low-left": {
+      "split": "regression",
+      "before_final_render": {
+        "base": 0,
+        "origin": 0,
+        "depth": 3,
+        "joint": 8
+      },
+      "clean_actual": 6,
+      "candidate_positive": 9,
+      "candidate_total": 33
+    },
+    "legacy-smooth_stone-dev-shopfront-masonry-high-right": {
+      "split": "regression",
+      "before_final_render": {
+        "base": 1,
+        "origin": 2,
+        "depth": 1,
+        "joint": 2
+      },
+      "clean_actual": 2,
+      "candidate_positive": 2,
+      "candidate_total": 39
+    },
+    "legacy-smooth_stone-dev-shopfront-masonry-low-left": {
+      "split": "regression",
+      "before_final_render": {
+        "base": 0,
+        "origin": 0,
+        "depth": 1,
+        "joint": 2
+      },
+      "clean_actual": 2,
+      "candidate_positive": 2,
+      "candidate_total": 14
+    },
+    "legacy-smooth_stone-dev-shopfront-plaster-high-right": {
+      "split": "regression",
+      "before_final_render": {
+        "base": 1,
+        "origin": 2,
+        "depth": 4,
+        "joint": 5
+      },
+      "clean_actual": 5,
+      "candidate_positive": 5,
+      "candidate_total": 33
+    },
+    "legacy-smooth_stone-dev-shopfront-plaster-low-left": {
+      "split": "regression",
+      "before_final_render": {
+        "base": 6,
+        "origin": 11,
+        "depth": 7,
+        "joint": 14
+      },
+      "clean_actual": 14,
+      "candidate_positive": 15,
+      "candidate_total": 90
+    },
+    "legacy-smooth_stone-dev-wing-masonry-high-right": {
+      "split": "regression",
+      "before_final_render": {
+        "base": 0,
+        "origin": 0,
+        "depth": 0,
+        "joint": 0
+      },
+      "clean_actual": 0,
+      "candidate_positive": 0,
+      "candidate_total": 1
+    },
+    "legacy-smooth_stone-dev-wing-masonry-low-left": {
+      "split": "regression",
+      "before_final_render": {
+        "base": 0,
+        "origin": 0,
+        "depth": 0,
+        "joint": 0
+      },
+      "clean_actual": 0,
+      "candidate_positive": 0,
+      "candidate_total": 0
+    },
+    "legacy-smooth_stone-dev-wing-plaster-high-right": {
+      "split": "regression",
+      "before_final_render": {
+        "base": 0,
+        "origin": 0,
+        "depth": 0,
+        "joint": 0
+      },
+      "clean_actual": 0,
+      "candidate_positive": 0,
+      "candidate_total": 0
+    },
+    "legacy-smooth_stone-dev-wing-plaster-low-left": {
+      "split": "regression",
+      "before_final_render": {
+        "base": 0,
+        "origin": 0,
+        "depth": 0,
+        "joint": 0
+      },
+      "clean_actual": 0,
+      "candidate_positive": 0,
+      "candidate_total": 0
+    },
+    "legacy-smooth_stone-holdout-courtyard-masonry-high-right": {
+      "split": "regression",
+      "before_final_render": {
+        "base": 0,
+        "origin": 0,
+        "depth": 0,
+        "joint": 0
+      },
+      "clean_actual": 0,
+      "candidate_positive": 0,
+      "candidate_total": 0
+    },
+    "legacy-smooth_stone-holdout-courtyard-masonry-low-left": {
+      "split": "regression",
+      "before_final_render": {
+        "base": 0,
+        "origin": 0,
+        "depth": 0,
+        "joint": 0
+      },
+      "clean_actual": 0,
+      "candidate_positive": 0,
+      "candidate_total": 1
+    },
+    "legacy-smooth_stone-holdout-courtyard-plaster-high-right": {
+      "split": "regression",
+      "before_final_render": {
+        "base": 1,
+        "origin": 1,
+        "depth": 1,
+        "joint": 1
+      },
+      "clean_actual": 1,
+      "candidate_positive": 1,
+      "candidate_total": 7
+    },
+    "legacy-smooth_stone-holdout-courtyard-plaster-low-left": {
+      "split": "regression",
+      "before_final_render": {
+        "base": 1,
+        "origin": 1,
+        "depth": 1,
+        "joint": 1
+      },
+      "clean_actual": 1,
+      "candidate_positive": 1,
+      "candidate_total": 6
+    },
+    "legacy-smooth_stone-holdout-portico-masonry-high-right": {
+      "split": "regression",
+      "before_final_render": {
+        "base": 2,
+        "origin": 2,
+        "depth": 2,
+        "joint": 2
+      },
+      "clean_actual": 2,
+      "candidate_positive": 2,
+      "candidate_total": 8
+    },
+    "legacy-smooth_stone-holdout-portico-masonry-low-left": {
+      "split": "regression",
+      "before_final_render": {
+        "base": 0,
+        "origin": 0,
+        "depth": 3,
+        "joint": 4
+      },
+      "clean_actual": 4,
+      "candidate_positive": 6,
+      "candidate_total": 28
+    },
+    "legacy-smooth_stone-holdout-portico-plaster-high-right": {
+      "split": "regression",
+      "before_final_render": {
+        "base": 1,
+        "origin": 1,
+        "depth": 4,
+        "joint": 4
+      },
+      "clean_actual": 4,
+      "candidate_positive": 4,
+      "candidate_total": 23
+    },
+    "legacy-smooth_stone-holdout-portico-plaster-low-left": {
+      "split": "regression",
+      "before_final_render": {
+        "base": 2,
+        "origin": 2,
+        "depth": 5,
+        "joint": 6
+      },
+      "clean_actual": 2,
+      "candidate_positive": 8,
+      "candidate_total": 53
+    },
+    "heldout-facade-oblique-left": {
+      "split": "native",
+      "before_final_render": {
+        "base": 0,
+        "origin": 1,
+        "depth": 3,
+        "joint": 5
+      },
+      "clean_actual": 5,
+      "candidate_positive": 5,
+      "candidate_total": 27
+    },
+    "heldout-facade-oblique-right": {
+      "split": "native",
+      "before_final_render": {
+        "base": 7,
+        "origin": 11,
+        "depth": 10,
+        "joint": 15
+      },
+      "clean_actual": 15,
+      "candidate_positive": 15,
+      "candidate_total": 50
+    },
+    "dark-inlay-oblique-left": {
+      "split": "native",
+      "before_final_render": {
+        "base": 0,
+        "origin": 0,
+        "depth": 2,
+        "joint": 4
+      },
+      "clean_actual": 4,
+      "candidate_positive": 5,
+      "candidate_total": 9
+    },
+    "dark-inlay-oblique-right": {
+      "split": "native",
+      "before_final_render": {
+        "base": 1,
+        "origin": 2,
+        "depth": 2,
+        "joint": 4
+      },
+      "clean_actual": 4,
+      "candidate_positive": 6,
+      "candidate_total": 21
+    },
+    "physical-shade-oblique-left": {
+      "split": "native",
+      "before_final_render": {
+        "base": 3,
+        "origin": 8,
+        "depth": 16,
+        "joint": 20
+      },
+      "clean_actual": 17,
+      "candidate_positive": 40,
+      "candidate_total": 52
+    },
+    "physical-shade-oblique-right": {
+      "split": "native",
+      "before_final_render": {
+        "base": 0,
+        "origin": 0,
+        "depth": 1,
+        "joint": 5
+      },
+      "clean_actual": 5,
+      "candidate_positive": 13,
+      "candidate_total": 30
+    },
+    "test-adjacency-26-left": {
+      "split": "native",
+      "before_final_render": {
+        "base": 0,
+        "origin": 0,
+        "depth": 0,
+        "joint": 0
+      },
+      "clean_actual": 0,
+      "candidate_positive": 0,
+      "candidate_total": 110
+    },
+    "test-adjacency-26-right": {
+      "split": "native",
+      "before_final_render": {
+        "base": 0,
+        "origin": 0,
+        "depth": 0,
+        "joint": 0
+      },
+      "clean_actual": 0,
+      "candidate_positive": 0,
+      "candidate_total": 55
+    },
+    "test-recess-28-left": {
+      "split": "native",
+      "before_final_render": {
+        "base": 1,
+        "origin": 1,
+        "depth": 4,
+        "joint": 4
+      },
+      "clean_actual": 4,
+      "candidate_positive": 5,
+      "candidate_total": 42
+    },
+    "test-recess-28-right": {
+      "split": "native",
+      "before_final_render": {
+        "base": 5,
+        "origin": 6,
+        "depth": 5,
+        "joint": 6
+      },
+      "clean_actual": 6,
+      "candidate_positive": 7,
+      "candidate_total": 41
+    },
+    "test-corner-29-left": {
+      "split": "native",
+      "before_final_render": {
+        "base": 0,
+        "origin": 0,
+        "depth": 0,
+        "joint": 0
+      },
+      "clean_actual": 0,
+      "candidate_positive": 0,
+      "candidate_total": 0
+    },
+    "test-corner-29-right": {
+      "split": "native",
+      "before_final_render": {
+        "base": 0,
+        "origin": 0,
+        "depth": 0,
+        "joint": 0
+      },
+      "clean_actual": 0,
+      "candidate_positive": 0,
+      "candidate_total": 0
+    },
+    "shape-benchmark-26.3--train-canopy-07-left": {
+      "split": "old",
+      "before_final_render": {
+        "base": 0,
+        "origin": 0,
+        "depth": 0,
+        "joint": 2
+      },
+      "clean_actual": 2,
+      "candidate_positive": 3,
+      "candidate_total": 4
+    },
+    "shape-benchmark-26.3--train-canopy-04-left": {
+      "split": "old",
+      "before_final_render": {
+        "base": 0,
+        "origin": 0,
+        "depth": 0,
+        "joint": 1
+      },
+      "clean_actual": 1,
+      "candidate_positive": 3,
+      "candidate_total": 4
+    },
+    "signed-relief-26.3--dev--dev-relief-00-oblique-right": {
+      "split": "old",
+      "before_final_render": {
+        "base": 1,
+        "origin": 1,
+        "depth": 11,
+        "joint": 13
+      },
+      "clean_actual": 13,
+      "candidate_positive": 14,
+      "candidate_total": 40
+    },
+    "shape-benchmark-open-26.3--train-canopy-01-left": {
+      "split": "old",
+      "before_final_render": {
+        "base": 0,
+        "origin": 0,
+        "depth": 0,
+        "joint": 0
+      },
+      "clean_actual": 0,
+      "candidate_positive": 0,
+      "candidate_total": 0
+    },
+    "shape-benchmark-26.3--train-canopy-09-right": {
+      "split": "old",
+      "before_final_render": {
+        "base": 0,
+        "origin": 1,
+        "depth": 0,
+        "joint": 1
+      },
+      "clean_actual": 1,
+      "candidate_positive": 1,
+      "candidate_total": 5
+    },
+    "shape-benchmark-26.3--train-canopy-06-left": {
+      "split": "old",
+      "before_final_render": {
+        "base": 0,
+        "origin": 0,
+        "depth": 0,
+        "joint": 0
+      },
+      "clean_actual": 0,
+      "candidate_positive": 0,
+      "candidate_total": 0
+    },
+    "rim-views-26.3--positive--heldout-facade-oblique-right": {
+      "split": "old",
+      "before_final_render": {
+        "base": 1,
+        "origin": 1,
+        "depth": 2,
+        "joint": 2
+      },
+      "clean_actual": 2,
+      "candidate_positive": 2,
+      "candidate_total": 8
+    },
+    "shape-benchmark-26.3--train-canopy-08-right": {
+      "split": "old",
+      "before_final_render": {
+        "base": 0,
+        "origin": 0,
+        "depth": 0,
+        "joint": 0
+      },
+      "clean_actual": 0,
+      "candidate_positive": 0,
+      "candidate_total": 0
+    },
+    "shape-benchmark-26.3--train-recess-02-right": {
+      "split": "old",
+      "before_final_render": {
+        "base": 0,
+        "origin": 0,
+        "depth": 9,
+        "joint": 9
+      },
+      "clean_actual": 9,
+      "candidate_positive": 9,
+      "candidate_total": 32
+    },
+    "inverse-voxels-26.3--confirm--test-bays-02-oblique-right": {
+      "split": "old",
+      "before_final_render": {
+        "base": 1,
+        "origin": 2,
+        "depth": 3,
+        "joint": 4
+      },
+      "clean_actual": 4,
+      "candidate_positive": 4,
+      "candidate_total": 50
+    },
+    "shape-benchmark-26.3--dev-canopy-18-left": {
+      "split": "old",
+      "before_final_render": {
+        "base": 1,
+        "origin": 1,
+        "depth": 1,
+        "joint": 1
+      },
+      "clean_actual": 1,
+      "candidate_positive": 1,
+      "candidate_total": 11
+    },
+    "signed-relief-26.3--test--test-relief-00-oblique-left": {
+      "split": "old",
+      "before_final_render": {
+        "base": 6,
+        "origin": 6,
+        "depth": 14,
+        "joint": 16
+      },
+      "clean_actual": 14,
+      "candidate_positive": 16,
+      "candidate_total": 77
+    },
+    "inverse-voxels-26.3--confirm--test-colonnade-01-oblique-right": {
+      "split": "fresh",
+      "before_final_render": {
+        "base": 0,
+        "origin": 0,
+        "depth": 0,
+        "joint": 0
+      },
+      "clean_actual": 0,
+      "candidate_positive": 0,
+      "candidate_total": 0
+    },
+    "shape-benchmark-open-26.3--train-canopy-00-right": {
+      "split": "fresh",
+      "before_final_render": {
+        "base": 0,
+        "origin": 0,
+        "depth": 2,
+        "joint": 2
+      },
+      "clean_actual": 2,
+      "candidate_positive": 5,
+      "candidate_total": 6
+    },
+    "shape-benchmark-26.3--dev-corner-16-right": {
+      "split": "fresh",
+      "before_final_render": {
+        "base": 0,
+        "origin": 0,
+        "depth": 0,
+        "joint": 0
+      },
+      "clean_actual": 0,
+      "candidate_positive": 0,
+      "candidate_total": 0
+    },
+    "entrance-confirm-26.3--positive--heldout-facade-oblique-right": {
+      "split": "fresh",
+      "before_final_render": {
+        "base": 7,
+        "origin": 8,
+        "depth": 14,
+        "joint": 15
+      },
+      "clean_actual": 13,
+      "candidate_positive": 15,
+      "candidate_total": 71
+    },
+    "shape-benchmark-26.3--train-canopy-05-left": {
+      "split": "fresh",
+      "before_final_render": {
+        "base": 0,
+        "origin": 0,
+        "depth": 0,
+        "joint": 0
+      },
+      "clean_actual": 0,
+      "candidate_positive": 0,
+      "candidate_total": 2
+    },
+    "shape-benchmark-26.3--train-corner-03-right": {
+      "split": "fresh",
+      "before_final_render": {
+        "base": 0,
+        "origin": 0,
+        "depth": 0,
+        "joint": 0
+      },
+      "clean_actual": 0,
+      "candidate_positive": 0,
+      "candidate_total": 0
+    },
+    "shape-benchmark-26.3--dev-canopy-19-right": {
+      "split": "fresh",
+      "before_final_render": {
+        "base": 0,
+        "origin": 0,
+        "depth": 0,
+        "joint": 0
+      },
+      "clean_actual": 0,
+      "candidate_positive": 0,
+      "candidate_total": 0
+    },
+    "corner-mixed-26.3--heldout-facade-oblique-left": {
+      "split": "fresh",
+      "before_final_render": {
+        "base": 2,
+        "origin": 3,
+        "depth": 5,
+        "joint": 6
+      },
+      "clean_actual": 6,
+      "candidate_positive": 6,
+      "candidate_total": 44
+    },
+    "shape-benchmark-open-26.3--train-canopy-01-right": {
+      "split": "extra",
+      "before_final_render": {
+        "base": 0,
+        "origin": 0,
+        "depth": 0,
+        "joint": 1
+      },
+      "clean_actual": 1,
+      "candidate_positive": 1,
+      "candidate_total": 1
+    },
+    "corner-views-26.3--positive--heldout-facade-oblique-left": {
+      "split": "extra",
+      "before_final_render": {
+        "base": 1,
+        "origin": 2,
+        "depth": 7,
+        "joint": 9
+      },
+      "clean_actual": 9,
+      "candidate_positive": 9,
+      "candidate_total": 46
+    },
+    "shape-benchmark-26.3--train-canopy-08-left": {
+      "split": "extra",
+      "before_final_render": {
+        "base": 0,
+        "origin": 0,
+        "depth": 0,
+        "joint": 0
+      },
+      "clean_actual": 0,
+      "candidate_positive": 0,
+      "candidate_total": 0
+    },
+    "shape-benchmark-26.3--train-canopy-06-right": {
+      "split": "extra",
+      "before_final_render": {
+        "base": 0,
+        "origin": 0,
+        "depth": 0,
+        "joint": 0
+      },
+      "clean_actual": 0,
+      "candidate_positive": 0,
+      "candidate_total": 0
+    },
+    "shape-benchmark-26.3--train-canopy-09-left": {
+      "split": "extra",
+      "before_final_render": {
+        "base": 0,
+        "origin": 0,
+        "depth": 1,
+        "joint": 1
+      },
+      "clean_actual": 1,
+      "candidate_positive": 1,
+      "candidate_total": 2
+    },
+    "inverse-voxels-26.3--confirm--test-bays-02-oblique-left": {
+      "split": "extra",
+      "before_final_render": {
+        "base": 4,
+        "origin": 5,
+        "depth": 4,
+        "joint": 5
+      },
+      "clean_actual": 4,
+      "candidate_positive": 5,
+      "candidate_total": 50
+    },
+    "signed-relief-26.3--test--test-relief-00-oblique-right": {
+      "split": "extra",
+      "before_final_render": {
+        "base": 0,
+        "origin": 0,
+        "depth": 5,
+        "joint": 5
+      },
+      "clean_actual": 5,
+      "candidate_positive": 5,
+      "candidate_total": 25
+    },
+    "shape-benchmark-26.3--train-canopy-04-right": {
+      "split": "extra",
+      "before_final_render": {
+        "base": 0,
+        "origin": 0,
+        "depth": 0,
+        "joint": 1
+      },
+      "clean_actual": 1,
+      "candidate_positive": 2,
+      "candidate_total": 2
+    },
+    "corner-views-26.3--positive--heldout-facade-oblique-right": {
+      "split": "extra",
+      "before_final_render": {
+        "base": 1,
+        "origin": 1,
+        "depth": 3,
+        "joint": 5
+      },
+      "clean_actual": 5,
+      "candidate_positive": 5,
+      "candidate_total": 10
+    },
+    "inverse-voxels-26.3--confirm--test-colonnade-01-oblique-left": {
+      "split": "extra",
+      "before_final_render": {
+        "base": 0,
+        "origin": 0,
+        "depth": 0,
+        "joint": 1
+      },
+      "clean_actual": 1,
+      "candidate_positive": 1,
+      "candidate_total": 1
+    },
+    "shape-benchmark-26.3--dev-canopy-19-left": {
+      "split": "extra",
+      "before_final_render": {
+        "base": 1,
+        "origin": 2,
+        "depth": 2,
+        "joint": 3
+      },
+      "clean_actual": 3,
+      "candidate_positive": 3,
+      "candidate_total": 15
+    },
+    "shape-benchmark-open-26.3--train-canopy-00-left": {
+      "split": "extra",
+      "before_final_render": {
+        "base": 0,
+        "origin": 0,
+        "depth": 0,
+        "joint": 1
+      },
+      "clean_actual": 1,
+      "candidate_positive": 3,
+      "candidate_total": 4
+    },
+    "shape-benchmark-26.3--train-corner-03-left": {
+      "split": "extra",
+      "before_final_render": {
+        "base": 0,
+        "origin": 0,
+        "depth": 0,
+        "joint": 0
+      },
+      "clean_actual": 0,
+      "candidate_positive": 0,
+      "candidate_total": 4
+    },
+    "recess-positive-control-26.3--heldout-facade-left": {
+      "split": "extra",
+      "before_final_render": {
+        "base": 1,
+        "origin": 1,
+        "depth": 7,
+        "joint": 8
+      },
+      "clean_actual": 8,
+      "candidate_positive": 9,
+      "candidate_total": 40
+    },
+    "shape-benchmark-26.3--dev-corner-16-left": {
+      "split": "extra",
+      "before_final_render": {
+        "base": 0,
+        "origin": 0,
+        "depth": 1,
+        "joint": 1
+      },
+      "clean_actual": 1,
+      "candidate_positive": 1,
+      "candidate_total": 3
+    },
+    "recess-positive-control-26.3--heldout-facade-right": {
+      "split": "extra",
+      "before_final_render": {
+        "base": 0,
+        "origin": 0,
+        "depth": 4,
+        "joint": 5
+      },
+      "clean_actual": 5,
+      "candidate_positive": 5,
+      "candidate_total": 43
+    },
+    "rim-views-26.3--positive--heldout-facade-oblique-left": {
+      "split": "extra",
+      "before_final_render": {
+        "base": 2,
+        "origin": 2,
+        "depth": 8,
+        "joint": 9
+      },
+      "clean_actual": 9,
+      "candidate_positive": 9,
+      "candidate_total": 53
+    },
+    "signed-relief-26.3--dev--dev-relief-00-oblique-left": {
+      "split": "extra",
+      "before_final_render": {
+        "base": 3,
+        "origin": 5,
+        "depth": 7,
+        "joint": 9
+      },
+      "clean_actual": 9,
+      "candidate_positive": 12,
+      "candidate_total": 102
+    },
+    "shape-benchmark-26.3--train-canopy-05-right": {
+      "split": "extra",
+      "before_final_render": {
+        "base": 0,
+        "origin": 0,
+        "depth": 1,
+        "joint": 1
+      },
+      "clean_actual": 1,
+      "candidate_positive": 1,
+      "candidate_total": 3
+    },
+    "shape-benchmark-26.3--train-recess-02-left": {
+      "split": "extra",
+      "before_final_render": {
+        "base": 0,
+        "origin": 0,
+        "depth": 2,
+        "joint": 2
+      },
+      "clean_actual": 2,
+      "candidate_positive": 2,
+      "candidate_total": 19
+    },
+    "holdout-switchback-brick-low-left": {
+      "split": "new",
+      "before_final_render": {
+        "base": 0,
+        "origin": 0,
+        "depth": 2,
+        "joint": 2
+      },
+      "clean_actual": 2,
+      "candidate_positive": 2,
+      "candidate_total": 6
+    },
+    "holdout-switchback-brick-high-right": {
+      "split": "new",
+      "before_final_render": {
+        "base": 0,
+        "origin": 0,
+        "depth": 7,
+        "joint": 7
+      },
+      "clean_actual": 7,
+      "candidate_positive": 7,
+      "candidate_total": 15
+    },
+    "holdout-loadingdock-timber-low-left": {
+      "split": "new",
+      "before_final_render": {
+        "base": 1,
+        "origin": 1,
+        "depth": 2,
+        "joint": 2
+      },
+      "clean_actual": 2,
+      "candidate_positive": 2,
+      "candidate_total": 15
+    },
+    "holdout-loadingdock-timber-high-right": {
+      "split": "new",
+      "before_final_render": {
+        "base": 1,
+        "origin": 2,
+        "depth": 1,
+        "joint": 2
+      },
+      "clean_actual": 2,
+      "candidate_positive": 2,
+      "candidate_total": 3
+    }
+  },
+  "named": {
+    "Shopfront": {
+      "id": "legacy-light_gray_concrete-dev-shopfront-plaster-low-left",
+      "split": "regression",
+      "before_final_render": {
+        "base": 7,
+        "origin": 14,
+        "depth": 7,
+        "joint": 14
+      },
+      "clean_actual": 14,
+      "candidate_positive": 15,
+      "candidate_total": 95,
+      "measured": {
+        "operating": {
+          "gained": 0,
+          "lost": 0,
+          "extra_added": 11,
+          "hidden_added": 9
+        },
+        "transferred": {
+          "gained": 0,
+          "lost": 0,
+          "extra_added": 0,
+          "hidden_added": 0
+        },
+        "anchored": {
+          "gained": 0,
+          "lost": 0,
+          "extra_added": 0,
+          "hidden_added": 0
+        }
+      }
+    },
+    "Galleries": {
+      "id": "legacy-light_gray_concrete-holdout-galleries-plaster-low-left",
+      "split": "regression",
+      "before_final_render": {
+        "base": 7,
+        "origin": 11,
+        "depth": 9,
+        "joint": 15
+      },
+      "clean_actual": 13,
+      "candidate_positive": 18,
+      "candidate_total": 96,
+      "measured": {
+        "operating": {
+          "gained": 5,
+          "lost": 0,
+          "extra_added": 0,
+          "hidden_added": 0
+        },
+        "transferred": {
+          "gained": 0,
+          "lost": 0,
+          "extra_added": 0,
+          "hidden_added": 0
+        },
+        "anchored": {
+          "gained": 0,
+          "lost": 0,
+          "extra_added": 0,
+          "hidden_added": 0
+        }
+      }
+    },
+    "Facade": {
+      "id": "heldout-facade-oblique-right",
+      "split": "native",
+      "before_final_render": {
+        "base": 7,
+        "origin": 11,
+        "depth": 10,
+        "joint": 15
+      },
+      "clean_actual": 15,
+      "candidate_positive": 15,
+      "candidate_total": 50,
+      "measured": {
+        "operating": {
+          "gained": 5,
+          "lost": 0,
+          "extra_added": 0,
+          "hidden_added": 0
+        },
+        "transferred": {
+          "gained": 0,
+          "lost": 0,
+          "extra_added": 0,
+          "hidden_added": 0
+        },
+        "anchored": {
+          "gained": 0,
+          "lost": 0,
+          "extra_added": 0,
+          "hidden_added": 0
+        }
+      }
+    },
+    "Physical Shade": {
+      "id": "physical-shade-oblique-left",
+      "split": "native",
+      "before_final_render": {
+        "base": 3,
+        "origin": 8,
+        "depth": 16,
+        "joint": 20
+      },
+      "clean_actual": 17,
+      "candidate_positive": 40,
+      "candidate_total": 52,
+      "measured": {
+        "operating": {
+          "gained": 9,
+          "lost": 0,
+          "extra_added": 1,
+          "hidden_added": 1
+        },
+        "transferred": {
+          "gained": 0,
+          "lost": 0,
+          "extra_added": 0,
+          "hidden_added": 0
+        },
+        "anchored": {
+          "gained": 0,
+          "lost": 0,
+          "extra_added": 0,
+          "hidden_added": 0
+        }
+      }
+    },
+    "Canopy 07": {
+      "id": "shape-benchmark-26.3--train-canopy-07-left",
+      "split": "old",
+      "before_final_render": {
+        "base": 0,
+        "origin": 0,
+        "depth": 0,
+        "joint": 2
+      },
+      "clean_actual": 2,
+      "candidate_positive": 3,
+      "candidate_total": 4,
+      "measured": {
+        "operating": {
+          "gained": 1,
+          "lost": 0,
+          "extra_added": 0,
+          "hidden_added": 0
+        },
+        "transferred": {
+          "gained": 0,
+          "lost": 0,
+          "extra_added": 0,
+          "hidden_added": 0
+        },
+        "anchored": {
+          "gained": 0,
+          "lost": 0,
+          "extra_added": 0,
+          "hidden_added": 0
+        }
+      }
+    },
+    "Canopy 04": {
+      "id": "shape-benchmark-26.3--train-canopy-04-left",
+      "split": "old",
+      "before_final_render": {
+        "base": 0,
+        "origin": 0,
+        "depth": 0,
+        "joint": 1
+      },
+      "clean_actual": 1,
+      "candidate_positive": 3,
+      "candidate_total": 4,
+      "measured": {
+        "operating": {
+          "gained": 2,
+          "lost": 0,
+          "extra_added": 1,
+          "hidden_added": 1
+        },
+        "transferred": {
+          "gained": 0,
+          "lost": 0,
+          "extra_added": 0,
+          "hidden_added": 0
+        },
+        "anchored": {
+          "gained": 0,
+          "lost": 0,
+          "extra_added": 0,
+          "hidden_added": 0
+        }
+      }
+    },
+    "Dev Relief 00": {
+      "id": "signed-relief-26.3--dev--dev-relief-00-oblique-right",
+      "split": "old",
+      "before_final_render": {
+        "base": 1,
+        "origin": 1,
+        "depth": 11,
+        "joint": 13
+      },
+      "clean_actual": 13,
+      "candidate_positive": 14,
+      "candidate_total": 40,
+      "measured": {
+        "operating": {
+          "gained": 3,
+          "lost": 0,
+          "extra_added": 3,
+          "hidden_added": 3
+        },
+        "transferred": {
+          "gained": 0,
+          "lost": 0,
+          "extra_added": 0,
+          "hidden_added": 0
+        },
+        "anchored": {
+          "gained": 0,
+          "lost": 0,
+          "extra_added": 0,
+          "hidden_added": 0
+        }
+      }
+    },
+    "Relief 00": {
+      "id": "signed-relief-26.3--test--test-relief-00-oblique-left",
+      "split": "old",
+      "before_final_render": {
+        "base": 6,
+        "origin": 6,
+        "depth": 14,
+        "joint": 16
+      },
+      "clean_actual": 14,
+      "candidate_positive": 16,
+      "candidate_total": 77,
+      "measured": {
+        "operating": {
+          "gained": 3,
+          "lost": 0,
+          "extra_added": 14,
+          "hidden_added": 3
+        },
+        "transferred": {
+          "gained": 0,
+          "lost": 0,
+          "extra_added": 0,
+          "hidden_added": 0
+        },
+        "anchored": {
+          "gained": 0,
+          "lost": 0,
+          "extra_added": 0,
+          "hidden_added": 0
+        }
+      }
+    },
+    "Colonnade 01": {
+      "id": "inverse-voxels-26.3--confirm--test-colonnade-01-oblique-right",
+      "split": "fresh",
+      "before_final_render": {
+        "base": 0,
+        "origin": 0,
+        "depth": 0,
+        "joint": 0
+      },
+      "clean_actual": 0,
+      "candidate_positive": 0,
+      "candidate_total": 0,
+      "measured": {
+        "operating": {
+          "gained": 0,
+          "lost": 0,
+          "extra_added": 0,
+          "hidden_added": 0
+        },
+        "transferred": {
+          "gained": 0,
+          "lost": 0,
+          "extra_added": 0,
+          "hidden_added": 0
+        },
+        "anchored": {
+          "gained": 0,
+          "lost": 0,
+          "extra_added": 0,
+          "hidden_added": 0
+        }
+      }
+    },
+    "Canopy 00 (open)": {
+      "id": "shape-benchmark-open-26.3--train-canopy-00-right",
+      "split": "fresh",
+      "before_final_render": {
+        "base": 0,
+        "origin": 0,
+        "depth": 2,
+        "joint": 2
+      },
+      "clean_actual": 2,
+      "candidate_positive": 5,
+      "candidate_total": 6,
+      "measured": {
+        "operating": {
+          "gained": 0,
+          "lost": 0,
+          "extra_added": 0,
+          "hidden_added": 0
+        },
+        "transferred": {
+          "gained": 0,
+          "lost": 0,
+          "extra_added": 0,
+          "hidden_added": 0
+        },
+        "anchored": {
+          "gained": 0,
+          "lost": 0,
+          "extra_added": 0,
+          "hidden_added": 0
+        }
+      }
+    }
+  }
+}

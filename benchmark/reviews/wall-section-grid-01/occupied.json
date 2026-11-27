@@ -1,0 +1,6007 @@
+{
+  "control": "028819a",
+  "groups": {
+    "train": {
+      "oracle": {
+        "gained": 256,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 256,
+        "hidden_added": 0,
+        "hidden_removed": 45
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "eligible_arcs": 572,
+      "matches_before_render": 303
+    },
+    "validation": {
+      "oracle": {
+        "gained": 9,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 9,
+        "hidden_added": 0,
+        "hidden_removed": 7
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "eligible_arcs": 19,
+      "matches_before_render": 10
+    },
+    "fixed": {
+      "oracle": {
+        "gained": 288,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 288,
+        "hidden_added": 0,
+        "hidden_removed": 30
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "eligible_arcs": 1054,
+      "matches_before_render": 462
+    },
+    "test": {
+      "oracle": {
+        "gained": 39,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 39,
+        "hidden_added": 0,
+        "hidden_removed": 4
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "eligible_arcs": 88,
+      "matches_before_render": 42
+    },
+    "regression": {
+      "oracle": {
+        "gained": 166,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 166,
+        "hidden_added": 0,
+        "hidden_removed": 17
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "eligible_arcs": 429,
+      "matches_before_render": 196
+    },
+    "native": {
+      "oracle": {
+        "gained": 34,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 34,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "eligible_arcs": 137,
+      "matches_before_render": 59
+    },
+    "old": {
+      "oracle": {
+        "gained": 5,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 5,
+        "hidden_added": 0,
+        "hidden_removed": 1
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "eligible_arcs": 253,
+      "matches_before_render": 106
+    },
+    "fresh": {
+      "oracle": {
+        "gained": 35,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 35,
+        "hidden_added": 0,
+        "hidden_removed": 1
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "eligible_arcs": 128,
+      "matches_before_render": 49
+    },
+    "extra": {
+      "oracle": {
+        "gained": 90,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 90,
+        "hidden_added": 0,
+        "hidden_removed": 27
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "eligible_arcs": 393,
+      "matches_before_render": 152
+    },
+    "new": {
+      "oracle": {
+        "gained": 14,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 14,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "eligible_arcs": 37,
+      "matches_before_render": 15
+    }
+  },
+  "rows": [
+    {
+      "id": "train-arcade1-cool-high-right",
+      "split": "train",
+      "hash": "ec53ea49991c9644eeec26cca304cf15192a81ab975ab4c107666ace52fbbf1b",
+      "oracle": {
+        "gained": 1,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 1,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 2,
+      "pairs": 1,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "train-arcade1-cool-low-left",
+      "split": "train",
+      "hash": "e0fb3e56b88097f05991bb3c5fa6d685f2e7caa0a8fff3b689ace787f4ac55c6",
+      "oracle": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 0,
+      "pairs": 0,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "train-arcade1-earth-high-right",
+      "split": "train",
+      "hash": "71e0f7c2af84562463688c867f70cd396b69f539044c1f151523c8d2e3d41ebf",
+      "oracle": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 0,
+      "pairs": 0,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "train-arcade1-earth-low-left",
+      "split": "train",
+      "hash": "1fef793508d28ecdd20042e2f4012734b6b2775c1fc2f3859aaf7d3198c12b38",
+      "oracle": {
+        "gained": 10,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 10,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 25,
+      "pairs": 10,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "train-arcade2-cool-high-right",
+      "split": "train",
+      "hash": "b58a447f8d04f0084181e978d329cad06a9da68701f6a37a0cc9965e7c60d722",
+      "oracle": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 0,
+      "pairs": 0,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "train-arcade2-cool-low-left",
+      "split": "train",
+      "hash": "4e20c55d4aced3567a248de4df9bf5073a6cf78dc0d5ac83c9e1bf5dbe2c86db",
+      "oracle": {
+        "gained": 1,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 1,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 1,
+      "pairs": 1,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "train-arcade2-earth-high-right",
+      "split": "train",
+      "hash": "ee0e42676117f2a0de3b323a9a796ae51d24e09f35488ff07b8b2bc7191de45a",
+      "oracle": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 0,
+      "pairs": 0,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "train-arcade2-earth-low-left",
+      "split": "train",
+      "hash": "899466c37b98ffc1a2d74c6dbacdf301e3fe8dab16ace2094fae4031a48e3d27",
+      "oracle": {
+        "gained": 5,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 5,
+        "hidden_added": 0,
+        "hidden_removed": 1
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 7,
+      "pairs": 5,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "train-arcade3-cool-high-right",
+      "split": "train",
+      "hash": "acaaf8c668a9172f008767d3c958b5b5faa4b393e915e5ae8b3500d547d61b15",
+      "oracle": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 0,
+      "pairs": 0,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "train-arcade3-cool-low-left",
+      "split": "train",
+      "hash": "90f76de49fbde04e50600c2b40f58ae81caf867ce27c2642ba9dc7a0e3f0c7eb",
+      "oracle": {
+        "gained": 45,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 45,
+        "hidden_added": 0,
+        "hidden_removed": 14
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 90,
+      "pairs": 52,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "train-arcade3-earth-high-right",
+      "split": "train",
+      "hash": "fe08735d47b9c597d55a3ad8e3acbb8f37a8015836d2895c52cf384d9861f00e",
+      "oracle": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 0,
+      "pairs": 0,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "train-arcade3-earth-low-left",
+      "split": "train",
+      "hash": "634bd42c6e7bbb324e304cbd62523502693ea58d09e8445a676002c4e4adb072",
+      "oracle": {
+        "gained": 23,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 23,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 39,
+      "pairs": 23,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "train-arcbridge1-cool-high-right",
+      "split": "train",
+      "hash": "84e75e742ed5a320796cca9bfdeae619a2c0ef988344053a497b13f4667db54b",
+      "oracle": {
+        "gained": 3,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 3,
+        "hidden_added": 0,
+        "hidden_removed": 2
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 5,
+      "pairs": 3,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "train-arcbridge1-cool-low-left",
+      "split": "train",
+      "hash": "a4aa62749fb06878300ddca440e851188bc96a51818b11487c579ec032f8db00",
+      "oracle": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 1,
+      "pairs": 1,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "train-arcbridge1-earth-high-right",
+      "split": "train",
+      "hash": "6bf95b2530254ff30e04d60a32d7ee0bc3de7b4217b36e13c0e19d63449f2ff6",
+      "oracle": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 0,
+      "pairs": 0,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "train-arcbridge1-earth-low-left",
+      "split": "train",
+      "hash": "eab02f4fbfbef710ec24a6f4f5705ba65d721e095a4b0baa3f27e34df25ae7a6",
+      "oracle": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 1,
+      "pairs": 1,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "train-arcbridge2-cool-high-right",
+      "split": "train",
+      "hash": "e130c2a0b263d8322d8cbbf9683688ca3b5002d227336154ce7fcf9540a94886",
+      "oracle": {
+        "gained": 3,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 3,
+        "hidden_added": 0,
+        "hidden_removed": 3
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 7,
+      "pairs": 4,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "train-arcbridge2-cool-low-left",
+      "split": "train",
+      "hash": "6a2c25f9faf74afe28308ee9533e7a763436f8f82cee1ae4c3102c28eae88622",
+      "oracle": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 1,
+      "pairs": 1,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "train-arcbridge2-earth-high-right",
+      "split": "train",
+      "hash": "5366b784eb1284f83f1f5860c373862458c1e259cd885834069e45c746b18158",
+      "oracle": {
+        "gained": 5,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 5,
+        "hidden_added": 0,
+        "hidden_removed": 5
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 11,
+      "pairs": 6,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "train-arcbridge2-earth-low-left",
+      "split": "train",
+      "hash": "44bc316bfae5c2e0f26b73001acea32afbb291178b9f889d117ecca25f9142e7",
+      "oracle": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 0,
+      "pairs": 0,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "train-arcbridge3-cool-high-right",
+      "split": "train",
+      "hash": "36ef861d49421d73c22febba537561d3407f13ca4b15c739cd84ec4c6cbf6009",
+      "oracle": {
+        "gained": 8,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 8,
+        "hidden_added": 0,
+        "hidden_removed": 6
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 19,
+      "pairs": 9,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "train-arcbridge3-cool-low-left",
+      "split": "train",
+      "hash": "0f2a1030d23e5e748a2cc6cc13dc575254d27898bdaba5cc5e88dbcff04f227c",
+      "oracle": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 9,
+      "pairs": 5,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "train-arcbridge3-earth-high-right",
+      "split": "train",
+      "hash": "4a428f8fbad12289c19d32c3a3c6119124b00beb91d4924f9716966657ca8a2e",
+      "oracle": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 15,
+      "pairs": 7,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "train-arcbridge3-earth-low-left",
+      "split": "train",
+      "hash": "b50a1655a63dd4fef668fa51194aa51cc6649445f5c731d517418a1dba04ea2a",
+      "oracle": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 14,
+      "pairs": 8,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "train-sawtooth1-cool-high-right",
+      "split": "train",
+      "hash": "3fa754a66ac0b8891e55d154478a5a91deb238af988664db49e934906e078e2a",
+      "oracle": {
+        "gained": 2,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 2,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 4,
+      "pairs": 2,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "train-sawtooth1-cool-low-left",
+      "split": "train",
+      "hash": "e9e8a72d8c0e2f49b61044e6fafad94d2a7b4f6bbf2f376111a764e1d006eccc",
+      "oracle": {
+        "gained": 5,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 5,
+        "hidden_added": 0,
+        "hidden_removed": 3
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 8,
+      "pairs": 5,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "train-sawtooth1-earth-high-right",
+      "split": "train",
+      "hash": "1c1b61fafdeef92bb973049ba0906b384528e6161263a6e590e5fa624f2523bb",
+      "oracle": {
+        "gained": 4,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 4,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 10,
+      "pairs": 4,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "train-sawtooth1-earth-low-left",
+      "split": "train",
+      "hash": "d25d72c552cd6545f41f3b92b322a1087ddf8bb8872d53e1e34d514b1029d2b5",
+      "oracle": {
+        "gained": 6,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 6,
+        "hidden_added": 0,
+        "hidden_removed": 1
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 10,
+      "pairs": 6,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "train-sawtooth2-cool-high-right",
+      "split": "train",
+      "hash": "f65abc774014fd5466afa558a1cc917069234a3e838ac5ab5d96c861d121f152",
+      "oracle": {
+        "gained": 8,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 8,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 14,
+      "pairs": 8,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "train-sawtooth2-cool-low-left",
+      "split": "train",
+      "hash": "d6fe0d1d16a5086990a077a3e3d66a358c9c8cbec3e9907256698268437f707e",
+      "oracle": {
+        "gained": 7,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 7,
+        "hidden_added": 0,
+        "hidden_removed": 2
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 13,
+      "pairs": 7,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "train-sawtooth2-earth-high-right",
+      "split": "train",
+      "hash": "e4510159a71ff6bfd1504e5dfcded5c9cc0da4c6a50cf9e0243c29b3b1e7c65b",
+      "oracle": {
+        "gained": 14,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 14,
+        "hidden_added": 0,
+        "hidden_removed": 2
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 35,
+      "pairs": 14,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "train-sawtooth2-earth-low-left",
+      "split": "train",
+      "hash": "1c44be3f88bd17aec9c5a4f5eb4f8132d921a87df299ad5f8f420cf560c6d44c",
+      "oracle": {
+        "gained": 11,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 11,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 23,
+      "pairs": 11,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "train-sawtooth3-cool-high-right",
+      "split": "train",
+      "hash": "f072261ff2427189d7c5e1d9728320431aa31c1a5558cf478faeac6f55941dab",
+      "oracle": {
+        "gained": 13,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 13,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 23,
+      "pairs": 13,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "train-sawtooth3-cool-low-left",
+      "split": "train",
+      "hash": "3268669dd265078aae04091cfc96874294cd1f155d9a665cd89a6afb67183094",
+      "oracle": {
+        "gained": 9,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 9,
+        "hidden_added": 0,
+        "hidden_removed": 1
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 14,
+      "pairs": 9,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "train-sawtooth3-earth-high-right",
+      "split": "train",
+      "hash": "d21761c2218fe25590d62d78b215fab575aa54ce0adbe34e3b493cd67976368d",
+      "oracle": {
+        "gained": 10,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 10,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 18,
+      "pairs": 10,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "train-sawtooth3-earth-low-left",
+      "split": "train",
+      "hash": "894bd82e78a73037ce8dbee92bdc70570d2a43a913f5924df09c44ae4f591f59",
+      "oracle": {
+        "gained": 14,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 14,
+        "hidden_added": 0,
+        "hidden_removed": 2
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 23,
+      "pairs": 14,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "train-steppedhall1-cool-high-right",
+      "split": "train",
+      "hash": "74bec1d375d9db935579e1eabc997b11a195ed8fe2164d1dbd0e9d0455be1d61",
+      "oracle": {
+        "gained": 4,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 4,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 6,
+      "pairs": 4,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "train-steppedhall1-cool-low-left",
+      "split": "train",
+      "hash": "feebb33cd39e87782ffdfaa9377f0725a33ee83901dba418b3625c4e32b088f4",
+      "oracle": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 0,
+      "pairs": 0,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "train-steppedhall1-earth-high-right",
+      "split": "train",
+      "hash": "8176656b48af3d58b103a1a7443212fd208f474f2b0c359d66a410cc0a808513",
+      "oracle": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 0,
+      "pairs": 0,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "train-steppedhall1-earth-low-left",
+      "split": "train",
+      "hash": "f66588be4e7cd3977a9b17b6ac9779a7911eda9304a15ea58818d268d424928c",
+      "oracle": {
+        "gained": 2,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 2,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 7,
+      "pairs": 2,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "train-steppedhall2-cool-high-right",
+      "split": "train",
+      "hash": "e2a93913dba669a0966ef666400a8946894937049f41bdc8c5e991c6fb2b3b77",
+      "oracle": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 0,
+      "pairs": 0,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "train-steppedhall2-cool-low-left",
+      "split": "train",
+      "hash": "fd7aa1d49c4807a853b035acdffba7bfc4ad407c2728858af595374a30aa24c1",
+      "oracle": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 2,
+      "pairs": 1,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "train-steppedhall2-earth-high-right",
+      "split": "train",
+      "hash": "10a3a434f89cb74b9e99aadea43c29153e523f597aa0c1f12d6ecfe54782bd0c",
+      "oracle": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 0,
+      "pairs": 0,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "train-steppedhall2-earth-low-left",
+      "split": "train",
+      "hash": "1061b992fcf091d65cbd4720e87197227cb449ccf3dfc108a58286b963ecfd32",
+      "oracle": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 0,
+      "pairs": 0,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "train-steppedhall3-cool-high-right",
+      "split": "train",
+      "hash": "3d17af23281970bf65ad71b9fbd69348ef88771387a0ba07f9ef615e770e4121",
+      "oracle": {
+        "gained": 1,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 1,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 2,
+      "pairs": 1,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "train-steppedhall3-cool-low-left",
+      "split": "train",
+      "hash": "88978549681bb8680caa811a5cddd6892b0e8a41fd7e0de4f3f6890c9ce5fcbc",
+      "oracle": {
+        "gained": 5,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 5,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 14,
+      "pairs": 5,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "train-steppedhall3-earth-high-right",
+      "split": "train",
+      "hash": "712e273e42c1aa751fd42f7fb57427e47477cfeca6dac35c6cf3a880d427f561",
+      "oracle": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 0,
+      "pairs": 0,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "train-steppedhall3-earth-low-left",
+      "split": "train",
+      "hash": "928fda78f78342481faf73c82991f4b951bd554647a224d7cace843c30cd9fa3",
+      "oracle": {
+        "gained": 2,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 2,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 6,
+      "pairs": 2,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "train-terrace1-cool-high-right",
+      "split": "train",
+      "hash": "077a1437b43051c3b659026975373e6450221c42238e8dca20fe2e5543f8ec1b",
+      "oracle": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 0,
+      "pairs": 0,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "train-terrace1-cool-low-left",
+      "split": "train",
+      "hash": "2b181ee49508f89c8898df34d46639a9756d1df5383bbf54eed7057ed7203fbf",
+      "oracle": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 0,
+      "pairs": 0,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "train-terrace1-earth-high-right",
+      "split": "train",
+      "hash": "317e9101862c882dca9b7ba8c0e5abd22a8cb96ac83d69f3276ad14e8a76a294",
+      "oracle": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 0,
+      "pairs": 0,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "train-terrace1-earth-low-left",
+      "split": "train",
+      "hash": "2f8c6b1372163b9c0fb078a47e6005e3a1cdbbbbf425044c44838a5108129be4",
+      "oracle": {
+        "gained": 1,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 1,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 1,
+      "pairs": 1,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "train-terrace2-cool-high-right",
+      "split": "train",
+      "hash": "5de89f0d8ea5b3860fe53b705c3ea7d15fee50ca7abeda8b54209e49bb6234bf",
+      "oracle": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 0,
+      "pairs": 0,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "train-terrace2-cool-low-left",
+      "split": "train",
+      "hash": "a4d5dc61d6e43b2ca1600a5ae5f3b3bf0c0b8d52b869e4eee66e2db4453cadc6",
+      "oracle": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 0,
+      "pairs": 0,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "train-terrace2-earth-high-right",
+      "split": "train",
+      "hash": "ea41e951566f97d12afbb2ac4fffee423081be84d546fd80f8358eb4a0f1d232",
+      "oracle": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 0,
+      "pairs": 0,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "train-terrace2-earth-low-left",
+      "split": "train",
+      "hash": "dc98f5984dfcc063a5fd2d24fd945cada2240866e7b9faf7f67984aae49d7b81",
+      "oracle": {
+        "gained": 1,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 1,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 1,
+      "pairs": 1,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "train-terrace3-cool-high-right",
+      "split": "train",
+      "hash": "551a386a58dcb60c2f9c3debe1a3ff05a2e16cece636eceba4d80f0c7b0b0927",
+      "oracle": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 0,
+      "pairs": 0,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "train-terrace3-cool-low-left",
+      "split": "train",
+      "hash": "b56f02c05e04589b0d6334a01c7ded9d3bac957803f626acbc6a40e69c78da72",
+      "oracle": {
+        "gained": 11,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 11,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 20,
+      "pairs": 11,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "train-terrace3-earth-high-right",
+      "split": "train",
+      "hash": "31965c974805836d26b2e359cd467ef2fc534ebf2542cc9d3a2c7f790db000a4",
+      "oracle": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 0,
+      "pairs": 0,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "train-terrace3-earth-low-left",
+      "split": "train",
+      "hash": "671e4430fea56e3dcb3818588afe56be004364143d8352d738b6d9682286acb4",
+      "oracle": {
+        "gained": 11,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 11,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 23,
+      "pairs": 11,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "train-watchpost1-cool-high-right",
+      "split": "train",
+      "hash": "8c8f6e3167474a305185acaf7c14ed980c62a456d006dd48b2e42d922c8d387b",
+      "oracle": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 3,
+      "pairs": 1,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "train-watchpost1-cool-low-left",
+      "split": "train",
+      "hash": "636df4a9ce12d1edeaea44b5e6d68216aca606575d3acf3cf74a6c9f586f2fbb",
+      "oracle": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 0,
+      "pairs": 0,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "train-watchpost1-earth-high-right",
+      "split": "train",
+      "hash": "cf12e63d04d417cea7c24db633b3a11a870bc758f20c0f2528dd90b111d0e31e",
+      "oracle": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 0,
+      "pairs": 0,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "train-watchpost1-earth-low-left",
+      "split": "train",
+      "hash": "10a4a6359fe7dd8a63ba4fe63e606e9b27c3df1a4624a9760056f3e528aa0045",
+      "oracle": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 0,
+      "pairs": 0,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "train-watchpost2-cool-high-right",
+      "split": "train",
+      "hash": "0cc8b6e58abf3208f4bca2259ac0e3eb533fcf080d10ac128492cce04eb0e0f8",
+      "oracle": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 0,
+      "pairs": 0,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "train-watchpost2-cool-low-left",
+      "split": "train",
+      "hash": "5e3f9a5c9e2849876551cd6a0a18e906f8ecd461e6bc4c4aea6b246c83993c34",
+      "oracle": {
+        "gained": 2,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 2,
+        "hidden_added": 0,
+        "hidden_removed": 1
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 5,
+      "pairs": 2,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "train-watchpost2-earth-high-right",
+      "split": "train",
+      "hash": "f84868768eab30be3c06392c1062c4b7284ea075cba1b4188885dd7eb6858840",
+      "oracle": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 17,
+      "pairs": 8,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "train-watchpost2-earth-low-left",
+      "split": "train",
+      "hash": "ba508aa0afa7ae26bbd5c458a143bf0a48787e244d8ffeca22c7e7d626bcab3b",
+      "oracle": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 0,
+      "pairs": 0,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "train-watchpost3-cool-high-right",
+      "split": "train",
+      "hash": "f66964faf169a4c9c075a3a5960fda19c136418418cf3f09069cf013c82cc013",
+      "oracle": {
+        "gained": 2,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 2,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 3,
+      "pairs": 3,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "train-watchpost3-cool-low-left",
+      "split": "train",
+      "hash": "91b4c75f15a3542756d173e69478db2f598222dc7aa5cecbb50c8597aca2cc5c",
+      "oracle": {
+        "gained": 3,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 3,
+        "hidden_added": 0,
+        "hidden_removed": 2
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 8,
+      "pairs": 3,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "train-watchpost3-earth-high-right",
+      "split": "train",
+      "hash": "438e91b3f3098d441f9c29562a744b7e715e72dabab23610bba81863b71e9018",
+      "oracle": {
+        "gained": 4,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 4,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 4,
+      "pairs": 4,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "train-watchpost3-earth-low-left",
+      "split": "train",
+      "hash": "bf4a967d87f8ee52306d1f404a646a7a1e5e710a7480ff9adf4a316aebc74692",
+      "oracle": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 8,
+      "pairs": 3,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "validation-cloister1-cool-high-right",
+      "split": "validation",
+      "hash": "ce04fb90d1b1c5c3270d4c69eea38daeb5e64a9d1bee45fdfb4b1f65288d87c5",
+      "oracle": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 0,
+      "pairs": 0,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "validation-cloister1-cool-low-left",
+      "split": "validation",
+      "hash": "a3a32578dc46d398ae08bbc9b0cfd50b133bd75a94b192395530703808456555",
+      "oracle": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 0,
+      "pairs": 0,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "validation-cloister1-earth-high-right",
+      "split": "validation",
+      "hash": "6ad23a135bf45a733d6df14f068e24914ace50070e1cb2156ba03696e08aa4e2",
+      "oracle": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 0,
+      "pairs": 0,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "validation-cloister1-earth-low-left",
+      "split": "validation",
+      "hash": "e2099c182ca3ee6a28ac1d683185574e883604bff1336b7d476012200dc8c276",
+      "oracle": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 0,
+      "pairs": 0,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "validation-cloister2-cool-high-right",
+      "split": "validation",
+      "hash": "1d56a02f64f9909e7ce86cb09e527acc33ffa324d162084d3a21928854957c85",
+      "oracle": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 2,
+      "pairs": 1,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "validation-cloister2-cool-low-left",
+      "split": "validation",
+      "hash": "42e813ad9a9f4794a0c851f1ba6ee72c835c226243c9f8fcba1b1241d7942218",
+      "oracle": {
+        "gained": 1,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 1,
+        "hidden_added": 0,
+        "hidden_removed": 1
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 1,
+      "pairs": 1,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "validation-cloister2-earth-high-right",
+      "split": "validation",
+      "hash": "576c9e64aef0761668fe04e33d3c6768f297880407775f3981d3bf064e4daf67",
+      "oracle": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 0,
+      "pairs": 0,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "validation-cloister2-earth-low-left",
+      "split": "validation",
+      "hash": "10985fb6ae0c345d336d4386633f95e2e8e906e8fedcd3a3f9270de5307bd0fa",
+      "oracle": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 0,
+      "pairs": 0,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "validation-cloister3-cool-high-right",
+      "split": "validation",
+      "hash": "b406312b381a3604bd518286179d8547b07622a4627394309d984bee9e202aee",
+      "oracle": {
+        "gained": 7,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 7,
+        "hidden_added": 0,
+        "hidden_removed": 6
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 15,
+      "pairs": 7,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "validation-cloister3-cool-low-left",
+      "split": "validation",
+      "hash": "ef3c161d8d112c639060bcdcb03d88c796c60d7204582c4d8b7f9dbed409689d",
+      "oracle": {
+        "gained": 1,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 1,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 1,
+      "pairs": 1,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "validation-cloister3-earth-high-right",
+      "split": "validation",
+      "hash": "63e392b620b68a6a5646b72d737886fd7e580603e00ef6c4e27d659ac5dd1481",
+      "oracle": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 0,
+      "pairs": 0,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "validation-cloister3-earth-low-left",
+      "split": "validation",
+      "hash": "9468b48f7e690e20837cafae5082b66d3fc6b034620991c36e693d81aee958a8",
+      "oracle": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 0,
+      "pairs": 0,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "test-twinspire1-cool-high-right",
+      "split": "test",
+      "hash": "2901f8abd4fce6be6b9dff26417f7ced97d82901bccc82c9888808198b47a53c",
+      "oracle": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 0,
+      "pairs": 0,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "test-twinspire1-cool-low-left",
+      "split": "test",
+      "hash": "df80dcc63540fd80e4593f8a16e059c453ea56be71d5ba7a4b567ddfbd356633",
+      "oracle": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 0,
+      "pairs": 0,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "test-twinspire1-earth-high-right",
+      "split": "test",
+      "hash": "17c7c08a9d496e59b4a07f16da000db16da9ccded708d7d1421f4e22ee66b329",
+      "oracle": {
+        "gained": 1,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 1,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 1,
+      "pairs": 1,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "test-twinspire1-earth-low-left",
+      "split": "test",
+      "hash": "2df6a86b115327eaec74a2acc1ac0e0db9001e2e344e1f090f95dd50bef0c19e",
+      "oracle": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 0,
+      "pairs": 0,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "test-twinspire2-cool-high-right",
+      "split": "test",
+      "hash": "b975e993f2c6319a50de75fb6ec49cb4a7bcf9a4f58875d1d96b8d5544aa6b32",
+      "oracle": {
+        "gained": 1,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 1,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 1,
+      "pairs": 1,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "test-twinspire2-cool-low-left",
+      "split": "test",
+      "hash": "273b1d16b749f0725943ceeaf0967a7e9f751a60cefc4204dc15eb47560a0898",
+      "oracle": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 0,
+      "pairs": 0,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "test-twinspire2-earth-high-right",
+      "split": "test",
+      "hash": "1c6fe7975848d9ebb0712b66989bcbf715290a6c8170631056408d7302187e3e",
+      "oracle": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 0,
+      "pairs": 0,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "test-twinspire2-earth-low-left",
+      "split": "test",
+      "hash": "9fe7f0e5f271ca8a447a3ab2b0125ac6536352be5c726881c1849c273cf3496e",
+      "oracle": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 0,
+      "pairs": 0,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "test-twinspire3-cool-high-right",
+      "split": "test",
+      "hash": "ed2d27b34089e9d55cbeacd880c1548a66165965df80a50112e62374fe7e0500",
+      "oracle": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 4,
+      "pairs": 2,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "test-twinspire3-cool-low-left",
+      "split": "test",
+      "hash": "a34e61dfd7a53518838cefb9b5d52dba3fa0732b5acde02f35c902b445d5ce39",
+      "oracle": {
+        "gained": 27,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 27,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 59,
+      "pairs": 28,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "test-twinspire3-earth-high-right",
+      "split": "test",
+      "hash": "c862e1e3ea7bd47460664ea7da2da5372d20bdb20a3ab5ee68045c61a02a6bd9",
+      "oracle": {
+        "gained": 5,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 5,
+        "hidden_added": 0,
+        "hidden_removed": 4
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 11,
+      "pairs": 5,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "test-twinspire3-earth-low-left",
+      "split": "test",
+      "hash": "f54811e06acb227465e99fc8c92b92183be7d87fd871a174ed00d4d96931f3fd",
+      "oracle": {
+        "gained": 5,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 5,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 12,
+      "pairs": 5,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "legacy-light_gray_concrete-dev-shopfront-masonry-high-right",
+      "split": "regression",
+      "hash": "7fc75c6596ae7b4b3f1282ff4d8d17a1daa7b7e1d5c89cf45a9e680935de3a98",
+      "oracle": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 0,
+      "pairs": 0,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "legacy-light_gray_concrete-dev-shopfront-masonry-low-left",
+      "split": "regression",
+      "hash": "3217408746e8447ff829d4327395d9b25ec55167b4d589712796eb0a541da1fb",
+      "oracle": {
+        "gained": 4,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 4,
+        "hidden_added": 0,
+        "hidden_removed": 4
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 4,
+      "pairs": 4,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "legacy-light_gray_concrete-dev-shopfront-plaster-high-right",
+      "split": "regression",
+      "hash": "e4169408c3d918481512eb5fd4962dcce726c60730ba4205602aa406ee1a0334",
+      "oracle": {
+        "gained": 1,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 1,
+        "hidden_added": 0,
+        "hidden_removed": 1
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 2,
+      "pairs": 1,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "legacy-light_gray_concrete-dev-shopfront-plaster-low-left",
+      "split": "regression",
+      "hash": "0abf521ed30ea4029122b901004bb5189998df5233943a13ed63b2e1bf369971",
+      "oracle": {
+        "gained": 13,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 13,
+        "hidden_added": 0,
+        "hidden_removed": 4
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 28,
+      "pairs": 15,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "legacy-light_gray_concrete-dev-wing-masonry-high-right",
+      "split": "regression",
+      "hash": "4573270c29b6670744a7533a59db4463e11d777fda03d53cb622b1c99ef51b89",
+      "oracle": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 0,
+      "pairs": 0,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "legacy-light_gray_concrete-dev-wing-masonry-low-left",
+      "split": "regression",
+      "hash": "2eb205dcf7dd62979681718ad3eb7395ecd8417cc7fc71ba878d7838400537df",
+      "oracle": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 0,
+      "pairs": 0,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "legacy-light_gray_concrete-dev-wing-plaster-high-right",
+      "split": "regression",
+      "hash": "c42acc6f3064af7b0088b5cf22d665e508d133a2eb25ed1d58512d4d8ef82532",
+      "oracle": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 0,
+      "pairs": 0,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "legacy-light_gray_concrete-dev-wing-plaster-low-left",
+      "split": "regression",
+      "hash": "ae6c5b8ddb5942f87ee15181934689444bf5f9f2a64cf29fa1087c19417c55a3",
+      "oracle": {
+        "gained": 7,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 7,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 15,
+      "pairs": 7,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "legacy-light_gray_concrete-holdout-courtyard-masonry-high-right",
+      "split": "regression",
+      "hash": "3618cea7e8277968765d9553e190e1d8c0b6e0451224a48764fb17f3e584cfe9",
+      "oracle": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 0,
+      "pairs": 0,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "legacy-light_gray_concrete-holdout-courtyard-masonry-low-left",
+      "split": "regression",
+      "hash": "ddf82b7ec8ec3e8d331390f996ffa19b25657cae3fc58a7040e852d942901a0e",
+      "oracle": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 0,
+      "pairs": 0,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "legacy-light_gray_concrete-holdout-courtyard-plaster-high-right",
+      "split": "regression",
+      "hash": "f8196e20498ec0aaa3f1a0e870c625544daa052c7a89d5749897c84d212f8afc",
+      "oracle": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 0,
+      "pairs": 0,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "legacy-light_gray_concrete-holdout-courtyard-plaster-low-left",
+      "split": "regression",
+      "hash": "cdd6ab5a7e7d18e8873fdb32f3cf5a404e2fe3af401e22f93dd7b47e7fd7ea7d",
+      "oracle": {
+        "gained": 16,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 16,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 34,
+      "pairs": 16,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "legacy-light_gray_concrete-holdout-crossing-masonry-high-right",
+      "split": "regression",
+      "hash": "b7b97e58d82215313f9b18f5ff0303c3f09489c62dee7b3eac3d012a0868bf6b",
+      "oracle": {
+        "gained": 1,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 1,
+        "hidden_added": 0,
+        "hidden_removed": 1
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 1,
+      "pairs": 1,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "legacy-light_gray_concrete-holdout-crossing-masonry-low-left",
+      "split": "regression",
+      "hash": "735e345909315da8624f5ab701007de7ea0cd7e9c7fbb7d511364d61dec529e6",
+      "oracle": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 4,
+      "pairs": 2,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "legacy-light_gray_concrete-holdout-crossing-plaster-high-right",
+      "split": "regression",
+      "hash": "cb5cc468cf5fdb2090aa48b87021cda631c5529a50a71c80235481df08a2214c",
+      "oracle": {
+        "gained": 2,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 2,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 6,
+      "pairs": 2,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "legacy-light_gray_concrete-holdout-crossing-plaster-low-left",
+      "split": "regression",
+      "hash": "5e6993796436e60fd081f6371c0a21cd8210a6fd3b4ea6873ece09b266bf3062",
+      "oracle": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 7,
+      "pairs": 4,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "legacy-light_gray_concrete-holdout-galleries-masonry-high-right",
+      "split": "regression",
+      "hash": "30d2a9dbb21b3e88811ee885cb5e44c9e08ba10e0a684fd045c9079e4e5ccd9e",
+      "oracle": {
+        "gained": 7,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 7,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 17,
+      "pairs": 7,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "legacy-light_gray_concrete-holdout-galleries-masonry-low-left",
+      "split": "regression",
+      "hash": "7b6a56bee4036b177d386265a1f318d5c905bfaa91fa048a0a59c5183982c5fc",
+      "oracle": {
+        "gained": 4,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 4,
+        "hidden_added": 0,
+        "hidden_removed": 4
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 8,
+      "pairs": 5,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "legacy-light_gray_concrete-holdout-galleries-plaster-high-right",
+      "split": "regression",
+      "hash": "2586f0d5f829d6006730f55d17cc303744c1f23136eb37c0cdb12f977b08ecbc",
+      "oracle": {
+        "gained": 1,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 1,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 1,
+      "pairs": 1,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "legacy-light_gray_concrete-holdout-galleries-plaster-low-left",
+      "split": "regression",
+      "hash": "76d34c5654c0b79c281587aeaae116c3b1aa36a15a102e60fa1a2e9b09e0e578",
+      "oracle": {
+        "gained": 1,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 1,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 5,
+      "pairs": 2,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "legacy-light_gray_concrete-holdout-portico-masonry-high-right",
+      "split": "regression",
+      "hash": "5a6814abfd58c5b9bcd15c2bfec7652598afd9a1439916ff8f9859408b3654ea",
+      "oracle": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 0,
+      "pairs": 0,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "legacy-light_gray_concrete-holdout-portico-masonry-low-left",
+      "split": "regression",
+      "hash": "a890765e81bb3587e96c3f0ff79d6985c37c967c0dff72422f5bd5c0fc09a3e5",
+      "oracle": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 0,
+      "pairs": 0,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "legacy-light_gray_concrete-holdout-portico-plaster-high-right",
+      "split": "regression",
+      "hash": "65f516150bb49006ee2b2133cb3b6868ff140510be8c757f8e7a1e2046b61f60",
+      "oracle": {
+        "gained": 1,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 1,
+        "hidden_added": 0,
+        "hidden_removed": 1
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 2,
+      "pairs": 1,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "legacy-light_gray_concrete-holdout-portico-plaster-low-left",
+      "split": "regression",
+      "hash": "3be5334ae8386b98e28df808329e8c99cfa189462f7e88d97af7cddad09539ae",
+      "oracle": {
+        "gained": 18,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 18,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 48,
+      "pairs": 18,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "legacy-light_gray_concrete-holdout-registry-masonry-high-right",
+      "split": "regression",
+      "hash": "c6f78d6465263dbfa7dd11a99826bc8c0e060c2f583324fe64f4ac524ff33cbc",
+      "oracle": {
+        "gained": 9,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 9,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 30,
+      "pairs": 10,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "legacy-light_gray_concrete-holdout-registry-masonry-low-left",
+      "split": "regression",
+      "hash": "0253cca6f6febb188017e3e40ea7be02fd9feab94e6db4d12aaff5d42b2aed80",
+      "oracle": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 0,
+      "pairs": 0,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "legacy-light_gray_concrete-holdout-registry-plaster-high-right",
+      "split": "regression",
+      "hash": "02752db0e434d75157868fadab41f018175c5aeb1d7a85dc0127e914a0afd61b",
+      "oracle": {
+        "gained": 9,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 9,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 35,
+      "pairs": 10,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "legacy-light_gray_concrete-holdout-registry-plaster-low-left",
+      "split": "regression",
+      "hash": "cd3dc2db531513ec1a4b697139f8a0c143512ecb43eccbbd68bf46e7e88ad30a",
+      "oracle": {
+        "gained": 13,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 13,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 23,
+      "pairs": 13,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "legacy-light_gray_concrete-holdout-workshop-masonry-high-right",
+      "split": "regression",
+      "hash": "d2cef86e3542f514cbce5d0c8b1f06bb4d070d4eebd4164c3ff2fb7a96c86442",
+      "oracle": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 0,
+      "pairs": 0,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "legacy-light_gray_concrete-holdout-workshop-masonry-low-left",
+      "split": "regression",
+      "hash": "e7189aa7615721dd8c2a6cdb5d39ace1dbdd260a39c51f8dc0c9b087fee14dcf",
+      "oracle": {
+        "gained": 7,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 7,
+        "hidden_added": 0,
+        "hidden_removed": 1
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 16,
+      "pairs": 9,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "legacy-light_gray_concrete-holdout-workshop-plaster-high-right",
+      "split": "regression",
+      "hash": "36b8b3023cd7d3a5d4eb09fd11bab2fcdfdac4dc9bb41513be0521e2934d6a02",
+      "oracle": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 3,
+      "pairs": 2,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "legacy-light_gray_concrete-holdout-workshop-plaster-low-left",
+      "split": "regression",
+      "hash": "b36d34f6ec52fa288e33fe409f3b65ebedba129a4e82defc62a84a09710d854b",
+      "oracle": {
+        "gained": 4,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 4,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 10,
+      "pairs": 4,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "legacy-smooth_stone-dev-shopfront-masonry-high-right",
+      "split": "regression",
+      "hash": "669abe5cf08e65a38dec215427a1e43015de516246029b3e5494503c25939d4b",
+      "oracle": {
+        "gained": 1,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 1,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 5,
+      "pairs": 1,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "legacy-smooth_stone-dev-shopfront-masonry-low-left",
+      "split": "regression",
+      "hash": "51531670803467abfc9d46a7b7f20a0bec81533dfc776de468de2172fb50463d",
+      "oracle": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 19,
+      "pairs": 13,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "legacy-smooth_stone-dev-shopfront-plaster-high-right",
+      "split": "regression",
+      "hash": "41f1ed5cfb9a0b42dadee5cadcd1e3f5f9bc3aaf0ea50b2020817ba444733413",
+      "oracle": {
+        "gained": 3,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 3,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 6,
+      "pairs": 4,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "legacy-smooth_stone-dev-shopfront-plaster-low-left",
+      "split": "regression",
+      "hash": "3e9478b682e6ce175f3d598579e592c53284e0e287249d97b575fb13b9af5e7b",
+      "oracle": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 0,
+      "pairs": 0,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "legacy-smooth_stone-dev-wing-masonry-high-right",
+      "split": "regression",
+      "hash": "63edee4dba9d70f72a449b65632955dd82f424f0cd69f6f89f43e4bea7367a90",
+      "oracle": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 0,
+      "pairs": 0,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "legacy-smooth_stone-dev-wing-masonry-low-left",
+      "split": "regression",
+      "hash": "5e5e6d0853939a35a7c6ec5d4bcf2af053d211ee75c13cb480229b857d443858",
+      "oracle": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 0,
+      "pairs": 0,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "legacy-smooth_stone-dev-wing-plaster-high-right",
+      "split": "regression",
+      "hash": "9c74d7f5073b3653f7a13ed648a29fee074eee0189fa704c778b0bf5c5b8ca9a",
+      "oracle": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 0,
+      "pairs": 0,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "legacy-smooth_stone-dev-wing-plaster-low-left",
+      "split": "regression",
+      "hash": "c714cd96bc59117b089e9442d84d84443b87dd9f6037a088ccd01db0c7cfc2c7",
+      "oracle": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 0,
+      "pairs": 0,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "legacy-smooth_stone-holdout-courtyard-masonry-high-right",
+      "split": "regression",
+      "hash": "d302cddb87c5660ac2a4ac9571bd37258cb09732184e74f5139ff62942dde540",
+      "oracle": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 0,
+      "pairs": 0,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "legacy-smooth_stone-holdout-courtyard-masonry-low-left",
+      "split": "regression",
+      "hash": "4c97ac619ce21b98c85a2fe721541b2078ef114c7f72db442f6cb46a6e9f3716",
+      "oracle": {
+        "gained": 3,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 3,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 5,
+      "pairs": 3,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "legacy-smooth_stone-holdout-courtyard-plaster-high-right",
+      "split": "regression",
+      "hash": "d7c2e76ea064fc0863c1865ec60ec7fbf4ae91bd47b30eca572ffd7300da190a",
+      "oracle": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 0,
+      "pairs": 0,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "legacy-smooth_stone-holdout-courtyard-plaster-low-left",
+      "split": "regression",
+      "hash": "013f581bc40a3092dce04607a32dd274185c96f2c372a24f877792303cd01575",
+      "oracle": {
+        "gained": 8,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 8,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 11,
+      "pairs": 8,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "legacy-smooth_stone-holdout-portico-masonry-high-right",
+      "split": "regression",
+      "hash": "338a4d71ca5933d539e0074d33fda7a0561a34cdc79c33a271800f78bfa1d434",
+      "oracle": {
+        "gained": 3,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 3,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 10,
+      "pairs": 3,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "legacy-smooth_stone-holdout-portico-masonry-low-left",
+      "split": "regression",
+      "hash": "37e0103105a7aff6a92592bd30f43293d646300a46305b50dc8090f851d8935f",
+      "oracle": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 0,
+      "pairs": 0,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "legacy-smooth_stone-holdout-portico-plaster-high-right",
+      "split": "regression",
+      "hash": "e964dac6d6c98c8cc858c78d48a972eeffe0f790a1058a849f20f41402d6ceb2",
+      "oracle": {
+        "gained": 14,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 14,
+        "hidden_added": 0,
+        "hidden_removed": 1
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 31,
+      "pairs": 14,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "legacy-smooth_stone-holdout-portico-plaster-low-left",
+      "split": "regression",
+      "hash": "182f80924caa750e35881079441b4040c5fc6c9b4ce7d2289eb76fc08e521c68",
+      "oracle": {
+        "gained": 16,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 16,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 43,
+      "pairs": 16,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "heldout-facade-oblique-left",
+      "split": "native",
+      "hash": "6abe65a8901802d031cc6d4eb92c29a64fa899d01d08d14218d5889c42e815ab",
+      "oracle": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 54,
+      "pairs": 24,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "heldout-facade-oblique-right",
+      "split": "native",
+      "hash": "4fb6b93d0edc027618c4ebf2a82b0b63871a4435728db1ebe801efeb56f67ff5",
+      "oracle": {
+        "gained": 23,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 23,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 52,
+      "pairs": 24,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "dark-inlay-oblique-left",
+      "split": "native",
+      "hash": "6678f9f62043c5d36ed8d47e87f483695fdbe4680bd2e24e1b71e86fb53f6651",
+      "oracle": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 0,
+      "pairs": 0,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "dark-inlay-oblique-right",
+      "split": "native",
+      "hash": "1556b0afab13946fe48c04a3195c97a42feb2f788bab18f6785c452dc0f51b3e",
+      "oracle": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 0,
+      "pairs": 0,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "physical-shade-oblique-left",
+      "split": "native",
+      "hash": "7242871f82405fb6d379e59350593ee85cb73e599a52b509ef579d91ff879dd1",
+      "oracle": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 0,
+      "pairs": 0,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "physical-shade-oblique-right",
+      "split": "native",
+      "hash": "0f94a6711fa88db217e5e146774546e0f009846d85c885183119fbb99b826cda",
+      "oracle": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 0,
+      "pairs": 0,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "test-adjacency-26-left",
+      "split": "native",
+      "hash": "669f919545d1bd8d8bc1b4276a0f7cfc2e83801c10ef078c2389fcf6224557fc",
+      "oracle": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 0,
+      "pairs": 0,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "test-adjacency-26-right",
+      "split": "native",
+      "hash": "bb717f0685761f45c6fdec60388e1e5a7c63519395ea16d2dc699c223e8c0c9f",
+      "oracle": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 0,
+      "pairs": 0,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "test-recess-28-left",
+      "split": "native",
+      "hash": "76f541e1d13e1bd3f476cb67a9035106adc71efc0b2eddf7ecb23ca82df74d4c",
+      "oracle": {
+        "gained": 10,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 10,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 30,
+      "pairs": 10,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "test-recess-28-right",
+      "split": "native",
+      "hash": "26fbfb1bc4885c9965a7f7bdd54cde5794dc60abd009ddae7e308e4d01ebeb3a",
+      "oracle": {
+        "gained": 1,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 1,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 1,
+      "pairs": 1,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "test-corner-29-left",
+      "split": "native",
+      "hash": "086db4cea933124c7db509596ae5119071102046aa4af5037075ce4a1cb8f535",
+      "oracle": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 0,
+      "pairs": 0,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "test-corner-29-right",
+      "split": "native",
+      "hash": "f0b76c96e0e5606b5d73ac76570bc605a53f70c5eaa0a2fb3341245f222849d3",
+      "oracle": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 0,
+      "pairs": 0,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "shape-benchmark-26.3--train-canopy-07-left",
+      "split": "old",
+      "hash": "f701055c7a1068d6be27034bcd363a5c8c26ec7c62307d0e87fbb56027a88620",
+      "oracle": {
+        "gained": 1,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 1,
+        "hidden_added": 0,
+        "hidden_removed": 1
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 2,
+      "pairs": 1,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "shape-benchmark-26.3--train-canopy-04-left",
+      "split": "old",
+      "hash": "25155c7385c458f1d1b53bbe0669d6497919289223d56eefa738000ee4d2276c",
+      "oracle": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 0,
+      "pairs": 0,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "signed-relief-26.3--dev--dev-relief-00-oblique-right",
+      "split": "old",
+      "hash": "d51ecba5801e1fb3949ae15b7975e1c86c9c7556626380f6a016beab775e8f14",
+      "oracle": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 101,
+      "pairs": 42,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "shape-benchmark-open-26.3--train-canopy-01-left",
+      "split": "old",
+      "hash": "e2729005806455a7f0ef2d17d8732627c5191680492fa4953e58eb0393f186d9",
+      "oracle": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 0,
+      "pairs": 0,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "shape-benchmark-26.3--train-canopy-09-right",
+      "split": "old",
+      "hash": "5e80d9e8f866caf2f87d3646a5ed55b5e26b642feb229172c5d3cd98899d14c8",
+      "oracle": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 0,
+      "pairs": 0,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "shape-benchmark-26.3--train-canopy-06-left",
+      "split": "old",
+      "hash": "3bf03227124284c569dbd086f8e1d79f0e17a4fe40ceba1be19ea7ea8f3defea",
+      "oracle": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 0,
+      "pairs": 0,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "rim-views-26.3--positive--heldout-facade-oblique-right",
+      "split": "old",
+      "hash": "b0f7148680294c957bec3ea1096f2b6dd09cc085307381046a67ac2e5534197b",
+      "oracle": {
+        "gained": 4,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 4,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 10,
+      "pairs": 4,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "shape-benchmark-26.3--train-canopy-08-right",
+      "split": "old",
+      "hash": "9250679de0696dd6c8ba07d0961649748007e4cc33981353d87e9388d7c5bdbc",
+      "oracle": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 0,
+      "pairs": 0,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "shape-benchmark-26.3--train-recess-02-right",
+      "split": "old",
+      "hash": "65e868cd0b81a896e5763aacfb95ceae5e86a730a2d3f44ab49bfd2723a9eee7",
+      "oracle": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 68,
+      "pairs": 25,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "inverse-voxels-26.3--confirm--test-bays-02-oblique-right",
+      "split": "old",
+      "hash": "c9e672f67e4bb3b3f17fe6ec16da2824f3f29fb55031a1dd6925a54970bee3ef",
+      "oracle": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 0,
+      "pairs": 0,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "shape-benchmark-26.3--dev-canopy-18-left",
+      "split": "old",
+      "hash": "89fb8aacc5db6be76b4764b3c49734b2d303fd08be1db39abb17d0c4d31a974f",
+      "oracle": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 0,
+      "pairs": 0,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "signed-relief-26.3--test--test-relief-00-oblique-left",
+      "split": "old",
+      "hash": "abfd9dd9672626f6e12a041787e21859780b61a9b0fd8cfab6e1f2faa680e3e3",
+      "oracle": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 72,
+      "pairs": 34,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "inverse-voxels-26.3--confirm--test-colonnade-01-oblique-right",
+      "split": "fresh",
+      "hash": "0abaef41f6b6e1c256d90902308b03ac9265276ca4365f6062182a47221fa032",
+      "oracle": {
+        "gained": 1,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 1,
+        "hidden_added": 0,
+        "hidden_removed": 1
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 2,
+      "pairs": 1,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "shape-benchmark-open-26.3--train-canopy-00-right",
+      "split": "fresh",
+      "hash": "b45341a871bc6adac6b2c1cce4db97ad7bf5f4c8579786e8a7933d92c626908d",
+      "oracle": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 0,
+      "pairs": 0,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "shape-benchmark-26.3--dev-corner-16-right",
+      "split": "fresh",
+      "hash": "a2a54dd60eb8cf4de77d6a8b3f91ab5e54ed9f9f01dde0997886a810ebb1a859",
+      "oracle": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 0,
+      "pairs": 0,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "entrance-confirm-26.3--positive--heldout-facade-oblique-right",
+      "split": "fresh",
+      "hash": "e7f870f52e50912a95fe3efd2b181e00edfa8d9ea88090199a68c7baccf94f1b",
+      "oracle": {
+        "gained": 34,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 34,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 84,
+      "pairs": 34,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "shape-benchmark-26.3--train-canopy-05-left",
+      "split": "fresh",
+      "hash": "6ade281286959ee6a3271dd90a6292680a5c18f6fc7d814be316332628949615",
+      "oracle": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 0,
+      "pairs": 0,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "shape-benchmark-26.3--train-corner-03-right",
+      "split": "fresh",
+      "hash": "ab1e1ca7ac34c204f198e33bd21952e4c2ae3878e0f3fe97f422e5391a41be49",
+      "oracle": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 0,
+      "pairs": 0,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "shape-benchmark-26.3--dev-canopy-19-right",
+      "split": "fresh",
+      "hash": "948eb5aa07fb790d36be7b07baa185cde7437ee0b4180a4974da4f8a31d7311d",
+      "oracle": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 0,
+      "pairs": 0,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "corner-mixed-26.3--heldout-facade-oblique-left",
+      "split": "fresh",
+      "hash": "12b374628733ea74617838bc0931e5178d101cc5093e1753e2aab1b576c58986",
+      "oracle": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 42,
+      "pairs": 14,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "shape-benchmark-open-26.3--train-canopy-01-right",
+      "split": "extra",
+      "hash": "c8acc9febc2e2fccc7c4a35293c94293944e5b91c10ee936467ca02fca95f4c4",
+      "oracle": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 0,
+      "pairs": 0,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "corner-views-26.3--positive--heldout-facade-oblique-left",
+      "split": "extra",
+      "hash": "8ad5b368d024e4b7a8a813b55aa5dbaad5f9df4ff0428523581eb8aa664350d7",
+      "oracle": {
+        "gained": 17,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 17,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 46,
+      "pairs": 17,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "shape-benchmark-26.3--train-canopy-08-left",
+      "split": "extra",
+      "hash": "462999019370307d637853a2d36a85e3bbcfb764625dabdb0bbe13eb93ab5a0d",
+      "oracle": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 0,
+      "pairs": 0,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "shape-benchmark-26.3--train-canopy-06-right",
+      "split": "extra",
+      "hash": "1813bb99de589745ed75897f64e84af91ecfbacb8e6d7e7725c2db87324eafab",
+      "oracle": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 0,
+      "pairs": 0,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "shape-benchmark-26.3--train-canopy-09-left",
+      "split": "extra",
+      "hash": "a86b4f39049518db7ae29070bc9ccfdac883474dc0bdaa6cfbf362e808afff79",
+      "oracle": {
+        "gained": 2,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 2,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 3,
+      "pairs": 2,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "inverse-voxels-26.3--confirm--test-bays-02-oblique-left",
+      "split": "extra",
+      "hash": "2ebf66b56f9252e193d7e37a61933878684a11d0f9423a05a6f366265fb576e7",
+      "oracle": {
+        "gained": 1,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 1,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 1,
+      "pairs": 1,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "signed-relief-26.3--test--test-relief-00-oblique-right",
+      "split": "extra",
+      "hash": "5dcc52089d126c52803e9b24976f1836cdf668f5cab4774176d8cda229f41f50",
+      "oracle": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 105,
+      "pairs": 43,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "shape-benchmark-26.3--train-canopy-04-right",
+      "split": "extra",
+      "hash": "f8abf90c1a67cef8172499122c96dcf9ed9d6fa07b8a09e6765bd4b1da1e82ec",
+      "oracle": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 0,
+      "pairs": 0,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "corner-views-26.3--positive--heldout-facade-oblique-right",
+      "split": "extra",
+      "hash": "25f2277a9d94d701968c201e0be3fb6ca6a20780d46c92ba86d7038e0b94cc71",
+      "oracle": {
+        "gained": 4,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 4,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 8,
+      "pairs": 4,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "inverse-voxels-26.3--confirm--test-colonnade-01-oblique-left",
+      "split": "extra",
+      "hash": "efbe99fcce59ddae5b7d370b06bf0463d19bbd671868de6aa3ccde180315be26",
+      "oracle": {
+        "gained": 2,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 2,
+        "hidden_added": 0,
+        "hidden_removed": 2
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 9,
+      "pairs": 3,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "shape-benchmark-26.3--dev-canopy-19-left",
+      "split": "extra",
+      "hash": "40bfb2e949df9a4f198852f99b2915bea7745903097cee7cabfc6cf4b86925db",
+      "oracle": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 0,
+      "pairs": 0,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "shape-benchmark-open-26.3--train-canopy-00-left",
+      "split": "extra",
+      "hash": "c75d1b55c8a5206a17f50cbb963294ea3be889986976986cd3bbce0a2de5ef3c",
+      "oracle": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 0,
+      "pairs": 0,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "shape-benchmark-26.3--train-corner-03-left",
+      "split": "extra",
+      "hash": "7060f94921c90ec0cd60d0e93d316babe34ffdb88cb2873228961730154979a5",
+      "oracle": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 0,
+      "pairs": 0,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "recess-positive-control-26.3--heldout-facade-left",
+      "split": "extra",
+      "hash": "2227d23f6dd7bacaccf6543208fabf9341d34fe6d2d8d90906c809ad63d3ce72",
+      "oracle": {
+        "gained": 15,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 15,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 42,
+      "pairs": 15,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "shape-benchmark-26.3--dev-corner-16-left",
+      "split": "extra",
+      "hash": "091d80ac09ffdde87bef4d337a789d54df8a9b0e6801c3db0fd7e84bdbd50dc2",
+      "oracle": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 0,
+      "pairs": 0,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "recess-positive-control-26.3--heldout-facade-right",
+      "split": "extra",
+      "hash": "70b9d1c99f3096b9cf6ac66913b3b3373a4db218bd97313bd7b0c884d9480ef7",
+      "oracle": {
+        "gained": 1,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 1,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 2,
+      "pairs": 1,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "rim-views-26.3--positive--heldout-facade-oblique-left",
+      "split": "extra",
+      "hash": "7fe407d4ecb2892db0959034a9cc6b58d02e4f1dda27356c3b7155d5d5ac8912",
+      "oracle": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 45,
+      "pairs": 16,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "signed-relief-26.3--dev--dev-relief-00-oblique-left",
+      "split": "extra",
+      "hash": "a7d02eff0a72e7414437ba04744d3d119a357fa8b3143a871ff37b3854607719",
+      "oracle": {
+        "gained": 46,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 46,
+        "hidden_added": 0,
+        "hidden_removed": 25
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 122,
+      "pairs": 47,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "shape-benchmark-26.3--train-canopy-05-right",
+      "split": "extra",
+      "hash": "8897588e69d5bade67ca3f3b0d70c9656daaab88bad6870c09cc64ce3437b6c1",
+      "oracle": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 0,
+      "pairs": 0,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "shape-benchmark-26.3--train-recess-02-left",
+      "split": "extra",
+      "hash": "ea3fc5b79d49a7c9e455581f1bab2a2f2da4dcfabcc98feb6a0b3bc992316870",
+      "oracle": {
+        "gained": 2,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 2,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 10,
+      "pairs": 3,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "holdout-switchback-brick-low-left",
+      "split": "new",
+      "hash": "654f1a86e20dbebbcc6661e80104af992af27ddbd5a94cca1c163505a7e21f97",
+      "oracle": {
+        "gained": 2,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 2,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 4,
+      "pairs": 2,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "holdout-switchback-brick-high-right",
+      "split": "new",
+      "hash": "76245c242236dee8d874b44214351ffa068a45004296f5333a700f5ec85b515f",
+      "oracle": {
+        "gained": 5,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 5,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 21,
+      "pairs": 6,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "holdout-loadingdock-timber-low-left",
+      "split": "new",
+      "hash": "4231eb753a14d3bdeba57a108abe649768d006da73e0eedfa61eefee1d1dfaae",
+      "oracle": {
+        "gained": 1,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 1,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 1,
+      "pairs": 1,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    },
+    {
+      "id": "holdout-loadingdock-timber-high-right",
+      "split": "new",
+      "hash": "a4de897207b51c11d5bdb0a9ea54a189510c17d87b640765d1a35d0e05d8eac1",
+      "oracle": {
+        "gained": 6,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 6,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "method": {
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0
+      },
+      "edges": 11,
+      "pairs": 6,
+      "status": {
+        "eligible": 0,
+        "pairs": 0,
+        "added": 0,
+        "removed": 0
+      }
+    }
+  ]
+}
