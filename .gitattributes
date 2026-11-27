@@ -7,6 +7,7 @@ benchmark/suites/*.json text eol=lf
 benchmark/worlds/exterior-v1/** -text
 benchmark/worlds/normal-confirm-v1/** -text
 # Preserve measured artifact bytes, including the JSON files fingerprinted by SHA-256.
+benchmark/reviews/visible-skyline-01/**/*.json -text whitespace=trailing-space,space-before-tab,cr-at-eol
 benchmark/reviews/mask-first-01/** -text
 benchmark/reviews/mask-loss-01/** -text
 benchmark/reviews/mask-four-01/** -text

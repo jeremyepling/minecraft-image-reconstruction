@@ -507,6 +507,11 @@ def build(image_path, version, out, *, outlines=None, order_method=None, through
             patches, boundary_settings['photo_edges'] = photo_edges.refine_surfaces(image, patches)
             methods['photo_edges'] = photo_edges.METHOD
             methods['boundary_sequence'].append(photo_edges.METHOD)
+            from engine import skyline_extent
+            patches, events = skyline_extent.refine(image, patches, blue | cloud)
+            boundary_settings['skyline_extent'] = dict(events=events)
+            methods['skyline_extent'] = skyline_extent.METHOD
+            methods['boundary_sequence'].append(skyline_extent.METHOD)
         context_px = DEFAULT_CONTEXT_PX if context_px is None else context_px
         patches = [with_outline(part) for part in patches]
         crop_dir = out/'surface-crops'
