@@ -57,6 +57,21 @@ def main():
             experiments.append(method_rows(slug + "-rescue", "3D block grid after camera failure", artifact,
                                            cohorts, "rescue_only", baseline,
                                            "Apply the structure-derived grid only when the ordinary camera failed. Camera-supported builds keep their original exports.", oracle=None))
+    material_path = REVIEWS / "view-conditioned-atlas-01/summary.json"
+    material = read(material_path)
+    material_arms = {
+        key: {arm: {"geometry": baseline[key]["geometry"], "scores": material[key][arm]}
+              for arm in ("baseline", "source", "oracle")}
+        for key in DATASETS
+    }
+    experiments.append(method_rows(
+        "view-atlas", "View-adjusted atlas on ordinary geometry", material_path, material_arms, "source", baseline,
+        "Reidentify materials at the same released coordinates using an atlas sampled over each source pixel. The reference chooser may keep the old ID or choose the candidate ID for each individual cell."))
+    combined_path = REVIEWS / "view-atlas-lattice-01/summary.json"
+    combined = read(combined_path)
+    experiments.append(method_rows(
+        "view-atlas-grid", "View-adjusted atlas and structure grid", combined_path, combined, "source", baseline,
+        "Apply the view-adjusted texture matches during anchor and subface proposal generation, then grade the decoded build using the same final view-adjusted material matcher. Compare with the ordinary export on the same images."))
     out = REVIEWS / "expanded-round-01" / "summary.json"
     out.write_text(json.dumps({"experiments": experiments}, separators=(",", ":")) + "\n", encoding="utf-8")
 

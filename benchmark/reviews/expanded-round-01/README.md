@@ -17,6 +17,22 @@ The fixed replay matched all **104 released material packs byte for byte**, incl
 
 The per-image perfect chooser may use reference labels to select among the packages the method actually produced. Its score estimates opportunity within that choice set. Optimizing facade placement alone can give a lower material score. The exact pooled geometry ceiling is separately identified where it was computed. Each ordinary source method uses only the source image and versioned game assets.
 
+## Does the atlas need a separate copy for each camera?
+
+We tested generating the expected face texture on demand. The existing matcher already projects textures with perspective and uses face direction, estimated lighting and mip levels. The new renderer averages four subpixel texture samples over the footprint of each source pixel. The same candidate sprites and the same set of placed cells were scored with one center sample as a control. This isolates the effect of finite pixel size from the effect of changing the material voter.
+
+On ordinary geometry, generating view-conditioned samples changed strict position-plus-ID F1 from **84.68% to 82.01%** on the fixed views, **6.16% to 6.21%** on v3 and **43.43% to 41.51%** on decorative. Relative to the matched center-sample control, the finite footprint changed the number of correct IDs by **−290, +2 and −38** respectively. Within the original estimated 3D grid, that same comparison gave **−61, −4 and −35**. The standalone atlas provides no consistent improvement to the released material policy. [Independent comparisons with matched geometry](../view-atlas-factorial-01/README.md) · [Source crops and rendered material candidates](../view-conditioned-atlas-01/source-and-rendered-faces.png)
+
+Using the new atlas earlier to test full-block anchors and fractional planes did improve local ownership in a held-out Walled Garden. Two slabs had visible top and side samples assigned to the correct cell. The same geometric search using one center sample recovered one of those joins. Both coordinates already existed in the released build, which named both smooth red sandstone. The true slab ID was missing from the candidate catalog. [Photographed slab and rendered templates](../view-atlas-lattice-01/slab-source-and-render.jpg)
+
+For counting and surface detection, a secondary test covered 399 candidate groups on 20 camera-supported expanded views. No alternative whole-block dimension was selected. One quarter-block shift added one incorrect block. Local reassignment improved native foreground ownership by 2,804 samples over the ordinary assignment; only 89 of that net gain came from finite-pixel sampling over the point control. Feeding those proposed boundaries back to the ordinary pipeline on three buildings helped Walled Garden, hurt Market Court and tied Hillside Chapel. [Standalone stage measurements and full replays](../view-conditioned-atlas-01/README.md)
+
+## Where to focus next
+
+1. For the camera, check for two distinct floor directions and reject a repeat frequency and its double masquerading as separate axes. Eighty currently rejected images passed the floor matcher with the correct floor coordinates; this is a reference-only measure of opportunity.
+2. For partial shapes, compare the projected top and return face of an actual slab or stair state in the same candidate cell and its neighbor. Preserve the existing full cube as a candidate. Verify visible face ownership and exact decoded state separately from relative placement.
+3. Keep the camera-conditioned atlas as an on-demand experimental renderer. Across the present comparison, maintaining different stored atlases per camera has no demonstrated accuracy advantage. Compare finite sampling with identical point-sampled hypotheses when testing a new shape cue.
+
 ## Reading a failed build
 
 A rejected camera or missing projection stops the placer. Keep all its visible targets in the overall missed count and identify the camera failure on that image, including the atlas fallback reason when present. Show camera-supported placement separately. A usable camera can still leave an empty export when downstream evidence is insufficient. Execution errors require a retry and must be distinguished from a completed empty build.
