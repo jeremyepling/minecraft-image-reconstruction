@@ -98,6 +98,10 @@ def propose(image, camera, cells, names):
             key = facekey(n,axis)
             samples[key].append((part,scene.uv(part,scene.cells[n],axis)))
             witnesses[key].add(n)
+    blind_samples = defaultdict(list)
+    for key,values in samples.items():
+        blind_samples[key[1:]].extend(v[0] for v in values)
+    blind_center={}
     models = {}
     def render(n,axis,idx):
         key = facekey(n,axis)
@@ -110,7 +114,15 @@ def propose(image, camera, cells, names):
         if model is None:
             return None
         center,texture = model
-        return np.abs(colors[idx]-center-texture[scene.uv(idx,scene.cells[n],axis),None]).mean(1)
+        if key[1:] not in blind_center:
+            observations=np.concatenate(blind_samples[key[1:]])
+            sub=np.linspace(0,len(observations)-1,min(384,len(observations)),dtype=int)
+            blind_center[key[1:]]=np.median(colors[observations[sub]],axis=0)
+        return np.column_stack([
+            np.abs(colors[idx]-center-texture[scene.uv(idx,scene.cells[n],axis),None]).mean(1),
+            np.abs(colors[idx]-center).mean(1),
+            np.abs(colors[idx]-blind_center[key[1:]]).mean(1)])
+
     proposals=[]
     for n,idx in scene.owned.items():
         if not backed[n] or len(idx)<20:
@@ -140,10 +152,15 @@ def propose(image, camera, cells, names):
                     errors.extend(zip(before.tolist(),after.tolist()))
         if len(errors)<10 or len(errors)<.75*len(visible):
             continue
-        a,b=np.array(errors).T
-        proposals.append(dict(cell=list(scene.cells[n]),samples=len(a),front=round(float(a.mean()),3),
-                              rear=round(float(b.mean()),3),gain=round(float((a-b).mean()),3),
-                              vote=round(float((b<a).mean()),4)))
+        arr=np.array(errors)
+        proposal=dict(cell=list(scene.cells[n]),samples=len(arr))
+        for i,prefix in enumerate(('', 'material_color_', 'plane_color_')):
+            a,b=arr[:,:,i].T
+            proposal.update({prefix+'gain':round(float((a-b).mean()),3),
+                             prefix+'vote':round(float((b<a).mean()),4)})
+            if not prefix:
+                proposal.update(front=round(float(a.mean()),3),rear=round(float(b.mean()),3))
+        proposals.append(proposal)
     return proposals
 
 
@@ -164,12 +181,13 @@ def features(args):
 RULES = [(n,g,v) for n in (16,32) for g in (2,5,10,20) for v in (.65,.8,.9)]
 
 
-def select(proposals,rule):
+def select(proposals,rule,prefix=''):
+    gain, vote=prefix+'gain', prefix+'vote'
     n,g,v=rule
-    eligible=[r for r in proposals if r['samples']>=n and r['gain']>=g and r['vote']>=v]
+    eligible=[r for r in proposals if r['samples']>=n and r[gain]>=g and r[vote]>=v]
     # Evaluate one independent geometry change at a time. Two proposed removals
     # may rely on each other as visible evidence.
-    return max(eligible,key=lambda r:(r['gain'],r['vote'],r['samples']),default=None)
+    return max(eligible,key=lambda r:(r[gain],r[vote],r['samples']),default=None)
 
 
 def records(key,cache,work):
@@ -246,7 +264,7 @@ def trial(args):
 
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('stage',choices=['features','oracle','train','evaluate'])
+    parser.add_argument('stage',choices=['features','oracle','train','evaluate','ablate'])
     parser.add_argument('--cache',type=Path,default=CACHE)
     parser.add_argument('--work',type=Path,default=HERE/'runs/material-feedback-geometry')
     parser.add_argument('--out',type=Path,default=OUT)
@@ -264,6 +282,22 @@ def main():
                 pass
     elif args.stage=='oracle':
         typed.compact(args.out/'oracle.json',{k:oracle(v,args.cache,args.work) for k,v in groups.items()})
+    elif args.stage=='ablate':
+        rule=read(args.out/'train.json')['rule']
+        results={}
+        for prefix in ('','material_color_','plane_color_'):
+            by_group={}
+            for group,keys_ in groups.items():
+                n=Counter()
+                for key in keys_:
+                    props,world,truth,optional,_=records(key,args.cache,args.work)
+                    chosen=select(props,rule,prefix)
+                    if chosen:
+                        p=world[tuple(chosen['cell'])]
+                        n['extra' if p not in truth else 'optional' if p in optional else 'required']+=1
+                by_group[group]=n
+            results[prefix.strip('_') or 'material_texture']=by_group
+        typed.compact(args.out/'ablation.json',results)
     elif args.stage=='train':
         typed.compact(args.out/'train.json',train(groups['train'],args.cache,args.work))
     else:
@@ -285,4 +319,3 @@ def main():
 
 if __name__=='__main__':
     main()
-
