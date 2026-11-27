@@ -1,0 +1,218 @@
+{
+  "sliver_audit_sha256": "a3476c827832647b3b4e03578d59408909b07c35c2379d41b926e70c785476b7",
+  "baseline_cases_sha256": "2c438afaf07a0d95c152b5268e2999dc2b2817a0c671c0219bb9b6cc5099570c",
+  "methods": {
+    "add_only": {
+      "correct": 18798,
+      "missed": 1778,
+      "extras": 1146,
+      "views": 104,
+      "required_gained": 84,
+      "required_lost": 0,
+      "optional_gained": 0,
+      "optional_lost": 0,
+      "extras_added": 0,
+      "extras_removed": 0,
+      "f1": 0.9278381046396841,
+      "cases_sha256": "243082a72b55f912bbadae0abb52fafc9a39eb1d49271d82d46e7cf6fa05e622"
+    },
+    "clear_front": {
+      "correct": 18798,
+      "missed": 1778,
+      "extras": 1097,
+      "views": 104,
+      "required_gained": 84,
+      "required_lost": 0,
+      "optional_gained": 0,
+      "optional_lost": 0,
+      "extras_added": 0,
+      "extras_removed": 49,
+      "f1": 0.9289614785896074,
+      "cases_sha256": "c1559e1db2396a43102242468d0715f479a3870f7131fed97a53bd4f1f99ccb1"
+    }
+  },
+  "changed": [
+    {
+      "id": "heldout-facade-oblique-left",
+      "method": "add_only",
+      "changes": {
+        "required_gained": 8,
+        "required_lost": 0,
+        "optional_gained": 0,
+        "optional_lost": 0,
+        "extras_added": 0,
+        "extras_removed": 0
+      },
+      "pack_sha256": "c0c640088e6c0986a0acc20c63c5f9d9201c18cc520a68cd4fd771fd8edb17ce"
+    },
+    {
+      "id": "heldout-facade-oblique-left",
+      "method": "clear_front",
+      "changes": {
+        "required_gained": 8,
+        "required_lost": 0,
+        "optional_gained": 0,
+        "optional_lost": 0,
+        "extras_added": 0,
+        "extras_removed": 4
+      },
+      "pack_sha256": "5aa73d1cf485a7bb7d3d94f21b8299b3abdfdb9a6cbfe4358c5cae728f152155"
+    },
+    {
+      "id": "heldout-facade-oblique-right",
+      "method": "add_only",
+      "changes": {
+        "required_gained": 28,
+        "required_lost": 0,
+        "optional_gained": 0,
+        "optional_lost": 0,
+        "extras_added": 0,
+        "extras_removed": 0
+      },
+      "pack_sha256": "93e60cbcd6a4cc72eb30643ba746de2df7113bc35b6cb8846773bbb66501696e"
+    },
+    {
+      "id": "heldout-facade-oblique-right",
+      "method": "clear_front",
+      "changes": {
+        "required_gained": 28,
+        "required_lost": 0,
+        "optional_gained": 0,
+        "optional_lost": 0,
+        "extras_added": 0,
+        "extras_removed": 15
+      },
+      "pack_sha256": "94753a5817bbb35654c850620bbe803b0a474fcf8c26e2e2b78aa7b92834feef"
+    },
+    {
+      "id": "test-recess-28-left",
+      "method": "add_only",
+      "changes": {
+        "required_gained": 9,
+        "required_lost": 0,
+        "optional_gained": 0,
+        "optional_lost": 0,
+        "extras_added": 0,
+        "extras_removed": 0
+      },
+      "pack_sha256": "987582f3171a4529abfbe45575ff4b8bff218e214e49ceb7df9242a829542c91"
+    },
+    {
+      "id": "test-recess-28-left",
+      "method": "clear_front",
+      "changes": {
+        "required_gained": 9,
+        "required_lost": 0,
+        "optional_gained": 0,
+        "optional_lost": 0,
+        "extras_added": 0,
+        "extras_removed": 6
+      },
+      "pack_sha256": "ce9a353b505411c956055ff566bd7ee20af62b31f70c7f5f5c9fcfc0f342bebc"
+    },
+    {
+      "id": "signed-relief-26.3--dev--dev-relief-00-oblique-right",
+      "method": "add_only",
+      "changes": {
+        "required_gained": 10,
+        "required_lost": 0,
+        "optional_gained": 0,
+        "optional_lost": 0,
+        "extras_added": 0,
+        "extras_removed": 0
+      },
+      "pack_sha256": "78d1e12572b8a728713f0953e9c05cfc3b572c94c4f29b33b9a16bd0b9aa2c02"
+    },
+    {
+      "id": "signed-relief-26.3--dev--dev-relief-00-oblique-right",
+      "method": "clear_front",
+      "changes": {
+        "required_gained": 10,
+        "required_lost": 0,
+        "optional_gained": 0,
+        "optional_lost": 0,
+        "extras_added": 0,
+        "extras_removed": 7
+      },
+      "pack_sha256": "3531934fc35798eee30acd1375d6f60e39c9ac93bb32812235aad1623074932f"
+    },
+    {
+      "id": "shape-benchmark-26.3--train-recess-02-right",
+      "method": "add_only",
+      "changes": {
+        "required_gained": 12,
+        "required_lost": 0,
+        "optional_gained": 0,
+        "optional_lost": 0,
+        "extras_added": 0,
+        "extras_removed": 0
+      },
+      "pack_sha256": "0bc1af810af1a96425e001fa9f872b10aae0caa2185626e8e8b4379c6cfb2713"
+    },
+    {
+      "id": "shape-benchmark-26.3--train-recess-02-right",
+      "method": "clear_front",
+      "changes": {
+        "required_gained": 12,
+        "required_lost": 0,
+        "optional_gained": 0,
+        "optional_lost": 0,
+        "extras_added": 0,
+        "extras_removed": 8
+      },
+      "pack_sha256": "9ac02412ca8f997d72176096af4f50376909fdd61ab63c7ccf804dfce06f2c56"
+    },
+    {
+      "id": "signed-relief-26.3--test--test-relief-00-oblique-left",
+      "method": "add_only",
+      "changes": {
+        "required_gained": 9,
+        "required_lost": 0,
+        "optional_gained": 0,
+        "optional_lost": 0,
+        "extras_added": 0,
+        "extras_removed": 0
+      },
+      "pack_sha256": "259ad325530c5774f73036f431e3a6bee0d1074088e8fa7a5666ae56f18069a2"
+    },
+    {
+      "id": "signed-relief-26.3--test--test-relief-00-oblique-left",
+      "method": "clear_front",
+      "changes": {
+        "required_gained": 9,
+        "required_lost": 0,
+        "optional_gained": 0,
+        "optional_lost": 0,
+        "extras_added": 0,
+        "extras_removed": 5
+      },
+      "pack_sha256": "f3e1e9718312f23dec930a7544e9e647cac56518b2757649a25e405e4f9626fd"
+    },
+    {
+      "id": "entrance-confirm-26.3--positive--heldout-facade-oblique-right",
+      "method": "add_only",
+      "changes": {
+        "required_gained": 8,
+        "required_lost": 0,
+        "optional_gained": 0,
+        "optional_lost": 0,
+        "extras_added": 0,
+        "extras_removed": 0
+      },
+      "pack_sha256": "29f3032c72172d1512bb96e5ca47987c3d9aa0e89719a6d63a89c349350c5b1b"
+    },
+    {
+      "id": "entrance-confirm-26.3--positive--heldout-facade-oblique-right",
+      "method": "clear_front",
+      "changes": {
+        "required_gained": 8,
+        "required_lost": 0,
+        "optional_gained": 0,
+        "optional_lost": 0,
+        "extras_added": 0,
+        "extras_removed": 4
+      },
+      "pack_sha256": "3bbac937eb2af01f8e54ce6e174fce6dd1127c63ba2187e74b2db86d9cb053a4"
+    }
+  ]
+}

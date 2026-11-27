@@ -53,7 +53,11 @@ def inset_edits(size, camera, parts, events, original):
     shape=tuple((n+SAMPLE_STRIDE-1)//SAMPLE_STRIDE for n in size[::-1])
     owner=_frontmost_cells(cells,p,eye,shape)
     for event in events:
+        if any(event.get(key) not in by_id for key in ('output','side','sill')):
+            continue
         back=by_id[event['output']]
+        if back.get('normal_camera') is None:
+            continue
         axis=int(np.argmax(abs(rot.T@back['normal_camera'])))
         level,depth,rim=event['level'],event['depth'],event['rim']
         if axis not in (0,2) or depth*(level-eye[axis])<=0:
