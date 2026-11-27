@@ -1,0 +1,420 @@
+{
+  "baseline": {
+    "revision": "9e69d7c",
+    "checked": 204,
+    "split": {
+      "train": 72,
+      "validation": 12,
+      "test": 12,
+      "regression": 48,
+      "native": 12,
+      "old": 12,
+      "fresh": 8,
+      "extra": 20,
+      "new": 4,
+      "shelter": 4
+    },
+    "cohorts": {
+      "development": {
+        "strict": {
+          "correct": 16063,
+          "missed": 2259,
+          "extras": 749,
+          "hidden_extras": 82,
+          "f1": 0.9143849262822338
+        },
+        "facade": {
+          "correct": 14620,
+          "missed": 1040,
+          "extras": 749,
+          "f1": 0.9423442585967965
+        },
+        "registered": {
+          "correct": 16063,
+          "missed": 2259,
+          "extras": 749,
+          "hidden_extras": 82,
+          "f1": 0.9143849262822338
+        }
+      },
+      "fixed": {
+        "strict": {
+          "correct": 20773,
+          "missed": 2929,
+          "extras": 1046,
+          "hidden_extras": 104,
+          "f1": 0.9126776652533996
+        },
+        "facade": {
+          "correct": 18952,
+          "missed": 1624,
+          "extras": 1046,
+          "f1": 0.9341943116281363
+        },
+        "registered": {
+          "correct": 20773,
+          "missed": 2929,
+          "extras": 1046,
+          "hidden_extras": 104,
+          "f1": 0.9126776652533996
+        }
+      },
+      "alternate": {
+        "strict": {
+          "correct": 3632,
+          "missed": 466,
+          "extras": 331,
+          "hidden_extras": 59,
+          "f1": 0.9011288921969979
+        },
+        "facade": {
+          "correct": 2850,
+          "missed": 282,
+          "extras": 331,
+          "f1": 0.9028987802946301
+        },
+        "registered": {
+          "correct": 3632,
+          "missed": 466,
+          "extras": 331,
+          "hidden_extras": 59,
+          "f1": 0.9011288921969979
+        }
+      },
+      "new": {
+        "strict": {
+          "correct": 621,
+          "missed": 126,
+          "extras": 118,
+          "hidden_extras": 0,
+          "f1": 0.8358008075370121
+        },
+        "facade": {
+          "correct": 579,
+          "missed": 74,
+          "extras": 118,
+          "f1": 0.8577777777777778
+        },
+        "registered": {
+          "correct": 621,
+          "missed": 126,
+          "extras": 118,
+          "hidden_extras": 0,
+          "f1": 0.8358008075370121
+        }
+      },
+      "shelter": {
+        "strict": {
+          "correct": 692,
+          "missed": 72,
+          "extras": 90,
+          "hidden_extras": 10,
+          "f1": 0.8952134540750324
+        },
+        "facade": {
+          "correct": 582,
+          "missed": 47,
+          "extras": 90,
+          "f1": 0.8946963873943121
+        },
+        "registered": {
+          "correct": 692,
+          "missed": 72,
+          "extras": 90,
+          "hidden_extras": 10,
+          "f1": 0.8952134540750324
+        }
+      }
+    }
+  },
+  "camera_projection": {
+    "views": 104,
+    "median_of_view_medians": 0.23320005288988316,
+    "min": 0.0140684615031661,
+    "max": 0.8014192646863728
+  },
+  "ordinary_parity": [
+    {
+      "id": "train-arcade2-earth-high-right",
+      "size": 16,
+      "absent_from_replay": [],
+      "absent_from_ordinary": [],
+      "mask_xor": 0,
+      "diffs": {},
+      "camera_exact": true,
+      "stage_exterior_logged": true
+    },
+    {
+      "id": "train-sawtooth2-earth-high-right",
+      "size": 21,
+      "absent_from_replay": [],
+      "absent_from_ordinary": [],
+      "mask_xor": 0,
+      "diffs": {
+        "phase": [
+          "mask-3-single-238-1"
+        ],
+        "observed_visible_grid_span": [
+          "mask-0-junction-1-inset-0"
+        ]
+      },
+      "camera_exact": true,
+      "stage_exterior_logged": true
+    },
+    {
+      "id": "train-terrace3-cool-high-right",
+      "size": 14,
+      "absent_from_replay": [],
+      "absent_from_ordinary": [],
+      "mask_xor": 0,
+      "diffs": {},
+      "camera_exact": true,
+      "stage_exterior_logged": true
+    },
+    {
+      "id": "validation-cloister2-cool-high-right",
+      "size": 12,
+      "absent_from_replay": [],
+      "absent_from_ordinary": [],
+      "mask_xor": 0,
+      "diffs": {
+        "phase": [
+          "mask-4-mobile-0"
+        ]
+      },
+      "camera_exact": true,
+      "stage_exterior_logged": true
+    },
+    {
+      "id": "validation-cloister2-earth-high-right",
+      "size": 15,
+      "absent_from_replay": [],
+      "absent_from_ordinary": [],
+      "mask_xor": 0,
+      "diffs": {},
+      "camera_exact": true,
+      "stage_exterior_logged": true
+    },
+    {
+      "id": "legacy-light_gray_concrete-dev-shopfront-plaster-low-left",
+      "size": 15,
+      "absent_from_replay": [],
+      "absent_from_ordinary": [],
+      "mask_xor": 0,
+      "diffs": {
+        "phase": [
+          "mask-0-wall-1-single-339-2"
+        ]
+      },
+      "camera_exact": true,
+      "stage_exterior_logged": false
+    },
+    {
+      "id": "legacy-light_gray_concrete-holdout-galleries-plaster-low-left",
+      "size": 31,
+      "absent_from_replay": [],
+      "absent_from_ordinary": [],
+      "mask_xor": 0,
+      "diffs": {},
+      "camera_exact": true,
+      "stage_exterior_logged": false
+    },
+    {
+      "id": "legacy-light_gray_concrete-holdout-portico-plaster-low-left",
+      "size": 22,
+      "absent_from_replay": [],
+      "absent_from_ordinary": [],
+      "mask_xor": 0,
+      "diffs": {},
+      "camera_exact": true,
+      "stage_exterior_logged": false
+    },
+    {
+      "id": "legacy-light_gray_concrete-holdout-workshop-masonry-high-right",
+      "size": 20,
+      "absent_from_replay": [],
+      "absent_from_ordinary": [],
+      "mask_xor": 0,
+      "diffs": {},
+      "camera_exact": true,
+      "stage_exterior_logged": true
+    },
+    {
+      "id": "legacy-light_gray_concrete-holdout-workshop-plaster-high-right",
+      "size": 18,
+      "absent_from_replay": [],
+      "absent_from_ordinary": [],
+      "mask_xor": 0,
+      "diffs": {},
+      "camera_exact": true,
+      "stage_exterior_logged": true
+    },
+    {
+      "id": "corner-views-26.3--positive--heldout-facade-oblique-left",
+      "size": 13,
+      "absent_from_replay": [],
+      "absent_from_ordinary": [],
+      "mask_xor": 0,
+      "diffs": {
+        "phase": [
+          "mask-0-wall-1-junction-0"
+        ]
+      },
+      "camera_exact": true,
+      "stage_exterior_logged": false
+    },
+    {
+      "id": "shape-benchmark-26.3--train-corner-03-left",
+      "size": 9,
+      "absent_from_replay": [],
+      "absent_from_ordinary": [],
+      "mask_xor": 0,
+      "diffs": {
+        "phase": [
+          "mask-0-mobile-1"
+        ]
+      },
+      "camera_exact": true,
+      "stage_exterior_logged": true
+    },
+    {
+      "id": "holdout-platformshelter-copper-high-right",
+      "size": 34,
+      "absent_from_replay": [],
+      "absent_from_ordinary": [],
+      "mask_xor": 0,
+      "diffs": {},
+      "camera_exact": true,
+      "stage_exterior_logged": true
+    },
+    {
+      "id": "holdout-offsetgate-quartz-high-right",
+      "size": 25,
+      "absent_from_replay": [],
+      "absent_from_ordinary": [],
+      "mask_xor": 0,
+      "diffs": {},
+      "camera_exact": true,
+      "stage_exterior_logged": true
+    }
+  ],
+  "public_support": {
+    "views": 204,
+    "surfaces": 3094,
+    "changed_surfaces": 29,
+    "changed_views": 24,
+    "added_outline_pixels": 115069,
+    "removed_background_reintroduced": 0
+  },
+  "grouping": {
+    "faces": 564,
+    "views_with_faces": 29,
+    "changed_links": 0
+  },
+  "fixed_atlas_counts": {
+    "frame_count": 104,
+    "frames_different": 28,
+    "surfaces_different": 35,
+    "axes_recovered": 62,
+    "surfaces": 1431,
+    "frames_with_cached_atlas": 0
+  },
+  "manifest_counts": [
+    {
+      "id": "before",
+      "matcher": "atlas",
+      "ranked": 230,
+      "exported": 230
+    },
+    {
+      "id": "corner-views-26.3--positive--heldout-facade-oblique-left",
+      "matcher": "atlas",
+      "ranked": 328,
+      "exported": 327
+    },
+    {
+      "id": "holdout-offsetgate-quartz-high-right",
+      "matcher": "atlas",
+      "ranked": 323,
+      "exported": 211
+    },
+    {
+      "id": "holdout-platformshelter-copper-high-right",
+      "matcher": "atlas",
+      "ranked": 253,
+      "exported": 253
+    },
+    {
+      "id": "legacy-light_gray_concrete-dev-shopfront-plaster-low-left",
+      "matcher": "atlas",
+      "ranked": 124,
+      "exported": 126
+    },
+    {
+      "id": "legacy-light_gray_concrete-holdout-galleries-plaster-low-left",
+      "matcher": "atlas",
+      "ranked": 227,
+      "exported": 227
+    },
+    {
+      "id": "legacy-light_gray_concrete-holdout-portico-plaster-low-left",
+      "matcher": "atlas",
+      "ranked": 178,
+      "exported": 178
+    },
+    {
+      "id": "legacy-light_gray_concrete-holdout-workshop-masonry-high-right",
+      "matcher": "atlas",
+      "ranked": 249,
+      "exported": 246
+    },
+    {
+      "id": "legacy-light_gray_concrete-holdout-workshop-plaster-high-right",
+      "matcher": "atlas",
+      "ranked": 230,
+      "exported": 236
+    },
+    {
+      "id": "shape-benchmark-26.3--train-corner-03-left",
+      "matcher": "atlas",
+      "ranked": 124,
+      "exported": 123
+    },
+    {
+      "id": "train-arcade2-earth-high-right",
+      "matcher": null,
+      "ranked": 316,
+      "exported": 315
+    },
+    {
+      "id": "train-sawtooth2-earth-high-right",
+      "matcher": "atlas",
+      "ranked": 216,
+      "exported": 221
+    },
+    {
+      "id": "train-terrace3-cool-high-right",
+      "matcher": null,
+      "ranked": 266,
+      "exported": 256
+    },
+    {
+      "id": "validation-cloister2-cool-high-right",
+      "matcher": "atlas",
+      "ranked": 231,
+      "exported": 230
+    },
+    {
+      "id": "validation-cloister2-earth-high-right",
+      "matcher": "atlas",
+      "ranked": 218,
+      "exported": 216
+    }
+  ],
+  "courtyard_final_refinement": {
+    "before": 176,
+    "added": 16,
+    "removed": 17,
+    "after": 175
+  }
+}

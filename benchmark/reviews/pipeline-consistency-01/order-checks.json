@@ -1,0 +1,372 @@
+{
+  "revision": "9e69d7c",
+  "source_images": 204,
+  "unique_rgb_sha256": 204,
+  "cohorts": {
+    "fixed": {
+      "views": 104,
+      "joint": 104,
+      "gates": {
+        "open": 95,
+        "inset": 8,
+        "opening": 1
+      },
+      "skipped_screen": {
+        "local": 0,
+        "common": 0,
+        "corner_edits": 0
+      },
+      "exterior_rechecks": 4,
+      "baseline": {
+        "strict": {
+          "correct": 20773,
+          "missed": 2929,
+          "extras": 1046,
+          "f1": 0.9126776652533996
+        },
+        "facade": {
+          "correct": 18952,
+          "missed": 1624,
+          "extras": 1046,
+          "f1": 0.9341943116281363
+        }
+      },
+      "unblock": {
+        "strict": {
+          "correct": 20773,
+          "missed": 2929,
+          "extras": 1046,
+          "f1": 0.9126776652533996
+        },
+        "facade": {
+          "correct": 18952,
+          "missed": 1624,
+          "extras": 1046,
+          "f1": 0.9341943116281363
+        },
+        "changes": []
+      },
+      "second_exterior": {
+        "strict": {
+          "correct": 20773,
+          "missed": 2929,
+          "extras": 1046,
+          "f1": 0.9126776652533996
+        },
+        "facade": {
+          "correct": 18952,
+          "missed": 1624,
+          "extras": 1046,
+          "f1": 0.9341943116281363
+        },
+        "changes": []
+      },
+      "final_ray": {
+        "strict": {
+          "correct": 20764,
+          "missed": 2938,
+          "extras": 1046,
+          "f1": 0.9124626472139216
+        },
+        "facade": {
+          "correct": 18943,
+          "missed": 1633,
+          "extras": 1046,
+          "f1": 0.9339578454332552
+        },
+        "changes": [
+          {
+            "added": [],
+            "removed": [
+              [
+                4,
+                3,
+                -1
+              ],
+              [
+                4,
+                5,
+                -1
+              ]
+            ],
+            "gained": 0,
+            "lost": 2,
+            "extra_added": 0,
+            "extra_removed": 0,
+            "id": "heldout-facade-oblique-right"
+          },
+          {
+            "added": [],
+            "removed": [
+              [
+                7,
+                3,
+                0
+              ],
+              [
+                7,
+                4,
+                0
+              ]
+            ],
+            "gained": 0,
+            "lost": 2,
+            "extra_added": 0,
+            "extra_removed": 0,
+            "id": "shape-benchmark-26.3--train-recess-02-right"
+          },
+          {
+            "added": [],
+            "removed": [
+              [
+                0,
+                4,
+                12
+              ],
+              [
+                0,
+                4,
+                13
+              ]
+            ],
+            "gained": 0,
+            "lost": 2,
+            "extra_added": 0,
+            "extra_removed": 0,
+            "id": "signed-relief-26.3--test--test-relief-00-oblique-left"
+          },
+          {
+            "added": [],
+            "removed": [
+              [
+                -1,
+                4,
+                -1
+              ],
+              [
+                -1,
+                5,
+                -1
+              ],
+              [
+                -1,
+                6,
+                -1
+              ]
+            ],
+            "gained": 0,
+            "lost": 3,
+            "extra_added": 0,
+            "extra_removed": 0,
+            "id": "entrance-confirm-26.3--positive--heldout-facade-oblique-right"
+          }
+        ]
+      }
+    },
+    "other": {
+      "views": 100,
+      "joint": 100,
+      "gates": {
+        "open": 88,
+        "inset": 11,
+        "opening": 1
+      },
+      "skipped_screen": {
+        "local": 0,
+        "common": 0,
+        "corner_edits": 0
+      },
+      "exterior_rechecks": 6,
+      "baseline": {
+        "strict": {
+          "correct": 21008,
+          "missed": 2923,
+          "extras": 1288,
+          "f1": 0.9089060505765029
+        },
+        "facade": {
+          "correct": 18631,
+          "missed": 1443,
+          "extras": 1288,
+          "f1": 0.9317130497837122
+        }
+      },
+      "unblock": {
+        "strict": {
+          "correct": 21008,
+          "missed": 2923,
+          "extras": 1288,
+          "f1": 0.9089060505765029
+        },
+        "facade": {
+          "correct": 18631,
+          "missed": 1443,
+          "extras": 1288,
+          "f1": 0.9317130497837122
+        },
+        "changes": []
+      },
+      "second_exterior": {
+        "strict": {
+          "correct": 21008,
+          "missed": 2923,
+          "extras": 1288,
+          "f1": 0.9089060505765029
+        },
+        "facade": {
+          "correct": 18631,
+          "missed": 1443,
+          "extras": 1288,
+          "f1": 0.9317130497837122
+        },
+        "changes": []
+      },
+      "final_ray": {
+        "strict": {
+          "correct": 20997,
+          "missed": 2934,
+          "extras": 1287,
+          "f1": 0.908666017526777
+        },
+        "facade": {
+          "correct": 18620,
+          "missed": 1454,
+          "extras": 1287,
+          "f1": 0.9314424351566994
+        },
+        "changes": [
+          {
+            "added": [],
+            "removed": [
+              [
+                -9,
+                2,
+                4
+              ],
+              [
+                -9,
+                3,
+                4
+              ]
+            ],
+            "gained": 0,
+            "lost": 2,
+            "extra_added": 0,
+            "extra_removed": 0,
+            "id": "train-sawtooth1-cool-high-right"
+          },
+          {
+            "added": [],
+            "removed": [
+              [
+                -9,
+                2,
+                4
+              ],
+              [
+                -9,
+                3,
+                4
+              ]
+            ],
+            "gained": 0,
+            "lost": 2,
+            "extra_added": 0,
+            "extra_removed": 0,
+            "id": "train-sawtooth1-earth-high-right"
+          },
+          {
+            "added": [],
+            "removed": [
+              [
+                6,
+                2,
+                -6
+              ]
+            ],
+            "gained": 0,
+            "lost": 0,
+            "extra_added": 0,
+            "extra_removed": 1,
+            "id": "train-sawtooth1-earth-low-left"
+          },
+          {
+            "added": [],
+            "removed": [
+              [
+                -2,
+                1,
+                4
+              ]
+            ],
+            "gained": 0,
+            "lost": 1,
+            "extra_added": 0,
+            "extra_removed": 0,
+            "id": "train-sawtooth2-cool-high-right"
+          },
+          {
+            "added": [],
+            "removed": [
+              [
+                -6,
+                2,
+                4
+              ]
+            ],
+            "gained": 0,
+            "lost": 1,
+            "extra_added": 0,
+            "extra_removed": 0,
+            "id": "train-sawtooth2-earth-high-right"
+          },
+          {
+            "added": [],
+            "removed": [
+              [
+                -4,
+                7,
+                0
+              ]
+            ],
+            "gained": 0,
+            "lost": 1,
+            "extra_added": 0,
+            "extra_removed": 0,
+            "id": "signed-relief-26.3--test--test-relief-00-oblique-right"
+          },
+          {
+            "added": [],
+            "removed": [
+              [
+                0,
+                3,
+                9
+              ],
+              [
+                0,
+                3,
+                10
+              ],
+              [
+                0,
+                3,
+                11
+              ],
+              [
+                0,
+                5,
+                11
+              ]
+            ],
+            "gained": 0,
+            "lost": 4,
+            "extra_added": 0,
+            "extra_removed": 0,
+            "id": "rim-views-26.3--positive--heldout-facade-oblique-left"
+          }
+        ]
+      }
+    }
+  }
+}

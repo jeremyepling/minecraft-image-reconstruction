@@ -28,6 +28,8 @@ The **[illustrated stage and term guide](ARCHITECTURE.md#pipeline-terms-in-readi
 
 ## Current placement score
 
+The [pipeline consistency review](benchmark/reviews/pipeline-consistency-01/README.md) traces the ordinary build through scoring, tests three placement order changes, and compares optional material matchers and atlas fallbacks. In the interactive viewer’s **Block Counter**, switch between geometry-only and atlas-assisted grids to see where the atlas supplies a missing offset.
+
 [Open the interactive weakest-structures viewer](benchmark/reviews/shared-face-round-01/viewer.html) to inspect the current source overlays and the layout and source-image scenarios for reaching 95% facade-priority F1.
 
 [Where placement fails on the weakest source images](benchmark/reviews/shared-face-round-01/README.md) groups the misses at `a6e0195` by visible coverage, face direction and 3D position. The [stage map](benchmark/reviews/shared-face-round-01/stage-map.jpg) follows five buildings from source pixels through block counting and the exported geometry. The [required-miss overlay](benchmark/reviews/shared-face-round-01/wall-examples.jpg) shows which errors remain after optional roof slivers are excluded.
