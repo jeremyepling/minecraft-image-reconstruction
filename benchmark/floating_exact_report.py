@@ -4,6 +4,10 @@ from collections import defaultdict
 from benchmark.floating_exact import METHODS, OUTPUT, SHARED, read, write
 
 
+from benchmark.expanded_scores import pooled_typed, load_reference
+from benchmark.typed_structures import pooled_scores
+
+
 def confusions(row):
     return [row['correct'],row['missed'],row['extras']]
 
@@ -15,7 +19,11 @@ def f1(values):
 
 def aggregate(rows):
     totals=[sum(group) for group in zip(*(confusions(s['geometry']['strict']) for s in rows))]
-    return dict(n=len(rows),strict_counts=totals,strict_f1=f1(totals) if totals else None)
+    return dict(n=len(rows),strict_counts=totals,strict_f1=f1(totals) if totals else None,
+                geometry=pooled_scores([row['geometry'] for row in rows]),
+                typed=pooled_typed([row['scores'] for row in rows]),
+                supported=sum(row['camera_usable'] for row in rows),
+                supported_empty=sum(row['camera_usable'] and row['exported']==0 for row in rows))
 
 
 def local_world(prediction,origin):
@@ -48,7 +56,6 @@ def report():
                     lost=len(ab.keys()-bb.keys()),gained=len(bb.keys()-ab.keys()),id_changes=sum(ab[k]!=bb[k] for k in ab.keys()&bb.keys())))
             for a,b in (('exact-floor-base','exact-floating-base'),('exact-floating-base','exact-distance-sky')):
                 if not {a,b}<=scores.keys():continue
-                from benchmark.expanded_scores import load_reference
                 truth=load_reference(entry).truth
                 aa,bb=({tuple(p) for p,_ in predictions[m]['aligned']} for m in (a,b))
                 comparisons.append(dict(id=entry['id'],variant=variant,start=a,end=b,
@@ -57,7 +64,7 @@ def report():
     data=dict(summary={f'{m}/{v}':aggregate(rows) for (m,v),rows in sorted(results.items())},
               comparisons=comparisons,origin_pairs=invariant)
     write(OUTPUT/'summary.json',data)
-    print(data['summary'])
+    print({key:(row['n'],row['strict_f1']) for key,row in data['summary'].items()})
 
 
 if __name__=='__main__':
