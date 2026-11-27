@@ -71,12 +71,22 @@ def draw_view(image,before,after,truth,name,out):
 
 
 def score(job):
-    split,fr,prior,row,out=job
+    split,fr,prior,row,out,modes=job
     key=fr['id']
     image,parts,_,cam=f.photo(split,fr,prior)
-    candidates={mode:rewrite(image,parts,cam,mode) for mode in MODES}
+    candidates={mode:rewrite(image,parts,cam,mode) for mode in modes}
     # Open captured world geometry only after all predictions have been produced.
-    _,_,_,_,_,labels,ids,*_=read_view(RUN,split,fr,prior,row)
+    if split in ('extra','new'):
+        from training.visible_labels import visible_labels
+        root = f.NEW_INPUTS if split=='new' else f.transfer.BUILDS
+        prefix = root/fr['directory']/'captures'/fr['source_id']
+        hashes = fr['files']
+        pose = read(checked(prefix.with_suffix('.json'),hashes['camera.json']))
+        blocks = read(checked(prefix.with_name(prefix.name+'-blocks.json'),hashes['world-readback.json']))
+        labels,ids,_ = visible_labels(pose,{tuple(b[k] for k in 'xyz'):b for b in blocks},(0,0,0))
+        assert hashes == row['reference_hashes']
+    else:
+        _,_,_,_,_,labels,ids,*_=read_view(RUN,split,fr,prior,row)
     lut=np.zeros(len(labels['faces'])+1,int)
     for face in labels['faces']:lut[face['id']]=face['surface_id']
     truth=lut[ids]
@@ -97,9 +107,9 @@ def score(job):
                 reference_hashes=row['reference_hashes'],baseline=base,methods=result)
 
 
-def aggregate(rows):
+def aggregate(rows, modes):
     out={}
-    for mode in MODES:
+    for mode in modes:
         xx=[r['methods'][mode] for r in rows];bb=[r['baseline'] for r in rows]
         out[mode]=dict(frames=len(rows),changed=sum(bool(o['ops']) for o in xx),
                 matched=sum(o['matched'] for o in xx),old_matched=sum(len(b['matched']) for b in bb),
@@ -112,19 +122,24 @@ def aggregate(rows):
     return out
 
 
-def main(out,workers,panel):
+def main(out,workers,panel,selective=False):
     out.mkdir(parents=True,exist_ok=True)
     manifest=read(RUN/'summary.json')
     rows={r['id']:r for r in read(checked(RUN/'cases.json',manifest['cases_sha256']))}
     jobs=[]
-    for split,frame,prior in f.cases(('train',*f.EVALUATION)):
+    modes = ('selective',) if selective else MODES
+    splits = tuple(f.SIZES) if selective else ('train',*f.EVALUATION)
+    for split,frame,prior in f.cases(splits):
         if panel and frame['id'] not in names():continue
-        jobs.append((split,frame,prior,rows[frame['id']],out))
+        jobs.append((split,frame,prior,rows[frame['id']],out,modes))
     with ProcessPoolExecutor(max_workers=workers) as pool:
         scored=list(pool.map(score,jobs))
     save(out/'cases.json',scored)
-    totals={g:aggregate([r for r in scored if (r['split']=='train')==(g=='development')]) for g in ('development','fixed')}
+    groups={'development':('train',),'fixed':tuple(f.EVALUATION)}
+    if selective:groups.update(extra=('extra',),new=('new',))
+    totals={g:aggregate([r for r in scored if r['split'] in selected],modes) for g,selected in groups.items()}
     save(out/'summary.json',dict(baseline='028819a',input_sha256=manifest['cases_sha256'],cases_sha256=digest(out/'cases.json'),groups=totals))
+    if selective:return
     imgs=[Image.open(out/(k.replace(' ','-').lower()+'.jpg')) for k in NAMES]
     sheet=Image.new('RGB',(sum(i.width for i in imgs),max(i.height for i in imgs)))
     for j,im in enumerate(imgs):sheet.paste(im,(j*im.width,0))
@@ -135,4 +150,5 @@ def main(out,workers,panel):
 if __name__=='__main__':
     p=argparse.ArgumentParser(description=__doc__)
     p.add_argument('--out',type=Path,default=OUT);p.add_argument('--workers',type=int,default=4);p.add_argument('--panel',action='store_true')
-    a=p.parse_args();main(a.out,a.workers,a.panel)
+    p.add_argument('--selective',action='store_true')
+    a=p.parse_args();main(a.out,a.workers,a.panel,a.selective)
