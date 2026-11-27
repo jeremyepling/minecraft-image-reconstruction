@@ -28,6 +28,8 @@ The **[illustrated stage and term guide](ARCHITECTURE.md#pipeline-terms-in-readi
 
 ## Current placement score
 
+[Where placement fails on the weakest source images](benchmark/reviews/shared-face-round-01/README.md) groups the current misses by visible coverage, face direction and 3D position. The [stage map](benchmark/reviews/shared-face-round-01/stage-map.jpg) follows five buildings from source pixels through block counting and the exported geometry. The [required-miss overlay](benchmark/reviews/shared-face-round-01/wall-examples.jpg) shows which errors remain after optional roof slivers are excluded.
+
 On the **104 fixed whole-structure source images**, the default at `9ce2f10` placed **20,619** blocks at the correct relative coordinates, missed **3,083** visible positions, and placed **1,097** extras. The last placement change gained 84 correct positions and removed 49 extras. [Frozen placement counts](benchmark/reviews/facade-local-placement-01/summary.json)
 
 | Measure | What it asks | Current |
