@@ -4,6 +4,8 @@ These entries cover model inputs, rules around model outputs, and evaluation cha
 
 ### November 27, 2026
 
+- **Diagnostic consecutive crop corrections.** Reference-guided SAM feedback raised mean IoU from 44.5% to 78.2% across the 193 saved masks, with 31 reaching 95%. The source-only editor moved the same starting crops to 52.2%, with 21 reaching 95%. Starting from the chooser, held-out matched IoU rose from 50.7% to 50.8%, and two fewer held-out crops reached the threshold. [Successive crop masks and native edits](benchmark/reviews/sky-crop-trajectory-01/README.md)
+
 - **Diagnostic crop ownership.** The 193 active open-sky crops touch 94.9% of visible cube pixels, but only 92 have at least 50% IoU with one native connected full-cube surface. Neighboring cube surfaces account for 433,709 of 569,674 paired extra pixels. Score visible plane separation as well as foreground coverage when training or evaluating mask proposals. [Native crop comparison](benchmark/reviews/sky-crop-reference-01/README.md)
 
 - **Floating branch default.** Surface Finder now rejects a proposal whose entire native support matches connected sky or cloud before it creates crops or counts blocks. The six open-sky handoffs retained 193 of 216 proposals. All surviving supports and crop pixels matched the prior handoffs. [Floating pipeline and replay](benchmark/FLOATING_BRANCH.md)
