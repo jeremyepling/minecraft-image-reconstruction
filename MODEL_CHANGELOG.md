@@ -4,6 +4,8 @@ These entries cover model inputs, rules around model outputs, and evaluation cha
 
 ### November 27, 2026
 
+- **Diagnostic, floating surface masks.** On 38 original test images, supplying the exact native visible surfaces before counting raised strict placement F1 from 3.72% to 8.47%. The crop intervention recovered 1,505 more correct placements across the paired totals. [Per-cohort results and ceilings](benchmark/reviews/expanded-crop-ceiling-01/README.md)
+
 - **Experimental crop correction and downstream replay.** A held-out crop-IoU gain coexisted with a placement regression on Castle. Retaining the existing counted grid as a candidate recovered part of that loss. [Stage controls and decoded comparison](benchmark/reviews/sky-crop-downstream-01/README.md)
 
 - **Floating branch default.** Surface Finder now rejects a proposal whose entire native support matches connected sky or cloud before it creates crops or counts blocks. The six open-sky handoffs retained 193 of 216 proposals. All surviving supports and crop pixels matched the prior handoffs. [Floating pipeline and replay](benchmark/FLOATING_BRANCH.md)
