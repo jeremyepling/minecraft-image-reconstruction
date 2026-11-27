@@ -72,6 +72,16 @@ def main():
     experiments.append(method_rows(
         "view-atlas-grid", "View-adjusted atlas and structure grid", combined_path, combined, "source", baseline,
         "Apply the view-adjusted texture matches during anchor and subface proposal generation, then grade the decoded build using the same final view-adjusted material matcher. Compare with the ordinary export on the same images."))
+    for slug, title, note in [
+        ("camera-horizon-floor", "Floor-based camera recovery",
+         "Fit two independent repeats of the whole block texture on the floor when the ordinary camera fails. Test candidate horizons and require atlas verification on separated floor patches. Accepted cameras run through the ordinary build."),
+        ("camera-structure-scaffold", "Camera from long structure edges",
+         "Fit a scaffold from visible roof, wall and base edges. Attempt to establish block scale and ground phase before sending a camera to the ordinary build."),
+    ]:
+        artifact = REVIEWS / (slug + "-01") / "summary.json"
+        report = read(artifact)
+        cohorts = report["datasets"] if slug == "camera-horizon-floor" else report
+        experiments.append(method_rows(slug, title, artifact, cohorts, "source", baseline, note, oracle=None))
     out = REVIEWS / "expanded-round-01" / "summary.json"
     out.write_text(json.dumps({"experiments": experiments}, separators=(",", ":")) + "\n", encoding="utf-8")
 
