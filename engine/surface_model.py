@@ -762,7 +762,7 @@ def build(image_path, version, out, *, outlines=None, order_method=None, through
                     cells.update(restored)
                     status.update(placed_blocks=len(cells), pavement_openings=dict(
                         surfaces=sorted(matched), removed=sorted(blocked), recovered_walls=sorted(restored)))
-                elif (counter == texture_guided_count.METHOD and material_match in (None,'atlas')
+                elif (counter == texture_guided_count.METHOD
                       and not (inset_events or phase_events or count_confirmed_outlines)
                       and status.get('foreground_depth',{}).get('method') == 'joint'):
                     from engine import smooth_extent_placement
