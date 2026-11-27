@@ -37,6 +37,8 @@ The more selective trial required at least 96 supported native rows, same-side c
 
 Canopy 05 and Canopy 18 gained correct surfaces and some visible block placements, but each also gained two hidden cells. On alternate views, the opposite angle of Canopy 04 stayed unchanged. The opposite angle of Canopy 06 and an open canopy each gained a true surface. The open canopy gained one false cell. Splits on a twin-spire and two masonry Shopfront images reduced correctly paired pixels. The Facade diagonal merge fired only on the reported view. All 243 existing canopy opening sightlines stayed clear. These results support trying the seam as a placement hypothesis alongside the original and scoring both against frontmost visible pixels before export.
 
+See the [first-hit projection selector](projection.md) for the follow-up test against the actual recounted exports.
+
 ## Replay and evidence
 
 The baseline is `028819a`. Broad edit code is `56dcd46`, and the selective adapter is `97f9870`. The first command grades the broad surface trials. The second includes the alternate views and new structures. The final command uses the shared placement scorer introduced at `b17caa8` and the usual count and placement engines. Use the released visible-build inputs and the frozen production outputs in the sibling `facade-placement-round` checkout.
