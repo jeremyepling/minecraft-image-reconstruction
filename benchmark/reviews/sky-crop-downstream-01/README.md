@@ -47,3 +47,16 @@ For a model-assisted diagnostic, simulate an annotator who can inspect the targe
 Keep reinforcement learning as a follow-up for a richer action space: split a merged proposal, keep both child surfaces, connect a visible corner, transfer a row count, or stop. On development buildings, compare a greedy chooser with a short look-ahead search that scores assignments and internally aligned geometry after assembly. Investigate a learned long-horizon policy if a material planning advantage recurs across unseen buildings and survives the cheaper supervised baseline. The present trim/extend two-edit experiment measures only that limited action space. Source-only reprojection and texture consistency are useful inputs for unlabeled screenshots; a visually plausible reprojection alone need not preserve internal block depth.
 
 The iterative-mask approach follows prior work that conditions a prediction on the previous mask and simulated corrections. Automatic click prediction is another supervised baseline for these experiments. [RITM](https://arxiv.org/abs/2102.06583) · [PseudoClick](https://arxiv.org/abs/2207.05282)
+
+## Sequential correction results
+
+These results use the 124 proposals on four buildings outside fitting that have a visible full-cube target. Five additional held-out proposals lack a comparable target. All six input images and all 193 proposals remain in end-to-end placement.
+
+| Starting crop and correction policy | Initial mean IoU | Pass 1 | Pass 2 | Pass 3 | Pass 4 |
+|---|---:|---:|---:|---:|---:|
+| Ordinary crop, source-only learned boundary edits | 42.30% | 45.73% | 46.83% | 47.31% | 47.43% |
+| Learned one-pass chooser, same frozen boundary edits | 50.70% | 51.06% | 51.10% | 51.02% | 50.84% |
+
+The simulated annotator with access to the exact mask starts at 42.30% on the same 124 crops. It reaches 59.52% after one click, 76.22% after five and 79.55% by twenty. It chooses the click, compares SAM ViT-B masks and accepts or rejects edits using the reference. The source-only forest learns add/remove decisions along a five-pixel collar on two development buildings. Its four-pass stop was fixed before scoring the other buildings. Starting at the ordinary mask it improves 89 of 124 held-out crops and worsens 35. Chapel S11 improves from 8.1% to 81.2%; Garden S34 grows into neighboring pixels and drops from 80.6% to 48.7%.
+
+On six decoded builds, direct replacement with the source-only four-pass masks scores 11.25% strict / 11.48% facade placement and 3.55% / 3.62% position-plus-ID. Direct replacement after chooser initialization scores 4.12% / 4.21% placement and 3.15% / 3.22% position-plus-ID. On Castle this last configuration loses the earlier arrangement and drops from 217 correct positions to 24. With arrangement-preserving alternative charts, the two strict placement scores are 12.73% and 12.86%. Even the reference-guided SAM result scores 12.57% / 12.82% placement on direct substitution. Keep all sequential policies experimental. Compare foreground crop masks separately from the measurement chart, row interval, and shared-edge constraint. [Decoded trajectory endpoints](iterative-placements.json.gz)
