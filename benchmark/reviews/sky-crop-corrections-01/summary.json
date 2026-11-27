@@ -1,0 +1,43 @@
+{
+  "paired_surfaces": 188,
+  "unpaired": 5,
+  "stop": {
+    "five consecutive rejected attempts": 154,
+    "reached .95 IoU": 31,
+    "click budget": 3
+  },
+  "improved": 155,
+  "attempted": 1459,
+  "accepted": 563,
+  "click_diagnoses": {
+    "neighboring cube, parallel plane at a different offset": 124,
+    "neighboring cube, different face direction": 400,
+    "missing target pixels": 819,
+    "neighboring cube, disconnected on same plane": 7,
+    "background": 32,
+    "non-full-cube geometry": 77
+  },
+  "mean_iou_by_round": [
+    0.4571519599275283,
+    0.6316352658137045,
+    0.7047508376125013,
+    0.7363461874000145,
+    0.7578736797006289,
+    0.7760938832901415,
+    0.7842380605966517,
+    0.7911031091028868,
+    0.795342688712751,
+    0.7971498244519658,
+    0.799413426195276,
+    0.8012893687579129,
+    0.8020786083193432,
+    0.8024821883027988,
+    0.8027379991390188,
+    0.8027415479560523,
+    0.8027428487982647,
+    0.802824261458081,
+    0.8029162976161028,
+    0.8029162976161028,
+    0.8029162976161028
+  ]
+}

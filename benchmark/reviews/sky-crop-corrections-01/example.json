@@ -1,0 +1,111 @@
+{
+  "frame": "train-pillars-01-marble-low-left",
+  "id": "mask-31",
+  "label": "S30",
+  "target": "T0085",
+  "steps": [
+    {
+      "round": 1,
+      "x": 487,
+      "y": 653,
+      "label": 1,
+      "diagnosis": "missing target pixels",
+      "error_pixels": 1692,
+      "click_owner": "T0085",
+      "click_radius": 13.393798828125,
+      "before_iou": 0.0009433962264150943,
+      "proposal_iou": 0.764859228362878,
+      "proposed_ious": [
+        0.764859228362878,
+        0.6681766704416761,
+        0.3087802003535651
+      ],
+      "model_ious": [
+        0.877173125743866,
+        0.8593441843986511,
+        0.8162292242050171
+      ],
+      "chosen": 0,
+      "accepted": true,
+      "after_iou": 0.764859228362878
+    },
+    {
+      "round": 2,
+      "x": 487,
+      "y": 630,
+      "label": 1,
+      "diagnosis": "missing target pixels",
+      "error_pixels": 227,
+      "click_owner": "T0085",
+      "click_radius": 5.0,
+      "before_iou": 0.764859228362878,
+      "proposal_iou": 0.9052517596101787,
+      "proposed_ious": [
+        0.7971631205673759,
+        0.8566289825282631,
+        0.9052517596101787
+      ],
+      "model_ious": [
+        0.9562788009643555,
+        0.9583258032798767,
+        0.9415274858474731
+      ],
+      "chosen": 2,
+      "accepted": true,
+      "after_iou": 0.9052517596101787
+    },
+    {
+      "round": 3,
+      "x": 501,
+      "y": 694,
+      "label": 0,
+      "diagnosis": "neighboring cube, different face direction",
+      "error_pixels": 153,
+      "click_owner": "T0090",
+      "click_radius": 3.0,
+      "before_iou": 0.9052517596101787,
+      "proposal_iou": 0.9467422096317281,
+      "proposed_ious": [
+        0.8893572181243414,
+        0.9276974416017798,
+        0.9467422096317281
+      ],
+      "model_ious": [
+        0.9321009516716003,
+        0.9226314425468445,
+        0.90514075756073
+      ],
+      "chosen": 2,
+      "accepted": true,
+      "after_iou": 0.9467422096317281
+    },
+    {
+      "round": 4,
+      "x": 495,
+      "y": 625,
+      "label": 0,
+      "diagnosis": "neighboring cube, different face direction",
+      "error_pixels": 71,
+      "click_owner": "T0092",
+      "click_radius": 2.0,
+      "before_iou": 0.9467422096317281,
+      "proposal_iou": 0.9695728496196606,
+      "proposed_ious": [
+        0.9157608695652174,
+        0.9488372093023256,
+        0.9695728496196606
+      ],
+      "model_ious": [
+        0.9279953241348267,
+        0.9156330823898315,
+        0.8957152366638184
+      ],
+      "chosen": 2,
+      "accepted": true,
+      "after_iou": 0.9695728496196606
+    }
+  ],
+  "baseline_iou": 0.0009433962264150943,
+  "stop": "reached .95 IoU",
+  "final_iou": 0.9695728496196606
+}
