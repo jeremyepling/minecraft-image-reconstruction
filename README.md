@@ -22,7 +22,7 @@ flowchart TD
     T["Benchmark only · recorded world and capture camera"] -.-> V
 ```
 
-At the outer corner of a pillar, a front face and a side face can belong to one block. Today the Block Grouper records that link for material matching. Placement uses its own contact and visibility checks. [How shared faces could also help placement and outline refinement](ARCHITECTURE.md#one-block-on-two-surfaces)
+At the outer corner of a pillar, a front face and a side face can belong to one block. Today the Block Grouper records that link for material matching. Placement uses its own contact and visibility checks. [What happened when shared faces were tested for placement and outlines](ARCHITECTURE.md#one-block-on-two-surfaces)
 
 The **[illustrated stage and term guide](ARCHITECTURE.md#pipeline-terms-in-reading-order)** walks through each box, the models it uses, and the files you can inspect. It includes the [actual 1 × 3 versus 1 × 4 example](ARCHITECTURE.md#worked-example-of-a-rejected-surface). To see the stages on buildings, open the [source images and stage overlays](benchmark/reviews/facade-placement-01/worst/README.md).
 
