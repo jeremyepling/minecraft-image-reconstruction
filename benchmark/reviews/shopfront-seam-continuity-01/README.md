@@ -28,6 +28,12 @@ For the guarded test all 12 affected images reproduced the saved production bloc
 
 ## Replay
 
+### Isolated production texture join
+
+The production helper retains the two-sided repeating-texel check and protects every image with confirmed inset edits. This preserves the two Facade recesses in the fourth experimental positive. Across 204 frames it joined three surfaces: the high-right Arcbridge roof, low-left Cloister wall and high-right Portico roof. Those unions added 15,213 correctly paired pixels, gained one exact match and lost none. All four source images passed through the ordinary Java 26.3 placement command. The three edited source images produced their expected dimensions, and every exported block coordinate and material matched the default. [Ordinary entry-point verification](ordinary.json)
+
+On this PC the rule took a median 24 ms and 82 ms at the 95th percentile during a four-worker replay with images, camera and masks supplied. Earlier camera stages already provide a fit for most candidates. On 19 of the 204 inputs the rule first needed that calculation at the surface stage. It hands the result onward so an end-to-end reconstruction fits the camera once. Standalone Surface Finder or Block Counter runs on those inputs pay the extra fit. The Portico atlas-floor fit measured 0.62 s cold and 0.39–0.41 s on two warm repeats. An unsuccessful fit preserves the input masks. [Per-source timing and camera reuse](production.json)
+
 Run from the experiment checkout with the frozen fixtures and Java 26.3 atlas available. The broad and guarded tests write separate files. The placement pass reads the guarded case manifest.
 
 ```powershell
@@ -36,6 +42,9 @@ python -m benchmark.shopfront_seam_continuity --protect-junctions --all-cohorts
 python -m benchmark.shopfront_seam_placement
 python -m benchmark.shopfront_seam_continuity --protect-junctions --phase-only --all-cohorts
 python -m benchmark.shopfront_seam_placement --phase-only
+python -m benchmark.jagged_texture_release
 ```
+
+To replay the four ordinary builds, use `Invoke-WallRecovery.ps1` for each source image in `ordinary.json` with `-Through placement` and the common 26.3 atlas. Save them as `runs/repeat-cli-arcbridge`, `runs/repeat-cli-cloister`, `runs/repeat-cli-portico` and `runs/repeat-cli-facade` respectively, then run `python -m benchmark.jagged_texture_release --cli`.
 
 The case manifests include the source image and native visible surface-map SHA-256 for each frame. Matched surfaces use one-to-one native-mask IoU of at least 0.5. The two-input purity flag requires at least 80% of both masks on the same recorded visible plane. [Original fixed-suite trial](cases.json) · [Guarded replay](guarded.json)

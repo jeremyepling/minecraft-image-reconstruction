@@ -552,6 +552,15 @@ def build(image_path, version, out, *, outlines=None, order_method=None, through
             methods['inset_outlines'] = inset_returns.OUTLINE_METHOD
             methods['boundary_sequence'].extend([inset_returns.METHOD, inset_returns.TEXTURE_METHOD, inset_returns.OUTLINE_METHOD])
             boundary_settings['visible_insets'] = dict(events=inset_events, texture_events=phase_events, count_confirmed_outlines=count_confirmed_outlines)
+            # Confirm only intact neighboring masks. Existing inset events keep
+            # their original hosts and placement/count bookkeeping.
+            if not (inset_events or phase_events or count_confirmed_outlines):
+                from engine import jagged_texture_join
+                patches, joins, metric_camera = jagged_texture_join.refine(
+                    image, patches, version, camera=metric_camera, atlas_path=camera_atlas_path)
+                pre_inset = patches
+                methods['boundary_sequence'].append(jagged_texture_join.METHOD)
+                boundary_settings['jagged_texture_join'] = dict(events=joins)
         context_px = DEFAULT_CONTEXT_PX if context_px is None else context_px
         patches = [with_outline(part) for part in patches]
         crop_dir = out/'surface-crops'
