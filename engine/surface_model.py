@@ -405,8 +405,10 @@ def build(image_path, version, out, *, outlines=None, order_method=None, through
     pre_inset = None
     eave_events = []
     smooth_outline = {}
-    horizon_measurements = None
     common_wall_regions = []
+    scene_context = None
+    exterior_only = None
+    exterior_events = []
     from engine.atlas import digest
     from engine.surface_fields import MODELS, SETTINGS as inference, infer
     if version != '26.3':
@@ -576,6 +578,13 @@ def build(image_path, version, out, *, outlines=None, order_method=None, through
             patches, smooth_outline, common_wall_regions = smooth_atlas_outline.with_common_wall(image, patches, version, atlas_loader=outline_atlas)
             methods['boundary_sequence'].append(smooth_atlas_outline.METHOD)
             boundary_settings['smooth_atlas_outline'] = smooth_outline
+            from engine import exterior_foreground
+            revised, exterior_events = exterior_foreground.refine(image, patches, metric_camera)
+            if exterior_events:
+                scene_context = [with_outline(p) for p in patches]
+                patches = revised
+                methods['boundary_sequence'].append('exterior-connected-backdrop')
+                boundary_settings['exterior_foreground'] = dict(events=exterior_events)
         context_px = DEFAULT_CONTEXT_PX if context_px is None else context_px
         patches = [with_outline(part) for part in patches]
         if boundary == CROP_SPLIT:
@@ -584,7 +593,9 @@ def build(image_path, version, out, *, outlines=None, order_method=None, through
             if horizon_events:
                 # The distant terrain still constrains camera and plane fits.
                 # Separate that evidence from the visible structure outlines.
-                horizon_measurements = patches
+                exterior_only = patches
+                if scene_context is None:
+                    scene_context = patches
                 patches = [part if 'outline' in part else with_outline(part) for part in foreground]
             methods['boundary_sequence'].append('horizon-continuity')
             boundary_settings['horizon_continuity'] = dict(events=horizon_events)
@@ -656,7 +667,7 @@ def build(image_path, version, out, *, outlines=None, order_method=None, through
                                           implementation='normal-regions', directions='MoGe-2',
                                           settings=rectangle_settings, outline='fitted quadrilateral')
     if through in ('counts', 'placement'):
-        measured_patches = horizon_measurements if horizon_measurements is not None else patches
+        measured_patches = patches
         if smooth_outline.get('events'):
             measured_patches = smooth_atlas_outline.measurement_parts(measured_patches)
         count_parts = eave_pinholes.measurement_parts(measured_patches) if eave_events else measured_patches
@@ -689,9 +700,16 @@ def build(image_path, version, out, *, outlines=None, order_method=None, through
         methods['block_grouping'] = 'convex-shared-edges'
         counts = _count_regions(image, count_parts, version, counter, atlas, out, shape_matcher, shadow_field)
         placement_parts, placement_counts = count_parts, counts
+        if through == 'placement' and scene_context is not None:
+            original = (smooth_atlas_outline.measurement_parts(scene_context)
+                        if smooth_outline.get('events') else scene_context)
+            placement_parts = eave_pinholes.measurement_parts(original) if eave_events else original
+            with TemporaryDirectory() as temporary:
+                placement_counts = _count_regions(image, placement_parts, version, counter, atlas,
+                                                  Path(temporary), shape_matcher, shadow_field)
         if inset_events or count_confirmed_outlines:
             placement_parts = [with_outline(p) for p in pre_inset]
-            placement_counts = _inset_layout_counts(image, version, placement_parts, counts,
+            placement_counts = _inset_layout_counts(image, version, placement_parts, placement_counts,
                 {e['host'] for e in inset_events + count_confirmed_outlines}, counter, atlas)
         if inset_events:
             from engine.visible_inset_cells import observed_back_spans
@@ -706,14 +724,7 @@ def build(image_path, version, out, *, outlines=None, order_method=None, through
             if counts['atlas_phase']['status'] == 'partial':
                 logging.getLogger(__name__).warning('Used measured offsets on %d surfaces after atlas errors; see counts.json',
                                                     counts['atlas_phase']['surface_errors'])
-        reported_counts = counts
-        if horizon_measurements is not None:
-            visible_ids = {part['id'] for part in patches}
-            # Horizon-only candidates have no sampling chart or material group.
-            # Keep them available to the internal plane fit without reporting
-            # a structure count for an omitted surface.
-            reported_counts = dict(counts, surfaces=[row for row in counts['surfaces'] if row['id'] in visible_ids])
-        (out/'counts.json').write_text(json.dumps(reported_counts, allow_nan=False, indent=2))
+        (out/'counts.json').write_text(json.dumps(counts, allow_nan=False, indent=2))
         manifest['artifact'] = 'counts.json'
         manifest['artifacts'].update(counts='counts.json', samples='samples/')
         methods['block_count'] = counter
@@ -775,6 +786,21 @@ def build(image_path, version, out, *, outlines=None, order_method=None, through
                         cells = (set(cells) - removed) | added
                         status.update(placed_blocks=len(cells), counted_ground_corner=dict(
                             added=sorted(added), removed=sorted(removed), planes=planes))
+            if pre_inset is not None and joint_foreground and status.get('foreground_depth',{}).get('method') == 'joint':
+                from engine import exterior_foreground
+                background = exterior_foreground.exterior(image)
+                # Horizon evidence constrains the scene fit independently of its structural outline.
+                roof_parts = exterior_only if exterior_only is not None else patches
+                removed = exterior_foreground.misplaced(image, roof_parts, status, cells, background)
+                added = set()
+                if exterior_events:
+                    added, shelf = exterior_foreground.roof_edits(
+                        image, scene_context, roof_parts, exterior_events, status, set(cells), background)
+                    removed |= shelf
+                if removed or added:
+                    cells = (set(cells) - removed) | added
+                    status.update(placed_blocks=len(cells), exterior_background_removed=sorted(removed),
+                                  exterior_roof_recovered=sorted(added))
             material = 'smooth_stone'
             blocks = {tuple(map(int, pos)): material for pos in cells}
             rows = [dict(x=x, y=y, z=z, block_id=material) for x,y,z in sorted(blocks)]
