@@ -1,0 +1,301 @@
+{
+  "baseline": "a95816d",
+  "rows": [
+    {
+      "id": "train-arcbridge1-cool-high-right",
+      "split": "train",
+      "baseline_pack_sha256": "84e75e742ed5a320796cca9bfdeae619a2c0ef988344053a497b13f4667db54b",
+      "baseline_reproduced": true,
+      "strict": {
+        "correct": 169,
+        "missed": 29,
+        "extras": 6,
+        "hidden_extras": 2
+      },
+      "strict_prior": {
+        "correct": 169,
+        "missed": 29,
+        "extras": 6,
+        "hidden_extras": 2
+      },
+      "facade": {
+        "correct": 163,
+        "missed": 18,
+        "extras": 6
+      },
+      "facade_prior": {
+        "correct": 163,
+        "missed": 18,
+        "extras": 6
+      },
+      "same_coordinates": true,
+      "input_dimensions": {
+        "mask-3": [
+          null,
+          null
+        ],
+        "planarity-new-2-0": [
+          null,
+          null
+        ]
+      },
+      "joined_dimensions": {
+        "planarity-new-2-0-seam-union": [
+          null,
+          null
+        ]
+      },
+      "majority_visible_span": {
+        "mask-3": {
+          "visible_faces": 22,
+          "world_axis": 1,
+          "xyz_span": [
+            7,
+            1,
+            8
+          ]
+        },
+        "planarity-new-2-0": {
+          "visible_faces": 38,
+          "world_axis": 1,
+          "xyz_span": [
+            13,
+            1,
+            8
+          ]
+        },
+        "planarity-new-2-0-seam-union": {
+          "visible_faces": 64,
+          "world_axis": 1,
+          "xyz_span": [
+            14,
+            1,
+            9
+          ]
+        }
+      }
+    },
+    {
+      "id": "validation-cloister2-earth-low-left",
+      "split": "validation",
+      "baseline_pack_sha256": "10985fb6ae0c345d336d4386633f95e2e8e906e8fedcd3a3f9270de5307bd0fa",
+      "baseline_reproduced": true,
+      "strict": {
+        "correct": 164,
+        "missed": 10,
+        "extras": 0,
+        "hidden_extras": 0
+      },
+      "strict_prior": {
+        "correct": 164,
+        "missed": 10,
+        "extras": 0,
+        "hidden_extras": 0
+      },
+      "facade": {
+        "correct": 164,
+        "missed": 9,
+        "extras": 0
+      },
+      "facade_prior": {
+        "correct": 164,
+        "missed": 9,
+        "extras": 0
+      },
+      "same_coordinates": true,
+      "input_dimensions": {
+        "mask-0-wall-1-mobile-0-single-457-1": [
+          2,
+          1
+        ],
+        "mask-0-wall-1-mobile-0-single-457-3": [
+          8,
+          6
+        ]
+      },
+      "joined_dimensions": {
+        "mask-0-wall-1-mobile-0-single-457-3-seam-union": [
+          9,
+          6
+        ]
+      },
+      "majority_visible_span": {
+        "mask-0-wall-1-mobile-0-single-457-1": {
+          "visible_faces": 1,
+          "world_axis": 2,
+          "xyz_span": [
+            1,
+            1,
+            1
+          ]
+        },
+        "mask-0-wall-1-mobile-0-single-457-3": {
+          "visible_faces": 43,
+          "world_axis": 2,
+          "xyz_span": [
+            8,
+            6,
+            1
+          ]
+        },
+        "mask-0-wall-1-mobile-0-single-457-3-seam-union": {
+          "visible_faces": 44,
+          "world_axis": 2,
+          "xyz_span": [
+            9,
+            6,
+            1
+          ]
+        }
+      }
+    },
+    {
+      "id": "legacy-light_gray_concrete-holdout-portico-masonry-high-right",
+      "split": "regression",
+      "baseline_pack_sha256": "5a6814abfd58c5b9bcd15c2bfec7652598afd9a1439916ff8f9859408b3654ea",
+      "baseline_reproduced": true,
+      "strict": {
+        "correct": 210,
+        "missed": 28,
+        "extras": 1,
+        "hidden_extras": 0
+      },
+      "strict_prior": {
+        "correct": 210,
+        "missed": 28,
+        "extras": 1,
+        "hidden_extras": 0
+      },
+      "facade": {
+        "correct": 177,
+        "missed": 5,
+        "extras": 1
+      },
+      "facade_prior": {
+        "correct": 177,
+        "missed": 5,
+        "extras": 1
+      },
+      "same_coordinates": true,
+      "input_dimensions": {
+        "mask-5": [
+          null,
+          null
+        ],
+        "planarity-new-10-0": [
+          null,
+          null
+        ]
+      },
+      "joined_dimensions": {
+        "mask-5-seam-union": [
+          null,
+          null
+        ]
+      },
+      "majority_visible_span": {
+        "mask-5": {
+          "visible_faces": 58,
+          "world_axis": 1,
+          "xyz_span": [
+            17,
+            1,
+            8
+          ]
+        },
+        "planarity-new-10-0": {
+          "visible_faces": 31,
+          "world_axis": 1,
+          "xyz_span": [
+            7,
+            1,
+            7
+          ]
+        },
+        "mask-5-seam-union": {
+          "visible_faces": 90,
+          "world_axis": 1,
+          "xyz_span": [
+            17,
+            1,
+            8
+          ]
+        }
+      }
+    },
+    {
+      "id": "rim-views-26.3--positive--heldout-facade-oblique-left",
+      "split": "extra",
+      "baseline_pack_sha256": "36374a1e46dc0a663df43b0475bd0d040962880008db3ca93d28ffb40b8abf7e",
+      "baseline_reproduced": true,
+      "strict": {
+        "correct": 295,
+        "missed": 20,
+        "extras": 36,
+        "hidden_extras": 0
+      },
+      "strict_prior": {
+        "correct": 295,
+        "missed": 20,
+        "extras": 36,
+        "hidden_extras": 0
+      },
+      "facade": {
+        "correct": 197,
+        "missed": 18,
+        "extras": 36
+      },
+      "facade_prior": {
+        "correct": 197,
+        "missed": 18,
+        "extras": 36
+      },
+      "same_coordinates": true,
+      "input_dimensions": {
+        "mask-0-wall-0-single-78-0": [
+          null,
+          null
+        ],
+        "mask-0-wall-1": [
+          25,
+          8
+        ]
+      },
+      "joined_dimensions": {
+        "mask-0-wall-1-seam-union": [
+          25,
+          8
+        ]
+      },
+      "majority_visible_span": {
+        "mask-0-wall-0-single-78-0": {
+          "visible_faces": 2,
+          "world_axis": 2,
+          "xyz_span": [
+            1,
+            2,
+            1
+          ]
+        },
+        "mask-0-wall-1": {
+          "visible_faces": 135,
+          "world_axis": 2,
+          "xyz_span": [
+            25,
+            8,
+            1
+          ]
+        },
+        "mask-0-wall-1-seam-union": {
+          "visible_faces": 137,
+          "world_axis": 2,
+          "xyz_span": [
+            25,
+            8,
+            1
+          ]
+        }
+      }
+    }
+  ]
+}

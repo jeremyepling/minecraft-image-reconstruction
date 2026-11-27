@@ -1,0 +1,545 @@
+{
+  "baseline": "a95816d",
+  "rows": [
+    {
+      "id": "train-arcbridge1-cool-high-right",
+      "split": "train",
+      "baseline_pack_sha256": "84e75e742ed5a320796cca9bfdeae619a2c0ef988344053a497b13f4667db54b",
+      "baseline_reproduced": true,
+      "strict": {
+        "correct": 169,
+        "missed": 29,
+        "extras": 6,
+        "hidden_extras": 2
+      },
+      "strict_prior": {
+        "correct": 169,
+        "missed": 29,
+        "extras": 6,
+        "hidden_extras": 2
+      },
+      "facade": {
+        "correct": 163,
+        "missed": 18,
+        "extras": 6
+      },
+      "facade_prior": {
+        "correct": 163,
+        "missed": 18,
+        "extras": 6
+      },
+      "same_coordinates": true,
+      "input_dimensions": {
+        "mask-3": [
+          null,
+          null
+        ],
+        "planarity-new-2-0": [
+          null,
+          null
+        ]
+      },
+      "joined_dimensions": {
+        "planarity-new-2-0-seam-union": [
+          null,
+          null
+        ]
+      }
+    },
+    {
+      "id": "validation-cloister2-earth-low-left",
+      "split": "validation",
+      "baseline_pack_sha256": "10985fb6ae0c345d336d4386633f95e2e8e906e8fedcd3a3f9270de5307bd0fa",
+      "baseline_reproduced": true,
+      "strict": {
+        "correct": 164,
+        "missed": 10,
+        "extras": 0,
+        "hidden_extras": 0
+      },
+      "strict_prior": {
+        "correct": 164,
+        "missed": 10,
+        "extras": 0,
+        "hidden_extras": 0
+      },
+      "facade": {
+        "correct": 164,
+        "missed": 9,
+        "extras": 0
+      },
+      "facade_prior": {
+        "correct": 164,
+        "missed": 9,
+        "extras": 0
+      },
+      "same_coordinates": true,
+      "input_dimensions": {
+        "mask-0-wall-1-mobile-0-single-457-1": [
+          2,
+          1
+        ],
+        "mask-0-wall-1-mobile-0-single-457-3": [
+          8,
+          6
+        ]
+      },
+      "joined_dimensions": {
+        "mask-0-wall-1-mobile-0-single-457-3-seam-union": [
+          9,
+          6
+        ]
+      }
+    },
+    {
+      "id": "test-twinspire1-earth-low-left",
+      "split": "test",
+      "baseline_pack_sha256": "2df6a86b115327eaec74a2acc1ac0e0db9001e2e344e1f090f95dd50bef0c19e",
+      "baseline_reproduced": true,
+      "strict": {
+        "correct": 188,
+        "missed": 12,
+        "extras": 1,
+        "hidden_extras": 1
+      },
+      "strict_prior": {
+        "correct": 188,
+        "missed": 12,
+        "extras": 1,
+        "hidden_extras": 1
+      },
+      "facade": {
+        "correct": 188,
+        "missed": 11,
+        "extras": 1
+      },
+      "facade_prior": {
+        "correct": 188,
+        "missed": 11,
+        "extras": 1
+      },
+      "same_coordinates": true,
+      "input_dimensions": {
+        "mask-14": [
+          null,
+          null
+        ],
+        "mask-23": [
+          null,
+          null
+        ]
+      },
+      "joined_dimensions": {
+        "mask-14-seam-union": [
+          5,
+          1
+        ]
+      }
+    },
+    {
+      "id": "legacy-light_gray_concrete-dev-shopfront-plaster-high-right",
+      "split": "regression",
+      "baseline_pack_sha256": "e4169408c3d918481512eb5fd4962dcce726c60730ba4205602aa406ee1a0334",
+      "baseline_reproduced": true,
+      "strict": {
+        "correct": 189,
+        "missed": 27,
+        "extras": 6,
+        "hidden_extras": 2
+      },
+      "strict_prior": {
+        "correct": 189,
+        "missed": 27,
+        "extras": 6,
+        "hidden_extras": 2
+      },
+      "facade": {
+        "correct": 136,
+        "missed": 24,
+        "extras": 6
+      },
+      "facade_prior": {
+        "correct": 136,
+        "missed": 24,
+        "extras": 6
+      },
+      "same_coordinates": true,
+      "input_dimensions": {
+        "mask-7": [
+          null,
+          null
+        ],
+        "planarity-new-5-0": [
+          null,
+          null
+        ]
+      },
+      "joined_dimensions": {
+        "planarity-new-5-0-seam-union": [
+          null,
+          35
+        ]
+      }
+    },
+    {
+      "id": "legacy-light_gray_concrete-holdout-galleries-plaster-low-left",
+      "split": "regression",
+      "baseline_pack_sha256": "f5599de78c523e2c1c87c6019e1261ab89b984a30a07ee92bbec4dc8166e9e2d",
+      "baseline_reproduced": true,
+      "strict": {
+        "correct": 188,
+        "missed": 86,
+        "extras": 39,
+        "hidden_extras": 0
+      },
+      "strict_prior": {
+        "correct": 188,
+        "missed": 86,
+        "extras": 39,
+        "hidden_extras": 0
+      },
+      "facade": {
+        "correct": 177,
+        "missed": 25,
+        "extras": 39
+      },
+      "facade_prior": {
+        "correct": 177,
+        "missed": 25,
+        "extras": 39
+      },
+      "same_coordinates": true,
+      "input_dimensions": {
+        "mask-2": [
+          null,
+          null
+        ],
+        "mask-17": [
+          null,
+          null
+        ]
+      },
+      "joined_dimensions": {
+        "mask-2-seam-union": [
+          null,
+          null
+        ]
+      }
+    },
+    {
+      "id": "legacy-light_gray_concrete-holdout-portico-masonry-high-right",
+      "split": "regression",
+      "baseline_pack_sha256": "5a6814abfd58c5b9bcd15c2bfec7652598afd9a1439916ff8f9859408b3654ea",
+      "baseline_reproduced": true,
+      "strict": {
+        "correct": 210,
+        "missed": 28,
+        "extras": 1,
+        "hidden_extras": 0
+      },
+      "strict_prior": {
+        "correct": 210,
+        "missed": 28,
+        "extras": 1,
+        "hidden_extras": 0
+      },
+      "facade": {
+        "correct": 177,
+        "missed": 5,
+        "extras": 1
+      },
+      "facade_prior": {
+        "correct": 177,
+        "missed": 5,
+        "extras": 1
+      },
+      "same_coordinates": true,
+      "input_dimensions": {
+        "mask-5": [
+          null,
+          null
+        ],
+        "planarity-new-10-0": [
+          null,
+          null
+        ]
+      },
+      "joined_dimensions": {
+        "mask-5-seam-union": [
+          null,
+          null
+        ]
+      }
+    },
+    {
+      "id": "legacy-light_gray_concrete-holdout-portico-masonry-low-left",
+      "split": "regression",
+      "baseline_pack_sha256": "a890765e81bb3587e96c3f0ff79d6985c37c967c0dff72422f5bd5c0fc09a3e5",
+      "baseline_reproduced": true,
+      "strict": {
+        "correct": 181,
+        "missed": 28,
+        "extras": 8,
+        "hidden_extras": 2
+      },
+      "strict_prior": {
+        "correct": 181,
+        "missed": 28,
+        "extras": 8,
+        "hidden_extras": 2
+      },
+      "facade": {
+        "correct": 139,
+        "missed": 4,
+        "extras": 8
+      },
+      "facade_prior": {
+        "correct": 139,
+        "missed": 4,
+        "extras": 8
+      },
+      "same_coordinates": true,
+      "input_dimensions": {
+        "mask-0-planarity-split-1": [
+          15,
+          1
+        ],
+        "mask-14": [
+          9,
+          1
+        ]
+      },
+      "joined_dimensions": {
+        "mask-0-planarity-split-1-seam-union": [
+          null,
+          null
+        ]
+      }
+    },
+    {
+      "id": "legacy-smooth_stone-dev-wing-plaster-high-right",
+      "split": "regression",
+      "baseline_pack_sha256": "9c74d7f5073b3653f7a13ed648a29fee074eee0189fa704c778b0bf5c5b8ca9a",
+      "baseline_reproduced": true,
+      "strict": {
+        "correct": 153,
+        "missed": 19,
+        "extras": 0,
+        "hidden_extras": 0
+      },
+      "strict_prior": {
+        "correct": 153,
+        "missed": 19,
+        "extras": 0,
+        "hidden_extras": 0
+      },
+      "facade": {
+        "correct": 153,
+        "missed": 0,
+        "extras": 0
+      },
+      "facade_prior": {
+        "correct": 153,
+        "missed": 0,
+        "extras": 0
+      },
+      "same_coordinates": true,
+      "input_dimensions": {
+        "mask-1": [
+          null,
+          null
+        ],
+        "planarity-new-1-0": [
+          null,
+          null
+        ]
+      },
+      "joined_dimensions": {
+        "planarity-new-1-0-seam-union": [
+          null,
+          null
+        ]
+      }
+    },
+    {
+      "id": "shape-benchmark-26.3--train-canopy-08-left",
+      "split": "extra",
+      "baseline_pack_sha256": "462999019370307d637853a2d36a85e3bbcfb764625dabdb0bbe13eb93ab5a0d",
+      "baseline_reproduced": true,
+      "strict": {
+        "correct": 80,
+        "missed": 18,
+        "extras": 3,
+        "hidden_extras": 0
+      },
+      "strict_prior": {
+        "correct": 84,
+        "missed": 14,
+        "extras": 1,
+        "hidden_extras": 0
+      },
+      "facade": {
+        "correct": 46,
+        "missed": 4,
+        "extras": 3
+      },
+      "facade_prior": {
+        "correct": 50,
+        "missed": 0,
+        "extras": 1
+      },
+      "same_coordinates": false,
+      "input_dimensions": {
+        "mask-4": [
+          null,
+          null
+        ],
+        "mask-8": [
+          null,
+          null
+        ]
+      },
+      "joined_dimensions": {
+        "mask-4-seam-union": [
+          null,
+          null
+        ]
+      }
+    },
+    {
+      "id": "shape-benchmark-26.3--dev-canopy-19-left",
+      "split": "extra",
+      "baseline_pack_sha256": "40bfb2e949df9a4f198852f99b2915bea7745903097cee7cabfc6cf4b86925db",
+      "baseline_reproduced": true,
+      "strict": {
+        "correct": 42,
+        "missed": 3,
+        "extras": 0,
+        "hidden_extras": 0
+      },
+      "strict_prior": {
+        "correct": 42,
+        "missed": 3,
+        "extras": 0,
+        "hidden_extras": 0
+      },
+      "facade": {
+        "correct": 42,
+        "missed": 3,
+        "extras": 0
+      },
+      "facade_prior": {
+        "correct": 42,
+        "missed": 3,
+        "extras": 0
+      },
+      "same_coordinates": true,
+      "input_dimensions": {
+        "mask-1": [
+          null,
+          null
+        ],
+        "mask-7": [
+          null,
+          null
+        ]
+      },
+      "joined_dimensions": {
+        "mask-1-seam-union": [
+          null,
+          null
+        ]
+      }
+    },
+    {
+      "id": "rim-views-26.3--positive--heldout-facade-oblique-left",
+      "split": "extra",
+      "baseline_pack_sha256": "36374a1e46dc0a663df43b0475bd0d040962880008db3ca93d28ffb40b8abf7e",
+      "baseline_reproduced": true,
+      "strict": {
+        "correct": 295,
+        "missed": 20,
+        "extras": 36,
+        "hidden_extras": 0
+      },
+      "strict_prior": {
+        "correct": 295,
+        "missed": 20,
+        "extras": 36,
+        "hidden_extras": 0
+      },
+      "facade": {
+        "correct": 197,
+        "missed": 18,
+        "extras": 36
+      },
+      "facade_prior": {
+        "correct": 197,
+        "missed": 18,
+        "extras": 36
+      },
+      "same_coordinates": true,
+      "input_dimensions": {
+        "mask-0-wall-0-single-78-0": [
+          null,
+          null
+        ],
+        "mask-0-wall-1": [
+          25,
+          8
+        ]
+      },
+      "joined_dimensions": {
+        "mask-0-wall-1-seam-union": [
+          25,
+          8
+        ]
+      }
+    },
+    {
+      "id": "holdout-offsetgate-quartz-high-right",
+      "split": "shelter",
+      "baseline_pack_sha256": "5e10bd288a9eb2e3cdbd18d73bf38650f1196a8e3ff4e41df96dad390c5611cf",
+      "baseline_reproduced": true,
+      "strict": {
+        "correct": 178,
+        "missed": 4,
+        "extras": 145,
+        "hidden_extras": 0
+      },
+      "strict_prior": {
+        "correct": 178,
+        "missed": 4,
+        "extras": 145,
+        "hidden_extras": 0
+      },
+      "facade": {
+        "correct": 159,
+        "missed": 2,
+        "extras": 145
+      },
+      "facade_prior": {
+        "correct": 159,
+        "missed": 2,
+        "extras": 145
+      },
+      "same_coordinates": true,
+      "input_dimensions": {
+        "mask-13": [
+          5,
+          null
+        ],
+        "planarity-new-9-0": [
+          null,
+          null
+        ]
+      },
+      "joined_dimensions": {
+        "planarity-new-9-0-seam-union": [
+          null,
+          null
+        ]
+      }
+    }
+  ]
+}
