@@ -748,6 +748,13 @@ def build(image_path, version, out, *, outlines=None, order_method=None, through
                         cells = set(cells) | added
                         status.update(placed_blocks=len(cells),common_wall_placement=dict(
                             added=len(added),candidate_patches=len(common_wall_regions)))
+                    from engine import counted_ground_corner
+                    added, removed, planes = counted_ground_corner.edits(
+                        image, placement_parts, placement_counts, status, set(cells))
+                    if added or removed:
+                        cells = (set(cells) - removed) | added
+                        status.update(placed_blocks=len(cells), counted_ground_corner=dict(
+                            added=sorted(added), removed=sorted(removed), planes=planes))
             material = 'smooth_stone'
             blocks = {tuple(map(int, pos)): material for pos in cells}
             rows = [dict(x=x, y=y, z=z, block_id=material) for x,y,z in sorted(blocks)]

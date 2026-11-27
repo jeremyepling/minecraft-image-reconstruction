@@ -162,14 +162,7 @@ def place_with_camera(image, version, parts, counts, camera, select_level=None, 
     shape = tuple((n + (SAMPLE_STRIDE - 1) // 2) // SAMPLE_STRIDE for n in image.size[::-1])
     masks = [observed_support(part['support'], shape, image.size) if part.get('support')
              else np.zeros(shape, dtype=bool) for part in parts]
-    charts = _charts(image, version, parts, counts)
-    carriers = _carriers(image, charts, masks, projection)
-    if version == '26.3' and reconcile is not None:
-        from engine.counted_ground_corner import grounded_pairs
-        anchored = grounded_pairs(image, charts, parts, masks, projection)
-        by_mask = {id(masks[i]): plane for i, plane in anchored.items()}
-        carriers = [(m, by_mask.get(id(m), plane) if plane is not None else None, reason)
-                    for m, plane, reason in carriers]
+    carriers = _carriers(image, _charts(image, version, parts, counts), masks, projection)
     strict, _, _ = _blocks(masks, carriers, projection, {})
     projection = projection / np.linalg.norm(projection[2, :3])
     eye = np.linalg.solve(projection[:, :3], -projection[:, 3])
