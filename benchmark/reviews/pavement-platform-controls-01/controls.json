@@ -1,0 +1,396 @@
+{
+  "default_revision": "a6e0195",
+  "candidate_sha256": "9323e6013c4e2658d2b343a911f928a98bdb9d98253ed7034206389226d7d812",
+  "local_candidate_sha256": "46ff110f56f5bbaa44f324ff0292aa219f4c6900f6b40cae52e1ef6928a032a4",
+  "opening_sha256": "56f1d5c1feb17dcee4ab530954cd05a37bf86ef178aead769afe90c9ce6307e6",
+  "controlled": [
+    {
+      "control": "actual-opening",
+      "input_pixels": 5456,
+      "expected": "suppress",
+      "candidate_reached_phase_check": true,
+      "suppressed": true,
+      "rim": [
+        0.8913043478260869,
+        0.9782608695652174,
+        1.0,
+        1.0
+      ],
+      "folds": [
+        [
+          0.9134203657679502,
+          0.11675402813570523,
+          2.3453698022292877,
+          0.025811209439528023
+        ],
+        [
+          0.917734220270427,
+          0.12093149376197565,
+          2.2432361039653963,
+          0.02295918367346939
+        ],
+        [
+          0.935852921437475,
+          0.23470775744362948,
+          2.024721306982085,
+          0.01032448377581121
+        ],
+        [
+          0.9352028444083763,
+          0.2510492248416337,
+          1.9775695628283816,
+          0.01239067055393586
+        ]
+      ],
+      "local": {
+        "pad_cells": 0,
+        "pad_removed": 0,
+        "old_correct_removed": 0,
+        "other_removed": 7,
+        "pad_removed_if_phase_overridden": 0
+      }
+    },
+    {
+      "control": "enclosed-raised-same-pavement",
+      "surface_height": 3,
+      "expected": "retain",
+      "input_pixels": 5456,
+      "candidate_reached_phase_check": true,
+      "suppressed": false,
+      "rim": [
+        0.8913043478260869,
+        0.9782608695652174,
+        1.0,
+        1.0
+      ],
+      "folds": [
+        [
+          0.03866870484049624,
+          0.0028655315712665524,
+          9.965583358509972,
+          0.48266961651917406
+        ],
+        [
+          0.02063945321985676,
+          -0.003444565356881049,
+          10.094098185883837,
+          0.4679300291545189
+        ],
+        [
+          0.017839180318401288,
+          -0.02302046800214609,
+          10.051735670420147,
+          0.47382005899705015
+        ],
+        [
+          -0.0060364377948767005,
+          -0.02378023344164007,
+          10.275645098839762,
+          0.48250728862973763
+        ]
+      ],
+      "local": {
+        "pad_cells": 60,
+        "pad_removed": 0,
+        "old_correct_removed": 0,
+        "other_removed": 0,
+        "pad_removed_if_phase_overridden": 35
+      }
+    },
+    {
+      "control": "enclosed-flush-bordered-pavement",
+      "expected": "retain",
+      "size_blocks": [
+        16,
+        20
+      ],
+      "surface_height": 0,
+      "input_pixels": 5396,
+      "border_pixels": 1066,
+      "visible_border_inside_aperture": 60,
+      "pad_pixels_visible_elsewhere": 2736,
+      "candidate_reached_phase_check": true,
+      "suppressed": true,
+      "rim": [
+        0.8888888888888888,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "folds": [
+        [
+          0.9142828979615758,
+          0.11617069056374696,
+          2.3366222078838024,
+          0.025669642857142856
+        ],
+        [
+          0.9191818464834813,
+          0.11894332039014666,
+          2.229325973153809,
+          0.022525849335302807
+        ],
+        [
+          0.9366717569308022,
+          0.2349424974864932,
+          2.0126227025898085,
+          0.010416666666666666
+        ],
+        [
+          0.9369427331792078,
+          0.2519975450049423,
+          1.9658354525960844,
+          0.012186115214180207
+        ]
+      ],
+      "local": {
+        "pad_cells": 320,
+        "pad_removed": 0,
+        "old_correct_removed": 0,
+        "other_removed": 7,
+        "pad_removed_if_phase_overridden": 0
+      }
+    },
+    {
+      "control": "unenclosed-flush-3x3",
+      "size_blocks": [
+        3,
+        3
+      ],
+      "surface_height": 0,
+      "input_pixels": 7833,
+      "expected": "retain",
+      "candidate_reached_phase_check": false,
+      "suppressed": false,
+      "rim": [],
+      "folds": [],
+      "local": {
+        "pad_cells": 9,
+        "pad_removed": 0,
+        "pad_removed_if_phase_overridden": 0
+      }
+    },
+    {
+      "candidate_reached_phase_check": true,
+      "suppressed": false,
+      "rim": [
+        0.8723404255319149,
+        0.9787234042553191,
+        1.0,
+        1.0
+      ],
+      "folds": [
+        [
+          0.8703358905248805,
+          0.12629129374170167,
+          2.440017273218886,
+          0.027245949926362298
+        ],
+        [
+          0.7901582918795306,
+          0.08586089085794546,
+          2.5149834140938,
+          0.026860254083484573
+        ],
+        [
+          0.8813978494998802,
+          0.21435717112414765,
+          2.128844926367083,
+          0.011782032400589101
+        ],
+        [
+          0.8207033875719326,
+          0.21879975968008192,
+          2.2430590341762136,
+          0.016333938294010888
+        ]
+      ],
+      "control": "opening-spilling-onto-real-neighbors",
+      "input_pixels": 5471,
+      "real_foreground_pixels": 15,
+      "expected": "preserve real neighbors",
+      "local": {
+        "pad_cells": 0,
+        "pad_removed": 0,
+        "old_correct_removed": 0,
+        "other_removed": 0,
+        "pad_removed_if_phase_overridden": 0
+      }
+    }
+  ],
+  "native": [
+    {
+      "frame": "holdout-switchback-brick-low-left",
+      "source_sha256": "b2d145e026728a431b94ace0a36343ba5a1111d2d4edeb616d2053c1838813b3",
+      "block_faces": 15,
+      "named_surface_ids": [
+        9,
+        13,
+        18
+      ],
+      "platform_pixels": 2844,
+      "platform_pixels_in_input_masks": 2755,
+      "overlaps": {
+        "mask-0": 28,
+        "mask-12": 40,
+        "mask-13": 101,
+        "mask-14": 22,
+        "mask-15": 6,
+        "mask-22": 1857,
+        "mask-24": 22,
+        "mask-28": 679
+      },
+      "candidate_surfaces_with_platform_pixels": [],
+      "removed_platform_pixels": 0,
+      "removed_masks": []
+    },
+    {
+      "frame": "holdout-switchback-brick-high-right",
+      "source_sha256": "91a5d591c8776106d6cabd7d9bee1b9ac1bb06ae4908f8bd764c3331cbc439aa",
+      "block_faces": 87,
+      "named_surface_ids": [
+        1,
+        5,
+        10,
+        11,
+        14,
+        15,
+        18,
+        19
+      ],
+      "platform_pixels": 33673,
+      "platform_pixels_in_input_masks": 33007,
+      "overlaps": {
+        "mask-0-wall-0": 85,
+        "mask-0-wall-1": 478,
+        "mask-1": 20455,
+        "mask-2": 12,
+        "mask-5": 90,
+        "mask-7": 65,
+        "mask-8": 3682,
+        "mask-10": 8,
+        "mask-11": 35,
+        "mask-12": 129,
+        "mask-13": 75,
+        "mask-14": 115,
+        "mask-17": 1454,
+        "mask-19": 1692,
+        "mask-20": 1482,
+        "mask-21": 1282,
+        "mask-24": 1083,
+        "mask-25": 785
+      },
+      "candidate_surfaces_with_platform_pixels": [
+        "mask-25"
+      ],
+      "removed_platform_pixels": 0,
+      "removed_masks": []
+    },
+    {
+      "frame": "holdout-loadingdock-timber-low-left",
+      "source_sha256": "d32e3474498373d3ec1ea2003b82c7cb885d02db72981eef20aff1790a17ed7f",
+      "block_faces": 59,
+      "named_surface_ids": [
+        9
+      ],
+      "platform_pixels": 4092,
+      "platform_pixels_in_input_masks": 3921,
+      "overlaps": {
+        "mask-0-junction-1-single-376-6": 16,
+        "mask-0-junction-1-single-376-11": 345,
+        "mask-1-wall-0": 13,
+        "mask-3": 6,
+        "mask-7": 9,
+        "mask-10": 3521,
+        "mask-12": 11
+      },
+      "candidate_surfaces_with_platform_pixels": [
+        "mask-10"
+      ],
+      "removed_platform_pixels": 0,
+      "removed_masks": []
+    },
+    {
+      "frame": "holdout-loadingdock-timber-high-right",
+      "source_sha256": "05b57b37e071efdd67304d0f81345987bc5c0bcda039e4a9f5e9c260105c9fe7",
+      "block_faces": 58,
+      "named_surface_ids": [
+        8
+      ],
+      "platform_pixels": 26827,
+      "platform_pixels_in_input_masks": 20714,
+      "overlaps": {
+        "mask-0-single-20-0": 15,
+        "mask-2-single-159-0": 855,
+        "mask-3": 6,
+        "mask-4": 18277,
+        "mask-5": 68,
+        "mask-7": 27,
+        "mask-8": 1,
+        "mask-9": 17,
+        "mask-13": 1448
+      },
+      "candidate_surfaces_with_platform_pixels": [
+        "mask-13",
+        "mask-4"
+      ],
+      "removed_platform_pixels": 0,
+      "removed_masks": []
+    },
+    {
+      "frame": "holdout-platformshelter-copper-low-left",
+      "source_sha256": "4be0775762b40ae65a872006012a094b892697a7df14ab08400bd07dd57343cc",
+      "block_faces": 49,
+      "named_surface_ids": [
+        6,
+        20
+      ],
+      "platform_pixels": 2611,
+      "platform_pixels_in_input_masks": 2282,
+      "overlaps": {
+        "mask-0-wall-1-single-87-2": 264,
+        "mask-1": 824,
+        "mask-2-single-315-1": 183,
+        "mask-3": 40,
+        "mask-4": 11,
+        "mask-10": 1,
+        "mask-11": 409,
+        "mask-14": 473,
+        "mask-23": 77
+      },
+      "candidate_surfaces_with_platform_pixels": [
+        "mask-14"
+      ],
+      "removed_platform_pixels": 0,
+      "removed_masks": []
+    },
+    {
+      "frame": "holdout-platformshelter-copper-high-right",
+      "source_sha256": "d71207192aeb69b67e066da82c59d8d830ca54053220d2005f2f4d4c748bc06a",
+      "block_faces": 49,
+      "named_surface_ids": [
+        4,
+        17
+      ],
+      "platform_pixels": 12589,
+      "platform_pixels_in_input_masks": 12408,
+      "overlaps": {
+        "mask-0-wall-1-single-334-0": 50,
+        "mask-0-wall-1-single-334-1": 5,
+        "mask-2-wall-1": 48,
+        "mask-3": 1,
+        "mask-4": 7280,
+        "mask-5": 1,
+        "mask-6": 102,
+        "mask-7": 4889,
+        "mask-11": 32
+      },
+      "candidate_surfaces_with_platform_pixels": [
+        "mask-4",
+        "mask-7"
+      ],
+      "removed_platform_pixels": 0,
+      "removed_masks": []
+    }
+  ]
+}
