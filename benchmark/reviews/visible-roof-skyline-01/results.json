@@ -1,0 +1,1177 @@
+{
+  "control": "bec7c94",
+  "cases_sha256": "b94818d5f3287fa86e9ea5f2f3e6d5c757a31c98505a785e7f087556c3476a8f",
+  "archive_sha256": "b5e5430ca6c24b7ca69ecde2dc37416ef57f9fb767f9d7daea305ceb343a6f27",
+  "methods": {
+    "skyline": {
+      "revision": "803629eacd1a0813cbd20273807b8f7678f8a3e0",
+      "sha256": "e37cf61fc2a42d7126701787aade69631beb22e4adbece2be47a5f2cca8b77ce",
+      "groups": {
+        "train": {
+          "target": 18322,
+          "placed": 16818,
+          "correct": 16022,
+          "extras": 796,
+          "missed": 2300,
+          "hidden_extras": 82,
+          "gained": 5,
+          "lost": 0,
+          "extra_added": 15,
+          "extra_removed": 0,
+          "hidden_added": 0,
+          "hidden_removed": 0,
+          "frames": 72,
+          "tied": 64,
+          "regressed": 6,
+          "improved": 2,
+          "precision": 0.9526697585919848,
+          "recall": 0.8744678528544919,
+          "f1": 0.9118952760387024,
+          "previous_f1": 0.912129840546697,
+          "changed": 8,
+          "outside_source_xz": {
+            "before": 307,
+            "after": 322
+          }
+        },
+        "fixed": {
+          "target": 23702,
+          "placed": 21685,
+          "correct": 20527,
+          "extras": 1158,
+          "missed": 3175,
+          "hidden_extras": 106,
+          "gained": 17,
+          "lost": 0,
+          "extra_added": 1,
+          "extra_removed": 0,
+          "hidden_added": 0,
+          "hidden_removed": 0,
+          "frames": 104,
+          "tied": 96,
+          "regressed": 1,
+          "improved": 7,
+          "precision": 0.9465990315886558,
+          "recall": 0.8660450594886507,
+          "f1": 0.9045321347522418,
+          "previous_f1": 0.9041415944808129,
+          "changed": 8,
+          "outside_source_xz": {
+            "before": 442,
+            "after": 443
+          }
+        },
+        "extra": {
+          "target": 4098,
+          "placed": 3951,
+          "correct": 3568,
+          "extras": 383,
+          "missed": 530,
+          "hidden_extras": 60,
+          "gained": 9,
+          "lost": 0,
+          "extra_added": 2,
+          "extra_removed": 0,
+          "hidden_added": 1,
+          "hidden_removed": 0,
+          "frames": 20,
+          "improved": 4,
+          "tied": 14,
+          "regressed": 2,
+          "precision": 0.90306251581878,
+          "recall": 0.8706686188384578,
+          "f1": 0.8865697602186607,
+          "previous_f1": 0.8855436675789997,
+          "changed": 6,
+          "outside_source_xz": {
+            "before": 197,
+            "after": 198
+          }
+        },
+        "new": {
+          "target": 747,
+          "placed": 739,
+          "correct": 621,
+          "extras": 118,
+          "missed": 126,
+          "hidden_extras": 0,
+          "gained": 0,
+          "lost": 0,
+          "extra_added": 0,
+          "extra_removed": 0,
+          "hidden_added": 0,
+          "hidden_removed": 0,
+          "frames": 4,
+          "tied": 4,
+          "precision": 0.8403247631935047,
+          "recall": 0.8313253012048193,
+          "f1": 0.8358008075370121,
+          "previous_f1": 0.8358008075370121,
+          "changed": 0,
+          "outside_source_xz": {
+            "before": 24,
+            "after": 24
+          }
+        }
+      },
+      "transfer": {
+        "target": 764,
+        "placed": 894,
+        "correct": 692,
+        "extras": 202,
+        "missed": 72,
+        "hidden_extras": 10,
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0,
+        "frames": 4,
+        "tied": 4,
+        "precision": 0.7740492170022372,
+        "recall": 0.9057591623036649,
+        "f1": 0.8347406513872135,
+        "previous_f1": 0.8347406513872135
+      },
+      "canopies": {
+        "old": {
+          "previous_roof": {
+            "frames": 7,
+            "visible_roof": 362,
+            "anchored_roof": 278,
+            "target_triples": 1823,
+            "matching_triples": 1403,
+            "exact_widths": 7,
+            "unresolved_widths": 0,
+            "clear_rays": 106,
+            "filled_clear_rays": 0
+          },
+          "roof": {
+            "frames": 7,
+            "visible_roof": 362,
+            "anchored_roof": 291,
+            "target_triples": 1823,
+            "matching_triples": 1468,
+            "exact_widths": 7,
+            "unresolved_widths": 0,
+            "clear_rays": 106,
+            "filled_clear_rays": 0
+          }
+        },
+        "fresh": {
+          "previous_roof": {
+            "frames": 3,
+            "visible_roof": 97,
+            "anchored_roof": 68,
+            "target_triples": 500,
+            "matching_triples": 355,
+            "exact_widths": 3,
+            "unresolved_widths": 0,
+            "clear_rays": 31,
+            "filled_clear_rays": 0
+          },
+          "roof": {
+            "frames": 3,
+            "visible_roof": 97,
+            "anchored_roof": 71,
+            "target_triples": 500,
+            "matching_triples": 370,
+            "exact_widths": 3,
+            "unresolved_widths": 0,
+            "clear_rays": 31,
+            "filled_clear_rays": 0
+          }
+        },
+        "extra": {
+          "previous_roof": {
+            "frames": 8,
+            "visible_roof": 398,
+            "anchored_roof": 313,
+            "target_triples": 2005,
+            "matching_triples": 1546,
+            "exact_widths": 8,
+            "unresolved_widths": 0,
+            "clear_rays": 106,
+            "filled_clear_rays": 0
+          },
+          "roof": {
+            "frames": 8,
+            "visible_roof": 398,
+            "anchored_roof": 322,
+            "target_triples": 2005,
+            "matching_triples": 1590,
+            "exact_widths": 8,
+            "unresolved_widths": 0,
+            "clear_rays": 106,
+            "filled_clear_rays": 0
+          }
+        },
+        "fixed": {
+          "previous_roof": {
+            "frames": 10,
+            "visible_roof": 459,
+            "anchored_roof": 346,
+            "target_triples": 2323,
+            "matching_triples": 1758,
+            "exact_widths": 10,
+            "unresolved_widths": 0,
+            "clear_rays": 137,
+            "filled_clear_rays": 0
+          },
+          "roof": {
+            "frames": 10,
+            "visible_roof": 459,
+            "anchored_roof": 362,
+            "target_triples": 2323,
+            "matching_triples": 1838,
+            "exact_widths": 10,
+            "unresolved_widths": 0,
+            "clear_rays": 137,
+            "filled_clear_rays": 0
+          }
+        }
+      }
+    },
+    "strict": {
+      "revision": "527ba59aa28ba2b95d52fbd714d552c8b3ec7ffe",
+      "sha256": "f0f535713368248f47162759378e44827fec1967a8bf1a41e8b7c66518b7d57e",
+      "groups": {
+        "train": {
+          "target": 18322,
+          "placed": 16801,
+          "correct": 16020,
+          "extras": 781,
+          "missed": 2302,
+          "hidden_extras": 82,
+          "gained": 3,
+          "lost": 0,
+          "extra_added": 0,
+          "extra_removed": 0,
+          "hidden_added": 0,
+          "hidden_removed": 0,
+          "frames": 72,
+          "tied": 70,
+          "improved": 2,
+          "precision": 0.9535146717457295,
+          "recall": 0.8743586944656697,
+          "f1": 0.9122227600148051,
+          "previous_f1": 0.912129840546697,
+          "changed": 2,
+          "outside_source_xz": {
+            "before": 307,
+            "after": 307
+          }
+        },
+        "fixed": {
+          "target": 23702,
+          "placed": 21670,
+          "correct": 20512,
+          "extras": 1158,
+          "missed": 3190,
+          "hidden_extras": 106,
+          "gained": 2,
+          "lost": 0,
+          "extra_added": 1,
+          "extra_removed": 0,
+          "hidden_added": 0,
+          "hidden_removed": 0,
+          "frames": 104,
+          "tied": 101,
+          "regressed": 1,
+          "improved": 2,
+          "precision": 0.9465620673742501,
+          "recall": 0.865412201501983,
+          "f1": 0.9041699726703694,
+          "previous_f1": 0.9041415944808129,
+          "changed": 3,
+          "outside_source_xz": {
+            "before": 442,
+            "after": 443
+          }
+        },
+        "extra": {
+          "target": 4098,
+          "placed": 3942,
+          "correct": 3560,
+          "extras": 382,
+          "missed": 538,
+          "hidden_extras": 59,
+          "gained": 1,
+          "lost": 0,
+          "extra_added": 1,
+          "extra_removed": 0,
+          "hidden_added": 0,
+          "hidden_removed": 0,
+          "frames": 20,
+          "tied": 18,
+          "improved": 1,
+          "regressed": 1,
+          "precision": 0.9030948756976154,
+          "recall": 0.8687164470473402,
+          "f1": 0.8855721393034826,
+          "previous_f1": 0.8855436675789997,
+          "changed": 2,
+          "outside_source_xz": {
+            "before": 197,
+            "after": 198
+          }
+        },
+        "new": {
+          "target": 747,
+          "placed": 739,
+          "correct": 621,
+          "extras": 118,
+          "missed": 126,
+          "hidden_extras": 0,
+          "gained": 0,
+          "lost": 0,
+          "extra_added": 0,
+          "extra_removed": 0,
+          "hidden_added": 0,
+          "hidden_removed": 0,
+          "frames": 4,
+          "tied": 4,
+          "precision": 0.8403247631935047,
+          "recall": 0.8313253012048193,
+          "f1": 0.8358008075370121,
+          "previous_f1": 0.8358008075370121,
+          "changed": 0,
+          "outside_source_xz": {
+            "before": 24,
+            "after": 24
+          }
+        }
+      },
+      "transfer": {
+        "target": 764,
+        "placed": 894,
+        "correct": 692,
+        "extras": 202,
+        "missed": 72,
+        "hidden_extras": 10,
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0,
+        "frames": 4,
+        "tied": 4,
+        "precision": 0.7740492170022372,
+        "recall": 0.9057591623036649,
+        "f1": 0.8347406513872135,
+        "previous_f1": 0.8347406513872135
+      },
+      "canopies": {
+        "old": {
+          "previous_roof": {
+            "frames": 7,
+            "visible_roof": 362,
+            "anchored_roof": 278,
+            "target_triples": 1823,
+            "matching_triples": 1403,
+            "exact_widths": 7,
+            "unresolved_widths": 0,
+            "clear_rays": 106,
+            "filled_clear_rays": 0
+          },
+          "roof": {
+            "frames": 7,
+            "visible_roof": 362,
+            "anchored_roof": 280,
+            "target_triples": 1823,
+            "matching_triples": 1413,
+            "exact_widths": 7,
+            "unresolved_widths": 0,
+            "clear_rays": 106,
+            "filled_clear_rays": 0
+          }
+        },
+        "fresh": {
+          "previous_roof": {
+            "frames": 3,
+            "visible_roof": 97,
+            "anchored_roof": 68,
+            "target_triples": 500,
+            "matching_triples": 355,
+            "exact_widths": 3,
+            "unresolved_widths": 0,
+            "clear_rays": 31,
+            "filled_clear_rays": 0
+          },
+          "roof": {
+            "frames": 3,
+            "visible_roof": 97,
+            "anchored_roof": 68,
+            "target_triples": 500,
+            "matching_triples": 355,
+            "exact_widths": 3,
+            "unresolved_widths": 0,
+            "clear_rays": 31,
+            "filled_clear_rays": 0
+          }
+        },
+        "extra": {
+          "previous_roof": {
+            "frames": 8,
+            "visible_roof": 398,
+            "anchored_roof": 313,
+            "target_triples": 2005,
+            "matching_triples": 1546,
+            "exact_widths": 8,
+            "unresolved_widths": 0,
+            "clear_rays": 106,
+            "filled_clear_rays": 0
+          },
+          "roof": {
+            "frames": 8,
+            "visible_roof": 398,
+            "anchored_roof": 314,
+            "target_triples": 2005,
+            "matching_triples": 1551,
+            "exact_widths": 8,
+            "unresolved_widths": 0,
+            "clear_rays": 106,
+            "filled_clear_rays": 0
+          }
+        },
+        "fixed": {
+          "previous_roof": {
+            "frames": 10,
+            "visible_roof": 459,
+            "anchored_roof": 346,
+            "target_triples": 2323,
+            "matching_triples": 1758,
+            "exact_widths": 10,
+            "unresolved_widths": 0,
+            "clear_rays": 137,
+            "filled_clear_rays": 0
+          },
+          "roof": {
+            "frames": 10,
+            "visible_roof": 459,
+            "anchored_roof": 348,
+            "target_triples": 2323,
+            "matching_triples": 1768,
+            "exact_widths": 10,
+            "unresolved_widths": 0,
+            "clear_rays": 137,
+            "filled_clear_rays": 0
+          }
+        }
+      }
+    },
+    "bracket": {
+      "revision": "527ba59aa28ba2b95d52fbd714d552c8b3ec7ffe",
+      "sha256": "f0f535713368248f47162759378e44827fec1967a8bf1a41e8b7c66518b7d57e",
+      "groups": {
+        "train": {
+          "target": 18322,
+          "placed": 16798,
+          "correct": 16017,
+          "extras": 781,
+          "missed": 2305,
+          "hidden_extras": 82,
+          "gained": 0,
+          "lost": 0,
+          "extra_added": 0,
+          "extra_removed": 0,
+          "hidden_added": 0,
+          "hidden_removed": 0,
+          "frames": 72,
+          "tied": 72,
+          "precision": 0.9535063698059293,
+          "recall": 0.8741949568824364,
+          "f1": 0.912129840546697,
+          "previous_f1": 0.912129840546697,
+          "changed": 0,
+          "outside_source_xz": {
+            "before": 307,
+            "after": 307
+          }
+        },
+        "fixed": {
+          "target": 23702,
+          "placed": 21670,
+          "correct": 20512,
+          "extras": 1158,
+          "missed": 3190,
+          "hidden_extras": 106,
+          "gained": 2,
+          "lost": 0,
+          "extra_added": 1,
+          "extra_removed": 0,
+          "hidden_added": 0,
+          "hidden_removed": 0,
+          "frames": 104,
+          "tied": 102,
+          "regressed": 1,
+          "improved": 1,
+          "precision": 0.9465620673742501,
+          "recall": 0.865412201501983,
+          "f1": 0.9041699726703694,
+          "previous_f1": 0.9041415944808129,
+          "changed": 2,
+          "outside_source_xz": {
+            "before": 442,
+            "after": 443
+          }
+        },
+        "extra": {
+          "target": 4098,
+          "placed": 3944,
+          "correct": 3561,
+          "extras": 383,
+          "missed": 537,
+          "hidden_extras": 59,
+          "gained": 2,
+          "lost": 0,
+          "extra_added": 2,
+          "extra_removed": 0,
+          "hidden_added": 0,
+          "hidden_removed": 0,
+          "frames": 20,
+          "tied": 17,
+          "improved": 1,
+          "regressed": 2,
+          "precision": 0.9028904665314401,
+          "recall": 0.8689604685212299,
+          "f1": 0.8856005968664511,
+          "previous_f1": 0.8855436675789997,
+          "changed": 3,
+          "outside_source_xz": {
+            "before": 197,
+            "after": 199
+          }
+        },
+        "new": {
+          "target": 747,
+          "placed": 739,
+          "correct": 621,
+          "extras": 118,
+          "missed": 126,
+          "hidden_extras": 0,
+          "gained": 0,
+          "lost": 0,
+          "extra_added": 0,
+          "extra_removed": 0,
+          "hidden_added": 0,
+          "hidden_removed": 0,
+          "frames": 4,
+          "tied": 4,
+          "precision": 0.8403247631935047,
+          "recall": 0.8313253012048193,
+          "f1": 0.8358008075370121,
+          "previous_f1": 0.8358008075370121,
+          "changed": 0,
+          "outside_source_xz": {
+            "before": 24,
+            "after": 24
+          }
+        }
+      },
+      "transfer": {
+        "target": 764,
+        "placed": 894,
+        "correct": 692,
+        "extras": 202,
+        "missed": 72,
+        "hidden_extras": 10,
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0,
+        "frames": 4,
+        "tied": 4,
+        "precision": 0.7740492170022372,
+        "recall": 0.9057591623036649,
+        "f1": 0.8347406513872135,
+        "previous_f1": 0.8347406513872135
+      },
+      "canopies": {
+        "old": {
+          "previous_roof": {
+            "frames": 7,
+            "visible_roof": 362,
+            "anchored_roof": 278,
+            "target_triples": 1823,
+            "matching_triples": 1403,
+            "exact_widths": 7,
+            "unresolved_widths": 0,
+            "clear_rays": 106,
+            "filled_clear_rays": 0
+          },
+          "roof": {
+            "frames": 7,
+            "visible_roof": 362,
+            "anchored_roof": 278,
+            "target_triples": 1823,
+            "matching_triples": 1403,
+            "exact_widths": 7,
+            "unresolved_widths": 0,
+            "clear_rays": 106,
+            "filled_clear_rays": 0
+          }
+        },
+        "fresh": {
+          "previous_roof": {
+            "frames": 3,
+            "visible_roof": 97,
+            "anchored_roof": 68,
+            "target_triples": 500,
+            "matching_triples": 355,
+            "exact_widths": 3,
+            "unresolved_widths": 0,
+            "clear_rays": 31,
+            "filled_clear_rays": 0
+          },
+          "roof": {
+            "frames": 3,
+            "visible_roof": 97,
+            "anchored_roof": 68,
+            "target_triples": 500,
+            "matching_triples": 355,
+            "exact_widths": 3,
+            "unresolved_widths": 0,
+            "clear_rays": 31,
+            "filled_clear_rays": 0
+          }
+        },
+        "extra": {
+          "previous_roof": {
+            "frames": 8,
+            "visible_roof": 398,
+            "anchored_roof": 313,
+            "target_triples": 2005,
+            "matching_triples": 1546,
+            "exact_widths": 8,
+            "unresolved_widths": 0,
+            "clear_rays": 106,
+            "filled_clear_rays": 0
+          },
+          "roof": {
+            "frames": 8,
+            "visible_roof": 398,
+            "anchored_roof": 313,
+            "target_triples": 2005,
+            "matching_triples": 1546,
+            "exact_widths": 8,
+            "unresolved_widths": 0,
+            "clear_rays": 106,
+            "filled_clear_rays": 0
+          }
+        },
+        "fixed": {
+          "previous_roof": {
+            "frames": 10,
+            "visible_roof": 459,
+            "anchored_roof": 346,
+            "target_triples": 2323,
+            "matching_triples": 1758,
+            "exact_widths": 10,
+            "unresolved_widths": 0,
+            "clear_rays": 137,
+            "filled_clear_rays": 0
+          },
+          "roof": {
+            "frames": 10,
+            "visible_roof": 459,
+            "anchored_roof": 346,
+            "target_triples": 2323,
+            "matching_triples": 1758,
+            "exact_widths": 10,
+            "unresolved_widths": 0,
+            "clear_rays": 137,
+            "filled_clear_rays": 0
+          }
+        }
+      }
+    },
+    "pooled": {
+      "revision": "4df46ff215a0a6b925b2903d4ce0afb02a8c89ca",
+      "sha256": "0b9ed949c29d558e6dbc725b23a2b06d1225af5cdc94ed5df055bf58865946da",
+      "groups": {
+        "train": {
+          "target": 18322,
+          "placed": 16798,
+          "correct": 16017,
+          "extras": 781,
+          "missed": 2305,
+          "hidden_extras": 82,
+          "gained": 0,
+          "lost": 0,
+          "extra_added": 0,
+          "extra_removed": 0,
+          "hidden_added": 0,
+          "hidden_removed": 0,
+          "frames": 72,
+          "tied": 72,
+          "precision": 0.9535063698059293,
+          "recall": 0.8741949568824364,
+          "f1": 0.912129840546697,
+          "previous_f1": 0.912129840546697,
+          "changed": 0,
+          "outside_source_xz": {
+            "before": 307,
+            "after": 307
+          }
+        },
+        "fixed": {
+          "target": 23702,
+          "placed": 21668,
+          "correct": 20511,
+          "extras": 1157,
+          "missed": 3191,
+          "hidden_extras": 106,
+          "gained": 1,
+          "lost": 0,
+          "extra_added": 0,
+          "extra_removed": 0,
+          "hidden_added": 0,
+          "hidden_removed": 0,
+          "frames": 104,
+          "tied": 103,
+          "improved": 1,
+          "precision": 0.9466032859516338,
+          "recall": 0.8653700109695385,
+          "f1": 0.9041657482918228,
+          "previous_f1": 0.9041415944808129,
+          "changed": 1,
+          "outside_source_xz": {
+            "before": 442,
+            "after": 442
+          }
+        },
+        "extra": {
+          "target": 4098,
+          "placed": 3940,
+          "correct": 3559,
+          "extras": 381,
+          "missed": 539,
+          "hidden_extras": 59,
+          "gained": 0,
+          "lost": 0,
+          "extra_added": 0,
+          "extra_removed": 0,
+          "hidden_added": 0,
+          "hidden_removed": 0,
+          "frames": 20,
+          "tied": 20,
+          "precision": 0.9032994923857868,
+          "recall": 0.8684724255734505,
+          "f1": 0.8855436675789997,
+          "previous_f1": 0.8855436675789997,
+          "changed": 0,
+          "outside_source_xz": {
+            "before": 197,
+            "after": 197
+          }
+        },
+        "new": {
+          "target": 747,
+          "placed": 739,
+          "correct": 621,
+          "extras": 118,
+          "missed": 126,
+          "hidden_extras": 0,
+          "gained": 0,
+          "lost": 0,
+          "extra_added": 0,
+          "extra_removed": 0,
+          "hidden_added": 0,
+          "hidden_removed": 0,
+          "frames": 4,
+          "tied": 4,
+          "precision": 0.8403247631935047,
+          "recall": 0.8313253012048193,
+          "f1": 0.8358008075370121,
+          "previous_f1": 0.8358008075370121,
+          "changed": 0,
+          "outside_source_xz": {
+            "before": 24,
+            "after": 24
+          }
+        }
+      },
+      "transfer": {
+        "target": 764,
+        "placed": 894,
+        "correct": 692,
+        "extras": 202,
+        "missed": 72,
+        "hidden_extras": 10,
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0,
+        "frames": 4,
+        "tied": 4,
+        "precision": 0.7740492170022372,
+        "recall": 0.9057591623036649,
+        "f1": 0.8347406513872135,
+        "previous_f1": 0.8347406513872135
+      },
+      "canopies": {
+        "old": {
+          "previous_roof": {
+            "frames": 7,
+            "visible_roof": 362,
+            "anchored_roof": 278,
+            "target_triples": 1823,
+            "matching_triples": 1403,
+            "exact_widths": 7,
+            "unresolved_widths": 0,
+            "clear_rays": 106,
+            "filled_clear_rays": 0
+          },
+          "roof": {
+            "frames": 7,
+            "visible_roof": 362,
+            "anchored_roof": 279,
+            "target_triples": 1823,
+            "matching_triples": 1408,
+            "exact_widths": 7,
+            "unresolved_widths": 0,
+            "clear_rays": 106,
+            "filled_clear_rays": 0
+          }
+        },
+        "fresh": {
+          "previous_roof": {
+            "frames": 3,
+            "visible_roof": 97,
+            "anchored_roof": 68,
+            "target_triples": 500,
+            "matching_triples": 355,
+            "exact_widths": 3,
+            "unresolved_widths": 0,
+            "clear_rays": 31,
+            "filled_clear_rays": 0
+          },
+          "roof": {
+            "frames": 3,
+            "visible_roof": 97,
+            "anchored_roof": 68,
+            "target_triples": 500,
+            "matching_triples": 355,
+            "exact_widths": 3,
+            "unresolved_widths": 0,
+            "clear_rays": 31,
+            "filled_clear_rays": 0
+          }
+        },
+        "extra": {
+          "previous_roof": {
+            "frames": 8,
+            "visible_roof": 398,
+            "anchored_roof": 313,
+            "target_triples": 2005,
+            "matching_triples": 1546,
+            "exact_widths": 8,
+            "unresolved_widths": 0,
+            "clear_rays": 106,
+            "filled_clear_rays": 0
+          },
+          "roof": {
+            "frames": 8,
+            "visible_roof": 398,
+            "anchored_roof": 313,
+            "target_triples": 2005,
+            "matching_triples": 1546,
+            "exact_widths": 8,
+            "unresolved_widths": 0,
+            "clear_rays": 106,
+            "filled_clear_rays": 0
+          }
+        },
+        "fixed": {
+          "previous_roof": {
+            "frames": 10,
+            "visible_roof": 459,
+            "anchored_roof": 346,
+            "target_triples": 2323,
+            "matching_triples": 1758,
+            "exact_widths": 10,
+            "unresolved_widths": 0,
+            "clear_rays": 137,
+            "filled_clear_rays": 0
+          },
+          "roof": {
+            "frames": 10,
+            "visible_roof": 459,
+            "anchored_roof": 347,
+            "target_triples": 2323,
+            "matching_triples": 1763,
+            "exact_widths": 10,
+            "unresolved_widths": 0,
+            "clear_rays": 137,
+            "filled_clear_rays": 0
+          }
+        }
+      }
+    },
+    "overhang": {
+      "revision": "36c96709cc131fef410ea5f0969f5149441c34f1",
+      "sha256": "c7ace2d6db3d05f6e37e003a161de59f81d3aa3ba77a19b173b6fd060a94773e",
+      "groups": {
+        "train": {
+          "target": 18322,
+          "placed": 16798,
+          "correct": 16017,
+          "extras": 781,
+          "missed": 2305,
+          "hidden_extras": 82,
+          "gained": 0,
+          "lost": 0,
+          "extra_added": 0,
+          "extra_removed": 0,
+          "hidden_added": 0,
+          "hidden_removed": 0,
+          "frames": 72,
+          "tied": 72,
+          "precision": 0.9535063698059293,
+          "recall": 0.8741949568824364,
+          "f1": 0.912129840546697,
+          "previous_f1": 0.912129840546697,
+          "changed": 0,
+          "outside_source_xz": {
+            "before": 307,
+            "after": 307
+          }
+        },
+        "fixed": {
+          "target": 23702,
+          "placed": 21675,
+          "correct": 20517,
+          "extras": 1158,
+          "missed": 3185,
+          "hidden_extras": 106,
+          "gained": 7,
+          "lost": 0,
+          "extra_added": 1,
+          "extra_removed": 0,
+          "hidden_added": 0,
+          "hidden_removed": 0,
+          "frames": 104,
+          "tied": 99,
+          "regressed": 1,
+          "improved": 4,
+          "precision": 0.9465743944636679,
+          "recall": 0.8656231541642055,
+          "f1": 0.9042907199682658,
+          "previous_f1": 0.9041415944808129,
+          "changed": 5,
+          "outside_source_xz": {
+            "before": 442,
+            "after": 443
+          }
+        },
+        "extra": {
+          "target": 4098,
+          "placed": 3945,
+          "correct": 3562,
+          "extras": 383,
+          "missed": 536,
+          "hidden_extras": 60,
+          "gained": 3,
+          "lost": 0,
+          "extra_added": 2,
+          "extra_removed": 0,
+          "hidden_added": 1,
+          "hidden_removed": 0,
+          "frames": 20,
+          "tied": 17,
+          "improved": 1,
+          "regressed": 2,
+          "precision": 0.902915082382763,
+          "recall": 0.8692044899951196,
+          "f1": 0.8857391520576899,
+          "previous_f1": 0.8855436675789997,
+          "changed": 3,
+          "outside_source_xz": {
+            "before": 197,
+            "after": 198
+          }
+        },
+        "new": {
+          "target": 747,
+          "placed": 739,
+          "correct": 621,
+          "extras": 118,
+          "missed": 126,
+          "hidden_extras": 0,
+          "gained": 0,
+          "lost": 0,
+          "extra_added": 0,
+          "extra_removed": 0,
+          "hidden_added": 0,
+          "hidden_removed": 0,
+          "frames": 4,
+          "tied": 4,
+          "precision": 0.8403247631935047,
+          "recall": 0.8313253012048193,
+          "f1": 0.8358008075370121,
+          "previous_f1": 0.8358008075370121,
+          "changed": 0,
+          "outside_source_xz": {
+            "before": 24,
+            "after": 24
+          }
+        }
+      },
+      "transfer": {
+        "target": 764,
+        "placed": 894,
+        "correct": 692,
+        "extras": 202,
+        "missed": 72,
+        "hidden_extras": 10,
+        "gained": 0,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 0,
+        "hidden_added": 0,
+        "hidden_removed": 0,
+        "frames": 4,
+        "tied": 4,
+        "precision": 0.7740492170022372,
+        "recall": 0.9057591623036649,
+        "f1": 0.8347406513872135,
+        "previous_f1": 0.8347406513872135
+      },
+      "canopies": {
+        "old": {
+          "previous_roof": {
+            "frames": 7,
+            "visible_roof": 362,
+            "anchored_roof": 278,
+            "target_triples": 1823,
+            "matching_triples": 1403,
+            "exact_widths": 7,
+            "unresolved_widths": 0,
+            "clear_rays": 106,
+            "filled_clear_rays": 0
+          },
+          "roof": {
+            "frames": 7,
+            "visible_roof": 362,
+            "anchored_roof": 285,
+            "target_triples": 1823,
+            "matching_triples": 1438,
+            "exact_widths": 7,
+            "unresolved_widths": 0,
+            "clear_rays": 106,
+            "filled_clear_rays": 0
+          }
+        },
+        "fresh": {
+          "previous_roof": {
+            "frames": 3,
+            "visible_roof": 97,
+            "anchored_roof": 68,
+            "target_triples": 500,
+            "matching_triples": 355,
+            "exact_widths": 3,
+            "unresolved_widths": 0,
+            "clear_rays": 31,
+            "filled_clear_rays": 0
+          },
+          "roof": {
+            "frames": 3,
+            "visible_roof": 97,
+            "anchored_roof": 68,
+            "target_triples": 500,
+            "matching_triples": 355,
+            "exact_widths": 3,
+            "unresolved_widths": 0,
+            "clear_rays": 31,
+            "filled_clear_rays": 0
+          }
+        },
+        "extra": {
+          "previous_roof": {
+            "frames": 8,
+            "visible_roof": 398,
+            "anchored_roof": 313,
+            "target_triples": 2005,
+            "matching_triples": 1546,
+            "exact_widths": 8,
+            "unresolved_widths": 0,
+            "clear_rays": 106,
+            "filled_clear_rays": 0
+          },
+          "roof": {
+            "frames": 8,
+            "visible_roof": 398,
+            "anchored_roof": 316,
+            "target_triples": 2005,
+            "matching_triples": 1561,
+            "exact_widths": 8,
+            "unresolved_widths": 0,
+            "clear_rays": 106,
+            "filled_clear_rays": 0
+          }
+        },
+        "fixed": {
+          "previous_roof": {
+            "frames": 10,
+            "visible_roof": 459,
+            "anchored_roof": 346,
+            "target_triples": 2323,
+            "matching_triples": 1758,
+            "exact_widths": 10,
+            "unresolved_widths": 0,
+            "clear_rays": 137,
+            "filled_clear_rays": 0
+          },
+          "roof": {
+            "frames": 10,
+            "visible_roof": 459,
+            "anchored_roof": 353,
+            "target_triples": 2323,
+            "matching_triples": 1793,
+            "exact_widths": 10,
+            "unresolved_widths": 0,
+            "clear_rays": 137,
+            "filled_clear_rays": 0
+          }
+        }
+      }
+    }
+  },
+  "oracle": {
+    "fixed": {
+      "proposed": 502,
+      "correct": 162,
+      "clean_strips": 132,
+      "per_cell": 150,
+      "sections": 433
+    },
+    "development": {
+      "proposed": 306,
+      "correct": 53,
+      "clean_strips": 40,
+      "per_cell": 53,
+      "sections": 200
+    },
+    "alternate": {
+      "proposed": 215,
+      "correct": 53,
+      "clean_strips": 43,
+      "per_cell": 47,
+      "sections": 197
+    },
+    "new": {
+      "proposed": 36,
+      "correct": 0,
+      "clean_strips": 0,
+      "per_cell": 0,
+      "sections": 36
+    }
+  }
+}
