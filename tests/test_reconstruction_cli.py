@@ -10,6 +10,14 @@ import reconstruct
 
 
 class ReconstructionCliTests(unittest.TestCase):
+    def test_surfaces_forward_explicit_outline_atlas(self):
+        argv = ['reconstruct', 'build', 'picture.png', '--through', 'surfaces', '--version', '26.3',
+                '--atlas', 'atlas', '--out', 'out']
+        with patch.object(sys, 'argv', argv), patch('engine.surface_model.build') as build:
+            reconstruct.main()
+        self.assertEqual(build.call_args.kwargs['through'], 'surfaces')
+        self.assertEqual(build.call_args.kwargs['atlas_path'], Path('atlas'))
+
     def test_counts_use_project_defaults_and_forward_crop_and_atlas(self):
         argv = ['reconstruct', 'build', 'picture.png', '--through', 'counts', '--version', '26.3',
                 '--surface-context-px', '10', '--material-match', 'atlas', '--atlas', 'atlas', '--out', 'out']

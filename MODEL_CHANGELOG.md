@@ -2,6 +2,10 @@
 
 These entries cover model inputs, rules around model outputs, and evaluation changes. **Shipped** means ordinary builds use the adjustment. **Experiment** means it was tested and left out of the default. **Diagnostic** means we learned something about errors without changing predictions.
 
+### November 27, 2026
+
+- **Surface Finder, smooth atlas boundaries.** The finder checks a native smooth patch and its host against 448 shaded atlas sprites and a competing same-height background sample, then keeps a two-pixel interior. It adds 77,329 correctly assigned fixed pixels and seven transfer pixels, with zero sampled neighbor or background additions across 204 views. Registry and Portico each gain one matched surface. Shopfront gains 2,615 center pixels, while Courtyard abstains. The source crop follows the new outline. Counts and placement retain their measured supports. [Comparison, placement status and public replay](benchmark/reviews/smooth-boundary-atlas-01/README.md)
+
 ### November 26, 2026
 
 - **Experimental smooth and repeating texture seams.** A smooth seam merged a real Shopfront side wall but yielded a count of 35 along one axis of an 8 × 7 plane. The front-wall hump on its low-left view is 2,676 unsupported pixels in one inspected patch. Guarding existing junctions preserved fixed placement (90.8126% strict and 92.9145% facade-priority) while a separate Canopy 08 view lost four required blocks and gained two extras. [Masks, counts and placement replay](benchmark/reviews/shopfront-seam-continuity-01/README.md)
