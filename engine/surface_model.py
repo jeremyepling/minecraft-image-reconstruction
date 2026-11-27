@@ -717,6 +717,18 @@ def build(image_path, version, out, *, outlines=None, order_method=None, through
                     cells = set(cells) - blocked
                     status.update(placed_blocks=len(cells), pavement_openings=dict(
                         surfaces=sorted(matched), removed=sorted(blocked)))
+                elif (counter == texture_guided_count.METHOD and material_match in (None,'atlas')
+                      and not (inset_events or phase_events or count_confirmed_outlines)
+                      and status.get('foreground_depth',{}).get('method') == 'joint'):
+                    from engine import smooth_extent_placement
+                    source_camera = metric_camera if metric_camera is not None else dict(
+                        P=status['P'], scale_status=status['camera_status'], reason=status['reason'])
+                    additions, regions = smooth_extent_placement.recover(
+                        image, version, placement_parts, set(cells), source_camera, camera_atlas_path)
+                    if regions:
+                        cells = set(cells) | additions
+                        status.update(placed_blocks=len(cells), smooth_extent_placement=dict(
+                            candidate_patches=len(regions), added=len(additions)))
             material = 'smooth_stone'
             blocks = {tuple(map(int, pos)): material for pos in cells}
             rows = [dict(x=x, y=y, z=z, block_id=material) for x,y,z in sorted(blocks)]
