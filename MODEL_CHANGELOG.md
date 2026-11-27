@@ -4,6 +4,8 @@ These entries cover model inputs, rules around model outputs, and evaluation cha
 
 ### November 27, 2026
 
+- **Diagnostic crop ownership.** The 193 active open-sky crops touch 94.9% of visible cube pixels, but only 92 have at least 50% IoU with one native connected full-cube surface. Neighboring cube surfaces account for 433,709 of 569,674 paired extra pixels. Score visible plane separation as well as foreground coverage when training or evaluating mask proposals. [Native crop comparison](benchmark/reviews/sky-crop-reference-01/README.md)
+
 - **Floating branch default.** Surface Finder now rejects a proposal whose entire native support matches connected sky or cloud before it creates crops or counts blocks. The six open-sky handoffs retained 193 of 216 proposals. All surviving supports and crop pixels matched the prior handoffs. [Floating pipeline and replay](benchmark/FLOATING_BRANCH.md)
 
 - **Experimental connected native atlas patches.** Projective texture repeats and neighboring full-face atlas matches recovered 28 smooth red sandstone blocks on Garden and 11 prismarine bricks on Harbor. Across the six open-sky exports this gained 34 correct positions and 39 exact position-plus-ID matches without increasing extra positions. Garden’s permissive mixed-material chart combined three depths. Require a connected same-texture patch before exporting this challenger. [Source-only runner](benchmark/garden_anchor_extension.py)
