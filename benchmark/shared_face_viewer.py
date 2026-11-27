@@ -90,6 +90,11 @@ function draw(){
   link.textContent=v.name==='Registry'?'Inspect the missing upper-right plaster wall in the high-right source image':'Inspect the missing plaster patch in the low-left source image';
   review.append(link);
  }
+ if(v.id==='inverse-voxels-26.3--confirm--test-colonnade-01-oblique-right'){
+  const link=document.createElement('a');link.href='colonnade-01-window-wall.png';
+  link.textContent='Trace the two missing blocks below the window';
+  review.append(link);
+ }
  mix.disabled=stage===0;el('overlay').style.opacity=mix.value/100;el('pct').value=mix.value+'%';
  [...nav.children].forEach((b,i)=>b.setAttribute('aria-pressed',String(i===stage)));el('legend').textContent=s[2];
  el('measures').textContent=v.name+' · '+v.f1+' strict F1 · '+v.facade+' facade-priority F1 · '+v.correct+' correct · '+v.required+' required misses · '+v.optional+' optional misses · '+v.extras+' extras';
