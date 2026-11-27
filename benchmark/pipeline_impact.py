@@ -106,7 +106,11 @@ def challenger_rows(report, rows):
             for section, metric in (("geometry", "strict"), ("geometry", "facade"),
                                     ("scores", "strict"), ("scores", "facade")):
                 delta = (item[section][metric]["f1"] - control[section][metric]["f1"]) * 100
-                cells.append(f"<td>{delta:+.2f}</td>" if abs(delta) >= 0.005 else "<td>0.00</td>")
+                if abs(delta) < 1e-9:
+                    value = "0.00"
+                else:
+                    value = f"{delta:+.4f}" if abs(delta) < .01 else f"{delta:+.2f}"
+                cells.append(f"<td>{value}</td>")
             gains.append(f"<tr><th scope='row'>{escape(method['name'])}</th><td>{name}</td>"
                          f"<td>{cohort['views']}</td>{''.join(cells)}</tr>")
     return "".join(options), specs, "".join(gains)

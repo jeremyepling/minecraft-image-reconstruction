@@ -28,6 +28,7 @@ const maskCases=__MASK_CASES__;
 const early={baseline:'Paired baseline',mask:'Visible surface masks',directions:'Masks + face directions',chart:'Masks + directions + chart corners',grids:'Masks + directions + corners + counts',camera:'Recorded camera alone',joint:'Masks + directions + corners + counts + camera'};
 const late={default:'Released pipeline',camera:'Camera for reading textures',positions:'Visible block positions',both:'Positions + camera for reading textures',perfect_ids:'Exact IDs on the released positions¹',perfect_export:'Exact positions + exact IDs, decoded pack'};
 const el=id=>document.getElementById(id),fmt=v=>(100*v).toFixed(2)+'%';
+const points=d=>(d>0?'+':'')+d.toFixed(Math.abs(d)>1e-9 && Math.abs(d)<.01?4:2)+' pp';
 const special={
  'full-masks':[{baseline:'Same-path baseline',mask:'Correct native visible masks'},'Full fixed mask confirmation','The finder masks are replaced on all 104 fixed views. The downstream camera, direction, counting and depth decisions still use estimated evidence.'],
  'bypass-ranked':[{control:'Ranked placement control',skip_repeat_choice:'Bypass texture-repeat depth choice',skip_joint:'Bypass joint depth arbitration',skip_occlusion:'Bypass occlusion rejection',skip_edges:'Bypass verified edge recovery'},'Remove one placement sub-stage','Ten hash-selected views. The material exporter scores the ranked cells. Some ordinary build-level edits happen later. All four removals hurt placement. On Loading Dock, full exports also confirmed the repeat and edge losses.'],
@@ -53,7 +54,7 @@ function update(){
    const list=el('perImage');list.replaceChildren();
    for(const row of ordered){
      const tr=list.insertRow(),c=row.changes,d=100*delta(row);
-     for(const value of [row.id,fmt(row.baseline[metric]),fmt(row.mask[metric]),(d>0?'+':'')+d.toFixed(2)+' pp',c.gained+' / '+c.lost,c.extras_added+' / '+c.extras_removed])tr.insertCell().textContent=value;
+     for(const value of [row.id,fmt(row.baseline[metric]),fmt(row.mask[metric]),points(d),c.gained+' / '+c.lost,c.extras_added+' / '+c.extras_removed])tr.insertCell().textContent=value;
    }
  }
  const body=el('experimentRows');body.replaceChildren();const chart=el('chart');chart.replaceChildren();
@@ -66,7 +67,7 @@ function update(){
    if(!i)continue;const d=deltas[i-1],y=32*(i-1)+4;
    svg('text',{x:2,y:y+17,fill:'#edf3ef','font-size':15},names[m]);
    svg('rect',{x:Math.min(zero,zero+d*scale),y:y+2,width:Math.max(1,Math.abs(d)*scale),height:18,fill:d>=0?'#8be0b1':'#ffb499'});
-   svg('text',{x:800,y:y+17,fill:'#edf3ef','font-size':15},(d>0?'+':'')+d.toFixed(2)+' pp');
+   svg('text',{x:800,y:y+17,fill:'#edf3ef','font-size':15},points(d));
  }
  svg('line',{x1:zero,x2:zero,y1:0,y2:32*bars.length,stroke:'#d4dfdc'});
 }
