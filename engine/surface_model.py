@@ -403,6 +403,7 @@ def build(image_path, version, out, *, outlines=None, order_method=None, through
     phase_events = []
     count_confirmed_outlines = []
     pre_inset = None
+    eave_events = []
     from engine.atlas import digest
     from engine.surface_fields import MODELS, SETTINGS as inference, infer
     if version != '26.3':
@@ -547,11 +548,25 @@ def build(image_path, version, out, *, outlines=None, order_method=None, through
             pre_inset = patches
             patches, inset_events, phase_events, count_confirmed_outlines, metric_camera = inset_returns.detect(
                 image, patches, version, atlas_path=camera_atlas_path)
+            from engine import eave_pinholes
+            patches, eave_events = eave_pinholes.refine(image, patches)
             methods['visible_insets'] = inset_returns.METHOD
             methods['inset_texture'] = inset_returns.TEXTURE_METHOD
             methods['inset_outlines'] = inset_returns.OUTLINE_METHOD
             methods['boundary_sequence'].extend([inset_returns.METHOD, inset_returns.TEXTURE_METHOD, inset_returns.OUTLINE_METHOD])
+            methods['eave_outline'] = eave_pinholes.METHOD
+            methods['boundary_sequence'].append(eave_pinholes.METHOD)
+            boundary_settings['eave_outline'] = dict(events=eave_events)
             boundary_settings['visible_insets'] = dict(events=inset_events, texture_events=phase_events, count_confirmed_outlines=count_confirmed_outlines)
+            # Confirm only intact neighboring masks. Existing inset events keep
+            # their original hosts and placement/count bookkeeping.
+            if not (inset_events or phase_events or count_confirmed_outlines):
+                from engine import jagged_texture_join
+                patches, joins, metric_camera = jagged_texture_join.refine(
+                    image, patches, version, camera=metric_camera, atlas_path=camera_atlas_path)
+                pre_inset = patches
+                methods['boundary_sequence'].append(jagged_texture_join.METHOD)
+                boundary_settings['jagged_texture_join'] = dict(events=joins)
         context_px = DEFAULT_CONTEXT_PX if context_px is None else context_px
         patches = [with_outline(part) for part in patches]
         crop_dir = out/'surface-crops'
@@ -569,7 +584,9 @@ def build(image_path, version, out, *, outlines=None, order_method=None, through
                 part['context_crop'] = dict(path=context_path.relative_to(out).as_posix(), xyxy=list(window),
                                             mask_xyxy_in_crop=list(local), requested_margin_px=context_px,
                                             margins_ltrb_px=[local[0],local[1],context.width-local[2],context.height-local[3]])
+        from engine.outline_issues import outline_issues
         model = dict(footprint='support', image_size=list(image.size), planes=patches,
+                     outline_issues=outline_issues(patches,image.size),
                      outline_coordinates='closed outer and hole rings on support-grid pixel edges',
                      sampling_chart_coordinates='optional four source-image points for rectification')
         if order_method == 'geometry':
@@ -620,6 +637,7 @@ def build(image_path, version, out, *, outlines=None, order_method=None, through
                                           implementation='normal-regions', directions='MoGe-2',
                                           settings=rectangle_settings, outline='fitted quadrilateral')
     if through in ('counts', 'placement'):
+        count_parts = eave_pinholes.measurement_parts(patches) if eave_events else patches
         counter = counter or defaults['block_count']
         atlas = None
         shape_matcher = None
@@ -641,14 +659,14 @@ def build(image_path, version, out, *, outlines=None, order_method=None, through
                 methods['material_matching'] = material_match
         if atlas is not None and material_match == 'shape-shadow':
             from engine.blocker_shadow import surface_shadow_map
-            shadow_field = surface_shadow_map(np.asarray(image.convert('RGB')), [p for p in patches if p.get('support')])
+            shadow_field = surface_shadow_map(np.asarray(image.convert('RGB')), [p for p in count_parts if p.get('support')])
         if atlas is not None and material_match == 'exposure':
             from engine.block_exposure import ExposureMatcher
             shape_matcher = ExposureMatcher(atlas_path, library, catalog=atlas.material_index)
             manifest['material_library_sha256'] = digest(library)
         methods['block_grouping'] = 'convex-shared-edges'
-        counts = _count_regions(image, patches, version, counter, atlas, out, shape_matcher, shadow_field)
-        placement_parts, placement_counts = patches, counts
+        counts = _count_regions(image, count_parts, version, counter, atlas, out, shape_matcher, shadow_field)
+        placement_parts, placement_counts = count_parts, counts
         if inset_events or count_confirmed_outlines:
             placement_parts = [with_outline(p) for p in pre_inset]
             placement_counts = _inset_layout_counts(image, version, placement_parts, counts,

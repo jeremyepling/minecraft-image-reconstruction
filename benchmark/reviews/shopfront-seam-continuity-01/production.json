@@ -1,0 +1,1669 @@
+{
+  "frames": 204,
+  "joins": 3,
+  "frames_requiring_earlier_camera": 19,
+  "seconds": {
+    "median": 0.0238785,
+    "p95": 0.08185159999999998,
+    "max": 0.163453
+  },
+  "settings": "four workers; excludes image/field loading and camera fitting; checks expected exact unions",
+  "cases": [
+    {
+      "id": "train-arcade1-cool-high-right",
+      "joins": [],
+      "protected_insets": false,
+      "pre_calibrated": false,
+      "early_camera": 0,
+      "elapsed_seconds": 0.03975
+    },
+    {
+      "id": "train-arcade1-cool-low-left",
+      "joins": [],
+      "protected_insets": false,
+      "pre_calibrated": true,
+      "early_camera": 0,
+      "elapsed_seconds": 0.037802
+    },
+    {
+      "id": "train-arcade1-earth-high-right",
+      "joins": [],
+      "protected_insets": false,
+      "pre_calibrated": true,
+      "early_camera": 0,
+      "elapsed_seconds": 0.116338
+    },
+    {
+      "id": "train-arcade1-earth-low-left",
+      "joins": [],
+      "protected_insets": false,
+      "pre_calibrated": true,
+      "early_camera": 0,
+      "elapsed_seconds": 0.041996
+    },
+    {
+      "id": "train-arcade2-cool-high-right",
+      "joins": [],
+      "protected_insets": false,
+      "pre_calibrated": false,
+      "early_camera": 0,
+      "elapsed_seconds": 0.028696
+    },
+    {
+      "id": "train-arcade2-cool-low-left",
+      "joins": [],
+      "protected_insets": false,
+      "pre_calibrated": false,
+      "early_camera": 0,
+      "elapsed_seconds": 0.024475
+    },
+    {
+      "id": "train-arcade2-earth-high-right",
+      "joins": [],
+      "protected_insets": false,
+      "pre_calibrated": false,
+      "early_camera": 0,
+      "elapsed_seconds": 0.0281
+    },
+    {
+      "id": "train-arcade2-earth-low-left",
+      "joins": [],
+      "protected_insets": false,
+      "pre_calibrated": false,
+      "early_camera": 0,
+      "elapsed_seconds": 0.022877
+    },
+    {
+      "id": "train-arcade3-cool-high-right",
+      "joins": [],
+      "protected_insets": false,
+      "pre_calibrated": true,
+      "early_camera": 0,
+      "elapsed_seconds": 0.071976
+    },
+    {
+      "id": "train-arcade3-cool-low-left",
+      "joins": [],
+      "protected_insets": false,
+      "pre_calibrated": false,
+      "early_camera": 0,
+      "elapsed_seconds": 0.031863
+    },
+    {
+      "id": "train-arcade3-earth-high-right",
+      "joins": [],
+      "protected_insets": false,
+      "pre_calibrated": true,
+      "early_camera": 0,
+      "elapsed_seconds": 0.049864
+    },
+    {
+      "id": "train-arcade3-earth-low-left",
+      "joins": [],
+      "protected_insets": false,
+      "pre_calibrated": true,
+      "early_camera": 0,
+      "elapsed_seconds": 0.133845
+    },
+    {
+      "id": "train-arcbridge1-cool-high-right",
+      "joins": [
+        {
+          "inputs": [
+            "mask-3",
+            "planarity-new-2-0"
+          ],
+          "output": "planarity-new-2-0-seam-union"
+        }
+      ],
+      "protected_insets": false,
+      "pre_calibrated": true,
+      "early_camera": 0,
+      "elapsed_seconds": 0.163453
+    },
+    {
+      "id": "train-arcbridge1-cool-low-left",
+      "joins": [],
+      "protected_insets": false,
+      "pre_calibrated": true,
+      "early_camera": 0,
+      "elapsed_seconds": 0.051144
+    },
+    {
+      "id": "train-arcbridge1-earth-high-right",
+      "joins": [],
+      "protected_insets": false,
+      "pre_calibrated": true,
+      "early_camera": 0,
+      "elapsed_seconds": 0.015831
+    },
+    {
+      "id": "train-arcbridge1-earth-low-left",
+      "joins": [],
+      "protected_insets": false,
+      "pre_calibrated": true,
+      "early_camera": 0,
+      "elapsed_seconds": 0.016993
+    },
+    {
+      "id": "train-arcbridge2-cool-high-right",
+      "joins": [],
+      "protected_insets": false,
+      "pre_calibrated": true,
+      "early_camera": 0,
+      "elapsed_seconds": 0.023632
+    },
+    {
+      "id": "train-arcbridge2-cool-low-left",
+      "joins": [],
+      "protected_insets": false,
+      "pre_calibrated": true,
+      "early_camera": 0,
+      "elapsed_seconds": 0.05046
+    },
+    {
+      "id": "train-arcbridge2-earth-high-right",
+      "joins": [],
+      "protected_insets": false,
+      "pre_calibrated": true,
+      "early_camera": 0,
+      "elapsed_seconds": 0.061158
+    },
+    {
+      "id": "train-arcbridge2-earth-low-left",
+      "joins": [],
+      "protected_insets": false,
+      "pre_calibrated": true,
+      "early_camera": 0,
+      "elapsed_seconds": 0.021795
+    },
+    {
+      "id": "train-arcbridge3-cool-high-right",
+      "joins": [],
+      "protected_insets": false,
+      "pre_calibrated": false,
+      "early_camera": 0,
+      "elapsed_seconds": 0.009349
+    },
+    {
+      "id": "train-arcbridge3-cool-low-left",
+      "joins": [],
+      "protected_insets": false,
+      "pre_calibrated": true,
+      "early_camera": 0,
+      "elapsed_seconds": 0.019038
+    },
+    {
+      "id": "train-arcbridge3-earth-high-right",
+      "joins": [],
+      "protected_insets": false,
+      "pre_calibrated": true,
+      "early_camera": 0,
+      "elapsed_seconds": 0.014071
+    },
+    {
+      "id": "train-arcbridge3-earth-low-left",
+      "joins": [],
+      "protected_insets": false,
+      "pre_calibrated": true,
+      "early_camera": 0,
+      "elapsed_seconds": 0.032111
+    },
+    {
+      "id": "train-sawtooth1-cool-high-right",
+      "joins": [],
+      "protected_insets": true,
+      "pre_calibrated": true,
+      "early_camera": 0,
+      "elapsed_seconds": 0.000393
+    },
+    {
+      "id": "train-sawtooth1-cool-low-left",
+      "joins": [],
+      "protected_insets": false,
+      "pre_calibrated": true,
+      "early_camera": 0,
+      "elapsed_seconds": 0.149852
+    },
+    {
+      "id": "train-sawtooth1-earth-high-right",
+      "joins": [],
+      "protected_insets": true,
+      "pre_calibrated": true,
+      "early_camera": 0,
+      "elapsed_seconds": 0.000341
+    },
+    {
+      "id": "train-sawtooth1-earth-low-left",
+      "joins": [],
+      "protected_insets": true,
+      "pre_calibrated": true,
+      "early_camera": 0,
+      "elapsed_seconds": 0.001913
+    },
+    {
+      "id": "train-sawtooth2-cool-high-right",
+      "joins": [],
+      "protected_insets": true,
+      "pre_calibrated": true,
+      "early_camera": 0,
+      "elapsed_seconds": 0.000351
+    },
+    {
+      "id": "train-sawtooth2-cool-low-left",
+      "joins": [],
+      "protected_insets": false,
+      "pre_calibrated": true,
+      "early_camera": 0,
+      "elapsed_seconds": 0.082178
+    },
+    {
+      "id": "train-sawtooth2-earth-high-right",
+      "joins": [],
+      "protected_insets": true,
+      "pre_calibrated": true,
+      "early_camera": 0,
+      "elapsed_seconds": 0.000529
+    },
+    {
+      "id": "train-sawtooth2-earth-low-left",
+      "joins": [],
+      "protected_insets": false,
+      "pre_calibrated": true,
+      "early_camera": 0,
+      "elapsed_seconds": 0.102006
+    },
+    {
+      "id": "train-sawtooth3-cool-high-right",
+      "joins": [],
+      "protected_insets": true,
+      "pre_calibrated": true,
+      "early_camera": 0,
+      "elapsed_seconds": 0.000331
+    },
+    {
+      "id": "train-sawtooth3-cool-low-left",
+      "joins": [],
+      "protected_insets": false,
+      "pre_calibrated": true,
+      "early_camera": 0,
+      "elapsed_seconds": 0.080002
+    },
+    {
+      "id": "train-sawtooth3-earth-high-right",
+      "joins": [],
+      "protected_insets": true,
+      "pre_calibrated": true,
+      "early_camera": 0,
+      "elapsed_seconds": 0.00041
+    },
+    {
+      "id": "train-sawtooth3-earth-low-left",
+      "joins": [],
+      "protected_insets": false,
+      "pre_calibrated": true,
+      "early_camera": 0,
+      "elapsed_seconds": 0.055977
+    },
+    {
+      "id": "train-steppedhall1-cool-high-right",
+      "joins": [],
+      "protected_insets": false,
+      "pre_calibrated": false,
+      "early_camera": 0,
+      "elapsed_seconds": 0.016156
+    },
+    {
+      "id": "train-steppedhall1-cool-low-left",
+      "joins": [],
+      "protected_insets": false,
+      "pre_calibrated": true,
+      "early_camera": 0,
+      "elapsed_seconds": 0.008563
+    },
+    {
+      "id": "train-steppedhall1-earth-high-right",
+      "joins": [],
+      "protected_insets": false,
+      "pre_calibrated": false,
+      "early_camera": 0,
+      "elapsed_seconds": 0.020575
+    },
+    {
+      "id": "train-steppedhall1-earth-low-left",
+      "joins": [],
+      "protected_insets": false,
+      "pre_calibrated": true,
+      "early_camera": 0,
+      "elapsed_seconds": 0.038347
+    },
+    {
+      "id": "train-steppedhall2-cool-high-right",
+      "joins": [],
+      "protected_insets": false,
+      "pre_calibrated": false,
+      "early_camera": 0,
+      "elapsed_seconds": 0.007968
+    },
+    {
+      "id": "train-steppedhall2-cool-low-left",
+      "joins": [],
+      "protected_insets": false,
+      "pre_calibrated": true,
+      "early_camera": 0,
+      "elapsed_seconds": 0.024125
+    },
+    {
+      "id": "train-steppedhall2-earth-high-right",
+      "joins": [],
+      "protected_insets": false,
+      "pre_calibrated": true,
+      "early_camera": 0,
+      "elapsed_seconds": 0.01345
+    },
+    {
+      "id": "train-steppedhall2-earth-low-left",
+      "joins": [],
+      "protected_insets": false,
+      "pre_calibrated": true,
+      "early_camera": 0,
+      "elapsed_seconds": 0.060231
+    },
+    {
+      "id": "train-steppedhall3-cool-high-right",
+      "joins": [],
+      "protected_insets": false,
+      "pre_calibrated": false,
+      "early_camera": 1,
+      "elapsed_seconds": 0.069842
+    },
+    {
+      "id": "train-steppedhall3-cool-low-left",
+      "joins": [],
+      "protected_insets": false,
+      "pre_calibrated": true,
+      "early_camera": 0,
+      "elapsed_seconds": 0.015822
+    },
+    {
+      "id": "train-steppedhall3-earth-high-right",
+      "joins": [],
+      "protected_insets": false,
+      "pre_calibrated": false,
+      "early_camera": 0,
+      "elapsed_seconds": 0.032049
+    },
+    {
+      "id": "train-steppedhall3-earth-low-left",
+      "joins": [],
+      "protected_insets": false,
+      "pre_calibrated": true,
+      "early_camera": 0,
+      "elapsed_seconds": 0.060903
+    },
+    {
+      "id": "train-terrace1-cool-high-right",
+      "joins": [],
+      "protected_insets": false,
+      "pre_calibrated": false,
+      "early_camera": 0,
+      "elapsed_seconds": 0.015939
+    },
+    {
+      "id": "train-terrace1-cool-low-left",
+      "joins": [],
+      "protected_insets": false,
+      "pre_calibrated": false,
+      "early_camera": 0,
+      "elapsed_seconds": 0.016213
+    },
+    {
+      "id": "train-terrace1-earth-high-right",
+      "joins": [],
+      "protected_insets": false,
+      "pre_calibrated": true,
+      "early_camera": 0,
+      "elapsed_seconds": 0.017782
+    },
+    {
+      "id": "train-terrace1-earth-low-left",
+      "joins": [],
+      "protected_insets": false,
+      "pre_calibrated": false,
+      "early_camera": 1,
+      "elapsed_seconds": 0.052566
+    },
+    {
+      "id": "train-terrace2-cool-high-right",
+      "joins": [],
+      "protected_insets": false,
+      "pre_calibrated": false,
+      "early_camera": 0,
+      "elapsed_seconds": 0.017033
+    },
+    {
+      "id": "train-terrace2-cool-low-left",
+      "joins": [],
+      "protected_insets": false,
+      "pre_calibrated": false,
+      "early_camera": 0,
+      "elapsed_seconds": 0.008538
+    },
+    {
+      "id": "train-terrace2-earth-high-right",
+      "joins": [],
+      "protected_insets": false,
+      "pre_calibrated": false,
+      "early_camera": 0,
+      "elapsed_seconds": 0.012375
+    },
+    {
+      "id": "train-terrace2-earth-low-left",
+      "joins": [],
+      "protected_insets": false,
+      "pre_calibrated": false,
+      "early_camera": 0,
+      "elapsed_seconds": 0.012084
+    },
+    {
+      "id": "train-terrace3-cool-high-right",
+      "joins": [],
+      "protected_insets": false,
+      "pre_calibrated": false,
+      "early_camera": 0,
+      "elapsed_seconds": 0.02159
+    },
+    {
+      "id": "train-terrace3-cool-low-left",
+      "joins": [],
+      "protected_insets": false,
+      "pre_calibrated": false,
+      "early_camera": 1,
+      "elapsed_seconds": 0.047241
+    },
+    {
+      "id": "train-terrace3-earth-high-right",
+      "joins": [],
+      "protected_insets": false,
+      "pre_calibrated": false,
+      "early_camera": 0,
+      "elapsed_seconds": 0.017278
+    },
+    {
+      "id": "train-terrace3-earth-low-left",
+      "joins": [],
+      "protected_insets": false,
+      "pre_calibrated": true,
+      "early_camera": 0,
+      "elapsed_seconds": 0.046672
+    },
+    {
+      "id": "train-watchpost1-cool-high-right",
+      "joins": [],
+      "protected_insets": false,
+      "pre_calibrated": true,
+      "early_camera": 0,
+      "elapsed_seconds": 0.030255
+    },
+    {
+      "id": "train-watchpost1-cool-low-left",
+      "joins": [],
+      "protected_insets": false,
+      "pre_calibrated": true,
+      "early_camera": 0,
+      "elapsed_seconds": 0.025637
+    },
+    {
+      "id": "train-watchpost1-earth-high-right",
+      "joins": [],
+      "protected_insets": false,
+      "pre_calibrated": false,
+      "early_camera": 1,
+      "elapsed_seconds": 0.053456
+    },
+    {
+      "id": "train-watchpost1-earth-low-left",
+      "joins": [],
+      "protected_insets": false,
+      "pre_calibrated": true,
+      "early_camera": 0,
+      "elapsed_seconds": 0.028473
+    },
+    {
+      "id": "train-watchpost2-cool-high-right",
+      "joins": [],
+      "protected_insets": false,
+      "pre_calibrated": true,
+      "early_camera": 0,
+      "elapsed_seconds": 0.01859
+    },
+    {
+      "id": "train-watchpost2-cool-low-left",
+      "joins": [],
+      "protected_insets": false,
+      "pre_calibrated": true,
+      "early_camera": 0,
+      "elapsed_seconds": 0.025277
+    },
+    {
+      "id": "train-watchpost2-earth-high-right",
+      "joins": [],
+      "protected_insets": false,
+      "pre_calibrated": true,
+      "early_camera": 0,
+      "elapsed_seconds": 0.049051
+    },
+    {
+      "id": "train-watchpost2-earth-low-left",
+      "joins": [],
+      "protected_insets": false,
+      "pre_calibrated": true,
+      "early_camera": 0,
+      "elapsed_seconds": 0.029453
+    },
+    {
+      "id": "train-watchpost3-cool-high-right",
+      "joins": [],
+      "protected_insets": false,
+      "pre_calibrated": true,
+      "early_camera": 0,
+      "elapsed_seconds": 0.012247
+    },
+    {
+      "id": "train-watchpost3-cool-low-left",
+      "joins": [],
+      "protected_insets": false,
+      "pre_calibrated": true,
+      "early_camera": 0,
+      "elapsed_seconds": 0.01688
+    },
+    {
+      "id": "train-watchpost3-earth-high-right",
+      "joins": [],
+      "protected_insets": false,
+      "pre_calibrated": true,
+      "early_camera": 0,
+      "elapsed_seconds": 0.027418
+    },
+    {
+      "id": "train-watchpost3-earth-low-left",
+      "joins": [],
+      "protected_insets": false,
+      "pre_calibrated": true,
+      "early_camera": 0,
+      "elapsed_seconds": 0.022544
+    },
+    {
+      "id": "validation-cloister1-cool-high-right",
+      "joins": [],
+      "protected_insets": false,
+      "pre_calibrated": true,
+      "early_camera": 0,
+      "elapsed_seconds": 0.056212
+    },
+    {
+      "id": "validation-cloister1-cool-low-left",
+      "joins": [],
+      "protected_insets": false,
+      "pre_calibrated": false,
+      "early_camera": 1,
+      "elapsed_seconds": 0.048285
+    },
+    {
+      "id": "validation-cloister1-earth-high-right",
+      "joins": [],
+      "protected_insets": false,
+      "pre_calibrated": true,
+      "early_camera": 0,
+      "elapsed_seconds": 0.011397
+    },
+    {
+      "id": "validation-cloister1-earth-low-left",
+      "joins": [],
+      "protected_insets": false,
+      "pre_calibrated": false,
+      "early_camera": 0,
+      "elapsed_seconds": 0.011931
+    },
+    {
+      "id": "validation-cloister2-cool-high-right",
+      "joins": [],
+      "protected_insets": false,
+      "pre_calibrated": true,
+      "early_camera": 0,
+      "elapsed_seconds": 0.057412
+    },
+    {
+      "id": "validation-cloister2-cool-low-left",
+      "joins": [],
+      "protected_insets": false,
+      "pre_calibrated": true,
+      "early_camera": 0,
+      "elapsed_seconds": 0.042303
+    },
+    {
+      "id": "validation-cloister2-earth-high-right",
+      "joins": [],
+      "protected_insets": false,
+      "pre_calibrated": true,
+      "early_camera": 0,
+      "elapsed_seconds": 0.039471
+    },
+    {
+      "id": "validation-cloister2-earth-low-left",
+      "joins": [
+        {
+          "inputs": [
+            "mask-0-wall-1-mobile-0-single-457-1",
+            "mask-0-wall-1-mobile-0-single-457-3"
+          ],
+          "output": "mask-0-wall-1-mobile-0-single-457-3-seam-union"
+        }
+      ],
+      "protected_insets": false,
+      "pre_calibrated": true,
+      "early_camera": 0,
+      "elapsed_seconds": 0.139209
+    },
+    {
+      "id": "validation-cloister3-cool-high-right",
+      "joins": [],
+      "protected_insets": false,
+      "pre_calibrated": true,
+      "early_camera": 0,
+      "elapsed_seconds": 0.033499
+    },
+    {
+      "id": "validation-cloister3-cool-low-left",
+      "joins": [],
+      "protected_insets": false,
+      "pre_calibrated": true,
+      "early_camera": 0,
+      "elapsed_seconds": 0.002317
+    },
+    {
+      "id": "validation-cloister3-earth-high-right",
+      "joins": [],
+      "protected_insets": false,
+      "pre_calibrated": true,
+      "early_camera": 0,
+      "elapsed_seconds": 0.044787
+    },
+    {
+      "id": "validation-cloister3-earth-low-left",
+      "joins": [],
+      "protected_insets": false,
+      "pre_calibrated": true,
+      "early_camera": 0,
+      "elapsed_seconds": 0.007883
+    },
+    {
+      "id": "test-twinspire1-cool-high-right",
+      "joins": [],
+      "protected_insets": false,
+      "pre_calibrated": true,
+      "early_camera": 0,
+      "elapsed_seconds": 0.023572
+    },
+    {
+      "id": "test-twinspire1-cool-low-left",
+      "joins": [],
+      "protected_insets": false,
+      "pre_calibrated": false,
+      "early_camera": 0,
+      "elapsed_seconds": 0.033089
+    },
+    {
+      "id": "test-twinspire1-earth-high-right",
+      "joins": [],
+      "protected_insets": false,
+      "pre_calibrated": true,
+      "early_camera": 0,
+      "elapsed_seconds": 0.027599
+    },
+    {
+      "id": "test-twinspire1-earth-low-left",
+      "joins": [],
+      "protected_insets": false,
+      "pre_calibrated": false,
+      "early_camera": 1,
+      "elapsed_seconds": 0.03748
+    },
+    {
+      "id": "test-twinspire2-cool-high-right",
+      "joins": [],
+      "protected_insets": false,
+      "pre_calibrated": true,
+      "early_camera": 0,
+      "elapsed_seconds": 0.033667
+    },
+    {
+      "id": "test-twinspire2-cool-low-left",
+      "joins": [],
+      "protected_insets": false,
+      "pre_calibrated": false,
+      "early_camera": 0,
+      "elapsed_seconds": 0.031279
+    },
+    {
+      "id": "test-twinspire2-earth-high-right",
+      "joins": [],
+      "protected_insets": false,
+      "pre_calibrated": false,
+      "early_camera": 0,
+      "elapsed_seconds": 0.026599
+    },
+    {
+      "id": "test-twinspire2-earth-low-left",
+      "joins": [],
+      "protected_insets": false,
+      "pre_calibrated": false,
+      "early_camera": 1,
+      "elapsed_seconds": 0.066942
+    },
+    {
+      "id": "test-twinspire3-cool-high-right",
+      "joins": [],
+      "protected_insets": false,
+      "pre_calibrated": false,
+      "early_camera": 0,
+      "elapsed_seconds": 0.01146
+    },
+    {
+      "id": "test-twinspire3-cool-low-left",
+      "joins": [],
+      "protected_insets": false,
+      "pre_calibrated": true,
+      "early_camera": 0,
+      "elapsed_seconds": 0.02422
+    },
+    {
+      "id": "test-twinspire3-earth-high-right",
+      "joins": [],
+      "protected_insets": false,
+      "pre_calibrated": false,
+      "early_camera": 1,
+      "elapsed_seconds": 0.066791
+    },
+    {
+      "id": "test-twinspire3-earth-low-left",
+      "joins": [],
+      "protected_insets": false,
+      "pre_calibrated": true,
+      "early_camera": 0,
+      "elapsed_seconds": 0.021411
+    },
+    {
+      "id": "legacy-light_gray_concrete-dev-shopfront-masonry-high-right",
+      "joins": [],
+      "protected_insets": false,
+      "pre_calibrated": true,
+      "early_camera": 0,
+      "elapsed_seconds": 0.057894
+    },
+    {
+      "id": "legacy-light_gray_concrete-dev-shopfront-masonry-low-left",
+      "joins": [],
+      "protected_insets": false,
+      "pre_calibrated": true,
+      "early_camera": 0,
+      "elapsed_seconds": 0.008603
+    },
+    {
+      "id": "legacy-light_gray_concrete-dev-shopfront-plaster-high-right",
+      "joins": [],
+      "protected_insets": false,
+      "pre_calibrated": true,
+      "early_camera": 0,
+      "elapsed_seconds": 0.096586
+    },
+    {
+      "id": "legacy-light_gray_concrete-dev-shopfront-plaster-low-left",
+      "joins": [],
+      "protected_insets": false,
+      "pre_calibrated": true,
+      "early_camera": 0,
+      "elapsed_seconds": 0.045248
+    },
+    {
+      "id": "legacy-light_gray_concrete-dev-wing-masonry-high-right",
+      "joins": [],
+      "protected_insets": false,
+      "pre_calibrated": false,
+      "early_camera": 0,
+      "elapsed_seconds": 0.005746
+    },
+    {
+      "id": "legacy-light_gray_concrete-dev-wing-masonry-low-left",
+      "joins": [],
+      "protected_insets": false,
+      "pre_calibrated": false,
+      "early_camera": 0,
+      "elapsed_seconds": 0.007033
+    },
+    {
+      "id": "legacy-light_gray_concrete-dev-wing-plaster-high-right",
+      "joins": [],
+      "protected_insets": false,
+      "pre_calibrated": false,
+      "early_camera": 0,
+      "elapsed_seconds": 0.008055
+    },
+    {
+      "id": "legacy-light_gray_concrete-dev-wing-plaster-low-left",
+      "joins": [],
+      "protected_insets": false,
+      "pre_calibrated": false,
+      "early_camera": 0,
+      "elapsed_seconds": 0.008347
+    },
+    {
+      "id": "legacy-light_gray_concrete-holdout-courtyard-masonry-high-right",
+      "joins": [],
+      "protected_insets": false,
+      "pre_calibrated": false,
+      "early_camera": 0,
+      "elapsed_seconds": 0.012219
+    },
+    {
+      "id": "legacy-light_gray_concrete-holdout-courtyard-masonry-low-left",
+      "joins": [],
+      "protected_insets": false,
+      "pre_calibrated": false,
+      "early_camera": 1,
+      "elapsed_seconds": 0.056995
+    },
+    {
+      "id": "legacy-light_gray_concrete-holdout-courtyard-plaster-high-right",
+      "joins": [],
+      "protected_insets": false,
+      "pre_calibrated": false,
+      "early_camera": 0,
+      "elapsed_seconds": 0.014308
+    },
+    {
+      "id": "legacy-light_gray_concrete-holdout-courtyard-plaster-low-left",
+      "joins": [],
+      "protected_insets": false,
+      "pre_calibrated": false,
+      "early_camera": 0,
+      "elapsed_seconds": 0.013309
+    },
+    {
+      "id": "legacy-light_gray_concrete-holdout-crossing-masonry-high-right",
+      "joins": [],
+      "protected_insets": false,
+      "pre_calibrated": false,
+      "early_camera": 1,
+      "elapsed_seconds": 0.071234
+    },
+    {
+      "id": "legacy-light_gray_concrete-holdout-crossing-masonry-low-left",
+      "joins": [],
+      "protected_insets": false,
+      "pre_calibrated": true,
+      "early_camera": 0,
+      "elapsed_seconds": 0.077603
+    },
+    {
+      "id": "legacy-light_gray_concrete-holdout-crossing-plaster-high-right",
+      "joins": [],
+      "protected_insets": false,
+      "pre_calibrated": true,
+      "early_camera": 0,
+      "elapsed_seconds": 0.010243
+    },
+    {
+      "id": "legacy-light_gray_concrete-holdout-crossing-plaster-low-left",
+      "joins": [],
+      "protected_insets": false,
+      "pre_calibrated": true,
+      "early_camera": 0,
+      "elapsed_seconds": 0.04855
+    },
+    {
+      "id": "legacy-light_gray_concrete-holdout-galleries-masonry-high-right",
+      "joins": [],
+      "protected_insets": false,
+      "pre_calibrated": true,
+      "early_camera": 0,
+      "elapsed_seconds": 0.054035
+    },
+    {
+      "id": "legacy-light_gray_concrete-holdout-galleries-masonry-low-left",
+      "joins": [],
+      "protected_insets": false,
+      "pre_calibrated": true,
+      "early_camera": 0,
+      "elapsed_seconds": 0.029118
+    },
+    {
+      "id": "legacy-light_gray_concrete-holdout-galleries-plaster-high-right",
+      "joins": [],
+      "protected_insets": false,
+      "pre_calibrated": true,
+      "early_camera": 0,
+      "elapsed_seconds": 0.034531
+    },
+    {
+      "id": "legacy-light_gray_concrete-holdout-galleries-plaster-low-left",
+      "joins": [],
+      "protected_insets": false,
+      "pre_calibrated": true,
+      "early_camera": 0,
+      "elapsed_seconds": 0.057916
+    },
+    {
+      "id": "legacy-light_gray_concrete-holdout-portico-masonry-high-right",
+      "joins": [
+        {
+          "inputs": [
+            "mask-5",
+            "planarity-new-10-0"
+          ],
+          "output": "mask-5-seam-union"
+        }
+      ],
+      "protected_insets": false,
+      "pre_calibrated": false,
+      "early_camera": 1,
+      "elapsed_seconds": 0.095571
+    },
+    {
+      "id": "legacy-light_gray_concrete-holdout-portico-masonry-low-left",
+      "joins": [],
+      "protected_insets": false,
+      "pre_calibrated": true,
+      "early_camera": 0,
+      "elapsed_seconds": 0.05981
+    },
+    {
+      "id": "legacy-light_gray_concrete-holdout-portico-plaster-high-right",
+      "joins": [],
+      "protected_insets": false,
+      "pre_calibrated": false,
+      "early_camera": 0,
+      "elapsed_seconds": 0.026073
+    },
+    {
+      "id": "legacy-light_gray_concrete-holdout-portico-plaster-low-left",
+      "joins": [],
+      "protected_insets": false,
+      "pre_calibrated": true,
+      "early_camera": 0,
+      "elapsed_seconds": 0.036853
+    },
+    {
+      "id": "legacy-light_gray_concrete-holdout-registry-masonry-high-right",
+      "joins": [],
+      "protected_insets": false,
+      "pre_calibrated": true,
+      "early_camera": 0,
+      "elapsed_seconds": 0.013878
+    },
+    {
+      "id": "legacy-light_gray_concrete-holdout-registry-masonry-low-left",
+      "joins": [],
+      "protected_insets": false,
+      "pre_calibrated": true,
+      "early_camera": 0,
+      "elapsed_seconds": 0.049163
+    },
+    {
+      "id": "legacy-light_gray_concrete-holdout-registry-plaster-high-right",
+      "joins": [],
+      "protected_insets": false,
+      "pre_calibrated": true,
+      "early_camera": 0,
+      "elapsed_seconds": 0.010106
+    },
+    {
+      "id": "legacy-light_gray_concrete-holdout-registry-plaster-low-left",
+      "joins": [],
+      "protected_insets": false,
+      "pre_calibrated": true,
+      "early_camera": 0,
+      "elapsed_seconds": 0.00267
+    },
+    {
+      "id": "legacy-light_gray_concrete-holdout-workshop-masonry-high-right",
+      "joins": [],
+      "protected_insets": false,
+      "pre_calibrated": true,
+      "early_camera": 0,
+      "elapsed_seconds": 0.060802
+    },
+    {
+      "id": "legacy-light_gray_concrete-holdout-workshop-masonry-low-left",
+      "joins": [],
+      "protected_insets": false,
+      "pre_calibrated": true,
+      "early_camera": 0,
+      "elapsed_seconds": 0.011921
+    },
+    {
+      "id": "legacy-light_gray_concrete-holdout-workshop-plaster-high-right",
+      "joins": [],
+      "protected_insets": false,
+      "pre_calibrated": true,
+      "early_camera": 0,
+      "elapsed_seconds": 0.045321
+    },
+    {
+      "id": "legacy-light_gray_concrete-holdout-workshop-plaster-low-left",
+      "joins": [],
+      "protected_insets": false,
+      "pre_calibrated": true,
+      "early_camera": 0,
+      "elapsed_seconds": 0.041139
+    },
+    {
+      "id": "legacy-smooth_stone-dev-shopfront-masonry-high-right",
+      "joins": [],
+      "protected_insets": false,
+      "pre_calibrated": true,
+      "early_camera": 0,
+      "elapsed_seconds": 0.055269
+    },
+    {
+      "id": "legacy-smooth_stone-dev-shopfront-masonry-low-left",
+      "joins": [],
+      "protected_insets": false,
+      "pre_calibrated": true,
+      "early_camera": 0,
+      "elapsed_seconds": 0.008419
+    },
+    {
+      "id": "legacy-smooth_stone-dev-shopfront-plaster-high-right",
+      "joins": [],
+      "protected_insets": false,
+      "pre_calibrated": true,
+      "early_camera": 0,
+      "elapsed_seconds": 0.015615
+    },
+    {
+      "id": "legacy-smooth_stone-dev-shopfront-plaster-low-left",
+      "joins": [],
+      "protected_insets": false,
+      "pre_calibrated": true,
+      "early_camera": 0,
+      "elapsed_seconds": 0.053967
+    },
+    {
+      "id": "legacy-smooth_stone-dev-wing-masonry-high-right",
+      "joins": [],
+      "protected_insets": false,
+      "pre_calibrated": false,
+      "early_camera": 0,
+      "elapsed_seconds": 0.005864
+    },
+    {
+      "id": "legacy-smooth_stone-dev-wing-masonry-low-left",
+      "joins": [],
+      "protected_insets": false,
+      "pre_calibrated": false,
+      "early_camera": 0,
+      "elapsed_seconds": 0.007316
+    },
+    {
+      "id": "legacy-smooth_stone-dev-wing-plaster-high-right",
+      "joins": [],
+      "protected_insets": false,
+      "pre_calibrated": false,
+      "early_camera": 1,
+      "elapsed_seconds": 0.032551
+    },
+    {
+      "id": "legacy-smooth_stone-dev-wing-plaster-low-left",
+      "joins": [],
+      "protected_insets": false,
+      "pre_calibrated": false,
+      "early_camera": 0,
+      "elapsed_seconds": 0.003934
+    },
+    {
+      "id": "legacy-smooth_stone-holdout-courtyard-masonry-high-right",
+      "joins": [],
+      "protected_insets": false,
+      "pre_calibrated": false,
+      "early_camera": 0,
+      "elapsed_seconds": 0.011026
+    },
+    {
+      "id": "legacy-smooth_stone-holdout-courtyard-masonry-low-left",
+      "joins": [],
+      "protected_insets": false,
+      "pre_calibrated": false,
+      "early_camera": 1,
+      "elapsed_seconds": 0.035188
+    },
+    {
+      "id": "legacy-smooth_stone-holdout-courtyard-plaster-high-right",
+      "joins": [],
+      "protected_insets": false,
+      "pre_calibrated": false,
+      "early_camera": 1,
+      "elapsed_seconds": 0.046315
+    },
+    {
+      "id": "legacy-smooth_stone-holdout-courtyard-plaster-low-left",
+      "joins": [],
+      "protected_insets": false,
+      "pre_calibrated": false,
+      "early_camera": 1,
+      "elapsed_seconds": 0.041927
+    },
+    {
+      "id": "legacy-smooth_stone-holdout-portico-masonry-high-right",
+      "joins": [],
+      "protected_insets": false,
+      "pre_calibrated": true,
+      "early_camera": 0,
+      "elapsed_seconds": 0.043687
+    },
+    {
+      "id": "legacy-smooth_stone-holdout-portico-masonry-low-left",
+      "joins": [],
+      "protected_insets": false,
+      "pre_calibrated": true,
+      "early_camera": 0,
+      "elapsed_seconds": 0.02289
+    },
+    {
+      "id": "legacy-smooth_stone-holdout-portico-plaster-high-right",
+      "joins": [],
+      "protected_insets": false,
+      "pre_calibrated": true,
+      "early_camera": 0,
+      "elapsed_seconds": 0.013057
+    },
+    {
+      "id": "legacy-smooth_stone-holdout-portico-plaster-low-left",
+      "joins": [],
+      "protected_insets": false,
+      "pre_calibrated": true,
+      "early_camera": 0,
+      "elapsed_seconds": 0.019856
+    },
+    {
+      "id": "heldout-facade-oblique-left",
+      "joins": [],
+      "protected_insets": true,
+      "pre_calibrated": true,
+      "early_camera": 0,
+      "elapsed_seconds": 0.000357
+    },
+    {
+      "id": "heldout-facade-oblique-right",
+      "joins": [],
+      "protected_insets": true,
+      "pre_calibrated": true,
+      "early_camera": 0,
+      "elapsed_seconds": 0.000458
+    },
+    {
+      "id": "dark-inlay-oblique-left",
+      "joins": [],
+      "protected_insets": false,
+      "pre_calibrated": false,
+      "early_camera": 0,
+      "elapsed_seconds": 0.005014
+    },
+    {
+      "id": "dark-inlay-oblique-right",
+      "joins": [],
+      "protected_insets": false,
+      "pre_calibrated": true,
+      "early_camera": 0,
+      "elapsed_seconds": 0.002254
+    },
+    {
+      "id": "physical-shade-oblique-left",
+      "joins": [],
+      "protected_insets": false,
+      "pre_calibrated": true,
+      "early_camera": 0,
+      "elapsed_seconds": 0.008953
+    },
+    {
+      "id": "physical-shade-oblique-right",
+      "joins": [],
+      "protected_insets": false,
+      "pre_calibrated": false,
+      "early_camera": 1,
+      "elapsed_seconds": 0.020945
+    },
+    {
+      "id": "test-adjacency-26-left",
+      "joins": [],
+      "protected_insets": false,
+      "pre_calibrated": true,
+      "early_camera": 0,
+      "elapsed_seconds": 0.058463
+    },
+    {
+      "id": "test-adjacency-26-right",
+      "joins": [],
+      "protected_insets": false,
+      "pre_calibrated": true,
+      "early_camera": 0,
+      "elapsed_seconds": 0.013794
+    },
+    {
+      "id": "test-recess-28-left",
+      "joins": [],
+      "protected_insets": true,
+      "pre_calibrated": true,
+      "early_camera": 0,
+      "elapsed_seconds": 0.000186
+    },
+    {
+      "id": "test-recess-28-right",
+      "joins": [],
+      "protected_insets": false,
+      "pre_calibrated": true,
+      "early_camera": 0,
+      "elapsed_seconds": 0.085812
+    },
+    {
+      "id": "test-corner-29-left",
+      "joins": [],
+      "protected_insets": false,
+      "pre_calibrated": true,
+      "early_camera": 0,
+      "elapsed_seconds": 0.008006
+    },
+    {
+      "id": "test-corner-29-right",
+      "joins": [],
+      "protected_insets": false,
+      "pre_calibrated": false,
+      "early_camera": 0,
+      "elapsed_seconds": 0.006572
+    },
+    {
+      "id": "shape-benchmark-26.3--train-canopy-07-left",
+      "joins": [],
+      "protected_insets": false,
+      "pre_calibrated": false,
+      "early_camera": 0,
+      "elapsed_seconds": 0.012446
+    },
+    {
+      "id": "shape-benchmark-26.3--train-canopy-04-left",
+      "joins": [],
+      "protected_insets": false,
+      "pre_calibrated": false,
+      "early_camera": 0,
+      "elapsed_seconds": 0.00959
+    },
+    {
+      "id": "signed-relief-26.3--dev--dev-relief-00-oblique-right",
+      "joins": [],
+      "protected_insets": true,
+      "pre_calibrated": true,
+      "early_camera": 0,
+      "elapsed_seconds": 0.000267
+    },
+    {
+      "id": "shape-benchmark-open-26.3--train-canopy-01-left",
+      "joins": [],
+      "protected_insets": false,
+      "pre_calibrated": true,
+      "early_camera": 0,
+      "elapsed_seconds": 0.014446
+    },
+    {
+      "id": "shape-benchmark-26.3--train-canopy-09-right",
+      "joins": [],
+      "protected_insets": false,
+      "pre_calibrated": false,
+      "early_camera": 0,
+      "elapsed_seconds": 0.008746
+    },
+    {
+      "id": "shape-benchmark-26.3--train-canopy-06-left",
+      "joins": [],
+      "protected_insets": false,
+      "pre_calibrated": true,
+      "early_camera": 0,
+      "elapsed_seconds": 0.026681
+    },
+    {
+      "id": "rim-views-26.3--positive--heldout-facade-oblique-right",
+      "joins": [],
+      "protected_insets": false,
+      "pre_calibrated": true,
+      "early_camera": 0,
+      "elapsed_seconds": 0.067651
+    },
+    {
+      "id": "shape-benchmark-26.3--train-canopy-08-right",
+      "joins": [],
+      "protected_insets": false,
+      "pre_calibrated": false,
+      "early_camera": 0,
+      "elapsed_seconds": 0.014525
+    },
+    {
+      "id": "shape-benchmark-26.3--train-recess-02-right",
+      "joins": [],
+      "protected_insets": true,
+      "pre_calibrated": true,
+      "early_camera": 0,
+      "elapsed_seconds": 0.000374
+    },
+    {
+      "id": "inverse-voxels-26.3--confirm--test-bays-02-oblique-right",
+      "joins": [],
+      "protected_insets": false,
+      "pre_calibrated": true,
+      "early_camera": 0,
+      "elapsed_seconds": 0.064926
+    },
+    {
+      "id": "shape-benchmark-26.3--dev-canopy-18-left",
+      "joins": [],
+      "protected_insets": false,
+      "pre_calibrated": false,
+      "early_camera": 1,
+      "elapsed_seconds": 0.029739
+    },
+    {
+      "id": "signed-relief-26.3--test--test-relief-00-oblique-left",
+      "joins": [],
+      "protected_insets": true,
+      "pre_calibrated": true,
+      "early_camera": 0,
+      "elapsed_seconds": 0.000416
+    },
+    {
+      "id": "inverse-voxels-26.3--confirm--test-colonnade-01-oblique-right",
+      "joins": [],
+      "protected_insets": false,
+      "pre_calibrated": true,
+      "early_camera": 0,
+      "elapsed_seconds": 0.01132
+    },
+    {
+      "id": "shape-benchmark-open-26.3--train-canopy-00-right",
+      "joins": [],
+      "protected_insets": false,
+      "pre_calibrated": false,
+      "early_camera": 0,
+      "elapsed_seconds": 0.005707
+    },
+    {
+      "id": "shape-benchmark-26.3--dev-corner-16-right",
+      "joins": [],
+      "protected_insets": false,
+      "pre_calibrated": false,
+      "early_camera": 0,
+      "elapsed_seconds": 0.005999
+    },
+    {
+      "id": "entrance-confirm-26.3--positive--heldout-facade-oblique-right",
+      "joins": [],
+      "protected_insets": true,
+      "pre_calibrated": true,
+      "early_camera": 0,
+      "elapsed_seconds": 0.000262
+    },
+    {
+      "id": "shape-benchmark-26.3--train-canopy-05-left",
+      "joins": [],
+      "protected_insets": false,
+      "pre_calibrated": false,
+      "early_camera": 0,
+      "elapsed_seconds": 0.0048
+    },
+    {
+      "id": "shape-benchmark-26.3--train-corner-03-right",
+      "joins": [],
+      "protected_insets": false,
+      "pre_calibrated": false,
+      "early_camera": 0,
+      "elapsed_seconds": 0.004622
+    },
+    {
+      "id": "shape-benchmark-26.3--dev-canopy-19-right",
+      "joins": [],
+      "protected_insets": false,
+      "pre_calibrated": false,
+      "early_camera": 0,
+      "elapsed_seconds": 0.011615
+    },
+    {
+      "id": "corner-mixed-26.3--heldout-facade-oblique-left",
+      "joins": [],
+      "protected_insets": true,
+      "pre_calibrated": true,
+      "early_camera": 0,
+      "elapsed_seconds": 0.000297
+    },
+    {
+      "id": "shape-benchmark-open-26.3--train-canopy-01-right",
+      "joins": [],
+      "protected_insets": false,
+      "pre_calibrated": true,
+      "early_camera": 0,
+      "elapsed_seconds": 0.041397
+    },
+    {
+      "id": "corner-views-26.3--positive--heldout-facade-oblique-left",
+      "joins": [],
+      "protected_insets": false,
+      "pre_calibrated": true,
+      "early_camera": 0,
+      "elapsed_seconds": 0.007029
+    },
+    {
+      "id": "shape-benchmark-26.3--train-canopy-08-left",
+      "joins": [],
+      "protected_insets": false,
+      "pre_calibrated": false,
+      "early_camera": 1,
+      "elapsed_seconds": 0.036768
+    },
+    {
+      "id": "shape-benchmark-26.3--train-canopy-06-right",
+      "joins": [],
+      "protected_insets": false,
+      "pre_calibrated": false,
+      "early_camera": 0,
+      "elapsed_seconds": 0.009415
+    },
+    {
+      "id": "shape-benchmark-26.3--train-canopy-09-left",
+      "joins": [],
+      "protected_insets": false,
+      "pre_calibrated": false,
+      "early_camera": 0,
+      "elapsed_seconds": 0.015704
+    },
+    {
+      "id": "inverse-voxels-26.3--confirm--test-bays-02-oblique-left",
+      "joins": [],
+      "protected_insets": false,
+      "pre_calibrated": true,
+      "early_camera": 0,
+      "elapsed_seconds": 0.062929
+    },
+    {
+      "id": "signed-relief-26.3--test--test-relief-00-oblique-right",
+      "joins": [],
+      "protected_insets": true,
+      "pre_calibrated": true,
+      "early_camera": 0,
+      "elapsed_seconds": 0.000256
+    },
+    {
+      "id": "shape-benchmark-26.3--train-canopy-04-right",
+      "joins": [],
+      "protected_insets": false,
+      "pre_calibrated": false,
+      "early_camera": 1,
+      "elapsed_seconds": 0.026973
+    },
+    {
+      "id": "corner-views-26.3--positive--heldout-facade-oblique-right",
+      "joins": [],
+      "protected_insets": false,
+      "pre_calibrated": true,
+      "early_camera": 0,
+      "elapsed_seconds": 0.079448
+    },
+    {
+      "id": "inverse-voxels-26.3--confirm--test-colonnade-01-oblique-left",
+      "joins": [],
+      "protected_insets": false,
+      "pre_calibrated": true,
+      "early_camera": 0,
+      "elapsed_seconds": 0.015866
+    },
+    {
+      "id": "shape-benchmark-26.3--dev-canopy-19-left",
+      "joins": [],
+      "protected_insets": false,
+      "pre_calibrated": true,
+      "early_camera": 0,
+      "elapsed_seconds": 0.054143
+    },
+    {
+      "id": "shape-benchmark-open-26.3--train-canopy-00-left",
+      "joins": [],
+      "protected_insets": false,
+      "pre_calibrated": true,
+      "early_camera": 0,
+      "elapsed_seconds": 0.013936
+    },
+    {
+      "id": "shape-benchmark-26.3--train-corner-03-left",
+      "joins": [],
+      "protected_insets": false,
+      "pre_calibrated": true,
+      "early_camera": 0,
+      "elapsed_seconds": 0.010535
+    },
+    {
+      "id": "recess-positive-control-26.3--heldout-facade-left",
+      "joins": [],
+      "protected_insets": true,
+      "pre_calibrated": true,
+      "early_camera": 0,
+      "elapsed_seconds": 0.000526
+    },
+    {
+      "id": "shape-benchmark-26.3--dev-corner-16-left",
+      "joins": [],
+      "protected_insets": false,
+      "pre_calibrated": false,
+      "early_camera": 0,
+      "elapsed_seconds": 0.009154
+    },
+    {
+      "id": "recess-positive-control-26.3--heldout-facade-right",
+      "joins": [],
+      "protected_insets": false,
+      "pre_calibrated": true,
+      "early_camera": 0,
+      "elapsed_seconds": 0.007554
+    },
+    {
+      "id": "rim-views-26.3--positive--heldout-facade-oblique-left",
+      "joins": [],
+      "protected_insets": true,
+      "pre_calibrated": true,
+      "early_camera": 0,
+      "elapsed_seconds": 0.000473
+    },
+    {
+      "id": "signed-relief-26.3--dev--dev-relief-00-oblique-left",
+      "joins": [],
+      "protected_insets": false,
+      "pre_calibrated": true,
+      "early_camera": 0,
+      "elapsed_seconds": 0.052449
+    },
+    {
+      "id": "shape-benchmark-26.3--train-canopy-05-right",
+      "joins": [],
+      "protected_insets": false,
+      "pre_calibrated": false,
+      "early_camera": 0,
+      "elapsed_seconds": 0.009664
+    },
+    {
+      "id": "shape-benchmark-26.3--train-recess-02-left",
+      "joins": [],
+      "protected_insets": true,
+      "pre_calibrated": true,
+      "early_camera": 0,
+      "elapsed_seconds": 0.000314
+    },
+    {
+      "id": "holdout-switchback-brick-low-left",
+      "joins": [],
+      "protected_insets": false,
+      "pre_calibrated": true,
+      "early_camera": 0,
+      "elapsed_seconds": 0.051005
+    },
+    {
+      "id": "holdout-switchback-brick-high-right",
+      "joins": [],
+      "protected_insets": false,
+      "pre_calibrated": true,
+      "early_camera": 0,
+      "elapsed_seconds": 0.040946
+    },
+    {
+      "id": "holdout-loadingdock-timber-low-left",
+      "joins": [],
+      "protected_insets": false,
+      "pre_calibrated": true,
+      "early_camera": 0,
+      "elapsed_seconds": 0.040396
+    },
+    {
+      "id": "holdout-loadingdock-timber-high-right",
+      "joins": [],
+      "protected_insets": false,
+      "pre_calibrated": true,
+      "early_camera": 0,
+      "elapsed_seconds": 0.140401
+    },
+    {
+      "id": "holdout-platformshelter-copper-low-left",
+      "joins": [],
+      "protected_insets": false,
+      "pre_calibrated": true,
+      "early_camera": 0,
+      "elapsed_seconds": 0.058656
+    },
+    {
+      "id": "holdout-platformshelter-copper-high-right",
+      "joins": [],
+      "protected_insets": false,
+      "pre_calibrated": true,
+      "early_camera": 0,
+      "elapsed_seconds": 0.057578
+    },
+    {
+      "id": "holdout-offsetgate-quartz-low-left",
+      "joins": [],
+      "protected_insets": false,
+      "pre_calibrated": true,
+      "early_camera": 0,
+      "elapsed_seconds": 0.053776
+    },
+    {
+      "id": "holdout-offsetgate-quartz-high-right",
+      "joins": [],
+      "protected_insets": false,
+      "pre_calibrated": true,
+      "early_camera": 0,
+      "elapsed_seconds": 0.048168
+    }
+  ]
+}
