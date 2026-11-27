@@ -1,0 +1,660 @@
+{
+  "kind": "diagnostic-only composition of existing decoded measurements",
+  "files_sha256": {
+    "default": "3ff99aaed571044ba3d0eeb78bf3beb38aaf074bb495f1e48e93c13ed4ed194d",
+    "recorded": "87bde3ac6a2aa04e6aaa41919a030c3e6d01949f92faae0f4fb05471e2916130",
+    "floor": "18322d2418fea2a646f1a3fd681525304cf069d0201542ece715d63930cb1f90"
+  },
+  "current_v3": {
+    "views": 144,
+    "position_strict": {
+      "correct": 28086,
+      "missed": 186064,
+      "extras": 14949,
+      "f1": 0.21841087155160682
+    },
+    "position_facade": {
+      "correct": 27756,
+      "missed": 173564,
+      "extras": 14949,
+      "f1": 0.22748488884335621
+    },
+    "position_id_strict": {
+      "correct": 18171,
+      "missed": 195979,
+      "extras": 24864,
+      "f1": 0.14130684137877403
+    },
+    "position_id_facade": {
+      "correct": 18040,
+      "missed": 183280,
+      "extras": 24665,
+      "f1": 0.14785370351398422
+    }
+  },
+  "residual_with_recorded_camera": {
+    "all": {
+      "views": 70,
+      "position_strict": {
+        "correct": 61204,
+        "missed": 86903,
+        "extras": 29650,
+        "f1": 0.5122509530843945
+      },
+      "position_facade": {
+        "correct": 60580,
+        "missed": 79459,
+        "extras": 29650,
+        "f1": 0.5261672218144865
+      },
+      "position_id_strict": {
+        "correct": 31514,
+        "missed": 116593,
+        "extras": 59340,
+        "f1": 0.2637585212649763
+      },
+      "position_id_facade": {
+        "correct": 31377,
+        "missed": 108662,
+        "extras": 58853,
+        "f1": 0.27252474280081124
+      }
+    },
+    "family/amphitheater": {
+      "views": 5,
+      "position_strict": {
+        "correct": 2520,
+        "missed": 12981,
+        "extras": 5705,
+        "f1": 0.2124251875579533
+      },
+      "position_facade": {
+        "correct": 2482,
+        "missed": 11049,
+        "extras": 5705,
+        "f1": 0.22856616631365687
+      },
+      "position_id_strict": {
+        "correct": 1072,
+        "missed": 14429,
+        "extras": 7153,
+        "f1": 0.09036500042147855
+      },
+      "position_id_facade": {
+        "correct": 1063,
+        "missed": 12468,
+        "extras": 7124,
+        "f1": 0.09789115019799245
+      }
+    },
+    "family/castle": {
+      "views": 16,
+      "position_strict": {
+        "correct": 24554,
+        "missed": 25064,
+        "extras": 7644,
+        "f1": 0.6002248948860859
+      },
+      "position_facade": {
+        "correct": 24529,
+        "missed": 24997,
+        "extras": 7644,
+        "f1": 0.6004724660032559
+      },
+      "position_id_strict": {
+        "correct": 11517,
+        "missed": 38101,
+        "extras": 20681,
+        "f1": 0.28153417424464655
+      },
+      "position_id_facade": {
+        "correct": 11510,
+        "missed": 38016,
+        "extras": 20663,
+        "f1": 0.2817659946878175
+      }
+    },
+    "family/factory": {
+      "views": 8,
+      "position_strict": {
+        "correct": 8451,
+        "missed": 13881,
+        "extras": 4831,
+        "f1": 0.4745886449149211
+      },
+      "position_facade": {
+        "correct": 8451,
+        "missed": 13537,
+        "extras": 4831,
+        "f1": 0.4792174652679331
+      },
+      "position_id_strict": {
+        "correct": 4379,
+        "missed": 17953,
+        "extras": 8903,
+        "f1": 0.24591452799460886
+      },
+      "position_id_facade": {
+        "correct": 4379,
+        "missed": 17609,
+        "extras": 8903,
+        "f1": 0.24831301389282676
+      }
+    },
+    "family/harbor": {
+      "views": 5,
+      "position_strict": {
+        "correct": 1899,
+        "missed": 5717,
+        "extras": 1017,
+        "f1": 0.3606152677554121
+      },
+      "position_facade": {
+        "correct": 1765,
+        "missed": 3039,
+        "extras": 1017,
+        "f1": 0.4653308726601635
+      },
+      "position_id_strict": {
+        "correct": 1157,
+        "missed": 6459,
+        "extras": 1759,
+        "f1": 0.21971135586783136
+      },
+      "position_id_facade": {
+        "correct": 1141,
+        "missed": 3663,
+        "extras": 1641,
+        "f1": 0.30081729501713683
+      }
+    },
+    "family/observatory": {
+      "views": 10,
+      "position_strict": {
+        "correct": 5031,
+        "missed": 8729,
+        "extras": 3910,
+        "f1": 0.44324038588608433
+      },
+      "position_facade": {
+        "correct": 5020,
+        "missed": 8256,
+        "extras": 3910,
+        "f1": 0.4521300549401063
+      },
+      "position_id_strict": {
+        "correct": 2085,
+        "missed": 11675,
+        "extras": 6856,
+        "f1": 0.18369234835469803
+      },
+      "position_id_facade": {
+        "correct": 2085,
+        "missed": 11191,
+        "extras": 6845,
+        "f1": 0.18778708457173737
+      }
+    },
+    "family/pillars": {
+      "views": 12,
+      "position_strict": {
+        "correct": 6598,
+        "missed": 8090,
+        "extras": 3286,
+        "f1": 0.5370340224645939
+      },
+      "position_facade": {
+        "correct": 6560,
+        "missed": 7742,
+        "extras": 3286,
+        "f1": 0.543316216663906
+      },
+      "position_id_strict": {
+        "correct": 4232,
+        "missed": 10456,
+        "extras": 5652,
+        "f1": 0.34445710564870585
+      },
+      "position_id_facade": {
+        "correct": 4228,
+        "missed": 10074,
+        "extras": 5618,
+        "f1": 0.35017392744740766
+      }
+    },
+    "family/shrine": {
+      "views": 8,
+      "position_strict": {
+        "correct": 6429,
+        "missed": 5491,
+        "extras": 1397,
+        "f1": 0.6511698571862655
+      },
+      "position_facade": {
+        "correct": 6051,
+        "missed": 3895,
+        "extras": 1397,
+        "f1": 0.6957571576405657
+      },
+      "position_id_strict": {
+        "correct": 5378,
+        "missed": 6542,
+        "extras": 2448,
+        "f1": 0.5447179175529221
+      },
+      "position_id_facade": {
+        "correct": 5277,
+        "missed": 4669,
+        "extras": 2171,
+        "f1": 0.6067609520524319
+      }
+    },
+    "family/viaduct": {
+      "views": 6,
+      "position_strict": {
+        "correct": 5722,
+        "missed": 6950,
+        "extras": 1860,
+        "f1": 0.565024192752049
+      },
+      "position_facade": {
+        "correct": 5722,
+        "missed": 6944,
+        "extras": 1860,
+        "f1": 0.5651916238640854
+      },
+      "position_id_strict": {
+        "correct": 1694,
+        "missed": 10978,
+        "extras": 5888,
+        "f1": 0.1672755998815049
+      },
+      "position_id_facade": {
+        "correct": 1694,
+        "missed": 10972,
+        "extras": 5888,
+        "f1": 0.16732516791781904
+      }
+    },
+    "known_chart/fail": {
+      "views": 38,
+      "position_strict": {
+        "correct": 36710,
+        "missed": 61308,
+        "extras": 17931,
+        "f1": 0.4809411826358092
+      },
+      "position_facade": {
+        "correct": 36549,
+        "missed": 57725,
+        "extras": 17931,
+        "f1": 0.4914019118813612
+      },
+      "position_id_strict": {
+        "correct": 14761,
+        "missed": 83257,
+        "extras": 39880,
+        "f1": 0.1933852573382506
+      },
+      "position_id_facade": {
+        "correct": 14755,
+        "missed": 79519,
+        "extras": 39725,
+        "f1": 0.1983812200008067
+      }
+    },
+    "known_chart/pass": {
+      "views": 32,
+      "position_strict": {
+        "correct": 24494,
+        "missed": 25595,
+        "extras": 11719,
+        "f1": 0.5676345855252486
+      },
+      "position_facade": {
+        "correct": 24031,
+        "missed": 21734,
+        "extras": 11719,
+        "f1": 0.589609274366681
+      },
+      "position_id_strict": {
+        "correct": 16753,
+        "missed": 33336,
+        "extras": 19460,
+        "f1": 0.3882412922064379
+      },
+      "position_id_facade": {
+        "correct": 16622,
+        "missed": 29143,
+        "extras": 19128,
+        "f1": 0.40782678034717534
+      }
+    },
+    "split/test": {
+      "views": 16,
+      "position_strict": {
+        "correct": 24554,
+        "missed": 25064,
+        "extras": 7644,
+        "f1": 0.6002248948860859
+      },
+      "position_facade": {
+        "correct": 24529,
+        "missed": 24997,
+        "extras": 7644,
+        "f1": 0.6004724660032559
+      },
+      "position_id_strict": {
+        "correct": 11517,
+        "missed": 38101,
+        "extras": 20681,
+        "f1": 0.28153417424464655
+      },
+      "position_id_facade": {
+        "correct": 11510,
+        "missed": 38016,
+        "extras": 20663,
+        "f1": 0.2817659946878175
+      }
+    },
+    "split/train": {
+      "views": 49,
+      "position_strict": {
+        "correct": 34751,
+        "missed": 56122,
+        "extras": 20989,
+        "f1": 0.4740507321997367
+      },
+      "position_facade": {
+        "correct": 34286,
+        "missed": 51423,
+        "extras": 20989,
+        "f1": 0.48638143335413947
+      },
+      "position_id_strict": {
+        "correct": 18840,
+        "missed": 72033,
+        "extras": 36900,
+        "f1": 0.25700313069100283
+      },
+      "position_id_facade": {
+        "correct": 18726,
+        "missed": 66983,
+        "extras": 36549,
+        "f1": 0.2656471656358168
+      }
+    },
+    "split/validation": {
+      "views": 5,
+      "position_strict": {
+        "correct": 1899,
+        "missed": 5717,
+        "extras": 1017,
+        "f1": 0.3606152677554121
+      },
+      "position_facade": {
+        "correct": 1765,
+        "missed": 3039,
+        "extras": 1017,
+        "f1": 0.4653308726601635
+      },
+      "position_id_strict": {
+        "correct": 1157,
+        "missed": 6459,
+        "extras": 1759,
+        "f1": 0.21971135586783136
+      },
+      "position_id_facade": {
+        "correct": 1141,
+        "missed": 3663,
+        "extras": 1641,
+        "f1": 0.30081729501713683
+      }
+    },
+    "split_chart/test/fail": {
+      "views": 10,
+      "position_strict": {
+        "correct": 17149,
+        "missed": 22255,
+        "extras": 5902,
+        "f1": 0.5491633976463053
+      },
+      "position_facade": {
+        "correct": 17138,
+        "missed": 22214,
+        "extras": 5902,
+        "f1": 0.5493653032440057
+      },
+      "position_id_strict": {
+        "correct": 7168,
+        "missed": 32236,
+        "extras": 15883,
+        "f1": 0.22954126971419422
+      },
+      "position_id_facade": {
+        "correct": 7168,
+        "missed": 32184,
+        "extras": 15872,
+        "f1": 0.22977304782664446
+      }
+    },
+    "split_chart/test/pass": {
+      "views": 6,
+      "position_strict": {
+        "correct": 7405,
+        "missed": 2809,
+        "extras": 1742,
+        "f1": 0.7649398274882496
+      },
+      "position_facade": {
+        "correct": 7391,
+        "missed": 2783,
+        "extras": 1742,
+        "f1": 0.7656290464598332
+      },
+      "position_id_strict": {
+        "correct": 4349,
+        "missed": 5865,
+        "extras": 4798,
+        "f1": 0.44925365425339603
+      },
+      "position_id_facade": {
+        "correct": 4342,
+        "missed": 5832,
+        "extras": 4791,
+        "f1": 0.4497850520536593
+      }
+    },
+    "split_chart/train/fail": {
+      "views": 24,
+      "position_strict": {
+        "correct": 18147,
+        "missed": 33615,
+        "extras": 11180,
+        "f1": 0.44758228613005463
+      },
+      "position_facade": {
+        "correct": 18114,
+        "missed": 32614,
+        "extras": 11180,
+        "f1": 0.452725500487366
+      },
+      "position_id_strict": {
+        "correct": 6911,
+        "missed": 44851,
+        "extras": 22416,
+        "f1": 0.1704546855923738
+      },
+      "position_id_facade": {
+        "correct": 6911,
+        "missed": 43817,
+        "extras": 22383,
+        "f1": 0.17272749993751718
+      }
+    },
+    "split_chart/train/pass": {
+      "views": 25,
+      "position_strict": {
+        "correct": 16604,
+        "missed": 22507,
+        "extras": 9809,
+        "f1": 0.5068066662596911
+      },
+      "position_facade": {
+        "correct": 16172,
+        "missed": 18809,
+        "extras": 9809,
+        "f1": 0.5305600209966864
+      },
+      "position_id_strict": {
+        "correct": 11929,
+        "missed": 27182,
+        "extras": 14484,
+        "f1": 0.36411086014284844
+      },
+      "position_id_facade": {
+        "correct": 11815,
+        "missed": 23166,
+        "extras": 14166,
+        "f1": 0.38761851645287226
+      }
+    },
+    "split_chart/validation/fail": {
+      "views": 4,
+      "position_strict": {
+        "correct": 1414,
+        "missed": 5438,
+        "extras": 849,
+        "f1": 0.3102578167855184
+      },
+      "position_facade": {
+        "correct": 1297,
+        "missed": 2897,
+        "extras": 849,
+        "f1": 0.40914826498422713
+      },
+      "position_id_strict": {
+        "correct": 682,
+        "missed": 6170,
+        "extras": 1581,
+        "f1": 0.1496434448710916
+      },
+      "position_id_facade": {
+        "correct": 676,
+        "missed": 3518,
+        "extras": 1470,
+        "f1": 0.21324921135646688
+      }
+    },
+    "split_chart/validation/pass": {
+      "views": 1,
+      "position_strict": {
+        "correct": 485,
+        "missed": 279,
+        "extras": 168,
+        "f1": 0.68454481298518
+      },
+      "position_facade": {
+        "correct": 468,
+        "missed": 142,
+        "extras": 168,
+        "f1": 0.7512038523274478
+      },
+      "position_id_strict": {
+        "correct": 475,
+        "missed": 289,
+        "extras": 178,
+        "f1": 0.6704304869442484
+      },
+      "position_id_facade": {
+        "correct": 465,
+        "missed": 145,
+        "extras": 171,
+        "f1": 0.7463884430176565
+      }
+    }
+  },
+  "incumbent_plus_recorded_on_residual": {
+    "decorative-builds-v1": {
+      "views": 40,
+      "position_strict": {
+        "correct": 9240,
+        "missed": 7686,
+        "extras": 2957,
+        "f1": 0.6345500120179927
+      },
+      "position_facade": {
+        "correct": 8916,
+        "missed": 6550,
+        "extras": 2957,
+        "f1": 0.6522550203006694
+      },
+      "position_id_strict": {
+        "correct": 7355,
+        "missed": 9571,
+        "extras": 4842,
+        "f1": 0.5050990625965731
+      },
+      "position_id_facade": {
+        "correct": 7185,
+        "missed": 8281,
+        "extras": 4688,
+        "f1": 0.5256227367496983
+      }
+    },
+    "fixed-104": {
+      "views": 104,
+      "position_strict": {
+        "correct": 20773,
+        "missed": 2929,
+        "extras": 1046,
+        "f1": 0.9126776652533996
+      },
+      "position_facade": {
+        "correct": 18952,
+        "missed": 1624,
+        "extras": 1046,
+        "f1": 0.9341943116281363
+      },
+      "position_id_strict": {
+        "correct": 19274,
+        "missed": 4428,
+        "extras": 2545,
+        "f1": 0.846817952153951
+      },
+      "position_id_facade": {
+        "correct": 17956,
+        "missed": 2620,
+        "extras": 2042,
+        "f1": 0.8850988317641839
+      }
+    },
+    "visible-builds-v3": {
+      "views": 144,
+      "position_strict": {
+        "correct": 89290,
+        "missed": 124860,
+        "extras": 44599,
+        "f1": 0.5131034165711313
+      },
+      "position_facade": {
+        "correct": 88336,
+        "missed": 112984,
+        "extras": 44599,
+        "f1": 0.5285545466784342
+      },
+      "position_id_strict": {
+        "correct": 49685,
+        "missed": 164465,
+        "extras": 84204,
+        "f1": 0.28551397975514237
+      },
+      "position_id_facade": {
+        "correct": 49417,
+        "missed": 151903,
+        "extras": 83518,
+        "f1": 0.2956844325440158
+      }
+    }
+  }
+}
