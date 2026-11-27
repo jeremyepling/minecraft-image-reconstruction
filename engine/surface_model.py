@@ -406,6 +406,7 @@ def build(image_path, version, out, *, outlines=None, order_method=None, through
     eave_events = []
     smooth_outline = {}
     common_wall_regions = []
+    exterior_measurements = None
     from engine.atlas import digest
     from engine.surface_fields import MODELS, SETTINGS as inference, infer
     if version != '26.3':
@@ -575,6 +576,13 @@ def build(image_path, version, out, *, outlines=None, order_method=None, through
             patches, smooth_outline, common_wall_regions = smooth_atlas_outline.with_common_wall(image, patches, version, atlas_loader=outline_atlas)
             methods['boundary_sequence'].append(smooth_atlas_outline.METHOD)
             boundary_settings['smooth_atlas_outline'] = smooth_outline
+            from engine import exterior_foreground
+            revised, exterior_events = exterior_foreground.refine(image, patches, metric_camera)
+            if exterior_events:
+                exterior_measurements = [with_outline(p) for p in patches]
+                patches = revised
+                methods['boundary_sequence'].append('exterior-connected-backdrop')
+                boundary_settings['exterior_foreground'] = dict(events=exterior_events)
         context_px = DEFAULT_CONTEXT_PX if context_px is None else context_px
         patches = [with_outline(part) for part in patches]
         crop_dir = out/'surface-crops'
@@ -676,9 +684,16 @@ def build(image_path, version, out, *, outlines=None, order_method=None, through
         methods['block_grouping'] = 'convex-shared-edges'
         counts = _count_regions(image, count_parts, version, counter, atlas, out, shape_matcher, shadow_field)
         placement_parts, placement_counts = count_parts, counts
+        if through == 'placement' and exterior_measurements is not None:
+            original = (smooth_atlas_outline.measurement_parts(exterior_measurements)
+                        if smooth_outline.get('events') else exterior_measurements)
+            placement_parts = eave_pinholes.measurement_parts(original) if eave_events else original
+            with TemporaryDirectory() as temporary:
+                placement_counts = _count_regions(image, placement_parts, version, counter, atlas,
+                                                  Path(temporary), shape_matcher, shadow_field)
         if inset_events or count_confirmed_outlines:
             placement_parts = [with_outline(p) for p in pre_inset]
-            placement_counts = _inset_layout_counts(image, version, placement_parts, counts,
+            placement_counts = _inset_layout_counts(image, version, placement_parts, placement_counts,
                 {e['host'] for e in inset_events + count_confirmed_outlines}, counter, atlas)
         if inset_events:
             from engine.visible_inset_cells import observed_back_spans
@@ -755,6 +770,19 @@ def build(image_path, version, out, *, outlines=None, order_method=None, through
                         cells = (set(cells) - removed) | added
                         status.update(placed_blocks=len(cells), counted_ground_corner=dict(
                             added=sorted(added), removed=sorted(removed), planes=planes))
+            if pre_inset is not None and joint_foreground and status.get('foreground_depth',{}).get('method') == 'joint':
+                from engine import exterior_foreground
+                background = exterior_foreground.exterior(image)
+                removed = exterior_foreground.misplaced(image, patches, status, cells, background)
+                added = set()
+                if exterior_measurements is not None:
+                    added, shelf = exterior_foreground.roof_edits(
+                        image, exterior_measurements, patches, exterior_events, status, set(cells), background)
+                    removed |= shelf
+                if removed or added:
+                    cells = (set(cells) - removed) | added
+                    status.update(placed_blocks=len(cells), exterior_background_removed=sorted(removed),
+                                  exterior_roof_recovered=sorted(added))
             material = 'smooth_stone'
             blocks = {tuple(map(int, pos)): material for pos in cells}
             rows = [dict(x=x, y=y, z=z, block_id=material) for x,y,z in sorted(blocks)]
