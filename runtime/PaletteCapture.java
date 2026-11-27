@@ -15,6 +15,8 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.LinkedHashMap;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Locale;
 import java.util.concurrent.CompletableFuture;
@@ -75,10 +77,16 @@ public final class PaletteCapture {
         Gson gson = new Gson();
         View[] selected = gson.fromJson(Files.readString(viewsPath), View[].class);
         JsonObject truth = gson.fromJson(Files.readString(out.getParent().resolve("layout.json")), JsonObject.class);
+        var pageRows = new HashMap<Integer, ArrayList<JsonObject>>();
+        for (var entry : truth.getAsJsonArray("blocks")) {
+            var block = entry.getAsJsonObject();
+            pageRows.computeIfAbsent(block.get("page").getAsInt(), page -> new ArrayList<>()).add(block);
+        }
         var ids = BuiltInRegistries.BLOCK.keySet().stream().map(Object::toString).sorted().toList();
         Files.writeString(out.getParent().resolve("runtime-block-registry.json"),gson.toJson(ids));
-        var built = new java.util.HashSet<Integer>();
+        var built = new HashSet<Integer>();
         for (View v : selected) {
+            var page = pageRows.get(v.page());
             double eyeY = v.feetY() + 1.62;
             double dx = v.target()[0] - v.x(), dz = v.target()[2] - v.z();
             double yaw = Math.toDegrees(Math.atan2(-dx,dz));
@@ -88,10 +96,13 @@ public final class PaletteCapture {
             if (built.add(v.page())) {
                 Thread.sleep(1000);
                 server.submit(() -> {
-                    for (var entry : truth.getAsJsonArray("blocks")) {
-                        var b=entry.getAsJsonObject();
-                        if (b.get("page").getAsInt()==v.page()) {
-                            server.overworld().getChunk(b.get("x").getAsInt()>>4,b.get("z").getAsInt()>>4);
+                    var chunks = new HashSet<Long>();
+                    for (var b : page) {
+                        int x = b.get("x").getAsInt() >> 4;
+                        int z = b.get("z").getAsInt() >> 4;
+                        long key = ((long) x << 32) | Integer.toUnsignedLong(z);
+                        if (chunks.add(key)) {
+                            server.overworld().getChunk(x, z);
                         }
                     }
                     command(server,"function palette_lab:page_"+v.page());
@@ -102,9 +113,7 @@ public final class PaletteCapture {
             {
                 var rows = server.submit(() -> {
                     var actual = new ArrayList<Map<String,Object>>();
-                    for (var entry : truth.getAsJsonArray("blocks")) {
-                        var b=entry.getAsJsonObject();
-                        if (b.get("page").getAsInt()!=v.page()) continue;
+                    for (var b : page) {
                         int x=b.get("x").getAsInt(), y=b.get("y").getAsInt(), z=b.get("z").getAsInt();
                         var pos=new BlockPos(x,y,z);
                         var state=server.overworld().getBlockState(pos);
