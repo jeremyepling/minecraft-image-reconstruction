@@ -8,13 +8,14 @@ import subprocess
 import sys
 
 from benchmark.camera_model_controls import DEFAULT_BUILDS, REPEAT_BUILDS, check, frozen_frames, inventory_hash
-from benchmark.expanded_baseline import ROOT, digest, read, save
+from benchmark.expanded_baseline import ROOT, WORKTREES, digest, read, save
 from benchmark.expanded_scores import FIXED_DATASET, score_build
 from benchmark.mask_blocks import decoded_pack
 
 
 SAMPLE = ('train-pillars-01-marble-high-right', 'test-castle-01-limestone-low-left',
           'validation-hillside-chapel-2-warm-low-left', 'test-castle-01-ashlar-high-right')
+MATCHED = WORKTREES / 'camera-geocalib/runs/camera-geocalib-01/matched-control/builds'
 
 CLI = '''
 from pathlib import Path
@@ -35,7 +36,10 @@ def run(task):
     key = entry['id']
     ordinary = DEFAULT_BUILDS / entry['dataset'] / key
     repeat_rescue = not entry['ordinary_supported'] and entry['repeat_supported']
-    expected = REPEAT_BUILDS / key / 'repeat' if policy == 'repeat' and repeat_rescue else ordinary
+    expected = REPEAT_BUILDS / key / 'repeat' if policy in ('repeat', 'budget') and repeat_rescue else ordinary
+    matched = MATCHED / entry['dataset'] / key
+    if policy == 'budget' and not entry['repeat_supported'] and (matched / 'build-manifest.json').is_file():
+        expected = matched
     case = output / entry['dataset'] / key
     case.mkdir(parents=True, exist_ok=True)
     with (case / 'execution.log').open('w', encoding='utf-8') as transcript:
@@ -55,6 +59,7 @@ def run(task):
         check(actual[name], archived[name], f'{key} {name}')
     print(f'{key}: camera, decoded export and scores match', flush=True)
     return dict(id=key, dataset=entry['dataset'], split=entry['split'], source_sha256=entry['rgb_sha256'],
+                expected=('ordinary' if expected == ordinary else 'matched' if expected == matched else 'repeat'),
                 camera_usable=actual['camera_usable'], exported=actual['exported'],
                 camera_projection_exact=True, decoded_sha256=actual_inventory,
                 normal_zip_sha256=digest(actual_pack), archived_zip_sha256=digest(archived_pack))
@@ -62,7 +67,7 @@ def run(task):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('policy', choices=('ordinary', 'repeat'))
+    parser.add_argument('policy', choices=('ordinary', 'repeat', 'budget'))
     parser.add_argument('--checkout', type=Path, default=ROOT)
     parser.add_argument('--output', type=Path, required=True)
     parser.add_argument('--ids', nargs='+', default=SAMPLE)
