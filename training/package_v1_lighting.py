@@ -14,7 +14,10 @@ from training.package_dataset import digest, encode
 from training.visible_labels import visible_labels
 
 
-CLOCK = {"morning": 2500, "afternoon": 9500}
+CONDITIONS = {
+    "morning": {400: "early-morning", 2500: "morning"},
+    "afternoon": {11600: "late-afternoon", 9500: "afternoon"},
+}
 ORIGINAL_SPLITS = ("train", "validation", "test", "regression")
 SHARDS = (*ORIGINAL_SPLITS, "historical-diagnostic")
 POSE_FIELDS = ("image_size", "vertical_fov_deg", "raining", "thundering", "hud_hidden",
@@ -57,9 +60,9 @@ def sources(data, frame_ids):
     return {fid: frames[fid] for fid in sorted(frame_ids or frames)}
 
 
-def compare_camera(pose, original, fid, lighting):
+def compare_camera(pose, original, fid, lighting, ticks):
     capture_id = f"{fid}-{lighting}"
-    require(pose["id"] == capture_id and pose["clock_ticks"] % 24000 == CLOCK[lighting],
+    require(pose["id"] == capture_id and pose["clock_ticks"] % 24000 == ticks,
             f"Wrong capture identity or clock: {capture_id}")
     require(original["clock_ticks"] % 24000 == 6000, f"Expected noon source: {fid}")
     require(all(pose[key] == original[key] for key in POSE_FIELDS), f"Camera configuration differs: {capture_id}")
@@ -113,7 +116,7 @@ def verify_label_geometry(pose, original_pose, states, ground_y, labels, raster,
                 f"Fresh camera changes the original visible labels: {pose['id']}")
 
 
-def package_frame(original, folder, historical_reason, capture, lighting, dataset):
+def package_frame(original, folder, historical_reason, capture, lighting, ticks, dataset):
     fid = original["id"]
     captured_id = f"{fid}-{lighting}"
     files = {name: (folder / name).read_bytes() for name in original["files"]}
@@ -126,7 +129,7 @@ def package_frame(original, folder, historical_reason, capture, lighting, datase
                    "noon-camera.json": files["camera.json"]})
     native_pose = json.loads(assets["camera.json"])
     noon_pose = json.loads(assets["noon-camera.json"])
-    errors = compare_camera(native_pose, noon_pose, fid, lighting)
+    errors = compare_camera(native_pose, noon_pose, fid, lighting, ticks)
     states = state_map(assets["world-readback.json"], captured_id)
     original_signature = state_signature(state_map(files["world-readback.json"], fid))
     require(state_signature(states) == original_signature,
@@ -167,8 +170,10 @@ def verify(release):
     manifest = read(release / "manifest.json")
     require(manifest["source_dataset"] == "visible-builds-v1" and manifest["schema_version"] == 1,
             "Unexpected release format")
-    require(manifest["dataset"] == f"visible-builds-v1-{manifest['lighting']}" and
-            manifest["clock_ticks"] == CLOCK[manifest["lighting"]] and set(manifest["shards"]) == set(SHARDS),
+    light, ticks = manifest["lighting"], manifest["clock_ticks"]
+    condition = CONDITIONS.get(light, {}).get(ticks)
+    require(condition and manifest["dataset"] == f"visible-builds-v1-{condition}" and
+            set(manifest["shards"]) == set(SHARDS),
             "Lighting release configuration disagrees")
     complete = manifest["complete_152_frame_replay"]
     if complete:
@@ -179,7 +184,6 @@ def verify(release):
     require(len(listed) == len(manifest["frames"]), "Duplicate release frame")
     seen, family_splits = set(), {}
     worst = dict.fromkeys(POSE_LIMITS, 0.)
-    light = manifest["lighting"]
     state_cells = 0
     maximum_changed_fraction = 0.
     identical_images = identical_visible_pixels = 0
@@ -207,7 +211,7 @@ def verify(release):
                         and row["files"]["noon-camera.json"] == row["noon_file_sha256"]["camera.json"],
                         f"Frozen asset provenance disagrees: {fid}")
                 pose = json.loads(assets["camera.json"])
-                errors = compare_camera(pose, json.loads(assets["noon-camera.json"]), fid, light)
+                errors = compare_camera(pose, json.loads(assets["noon-camera.json"]), fid, light, ticks)
                 require(errors == row["camera_max_delta"] and row["clock_ticks"] == pose["clock_ticks"]
                         and row["capture_id"] == pose["id"],
                         f"Camera audit disagrees: {fid}")
@@ -227,12 +231,12 @@ def verify(release):
             require(sorted(archive.namelist()) == sorted(members), f"Duplicate or unindexed archive files: {shard_name}")
     require(seen == set(listed), "Manifest and archive membership differ")
     return dict(frames=len(seen), layouts=len({row["layout"] for row in listed.values()}),
-                clock_ticks=CLOCK[light], verified_state_cell_appearances=state_cells, max_camera_delta=worst,
+                clock_ticks=ticks, verified_state_cell_appearances=state_cells, max_camera_delta=worst,
                 maximum_visible_pixels_max_rgb_delta_ge_8_fraction=maximum_changed_fraction,
                 pixel_identical_to_noon=identical_images, visible_structure_identical_to_noon=identical_visible_pixels)
 
 
-def package(data, capture, lighting, out, only=None):
+def package(data, capture, lighting, out, only=None, ticks=None):
     frames = sources(data, only or [])
     selected = {}
     for path in capture.glob(f"*/captures/*-{lighting}.png"):
@@ -242,10 +246,15 @@ def package(data, capture, lighting, out, only=None):
     require(set(frames).issubset(selected), f"Missing native captures: {sorted(set(frames) - set(selected))}")
     if not only:
         require(set(frames) == set(selected), f"Unexpected native captures: {sorted(set(selected) - set(frames))}")
+    if ticks is None:
+        first = next(iter(frames))
+        ticks = read(selected[first] / f"{first}-{lighting}.json")["clock_ticks"] % 24000
+    condition = CONDITIONS[lighting].get(ticks)
+    require(condition is not None, f"Unknown native lighting condition: {lighting} at {ticks} ticks")
     if out.exists():
         raise FileExistsError(out)
     out.parent.mkdir(parents=True, exist_ok=True)
-    dataset = f"visible-builds-v1-{lighting}"
+    dataset = f"visible-builds-v1-{condition}"
     with TemporaryDirectory(dir=out.parent) as temporary:
         release = Path(temporary) / "release"
         release.mkdir()
@@ -258,7 +267,7 @@ def package(data, capture, lighting, out, only=None):
                 for fid, (original, folder, reason) in frames.items():
                     if ("historical-diagnostic" if reason else original["split"]) != shard:
                         continue
-                    row, assets = package_frame(original, folder, reason, selected[fid], lighting, dataset)
+                    row, assets = package_frame(original, folder, reason, selected[fid], lighting, ticks, dataset)
                     for asset, payload in assets.items():
                         archive_asset(archive, f"{row['directory']}/{asset}", payload)
                     archive_asset(archive, f"{row['directory']}/frame.json", encode(row))
@@ -268,7 +277,7 @@ def package(data, capture, lighting, out, only=None):
             shards[shard] = dict(file=name, frames=len(rows), layouts=len({r["layout"] for r in rows}),
                                  bytes=target.stat().st_size, sha256=digest(target))
         manifest = dict(dataset=dataset, schema_version=1, source_dataset="visible-builds-v1", minecraft_version="26.3",
-                        lighting=lighting, clock_ticks=CLOCK[lighting], complete_152_frame_replay=len(records) == 152,
+                        lighting=lighting, clock_ticks=ticks, complete_152_frame_replay=len(records) == 152,
                         shards=shards, frames=records)
         (release / "manifest.json").write_bytes(encode(manifest))
         result = verify(release)
@@ -281,20 +290,22 @@ def preview(data, morning, afternoon, out):
     examples = ("train-arcbridge3-cool-high-right", "train-watchpost3-earth-low-left",
                 "test-twinspire2-cool-low-left", "legacy-smooth_stone-holdout-courtyard-plaster-high-right")
     noon_rows = sources(data, examples)
-    captures = [("Morning  2500", morning), ("Noon  6000", None), ("Afternoon  9500", afternoon)]
+    morning_manifest, afternoon_manifest = (read(root / "manifest.json") for root in (morning, afternoon))
+    captures = [("Early morning" if morning_manifest["clock_ticks"] == 400 else "Morning", morning, morning_manifest),
+                ("Noon", None, {"clock_ticks": 6000}),
+                ("Late afternoon" if afternoon_manifest["clock_ticks"] == 11600 else "Afternoon", afternoon, afternoon_manifest)]
     display = Image.new("RGB", (1468, 1368), "#182027")
     draw = ImageDraw.Draw(display)
-    for column, (title, _) in enumerate(captures):
-        draw.text((14 + 486 * column, 10), title, fill="white", font_size=22)
+    for column, (title, _, manifest) in enumerate(captures):
+        draw.text((14 + 486 * column, 10), f"{title}  {manifest['clock_ticks']}", fill="white", font_size=22)
     for index, fid in enumerate(examples):
         row, source, _ = noon_rows[fid]
         top = 46 + 329 * index
         draw.text((14, top), fid, fill="white", font_size=16)
-        for column, (_, release) in enumerate(captures):
+        for column, (_, release, manifest) in enumerate(captures):
             if release is None:
                 payload = (source / "rgb.png").read_bytes()
             else:
-                manifest = read(release / "manifest.json")
                 shard = manifest["shards"][row["split"]]
                 with ZipFile(release / shard["file"]) as archive:
                     payload = archive.read(row["directory"] + "/rgb.png")
@@ -312,7 +323,8 @@ def main():
     build = actions.add_parser("build", help="Package and verify native lighting captures")
     build.add_argument("--original-data", type=Path, required=True)
     build.add_argument("--captures", type=Path, required=True, help="Parent of cohort capture directories")
-    build.add_argument("--lighting", choices=CLOCK, required=True)
+    build.add_argument("--lighting", choices=CONDITIONS, required=True)
+    build.add_argument("--ticks", type=int, help="Exact expected native clock, such as 400 or 11600")
     build.add_argument("--out", type=Path, required=True)
     build.add_argument("--only", nargs="+", help="Package only these original frame IDs for a smoke test")
     check = actions.add_parser("verify", help="Verify a previously packaged release")
@@ -324,7 +336,7 @@ def main():
     contact_sheet.add_argument("--out", type=Path, required=True)
     args = parser.parse_args()
     if args.action == "build":
-        result = package(args.original_data, args.captures, args.lighting, args.out, args.only)
+        result = package(args.original_data, args.captures, args.lighting, args.out, args.only, args.ticks)
     elif args.action == "preview":
         result = preview(args.original_data, args.morning, args.afternoon, args.out)
     else:
