@@ -97,6 +97,11 @@ function draw(){
   trace.textContent='Trace the gap in the previous export';
   review.append(current,' · ',trace);
  }
+ if(v.id==='legacy-light_gray_concrete-holdout-courtyard-plaster-low-left'){
+  const link=document.createElement('a');link.href='../courtyard-corner-01/plank-corner.png';
+  link.textContent='Compare both plank-face projections and the exported corner from above';
+  review.append(link);
+ }
  mix.disabled=stage===0;el('overlay').style.opacity=mix.value/100;el('pct').value=mix.value+'%';
  [...nav.children].forEach((b,i)=>b.setAttribute('aria-pressed',String(i===stage)));el('legend').textContent=s[2];
  el('measures').textContent=v.name+' · '+v.f1+' strict F1 · '+v.facade+' facade-priority F1 · '+v.correct+' correct · '+v.required+' required misses · '+v.optional+' optional misses · '+v.extras+' extras';
