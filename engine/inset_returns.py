@@ -10,6 +10,21 @@ from engine.surface_perimeter import _native_alpha
 
 
 METHOD = 'visible-inset-jamb-and-sill'
+TEXTURE_METHOD = 'visible-inset-host-texture-phase'
+
+
+def detect(image, parts, version, *, atlas_path=None, camera=None):
+    if not possible(image.size, parts):
+        return parts, [], [], camera
+    if camera is None:
+        from engine.visible_placement import seam_camera
+        camera = seam_camera(image, version, atlas_path=atlas_path)
+    updated, returns = refine(image, parts, camera)
+    if not returns:
+        return updated, [], [], camera
+    from engine.facade_inset_phase import supplemental
+    updated, texture = supplemental(image, updated, camera, returns)
+    return updated, returns, texture, camera
 
 
 def possible(size, parts):
@@ -136,8 +151,12 @@ def _brightness(rgb, front, eye, axis, fit):
 
 
 def refine(image, parts, camera):
-    if len(parts)<3 or camera.get('P') is None:
+    if len(parts)<3 or not camera or camera.get('P') is None:
         return parts,[]
+    projection = np.asarray(camera['P'], dtype=float)
+    if (projection.shape != (3, 4) or not np.isfinite(projection).all()
+            or np.linalg.matrix_rank(projection[:, :3]) != 3):
+        return parts, []
     P,rot=orientation(camera,image.size)
     inv=np.linalg.inv(P[:,:3])
     eye=-inv@P[:,3]

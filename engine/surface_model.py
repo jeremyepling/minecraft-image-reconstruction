@@ -521,14 +521,13 @@ def build(image_path, version, out, *, outlines=None, order_method=None, through
             methods['skyline_extent'] = skyline_extent.METHOD
             methods['boundary_sequence'].append(skyline_extent.METHOD)
             from engine import inset_returns
-            if inset_returns.possible(image.size, patches):
-                from engine.visible_placement import seam_camera
-                metric_camera = seam_camera(image, version, atlas_path=camera_atlas_path)
-                pre_inset = patches
-                patches, inset_events = inset_returns.refine(image, patches, metric_camera)
+            pre_inset = patches
+            patches, inset_events, phase_events, metric_camera = inset_returns.detect(
+                image, patches, version, atlas_path=camera_atlas_path)
             methods['visible_insets'] = inset_returns.METHOD
-            methods['boundary_sequence'].append(inset_returns.METHOD)
-            boundary_settings['visible_insets'] = dict(events=inset_events)
+            methods['inset_texture'] = inset_returns.TEXTURE_METHOD
+            methods['boundary_sequence'].extend([inset_returns.METHOD, inset_returns.TEXTURE_METHOD])
+            boundary_settings['visible_insets'] = dict(events=inset_events, texture_events=phase_events)
         context_px = DEFAULT_CONTEXT_PX if context_px is None else context_px
         patches = [with_outline(part) for part in patches]
         crop_dir = out/'surface-crops'
