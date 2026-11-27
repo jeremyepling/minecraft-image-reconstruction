@@ -12,14 +12,25 @@ from benchmark.expanded_baseline import COHORTS, ROOT, SOURCE, WORKTREES, digest
 from engine.camera_repeat_floor import predict
 
 PREVIOUS = WORKTREES / 'camera-horizon-floor/runs/camera-horizon-floor-01'
-OUT = ROOT / 'runs/camera-repeat-port-check'
+EXPANDED = WORKTREES / 'camera-geocalib/runs/camera-geocalib-01/matched-control/metric'
+OUT = ROOT / 'runs/camera-repeat-expanded-port-check'
+
+
+def expected(entry):
+    camera = read(PREVIOUS / entry['id'] / 'repeat.json')['camera']
+    if camera['P'] is None:
+        previous = read(EXPANDED / (entry['id'] + '.json'))
+        if previous['rgb_sha256'] != entry['rgb_sha256']:
+            raise ValueError('Expanded source checksum changed')
+        camera = previous['camera']
+    return camera
 
 
 def run(entry):
     source = Path(entry['frame']) / 'rgb.png'
     if digest(source) != entry['rgb_sha256']:
         raise ValueError('Source changed: ' + entry['id'])
-    before = read(PREVIOUS / entry['id'] / 'repeat.json')['camera']
+    before = expected(entry)
     with Image.open(source) as image:
         after = predict(image)
     after = json.loads(json.dumps(after, allow_nan=False))
@@ -43,7 +54,7 @@ def main():
         for entry in entries:
             path = OUT / (entry['id'] + '.json')
             row = read(path)
-            before = read(PREVIOUS / entry['id'] / 'repeat.json')['camera']
+            before = expected(entry)
             row['identical'] = before == row['camera']
             row['identical_P'] = before['P'] == row['camera']['P']
             save(path, row)

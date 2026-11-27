@@ -44,3 +44,20 @@ class RepeatFloorCameraTests(unittest.TestCase):
             result = repeat.predict(Image.new('RGB', (512, 384)))
         self.assertIsNone(result['P'])
         self.assertEqual(result['reason'], 'degenerate tile translation fit')
+
+    def test_original_repeat_success_does_not_trigger_wider_search(self):
+        measured = dict(P=np.eye(3, 4).tolist(), scale_status='supported', reason='verified')
+        with patch.object(repeat, '_atlas', return_value=object()), \
+                patch.object(repeat, '_solve', return_value=measured), \
+                patch.object(repeat, '_expanded_solve', side_effect=AssertionError('must preserve original fit')):
+            self.assertIs(repeat.predict(Image.new('RGB', (512, 384))), measured)
+
+    def test_wider_search_uses_the_same_verified_explicit_atlas(self):
+        image = Image.new('RGB', (512, 384))
+        atlas = object()
+        recovered = dict(P=np.eye(3, 4).tolist(), scale_status='supported', reason='independent patches agree')
+        with patch.object(repeat, '_atlas', return_value=atlas), \
+                patch.object(repeat, '_solve', return_value=dict(P=None)), \
+                patch.object(repeat, '_expanded_solve', return_value=recovered) as expanded:
+            self.assertIs(repeat.predict(image, atlas_path=Path('explicit-atlas')), recovered)
+        expanded.assert_called_once_with(image, atlas)

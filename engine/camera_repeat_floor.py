@@ -186,6 +186,54 @@ def _solve(image, atlas, *, use_boundary=True):
     return dict(P=None,scale_status='uncertain',reason='no bilaterally registered tile translation pair',evidence=evidence)
 
 
+def _expanded_solve(image, atlas):
+    """Try more boundary-seeded tile grids after the original repeat search fails."""
+    rgb = np.asarray(image.convert('RGB'))
+    h, w = rgb.shape[:2]
+    ref = .91*h
+    horizon = boundary(rgb.astype(np.int16))
+    evidence = dict(seed_horizon_px=horizon, seed_focal_px=None, fits=0)
+    rejected = dict(P=None, scale_status='uncertain', reason='no bilaterally verified floor proposal', evidence=evidence)
+    gray = rgb.mean(2)
+    limits = np.quantile(gray[int(.82*h)::2, ::3], [.08, .92])
+    gray = np.clip(gray, *limits)
+    offsets = (-.08, -.04, -.02, 0., .02, .04, .08)
+    hypotheses = ([(trial*h, 0.) for trial in np.linspace(-.35, .73, len(offsets))]
+                  if horizon is None else [(horizon + offset*h, offset) for offset in offsets])
+    seeds = []
+    for trial, offset in hypotheses:
+        if not -.8*h < trial <= .73*h:
+            continue
+        for corr, inv, vectors in charts(peaks(gray, trial, ref), trial, ref, w, h):
+            seeds.append((corr - .5*abs(offset), trial, vectors))
+    tried = []
+    for _, trial, vectors in sorted(seeds, key=lambda s: -s[0]):
+        if any(abs(trial-other) < .02*h and np.allclose(vectors, vec, atol=2) for other, vec in tried):
+            continue
+        tried.append((trial, vectors))
+        evidence['fits'] = len(tried)
+        fitted, vec, residual = fit_translation(gray, trial, ref, vectors)
+        d = ref-fitted
+        inv = np.array([[d, 0, -d*w/2], [0, -d, d*ref], [0, 1, -fitted]])
+        if abs(np.linalg.det(vec)) > 1e-6:
+            inv[:2] = 16*np.linalg.solve(vec, inv[:2])
+            if _ground(inv, w, h) is not None:
+                inv[:2] += phase_origin(gray, inv)[:, None]*inv[2]
+                origin, match = register(image, inv, atlas)
+                if origin is not None:
+                    inv[:2] = (inv[:2]+origin[:, None]*inv[2])/16
+                    metric = _ground(inv, w, h)
+                    if metric is not None:
+                        P, focal_fit, disagreement = metric
+                        evidence.update(horizon_px=fitted, focal_px=focal_fit, repeat_residual=residual,
+                                        axis_length_disagreement=disagreement, **match)
+                        return dict(P=P, scale_status='supported', camera_source='boundary-budget-repeat',
+                                    reason='two tile translations registered independently in both halves', evidence=evidence)
+        if len(tried) >= 12:
+            break
+    return rejected
+
+
 def predict(image, version='26.3', *, atlas_path=None):
     """Recover block scale only after two image halves agree with a verified atlas."""
     def abstain(reason):
@@ -198,6 +246,7 @@ def predict(image, version='26.3', *, atlas_path=None):
     if atlas is None:
         return abstain('calibrated atlas unavailable')
     try:
-        return _solve(image, atlas)
+        original = _solve(image, atlas)
+        return original if original['P'] is not None else _expanded_solve(image, atlas)
     except np.linalg.LinAlgError:
         return abstain('degenerate tile translation fit')
