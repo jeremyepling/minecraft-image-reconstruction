@@ -207,6 +207,21 @@ def main():
             raise ValueError("Fixture and capture use different client JARs")
         if not views or any(not re.fullmatch(r"[a-zA-Z0-9_-]+",v["id"]) for v in views):
             raise ValueError("Invalid or empty view list")
+        frame_ids = []
+        for view in views:
+            if "lighting" in view:
+                conditions = view["lighting"]
+                if not conditions or any(
+                    not re.fullmatch(r"[a-zA-Z0-9_-]+", light["name"]) or
+                    not isinstance(light["ticks"], int) or not 0 <= light["ticks"] < 24000
+                    for light in conditions
+                ):
+                    raise ValueError("Invalid lighting conditions")
+                frame_ids.extend(f"{view['id']}-{light['name']}" for light in conditions)
+            else:
+                frame_ids.append(view["id"])
+        if len(set(frame_ids)) != len(frame_ids):
+            raise ValueError("Duplicate capture frame identifiers")
         game=root/"client"
         if game.exists() or (root/"captures").exists():
             raise FileExistsError("Use a fresh capture directory; this run already has a client or captures")
@@ -224,10 +239,22 @@ def main():
             shutil.copyfile(args.resource_pack,private)
             packs=["file/"+private.name]
             cmd.insert(1,"-Dpalette.capture.pack="+packs[0])
-        (game/"options.txt").write_text(f"version:{meta['world_version']}\nonboardAccessibility:false\ntutorialStep:none\n"
-            f"resourcePacks:{json.dumps(packs)}\n"
-            f"pauseOnLostFocus:false\nrenderDistance:{args.render_distance}\nsimulationDistance:5\nmaxFps:60\n"
-            "fullscreen:false\nenableVsync:false\nbobView:false\nfovEffectScale:0.0\n")
+        options = {
+            "version": meta["world_version"], "onboardAccessibility": "false", "tutorialStep": "none",
+            "resourcePacks": json.dumps(packs), "pauseOnLostFocus": "false", "renderDistance": args.render_distance,
+            "simulationDistance": 5, "maxFps": 60, "fullscreen": "false", "enableVsync": "false",
+            "bobView": "false", "fovEffectScale": "0.0",
+        }
+        if (root / "capture-options.json").is_file():
+            replay_options = json.loads((root / "capture-options.json").read_bytes())
+            allowed = {"ao", "gamma", "biomeBlendRadius", "mipmapLevels", "entityShadows", "renderClouds",
+                       "particles", "renderDistance", "simulationDistance", "bobView", "fovEffectScale"}
+            if set(replay_options) - allowed or any(not isinstance(value, str) or "\n" in value or "\r" in value
+                                                    for value in replay_options.values()):
+                raise ValueError("Invalid replay capture options")
+            options.update(replay_options)
+        (game/"options.txt").write_text("".join(f"{key}:{value}\n" for key, value in options.items()),
+                                        encoding="utf-8")
         # Dialogs must be handled in this private client; capture the game's own framebuffer.
         cmd[1:1]=["-Xms256m","-Xmx2200m","-XX:StackShadowPages=32",f"-Dpalette.capture.dir={root/'captures'}"]
         if sys.platform=="darwin":
@@ -238,8 +265,8 @@ def main():
                     "--assetIndex",index,"--width",str(width),"--height",str(height),"--quickPlaySingleplayer",save.name])
         log_file=root/"client-run.log"
         run_client(cmd, game, log_file, max(420,len(views)*20+120), predict_frames)
-        for v in views:
-            stem=root/"captures"/v["id"]
+        for frame_id in frame_ids:
+            stem=root/"captures"/frame_id
             if not stem.with_suffix(".png").is_file() or json.loads(stem.with_suffix(".json").read_text())["minecraft_version"]!=args.version:
                 raise RuntimeError(f"Capture verification failed for {stem.name}")
 
