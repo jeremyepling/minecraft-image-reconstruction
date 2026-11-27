@@ -1,5 +1,5 @@
-"""Select a metric camera using visible ground seams, then registered floor art."""
-from engine import camera_atlas_floor, camera_seam
+"""Select a metric camera from seams, texels, then verified whole-tile repeats."""
+from engine import camera_atlas_floor, camera_repeat_floor, camera_seam
 
 
 def predict(image, version='26.3', *, atlas_path=None):
@@ -9,4 +9,7 @@ def predict(image, version='26.3', *, atlas_path=None):
     atlas = camera_atlas_floor.predict(image, version, atlas_path=atlas_path)
     if atlas['P'] is not None:
         return dict(atlas, camera_source='atlas-floor', seam_reason=seams['reason'])
-    return dict(seams, camera_source=None, atlas_reason=atlas['reason'])
+    repeat = camera_repeat_floor.predict(image, version, atlas_path=atlas_path)
+    if repeat['P'] is not None:
+        return dict(repeat, seam_reason=seams['reason'], atlas_reason=atlas['reason'])
+    return dict(seams, camera_source=None, atlas_reason=atlas['reason'], repeat_reason=repeat['reason'])

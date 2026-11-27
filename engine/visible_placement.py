@@ -155,6 +155,8 @@ def place_with_camera(image, version, parts, counts, camera, select_level=None, 
     status['camera_source'] = camera.get('camera_source')
     if camera.get('atlas_reason'):
         status['atlas_camera_reason'] = camera['atlas_reason']
+    if camera.get('repeat_reason'):
+        status['repeat_camera_reason'] = camera['repeat_reason']
     if camera['scale_status'] != 'supported' or camera['P'] is None or not parts:
         return set(), status
     projection = np.asarray(camera['P'])
