@@ -1,0 +1,1235 @@
+{
+  "combined_cases_sha256": "9cf443c5ce489ef7e61475fad2a723ef8793ed871a1682b28a51a8bc5aecf72d",
+  "return_cases_sha256": "d49ddab19ab3497e8284dc9a65f085a7d14b4c865337d3db1d56781e59c52e57",
+  "verified_ordinary_frames": [
+    "train-sawtooth3-earth-high-right",
+    "heldout-facade-oblique-right",
+    "test-recess-28-left",
+    "signed-relief-26.3--dev--dev-relief-00-oblique-right"
+  ],
+  "summary": {
+    "host_observations": 17,
+    "host_axes_before": {
+      "wrong": 11,
+      "exact": 19,
+      "unknown": 4
+    },
+    "host_axes_after": {
+      "exact": 30,
+      "wrong": 1,
+      "unknown": 3
+    },
+    "host_axis_transitions": {
+      "wrong->exact": 11,
+      "exact->exact": 19,
+      "unknown->wrong": 1,
+      "unknown->unknown": 3
+    },
+    "host_pairs_before": {
+      "wrong_complete": 6,
+      "exact": 9,
+      "unresolved": 2
+    },
+    "host_pairs_after": {
+      "exact": 15,
+      "unresolved": 2
+    },
+    "back_observations": 29,
+    "new_back_axes": {
+      "exact": 34,
+      "wrong": 13,
+      "unknown": 11
+    },
+    "new_back_pairs": {
+      "exact": 9,
+      "wrong_complete": 12,
+      "unresolved": 8
+    },
+    "new_back_nonrectangular": 1,
+    "other_changed_counts": [],
+    "before_hosts_match_reference": 17,
+    "hosts_with_holes_or_partial_rectangle": 17,
+    "new_back_axes_separately": {
+      "width": {
+        "exact": 10,
+        "wrong": 11,
+        "unknown": 8
+      },
+      "height": {
+        "exact": 24,
+        "unknown": 3,
+        "wrong": 2
+      }
+    },
+    "new_back_partial_pair_breakdown": {
+      "0": 21,
+      "1": 5,
+      "2": 3
+    },
+    "host_comparison_iou_min": 0.52076,
+    "new_back_match_iou_min": 0.66067
+  },
+  "hosts": [
+    {
+      "frame": "train-sawtooth1-cool-high-right",
+      "split": "train",
+      "mask": "mask-0-wall-0-single-236-0",
+      "surface_id": 1,
+      "iou": 0.96262,
+      "visible_span": [
+        12,
+        5
+      ],
+      "visible_unit_faces": 42,
+      "rectangle_full": false,
+      "prior_mask_is_best": true,
+      "prior_best_iou": 0.932575,
+      "before": [
+        3,
+        1
+      ],
+      "after": [
+        12,
+        5
+      ],
+      "old_status": [
+        "wrong",
+        "wrong"
+      ],
+      "new_status": [
+        "exact",
+        "exact"
+      ]
+    },
+    {
+      "frame": "train-sawtooth1-earth-high-right",
+      "split": "train",
+      "mask": "mask-0-junction-0-single-412-0",
+      "surface_id": 1,
+      "iou": 0.94221,
+      "visible_span": [
+        12,
+        5
+      ],
+      "visible_unit_faces": 42,
+      "rectangle_full": false,
+      "prior_mask_is_best": true,
+      "prior_best_iou": 0.861358,
+      "before": [
+        12,
+        5
+      ],
+      "after": [
+        12,
+        5
+      ],
+      "old_status": [
+        "exact",
+        "exact"
+      ],
+      "new_status": [
+        "exact",
+        "exact"
+      ]
+    },
+    {
+      "frame": "train-sawtooth1-earth-low-left",
+      "split": "train",
+      "mask": "mask-0-junction-0-single-342-0",
+      "surface_id": 2,
+      "iou": 0.91389,
+      "visible_span": [
+        12,
+        5
+      ],
+      "visible_unit_faces": 42,
+      "rectangle_full": false,
+      "prior_mask_is_best": true,
+      "prior_best_iou": 0.854432,
+      "before": [
+        null,
+        null
+      ],
+      "after": [
+        13,
+        null
+      ],
+      "old_status": [
+        "unknown",
+        "unknown"
+      ],
+      "new_status": [
+        "wrong",
+        "unknown"
+      ]
+    },
+    {
+      "frame": "train-sawtooth2-cool-high-right",
+      "split": "train",
+      "mask": "mask-0-wall-0-single-185-0",
+      "surface_id": 1,
+      "iou": 0.94532,
+      "visible_span": [
+        15,
+        6
+      ],
+      "visible_unit_faces": 66,
+      "rectangle_full": false,
+      "prior_mask_is_best": true,
+      "prior_best_iou": 0.864066,
+      "before": [
+        15,
+        6
+      ],
+      "after": [
+        15,
+        6
+      ],
+      "old_status": [
+        "exact",
+        "exact"
+      ],
+      "new_status": [
+        "exact",
+        "exact"
+      ]
+    },
+    {
+      "frame": "train-sawtooth2-earth-high-right",
+      "split": "train",
+      "mask": "mask-0-junction-1",
+      "surface_id": 1,
+      "iou": 0.52076,
+      "visible_span": [
+        15,
+        6
+      ],
+      "visible_unit_faces": 66,
+      "rectangle_full": false,
+      "prior_mask_is_best": true,
+      "prior_best_iou": 0.508596,
+      "before": [
+        null,
+        null
+      ],
+      "after": [
+        null,
+        null
+      ],
+      "old_status": [
+        "unknown",
+        "unknown"
+      ],
+      "new_status": [
+        "unknown",
+        "unknown"
+      ]
+    },
+    {
+      "frame": "train-sawtooth3-earth-high-right",
+      "split": "train",
+      "mask": "mask-0-wall-0-single-391-0",
+      "surface_id": 1,
+      "iou": 0.96754,
+      "visible_span": [
+        18,
+        7
+      ],
+      "visible_unit_faces": 86,
+      "rectangle_full": false,
+      "prior_mask_is_best": true,
+      "prior_best_iou": 0.869988,
+      "before": [
+        5,
+        2
+      ],
+      "after": [
+        18,
+        7
+      ],
+      "old_status": [
+        "wrong",
+        "wrong"
+      ],
+      "new_status": [
+        "exact",
+        "exact"
+      ]
+    },
+    {
+      "frame": "heldout-facade-oblique-left",
+      "split": "native",
+      "mask": "mask-0-wall-1-single-342-0",
+      "surface_id": 2,
+      "iou": 0.92028,
+      "visible_span": [
+        27,
+        11
+      ],
+      "visible_unit_faces": 218,
+      "rectangle_full": false,
+      "prior_mask_is_best": true,
+      "prior_best_iou": 0.899406,
+      "before": [
+        28,
+        12
+      ],
+      "after": [
+        27,
+        11
+      ],
+      "old_status": [
+        "wrong",
+        "wrong"
+      ],
+      "new_status": [
+        "exact",
+        "exact"
+      ]
+    },
+    {
+      "frame": "heldout-facade-oblique-right",
+      "split": "native",
+      "mask": "mask-0-junction-1-joined",
+      "surface_id": 2,
+      "iou": 0.95859,
+      "visible_span": [
+        27,
+        11
+      ],
+      "visible_unit_faces": 218,
+      "rectangle_full": false,
+      "prior_mask_is_best": true,
+      "prior_best_iou": 0.882684,
+      "before": [
+        27,
+        11
+      ],
+      "after": [
+        27,
+        11
+      ],
+      "old_status": [
+        "exact",
+        "exact"
+      ],
+      "new_status": [
+        "exact",
+        "exact"
+      ]
+    },
+    {
+      "frame": "test-recess-28-left",
+      "split": "native",
+      "mask": "mask-0-junction-1",
+      "surface_id": 2,
+      "iou": 0.91795,
+      "visible_span": [
+        25,
+        8
+      ],
+      "visible_unit_faces": 128,
+      "rectangle_full": false,
+      "prior_mask_is_best": true,
+      "prior_best_iou": 0.888051,
+      "before": [
+        25,
+        8
+      ],
+      "after": [
+        25,
+        8
+      ],
+      "old_status": [
+        "exact",
+        "exact"
+      ],
+      "new_status": [
+        "exact",
+        "exact"
+      ]
+    },
+    {
+      "frame": "signed-relief-26.3--dev--dev-relief-00-oblique-right",
+      "split": "old",
+      "mask": "mask-0-single-455-0",
+      "surface_id": 1,
+      "iou": 0.85389,
+      "visible_span": [
+        33,
+        13
+      ],
+      "visible_unit_faces": 345,
+      "rectangle_full": false,
+      "prior_mask_is_best": true,
+      "prior_best_iou": 0.8466,
+      "before": [
+        33,
+        13
+      ],
+      "after": [
+        33,
+        13
+      ],
+      "old_status": [
+        "exact",
+        "exact"
+      ],
+      "new_status": [
+        "exact",
+        "exact"
+      ]
+    },
+    {
+      "frame": "shape-benchmark-26.3--train-recess-02-right",
+      "split": "old",
+      "mask": "mask-0",
+      "surface_id": 2,
+      "iou": 0.90968,
+      "visible_span": [
+        25,
+        8
+      ],
+      "visible_unit_faces": 128,
+      "rectangle_full": false,
+      "prior_mask_is_best": true,
+      "prior_best_iou": 0.869486,
+      "before": [
+        25,
+        8
+      ],
+      "after": [
+        25,
+        8
+      ],
+      "old_status": [
+        "exact",
+        "exact"
+      ],
+      "new_status": [
+        "exact",
+        "exact"
+      ]
+    },
+    {
+      "frame": "signed-relief-26.3--test--test-relief-00-oblique-left",
+      "split": "old",
+      "mask": "mask-0-single-266-0",
+      "surface_id": 2,
+      "iou": 0.89772,
+      "visible_span": [
+        33,
+        13
+      ],
+      "visible_unit_faces": 345,
+      "rectangle_full": false,
+      "prior_mask_is_best": true,
+      "prior_best_iou": 0.889516,
+      "before": [
+        34,
+        14
+      ],
+      "after": [
+        33,
+        13
+      ],
+      "old_status": [
+        "wrong",
+        "wrong"
+      ],
+      "new_status": [
+        "exact",
+        "exact"
+      ]
+    },
+    {
+      "frame": "entrance-confirm-26.3--positive--heldout-facade-oblique-right",
+      "split": "fresh",
+      "mask": "mask-0",
+      "surface_id": 1,
+      "iou": 0.89234,
+      "visible_span": [
+        29,
+        12
+      ],
+      "visible_unit_faces": 263,
+      "rectangle_full": false,
+      "prior_mask_is_best": true,
+      "prior_best_iou": 0.874992,
+      "before": [
+        30,
+        13
+      ],
+      "after": [
+        29,
+        12
+      ],
+      "old_status": [
+        "wrong",
+        "wrong"
+      ],
+      "new_status": [
+        "exact",
+        "exact"
+      ]
+    },
+    {
+      "frame": "signed-relief-26.3--test--test-relief-00-oblique-right",
+      "split": "extra",
+      "mask": "mask-0-single-597-0",
+      "surface_id": 1,
+      "iou": 0.88599,
+      "visible_span": [
+        33,
+        13
+      ],
+      "visible_unit_faces": 345,
+      "rectangle_full": false,
+      "prior_mask_is_best": true,
+      "prior_best_iou": 0.842443,
+      "before": [
+        34,
+        13
+      ],
+      "after": [
+        33,
+        13
+      ],
+      "old_status": [
+        "wrong",
+        "exact"
+      ],
+      "new_status": [
+        "exact",
+        "exact"
+      ]
+    },
+    {
+      "frame": "recess-positive-control-26.3--heldout-facade-left",
+      "split": "extra",
+      "mask": "mask-0",
+      "surface_id": 2,
+      "iou": 0.91453,
+      "visible_span": [
+        25,
+        8
+      ],
+      "visible_unit_faces": 137,
+      "rectangle_full": false,
+      "prior_mask_is_best": true,
+      "prior_best_iou": 0.87828,
+      "before": [
+        25,
+        8
+      ],
+      "after": [
+        25,
+        8
+      ],
+      "old_status": [
+        "exact",
+        "exact"
+      ],
+      "new_status": [
+        "exact",
+        "exact"
+      ]
+    },
+    {
+      "frame": "rim-views-26.3--positive--heldout-facade-oblique-left",
+      "split": "extra",
+      "mask": "mask-0-wall-1",
+      "surface_id": 2,
+      "iou": 0.92451,
+      "visible_span": [
+        25,
+        8
+      ],
+      "visible_unit_faces": 137,
+      "rectangle_full": false,
+      "prior_mask_is_best": true,
+      "prior_best_iou": 0.8788,
+      "before": [
+        25,
+        8
+      ],
+      "after": [
+        25,
+        8
+      ],
+      "old_status": [
+        "exact",
+        "exact"
+      ],
+      "new_status": [
+        "exact",
+        "exact"
+      ]
+    },
+    {
+      "frame": "shape-benchmark-26.3--train-recess-02-left",
+      "split": "extra",
+      "mask": "mask-0-single-487-0",
+      "surface_id": 2,
+      "iou": 0.95605,
+      "visible_span": [
+        25,
+        8
+      ],
+      "visible_unit_faces": 128,
+      "rectangle_full": false,
+      "prior_mask_is_best": true,
+      "prior_best_iou": 0.937802,
+      "before": [
+        25,
+        8
+      ],
+      "after": [
+        25,
+        8
+      ],
+      "old_status": [
+        "exact",
+        "exact"
+      ],
+      "new_status": [
+        "exact",
+        "exact"
+      ]
+    }
+  ],
+  "backs": [
+    {
+      "frame": "train-sawtooth1-cool-high-right",
+      "split": "train",
+      "mask": "mask-0-wall-0-single-236-0-inset-0",
+      "surface_id": 6,
+      "iou": 0.97756,
+      "visible_span": [
+        1,
+        3
+      ],
+      "visible_unit_faces": 3,
+      "rectangle_full": true,
+      "estimate": [
+        1,
+        3
+      ],
+      "axis_status": [
+        "exact",
+        "exact"
+      ]
+    },
+    {
+      "frame": "train-sawtooth1-earth-high-right",
+      "split": "train",
+      "mask": "mask-0-junction-0-single-412-0-inset-0",
+      "surface_id": 6,
+      "iou": 0.96927,
+      "visible_span": [
+        1,
+        3
+      ],
+      "visible_unit_faces": 3,
+      "rectangle_full": true,
+      "estimate": [
+        1,
+        3
+      ],
+      "axis_status": [
+        "exact",
+        "exact"
+      ]
+    },
+    {
+      "frame": "train-sawtooth1-earth-high-right",
+      "split": "train",
+      "mask": "mask-0-junction-0-single-412-0-inset-1",
+      "surface_id": 14,
+      "iou": 0.97531,
+      "visible_span": [
+        2,
+        3
+      ],
+      "visible_unit_faces": 6,
+      "rectangle_full": true,
+      "estimate": [
+        1,
+        3
+      ],
+      "axis_status": [
+        "wrong",
+        "exact"
+      ]
+    },
+    {
+      "frame": "train-sawtooth1-earth-low-left",
+      "split": "train",
+      "mask": "mask-0-junction-0-single-342-0-inset-0",
+      "surface_id": 14,
+      "iou": 0.99684,
+      "visible_span": [
+        2,
+        3
+      ],
+      "visible_unit_faces": 6,
+      "rectangle_full": true,
+      "estimate": [
+        1,
+        3
+      ],
+      "axis_status": [
+        "wrong",
+        "exact"
+      ]
+    },
+    {
+      "frame": "train-sawtooth2-cool-high-right",
+      "split": "train",
+      "mask": "mask-0-wall-0-single-185-0-inset-0",
+      "surface_id": 6,
+      "iou": 0.86346,
+      "visible_span": [
+        1,
+        4
+      ],
+      "visible_unit_faces": 4,
+      "rectangle_full": true,
+      "estimate": [
+        null,
+        null
+      ],
+      "axis_status": [
+        "unknown",
+        "unknown"
+      ]
+    },
+    {
+      "frame": "train-sawtooth2-cool-high-right",
+      "split": "train",
+      "mask": "mask-0-wall-0-single-185-0-inset-1",
+      "surface_id": 22,
+      "iou": 0.99805,
+      "visible_span": [
+        2,
+        4
+      ],
+      "visible_unit_faces": 8,
+      "rectangle_full": true,
+      "estimate": [
+        1,
+        4
+      ],
+      "axis_status": [
+        "wrong",
+        "exact"
+      ]
+    },
+    {
+      "frame": "train-sawtooth2-earth-high-right",
+      "split": "train",
+      "mask": "mask-0-junction-1-inset-0",
+      "surface_id": 14,
+      "iou": 0.92172,
+      "visible_span": [
+        2,
+        4
+      ],
+      "visible_unit_faces": 8,
+      "rectangle_full": true,
+      "estimate": [
+        null,
+        4
+      ],
+      "axis_status": [
+        "unknown",
+        "exact"
+      ]
+    },
+    {
+      "frame": "train-sawtooth3-earth-high-right",
+      "split": "train",
+      "mask": "mask-0-wall-0-single-391-0-inset-0",
+      "surface_id": 12,
+      "iou": 0.93484,
+      "visible_span": [
+        1,
+        5
+      ],
+      "visible_unit_faces": 5,
+      "rectangle_full": true,
+      "estimate": [
+        1,
+        1
+      ],
+      "axis_status": [
+        "exact",
+        "wrong"
+      ]
+    },
+    {
+      "frame": "train-sawtooth3-earth-high-right",
+      "split": "train",
+      "mask": "mask-0-wall-0-single-391-0-inset-1",
+      "surface_id": 6,
+      "iou": 0.92006,
+      "visible_span": [
+        1,
+        5
+      ],
+      "visible_unit_faces": 5,
+      "rectangle_full": true,
+      "estimate": [
+        null,
+        null
+      ],
+      "axis_status": [
+        "unknown",
+        "unknown"
+      ]
+    },
+    {
+      "frame": "train-sawtooth3-earth-high-right",
+      "split": "train",
+      "mask": "mask-0-wall-0-single-391-0-inset-2",
+      "surface_id": 18,
+      "iou": 0.92454,
+      "visible_span": [
+        2,
+        5
+      ],
+      "visible_unit_faces": 10,
+      "rectangle_full": true,
+      "estimate": [
+        5,
+        19
+      ],
+      "axis_status": [
+        "wrong",
+        "wrong"
+      ]
+    },
+    {
+      "frame": "heldout-facade-oblique-left",
+      "split": "native",
+      "mask": "mask-0-wall-1-single-342-0-inset-0",
+      "surface_id": 14,
+      "iou": 0.96804,
+      "visible_span": [
+        4,
+        2
+      ],
+      "visible_unit_faces": 8,
+      "rectangle_full": true,
+      "estimate": [
+        4,
+        2
+      ],
+      "axis_status": [
+        "exact",
+        "exact"
+      ]
+    },
+    {
+      "frame": "heldout-facade-oblique-right",
+      "split": "native",
+      "mask": "mask-0-junction-1-joined-inset-0",
+      "surface_id": 9,
+      "iou": 0.96696,
+      "visible_span": [
+        4,
+        3
+      ],
+      "visible_unit_faces": 12,
+      "rectangle_full": true,
+      "estimate": [
+        3,
+        3
+      ],
+      "axis_status": [
+        "wrong",
+        "exact"
+      ]
+    },
+    {
+      "frame": "heldout-facade-oblique-right",
+      "split": "native",
+      "mask": "mask-0-junction-1-joined-inset-1",
+      "surface_id": 19,
+      "iou": 0.98461,
+      "visible_span": [
+        3,
+        2
+      ],
+      "visible_unit_faces": 6,
+      "rectangle_full": true,
+      "estimate": [
+        3,
+        2
+      ],
+      "axis_status": [
+        "exact",
+        "exact"
+      ]
+    },
+    {
+      "frame": "heldout-facade-oblique-right",
+      "split": "native",
+      "mask": "mask-0-junction-1-joined-inset-2",
+      "surface_id": 14,
+      "iou": 0.97335,
+      "visible_span": [
+        5,
+        2
+      ],
+      "visible_unit_faces": 10,
+      "rectangle_full": true,
+      "estimate": [
+        4,
+        2
+      ],
+      "axis_status": [
+        "wrong",
+        "exact"
+      ]
+    },
+    {
+      "frame": "test-recess-28-left",
+      "split": "native",
+      "mask": "mask-0-junction-1-inset-0",
+      "surface_id": 12,
+      "iou": 0.89471,
+      "visible_span": [
+        3,
+        3
+      ],
+      "visible_unit_faces": 9,
+      "rectangle_full": true,
+      "estimate": [
+        2,
+        3
+      ],
+      "axis_status": [
+        "wrong",
+        "exact"
+      ]
+    },
+    {
+      "frame": "test-recess-28-left",
+      "split": "native",
+      "mask": "mask-0-junction-1-phase-inset-0",
+      "surface_id": 17,
+      "iou": 0.6649,
+      "visible_span": [
+        1,
+        3
+      ],
+      "visible_unit_faces": 3,
+      "rectangle_full": true,
+      "estimate": [
+        null,
+        3
+      ],
+      "axis_status": [
+        "unknown",
+        "exact"
+      ]
+    },
+    {
+      "frame": "signed-relief-26.3--dev--dev-relief-00-oblique-right",
+      "split": "old",
+      "mask": "mask-0-single-455-0-inset-0",
+      "surface_id": 4,
+      "iou": 0.98161,
+      "visible_span": [
+        3,
+        4
+      ],
+      "visible_unit_faces": 12,
+      "rectangle_full": true,
+      "estimate": [
+        2,
+        4
+      ],
+      "axis_status": [
+        "wrong",
+        "exact"
+      ]
+    },
+    {
+      "frame": "shape-benchmark-26.3--train-recess-02-right",
+      "split": "old",
+      "mask": "mask-0-inset-0",
+      "surface_id": 7,
+      "iou": 0.96523,
+      "visible_span": [
+        2,
+        3
+      ],
+      "visible_unit_faces": 6,
+      "rectangle_full": true,
+      "estimate": [
+        2,
+        3
+      ],
+      "axis_status": [
+        "exact",
+        "exact"
+      ]
+    },
+    {
+      "frame": "shape-benchmark-26.3--train-recess-02-right",
+      "split": "old",
+      "mask": "mask-0-inset-1",
+      "surface_id": 12,
+      "iou": 0.9569,
+      "visible_span": [
+        2,
+        3
+      ],
+      "visible_unit_faces": 6,
+      "rectangle_full": true,
+      "estimate": [
+        null,
+        3
+      ],
+      "axis_status": [
+        "unknown",
+        "exact"
+      ]
+    },
+    {
+      "frame": "signed-relief-26.3--test--test-relief-00-oblique-left",
+      "split": "old",
+      "mask": "mask-0-single-266-0-inset-0",
+      "surface_id": 19,
+      "iou": 0.66067,
+      "visible_span": [
+        5,
+        3
+      ],
+      "visible_unit_faces": 14,
+      "rectangle_full": false,
+      "estimate": [
+        3,
+        3
+      ],
+      "axis_status": [
+        "wrong",
+        "exact"
+      ]
+    },
+    {
+      "frame": "entrance-confirm-26.3--positive--heldout-facade-oblique-right",
+      "split": "fresh",
+      "mask": "mask-0-inset-0",
+      "surface_id": 11,
+      "iou": 0.97913,
+      "visible_span": [
+        1,
+        4
+      ],
+      "visible_unit_faces": 4,
+      "rectangle_full": true,
+      "estimate": [
+        1,
+        4
+      ],
+      "axis_status": [
+        "exact",
+        "exact"
+      ]
+    },
+    {
+      "frame": "entrance-confirm-26.3--positive--heldout-facade-oblique-right",
+      "split": "fresh",
+      "mask": "mask-0-inset-1",
+      "surface_id": 16,
+      "iou": 0.97612,
+      "visible_span": [
+        2,
+        2
+      ],
+      "visible_unit_faces": 4,
+      "rectangle_full": true,
+      "estimate": [
+        null,
+        2
+      ],
+      "axis_status": [
+        "unknown",
+        "exact"
+      ]
+    },
+    {
+      "frame": "signed-relief-26.3--test--test-relief-00-oblique-right",
+      "split": "extra",
+      "mask": "mask-0-single-597-0-inset-0",
+      "surface_id": 13,
+      "iou": 0.98882,
+      "visible_span": [
+        4,
+        4
+      ],
+      "visible_unit_faces": 16,
+      "rectangle_full": true,
+      "estimate": [
+        4,
+        4
+      ],
+      "axis_status": [
+        "exact",
+        "exact"
+      ]
+    },
+    {
+      "frame": "signed-relief-26.3--test--test-relief-00-oblique-right",
+      "split": "extra",
+      "mask": "mask-0-single-597-0-inset-1",
+      "surface_id": 7,
+      "iou": 0.97145,
+      "visible_span": [
+        3,
+        4
+      ],
+      "visible_unit_faces": 12,
+      "rectangle_full": true,
+      "estimate": [
+        3,
+        4
+      ],
+      "axis_status": [
+        "exact",
+        "exact"
+      ]
+    },
+    {
+      "frame": "recess-positive-control-26.3--heldout-facade-left",
+      "split": "extra",
+      "mask": "mask-0-inset-0",
+      "surface_id": 9,
+      "iou": 0.92579,
+      "visible_span": [
+        3,
+        3
+      ],
+      "visible_unit_faces": 9,
+      "rectangle_full": true,
+      "estimate": [
+        2,
+        3
+      ],
+      "axis_status": [
+        "wrong",
+        "exact"
+      ]
+    },
+    {
+      "frame": "recess-positive-control-26.3--heldout-facade-left",
+      "split": "extra",
+      "mask": "mask-0-inset-1",
+      "surface_id": 14,
+      "iou": 0.89337,
+      "visible_span": [
+        2,
+        3
+      ],
+      "visible_unit_faces": 6,
+      "rectangle_full": true,
+      "estimate": [
+        2,
+        3
+      ],
+      "axis_status": [
+        "exact",
+        "exact"
+      ]
+    },
+    {
+      "frame": "rim-views-26.3--positive--heldout-facade-oblique-left",
+      "split": "extra",
+      "mask": "mask-0-wall-1-inset-0",
+      "surface_id": 9,
+      "iou": 0.9562,
+      "visible_span": [
+        3,
+        3
+      ],
+      "visible_unit_faces": 9,
+      "rectangle_full": true,
+      "estimate": [
+        2,
+        3
+      ],
+      "axis_status": [
+        "wrong",
+        "exact"
+      ]
+    },
+    {
+      "frame": "rim-views-26.3--positive--heldout-facade-oblique-left",
+      "split": "extra",
+      "mask": "mask-0-wall-1-inset-1",
+      "surface_id": 14,
+      "iou": 0.88565,
+      "visible_span": [
+        3,
+        3
+      ],
+      "visible_unit_faces": 9,
+      "rectangle_full": true,
+      "estimate": [
+        null,
+        null
+      ],
+      "axis_status": [
+        "unknown",
+        "unknown"
+      ]
+    },
+    {
+      "frame": "shape-benchmark-26.3--train-recess-02-left",
+      "split": "extra",
+      "mask": "mask-0-single-487-0-inset-0",
+      "surface_id": 12,
+      "iou": 0.96,
+      "visible_span": [
+        2,
+        3
+      ],
+      "visible_unit_faces": 6,
+      "rectangle_full": true,
+      "estimate": [
+        null,
+        3
+      ],
+      "axis_status": [
+        "unknown",
+        "exact"
+      ]
+    }
+  ],
+  "scoring": {
+    "dimensions": "Rounded Block Counter dimensions.blocks, in rectified width then height. A null entry is unresolved. Exact compares against the inclusive span of first-hit, visible unit-face coordinates in horizontal tangent and world Y on the same connected recorded wall surface. An exact span does not establish coverage of every cell in its bounding rectangle.",
+    "matching": "Newly found backs matched the production surface-gain IDs with native-mask IoU at least 0.5. The post-split host is paired to its best native-mask IoU reference. Compare pre-split and post-split rounded counts for that same host ID and recorded target.",
+    "comparison": "All 17 production-changed photos use strict returns. One gets one additional texture-backed patch. Use before/after stages from the 204-frame strict run, cross-check the ordinary combined command on four available frames and use actual combined counts/planes on Recess 28."
+  },
+  "ordinary_sources": {
+    "train-sawtooth3-earth-high-right": {
+      "surfaces.json": "79e442d131619e19eb4ebc3a37b615358e20e23dd2348dd0bd196201ff96393b",
+      "counts.json": "3d79c9944d9c3c9435677b7212c81dc612aade93524371d489b7bcee4e730e44"
+    },
+    "heldout-facade-oblique-right": {
+      "surfaces.json": "99ed4788d04f58e8a01a38c7c0b6281c202a8081306fa040c9f6aaa8d00727df",
+      "counts.json": "45397faed7d6604e4a250ebb471b47f9e86eeb78b73aa20c3c7de6ce80b0ab83"
+    },
+    "test-recess-28-left": {
+      "surfaces.json": "b14494aa104b94e82279e683b246364fa36ed0f131b58cb2da588952d4bac560",
+      "counts.json": "3ce13c0a6d8cd3209a5f4dc742709ebf785f57be80eeb2436d03d7c4c10d75cc"
+    },
+    "signed-relief-26.3--dev--dev-relief-00-oblique-right": {
+      "surfaces.json": "a5d8cd58bf9be342fe79f5ac8f8bb24b055e082482d339364a5f81858a7aad0a",
+      "counts.json": "273ef3c0c75cce5a89ae2135174aba2e3b4b3d86177e15f2a4b3efe3af9023a7"
+    }
+  }
+}
