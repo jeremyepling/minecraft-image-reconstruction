@@ -34,7 +34,7 @@ def experiment(task):
     split,frame,_,_=job
     key=frame['id']
     image,parts,counts,camera=typed.viewer.structure_stages(job,concrete_shadow_boundaries.baseline()[key])
-    _,_,transform,_=ref_inputs(job)
+    _,occupied,transform,_=ref_inputs(job)
     truth,ids=visible_faces(split,frame)
     labels={tuple(r['xyz_world']):r['block_id'] for r in truth['blocks']}
     from benchmark.strip_visibility_audit import horizontal_slivers
@@ -45,7 +45,30 @@ def experiment(task):
     local_centers=(world_centers-shift-transform[:3,3]) @ transform[:3,:3]
     face_cells=np.vstack((np.array([[-1000000]*3]),np.floor(local_centers).astype(int)))
     stride=SAMPLE_STRIDE
-    reduced=ids[stride//2::stride,stride//2::stride]
+    native_slice=ids[stride//2::stride,stride//2::stride]
+    lookup={(tuple(f['xyz_world']),int(np.argmax(abs(np.asarray(f['normal_world']))))):int(f['id'])
+            for f in truth['faces']}
+    cells=sorted(occupied)
+    table=np.array([[lookup.get((cell,axis),0) for axis in range(3)] for cell in cells])
+    W=np.asarray(truth['camera']['world_to_pixel_homogeneous'])
+    eye=-np.linalg.solve(W[:,:3],W[:,3])
+    def coarse_labels(offset):
+        shifted=W.copy()
+        shifted[:2]-=offset*W[2]
+        owner,axes=visible_placement._frontmost_cells(cells,shifted,eye,native_slice.shape,face_axes=True)
+        result=np.zeros(native_slice.shape,int)
+        fg=owner>=0
+        result[fg]=table[owner[fg],axes[fg]]
+        return result,int((fg & (result==0)).sum())
+    # Production rays land at 4k+2.0. A lookup in native [2::4] instead
+    # selects native pixel centers at 4k+2.5, which can cross an edge.
+    reduced,unmeasurable=coarse_labels(0.)
+    check,unmeasurable_native=coarse_labels(.5)
+    native_disagreements=int((check!=native_slice).sum())
+    if native_disagreements or unmeasurable_native:
+        raise ValueError(f'Native label raster crosscheck failed in {key}: {native_disagreements}, {unmeasurable_native}')
+    alignment=dict(mismatched_old_face_ids=int((reduced!=native_slice).sum()),
+                   ignored_new_subpixel_faces=unmeasurable,native_replay_disagreements=native_disagreements)
     def score(cells):
         positions={tuple(int(c[i]+shift[i]) for i in range(3)) for c in registered(cells,transform)}
         return typed.geometry_score(dict.fromkeys(positions),labels,optional)
@@ -129,7 +152,7 @@ def experiment(task):
     if baseline['planes'] and chosen['planes']:
         first=baseline['planes'][0]; second=chosen['planes'][0]
         assert [(r['surface'],r['options'],r['ordinary']) for r in first]==[(r['surface'],r['options'],r['ordinary']) for r in second]
-    return dict(id=key,split=split,source_hash=frame['files']['rgb.png'],translation=shift.tolist(),
+    return dict(id=key,split=split,source_hash=frame['files']['rgb.png'],translation=shift.tolist(),ray_alignment=alignment,
                 baseline=baseline,oracle=chosen,published_geometry=feedback.published()[1][key]['geometry'])
 
 
