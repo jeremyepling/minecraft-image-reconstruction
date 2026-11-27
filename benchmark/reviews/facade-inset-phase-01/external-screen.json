@@ -1,0 +1,1145 @@
+[
+  {
+    "suite": "recess-control-26.3",
+    "frame": "dark-inlay-elevated",
+    "rgb_sha256": "edea260f08a4efec2ece5face6adf29640bf8c7117594155aa12bcdb8cfc21cf",
+    "shape": "8499d13fa310e225eff3383a8cab8f33b87d49b6e7466396336fb20a6f207416",
+    "existing_layout": true,
+    "condition": "dark-inlay",
+    "camera_sha256": "8466d1ac0ac5a2aa3ee250feee1a0819d9e9b643eeaac9e870a51c072736ad40",
+    "world_sha256": "e26ed3cf03d553682f3e013ea6121429aef77dc34dcc1edbc6a508da3040236f",
+    "framing": {
+      "image_size": [
+        1440,
+        900
+      ],
+      "occupied_cells": 1000,
+      "accepted": true,
+      "projected_margins_px": [
+        203.1102,
+        246.6895,
+        282.1229,
+        194.9128
+      ],
+      "visible_margins_px": [
+        203,
+        247,
+        282,
+        195
+      ],
+      "reason": "whole_structure"
+    },
+    "reason": "camera_unavailable",
+    "camera": {
+      "P": null,
+      "scale_status": "uncertain",
+      "reason": "No paired periodic floor signal",
+      "settings": {
+        "seed_width_limit": 768,
+        "horizon_trials": 7,
+        "floor_rows": 88,
+        "center_fit_iterations": 14,
+        "minimum_supported_lines": 4,
+        "maximum_height_disagreement": 0.08,
+        "maximum_normalized_residual": 0.04
+      },
+      "camera_source": null,
+      "atlas_reason": "incomplete floor texel coverage"
+    }
+  },
+  {
+    "suite": "recess-control-26.3",
+    "frame": "dark-inlay-front",
+    "rgb_sha256": "ce1ecc28c776254c2ccafe2bbf7ce8714d77237d4cf24678e6d0512245b19d27",
+    "shape": "8499d13fa310e225eff3383a8cab8f33b87d49b6e7466396336fb20a6f207416",
+    "existing_layout": true,
+    "condition": "dark-inlay",
+    "camera_sha256": "5b4e780319355d6230c08cd3bcd8e7bf3fb4049f4fdae5bc59ce1358c94987bd",
+    "world_sha256": "e26ed3cf03d553682f3e013ea6121429aef77dc34dcc1edbc6a508da3040236f",
+    "framing": {
+      "image_size": [
+        1440,
+        900
+      ],
+      "occupied_cells": 1000,
+      "accepted": true,
+      "projected_margins_px": [
+        250.8304,
+        312.4201,
+        250.83,
+        296.0657
+      ],
+      "visible_margins_px": [
+        251,
+        312,
+        251,
+        296
+      ],
+      "reason": "whole_structure"
+    },
+    "reason": "camera_unavailable",
+    "camera": {
+      "P": null,
+      "scale_status": "uncertain",
+      "reason": "Ground seams disagree on metric perspective",
+      "settings": {
+        "seed_width_limit": 768,
+        "horizon_trials": 7,
+        "floor_rows": 88,
+        "center_fit_iterations": 14,
+        "minimum_supported_lines": 4,
+        "maximum_height_disagreement": 0.08,
+        "maximum_normalized_residual": 0.04
+      },
+      "camera_source": null,
+      "atlas_reason": "missing texel-frequency tracks"
+    }
+  },
+  {
+    "suite": "recess-control-26.3",
+    "frame": "dark-inlay-left",
+    "rgb_sha256": "2900c8f132c0ce1590fca0b0345935f3d13ada402fab44c8ccd11ae5e2877e72",
+    "shape": "8499d13fa310e225eff3383a8cab8f33b87d49b6e7466396336fb20a6f207416",
+    "existing_layout": true,
+    "condition": "dark-inlay",
+    "camera_sha256": "ad8730b4f96de42736adf403f640615931a47ab12d4a181f4b9e316a8d5f5486",
+    "world_sha256": "e26ed3cf03d553682f3e013ea6121429aef77dc34dcc1edbc6a508da3040236f",
+    "framing": {
+      "image_size": [
+        1440,
+        900
+      ],
+      "occupied_cells": 1000,
+      "accepted": true,
+      "projected_margins_px": [
+        223.4984,
+        303.0971,
+        371.4207,
+        178.9859
+      ],
+      "visible_margins_px": [
+        224,
+        303,
+        371,
+        179
+      ],
+      "reason": "whole_structure"
+    },
+    "reason": "eligible",
+    "camera": {
+      "P": [
+        [
+          139.72110605148592,
+          -149.58481155794527,
+          1105.5568699648286,
+          17445.83971071302
+        ],
+        [
+          221.15341979762547,
+          -938.2181281119267,
+          138.17201252595558,
+          14911.377943181515
+        ],
+        [
+          0.8295778233831015,
+          -0.20775668271936842,
+          0.5183028031338432,
+          24.795433367790782
+        ]
+      ],
+      "scale_status": "supported",
+      "reason": "Two perpendicular seam families agree assuming one block per floor tile",
+      "settings": {
+        "seed_width_limit": 768,
+        "horizon_trials": 7,
+        "floor_rows": 88,
+        "center_fit_iterations": 14,
+        "minimum_supported_lines": 4,
+        "maximum_height_disagreement": 0.08,
+        "maximum_normalized_residual": 0.04
+      },
+      "evidence": {
+        "horizon_px": 266.58550115978227,
+        "focal_px": 863.5702612130093,
+        "height_blocks": 9.402993487634948,
+        "axis_heights_blocks": [
+          9.400033141806006,
+          9.405953833463888
+        ],
+        "median_seam_residual_blocks": [
+          0.008620802495551309,
+          0.01718354099260858
+        ],
+        "seam_samples": [
+          1682,
+          910
+        ]
+      },
+      "camera_source": "seam-fit"
+    },
+    "selected_for_ordinary_replay": true,
+    "layout_condition_representative": true
+  },
+  {
+    "suite": "recess-control-26.3",
+    "frame": "dark-inlay-right",
+    "rgb_sha256": "93548c5f191952fa7ce2a90962669fc69a9f0115342291dd6eeef2f532594fcf",
+    "shape": "8499d13fa310e225eff3383a8cab8f33b87d49b6e7466396336fb20a6f207416",
+    "existing_layout": true,
+    "condition": "dark-inlay",
+    "camera_sha256": "5afcd05b7006860886d37f40d4465b4967c8b16250d12122b05164475c1f8661",
+    "world_sha256": "e26ed3cf03d553682f3e013ea6121429aef77dc34dcc1edbc6a508da3040236f",
+    "framing": {
+      "image_size": [
+        1440,
+        900
+      ],
+      "occupied_cells": 1000,
+      "accepted": true,
+      "projected_margins_px": [
+        385.6228,
+        302.598,
+        219.4193,
+        167.164
+      ],
+      "visible_margins_px": [
+        386,
+        303,
+        219,
+        167
+      ],
+      "reason": "whole_structure"
+    },
+    "reason": "eligible",
+    "camera": {
+      "P": [
+        [
+          -303.9534800863341,
+          -149.586752304659,
+          1072.6304947205156,
+          18168.946933929088
+        ],
+        [
+          149.49453544718992,
+          -938.8679249503966,
+          213.49120847658406,
+          14909.836924721687
+        ],
+        [
+          0.5610770497055375,
+          -0.2077593782009153,
+          0.8012668625765694,
+          24.784731994133743
+        ]
+      ],
+      "scale_status": "supported",
+      "reason": "Two perpendicular seam families agree assuming one block per floor tile",
+      "settings": {
+        "seed_width_limit": 768,
+        "horizon_trials": 7,
+        "floor_rows": 88,
+        "center_fit_iterations": 14,
+        "minimum_supported_lines": 4,
+        "maximum_height_disagreement": 0.08,
+        "maximum_normalized_residual": 0.04
+      },
+      "evidence": {
+        "horizon_px": 266.4420787227835,
+        "focal_px": 864.2338183188776,
+        "height_blocks": 9.401276517619522,
+        "axis_heights_blocks": [
+          9.399917554744126,
+          9.402635480494915
+        ],
+        "median_seam_residual_blocks": [
+          0.02151332675313745,
+          0.010204435887008426
+        ],
+        "seam_samples": [
+          891,
+          1444
+        ]
+      },
+      "camera_source": "seam-fit"
+    },
+    "selected_for_ordinary_replay": true
+  },
+  {
+    "suite": "recess-control-26.3",
+    "frame": "physical-shade-elevated",
+    "rgb_sha256": "ec45c383c4f7dc1ed9f07ca5999d4dd7244f2bb22fb5982461869bc0e31d2b45",
+    "shape": "1e9a6cd426e510d529ddc6fe461235f72d886343edf8afad68c8ef328bd428f9",
+    "existing_layout": true,
+    "condition": "physical-shade",
+    "camera_sha256": "36cfe1ea01b51ebac7f548ca52fc31220fd104be4d206bdfcfac5552d66ba4fa",
+    "world_sha256": "db01ed853049cef48ffd8231ca210d87afe152659422e635e248877133422108",
+    "framing": {
+      "image_size": [
+        1440,
+        900
+      ],
+      "occupied_cells": 1072,
+      "accepted": true,
+      "projected_margins_px": [
+        108.4852,
+        246.6895,
+        282.1229,
+        194.9128
+      ],
+      "visible_margins_px": [
+        109,
+        247,
+        282,
+        195
+      ],
+      "reason": "whole_structure"
+    },
+    "reason": "camera_unavailable",
+    "camera": {
+      "P": null,
+      "scale_status": "uncertain",
+      "reason": "No paired periodic floor signal",
+      "settings": {
+        "seed_width_limit": 768,
+        "horizon_trials": 7,
+        "floor_rows": 88,
+        "center_fit_iterations": 14,
+        "minimum_supported_lines": 4,
+        "maximum_height_disagreement": 0.08,
+        "maximum_normalized_residual": 0.04
+      },
+      "camera_source": null,
+      "atlas_reason": "incomplete floor texel coverage"
+    }
+  },
+  {
+    "suite": "recess-control-26.3",
+    "frame": "physical-shade-front",
+    "rgb_sha256": "a43c40e7a0cadd8ff6f00bcf27ce3d16044f70e62d2eb8e27c222189bd11537d",
+    "shape": "1e9a6cd426e510d529ddc6fe461235f72d886343edf8afad68c8ef328bd428f9",
+    "existing_layout": true,
+    "condition": "physical-shade",
+    "camera_sha256": "19b9f912574bf7a21d0d0d913088dbc6ccb9bf6d32cde01fa95a67d24425151e",
+    "world_sha256": "db01ed853049cef48ffd8231ca210d87afe152659422e635e248877133422108",
+    "framing": {
+      "image_size": [
+        1440,
+        900
+      ],
+      "occupied_cells": 1072,
+      "accepted": true,
+      "projected_margins_px": [
+        113.7892,
+        205.5146,
+        250.83,
+        296.0657
+      ],
+      "visible_margins_px": [
+        114,
+        206,
+        251,
+        296
+      ],
+      "reason": "whole_structure"
+    },
+    "reason": "camera_unavailable",
+    "camera": {
+      "P": null,
+      "scale_status": "uncertain",
+      "reason": "Ground seams disagree on metric perspective",
+      "settings": {
+        "seed_width_limit": 768,
+        "horizon_trials": 7,
+        "floor_rows": 88,
+        "center_fit_iterations": 14,
+        "minimum_supported_lines": 4,
+        "maximum_height_disagreement": 0.08,
+        "maximum_normalized_residual": 0.04
+      },
+      "camera_source": null,
+      "atlas_reason": "missing texel-frequency tracks"
+    }
+  },
+  {
+    "suite": "recess-control-26.3",
+    "frame": "physical-shade-left",
+    "rgb_sha256": "e69a501d876820b6d1be89b7111fff19ff28f7b45e4430711a822c1067993e54",
+    "shape": "1e9a6cd426e510d529ddc6fe461235f72d886343edf8afad68c8ef328bd428f9",
+    "existing_layout": true,
+    "condition": "physical-shade",
+    "camera_sha256": "080893df847a978d23914309eede51e3019f97c64c84b0a1ec48cda37318ee06",
+    "world_sha256": "db01ed853049cef48ffd8231ca210d87afe152659422e635e248877133422108",
+    "framing": {
+      "image_size": [
+        1440,
+        900
+      ],
+      "occupied_cells": 1072,
+      "accepted": true,
+      "projected_margins_px": [
+        222.2332,
+        222.6778,
+        371.4207,
+        178.9859
+      ],
+      "visible_margins_px": [
+        222,
+        223,
+        371,
+        179
+      ],
+      "reason": "whole_structure"
+    },
+    "reason": "camera_unavailable",
+    "camera": {
+      "P": null,
+      "scale_status": "uncertain",
+      "reason": "Insufficient support for repeated seam centers",
+      "settings": {
+        "seed_width_limit": 768,
+        "horizon_trials": 7,
+        "floor_rows": 88,
+        "center_fit_iterations": 14,
+        "minimum_supported_lines": 4,
+        "maximum_height_disagreement": 0.08,
+        "maximum_normalized_residual": 0.04
+      },
+      "camera_source": null,
+      "atlas_reason": "incomplete floor texel coverage"
+    }
+  },
+  {
+    "suite": "recess-control-26.3",
+    "frame": "physical-shade-right",
+    "rgb_sha256": "de0ef2e09ac1bcfc4c431ad5a41ba68c42e931b7492645d8b85fc2c714718cd1",
+    "shape": "1e9a6cd426e510d529ddc6fe461235f72d886343edf8afad68c8ef328bd428f9",
+    "existing_layout": true,
+    "condition": "physical-shade",
+    "camera_sha256": "05d89ac86defd62fc550cd08ccea9375a551dc54d8e142d5f7978b33991269dd",
+    "world_sha256": "db01ed853049cef48ffd8231ca210d87afe152659422e635e248877133422108",
+    "framing": {
+      "image_size": [
+        1440,
+        900
+      ],
+      "occupied_cells": 1072,
+      "accepted": true,
+      "projected_margins_px": [
+        231.9601,
+        238.6487,
+        219.4193,
+        167.164
+      ],
+      "visible_margins_px": [
+        232,
+        239,
+        219,
+        167
+      ],
+      "reason": "whole_structure"
+    },
+    "reason": "eligible",
+    "camera": {
+      "P": [
+        [
+          -304.15694394924515,
+          -149.66450595527397,
+          1072.76925568631,
+          18172.66579091718
+        ],
+        [
+          149.40773597516448,
+          -939.1483123348322,
+          213.36017133137227,
+          14912.411466887392
+        ],
+        [
+          0.5610763820162296,
+          -0.20786736938232497,
+          0.8012393214824459,
+          24.78954077054311
+        ]
+      ],
+      "scale_status": "supported",
+      "reason": "Two perpendicular seam families agree assuming one block per floor tile",
+      "settings": {
+        "seed_width_limit": 768,
+        "horizon_trials": 7,
+        "floor_rows": 88,
+        "center_fit_iterations": 14,
+        "minimum_supported_lines": 4,
+        "maximum_height_disagreement": 0.08,
+        "maximum_normalized_residual": 0.04
+      },
+      "evidence": {
+        "horizon_px": 266.2876940894702,
+        "focal_px": 864.4910565420212,
+        "height_blocks": 9.40405228545698,
+        "axis_heights_blocks": [
+          9.402524144677978,
+          9.405580426235986
+        ],
+        "median_seam_residual_blocks": [
+          0.02136635718822883,
+          0.010215474614187975
+        ],
+        "seam_samples": [
+          891,
+          1445
+        ]
+      },
+      "camera_source": "seam-fit"
+    },
+    "selected_for_ordinary_replay": true,
+    "layout_condition_representative": true
+  },
+  {
+    "suite": "recess-positive-control-26.3",
+    "frame": "heldout-facade-elevated",
+    "rgb_sha256": "8d9204783047a1dea145a5c872852328b21338737de7573aa37814885efb5d43",
+    "shape": "25e7bc0392eed6bf12a9ac3b846e8933449ff2b69036db2deeb14858b6d57f98",
+    "existing_layout": true,
+    "condition": "relief",
+    "camera_sha256": "0fea0015f762557977d97fe7caaca2d764810e8221d9aa56418c3aba75d1f428",
+    "world_sha256": "008dadd1fca63bae2b0044a2097ea82a14d2417292afe3be466fc9b3108afc64",
+    "framing": {
+      "image_size": [
+        1440,
+        900
+      ],
+      "occupied_cells": 877,
+      "accepted": true,
+      "projected_margins_px": [
+        203.1102,
+        246.6895,
+        282.1229,
+        194.9128
+      ],
+      "visible_margins_px": [
+        203,
+        247,
+        282,
+        195
+      ],
+      "reason": "whole_structure"
+    },
+    "reason": "camera_unavailable",
+    "camera": {
+      "P": null,
+      "scale_status": "uncertain",
+      "reason": "No paired periodic floor signal",
+      "settings": {
+        "seed_width_limit": 768,
+        "horizon_trials": 7,
+        "floor_rows": 88,
+        "center_fit_iterations": 14,
+        "minimum_supported_lines": 4,
+        "maximum_height_disagreement": 0.08,
+        "maximum_normalized_residual": 0.04
+      },
+      "camera_source": null,
+      "atlas_reason": "incomplete floor texel coverage"
+    }
+  },
+  {
+    "suite": "recess-positive-control-26.3",
+    "frame": "heldout-facade-front",
+    "rgb_sha256": "102e224df31081c01a99b55a7c271ccc835b97ab603dcf9f0d1000d077c59641",
+    "shape": "25e7bc0392eed6bf12a9ac3b846e8933449ff2b69036db2deeb14858b6d57f98",
+    "existing_layout": true,
+    "condition": "relief",
+    "camera_sha256": "02bdd49371db2ce0bec193f6cea99c22bb58384d8bb8958366b2a41c8789992e",
+    "world_sha256": "008dadd1fca63bae2b0044a2097ea82a14d2417292afe3be466fc9b3108afc64",
+    "framing": {
+      "image_size": [
+        1440,
+        900
+      ],
+      "occupied_cells": 877,
+      "accepted": true,
+      "projected_margins_px": [
+        250.8304,
+        312.4201,
+        250.83,
+        296.0657
+      ],
+      "visible_margins_px": [
+        251,
+        312,
+        251,
+        296
+      ],
+      "reason": "whole_structure"
+    },
+    "reason": "camera_unavailable",
+    "camera": {
+      "P": null,
+      "scale_status": "uncertain",
+      "reason": "Ground seams disagree on metric perspective",
+      "settings": {
+        "seed_width_limit": 768,
+        "horizon_trials": 7,
+        "floor_rows": 88,
+        "center_fit_iterations": 14,
+        "minimum_supported_lines": 4,
+        "maximum_height_disagreement": 0.08,
+        "maximum_normalized_residual": 0.04
+      },
+      "camera_source": null,
+      "atlas_reason": "missing texel-frequency tracks"
+    }
+  },
+  {
+    "suite": "recess-positive-control-26.3",
+    "frame": "heldout-facade-left",
+    "rgb_sha256": "d070b9e756b105dd3e37b38a4ff921eedf6ec0c47c126f619d747a8f31498dc6",
+    "reason": "previously_seen_pixels"
+  },
+  {
+    "suite": "recess-positive-control-26.3",
+    "frame": "heldout-facade-right",
+    "rgb_sha256": "d91571964453eeebddbed19af060e98c7aa87900a966f2a3b2ad6e6cd5c903de",
+    "reason": "previously_seen_pixels"
+  },
+  {
+    "suite": "entrance-holdout-26.3/positive",
+    "frame": "heldout-facade-oblique-left",
+    "rgb_sha256": "54915ed9fe65b45353a8ab6089ed9f1a7ffd07268270c0578445da29fa2a5768",
+    "reason": "previously_seen_pixels"
+  },
+  {
+    "suite": "entrance-holdout-26.3/positive",
+    "frame": "heldout-facade-oblique-right",
+    "rgb_sha256": "0828c9d164392fe0bad9a1a709c1f321eb73f7bb7d08739f3b99382493df5ad0",
+    "reason": "previously_seen_pixels"
+  },
+  {
+    "suite": "entrance-holdout-26.3/controls",
+    "frame": "dark-inlay-oblique-left",
+    "rgb_sha256": "67880a7c6d8860b3460581227f8638c0014b6c0e00ed231e16c905b66b73413d",
+    "reason": "previously_seen_pixels"
+  },
+  {
+    "suite": "entrance-holdout-26.3/controls",
+    "frame": "dark-inlay-oblique-right",
+    "rgb_sha256": "46dc2c2c96f265722d8d655a5070c348059e12a02bcbde49add8216de37ed755",
+    "reason": "previously_seen_pixels"
+  },
+  {
+    "suite": "entrance-holdout-26.3/controls",
+    "frame": "physical-shade-oblique-left",
+    "rgb_sha256": "bd7bca183c7a5ca32ce59edcba2c9341ca600e3bf4779d17ddce9025145a68d2",
+    "reason": "previously_seen_pixels"
+  },
+  {
+    "suite": "entrance-holdout-26.3/controls",
+    "frame": "physical-shade-oblique-right",
+    "rgb_sha256": "2542fa7beb579fd696a961bbd72082170a834e7459ca05d431a1c4c2ecf075bd",
+    "reason": "previously_seen_pixels"
+  },
+  {
+    "suite": "signed-relief-26.3/test",
+    "frame": "test-relief-00-oblique-left",
+    "rgb_sha256": "54145a22b48ba5eb35581125363469a3024172b1e9ae95cb6dff00ca9a673854",
+    "reason": "previously_seen_pixels"
+  },
+  {
+    "suite": "signed-relief-26.3/test",
+    "frame": "test-relief-00-oblique-right",
+    "rgb_sha256": "858b89c080aa6199cab23e507db89e187ef71dccbe6d3689602d8659c13ae9bc",
+    "reason": "previously_seen_pixels"
+  },
+  {
+    "suite": "signed-relief-26.3/dev",
+    "frame": "dev-relief-00-oblique-left",
+    "rgb_sha256": "e94cb8666e38682c89c766d5ceb2c25b4c7b85f471db64de0e8a6e021b618420",
+    "reason": "previously_seen_pixels"
+  },
+  {
+    "suite": "signed-relief-26.3/dev",
+    "frame": "dev-relief-00-oblique-right",
+    "rgb_sha256": "17682203a4372c0a677e34f7da95c18cb82acde6d1b92363697905fb6a90f7f5",
+    "reason": "previously_seen_pixels"
+  },
+  {
+    "suite": "shape-benchmark-26.3",
+    "frame": "dev-recess-15-elevated",
+    "rgb_sha256": "0fb92bdd2acedefec4bf2606553c02200d13ad128be6a865d07c8038607dbaad",
+    "shape": "8431117aba518ce4927097b201f4a6031ca3a3cd799e2b03df6a2c0abc59a76e",
+    "existing_layout": true,
+    "condition": "relief",
+    "camera_sha256": "278534e22342a6b46e8a4bc12c3f397700d53e508166e0aac655a187f99a28d6",
+    "world_sha256": "abece3ab3dd959deed556ed98e87e7eb709b3c13cc05a6b63a09f53a11311721",
+    "framing": {
+      "image_size": [
+        1440,
+        900
+      ],
+      "occupied_cells": 856,
+      "accepted": true,
+      "projected_margins_px": [
+        203.1102,
+        246.6895,
+        282.1229,
+        194.9128
+      ],
+      "visible_margins_px": [
+        203,
+        247,
+        282,
+        195
+      ],
+      "reason": "whole_structure"
+    },
+    "reason": "camera_unavailable",
+    "camera": {
+      "P": null,
+      "scale_status": "uncertain",
+      "reason": "No paired periodic floor signal",
+      "settings": {
+        "seed_width_limit": 768,
+        "horizon_trials": 7,
+        "floor_rows": 88,
+        "center_fit_iterations": 14,
+        "minimum_supported_lines": 4,
+        "maximum_height_disagreement": 0.08,
+        "maximum_normalized_residual": 0.04
+      },
+      "camera_source": null,
+      "atlas_reason": "incomplete floor texel coverage"
+    }
+  },
+  {
+    "suite": "shape-benchmark-26.3",
+    "frame": "dev-recess-15-front",
+    "rgb_sha256": "63799a8943caf216fa6dfa09d3b5f4effa5d0d9f3e83a1bac03c51065d8f14fd",
+    "shape": "8431117aba518ce4927097b201f4a6031ca3a3cd799e2b03df6a2c0abc59a76e",
+    "existing_layout": true,
+    "condition": "relief",
+    "camera_sha256": "455109986624b61762781d891aa1cb5542e99170e0627a9616bc9aa34e004850",
+    "world_sha256": "abece3ab3dd959deed556ed98e87e7eb709b3c13cc05a6b63a09f53a11311721",
+    "framing": {
+      "image_size": [
+        1440,
+        900
+      ],
+      "occupied_cells": 856,
+      "accepted": true,
+      "projected_margins_px": [
+        250.8304,
+        312.4201,
+        250.83,
+        296.0657
+      ],
+      "visible_margins_px": [
+        251,
+        312,
+        251,
+        296
+      ],
+      "reason": "whole_structure"
+    },
+    "reason": "camera_unavailable",
+    "camera": {
+      "P": null,
+      "scale_status": "uncertain",
+      "reason": "Ground seams disagree on metric perspective",
+      "settings": {
+        "seed_width_limit": 768,
+        "horizon_trials": 7,
+        "floor_rows": 88,
+        "center_fit_iterations": 14,
+        "minimum_supported_lines": 4,
+        "maximum_height_disagreement": 0.08,
+        "maximum_normalized_residual": 0.04
+      },
+      "camera_source": null,
+      "atlas_reason": "missing texel-frequency tracks"
+    }
+  },
+  {
+    "suite": "shape-benchmark-26.3",
+    "frame": "dev-recess-15-left",
+    "rgb_sha256": "4d2194edc428648a270cfe8bf23697d3d0d08f440dd4600118aef96d63b0342e",
+    "shape": "8431117aba518ce4927097b201f4a6031ca3a3cd799e2b03df6a2c0abc59a76e",
+    "existing_layout": true,
+    "condition": "relief",
+    "camera_sha256": "18bdcfc295f8e70897f0e712facbf1630232f924869e74bed88430e0b1b50d81",
+    "world_sha256": "abece3ab3dd959deed556ed98e87e7eb709b3c13cc05a6b63a09f53a11311721",
+    "framing": {
+      "image_size": [
+        1440,
+        900
+      ],
+      "occupied_cells": 856,
+      "accepted": true,
+      "projected_margins_px": [
+        223.4984,
+        303.0971,
+        371.4207,
+        178.9859
+      ],
+      "visible_margins_px": [
+        224,
+        303,
+        371,
+        179
+      ],
+      "reason": "whole_structure"
+    },
+    "reason": "eligible",
+    "camera": {
+      "P": [
+        [
+          139.58944107783856,
+          -149.63760278023537,
+          1105.6842705650208,
+          17446.50899866347
+        ],
+        [
+          221.06190268540934,
+          -938.38532581713,
+          138.12655745122458,
+          14911.807929929357
+        ],
+        [
+          0.829544845334941,
+          -0.20783000386143805,
+          0.5183261898391625,
+          24.797047273918245
+        ]
+      ],
+      "scale_status": "supported",
+      "reason": "Two perpendicular seam families agree assuming one block per floor tile",
+      "settings": {
+        "seed_width_limit": 768,
+        "horizon_trials": 7,
+        "floor_rows": 88,
+        "center_fit_iterations": 14,
+        "minimum_supported_lines": 4,
+        "maximum_height_disagreement": 0.08,
+        "maximum_normalized_residual": 0.04
+      },
+      "evidence": {
+        "horizon_px": 266.48577702408886,
+        "focal_px": 863.7212110404265,
+        "height_blocks": 9.404000687258966,
+        "axis_heights_blocks": [
+          9.40205669949154,
+          9.405944675026392
+        ],
+        "median_seam_residual_blocks": [
+          0.008590596135174829,
+          0.016596434696604045
+        ],
+        "seam_samples": [
+          1704,
+          930
+        ]
+      },
+      "camera_source": "seam-fit"
+    },
+    "selected_for_ordinary_replay": true,
+    "layout_condition_representative": true
+  },
+  {
+    "suite": "shape-benchmark-26.3",
+    "frame": "dev-recess-15-right",
+    "rgb_sha256": "a8c95d65b107147b39ee30e9c67fb7741fc17a7b45092c9a6b12f9e2a5852a63",
+    "shape": "8431117aba518ce4927097b201f4a6031ca3a3cd799e2b03df6a2c0abc59a76e",
+    "existing_layout": true,
+    "condition": "relief",
+    "camera_sha256": "3e22715c2c3d5ebc9d396e54eacebfa8c0f4608ddde3595d1a881a886004bb29",
+    "world_sha256": "abece3ab3dd959deed556ed98e87e7eb709b3c13cc05a6b63a09f53a11311721",
+    "framing": {
+      "image_size": [
+        1440,
+        900
+      ],
+      "occupied_cells": 856,
+      "accepted": true,
+      "projected_margins_px": [
+        385.6228,
+        302.598,
+        219.4193,
+        167.164
+      ],
+      "visible_margins_px": [
+        386,
+        303,
+        219,
+        167
+      ],
+      "reason": "whole_structure"
+    },
+    "reason": "eligible",
+    "camera": {
+      "P": [
+        [
+          -304.05528348241694,
+          -149.60406860635277,
+          1072.6573629180496,
+          18170.07342215892
+        ],
+        [
+          149.46461762371987,
+          -938.9449103672703,
+          213.4656748834474,
+          14911.14106776252
+        ],
+        [
+          0.5610437984785708,
+          -0.2077834286199344,
+          0.8012839090981932,
+          24.786763824922065
+        ]
+      ],
+      "scale_status": "supported",
+      "reason": "Two perpendicular seam families agree assuming one block per floor tile",
+      "settings": {
+        "seed_width_limit": 768,
+        "horizon_trials": 7,
+        "floor_rows": 88,
+        "center_fit_iterations": 14,
+        "minimum_supported_lines": 4,
+        "maximum_height_disagreement": 0.08,
+        "maximum_normalized_residual": 0.04
+      },
+      "evidence": {
+        "horizon_px": 266.4045445810747,
+        "focal_px": 864.305970695246,
+        "height_blocks": 9.402358795066224,
+        "axis_heights_blocks": [
+          9.40151935404729,
+          9.403198236085156
+        ],
+        "median_seam_residual_blocks": [
+          0.02109361915532749,
+          0.010170155292253109
+        ],
+        "seam_samples": [
+          895,
+          1440
+        ]
+      },
+      "camera_source": "seam-fit"
+    },
+    "selected_for_ordinary_replay": true
+  },
+  {
+    "suite": "shape-benchmark-26.3",
+    "frame": "test-recess-28-elevated",
+    "rgb_sha256": "af778527d12625874e5e392972fc7a0b45dd13d21472b45c74acac2ad9141bca",
+    "shape": "8431117aba518ce4927097b201f4a6031ca3a3cd799e2b03df6a2c0abc59a76e",
+    "existing_layout": true,
+    "condition": "relief",
+    "camera_sha256": "cce1f3caa26b4813b4643617d9506b7a9d4c72519aa1a9d0a2bc18c68ded2bee",
+    "world_sha256": "7d49b8bc9c9fb262dcc87e5e40f9ffc04f39b123f38a8e78bf8085fca68f0c5c",
+    "framing": {
+      "image_size": [
+        1440,
+        900
+      ],
+      "occupied_cells": 856,
+      "accepted": true,
+      "projected_margins_px": [
+        203.1102,
+        246.6895,
+        282.1229,
+        194.9128
+      ],
+      "visible_margins_px": [
+        203,
+        247,
+        282,
+        195
+      ],
+      "reason": "whole_structure"
+    },
+    "reason": "camera_unavailable",
+    "camera": {
+      "P": null,
+      "scale_status": "uncertain",
+      "reason": "No paired periodic floor signal",
+      "settings": {
+        "seed_width_limit": 768,
+        "horizon_trials": 7,
+        "floor_rows": 88,
+        "center_fit_iterations": 14,
+        "minimum_supported_lines": 4,
+        "maximum_height_disagreement": 0.08,
+        "maximum_normalized_residual": 0.04
+      },
+      "camera_source": null,
+      "atlas_reason": "incomplete floor texel coverage"
+    }
+  },
+  {
+    "suite": "shape-benchmark-26.3",
+    "frame": "test-recess-28-front",
+    "rgb_sha256": "4b4e2e42ee18a7098cefe13da8d315b2de51b859a6c976c85e92f9291cf9d113",
+    "shape": "8431117aba518ce4927097b201f4a6031ca3a3cd799e2b03df6a2c0abc59a76e",
+    "existing_layout": true,
+    "condition": "relief",
+    "camera_sha256": "174d59b11592866019445ece978dc2f5a00d721163875dd3d163a3c6f32f4c50",
+    "world_sha256": "7d49b8bc9c9fb262dcc87e5e40f9ffc04f39b123f38a8e78bf8085fca68f0c5c",
+    "framing": {
+      "image_size": [
+        1440,
+        900
+      ],
+      "occupied_cells": 856,
+      "accepted": true,
+      "projected_margins_px": [
+        250.8304,
+        312.4201,
+        250.83,
+        296.0657
+      ],
+      "visible_margins_px": [
+        251,
+        312,
+        251,
+        296
+      ],
+      "reason": "whole_structure"
+    },
+    "reason": "camera_unavailable",
+    "camera": {
+      "P": null,
+      "scale_status": "uncertain",
+      "reason": "Ground seams disagree on metric perspective",
+      "settings": {
+        "seed_width_limit": 768,
+        "horizon_trials": 7,
+        "floor_rows": 88,
+        "center_fit_iterations": 14,
+        "minimum_supported_lines": 4,
+        "maximum_height_disagreement": 0.08,
+        "maximum_normalized_residual": 0.04
+      },
+      "camera_source": null,
+      "atlas_reason": "missing texel-frequency tracks"
+    }
+  },
+  {
+    "suite": "shape-benchmark-26.3",
+    "frame": "test-recess-28-left",
+    "rgb_sha256": "d4891492a4b325a1eb7c3e1ce9f3124b2815e72fb29038f5086afd9b91fc4dc6",
+    "reason": "previously_seen_pixels"
+  },
+  {
+    "suite": "shape-benchmark-26.3",
+    "frame": "test-recess-28-right",
+    "rgb_sha256": "920d8a23dea473f3064517315f8a9dbf943253af141ae61ea4d0367eb133f9d6",
+    "reason": "previously_seen_pixels"
+  },
+  {
+    "suite": "shape-benchmark-26.3",
+    "frame": "train-recess-02-elevated",
+    "rgb_sha256": "8d631d14454aee333a4a08a6ea59e3a7758b49b9e5f86c71f5685ec1e16af9a3",
+    "shape": "af9197f778bd94342d8ce2695a031291b8c55c78af325c07f6d5e55cc38739f2",
+    "existing_layout": true,
+    "condition": "relief",
+    "camera_sha256": "77c9de5b50032eca5f75269ad4369157e2f17dc532d199a0deda9f03f1ac3c83",
+    "world_sha256": "4620b25e42508146ef75a4002fb5fa25c6471e47a92dc3dd3e56f015fcbd99ad",
+    "framing": {
+      "image_size": [
+        1440,
+        900
+      ],
+      "occupied_cells": 856,
+      "accepted": true,
+      "projected_margins_px": [
+        203.1102,
+        246.6895,
+        282.1229,
+        194.9128
+      ],
+      "visible_margins_px": [
+        203,
+        247,
+        282,
+        195
+      ],
+      "reason": "whole_structure"
+    },
+    "reason": "camera_unavailable",
+    "camera": {
+      "P": null,
+      "scale_status": "uncertain",
+      "reason": "No paired periodic floor signal",
+      "settings": {
+        "seed_width_limit": 768,
+        "horizon_trials": 7,
+        "floor_rows": 88,
+        "center_fit_iterations": 14,
+        "minimum_supported_lines": 4,
+        "maximum_height_disagreement": 0.08,
+        "maximum_normalized_residual": 0.04
+      },
+      "camera_source": null,
+      "atlas_reason": "incomplete floor texel coverage"
+    }
+  },
+  {
+    "suite": "shape-benchmark-26.3",
+    "frame": "train-recess-02-front",
+    "rgb_sha256": "19ee852f27fb9bc5bbdc2d7dddbf3fde7941e3e83f40c6127c879982ca3fa375",
+    "shape": "af9197f778bd94342d8ce2695a031291b8c55c78af325c07f6d5e55cc38739f2",
+    "existing_layout": true,
+    "condition": "relief",
+    "camera_sha256": "54fc5c94b1a82b32c8c17e63ad60b540344ec6e5a6cbd3d18aee27d72a597253",
+    "world_sha256": "4620b25e42508146ef75a4002fb5fa25c6471e47a92dc3dd3e56f015fcbd99ad",
+    "framing": {
+      "image_size": [
+        1440,
+        900
+      ],
+      "occupied_cells": 856,
+      "accepted": true,
+      "projected_margins_px": [
+        250.8304,
+        312.4201,
+        250.83,
+        296.0657
+      ],
+      "visible_margins_px": [
+        251,
+        312,
+        251,
+        296
+      ],
+      "reason": "whole_structure"
+    },
+    "reason": "camera_unavailable",
+    "camera": {
+      "P": null,
+      "scale_status": "uncertain",
+      "reason": "Ground seams disagree on metric perspective",
+      "settings": {
+        "seed_width_limit": 768,
+        "horizon_trials": 7,
+        "floor_rows": 88,
+        "center_fit_iterations": 14,
+        "minimum_supported_lines": 4,
+        "maximum_height_disagreement": 0.08,
+        "maximum_normalized_residual": 0.04
+      },
+      "camera_source": null,
+      "atlas_reason": "missing texel-frequency tracks"
+    }
+  },
+  {
+    "suite": "shape-benchmark-26.3",
+    "frame": "train-recess-02-left",
+    "rgb_sha256": "fbacce85bff62e314335841ce03867de193c2553bbbf3f24bccdeec4cd5007bb",
+    "reason": "previously_seen_pixels"
+  },
+  {
+    "suite": "shape-benchmark-26.3",
+    "frame": "train-recess-02-right",
+    "rgb_sha256": "3dae3737c077d483a91e35e525af829d34b1262ca51a4287b5b1214988c2e7df",
+    "reason": "previously_seen_pixels"
+  }
+]
