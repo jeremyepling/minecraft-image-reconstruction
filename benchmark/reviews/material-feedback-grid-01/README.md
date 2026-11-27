@@ -66,3 +66,31 @@ To reproduce a single source, set `$env:MCIR_COUNT_ORACLE_PYTHON` to the local P
 python -m benchmark.material_count_oracle_summary $outputCloister $outputTwinspire $outputShopfront $outputCanopy $outputColonnade
 ```
 
+
+## Removing the texture-guided counting retry on the 104 fixed views
+
+Keep the retry for measuring visible walls. Test a separate decision before using its adjusted chart for placement. In the fixed public replay, the retry delivered 55 more completely correct surface measurements, but using the original masked-repeat chart yielded three better builds. Eighty-four chart handoffs changed across 56 views. Rebuilding both arms reproduced each of those 56 saved public controls. The other 48 had identical surface IDs, quadrilaterals and raw spacings, the fields consumed by placement, and reused their saved scores.
+
+| Fixed public replay | Retry enabled | Retry disabled |
+| --- | ---: | ---: |
+| Exact complete dimensions | 288 | 233 |
+| Complete measurements | 427 | 347 |
+| Correct width / widths returned | 344 / 458 | 289 / 387 |
+| Correct height / heights returned | 370 / 462 | 313 / 400 |
+| Strict placement F1 | 91.376% | 91.506% |
+| Facade placement F1 | 93.519% | 93.663% |
+| Correct ID at a correct position | 92.660% | 92.662% |
+| Overall strict F1 | 84.669% | 84.791% |
+| Overall facade F1 | 88.425% | 88.560% |
+
+Of 1,431 detected regions, 1,093 uniquely matched a native visible reference surface at mask IoU of at least 0.50. Both arms produced charts for 939 of those matches. Dimensions use the extents of the frontmost visible cells along the two plane axes, ordered by each predicted chart. The retry added 55 exact and 25 wrong complete sizes on matched masks, plus four complete sizes on unmatched masks. Every previously exact complete size survived. On individual axes it gained 58 correct widths while losing three, and gained 57 correct heights while losing zero. An earlier 80-view study with separate families also found a net counting gain. [Earlier transfer results](../../COUNT_TRANSFER.md)
+
+| Changed full build | Facade placement with retry | Without retry | What the retry measured |
+| --- | ---: | ---: | --- |
+| Twinspire 3, cool low-left | 88.82% | 97.77% | All three adjusted measurements matched the reference, 4×11, 11×1 and 6×2. |
+| Cloister 3, cool low-left | 96.13% | 96.58% | The 2×6 measurement was correct. |
+| Recess 28, right | 94.52% | 94.55% | The retry measured 2×3 on a 3×3 surface. |
+
+On these three views the public baseline reproduced the released typed pack. A fresh ordinary build with only the retry removed reproduced each candidate pack, including every coordinate and ID. The other 101 public exports were identical between arms. Of all 104 public controls, 83 reproduced their ordinary published packs, so the pooled numbers above describe the public replay. The three actual build gains make chart acceptance a concrete placement target. Twinspire illustrates why a correct block count alone cannot validate the chart's 3D placement. A next experiment can preserve both readings and use the adjusted chart only when its projected faces better fit the source and agree with the adjoining edge. [All 104 paired records](retry-bypass-fixed.json) · [Three independently decoded full builds](retry-bypass-ordinary.json)
+
+Run the fixed comparison with `python -m benchmark.material_count_retry_fixed`. To repeat the ordinary check, set `MCIR_COUNT_ORACLE_PYTHON` to the local Python executable and run `Invoke-WallRecovery.ps1` on each changed source with `-Python (Resolve-Path benchmark/RetryBypassPython.ps1).Path` and an output folder ending in its source ID. Pass their parent folder to `python -m benchmark.material_count_retry_fixed --verify-builds <folder>`.
