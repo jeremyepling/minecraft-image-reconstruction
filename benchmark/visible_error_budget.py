@@ -203,10 +203,11 @@ def run(args):
     with ProcessPoolExecutor(args.workers) as pool:
         rows = list(pool.map(audit,jobs))
     totals = aggregate(rows)
-    assert (totals['correct'],totals['missed'],totals['extras'],totals['hidden_extras'])==(20510,3192,1157,106)
+    assert all(totals[k]==previous['groups']['fixed'][k] for k in ('correct','missed','extras','hidden_extras'))
     families = sorted({r['family'] for r in rows})
     args.out.parent.mkdir(parents=True,exist_ok=True)
-    save(args.out,dict(control_revision='bec7c94',control_cases_sha256=digest(manifest),ranking_sha256=digest(rank),
+    save(args.out,dict(control_revision=previous['control'],method=previous['candidate'],revision=previous['revision'],
+                       control_cases_sha256=digest(manifest),ranking_sha256=digest(rank),
                        totals=totals,families={family:aggregate([r for r in rows if r['family']==family])
                        for family in families},frames=rows))
     print(totals)

@@ -1,0 +1,246 @@
+{
+  "step": 2,
+  "source_sha256": {
+    "ranking.json": "7076a37423249af05509679fcfa765d8125f19c97164685899f99c36defab7fc",
+    "contacts.json": "ef49a224495bed2d2d224bd2c68759d9fcd1f35b855b12f957e9a24985858067",
+    "floor-controls.json": "f33da59cb72cfb988249fad4ed3fdd941767b4b0d5def9c65a374ae5f5dff15c"
+  },
+  "baseline_cases_sha256": "b94818d5f3287fa86e9ea5f2f3e6d5c757a31c98505a785e7f087556c3476a8f",
+  "scored_cases_sha256": "5f26b7ce08116ba4d2895a3b08a01c4d285669b3a13b61f3dda1975c9956f03c",
+  "frames": [
+    {
+      "id": "legacy-light_gray_concrete-dev-shopfront-plaster-low-left",
+      "name": "Shopfront",
+      "rgb_sha256": "299e0228de74d2cc7d3a18deaba9f61c82560a0ddd0b8557e5c91728c964a993",
+      "previous_pack": "0abf521ed30ea4029122b901004bb5189998df5233943a13ed63b2e1bf369971",
+      "pack": "0abf521ed30ea4029122b901004bb5189998df5233943a13ed63b2e1bf369971",
+      "baseline_f1": 0.7030716723549488,
+      "f1": 0.7030716723549488,
+      "probes": [
+        {
+          "region": "lower edge on build",
+          "samples": 805,
+          "before": 243,
+          "after": 243
+        },
+        {
+          "region": "lower edge on background",
+          "samples": 381,
+          "before": 186,
+          "after": 186
+        }
+      ],
+      "view": {
+        "crops": [
+          [
+            220,
+            262,
+            454,
+            304
+          ],
+          [
+            220,
+            288,
+            454,
+            306
+          ]
+        ],
+        "width": 720,
+        "height": 450
+      }
+    },
+    {
+      "id": "heldout-facade-oblique-right",
+      "name": "Facade",
+      "rgb_sha256": "0828c9d164392fe0bad9a1a709c1f321eb73f7bb7d08739f3b99382493df5ad0",
+      "previous_pack": "4fb6b93d0edc027618c4ebf2a82b0b63871a4435728db1ebe801efeb56f67ff5",
+      "pack": "4fb6b93d0edc027618c4ebf2a82b0b63871a4435728db1ebe801efeb56f67ff5",
+      "baseline_f1": 0.826865671641791,
+      "f1": 0.826865671641791,
+      "probes": [
+        {
+          "region": "wall crossed by diagonal",
+          "samples": 51219,
+          "before": 43962,
+          "after": 43962
+        }
+      ],
+      "view": {
+        "crops": [
+          [
+            196,
+            141,
+            580,
+            352
+          ]
+        ],
+        "width": 720,
+        "height": 450
+      }
+    },
+    {
+      "id": "shape-benchmark-26.3--train-canopy-04-left",
+      "name": "Canopy 04",
+      "rgb_sha256": "15fa8537e6b6f095ba50c7e24a71f6b823806a6fb236f80641daf9bc714c0823",
+      "previous_pack": "25155c7385c458f1d1b53bbe0669d6497919289223d56eefa738000ee4d2276c",
+      "pack": "8189f8f2458698adc5ea6989aa0d34cbdad8e64ddb363b7b9f8e7f04ddc8a66e",
+      "baseline_f1": 0.7272727272727273,
+      "f1": 0.7884615384615384,
+      "probes": [
+        {
+          "region": "narrow pillar strip",
+          "samples": 757,
+          "before": 190,
+          "after": 733
+        },
+        {
+          "region": "wide pillar face",
+          "samples": 4650,
+          "before": 4638,
+          "after": 4638
+        }
+      ],
+      "view": {
+        "crops": [
+          [
+            375,
+            179,
+            383,
+            339
+          ],
+          [
+            345,
+            180,
+            376,
+            348
+          ]
+        ],
+        "width": 720,
+        "height": 450
+      }
+    },
+    {
+      "id": "signed-relief-26.3--dev--dev-relief-00-oblique-right",
+      "name": "Dev Relief 00",
+      "rgb_sha256": "17682203a4372c0a677e34f7da95c18cb82acde6d1b92363697905fb6a90f7f5",
+      "previous_pack": "d51ecba5801e1fb3949ae15b7975e1c86c9c7556626380f6a016beab775e8f14",
+      "pack": "b1dd6bf0666b4a8eb4929e15b4be6592e6427b3465bc3ebe0329f537d6ccf536",
+      "baseline_f1": 0.8370044052863436,
+      "f1": 0.8414096916299559,
+      "probes": [
+        {
+          "region": "relief detail 1",
+          "samples": 228,
+          "before": 0,
+          "after": 227
+        },
+        {
+          "region": "relief detail 2",
+          "samples": 196,
+          "before": 0,
+          "after": 0
+        }
+      ],
+      "view": {
+        "crops": [
+          [
+            281,
+            238,
+            298,
+            253
+          ],
+          [
+            282,
+            274,
+            299,
+            288
+          ]
+        ],
+        "width": 720,
+        "height": 450
+      }
+    },
+    {
+      "id": "signed-relief-26.3--test--test-relief-00-oblique-left",
+      "name": "Relief 00",
+      "rgb_sha256": "54145a22b48ba5eb35581125363469a3024172b1e9ae95cb6dff00ca9a673854",
+      "previous_pack": "9aef05257639c8627528b968175a075ae162c0db15373b89d47c55ca09b8d4ed",
+      "pack": "9aef05257639c8627528b968175a075ae162c0db15373b89d47c55ca09b8d4ed",
+      "baseline_f1": 0.862144420131291,
+      "f1": 0.862144420131291,
+      "probes": [
+        {
+          "region": "relief detail 1",
+          "samples": 92,
+          "before": 0,
+          "after": 0
+        },
+        {
+          "region": "relief detail 2",
+          "samples": 215,
+          "before": 0,
+          "after": 0
+        }
+      ],
+      "view": {
+        "crops": [
+          [
+            491,
+            167,
+            500,
+            179
+          ],
+          [
+            458,
+            167,
+            475,
+            180
+          ]
+        ],
+        "width": 720,
+        "height": 450
+      }
+    },
+    {
+      "id": "inverse-voxels-26.3--confirm--test-colonnade-01-oblique-right",
+      "name": "Colonnade 01",
+      "rgb_sha256": "56f1d5c1feb17dcee4ab530954cd05a37bf86ef178aead769afe90c9ce6307e6",
+      "previous_pack": "0abaef41f6b6e1c256d90902308b03ac9265276ca4365f6062182a47221fa032",
+      "pack": "0abaef41f6b6e1c256d90902308b03ac9265276ca4365f6062182a47221fa032",
+      "baseline_f1": 0.7522388059701492,
+      "f1": 0.7522388059701492,
+      "probes": [
+        {
+          "region": "pavement visible through openings",
+          "samples": 337,
+          "before": 0,
+          "after": 0
+        },
+        {
+          "region": "visible missed top faces",
+          "samples": 383,
+          "before": 0,
+          "after": 0
+        }
+      ],
+      "view": {
+        "crops": [
+          [
+            381,
+            215,
+            433,
+            231
+          ],
+          [
+            240,
+            166,
+            501,
+            170
+          ]
+        ],
+        "width": 720,
+        "height": 450
+      }
+    }
+  ]
+}

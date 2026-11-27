@@ -1,0 +1,32 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width">
+<title>Visible placement checks</title>
+<style>
+*{box-sizing:border-box}body{font:16px/1.45 'Segoe UI',sans-serif;background:#14262e;color:#f3f6f5;margin:0}main{max-width:1150px;margin:auto;padding:20px}h1{margin:0;font-size:1.8rem}p{margin:.6rem 0;color:#dce5e4}nav{display:flex;gap:14px;flex-wrap:wrap;align-items:center;margin:16px 0}button,select{font:inherit;background:#243f4d;color:white;border:1px solid #8ca6ab;border-radius:5px;padding:5px 9px}canvas{display:block;max-width:100%;max-height:65vh;background:#0a1319;margin:auto;image-rendering:pixelated}figure{margin:12px 0}figcaption{margin:8px 0;color:#d9ebe5}output{font-weight:600}</style>
+<main><h1>Visible placement checks</h1><p>Compare the first block seen along each sampled camera ray in the reported region.</p>
+<nav><label>Structure <select id="build"></select></label><label>Region <select id="probe"></select></label>
+<label>Layer <select id="stage"><option value="source">Source</option><option value="before">Previous default</option><option value="after" selected>New default</option></select></label>
+<label><input id="zoom" type="checkbox" checked> Zoom to region</label></nav>
+<figure><div style="display:flex;align-items:center;justify-content:center;gap:18px;flex-wrap:wrap"><canvas id="context" width="280" aria-label="Selected region on the source screenshot" style="max-width:38%;margin:0"></canvas><canvas id="plot" style="margin:0"></canvas></div><figcaption>Green marks the correct first block or correctly clear background. Red marks a misplaced foreground block. Blue marks a missing foreground block.</figcaption></figure><output id="counts" aria-live="polite"></output>
+</main><script>
+const frames=[{"id": "shape-benchmark-26.3--train-canopy-04-left", "name": "Canopy 04", "probes": [{"region": "narrow pillar strip", "samples": 757, "before": 190, "after": 733}, {"region": "wide pillar face", "samples": 4650, "before": 4638, "after": 4638}], "view": {"crops": [[375, 179, 383, 339], [345, 180, 376, 348]], "width": 720, "height": 450}}, {"id": "inverse-voxels-26.3--confirm--test-colonnade-01-oblique-right", "name": "Colonnade 01", "probes": [{"region": "pavement visible through openings", "samples": 337, "before": 0, "after": 0}, {"region": "visible missed top faces", "samples": 383, "before": 0, "after": 0}], "view": {"crops": [[381, 215, 433, 231], [240, 166, 501, 170]], "width": 720, "height": 450}}, {"id": "signed-relief-26.3--dev--dev-relief-00-oblique-right", "name": "Dev Relief 00", "probes": [{"region": "relief detail 1", "samples": 228, "before": 0, "after": 227}, {"region": "relief detail 2", "samples": 196, "before": 0, "after": 0}], "view": {"crops": [[281, 238, 298, 253], [282, 274, 299, 288]], "width": 720, "height": 450}}, {"id": "signed-relief-26.3--test--test-relief-00-oblique-left", "name": "Relief 00", "probes": [{"region": "relief detail 1", "samples": 92, "before": 0, "after": 0}, {"region": "relief detail 2", "samples": 215, "before": 0, "after": 0}], "view": {"crops": [[491, 167, 500, 179], [458, 167, 475, 180]], "width": 720, "height": 450}}, {"id": "legacy-light_gray_concrete-dev-shopfront-plaster-low-left", "name": "Shopfront", "probes": [{"region": "lower edge on build", "samples": 805, "before": 243, "after": 243}, {"region": "lower edge on background", "samples": 381, "before": 186, "after": 186}], "view": {"crops": [[220, 262, 454, 304], [220, 288, 454, 306]], "width": 720, "height": 450}}, {"id": "heldout-facade-oblique-right", "name": "Facade", "probes": [{"region": "wall crossed by diagonal", "samples": 51219, "before": 43962, "after": 43962}], "view": {"crops": [[196, 141, 580, 352]], "width": 720, "height": 450}}];
+const el=id=>document.getElementById(id), build=el('build'), probe=el('probe');
+frames.forEach((row,i)=>build.add(new Option(row.name,i)));
+function pick(){probe.replaceChildren();frames[build.value].probes.forEach((p,i)=>probe.add(new Option(p.region,i)));draw();}
+let version=0;
+function draw(){const token=++version,r=frames[build.value],i=Number(probe.value),p=r.probes[i],v=r.view;
+el('counts').textContent=p.before+' → '+p.after+' of '+p.samples+' sampled rays correct with the new default.';
+const img=new Image();img.onload=()=>{if(token!==version)return;
+const [l,t,rr,b]=v.crops[i];const margin=Math.max(6,Math.min(55,Math.round(Math.max(rr-l,b-t)*.12)));
+const origin=el('zoom').checked?[Math.max(0,l-margin),Math.max(0,t-margin),Math.min(v.width,rr+margin),Math.min(v.height,b+margin)]:[0,0,v.width,v.height];
+const [x,y,x1,y1]=origin,w=x1-x,h=y1-y,canvas=el('plot'),scale=Math.min(7,1000/w,580/h);
+canvas.width=Math.max(1,Math.round(w*scale));canvas.height=Math.max(1,Math.round(h*scale));
+const ctx=canvas.getContext('2d');ctx.imageSmoothingEnabled=false;ctx.drawImage(img,x,y,w,h,0,0,canvas.width,canvas.height);
+if(!el('zoom').checked){ctx.strokeStyle='#f8cf62';ctx.lineWidth=2;ctx.strokeRect((l-x)*scale,(t-y)*scale,(rr-l)*scale,(b-t)*scale);}
+};const stage=el('stage').value;img.src='layers/'+r.id+'-'+stage+(i&&stage!=='source'?'-'+i:'')+'.jpg';
+const box=el('context');box.hidden=!el('zoom').checked;
+if(!box.hidden){const src=new Image();src.onload=()=>{if(token!==version)return;
+const k=box.width/v.width;box.height=Math.round(v.height*k);
+const ctx=box.getContext('2d');ctx.drawImage(src,0,0,box.width,box.height);
+const [l,t,right,bottom]=v.crops[i];ctx.strokeStyle='#ffd05d';ctx.lineWidth=2;ctx.strokeRect(l*k,t*k,Math.max(3,(right-l)*k),Math.max(3,(bottom-t)*k));};src.src='layers/'+r.id+'-source.jpg';}}
+build.onchange=pick;probe.onchange=draw;el('stage').onchange=draw;el('zoom').onchange=draw;pick();
+</script></html>

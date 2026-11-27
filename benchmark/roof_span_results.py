@@ -7,16 +7,18 @@ from benchmark.mask_blocks import decoded_pack
 from benchmark.texture_camera_eval import checked, digest, read, save
 
 
-def collect(runs,names,out,baseline_name='roof-control',control_revision='99655be'):
+def collect(runs,names,out,baseline_name='roof-control',control_revision='99655be',*,folders=None):
+    def run_path(name):
+        return (folders or {}).get(name,runs/name)
     out.mkdir(parents=True,exist_ok=True)
-    baseline=read(runs/baseline_name/'summary.json')
-    previous=read(checked(runs/baseline_name/'cases.json',baseline['cases_sha256']))
+    baseline=read(run_path(baseline_name)/'summary.json')
+    previous=read(checked(run_path(baseline_name)/'cases.json',baseline['cases_sha256']))
     index={(r['split'],r['id']):r for r in previous}
     assert len(index)==200
     summaries={}
     with ZipFile(out/'comparisons.zip','w',ZIP_DEFLATED) as z:
         for name in names:
-            here=runs/name
+            here=run_path(name)
             meta=read(here/'summary.json')
             prior_sources=('sources','calibrated_atlas','roof_probes_sha256')
             assert all(meta[k]==baseline[k] for k in prior_sources)
@@ -37,7 +39,7 @@ def collect(runs,names,out,baseline_name='roof-control',control_revision='99655b
                     assert r['pack_sha256']==r['control_pack_sha256']
             for f in ('summary.json','cases.json'):
                 z.write(here/f,f'{name}/{f}')
-            other=runs/('transfer-'+name)
+            other=run_path('transfer-'+name)
             recent=read(other/'summary.json')
             extra_rows=read(checked(other/'cases.json',recent['cases_sha256']))
             assert len(extra_rows)==4

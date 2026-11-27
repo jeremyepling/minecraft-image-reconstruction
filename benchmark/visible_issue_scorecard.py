@@ -97,7 +97,8 @@ def run(args):
         name=named[key]
         pic=np.asarray(photo)[::STEP,::STEP,:3].copy()
         masks=[]
-        for title,mask in regions(name,key,photo,parts,cam,labels,ids,base,truth-placed):
+        details=list(regions(name,key,photo,parts,cam,labels,ids,base,truth-placed))
+        for title,mask in details:
             n=int(mask.sum())
             assert n>0
             shaped=mask.reshape(base.shape)
@@ -109,6 +110,9 @@ def run(args):
         thumbs[name]=thumb
         results.append(dict(id=key,name=name,rgb_sha256=row['rgb_sha256'],previous_pack=row['pack_sha256'],pack=other['pack_sha256'],
                             baseline_f1=row['f1'],f1=other['f1'],probes=masks))
+        if args.viewer:
+            from benchmark.visible_issue_viewer import layers
+            results[-1]['view']=layers(args.out/'layers',key,photo,details,old,new,base.owner>=0,current.owner>=0)
     assert len(results)==len(NAMES)
     plate=Image.new('RGB',(1180,560),'#102731')
     ink=ImageDraw.Draw(plate)
@@ -121,6 +125,9 @@ def run(args):
     save(args.out/'cases.json',dict(step=STEP,source_sha256={p.name:digest(p) for p in (RANK,CONTACT,FLOOR)},
                                   baseline_cases_sha256=digest(args.control/'cases.json'),
                                   scored_cases_sha256=digest(args.run/'cases.json'),frames=results))
+    if args.viewer:
+        from benchmark.visible_issue_viewer import page
+        page(args.out,sorted(results,key=lambda r:NAMES.index(r['name'])))
 
 
 if __name__=='__main__':
@@ -128,4 +135,5 @@ if __name__=='__main__':
     parser.add_argument('--control',type=Path,default=Path('../wall-section-round/runs/control'))
     parser.add_argument('--run',type=Path,required=True)
     parser.add_argument('--out',type=Path,required=True)
+    parser.add_argument('--viewer',action='store_true')
     run(parser.parse_args())

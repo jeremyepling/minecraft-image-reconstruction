@@ -32,6 +32,8 @@ Use known world labels as ground truth when available. Other models can provide 
 
 Use the existing eight-building suite as a regression collection. Its repeatedly reviewed buildings are not an untouched generalization test. GPU time, dataset size and expected accuracy remain estimates until measured on the selected architecture and capture system.
 
+The [reported placement issues and region scorecard](../benchmark/reviews/visible-error-budget-01/README.md) supply examples for future depth and orientation training. Useful comparisons include coplanar changes of material versus overlapping posts, recesses versus protrusions, and a photographed roof edge versus a shaded wall. Evaluate the selected depth on the first visible block along the affected rays. Keep these reviewed structures in their existing splits and score generalization on separate building families.
+
 ## Acceptance
 
 Progress means more correct visible blocks, fewer incorrect or unsupported placements, better dimensions and material identification, and preserved openings on new buildings. Hidden world truth is excluded from required recovery. Any unsupported added cell is an error even if it makes a building look plausible. No completion model or full-world occupancy objective should enter this plan as an automatic next stage.
