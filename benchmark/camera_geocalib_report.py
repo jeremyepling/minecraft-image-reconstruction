@@ -5,7 +5,7 @@ from hashlib import sha256
 from zipfile import ZipFile
 
 import numpy as np
-from PIL import Image, ImageDraw
+from PIL import Image, ImageDraw, ImageFont
 
 from benchmark.camera_geocalib_run import OUT, ROOT, CONTROL, BASE, REPEAT
 from benchmark.camera_geocalib_infer import WEIGHT_SHA, REVISION
@@ -60,7 +60,8 @@ def draw_example(entry, row, learned):
             draw.line((u-3,v,u+3,v),fill="magenta",width=2)
             draw.line((u,v-3,u,v+3),fill="magenta",width=2)
     draw.rectangle((0,0,w,38),fill="black")
-    draw.text((8,5),entry["id"]+" | orange learned horizon   cyan recorded horizon/corners   magenta fitted corners",size=19)
+    draw.text((8,5),entry["id"]+" | orange learned horizon   cyan recorded horizon/corners   magenta fitted corners",
+              font=ImageFont.load_default(size=22))
     return image.resize((900,round(900*h/w)))
 
 
