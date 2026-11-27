@@ -715,7 +715,7 @@ def build(image_path, version, out, *, outlines=None, order_method=None, through
                 status.update(placed_blocks=len(cells), inset_placement=dict(added=len(added), removed=len(removed),
                     source='photographed backs and occluding cells inside measured rims'))
             if pre_inset is not None and cells and joint_foreground:
-                from engine import pavement_opening
+                from engine import pavement_opening, window_wall_recheck
                 from engine.pavement_obstructions import window_obstructions
                 # A flush platform can share the pavement grid. Keep its surface
                 # and counts, and test only elevated cubes obstructing those rays.
@@ -724,8 +724,10 @@ def build(image_path, version, out, *, outlines=None, order_method=None, through
                     regions = [part for part in pre_inset if part['id'] in matched]
                     blocked = window_obstructions(image.size, status, regions, cells)
                     cells = set(cells) - blocked
+                    restored = window_wall_recheck.recover(image, placement_parts, status, matched, cells)
+                    cells.update(restored)
                     status.update(placed_blocks=len(cells), pavement_openings=dict(
-                        surfaces=sorted(matched), removed=sorted(blocked)))
+                        surfaces=sorted(matched), removed=sorted(blocked), recovered_walls=sorted(restored)))
                 elif (counter == texture_guided_count.METHOD and material_match in (None,'atlas')
                       and not (inset_events or phase_events or count_confirmed_outlines)
                       and status.get('foreground_depth',{}).get('method') == 'joint'):
