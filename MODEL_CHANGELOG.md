@@ -4,6 +4,8 @@ These entries cover model inputs, rules around model outputs, and evaluation cha
 
 ### November 27, 2026
 
+- **Experiment. Sampling vanilla tiles across each projected pixel footprint.** A second material vote lost 608 exact IDs on the fixed suite and 252 on decorative buildings, while gaining 65 on Visible Builds v3. On 20 views, integrating each pixel added 89 correct boundary assignments over point sampling. Full mask feedback helped a test garden and damaged a market court. Keep the ordinary matcher and masks. [Camera-conditioned atlas replay](benchmark/reviews/view-conditioned-atlas-01/README.md)
+
 - **Measured when correcting or bypassing a stage changes the exported build.** Across 104 fixed views, exact visible surface masks improved paired placement F1 by 3.38 points and exact position-plus-ID F1 by 2.87 points. On 20 views, true masks and face directions yielded 92.50% overall F1. Supplying exact chart corners temporarily reduced that score to 92.07%; supplying the correct counts at placement entry recovered it to 92.52%. The atlas is already used in camera fitting, outlines and depth ranking. Final material IDs enter after placement. Agreement on material alone cannot identify a surface. For training, target mixed-depth masks, the direction of newly separated faces, and a trustworthy grid anchored to a specific plane. [Stage impact assessment and bypasses](benchmark/reviews/pipeline-impact-01/README.md) · [Interactive comparisons](benchmark/reviews/pipeline-impact-01/viewer.html)
 
 
