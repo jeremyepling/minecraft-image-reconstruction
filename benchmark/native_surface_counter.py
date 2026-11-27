@@ -320,4 +320,3 @@ if __name__ == '__main__':
     cases = [c for c in read(ordinary.SHARED/'fixtures.json')['cases'] if args.frame in c['id']]
     with ProcessPoolExecutor(args.workers) as pool:
         list(pool.map(predict,cases))
-

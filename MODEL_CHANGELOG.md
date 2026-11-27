@@ -4,6 +4,8 @@ These entries cover model inputs, rules around model outputs, and evaluation cha
 
 ### November 27, 2026
 
+- **Experimental native surface counting.** Project individual atlas faces into a masked source crop with texture-line directions and two native repeat measurements. On Castle S04 this recovered 38 distinct visible faces and all 38 IDs. Substituting S04 alone broke its shared-corner join and lost nine correct exported positions. Across the six sky composites, substituting all accepted charts reduced correct positions from 208 to 90 and exact position-plus-ID matches from 26 to 14. [Predictor](benchmark/native_surface_counter.py) and [per-surface native measurements](benchmark/reviews/surface-crop-first-01/native).
+
 - **Experimental row transfer across a visible corner.** Castle S04 borrowed the 27-row spacing from S03. Joining it to a rebuilt donor added nine correct blocks without additional extras. The other five sky views had no accepted transfer. Keep the experiment separate while testing less textured donors and improving material assignment. [Paired scores and controls](benchmark/reviews/shared-corner-rows-01/README.md)
 
 - **Experimental assembly from visible face grids without a ground datum.** Local unit grids were joined using shared visible edges and matching grids on one plane. With exact visible charts and supplied materials, relative placement on six sky composites reached 93.71% strict F1 (3,563 correct, 478 missed, zero extras). Denser source-only atlas charts scored 2.35% and registered no pair of planes. Train or detect visible grid boundaries and seam correspondence before tuning depth gates. [Relative face assembly results](benchmark/reviews/relative-face-assembly-01/README.md)
