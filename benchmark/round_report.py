@@ -4,7 +4,9 @@ from collections import Counter, defaultdict
 from fractions import Fraction
 from hashlib import sha256
 import json
+import os
 from pathlib import Path
+from urllib.parse import quote
 
 
 REVIEWS = Path(__file__).resolve().parent / 'reviews'
@@ -109,7 +111,7 @@ def perfect_repairs(groups, total):
     return used
 
 
-def report(directory, baseline=None):
+def report(directory, baseline=None, *, link_from=None):
     directory = directory.resolve()
     candidate, after = load_release(directory)
     _, fixture = load_release(FIXTURE)
@@ -153,10 +155,17 @@ def report(directory, baseline=None):
     facade = {key: after[key]['result']['facade'] for key in fixed}
     total = pooled(facade.values())
     grouped = [pooled(facade[key] for key in item['frame_ids']) for item in layouts]
-    lines += ['', f'**95% facade-priority target.** A perfect repair of the best-selected '
+    remaining = max(0.0, 95 - 100 * float(f1(total)))
+    lines += ['', f'**95% facade-priority target.** {remaining:.4f} percentage points remain. '
+              'A perfect repair of the best-selected '
               f'{perfect_repairs(facade.values(), total)} whole views or {perfect_repairs(grouped, total)} '
               'whole layouts would reach the target. This reference-only lower bound assumes all required misses '
               'and extras in each selected group are fixed with every previously correct position preserved.']
+    errors = sorted(((group['missed'] + group['extras'], layout['name']) for layout, group in zip(layouts, grouped)),
+                    key=lambda pair: (-pair[0], pair[1]))
+    largest = [f'{name} ({count:,})' for count, name in errors[:3] if count]
+    if largest:
+        lines += ['', 'Largest counts of outstanding required misses and extras by layout: ' + ', '.join(largest) + '.']
     lines += ['', '## Largest facade-priority changes', '']
     changes = defaultdict(list)
     for key in after:
@@ -183,6 +192,13 @@ def report(directory, baseline=None):
     for name, key in sorted(weakest, key=lambda pair: rank(pair[1]))[:10]:
         row = after[key]['result']
         lines.append(f"| {name} | `{key}` | {float(f1(row['strict'])):.2%} | {float(f1(row['facade'])):.2%} | {counts(row['strict'])} |")
+    evidence = directory / 'README.md'
+    if evidence.is_file():
+        try:
+            path = Path(os.path.relpath(evidence, start=link_from))
+        except ValueError:  # A Windows report on a different drive needs an absolute target.
+            path = evidence
+        lines += ['', f'[Release findings and evidence]({quote(path.as_posix(), safe="/:")})']
     return '\n'.join(lines) + '\n'
 
 
@@ -193,7 +209,7 @@ def main():
     parser.add_argument('--out', type=Path, help='Write Markdown to a file. Default: standard output.')
     args = parser.parse_args()
     try:
-        result = report(args.release, args.baseline)
+        result = report(args.release, args.baseline, link_from=args.out.parent if args.out else None)
     except (KeyError, OSError, ValueError) as error:
         parser.error(str(error))
     if args.out:

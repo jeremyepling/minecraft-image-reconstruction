@@ -1,7 +1,9 @@
 from copy import deepcopy
+from pathlib import Path
+from urllib.parse import unquote
 import unittest
 
-from benchmark.round_report import paired_table, perfect_repairs, pooled, validate
+from benchmark.round_report import FIXTURE, paired_table, perfect_repairs, pooled, report, validate
 
 
 class RoundReportTest(unittest.TestCase):
@@ -36,3 +38,10 @@ class RoundReportTest(unittest.TestCase):
         views = [good, poor]
         self.assertEqual(perfect_repairs(views, pooled(views)), 1)
         self.assertEqual(perfect_repairs([good], good), 0)
+
+    def test_denominator_and_relative_evidence_link_in_release_report(self):
+        output_dir = Path.cwd() / 'runs' / 'a nested report'
+        result = report(FIXTURE, link_from=output_dir)
+        self.assertIn('1.5806 percentage points remain', result)
+        target = result.split('[Release findings and evidence](', 1)[1].split(')', 1)[0]
+        self.assertEqual((output_dir / unquote(target)).resolve(), FIXTURE / 'README.md')
