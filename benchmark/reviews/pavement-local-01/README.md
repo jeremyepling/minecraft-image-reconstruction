@@ -4,6 +4,16 @@ The ordinary Java 26.3 placer clears the eight false shelf blocks in the right C
 
 ![Original Colonnade views, the pavement grid and before/after reprojections](openings.jpg)
 
+[Open the interactive weakest-structures viewer](../shared-face-round-01/viewer.html) to inspect the corrected export, the facade-priority gap, and the layouts or source images that could reach 95% with perfect fixes. Rebuild the page with `python -m benchmark.current_placement_viewer`.
+
+## How concentrated is the gap to 95%?
+
+Starting from 92.9145% facade-priority F1, correcting all required misses and removing all extras across Shopfront's eight views would reach 93.81%. Adding Portico's eight gives 94.39%, Galleries' four gives 94.92%, and Workshop's four gives **95.40%**. These four layouts contain 634 required misses and 361 extras. Shopfront contributes 74 uncovered blocks with incomplete dimensions. On Portico 74 misses have the correct projected face axis at the wrong coordinate. Galleries and Workshop contribute 60 and 55 wrong-axis misses respectively.
+
+Four is the minimum number of perfectly corrected layouts under this scenario. For a target of 95%, recovering a required miss contributes 105 units toward crossing the threshold and removing an extra contributes 95, from rearranging the pooled F1 formula. Sorting disjoint groups by that sum maximizes progress toward the threshold for each group count. The best three layouts reach only 94.92%. Selecting individual source images instead requires at least ten. These scenarios assume independent perfect fixes and hold every other prediction fixed.
+
+The ten strict-ranked images shown first in the viewer account for 217 required misses and 149 extras. Their **12.77%** share of all 2,867 facade-priority errors contributes **0.90 points** to the current 7.09-point gap to 100%. All 38 fixed views of those layouts contribute **2.93 points**. This attribution uses today's pooled denominator. The cumulative-score scenarios recalculate it after each fix.
+
 ## What the source image establishes
 
 The Surface Finder supplies a horizontal patch. To use it as evidence, the placer requires vertical surfaces beside the patch and along its head and sill. The estimated camera projects the ground grid into the patch. The implementation learns the pavement texture from RGB pixels outside the building on the left and right independently, then compares each prediction with two disjoint groups of pixels inside the opening. All four comparisons must favor the predicted ground alignment over shifted textures. On the right view the four correlations are 0.913–0.936 and the smallest lead over a shifted texture is 0.117. The original captured camera and world labels enter only during evaluation. [Per-view measurements](cases.json)

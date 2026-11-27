@@ -2,7 +2,7 @@
 
 The starting default at `abfc0be` places **20,619** blocks correctly, misses **3,083** visible positions and places **1,097** extras across 104 fixed whole-structure source images. Strict F1 is **90.80%**, and facade-priority F1 is **92.90%**. One integer translation of each entire build is allowed. The saved exports and scored visible coordinates were checked again for this round. All 104 have a supported camera. The best whole-build translation was zero on every fixed input, so camera-registered strict F1 also measured 90.80%. The 112-view historical score, which includes the eight retired frame-filling wall images, was 90.04%.
 
-[Open the five-source-image viewer locally](viewer.html) · [Zoomable stage map](stage-map.jpg) · [Five per-stage traces](stage-examples.json)
+[Open the current interactive viewer](viewer.html) for the ranked structures, facade-priority error contributions, common failure patterns and 95% scenarios. The static [stage map](stage-map.jpg) and [five per-stage traces](stage-examples.json) below document the earlier shared-face experiment.
 
 ![Required misses on Shopfront, Portico and Colonnade](wall-examples.jpg)
 
@@ -53,7 +53,7 @@ On the two low-left Portico floor variants the same 3 × 5 region accounts for 1
 
 ## Reproduce the audit and source overlays
 
-From the repository with the registered fixed-suite and frame caches, run the error audit first. The panel analysis reads its output. The final command regenerates the five source-image columns and the local overlay viewer. The two experiment reports above contain their candidate and control replay commands.
+From the repository with the registered fixed-suite and frame caches, run the error audit first. The panel analysis reads its output. The shared-face examples command regenerates the original five source-image columns. Run `python -m benchmark.current_placement_viewer` to refresh the interactive page from the pavement placement release. The two experiment reports above contain their candidate and control replay commands.
 
 ```powershell
 python -m benchmark.shared_face_error_budget

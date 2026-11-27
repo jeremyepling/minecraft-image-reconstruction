@@ -51,7 +51,13 @@ def detail(image, box):
 def prepare(run, info, frame_tuple, atlas):
     rep = info['representative']
     frame,prior,row = frame_tuple
-    image,parts,counts,camera,pose,labels,ids,truth,raw,scored,states = stages.read_view(run,rep['split'],frame,prior,row)
+    view = stages.read_view(run,rep['split'],frame,prior,row)
+    return prepare_view(info, row, atlas, view)
+
+
+def prepare_view(info, row, atlas, view):
+    rep = info['representative']
+    image,parts,counts,camera,pose,labels,ids,truth,raw,scored,states = view
     missing = truth-scored
     if row['id'] in framed.roof_specs():
         height = framed.roof_specs()[row['id']]['roof_y']

@@ -10,7 +10,6 @@ from benchmark import facade_inset_round as suite, roof_span_worst_sheet as shee
 from benchmark.inset_default_verification import local_release
 from benchmark.mask_blocks import registered
 from benchmark.shared_face_error_budget import current_pack
-from benchmark.shared_face_viewer import write_viewer
 from benchmark.strip_visibility_audit import block_footprints
 from benchmark.roof_span_worst import view_f1
 from benchmark.surface_pipeline_sheet import PAPER, MUTED
@@ -68,7 +67,6 @@ def draw_examples(jobs, rows):
     atlas = atlas_count.load_atlas(suite.ATLAS,'26.3')
     frozen = {r['id']:r for r in read(ROOT/'facade-inset-round-01/combined.json')['rows']}
     traces = []
-    viewer_rows = []
     overlays = OUT/"overlays"
     overlays.mkdir(exist_ok=True)
     stages = [(0,'Source image'),(1,'Surface Finder'),(2,'Surface crop'),(3,'Straightened crop'),(4,'Block Counter'),
@@ -130,8 +128,6 @@ def draw_examples(jobs, rows):
         for stage,idx in [('source',0),('outlines',1),('grid',5),('build',7),('errors',9)]:
             panels[idx][0].save(overlays/f'{prefix}-{stage}.jpg',quality=86,optimize=True)
         Image.fromarray(data).save(overlays/f'{prefix}-required.jpg',quality=89,optimize=True)
-        viewer_rows.append(dict(name=l['name'],prefix=prefix,f1=f"{rep['f1']:.2%}",correct=r['correct'],
-                                required=int(np.sum(lut==1)),optional=int(np.sum(lut==2)),extras=r['extras']))
         if l['name'] in featured:
             focused=sheet.detail(Image.fromarray(data),bounds)
             x=featured.index(l['name'])*420+10
@@ -140,7 +136,6 @@ def draw_examples(jobs, rows):
             priority_image.paste(thumb,(x+(400-thumb.width)//2,145+(260-thumb.height)//2))
             text(priority_pen,x,420,f"{np.sum(lut==1)} required misses; {np.sum(lut==2)} optional misses",18,False)
             text(priority_pen,x,451,f"{r['extras']} extras in the export",17,False,MUTED)
-    write_viewer(OUT,viewer_rows)
     priority_image.save(OUT/'wall-examples.jpg',quality=94,subsampling=0)
     page.save(OUT/'stage-map.jpg',quality=91,subsampling=0,optimize=True)
     save(OUT/'stage-examples.json',dict(source_revision='abfc0be',ranking='lowest individual views, first per distinct layout',views=traces))
