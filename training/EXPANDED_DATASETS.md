@@ -11,7 +11,7 @@ The datasets use Minecraft Java 26.3 native framebuffer PNGs. Each screenshot is
 
 The expansion adds pillar arrays, viaducts, factories, amphitheaters, shrines, observatories, harbors and castles. Each layout has two palettes and three viewpoints. A palette assigns separate materials to masonry, facing, trim, roofing, infill and accents. The largest castle measures 100 blocks wide, 50 high and 36 deep. The largest pillar array measures 88 wide and 42 high. Harbors are the validation family and castles are the test family.
 
-Use the original 204-image placement benchmark as a companion set. It preserves the 104-image fixed score and the 100 comparison views, so a future run can report a result on the original benchmark and one on the 144 new views. The original cases have already been reviewed in previous rounds. New views and their labels are stored in separate archives by split.
+The full benchmark now spans 348 images. The original 204-image companion archive keeps the 104 fixed score views and 100 development and transfer views with their original image hashes and cohort membership. The original cases have already been reviewed in previous rounds. Report their scores separately from the 144 new views.
 
 ## Decorative Builds v1
 
@@ -36,3 +36,24 @@ python -m training.package_expanded --verify-only --out runs/decorative-builds-v
 ```
 
 The manifest indexes checksummed split archives. Each archive contains its own index and per-frame PNG, native camera, readback, visible block labels, and dense raster. A separate archive contains the capture recipes. `preview.jpg` shows a source image from each layout.
+
+With the previous benchmark fixtures installed, rebuild its companion archive from the frozen source and evaluation indices.
+
+```powershell
+python -m training.package_placement_reference --out runs/visible-builds-v3-original-204
+```
+
+## Visible Builds v1 time-of-day pairs
+
+The early-morning and late-afternoon archives replay every original Visible Builds v1 camera and build at fixed times of 400 and 11600 ticks. Each variant contains 152 frames. The eight historical close-ups have a dedicated diagnostic shard. Each native RGB frame carries its original ID for matching, both camera records and the preserved visible label files. Verification checks the full camera projection and block states against the archived noon capture. The initial checks at 2500 and 9500 ticks found identical structure pixels on the sampled views, so the released variants use times closer to the ends of the day.
+
+```powershell
+python -m training.replay_v1_lighting --source runs/visible-builds-v1 --jar PATH_TO_26_3_CLIENT --out runs/lighting-native
+foreach ($cohort in Get-ChildItem runs/lighting-native -Directory) {
+    python -m runtime.capture capture --version 26.3 --run $cohort.FullName --jar PATH_TO_26_3_CLIENT
+}
+python -m training.package_v1_lighting build --original-data runs/visible-builds-v1/data --captures runs/lighting-native --lighting morning --ticks 400 --out runs/visible-builds-v1-early-morning
+python -m training.package_v1_lighting build --original-data runs/visible-builds-v1/data --captures runs/lighting-native --lighting afternoon --ticks 11600 --out runs/visible-builds-v1-late-afternoon
+python -m training.package_v1_lighting verify --release runs/visible-builds-v1-early-morning
+python -m training.package_v1_lighting verify --release runs/visible-builds-v1-late-afternoon
+```

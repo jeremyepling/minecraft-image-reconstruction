@@ -4,6 +4,8 @@ Use the [reconstruction adjustment log](../MODEL_CHANGELOG.md) when choosing tra
 
 The active training dataset is available in [Visible Builds v2](DATASET.md). It contains exact screenshots, per-frame visible blocks and camera calibration. The proposed learning experiment below uses the same [visible-only product intent](../PRODUCT_INTENT.md) as the existing pipeline.
 
+[Expanded capture datasets](EXPANDED_DATASETS.md) documents the larger full-block suite, the decorative-block pilot and the matched v1 time-of-day captures. The frozen placement benchmark remains available as a separate companion archive so earlier scores can be reproduced.
+
 ## Objective
 
 Supervise visible blocks belonging to the structure, including its platforms and disconnected parts. Keep the surrounding ground and sky in the source image as context. Exclude the staging floor from target block coordinates.
