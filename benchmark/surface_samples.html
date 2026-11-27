@@ -9,6 +9,10 @@
 <div class="row"><label><input type="checkbox" checked id="all"> Label all surfaces</label><label><input type="checkbox" checked id="quad"> Outline counter area</label></div>
 <div class="scene"><img id="source" alt="Full source image"><canvas id="overlay" aria-label="Click a detected surface to inspect its crop and counter sample"></canvas></div>
 <p class="muted" id="caption"></p>
+<details id="gardenTrial" hidden><summary>Walled Garden experiments · pillars, terracotta rows and sandstone anchors</summary>
+<p>Gold boxes mark the textured pillars used as rulers. Green cells are proposed visible wall blocks. Each of the three wall patches has three measured rows.</p>
+<a href="pillar-grid.png" target="_blank"><img src="pillar-grid.png" loading="lazy" style="max-width:100%" alt="Three terracotta wall patches with their neighboring pillar rulers"></a>
+<p><a href="placement-comparison.jpg" target="_blank">Compare the experimental exports against the baseline</a></p></details>
 <details><summary>Shared source evidence · surrounding context</summary><a class="photo" id="contextLink" target="_blank"><img id="context" alt="Surface and its surroundings"><span id="contextEmpty" hidden></span></a></details>
 <section><h2>Which view makes the block rows easiest to count?</h2>
 <p class="muted">All three use the selected surface and source image. Compare the same row or seam across the views.</p>
@@ -93,6 +97,7 @@ function downstream(c,r){
  joins:['After row transfer','Green = exported cells, blue = unjoined cells, gold = matched edges.'],
  placed:['Scored placement','Green = correct block and material, amber = correct position, blue = missed, pink = extra.']};
  if(c.panels.cropPlaced)captions.cropPlaced=['Placement with crop-first matches','Scored after aligning the native face grid to the existing corner. Uses the same colors as Scored placement.'];
+ if(c.panels.connectedPlaced)captions.connectedPlaced=['Placement with connected atlas matches','Scored export after adding visible patches with a consistent grid and connected texture matches. Same colors as Scored placement.'];
  const accepted=c.joins.filter(v=>v.decision==='accepted'&&[v.donor,v.receiver].includes(r.label));
  captions.joins[1]+=' '+(accepted.length?accepted.map(v=>v.donor+' → '+v.receiver+' ('+v.receiver_rows+' rows)').join(', '):'No accepted transfer for '+r.label+'.');
  $('measure').textContent=['Width','Height'].map((name,i)=>{const a=r.axes?.[i];return name+' · '+(a?.source||'no recorded measurement')+(Number.isFinite(a?.count)?' ('+a.count.toFixed(2)+' blocks)':'')}).join('    /    ');
@@ -106,6 +111,7 @@ function downstream(c,r){
 }
 
 function show(){const c=scene(),r=mask();$('build').value=b;$('surface').value=m;$('prev').disabled=!b&&!m;$('next').disabled=b===scenes.length-1&&m===c.masks.length-1;
+ $('gardenTrial').hidden=c.id!=='test-walled-garden-1-warm-high-right';
  $('source').src=$('all').checked?c.masksImage:c.source;$('progress').textContent=(m+1)+' of '+c.masks.length;
  $('caption').textContent=c.title+' · '+r.label+' · Turquoise marks the selected mask.'+(r.quad?' Gold outlines the sampling area.':' No sampling area was saved.')+(r.skyNote?' '+r.skyNote:'');
  $('dims').textContent='Block count '+r.dimensions.map(v=>v??'?').join(' × ');

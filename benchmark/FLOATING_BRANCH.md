@@ -4,7 +4,9 @@
 
 ## Baseline to beat
 
-The source-only baseline measures local face grids, transfers shared rows across a supported corner, then registers native atlas matches onto that existing grid. The last step preserves the corner join. The six open-sky composites score **11.16% strict placement F1**, **11.38% facade placement F1**, and **2.89% / 2.95%** strict/facade position-plus-material F1. There are 239 correct positions, 3,802 missed positions and five extras. The crop-first registration gain came from Castle. Four views are from Visible Builds v3 and two from Decorative Builds v1. Use the fixed 104 production trend (91.27% strict, 93.42% facade) for historical context. Assess the gap to production using the same buildings, backgrounds, inputs and scoring rule on both branches.
+The connected-atlas baseline transfers shared rows across supported corners, registers native atlas matches to the grid, and proposes grids on additional visible wall patches where neighboring atlas observations agree. It scores **12.64% strict and 12.90% facade placement F1** on six open-sky composites. Strict/facade position-plus-material F1 is **4.68% / 4.77%**. It places 273 correct blocks, misses 3,768, and adds five extras. The preceding registered-seam baseline placed 239 correctly with five extras. The gains came from Walled Garden and Harbor. [Garden experiments and source overlays](reviews/garden-feedback-01/README.md)
+
+Four views are from Visible Builds v3 and two from Decorative Builds v1. Use the fixed 104 production trend (91.27% strict, 93.42% facade) for historical context. Assess the gap to production using the same buildings, backgrounds, inputs and scoring rule on both branches.
 
 ### Reproduce the six exports
 
@@ -14,10 +16,11 @@ From this checkout, using the benchmark Python environment and the saved open-sk
 python -m benchmark.shared_corner_rows
 python -m benchmark.native_surface_counter
 python -m benchmark.native_corner_registration
-python -m benchmark.relative_face_round registered-seam
+python -m benchmark.garden_anchor_extension --arm connected --workers 3
+python -m benchmark.relative_face_round connected-atlas
 ```
 
-The first stage reads frozen source handoffs from the `floating-build-local-grid` and `relative-face-source-charts` worktrees. The following stages consume outputs within this checkout. Decoded and scored exports are under `runs/relative-face-assembly-01/registered-seam/sky`. This is the benchmark entry point for the floating branch; the ordinary build CLI still runs the production-style pipeline.
+The first stage reads frozen source handoffs from the `floating-build-local-grid` and `relative-face-source-charts` worktrees. The following stages consume outputs within this checkout. Decoded and scored exports are under `runs/relative-face-assembly-01/connected-atlas/sky`. This is the benchmark entry point for the floating branch; the ordinary build CLI still runs the production-style pipeline.
 
 ## Which work belongs here
 
@@ -25,7 +28,7 @@ The first stage reads frozen source handoffs from the `floating-build-local-grid
 |---|---|
 | Floating local grids, source charts and relative assembly/scoring | Inputs, visible-grid assembly, single-translation evaluation |
 | Relative face junction control | Reference-only estimate of how well exact visible grids join |
-| Shared corner rows and surface crop first | Winning source-only registered-seam baseline; weaker variants retained for comparisons |
+| Shared corner rows and surface crop first | Previous source-only registered-seam baseline; weaker variants retained for comparisons |
 | Sky mask feedback, line leveling and the surface inspector | Experiments and review tools. The sky filter cleaned background masks on the composites. Line leveling helped several surfaces and worsened others. Neither improvement is included in the baseline score as a new placement gain. |
 
 The `experiment/floating-build-floor-bypass` worktree remains a historical diagnostic of the older placer, including supplied-camera interventions. Future work should start here and use sibling worktrees for parallel candidates. Keep the current inspector and annotation exports available at their original paths so existing feedback links keep working.

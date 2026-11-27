@@ -17,9 +17,10 @@ PRIOR = WORKTREES / 'relative-face-assembly/runs/relative-face-stage-review-01'
 def main():
     raw = (PRIOR / 'data.js').read_text(encoding='utf-8')
     stages = json.loads(raw.split('=', 1)[1].strip().rstrip(';'))
-    pitch_path = ROOT / 'runs/native-crop-audit-01/pitch-controls.json'
+    archive = WORKTREES / 'shared-corner-rows/runs'
+    pitch_path = archive / 'native-crop-audit-01/pitch-controls.json'
     pitch = read(pitch_path) if pitch_path.exists() else {}
-    line_dir = ROOT / 'runs/castle-feedback-01/rows'
+    line_dir = archive / 'castle-feedback-01/rows'
     line_report = read(line_dir / 'measurements.json') if (line_dir / 'measurements.json').exists() else {}
     sky_path = WORKTREES / 'sky-mask-feedback/runs/sky-mask-feedback-01/report.json'
     sky_cases = {s['id']: s for s in read(sky_path)['frames']} if sky_path.exists() else {}
@@ -94,8 +95,15 @@ def main():
         for path in panels.values():
             shutil.copyfile(PRIOR / path, OUTPUT / path)
         panels.update(joins=f'{ident}/grids.jpg', placed=f'{ident}/row-transfer-placed.jpg')
-        scored = ROOT / 'runs/native-crop-score-01/registered-seam/sky' / ident
-        if (scored / 'placements.json').exists():
+        for key, file in [('joins','grids.jpg'),('placed','row-transfer-placed.jpg')]:
+            old = archive / 'shared-corner-viewer-01' / ident / file
+            target = OUTPUT / panels[key]
+            if old.is_file() and old.resolve()!=target.resolve():
+                shutil.copyfile(old,target)
+        for key, mode in [('cropPlaced','registered-seam'), ('connectedPlaced','connected-atlas')]:
+            scored = ROOT / 'runs/relative-face-assembly-01' / mode / 'sky' / ident
+            if not (scored/'placements.json').exists():
+                continue
             receipt = read(scored / 'score.json')
             assert receipt['source_sha256'] == sha and receipt['pack_sha256'] == digest(scored / 'reconstruction.zip')
             aligned = {tuple(xyz): mat for xyz, mat in read(scored / 'placements.json')['aligned']}
@@ -103,15 +111,17 @@ def main():
             reference = load_reference(cases[ident])
             assert receipt['score']['fixed']['geometry']['strict']['correct'] == len(aligned.keys() & reference.truth.keys())
             with np.load(frame / 'labels.npz', allow_pickle=False) as native_labels:
-                panels['cropPlaced'] = runpy.run_path(str(PRIOR / 'render_review.py'))['placements'](
+                panels[key] = runpy.run_path(str(PRIOR / 'render_review.py'))['placements'](
                     Image.open(PRIOR / scene['source']).convert('RGB'), native_labels['face_id'],
                     native_labels['depth_z'], read(frame / 'labels.json'), reference, aligned,
-                    OUTPUT / ident, 'native-registered')
+                    OUTPUT / ident, mode)
         scenes.append(dict(id=ident, title=scene['title'], sha=sha, revision=revision, source=scene['source'],
                            panels=panels, size=scene['size'], joins=joins,
                            masksImage=scene['assets']['masks'], hit=scene['hit'], masks=masks))
     (OUTPUT / 'sample-data.js').write_text('const scenes=' + json.dumps(scenes) + ';', encoding='utf-8')
     shutil.copyfile(ROOT / 'benchmark/surface_samples.html', OUTPUT / 'surface-samples.html')
+    for name in ('pillar-grid.png', 'placement-comparison.jpg'):
+        shutil.copyfile(ROOT / 'benchmark/reviews/garden-feedback-01' / name, OUTPUT / name)
     print(f"{len(scenes)} builds, {sum(len(s['masks']) for s in scenes)} surfaces")
 
 
