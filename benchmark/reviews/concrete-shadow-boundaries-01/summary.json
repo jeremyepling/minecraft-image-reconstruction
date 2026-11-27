@@ -1,0 +1,110 @@
+{
+  "fixed": {
+    "frames": 104,
+    "shade": {
+      "same_face_pairs": 1077588,
+      "luminance_step_ge_12": 398,
+      "chroma_stable_steps": 394
+    },
+    "fragmented_surfaces": 115,
+    "extra_fragments": 148,
+    "baseline": {
+      "predicted": 1431,
+      "target": 1462,
+      "matched": 1093,
+      "paired_pixels": 17070113,
+      "background_pixels": 133280,
+      "f1": 0.7556170065675769
+    },
+    "color": {
+      "predicted": 1039,
+      "target": 1462,
+      "matched": 789,
+      "paired_pixels": 15195963,
+      "background_pixels": 133280,
+      "f1": 0.6309476209516194,
+      "join_types": {
+        "across_surfaces": 300,
+        "same_surface": 41,
+        "mixed_or_background": 51
+      },
+      "changed_views": 102,
+      "matched_gain_views": 0,
+      "matched_loss_views": 95,
+      "paired_pixels_gain_views": 6,
+      "paired_pixels_loss_views": 93
+    },
+    "guarded": {
+      "predicted": 1414,
+      "target": 1462,
+      "matched": 1078,
+      "paired_pixels": 16924312,
+      "background_pixels": 133280,
+      "f1": 0.7496522948539638,
+      "join_types": {
+        "same_surface": 2,
+        "across_surfaces": 13,
+        "mixed_or_background": 2
+      },
+      "changed_views": 17,
+      "matched_gain_views": 0,
+      "matched_loss_views": 13,
+      "paired_pixels_gain_views": 3,
+      "paired_pixels_loss_views": 13
+    }
+  },
+  "other": {
+    "frames": 100,
+    "shade": {
+      "same_face_pairs": 200918,
+      "luminance_step_ge_12": 23,
+      "chroma_stable_steps": 20
+    },
+    "fragmented_surfaces": 126,
+    "extra_fragments": 171,
+    "baseline": {
+      "predicted": 1663,
+      "target": 1781,
+      "matched": 1217,
+      "paired_pixels": 16039465,
+      "background_pixels": 171564,
+      "f1": 0.7067363530778165
+    },
+    "color": {
+      "predicted": 1242,
+      "target": 1781,
+      "matched": 878,
+      "paired_pixels": 14294084,
+      "background_pixels": 171564,
+      "f1": 0.5808799206086669,
+      "join_types": {
+        "across_surfaces": 318,
+        "same_surface": 40,
+        "mixed_or_background": 63
+      },
+      "changed_views": 98,
+      "matched_gain_views": 0,
+      "matched_loss_views": 93,
+      "paired_pixels_gain_views": 6,
+      "paired_pixels_loss_views": 90
+    },
+    "guarded": {
+      "predicted": 1643,
+      "target": 1781,
+      "matched": 1201,
+      "paired_pixels": 15945395,
+      "background_pixels": 171564,
+      "f1": 0.701518691588785,
+      "join_types": {
+        "across_surfaces": 12,
+        "mixed_or_background": 5,
+        "same_surface": 3
+      },
+      "changed_views": 18,
+      "matched_gain_views": 0,
+      "matched_loss_views": 14,
+      "paired_pixels_gain_views": 2,
+      "paired_pixels_loss_views": 14
+    }
+  }
+}
