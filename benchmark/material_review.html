@@ -7,6 +7,7 @@ h1,h2{line-height:1.17;margin:.5em 0}p{margin:.5em 0}a{color:#a3e8d2}.controls,.
 label{display:inline-flex;align-items:center;gap:.5em}select,button{font:inherit;background:#2a3d44;color:inherit;border:1px solid #90a8a9;padding:.3em;border-radius:4px;max-width:100%}
 .scroll{overflow-x:auto}table{border-collapse:collapse;width:100%;font-variant-numeric:tabular-nums}th,td{text-align:left;padding:.35em .6em;border-bottom:1px solid #41565d}td:first-child,th:first-child{padding-left:0}details{margin:1em 0}summary{cursor:pointer}
 .picture{display:grid;margin:.65em 0;max-width:960px;background:#101819}.picture img{grid-area:1/1;width:100%;height:auto}.palette span{white-space:nowrap}.chip{display:inline-block;width:.85em;height:.85em;margin-right:.3em;border:1px solid #8b9799}#scores{font-weight:600}button{cursor:pointer}
+.controls label{min-width:0;max-width:100%}.controls select{min-width:0}#inspected,#wrong{overflow-wrap:anywhere}
 </style><main>
 <a href="../shared-face-round-01/viewer.html">← Pipeline stages and placement review</a>
 <h1>Visible block materials and placement</h1>
@@ -56,7 +57,7 @@ function loadInspector(stem,mode){
  inspectCanvas=null;inspectMode=mode;requestedStem=stem;
  const render=()=>{
   if(requestedStem!==stem||activeLookup?.stem!==stem||inspectMode!==mode)return;
-  const entry=activeLookup.data[mode];if(!entry)return;
+  const entry=activeLookup.data[mode];if(!entry){byId('inspected').textContent='No exported blocks in this view.';return}
   const image=new Image();image.onload=()=>{
    if(requestedStem!==stem||activeLookup?.stem!==stem||inspectMode!==mode)return;
    const canvas=document.createElement('canvas');canvas.width=image.width;canvas.height=image.height;
@@ -68,7 +69,7 @@ function loadInspector(stem,mode){
  const script=document.createElement('script');script.src='viewer-assets/'+stem+'-inspect.js';script.onload=()=>script.remove();document.head.append(script);
 }
 document.querySelector('.picture').onclick=e=>{
- const target=byId('inspected');if(!inspectCanvas){target.textContent='Block map is loading.';return}
+ const target=byId('inspected');if(!inspectCanvas)return;
  const {ctx,blocks,names}=inspectCanvas,rect=byId('layer').getBoundingClientRect();
  const x=Math.min(ctx.canvas.width-1,Math.max(0,Math.floor((e.clientX-rect.left)*ctx.canvas.width/rect.width)));
  const y=Math.min(ctx.canvas.height-1,Math.max(0,Math.floor((e.clientY-rect.top)*ctx.canvas.height/rect.height)));
