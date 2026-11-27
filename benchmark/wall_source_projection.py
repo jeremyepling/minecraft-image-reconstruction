@@ -200,7 +200,7 @@ class FaceRenderer:
         return round(float((old-new).mean()),3),len(src)
 
 
-def measure_moves(scene,renderer):
+def measure_moves(scene,renderer,*,minimum_geometry=None):
     """Score plus/minus one block along the most visible vertical face's normal."""
     cells=set(scene.cells)
     trials=[]
@@ -226,6 +226,8 @@ def measure_moves(scene,renderer):
             baseline=scene.loss(changed,scene.owner[changed],scene.axes[changed])
             new=scene.loss(changed,owner,axis)
             gain=float((baseline-new).sum())
+            if minimum_geometry is not None and gain < minimum_geometry:
+                continue
             chroma,count=renderer.residual_gain(changed,owner,axis,n,to)
             trials.append(dict(old=old,to=to,geometry_gain=round(gain,2),rgb_gain=chroma,
                                held_out=count,touched=len(changed),support=round(float(match.mean()),3)))
