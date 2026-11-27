@@ -6,7 +6,9 @@ The ordinary Java 26.3 placer clears the eight false shelf blocks in the right C
 
 [Open the interactive weakest-structures viewer](../shared-face-round-01/viewer.html) to inspect the corrected export, the facade-priority gap, and the layouts or source images that could reach 95% with perfect fixes. Rebuild the page with `python -m benchmark.current_placement_viewer`.
 
-## How concentrated is the gap to 95%?
+## How concentrated was the gap to 95% at the pavement release?
+
+The figures in this section are the archived result at `22868fc`. The [interactive viewer](../shared-face-round-01/viewer.html) recalculates the ranking and scenarios for the latest measured release.
 
 Starting from 92.9145% facade-priority F1, correcting all required misses and removing all extras across Shopfront's eight views would reach 93.81%. Adding Portico's eight gives 94.39%, Galleries' four gives 94.92%, and Workshop's four gives **95.40%**. These four layouts contain 634 required misses and 361 extras. Shopfront contributes 74 uncovered blocks with incomplete dimensions. On Portico 74 misses have the correct projected face axis at the wrong coordinate. Galleries and Workshop contribute 60 and 55 wrong-axis misses respectively.
 

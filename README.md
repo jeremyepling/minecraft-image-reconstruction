@@ -32,14 +32,14 @@ The **[illustrated stage and term guide](ARCHITECTURE.md#pipeline-terms-in-readi
 
 [Where placement fails on the weakest source images](benchmark/reviews/shared-face-round-01/README.md) groups the misses at `a6e0195` by visible coverage, face direction and 3D position. The [stage map](benchmark/reviews/shared-face-round-01/stage-map.jpg) follows five buildings from source pixels through block counting and the exported geometry. The [required-miss overlay](benchmark/reviews/shared-face-round-01/wall-examples.jpg) shows which errors remain after optional roof slivers are excluded.
 
-On the **104 fixed whole-structure source images**, the current default places **20,696** blocks at the correct relative coordinates, misses **3,006** visible positions and places **1,089** extras. Reprojecting proposed cubes against smooth visible patches recovered 77 required blocks, including 43 on one Registry wall. All previously correct positions and all 100 additional control builds were preserved. [Placement scores and exports](benchmark/reviews/smooth-local-placement-01/summary.json) · [Shopfront, Registry, Portico and Courtyard comparisons](benchmark/reviews/shopfront-outline-review-01/README.md)
+On the **104 fixed whole-structure source images**, the current default places **20,728** blocks at the correct relative coordinates, misses **2,974** visible positions and places **1,089** extras. Reprojecting proposed cubes against smooth visible patches recovered 109 required blocks, including 43 on one Registry view and 32 across two Courtyard views. All previously correct positions and all 100 additional control builds were preserved. [Placement scores and exports](benchmark/reviews/smooth-joint-placement-01/summary.json) · [Shopfront, Registry, Portico and Courtyard comparisons](benchmark/reviews/shopfront-outline-review-01/README.md)
 
 | Measure | What it asks | Current |
 | --- | --- | ---: |
-| Precision | Of the positions we placed, what fraction were correct? | 95.00% |
-| Recall | Of the visible positions in the reference, what fraction did we place correctly? | 87.32% |
-| Strict visible-block F1 | How well did placement balance precision and recall across all visible blocks? | 91.00% |
-| Facade-priority F1 | How well did we do when very thin top-only or underside-only targets are optional? | 93.12% |
+| Precision | Of the positions we placed, what fraction were correct? | 95.01% |
+| Recall | Of the visible positions in the reference, what fraction did we place correctly? | 87.45% |
+| Strict visible-block F1 | How well did placement balance precision and recall across all visible blocks? | 91.07% |
+| Facade-priority F1 | How well did we do when very thin top-only or underside-only targets are optional? | 93.20% |
 
 **F1** combines precision and recall using their harmonic mean. In block counts, **F1 = 2 × correct / (2 × correct + extras + misses)**. On these images, if you pick a placed block, roughly 95 in 100 are right. If you pick a visible reference block, roughly 87 in 100 were recovered. Both matter. The reference allows one whole-build shift per image so a different world origin gets full credit and misplaced parts still count as errors. [Scoring details and examples](ARCHITECTURE.md#evaluation-terms)
 

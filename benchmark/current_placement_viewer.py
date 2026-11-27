@@ -1,5 +1,7 @@
 """Refresh the weakest-structure viewer from the verified pavement-placement release."""
 from collections import Counter, defaultdict
+from concurrent.futures import ProcessPoolExecutor
+from functools import lru_cache
 from hashlib import sha256
 from io import BytesIO
 from zipfile import ZipFile
@@ -9,6 +11,7 @@ from PIL import Image, ImageDraw
 
 from benchmark import facade_inset_round as suite, roof_span_worst_sheet as sheet
 from benchmark.mask_blocks import decoded_pack, registered
+from benchmark.edge_vote_outline_eval import recount
 from benchmark.shared_face_error_budget import current_pack, current_stages, measure
 from benchmark.shared_face_viewer import write_viewer
 from benchmark.strip_visibility_audit import block_footprints
@@ -16,13 +19,66 @@ from benchmark.surface_pipeline_sheet import PAPER
 from benchmark.surface_sheet import text
 from benchmark.texture_camera_eval import checked, read
 from benchmark.thin_face_placement_run import ref_inputs
-from engine import atlas_count
+from engine import atlas_count, eave_pinholes, jagged_texture_join, smooth_atlas_outline, smooth_extent_placement
+from engine.surface_perimeter import with_outline
+from engine.outline_issues import outline_issues
+from engine.pillar_seams import native_mask
+from engine.plane_consensus import row_runs
 
 ROOT = suite.ROOT/'benchmark/reviews'
 PAGE = ROOT/'shared-face-round-01'
 RELEASE = ROOT/'pavement-local-01'
 ASSETS = RELEASE/'viewer-overlays'
-REVISION = '22868fc'
+REVISION = 'a804f6e'
+SMOOTH_LAYOUTS = {'Shopfront','Registry','Portico','Courtyard'}
+
+
+@lru_cache(maxsize=1)
+def calibrated_atlas():
+    return atlas_count.load_atlas(suite.ATLAS,'26.3')
+
+
+def latest_stages(job, expected):
+    image, parts, counts, camera = current_stages(job,expected)
+    parts,_ = eave_pinholes.refine(image,parts)
+    if not any(expected[k] for k in ('returns','texture','outlines')):
+        parts,joins,_ = jagged_texture_join.refine(image,parts,'26.3',camera=camera)
+        if joins:
+            measured = eave_pinholes.measurement_parts([with_outline(p) for p in parts])
+            atlas = calibrated_atlas() if 'atlas_phase' in counts else None
+            counts = recount(image,measured,atlas)
+    parts,_ = smooth_atlas_outline.refine(image,parts,'26.3',atlas_loader=calibrated_atlas)
+    return image,parts,counts,camera
+
+
+def read_releases(directories):
+    history = defaultdict(list)
+    payloads = {}
+    for directory in directories:
+        release = read(directory/'summary.json')
+        with ZipFile(checked(directory/'default-exports.zip',release['archive_sha256'])) as archive:
+            for row in release['changed']:
+                key = row['id']
+                if history[key]:
+                    assert history[key][-1]['pack_sha256']==row['previous_pack_sha256']
+                history[key].append(row)
+                payloads[key] = archive.read(key+'/reconstruction.zip')
+                assert sha256(payloads[key]).hexdigest()==row['pack_sha256']
+    return release,history,payloads
+
+
+def regrade(task):
+    job,expected,old,updates,payload = task
+    args = (job,expected,old['layout'],old['shape_sha256'])
+    if not updates:
+        return measure(args,stages_fn=latest_stages)
+    new=updates[-1]
+    assert (old['rgb_sha256'],old['pack_sha256'])==(new['source_hash'],updates[0]['previous_pack_sha256'])
+    shift=new['result'].get('translation',old['translation'])
+    pack=sorted(decoded_pack(BytesIO(payload))),new['pack_sha256'],shift,new['result']['strict']
+    result=measure(args,pack=pack,stages_fn=latest_stages)
+    assert all(result['required'][k]==new['result']['facade'][k] for k in ('correct','missed','extras'))
+    return result
 
 
 def f1(row):
@@ -95,25 +151,17 @@ def required_overlay(image, labels, ids, missing, metric):
 
 
 def main():
-    release = read(RELEASE/'summary.json')
-    changed = {r['id']:r for r in release['changed']}
+    release,changed,payloads = read_releases([RELEASE,ROOT/'smooth-local-placement-01',ROOT/'smooth-joint-placement-01'])
     fixed = read(PAGE/'error-budget.json')['frames']
     jobs = {j[1]['id']:j for j in suite.jobs(suite.framed.EVALUATION)}
     assert len(fixed)==len(jobs)==104 and {r['id'] for r in fixed}==set(jobs)
     inputs = {r['id']:r for r in read(ROOT/'facade-inset-round-01/combined.json')['rows']}
     by_shape = defaultdict(list)
-    for r in fixed:
-        key = r['id']
-        if key in changed:
-            new = changed[key]
-            assert (r['rgb_sha256'], r['pack_sha256']) == (new['source_hash'],new['previous_pack_sha256'])
-            with ZipFile(checked(RELEASE/'default-exports.zip',release['archive_sha256'])) as archive:
-                data = archive.read(key+'/reconstruction.zip')
-            assert sha256(data).hexdigest()==new['pack_sha256']
-            pack = sorted(decoded_pack(BytesIO(data))),new['pack_sha256'],r['translation'],new['result']['strict']
-            r.update(measure((jobs[key],inputs[key],r['layout'],r['shape_sha256']),pack=pack))
-            assert all(r['required'][k]==new['result']['facade'][k] for k in ('correct','missed','extras'))
-        by_shape[r['shape_sha256']].append(r)
+    with ProcessPoolExecutor(4) as pool:
+        tasks=[(jobs[r['id']],inputs[r['id']],r,changed.get(r['id']),payloads.get(r['id'])) for r in fixed]
+        for r,observed in zip(fixed,pool.map(regrade,tasks),strict=True):
+            r.update(observed)
+            by_shape[r['shape_sha256']].append(r)
     for metric, name in [('strict','strict'),('required','facade')]:
         for k in ('correct','missed','extras'):
             assert sum(r[metric][k] for r in fixed) == release['cohorts']['fixed'][name][k]
@@ -128,6 +176,7 @@ def main():
                  images=path_to_target(sorted(([r] for r in fixed),key=target_progress,reverse=True),facade_pool),
                  displayed=path_to_target([by_shape[r['shape_sha256']] for r in selected],facade_pool,stop_at_target=False))
     extras = {key for path in paths.values() for row in path for key in row['ids']}
+    extras.update(r['id'] for r in fixed if r['layout'] in SMOOTH_LAYOUTS)
     ids = {r['id'] for r in selected}
     display = selected + sorted((r for r in fixed if r['id'] in extras-ids),key=lambda r:(r['layout'],r['id']))
     gap.update(paths=paths, baseline=100*f1(facade_pool), themes=themes(fixed),
@@ -144,49 +193,68 @@ def main():
              'Material sample','Projected build','Visible reference','Placement errors']
     for i,name in enumerate(names):
         text(pen,10,top+i*height+15,name,18,True)
-    with ZipFile(checked(RELEASE/'default-exports.zip',release['archive_sha256'])) as archive:
-        for index,r in enumerate(display):
-            key, strict, facade = r['id'], r['strict'], r['required']
-            job = jobs[key]
-            _, frame, _, control = job
-            assert frame['files']['rgb.png']==r['rgb_sha256']
-            if key in changed:
-                payload = archive.read(key+'/reconstruction.zip')
-                assert sha256(payload).hexdigest()==r['pack_sha256']
-                cells = decoded_pack(BytesIO(payload))
-            else:
-                cells, pack_hash, _, _ = current_pack(job)
-                assert pack_hash==r['pack_sha256']
-            image, parts, counts, camera = current_stages(job,inputs[key])
-            _,_,_,_,pose,labels,ids,truth,_,_,states = sheet.stages.read_view(suite.CONTROL,*job)
-            _,_,transform,_ = ref_inputs(job)
-            raw = registered(cells,transform)
-            scored = suite.framed.spacing.shift(raw,r['translation'])
-            assert (len(scored&truth),len(truth-scored),len(scored-truth)) == tuple(strict[k] for k in ('correct','missed','extras'))
-            group = by_shape[r['shape_sha256']]
-            info = dict(name=r['layout'],rank=index+1,shape_sha256=r['shape_sha256'],frames=len(group),
-                        f1=f1({k:sum(a['strict'][k] for a in group) for k in ('correct','missed','extras')}),
-                        representative=dict(id=key,rgb_sha256=r['rgb_sha256'],pack_sha256=r['pack_sha256'],f1=f1(strict)))
-            geom = dict(strict, placed=len(scored),target=len(truth))
-            current = dict(control,relative_geometry=geom,translation=r['translation'],
-                           span=dict(control['span'],after=(np.ptp(list(raw),axis=0)+1).tolist() if raw else [0]*3))
-            if key in suite.framed.roof_specs():
-                current['roof'] = suite.framed.roof(frame,raw,truth)
-            view = (image,parts,counts['surfaces'],camera,pose,labels,ids,truth,raw,scored,states)
-            panels,_ = sheet.prepare_view(info,current,atlas,view)
-            prefix = f'{index+1:02}'
-            for stage,i in [('source',0),('outlines',1),('grid',5),('build',7),('reference',8),('errors',9)]:
-                panels[i][0].save(ASSETS/f'{prefix}-{stage}.jpg',quality=86,optimize=True)
-            required_overlay(image,labels,ids,truth-scored,facade).save(ASSETS/f'{prefix}-required.jpg',quality=89,optimize=True)
-            if index<len(selected):
-                col = left+index*width
-                text(pen,col,78,f"{index+1}. {r['layout']}   {f1(strict):.2%}",20,True)
-                for i,(pic,crop,caption) in enumerate(panels[:10]):
-                    sheet.panel(board,(col,top+i*height,width-12,height-14),(pic,crop,caption.replace('Photo / atlas','Source / atlas')))
-            rows.append(dict(id=key,name=r['layout'],prefix=prefix,f1=f'{f1(strict):.2%}',facade=f'{f1(facade):.2%}',
-                             correct=strict['correct'],required=facade['missed'],optional=strict['missed']-facade['missed'],
-                             extras=strict['extras'],gap=gap_contribution([r],facade_pool),
-                             layoutGap=gap_contribution(group,facade_pool),themes=themes([r])))
+    for index,r in enumerate(display):
+        key, strict, facade = r['id'], r['strict'], r['required']
+        job = jobs[key]
+        _, frame, _, control = job
+        assert frame['files']['rgb.png']==r['rgb_sha256']
+        if key in changed:
+            payload = payloads[key]
+            assert sha256(payload).hexdigest()==r['pack_sha256']
+            cells = decoded_pack(BytesIO(payload))
+        else:
+            cells, pack_hash, _, _ = current_pack(job)
+            assert pack_hash==r['pack_sha256']
+        image, parts, counts, camera = latest_stages(job,inputs[key])
+        _,_,_,_,pose,labels,ids,truth,_,_,states = sheet.stages.read_view(suite.CONTROL,*job)
+        _,_,transform,_ = ref_inputs(job)
+        raw = registered(cells,transform)
+        scored = suite.framed.spacing.shift(raw,r['translation'])
+        assert (len(scored&truth),len(truth-scored),len(scored-truth)) == tuple(strict[k] for k in ('correct','missed','extras'))
+        group = by_shape[r['shape_sha256']]
+        info = dict(name=r['layout'],rank=index+1,shape_sha256=r['shape_sha256'],frames=len(group),
+                    f1=f1({k:sum(a['strict'][k] for a in group) for k in ('correct','missed','extras')}),
+                    representative=dict(id=key,rgb_sha256=r['rgb_sha256'],pack_sha256=r['pack_sha256'],f1=f1(strict)))
+        geom = dict(strict, placed=len(scored),target=len(truth))
+        current = dict(control,relative_geometry=geom,translation=r['translation'],
+                       span=dict(control['span'],after=(np.ptp(list(raw),axis=0)+1).tolist() if raw else [0]*3))
+        if key in suite.framed.roof_specs():
+            current['roof'] = suite.framed.roof(frame,raw,truth)
+        view = (image,parts,counts['surfaces'],camera,pose,labels,ids,truth,raw,scored,states)
+        panels,_ = sheet.prepare_view(info,current,atlas,view)
+        prefix = f'{index+1:02}'
+        for stage,i in [('source',0),('outlines',1),('grid',5),('build',7),('reference',8),('errors',9)]:
+            panels[i][0].save(ASSETS/f'{prefix}-{stage}.jpg',quality=86,optimize=True)
+        required_overlay(image,labels,ids,truth-scored,facade).save(ASSETS/f'{prefix}-required.jpg',quality=89,optimize=True)
+        if index<len(selected):
+            col = left+index*width
+            text(pen,col,78,f"{index+1}. {r['layout']}   {f1(strict):.2%}",20,True)
+            for i,(pic,crop,caption) in enumerate(panels[:10]):
+                sheet.panel(board,(col,top+i*height,width-12,height-14),(pic,crop,caption.replace('Photo / atlas','Source / atlas')))
+        smooth=None
+        if r['layout'] in SMOOTH_LAYOUTS:
+            original=smooth_atlas_outline.measurement_parts(parts)
+            proposed=np.zeros((image.height,image.width),bool)
+            for shared in (False,True):
+                for region in smooth_extent_placement.proposals(image,original,common_wall=shared):
+                    for y,a,b in region['runs']:
+                        proposed[y,a:b]=True
+            spans=row_runs(proposed)
+            accepted=np.zeros((image.height,image.width),bool)
+            for p in parts:
+                if 'measured_smooth_support' in p:
+                    old_mask=native_mask(dict(support=p['measured_smooth_support']),image.size)
+                    accepted |= native_mask(p,image.size) & ~old_mask
+            approved=row_runs(accepted)
+            assert not (accepted & ~proposed).any(),key
+            smooth=dict(pixels=sum(b-a for y,a,b in spans),
+                        path=''.join(f'M{a} {y+.5}h{b-a}' for y,a,b in spans),
+                        accepted=int(accepted.sum()),acceptedPath=''.join(f'M{a} {y+.5}h{b-a}' for y,a,b in approved))
+        rows.append(dict(id=key,name=r['layout'],prefix=prefix,issues=outline_issues(parts,image.size),smooth=smooth,
+                         f1=f'{f1(strict):.2%}',facade=f'{f1(facade):.2%}',
+                         correct=strict['correct'],required=facade['missed'],optional=strict['missed']-facade['missed'],
+                         extras=strict['extras'],gap=gap_contribution([r],facade_pool),
+                         layoutGap=gap_contribution(group,facade_pool),themes=themes([r])))
     board.save(ASSETS/'stage-map.jpg',quality=91,subsampling=0,optimize=True)
     write_viewer(PAGE,rows,'../pavement-local-01/viewer-overlays',REVISION,gap)
 

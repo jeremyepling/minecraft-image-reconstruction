@@ -63,10 +63,10 @@ def rate(correct, missed, extras):
     return 2 * correct / (2 * correct + missed + extras)
 
 
-def measure(task, *, pack=None):
+def measure(task, *, pack=None, stages_fn=current_stages):
     job, expected, layout, shape = task
     split, frame, prior, control = job
-    image, parts, counts, camera = current_stages(job, expected)
+    image, parts, counts, camera = stages_fn(job, expected)
     local, pack_sha, shift, metric = pack if pack is not None else current_pack(job)
     _, _, _, _, pose, labels, ids, truth, _, _, _ = read_view(suite.CONTROL, split, frame, prior, control)
     owner, axis, world_axis, world = projection(camera, pose, local, shift, ids.shape)
