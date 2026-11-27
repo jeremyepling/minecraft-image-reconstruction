@@ -1,5 +1,5 @@
 """Test a visible side or top return as evidence for the depth of an adjoining facade face."""
-from collections import Counter, defaultdict
+from collections import defaultdict
 
 import numpy as np
 
@@ -112,3 +112,86 @@ def recover(image,parts,counts,camera,prior,*,strict=True,atlas_path=None):
 
 def one_texture(image,parts,counts,camera,prior):
     return recover(image,parts,counts,camera,prior,strict=False)
+
+
+def return_anchors(ctx):
+    """Find exposed faces where the provisional depth and the observed normal agree."""
+    out=defaultdict(set)
+    for cell in ctx.prior:
+        for axis in range(3):
+            if cell[axis]<=ctx.eye[axis]<=cell[axis]+1:
+                continue
+            sign=1 if ctx.eye[axis]>cell[axis]+1 else -1
+            neighbor=list(cell)
+            neighbor[axis]+=sign
+            if tuple(neighbor) in ctx.prior:
+                continue
+            hit=_sample_face(ctx.native,cell,axis,sign,ctx.shape)
+            if hit is None:
+                continue
+            box,mask,depth,*_=hit
+            seen=mask & (ctx.axes[box]==axis) & np.isclose(ctx.depth[box],depth,atol=1.e-8,rtol=0)
+            count=np.count_nonzero(seen & ctx.masks[axis][box])
+            if count>=12 and count>=.80*seen.sum():
+                out[axis].add(cell)
+    return out
+
+
+def recover_strips(image,parts,counts,camera,prior,*,pair=True,atlas_path=None):
+    stats=dict(nominated=0,texture_supported=0,accepted=0)
+    if not prior or not parts or camera.get('P') is None:
+        return prior,stats
+    atlas=_atlas('26.3',atlas_path)
+    if atlas is None or atlas.provenance.get('atlas_sha256')!=ATLAS_SHA256:
+        return prior,stats
+    ctx=StripEvidence(image,parts,camera,prior,atlas)
+    anchored=return_anchors(ctx)
+    candidates=set()
+    for face_axis in (0,2):
+        for side_axis in (1,2-face_axis):
+            anchors=anchored[side_axis]
+            for a in anchors:
+                # Parallel front candidates share a plane with the measured edge(s).
+                # A single edge nominates at most its immediate neighbor.
+                if pair:
+                    for dist in range(2,7):
+                        b=list(a)
+                        b[side_axis]+=dist
+                        if tuple(b) in anchors:
+                            for offset in range(1,dist):
+                                c=list(a)
+                                c[side_axis]+=offset
+                                if tuple(c) not in prior:
+                                    candidates.add((tuple(c),face_axis))
+                            break
+                else:
+                    for offset in (-1,1):
+                        c=list(a)
+                        c[side_axis]+=offset
+                        if c[1]>=0 and tuple(c) not in prior:
+                            candidates.add((tuple(c),face_axis))
+    stats['nominated']=len(candidates)
+    def fits(c,a,joint):
+        if c[a]<=ctx.eye[a]<=c[a]+1:
+            return False
+        r=measure(ctx,c,a,joint)
+        return bool(r and r['split']>=.76 and r['phase']>=.10 and r['depth']>=.15
+                    and r['color']<=8 and r['oriented']>=.85 and r['inside']>=.98)
+    candidates={(c,a) for c,a in candidates if fits(c,a,None)}
+    cells={c for c,_ in candidates}
+    stats['texture_supported']=len(cells)
+    while cells:
+        joint=ctx.joint(cells)
+        owner,_,index=joint
+        spill=set(np.unique(owner[(ctx.depth==0)&~ctx.union]))
+        supported={c for c,a in candidates if c in cells and index[c] not in spill and fits(c,a,joint)}
+        supported=_keep_prior_visible(ctx.size,ctx.P,ctx.eye,prior,supported)-prior if supported else set()
+        if cells==supported:
+            break
+        cells=supported
+    stats['accepted']=len(cells)
+    return prior|cells,stats
+
+
+def single_strip(image,parts,counts,camera,prior):
+    return recover_strips(image,parts,counts,camera,prior,pair=False)
