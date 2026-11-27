@@ -2,6 +2,7 @@
 
 from itertools import product
 import numpy as np
+from PIL import Image, ImageDraw
 
 from benchmark.camera_metrics import registration, truth_camera
 from benchmark.expanded_baseline import ROOT, SOURCE, read, save
@@ -71,6 +72,38 @@ def grade(row, camera):
     return native_corner_score(camera["P"], read(frame / "camera.json"), read(frame / "labels.json")["faces"])
 
 
+def draw_registration_example(row, result, output):
+    folder = SOURCE / row["dataset"] / "data" / row["split"] / "frames" / row["id"]
+    pose, faces = read(folder / "camera.json"), read(folder / "labels.json")["faces"]
+    points = {tuple(p): uv for face in faces for p, uv, seen in
+              zip(face["corners_world"], face["corners_px"], face["corner_visible"]) if seen}
+    keys = np.array(sorted(points)[1::2])
+    # Use the same spatial sample of withheld corners in both panels.
+    selected = keys[np.linspace(0, len(keys) - 1, 26).astype(int)]
+    expected = [points[tuple(p)] for p in selected]
+    camera = np.array(row["projection"]["P"])
+    matrix = camera @ np.linalg.inv(registration(camera, pose))
+    image = Image.open(folder / "rgb.png").convert("RGB")
+    sheet = Image.new("RGB", (1440, 524), "#152224")
+    sheet_draw = ImageDraw.Draw(sheet)
+    for index, (shift, title) in enumerate([
+            ([0, 0, 0], "Ground-ray registration"),
+            (result["integer_world_xyz_offset_from_registered"], "One shared integer XYZ translation")]):
+        tile = image.copy()
+        draw = ImageDraw.Draw(tile)
+        for uv, projected in zip(expected, project_points(matrix, selected + shift)):
+            x, y = uv
+            u, v = projected
+            draw.line([(x, y), (u, v)], fill="#fff4c2", width=3)
+            draw.ellipse([x - 5, y - 5, x + 5, y + 5], fill="#30ffd0")
+            draw.ellipse([u - 5, v - 5, u + 5, v + 5], fill="#ff703c")
+        sheet.paste(tile.resize((720, 450), Image.Resampling.LANCZOS), (720 * index, 36))
+        sheet_draw.text((12 + 720 * index, 6), title, font_size=21, fill="white")
+    sheet_draw.text((12, 491), "Castle 03 limestone rear view. Turquoise is the recorded visible corner. Orange is the MoGe projection.",
+                    font_size=18, fill="white")
+    sheet.save(output, quality=90)
+
+
 def main():
     reviews = ROOT / "benchmark/reviews"
     moge = read(reviews / "camera-moge-surface-first-01/proposals.json.gz")
@@ -78,7 +111,10 @@ def main():
     cases = []
     for row in moge:
         if row["projection"]:
-            cases.append(dict(id=row["id"], method="MoGe", **grade(row, row["projection"])))
+            result = grade(row, row["projection"])
+            cases.append(dict(id=row["id"], method="MoGe", **result))
+            if row["id"] == "test-castle-03-limestone-rear-oblique":
+                draw_registration_example(row, result, reviews / "camera-recovery-next-01/castle-registration.jpg")
     for row in joint:
         for index, option in enumerate(row.get("prediction", {}).get("best", []), 1):
             cases.append(dict(id=row["id"], split=row["split"], method=f"joint{index}",
