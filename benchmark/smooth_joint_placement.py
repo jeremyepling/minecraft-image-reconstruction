@@ -121,8 +121,17 @@ def main():
     p=argparse.ArgumentParser()
     p.add_argument('--workers',type=int,default=5)
     p.add_argument('--public',action='store_true')
+    p.add_argument('--inputs',action='store_true')
     args=p.parse_args()
     jobs=list(suite.jobs([*suite.framed.SIZES,'shelter']))
+    if args.inputs:
+        from benchmark.eave_patch_release import input_path
+        cases={r['id']:r for r in read(OUT/'cases.json')}
+        tasks=[dict(id=j[1]['id'],path=str(input_path(j))) for j in jobs
+               if cases[j[1]['id']]['outline'] or cases[j[1]['id']]['old_accepted']]
+        RUN.mkdir(exist_ok=True,parents=True)
+        save(RUN/'tasks.json',tasks)
+        return
     if args.public:
         from benchmark.eave_patch_release import dimensions
         checks=[]
