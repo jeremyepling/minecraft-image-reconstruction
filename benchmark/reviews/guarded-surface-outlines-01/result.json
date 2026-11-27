@@ -1,0 +1,216 @@
+{
+  "control": "edb10a3",
+  "candidate": "792a38aecea3716d898326dad984b4a6e6c7e597",
+  "views": 204,
+  "affected": 1,
+  "identical_exports": 204,
+  "frames_sha256": "6ed16e3d575793e8b6c032cf1e399eca562b98cdbf8be519aa5eaa03694ac508",
+  "facade_priority": {
+    "views": 104,
+    "correct": 18714,
+    "missed": 1862,
+    "extras": 1146,
+    "optional_correct": 1821,
+    "optional_missed": 1305,
+    "f1": 0.9256108418241171,
+    "scope": "Fixed structure views in this run; individual horizontal-only faces without a native 4x4 patch are neutral"
+  },
+  "cli": {
+    "frame": "heldout-facade-oblique-right",
+    "rgb_sha256": "0828c9d164392fe0bad9a1a709c1f321eb73f7bb7d08739f3b99382493df5ad0",
+    "models": {
+      "normal": "24eacb5dc7a2c54c7bc98f7de085ffbed79ad006ea5b664c2c2cdc02ff3a52f0",
+      "depth": "fcf51f1b230362b28690bb9d1809bf0431f29cad20534e3f589bd7285547f20d",
+      "mlsd": "e869f90601ffa263f21ac47e09ff0d65dc936d1aeb47126b8499d5504adfb100",
+      "scalelsd": "d0a7333c4de518a70af7d6ea4a283aa0ce9ffe1047525373b94070b1d1d4003f",
+      "mobilesam": "6dbb90523a35330fedd7f1d3dfc66f995213d81b29a5ca8108dbcdd4e37d6c2f",
+      "pixelwise_planarity": "305325096a80f541e430ccbb1b6581af67b3ef9d3c92f8d9384dc7aaae9f3952"
+    },
+    "event": {
+      "inputs": [
+        "mask-0-junction-1",
+        "mask-0-junction-0"
+      ],
+      "output": "mask-0-junction-1-joined",
+      "input_areas_px": [
+        173364,
+        31832
+      ],
+      "output_area_px": 205196,
+      "border_pixels": 261,
+      "minimum_angle_deg": 24.72,
+      "median_step": 4.0,
+      "contrast": 11.6,
+      "within": 8.7
+    },
+    "before": {
+      "proposals": 15,
+      "matched": 12,
+      "target": 20,
+      "unmatched": 3,
+      "paired_pixels": 194340,
+      "background_pixels": 745,
+      "surface": 2,
+      "source_pixels": 186920,
+      "recall": 0.8164294885512519,
+      "iou": 0.7348286040341492,
+      "parts": [
+        {
+          "id": "mask-0-junction-0",
+          "xyxy": [
+            912,
+            360,
+            1154,
+            704
+          ],
+          "observed_pixels": 31832
+        },
+        {
+          "id": "mask-0-junction-1",
+          "xyxy": [
+            391,
+            281,
+            1159,
+            660
+          ],
+          "observed_pixels": 173364
+        }
+      ],
+      "count_rows": [
+        {
+          "id": "mask-0-junction-0",
+          "counts": [
+            null,
+            null
+          ],
+          "dimensions": {
+            "spans": [
+              null,
+              null
+            ],
+            "blocks": [
+              null,
+              null
+            ]
+          },
+          "complete": 0,
+          "small": 0
+        },
+        {
+          "id": "mask-0-junction-1",
+          "counts": [
+            27.51447821728725,
+            11.696269533903962
+          ],
+          "dimensions": {
+            "spans": [
+              27.514478217287248,
+              11.696269533903964
+            ],
+            "blocks": [
+              28,
+              12
+            ]
+          },
+          "complete": 0,
+          "small": 0
+        }
+      ],
+      "material_groups": 0,
+      "placed_materials": {
+        "minecraft:smooth_stone": 309
+      },
+      "explicit_atlas_groups": {
+        "total": 0,
+        "attempted": 0,
+        "unresolved": 0
+      },
+      "explicit_atlas_phase": {
+        "status": "enabled",
+        "offsets_added": 0,
+        "surface_errors": 0
+      },
+      "surfaces_sha256": "ada7060d750a6cc7560bd2ef49ff1de93251c638a6f9edc83c50245ede037cc9",
+      "counts_sha256": "bcc418f73b24e1dd699e8808dfadebadbcf8cc7be0d4828c543b0272a44f5584",
+      "placements_sha256": "c89e0c7dfa00ff88d35f27dd0ab57d507c254e9077c7ec7a9f92063696064f08",
+      "export_sha256": "a67e0948f4f59600ce76a9054261a699ff33d209527305e994f92e2858cf827f"
+    },
+    "after": {
+      "proposals": 14,
+      "matched": 12,
+      "target": 20,
+      "unmatched": 2,
+      "paired_pixels": 225574,
+      "background_pixels": 745,
+      "surface": 2,
+      "source_pixels": 186920,
+      "recall": 0.9835277123903274,
+      "iou": 0.8826839515064218,
+      "parts": [
+        {
+          "id": "mask-0-junction-1-joined",
+          "xyxy": [
+            391,
+            281,
+            1159,
+            704
+          ],
+          "observed_pixels": 205196
+        }
+      ],
+      "count_rows": [
+        {
+          "id": "mask-0-junction-1-joined",
+          "counts": [
+            26.969980919060884,
+            11.01944245244883
+          ],
+          "dimensions": {
+            "spans": [
+              27.240636535660723,
+              11.133929342952749
+            ],
+            "blocks": [
+              27,
+              11
+            ]
+          },
+          "complete": 0,
+          "small": 0
+        }
+      ],
+      "material_groups": 0,
+      "placed_materials": {
+        "minecraft:smooth_stone": 309
+      },
+      "explicit_atlas_groups": {
+        "total": 0,
+        "attempted": 0,
+        "unresolved": 0
+      },
+      "explicit_atlas_phase": {
+        "status": "enabled",
+        "offsets_added": 0,
+        "surface_errors": 0
+      },
+      "surfaces_sha256": "adaba61806957a2cd7beb4a238b4d5896cb2097c96540dec4def1e895e7a1ab8",
+      "counts_sha256": "3d768314b989ea44c9aa5c3b85bec795781297db24bd59ebc9a686c5aaa44922",
+      "placements_sha256": "c89e0c7dfa00ff88d35f27dd0ab57d507c254e9077c7ec7a9f92063696064f08",
+      "export_sha256": "4fe67004086a0a1d420467384af7cad190abbb8c5dac61b297a9ccd53490cd76"
+    },
+    "visible_surface": {
+      "direction": "south",
+      "minimum": [
+        0,
+        65,
+        0
+      ],
+      "maximum": [
+        26,
+        75,
+        0
+      ],
+      "visible_unit_faces": 218
+    }
+  }
+}
