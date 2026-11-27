@@ -2,6 +2,21 @@
 
 Start with the question Jeremy asked about the build. A score update can come straight from a scored release. A question about two missing blocks calls for tracing those two positions through the ordinary build.
 
+## When a perfect-answer test earns its cost
+
+For an expensive model, a low-scoring handoff, or a feedback rule, run a small paired diagnostic first. Choose the test that answers the decision Jeremy needs to make.
+
+| Question | Test |
+| --- | --- |
+| Does the correct option exist among the proposals? | Keep the existing output as one option. Let a reference-only chooser select the best available alternative by the final placement or position-and-ID score. Report the gain, the remaining misses and the options considered. This is a ceiling only within that choice set. |
+| Would correcting an earlier measurement actually help? | Replace just that stage's output with its visible reference answer. Rerun the ordinary downstream consumers and decode the build. Record both the change at the handoff and the change in final geometry, material, and overall F1. The output may improve, tie, or regress. |
+| Is there an interaction? | If a correct answer is ignored or hurts, compare the adjacent handoffs alone and together. For example, give the counter a true chart with measured counts, then supply true counts on that same chart. Check which fields the placer actually reads. |
+| Can the source image deliver the gain? | Fit the source-only challenger using development views; freeze it, then compare it on other buildings. Only this last step supports changing the production default. |
+
+Before calling an input perfect, verify its handoff: compare decoded mask ownership at each native pixel center, reproject integer world corners with the recorded camera and state the tolerance, or decode the pack and compare integer cell sets. Report the actual scope. A correct camera used only for reading textures leaves placement untouched. For a removal decision, bypass a single active sub-stage, check it actually changed the intermediate output, and run the remaining stages through export.
+
+Use frame-identical controls and the same visible-only scoring and alignment. State the number of views, exact interventions, and any gap between the replay baseline and published packs. A ground-truth mask carries pixel grouping and coverage together; do not attribute a bundled result to a single cue. One-plane-at-a-time gains do not add up to a whole-build ceiling. For a small deterministic bug with a direct reproduction, the focused regression test is usually quicker. [Measured stage handoffs and source-only follow-ups](reviews/pipeline-impact-01/README.md)
+
 ## From a reported error to a test
 
 | Question | Evidence to bring back |

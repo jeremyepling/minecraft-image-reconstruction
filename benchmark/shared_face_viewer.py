@@ -218,7 +218,7 @@ el('unit').onchange=showPath;showPath();pick.onchange=draw;mix.oninput=draw;draw
         evaluated += ' Scores and exported face outlines use the candidate blocks. Camera, surface, grid and counted-corner diagnostics use the upstream stages replayed by this checkout.'
     historical_footer = ' · <a href="../pavement-local-01/openings.jpg">Colonnade 01 before and after</a>'
     materials = not preview and not candidate
-    header = """<p><a href="../typed-structures-01/viewer.html">Material and overall scores for every fixed structure</a></p>
+    header = """<p><a href="../typed-structures-01/viewer.html">Material and overall scores for every fixed structure</a> · <a href="../pipeline-impact-01/viewer.html">Impact of correcting or bypassing a stage</a></p>
 <details><summary>Which concrete edges are real?</summary>
 <p>On a single Shopfront concrete face, interior brightness ranged from 112.5 to 161.0. Sharp brightness steps appeared in 94.39% of sampled edges between different face directions and 0.70% between blocks on the same concrete plane. Similar colors alone joined separate Shopfront faces. A ground-color trim removed real wall pixels in Courtyard.</p>
 <p><a href="../concrete-shadow-boundaries-01/dev-shopfront-plaster-low-left.png">Shopfront seam candidates</a> · <a href="../concrete-shadow-boundaries-01/shopfront-concrete-light-range.png">Shading within one block face</a> · <a href="../concrete-shadow-boundaries-01/holdout-courtyard-plaster-low-left-trim.png">Courtyard wall and ground</a> · <a href="../concrete-shadow-boundaries-01/README.md">Surface experiments and controls</a></p></details>"""

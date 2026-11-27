@@ -1,0 +1,322 @@
+{
+  "development": {
+    "baseline": {
+      "predicted": 1196,
+      "target": 1334,
+      "matched": 885,
+      "paired_pixels": 11862167,
+      "background_pixels": 110132,
+      "f1": 0.6996047430830039,
+      "joins": {},
+      "views": 72
+    },
+    "color": {
+      "predicted": 910,
+      "target": 1334,
+      "matched": 642,
+      "paired_pixels": 10444309,
+      "background_pixels": 110132,
+      "f1": 0.5721925133689839,
+      "joins": {
+        "across_surfaces": 213,
+        "same_surface": 27,
+        "mixed_or_background": 46
+      },
+      "views": 72
+    },
+    "material_only": {
+      "predicted": 1046,
+      "target": 1334,
+      "matched": 736,
+      "paired_pixels": 10899613,
+      "background_pixels": 110132,
+      "f1": 0.6184873949579832,
+      "joins": {
+        "across_surfaces": 123,
+        "same_surface": 11,
+        "mixed_or_background": 16
+      },
+      "views": 72
+    },
+    "plane": {
+      "predicted": 1182,
+      "target": 1334,
+      "matched": 883,
+      "paired_pixels": 11875198,
+      "background_pixels": 110132,
+      "f1": 0.7019077901430842,
+      "joins": {
+        "same_surface": 9,
+        "across_surfaces": 2,
+        "mixed_or_background": 3
+      },
+      "views": 72
+    },
+    "plane_and_id": {
+      "predicted": 1183,
+      "target": 1334,
+      "matched": 883,
+      "paired_pixels": 11875018,
+      "background_pixels": 110132,
+      "f1": 0.7016289233214144,
+      "joins": {
+        "same_surface": 8,
+        "across_surfaces": 2,
+        "mixed_or_background": 3
+      },
+      "views": 72
+    },
+    "guarded_plane_and_id": {
+      "predicted": 1196,
+      "target": 1334,
+      "matched": 885,
+      "paired_pixels": 11862167,
+      "background_pixels": 110132,
+      "f1": 0.6996047430830039,
+      "joins": {},
+      "views": 72
+    },
+    "true_material": {
+      "predicted": 1029,
+      "target": 1334,
+      "matched": 727,
+      "paired_pixels": 10877553,
+      "background_pixels": 110132,
+      "f1": 0.6153195090986034,
+      "joins": {
+        "across_surfaces": 128,
+        "same_surface": 15,
+        "mixed_or_background": 24
+      },
+      "views": 72
+    },
+    "true_surface": {
+      "predicted": 1175,
+      "target": 1334,
+      "matched": 884,
+      "paired_pixels": 11882921,
+      "background_pixels": 110132,
+      "f1": 0.7046632124352331,
+      "joins": {
+        "same_surface": 15,
+        "mixed_or_background": 5,
+        "across_surfaces": 1
+      },
+      "views": 72
+    }
+  },
+  "fixed": {
+    "baseline": {
+      "predicted": 1431,
+      "target": 1462,
+      "matched": 1093,
+      "paired_pixels": 17070113,
+      "background_pixels": 133280,
+      "f1": 0.7556170065675769,
+      "joins": {},
+      "views": 104
+    },
+    "color": {
+      "predicted": 1039,
+      "target": 1462,
+      "matched": 789,
+      "paired_pixels": 15195963,
+      "background_pixels": 133280,
+      "f1": 0.6309476209516194,
+      "joins": {
+        "across_surfaces": 300,
+        "same_surface": 41,
+        "mixed_or_background": 51
+      },
+      "views": 104
+    },
+    "material_only": {
+      "predicted": 1187,
+      "target": 1462,
+      "matched": 884,
+      "paired_pixels": 15759071,
+      "background_pixels": 133280,
+      "f1": 0.6674216685541714,
+      "joins": {
+        "across_surfaces": 197,
+        "same_surface": 26,
+        "mixed_or_background": 21
+      },
+      "views": 104
+    },
+    "plane": {
+      "predicted": 1395,
+      "target": 1462,
+      "matched": 1090,
+      "paired_pixels": 17173293,
+      "background_pixels": 133280,
+      "f1": 0.7630381519075954,
+      "joins": {
+        "same_surface": 29,
+        "across_surfaces": 6,
+        "mixed_or_background": 1
+      },
+      "views": 104
+    },
+    "plane_and_id": {
+      "predicted": 1402,
+      "target": 1462,
+      "matched": 1090,
+      "paired_pixels": 17095290,
+      "background_pixels": 133280,
+      "f1": 0.7611731843575419,
+      "joins": {
+        "same_surface": 24,
+        "across_surfaces": 5
+      },
+      "views": 104
+    },
+    "guarded_plane_and_id": {
+      "predicted": 1430,
+      "target": 1462,
+      "matched": 1093,
+      "paired_pixels": 17070264,
+      "background_pixels": 133280,
+      "f1": 0.7558782849239281,
+      "joins": {
+        "same_surface": 1
+      },
+      "views": 104
+    },
+    "true_material": {
+      "predicted": 1180,
+      "target": 1462,
+      "matched": 886,
+      "paired_pixels": 15778450,
+      "background_pixels": 133280,
+      "f1": 0.6707040121120363,
+      "joins": {
+        "across_surfaces": 196,
+        "same_surface": 32,
+        "mixed_or_background": 23
+      },
+      "views": 104
+    },
+    "true_surface": {
+      "predicted": 1393,
+      "target": 1462,
+      "matched": 1094,
+      "paired_pixels": 17188623,
+      "background_pixels": 133280,
+      "f1": 0.7663747810858144,
+      "joins": {
+        "same_surface": 37,
+        "across_surfaces": 1
+      },
+      "views": 104
+    }
+  },
+  "additional": {
+    "baseline": {
+      "predicted": 467,
+      "target": 447,
+      "matched": 332,
+      "paired_pixels": 4177298,
+      "background_pixels": 61432,
+      "f1": 0.7264770240700219,
+      "joins": {},
+      "views": 28
+    },
+    "color": {
+      "predicted": 332,
+      "target": 447,
+      "matched": 236,
+      "paired_pixels": 3849775,
+      "background_pixels": 61432,
+      "f1": 0.6059050064184852,
+      "joins": {
+        "across_surfaces": 105,
+        "mixed_or_background": 17,
+        "same_surface": 13
+      },
+      "views": 28
+    },
+    "material_only": {
+      "predicted": 385,
+      "target": 447,
+      "matched": 267,
+      "paired_pixels": 3847044,
+      "background_pixels": 61432,
+      "f1": 0.6418269230769231,
+      "joins": {
+        "across_surfaces": 66,
+        "mixed_or_background": 9,
+        "same_surface": 7
+      },
+      "views": 28
+    },
+    "plane": {
+      "predicted": 456,
+      "target": 447,
+      "matched": 330,
+      "paired_pixels": 4289858,
+      "background_pixels": 61432,
+      "f1": 0.7308970099667774,
+      "joins": {
+        "same_surface": 8,
+        "across_surfaces": 2,
+        "mixed_or_background": 1
+      },
+      "views": 28
+    },
+    "plane_and_id": {
+      "predicted": 459,
+      "target": 447,
+      "matched": 330,
+      "paired_pixels": 4166368,
+      "background_pixels": 61432,
+      "f1": 0.7284768211920529,
+      "joins": {
+        "same_surface": 5,
+        "across_surfaces": 2,
+        "mixed_or_background": 1
+      },
+      "views": 28
+    },
+    "guarded_plane_and_id": {
+      "predicted": 466,
+      "target": 447,
+      "matched": 331,
+      "paired_pixels": 4160303,
+      "background_pixels": 61432,
+      "f1": 0.7250821467688937,
+      "joins": {
+        "across_surfaces": 1
+      },
+      "views": 28
+    },
+    "true_material": {
+      "predicted": 377,
+      "target": 447,
+      "matched": 261,
+      "paired_pixels": 3821700,
+      "background_pixels": 61432,
+      "f1": 0.633495145631068,
+      "joins": {
+        "across_surfaces": 72,
+        "mixed_or_background": 11,
+        "same_surface": 7
+      },
+      "views": 28
+    },
+    "true_surface": {
+      "predicted": 454,
+      "target": 447,
+      "matched": 331,
+      "paired_pixels": 4293119,
+      "background_pixels": 61432,
+      "f1": 0.7347391786903441,
+      "joins": {
+        "same_surface": 9,
+        "across_surfaces": 2,
+        "mixed_or_background": 2
+      },
+      "views": 28
+    }
+  }
+}

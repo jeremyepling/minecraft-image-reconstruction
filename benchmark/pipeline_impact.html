@@ -1,0 +1,44 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>What improves the exported build?</title><style>
+:root{color-scheme:dark}*{box-sizing:border-box}body{margin:0;background:#152126;color:#edf3ef;font:16px/1.5 "Segoe UI",sans-serif}main{max-width:1150px;margin:auto;padding:20px clamp(12px,3vw,42px)}h1,h2{line-height:1.15}p{max-width:92ch}a{color:#a3e8d2}select{font:inherit;background:#253a42;border:1px solid #94a9aa;color:inherit;padding:.25em;border-radius:4px;max-width:100%}.toolbar{display:flex;align-items:center;gap:12px;flex-wrap:wrap}label{max-width:100%}.scroll{overflow-x:auto}table{border-collapse:collapse;width:100%;font-variant-numeric:tabular-nums;margin:.7em 0}th,td{padding:.5em .55em;border-bottom:1px solid #41565d;text-align:left}td:first-child{font-weight:600}tr.base{background:#253940}.up{color:#8be0b1}.down{color:#ffb499}svg{width:100%;max-height:280px}figure{margin:.6em 0}footer{margin:1.5em 0}small{font-size:.9em}
+</style><main><a href="../shared-face-round-01/viewer.html">← Interactive pipeline stages</a><h1>What improves the exported build?</h1>
+<p>Compare a correction or bypass with its control on the same source images. Choose a score to plot its change. Overall F1 credits a cube only when both its position and its exact block ID match. All targets are visible from the supplied view. The build may shift as a whole when scored.</p>
+<div class="toolbar"><label>Experiment <select id="run"><option value="full-masks">Surface masks · all 104 fixed views</option><option value="early-fixed">Early stages · 12 fixed views</option><option value="early-other">Early stages · 8 comparison views</option><option value="early-all">Early stages · all 20 sampled views</option><option value="late-fixed">Material and export · all 104 fixed views</option><option value="late-additional">Material and export · 28 additional views</option><option value="bypass-ranked">Remove placement checks · 10 views</option><option value="sampling">Shift placement rays half a pixel · 10 views</option><option value="bypass-counts">Remove counted spacings · 5 ordinary builds</option><option value="retry-baseline">Remove counting retry · 20 ordinary inputs</option><option value="retry-chart">Remove counting retry · 20 exact-chart inputs</option></select></label>
+<label>Plot <select id="choice"><option value="2">Overall strict F1</option><option value="3">Overall facade F1</option><option value="0">Geometry strict F1</option><option value="4">Geometry facade F1</option><option value="1">Material accuracy at matched positions</option></select></label></div>
+<h2 id="heading"></h2><p id="explain"></p><figure><svg id="chart" role="img" aria-label="Percentage point change versus the paired baseline"></svg><figcaption>Change in the selected score versus this sample’s baseline, in percentage points.</figcaption></figure>
+<div class="scroll"><table><thead><tr><th>Information supplied</th><th>Placement F1</th><th>Exact ID at matched positions</th><th>Overall F1</th><th>Facade overall F1</th><th>Facade placement F1</th></tr></thead><tbody></tbody></table></div>
+<p>The extra views and the fixed views have different building and material mixes. Compare rows within a selected experiment. Supplying perfect dimensions, masks or coordinates estimates the value of getting that information through the rest of this pipeline. Separate gains can overlap.</p>
+<footer><a href="../reference-surface-feedback-01/portico.jpg">Portico source-image replay</a> · <a href="../typed-structures-01/viewer.html">Inspect individual material errors</a> · <a href="../material-feedback-surfaces-01/oracle-coordinate-audit.json">Native pixel and corner audit</a> · <a href="README.md">Impact assessment and sources</a></footer></main>
+<script>
+const data=__MEASURED__;
+const early={baseline:'Paired baseline',mask:'Visible surface masks',directions:'Masks + face directions',chart:'Masks + directions + chart corners',grids:'Masks + directions + corners + counts',camera:'Recorded camera alone',joint:'Masks + directions + corners + counts + camera'};
+const late={default:'Released pipeline',camera:'Camera for reading textures',positions:'Visible block positions',both:'Positions + camera for reading textures',perfect_ids:'Exact IDs on the released positions¹',perfect_export:'Exact positions + exact IDs, decoded pack'};
+const el=id=>document.getElementById(id),fmt=v=>(100*v).toFixed(2)+'%';
+const special={
+ 'full-masks':[{baseline:'Same-path baseline',mask:'Correct native visible masks'},'Full fixed mask confirmation','The finder masks are replaced on all 104 fixed views. The downstream camera, direction, counting and depth decisions still use estimated evidence.'],
+ 'bypass-ranked':[{control:'Ranked placement control',skip_repeat_choice:'Bypass texture-repeat depth choice',skip_joint:'Bypass joint depth arbitration',skip_occlusion:'Bypass occlusion rejection',skip_edges:'Bypass verified edge recovery'},'Remove one placement sub-stage','Ten hash-selected views. The material exporter scores the ranked cells. Some ordinary build-level edits happen later. All four removals hurt placement. On Loading Dock, full exports also confirmed the repeat and edge losses.'],
+ 'sampling':[{control:'Ordinary primary rays',half_pixel_primary_rays:'Shift primary rays half a source pixel'},'Does the placement sampling offset matter?','Pooled F1 rose. Seven correct positions were recovered and 25 were lost. Adjacency alone lost 11. Keep this source-only change experimental.'],
+ 'bypass-counts':[{control:'Ordinary build',sham:'No-op intervention',feedback:'Fill verified four-corner counts',oracle:'Supply exact eligible wall counts',disabled:'Suppress measured spacings at placement'},'Test the count-to-placement handoff','Five ordinary builds. All later refinements and material assignment run. Suppressing spacing removes a single handoff. Other paths recovered all 78 affected cells. All five material packs tied. Test on more buildings before removing this handoff.'],
+ 'retry-baseline':[{with_retry:'Ordinary counting',without_retry:'Bypass texture-guided retry'},'Remove the texture-guided counting retry','Twenty paired views. Keep the initial masked-repetition count and the original surface proposals, then rerun placement and materials.'],
+ 'retry-chart':[{with_retry:'Reference chart, ordinary counting',without_retry:'Reference chart, bypass retry'},'Remove the retry on exact reference charts','The input chart is geometrically exact. The counter still measures the block grid.']
+};
+function update(){
+ const key=el('run').value,up=key.startsWith('early'),source=data[key],spec=special[key],names=spec?spec[0]:up?early:late,base=source[Object.keys(names)[0]],metric=Number(el('choice').value);
+ el('heading').textContent=spec?spec[1]:up?'Repair the input to counting and placement':'Repair the input to material identification';
+ el('explain').textContent=spec?spec[2]:up?'Replace the specified surface, grid or camera information, then run counting, placement, refinement and material export from the intervention. Compare with the paired replay on the same images.':'Hold the matcher fixed and change where it reads source pixels. The recorded camera in this experiment enters after placement. ¹ Exact IDs at existing positions gives an arithmetic ceiling. The last row passes the exact visible blocks and IDs through the real pack writer, decoder and scorer.';
+ const body=document.querySelector('tbody');body.replaceChildren();const chart=el('chart');chart.replaceChildren();
+ const methods=Object.keys(names),bars=methods.slice(1);const deltas=bars.map(m=>100*(source[m][metric]-base[metric]));
+ const low=Math.min(0,...deltas),high=Math.max(0,...deltas),width=900,lo=360,hi=780,scale=(hi-lo)/Math.max(.25,high-low);
+ const zero=lo-low*scale;chart.setAttribute('viewBox',[0,0,width,32*bars.length+4].join(' '));
+ function svg(tag,attr,label){const e=document.createElementNS(chart.namespaceURI,tag);for(const [k,v] of Object.entries(attr))e.setAttribute(k,v);if(label)e.textContent=label;chart.append(e)}
+ for(const [i,m] of methods.entries()){
+   const tr=body.insertRow();if(!i)tr.className='base';tr.insertCell().textContent=names[m];for(const v of source[m])tr.insertCell().textContent=fmt(v);
+   if(!i)continue;const d=deltas[i-1],y=32*(i-1)+4;
+   svg('text',{x:2,y:y+17,fill:'#edf3ef','font-size':15},names[m]);
+   svg('rect',{x:Math.min(zero,zero+d*scale),y:y+2,width:Math.max(1,Math.abs(d)*scale),height:18,fill:d>=0?'#8be0b1':'#ffb499'});
+   svg('text',{x:800,y:y+17,fill:'#edf3ef','font-size':15},(d>0?'+':'')+d.toFixed(2)+' pp');
+ }
+ svg('line',{x1:zero,x2:zero,y1:0,y2:32*bars.length,stroke:'#d4dfdc'});
+}
+el('run').onchange=el('choice').onchange=update;update();
+</script></html>

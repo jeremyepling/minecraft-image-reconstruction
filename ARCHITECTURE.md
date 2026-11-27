@@ -29,6 +29,40 @@ Look at the upper front corner of a square pillar. The front wall, side wall and
 
 **Outline experiment.** Four or more consecutive blocks agreeing on an edge provided a candidate boundary. We checked the atlas textures, the first cube hit when looking through each disputed pixel, and the effect on the block grid. Across 204 source images, the strictest rule assigned 80 pixels to the correct surface but moved another 13 between two incorrect surfaces. On Stepped Hall the real surface was a parallel wall one block closer. The ordinary pipeline keeps its existing outline and placement rules. [Outline comparisons](benchmark/reviews/edge-vote-outlines-01/README.md)
 
+## Where the atlas enters the pipeline
+
+The atlas supplies the game's face textures. A grid origin tells us where a block starts on a surface crop. A material ID names the block eventually written at a placed coordinate. Those three kinds of evidence enter the ordinary build at different times.
+
+```mermaid
+flowchart LR
+    S["Source image"] --> F["Find surfaces and refine visible rims"]
+    S --> C["Estimate camera and scale"]
+    A["Java texture atlas"] --> C
+    A --> F
+    F --> B["Measure block rows and columns"]
+    A -. "atlas-enabled counting mode" .-> O["Recover missing grid origins"]
+    B --> O
+    B --> P["Rank visible positions and depths"]
+    C --> P
+    A --> P
+    P --> M["Compare frontmost faces with atlas textures"]
+    S --> M
+    A --> M
+    M --> E["Write block IDs at the final coordinates"]
+```
+
+| Decision | Evidence the current implementation reads |
+| --- | --- |
+| Camera and scale | Visible pavement seams first. A weak fit can trigger registration against floor texels from the atlas. |
+| Surface boundaries | Local refiners compare the textures on adjoining masks or test a smooth patch against atlas candidates, the surrounding wall, and background samples. Surface normals, relative depth, rims and openings supply complementary evidence. |
+| Counting | The default counter measures repetition on a straightened crop. With a prepared atlas and an atlas-enabled counting run, it can recover a missing grid origin once the spacings are known. Recovering an origin does not itself change the dimensions. |
+| Placement | The main placer reads the counted surface's corners and dimensions. Candidate plane depths and partial or thin faces have separate projection and texture tests. The per-face IDs and grid origins in the optional count report are not general inputs to the placer. |
+| Final material ID | The matcher uses visible pixels of the placed cubes, direction-valid atlas sprites and agreement with other cubes. It runs after the last geometry edit. Changing its ID accuracy alone leaves the camera, surface masks, counts and positions unchanged. |
+
+A useful feedback experiment holds one piece of evidence out. For example, propose the depth of a recessed wall from a clearly counted front edge, fit the texture on the front of a candidate cube, then check whether its other visible face aligns with the adjoining rim. Let the existing placement compete, and keep the opening clear. A guessed block sampled twice from the same source pixels can reproduce its own error. A smooth-stone fallback or a material substituted to prevent an unsupported block from falling supplies no new texture evidence. [Earlier atlas-phase and placement audit](benchmark/reviews/pipeline-consistency-01/README.md) · [Held-out source-pixel reprojection](benchmark/reviews/wall-source-projection-01/README.md)
+
+[Compare the measured perfect-input and sub-stage bypass experiments](benchmark/reviews/pipeline-impact-01/viewer.html).
+
 ## Worked example of a rejected surface
 
 The 1 × 3 example comes from **Sawtooth 2, earth palette, high-right view**. It is a different source image from the Facade with three recovered recesses. The left image below is the full 1440 × 900 input. The right image shows the 21 × 107 pixel mask of the proposed surface, before the check trims its uncertain edge.
