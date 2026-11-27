@@ -194,15 +194,53 @@ def materialize(scene,nominated):
     return materialize(scene,{c:nominated[c] for c in accepted})
 
 
-def select(image,parts,counts,camera,prior,strict=True):
+def donor_match(scene,c,axis,idx):
+    """A neighbor must expose the same texture phase on its own first-hit face."""
+    h,w=scene.shape
+    pix,axes,dep=scene.faces(c)
+    use=(axes==axis)&(dep>scene.dep[pix]+1.e-8)&np.isin(pix,list(idx))
+    y,x=np.divmod(pix[use],w)
+    if len(y)<6:
+        return False
+    rays=np.column_stack((x*STEP+.5,y*STEP+.5,np.ones(len(x))))@scene.inv.T
+    plane=c[axis]+int(scene.eye[axis]>c[axis]+1)
+    xyz=scene.eye+(plane-scene.eye[axis])*rays/rays[:,[axis]]
+    for tangent in [v for v in range(3) if v!=axis]:
+        for d in (-2,-1,1,2):
+            donor=list(c);donor[tangent]+=d
+            if tuple(donor) not in scene.prior:
+                continue
+            points=xyz.copy()
+            points[:,tangent]+=d
+            proj=points@scene.P[:,:3].T+scene.P[:,3]
+            projected=np.rint((proj[:,:2]/proj[:,[2]]-.5)/STEP).astype(int)
+            u,v=projected.T
+            ok=(u>=0)&(u<w)&(v>=0)&(v<h)
+            a=(v[ok]*w+u[ok])
+            visible=(scene.owner[a]==scene.cells.index(tuple(donor)))&(scene.axes[a]==axis)
+            if visible.sum()<max(6,.55*len(x)):
+                continue
+            original=scene.rgb[y[ok][visible],x[ok][visible]].astype(float)
+            expected=scene.rgb[v[ok][visible],u[ok][visible]].astype(float)
+            g1,g2=original.mean(1),expected.mean(1)
+            if min(g1.std(),g2.std())>1.3 and _corr(g1,g2)>.70 and np.mean(abs(original-expected))<8:
+                return True
+    return False
+
+
+def select(image,parts,counts,camera,prior,strict=True,horizontal=False,donor=False):
     scene,patches,stats=analyze(image,parts,camera,prior)
     votes=defaultdict(lambda:defaultdict(set))
     for idx,upstream,options,r in patches:
+        if horizontal and r['axis']!=1:
+            continue
         if r['held']<(.72 if strict else .55) or r['corr']<.65 or r['rim']<.40:
             continue
         if r['axis_margin']<(.14 if strict else .06) or r['level_margin']<(.055 if strict else .015):
             continue
         for c in r['cells']:
+            if donor and not donor_match(scene,c,r['axis'],idx):
+                continue
             votes[c][r['axis']].update(idx.tolist())
         stats['selected_'+interpret(r)]+=1
     if scene is None:
@@ -220,4 +258,12 @@ def conservative(image,parts,counts,camera,prior):
 
 def exploratory(image,parts,counts,camera,prior):
     return select(image,parts,counts,camera,prior,False)
+
+
+def horizontal(image,parts,counts,camera,prior):
+    return select(image,parts,counts,camera,prior,horizontal=True)
+
+
+def corroborated(image,parts,counts,camera,prior):
+    return select(image,parts,counts,camera,prior,strict=False,horizontal=True,donor=True)
 
