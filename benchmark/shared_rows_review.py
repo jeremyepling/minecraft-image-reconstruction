@@ -11,6 +11,7 @@ from benchmark.expanded_baseline import ROOT, WORKTREES, digest, read
 from benchmark.expanded_scores import load_reference
 from benchmark.mask_blocks import decoded_pack
 from benchmark.relative_face_round import SHARED
+from benchmark.surface_sample_review import main as render_samples
 
 
 PRIOR = WORKTREES / 'relative-face-assembly/runs/relative-face-stage-review-01'
@@ -107,6 +108,7 @@ def main():
                           metrics=metrics(before, sparse, donor, after), references=segments))
     (OUTPUT / 'corner-data.js').write_text('const cornerCases=' + json.dumps(cases) + ';', encoding='utf-8')
     shutil.copyfile(Path(__file__).with_name('shared_rows_viewer.html'), OUTPUT / 'index.html')
+    render_samples()
 
 
 if __name__ == '__main__':
