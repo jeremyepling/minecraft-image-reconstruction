@@ -6,6 +6,8 @@ The active training dataset is available in [Visible Builds v2](DATASET.md). It 
 
 ## Objective
 
+Supervise visible blocks belonging to the structure, including its platforms and disconnected parts. Keep the surrounding ground and sky in the source image as context. Exclude the staging floor from target block coordinates.
+
 The origin of a reconstructed build is arbitrary. Evaluate visible positions after one shared translation of the complete build. Preserve the measured offsets between roofs, walls, posts and disconnected pieces. Keep source-world coordinates in the dataset for visibility, camera calibration and reproducibility. [Shared placement criterion](../PRODUCT_INTENT.md#training-and-evaluation)
 
 Improve measurements needed to reproduce the observed build: visible surface boundaries, projected block-grid alignment, block dimensions, depth in block units, relative surface placement and material identity. Start by evaluating a Minecraft-specific block-grid predictor against the existing Block Counter. Adapting a pretrained vision encoder is a proposed first experiment, not an implemented or validated result.

@@ -4,6 +4,8 @@ Jeremy's scope decision, confirmed November 26, 2026, applies to the current rec
 
 ## Intended result
 
+The reconstruction target is the visible structure. Surrounding terrain, the staging floor and the sky provide camera, scale and silhouette evidence and stay outside the exported build. A visible platform, landing or floor that belongs to the structure is part of the target. Disconnected pieces can belong to the same build, and openings can show background through it.
+
 Prioritize the visible facade and the relative positions of its walls, openings, posts and roof edges. Two perpendicular rim lengths can bound a roof proposal. Place a proposed block only when a visible face supports it. Report both strict visible-block recovery and how well the facade was recovered. On the 1440 × 900 evaluation images, also report a diagnostic that makes top-only blocks optional when their connected top surface has no fully visible 8 × 8 pixel patch. A block with a visible wall face still counts. [Measured effect and examples](benchmark/reviews/facade-placement-01/README.md)
 
 For decisions about facade placement on the fixed 1440 × 900 structure views, also score individual horizontal-only blocks as optional when their own visible top or underside lacks a fully visible 4 × 4 native-pixel patch. Score that target neutrally whether placed or missed, and charge every extra. A block with a visible wall still counts. Use this score to prioritize experiments alongside strict visible geometry. Thin faces remain available for counting, depth and corner evidence. [Colonnade and the local sliver audit](benchmark/reviews/strip-orientation-01/README.md)

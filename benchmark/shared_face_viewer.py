@@ -13,6 +13,7 @@ main{max-width:1460px;margin:auto;padding:16px clamp(12px,3vw,44px)}h1{font-size
 .controls{margin:12px 0}button,select{font:inherit;color:inherit;background:#293941;padding:5px 10px;border:1px solid #8c9da0;border-radius:4px}
 button[aria-pressed=true]{color:#132623;background:#ccf1df}button{cursor:pointer}.frame{display:grid;background:#101818}
 .frame img,.frame svg{width:100%;grid-area:1/1;height:auto}.frame svg{pointer-events:none}p{margin:6px 0}a{color:#bcdfd3}
+[hidden]{display:none!important}
 summary{cursor:pointer;font-weight:600}details{padding:8px 0}button:focus-visible,select:focus-visible,summary:focus-visible{outline:3px solid #e6bd79}
 table{border-collapse:collapse;font-variant-numeric:tabular-nums;width:100%;margin:8px 0}th,td{padding:5px 10px;text-align:left;border-bottom:1px solid #40525b}
 .scroll{overflow-x:auto}td select{max-width:260px}tr.reached{background:#27433b}#pathDescription,#themeLine{color:#d8e4e1}#themeLine{max-width:105ch}
@@ -27,7 +28,14 @@ table{border-collapse:collapse;font-variant-numeric:tabular-nums;width:100%;marg
 <div class="controls"><label>Source image <select id="pick"></select></label>
 <label>Overlay opacity <input id="mix" type="range" min="0" max="100" value="100"><output id="pct"></output></label></div>
 <nav aria-label="Pipeline stage"></nav><p id="legend"></p>
-<div class="frame"><img id="base" width="1440" height="900" alt=""><img id="overlay" width="1440" height="900" alt=""><svg id="warnings" viewBox="0 0 1440 900" aria-hidden="true"></svg></div>
+<fieldset id="cornerControls" hidden><legend>Face corner layers</legend><div class="controls">
+<label><input type="checkbox" id="showMasks" checked>Detected surface edges</label>
+<label><input type="checkbox" id="showWire" checked>Exported block faces</label>
+<label id="chartLabel"><input type="checkbox" id="showChart">Texture-crop corner</label>
+<label id="groundLabel"><input type="checkbox" id="showGround" checked>Counted ground corner</label></div></fieldset>
+<div class="frame"><img id="base" width="1440" height="900" alt=""><img id="overlay" width="1440" height="900" alt="">
+<img id="faceWire" hidden width="1440" height="900" alt="Visible edges and corners of exported blocks"><img id="maskEdges" hidden width="1440" height="900" alt="Detected surface edges">
+<svg id="warnings" viewBox="0 0 1440 900" aria-hidden="true"></svg></div>
 <p id="issueReview"></p>
 <p id="measures" aria-live="polite"></p><p id="contribution"></p><p id="themeLine"></p><footer><a href="__ASSETS__/stage-map.jpg">Compare the ten strict-ranked structures stage by stage</a> · <a href="../pavement-local-01/openings.jpg">Colonnade 01 before and after</a></footer></main>
 <script>
@@ -39,6 +47,7 @@ const stages=[
 ['issues','Outline issues','Pink dots mark repeated short, sharp turns on a detected outline. The shape is flagged for inspection.'],
 ['smooth','Smooth wall edges','Teal marks pixels added to the visible outline. Amber marks proposed pixels that the atlas, background or boundary check withheld.'],
 ['grid','Block Counter','Yellow marks the selected grid and orange marks other measured grids. A line requires an estimated offset on that axis.'],
+['corners','Face corner placement','Orange traces detected surfaces. Teal traces the visible faces of exported blocks. Pale dots mark their projected corners.'],
 ['reference','Visible reference','Purple marks blocks with a visible face in this source image.'],
 ['build','Projected build','Teal shows the exported blocks projected onto the source image.'],
 ['required','Required misses','Blue marks required visible positions that were missed. Gold marks optional horizontal slivers that were missed.'],
@@ -62,9 +71,39 @@ for(const [name,key] of [['Shopfront','legacy-light_gray_concrete-dev-shopfront-
 }
 function draw(){
  const v=views[Number(pick.value)],s=stages[stage],prefix='__ASSETS__/'+v.prefix+'-';
+ const corners=s[0]==='corners';
  el('base').src=prefix+'source.jpg';el('base').alt=v.name+' source image';
- el('overlay').src=prefix+(s[0]==='issues'?'outlines':s[0]==='smooth'?'source':s[0])+'.jpg';el('overlay').alt=s[1]+' for '+v.name;
+ el('overlay').src=prefix+(s[0]==='issues'?'outlines':s[0]==='smooth'||corners?'source':s[0])+'.jpg';el('overlay').alt=s[1]+' for '+v.name;
  const warnings=el('warnings'), review=el('issueReview');warnings.replaceChildren();review.replaceChildren();
+ el('cornerControls').hidden=!corners;
+ for(const [id,toggle,asset] of [['faceWire','showWire','face-corners'],['maskEdges','showMasks','mask-edges']]){
+  const layer=el(id);layer.hidden=!corners||!el(toggle).checked;
+  if(corners){layer.src=prefix+asset+'.png';layer.style.opacity=mix.value/100;}
+ }
+ if(corners){
+  const pair=v.cornerPair;
+  el('chartLabel').hidden=!pair?.chart?.length;
+  el('groundLabel').hidden=!pair?.ground?.length;
+  for(const [quads,toggle,color,dashed] of [[pair?.chart,'showChart','#ff65bb',true],[pair?.ground,'showGround','#bdff63',false]]){
+   if(!quads||!el(toggle).checked)continue;
+   for(const quad of quads){
+    const polygon=document.createElementNS(warnings.namespaceURI,'polygon');
+    polygon.setAttribute('points',quad.map(p=>p.join(',')).join(' '));
+    polygon.setAttribute('fill','none');polygon.setAttribute('stroke',color);polygon.setAttribute('stroke-width','2.5');
+    if(dashed)polygon.setAttribute('stroke-dasharray','7 4');
+    warnings.append(polygon);
+    for(const [x,y] of quad){
+     const dot=document.createElementNS(warnings.namespaceURI,'circle');
+     dot.setAttribute('cx',x);dot.setAttribute('cy',y);dot.setAttribute('r','3');dot.setAttribute('fill',color);warnings.append(dot);
+    }
+   }
+  }
+  warnings.style.opacity=mix.value/100;
+  review.textContent=(v.visibleFaces||0)+' projected block faces. '+(pair?.ground?.length?
+   'Lime shows the two complete counted faces at the shared ground corner. '+(pair.chart?.length?'Dashed pink shows the earlier texture-crop estimate. ':'')+
+   (pair.revised?'The counted corner changed this export. ':'The counted-corner check made no edits. '):
+   'No counted ground-corner pair was recorded for this view. ');
+ }
  if(s[0]==='issues'){
   const issues=v.issues||[];
   for(const item of issues)for(const [x,y] of item.native_turn_xy){
@@ -126,6 +165,7 @@ function showPath(){
   const b=document.createElement('button');b.textContent='View';b.onclick=()=>{pick.selectedIndex=views.findIndex(v=>v.id===menu.value);stage=stages.findIndex(s=>s[0]==='errors');draw();pick.scrollIntoView({block:'start'});pick.focus({preventScroll:true})};cell.append(b);
  }
 }
+for(const id of ['showMasks','showWire','showChart','showGround'])el(id).onchange=draw;
 el('unit').onchange=showPath;showPath();pick.onchange=draw;mix.oninput=draw;draw();
 </script></html>"""
     picked, layouts = gap['selected'], gap['layouts']

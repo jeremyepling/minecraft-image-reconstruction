@@ -12,6 +12,7 @@ from PIL import Image, ImageDraw
 from benchmark import facade_inset_round as suite, roof_span_worst_sheet as sheet
 from benchmark.mask_blocks import decoded_pack, registered
 from benchmark.edge_vote_outline_eval import recount
+from benchmark.face_corner_overlay import corner_pair, edge_overlay
 from benchmark.shared_face_error_budget import current_pack, current_stages, measure
 from benchmark.shared_face_viewer import write_viewer
 from benchmark.strip_visibility_audit import block_footprints
@@ -157,6 +158,7 @@ def main():
     jobs = {j[1]['id']:j for j in suite.jobs(suite.framed.EVALUATION)}
     assert len(fixed)==len(jobs)==104 and {r['id'] for r in fixed}==set(jobs)
     inputs = {r['id']:r for r in read(ROOT/'facade-inset-round-01/combined.json')['rows']}
+    corners = {r['id']:r for r in read(ROOT/'counted-ground-corner-01/cases.json')}
     by_shape = defaultdict(list)
     with ProcessPoolExecutor(4) as pool:
         tasks=[(jobs[r['id']],inputs[r['id']],r,changed.get(r['id']),payloads.get(r['id'])) for r in fixed]
@@ -224,6 +226,9 @@ def main():
         view = (image,parts,counts['surfaces'],camera,pose,labels,ids,truth,raw,scored,states)
         panels,_ = sheet.prepare_view(info,current,atlas,view)
         prefix = f'{index+1:02}'
+        surface, wire, visible_faces = edge_overlay(image.size, parts, camera, cells)
+        for overlay, suffix in ((surface, 'mask-edges'), (wire, 'face-corners')):
+            overlay.save(ASSETS/f'{prefix}-{suffix}.png', transparency=0, optimize=True)
         for stage,i in [('source',0),('outlines',1),('grid',5),('build',7),('reference',8),('errors',9)]:
             panels[i][0].save(ASSETS/f'{prefix}-{stage}.jpg',quality=86,optimize=True)
         required_overlay(image,labels,ids,truth-scored,facade).save(ASSETS/f'{prefix}-required.jpg',quality=89,optimize=True)
@@ -252,6 +257,7 @@ def main():
                         path=''.join(f'M{a} {y+.5}h{b-a}' for y,a,b in spans),
                         accepted=int(accepted.sum()),acceptedPath=''.join(f'M{a} {y+.5}h{b-a}' for y,a,b in approved))
         rows.append(dict(id=key,name=r['layout'],prefix=prefix,issues=outline_issues(parts,image.size),smooth=smooth,
+                         visibleFaces=visible_faces,cornerPair=corner_pair(image,parts,counts,camera,corners[key]),
                          f1=f'{f1(strict):.2%}',facade=f'{f1(facade):.2%}',
                          correct=strict['correct'],required=facade['missed'],optional=strict['missed']-facade['missed'],
                          extras=strict['extras'],gap=gap_contribution([r],facade_pool),
