@@ -58,6 +58,8 @@ The default Material Matcher assigned IDs to 21,809 of 21,819 exported blocks on
 
 ## Methods and evidence
 
+A separate check on four previously unused decorative source images gave **75.49%** exact material accuracy and **45.56%** strict overall F1. One of the four had no recovered geometry. A directional texture-seam experiment gained 282 correct IDs on the known fixed suite but tied the default on these new buildings. The default remains the matcher validated above. [New building families and seam comparison](benchmark/reviews/material-seam-confirmation-01/README.md)
+
 [Reconstruction adjustments and lessons for training](MODEL_CHANGELOG.md) records what shipped, which experiments fell short, and what to look for in later training runs.
 
 The Java 26.3 camera measures pavement seams first. If those give insufficient evidence, it registers visible floor texels against the vanilla texture atlas. This recovered 4,017 visible block coordinates across the 24 Cloister and Twin Spires screenshots that previously exported empty packs. See the [current camera and placement evaluation](benchmark/TEXTURE_CAMERA.md) and the [earlier 92-pack material evaluation](benchmark/COMBINED_DEFAULT_EVALUATION.md).
