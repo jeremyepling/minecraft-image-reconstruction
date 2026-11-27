@@ -35,12 +35,13 @@ def face_depths(face_ids, depth, labels, fid):
     uv1 = np.column_stack((x + .5, y + .5, np.ones(len(x))))
     rays = uv1 @ np.linalg.inv(camera["K"]).T @ np.asarray(camera["world_to_camera_rotation"])
     world = np.asarray(camera["eye_world"]) + rays * depth[y, x, None]
-    points = np.asarray([f["xyz_world"] for f in labels["faces"]])[face_ids[y, x] - 1]
+    indices = face_ids[y, x] - 1
     normals = np.asarray([f["normal_world"] for f in labels["faces"]])[face_ids[y, x] - 1]
-    offset = world - points
+    corners = np.asarray([f["corners_world"] for f in labels["faces"]])
+    lower, upper = corners.min(axis=1)[indices], corners.max(axis=1)[indices]
     eps = 2e-4  # Float32 depth, rounded native camera matrix, and block coordinate units.
-    plane_error = ((offset - np.maximum(normals, 0)) * normals).sum(axis=1)
-    require(np.all(np.abs(plane_error) <= eps) and np.all(offset >= -eps) and np.all(offset <= 1 + eps),
+    plane_error = ((world - corners[indices, 0]) * normals).sum(axis=1)
+    require(np.all(np.abs(plane_error) <= eps) and np.all(world >= lower - eps) and np.all(world <= upper + eps),
             f"Sampled depths fail face-plane/bounds check: {fid}")
 
 
@@ -90,7 +91,7 @@ def verify_frame(archive, row, listed, source, dataset):
         require(face_ids.dtype == np.uint16 and depth.dtype == np.float32 and
                 face_ids.shape == depth.shape == tuple(reversed(pose["image_size"])), f"Invalid raster: {fid}")
         face_depths(face_ids, depth, labels, fid)
-        if dataset == "visible-builds-v2":
+        if dataset in {"visible-builds-v2", "visible-builds-v3", "decorative-builds-v1"}:
             framing = measure_framing(pose, actual.values(), row["ground_y"], face_ids)
             require(framing["accepted"], f"Ineligible training frame: {fid} ({framing['reason']})")
     if "reference-faces.json" in assets:
