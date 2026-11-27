@@ -569,7 +569,9 @@ def build(image_path, version, out, *, outlines=None, order_method=None, through
                 part['context_crop'] = dict(path=context_path.relative_to(out).as_posix(), xyxy=list(window),
                                             mask_xyxy_in_crop=list(local), requested_margin_px=context_px,
                                             margins_ltrb_px=[local[0],local[1],context.width-local[2],context.height-local[3]])
+        from engine.outline_issues import outline_issues
         model = dict(footprint='support', image_size=list(image.size), planes=patches,
+                     outline_issues=outline_issues(patches,image.size),
                      outline_coordinates='closed outer and hole rings on support-grid pixel edges',
                      sampling_chart_coordinates='optional four source-image points for rectification')
         if order_method == 'geometry':
