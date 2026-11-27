@@ -25,11 +25,12 @@ COLORS = {
 }
 
 
-def example(entry, output):
+def example(entry, output, expected=None):
     folder = Path(entry['frame'])
     reference = load_reference(entry)
     build = output / entry['dataset'] / entry['id']
-    expected = read(build / 'score.json')
+    if expected is None:
+        expected = read(build / 'score.json')
     camera = read(build / 'build-manifest.json')['placement']
     actual, predicted = evaluate_pack(entry, build / 'reconstruction.zip', camera, reference=reference)
     if actual['pack_sha256'] != expected['pack_sha256'] or actual['geometry'] != expected['geometry']:

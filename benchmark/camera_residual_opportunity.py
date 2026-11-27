@@ -67,7 +67,7 @@ def main():
     }
     directory = REVIEWS / "camera-recovery-next-01"
     directory.mkdir(exist_ok=True)
-    (directory / "opportunity.json").write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
+    (directory / "opportunity.json").write_bytes((json.dumps(report, indent=2) + "\n").encode("utf-8"))
 
 
 if __name__ == "__main__":
