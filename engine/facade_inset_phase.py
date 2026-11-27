@@ -153,6 +153,28 @@ def rectangles(host,weak):
             yield interior,lo,hi
 
 
+def projected_back_area(data,lo,hi,depth):
+    """Native photograph footprint where the ray enters the mouth and reaches the back."""
+    free,axis,p,eye=data['free'],data['axis'],data['p'],data['eye']
+    step=depth*np.sign(data['plane']-eye[axis])
+    xyz=np.zeros((4,3))
+    xyz[:,free]=[lo,[lo[0],hi[1]],hi,[hi[0],lo[1]]]
+    xyz[:,axis]=data['plane']
+    mouth=project(p,xyz)
+    xyz[:,axis]+=step
+    back=project(p,xyz)
+    l,t=np.floor(np.maximum(mouth.min(axis=0),back.min(axis=0))).astype(int)
+    r,b=np.ceil(np.minimum(mouth.max(axis=0),back.max(axis=0))).astype(int)
+    if l>=r or t>=b:
+        return 0
+    y,x=np.mgrid[t:b,l:r]
+    rays=np.stack((x.ravel()+.5,y.ravel()+.5,np.ones(x.size)),axis=1)@np.linalg.inv(p[:,:3]).T
+    slope=rays[:,free]/rays[:,axis,None]
+    near=eye[free]+slope*(data['plane']-eye[axis])
+    far=near+slope*step
+    return int(((near>=lo)&(near<hi)&(far>=lo)&(far<hi)).all(axis=1).sum())
+
+
 def back_surface(data,group,lo,hi,rows,gray,table,observations=None):
     source=[rows[k] for k in sorted(group) if k in rows]
     if len(source)<3:
@@ -181,11 +203,14 @@ def back_surface(data,group,lo,hi,rows,gray,table,observations=None):
     split=coord<np.median(coord)
     bins=texel_bins(uv[selected]+depth*depth_sign*data['ratio'][selected])
     half=[correlation(gray[selected[q]],table[bins[q]]) for q in (split,~split)]
-    accepted=depth>0 and score>=.60 and score-depth_scores[1][0]>=.22 and min(half)>=.53
+    projected=projected_back_area(data,lo,hi,depth) if depth>0 else len(selected)
+    coverage=len(selected)/max(1,projected)
+    accepted=depth>0 and coverage>=.65 and score>=.60 and score-depth_scores[1][0]>=.22 and min(half)>=.53
     evidence=dict(depth=int(depth),score=round(score,4),runner_up=round(depth_scores[1][0],4),
                   runner_up_depth=int(depth_scores[1][1]), signed_depth_scores={str(k):round(v,4) for v,k,_ in depth_scores},
                   half_scores=[round(v,4) for v in half],host_repeat=round(data['fit']['corr'],4),
                   host_margin=round(data['fit']['margin'],4),samples=len(selected),
+                  projected_px=projected,host_coverage=round(coverage,4),
                   opening=[lo.tolist(),hi.tolist()],accepted=bool(accepted))
     if observations is not None:
         observations.append(evidence)
