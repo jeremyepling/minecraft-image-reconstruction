@@ -2,6 +2,47 @@
 
 The [product intent](PRODUCT_INTENT.md) is visible-only reconstruction for both the current pipeline and proposed learned components. Only blocks supported by visible faces in the supplied input belong in the output. Unobserved backs, interiors and occluded regions stay unknown; geometry consistency must not become a hidden-area completion step.
 
+## Pipeline terms in reading order
+
+The [pipeline diagram in the README](README.md#from-source-image-to-placed-blocks) shows the ordinary Java 26.3 exterior command. The camera and surface paths share the same source image. The finder can outline a wall and the counter can measure its crop even when the camera cannot establish a 3D block scale. A count can also help validate a proposed recess before the full counting pass. The files below let you follow a single wall through the build.
+
+| Stage | Terms and tasks | What you can inspect |
+| --- | --- | --- |
+| Input | The **source image** is the complete screenshot. A **pixel** is one image sample. A **block** is a Minecraft grid cell, and a **face** is one side of that block. A **surface** can span many block faces, such as the front wall of a building. A **plane** is the flat sheet in 3D on which we think those faces lie. | The original image. The build manifest records its fingerprint so stages can be traced to the same input. |
+| Surface Finder | **Regions First** groups neighboring pixels. MoGe-2 estimates the **normal**, the direction a surface faces. Depth Anything V2 estimates **relative depth**, which helps tell nearer from farther. ScaleLSD supplies line junctions, M-LSD helps find thin undersides, MobileSAM proposes wall boundaries, and Pixel-wise Planarity tests flat regions and possible splits. | In `surfaces.json`, a **mask** says which pixels belong to each surface. Its **outline** follows the boundary and any holes. `surface-crops/` contains masked source pixels and separate crops with surrounding context. |
+| Camera fit | The **viewpoint** and **block scale** describe how a unit Minecraft block projects at a given location. The fitter first uses visible pavement seams. If they are too weak, it tries aligning floor pixels with the Java texture **atlas**, a catalog of known game textures. | The placement section of `build-manifest.json` records the camera result. If block scale stays unresolved, the ordinary build exports an empty build function. |
+| Refine outlines | Use edges, sky, texture continuity and contacts to refine which pixels belong together. A **recess** sits behind a surrounding **host wall**. Its **rim** is the boundary at the front, its **jamb** is a vertical side, and its **sill** is the lower ledge. Their visible shapes can establish the **setback**, the depth behind the host in blocks. The **facade** is the visible exterior face of the structure, including details like openings and pillars. An outline can also pass a count check while its depth stays unresolved. | `surfaces.json` shows the resulting masks. `build-manifest.json` records which checks accepted an opening. |
+| Surface Straightener | A **surface crop** contains pixels from one part of the source image. **Rectification** warps a tilted surface into a face-on sampling view. Its four-corner **chart** describes how to sample it. The mask still excludes openings and neighboring faces. | Compare `surface-crops/` with the straightened crops in `samples/`. |
+| Block Counter | Estimate the **grid pitch** (spacing between repetitions of a whole block texture) and **offset** (where the grid lines fall). Texture-guided straightening can retry an incomplete count. Width and height may resolve independently. A visible **span** measures the extent between observed cells. On an irregular surface, width × height can include gaps. | `counts.json` records count estimates and, on supported recesses, the measured visible grid span and number of supported cells. |
+| Block Grouper and Material Matcher | Two or three adjoining faces can belong to one cube. Their textures can look different because they face different directions. The grouper uses shared convex edges to associate them. On a material run, the matcher uses an eligible face to compare its observed texture with atlas or rendered examples and proposes a **material ID**, such as `minecraft:tuff`. | `counts.json` records face groups and requested matches. The ordinary placement datapack uses smooth stone so you can inspect the geometry. |
+| Placement and export | A **candidate** is a proposed position or surface pending a check. The placer tests possible plane depths, uses texture and contacts, and **reprojects** candidate cubes into the source image to check which face should appear first. It resolves conflicts and applies local edits inside measured recesses. Hidden space stays **unknown**. A visible face can justify placing its whole cube. | `placements.json` lists accepted local **XYZ** block coordinates (X and Z along the ground, Y upward). `reconstruction.zip` places those blocks relative to the point where you run the build function. |
+
+## Worked example of a rejected surface
+
+The 1 × 3 example comes from **Sawtooth 2, earth palette, high-right view**. It is a different source image from the Facade with three recovered recesses. The left image below is the full 1440 × 900 input. The right image shows the 21 × 107 pixel mask of the proposed surface, before the check trims its uncertain edge.
+
+| Full source image | Proposed surface crop |
+| --- | --- |
+| ![Whole Sawtooth 2 building in the source image](benchmark/reviews/inset-mask-chooser-01/sawtooth2-source.png) | ![Original pixels of the narrow proposed surface](benchmark/reviews/inset-mask-chooser-01/sawtooth2-proposed-surface.png) |
+
+The crop begins at source pixel **(511, 456)** measured from the upper left. After trimming two pixels around the edge, the **Block Counter** estimated **one block across by three high** from the remaining texture. Independently, mapping those pixels onto the candidate plane using the estimated camera gave **one across by four high**. Those are two estimates for the same pixels. Neither is a human label. Their disagreement caused the Surface Finder to reject the proposed split and keep the pixels on their original wall.
+
+A **decision tree** is a learned set of if/then checks. The experimental inset tree rejected this candidate earlier. With that tree switched off, the ordinary grid check rejected it anyway. Both versions produced identical final masks and counts on 204 images. The separate placement stage still uses learned depth ranking where available. [Tree comparison](benchmark/reviews/inset-mask-chooser-01/final-tree-ablation.md) · [Positive example on the Facade](benchmark/reviews/facade-insets-01/returns-comparison.jpg)
+
+## Evaluation terms
+
+A **visible reference** is the set of block positions supported by faces visible in that source image. The benchmark derives it from the recorded world and capture camera. The ordinary build estimates its own camera from the source image. Scoring allows one integer XYZ translation of the whole prediction per image. A roof shifted relative to its pillars still counts as misplaced.
+
+| Term | What counts |
+| --- | --- |
+| Correct, extra, missed | A **correct** position appears in both sets after alignment. An **extra** is a prediction outside the visible target set. A **miss** is a required visible position absent from the prediction. A single block at the wrong relative depth can create both a miss and an extra. |
+| Precision, recall, F1 | **Precision** = correct / (correct + extras). **Recall** = correct / (correct + misses). **F1** = 2 × correct / (2 × correct + extras + misses). The fixed-suite score pools the block counts across images. |
+| Strict and facade-priority F1 | **Strict** counts every visible reference block. **Facade-priority** makes a horizontal-only block optional when its visible top or underside lacks a solid 4 × 4 patch of source pixels at the fixed suite’s 1440 × 900 resolution. An optional block earns no credit and incurs no miss. All extras still count. |
+| Surface overlap (IoU) | **Intersection over union** measures how well one predicted surface mask overlaps its reference in image pixels. Perfect overlap is 100%. A good outline can have unresolved depth, so its 3D placement can still be wrong. |
+| Material accuracy | Compares the chosen block IDs with the labeled IDs. Two cubes can occupy the same correct position and have different materials. Geometry F1 checks the position. |
+
+[Current placement score and block counts](README.md#current-placement-score) · [Visible reference and sliver examples](benchmark/reviews/strip-orientation-01/README.md)
+
 ## Find surfaces and count blocks
 
 The ordinary exterior command on this PC takes one Java 26.3 screenshot. It runs the **Surface Finder**, **Surface Straightener** and **Block Counter** and saves their intermediate results. The selected Surface Finder matched **519 of 598** visible surface appearances across 56 frozen views. The counter got both block dimensions right for **121 of 598**. These scores measure different stages. [Surface comparison](benchmark/reviews/edge-detail-stable-01/cases.json) · [Crop review](benchmark/CROP_REVIEW.md)
@@ -20,7 +61,7 @@ The ordinary exterior command on this PC takes one Java 26.3 screenshot. It runs
 
 The Surface Finder’s build IDs are `mask-first` for grouping and `plane-recovery-crop-splits` for refinement. After the full-image pass, closer views can split a region while preserving its footprint. The counter’s ID is `texture-guided-repeat`. Each surface records which step supplied its count. A complete initial estimate uses `masked-repeat`; an incomplete estimate can use texture-guided straightening when a reserved strip confirms the spacing. Each run writes its actual stages, settings, input digest and checkpoint hashes to `build-manifest.json`. The winner is selected on the fixed suite. The previous methods are available through benchmark replays. [Single-image setup](benchmark/WALL_RECOVERY_BUILD.md) · [Stage guide](benchmark/SURFACE_FINDER.md) · [Method history](benchmark/RECONSTRUCTION_LINEAGE.md)
 
-## Verify on the saved pictures
+## Verify on the saved source images
 
 ```powershell
 .\Invoke-SurfaceRound.ps1 -Round sky-gap

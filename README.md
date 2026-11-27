@@ -1,5 +1,44 @@
 # Minecraft Image Reconstruction
 
+## From source image to placed blocks
+
+The **source image** is the full Minecraft screenshot supplied to the build command. A **surface crop** is a piece taken from that same image. Read the solid arrows as data used to build. The dotted connections show optional material identification and evaluation.
+
+```mermaid
+flowchart TD
+    I["Source image · full screenshot"] --> F["Surface Finder · group visible pixels into surfaces"]
+    I --> C["Camera fit · estimate viewpoint and block scale"]
+    F --> R["Refine outlines · check edges, holes and recesses"]
+    C --> R
+    R --> S["Surface Straightener · make a face-on crop"]
+    S --> B["Block Counter · measure rows, columns and grid offsets"]
+    B --> G["Block Grouper · link visible faces of the same cube"]
+    G -.-> M["Optional Material Matcher · identify the block"]
+    R --> P["Placement · test depths and project blocks back onto the source image"]
+    B --> P
+    C --> P
+    P --> E["Export · local XYZ positions and a smooth-stone datapack"]
+    E -.-> V["Evaluation · compare placed positions with the visible reference"]
+    T["Benchmark only · recorded world and capture camera"] -.-> V
+```
+
+The **[illustrated stage and term guide](ARCHITECTURE.md#pipeline-terms-in-reading-order)** walks through each box, the models it uses, and the files you can inspect. It includes the [actual 1 × 3 versus 1 × 4 example](ARCHITECTURE.md#worked-example-of-a-rejected-surface). To see the stages on buildings, open the [source images and stage overlays](benchmark/reviews/facade-placement-01/worst/README.md).
+
+## Current placement score
+
+On the **104 fixed whole-structure source images**, the default at `9ce2f10` placed **20,619** blocks at the correct relative coordinates, missed **3,083** visible positions, and placed **1,097** extras. The last placement change gained 84 correct positions and removed 49 extras. [Frozen placement counts](benchmark/reviews/facade-local-placement-01/summary.json)
+
+| Measure | What it asks | Current |
+| --- | --- | ---: |
+| Precision | Of the positions we placed, what fraction were correct? | 94.95% |
+| Recall | Of the visible positions in the reference, what fraction did we place correctly? | 86.99% |
+| Strict visible-block F1 | How well did placement balance precision and recall across all visible blocks? | 90.80% |
+| Facade-priority F1 | How well did we do when very thin top-only or underside-only targets are optional? | 92.90% |
+
+**F1** combines precision and recall using their harmonic mean. In block counts, **F1 = 2 × correct / (2 × correct + extras + misses)**. On these images, if you pick a placed block, roughly 95 in 100 are right. If you pick a visible reference block, roughly 87 in 100 were recovered. Both matter. The reference allows one whole-build shift per image so a different world origin gets full credit and misplaced parts still count as errors. [Scoring details and examples](ARCHITECTURE.md#evaluation-terms)
+
+## Methods and evidence
+
 [Reconstruction adjustments and lessons for training](MODEL_CHANGELOG.md) records what shipped, which experiments fell short, and what to look for in later training runs.
 
 The Java 26.3 camera measures pavement seams first. If those give insufficient evidence, it registers visible floor texels against the vanilla texture atlas. This recovered 4,017 visible block coordinates across the 24 Cloister and Twin Spires screenshots that previously exported empty packs. See the [current camera and placement evaluation](benchmark/TEXTURE_CAMERA.md) and the [earlier 92-pack material evaluation](benchmark/COMBINED_DEFAULT_EVALUATION.md).
@@ -8,13 +47,13 @@ Download [Visible Builds v2](training/DATASET.md) for 144 whole-structure screen
 
 A build can be placed anywhere in the world. We score its visible blocks after shifting the whole build together. This gives full credit for a translated copy while preserving the roof height, pillar spacing and offsets between parts. [Relative geometry results and one-block control](benchmark/reviews/relative-build-01/README.md)
 
-After fitting the camera, the placer verifies visible wall faces against the atlas and measures overlapping pillars from their exposed texture rows. When a visible side and sill meet inside a wall, the Surface Finder checks their projected shape against the block grid and splits out the photographed back of the recess. A second outline check compares the photographed block count with the projected grid. It can identify a back wall whose depth is still unresolved. The placer uses a measured setback and edits only supported cells inside the opening. The default scores **90.80% strict visible-block F1** and **92.90% facade-priority F1** on 104 fixed whole-structure views, recovering 20,619 of 23,702 visible positions with 1,097 extras. Twenty alternate views score 90.02%. Four shelter and gate views score 83.47%. [Recess examples, decision models and scores](benchmark/reviews/facade-inset-round-01/README.md) · [Sliver scoring and face-direction examples](benchmark/reviews/strip-orientation-01/README.md) · [Interactive comparison of six earlier issues](benchmark/reviews/visible-error-budget-01/shipped-regions/viewer.html) · [Previous stage map for the ten weakest layouts](benchmark/reviews/facade-placement-01/worst/README.md)
+After fitting the camera, the placer verifies visible wall faces against the atlas and measures overlapping pillars from their exposed texture rows. When a visible side and sill meet inside a wall, the Surface Finder checks their projected shape against the block grid and splits out the back wall visible in the source image. A second outline check compares the count measured from the surface crop with the projected grid. It can identify a back wall whose depth is still unresolved. The placer uses a measured setback and edits only supported cells inside the opening. Twenty alternate views score 90.02%. Four shelter and gate views score 83.47%. [Recess examples, decision models and scores](benchmark/reviews/facade-inset-round-01/README.md) · [Sliver scoring and face-direction examples](benchmark/reviews/strip-orientation-01/README.md) · [Interactive comparison of six earlier issues](benchmark/reviews/visible-error-budget-01/shipped-regions/viewer.html) · [Previous stage map for the ten weakest layouts](benchmark/reviews/facade-placement-01/worst/README.md)
 
 Reconstruct only the parts of a build visible in the supplied image or images. Hidden backs, interiors and occluded regions remain unknown and are omitted from the reconstruction. This scope applies to the current pipeline and the [planned learned approach](training/README.md). [Product intent](PRODUCT_INTENT.md)
 
-Surface Finder also scores the photographed area belonging to each individual face. Its default now removes a false diagonal cut on the Facade, recovering 98.35% of that wall and its correct 27 × 11 span. An upward-looking skyline check restores 225 visible wall pixels on a Watchpost. Across 204 checked images, the two surface corrections preserved the exported builds. [Before and after on both photographs](benchmark/reviews/strip-orientation-01/README.md#surface-finder-changes-in-ordinary-builds)
+Surface Finder also scores how well each surface mask covers its visible area in the source image. Its default now removes a false diagonal cut on the Facade, recovering 98.35% of that wall and its correct 27 × 11 span. An upward-looking skyline check restores 225 visible wall pixels on a Watchpost. Across 204 checked images, the two surface corrections preserved the exported builds. [Before and after on both source images](benchmark/reviews/strip-orientation-01/README.md#surface-finder-changes-in-ordinary-builds)
 
-Use `main` to recover visible surfaces from one Minecraft Java 26.3 screenshot. The ordinary **Surface Finder** uses Regions First, Wall Recovery and Pixel-wise Planarity with split-only zoom. After sky removal, it trims a narrow extension when a second detected surface runs alongside it and matches its colors. It then moves outlines to nearby photo edges when the Block Counter preserves its complete estimates. It matched **519 of 598** visible surface appearances across 56 saved views of eight buildings. The **Block Counter** keeps complete texture counts and automatically tries straightening the crop using repeated texture when a count is incomplete. It recovered both dimensions for **121 surfaces** on these views and **73** on the 24 Cloister and Twin Spires views. [Counter results and tradeoffs](benchmark/COUNT_TRANSFER.md) [Surface scores by screenshot](benchmark/reviews/edge-detail-stable-01/cases.json) · [Cleanup examples](benchmark/reviews/edge-detail-stable-01/comparison.jpg) · [Counting repeating textures](benchmark/TEXTURE_REPEATS.md) · [Crop and straightening review](benchmark/CROP_REVIEW.md)
+Use `main` to recover visible surfaces from one Minecraft Java 26.3 screenshot. The ordinary **Surface Finder** uses Regions First, Wall Recovery and Pixel-wise Planarity with split-only zoom. After sky removal, it trims a narrow extension when a second detected surface runs alongside it and matches its colors. It then moves outlines to nearby edges in the source image when the Block Counter preserves its complete estimates. It matched **519 of 598** visible surface appearances across 56 saved views of eight buildings. The **Block Counter** keeps complete texture counts and automatically tries straightening the crop using repeated texture when a count is incomplete. It recovered both dimensions for **121 surfaces** on these views and **73** on the 24 Cloister and Twin Spires views. [Counter results and tradeoffs](benchmark/COUNT_TRANSFER.md) [Surface scores by screenshot](benchmark/reviews/edge-detail-stable-01/cases.json) · [Cleanup examples](benchmark/reviews/edge-detail-stable-01/comparison.jpg) · [Counting repeating textures](benchmark/TEXTURE_REPEATS.md) · [Crop and straightening review](benchmark/CROP_REVIEW.md)
 
 ## Build from a screenshot
 

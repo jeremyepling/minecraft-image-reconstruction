@@ -6,10 +6,10 @@ Switching off the learned gate produced exactly the same binary footprints for e
 |---|---:|---:|---:|---:|
 | Development | 72 | 6 / 7 | 2 / 2 | 72 |
 | Reviewed fixed structures | 104 | 3 / 3 | 3 / 3 | 104 |
-| Alternate photos | 20 | 2 / 2 | 0 / 0 | 20 |
+| Alternate source images | 20 | 2 / 2 | 0 / 0 | 20 |
 | New layouts/views | 4 | 0 / 0 | 0 / 0 | 4 |
 | Shelter/gate | 4 | 0 / 0 | 0 / 0 | 4 |
 
-The tree screened out one incorrect preliminary fragment on `train-sawtooth2-earth-high-right`. With the tree disabled, the independent RGB recount on that fragment returned 1 × 3 while the visible projected grid spanned 1 × 4. The physical check rejected it. The only observed effect of the tree was skipping this candidate's recount. No end-to-end timing advantage was measured.
+The tree screened out one incorrect preliminary fragment on `train-sawtooth2-earth-high-right`. With the tree disabled, the Block Counter estimated 1 × 3 blocks from the surface crop, while the grid projected onto the proposed plane spanned 1 × 4. The physical check rejected it. The only observed effect of the tree was skipping this candidate's recount. No end-to-end timing advantage was measured.
 
-The evidence supports the photographic and count safeguards alone as a default. Retain the decision model as a research comparison until an independent data set shows it improves the *final* output. This ablation changed no runtime files. Replay with `python -m benchmark.inset_final_tree_ablation`. The report lists both final native mask hashes on every active frame and records paired footprint and count equality everywhere. [Frame-level paired results](final-tree-ablation.json) · [Earlier comparisons](README.md)
+The default checks the rim and block count against the source image. [Full source image and proposed surface crop](../../../ARCHITECTURE.md#worked-example-of-a-rejected-surface) Retain the decision model as a research comparison until an independent data set shows it improves the *final* output. This ablation changed no runtime files. Replay with `python -m benchmark.inset_final_tree_ablation`. The report lists both final native mask hashes on every active frame and records paired footprint and count equality everywhere. [Frame-level paired results](final-tree-ablation.json) · [Earlier comparisons](README.md)
