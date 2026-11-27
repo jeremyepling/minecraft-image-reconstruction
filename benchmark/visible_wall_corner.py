@@ -104,4 +104,3 @@ def recommend(policy, levels, projection, union):
     # single challenger, and prevents correlated shifts among several pairs.
     chosen = {offers[0][1]: offers[0][2]} if offers else {}
     return chosen, dict(walls=len(walls), seams=seams, changes=chosen)
-

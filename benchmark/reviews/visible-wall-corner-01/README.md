@@ -33,4 +33,3 @@ python -m benchmark.visible_wall_corner_report
 ```
 
 [Per-frame masks, row measurements, fingerprints and scores](cases.json.gz) · [Pilot summary](summary.json)
-
