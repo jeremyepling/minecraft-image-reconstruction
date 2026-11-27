@@ -349,3 +349,37 @@ def pooled(image,parts,counts,camera,prior):
             break
         cells=supported
     return prior|cells,dict(proposed=len(pool),kept=len(cells))
+
+
+def overhang(image,parts,counts,camera,prior):
+    """Use repeated roof texture only on a single plate spanning separated supports."""
+    ctx,pool,predicted=proposals(image,parts,camera,prior)
+    if not predicted:
+        return prior,dict(proposed=len(pool),kept=0)
+    height=max(y for x,y,z in prior)
+    roof=ctx.levels.get(height,set())
+    if len(roof)<6 or height<3 or len(roof)<.70*sum(map(len,ctx.levels.values())):
+        return prior,dict(proposed=len(pool),kept=0)
+    extent=np.asarray(list(roof))
+    lo,hi=extent.min(0),extent.max(0)
+    if min(hi-lo)<2:
+        return prior,dict(proposed=len(pool),kept=0)
+    below={(x,z) for x,y,z in prior if y==height-1 and (x,height-2,z) in prior}
+    if not below or len(below)>.40*len(roof):
+        return prior,dict(proposed=len(pool),kept=0)
+    spread=np.ptp(np.asarray(list(below)),axis=0)
+    if max(spread)<3:
+        return prior,dict(proposed=len(pool),kept=0)
+    cells={c for c in predicted if c[1]==height and lo[0]<=c[0]<=hi[0] and lo[1]<=c[2]<=hi[1]}
+    # A fully unclaimed top can extend into a long grazing strip. If the new
+    # top instead faces an already rendered tile, require an independent
+    # confirmation from pooled roof texels before changing that assignment.
+    texture=RoofTexture(ctx) if cells else None
+    kept=set()
+    for c in cells:
+        face=ctx.face(c)
+        u,v=face
+        if np.count_nonzero(ctx.owner[v,u]>=0)<.15*len(u) or texture.verifies(c,face):
+            kept.add(c)
+    kept=ctx.finalize(kept,True)
+    return prior|kept,dict(proposed=len(pool),kept=len(kept))
