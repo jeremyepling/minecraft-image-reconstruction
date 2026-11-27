@@ -95,7 +95,8 @@ def candidate_inventory(path, report, frame, entry, reference, transform):
     case = report['case']
     key = frame['id']
     check(case['source_sha256'], frame['rgb']['sha256'], f'{key} export source')
-    check(case['registration']['transform'], transform.tolist(), f'{key} fixed registration')
+    recorded_transform = transform.tolist() if transform is not None else None
+    check(case['registration']['transform'], recorded_transform, f'{key} score registration')
     pack = path.with_name('reconstruction.zip')
     check(file_digest(pack), case['pack_sha256'], f'{key} saved export')
     assignment = None
