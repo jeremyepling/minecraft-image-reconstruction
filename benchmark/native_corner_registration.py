@@ -4,7 +4,9 @@ from itertools import permutations
 
 import numpy as np
 
-from benchmark.native_surface_counter import BASE, OUTPUT, ordinary, project, read, save
+from benchmark.expanded_baseline import digest, read, save
+from benchmark.floating_cloud_replay import check_handoff, source_handoff
+from benchmark.native_surface_counter import BASE, OUTPUT, ordinary, project
 
 
 def correspondence(old, new, matches):
@@ -69,10 +71,23 @@ def register(old, new, matches, strict):
 
 def predict(case):
     name=case['id']
-    base = read(BASE/name/'charts.json')
-    receivers = {s['receiver_id'] for s in read(BASE/name/'seams.json')['seams'] if s['decision']=='accepted'}
-    rows = {r['id']:r for r in read(OUTPUT/'sky'/name/'native-evidence.json')['surfaces'] if r['decision']=='accepted'}
-    new = {c['id']:c for c in read(OUTPUT/'sky'/name/'charts.json')['charts']}
+    baseline = BASE/name/'charts.json'
+    base = read(baseline)
+    seams = read(BASE/name/'seams.json')
+    evidence_file = OUTPUT/'sky'/name/'native-evidence.json'
+    native = read(evidence_file)
+    native_charts = read(OUTPUT/'sky'/name/'charts.json')
+    handoff = source_handoff(name)
+    sha = case['variants']['sky']['source_sha256']
+    for packet in (base, seams, native, native_charts):
+        if packet['source_sha256'] != sha:
+            raise ValueError(f'Screenshot hashes disagree for {name}')
+        check_handoff(packet, handoff, sha)
+    if native['shared_chart_sha256'] != digest(baseline):
+        raise ValueError(f'Native evidence was measured against a different shared chart for {name}')
+    receivers = {s['receiver_id'] for s in seams['seams'] if s['decision']=='accepted'}
+    rows = {r['id']:r for r in native['surfaces'] if r['decision']=='accepted'}
+    new = {c['id']:c for c in native_charts['charts']}
     for mode,strict in [('registered-two-columns',True),('registered-seam',False)]:
         charts, evidence = [],[]
         for chart in base['charts']:
@@ -82,7 +97,8 @@ def predict(case):
                 evidence.append(dict(id=sid,**record))
             charts.append(chart)
         path=OUTPUT/mode/'sky'/name
-        save(path/'charts.json',dict(base,charts=charts))
+        save(path/'charts.json',dict(base,charts=charts,native_evidence_sha256=digest(evidence_file),
+             shared_chart_sha256=native['shared_chart_sha256']))
         save(path/'registration.json',evidence)
         if evidence:
             print(mode,name,evidence[0]['decision'],evidence[0]['reason'],flush=True)

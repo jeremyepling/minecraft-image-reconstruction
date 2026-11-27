@@ -36,8 +36,8 @@ const $=id=>document.getElementById(id), storeKey='minecraft-surface-review-v1';
 let b=0,m=0,token=0,hitPixels=null,notes={};
 try{notes=JSON.parse(localStorage.getItem(storeKey)||'{}')||{}}catch{$('status').textContent='Browser storage unavailable. Export notes before closing.'}
 const scene=()=>scenes[b],mask=()=>scene().masks[m];
-const key=()=>[scene().id,scene().sha,scene().revision,mask().id].join('/');
-function save(){const item={build:scene().title,frame:scene().id,surface:mask().label,mask:mask().id,source_sha256:scene().sha,handoffs:scene().revision,feedback:$('note').value,question:$('question').value,preferred_view:$('viewVote').value,atlas_assessment:$('atlasVote').value,view_comment:$('viewComment').value,atlas_comment:$('atlasComment').value};
+const key=()=>[scene().id,scene().sha,scene().annotationRevision||scene().revision,mask().id].join('/');
+function save(){const item={build:scene().title,frame:scene().id,surface:mask().label,mask:mask().id,source_sha256:scene().sha,handoffs:mask().rejected?scene().annotationRevision:scene().revision,feedback:$('note').value,question:$('question').value,preferred_view:$('viewVote').value,atlas_assessment:$('atlasVote').value,view_comment:$('viewComment').value,atlas_comment:$('atlasComment').value};
  if(item.feedback||item.question||item.preferred_view||item.atlas_assessment||item.view_comment||item.atlas_comment)notes[key()]=item;else delete notes[key()];
  try{localStorage.setItem(storeKey,JSON.stringify(notes));$('status').textContent='Saved in this browser.'}catch{$('status').textContent='In memory only. Export feedback before closing.'}}
 function photo(id,url,missing){const img=$(id),a=$(id+'Link'),empty=$(id+'Empty');img.hidden=!url;empty.hidden=!!url;
@@ -45,7 +45,7 @@ function photo(id,url,missing){const img=$(id),a=$(id+'Link'),empty=$(id+'Empty'
 function draw(){if(!hitPixels)return;const cv=$('overlay'),w=cv.width,h=cv.height,ctx=cv.getContext('2d'),layer=ctx.createImageData(w,h),data=hitPixels.data,n=mask().index;
  for(let i=0;i<data.length;i+=4){if(data[i]!==n)continue;const edge=i<4*w||i>=data.length-4*w||data[i-4]!==n||data[i+4]!==n||data[i-4*w]!==n||data[i+4*w]!==n;
  layer.data[i]=78;layer.data[i+1]=243;layer.data[i+2]=221;layer.data[i+3]=edge?255:78}
- ctx.putImageData(layer,0,0);const q=mask().quad;if($('quad').checked&&q){ctx.beginPath();q.forEach(([x,y],i)=>i?ctx.lineTo(x,y):ctx.moveTo(x,y));ctx.closePath();ctx.strokeStyle='#17212a';ctx.lineWidth=5;ctx.stroke();ctx.lineWidth=3;ctx.strokeStyle='#ffcd63';ctx.stroke()}}
+ ctx.putImageData(layer,0,0);const q=!mask().rejected&&mask().quad;if($('quad').checked&&q){ctx.beginPath();q.forEach(([x,y],i)=>i?ctx.lineTo(x,y):ctx.moveTo(x,y));ctx.closePath();ctx.strokeStyle='#17212a';ctx.lineWidth=5;ctx.stroke();ctx.lineWidth=3;ctx.strokeStyle='#ffcd63';ctx.stroke()}}
 
 function nativeReview(r){
  const review=r.lineReview;
@@ -65,6 +65,7 @@ function nativeReview(r){
  $('lineMethod').textContent=review.slope===null?'Insufficient agreement. This trial retains the source crop.':review.lines.length+' source segments agreed. Applied a vertical shear of '+(Math.atan(review.slope)*180/Math.PI).toFixed(1)+'°.';
  $('lineMetric').textContent=review.old_angle==null?'No comparable recorded wall-row measurement.':'Recorded row tilt, in degrees: original '+review.raw_angle+'°, current counter '+review.old_angle+'°, trial '+review.candidate_angle+'°. Zero is horizontal.';
  }
+ $('referencePanel').hidden=!r.referenceSample;
  const panel=$('nativePanel');panel.hidden=!r.pitch&&!r.native;if(panel.hidden)return;
  const pitch=a=>(a||[null,null]).map(v=>Number.isFinite(v?.lag)?v.lag.toFixed(1)+' px':'—').join(' × ');
  const spacing=(values,peaks)=>pitch(values)+(peaks?.some((p,i)=>p&&!values?.[i])?' (strongest candidates before filtering: '+pitch(peaks)+')':'');
@@ -86,7 +87,6 @@ function nativeReview(r){
    n.pitch_at_origin_px?'Estimated block spacing near the search center: '+n.pitch_at_origin_px.join(' × ')+' source pixels.':'',
    n.matched_columns?.length&&n.matched_rows?.length?'Local support spans '+n.matched_columns.length+' columns and '+n.matched_rows.length+' rows.':''
  ].filter(Boolean).join(' '):'No native atlas search recorded.';
- $('referencePanel').hidden=!r.referenceSample;
  if(r.referenceSample){$('refLink').href=r.referenceSample;$('referenceCrop').src=r.referenceSample}
 }
 function downstream(c,r){
@@ -110,18 +110,28 @@ function downstream(c,r){
  const p=document.createElement('p');p.textContent=caption;const a=document.createElement('a');a.href=c.panels[key];a.target='_blank';a.title='Open full '+title.toLowerCase()+' overlay';a.append(svg);box.append(h,a,p);panels.append(box)}
 }
 
-function show(){const c=scene(),r=mask();$('build').value=b;$('surface').value=m;$('prev').disabled=!b&&!m;$('next').disabled=b===scenes.length-1&&m===c.masks.length-1;
+const navigation=scenes.flatMap((c,build)=>c.masks.flatMap((r,surface)=>r.rejected?[]:[{build,surface}]));
+function neighbor(step){
+ const before=entry=>entry.build<b||(entry.build===b&&entry.surface<m);
+ const after=entry=>entry.build>b||(entry.build===b&&entry.surface>m);
+ return step<0?navigation.findLast(before):navigation.find(after)}
+function show(){const c=scene(),r=mask();$('build').value=b;
+ const active=c.masks.filter(v=>!v.rejected);
+ $('surface').replaceChildren(...c.masks.flatMap((v,k)=>v.rejected&&k!==m?[]:[new Option(v.label+(v.rejected?' (rejected)':''),k)]));
+ $('surface').value=m;$('prev').disabled=!neighbor(-1);$('next').disabled=!neighbor(1);
  $('gardenTrial').hidden=c.id!=='test-walled-garden-1-warm-high-right';
- $('source').src=$('all').checked?c.masksImage:c.source;$('progress').textContent=(m+1)+' of '+c.masks.length;
- $('caption').textContent=c.title+' · '+r.label+' · Turquoise marks the selected mask.'+(r.quad?' Gold outlines the sampling area.':' No sampling area was saved.')+(r.skyNote?' '+r.skyNote:'');
+ $('source').src=$('all').checked?c.masksImage:c.source;$('progress').textContent=r.rejected?'Archived proposal':(active.indexOf(r)+1)+' of '+active.length;
+ $('caption').textContent=c.title+' · '+r.label+' · '+(r.rejected?r.skyNote+' Saved crops and notes are available below.':'Turquoise marks the selected mask.'+(r.quad?' Gold outlines the sampling area.':' No sampling area was saved.')+(r.skyNote?' '+r.skyNote:''));
  $('dims').textContent='Block count '+r.dimensions.map(v=>v??'?').join(' × ');
  photo('context',r.images.context,'No saved context');photo('crop',r.images.crop,'No saved crop');photo('sample',r.images.sample,r.reason||'No sample was produced.');
  $('notesHeading').textContent='Feedback on '+c.title+' · '+r.label;const saved=notes[key()]||{};$('note').value=saved.feedback||'';$('question').value=saved.question||'';$('viewVote').value=saved.preferred_view||'';$('atlasVote').value=saved.atlas_assessment||'';$('viewComment').value=saved.view_comment||'';$('atlasComment').value=saved.atlas_comment||'';
  downstream(c,r);history.replaceState(null,'','#'+encodeURIComponent(c.id)+'/'+r.label);draw()}
-async function chooseBuild(i,j=0){b=i;m=j;const t=++token;hitPixels=null;$('overlay').getContext('2d').clearRect(0,0,$('overlay').width,$('overlay').height);
- $('surface').replaceChildren(...scene().masks.map((r,k)=>new Option(r.label,k)));show();const hit=new Image();hit.src=scene().hit;await hit.decode();if(t!==token)return;
+async function chooseBuild(i,j){b=i;m=j>=0?j:scene().masks.findIndex(r=>!r.rejected);const t=++token;hitPixels=null;$('overlay').getContext('2d').clearRect(0,0,$('overlay').width,$('overlay').height);
+ show();const hit=new Image();hit.src=scene().hit;await hit.decode();if(t!==token)return;
  const cv=$('overlay');cv.width=hit.width;cv.height=hit.height;const scratch=document.createElement('canvas');scratch.width=hit.width;scratch.height=hit.height;const ctx=scratch.getContext('2d');ctx.drawImage(hit,0,0);hitPixels=ctx.getImageData(0,0,hit.width,hit.height);draw()}
-function move(step){const j=m+step;if(j<0&&b>0)return chooseBuild(b-1,scenes[b-1].masks.length-1);if(j>=scene().masks.length&&b+1<scenes.length)return chooseBuild(b+1);if(j>=0&&j<scene().masks.length){m=j;show()}}
+function move(step){const next=neighbor(step);if(!next)return;
+ if(next.build!==b)return chooseBuild(next.build,next.surface);
+ m=next.surface;show()}
 $('overlay').onclick=e=>{if(!hitPixels)return;const c=e.currentTarget,r=c.getBoundingClientRect();const x=Math.floor((e.clientX-r.left)*c.width/r.width),y=Math.floor((e.clientY-r.top)*c.height/r.height);const n=hitPixels.data[(y*c.width+x)*4];const j=scene().masks.findIndex(v=>v.index===n);if(j>=0){m=j;show()}else $('caption').textContent='No detected surface at this pixel. '+mask().label+' remains selected.'};
 for(const id of ['viewVote','atlasVote'])$(id).onchange=save;
 $('prev').onclick=()=>move(-1);$('next').onclick=()=>move(1);$('surface').onchange=e=>{m=Number(e.target.value);show()};$('build').onchange=e=>chooseBuild(Number(e.target.value));
@@ -129,5 +139,9 @@ for(const id of ['all','quad'])$(id).onchange=show;for(const id of ['note','ques
 document.addEventListener('keydown',e=>{if(e.ctrlKey||e.metaKey||e.altKey||['INPUT','SELECT','TEXTAREA'].includes(e.target.tagName))return;if(['ArrowLeft','ArrowRight'].includes(e.key)){e.preventDefault();move(e.key==='ArrowLeft'?-1:1)}});
 $('copy').onclick=async()=>{const r=mask(),v=notes[key()]||{};const text=[scene().title+' · '+r.label+' ('+r.id+')',location.href,'Block count '+r.dimensions.map(n=>n??'?').join(' × '),v.preferred_view&&'Preferred view: '+v.preferred_view,v.view_comment&&'Counting view comments: '+v.view_comment,v.atlas_assessment&&'Atlas outlines: '+v.atlas_assessment,v.atlas_comment&&'Atlas outline comments: '+v.atlas_comment,v.feedback&&'Feedback: '+v.feedback,v.question&&'Question: '+v.question].filter(Boolean).join('\n');try{await navigator.clipboard.writeText(text);$('status').textContent='Copied. Paste into this chat.'}catch{window.prompt('Copy this surface for chat',text)}};
 $('download').onclick=()=>{const url=URL.createObjectURL(new Blob([JSON.stringify({version:1,surfaces:Object.values(notes)},null,2)],{type:'application/json'}));const a=document.createElement('a');a.href=url;a.download='surface-review-feedback.json';a.click();document.getElementById("status").textContent='Downloaded. Attach the JSON file in chat to share your review.';setTimeout(()=>URL.revokeObjectURL(url),1000)};
-scenes.forEach((s,i)=>$('build').add(new Option(s.title,i)));const [frame,label]=location.hash.slice(1).split('/');const first=Math.max(0,scenes.findIndex(s=>s.id===frame));chooseBuild(first,Math.max(0,scenes[first].masks.findIndex(r=>r.label===label)));
+scenes.forEach((s,i)=>$('build').add(new Option(s.title,i)));
+function openLinkedSurface(){const [frame,label]=location.hash.slice(1).split('/');
+ const build=Math.max(0,scenes.findIndex(s=>s.id===frame));
+ return chooseBuild(build,scenes[build].masks.findIndex(r=>r.label===label))}
+window.addEventListener('hashchange',openLinkedSurface);openLinkedSurface();
 </script></html>

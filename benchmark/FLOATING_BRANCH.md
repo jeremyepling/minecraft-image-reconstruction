@@ -8,11 +8,14 @@ The connected-atlas baseline transfers shared rows across supported corners, reg
 
 Four views are from Visible Builds v3 and two from Decorative Builds v1. Use the fixed 104 production trend (91.27% strict, 93.42% facade) for historical context. Assess the gap to production using the same buildings, backgrounds, inputs and scoring rule on both branches.
 
+The default sky check rejected 23 of 216 proposals across six views, removing 81,896 background pixels from the combined surface masks. All 193 retained supports and their source crops matched their prior versions. The six decoded placement exports matched in coordinates and materials. [Filtered pipeline replay](reviews/sky-mask-feedback-01/filtered-pipeline-replay.json.gz)
+
 ### Reproduce the six exports
 
 From this checkout, using the benchmark Python environment and the saved open-sky fixtures, source masks/counts, and dense atlas chart handoffs on this PC:
 
 ```powershell
+python -m benchmark.floating_build_local_run ../../minecraft-image-reconstruction/runs/floating-build-grid-01/fixtures.json --sky-handoffs-only
 python -m benchmark.shared_corner_rows
 python -m benchmark.native_surface_counter
 python -m benchmark.native_corner_registration
@@ -20,7 +23,7 @@ python -m benchmark.garden_anchor_extension --arm connected --workers 3
 python -m benchmark.relative_face_round connected-atlas
 ```
 
-The first stage reads frozen source handoffs from the `floating-build-local-grid` and `relative-face-source-charts` worktrees. The following stages consume outputs within this checkout. Decoded and scored exports are under `runs/relative-face-assembly-01/connected-atlas/sky`. This is the benchmark entry point for the floating branch; the ordinary build CLI still runs the production-style pipeline.
+The floating Surface Finder refines a proposal, then tests its native support against a sky mask built from the source image. Each row requires agreeing blue samples at both side borders. Sky and cloud-colored pixels must connect back to a border. A proposal is rejected only when every supported pixel qualifies. Mixed proposals retain their full support. The gate runs before outlines, crops and counts. Each build manifest records its rejected proposal IDs. The sky-handoff command uses the frozen normal and depth fields to reproduce the six inputs. The following stages consume outputs within this checkout. Decoded and scored exports are under `runs/floating-cloud-gate-01/relative-face-assembly/connected-atlas/sky`. This is the benchmark entry point for the floating branch; the ordinary build CLI still runs the production-style pipeline.
 
 ## Which work belongs here
 
@@ -29,7 +32,7 @@ The first stage reads frozen source handoffs from the `floating-build-local-grid
 | Floating local grids, source charts and relative assembly/scoring | Inputs, visible-grid assembly, single-translation evaluation |
 | Relative face junction control | Reference-only estimate of how well exact visible grids join |
 | Shared corner rows and surface crop first | Previous source-only registered-seam baseline; weaker variants retained for comparisons |
-| Sky mask feedback, line leveling and the surface inspector | Experiments and review tools. The sky filter cleaned background masks on the composites. Line leveling helped several surfaces and worsened others. Neither improvement is included in the baseline score as a new placement gain. |
+| Sky mask feedback, line leveling and the surface inspector | Experiments and review tools. The whole-mask sky check now runs in the floating Surface Finder. Line leveling helped several surfaces and worsened others. Neither improvement is included in the baseline score as a new placement gain. |
 
 The `experiment/floating-build-floor-bypass` worktree remains a historical diagnostic of the older placer, including supplied-camera interventions. Future work should start here and use sibling worktrees for parallel candidates. Keep the current inspector and annotation exports available at their original paths so existing feedback links keep working.
 

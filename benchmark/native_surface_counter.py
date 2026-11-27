@@ -9,15 +9,16 @@ from PIL import Image
 
 
 from benchmark import relative_face_round as ordinary
-from benchmark.expanded_baseline import ROOT, digest, read, save
+from benchmark.expanded_baseline import digest, read, save
+from benchmark.floating_cloud_replay import NATIVE_COUNTER, SHARED_ROWS, check_handoff, source_handoff
 from benchmark.full_block_lattice import atlas, verify_sprite
-from benchmark.shared_corner_rows import HANDOFF, unpack
+from benchmark.shared_corner_rows import unpack
 from engine.atlas_count import _shortlist
 from engine.geometry import UNIT, project
 from engine.surface_model import lens
 
-OUTPUT = ROOT / 'runs/surface-crop-first-01'
-BASE = ROOT / 'runs/shared-corner-rows-01/sky'
+OUTPUT = NATIVE_COUNTER
+BASE = SHARED_ROWS / 'sky'
 FRACTIONS = (np.arange(16) + .5) / 16
 SAMPLES = np.stack(np.meshgrid(FRACTIONS, FRACTIONS), axis=-1)
 MAX_POINTS = 1536
@@ -276,13 +277,14 @@ def fill_fallback_ids(packet, surfaces):
 def predict(case):
     cv2.setNumThreads(1)
     folder = OUTPUT/'sky'/case['id']
-    handoff = HANDOFF/case['id']/'source-handoff'
+    handoff = source_handoff(case['id'])
     baseline = BASE/case['id']/'charts.json'
     packet = read(baseline)
     source = Path(case['variants']['sky']['image'])
     sha = digest(source)
-    if sha != packet['source_sha256'] or sha != read(handoff/'build-manifest.json')['image_sha256']:
+    if sha != packet['source_sha256'] or sha != case['variants']['sky']['source_sha256']:
         raise ValueError('Screenshot hashes disagree')
+    provenance = check_handoff(packet, handoff, sha)
     rgb = np.array(Image.open(source).convert('RGB'))
     mono = rgb.mean(2,dtype=np.float32)
     gray = mono - cv2.GaussianBlur(mono,(0,0),2.)
@@ -303,7 +305,7 @@ def predict(case):
         if chart:
             replacement[chart['id']] = chart
     save(folder/'native-evidence.json',dict(source_sha256=sha,atlas=atlas().provenance,
-         surfaces_sha256=digest(handoff/'surfaces.json'),baseline_chart_sha256=digest(baseline),surfaces=evidence))
+         shared_chart_sha256=digest(baseline),surfaces=evidence,**provenance))
     charts = [c for c in packet['charts'] if c['id'] not in replacement]+list(replacement.values())
     save(folder/'charts.json',dict(packet,charts=charts))
     material, transfers = fill_fallback_ids(packet,evidence)

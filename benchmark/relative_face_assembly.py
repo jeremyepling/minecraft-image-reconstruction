@@ -305,6 +305,7 @@ def assemble(charts, *, min_edges=2, edge_pixels=3.5, coplanar_pixels=None, rela
     groups=[]
     for origins in components:
         blocks={}
+        assigned=set()
         for k,t in sorted(origins.items(),key=lambda row: charts[row[0]].get('confidence',0.),reverse=True):
             c=charts[k]
             u,v=[axis_vector(a) for a in c['axes']]
@@ -312,9 +313,12 @@ def assemble(charts, *, min_edges=2, edge_pixels=3.5, coplanar_pixels=None, rela
             offset=np.minimum(0,u)+np.minimum(0,v)-np.maximum(0,plane_normal)
             for cell in c['cells']:
                 xyz=tuple((t+offset+cell['u']*u+cell['v']*v).tolist())
-                blocks.setdefault(xyz,cell['block_id'])
+                if xyz not in blocks:
+                    blocks[xyz]=cell['block_id']
+                    if not cell.get('fallback'):
+                        assigned.add(xyz)
         groups.append(dict(origins={charts[i]['id']:t.tolist() for i,t in origins.items()},
-                           blocks=blocks))
+                           blocks=blocks, assigned=assigned))
     groups.sort(key=lambda c:(-len(c['blocks']),-len(c['origins'])))
     for edge in (*joins,*conflicts):
         edge['chart_ids']=[charts[edge[k]]['id'] for k in ('i','j')]

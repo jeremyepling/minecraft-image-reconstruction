@@ -1,6 +1,6 @@
 """Replay the frozen local-grid predictor on the paired screenshot cohort."""
 import argparse
-from concurrent.futures import ProcessPoolExecutor
+from concurrent.futures import ProcessPoolExecutor, as_completed
 from pathlib import Path
 from unittest.mock import patch
 
@@ -14,27 +14,38 @@ from PIL import Image, ImageDraw
 import numpy as np
 
 ROOT = Path(__file__).resolve().parents[1]
-OUTPUT = ROOT / "runs/floating-build-grid-01"
+OUTPUT = ROOT / "runs/floating-cloud-gate-01"
+
+
+def build_handoff(source, cache, handoff):
+    from engine.floating_sky import METHOD
+    receipt = handoff / 'build-manifest.json'
+    if receipt.exists():
+        saved = read(receipt)
+        if saved['image_sha256'] == digest(source) and saved['stages'].get('background_filter') == METHOD:
+            return
+
+    def field(image, kind):
+        with np.load(cache / (kind + '.npz')) as data:
+            return data['value']
+
+    with patch.object(surface_fields, 'infer', field), patch.object(
+            visible_placement, 'seam_camera', side_effect=AssertionError("No floor-camera calls permitted")):
+        surface_model.build(source, '26.3', handoff, through='counts', boundary='wall-depth-anything')
 
 
 def arm(task):
     e, variant, baseline, native_fallback = task
     spec = e['variants'][variant]
     source = Path(spec['image'])
-    cohort = OUTPUT.parent/'floating-build-grid-native-01' if native_fallback else OUTPUT
+    cohort = OUTPUT.parent/'floating-cloud-gate-native-01' if native_fallback else OUTPUT
     out = cohort / variant / e['id']
     out.mkdir(parents=True, exist_ok=True)
     cache = baseline / variant / e['dataset'] / e['id'] / 'handoffs'
     if digest(source) != spec['source_sha256']:
         raise ValueError("Source hash mismatch")
-    def field(image,kind):
-        with np.load(cache/(kind+'.npz')) as data:
-            return data['value']
     handoff = OUTPUT / variant / e['id'] / 'source-handoff'
-    if not (handoff / 'build-manifest.json').exists():
-        with patch.object(surface_fields, 'infer', field), patch.object(
-                visible_placement, 'seam_camera', side_effect=AssertionError("No floor-camera calls permitted")):
-            surface_model.build(source,'26.3',handoff,through='counts',boundary='wall-depth-anything')
+    build_handoff(source, cache, handoff)
     parts = read(handoff/'surfaces.json')['planes']
     counts = read(handoff/'counts.json')
     image = Image.open(source).convert('RGB')
@@ -85,11 +96,25 @@ def main():
     parser.add_argument('manifest',type=Path)
     parser.add_argument('--workers',type=int,default=4)
     parser.add_argument('--native-fallback',action='store_true')
+    parser.add_argument('--sky-handoffs-only', action='store_true', help='Build the floating Surface Finder and counter inputs for the six-view benchmark.')
     args = parser.parse_args()
-    cohort = OUTPUT.parent/'floating-build-grid-native-01' if args.native_fallback else OUTPUT
+    cohort = OUTPUT.parent/'floating-cloud-gate-native-01' if args.native_fallback else OUTPUT
     import time
     baseline = args.manifest.parent/'baseline'
     cases = read(args.manifest)['cases']
+    if args.sky_handoffs_only:
+        with ProcessPoolExecutor(args.workers) as pool:
+            jobs = []
+            for e in cases:
+                source = Path(e['variants']['sky']['image'])
+                if digest(source) != e['variants']['sky']['source_sha256']:
+                    raise ValueError(f'Source hash mismatch: {source}')
+                jobs.append(pool.submit(build_handoff, source,
+                                        baseline/'sky'/e['dataset']/e['id']/'handoffs',
+                                        OUTPUT/'sky'/e['id']/'source-handoff'))
+            for job in as_completed(jobs):
+                job.result()
+        return
     tasks = [(e,v,baseline,args.native_fallback) for e in cases for v in e['variants']
              if not (cohort/v/e['id']/'case.json').exists()]
     pending = {}

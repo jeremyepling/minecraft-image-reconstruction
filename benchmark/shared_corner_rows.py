@@ -7,13 +7,15 @@ import numpy as np
 from PIL import Image
 
 from benchmark import relative_face_round as ordinary
-from benchmark.expanded_baseline import ROOT, WORKTREES, digest, read, save
+from benchmark.expanded_baseline import WORKTREES, digest, read, save
+from benchmark.floating_cloud_replay import SHARED_ROWS, handoff_provenance, source_handoff
 from benchmark.full_block_lattice import atlas, verify_sprite
 from engine.geometry import UNIT, project, transform
 from engine.surface_model import lens
+from engine.surface_perimeter import _native_alpha
 
-OUTPUT = ROOT / 'runs/shared-corner-rows-01'
-HANDOFF = WORKTREES / 'floating-build-local-grid/runs/floating-build-grid-01/sky'
+OUTPUT = SHARED_ROWS
+FROZEN_HANDOFF = WORKTREES / 'floating-build-local-grid/runs/floating-build-grid-01/sky'
 DENSE = ordinary.ATLAS / 'sky'
 # Rows must have an independently measured repeated texture period. A second
 # width without a repeat measurement is emitted only in the first two columns.
@@ -229,18 +231,90 @@ def pair(a, b, rgb, scale, K):
     return result, [donor, receiver]
 
 
+def dense_reuse(packet, frozen, handoff, image):
+    """Check masks, consumed count fields, and shared direction before reusing charts."""
+    from benchmark.camera_structure_scaffold import outline_lines
+    from benchmark.relative_dense_charts import vertical_pencil
+    from benchmark.relative_source_charts import wall_quad
+
+    def load_inputs(folder):
+        planes = {p['id']: p for p in read(folder/'surfaces.json')['planes']}
+        rows = {r['id']: r for r in read(folder/'counts.json')['surfaces']}
+        return planes, rows
+
+    old_planes, old_rows = load_inputs(frozen)
+    planes, rows = load_inputs(handoff)
+    for sid, plane in planes.items():
+        old = old_planes.get(sid, {})
+        if any(plane.get(k) != old.get(k) for k in ('support', 'normal_camera', 'relative_inverse_depth')):
+            return None
+        row, old_row = rows.get(sid, {}), old_rows.get(sid, {})
+        if (any(row.get(k) != old_row.get(k) for k in ('quad', 'counts'))
+                or row.get('evidence', {}).get('aspect') != old_row.get('evidence', {}).get('aspect')):
+            return None
+
+    def pencil(parts, count_rows):
+        walls = [p for sid, p in parts.items() if wall_quad(count_rows.get(sid, {}), p) is not None]
+        lines, _ = outline_lines(image, walls, [])
+        return vertical_pencil(lines, image.size)
+
+    if not np.array_equal(pencil(old_planes, old_rows), pencil(planes, rows)):
+        return None
+    removed = np.zeros(image.size[::-1], bool)
+    removed_ids = old_planes.keys() - planes.keys()
+    for sid in removed_ids:
+        alpha, (left, top, right, bottom) = _native_alpha(old_planes[sid]['support'], image.size)
+        removed[top:bottom, left:right] |= np.asarray(alpha) != 0
+    y, x = np.nonzero(removed)
+    pixels = np.column_stack((x + .5, y + .5))
+    for chart in packet['charts']:
+        if chart['id'] not in planes:
+            return None
+        uv = project(np.linalg.inv(chart['H']), pixels)
+        for cell in chart['cells']:
+            inside = ((uv[:, 0] >= cell['u']) & (uv[:, 0] < cell['u'] + 1)
+                      & (uv[:, 1] >= cell['v']) & (uv[:, 1] < cell['v'] + 1))
+            if inside.any():
+                return None
+    return dict(removed_ids=sorted(removed_ids), removed_pixels=len(pixels),
+                unchanged_vertical_pencil=True, overlapping_pixels=0,
+                checked_cells=sum(len(c['cells']) for c in packet['charts']))
+
+
+def dense_packet(case, handoff, image, provenance):
+    from benchmark.relative_source_charts import extract
+
+    name = case['id']
+    spec = case['variants']['sky']
+    path = DENSE/name/'dense-charts.json'
+    frozen = FROZEN_HANDOFF/name/'source-handoff'
+    packet = read(path)
+    if not (spec['source_sha256'] == packet['source_sha256'] == read(frozen/'build-manifest.json')['image_sha256']
+            and atlas().provenance['atlas_sha256'] == packet['atlas_sha256']
+            and all(digest(frozen/f'{key}.json') == packet[f'{key}_sha256'] for key in ('counts', 'surfaces'))):
+        raise ValueError(f'Frozen dense charts failed provenance check: {path}')
+    proof = dense_reuse(packet, frozen, handoff, image)
+    if proof is not None:
+        return packet | provenance | dict(
+            baseline_chart_sha256=digest(path), dense_chart_reuse=proof,
+            frozen_surfaces_sha256=packet['surfaces_sha256'], frozen_counts_sha256=packet['counts_sha256'])
+    regenerated = OUTPUT/'dense-source'/'sky'/name
+    extract((spec, name, 'sky', handoff, regenerated))
+    path = regenerated/'dense-charts.json'
+    return read(path) | provenance | dict(baseline_chart_sha256=digest(path), dense_chart_reuse=None)
+
+
 def predict(case):
     name = case['id']
     folder = OUTPUT/'sky'/name
-    handoff = HANDOFF/name/'source-handoff'
-    packet = read(DENSE/name/'dense-charts.json')
+    handoff = source_handoff(name)
     source = Path(case['variants']['sky']['image'])
-    if not (digest(source) == case['variants']['sky']['source_sha256'] == packet['source_sha256']
-            == read(handoff/'build-manifest.json')['image_sha256']):
+    sha = digest(source)
+    if sha != case['variants']['sky']['source_sha256']:
         raise ValueError('Inconsistent source provenance')
-    if any(digest(handoff/f'{k}.json') != packet[f'{k}_sha256'] for k in ('counts','surfaces')):
-        raise ValueError('Cached handoffs disagree')
+    provenance = handoff_provenance(handoff, sha)
     image = Image.open(source).convert('RGB')
+    packet = dense_packet(case, handoff, image, provenance)
     rgb = np.asarray(image)
     rows = {r['id']:r for r in read(handoff/'counts.json')['surfaces']}
     planes = sorted(read(handoff/'surfaces.json')['planes'], key=lambda p:-p['support_area'])
@@ -267,16 +341,15 @@ def predict(case):
         else:
             replacement.update({c['id']:c for c in charts})
         seams.append(record)
-    save(folder/'seams.json',dict(id=name,source_sha256=packet['source_sha256'],seams=seams))
+    save(folder/'seams.json',dict(id=name,source_sha256=sha,seams=seams,**provenance))
     charts = [c for c in packet['charts'] if c['id'] not in replacement] + list(replacement.values())
-    base = dict(packet, baseline_chart_sha256=digest(DENSE/name/'dense-charts.json'))
-    save(folder/'charts.json',dict(base, charts=charts))
+    save(folder/'charts.json',dict(packet, charts=charts))
     # Isolate the contribution of a transferred receiver from rasterizing the
     # measured donor itself. Preserve every other baseline chart and join rule.
     donors = {r['donor_id'] for r in seams if r['decision']=='accepted'}
     control = [c for c in packet['charts'] if c['id'] not in donors]
     control.extend(c for k,c in replacement.items() if k in donors)
-    save(OUTPUT/'donor-only'/'sky'/name/'charts.json',dict(base, charts=control))
+    save(OUTPUT/'donor-only'/'sky'/name/'charts.json',dict(packet, charts=control))
     print(name, [(r['donor'],r['receiver'],r['donor_rows'],r['receiver_rows']) for r in seams if r['decision']=='accepted'], flush=True)
 
 

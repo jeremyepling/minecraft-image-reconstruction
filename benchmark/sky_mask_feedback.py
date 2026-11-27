@@ -6,7 +6,7 @@ import numpy as np
 from PIL import Image, ImageDraw
 
 from benchmark.expanded_baseline import ROOT, SOURCE, WORKTREES, digest, read, save
-from engine.camera_lines import _runs
+from engine.floating_sky import sky_support
 from engine.plane_consensus import row_runs
 from engine.surface_perimeter import _native_alpha
 
@@ -15,31 +15,6 @@ FIXTURES = SOURCE / "floating-build-grid-01/fixtures.json"
 SURFACES = WORKTREES / "floating-build-local-grid/runs/floating-build-grid-01/sky"
 CHARTS = WORKTREES / "surface-crop-first/runs/surface-crop-first-01/registered-seam/sky"
 OUTPUT = ROOT / "runs/sky-mask-feedback-01"
-
-
-def sky_support(image):
-    """Compare each pixel to its row's border sky and plausible whitening by cloud."""
-    rgb = np.asarray(image.convert("RGB"), dtype=np.int16)
-    left, right = rgb[:, 0], rgb[:, -1]
-    # Require independent agreement from two sides, and a blue, unsaturated-red sky.
-    row_ok = ((np.abs(left - right).max(axis=1) <= 2) &
-              (left[:, 2] >= 230) & (left[:, 2] - left[:, 0] >= 40) &
-              (left[:, 1] - left[:, 0] >= 15))
-    base = left[:, None, :]
-    delta = rgb - base
-    white_mix = delta[:, :, 0] / np.maximum(1, 255 - base[:, :, 0])
-    expected_green = base[:, :, 1] + white_mix * (255 - base[:, :, 1])
-    # A pale cloud must retain the sky's blue tint and similar mixing in R/G.
-    compatible = (row_ok[:, None] & (delta[:, :, 0] >= -2) &
-                  (np.abs(rgb[:, :, 1] - expected_green) <= 6) &
-                  (np.abs(delta[:, :, 2]) <= 4) & (rgb[:, :, 2] - rgb[:, :, 0] >= 7))
-    result = np.zeros_like(compatible)
-    width = image.width
-    for runs in _runs(compatible):
-        if any(a == 0 or b == width for _, a, b in runs):
-            for y, a, b in runs:
-                result[y, a:b] = True
-    return result
 
 
 def predict(image, planes):

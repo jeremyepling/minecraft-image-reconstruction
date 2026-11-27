@@ -8,16 +8,21 @@ import numpy as np
 from PIL import Image
 
 from benchmark.expanded_baseline import ROOT, WORKTREES, read, save, digest
+from benchmark.floating_cloud_replay import ANCHOR_EXTENSION, NATIVE_COUNTER, check_handoff, source_handoff
 from benchmark.full_block_lattice import atlas
-from benchmark.native_surface_counter import HANDOFF, ordinary, project, unpack
+from benchmark.native_surface_counter import ordinary, project, unpack
+from benchmark.shared_corner_rows import FROZEN_HANDOFF
 from engine.atlas_count import _shortlist
 
-OUTPUT = ROOT / 'runs/garden-anchor-extension-01'
-REGISTERED = Path('runs/surface-crop-first-01/registered-seam/sky')
+OUTPUT = ANCHOR_EXTENSION
+FROZEN_OUTPUT = ROOT / 'runs/garden-anchor-extension-01'
+FROZEN_REGISTERED = Path('runs/surface-crop-first-01/registered-seam/sky')
 
 
-def baseline_file(name):
-    relative = REGISTERED / name / 'charts.json'
+def baseline_file(name, reviewed=False):
+    if not reviewed:
+        return NATIVE_COUNTER / 'registered-seam' / 'sky' / name / 'charts.json'
+    relative = FROZEN_REGISTERED / name / 'charts.json'
     local = ROOT / relative
     return local if local.is_file() else WORKTREES / 'floating-visible-builds' / relative
 
@@ -65,12 +70,16 @@ def pencils(rgb, segments):
     return result if np.all(np.abs(result[:, 2]) > 1e-10) else None
 
 
-def inputs():
+def inputs(reviewed=False):
     for case in read(ordinary.SHARED / 'fixtures.json')['cases']:
-        base = baseline_file(case['id'])
+        base = baseline_file(case['id'], reviewed)
         packet = read(base)
-        if packet['source_sha256'] != digest(Path(case['variants']['sky']['image'])):
+        spec = case['variants']['sky']
+        sha = digest(Path(spec['image']))
+        if not sha == spec['source_sha256'] == packet['source_sha256']:
             raise ValueError(f"Source image differs from registered chart input for {case['id']}")
+        if not reviewed:
+            check_handoff(packet, source_handoff(case['id']), sha)
         yield (case, packet)
 
 
@@ -124,7 +133,8 @@ def rectify(rgb, mask, vp, edges):
 
 def reviewed_garden_planes(case, rgb):
     """Only the targeted ablations use Jeremy’s three reviewed surface ranks."""
-    planes = sorted(read(HANDOFF / case['id'] / 'source-handoff/surfaces.json')['planes'], key=lambda p: -p['support_area'])
+    planes = sorted(read(FROZEN_HANDOFF / case['id'] / 'source-handoff/surfaces.json')['planes'],
+                    key=lambda p: -p['support_area'])
     for j in (0, 1, 9):
         p = planes[j]
         mask = cv2.resize(unpack(p), (rgb.shape[1], rgb.shape[0]), interpolation=cv2.INTER_NEAREST)
@@ -318,7 +328,7 @@ def emit(plane, H, opt, rows, mode):
 
 def reviewed_arms():
     cv2.setNumThreads(1)
-    for case, packet in inputs():
+    for case, packet in inputs(reviewed=True):
         by_arm = {mode: [] for mode in ('anchor', 'repeat')}
         if 'walled-garden-1-warm-high-right' in case['id']:
             rgb = np.array(Image.open(case['variants']['sky']['image']).convert('RGB'))
@@ -339,12 +349,12 @@ def reviewed_arms():
                     if chart is not None:
                         charts.append(chart)
                     print(mode, Counter((c['block_id'] for c in chart['cells'])) if chart else {}, flush=True)
-                save(OUTPUT/'evidence'/(plane['id']+'.json'),dict(anchor=list(opt),peaks=peaks,
+                save(FROZEN_OUTPUT/'evidence'/(plane['id']+'.json'),dict(anchor=list(opt),peaks=peaks,
                      native_basis=H.tolist(),observations=rows))
         for mode, charts in by_arm.items():
             replace = {c['id'] for c in charts}
             result = dict(packet, charts=[c for c in packet['charts'] if c['id'] not in replace] + charts)
-            save(OUTPUT / mode / 'sky' / case['id'] / 'charts.json', result)
+            save(FROZEN_OUTPUT / mode / 'sky' / case['id'] / 'charts.json', result)
 
 
 
@@ -398,8 +408,9 @@ def all_walls(job):
     vp = pencils(rgb, segments)
     accepted = []
     seen = {c['id'] for c in packet['charts']}
-    handoff = HANDOFF / case['id'] / 'source-handoff/surfaces.json'
-    planes = read(handoff)['planes']
+    handoff = source_handoff(case['id'])
+    provenance = check_handoff(packet, handoff, packet['source_sha256'])
+    planes = read(handoff/'surfaces.json')['planes']
     records = []
     for plane in sorted(planes, key=lambda p: -p['support_area']):
         if plane['id'] in seen or not plane.get('normal_camera') or abs(plane['normal_camera'][1]) >= 0.65:
@@ -421,9 +432,11 @@ def all_walls(job):
             accepted.append(chart)
             print(case['id'], chart['id'], len(chart['cells']), chart['cells'][0]['block_id'], flush=True)
     folder = OUTPUT / 'connected' / 'sky' / case['id']
-    save(folder/'evidence.json',dict(baseline_sha256=digest(baseline_file(case['id'])),
-        source_sha256=packet['source_sha256'],surfaces_sha256=digest(handoff),records=records))
-    save(folder / 'charts.json', dict(packet, charts=packet['charts'] + accepted))
+    registered_sha256 = digest(baseline_file(case['id']))
+    save(folder/'evidence.json',dict(baseline_sha256=registered_sha256,
+        source_sha256=packet['source_sha256'],records=records,**provenance))
+    save(folder / 'charts.json', dict(packet, charts=packet['charts'] + accepted,
+         registered_chart_sha256=registered_sha256))
 
 
 if __name__ == '__main__':

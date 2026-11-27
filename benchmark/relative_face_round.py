@@ -9,6 +9,7 @@ from PIL import Image, ImageDraw
 
 from benchmark.expanded_baseline import ROOT, SOURCE, WORKTREES, digest, read, save
 from benchmark.expanded_scores import load_reference
+from benchmark.floating_cloud_replay import ANCHOR_EXTENSION, ASSEMBLY, NATIVE_COUNTER, check_handoff, source_handoff
 from benchmark.mask_blocks import decoded_pack
 from benchmark.relative_face_assembly import assemble, axis_vector, project
 from benchmark.relative_face_scoring import evaluate_relative_voxels, yaw_from_anchor_normal
@@ -19,9 +20,11 @@ SHARED = SOURCE / 'floating-build-grid-01'
 OUTPUT = ROOT / 'runs/relative-face-assembly-01'
 ATLAS = WORKTREES / 'relative-face-source-charts/runs/relative-face-assembly-01'
 CONTROL = WORKTREES / 'relative-face-junction-control/runs/relative-face-assembly-01'
+ACTIVE = ('connected-atlas', 'registered-seam')
 MODES = {
-    'connected-atlas': (ROOT/'runs/garden-anchor-extension-01/connected','charts.json',False,1,2.5,.5,False),
-    'registered-seam': (ROOT/'runs/surface-crop-first-01/registered-seam','charts.json',False,1,2.5,.5,False),
+    'connected-atlas': (ANCHOR_EXTENSION/'connected','charts.json',False,1,2.5,.5,False),
+    'registered-seam': (NATIVE_COUNTER/'registered-seam','charts.json',False,1,2.5,.5,False),
+    'connected-atlas-frozen': (ROOT/'runs/garden-anchor-extension-01/connected','charts.json',False,1,2.5,.5,False),
     'atlas': (ATLAS,'charts.json',False,2,3.5,None,False),
     'atlas-one-edge': (ATLAS,'charts.json',False,1,3.5,None,False),
     'count-exploratory': (ATLAS,'counter-charts.json',False,1,3.5,.5,False),
@@ -66,21 +69,28 @@ def evaluate(job):
     tree,name,reference_only,edges,edge_px,coplanar_px,depth=MODES[mode]
     input_file=tree/variant/case['id']/name
     if not input_file.is_file():
+        if mode in ACTIVE:
+            raise FileNotFoundError(f'Missing active charts: {input_file}')
         return None
     packet=read(input_file)
     image_path=Path(case['variants'][variant]['image'])
     sha=digest(image_path)
     if sha!=packet['source_sha256'] or sha!=case['variants'][variant]['source_sha256']:
         raise ValueError(f'Chart and source images disagree: {input_file}')
+    provenance = {}
+    if mode in ACTIVE:
+        provenance = check_handoff(packet, source_handoff(case['id']), sha)
+    measured_assignments = bool(provenance) or mode == 'connected-atlas-frozen' or 'background_filter' in packet
     charts=packet['charts']
     image=Image.open(image_path).convert('RGB')
     field,field_sha=load_depth(case,variant,image.size) if depth else (None,None)
     result=assemble(charts,min_edges=edges,edge_pixels=edge_px,coplanar_pixels=coplanar_px,relative_depth=field)
-    main=result['groups'][0] if result['groups'] else dict(blocks={},origins={})
+    main=result['groups'][0] if result['groups'] else dict(blocks={},origins={},assigned=set())
     # Export is allowed at any anchor. Retain one connected group until the
     # source image establishes how detached groups relate to that same origin.
     predicted={p:'minecraft:'+material.removeprefix('minecraft:') for p,material in main['blocks'].items()}
-    folder=OUTPUT/mode/variant/case['id']
+    out = ASSEMBLY if mode in (*ACTIVE, 'connected-atlas-frozen') else OUTPUT
+    folder=out/mode/variant/case['id']
     folder.mkdir(parents=True,exist_ok=True)
     pack=folder/'reconstruction.zip'
     write_pack(pack,{p:name.removeprefix('minecraft:') for p,name in predicted.items()},JAVA_26_3_FORMAT)
@@ -93,7 +103,8 @@ def evaluate(job):
         yaw=yaw_from_anchor_normal(anchor['normal_camera'], axis_vector(anchor['local_normal_axis']), ref.pose)
     quarters=0 if reference_only or not predicted else (None if yaw is None else yaw['yaw_quarters'])
     score,aligned=evaluate_relative_voxels(predicted,ref,yaw_quarters=quarters,
-                                            relaxed_yaw=not reference_only)
+                                            relaxed_yaw=not reference_only,
+                                            assigned=main['assigned'] if measured_assignments else None)
     evidence_overlay(image,charts,result,main,folder/'source-overlay.jpg')
     save(folder/'placements.json',dict(local=[[list(p),m] for p,m in sorted(predicted.items())],
         aligned=[[list(p),m] for p,m in sorted(aligned.items())]))
@@ -103,7 +114,7 @@ def evaluate(job):
                  charts_seen=len(charts), oriented_charts=result['oriented_charts'], kept_charts=len(main['origins']),
                  components=len(result['groups']), component_sizes=[len(c['blocks']) for c in result['groups']],
                  selected_origins=main['origins'], joins=result['joins'], conflicts=result['conflicts'],
-                 depth_vetoes=result['depth_vetoes'], yaw=yaw, score=score)
+                 depth_vetoes=result['depth_vetoes'], yaw=yaw, score=score, **provenance)
     save(folder/'score.json',receipt)
     display=score['fixed'] or score['relaxed_yaw']
     return (mode,variant,case['id'],len(charts),len(main['origins']),

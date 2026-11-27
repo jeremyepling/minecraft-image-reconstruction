@@ -52,6 +52,17 @@ class RelativeFaceAssemblyTest(unittest.TestCase):
         self.assertEqual(len(result['groups']),2)
         self.assertFalse(result['joins'])
 
+    def test_assignment_follows_the_face_that_supplied_the_exported_id(self):
+        front=sheet('front',[1,2],3,3,((0,2),(0,3)),(0,0))
+        side=sheet('side',[3,2],1,2,((0,3),(0,3)),(0,0))
+        front['confidence']=1.0
+        for cell in front['cells']:
+            cell.update(block_id='minecraft:smooth_stone',fallback=True)
+        group=assemble([front,side])['groups'][0]
+        fallback={p for p, block_id in group['blocks'].items() if block_id=='minecraft:smooth_stone'}
+        self.assertEqual(len(fallback),6)
+        self.assertEqual(group['assigned'],group['blocks'].keys()-fallback)
+
     def test_reject_incompatible_cycle(self):
         def edge(a,b,dx):
             return dict(i=a,j=b,shift=(dx,0,0))

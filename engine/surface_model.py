@@ -530,6 +530,11 @@ def build(image_path, version, out, *, outlines=None, order_method=None, through
         elif boundary=='depth-split':
             from engine.surface_depth_split import SETTINGS as boundary_settings, split
             patches=split(image,patches,fields['depth'],version)
+        if boundary == 'wall-depth-anything':
+            from engine import floating_sky
+            patches, sky_stats = floating_sky.filter_proposals(image, patches)
+            methods['background_filter'] = floating_sky.METHOD
+            boundary_settings['background_filter'] = sky_stats
         methods['surface_boundary']=boundary
         if boundary == CROP_SPLIT:
             from engine.sky_filter import filter_surface, sky_masks
