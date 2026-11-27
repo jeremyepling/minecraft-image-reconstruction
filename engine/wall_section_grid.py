@@ -10,7 +10,7 @@ from engine.atlas_phase import ATLAS_SHA256
 from engine.camera_atlas_floor import _atlas
 from engine.surface_model import intrinsic
 from engine.surface_perimeter import _native_alpha
-from engine.thin_atlas_faces import StripEvidence, _match, _corr
+from engine.thin_atlas_faces import StripEvidence, _match, _corr, model_probabilities
 from engine.visible_horizontal_faces import _keep_prior_visible
 from engine.visible_placement import _frontmost_cells, _sample_face
 
@@ -160,6 +160,22 @@ def candidates(image,parts,camera,prior,atlas_path=None):
     return ctx,sections
 
 
+def disjoint(sections):
+    # Fix the owner of each candidate before any labels are opened. Each section retains a keep-baseline action.
+    claimed=set()
+    groups=[]
+    for group in sections:
+        owned={tuple(c) for opt in group for c in opt['cells']}-claimed
+        if not owned:
+            continue
+        # Do not modify option geometry or its features when another section owns some of its cells.
+        choices=[opt for opt in group if all(tuple(c) in owned for c in opt['cells'])]
+        if choices:
+            groups.append(choices)
+            claimed.update(tuple(c) for opt in choices for c in opt['cells'])
+    return groups
+
+
 def materialize(ctx,prior,choices):
     offered={}
     for opt in choices:
@@ -185,3 +201,88 @@ def materialize(ctx,prior,choices):
             return prior|keep
         keep=checked
     return prior
+
+
+def select(groups,model,threshold):
+    flat=[o for g in groups for o in g]
+    if not flat:
+        return []
+    probs=model_probabilities(np.array([o['features'] for o in flat]),model)
+    selected=[]
+    start=0
+    for group in groups:
+        scores=probs[start:start+len(group)]
+        eligible=[(len(o['cells'])*(p-threshold+.015),p,j) for j,(o,p) in enumerate(zip(group,scores)) if p>=threshold]
+        if eligible:
+            selected.append(group[max(eligible)[2]])
+        start+=len(group)
+    return selected
+
+
+@lru_cache(maxsize=2)
+def load_model(raw):
+    model=json.loads(raw)
+    if model['features']!=list(FEATURES):
+        raise ValueError('Unexpected wall-section model input schema')
+    return model
+
+
+def recover(image,parts,counts,camera,prior,*,atlas_path=None,mode='strict'):
+    try:
+        model=load_model(MODEL.read_bytes())
+        threshold=model['thresholds'][mode]
+    except (OSError,ValueError,KeyError,TypeError):
+        return prior,dict(method='unavailable')
+    ctx,raw=candidates(image,parts,camera,prior,atlas_path)
+    groups=disjoint(raw)
+    choices=select(groups,model,threshold)
+    after=materialize(ctx,prior,choices) if choices else prior
+    return after,dict(sections=len(groups),alternatives=sum(map(len,groups)),accepted_sections=len(choices),
+                      alternate_origin=sum(any(o['origin']) for o in choices),added=len(after-prior))
+
+
+def balanced(image,parts,counts,camera,prior):
+    return recover(image,parts,counts,camera,prior,mode='balanced')
+
+
+def operating(image,parts,counts,camera,prior):
+    return recover(image,parts,counts,camera,prior,mode='operating')
+
+
+def transferred(image,parts,counts,camera,prior,*,atlas_path=None,anchored=False):
+    """Score each entire alternative with the existing vertical-face decision model."""
+    from engine import vertical_atlas_faces as faces
+    try:
+        model=faces.weights(faces.WEIGHTS,faces.WEIGHTS.stat().st_mtime_ns)
+    except (OSError,ValueError,TypeError,KeyError):
+        return prior,dict(method='unavailable')
+    ctx,sections=candidates(image,parts,camera,prior,atlas_path)
+    groups=disjoint(sections)
+    offered={}
+    for group in groups:
+        for opt in group:
+            for cell in opt['cells']:
+                key=cell,opt['axis']
+                if key not in offered:
+                    adjacent=sum(tuple(v+(s if i==axis else 0) for i,v in enumerate(cell)) in prior
+                                 for axis in range(3) if axis!=key[1] for s in (-1,1))
+                    offered[key]=faces.measure(ctx,cell,key[1],adjacent)
+    def passes(key,joint=None):
+        row=offered[key]
+        if joint is not None and row:
+            row=faces.measure(ctx,*key,row['neighboring'],joint)
+        return faces.accepted(row,(model,.95)) and (not anchored or row['donor_dist']<=3)
+    choices=[]
+    for group in groups:
+        valid=[o for o in group if all(passes((c,o['axis'])) for c in o['cells'])]
+        if valid:
+            choices.append(max(valid,key=lambda o:(len(o['cells']),min(offered[c,o['axis']]['split'] for c in o['cells']))))
+    if choices:
+        joint=ctx.joint({c for o in choices for c in o['cells']})
+        choices=[o for o in choices if all(passes((c,o['axis']),joint) for c in o['cells'])]
+    after=materialize(ctx,prior,choices) if choices else prior
+    return after,dict(sections=len(groups),choices=len(choices),added=len(after-prior))
+
+
+def anchored(image,parts,counts,camera,prior):
+    return transferred(image,parts,counts,camera,prior,anchored=True)

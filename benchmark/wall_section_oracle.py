@@ -14,20 +14,6 @@ ATLAS=STABLE/'runs/26.3/atlas'
 CONTROL=STABLE.parent/(STABLE.name+'-worktrees')/'facade-placement-round/runs/production'
 
 
-def disjoint(sections):
-    # Fix the owner of each candidate before any labels are opened. Each section retains a keep-baseline action.
-    claimed=set()
-    groups=[]
-    for group in sections:
-        owned={tuple(c) for opt in group for c in opt['cells']}-claimed
-        if not owned:
-            continue
-        # Do not modify option geometry or its features when another section owns some of its cells.
-        choices=[opt for opt in group if all(tuple(c) in owned for c in opt['cells'])]
-        if choices:
-            groups.append(choices)
-            claimed.update(tuple(c) for opt in choices for c in opt['cells'])
-    return groups
 
 
 def extract(job):
@@ -36,7 +22,7 @@ def extract(job):
     pack=checked(CONTROL/split/f['id']/'reconstruction.zip',row['pack_sha256'])
     prior=set(decoded_pack(pack))
     ctx,raw=grid.candidates(image,parts,camera,prior,ATLAS)
-    groups=disjoint(raw)
+    groups=grid.disjoint(raw)
     # Open reference geometry and the scored global translation only now.
     ref_split='old' if split in ('new','extra') else split
     builds=framed.NEW_INPUTS if split=='new' else framed.transfer.BUILDS
