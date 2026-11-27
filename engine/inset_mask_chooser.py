@@ -109,4 +109,4 @@ def supplemental(image, original_parts, camera, baseline_parts, strict_events, *
     final,accepted=apply(image,baseline_parts,provisional,events,camera,atlas)
     diagnostics=[dict(host=e['host'],side=e['side'],sill=e['sill'],output=e['output'],pixels=e['pixels'],
                       measured_dimensions=e['photo_grid_span'], depth='unresolved') for e in accepted]
-    return final,diagnostics
+    return (final,diagnostics) if diagnostics else (baseline_parts,[])
