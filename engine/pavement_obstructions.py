@@ -6,7 +6,7 @@ from engine.visible_placement import _frontmost_cells
 from engine.visible_raster import SAMPLE_STRIDE
 
 
-def window_obstructions(size, camera, opening_parts, cells):
+def first_obstructions(size, camera, opening_parts, cells):
     """Find above-ground cubes whose visible face falls mainly inside the opening."""
     if not cells or not opening_parts or not camera or camera.get('P') is None:
         return set()
@@ -36,3 +36,14 @@ def window_obstructions(size, camera, opening_parts, cells):
         enough = faces.any(axis=1) & (5 * hits.sum(axis=1) >= face_samples.sum(axis=1))
         blocked.update(cell for cell, supported in zip(ordered, enough) if supported and cell[1] >= 1)
     return blocked
+
+
+def window_obstructions(size, camera, opening_parts, cells):
+    """Reproject as each removal reveals the next actual face toward the ground."""
+    kept = set(cells)
+    while kept:
+        blocked = first_obstructions(size, camera, opening_parts, kept)
+        if not blocked:
+            break
+        kept.difference_update(blocked)
+    return set(cells) - kept
