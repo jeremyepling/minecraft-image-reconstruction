@@ -79,15 +79,20 @@ class CountedGroundCornerTests(unittest.TestCase):
         added, removed, _ = recover(cells)
         self.assertTrue(added and removed)
         ordered = sorted(cells)
-        owners = _frontmost_cells(ordered, self.projection, self.eye, self.masks[0].shape)
+        owners, axes = _frontmost_cells(ordered, self.projection, self.eye, self.masks[0].shape, face_axes=True)
         # Model a small visible return belonging to one of the provisional cells.
         # The large rectangular walls retain sufficient overlap for the pair to pass.
-        disputed = next(c for c in sorted(removed) if (owners==ordered.index(c)).sum() >= 4)
-        hits = np.flatnonzero(owners==ordered.index(disputed))[:6]
+        disputed = (-1, 4, 0)
+        self.assertIn(disputed, removed)
+        hits = np.flatnonzero((owners == ordered.index(disputed)) & (axes != 0))[:5]
+        self.assertEqual(5, len(hits))
         step = np.zeros_like(self.masks[0])
         step.flat[hits] = True
         for mask in self.masks:
             mask[step] = False
+        # An unclaimed notch alone changes neither the rectangular corner fit
+        # nor this strict seed. The independent face ownership makes the difference.
+        self.assertIn(disputed, recover(cells)[1])
         self.masks.append(step)
         self.parts.append(dict(id='step'))
         counts['surfaces'].append(dict(id='step', counts=[None,None], quad=None))
