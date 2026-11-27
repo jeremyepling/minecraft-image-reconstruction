@@ -104,7 +104,7 @@ def surface_evidence(photo, parts, counts, labels, ids, missed, atlas):
     return results, selected, totals
 
 
-def mark_source_grid(photo, results, selected):
+def mark_source_grid(photo, results, selected, *, phases=None):
     marked = photo.copy()
     grids = Image.new('L',photo.size,0)
     selected_grid = Image.new('L',photo.size,0)
@@ -118,7 +118,8 @@ def mark_source_grid(photo, results, selected):
         x0,y0,x1,y1 = r['box']
         lines = Image.new('L',(x1-x0,y1-y0))
         pen = ImageDraw.Draw(lines)
-        for axis,(count,phase) in enumerate(zip(result['counts'],result['phase'])):
+        offsets = phases.get(result['id'], result['phase']) if phases else result['phase']
+        for axis,(count,phase) in enumerate(zip(result['counts'],offsets)):
             if count is None or phase is None or count<=0:
                 continue
             for uv in np.arange(phase%1.,count+1e-8,1.)/count:

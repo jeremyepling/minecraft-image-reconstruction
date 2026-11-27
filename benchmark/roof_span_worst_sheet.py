@@ -55,7 +55,7 @@ def prepare(run, info, frame_tuple, atlas):
     return prepare_view(info, row, atlas, view)
 
 
-def prepare_view(info, row, atlas, view):
+def prepare_view(info, row, atlas, view, *, grid_phases=None):
     rep = info['representative']
     image,parts,counts,camera,pose,labels,ids,truth,raw,scored,states = view
     missing = truth-scored
@@ -118,6 +118,9 @@ def prepare_view(info, row, atlas, view):
         (observed,detail(observed,truth_box),f"{geom['target']} source blocks had a visible face. Purple marks the scored reference."),
         (errors,detail(errors,error_box),f"{geom['correct']} correct (green), {geom['extras']} extra (red), {geom['missed']} missing (blue). One shared shift {tuple(row['translation'])}."),
         (overhead,None,f"Highest block per column. X/Z spans {row['span']['after'][0]}/{row['span']['after'][2]}; visible target {row['span']['target'][0]}/{row['span']['target'][2]}. {roof_text}")]
+    if grid_phases:
+        measured = stages.mark_source_grid(image,results,selected,phases=grid_phases)
+        stage_rows.append((measured,None,"Source grid with atlas-assisted offsets."))
     return stage_rows,evidence
 
 
