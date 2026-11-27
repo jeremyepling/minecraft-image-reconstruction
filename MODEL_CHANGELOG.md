@@ -4,6 +4,8 @@ These entries cover model inputs, rules around model outputs, and evaluation cha
 
 ### November 27, 2026
 
+- **Experimental cloud mask filtering on open-sky composites.** Across six views, border-connected source colors rejected all 23 wholly background proposals. Trimming two more near-pure masks preserved their 24 native building pixels. The 15 registered-seam charts received identical inputs. [Cloud mask comparison](benchmark/reviews/sky-mask-feedback-01/README.md)
+
 - **Experimental atlas matching in the native surface crop.** The warped Castle S04 counter sample stretched an occlusion boundary into a full-height edge. Source-pixel atlas matches identified 38 correct visible faces. Registering those cells to the existing shared corner recovered 31 additional correct positions with no extra positions or geometry losses. Only Castle changed on the six open-sky views. [Ablations and paired scores](benchmark/reviews/crop-first-01/README.md)
 
 - **Experimental row transfer across a visible corner.** Castle S04 borrowed the 27-row spacing from S03. Joining it to a rebuilt donor added nine correct blocks without additional extras. The other five sky views had no accepted transfer. Keep the experiment separate while testing less textured donors and improving material assignment. [Paired scores and controls](benchmark/reviews/shared-corner-rows-01/README.md)
