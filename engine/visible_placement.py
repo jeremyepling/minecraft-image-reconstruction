@@ -157,6 +157,12 @@ def place_with_camera(image, version, parts, counts, camera, select_level=None, 
         status['atlas_camera_reason'] = camera['atlas_reason']
     if camera.get('repeat_reason'):
         status['repeat_camera_reason'] = camera['repeat_reason']
+    if camera.get('native_floor_evidence'):
+        status['native_floor_evidence'] = camera['native_floor_evidence']
+    elif camera.get('camera_source') == 'native-floor-atlas' and 'evidence' in camera:
+        status['native_floor_evidence'] = camera['evidence']
+    if camera.get('native_floor_reason'):
+        status['native_floor_camera_reason'] = camera['native_floor_reason']
     if camera['scale_status'] != 'supported' or camera['P'] is None or not parts:
         return set(), status
     projection = np.asarray(camera['P'])
