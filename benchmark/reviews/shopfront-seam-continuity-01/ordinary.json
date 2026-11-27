@@ -1,0 +1,79 @@
+{
+  "checks": [
+    {
+      "id": "train-arcbridge1-cool-high-right",
+      "image_sha256": "b0b76b7b74db9ae671e8f75852b6fdefed1d143bb627e0e3da1fe3c70e73518c",
+      "export_sha256": "721462e880ac67676064731e51cd195b72fe4effd2114e953c5f89e47a7bccc2",
+      "blocks": 175,
+      "dimensions": {
+        "planarity-new-2-0-seam-union": [
+          null,
+          null
+        ]
+      },
+      "protected_insets": false,
+      "events": [
+        {
+          "inputs": [
+            "mask-3",
+            "planarity-new-2-0"
+          ],
+          "output": "planarity-new-2-0-seam-union"
+        }
+      ]
+    },
+    {
+      "id": "validation-cloister2-earth-low-left",
+      "image_sha256": "4cc646c35ac8a43bbcaa9ed5f50f6b289001586af8fae76808550e7d7bab9c7f",
+      "export_sha256": "25fd7850b33013ca0643dece230eee48ee8217be78b8bc2b610aa8a33c02350e",
+      "blocks": 164,
+      "dimensions": {
+        "mask-0-wall-1-mobile-0-single-457-3-seam-union": [
+          9,
+          6
+        ]
+      },
+      "protected_insets": false,
+      "events": [
+        {
+          "inputs": [
+            "mask-0-wall-1-mobile-0-single-457-1",
+            "mask-0-wall-1-mobile-0-single-457-3"
+          ],
+          "output": "mask-0-wall-1-mobile-0-single-457-3-seam-union"
+        }
+      ]
+    },
+    {
+      "id": "legacy-light_gray_concrete-holdout-portico-masonry-high-right",
+      "image_sha256": "f6c57a6cca3c952e2134e27f6ca75816487c4817800f504acaa6aa0240a24329",
+      "export_sha256": "0a687e40763f84a9ccf5192afb73155fdf2c6e6b51334bf9f057ce926ab2f325",
+      "blocks": 211,
+      "dimensions": {
+        "mask-5-seam-union": [
+          null,
+          null
+        ]
+      },
+      "protected_insets": false,
+      "events": [
+        {
+          "inputs": [
+            "mask-5",
+            "planarity-new-10-0"
+          ],
+          "output": "mask-5-seam-union"
+        }
+      ]
+    },
+    {
+      "id": "rim-views-26.3--positive--heldout-facade-oblique-left",
+      "image_sha256": "e601a54ee06fe27391847e07b00e3aecca8e68f1d29f0ac955a123a8e3705185",
+      "export_sha256": "7367fc314cff32f29e6883a06fcbea283a0fe902e94c3d3fef2afb117dc58a82",
+      "blocks": 331,
+      "dimensions": {},
+      "protected_insets": true,
+      "events": []
+    }
+  ]
+}
