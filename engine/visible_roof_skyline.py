@@ -225,7 +225,6 @@ def supported(ctx,cells,*,between):
                 and any((x-dx*k,z-dz*k) in anchors for k in range(1,6))
                 for dx,dz in ((1,0),(0,1))):
                 continue
-            xx,yy=(None,None)
             face=ctx.face(c,(owner,axes,idx))
             if face is None:
                 continue
@@ -263,3 +262,90 @@ def bracket(image,parts,counts,camera,prior):
     ctx,pool,_=proposals(image,parts,camera,prior)
     kept=supported(ctx,pool,between=True) if pool else set()
     return prior|kept,dict(proposed=len(pool),kept=len(kept))
+
+
+class RoofTexture:
+    """Pool photographed texels from different blocks on the same visible roof course."""
+    def __init__(self,ctx):
+        self.ctx=ctx
+        self.donors=defaultdict(list)
+        v,u=np.nonzero((ctx.axes==1)&ctx.masks[1]&(ctx.owner>=0))
+        if not len(u):
+            return
+        idx=ctx.owner[v,u]
+        order=np.argsort(idx,kind='stable')
+        for g in np.split(order,np.flatnonzero(np.diff(idx[order]))+1):
+            x,y,z=ctx.points[idx[g[0]]]
+            if len(g)<5 or y+1>=ctx.eye[1]:
+                continue
+            if len(g)>750:
+                g=g[np.linspace(0,len(g)-1,750,dtype=int)]
+            gray=ctx.rgb[v[g],u[g]].mean(1)
+            colors=ctx.rgb[v[g],u[g]].mean(0)
+            uv=self.bins(u[g],v[g],y+1)
+            bins=uv[:,0]+16*uv[:,1]
+            n=np.bincount(bins,minlength=256)
+            tile=np.bincount(bins,weights=gray,minlength=256)/np.maximum(n,1)
+            self.donors[y].append((x,z,colors,tile,n>0))
+
+    def bins(self,u,v,height):
+        ctx=self.ctx
+        rays=ctx.rays(u,v)
+        xz=ctx.eye[[0,2]]+(height-ctx.eye[1])*rays[:,[0,2]]/rays[:,[1]]
+        return np.floor(16*xz).astype(int)%16
+
+    def verifies(self,c,xy):
+        x,y,z=c
+        u,v=xy
+        if len(u)<8:
+            return False
+        rgb=self.ctx.rgb[v,u]
+        gray=rgb.mean(1)
+        if gray.std()<1.5:
+            return False
+        available=[(a,b,t,n) for a,b,color,t,n in self.donors[y]
+                   if abs(a-x)+abs(b-z)<=12 and max(abs(color-rgb.mean(0)))<=16]
+        if len(available)<4:
+            return False
+        uv=self.bins(u,v,y+1)
+        rivals=[(uv+[du,dv])%16 for du,dv in ((4,0),(8,0),(0,4),(0,8))]
+        rivals.extend(self.bins(u,v,y+1+dy) for dy in (-1,1))
+        for fold in (0,1):
+            members=[(t,n) for a,b,t,n in available if (a+b)%2==fold]
+            if len(members)<2:
+                return False
+            coverage=np.sum([n for _,n in members],axis=0)
+            template=np.sum([t*n for t,n in members],axis=0)/np.maximum(1,coverage)
+            def fit(coords):
+                ids=coords[:,0]+16*coords[:,1]
+                ok=coverage[ids]>=2
+                if ok.sum()<8 or ok.mean()<.65 or len(np.unique(ids[ok]))<6:
+                    return None
+                a,b=gray[ok],template[ids[ok]]
+                if min(a.std(),b.std())<1:
+                    return None
+                return float(np.corrcoef(a,b)[0,1]),float(abs(a-b).mean())
+            score=fit(uv)
+            competing=[r[0] for q in rivals if (r:=fit(q)) is not None]
+            if (not score or score[0]<.68 or score[1]>8 or len(competing)<2
+                    or score[0]-max(competing)<.13):
+                return False
+        return True
+
+
+def pooled(image,parts,counts,camera,prior):
+    ctx,pool,_=proposals(image,parts,camera,prior)
+    if not pool:
+        return prior,dict(proposed=0,kept=0)
+    texture=RoofTexture(ctx)
+    cells={c for c in pool if texture.verifies(c,ctx.face(c))}
+    while cells:
+        cells=ctx.finalize(cells,False)
+        ordered=sorted(prior|cells)
+        owner,axes=_frontmost_cells(ordered,ctx.native,ctx.eye,ctx.shape,face_axes=True)
+        joint=owner,axes,{c:i for i,c in enumerate(ordered)}
+        supported={c for c in cells if (xy:=ctx.face(c,joint)) is not None and texture.verifies(c,xy)}
+        if supported==cells:
+            break
+        cells=supported
+    return prior|cells,dict(proposed=len(pool),kept=len(cells))
