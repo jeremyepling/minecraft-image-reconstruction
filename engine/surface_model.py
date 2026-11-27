@@ -405,6 +405,7 @@ def build(image_path, version, out, *, outlines=None, order_method=None, through
     pre_inset = None
     eave_events = []
     smooth_outline = {}
+    horizon_measurements = None
     common_wall_regions = []
     from engine.atlas import digest
     from engine.surface_fields import MODELS, SETTINGS as inference, infer
@@ -577,6 +578,16 @@ def build(image_path, version, out, *, outlines=None, order_method=None, through
             boundary_settings['smooth_atlas_outline'] = smooth_outline
         context_px = DEFAULT_CONTEXT_PX if context_px is None else context_px
         patches = [with_outline(part) for part in patches]
+        if boundary == CROP_SPLIT:
+            from engine import horizon_continuity
+            foreground, horizon_events = horizon_continuity.refine(image, patches)
+            if horizon_events:
+                # The distant terrain still constrains camera and plane fits.
+                # Separate that evidence from the visible structure outlines.
+                horizon_measurements = patches
+                patches = [part if 'outline' in part else with_outline(part) for part in foreground]
+            methods['boundary_sequence'].append('horizon-continuity')
+            boundary_settings['horizon_continuity'] = dict(events=horizon_events)
         crop_dir = out/'surface-crops'
         crop_dir.mkdir(parents=True, exist_ok=True)
         for i, part in enumerate(patches):
@@ -645,7 +656,9 @@ def build(image_path, version, out, *, outlines=None, order_method=None, through
                                           implementation='normal-regions', directions='MoGe-2',
                                           settings=rectangle_settings, outline='fitted quadrilateral')
     if through in ('counts', 'placement'):
-        measured_patches = smooth_atlas_outline.measurement_parts(patches) if smooth_outline.get('events') else patches
+        measured_patches = horizon_measurements if horizon_measurements is not None else patches
+        if smooth_outline.get('events'):
+            measured_patches = smooth_atlas_outline.measurement_parts(measured_patches)
         count_parts = eave_pinholes.measurement_parts(measured_patches) if eave_events else measured_patches
         counter = counter or defaults['block_count']
         atlas = None
@@ -693,7 +706,14 @@ def build(image_path, version, out, *, outlines=None, order_method=None, through
             if counts['atlas_phase']['status'] == 'partial':
                 logging.getLogger(__name__).warning('Used measured offsets on %d surfaces after atlas errors; see counts.json',
                                                     counts['atlas_phase']['surface_errors'])
-        (out/'counts.json').write_text(json.dumps(counts, allow_nan=False, indent=2))
+        reported_counts = counts
+        if horizon_measurements is not None:
+            visible_ids = {part['id'] for part in patches}
+            # Horizon-only candidates have no sampling chart or material group.
+            # Keep them available to the internal plane fit without reporting
+            # a structure count for an omitted surface.
+            reported_counts = dict(counts, surfaces=[row for row in counts['surfaces'] if row['id'] in visible_ids])
+        (out/'counts.json').write_text(json.dumps(reported_counts, allow_nan=False, indent=2))
         manifest['artifact'] = 'counts.json'
         manifest['artifacts'].update(counts='counts.json', samples='samples/')
         methods['block_count'] = counter
