@@ -3,17 +3,22 @@ import argparse
 from collections import Counter
 from concurrent.futures import ProcessPoolExecutor
 from hashlib import sha256
+from io import BytesIO
 import json
 from pathlib import Path
+from zipfile import ZipFile
 
 import numpy as np
 from PIL import Image
 
 from benchmark.camera_metrics import registration
+from benchmark.count_export import _archive_pack
 from benchmark.mask_blocks import decoded_pack
 from benchmark.relative_geometry import best_translation
+from benchmark.strip_visibility_audit import horizontal_slivers
 from engine import placed_materials
 from engine.atlas_count import load_atlas
+from engine.export import JAVA_26_3_FORMAT, write_pack
 from engine.thin_atlas_faces import _corr
 
 
@@ -60,6 +65,34 @@ class SeamCatalog(placed_materials.Catalog):
         return losses - 17 * np.maximum(0,agreement-.42)
 
 
+def pack_hash(ids):
+    raw, archive = BytesIO(), BytesIO()
+    write_pack(raw, ids, JAVA_26_3_FORMAT)
+    with ZipFile(archive,'w') as outer:
+        _archive_pack(outer,'reconstruction.zip',raw)
+    with ZipFile(archive) as outer:
+        payload = outer.read('reconstruction.zip')
+    assert decoded_pack(BytesIO(payload)) == {c:'minecraft:'+v for c,v in ids.items()}
+    return sha256(payload).hexdigest()
+
+
+TARGET_PAIRS = (('polished_andesite','stone_bricks'),('stone_bricks','polished_andesite'),('tuff','light_gray_wool'),
+                ('polished_deepslate','tuff'),('smooth_stone','stripped_pale_oak_wood'),('white_concrete','iron_block'),
+                ('white_concrete','polished_andesite'),('spruce_planks','stripped_dark_oak_wood'))
+
+
+def pair_counts(before,after):
+    return [[a,b,before[a,b],after[a,b]] for a,b in TARGET_PAIRS if before[a,b] or after[a,b]]
+
+
+def truth_and_optional(frame):
+    labels = json.loads((frame/'labels.json').read_bytes())
+    with np.load(frame/'labels.npz') as regions:
+        optional = horizontal_slivers(labels,regions['face_id'])
+    truth = {tuple(b['xyz_world']):b['block_id'].removeprefix('minecraft:') for b in labels['blocks']}
+    return truth,optional
+
+
 def compare(args):
     source, builds, name = args
     frame = source/'data'/name.split('-')[0]/'frames'/name
@@ -67,8 +100,16 @@ def compare(args):
     camera = manifest['placement']
     cells = sorted(decoded_pack(builds/name/'reconstruction.zip'))
     digest = sha256((frame/'rgb.png').read_bytes()).hexdigest()
+    if manifest['image_sha256'] != digest:
+        raise ValueError(f'Build and source hashes disagree for {name}')
+    geometry_hash = sha256((builds/name/'reconstruction.zip').read_bytes()).hexdigest()
     if not cells or camera.get('P') is None:
-        return dict(id=name, rgb_sha256=digest, placed=len(cells), correct_geometry=0)
+        truth,optional = truth_and_optional(frame)
+        return dict(id=name, rgb_sha256=digest, pack_sha256=geometry_hash, placed=len(cells),
+                    baseline_typed_sha256=pack_hash({}), seam_typed_sha256=pack_hash({}),
+                    visible_truth=len(truth), correct_geometry=0, baseline=0, seam=0, gained=0,lost=0,
+                    required_truth=len(truth)-len(optional),optional_placed=0,facade_before=0,facade_after=0,
+                    target_pairs=[],differences=[])
     # The two predictors finish before the evaluator opens the camera pose or labels.
     with Image.open(frame/'rgb.png') as image:
         atlas = load_atlas()
@@ -78,18 +119,30 @@ def compare(args):
     pose = json.loads((frame/'camera.json').read_bytes())
     transform = registration(np.array(camera['P']),pose)
     world = np.floor((np.array(cells)+.5) @ transform[:3,:3].T + transform[:3,3]).astype(int)
-    labels = json.loads((frame/'labels.json').read_bytes())['blocks']
-    truth = {tuple(b['xyz_world']):b['block_id'].removeprefix('minecraft:') for b in labels}
+    truth,optional = truth_and_optional(frame)
     offset,_ = best_translation(set(map(tuple,world)),set(truth))
     before, after = Counter(), Counter()
+    gained = lost = 0
+    facade_before = facade_after = optional_placed = 0
     for cell, location in zip(cells,world+offset):
         actual = truth.get(tuple(location))
         if actual is not None:
             before[actual,base[cell]] += 1
             after[actual,seam[cell]] += 1
-    return dict(id=name,rgb_sha256=digest,placed=len(cells),visible_truth=len(truth),translation=offset,
+            gained += base[cell] != actual and seam[cell] == actual
+            lost += base[cell] == actual and seam[cell] != actual
+            if tuple(location) in optional:
+                optional_placed += 1
+            else:
+                facade_before += base[cell] == actual
+                facade_after += seam[cell] == actual
+    return dict(id=name,rgb_sha256=digest,pack_sha256=geometry_hash,placed=len(cells),visible_truth=len(truth),translation=offset,
                 correct_geometry=sum(before.values()),baseline=sum(v for (a,b),v in before.items() if a==b),
                 seam=sum(v for (a,b),v in after.items() if a==b),
+                baseline_typed_sha256=pack_hash(base),seam_typed_sha256=pack_hash(seam),
+                gained=gained,lost=lost,target_pairs=pair_counts(before,after),
+                required_truth=len(truth)-len(optional),optional_placed=optional_placed,
+                facade_before=facade_before,facade_after=facade_after,
                 differences=[[a,b,after[a,b]-before[a,b]] for a,b in sorted(before|after) if before[a,b]!=after[a,b]])
 
 
