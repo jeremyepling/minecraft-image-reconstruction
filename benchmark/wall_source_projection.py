@@ -268,6 +268,18 @@ def audit(job):
                silhouette_iou=round(float(shared.sum()/max(1,(inside|predicted).sum())),5),
                internal_orientation_exact=int(matched_axis.sum()),first_hit_cell_exact=int(matched_cell.sum()),
                same_orientation_wrong_cell=int((matched_axis&~matched_cell).sum()),estimated_mask_iou=round(mask_iou,5))
+    if name:
+        missed=set(truth)-scored
+        # Attribute each sampled ray to a labeled missing block, then measure how a
+        # render that lacks that block can nevertheless cover the same camera rays.
+        lut=np.zeros(len(faces)+1,int)
+        for number,face in enumerate(faces,1):
+            assert face['id']==number
+            lut[number]=int(tuple(face['xyz_world']) in missed)
+        missing=lut[truth_sample]>0
+        stats['missing_block_samples']=int(missing.sum())
+        stats['missing_samples_covered_by_other_blocks']=int((missing&predicted).sum())
+        stats['missing_samples_other_block_same_orientation']=int((missing&matched_axis).sum())
     result=dict(id=f['id'],split=split,camera=True,pack_sha256=row['pack_sha256'],rgb_sha256=row['rgb_sha256'],
                 metrics=row['relative_geometry'],projection=stats)
     if name:
@@ -291,10 +303,16 @@ def panel(out,name,s,rend,truth,pred,axis,cell,stats,row):
     show=(s.union|pred|truth).reshape(h,w)
     yy,xx=np.nonzero(show)
     box=(max(0,min(xx)-8),max(0,min(yy)-8),min(w,max(xx)+9),min(h,max(yy)+9))
-    lit=np.array([[146,148,158],[196,199,206],[110,112,125]],np.uint8)
-    shape=s.rgb.reshape(-1,3).copy()
-    shape[pred]=lit[s.axes[pred]]
-    shade=rend.source.copy()
+    # Benchmark exports place smooth stone. Keep the unplaced background neutral
+    # so source pixels cannot visually fill a hole in either synthetic render.
+    stone=rend.atlas.tiles[rend.atlas.labels.index('smooth_stone')].reshape(256,3)
+    shape=np.full((len(pred),3),42,np.uint8)
+    for n,idx in s.owned.items():
+        for a in np.unique(s.axes[idx]):
+            face=idx[s.axes[idx]==a]
+            shade_factor=(.64,1.,.82)[a] if a!=1 or s.eye[1]>s.cells[n][1]+1 else .52
+            shape[face]=stone[s.uv(face,s.cells[n],a)]*shade_factor
+    shade=np.full_like(rend.source,42)
     shade[pred]=rend.image[pred]
     overlay=s.rgb.reshape(-1,3).copy()
     overlay[truth&~pred]=[65,166,254]
@@ -310,7 +328,7 @@ def panel(out,name,s,rend,truth,pred,axis,cell,stats,row):
     pane=Image.new('RGB',(1250,348),'#172731')
     pen=ImageDraw.Draw(pane)
     pen.text((12,7),name,font=font(22),fill='white')
-    tiles=[(src,'Source crop'),(Image.fromarray(shape.reshape(h,w,3)),'Estimate-camera geometry'),
+    tiles=[(src,'Source crop'),(Image.fromarray(shape.reshape(h,w,3)),'Export in smooth stone'),
            (Image.fromarray(shade.reshape(h,w,3).astype(np.uint8)),'Appearance fitted to source'),
            (Image.fromarray(marks.reshape(h,w,3)),'Image-only disagreement'),
            (Image.fromarray(overlay.reshape(h,w,3)),'First-hit reference errors')]
