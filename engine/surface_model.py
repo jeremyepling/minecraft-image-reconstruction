@@ -742,6 +742,8 @@ def build(image_path, version, out, *, outlines=None, order_method=None, through
             from engine.visible_placement import place
             cells, status = place(image, version, placement_parts, counts=placement_counts,
                                   atlas_path=camera_atlas_path, joint_foreground=joint_foreground, camera=metric_camera)
+            # strict_blocks and added_blocks describe the ranked placer at this point.
+            ranked_cells = set(cells)
             if inset_events:
                 from engine.visible_inset_cells import inset_edits
                 added, removed = inset_edits(image.size, metric_camera, measured_patches, inset_events, cells)
@@ -804,6 +806,8 @@ def build(image_path, version, out, *, outlines=None, order_method=None, through
                     cells = (set(cells) - removed) | added
                     status.update(placed_blocks=len(cells), exterior_background_removed=sorted(removed),
                                   exterior_roof_recovered=sorted(added))
+            status['final_refinement'] = dict(before=len(ranked_cells), added=len(cells - ranked_cells),
+                                              removed=len(ranked_cells - cells), after=len(cells))
             material = 'smooth_stone'
             blocks = {tuple(map(int, pos)): material for pos in cells}
             rows = [dict(x=x, y=y, z=z, block_id=material) for x,y,z in sorted(blocks)]

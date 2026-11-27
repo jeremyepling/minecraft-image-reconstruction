@@ -33,6 +33,8 @@ class SupportedPlacementEntryTest(unittest.TestCase):
             self.assertEqual(manifest['artifact'], 'reconstruction.zip')
             self.assertEqual(manifest['placement']['camera_status'], 'uncertain')
             self.assertEqual(manifest['placement']['placed_blocks'], 0)
+            self.assertEqual(manifest['placement']['final_refinement'],
+                             dict(before=0, added=0, removed=0, after=0))
             for key in ('duplicate_side_cells', 'textured_side_cells', 'grounded_side_cells', 'shared_side_cells'):
                 self.assertEqual(manifest['placement'][key], 0)
             outputs = manifest['artifacts']
