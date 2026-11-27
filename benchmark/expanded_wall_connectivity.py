@@ -8,7 +8,7 @@ from pathlib import Path
 import numpy as np
 from PIL import Image, ImageDraw
 
-from benchmark.expanded_baseline import SOURCE
+from benchmark.expanded_baseline import SOURCE, digest
 from benchmark.relative_oracle_charts import ENDS, UNIT, owner_edge_samples, unit_projection
 
 
@@ -34,6 +34,9 @@ def largest(nodes, links, wall_cells):
 
 def measure(case):
     frame = Path(case["frame"])
+    recorded = json.loads((frame / "frame.json").read_text())["files"]
+    assert recorded["rgb.png"] == case["rgb_sha256"]
+    assert all(digest(frame / key) == recorded[key] for key in ("rgb.png", "labels.json", "labels.npz"))
     labels = json.loads((frame / "labels.json").read_text())
     with np.load(frame / "labels.npz") as arrays:
         owners = arrays["face_id"]
@@ -109,6 +112,7 @@ if __name__ == "__main__":
     with ProcessPoolExecutor(3) as pool:
         rows = list(pool.map(measure, cases))
     assert all(r["direct"] <= r["via_horizontal"] <= r["all_wall"] <= r["targets"] for r in rows)
+    assert sum(r["targets"] for r in rows) == 59_438
     dest = Path(__file__).parent / "reviews/expanded-wall-connectivity-01"
     dest.mkdir(parents=True, exist_ok=True)
     (dest / "coverage.json").write_text(json.dumps(rows, indent=2) + "\n")
