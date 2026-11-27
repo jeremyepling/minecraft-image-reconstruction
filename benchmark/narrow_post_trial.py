@@ -1,5 +1,6 @@
 """Place individually supported visible rows on distinct photographed pillar planes."""
 import numpy as np
+from PIL import Image, ImageFilter
 
 from benchmark.narrow_post_rows import predict
 from benchmark.wall_texture_masks import native_mask,orientation,rewrite
@@ -8,7 +9,7 @@ from engine.visible_placement import _frontmost_cells
 from engine.visible_raster import SAMPLE_STRIDE
 
 
-def placed(image,parts,counts,camera,prior):
+def placed(image,parts,counts,camera,prior,*,border=0):
     if not prior or not camera.get('P') or not parts:
         return prior,{}
     regions,ops=rewrite(image,parts,camera,'pillar')
@@ -20,6 +21,8 @@ def placed(image,parts,counts,camera,prior):
     native[:2]*=SAMPLE_STRIDE
     size=image.size[::-1]
     union=np.logical_or.reduce([native_mask(part,image.size) for part in parts])
+    if border:
+        union=np.asarray(Image.fromarray(union.astype('uint8')).filter(ImageFilter.MaxFilter(2*border+1)),bool)
     by_id={piece['id']:piece for piece in regions}
     supported={}
     for op in ops:
@@ -58,3 +61,11 @@ def placed(image,parts,counts,camera,prior):
             break
         kept=result
     return prior|kept,dict(proposed=len(proposed),added=len(kept))
+
+
+def one_pixel(image,parts,counts,camera,prior):
+    return placed(image,parts,counts,camera,prior,border=1)
+
+
+def two_pixels(image,parts,counts,camera,prior):
+    return placed(image,parts,counts,camera,prior,border=2)
