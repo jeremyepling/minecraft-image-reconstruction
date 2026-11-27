@@ -28,6 +28,7 @@ table{border-collapse:collapse;font-variant-numeric:tabular-nums;width:100%;marg
 <div class="controls"><label>Source image <select id="pick"></select></label>
 <label>Overlay opacity <input id="mix" type="range" min="0" max="100" value="100"><output id="pct"></output></label></div>
 <nav aria-label="Pipeline stage"></nav><p id="legend"></p>
+<label id="gridControl" hidden>Grid offsets <select id="gridMode"><option value="bare">Geometry only</option><option value="atlas">Atlas-assisted</option></select></label>
 <fieldset id="cornerControls" hidden><legend>Face corner layers</legend><div class="controls">
 <label><input type="checkbox" id="showMasks" checked>Detected surface edges</label>
 <label><input type="checkbox" id="showWire" checked>Exported block faces</label>
@@ -50,9 +51,9 @@ const stages=[
 ['issues','Outline issues','Pink dots mark repeated short, sharp turns on a detected outline. The shape is flagged for inspection.'],
 ['smooth','Smooth wall edges','Teal marks pixels added to the visible outline. Amber marks proposed pixels that the atlas, background or boundary check withheld.'],
 ['grid','Block Counter','Yellow marks the selected grid and orange marks other measured grids. A line requires an estimated offset on that axis.'],
-['corners','Face corner placement','Orange traces detected surfaces. Teal traces the visible faces of exported blocks. Pale dots mark their projected corners.'],
+['corners','Face corner placement','Orange traces detected surfaces. Teal faces and pale corner dots use the camera estimated from the source image.'],
 ['reference','Visible reference','Purple marks blocks with a visible face in this source image.'],
-['build','Projected build','Teal shows the exported blocks projected onto the source image.'],
+['build','Projected build','Teal shows the exported blocks through the recorded capture camera after registration.'],
 ['required','Required misses','Blue marks required visible positions that were missed. Gold marks optional horizontal slivers that were missed.'],
 ['errors','All placement errors','Green marks correct positions, blue marks all missed positions and red marks extras. The frontmost colored face is shown.']];
 const el=id=>document.getElementById(id),pick=el('pick'),nav=document.querySelector('nav'),mix=el('mix');
@@ -81,8 +82,16 @@ function draw(){
  const v=views[Number(pick.value)],s=stages[stage],prefix='__ASSETS__/'+v.prefix+'-';
  const corners=s[0]==='corners';
  el('base').src=prefix+'source.jpg';el('base').alt=v.name+' source image';
- el('overlay').src=prefix+(s[0]==='issues'?'outlines':s[0]==='smooth'||corners?'source':s[0])+'.jpg';el('overlay').alt=s[1]+' for '+v.name;
+ const grid=s[0]==='grid',atlasGrid=grid&&el('gridMode').value==='atlas';
+ el('gridControl').hidden=!grid;
+ let asset=s[0]==='issues'?'outlines':s[0]==='smooth'||corners?'source':s[0];
+ if(atlasGrid&&v.atlasGridSurfaces)asset='grid-atlas';
+ el('overlay').src=prefix+asset+'.jpg';el('overlay').alt=s[1]+' for '+v.name;
  const warnings=el('warnings'), review=el('issueReview');warnings.replaceChildren();review.replaceChildren();
+ if(grid){
+  const n=v.atlasGridSurfaces||0;
+  review.textContent=atlasGrid?(n?'The atlas supplies additional grid offsets on '+n+' surface'+(n===1?'':'s')+'.':'The atlas supplied no additional grid offsets on this view.')+' Placement scores and miss types below use the evaluated geometry-only build.':'Grid offsets from the geometry-only build.';
+ }
  el('cornerControls').hidden=!corners;
  el('removedLabel').hidden=!v.excludedPixels;
  const removed=el('removedArea');removed.hidden=!corners||!v.excludedPixels||!el('showRemoved').checked;
@@ -177,7 +186,7 @@ function showPath(){
   const b=document.createElement('button');b.textContent='View';b.onclick=()=>{pick.selectedIndex=views.findIndex(v=>v.id===menu.value);stage=stages.findIndex(s=>s[0]==='errors');draw();pick.scrollIntoView({block:'start'});pick.focus({preventScroll:true})};cell.append(b);
  }
 }
-for(const id of ['showMasks','showWire','showChart','showGround','showRemoved'])el(id).onchange=draw;
+for(const id of ['showMasks','showWire','showChart','showGround','showRemoved','gridMode'])el(id).onchange=draw;
 el('unit').onchange=showPath;showPath();pick.onchange=draw;mix.oninput=draw;draw();
 </script></html>"""
     picked, layouts = gap['selected'], gap['layouts']

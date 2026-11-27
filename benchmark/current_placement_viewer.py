@@ -108,6 +108,27 @@ def regrade(task):
     return result
 
 
+def atlas_grid_phases(image, parts, counts, atlas):
+    """Measure optional atlas offsets using the same source masks and counter as an ordinary build."""
+    bare = {r['id']: r for r in counts['surfaces']}
+    measured = eave_pinholes.measurement_parts(smooth_atlas_outline.measurement_parts(parts))
+    candidates = [p for p in measured if None in bare[p['id']]['phase']
+                  and None not in bare[p['id']]['counts'] and bare[p['id']].get('quad')]
+    if not candidates:
+        return {}
+    phases = {}
+    for row in recount(image, candidates, atlas)['surfaces']:
+        old = bare[row['id']]
+        if old['phase'] == row['phase']:
+            continue
+        # Both modes must describe the same measured chart. Preserve each public
+        # dimension (including unconfirmed inset hosts) and every measured offset.
+        assert old['quad'] == row['quad'] and old['counts'] == row['counts'], row['id']
+        assert all(a is None or a == b for a, b in zip(old['phase'], row['phase'])), row['id']
+        phases[row['id']] = row['phase']
+    return phases
+
+
 def f1(row):
     return 2*row['correct'] / (2*row['correct']+row['missed']+row['extras'])
 
@@ -252,8 +273,11 @@ def main():
         if key in suite.framed.roof_specs():
             current['roof'] = suite.framed.roof(frame,raw,truth)
         view = (image,parts,counts['surfaces'],camera,pose,labels,ids,truth,raw,scored,states)
-        panels,_ = sheet.prepare_view(info,current,atlas,view)
+        atlas_phases = atlas_grid_phases(image, parts, counts, atlas)
+        panels,_ = sheet.prepare_view(info,current,atlas,view,grid_phases=atlas_phases)
         prefix = f'{index+1:02}'
+        if atlas_phases:
+            panels[-1][0].save(ASSETS/f'{prefix}-grid-atlas.jpg',quality=86,optimize=True)
         surface, wire, visible_faces = edge_overlay(image.size, parts, camera, cells)
         for overlay, suffix in ((surface, 'mask-edges'), (wire, 'face-corners')):
             overlay.save(ASSETS/f'{prefix}-{suffix}.png', transparency=0, optimize=True)
@@ -291,7 +315,7 @@ def main():
                         accepted=int(accepted.sum()),acceptedPath=''.join(f'M{a} {y+.5}h{b-a}' for y,a,b in approved))
         rows.append(dict(id=key,name=r['layout'],prefix=prefix,issues=outline_issues(parts,image.size),smooth=smooth,
                          visibleFaces=visible_faces,cornerPair=corner_pair(image,original,before_counts,camera,corners[key]),
-                         excludedPixels=excluded_pixels,
+                         excludedPixels=excluded_pixels,atlasGridSurfaces=len(atlas_phases),
                          f1=f'{f1(strict):.2%}',facade=f'{f1(facade):.2%}',
                          correct=strict['correct'],required=facade['missed'],optional=strict['missed']-facade['missed'],
                          extras=strict['extras'],gap=gap_contribution([r],facade_pool),
