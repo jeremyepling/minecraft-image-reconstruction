@@ -28,6 +28,8 @@ Coordinate experiments in the user's existing chat. Delegate the baseline and up
 
 For facade-placement experiments, report both strict F1 and fixed-suite facade-priority F1. The local 4×4 rule makes thin top-only and underside-only block targets neutral while charging all extras. Keep solid wall targets and visible corner evidence. Distinguish effects on masks from effects on final block positions. [Scorer and native examples](benchmark/reviews/strip-orientation-01/README.md)
 
+For material or end-to-end changes, decode the exported datapacks. Report exact block-ID accuracy on correct positions, overall strict and facade-priority F1 requiring both ID and position, and assigned versus fallback counts. Use the geometry-selected translation for every method. Fit on development structures before opening the fixed comparison. Refresh the material stage and per-structure results in the interactive review. Keep example images traceable to their source and pack hashes.
+
 Promote a Surface Finder improvement when it recovers more of the correct photographed surface with no observed regression in the checked surface, count and placement results. A tied final build is an acceptable outcome. Measure newly covered pixels, reassigned pixels, errors on neighboring surfaces or background, and preserved openings separately. Check the changed cases through ordinary reconstruction.
 
 For Surface Finder, Block Counter, camera and visual comparisons, follow the [stage-specific runner and sheet instructions](benchmark/OFFLINE_GEOMETRY.md#stage-specific-comparisons-and-review-sheets).

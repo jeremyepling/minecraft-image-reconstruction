@@ -1,5 +1,7 @@
 # Visible placement and exact block materials
 
+[Open the interactive review](viewer.html) for all 104 fixed source images, or [inspect Adjacency 26](viewer.html#view=test-adjacency-26-left&mode=errors), where placement F1 is 97.73% and material accuracy is 62.50%. Click a block to compare its source and exported IDs. The structure table pools all views of each of the 40 distinct fixed shapes.
+
 The material pass takes the final visible block coordinates, the estimated camera and the source image. It uses the Minecraft 26.3 texture atlas to select a block ID for each exported coordinate. An unreadable placement retains the smooth stone fallback. Every pack in this review was decoded from its Minecraft templates before scoring. No source world coordinates, reference materials, layout names or reference camera poses enter prediction.
 
 ## Results

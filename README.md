@@ -2,7 +2,7 @@
 
 ## From source image to placed blocks
 
-The **source image** is the full Minecraft screenshot supplied to the build command. A **surface crop** is a piece taken from that same image. Read the solid arrows as data used to build. The dotted connections show optional material identification and evaluation.
+The **source image** is the full Minecraft screenshot supplied to the build command. A **surface crop** is a piece taken from that same image. Solid arrows show how the ordinary build uses the source. Dotted arrows show diagnostics and evaluation.
 
 ```mermaid
 flowchart TD
@@ -13,12 +13,16 @@ flowchart TD
     R --> S["Surface Straightener · make a face-on crop"]
     S --> B["Block Counter · measure rows, columns and grid offsets"]
     B --> G["Block Grouper · link visible faces of the same cube"]
-    G -.-> M["Optional Material Matcher · identify the block"]
+    G -.-> D["Optional face diagnostics · compare individual texture crops"]
     R --> P["Placement · test depths and project blocks back onto the source image"]
     B --> P
     C --> P
-    P --> E["Export · local XYZ positions and a smooth-stone datapack"]
-    E -.-> V["Evaluation · compare placed positions with the visible reference"]
+    P --> M["Material Matcher · project visible faces of the placed cubes"]
+    C --> M
+    I --> M
+    A["Java texture atlas"] --> M
+    M --> E["Export · local XYZ and Minecraft block ID for each cube"]
+    E -.-> V["Evaluation · score placement, material and both together"]
     T["Benchmark only · recorded world and capture camera"] -.-> V
 ```
 
@@ -44,6 +48,11 @@ On the **104 fixed whole-structure source images**, the current default places *
 | Recall | Of the visible positions in the reference, what fraction did we place correctly? | 87.64% |
 | Strict visible-block F1 | How well did placement balance precision and recall across all visible blocks? | 91.27% |
 | Facade-priority F1 | How well did we do when very thin top-only or underside-only targets are optional? | 93.42% |
+| Exact material accuracy | Among the 20,773 correctly positioned blocks, how many have the right Minecraft ID? | 92.78% (19,274) |
+| Overall strict F1 | How well did the exported packs recover both visible positions and IDs? | 84.68% |
+| Overall facade-priority F1 | How well did they recover both under the facade scoring rule? | 88.51% |
+
+The default Material Matcher assigned IDs to 21,809 of 21,819 exported blocks on the fixed suite. Ten used the smooth-stone fallback. The former all-smooth-stone exporter had 1.20% material accuracy and 1.10% overall strict F1 on exactly the same coordinates. On 28 additional independent views the matcher reached 97.35% material accuracy and 86.79% overall strict F1. Open **Placement + material** in the pipeline viewer, or select a structure in the material review and click a block to compare the source ID with the exported ID. [Interactive material and overall scores](benchmark/reviews/typed-structures-01/viewer.html) · [Decoded packs, cohorts and method comparisons](benchmark/reviews/typed-structures-01/README.md)
 
 **F1** combines precision and recall using their harmonic mean. In block counts, **F1 = 2 × correct / (2 × correct + extras + misses)**. On these images, if you pick a placed block, roughly 95 in 100 are right. If you pick a visible reference block, roughly 87 in 100 were recovered. Both matter. The reference allows one whole-build shift per image so a different world origin gets full credit and misplaced parts still count as errors. [Scoring details and examples](ARCHITECTURE.md#evaluation-terms)
 
@@ -71,11 +80,11 @@ Use `main` to recover visible surfaces from one Minecraft Java 26.3 screenshot. 
 .\Invoke-WallRecovery.ps1 .\screenshot.png -Out .\runs\my-build
 ```
 
-Open `reconstruction.zip` for the visible geometry datapack and `placements.json` for its local block coordinates. Placement uses smooth stone to show geometry. When the camera cannot establish block scale, the pack contains an empty build function and the manifest explains the decision. Load a supported pack as a Java 26.3 datapack and run `/function reconstruction:build` at the desired origin.
+Open `reconstruction.zip` for the visible build datapack and `placements.json` for the block at each local coordinate. Once placement finishes, the Material Matcher uses the estimated camera to project those cubes into the source image. It compares the visible pixels with the Java atlas and writes the chosen block IDs into the pack. A cube without usable material evidence gets a recorded smooth-stone fallback. Use `-GeometryOnly` for the smooth-stone control. When the camera cannot establish block scale, the pack contains an empty build function and the manifest explains the decision. Load a supported pack as a Java 26.3 datapack and run `/function reconstruction:build` at the desired origin.
 
 Read `surfaces.json` for visible masks and openings, and `counts.json` for the **Block Counter**’s estimates and any requested material matches. Use `-Through counts` to stop after counting. [Setup and single-image verification](benchmark/WALL_RECOVERY_BUILD.md) · [Placement results](benchmark/SUPPORTED_PLACEMENT.md)
 
-To identify visible materials, run the Texture matcher with a prepared vanilla Java 26.3 atlas:
+To inspect the separate per-face Texture matcher at the counting stage, run:
 
 ```powershell
 .\Invoke-WallRecovery.ps1 .\screenshot.png -Through counts -MaterialMatch shape -Out .\runs\my-materials

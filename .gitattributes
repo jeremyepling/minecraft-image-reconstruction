@@ -90,3 +90,7 @@ benchmark/reviews/workshop-foreground-01/*.json -text whitespace=trailing-space,
 engine/pavement_opening.py text eol=lf
 engine/pavement_obstructions.py text eol=lf
 benchmark/reviews/typed-structures-01/*.json -text
+# Reproduce the source bytes fingerprinted by the 26.3 typed export release.
+engine/placed_materials.py text eol=crlf
+engine/atlas_count.py text eol=crlf
+engine/projected_appearance.py text eol=crlf

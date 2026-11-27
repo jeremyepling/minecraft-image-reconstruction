@@ -8,7 +8,7 @@ From this checkout on the Minecraft PC:
 .\Invoke-WallRecovery.ps1 .\snapshot.png -Out .\runs\my-build
 ```
 
-This command runs surface finding, counting and visible block placement on one Java 26.3 screenshot. Use `-Through surfaces` or `-Through counts` for the intermediate stages. The build writes visible masks to `surfaces.json`, estimates to `counts.json`, and camera status and placement counts to `build-manifest.json`. The default also writes local smooth-stone coordinates to `placements.json` and their Minecraft datapack to `reconstruction.zip`. [Placement behavior and evaluation](SUPPORTED_PLACEMENT.md)
+This command runs surface finding, counting, visible block placement and material matching on one Java 26.3 screenshot. Use `-Through surfaces` or `-Through counts` for the intermediate stages. The build writes visible masks to `surfaces.json`, estimates to `counts.json`, and camera status and placement counts to `build-manifest.json`. The default writes local coordinates with the selected Minecraft block IDs to `placements.json` and `reconstruction.zip`. Use `-GeometryOnly` for the smooth-stone control. [Placement behavior and evaluation](SUPPORTED_PLACEMENT.md)
 
 The ordinary Block Counter keeps complete initial counts. On an incomplete count it tries nearby crop corners, measures the repeating texture in two strips, then checks the spacing in a third strip. The chosen crop and counts feed subsequent sampling. The manifest identifies the counter as `texture-guided-repeat`. [Promotion results](COUNT_TRANSFER.md)
 

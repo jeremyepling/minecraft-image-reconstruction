@@ -20,6 +20,7 @@ table{border-collapse:collapse;font-variant-numeric:tabular-nums;width:100%;marg
 .scroll{overflow-x:auto}td select{max-width:260px}tr.reached{background:#27433b}#pathDescription,#themeLine{color:#d8e4e1}#themeLine{max-width:105ch}
 </style>
 <main><h1>Lowest-scoring structures</h1><p>Ten distinct structures from the 104 fixed source images, ranked by their lowest strict placement F1. __EVALUATED__</p>
+__MATERIAL_HEADER__
 <details open><summary>Which fixes would reach 95% facade-priority F1?</summary>
 <p>__PATHHEAD__</p><label>Compare <select id="unit"><option value="layouts">Fewest layouts</option><option value="images">Fewest individual source images</option><option value="displayed">Ten strict-ranked layouts in viewer order</option></select></label>
 <p id="pathDescription"></p><div class="scroll"><table><thead><tr><th>Structure</th><th>Views</th><th>Required misses</th><th>Extras</th><th>Cumulative F1</th><th>Most frequent miss types</th><th>Inspect</th></tr></thead><tbody id="pathRows"></tbody></table></div>
@@ -42,7 +43,8 @@ table{border-collapse:collapse;font-variant-numeric:tabular-nums;width:100%;marg
 <img id="faceWire" hidden width="1440" height="900" alt="Visible edges and corners of exported blocks"><img id="maskEdges" hidden width="1440" height="900" alt="Detected surface edges">
 <svg id="warnings" viewBox="0 0 1440 900" aria-hidden="true"></svg></div>
 <p id="issueReview"></p>
-<p id="measures" aria-live="polite"></p><p id="contribution"></p><p id="themeLine"></p><footer><a href="__ASSETS__/stage-map.jpg">Compare the ten strict-ranked structures stage by stage</a>__HISTORICAL_FOOTER__</footer></main>
+<p id="measures" aria-live="polite"></p><p id="typedScore"></p><p id="contribution"></p><p id="themeLine"></p><footer><a href="__ASSETS__/stage-map.jpg">Compare the ten strict-ranked structures stage by stage</a>__HISTORICAL_FOOTER__</footer></main>
+__MATERIAL_SCRIPT__
 <script>
 const views=__DATA__;
 const paths=__PATHS__;
@@ -57,6 +59,8 @@ const stages=[
 ['build','Projected build','Teal shows the exported blocks through the recorded capture camera after registration.'],
 ['required','Required misses','Blue marks required visible positions that were missed. Gold marks optional horizontal slivers that were missed.'],
 ['errors','All placement errors','Green marks correct positions, blue marks all missed positions and red marks extras. The frontmost colored face is shown.']];
+const materialRows=typeof materialReview==='undefined'?new Map():new Map(materialReview.views.map(v=>[v.id,v]));
+if(materialRows.size)stages.push(['typed','Placement + material','Green = exact position and block ID. Amber = correct position, wrong ID. Blue = missing position. Red = extra position.']);
 const el=id=>document.getElementById(id),pick=el('pick'),nav=document.querySelector('nav'),mix=el('mix');
 const params=new URLSearchParams(location.hash.slice(1));
 let stage=Math.max(0,stages.findIndex(s=>s[0]===params.get('stage')));
@@ -87,7 +91,15 @@ function draw(){
  el('gridControl').hidden=!grid;
  let asset=s[0]==='issues'?'outlines':s[0]==='smooth'||corners?'source':s[0];
  if(atlasGrid&&v.atlasGridSurfaces)asset='grid-atlas';
- el('overlay').src=prefix+asset+'.jpg';el('overlay').alt=s[1]+' for '+v.name;
+ const typed=materialRows.get(v.id);
+ if(typed&&typed.geometryHash!==v.geometryHash)throw new Error('Material and placement exports differ for '+v.id);
+ el('overlay').src=s[0]==='typed'?'../typed-structures-01/viewer-assets/'+typed.asset+'-errors.png':prefix+asset+'.jpg';el('overlay').alt=s[1]+' for '+v.name;
+ const score=el('typedScore');score.replaceChildren();
+ if(typed){
+  const m=typed.result,fmt=n=>n==null?'—':(n*100).toFixed(2)+'%';
+  const link=document.createElement('a');link.href='../typed-structures-01/viewer.html#'+new URLSearchParams({view:v.id,mode:'ids'});link.textContent='Inspect exported IDs and substitutions';
+  score.append('Material accuracy '+fmt(m.material.accuracy)+' ('+m.material.correct+'/'+m.material.positions+') · Overall F1 '+fmt(m.strict.f1)+' · Facade overall F1 '+fmt(m.facade.f1)+' · ',link);
+ }
  const warnings=el('warnings'), review=el('issueReview');warnings.replaceChildren();review.replaceChildren();
  if(grid){
   const n=v.atlasGridSurfaces||0;
@@ -200,11 +212,18 @@ el('unit').onchange=showPath;showPath();pick.onchange=draw;mix.oninput=draw;draw
     headline=(f"Starting from {gap['baseline']:.2f}%, the smallest sufficient set is {len(paths['layouts'])} layouts "
               f"across {sum(len(r['ids']) for r in paths['layouts'])} fixed views, or {len(paths['images'])} individual images chosen across the suite. "
               "These are perfect-fix scenarios. The table shows the pooled score after each successive fix.")
-    label = 'Candidate placement' if candidate else 'Evaluated default'
+    label = 'Candidate placement' if candidate else 'Evaluated placement revision'
     evaluated = f'{label} <code>{escape(revision)}</code>.'
     if candidate:
         evaluated += ' Scores and exported face outlines use the candidate blocks. Camera, surface, grid and counted-corner diagnostics use the upstream stages replayed by this checkout.'
     historical_footer = ' · <a href="../pavement-local-01/openings.jpg">Colonnade 01 before and after</a>'
+    materials = not preview and not candidate
+    header = """<p><a href="../typed-structures-01/viewer.html">Material and overall scores for every fixed structure</a></p>
+<details><summary>Which concrete edges are real?</summary>
+<p>In the fixed concrete samples, a large brightness change occurred across 92.7% of adjacent samples on different planes and 0.70% across a block boundary on the same plane. Similar colors alone joined separate Shopfront faces. A ground-color trim removed real wall pixels in Courtyard.</p>
+<p><a href="../concrete-shadow-boundaries-01/dev-shopfront-plaster-low-left.png">Shopfront seam candidates</a> · <a href="../concrete-shadow-boundaries-01/holdout-courtyard-plaster-low-left-trim.png">Courtyard wall and ground</a> · <a href="../concrete-shadow-boundaries-01/README.md">Surface experiments and controls</a></p></details>"""
+    page = page.replace('__MATERIAL_HEADER__', header if materials else '')
+    page = page.replace('__MATERIAL_SCRIPT__', '<script src="../typed-structures-01/viewer-data.js"></script>' if materials else '')
     page=page.replace('__HISTORY__',json.dumps(not preview))
     page=page.replace('__HISTORICAL_FOOTER__','' if preview else historical_footer).replace('__ASSETS__',asset_dir).replace('__GAP__',summary)
     if gap['baseline'] >= 95.:

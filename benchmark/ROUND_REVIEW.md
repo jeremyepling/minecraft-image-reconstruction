@@ -8,6 +8,7 @@ Start with the question Jeremy asked about the build. A score update can come st
 | --- | --- |
 | Where did this block go? | Identify the source image, surface and concrete position. Follow the visible mask, axis, count and grid origin into the depth proposal, first visible face, final edits and decoded export. Name the first stage that lost the evidence. A detected wall can still lose a cell to an erroneous block in front of it. |
 | Do those plank, concrete or roof errors have the same cause? | Trace which surface supplied each misplaced coordinate. Compare texture changes, repeats, adjoining faces and the visible rim. A cube projected over planks can originate on a different surface. Protect real platforms, detached pieces and openings when testing a foreground rule. |
+| Is the block misplaced or made of the wrong material? | In the pipeline viewer select **Placement + material**. Amber locates the right cube with a wrong ID. Open **Inspect exported IDs and substitutions** to see the named blocks, source-to-export substitutions and scores for that structure. Report pooled exact-ID accuracy on correctly placed blocks and overall F1 on the decoded build. Compare the 104 fixed views and the separate 28 independent controls. |
 | Would a decision model help? | First let a **perfect chooser** use reference answers to pick the best of the proposed options. Count distinct required positions it could recover, extras it could remove, and already-correct blocks the options might disturb. If there is headroom, test a simple source-image rule and a local learned chooser on held-out buildings. If the correct option is missing, improve proposal generation first. |
 | Does an intermediate gain improve the build? | Join the new face or grid matches to the actual exported coordinates under the same whole-build translation. In the atlas audit, 303 of 304 additional face matches already belonged to correctly placed blocks. They may still constrain a neighbor’s depth. For an outline-only win, measure correct pixels, spill onto neighbors and openings, count changes and placement regressions. |
 | What should get us closer to 95%? | Group **required** misses and extras by failure stage and layout. Name the largest actionable group and a counterexample that could disprove the fix. The viewer shows how much of the gap could close if selected images or entire layouts were perfect. Label that ceiling separately from any measured improvement. |
@@ -34,6 +35,8 @@ python -m benchmark.current_placement_viewer --out runs/my-preview --release PAT
 ```
 
 Refresh the published viewer when a displayed result or stage changes. An explanation of a previously scored run can link the existing view. Use the [stage-specific runners](OFFLINE_GEOMETRY.md#stage-specific-comparisons-and-review-sheets) when the question concerns a surface, texture, camera or count.
+
+After grading a material release, run `python -m benchmark.material_review --workers 6` to regenerate the material overlays, clickable block IDs and per-structure scores. The ordinary viewer loads them on its **Placement + material** stage and checks the geometry pack hash for the selected image. Candidate geometry previews have their own scores and stage assets. [Material scoring and replay](reviews/typed-structures-01/README.md)
 
 ## What uses tokens
 

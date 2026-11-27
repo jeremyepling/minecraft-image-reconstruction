@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Visible block materials and placement</title>
+<style>
+:root{color-scheme:dark}*{box-sizing:border-box}body{margin:0;background:#152126;color:#eff5f0;font:16px/1.5 "Segoe UI",sans-serif}main{margin:auto;max-width:1180px;padding:18px clamp(12px,3vw,42px)}
+h1,h2{line-height:1.17;margin:.5em 0}p{margin:.5em 0}a{color:#a3e8d2}.controls,.palette{display:flex;align-items:center;flex-wrap:wrap;gap:.5em 1em}
+label{display:inline-flex;align-items:center;gap:.5em}select,button{font:inherit;background:#2a3d44;color:inherit;border:1px solid #90a8a9;padding:.3em;border-radius:4px;max-width:100%}
+.scroll{overflow-x:auto}table{border-collapse:collapse;width:100%;font-variant-numeric:tabular-nums}th,td{text-align:left;padding:.35em .6em;border-bottom:1px solid #41565d}td:first-child,th:first-child{padding-left:0}details{margin:1em 0}summary{cursor:pointer}
+.picture{display:grid;margin:.65em 0;max-width:960px;background:#101819}.picture img{grid-area:1/1;width:100%;height:auto}.palette span{white-space:nowrap}.chip{display:inline-block;width:.85em;height:.85em;margin-right:.3em;border:1px solid #8b9799}#scores{font-weight:600}button{cursor:pointer}
+</style><main>
+<a href="../shared-face-round-01/viewer.html">← Pipeline stages and placement review</a>
+<h1>Visible block materials and placement</h1>
+<p>Placement F1 measures whether a visible block is in the right position relative to the build. Material accuracy measures the exact Minecraft ID among those correctly placed blocks. Overall F1 requires both the position and ID to match. A wrong ID counts as one missing block and one extra block.</p>
+<div class="scroll"><table><thead><tr><th>Source images</th><th>Placement F1</th><th>Material accuracy</th><th>Overall F1</th><th>Facade overall F1</th><th>Smooth-stone overall F1</th></tr></thead><tbody id="cohorts"></tbody></table></div>
+<details><summary>Scores by structure across all fixed views</summary>
+<div class="scroll"><table><thead><tr><th>Structure</th><th>Views</th><th>Placement F1</th><th>Material accuracy</th><th>Overall F1</th><th>Facade overall F1</th><th>Lowest overall view</th></tr></thead><tbody id="structures"></tbody></table></div></details>
+<h2>Inspect a source image</h2>
+<div class="controls"><label>View <select id="pick"></select></label><label>Overlay <select id="mode">
+<option value="errors">Position and material errors</option><option value="ids">Exported block IDs</option></select></label>
+<label>Opacity <input type="range" id="opacity" min="0" max="100" value="83"></label></div>
+<p id="scores" aria-live="polite"></p><p id="legend"></p>
+<div class="picture"><img id="source" alt="Full source image"><img id="layer" alt="Projected block overlay"></div>
+<p id="inspected" aria-live="polite">Click a block to inspect the source and exported IDs.</p>
+<p id="counts"></p><p id="wrong"></p><div id="palette" class="palette"></div>
+<p>The overlay uses the recorded capture camera after the same whole-build translation as the placement score. The closest face is visible when several blocks overlap in the image. Facade scoring exempts optional thin horizontal faces at their reference positions. With fixed coordinates, strict overall F1 equals strict placement F1 multiplied by material accuracy. Perfect material identification would bring overall F1 up to the placement score.</p></main>
+<script src="viewer-data.js"></script><script>
+'use strict';
+const byId=id=>document.getElementById(id), {views,cohorts}=materialReview;
+const pct=value=>value==null?'—':(100*value).toFixed(2)+'%';
+const cells=(tr,values)=>values.forEach(value=>tr.insertCell().textContent=value);
+const f1=m=>2*m.correct/(2*m.correct+m.missed+m.extras);
+const rows=[...views].sort((a,b)=>a.result.strict.f1-b.result.strict.f1||a.id.localeCompare(b.id));
+for(const [label,c] of [['104 fixed evaluation views',cohorts.fixed],['28 additional independent views',materialReview.independent],['100 comparison views (includes 72 development)',cohorts.other]]){
+ cells(byId('cohorts').insertRow(),[label,pct(c.geometry.strict.f1),pct(c.result.material.accuracy),pct(c.result.strict.f1),pct(c.result.facade.f1),pct(c.baseline.strict.f1)]);
+}
+const layouts=new Map();
+for(const v of rows){
+ byId('pick').add(new Option(v.layout+' · '+v.id+' · '+pct(v.result.strict.f1),v.id));
+ if(!layouts.has(v.layout))layouts.set(v.layout,[]);layouts.get(v.layout).push(v);
+}
+function pooled(group,key,metric){
+ const total={correct:0,missed:0,extras:0,positions:0};
+ for(const v of group)for(const k of Object.keys(total))total[k]+=v[key][metric][k]??0;
+ return metric==='material'?total.correct/total.positions:f1(total);
+}
+for(const [name,group] of [...layouts].sort((a,b)=>pooled(a[1],'result','strict')-pooled(b[1],'result','strict'))){
+ const tr=byId('structures').insertRow();
+ cells(tr,[name,group.length,pct(pooled(group,'geometry','strict')),pct(pooled(group,'result','material')),pct(pooled(group,'result','strict')),pct(pooled(group,'result','facade'))]);
+ const b=document.createElement('button');b.textContent='Inspect';b.onclick=()=>{byId('pick').value=group[0].id;draw();byId('pick').scrollIntoView({block:'center'})};tr.insertCell().append(b);
+}
+const params=new URLSearchParams(location.hash.slice(1));
+if(layouts.size&&rows.some(v=>v.id===params.get('view')))byId('pick').value=params.get('view');
+if(params.get('mode')==='ids')byId('mode').value='ids';
+let activeLookup=null, inspectCanvas=null, inspectMode='',requestedStem='';
+function loadInspector(stem,mode){
+ inspectCanvas=null;inspectMode=mode;requestedStem=stem;
+ const render=()=>{
+  if(requestedStem!==stem||activeLookup?.stem!==stem||inspectMode!==mode)return;
+  const entry=activeLookup.data[mode];if(!entry)return;
+  const image=new Image();image.onload=()=>{
+   if(requestedStem!==stem||activeLookup?.stem!==stem||inspectMode!==mode)return;
+   const canvas=document.createElement('canvas');canvas.width=image.width;canvas.height=image.height;
+   const ctx=canvas.getContext('2d',{willReadFrequently:true});ctx.drawImage(image,0,0);inspectCanvas={ctx,blocks:activeLookup.data.blocks,names:activeLookup.data.names};
+  };image.src=entry;
+ };
+ if(activeLookup?.stem===stem){render();return}
+ window.blockInspector=(key,data)=>{if(key!==requestedStem||key!==stem)return;activeLookup={stem:key,data};render()};
+ const script=document.createElement('script');script.src='viewer-assets/'+stem+'-inspect.js';script.onload=()=>script.remove();document.head.append(script);
+}
+document.querySelector('.picture').onclick=e=>{
+ const target=byId('inspected');if(!inspectCanvas){target.textContent='Block map is loading.';return}
+ const {ctx,blocks,names}=inspectCanvas,rect=byId('layer').getBoundingClientRect();
+ const x=Math.min(ctx.canvas.width-1,Math.max(0,Math.floor((e.clientX-rect.left)*ctx.canvas.width/rect.width)));
+ const y=Math.min(ctx.canvas.height-1,Math.max(0,Math.floor((e.clientY-rect.top)*ctx.canvas.height/rect.height)));
+ const [r,g]=ctx.getImageData(x,y,1,1).data,block=blocks[r+256*g];
+ if(!block){target.textContent='No projected block at that source pixel.';return}
+ const [world,local,source,prediction]=block;
+ target.textContent='Reference position ('+world.join(', ')+') · Source ID '+(names[source]??'no visible reference block')+' · Export '+(names[prediction]??'missing')+(local?' at local ('+local.join(', ')+')':'');
+};
+function draw(){
+ const v=rows.find(r=>r.id===byId('pick').value),m=v.result,mode=byId('mode').value,stem='viewer-assets/'+v.asset;
+ byId('source').src=stem+'.jpg';byId('layer').src=stem+'-'+mode+'.png';byId('layer').style.opacity=byId('opacity').value/100;
+ byId('inspected').textContent='Click a block to inspect the source and exported IDs.';loadInspector(v.asset,mode);
+ byId('scores').textContent='Placement '+pct(v.geometry.strict.f1)+' · Material '+pct(m.material.accuracy)+' · Overall '+pct(m.strict.f1)+' · Facade overall '+pct(m.facade.f1);
+ byId('legend').textContent=mode==='errors'?'Green = correct position and ID. Amber = correct position, wrong ID. Blue = missing position. Red = extra position.':'Each color marks one exported Minecraft block ID. The swatches below identify the blocks.';
+ byId('counts').textContent=m.material.correct+' exact IDs / '+m.material.positions+' correctly placed blocks. '+m.assigned+' blocks assigned by the matcher and '+m.fallback+' exported with the fallback material. Overall counts: '+m.strict.correct+' correct, '+m.strict.missed+' missing, '+m.strict.extras+' extra.';
+ const short=s=>s.replace(/^minecraft:/,'');
+ byId('wrong').textContent=v.wrong.length?'Most frequent substitutions (source → export): '+v.wrong.map(([a,b,n])=>short(a)+' → '+short(b)+' ('+n+')').join(' · '):'All overlapping blocks have the correct ID.';
+ const palette=byId('palette');palette.replaceChildren();
+ if(mode==='ids')for(const [id,n,color] of v.palette){const s=document.createElement('span'),i=document.createElement('i');i.className='chip';i.style.background=color;s.append(i,short(id)+' × '+n);palette.append(s)}
+ history.replaceState(null,'','#'+new URLSearchParams({view:v.id,mode}));
+}
+byId('pick').onchange=byId('mode').onchange=draw;byId('opacity').oninput=()=>byId('layer').style.opacity=byId('opacity').value/100;draw();
+</script></html>

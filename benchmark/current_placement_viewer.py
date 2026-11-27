@@ -348,7 +348,7 @@ def render(directories, *, page, assets, revision, preview=False, candidate=Fals
             smooth=dict(pixels=sum(b-a for y,a,b in spans),
                         path=''.join(f'M{a} {y+.5}h{b-a}' for y,a,b in spans),
                         accepted=int(accepted.sum()),acceptedPath=''.join(f'M{a} {y+.5}h{b-a}' for y,a,b in approved))
-        rows.append(dict(id=key,name=r['layout'],prefix=prefix,issues=outline_issues(parts,image.size),smooth=smooth,
+        rows.append(dict(id=key,name=r['layout'],prefix=prefix,geometryHash=r['pack_sha256'],issues=outline_issues(parts,image.size),smooth=smooth,
                          visibleFaces=visible_faces,cornerPair=corner_pair(image,original,before_counts,camera,corners[key]),
                          excludedPixels=excluded_pixels,atlasGridSurfaces=len(atlas_phases),
                          f1=f'{f1(strict):.2%}',facade=f'{f1(facade):.2%}',

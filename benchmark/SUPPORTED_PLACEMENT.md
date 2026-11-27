@@ -1,6 +1,6 @@
 # Camera-supported visible block placement
 
-`Invoke-WallRecovery.ps1 image.png -Out runs/build` runs the exterior pipeline through placement. The Python entry point is `python reconstruct.py build image.png --version 26.3 --through placement --out runs/build`. The exported structure uses smooth stone to show geometry. Material choices from the optional atlas, exposure and texture matchers are recorded in the counts report.
+`Invoke-WallRecovery.ps1 image.png -Out runs/build` runs the exterior pipeline through placement and material export. The Python entry point is `python reconstruct.py build image.png --version 26.3 --through placement --out runs/build`. The default pack uses block IDs matched to visible faces. Use `-GeometryOnly` for the historical smooth-stone control. The counts report also supports separate per-face material diagnostics.
 
 The pavement seam estimator must recover a camera with scale in blocks. The placer keeps the strict grid cells from measured surfaces and fits additional planes using surface direction, floor contact and relative depth. A proposed cell requires at least four samples and half its projected face inside a visible surface mask. After combining proposals it checks that each added cell is still visible within a supporting mask. Coordinates in the datapack are local to the placement function. An uncertain camera produces zero placements and records its reason in the build manifest.
 
