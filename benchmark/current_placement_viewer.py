@@ -30,7 +30,7 @@ ROOT = suite.ROOT/'benchmark/reviews'
 PAGE = ROOT/'shared-face-round-01'
 RELEASE = ROOT/'pavement-local-01'
 ASSETS = RELEASE/'viewer-overlays'
-REVISION = '141bc91'
+REVISION = '3b442a3'
 SMOOTH_LAYOUTS = {'Shopfront','Registry','Portico','Courtyard'}
 
 
@@ -39,7 +39,7 @@ def calibrated_atlas():
     return atlas_count.load_atlas(suite.ATLAS,'26.3')
 
 
-def latest_stages(job, expected):
+def pre_background_stages(job, expected):
     image, parts, counts, camera = current_stages(job,expected)
     parts,_ = eave_pinholes.refine(image,parts)
     if not any(expected[k] for k in ('returns','texture','outlines')):
@@ -50,6 +50,32 @@ def latest_stages(job, expected):
             counts = recount(image,measured,atlas)
     parts,_ = smooth_atlas_outline.refine(image,parts,'26.3',atlas_loader=calibrated_atlas)
     return image,parts,counts,camera
+
+
+# Frozen input to the smooth-wall and counted-corner benchmarks.
+latest_stages = pre_background_stages
+
+
+def structure_stages(job, expected, *, details=False):
+    from engine import exterior_foreground, horizon_continuity
+    image, original, counts, camera = pre_background_stages(job, expected)
+    before_counts = counts
+    parts, exterior = exterior_foreground.refine(image, original, camera)
+    parts, horizon = horizon_continuity.refine(image, parts)
+    excluded = None
+    if exterior or horizon:
+        parts = [with_outline(p) if 'outline' not in p else p for p in parts]
+        measured = eave_pinholes.measurement_parts(smooth_atlas_outline.measurement_parts(parts))
+        counts = recount(image, measured, calibrated_atlas() if 'atlas_phase' in counts else None)
+        if details:
+            def union(patches):
+                mask = np.zeros(image.size[::-1], bool)
+                for patch in patches:
+                    mask |= native_mask(patch, image.size)
+                return mask
+            excluded = union(original) & ~union(parts)
+    stages = image, parts, counts, camera
+    return (*stages, excluded, original, before_counts) if details else stages
 
 
 def read_releases(directories):
@@ -72,12 +98,12 @@ def regrade(task):
     job,expected,old,updates,payload = task
     args = (job,expected,old['layout'],old['shape_sha256'])
     if not updates:
-        return measure(args,stages_fn=latest_stages)
+        return measure(args,stages_fn=structure_stages)
     new=updates[-1]
     assert (old['rgb_sha256'],old['pack_sha256'])==(new['source_hash'],updates[0]['previous_pack_sha256'])
     shift=new['result'].get('translation',old['translation'])
     pack=sorted(decoded_pack(BytesIO(payload))),new['pack_sha256'],shift,new['result']['strict']
-    result=measure(args,pack=pack,stages_fn=latest_stages)
+    result=measure(args,pack=pack,stages_fn=structure_stages)
     assert all(result['required'][k]==new['result']['facade'][k] for k in ('correct','missed','extras'))
     return result
 
@@ -153,7 +179,7 @@ def required_overlay(image, labels, ids, missing, metric):
 
 def main():
     release,changed,payloads = read_releases([RELEASE,ROOT/'smooth-local-placement-01',ROOT/'smooth-joint-placement-01',
-                                             ROOT/'window-wall-01',ROOT/'counted-ground-corner-01'])
+                                             ROOT/'window-wall-01',ROOT/'counted-ground-corner-01',ROOT/'workshop-foreground-01'])
     fixed = read(PAGE/'error-budget.json')['frames']
     jobs = {j[1]['id']:j for j in suite.jobs(suite.framed.EVALUATION)}
     assert len(fixed)==len(jobs)==104 and {r['id'] for r in fixed}==set(jobs)
@@ -179,7 +205,9 @@ def main():
                  images=path_to_target(sorted(([r] for r in fixed),key=target_progress,reverse=True),facade_pool),
                  displayed=path_to_target([by_shape[r['shape_sha256']] for r in selected],facade_pool,stop_at_target=False))
     extras = {key for path in paths.values() for row in path for key in row['ids']}
-    extras.update(r['id'] for r in fixed if r['layout'] in SMOOTH_LAYOUTS)
+    # Keep the investigated layouts selectable even after a repair moves them out of the lowest ten.
+    review_layouts = SMOOTH_LAYOUTS | {'Workshop', 'Galleries'}
+    extras.update(r['id'] for r in fixed if r['layout'] in review_layouts)
     ids = {r['id'] for r in selected}
     display = selected + sorted((r for r in fixed if r['id'] in extras-ids),key=lambda r:(r['layout'],r['id']))
     gap.update(paths=paths, baseline=100*f1(facade_pool), themes=themes(fixed),
@@ -208,7 +236,7 @@ def main():
         else:
             cells, pack_hash, _, _ = current_pack(job)
             assert pack_hash==r['pack_sha256']
-        image, parts, counts, camera = latest_stages(job,inputs[key])
+        image, parts, counts, camera, excluded, original, before_counts = structure_stages(job,inputs[key],details=True)
         _,_,_,_,pose,labels,ids,truth,_,_,states = sheet.stages.read_view(suite.CONTROL,*job)
         _,_,transform,_ = ref_inputs(job)
         raw = registered(cells,transform)
@@ -229,6 +257,11 @@ def main():
         surface, wire, visible_faces = edge_overlay(image.size, parts, camera, cells)
         for overlay, suffix in ((surface, 'mask-edges'), (wire, 'face-corners')):
             overlay.save(ASSETS/f'{prefix}-{suffix}.png', transparency=0, optimize=True)
+        excluded_pixels = int(excluded.sum()) if excluded is not None else 0
+        if excluded_pixels:
+            mask = Image.fromarray(excluded.astype(np.uint8))
+            mask.putpalette([0, 0, 0, 184, 119, 255])
+            mask.save(ASSETS/f'{prefix}-excluded.png', transparency=0, optimize=True)
         for stage,i in [('source',0),('outlines',1),('grid',5),('build',7),('reference',8),('errors',9)]:
             panels[i][0].save(ASSETS/f'{prefix}-{stage}.jpg',quality=86,optimize=True)
         required_overlay(image,labels,ids,truth-scored,facade).save(ASSETS/f'{prefix}-required.jpg',quality=89,optimize=True)
@@ -239,10 +272,10 @@ def main():
                 sheet.panel(board,(col,top+i*height,width-12,height-14),(pic,crop,caption.replace('Photo / atlas','Source / atlas')))
         smooth=None
         if r['layout'] in SMOOTH_LAYOUTS:
-            original=smooth_atlas_outline.measurement_parts(parts)
+            smooth_parts=smooth_atlas_outline.measurement_parts(parts)
             proposed=np.zeros((image.height,image.width),bool)
             for shared in (False,True):
-                for region in smooth_extent_placement.proposals(image,original,common_wall=shared):
+                for region in smooth_extent_placement.proposals(image,smooth_parts,common_wall=shared):
                     for y,a,b in region['runs']:
                         proposed[y,a:b]=True
             spans=row_runs(proposed)
@@ -257,7 +290,8 @@ def main():
                         path=''.join(f'M{a} {y+.5}h{b-a}' for y,a,b in spans),
                         accepted=int(accepted.sum()),acceptedPath=''.join(f'M{a} {y+.5}h{b-a}' for y,a,b in approved))
         rows.append(dict(id=key,name=r['layout'],prefix=prefix,issues=outline_issues(parts,image.size),smooth=smooth,
-                         visibleFaces=visible_faces,cornerPair=corner_pair(image,parts,counts,camera,corners[key]),
+                         visibleFaces=visible_faces,cornerPair=corner_pair(image,original,before_counts,camera,corners[key]),
+                         excludedPixels=excluded_pixels,
                          f1=f'{f1(strict):.2%}',facade=f'{f1(facade):.2%}',
                          correct=strict['correct'],required=facade['missed'],optional=strict['missed']-facade['missed'],
                          extras=strict['extras'],gap=gap_contribution([r],facade_pool),

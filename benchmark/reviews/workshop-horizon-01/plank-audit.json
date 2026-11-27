@@ -1,0 +1,552 @@
+{
+  "baseline": "53252df",
+  "version": "26.3",
+  "release_cases_sha256": "9b0c4cb804337ee6e5d511ebc2cef9934e1ebe5bc8cb14cb025833ae86bc679a",
+  "placement": {
+    "fixed": {
+      "strict": {
+        "correct": 20755,
+        "missed": 2947,
+        "extras": 1064,
+        "hidden_extras": 104,
+        "f1": 0.9118868214670153
+      },
+      "facade": {
+        "correct": 18934,
+        "missed": 1642,
+        "extras": 1064,
+        "f1": 0.9333070439197516
+      },
+      "registered": {
+        "correct": 20755,
+        "missed": 2947,
+        "extras": 1064,
+        "hidden_extras": 104,
+        "f1": 0.9118868214670153
+      }
+    },
+    "historical_112_strict_f1": 0.9042587953381984
+  },
+  "aggregates": {
+    "workshop": {
+      "views": 4,
+      "extra_pixels_dominate": {
+        "minecraft:stone_bricks": 7,
+        "minecraft:polished_andesite": 4,
+        "background": 18,
+        "minecraft:tuff": 2,
+        "minecraft:spruce_planks": 9,
+        "minecraft:white_concrete": 2,
+        "minecraft:cobblestone": 4
+      },
+      "strict": {
+        "correct": 841,
+        "missed": 159,
+        "extras": 46,
+        "hidden_extras": 1
+      }
+    },
+    "galleries": {
+      "views": 4,
+      "extra_pixels_dominate": {
+        "minecraft:stone_bricks": 9,
+        "minecraft:tuff": 25,
+        "background": 7,
+        "minecraft:cobblestone": 27,
+        "minecraft:spruce_planks": 7,
+        "minecraft:white_concrete": 5
+      },
+      "strict": {
+        "correct": 787,
+        "missed": 355,
+        "extras": 80,
+        "hidden_extras": 4
+      }
+    },
+    "portico": {
+      "views": 8,
+      "extra_pixels_dominate": {
+        "minecraft:stone_bricks": 9,
+        "minecraft:polished_andesite": 4,
+        "background": 5,
+        "minecraft:white_concrete": 63,
+        "minecraft:spruce_planks": 8,
+        "minecraft:tuff": 2,
+        "minecraft:cobblestone": 1
+      },
+      "strict": {
+        "correct": 1524,
+        "missed": 264,
+        "extras": 92,
+        "hidden_extras": 4
+      }
+    },
+    "shopfront": {
+      "views": 8,
+      "extra_pixels_dominate": {
+        "background": 83,
+        "minecraft:stone_bricks": 14,
+        "minecraft:polished_andesite": 2,
+        "minecraft:tuff": 15,
+        "minecraft:cobblestone": 8,
+        "minecraft:white_concrete": 18,
+        "minecraft:spruce_planks": 3
+      },
+      "strict": {
+        "correct": 1283,
+        "missed": 257,
+        "extras": 143,
+        "hidden_extras": 19
+      }
+    }
+  },
+  "focus": {
+    "legacy-light_gray_concrete-dev-shopfront-plaster-low-left": {
+      "rgb_sha256": "299e0228de74d2cc7d3a18deaba9f61c82560a0ddd0b8557e5c91728c964a993",
+      "pack_sha256": "933b2861f02ec09655ce1978527c90c3667fc2cbede8dde2104ea226f51e23d2",
+      "strict": {
+        "correct": 105,
+        "missed": 64,
+        "extras": 21,
+        "hidden_extras": 4
+      },
+      "facade": {
+        "correct": 104,
+        "missed": 52,
+        "extras": 21
+      },
+      "extra_pixels_dominate": {
+        "minecraft:white_concrete": 12,
+        "minecraft:spruce_planks": 3,
+        "minecraft:cobblestone": 6
+      },
+      "required_missing_material": {
+        "minecraft:white_concrete": 35,
+        "minecraft:cobblestone": 8,
+        "minecraft:spruce_planks": 9
+      },
+      "strict_seeds": 0,
+      "strict_seed_extras": 0,
+      "plank_extra_initial_masks": {
+        "underside-0": 2
+      },
+      "plank_extra_first_stage": {
+        "accepted": 2,
+        "nearby_face_decision.recover": 1
+      },
+      "tests": {
+        "control": {
+          "strict": {
+            "correct": 105,
+            "missed": 64,
+            "extras": 21,
+            "gained": 0,
+            "lost": 0,
+            "extra_added": 0,
+            "extra_removed": 0
+          },
+          "facade": {
+            "correct": 104,
+            "missed": 52,
+            "extras": 21
+          }
+        },
+        "remove": {
+          "strict": {
+            "correct": 102,
+            "missed": 67,
+            "extras": 18,
+            "gained": 1,
+            "lost": 4,
+            "extra_added": 0,
+            "extra_removed": 3
+          },
+          "facade": {
+            "correct": 101,
+            "missed": 55,
+            "extras": 18
+          }
+        },
+        "up": {
+          "strict": {
+            "correct": 102,
+            "missed": 67,
+            "extras": 24,
+            "gained": 1,
+            "lost": 4,
+            "extra_added": 6,
+            "extra_removed": 3
+          },
+          "facade": {
+            "correct": 101,
+            "missed": 55,
+            "extras": 24
+          }
+        },
+        "down": {
+          "strict": {
+            "correct": 104,
+            "missed": 65,
+            "extras": 18,
+            "gained": 2,
+            "lost": 3,
+            "extra_added": 0,
+            "extra_removed": 3
+          },
+          "facade": {
+            "correct": 102,
+            "missed": 54,
+            "extras": 18
+          }
+        }
+      },
+      "trim_75pct": {
+        "removed_correct": 3,
+        "removed_extra": 1
+      }
+    },
+    "legacy-light_gray_concrete-holdout-galleries-plaster-low-left": {
+      "rgb_sha256": "0fec6765b63937520e2a731a9171eef73e631ce1d47734e3925e2165b64a26c0",
+      "pack_sha256": "f5599de78c523e2c1c87c6019e1261ab89b984a30a07ee92bbec4dc8166e9e2d",
+      "strict": {
+        "correct": 188,
+        "missed": 86,
+        "extras": 39,
+        "hidden_extras": 0
+      },
+      "facade": {
+        "correct": 177,
+        "missed": 25,
+        "extras": 39
+      },
+      "extra_pixels_dominate": {
+        "minecraft:cobblestone": 24,
+        "background": 3,
+        "minecraft:spruce_planks": 7,
+        "minecraft:white_concrete": 5
+      },
+      "required_missing_material": {
+        "minecraft:cobblestone": 11,
+        "minecraft:white_concrete": 8,
+        "minecraft:spruce_planks": 6
+      },
+      "strict_seeds": 14,
+      "strict_seed_extras": 0,
+      "plank_extra_initial_masks": {
+        "mask-11": 1,
+        "mask-4": 2,
+        "underside-0": 3
+      },
+      "plank_extra_first_stage": {
+        "accepted": 6,
+        "visible_horizontal_faces.recover": 1
+      },
+      "tests": {
+        "control": {
+          "strict": {
+            "correct": 188,
+            "missed": 86,
+            "extras": 39,
+            "gained": 0,
+            "lost": 0,
+            "extra_added": 0,
+            "extra_removed": 0
+          },
+          "facade": {
+            "correct": 177,
+            "missed": 25,
+            "extras": 39
+          }
+        },
+        "remove": {
+          "strict": {
+            "correct": 176,
+            "missed": 98,
+            "extras": 40,
+            "gained": 1,
+            "lost": 13,
+            "extra_added": 5,
+            "extra_removed": 4
+          },
+          "facade": {
+            "correct": 176,
+            "missed": 26,
+            "extras": 40
+          }
+        },
+        "up": {
+          "strict": {
+            "correct": 182,
+            "missed": 92,
+            "extras": 44,
+            "gained": 2,
+            "lost": 8,
+            "extra_added": 9,
+            "extra_removed": 4
+          },
+          "facade": {
+            "correct": 178,
+            "missed": 24,
+            "extras": 44
+          }
+        },
+        "down": {
+          "strict": {
+            "correct": 185,
+            "missed": 89,
+            "extras": 40,
+            "gained": 2,
+            "lost": 5,
+            "extra_added": 5,
+            "extra_removed": 4
+          },
+          "facade": {
+            "correct": 178,
+            "missed": 24,
+            "extras": 40
+          }
+        }
+      },
+      "trim_75pct": {
+        "removed_correct": 0,
+        "removed_extra": 0
+      }
+    },
+    "legacy-light_gray_concrete-holdout-portico-plaster-low-left": {
+      "rgb_sha256": "318e6e654ece8e6ab93aea0fa5c0cccecdb727faf743b5fbb5eb31da2f2b05f2",
+      "pack_sha256": "3be5334ae8386b98e28df808329e8c99cfa189462f7e88d97af7cddad09539ae",
+      "strict": {
+        "correct": 148,
+        "missed": 61,
+        "extras": 30,
+        "hidden_extras": 0
+      },
+      "facade": {
+        "correct": 104,
+        "missed": 39,
+        "extras": 30
+      },
+      "extra_pixels_dominate": {
+        "minecraft:spruce_planks": 4,
+        "minecraft:white_concrete": 26
+      },
+      "required_missing_material": {
+        "minecraft:white_concrete": 39
+      },
+      "strict_seeds": 0,
+      "strict_seed_extras": 0,
+      "plank_extra_initial_masks": {
+        "underside-0": 4
+      },
+      "plank_extra_first_stage": {
+        "accepted": 4
+      },
+      "tests": {
+        "control": {
+          "strict": {
+            "correct": 148,
+            "missed": 61,
+            "extras": 30,
+            "gained": 0,
+            "lost": 0,
+            "extra_added": 0,
+            "extra_removed": 0
+          },
+          "facade": {
+            "correct": 104,
+            "missed": 39,
+            "extras": 30
+          }
+        },
+        "remove": {
+          "strict": {
+            "correct": 101,
+            "missed": 108,
+            "extras": 27,
+            "gained": 2,
+            "lost": 49,
+            "extra_added": 1,
+            "extra_removed": 4
+          },
+          "facade": {
+            "correct": 101,
+            "missed": 42,
+            "extras": 27
+          }
+        },
+        "up": {
+          "strict": {
+            "correct": 113,
+            "missed": 96,
+            "extras": 48,
+            "gained": 4,
+            "lost": 39,
+            "extra_added": 22,
+            "extra_removed": 4
+          },
+          "facade": {
+            "correct": 102,
+            "missed": 41,
+            "extras": 48
+          }
+        },
+        "down": {
+          "strict": {
+            "correct": 79,
+            "missed": 130,
+            "extras": 34,
+            "gained": 0,
+            "lost": 69,
+            "extra_added": 8,
+            "extra_removed": 4
+          },
+          "facade": {
+            "correct": 79,
+            "missed": 64,
+            "extras": 34
+          }
+        }
+      },
+      "trim_75pct": {
+        "removed_correct": 6,
+        "removed_extra": 1
+      }
+    },
+    "legacy-light_gray_concrete-holdout-workshop-plaster-high-right": {
+      "rgb_sha256": "d35ab308820f92501ec898cafb1f50939f3f0ed1141e3d9ee38a00eae1199aa0",
+      "pack_sha256": "92e7dbe1144668ddd5638081bf4f7bd3d677e1c545beb7132806b27fb65503a9",
+      "strict": {
+        "correct": 211,
+        "missed": 54,
+        "extras": 19,
+        "hidden_extras": 0
+      },
+      "facade": {
+        "correct": 211,
+        "missed": 54,
+        "extras": 19
+      },
+      "extra_pixels_dominate": {
+        "background": 10,
+        "minecraft:spruce_planks": 7,
+        "minecraft:white_concrete": 2
+      },
+      "required_missing_material": {
+        "minecraft:spruce_planks": 26,
+        "minecraft:white_concrete": 27,
+        "minecraft:cobblestone": 1
+      },
+      "strict_seeds": 45,
+      "strict_seed_extras": 1,
+      "plank_extra_initial_masks": {
+        "mask-2": 2,
+        "planarity-new-11-0": 4
+      },
+      "plank_extra_first_stage": {
+        "accepted": 6,
+        "nearby_face_decision.recover": 1
+      },
+      "tests": {
+        "control": {
+          "strict": {
+            "correct": 211,
+            "missed": 54,
+            "extras": 19,
+            "gained": 0,
+            "lost": 0,
+            "extra_added": 0,
+            "extra_removed": 0
+          },
+          "facade": {
+            "correct": 211,
+            "missed": 54,
+            "extras": 19
+          }
+        },
+        "outer": {
+          "strict": {
+            "correct": 211,
+            "missed": 54,
+            "extras": 20,
+            "gained": 0,
+            "lost": 0,
+            "extra_added": 1,
+            "extra_removed": 0
+          },
+          "facade": {
+            "correct": 211,
+            "missed": 54,
+            "extras": 20
+          }
+        },
+        "near": {
+          "strict": {
+            "correct": 234,
+            "missed": 31,
+            "extras": 7,
+            "gained": 23,
+            "lost": 0,
+            "extra_added": 1,
+            "extra_removed": 13
+          },
+          "facade": {
+            "correct": 234,
+            "missed": 31,
+            "extras": 7
+          }
+        },
+        "all3": {
+          "strict": {
+            "correct": 234,
+            "missed": 31,
+            "extras": 7,
+            "gained": 23,
+            "lost": 0,
+            "extra_added": 1,
+            "extra_removed": 13
+          },
+          "facade": {
+            "correct": 234,
+            "missed": 31,
+            "extras": 7
+          }
+        }
+      },
+      "strip_masks": [
+        {
+          "id": "mask-6",
+          "area": 1916,
+          "background": 1916,
+          "bounds": [
+            854,
+            384,
+            1199,
+            395
+          ]
+        },
+        {
+          "id": "mask-13",
+          "area": 779,
+          "background": 775,
+          "bounds": [
+            240,
+            385,
+            415,
+            395
+          ]
+        },
+        {
+          "id": "planarity-new-11-0",
+          "area": 2361,
+          "background": 2360,
+          "bounds": [
+            876,
+            432,
+            1031,
+            460
+          ]
+        }
+      ]
+    }
+  }
+}

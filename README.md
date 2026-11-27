@@ -32,14 +32,14 @@ The **[illustrated stage and term guide](ARCHITECTURE.md#pipeline-terms-in-readi
 
 [Where placement fails on the weakest source images](benchmark/reviews/shared-face-round-01/README.md) groups the misses at `a6e0195` by visible coverage, face direction and 3D position. The [stage map](benchmark/reviews/shared-face-round-01/stage-map.jpg) follows five buildings from source pixels through block counting and the exported geometry. The [required-miss overlay](benchmark/reviews/shared-face-round-01/wall-examples.jpg) shows which errors remain after optional roof slivers are excluded.
 
-On the **104 fixed whole-structure source images**, the current default places **20,755** blocks at the correct relative coordinates, misses **2,947** visible positions and places **1,064** extras. Reprojecting counted wall faces at their shared ground corner restored 25 visible positions and removed 25 extras across two Courtyard views. All 202 other fixed and control views retained their previous placements. [Courtyard corner and scores](benchmark/reviews/courtyard-corner-01/README.md) · [Colonnade window repair](benchmark/reviews/window-wall-01/README.md) · [Smooth-wall comparisons](benchmark/reviews/shopfront-outline-review-01/README.md)
+On the **104 fixed whole-structure source images**, the current default places **20,773** blocks at the correct relative coordinates, misses **2,929** visible positions and places **1,046** extras. Removing background that continued through the proposed Workshop canopy exposed 18 visible roof positions. Across the fixed suite the correction removed 18 extras and preserved every previously correct placement. In the viewer, choose **Face corner placement** to compare the detected surface edges, actual exported block corners and, where available, excluded background or the two counted corner fits. [Workshop foreground results](benchmark/reviews/workshop-foreground-01/README.md) · [Plank errors across four layouts](benchmark/reviews/workshop-horizon-01/plank-audit.md) · [Courtyard corner](benchmark/reviews/courtyard-corner-01/README.md)
 
 | Measure | What it asks | Current |
 | --- | --- | ---: |
-| Precision | Of the positions we placed, what fraction were correct? | 95.12% |
-| Recall | Of the visible positions in the reference, what fraction did we place correctly? | 87.57% |
-| Strict visible-block F1 | How well did placement balance precision and recall across all visible blocks? | 91.19% |
-| Facade-priority F1 | How well did we do when very thin top-only or underside-only targets are optional? | 93.33% |
+| Precision | Of the positions we placed, what fraction were correct? | 95.21% |
+| Recall | Of the visible positions in the reference, what fraction did we place correctly? | 87.64% |
+| Strict visible-block F1 | How well did placement balance precision and recall across all visible blocks? | 91.27% |
+| Facade-priority F1 | How well did we do when very thin top-only or underside-only targets are optional? | 93.42% |
 
 **F1** combines precision and recall using their harmonic mean. In block counts, **F1 = 2 × correct / (2 × correct + extras + misses)**. On these images, if you pick a placed block, roughly 95 in 100 are right. If you pick a visible reference block, roughly 87 in 100 were recovered. Both matter. The reference allows one whole-build shift per image so a different world origin gets full credit and misplaced parts still count as errors. [Scoring details and examples](ARCHITECTURE.md#evaluation-terms)
 

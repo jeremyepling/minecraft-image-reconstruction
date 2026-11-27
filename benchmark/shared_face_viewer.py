@@ -32,8 +32,11 @@ table{border-collapse:collapse;font-variant-numeric:tabular-nums;width:100%;marg
 <label><input type="checkbox" id="showMasks" checked>Detected surface edges</label>
 <label><input type="checkbox" id="showWire" checked>Exported block faces</label>
 <label id="chartLabel"><input type="checkbox" id="showChart">Texture-crop corner</label>
-<label id="groundLabel"><input type="checkbox" id="showGround" checked>Counted ground corner</label></div></fieldset>
+<label id="groundLabel"><input type="checkbox" id="showGround" checked>Counted ground corner</label>
+<label id="removedLabel"><input type="checkbox" id="showRemoved">Excluded background</label></div>
+<div id="cornerExamples" class="controls" aria-label="Compare source images">Compare</div></fieldset>
 <div class="frame"><img id="base" width="1440" height="900" alt=""><img id="overlay" width="1440" height="900" alt="">
+<img id="removedArea" hidden width="1440" height="900" alt="Background pixels excluded from structural surfaces">
 <img id="faceWire" hidden width="1440" height="900" alt="Visible edges and corners of exported blocks"><img id="maskEdges" hidden width="1440" height="900" alt="Detected surface edges">
 <svg id="warnings" viewBox="0 0 1440 900" aria-hidden="true"></svg></div>
 <p id="issueReview"></p>
@@ -69,6 +72,11 @@ for(const [name,key] of [['Shopfront','legacy-light_gray_concrete-dev-shopfront-
  b.onclick=()=>{pick.selectedIndex=index;stage=stages.findIndex(s=>s[0]==='smooth');draw()};
  el('smoothExamples').append(b);
 }
+for(const [name,suffix] of [['Workshop','holdout-workshop-plaster-high-right'],['Galleries','holdout-galleries-plaster-low-left'],
+ ['Shopfront','dev-shopfront-plaster-low-left'],['Portico','holdout-portico-plaster-low-left'],['Courtyard','holdout-courtyard-plaster-low-left']]){
+ const i=views.findIndex(v=>v.id==='legacy-light_gray_concrete-'+suffix);
+ if(i>=0){const b=document.createElement('button');b.textContent=name;b.onclick=()=>{pick.selectedIndex=i;draw()};el('cornerExamples').append(b);}
+}
 function draw(){
  const v=views[Number(pick.value)],s=stages[stage],prefix='__ASSETS__/'+v.prefix+'-';
  const corners=s[0]==='corners';
@@ -76,6 +84,9 @@ function draw(){
  el('overlay').src=prefix+(s[0]==='issues'?'outlines':s[0]==='smooth'||corners?'source':s[0])+'.jpg';el('overlay').alt=s[1]+' for '+v.name;
  const warnings=el('warnings'), review=el('issueReview');warnings.replaceChildren();review.replaceChildren();
  el('cornerControls').hidden=!corners;
+ el('removedLabel').hidden=!v.excludedPixels;
+ const removed=el('removedArea');removed.hidden=!corners||!v.excludedPixels||!el('showRemoved').checked;
+ if(!removed.hidden){removed.src=prefix+'excluded.png';removed.style.opacity=.72*mix.value/100;}
  for(const [id,toggle,asset] of [['faceWire','showWire','face-corners'],['maskEdges','showMasks','mask-edges']]){
   const layer=el(id);layer.hidden=!corners||!el(toggle).checked;
   if(corners){layer.src=prefix+asset+'.png';layer.style.opacity=mix.value/100;}
@@ -103,6 +114,7 @@ function draw(){
    'Lime shows the two complete counted faces at the shared ground corner. '+(pair.chart?.length?'Dashed pink shows the earlier texture-crop estimate. ':'')+
    (pair.revised?'The counted corner changed this export. ':'The counted-corner check made no edits. '):
    'No counted ground-corner pair was recorded for this view. ');
+  if(v.excludedPixels)review.append('The violet layer shows '+v.excludedPixels.toLocaleString()+' background pixels removed from the structure outlines. ');
  }
  if(s[0]==='issues'){
   const issues=v.issues||[];
@@ -165,7 +177,7 @@ function showPath(){
   const b=document.createElement('button');b.textContent='View';b.onclick=()=>{pick.selectedIndex=views.findIndex(v=>v.id===menu.value);stage=stages.findIndex(s=>s[0]==='errors');draw();pick.scrollIntoView({block:'start'});pick.focus({preventScroll:true})};cell.append(b);
  }
 }
-for(const id of ['showMasks','showWire','showChart','showGround'])el(id).onchange=draw;
+for(const id of ['showMasks','showWire','showChart','showGround','showRemoved'])el(id).onchange=draw;
 el('unit').onchange=showPath;showPath();pick.onchange=draw;mix.oninput=draw;draw();
 </script></html>"""
     picked, layouts = gap['selected'], gap['layouts']

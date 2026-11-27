@@ -15,6 +15,8 @@ The combined audit measures both refinements on the same native pixels. Both ret
 
 ## Fitting and ordinary export
 
+These results isolate the horizon change. The combined default also checks the raised shelf above the awning and recovers visible roof blocks. [Combined placement results and interactive viewer guide](../workshop-foreground-01/README.md)
+
 The original strips help constrain relative plane fits even though their distant terrain lies outside the build. The ordinary horizon pass keeps those original supports internally for fitting. The public surface outlines and crops use only the retained support. A fully discarded strip has no visible-surface row in the public block-count report and no material samples. On the reported view, the 18 public surface and count IDs agree. Every retained surface dimension and material group matched the earlier measurement; the decoded export retained all 230 previous block positions and materials. [Ordinary build verification](ordinary.json)
 
 With the frozen Java 26.3 inputs, run `python -m benchmark.workshop_horizon_eval` for the isolated comparison. To reproduce the combined audit, run `python -m benchmark.workshop_horizon_eval --combined` with the exterior-foreground implementation available. For separate experiment checkouts, pass the sibling `engine/exterior_foreground.py` with `--foreground-source`. Run `python -m benchmark.workshop_horizon_eval --ordinary <placement-output>` to verify a horizon-only ordinary build. The per-view JSON files record each source image hash and the IDs of every trimmed proposal.
