@@ -135,6 +135,10 @@ def contact(a,b,color,box):
 
 
 def rewrite(image,parts,camera,mode):
+    if mode=='selective':
+        separated, cuts = rewrite(image, parts, camera, 'pillar')
+        joined, joins = rewrite(image, separated, camera, 'diagonal')
+        return joined, cuts + joins
     if not parts or camera.get('P') is None:return parts,[]
     size=image.size
     p,rot=orientation(camera,size)
@@ -156,7 +160,7 @@ def rewrite(image,parts,camera,mode):
                 records.append(dict(op='prune',ids=[part['id']],area=area))
             else:keep.append(part)
         return keep,records
-    if mode=='join':
+    if mode in ('join', 'diagonal'):
         pairs=[]
         for i,a in enumerate(parts):
             for j in range(i):
@@ -174,6 +178,11 @@ def rewrite(image,parts,camera,mode):
                     angles.append(np.degrees(np.arccos(np.clip(abs(d@direction)/np.linalg.norm(d),0,1))))
                 diagonal=min(angles)>=12 and vals[1]>=15*max(1,vals[0])
                 small=min(masks[i].sum(),masks[j].sum())<=.08*max(masks[i].sum(),masks[j].sum())
+                if mode=='diagonal':
+                    # Undo a split only for siblings sharing one long non-projective boundary.
+                    siblings = a.get('parent_id') and a.get('parent_id') == b.get('parent_id')
+                    if not (siblings and diagonal and n >= 96 and min(angles) >= 18):
+                        continue
                 if median<=6 and c<=max(4,w*1.5) and (diagonal or small):
                     pairs.append((c-w,i,j,dict(op='join',ids=[a['id'],b['id']],border_pixels=n,
                          contrast=round(c,2),within=round(w,2),angle=round(min(angles),1),median=round(median,2))))
@@ -184,7 +193,7 @@ def rewrite(image,parts,camera,mode):
             base=parts[i] if masks[i].sum()>masks[j].sum() else parts[j]
             out.append(make(base,masks[i]|masks[j],base['id']+'-joined'))
         return [part for i,part in enumerate(parts) if i not in seen]+out,records
-    if mode=='split':
+    if mode in ('split','pillar'):
         # A mark across two vertically stacked pieces can be a mortar course.
         # Reconsider it only if a coherent vertical texture break continues
         # through their union and into its own silhouette.
@@ -205,6 +214,9 @@ def rewrite(image,parts,camera,mode):
             cuts=seams(union,[union],rgb,p)
             if cuts:
                 a,b,info=cuts[0]
+                if mode=='pillar' and (info['rows']<96 or info['cross_correlation']>.2 or info['same_side_correlation']<.85):
+                    out.append(part)
+                    continue
                 out.extend(make(part,sub,part['id']+'-tex-'+str(j)) for j,sub in enumerate((a,b)))
                 records.append(dict(op='split',ids=[parts[k]['id'] for k in group],**info))
                 seen.update(group)

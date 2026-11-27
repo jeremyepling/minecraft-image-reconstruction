@@ -32,3 +32,7 @@ def split(image,parts,counts,camera,prior):return run(image,parts,counts,camera,
 def join(image,parts,counts,camera,prior):return run(image,parts,counts,camera,prior,'join')
 def shade(image,parts,counts,camera,prior):return run(image,parts,counts,camera,prior,'shade')
 def prune(image,parts,counts,camera,prior):return run(image,parts,counts,camera,prior,'prune')
+
+
+def selective(image,parts,counts,camera,prior):
+    return run(image,parts,counts,camera,prior,'selective')
