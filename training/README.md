@@ -14,6 +14,8 @@ Do not train this project to complete backs, interiors, occluded continuations, 
 
 ## Training data
 
+For surface supervision, retain the full visible footprint and signed face direction, including narrow rims. Report surface coverage separately from the final block score. A rim can be useful evidence in a mask even when the facade-priority placement metric makes its block optional.
+
 Use the whole-structure framing rule for every training task, including texture and block counting. A full screenshot must contain the entire build and the required margin on every edge. A local measurement may sample a surface within an admitted screenshot while retaining its parent view and spatial context.
 
 Source worlds can contain complete structures. For each example, capture the image together with aligned camera parameters, visible depth, normals, surface IDs, projected block corners and visible block-state labels. Use full world data to determine visibility and generate correct labels; restrict reconstruction targets to evidence visible in that example's supplied input view(s).

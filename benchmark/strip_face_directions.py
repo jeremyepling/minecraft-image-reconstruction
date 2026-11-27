@@ -266,4 +266,3 @@ def horizontal(image,parts,counts,camera,prior):
 
 def corroborated(image,parts,counts,camera,prior):
     return select(image,parts,counts,camera,prior,strict=False,horizontal=True,donor=True)
-
