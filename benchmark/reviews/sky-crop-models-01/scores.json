@@ -1,0 +1,239 @@
+{
+  "scorer_sha256": "6e7a681e67221753c3848ed6a1ffc7d91948c3d1faf572c6c3a6c1f54453e848",
+  "arms": {
+    "baseline": {
+      "all": {
+        "active_masks": 193,
+        "nonempty_masks": 193,
+        "matched_masks": 188,
+        "masks_iou_at_least_50": 92,
+        "masks_iou_at_least_75": 46,
+        "masks_exact": 0,
+        "macro_iou": 0.44530864490349903,
+        "pixel_weighted_iou": 0.3269422214911046,
+        "intersection": 806914,
+        "missed": 1091475,
+        "extra": 569674,
+        "other_cube_pixels": 433709,
+        "non_cube_pixels": 67832,
+        "background_pixels": 68133,
+        "targets": 393,
+        "targets_without_pixels": 10,
+        "targets_without_primary": 252,
+        "targets_iou_at_least_50": 92,
+        "targets_iou_at_least_75": 46,
+        "full_cube_covered_pixels": 1240623,
+        "full_cube_target_pixels": 1306887,
+        "union_non_cube_pixels": 67832,
+        "reference_non_cube_pixels": 71190,
+        "union_background_pixels": 68133,
+        "full_cube_coverage": 0.9492963048832838
+      },
+      "dev": {
+        "macro_iou": 0.5233102036253321,
+        "pixel_weighted_iou": 0.4904941955560426,
+        "count": 64
+      },
+      "other": {
+        "macro_iou": 0.4066101971655354,
+        "pixel_weighted_iou": 0.27415518486996826,
+        "count": 129
+      }
+    },
+    "mobile-box": {
+      "all": {
+        "active_masks": 193,
+        "nonempty_masks": 192,
+        "matched_masks": 182,
+        "masks_iou_at_least_50": 90,
+        "masks_iou_at_least_75": 42,
+        "masks_exact": 0,
+        "macro_iou": 0.4455354230850264,
+        "pixel_weighted_iou": 0.2877092528058691,
+        "intersection": 825357,
+        "missed": 1073032,
+        "extra": 970330,
+        "other_cube_pixels": 744147,
+        "non_cube_pixels": 213338,
+        "background_pixels": 12845,
+        "targets": 393,
+        "targets_without_pixels": 9,
+        "targets_without_primary": 253,
+        "targets_iou_at_least_50": 90,
+        "targets_iou_at_least_75": 43,
+        "full_cube_covered_pixels": 1248771,
+        "full_cube_target_pixels": 1306887,
+        "union_non_cube_pixels": 69868,
+        "reference_non_cube_pixels": 71190,
+        "union_background_pixels": 12282,
+        "full_cube_coverage": 0.9555309678648575
+      },
+      "dev": {
+        "macro_iou": 0.5091782733932023,
+        "pixel_weighted_iou": 0.44802906115246893,
+        "count": 64
+      },
+      "other": {
+        "macro_iou": 0.4139606756453112,
+        "pixel_weighted_iou": 0.2383276687984286,
+        "count": 129
+      }
+    },
+    "mobile-points": {
+      "all": {
+        "active_masks": 193,
+        "nonempty_masks": 193,
+        "matched_masks": 183,
+        "masks_iou_at_least_50": 94,
+        "masks_iou_at_least_75": 41,
+        "masks_exact": 0,
+        "macro_iou": 0.4484245548132686,
+        "pixel_weighted_iou": 0.2982822959069839,
+        "intersection": 846257,
+        "missed": 1052132,
+        "extra": 938712,
+        "other_cube_pixels": 765747,
+        "non_cube_pixels": 156638,
+        "background_pixels": 16327,
+        "targets": 393,
+        "targets_without_pixels": 14,
+        "targets_without_primary": 251,
+        "targets_iou_at_least_50": 93,
+        "targets_iou_at_least_75": 41,
+        "full_cube_covered_pixels": 1260341,
+        "full_cube_target_pixels": 1306887,
+        "union_non_cube_pixels": 68276,
+        "reference_non_cube_pixels": 71190,
+        "union_background_pixels": 15776,
+        "full_cube_coverage": 0.9643840668703568
+      },
+      "dev": {
+        "macro_iou": 0.5081303446334682,
+        "pixel_weighted_iou": 0.4462736119731588,
+        "count": 64
+      },
+      "other": {
+        "macro_iou": 0.4188030776931696,
+        "pixel_weighted_iou": 0.2513471617332251,
+        "count": 129
+      }
+    },
+    "sam-b-box": {
+      "all": {
+        "active_masks": 193,
+        "nonempty_masks": 193,
+        "matched_masks": 185,
+        "masks_iou_at_least_50": 99,
+        "masks_iou_at_least_75": 54,
+        "masks_exact": 0,
+        "macro_iou": 0.4656494663007144,
+        "pixel_weighted_iou": 0.2999015305396207,
+        "intersection": 819579,
+        "missed": 1078810,
+        "extra": 834438,
+        "other_cube_pixels": 679297,
+        "non_cube_pixels": 143095,
+        "background_pixels": 12046,
+        "targets": 393,
+        "targets_without_pixels": 24,
+        "targets_without_primary": 252,
+        "targets_iou_at_least_50": 99,
+        "targets_iou_at_least_75": 54,
+        "full_cube_covered_pixels": 1246426,
+        "full_cube_target_pixels": 1306887,
+        "union_non_cube_pixels": 68248,
+        "reference_non_cube_pixels": 71190,
+        "union_background_pixels": 11889,
+        "full_cube_coverage": 0.9537366275737688
+      },
+      "dev": {
+        "macro_iou": 0.540288114029599,
+        "pixel_weighted_iou": 0.4602063457673717,
+        "count": 64
+      },
+      "other": {
+        "macro_iou": 0.4286194395204926,
+        "pixel_weighted_iou": 0.24791065158207023,
+        "count": 129
+      }
+    },
+    "sam-b-points": {
+      "all": {
+        "active_masks": 193,
+        "nonempty_masks": 193,
+        "matched_masks": 183,
+        "masks_iou_at_least_50": 81,
+        "masks_iou_at_least_75": 39,
+        "masks_exact": 0,
+        "macro_iou": 0.43171341398556956,
+        "pixel_weighted_iou": 0.28875272463560175,
+        "intersection": 849285,
+        "missed": 1049104,
+        "extra": 1042830,
+        "other_cube_pixels": 868712,
+        "non_cube_pixels": 157301,
+        "background_pixels": 16817,
+        "targets": 393,
+        "targets_without_pixels": 11,
+        "targets_without_primary": 254,
+        "targets_iou_at_least_50": 81,
+        "targets_iou_at_least_75": 39,
+        "full_cube_covered_pixels": 1272330,
+        "full_cube_target_pixels": 1306887,
+        "union_non_cube_pixels": 68918,
+        "reference_non_cube_pixels": 71190,
+        "union_background_pixels": 15545,
+        "full_cube_coverage": 0.9735577750792532
+      },
+      "dev": {
+        "macro_iou": 0.4814531236572507,
+        "pixel_weighted_iou": 0.44425387385228976,
+        "count": 64
+      },
+      "other": {
+        "macro_iou": 0.4070363487220998,
+        "pixel_weighted_iou": 0.23931039489096428,
+        "count": 129
+      }
+    },
+    "sam-b-zoom": {
+      "all": {
+        "active_masks": 193,
+        "nonempty_masks": 193,
+        "matched_masks": 171,
+        "masks_iou_at_least_50": 91,
+        "masks_iou_at_least_75": 46,
+        "masks_exact": 0,
+        "macro_iou": 0.4534755361183386,
+        "pixel_weighted_iou": 0.27905593366231657,
+        "intersection": 827993,
+        "missed": 1070396,
+        "extra": 1068733,
+        "other_cube_pixels": 857253,
+        "non_cube_pixels": 146649,
+        "background_pixels": 64831,
+        "targets": 393,
+        "targets_without_pixels": 14,
+        "targets_without_primary": 257,
+        "targets_iou_at_least_50": 91,
+        "targets_iou_at_least_75": 46,
+        "full_cube_covered_pixels": 1262508,
+        "full_cube_target_pixels": 1306887,
+        "union_non_cube_pixels": 68247,
+        "reference_non_cube_pixels": 71190,
+        "union_background_pixels": 62856,
+        "full_cube_coverage": 0.9660422056382839
+      },
+      "dev": {
+        "macro_iou": 0.5230213917198895,
+        "pixel_weighted_iou": 0.4371798341904504,
+        "count": 64
+      },
+      "other": {
+        "macro_iou": 0.41897216589741415,
+        "pixel_weighted_iou": 0.23039106578616225,
+        "count": 129
+      }
+    }
+  }
+}
