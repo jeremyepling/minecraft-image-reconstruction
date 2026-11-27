@@ -82,7 +82,8 @@ def poses(b, shape, lo, hi, *, obliques=(("low-left", -27, 3.1), ("high-right", 
                    x=b.origin + x, z=wall_z + 3.9, feetY=GROUND + 1 + 4 - 1.62)
 
 
-def stage(root, jar, floor="smooth_stone", *, shape_groups=LAYOUTS, viewpoints=poses, palettes_for=None):
+def stage(root, jar, floor="smooth_stone", *, shape_groups=LAYOUTS, viewpoints=poses, palettes_for=None,
+          sparse=False, page_spacing=256):
     if floor not in FLOORS:
         raise ValueError(f"Unknown fixture floor: {floor}")
     with ZipFile(jar) as archive:
@@ -104,7 +105,7 @@ def stage(root, jar, floor="smooth_stone", *, shape_groups=LAYOUTS, viewpoints=p
                 page = len(layouts)
                 internal_split = {"holdout": "test", "validation": "dev"}.get(split, split)
                 b = Building(page, internal_split, shape.__name__, {})
-                b.origin = page * 256  # Other pages are outside the private client's render distance.
+                b.origin = page * page_spacing
                 shape(b, *materials)
                 lo, hi = b.finish()
                 common = dict(page=page, split=split, layout=shape.__name__, palette=palette_name)
@@ -114,10 +115,15 @@ def stage(root, jar, floor="smooth_stone", *, shape_groups=LAYOUTS, viewpoints=p
                 for x, z in ((-4, 18), (8, 12), (21, 16)):
                     blocks.append(dict(page=page, x=b.origin + x, y=GROUND, z=z,
                                        block_id=floor, role="floor_probe"))
-                for pos in product(*(range(a, z) for a, z in zip(lo, hi))):
+                positions = sorted(b.cells) if sparse else product(*(range(a, z) for a, z in zip(lo, hi)))
+                for pos in positions:
                     material, role = b.cells.get(pos, ("air", "open"))
+                    block_id = material.split("[", 1)[0]
                     x, y, z = b.xyz(pos)
-                    blocks.append(dict(page=page, x=x, y=y, z=z, block_id=material, role=role))
+                    part = dict(page=page, x=x, y=y, z=z, block_id=block_id, role=role)
+                    if material != block_id:
+                        part["placement_state"] = material
+                    blocks.append(part)
                     if material != "air":
                         commands.append(f"setblock {x} {y} {z} minecraft:{material} strict")
                 pack.writestr(f"data/palette_lab/function/page_{page}.mcfunction", "\n".join(commands) + "\n")

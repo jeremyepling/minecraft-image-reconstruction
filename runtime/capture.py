@@ -151,6 +151,7 @@ def main():
         elif name=="capture":
             mode.add_argument("--run",type=Path,required=True)
             mode.add_argument("--resolution",nargs=2,type=int,metavar=("WIDTH","HEIGHT"),default=(1440,900))
+            mode.add_argument("--render-distance", type=int, choices=range(4, 17), default=8)
             mode.add_argument("--resource-pack",type=Path,help="Local resource pack to enable in this private client")
             mode.add_argument("--predict-split",choices=("train","dev","test"),
                               help="Predict geometry for this shape-fixture split as captures arrive")
@@ -225,7 +226,7 @@ def main():
             cmd.insert(1,"-Dpalette.capture.pack="+packs[0])
         (game/"options.txt").write_text(f"version:{meta['world_version']}\nonboardAccessibility:false\ntutorialStep:none\n"
             f"resourcePacks:{json.dumps(packs)}\n"
-            "pauseOnLostFocus:false\nrenderDistance:8\nsimulationDistance:5\nmaxFps:60\n"
+            f"pauseOnLostFocus:false\nrenderDistance:{args.render_distance}\nsimulationDistance:5\nmaxFps:60\n"
             "fullscreen:false\nenableVsync:false\nbobView:false\nfovEffectScale:0.0\n")
         # Dialogs must be handled in this private client; capture the game's own framebuffer.
         cmd[1:1]=["-Xms256m","-Xmx2200m","-XX:StackShadowPages=32",f"-Dpalette.capture.dir={root/'captures'}"]
