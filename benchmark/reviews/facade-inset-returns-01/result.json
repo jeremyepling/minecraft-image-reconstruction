@@ -1,0 +1,1348 @@
+{
+  "candidate": "15202d5",
+  "control": "c589f1a",
+  "frames": 204,
+  "source_cases_sha256": "d49ddab19ab3497e8284dc9a65f085a7d14b4c865337d3db1d56781e59c52e57",
+  "groups": {
+    "development": {
+      "views": 72,
+      "changed": 6,
+      "events": 10,
+      "matched_gained": 10,
+      "matched_lost": 0,
+      "paired_px": 35725,
+      "unmatched_delta": 0,
+      "background_delta": 0,
+      "gained": 48,
+      "lost": 3,
+      "extra_added": 9,
+      "extra_removed": 36,
+      "hidden_added": 1,
+      "hidden_removed": 3
+    },
+    "fixed": {
+      "views": 104,
+      "changed": 7,
+      "events": 11,
+      "matched_gained": 11,
+      "matched_lost": 0,
+      "paired_px": 43296,
+      "unmatched_delta": 0,
+      "background_delta": 0,
+      "gained": 87,
+      "lost": 15,
+      "extra_added": 11,
+      "extra_removed": 60,
+      "hidden_added": 11,
+      "hidden_removed": 1
+    },
+    "alternate": {
+      "views": 20,
+      "changed": 4,
+      "events": 7,
+      "matched_gained": 7,
+      "matched_lost": 0,
+      "paired_px": 33056,
+      "unmatched_delta": 0,
+      "background_delta": 0,
+      "gained": 62,
+      "lost": 15,
+      "extra_added": 18,
+      "extra_removed": 47,
+      "hidden_added": 14,
+      "hidden_removed": 2
+    },
+    "new": {
+      "views": 4,
+      "changed": 0,
+      "events": 0,
+      "matched_gained": 0,
+      "matched_lost": 0,
+      "paired_px": 0,
+      "unmatched_delta": 0,
+      "background_delta": 0,
+      "gained": 0,
+      "lost": 0,
+      "extra_added": 0,
+      "extra_removed": 0,
+      "hidden_added": 0,
+      "hidden_removed": 0
+    },
+    "shelter": {
+      "views": 4,
+      "changed": 0,
+      "events": 0,
+      "matched_gained": 0,
+      "matched_lost": 0,
+      "paired_px": 0,
+      "unmatched_delta": 0,
+      "background_delta": 0,
+      "gained": 0,
+      "lost": 0,
+      "extra_added": 0,
+      "extra_removed": 0,
+      "hidden_added": 0,
+      "hidden_removed": 0
+    }
+  },
+  "changed": [
+    {
+      "split": "train",
+      "id": "train-sawtooth1-cool-high-right",
+      "events": [
+        {
+          "level": 3,
+          "depth": 1,
+          "unsigned_depth": 1,
+          "rim": [
+            -9,
+            -7,
+            1,
+            4
+          ],
+          "side_iou": 0.8479,
+          "sill_iou": 0.813,
+          "host_fraction": 0.9868,
+          "margin": 1.2687,
+          "back_return_rgb_step": [
+            7.67,
+            17.17
+          ],
+          "back_halo_luma_step": 19.67,
+          "host": "mask-0-wall-0-single-236-0",
+          "side": "mask-8",
+          "sill": "mask-11",
+          "output": "mask-0-wall-0-single-236-0-inset-0",
+          "reassigned": 2011
+        }
+      ],
+      "rgb_sha256": "9dfa0c81c676423d95c9a2c08fcf40cd8700d844857e4241a7ce428b39375aae",
+      "gained_surfaces": [
+        6
+      ],
+      "lost_surfaces": [],
+      "geometry": {
+        "correct": 160,
+        "missed": 20,
+        "extras": 18,
+        "gained": 3,
+        "lost": 0,
+        "extra_added": 1,
+        "extra_removed": 3,
+        "hidden_extras": 0
+      },
+      "new_back_counts": {
+        "mask-0-wall-0-single-236-0-inset-0": [
+          1,
+          3
+        ]
+      }
+    },
+    {
+      "split": "train",
+      "id": "train-sawtooth1-earth-high-right",
+      "events": [
+        {
+          "level": 3,
+          "depth": 1,
+          "unsigned_depth": 1,
+          "rim": [
+            -9,
+            -7,
+            1,
+            4
+          ],
+          "side_iou": 0.8546,
+          "sill_iou": 0.75,
+          "host_fraction": 0.9781,
+          "margin": 1.1905,
+          "back_return_rgb_step": [
+            11.67,
+            20.0
+          ],
+          "back_halo_luma_step": 24.0,
+          "host": "mask-0-junction-0-single-412-0",
+          "side": "mask-6",
+          "sill": "mask-12",
+          "output": "mask-0-junction-0-single-412-0-inset-0",
+          "reassigned": 1994
+        },
+        {
+          "level": 3,
+          "depth": 1,
+          "unsigned_depth": 1,
+          "rim": [
+            -5,
+            -3,
+            1,
+            4
+          ],
+          "side_iou": 0.9179,
+          "sill_iou": 0.8079,
+          "host_fraction": 0.9798,
+          "margin": 0.4343,
+          "back_return_rgb_step": [
+            15.0,
+            15.5
+          ],
+          "back_halo_luma_step": 21.33,
+          "host": "mask-0-junction-0-single-412-0",
+          "side": "mask-4",
+          "sill": "mask-11",
+          "output": "mask-0-junction-0-single-412-0-inset-1",
+          "reassigned": 3957
+        }
+      ],
+      "rgb_sha256": "bc2fefa295601169bb67bac0433592299fa56da1f300ef97f331fd9edd7b8fce",
+      "gained_surfaces": [
+        6,
+        14
+      ],
+      "lost_surfaces": [],
+      "geometry": {
+        "correct": 179,
+        "missed": 1,
+        "extras": 20,
+        "gained": 9,
+        "lost": 0,
+        "extra_added": 6,
+        "extra_removed": 4,
+        "hidden_extras": 0
+      },
+      "new_back_counts": {
+        "mask-0-junction-0-single-412-0-inset-0": [
+          1,
+          3
+        ],
+        "mask-0-junction-0-single-412-0-inset-1": [
+          1,
+          3
+        ]
+      }
+    },
+    {
+      "split": "train",
+      "id": "train-sawtooth1-earth-low-left",
+      "events": [
+        {
+          "level": -4,
+          "depth": -1,
+          "unsigned_depth": 1,
+          "rim": [
+            4,
+            6,
+            1,
+            4
+          ],
+          "side_iou": 0.8564,
+          "sill_iou": 0.4824,
+          "host_fraction": 0.9977,
+          "margin": 0.3358,
+          "back_return_rgb_step": [
+            15.33,
+            6.67
+          ],
+          "back_halo_luma_step": 21.67,
+          "host": "mask-0-junction-0-single-342-0",
+          "side": "mask-7",
+          "sill": "mask-12",
+          "output": "mask-0-junction-0-single-342-0-inset-0",
+          "reassigned": 7574
+        }
+      ],
+      "rgb_sha256": "db9bbf9ed4487be570cb9dd0414218d01956f173d53692b496218abce4fd26fd",
+      "gained_surfaces": [
+        14
+      ],
+      "lost_surfaces": [],
+      "geometry": {
+        "correct": 152,
+        "missed": 7,
+        "extras": 3,
+        "gained": 6,
+        "lost": 3,
+        "extra_added": 1,
+        "extra_removed": 4,
+        "hidden_extras": 1
+      },
+      "new_back_counts": {
+        "mask-0-junction-0-single-342-0-inset-0": [
+          1,
+          3
+        ]
+      }
+    },
+    {
+      "split": "train",
+      "id": "train-sawtooth2-cool-high-right",
+      "events": [
+        {
+          "level": 3,
+          "depth": 1,
+          "unsigned_depth": 1,
+          "rim": [
+            -11,
+            -9,
+            1,
+            5
+          ],
+          "side_iou": 0.9043,
+          "sill_iou": 0.5541,
+          "host_fraction": 0.8667,
+          "margin": 0.9197,
+          "back_return_rgb_step": [
+            10.17,
+            46.33
+          ],
+          "back_halo_luma_step": 47.17,
+          "host": "mask-0-wall-0-single-185-0",
+          "side": "mask-5",
+          "sill": "mask-11",
+          "output": "mask-0-wall-0-single-185-0-inset-0",
+          "reassigned": 1742
+        },
+        {
+          "level": 3,
+          "depth": 1,
+          "unsigned_depth": 1,
+          "rim": [
+            -3,
+            -1,
+            1,
+            5
+          ],
+          "side_iou": 0.7134,
+          "sill_iou": 0.5612,
+          "host_fraction": 1.0,
+          "margin": 0.3312,
+          "back_return_rgb_step": [
+            10.17,
+            39.83
+          ],
+          "back_halo_luma_step": 45.83,
+          "host": "mask-0-wall-0-single-185-0",
+          "side": "mask-7",
+          "sill": "mask-9",
+          "output": "mask-0-wall-0-single-185-0-inset-1",
+          "reassigned": 6139
+        }
+      ],
+      "rgb_sha256": "579cc8cb5f252da44de3ad183cdfda54c4395ed4a489aa02d81243c82b20c7f9",
+      "gained_surfaces": [
+        6,
+        22
+      ],
+      "lost_surfaces": [],
+      "geometry": {
+        "correct": 223,
+        "missed": 21,
+        "extras": 8,
+        "gained": 8,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 7,
+        "hidden_extras": 0
+      },
+      "new_back_counts": {
+        "mask-0-wall-0-single-185-0-inset-0": [
+          null,
+          null
+        ],
+        "mask-0-wall-0-single-185-0-inset-1": [
+          1,
+          4
+        ]
+      }
+    },
+    {
+      "split": "train",
+      "id": "train-sawtooth2-earth-high-right",
+      "events": [
+        {
+          "level": 3,
+          "depth": 1,
+          "unsigned_depth": 1,
+          "rim": [
+            -7,
+            -5,
+            1,
+            5
+          ],
+          "side_iou": 0.9251,
+          "sill_iou": 0.7565,
+          "host_fraction": 0.915,
+          "margin": 0.3634,
+          "back_return_rgb_step": [
+            37.5,
+            20.0
+          ],
+          "back_halo_luma_step": 20.83,
+          "host": "mask-0-junction-1",
+          "side": "mask-6",
+          "sill": "mask-10",
+          "output": "mask-0-junction-1-inset-0",
+          "reassigned": 3300
+        }
+      ],
+      "rgb_sha256": "f1a2631340ba998938ec4581fd4c42c20c925b3d32d495e3027edb36d2b74bf9",
+      "gained_surfaces": [
+        14
+      ],
+      "lost_surfaces": [],
+      "geometry": {
+        "correct": 202,
+        "missed": 42,
+        "extras": 16,
+        "gained": 10,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 8,
+        "hidden_extras": 0
+      },
+      "new_back_counts": {
+        "mask-0-junction-1-inset-0": [
+          null,
+          4
+        ]
+      }
+    },
+    {
+      "split": "train",
+      "id": "train-sawtooth3-earth-high-right",
+      "events": [
+        {
+          "level": 5,
+          "depth": 1,
+          "unsigned_depth": 1,
+          "rim": [
+            -10,
+            -8,
+            1,
+            6
+          ],
+          "side_iou": 0.9253,
+          "sill_iou": 0.7656,
+          "host_fraction": 0.9621,
+          "margin": 1.2535,
+          "back_return_rgb_step": [
+            17.0,
+            11.83
+          ],
+          "back_halo_luma_step": 16.17,
+          "host": "mask-0-wall-0-single-391-0",
+          "side": "mask-7",
+          "sill": "mask-14",
+          "output": "mask-0-wall-0-single-391-0-inset-0",
+          "reassigned": 2856
+        },
+        {
+          "level": 5,
+          "depth": 1,
+          "unsigned_depth": 1,
+          "rim": [
+            -14,
+            -12,
+            1,
+            6
+          ],
+          "side_iou": 0.8568,
+          "sill_iou": 0.7333,
+          "host_fraction": 0.9171,
+          "margin": 1.1255,
+          "back_return_rgb_step": [
+            14.0,
+            15.67
+          ],
+          "back_halo_luma_step": 19.0,
+          "host": "mask-0-wall-0-single-391-0",
+          "side": "mask-8",
+          "sill": "mask-16",
+          "output": "mask-0-wall-0-single-391-0-inset-1",
+          "reassigned": 1717
+        },
+        {
+          "level": 5,
+          "depth": 1,
+          "unsigned_depth": 1,
+          "rim": [
+            -6,
+            -4,
+            1,
+            6
+          ],
+          "side_iou": 0.9311,
+          "sill_iou": 0.7195,
+          "host_fraction": 0.9608,
+          "margin": 0.3385,
+          "back_return_rgb_step": [
+            18.67,
+            12.0
+          ],
+          "back_halo_luma_step": 14.0,
+          "host": "mask-0-wall-0-single-391-0",
+          "side": "mask-6",
+          "sill": "mask-13",
+          "output": "mask-0-wall-0-single-391-0-inset-2",
+          "reassigned": 4512
+        }
+      ],
+      "rgb_sha256": "3591bca86b184ad5b4a09ad94cbecf279600b2e64edd3f2b5e08a81e369854ee",
+      "gained_surfaces": [
+        6,
+        12,
+        18
+      ],
+      "lost_surfaces": [],
+      "geometry": {
+        "correct": 277,
+        "missed": 14,
+        "extras": 1,
+        "gained": 12,
+        "lost": 0,
+        "extra_added": 1,
+        "extra_removed": 10,
+        "hidden_extras": 0
+      },
+      "new_back_counts": {
+        "mask-0-wall-0-single-391-0-inset-0": [
+          1,
+          1
+        ],
+        "mask-0-wall-0-single-391-0-inset-1": [
+          null,
+          null
+        ],
+        "mask-0-wall-0-single-391-0-inset-2": [
+          5,
+          19
+        ]
+      }
+    },
+    {
+      "split": "native",
+      "id": "heldout-facade-oblique-left",
+      "events": [
+        {
+          "level": -2,
+          "depth": 2,
+          "unsigned_depth": 2,
+          "rim": [
+            -1,
+            4,
+            7,
+            9
+          ],
+          "side_iou": 0.9417,
+          "sill_iou": 0.5368,
+          "host_fraction": 0.9713,
+          "margin": 0.153,
+          "back_return_rgb_step": [
+            11.0,
+            30.5
+          ],
+          "back_halo_luma_step": 26.0,
+          "host": "mask-0-wall-1-single-342-0",
+          "side": "mask-6",
+          "sill": "mask-9",
+          "output": "mask-0-wall-1-single-342-0-inset-0",
+          "reassigned": 4639
+        }
+      ],
+      "rgb_sha256": "54915ed9fe65b45353a8ab6089ed9f1a7ffd07268270c0578445da29fa2a5768",
+      "gained_surfaces": [
+        14
+      ],
+      "lost_surfaces": [],
+      "geometry": {
+        "correct": 321,
+        "missed": 35,
+        "extras": 20,
+        "gained": 11,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 6,
+        "hidden_extras": 5
+      },
+      "new_back_counts": {
+        "mask-0-wall-1-single-342-0-inset-0": [
+          4,
+          2
+        ]
+      }
+    },
+    {
+      "split": "native",
+      "id": "heldout-facade-oblique-right",
+      "events": [
+        {
+          "level": -2,
+          "depth": 1,
+          "unsigned_depth": 1,
+          "rim": [
+            4,
+            8,
+            3,
+            6
+          ],
+          "side_iou": 0.9079,
+          "sill_iou": 0.6712,
+          "host_fraction": 0.9771,
+          "margin": 0.368,
+          "back_return_rgb_step": [
+            18.33,
+            15.0
+          ],
+          "back_halo_luma_step": 18.67,
+          "host": "mask-0-junction-1-joined",
+          "side": "mask-7",
+          "sill": "mask-11",
+          "output": "mask-0-junction-1-joined-inset-0",
+          "reassigned": 4931
+        },
+        {
+          "level": -2,
+          "depth": 3,
+          "unsigned_depth": 3,
+          "rim": [
+            -11,
+            -8,
+            8,
+            10
+          ],
+          "side_iou": 0.9289,
+          "sill_iou": 0.7879,
+          "host_fraction": 0.997,
+          "margin": 0.2495,
+          "back_return_rgb_step": [
+            3.67,
+            30.83
+          ],
+          "back_halo_luma_step": 35.67,
+          "host": "mask-0-junction-1-joined",
+          "side": "mask-6",
+          "sill": "mask-10",
+          "output": "mask-0-junction-1-joined-inset-1",
+          "reassigned": 5971
+        },
+        {
+          "level": -2,
+          "depth": 2,
+          "unsigned_depth": 2,
+          "rim": [
+            -3,
+            2,
+            7,
+            9
+          ],
+          "side_iou": 0.8955,
+          "sill_iou": 0.7115,
+          "host_fraction": 0.9767,
+          "margin": 0.239,
+          "back_return_rgb_step": [
+            9.33,
+            31.67
+          ],
+          "back_halo_luma_step": 29.0,
+          "host": "mask-0-junction-1-joined",
+          "side": "mask-5",
+          "sill": "mask-9",
+          "output": "mask-0-junction-1-joined-inset-2",
+          "reassigned": 5730
+        }
+      ],
+      "rgb_sha256": "0828c9d164392fe0bad9a1a709c1f321eb73f7bb7d08739f3b99382493df5ad0",
+      "gained_surfaces": [
+        9,
+        14,
+        19
+      ],
+      "lost_surfaces": [],
+      "geometry": {
+        "correct": 305,
+        "missed": 56,
+        "extras": 17,
+        "gained": 28,
+        "lost": 0,
+        "extra_added": 0,
+        "extra_removed": 15,
+        "hidden_extras": 0
+      },
+      "new_back_counts": {
+        "mask-0-junction-1-joined-inset-0": [
+          3,
+          3
+        ],
+        "mask-0-junction-1-joined-inset-1": [
+          3,
+          2
+        ],
+        "mask-0-junction-1-joined-inset-2": [
+          4,
+          2
+        ]
+      }
+    },
+    {
+      "split": "native",
+      "id": "test-recess-28-left",
+      "events": [
+        {
+          "level": -1,
+          "depth": 1,
+          "unsigned_depth": 1,
+          "rim": [
+            2,
+            5,
+            3,
+            6
+          ],
+          "side_iou": 0.7651,
+          "sill_iou": 0.7573,
+          "host_fraction": 0.8941,
+          "margin": 0.2391,
+          "back_return_rgb_step": [
+            16.67,
+            15.67
+          ],
+          "back_halo_luma_step": 20.33,
+          "host": "mask-0-junction-1",
+          "side": "mask-10",
+          "sill": "mask-12",
+          "output": "mask-0-junction-1-inset-0",
+          "reassigned": 4954
+        }
+      ],
+      "rgb_sha256": "d4891492a4b325a1eb7c3e1ce9f3124b2815e72fb29038f5086afd9b91fc4dc6",
+      "gained_surfaces": [
+        12
+      ],
+      "lost_surfaces": [],
+      "geometry": {
+        "correct": 316,
+        "missed": 33,
+        "extras": 22,
+        "gained": 10,
+        "lost": 1,
+        "extra_added": 1,
+        "extra_removed": 6,
+        "hidden_extras": 1
+      },
+      "new_back_counts": {
+        "mask-0-junction-1-inset-0": [
+          2,
+          3
+        ]
+      }
+    },
+    {
+      "split": "old",
+      "id": "signed-relief-26.3--dev--dev-relief-00-oblique-right",
+      "events": [
+        {
+          "level": -1,
+          "depth": 2,
+          "unsigned_depth": 2,
+          "rim": [
+            10,
+            14,
+            2,
+            6
+          ],
+          "side_iou": 0.8741,
+          "sill_iou": 0.6133,
+          "host_fraction": 1.0,
+          "margin": 0.2242,
+          "back_return_rgb_step": [
+            11.17,
+            25.17
+          ],
+          "back_halo_luma_step": 21.33,
+          "host": "mask-0-single-455-0",
+          "side": "mask-2",
+          "sill": "mask-8",
+          "output": "mask-0-single-455-0-inset-0",
+          "reassigned": 2206
+        }
+      ],
+      "rgb_sha256": "17682203a4372c0a677e34f7da95c18cb82acde6d1b92363697905fb6a90f7f5",
+      "gained_surfaces": [
+        4
+      ],
+      "lost_surfaces": [],
+      "geometry": {
+        "correct": 389,
+        "missed": 91,
+        "extras": 40,
+        "gained": 14,
+        "lost": 7,
+        "extra_added": 8,
+        "extra_removed": 14,
+        "hidden_extras": 31
+      },
+      "new_back_counts": {
+        "mask-0-single-455-0-inset-0": [
+          2,
+          4
+        ]
+      }
+    },
+    {
+      "split": "old",
+      "id": "shape-benchmark-26.3--train-recess-02-right",
+      "events": [
+        {
+          "level": -1,
+          "depth": 1,
+          "unsigned_depth": 1,
+          "rim": [
+            6,
+            9,
+            3,
+            6
+          ],
+          "side_iou": 0.9231,
+          "sill_iou": 0.7077,
+          "host_fraction": 0.9742,
+          "margin": 0.3869,
+          "back_return_rgb_step": [
+            20.17,
+            17.0
+          ],
+          "back_halo_luma_step": 26.0,
+          "host": "mask-0",
+          "side": "mask-11",
+          "sill": "mask-13",
+          "output": "mask-0-inset-0",
+          "reassigned": 3403
+        },
+        {
+          "level": -1,
+          "depth": 2,
+          "unsigned_depth": 2,
+          "rim": [
+            -2,
+            1,
+            3,
+            6
+          ],
+          "side_iou": 0.9672,
+          "sill_iou": 0.8557,
+          "host_fraction": 0.9883,
+          "margin": 0.2658,
+          "back_return_rgb_step": [
+            11.33,
+            29.0
+          ],
+          "back_halo_luma_step": 32.0,
+          "host": "mask-0",
+          "side": "mask-9",
+          "sill": "mask-12",
+          "output": "mask-0-inset-1",
+          "reassigned": 4572
+        }
+      ],
+      "rgb_sha256": "3dae3737c077d483a91e35e525af829d34b1262ca51a4287b5b1214988c2e7df",
+      "gained_surfaces": [
+        7,
+        12
+      ],
+      "lost_surfaces": [],
+      "geometry": {
+        "correct": 308,
+        "missed": 32,
+        "extras": 45,
+        "gained": 8,
+        "lost": 2,
+        "extra_added": 0,
+        "extra_removed": 5,
+        "hidden_extras": 0
+      },
+      "new_back_counts": {
+        "mask-0-inset-0": [
+          2,
+          3
+        ],
+        "mask-0-inset-1": [
+          null,
+          3
+        ]
+      }
+    },
+    {
+      "split": "old",
+      "id": "signed-relief-26.3--test--test-relief-00-oblique-left",
+      "events": [
+        {
+          "level": -1,
+          "depth": 1,
+          "unsigned_depth": 1,
+          "rim": [
+            10,
+            14,
+            2,
+            5
+          ],
+          "side_iou": 0.7541,
+          "sill_iou": 0.5918,
+          "host_fraction": 0.9101,
+          "margin": 0.3336,
+          "back_return_rgb_step": [
+            11.0,
+            46.67
+          ],
+          "back_halo_luma_step": 50.33,
+          "host": "mask-0-single-266-0",
+          "side": "mask-7",
+          "sill": "mask-10",
+          "output": "mask-0-single-266-0-inset-0",
+          "reassigned": 2206
+        }
+      ],
+      "rgb_sha256": "54145a22b48ba5eb35581125363469a3024172b1e9ae95cb6dff00ca9a673854",
+      "gained_surfaces": [
+        19
+      ],
+      "lost_surfaces": [],
+      "geometry": {
+        "correct": 399,
+        "missed": 83,
+        "extras": 33,
+        "gained": 9,
+        "lost": 4,
+        "extra_added": 2,
+        "extra_removed": 7,
+        "hidden_extras": 17
+      },
+      "new_back_counts": {
+        "mask-0-single-266-0-inset-0": [
+          3,
+          3
+        ]
+      }
+    },
+    {
+      "split": "fresh",
+      "id": "entrance-confirm-26.3--positive--heldout-facade-oblique-right",
+      "events": [
+        {
+          "level": -3,
+          "depth": 2,
+          "unsigned_depth": 2,
+          "rim": [
+            -2,
+            0,
+            3,
+            7
+          ],
+          "side_iou": 0.8318,
+          "sill_iou": 0.6,
+          "host_fraction": 1.0,
+          "margin": 0.432,
+          "back_return_rgb_step": [
+            25.83,
+            8.17
+          ],
+          "back_halo_luma_step": 8.5,
+          "host": "mask-0",
+          "side": "mask-5",
+          "sill": "mask-12",
+          "output": "mask-0-inset-0",
+          "reassigned": 1643
+        },
+        {
+          "level": -3,
+          "depth": 1,
+          "unsigned_depth": 1,
+          "rim": [
+            -8,
+            -6,
+            8,
+            10
+          ],
+          "side_iou": 0.7364,
+          "sill_iou": 0.6207,
+          "host_fraction": 0.9735,
+          "margin": 0.2757,
+          "back_return_rgb_step": [
+            21.17,
+            3.17
+          ],
+          "back_halo_luma_step": 17.33,
+          "host": "mask-0",
+          "side": "mask-11",
+          "sill": "mask-15",
+          "output": "mask-0-inset-1",
+          "reassigned": 3328
+        }
+      ],
+      "rgb_sha256": "8564e2bfba0ca890cde2498fb1e698cf28b41d7f65bcddc6907a34b6dab2674b",
+      "gained_surfaces": [
+        11,
+        16
+      ],
+      "lost_surfaces": [],
+      "geometry": {
+        "correct": 357,
+        "missed": 51,
+        "extras": 30,
+        "gained": 7,
+        "lost": 1,
+        "extra_added": 0,
+        "extra_removed": 7,
+        "hidden_extras": 0
+      },
+      "new_back_counts": {
+        "mask-0-inset-0": [
+          1,
+          4
+        ],
+        "mask-0-inset-1": [
+          null,
+          2
+        ]
+      }
+    },
+    {
+      "split": "extra",
+      "id": "signed-relief-26.3--test--test-relief-00-oblique-right",
+      "events": [
+        {
+          "level": -1,
+          "depth": 1,
+          "unsigned_depth": 1,
+          "rim": [
+            -5,
+            -1,
+            7,
+            11
+          ],
+          "side_iou": 0.8095,
+          "sill_iou": 0.5682,
+          "host_fraction": 0.9981,
+          "margin": 0.4675,
+          "back_return_rgb_step": [
+            38.67,
+            3.0
+          ],
+          "back_halo_luma_step": 8.67,
+          "host": "mask-0-single-597-0",
+          "side": "mask-4",
+          "sill": "mask-9",
+          "output": "mask-0-single-597-0-inset-0",
+          "reassigned": 9130
+        },
+        {
+          "level": -1,
+          "depth": 2,
+          "unsigned_depth": 2,
+          "rim": [
+            5,
+            9,
+            2,
+            6
+          ],
+          "side_iou": 0.916,
+          "sill_iou": 0.6952,
+          "host_fraction": 0.9853,
+          "margin": 0.1832,
+          "back_return_rgb_step": [
+            16.67,
+            27.67
+          ],
+          "back_halo_luma_step": 25.33,
+          "host": "mask-0-single-597-0",
+          "side": "mask-1",
+          "sill": "mask-5",
+          "output": "mask-0-single-597-0-inset-1",
+          "reassigned": 3591
+        }
+      ],
+      "rgb_sha256": "858b89c080aa6199cab23e507db89e187ef71dccbe6d3689602d8659c13ae9bc",
+      "gained_surfaces": [
+        7,
+        13
+      ],
+      "lost_surfaces": [],
+      "geometry": {
+        "correct": 404,
+        "missed": 36,
+        "extras": 28,
+        "gained": 30,
+        "lost": 8,
+        "extra_added": 9,
+        "extra_removed": 25,
+        "hidden_extras": 27
+      },
+      "new_back_counts": {
+        "mask-0-single-597-0-inset-0": [
+          4,
+          4
+        ],
+        "mask-0-single-597-0-inset-1": [
+          3,
+          4
+        ]
+      }
+    },
+    {
+      "split": "extra",
+      "id": "recess-positive-control-26.3--heldout-facade-left",
+      "events": [
+        {
+          "level": -1,
+          "depth": 1,
+          "unsigned_depth": 1,
+          "rim": [
+            2,
+            5,
+            3,
+            6
+          ],
+          "side_iou": 0.7833,
+          "sill_iou": 0.7778,
+          "host_fraction": 0.9218,
+          "margin": 0.361,
+          "back_return_rgb_step": [
+            16.67,
+            15.67
+          ],
+          "back_halo_luma_step": 20.33,
+          "host": "mask-0",
+          "side": "mask-7",
+          "sill": "mask-9",
+          "output": "mask-0-inset-0",
+          "reassigned": 5128
+        },
+        {
+          "level": -1,
+          "depth": 1,
+          "unsigned_depth": 1,
+          "rim": [
+            10,
+            13,
+            3,
+            6
+          ],
+          "side_iou": 0.8154,
+          "sill_iou": 0.7857,
+          "host_fraction": 0.8829,
+          "margin": 0.3496,
+          "back_return_rgb_step": [
+            16.83,
+            16.33
+          ],
+          "back_halo_luma_step": 20.33,
+          "host": "mask-0",
+          "side": "mask-6",
+          "sill": "mask-11",
+          "output": "mask-0-inset-1",
+          "reassigned": 2547
+        }
+      ],
+      "rgb_sha256": "d070b9e756b105dd3e37b38a4ff921eedf6ec0c47c126f619d747a8f31498dc6",
+      "gained_surfaces": [
+        9,
+        14
+      ],
+      "lost_surfaces": [],
+      "geometry": {
+        "correct": 296,
+        "missed": 39,
+        "extras": 34,
+        "gained": 13,
+        "lost": 1,
+        "extra_added": 1,
+        "extra_removed": 8,
+        "hidden_extras": 0
+      },
+      "new_back_counts": {
+        "mask-0-inset-0": [
+          2,
+          3
+        ],
+        "mask-0-inset-1": [
+          2,
+          3
+        ]
+      }
+    },
+    {
+      "split": "extra",
+      "id": "rim-views-26.3--positive--heldout-facade-oblique-left",
+      "events": [
+        {
+          "level": -1,
+          "depth": 1,
+          "unsigned_depth": 1,
+          "rim": [
+            1,
+            4,
+            3,
+            6
+          ],
+          "side_iou": 0.7982,
+          "sill_iou": 0.7857,
+          "host_fraction": 0.9562,
+          "margin": 0.4365,
+          "back_return_rgb_step": [
+            16.67,
+            15.33
+          ],
+          "back_halo_luma_step": 21.33,
+          "host": "mask-0-wall-1",
+          "side": "mask-6",
+          "sill": "mask-9",
+          "output": "mask-0-wall-1-inset-0",
+          "reassigned": 6291
+        },
+        {
+          "level": -1,
+          "depth": 1,
+          "unsigned_depth": 1,
+          "rim": [
+            9,
+            12,
+            3,
+            6
+          ],
+          "side_iou": 0.7452,
+          "sill_iou": 0.625,
+          "host_fraction": 0.8846,
+          "margin": 0.2239,
+          "back_return_rgb_step": [
+            17.0,
+            13.33
+          ],
+          "back_halo_luma_step": 20.67,
+          "host": "mask-0-wall-1",
+          "side": "mask-5",
+          "sill": "mask-10",
+          "output": "mask-0-wall-1-inset-1",
+          "reassigned": 3316
+        }
+      ],
+      "rgb_sha256": "e601a54ee06fe27391847e07b00e3aecca8e68f1d29f0ac955a123a8e3705185",
+      "gained_surfaces": [
+        9,
+        14
+      ],
+      "lost_surfaces": [],
+      "geometry": {
+        "correct": 294,
+        "missed": 21,
+        "extras": 32,
+        "gained": 18,
+        "lost": 1,
+        "extra_added": 0,
+        "extra_removed": 14,
+        "hidden_extras": 0
+      },
+      "new_back_counts": {
+        "mask-0-wall-1-inset-0": [
+          2,
+          3
+        ],
+        "mask-0-wall-1-inset-1": [
+          null,
+          null
+        ]
+      }
+    },
+    {
+      "split": "extra",
+      "id": "shape-benchmark-26.3--train-recess-02-left",
+      "events": [
+        {
+          "level": -1,
+          "depth": 2,
+          "unsigned_depth": 2,
+          "rim": [
+            2,
+            5,
+            3,
+            6
+          ],
+          "side_iou": 0.9439,
+          "sill_iou": 0.8108,
+          "host_fraction": 0.9777,
+          "margin": 0.2444,
+          "back_return_rgb_step": [
+            8.67,
+            31.67
+          ],
+          "back_halo_luma_step": 33.0,
+          "host": "mask-0-single-487-0",
+          "side": "mask-7",
+          "sill": "mask-11",
+          "output": "mask-0-single-487-0-inset-0",
+          "reassigned": 3149
+        }
+      ],
+      "rgb_sha256": "fbacce85bff62e314335841ce03867de193c2553bbbf3f24bccdeec4cd5007bb",
+      "gained_surfaces": [
+        12
+      ],
+      "lost_surfaces": [],
+      "geometry": {
+        "correct": 307,
+        "missed": 24,
+        "extras": 47,
+        "gained": 1,
+        "lost": 5,
+        "extra_added": 8,
+        "extra_removed": 0,
+        "hidden_extras": 6
+      },
+      "new_back_counts": {
+        "mask-0-single-487-0-inset-0": [
+          null,
+          3
+        ]
+      }
+    }
+  ],
+  "focus": {
+    "9": {
+      "before": {
+        "iou": 0.02398,
+        "overlap": 4924,
+        "reference_px": 5069,
+        "mask": "mask-0-junction-1-joined"
+      },
+      "after": {
+        "iou": 0.966955,
+        "overlap": 4916,
+        "reference_px": 5069,
+        "mask": "mask-0-junction-1-joined-inset-0"
+      }
+    },
+    "14": {
+      "before": {
+        "iou": 0.027832,
+        "overlap": 5714,
+        "reference_px": 5822,
+        "mask": "mask-0-junction-1-joined"
+      },
+      "after": {
+        "iou": 0.973352,
+        "overlap": 5698,
+        "reference_px": 5822,
+        "mask": "mask-0-junction-1-joined-inset-2"
+      }
+    },
+    "19": {
+      "before": {
+        "iou": 0.029057,
+        "overlap": 5964,
+        "reference_px": 6022,
+        "mask": "mask-0-junction-1-joined"
+      },
+      "after": {
+        "iou": 0.98461,
+        "overlap": 5950,
+        "reference_px": 6022,
+        "mask": "mask-0-junction-1-joined-inset-1"
+      }
+    }
+  }
+}
