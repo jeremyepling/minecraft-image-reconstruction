@@ -405,6 +405,7 @@ def build(image_path, version, out, *, outlines=None, order_method=None, through
     pre_inset = None
     eave_events = []
     smooth_outline = {}
+    common_wall_regions = []
     from engine.atlas import digest
     from engine.surface_fields import MODELS, SETTINGS as inference, infer
     if version != '26.3':
@@ -571,7 +572,7 @@ def build(image_path, version, out, *, outlines=None, order_method=None, through
             from engine import smooth_atlas_outline
             def outline_atlas():
                 return _material_assets(version, None, 'atlas', camera_atlas_path)[0]
-            patches, smooth_outline = smooth_atlas_outline.refine(image, patches, version, atlas_loader=outline_atlas)
+            patches, smooth_outline, common_wall_regions = smooth_atlas_outline.with_common_wall(image, patches, version, atlas_loader=outline_atlas)
             methods['boundary_sequence'].append(smooth_atlas_outline.METHOD)
             boundary_settings['smooth_atlas_outline'] = smooth_outline
         context_px = DEFAULT_CONTEXT_PX if context_px is None else context_px
@@ -737,6 +738,14 @@ def build(image_path, version, out, *, outlines=None, order_method=None, through
                         cells = set(cells) | additions
                         status.update(placed_blocks=len(cells), smooth_extent_placement=dict(
                             candidate_patches=len(regions), added=len(additions)))
+                    if common_wall_regions:
+                        # Freeze all cells already supported by the ordinary smooth-placement pass.
+                        # Reproject this independently confirmed wall patch as an add-only trial.
+                        added = smooth_extent_placement.recover_from_regions(
+                            image,version,placement_parts,set(cells),source_camera,camera_atlas_path,common_wall_regions)
+                        cells = set(cells) | added
+                        status.update(placed_blocks=len(cells),common_wall_placement=dict(
+                            added=len(added),candidate_patches=len(common_wall_regions)))
             material = 'smooth_stone'
             blocks = {tuple(map(int, pos)): material for pos in cells}
             rows = [dict(x=x, y=y, z=z, block_id=material) for x,y,z in sorted(blocks)]

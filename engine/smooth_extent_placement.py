@@ -14,7 +14,7 @@ from engine.surface_perimeter import _native_alpha, with_outline
 METHOD = 'visible-smooth-extent-placement'
 
 
-def proposals(image, parts):
+def proposals(image, parts, *, common_wall=False):
     native = [_native_alpha(p['support'],image.size) if p.get('support') else None for p in parts]
     boxes = [item[1] for item in native if item is not None]
     if not boxes:
@@ -57,8 +57,20 @@ def proposals(image, parts):
             votes = np.bincount(samples+1,minlength=len(parts)+2)
             host = int(votes[2:].argmax())+1
             # Index zero is an overlap between observed masks; index one is unknown.
-            if (host not in hosts or votes[1]<64 or votes[host+1]<max(320,.20*area)
-                    or votes[host+1]<.985*(area-votes[1])):
+            if host not in hosts or votes[1]<64 or votes[host+1]<max(320,.20*area):
+                continue
+            needed = .985*(area-votes[1])
+            if common_wall:
+                # Test only color components rejected for divided ownership of a wall.
+                # The sponsoring mask remains the owner. Neighbors confirm orientation only.
+                normal = parts[host-1].get('normal_camera')
+                if votes[host+1]>=needed or normal is None or abs(normal[1])>.5:
+                    continue
+                aligned = sum(votes[i+2] for i,p in enumerate(parts) if p.get('normal_camera') is not None
+                              and np.dot(normal,p['normal_camera'])>=.985)
+                if aligned<needed:
+                    continue
+            elif votes[host+1]<needed:
                 continue
             for y,a,b in component:
                 active = unassigned[y,a:b]
@@ -124,8 +136,6 @@ def supported_additions(image, parts, camera, baseline, candidate, regions):
 
 
 def recover(image, version, parts, original, camera, atlas_path):
-    from engine import inset_returns, pavement_opening, texture_guided_count, visible_placement
-    from engine.surface_model import _count_regions
     projection=np.asarray(camera.get('P') if camera else None,dtype=float)
     if (version!='26.3' or not original or projection.shape!=(3,4)
             or not np.isfinite(projection).all() or np.linalg.matrix_rank(projection[:,:3])!=3):
@@ -133,16 +143,22 @@ def recover(image, version, parts, original, camera, atlas_path):
     regions=proposals(image,parts)
     if not regions:
         return set(), []
+    return recover_from_regions(image,version,parts,original,camera,atlas_path,regions),regions
+
+
+def recover_from_regions(image, version, parts, original, camera, atlas_path, regions):
+    from engine import inset_returns, pavement_opening, texture_guided_count, visible_placement
+    from engine.surface_model import _count_regions
     changed=_candidate_parts(parts,image.size,regions)
     # If the new patch suggests an inset or an opening, leave ownership to
     # those dedicated stages with their original visible evidence.
     changed,returns,phase,outlines,_=inset_returns.detect(image,changed,version,camera=camera)
     if returns or phase or outlines or pavement_opening.detect(image,changed,camera):
-        return set(), regions
+        return set()
     changed=[with_outline(p) for p in changed]
     with TemporaryDirectory() as dest:
         # This auxiliary geometry fit always uses the visible texture counter.
         # Material sampling in the ordinary build keeps its own phase and assets.
         counts=_count_regions(image,changed,version,texture_guided_count.METHOD,None,Path(dest))
     candidate,_=visible_placement.place(image,version,changed,counts=counts,camera=camera,atlas_path=atlas_path)
-    return supported_additions(image,changed,camera,original,set(candidate),regions),regions
+    return supported_additions(image,changed,camera,original,set(candidate),regions)
