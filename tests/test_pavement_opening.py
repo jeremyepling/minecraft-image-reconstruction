@@ -4,6 +4,7 @@ import numpy as np
 from PIL import Image
 
 from engine import pavement_opening
+from engine.pavement_obstructions import window_obstructions
 
 
 class PavementOpeningTests(unittest.TestCase):
@@ -20,11 +21,9 @@ class PavementOpeningTests(unittest.TestCase):
             with self.subTest(projection=p):
                 self.assertEqual([], pavement_opening.detect(image, [patch], dict(P=p)))
 
-    def test_check_for_enclosure_before_estimating_camera(self):
-        center = self.patch('interior', 35, 35, 65, 65)
-        edges = [self.patch('left', 28, 35, 34, 65), self.patch('right', 66, 35, 72, 65),
-                 self.patch('head', 35, 27, 65, 34), self.patch('sill', 35, 66, 65, 74)]
-        self.assertTrue(pavement_opening.possible(self.size, [center] + edges))
-        self.assertFalse(pavement_opening.possible(self.size, [center] + edges[:-1]))
-        self.assertFalse(pavement_opening.possible(self.size, [center]))
-
+    def test_only_visible_elevated_cells_can_be_removed(self):
+        size = (101, 99)
+        camera = dict(P=[[100, 0, 50, 400], [0, -100, 49, 692], [0, 0, 1, 8]])
+        region = dict(support=dict(size=size, runs=[[y, 0, size[0]] for y in range(size[1])]))
+        cells = {(0, -1, 0), (0, 0, 0), (0, 1, 0), (8, 1, 0)}
+        self.assertEqual({(0, 1, 0)}, window_obstructions(size, camera, [region], cells))

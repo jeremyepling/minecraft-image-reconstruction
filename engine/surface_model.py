@@ -687,6 +687,18 @@ def build(image_path, version, out, *, outlines=None, order_method=None, through
                 cells = (set(cells) | added) - removed
                 status.update(placed_blocks=len(cells), inset_placement=dict(added=len(added), removed=len(removed),
                     source='photographed backs and occluding cells inside measured rims'))
+            if pre_inset is not None and cells and joint_foreground:
+                from engine import pavement_opening
+                from engine.pavement_obstructions import window_obstructions
+                # A flush platform can share the pavement grid. Keep its surface
+                # and counts, and test only elevated cubes obstructing those rays.
+                matched = set(pavement_opening.detect(image, pre_inset, status))
+                if matched:
+                    regions = [part for part in pre_inset if part['id'] in matched]
+                    blocked = window_obstructions(image.size, status, regions, cells)
+                    cells = set(cells) - blocked
+                    status.update(placed_blocks=len(cells), pavement_openings=dict(
+                        surfaces=sorted(matched), removed=sorted(blocked)))
             material = 'smooth_stone'
             blocks = {tuple(map(int, pos)): material for pos in cells}
             rows = [dict(x=x, y=y, z=z, block_id=material) for x,y,z in sorted(blocks)]

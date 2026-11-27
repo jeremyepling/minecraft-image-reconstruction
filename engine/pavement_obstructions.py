@@ -13,12 +13,12 @@ def window_obstructions(size, camera, opening_parts, cells):
     projection, _ = orientation(camera, size)
     eye = -np.linalg.solve(projection[:, :3], projection[:, 3])
     ordered = sorted(cells)
-    width, height = size
-    shape = ((height + SAMPLE_STRIDE - 1) // SAMPLE_STRIDE,
-             (width + SAMPLE_STRIDE - 1) // SAMPLE_STRIDE)
+    # Match the placement raster. A partial stride counts only if its sample
+    # center still lies inside the image.
+    shape = tuple((n + (SAMPLE_STRIDE - 1) // 2) // SAMPLE_STRIDE for n in size[::-1])
     owner, axes = _frontmost_cells(ordered, projection, eye, shape, face_axes=True)
-    x = np.minimum(np.arange(shape[1]) * SAMPLE_STRIDE + SAMPLE_STRIDE // 2, width - 1)
-    y = np.minimum(np.arange(shape[0]) * SAMPLE_STRIDE + SAMPLE_STRIDE // 2, height - 1)
+    x = np.arange(shape[1]) * SAMPLE_STRIDE + SAMPLE_STRIDE // 2
+    y = np.arange(shape[0]) * SAMPLE_STRIDE + SAMPLE_STRIDE // 2
     blocked = set()
     # Assess each opening independently. Tiny fragments from unrelated windows
     # cannot combine into enough evidence against a legitimate post.

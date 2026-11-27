@@ -2,7 +2,6 @@
 import numpy as np
 
 from engine.pillar_seams import native_mask, orientation
-from engine.surface_perimeter import _native_alpha
 
 
 def _rim(mask, walls, axis, sign):
@@ -30,38 +29,6 @@ def _enclosure(mask, walls):
     if min(left, right) >= .45 and min(head, sill) >= .65:
         return [left, right, head, sill]
     return None
-
-
-def possible(size, parts):
-    """Check for a framed patch before paying for camera estimation.
-
-    Every neighboring surface can supply a provisional rim here. The camera
-    subsequently restricts those neighbors to measured vertical surfaces.
-    """
-    if len(parts) < 2:
-        return False
-    ownership = np.zeros(size[::-1], np.int32)
-    candidates = []
-    for part in parts:
-        if part.get('normal_camera') is None or not part.get('support'):
-            continue
-        patch = _native_alpha(part['support'], size)
-        if patch is None:
-            continue
-        alpha, (x, y, r, b) = patch
-        mask = np.asarray(alpha, bool)
-        ownership[y:b, x:r] += mask
-        if min(r-x, b-y) >= 11 and mask.sum() >= 350:
-            candidates.append((mask, x, y, r, b))
-    for mask, x, y, r, b in candidates:
-        left, top = max(0, x-13), max(0, y-13)
-        local = ownership[top:b+13, left:r+13]
-        target = np.zeros(local.shape, bool)
-        target[y-top:b-top, x-left:r-left] = mask
-        neighbors = local > target
-        if _enclosure(target, neighbors) is not None:
-            return True
-    return False
 
 
 def _ground(inv, eye, x, y):
