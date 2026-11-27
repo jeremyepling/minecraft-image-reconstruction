@@ -1,0 +1,258 @@
+{
+  "alignment_reference_checks": {
+    "checks": 59,
+    "known_cases": [
+      "empty both",
+      "empty target",
+      "empty prediction",
+      "duplicates",
+      "known translation",
+      "lexicographic tie",
+      "smallest squared displacement",
+      "origin tie below ceiling",
+      "same-origin subset",
+      "too-wide sparse fallback",
+      "large absolute coordinates"
+    ],
+    "seed": 168
+  },
+  "cohorts": {
+    "decorative-builds-v1": {
+      "capture_records": {
+        "bytes": 161413,
+        "file": "decorative-builds-v1-capture-records.zip",
+        "sha256": "2724bdbad95ace2a16d2f0082c420208d11db86e04eff197e2bf714a6475051e"
+      },
+      "frame_asset_fingerprints_sha256": "ce9ba264e0e4d5c090c7059d158fad0fb81c7d62aba4e16def6163ec314a70fa",
+      "frames_available": 40,
+      "known_pack_roundtrip": {
+        "facade_position_and_id_f1": 1.0,
+        "facade_position_f1": 1.0,
+        "frames_checked": 40,
+        "strict_position_and_id_f1": 1.0,
+        "strict_position_f1": 1.0
+      },
+      "manifest_sha256": "09d5612ee175718b979c73363eb40fe05959d90f96aab894e82efa9548eaf064",
+      "optional_targets_by_kind": {
+        "full_cube": 1460
+      },
+      "shards": {
+        "test": {
+          "bytes": 13914407,
+          "file": "decorative-builds-v1-test.zip",
+          "frames": 8,
+          "layouts": 2,
+          "sha256": "69af036e53e7737a1526217d0610c9c66097e32e8613b47e8eec773536f043f3"
+        },
+        "train": {
+          "bytes": 43671975,
+          "file": "decorative-builds-v1-train.zip",
+          "frames": 24,
+          "layouts": 6,
+          "sha256": "928201565fc892b3ef25ed4ebf42888854fdd5ded9d56ddb7918c3dec1a891cc"
+        },
+        "validation": {
+          "bytes": 11897109,
+          "file": "decorative-builds-v1-validation.zip",
+          "frames": 8,
+          "layouts": 2,
+          "sha256": "0cc9528a36d31be70a5f2252821e75d3ff6b699b6d54e24fe039aa0e1750d848"
+        }
+      },
+      "splits": {
+        "test": {
+          "frames": 8,
+          "frames_with_foreground_overlap": 8,
+          "frames_with_optional_targets": 8,
+          "hidden_structure_appearances": 5666,
+          "native_depth_samples": 38632,
+          "occluded_overlap_pixels": 284042,
+          "optional_targets": 366,
+          "overlapping_visible_full_blocks": 722,
+          "required_targets": 3256,
+          "visible_blocks": 3622,
+          "visible_faces": 5954,
+          "visible_pixels": 2049706
+        },
+        "train": {
+          "frames": 24,
+          "frames_with_foreground_overlap": 24,
+          "frames_with_optional_targets": 24,
+          "hidden_structure_appearances": 26490,
+          "native_depth_samples": 114282,
+          "occluded_overlap_pixels": 747930,
+          "optional_targets": 938,
+          "overlapping_visible_full_blocks": 1874,
+          "required_targets": 9124,
+          "visible_blocks": 10062,
+          "visible_faces": 16282,
+          "visible_pixels": 6237302
+        },
+        "validation": {
+          "frames": 8,
+          "frames_with_foreground_overlap": 8,
+          "frames_with_optional_targets": 8,
+          "hidden_structure_appearances": 8790,
+          "native_depth_samples": 37778,
+          "occluded_overlap_pixels": 158468,
+          "optional_targets": 156,
+          "overlapping_visible_full_blocks": 586,
+          "required_targets": 3086,
+          "visible_blocks": 3242,
+          "visible_faces": 5138,
+          "visible_pixels": 1516924
+        }
+      },
+      "totals": {
+        "frames": 40,
+        "frames_with_foreground_overlap": 40,
+        "frames_with_optional_targets": 40,
+        "hidden_structure_appearances": 40946,
+        "native_depth_samples": 190692,
+        "occluded_overlap_pixels": 1190440,
+        "optional_targets": 1460,
+        "overlapping_visible_full_blocks": 3182,
+        "required_targets": 15466,
+        "visible_blocks": 16926,
+        "visible_faces": 27374,
+        "visible_pixels": 9803932
+      },
+      "visible_blocks_by_kind": {
+        "fence": 308,
+        "fence_gate": 80,
+        "full_cube": 15296,
+        "slab": 676,
+        "stairs": 120,
+        "trapdoor": 158,
+        "wall": 288
+      },
+      "visible_blocks_without_default_id_candidate_by_kind": {
+        "fence": 308,
+        "fence_gate": 80,
+        "slab": 676,
+        "stairs": 120,
+        "trapdoor": 158,
+        "wall": 288
+      },
+      "visible_source_blocks_with_properties_by_kind": {
+        "fence": 308,
+        "fence_gate": 80,
+        "full_cube": 303,
+        "slab": 676,
+        "stairs": 120,
+        "trapdoor": 158,
+        "wall": 288
+      }
+    },
+    "visible-builds-v3": {
+      "capture_records": {
+        "bytes": 1109635,
+        "file": "visible-builds-v3-capture-records.zip",
+        "sha256": "fdbf2d6744efb878e9c8fab92dbdee4d36280c8d845324c7aa57f46f2da2483d"
+      },
+      "frame_asset_fingerprints_sha256": "1729525b5ee7bb047d4c7404f4d9ca761045f278d30e66b6092e9e4dd339cee3",
+      "frames_available": 144,
+      "known_pack_roundtrip": {
+        "facade_position_and_id_f1": 1.0,
+        "facade_position_f1": 1.0,
+        "frames_checked": 144,
+        "strict_position_and_id_f1": 1.0,
+        "strict_position_f1": 1.0
+      },
+      "manifest_sha256": "6e7b25fa56aa39d04a34bb3984551cf11441c11acb1a021b045d4f86e824aa28",
+      "optional_targets_by_kind": {
+        "full_cube": 12830
+      },
+      "shards": {
+        "test": {
+          "bytes": 41615590,
+          "file": "visible-builds-v3-test.zip",
+          "frames": 18,
+          "layouts": 3,
+          "sha256": "e7444184063adc04aecd00beee78aa134bc5d7066561b5199a086f33bc8e395b"
+        },
+        "train": {
+          "bytes": 193166893,
+          "file": "visible-builds-v3-train.zip",
+          "frames": 108,
+          "layouts": 18,
+          "sha256": "68d0d6e0f74ff682e088213bb6b7ea7c71edba72aef4133fdc1c1329e8b4299b"
+        },
+        "validation": {
+          "bytes": 24992118,
+          "file": "visible-builds-v3-validation.zip",
+          "frames": 18,
+          "layouts": 3,
+          "sha256": "545e0fe4d61bf128ef326fa2b75acb9eff3b5f8eed3ca198236fc3f640246ed7"
+        }
+      },
+      "splits": {
+        "test": {
+          "frames": 18,
+          "frames_with_optional_targets": 16,
+          "hidden_structure_appearances": 134438,
+          "native_depth_samples": 129570,
+          "optional_targets": 106,
+          "required_targets": 52296,
+          "visible_blocks": 52402,
+          "visible_faces": 56644,
+          "visible_pixels": 5226902
+        },
+        "train": {
+          "frames": 108,
+          "frames_with_optional_targets": 96,
+          "hidden_structure_appearances": 280372,
+          "native_depth_samples": 611954,
+          "optional_targets": 8786,
+          "required_targets": 137028,
+          "visible_blocks": 145814,
+          "visible_faces": 172808,
+          "visible_pixels": 25134022
+        },
+        "validation": {
+          "frames": 18,
+          "frames_with_optional_targets": 18,
+          "hidden_structure_appearances": 27026,
+          "native_depth_samples": 93246,
+          "optional_targets": 3938,
+          "required_targets": 11996,
+          "visible_blocks": 15934,
+          "visible_faces": 20198,
+          "visible_pixels": 2901532
+        }
+      },
+      "totals": {
+        "frames": 144,
+        "frames_with_optional_targets": 130,
+        "hidden_structure_appearances": 441836,
+        "native_depth_samples": 834770,
+        "optional_targets": 12830,
+        "required_targets": 201320,
+        "visible_blocks": 214150,
+        "visible_faces": 249650,
+        "visible_pixels": 33262456
+      },
+      "visible_blocks_by_kind": {
+        "full_cube": 214150
+      },
+      "visible_blocks_without_default_id_candidate_by_kind": {},
+      "visible_source_blocks_with_properties_by_kind": {
+        "full_cube": 1414
+      }
+    }
+  },
+  "default_atlas": {
+    "atlas_json_sha256": "f33529ac90984827e82bf8720d8bd122e11f1386fb6c49a70379437a3c4c54a2",
+    "atlas_sha256": "49b477fbfe5f2171c2529e3ffe1722f09fee5a094de2b6b99831512b8601c950",
+    "block_count": 384,
+    "client_sha256": "4508d006323f24fa02876310c192d739af56516eb259000ac50f0909a68c9a2d",
+    "placement_index_sha256": "32f95873f5b10e0fa36023c149b4277a4b1f7a59fb77940ede120f9292f37ac6",
+    "scope": "all opaque untinted full-cube face sprites in the placement index, all six directions",
+    "texture_count": 448,
+    "version": "26.3"
+  },
+  "java_version": "26.3",
+  "scores": "Known visible targets supplied to the exporter for evaluator validation",
+  "source_revision": "1ca88221bf2a29d4495b61a783b0c99273ee0634",
+  "state_scope": "Pack palettes carry block IDs alone. Source state properties are absent, so the ID score does not establish matching facing, half, connections, or other properties."
+}
