@@ -1,9 +1,12 @@
 """Refresh the weakest-structure viewer from the verified placement exports."""
+import argparse
 from collections import Counter, defaultdict
 from concurrent.futures import ProcessPoolExecutor
 from functools import lru_cache
 from hashlib import sha256
 from io import BytesIO
+from pathlib import Path
+from tempfile import TemporaryDirectory
 from zipfile import ZipFile
 
 import numpy as np
@@ -31,6 +34,8 @@ PAGE = ROOT/'shared-face-round-01'
 RELEASE = ROOT/'pavement-local-01'
 ASSETS = RELEASE/'viewer-overlays'
 REVISION = '3b442a3'
+DEFAULT_RELEASES = [RELEASE, ROOT/'smooth-local-placement-01', ROOT/'smooth-joint-placement-01',
+                    ROOT/'window-wall-01', ROOT/'counted-ground-corner-01', ROOT/'workshop-foreground-01']
 SMOOTH_LAYOUTS = {'Shopfront','Registry','Portico','Courtyard'}
 
 
@@ -86,12 +91,43 @@ def read_releases(directories):
         with ZipFile(checked(directory/'default-exports.zip',release['archive_sha256'])) as archive:
             for row in release['changed']:
                 key = row['id']
-                if history[key]:
-                    assert history[key][-1]['pack_sha256']==row['previous_pack_sha256']
+                if history[key] and history[key][-1]['pack_sha256'] != row['previous_pack_sha256']:
+                    raise ValueError(f'Export chain mismatch for {key} in {directory}')
                 history[key].append(row)
                 payloads[key] = archive.read(key+'/reconstruction.zip')
-                assert sha256(payloads[key]).hexdigest()==row['pack_sha256']
+                if sha256(payloads[key]).hexdigest() != row['pack_sha256']:
+                    raise ValueError(f'Export SHA256 mismatch for {key} in {directory}')
     return release,history,payloads
+
+
+def preview_chain(directories):
+    """Require every candidate to descend from the exact previous 204 source images and exports."""
+    previous_dir = DEFAULT_RELEASES[-1]
+    previous = read(previous_dir/'summary.json')
+    cases = read(checked(previous_dir/'cases.json', previous['cases_sha256']))
+    for directory in directories:
+        release = read(directory/'summary.json')
+        new = read(checked(directory/'cases.json', release['cases_sha256']))
+        before = {row['id']: row for row in cases}
+        after = {row['id']: row for row in new}
+        if (len(after) != len(new) or set(after) != set(before)
+                or release['previous_cohorts'] != previous['cohorts']):
+            raise ValueError(f'{directory} uses a different baseline or evaluation set')
+        changed = []
+        for key, row in after.items():
+            prior = before[key]
+            if (prior['source_hash'] != row['source_hash'] or prior['split'] != row['split']
+                    or prior.get('pack_sha256',prior['previous_pack_sha256']) != row['previous_pack_sha256']
+                    or prior['result'] != row['baseline']):
+                raise ValueError(f'{directory} does not continue the scored export for {key}')
+            if 'pack_sha256' in row:
+                changed.append(row)
+            elif row['result'] != row['baseline']:
+                raise ValueError(f'{directory} has new scores without an export for {key}')
+        if sorted(changed,key=lambda r:r['id']) != sorted(release['changed'],key=lambda r:r['id']):
+            raise ValueError(f'{directory} does not identify the same changed exports in cases and summary')
+        previous, cases = release, new
+    return [*DEFAULT_RELEASES, *directories]
 
 
 def regrade(task):
@@ -137,7 +173,7 @@ def gap_contribution(rows, pool):
     errors = sum(r['required']['missed']+r['required']['extras'] for r in rows)
     total_errors = pool['missed']+pool['extras']
     return dict(views=len(rows), errors=errors, points=100*errors/(2*pool['correct']+total_errors),
-                share=100*errors/total_errors)
+                share=100*errors/total_errors if total_errors else 0.)
 
 
 def totals(group):
@@ -198,16 +234,15 @@ def required_overlay(image, labels, ids, missing, metric):
     return Image.fromarray(rgb)
 
 
-def main():
-    release,changed,payloads = read_releases([RELEASE,ROOT/'smooth-local-placement-01',ROOT/'smooth-joint-placement-01',
-                                             ROOT/'window-wall-01',ROOT/'counted-ground-corner-01',ROOT/'workshop-foreground-01'])
+def render(directories, *, page, assets, revision, preview=False, candidate=False, workers=4):
+    release,changed,payloads = read_releases(directories)
     fixed = read(PAGE/'error-budget.json')['frames']
     jobs = {j[1]['id']:j for j in suite.jobs(suite.framed.EVALUATION)}
     assert len(fixed)==len(jobs)==104 and {r['id'] for r in fixed}==set(jobs)
     inputs = {r['id']:r for r in read(ROOT/'facade-inset-round-01/combined.json')['rows']}
     corners = {r['id']:r for r in read(ROOT/'counted-ground-corner-01/cases.json')}
     by_shape = defaultdict(list)
-    with ProcessPoolExecutor(4) as pool:
+    with ProcessPoolExecutor(workers) as pool:
         tasks=[(jobs[r['id']],inputs[r['id']],r,changed.get(r['id']),payloads.get(r['id'])) for r in fixed]
         for r,observed in zip(fixed,pool.map(regrade,tasks),strict=True):
             r.update(observed)
@@ -235,12 +270,12 @@ def main():
                displayedCeiling=path_to_target([selected],facade_pool)[0]['score'])
     atlas = atlas_count.load_atlas(suite.ATLAS,'26.3')
     rows = []
-    ASSETS.mkdir(exist_ok=True)
+    assets.mkdir(parents=True,exist_ok=True)
     left, width, top, height = 201, 415, 112, 451
     board = Image.new('RGB',(left+width*len(selected),top+10*height),PAPER)
     pen = ImageDraw.Draw(board)
     text(pen,14,9,'Ten lowest-scoring structures by their weakest fixed view',29,True)
-    text(pen,15,50,'Default '+REVISION+' · Strict relative placement F1 · 104 whole-structure source images',19,False)
+    text(pen,15,50,('Candidate ' if candidate else 'Default ')+revision+' · Strict relative placement F1 · 104 whole-structure source images',19,False)
     names = ['Source image','Surface Finder','Surface crop','Straightened crop','Block Counter','Grid on source image',
              'Material sample','Projected build','Visible reference','Placement errors']
     for i,name in enumerate(names):
@@ -277,18 +312,18 @@ def main():
         panels,_ = sheet.prepare_view(info,current,atlas,view,grid_phases=atlas_phases)
         prefix = f'{index+1:02}'
         if atlas_phases:
-            panels[-1][0].save(ASSETS/f'{prefix}-grid-atlas.jpg',quality=86,optimize=True)
+            panels[-1][0].save(assets/f'{prefix}-grid-atlas.jpg',quality=86,optimize=True)
         surface, wire, visible_faces = edge_overlay(image.size, parts, camera, cells)
         for overlay, suffix in ((surface, 'mask-edges'), (wire, 'face-corners')):
-            overlay.save(ASSETS/f'{prefix}-{suffix}.png', transparency=0, optimize=True)
+            overlay.save(assets/f'{prefix}-{suffix}.png', transparency=0, optimize=True)
         excluded_pixels = int(excluded.sum()) if excluded is not None else 0
         if excluded_pixels:
             mask = Image.fromarray(excluded.astype(np.uint8))
             mask.putpalette([0, 0, 0, 184, 119, 255])
-            mask.save(ASSETS/f'{prefix}-excluded.png', transparency=0, optimize=True)
+            mask.save(assets/f'{prefix}-excluded.png', transparency=0, optimize=True)
         for stage,i in [('source',0),('outlines',1),('grid',5),('build',7),('reference',8),('errors',9)]:
-            panels[i][0].save(ASSETS/f'{prefix}-{stage}.jpg',quality=86,optimize=True)
-        required_overlay(image,labels,ids,truth-scored,facade).save(ASSETS/f'{prefix}-required.jpg',quality=89,optimize=True)
+            panels[i][0].save(assets/f'{prefix}-{stage}.jpg',quality=86,optimize=True)
+        required_overlay(image,labels,ids,truth-scored,facade).save(assets/f'{prefix}-required.jpg',quality=89,optimize=True)
         if index<len(selected):
             col = left+index*width
             text(pen,col,78,f"{index+1}. {r['layout']}   {f1(strict):.2%}",20,True)
@@ -320,8 +355,37 @@ def main():
                          correct=strict['correct'],required=facade['missed'],optional=strict['missed']-facade['missed'],
                          extras=strict['extras'],gap=gap_contribution([r],facade_pool),
                          layoutGap=gap_contribution(group,facade_pool),themes=themes([r])))
-    board.save(ASSETS/'stage-map.jpg',quality=91,subsampling=0,optimize=True)
-    write_viewer(PAGE,rows,'../pavement-local-01/viewer-overlays',REVISION,gap)
+    board.save(assets/'stage-map.jpg',quality=91,subsampling=0,optimize=True)
+    asset_dir = 'assets' if preview else '../pavement-local-01/viewer-overlays'
+    write_viewer(page, rows, asset_dir, revision, gap, preview=preview, candidate=candidate)
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--out', type=Path, help='Write a self-contained private viewer in a new directory')
+    parser.add_argument('--release', action='append', type=Path, default=[], metavar='DIR',
+                        help='Append a scored geometry release using the existing camera/coordinate frame. Repeat in baseline order.')
+    parser.add_argument('--revision', help='Candidate method or revision shown on the private viewer')
+    parser.add_argument('--workers', type=int, default=4, help='Concurrent per-image scoring workers')
+    args = parser.parse_args()
+    if bool(args.release) != bool(args.revision) or (args.release and args.out is None):
+        parser.error('Candidate releases require --release, --revision and a private --out together')
+    if args.workers < 1:
+        parser.error('--workers must be positive')
+    directories = preview_chain(args.release) if args.release else DEFAULT_RELEASES
+    if args.out is None:
+        render(directories, page=PAGE, assets=ASSETS, revision=REVISION, workers=args.workers)
+        return
+    page = args.out.resolve()
+    if page.exists():
+        parser.error('--out must be a new directory so other releases and reviews stay intact')
+    page.parent.mkdir(parents=True, exist_ok=True)
+    with TemporaryDirectory(dir=page.parent) as temporary:
+        staged = Path(temporary)/'review'
+        render(directories, page=staged, assets=staged/'assets', revision=args.revision or REVISION,
+               preview=True, candidate=bool(args.release), workers=args.workers)
+        staged.rename(page)
+    print(page/'viewer.html')
 
 
 if __name__=='__main__':
