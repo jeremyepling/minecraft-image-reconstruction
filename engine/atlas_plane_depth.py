@@ -166,7 +166,7 @@ def options(mask, P, eye, rays, axis, baseline, rgb, atlas, scene_distance=None,
 
 def place_ranked(image, version, parts, counts, camera, *, atlas_path=None, joint_foreground=True, refine_faces=True):
     """Place image-supported grid cells and remove cells with no visible ray."""
-    from engine import roof_height_atlas, roof_height_consensus, vertical_atlas_faces, visible_roof_rectangle
+    from engine import pillar_rows, roof_height_atlas, roof_height_consensus, vertical_atlas_faces, visible_roof_rectangle
     strict = set()
     resolved = {}
     cells, status = _place_ranked_once(image, version, parts, counts, camera, atlas_path=atlas_path,
@@ -186,8 +186,11 @@ def place_ranked(image, version, parts, counts, camera, *, atlas_path=None, join
     status['roof_height_removed'] = len(cells - verified)
     roof, _ = visible_roof_rectangle.contiguous(image, parts, counts, camera, verified, atlas_path=atlas_path)
     status['rectangle_roof_blocks'] = len(roof - verified)
-    final = vertical_atlas_faces.confirm_after_roof(image, parts, camera, roof, _atlas(version, atlas_path))
-    status['final_vertical_blocks'] = len(final - roof)
+    atlas = _atlas(version, atlas_path)
+    walls = vertical_atlas_faces.confirm_after_roof(image, parts, camera, roof, atlas)
+    status['final_vertical_blocks'] = len(walls - roof)
+    final, _ = pillar_rows.recover(image, parts, camera, walls, atlas)
+    status['visible_pillar_blocks'] = len(final - walls)
     status['strict_blocks'] = len(final & strict)
     status['added_blocks'] = len(final) - status['strict_blocks']
     status['placed_blocks'] = len(final)
