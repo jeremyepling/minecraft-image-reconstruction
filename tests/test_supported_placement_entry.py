@@ -14,6 +14,29 @@ from engine.surface_model import build
 
 
 class SupportedPlacementEntryTest(unittest.TestCase):
+    def test_export_after_geometry_survives_missing_material_atlas(self):
+        # A missing floor atlas can also make the camera uncertain. Freeze a
+        # successful placer here so the missing *material* atlas is exercised.
+        cells = {(1,0,2),(1,1,2)}
+        status = dict(camera_status='metric', placed_blocks=len(cells),
+                      P=[[80,0,40,0],[0,-80,25,0],[0,0,1,6]])
+        with TemporaryDirectory() as temp:
+            out = Path(temp)/'build'
+            image = Path(temp)/'source.png'
+            Image.new('RGB',(80,50),'gray').save(image)
+            with patch('engine.surface_fields.infer',return_value=np.ones((5,8))), \
+                    patch('engine.surface_model.proposals_for',return_value=[]), \
+                    patch('engine.visible_placement.place',return_value=(cells,status)), \
+                    patch('engine.camera_atlas_floor._atlas',return_value=None):
+                build(image,'26.3',out,outlines='mask-first',boundary='regions-first',through='placement')
+            self.assertEqual(decoded_pack(out/'reconstruction.zip'),dict.fromkeys(cells,'minecraft:smooth_stone'))
+            assigned = json.loads((out/'placements.json').read_text())['blocks']
+            self.assertEqual({(r['x'],r['y'],r['z']) for r in assigned},cells)
+            self.assertTrue(all(r['material_source']=='fallback' for r in assigned))
+            summary = json.loads((out/'build-manifest.json').read_text())['placement']['material_assignment']
+            self.assertEqual(summary['fallback_reason'],'verified atlas unavailable')
+            self.assertEqual(summary['sources'], {'fallback':2})
+
     def test_uncertain_camera_replaces_prior_nonempty_build(self):
         with TemporaryDirectory() as temp:
             out = Path(temp) / 'build'

@@ -38,6 +38,7 @@ class Atlas:
     profiles: np.ndarray
     provenance: dict
     material_index: dict | None = None
+    face_choices: dict | None = None
 
 
 def _prepare(tiles, labels, ids, provenance):
@@ -126,6 +127,7 @@ def load_atlas(path=None, version='26.3', *, verify_material_index=False):
                       scope='all opaque untinted full-cube face sprites in the placement index, all six directions')
     atlas = _prepare(tiles, labels.tolist(), ids, provenance)
     atlas.material_index = local_index
+    atlas.face_choices = index['choices']
     return atlas
 
 

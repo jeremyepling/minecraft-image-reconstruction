@@ -16,7 +16,8 @@ param(
     [ValidateSet('atlas','exposure','shape','shape-shadow')][string] $MaterialMatch,
     [string] $Atlas,
     [string] $Library,
-    [switch] $IndependentPlaneDepth
+    [switch] $IndependentPlaneDepth,
+    [switch] $GeometryOnly
 )
 
 $ErrorActionPreference = 'Stop'
@@ -79,6 +80,7 @@ try {
     }
     $materialOptions = @()
     if ($IndependentPlaneDepth) { $materialOptions += '--independent-plane-depth' }
+    if ($GeometryOnly) { $materialOptions += '--geometry-only' }
     if ($MaterialMatch) { $materialOptions += @('--material-match', $MaterialMatch) }
     if ($Library) { $materialOptions += @('--library', (Resolve-Path -LiteralPath $Library).Path) }
     if ($Atlas) { $materialOptions += @('--atlas', $ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($Atlas)) }

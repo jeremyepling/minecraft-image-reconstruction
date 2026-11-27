@@ -406,7 +406,7 @@ def _material_assets(version, counter, matcher, explicit_path):
 
 def build(image_path, version, out, *, outlines=None, order_method=None, through='surfaces',
           counter=None, atlas_path=None, material_match=None, context_px=None, boundary=None, library=None,
-          joint_foreground=True):
+          joint_foreground=True, geometry_only=False):
     camera_atlas_path = atlas_path
     metric_camera = None
     inset_events = []
@@ -822,9 +822,16 @@ def build(image_path, version, out, *, outlines=None, order_method=None, through
                                   exterior_roof_recovered=sorted(added))
             status['final_refinement'] = dict(before=len(ranked_cells), added=len(cells - ranked_cells),
                                               removed=len(ranked_cells - cells), after=len(cells))
-            material = 'smooth_stone'
-            blocks = {tuple(map(int, pos)): material for pos in cells}
-            rows = [dict(x=x, y=y, z=z, block_id=material) for x,y,z in sorted(blocks)]
+            from collections import Counter
+            from engine import placed_materials
+            from engine.camera_atlas_floor import _atlas
+            material = 'smooth_stone' if geometry_only else 'source-atlas'
+            export_atlas = None if geometry_only else (atlas or _atlas(version, camera_atlas_path))
+            blocks, evidence = placed_materials.assign(image, status, cells, export_atlas)
+            if geometry_only:
+                evidence = dict.fromkeys(blocks, 'geometry-only')
+            rows = [dict(x=x, y=y, z=z, block_id=blocks[x,y,z], material_source=evidence[x,y,z])
+                    for x,y,z in sorted(blocks)]
             placement = dict(version=version, camera_status=status['camera_status'],
                              coordinates='local block grid relative to the placement function origin',
                              material=material, blocks=rows)
@@ -832,6 +839,15 @@ def build(image_path, version, out, *, outlines=None, order_method=None, through
             (out/'placements.json').write_text(json.dumps(placement, indent=2))
             methods['placement'] = 'camera-supported-visible-planes'
             manifest['placement'] = dict(status, material=material)
+            manifest['placement']['material_assignment'] = dict(
+                method=material, sources=dict(Counter(evidence.values())), ids=dict(Counter(blocks.values())),
+                atlas_sha256=export_atlas.provenance['atlas_sha256'] if export_atlas is not None else None,
+                block_identity='Java default block state, bare registry ID', version=version,
+                fallback_reason=('geometry-only requested' if geometry_only else
+                                 'verified atlas unavailable' if export_atlas is None else
+                                 'no valid source camera' if status.get('P') is None else
+                                 'no sampled frontmost face'),
+                fallback_id=placed_materials.FALLBACK)
             manifest['artifacts'].update(placements='placements.json', datapack='reconstruction.zip')
             manifest['artifact'] = 'reconstruction.zip'
     (out/'build-manifest.json').write_text(json.dumps(manifest, indent=2))

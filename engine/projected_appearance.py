@@ -11,9 +11,10 @@ STEP=2
 
 
 class Scene:
-    def __init__(self,image,parts,camera,cells):
+    def __init__(self,image,parts,camera,cells,*,step=STEP):
         self.cells=sorted(cells)
-        self.rgb=np.asarray(image)[::STEP,::STEP].copy()
+        self.step=step
+        self.rgb=np.asarray(image)[::step,::step].copy()
         h,w=self.rgb.shape[:2]
         self.shape=(h,w)
         self.P=np.array(camera['P'],dtype=float,copy=True)
@@ -21,10 +22,10 @@ class Scene:
         self.inv=np.linalg.inv(self.P[:,:3])
         self.eye=-self.inv@self.P[:,3]
         self.sample=self.P.copy()
-        self.sample[:2]=(self.P[:2]+(.5*STEP-.5)*self.P[2])*(SAMPLE_STRIDE/STEP)
+        self.sample[:2]=(self.P[:2]+(.5*step-.5)*self.P[2])*(SAMPLE_STRIDE/step)
         focal=np.linalg.norm(self.P[0,:3]-image.width*.5*self.P[2,:3])
         rotation=np.linalg.solve(intrinsic(image.size,focal),self.P[:,:3])
-        union,masks=_surface_masks(parts,image.size,np.arange(w)*STEP+.5,np.arange(h)*STEP+.5,rotation)
+        union,masks=_surface_masks(parts,image.size,np.arange(w)*step+.5,np.arange(h)*step+.5,rotation)
         self.union=union.ravel()
         self.masks=masks.reshape(3,-1)
         n=h*w
@@ -100,7 +101,7 @@ class Scene:
 
     def uv(self,idx,c,axis):
         y,x=np.divmod(idx,self.shape[1])
-        rays=np.column_stack((x*STEP+.5,y*STEP+.5,np.ones(len(x))))@self.inv.T
+        rays=np.column_stack((x*self.step+.5,y*self.step+.5,np.ones(len(x))))@self.inv.T
         free=[d for d in range(3) if d!=axis]
         level=c[axis]+int(self.eye[axis]>c[axis]+1)
         uv=self.eye[free]+(level-self.eye[axis])*rays[:,free]/rays[:,[axis]]
