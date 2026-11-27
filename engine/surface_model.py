@@ -379,7 +379,7 @@ def _material_assets(version, counter, matcher, explicit_path):
     if required and not paths:
         paths = [None]  # The explicit atlas-based counter also supports local generation.
     failures = []
-    for path in paths:
+    for index, path in enumerate(paths):
         try:
             atlas = load_atlas(path, version=version, verify_material_index=matcher in ('shape', 'shape-shadow', 'exposure'))
             shape_matcher = None
@@ -388,7 +388,7 @@ def _material_assets(version, counter, matcher, explicit_path):
                 shape_matcher = ShapeMatcher(path, catalog=atlas.material_index)
             return atlas, shape_matcher, path, failures
         except Exception as exc:
-            if required:
+            if required and index == len(paths) - 1:
                 raise
             failures.append(dict(path=str(path), reason=f'{type(exc).__name__}: {exc}'))
     return None, None, None, failures

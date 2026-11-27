@@ -1,5 +1,6 @@
 """Register a visible ground texel lattice to verified vanilla 16 by 16 sprites."""
 from functools import lru_cache
+import json
 from pathlib import Path
 from zlib import error as CompressionError
 
@@ -15,13 +16,25 @@ def _verified_atlas(path, version, fingerprint):
     return load_atlas(path, version)
 
 
+def _file_stamp(path):
+    stat = path.stat()
+    return stat.st_mtime_ns, stat.st_size
+
+
+@lru_cache(maxsize=4)
+def _sheet_path(manifest, stamp):
+    return manifest.parent / json.loads(manifest.read_bytes())['atlas']
+
+
 def _atlas(version, atlas_path=None):
     paths = [Path(atlas_path)] if atlas_path is not None else prepared_atlas_paths(version)
     for path in paths:
         path = path.resolve()
         try:
-            stats = [asset.stat() for asset in (path/"atlas.json", path/"atlas.png", CALIBRATED_INDEX)]
-            fingerprint = tuple((s.st_mtime_ns, s.st_size) for s in stats)
+            manifest = path / 'atlas.json'
+            stamp = _file_stamp(manifest)
+            sheet = _sheet_path(manifest, stamp)
+            fingerprint = stamp, sheet, _file_stamp(sheet), _file_stamp(CALIBRATED_INDEX)
             return _verified_atlas(path, version, fingerprint)
         except (OSError, ValueError, TypeError, IndexError, KeyError, EOFError, CompressionError):
             continue
