@@ -10,6 +10,20 @@ At revision `62611ee`, Visible Builds v3 has 70 camera failures and 148,107 requ
 
 The fixed and decorative results carry forward their byte-verified baseline exports. The composition also keeps the current 74 supported v3 exports. Recorded-camera packs come from the earlier ordinary downstream replay; no new build was run for this composition. On v3 the resulting strict counts are 89,290 correct, 124,860 missed and 44,599 extras. The historical 112-view score was not remeasured.
 
+## Native pavement measurements
+
+The floor experiment compared a photographed pavement patch with a bilinearly filtered, mipmapped atlas tile at its original image coordinates. A 448-sprite scan on training screenshots selected light gray concrete. Regions from different parts of each photograph had to agree on a chart and discriminate competing scale factors, including half and double scale. This is a narrow material fallback. The source policy froze at `d6990f9` before the Harbor and Castle run. A source-only boundary proposal supplies 63 cameras. Adding GeoCalib focal length and horizon as later search seeds supplies two more. Both use the same native texture fitter.
+
+| v3 camera failures on entry | Source cameras recovered, either seed | Native corners checked after one integer shift | Worst per-view 90th-percentile error |
+|---|---:|---:|---:|
+| Training, 49 | 48 | 57,965 | 0.79 px |
+| Harbor validation, 5 | 5 | 5,089 | 0.26 px |
+| Castle test, 16 | 12 | 17,104 | 0.89 px |
+
+All 80,158 withheld native vertices were within two pixels. The maximum per-frame median error in relative ground spans was 0.036%. Ordinary ground-ray registration alone gave a worst P90 of 22.33 px on training. The acceptance decision saw only the source image and declared atlas/model inputs; recorded camera and visible-corner data enter at grading. The two model-only recoveries were Pillars 03 marble high-right and Castle 02 limestone high-right. Five images remained without a camera under the combined policy. [Per-image calibration and source fingerprints](native-calibration.json.gz)
+
+![Castle source views and contrast-enhanced pavement crops showing a new camera and an abstention](castle-source-floor.jpg)
+
 ## Two causes left by the floor matcher
 
 | v3 residual | Train | Harbor validation | Castle test | Correct positions supplied by recorded-camera replay | Extras |
@@ -20,6 +34,8 @@ The fixed and decorative results carry forward their byte-verified baseline expo
 On the first group the existing verifier can recognize a correct solution, so source search has room to improve. On the second group the previous verifier cannot recognize the correct chart under its sampling rule. This says nothing about how much texture information survives in the original pixels. The two source experiments compare direct atlas prediction of native floor pixels against a separate block ruler derived from visible architectural steps. Both receive one screenshot. Every building, palette and view stays in its original split. Harbor and Castle are previously reviewed regression families.
 
 ## A fairer check of relative camera geometry
+
+![Castle visible-corner projections before and after one shared integer translation](castle-registration.jpg)
 
 The published camera registration anchors an image ray to the staging ground. A ground-height error or biased focal length can move the whole building far from its recorded world coordinates even if some internal dimensions are preserved. For a second diagnostic, the scorer fits one integer XYZ translation using alternating sorted visible vertices and scores the other half. This permits one shared origin for all walls, roofs and disconnected parts. It fixes compass orientation using the ordinary evaluator. It estimates a continuous translation with reprojection least squares, then selects the lowest pixel RMS within two integer blocks on each axis around the rounded solution. It uses native front-visible corner labels only for grading. [Disjoint-corner results and known-camera controls](relative-calibration.json)
 
