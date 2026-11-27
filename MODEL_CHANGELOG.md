@@ -4,6 +4,8 @@ These entries cover model inputs, rules around model outputs, and evaluation cha
 
 ### November 27, 2026
 
+- **Experimental connected native atlas patches.** Projective texture repeats and neighboring full-face atlas matches recovered 28 smooth red sandstone blocks on Garden and 11 prismarine bricks on Harbor. Across the six open-sky exports this gained 34 correct positions and 39 exact position-plus-ID matches without increasing extra positions. Garden’s permissive mixed-material chart combined three depths. Require a connected same-texture patch before exporting this challenger. [Source-only runner](benchmark/garden_anchor_extension.py)
+
 - **Surface feedback trials.** Leveling near-horizontal image lines improved measured row orientation on 21 of 26 comparable walls; it worsened five. Cloud filtering cleared 90,620 background pixels across six synthetic sky views without losing visible structure pixels or changing the decoded placement. [Castle and Viaduct annotations, measurements and decisions](benchmark/reviews/castle-feedback-01/README.md)
 - **Experimental cloud mask filtering on open-sky composites.** Across six views, border-connected source colors rejected all 23 wholly background proposals. Trimming two more near-pure masks preserved their 24 native building pixels. The 15 registered-seam charts received identical inputs. [Cloud mask comparison](benchmark/reviews/sky-mask-feedback-01/README.md)
 
