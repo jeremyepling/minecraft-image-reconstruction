@@ -1,8 +1,9 @@
 """Write the offline viewer of ranked structures with release-specific stage images."""
+from html import escape
 import json
 
 
-def write_viewer(folder, views, asset_dir, revision, gap):
+def write_viewer(folder, views, asset_dir, revision, gap, *, preview=False, candidate=False):
     page = """<!doctype html>
 <html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Lowest-scoring structures · Minecraft reconstruction</title>
@@ -18,7 +19,7 @@ summary{cursor:pointer;font-weight:600}details{padding:8px 0}button:focus-visibl
 table{border-collapse:collapse;font-variant-numeric:tabular-nums;width:100%;margin:8px 0}th,td{padding:5px 10px;text-align:left;border-bottom:1px solid #40525b}
 .scroll{overflow-x:auto}td select{max-width:260px}tr.reached{background:#27433b}#pathDescription,#themeLine{color:#d8e4e1}#themeLine{max-width:105ch}
 </style>
-<main><h1>Lowest-scoring structures</h1><p>Ten distinct structures from the 104 fixed source images, ranked by their lowest strict placement F1. Evaluated default <code>__REV__</code>.</p>
+<main><h1>Lowest-scoring structures</h1><p>Ten distinct structures from the 104 fixed source images, ranked by their lowest strict placement F1. __EVALUATED__</p>
 <details open><summary>Which fixes would reach 95% facade-priority F1?</summary>
 <p>__PATHHEAD__</p><label>Compare <select id="unit"><option value="layouts">Fewest layouts</option><option value="images">Fewest individual source images</option><option value="displayed">Ten strict-ranked layouts in viewer order</option></select></label>
 <p id="pathDescription"></p><div class="scroll"><table><thead><tr><th>Structure</th><th>Views</th><th>Required misses</th><th>Extras</th><th>Cumulative F1</th><th>Most frequent miss types</th><th>Inspect</th></tr></thead><tbody id="pathRows"></tbody></table></div>
@@ -41,7 +42,7 @@ table{border-collapse:collapse;font-variant-numeric:tabular-nums;width:100%;marg
 <img id="faceWire" hidden width="1440" height="900" alt="Visible edges and corners of exported blocks"><img id="maskEdges" hidden width="1440" height="900" alt="Detected surface edges">
 <svg id="warnings" viewBox="0 0 1440 900" aria-hidden="true"></svg></div>
 <p id="issueReview"></p>
-<p id="measures" aria-live="polite"></p><p id="contribution"></p><p id="themeLine"></p><footer><a href="__ASSETS__/stage-map.jpg">Compare the ten strict-ranked structures stage by stage</a> · <a href="../pavement-local-01/openings.jpg">Colonnade 01 before and after</a></footer></main>
+<p id="measures" aria-live="polite"></p><p id="contribution"></p><p id="themeLine"></p><footer><a href="__ASSETS__/stage-map.jpg">Compare the ten strict-ranked structures stage by stage</a>__HISTORICAL_FOOTER__</footer></main>
 <script>
 const views=__DATA__;
 const paths=__PATHS__;
@@ -121,7 +122,7 @@ function draw(){
   warnings.style.opacity=mix.value/100;
   review.textContent=(v.visibleFaces||0)+' projected block faces. '+(pair?.ground?.length?
    'Lime shows the two complete counted faces at the shared ground corner. '+(pair.chart?.length?'Dashed pink shows the earlier texture-crop estimate. ':'')+
-   (pair.revised?'The counted corner changed this export. ':'The counted-corner check made no edits. '):
+   (pair.revised?'The recorded counted-corner pass changed the upstream export. ':'The counted-corner check made no edits. '):
    'No counted ground-corner pair was recorded for this view. ');
   if(v.excludedPixels)review.append('The violet layer shows '+v.excludedPixels.toLocaleString()+' background pixels removed from the structure outlines. ');
  }
@@ -145,19 +146,19 @@ function draw(){
    review.textContent=v.smooth.accepted.toLocaleString()+' source pixels added to visible outlines. '+v.smooth.pixels.toLocaleString()+' proposed before checks. ';
   }else{review.textContent='This comparison covers Shopfront, Registry, Portico, and Courtyard. ';}
  }
- if(['issues','outlines','smooth'].includes(s[0])&&['Registry','Shopfront'].includes(v.name)){
+ if(__HISTORY__&&['issues','outlines','smooth'].includes(s[0])&&['Registry','Shopfront'].includes(v.name)){
   const link=document.createElement('a');link.href='../shopfront-outline-review-01/'+(v.name==='Registry'?'registry-right.jpg':'plaster-gap.jpg');
   link.textContent=v.name==='Registry'?'Inspect the missing upper-right plaster wall in the high-right source image':'Inspect the missing plaster patch in the low-left source image';
   review.append(link);
  }
- if(v.id==='inverse-voxels-26.3--confirm--test-colonnade-01-oblique-right'){
+ if(__HISTORY__&&v.id==='inverse-voxels-26.3--confirm--test-colonnade-01-oblique-right'){
   const current=document.createElement('a');current.href='../window-wall-01/colonnade.png';
   current.textContent='Compare the two recovered wall blocks below the window';
   const trace=document.createElement('a');trace.href='colonnade-01-window-wall.png';
   trace.textContent='Trace the gap in the previous export';
   review.append(current,' · ',trace);
  }
- if(v.id==='legacy-light_gray_concrete-holdout-courtyard-plaster-low-left'){
+ if(__HISTORY__&&v.id==='legacy-light_gray_concrete-holdout-courtyard-plaster-low-left'){
   const link=document.createElement('a');link.href='../courtyard-corner-01/plank-corner.png';
   link.textContent='Compare both plank-face projections and the exported corner from above';
   review.append(link);
@@ -175,7 +176,7 @@ function common(t){
 }
 function showPath(){
  const mode=el('unit').value,rows=paths[mode], reached=rows.findIndex(r=>r.score>=95);
- el('pathDescription').textContent='Correcting every required miss and removing every extra in the first '+(reached+1)+' '+(mode==='images'?'images':'layouts')+' would reach '+rows[reached].score.toFixed(2)+'%. All other views stay at their measured scores.';
+ el('pathDescription').textContent=__AT_TARGET__?'The evaluated build already reaches 95%. Further fixes are shown below.':reached<0?'These displayed fixes would still leave the suite below 95%.':'Correcting every required miss and removing every extra in the first '+(reached+1)+' '+(mode==='images'?'images':'layouts')+' would reach '+rows[reached].score.toFixed(2)+'%. All other views stay at their measured scores.';
  const tbody=el('pathRows');tbody.replaceChildren();
  for(const [i,r] of rows.entries()){
   const tr=tbody.insertRow();if(i===reached)tr.className='reached';
@@ -199,7 +200,16 @@ el('unit').onchange=showPath;showPath();pick.onchange=draw;mix.oninput=draw;draw
     headline=(f"Starting from {gap['baseline']:.2f}%, the smallest sufficient set is {len(paths['layouts'])} layouts "
               f"across {sum(len(r['ids']) for r in paths['layouts'])} fixed views, or {len(paths['images'])} individual images chosen across the suite. "
               "These are perfect-fix scenarios. The table shows the pooled score after each successive fix.")
-    page=page.replace('__REV__',revision).replace('__ASSETS__',asset_dir).replace('__GAP__',summary)
+    label = 'Candidate placement' if candidate else 'Evaluated default'
+    evaluated = f'{label} <code>{escape(revision)}</code>.'
+    if candidate:
+        evaluated += ' Scores and exported face outlines use the candidate blocks. Camera, surface, grid and counted-corner diagnostics use the upstream stages replayed by this checkout.'
+    historical_footer = ' · <a href="../pavement-local-01/openings.jpg">Colonnade 01 before and after</a>'
+    page=page.replace('__HISTORY__',json.dumps(not preview))
+    page=page.replace('__HISTORICAL_FOOTER__','' if preview else historical_footer).replace('__ASSETS__',asset_dir).replace('__GAP__',summary)
+    if gap['baseline'] >= 95.:
+        headline=f"The evaluated build already reaches {gap['baseline']:.2f}% facade-priority F1."
+    page=page.replace('__AT_TARGET__',json.dumps(gap['baseline'] >= 95.))
     page=page.replace('__PATHHEAD__',headline).replace('__PATHS__',json.dumps(paths).replace('<',r'\u003c'))
     t=gap['themes']
     themes=(f"Across all 104 views, the projected build leaves {t['uncovered']} required blocks mostly uncovered. "
@@ -207,4 +217,5 @@ el('unit').onchange=showPath;showPath();pick.onchange=draw;mix.oninput=draw;draw
             f"At another {t['position']} misses a face points along the right axis at the wrong coordinate. "
             f"At {t['direction']} the visible face points along the wrong axis. {t['ties']} are tied.")
     page=page.replace('__THEMES__',themes)
-    (folder/'viewer.html').write_text(page.replace('__DATA__',json.dumps(views).replace('<',r'\u003c')),encoding='utf-8')
+    page=page.replace('__DATA__',json.dumps(views).replace('<',r'\u003c'))
+    (folder/'viewer.html').write_text(page.replace('__EVALUATED__',evaluated),encoding='utf-8')
