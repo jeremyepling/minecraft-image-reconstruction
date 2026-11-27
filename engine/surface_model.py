@@ -404,6 +404,7 @@ def build(image_path, version, out, *, outlines=None, order_method=None, through
     count_confirmed_outlines = []
     pre_inset = None
     eave_events = []
+    smooth_outline = {}
     from engine.atlas import digest
     from engine.surface_fields import MODELS, SETTINGS as inference, infer
     if version != '26.3':
@@ -567,6 +568,12 @@ def build(image_path, version, out, *, outlines=None, order_method=None, through
                 pre_inset = patches
                 methods['boundary_sequence'].append(jagged_texture_join.METHOD)
                 boundary_settings['jagged_texture_join'] = dict(events=joins)
+            from engine import smooth_atlas_outline
+            def outline_atlas():
+                return _material_assets(version, None, 'atlas', camera_atlas_path)[0]
+            patches, smooth_outline = smooth_atlas_outline.refine(image, patches, version, atlas_loader=outline_atlas)
+            methods['boundary_sequence'].append(smooth_atlas_outline.METHOD)
+            boundary_settings['smooth_atlas_outline'] = smooth_outline
         context_px = DEFAULT_CONTEXT_PX if context_px is None else context_px
         patches = [with_outline(part) for part in patches]
         crop_dir = out/'surface-crops'
@@ -637,7 +644,8 @@ def build(image_path, version, out, *, outlines=None, order_method=None, through
                                           implementation='normal-regions', directions='MoGe-2',
                                           settings=rectangle_settings, outline='fitted quadrilateral')
     if through in ('counts', 'placement'):
-        count_parts = eave_pinholes.measurement_parts(patches) if eave_events else patches
+        measured_patches = smooth_atlas_outline.measurement_parts(patches) if smooth_outline.get('events') else patches
+        count_parts = eave_pinholes.measurement_parts(measured_patches) if eave_events else measured_patches
         counter = counter or defaults['block_count']
         atlas = None
         shape_matcher = None
@@ -673,7 +681,7 @@ def build(image_path, version, out, *, outlines=None, order_method=None, through
                 {e['host'] for e in inset_events + count_confirmed_outlines}, counter, atlas)
         if inset_events:
             from engine.visible_inset_cells import observed_back_spans
-            visible_spans = observed_back_spans(image.size, metric_camera, patches, inset_events, phase_events)
+            visible_spans = observed_back_spans(image.size, metric_camera, measured_patches, inset_events, phase_events)
             for row in counts['surfaces']:
                 if row['id'] in visible_spans:
                     row['observed_visible_grid_span'] = visible_spans[row['id']]
@@ -701,7 +709,7 @@ def build(image_path, version, out, *, outlines=None, order_method=None, through
                                   atlas_path=camera_atlas_path, joint_foreground=joint_foreground, camera=metric_camera)
             if inset_events:
                 from engine.visible_inset_cells import inset_edits
-                added, removed = inset_edits(image.size, metric_camera, patches, inset_events, cells)
+                added, removed = inset_edits(image.size, metric_camera, measured_patches, inset_events, cells)
                 cells = (set(cells) | added) - removed
                 status.update(placed_blocks=len(cells), inset_placement=dict(added=len(added), removed=len(removed),
                     source='photographed backs and occluding cells inside measured rims'))
