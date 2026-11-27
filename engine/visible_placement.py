@@ -183,6 +183,25 @@ def place_with_camera(image, version, parts, counts, camera, select_level=None, 
         visible = owner[mask if axes is None else mask & (front_axes == axes[index])]
         sample_counts = np.bincount(visible[visible >= 0], minlength=len(cells))
         accepted.update(cells[i] for i in np.flatnonzero(sample_counts >= MINIMUM_SAMPLES) if cells[i] in evidence)
+    if axes is not None:
+        from engine import pavement_opening
+        openings = set(pavement_opening.detect(image, parts, camera))
+        if openings:
+            shared = strict.union(*(c for p, c in zip(parts, candidates) if p['id'] not in openings))
+            exclusive = {point for p, c in zip(parts, candidates) if p['id'] in openings
+                         for point in c if point[1] > 0 and point not in shared}
+            index = np.array([point in exclusive for point in cells], dtype=bool)
+            if index.any():
+                obscured = (owner >= 0) & index[np.maximum(0, owner)]
+                others = [point for point in cells if point not in exclusive]
+                next_owner, next_axes = _frontmost_cells(others, projection, eye, shape, face_axes=True)
+                for mask, evidence, normal_axis in zip(masks, candidates, axes, strict=True):
+                    if normal_axis not in (0, 2) or not evidence:
+                        continue
+                    hits = next_owner[mask & obscured & (next_axes == normal_axis)]
+                    votes = np.bincount(hits[hits >= 0], minlength=len(others))
+                    accepted.update(others[i] for i in np.flatnonzero(votes >= MINIMUM_SAMPLES)
+                                    if others[i] in evidence)
     if accepted - strict:
         from engine.seam_ownership import corroborated_runs, textured_side_owners, resolve_side_owners
         from engine.seam_runs import grounded_side_owners
