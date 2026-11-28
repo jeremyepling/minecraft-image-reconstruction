@@ -10,6 +10,7 @@ from PIL import Image
 
 from benchmark.expanded_baseline import digest, read, save
 from engine.floating_fields import build_handoff, infer_fields, verify_fields
+from engine.floating_group_coverage import select_group
 from runtime.mode import image_only
 
 
@@ -74,7 +75,7 @@ def build(source: Path, out: Path, *, field_cache: Path | None = None):
         with Image.open(source) as image:
             rgb = np.asarray(image.convert('RGB'))
         destination = scratch / 'assembly'
-        record = assemble_arm(packet, planes, rgb, {}, 2.5, destination, save_trace=True)
+        record = assemble_arm(packet, planes, rgb, {}, 2.5, destination, save_trace=True, group_selector=select_group)
         save(scratch / 'decisions.json', dict(method=METHOD, source_sha256=source_sha, **decisions))
         outputs.update({'source-handoff': handoff, 'charts.json': charts,
                         'decisions.json': scratch / 'decisions.json',

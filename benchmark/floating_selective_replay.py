@@ -118,7 +118,7 @@ def refit(case,out,roots,opt):
     save(out/"evidence.json",evidence)
 
 
-def assemble_arm(packet,planes,rgb,members,edge_pixels,destination,*,save_trace=False):
+def assemble_arm(packet,planes,rgb,members,edge_pixels,destination,*,save_trace=False,group_selector=None):
     solver=v1.horizontal.solver
     original_orient=solver.oriented
     original_join=solver.coplanar_joins
@@ -126,7 +126,7 @@ def assemble_arm(packet,planes,rgb,members,edge_pixels,destination,*,save_trace=
     def horizontal(charts):
         walls,hint=original_orient(charts)
         all_charts=walls+v1.horizontal.horizontal_charts(walls,planes,rgb.shape[1::-1],rgb)
-        if save_trace:
+        if save_trace or group_selector is not None:
             oriented.extend(all_charts)
         return all_charts,hint
     def coplanar(charts,tolerance):
@@ -135,7 +135,11 @@ def assemble_arm(packet,planes,rgb,members,edge_pixels,destination,*,save_trace=
                 members[charts[j["i"]]["id"]]!=members.get(charts[j["j"]]["id"])]
     with patch.object(solver,"oriented",horizontal),patch.object(solver,"coplanar_joins",coplanar):
         result=expanded.with_visible_export(solver.assemble)(packet["charts"],min_edges=1,edge_pixels=edge_pixels,coplanar_pixels=.5)
-    main=result["groups"][0] if result["groups"] else dict(blocks={},origins={},assigned=set())
+    groups = result["groups"]
+    if group_selector is not None and groups:
+        main = group_selector(groups, oriented, planes, rgb.shape[1::-1])
+    else:
+        main = groups[0] if groups else dict(blocks={}, origins={}, assigned=set())
     destination.mkdir()
     pack=destination/"reconstruction.zip"
     write_pack(pack,{p:b.removeprefix("minecraft:") for p,b in main["blocks"].items()},JAVA_26_3_FORMAT)
