@@ -1,5 +1,6 @@
 """Fit rulers inside source depth regions before cell enumeration on the adopted expanded benchmark."""
 import argparse
+from itertools import combinations
 from collections import Counter
 from concurrent.futures import ProcessPoolExecutor
 from pathlib import Path
@@ -20,7 +21,7 @@ PIN=WORKTREES/"floating-visible-builds/benchmark/reviews/floating-expanded-bench
 RECHECK=WORKTREES/"floating-package-rechecks/runs/package-rechecks"
 OUT=ROOT/"runs/pregrid-depth-refit"
 REVIEW=ROOT/"benchmark/reviews/floating-pregrid-depth-refit-01"
-ARMS=("noop","split-only","complete","partial","fresh-only","connected")
+ARMS=("noop","split-only","complete","partial","fresh-only","connected","rim-corner")
 
 
 def workload():
@@ -83,6 +84,21 @@ def replay(g,c,charts_dir,dest,membership):
     return excluded
 
 
+def corner_proof(selected,joins,fresh,membership):
+    """A new chart must close a three-surface, nonparallel corner in the actual winning group."""
+    edges={frozenset(j["chart_ids"]):j["edges"] for j in joins
+           if j["kind"]=="edge" and set(j["chart_ids"])<=set(selected)}
+    proofs=[]
+    for cid in fresh & set(selected):
+        for a,b in combinations(sorted(set(selected)-{cid}),2):
+            if len({membership.get(i,i) for i in (cid,a,b)})!=3:
+                continue
+            counts=[edges.get(frozenset(uv),0) for uv in ((cid,a),(cid,b),(a,b))]
+            if min(counts)>=1 and max(counts[:2])>=2 and counts[2]>=2:
+                proofs.append(dict(fresh=cid,other=[a,b],shared_edges=counts))
+    return proofs
+
+
 def run(job):
     g,c,pin,reviewed,transfer=job
     cv2.setNumThreads(1)
@@ -108,98 +124,103 @@ def run(job):
     assert read(roots["noop"]/PREFIX/n/"placements.json")==read(roots["adopted"]/PREFIX/n/"placements.json")
     assert read(roots["noop"]/PREFIX/n/"score.json")["score"]==read(roots["adopted"]/PREFIX/n/"score.json")["score"]
     audit={}
-    if reviewed or transfer:
-        rgb_path=Path(c["variants"]["sky"]["image"])
-        assert digest(rgb_path)==pin["source"]["sha256"]
-        img=Image.open(rgb_path).convert("RGB")
-        rgb=np.array(img);sky=sky_support(img)
-        packet=read(package/"charts"/rel)
-        assert digest(package/"charts"/rel)==pin["selected_package_chart_sha256"]
-        plane_file=src/"sky"/n/"source-handoff/surfaces.json"
-        assert digest(plane_file)==pin["surfaces_sha256"]
-        planes={v["id"]:v for v in read(plane_file)["planes"]}
-        counts={v["id"]:v for v in read(plane_file.with_name("counts.json"))["surfaces"]}
-        source_ids=set(v["id"] for v in packet["charts"])
-        masks={k:native_mask(p,img.size) for k,p in planes.items() if k in source_ids
-               and p.get("normal_camera") is not None and abs(p["normal_camera"][1])<.67 and k in counts}
-        if transfer:
-            target=max(masks,key=lambda k:masks[k].sum(),default=None)
-            targets=[target] if target and masks[target].sum()>=5000 else []
-        else:
-            targets=reviewed
-        if targets:
-            normal,dist,hashes=depth.source_fields(g,c,src,img.size)
-            vanishing=depth.prior.garden.pencils(rgb,depth.prior.garden.line_segments(rgb))
-            candidates={a:[] for a in ("split-only","complete","partial","fresh-only")}
-            membership={}
-            source_verified=set()
-            originals=read(charts_file)
-            region_charts=[]
-            for ch in packet["charts"]:
-                cid=ch["id"]
-                if cid not in targets:
-                    for charts in candidates.values():
-                        charts.append(ch)
-                    continue
-                mask=masks[cid]
-                coarse,meta=depth.partition(rgb,mask,normal,dist)
-                ids,parts,boundaries=depth.refine_adjacent(rgb,mask,normal,dist,coarse,meta)
-                path=OUT/g/"source"/n/(cid+"-ids.png");path.parent.mkdir(parents=True,exist_ok=True)
-                Image.fromarray(ids).save(path)
-                uv=np.array([(cell["u"]+.5,cell["v"]+.5) for cell in ch["cells"]])
-                center=project(np.asarray(ch["H"]),uv).astype(int)
-                idx=ids[center[:,1],center[:,0]]
-                details={}
-                for part in parts:
-                    k=part["id"]
-                    name=f"{cid}~p{k}"
-                    membership[name]=cid
-                    inherited=[cell for cell,assignment in zip(ch["cells"],idx) if assignment==k]
-                    sub=dict(ch,id=name,cells=inherited)
-                    options,brief=part_fits(sub,ids==k,rgb,np.array(part["normal_camera"]),counts[cid],vanishing)
-                    details[k]=dict(pixels=int((ids==k).sum()),inherited=len(inherited),evidence=brief,grids={})
-                    if inherited:
-                        candidates["split-only"].append(sub)
-                    for a,kind in (("complete","refit"),("partial","visible-patches")):
-                        if kind in options:
-                            _,found,ev=options[kind]
-                            candidates[a].append(found)
-                            if a=="complete":
-                                candidates["fresh-only"].append(found)
-                                source_verified.add(name)
-                            details[k]["grids"][a]=dict(**ev,H=found["H"],cells=len(found["cells"]))
-                            region_charts.append((cid,k,a,found))
-                        elif inherited:
-                            candidates[a].append(sub)
-                residual=[cell for cell,i in zip(ch["cells"],idx) if i==0]
-                if residual:
-                    for a in ("split-only","complete","partial"):
-                        candidates[a].append(dict(ch,id=cid+"~p0",cells=residual))
-                audit[cid]=dict(mask_sha256=digest(path),fields=hashes,parts=details,
-                                boundary_count=len(boundaries),residual=len(residual))
-            decisions={}
-            for arm,charts in candidates.items():
-                filtered,dropped=border_filter(charts,sky)
-                dst=OUT/g/arm
-                save(dst/"charts"/rel,dict(packet,charts=filtered))
-                blocked=replay(g,c,dst/"charts",dst/"assembly",membership)
-                roots[arm]=dst/"assembly"
-                result=read(roots[arm]/PREFIX/n/"score.json")
-                decisions[arm]=dict(selected=result["selected_origins"],joins=result["joins"],
-                                    component_sizes=result["component_sizes"],blocked_coplanar=blocked,drops=dropped)
-            selected=set(decisions["complete"]["selected"])
-            old_selected=set(read(roots["adopted"]/PREFIX/n/"score.json")["selected_origins"])
-            # Independent 3D registration is essential: the measured new pieces must
-            # belong to the actual selected component without losing its other surfaces.
-            normalize=lambda ids:{membership.get(i,i) for i in ids}
-            accept=bool(source_verified and source_verified<=selected and
-                        normalize(old_selected)<=normalize(selected) and
-                        all(any(i in j["chart_ids"] for j in decisions["complete"]["joins"]) for i in source_verified))
-            roots["connected"]=roots["complete"] if accept else roots["noop"]
-            # Native ownership is read only after options, export and source decision.
-            for cid,k,arm,ch in region_charts:
-                audit[cid]["parts"][k]["grids"][arm]["native"]=depth.native_grid_score(c,ch)
-            audit["decision"]=dict(arms=decisions,verified=sorted(source_verified),accept=accept)
+    rgb_path=Path(c["variants"]["sky"]["image"])
+    assert digest(rgb_path)==pin["source"]["sha256"]
+    img=Image.open(rgb_path).convert("RGB")
+    rgb=np.array(img);sky=sky_support(img)
+    packet=read(package/"charts"/rel)
+    assert digest(package/"charts"/rel)==pin["selected_package_chart_sha256"]
+    plane_file=src/"sky"/n/"source-handoff/surfaces.json"
+    assert digest(plane_file)==pin["surfaces_sha256"]
+    planes={v["id"]:v for v in read(plane_file)["planes"]}
+    counts={v["id"]:v for v in read(plane_file.with_name("counts.json"))["surfaces"]}
+    source_ids=set(v["id"] for v in packet["charts"])
+    masks={k:native_mask(p,img.size) for k,p in planes.items() if k in source_ids
+           and p.get("normal_camera") is not None and abs(p["normal_camera"][1])<.67 and k in counts}
+    if not reviewed:
+        target=max(masks,key=lambda k:masks[k].sum(),default=None)
+        targets=[target] if target and masks[target].sum()>=5000 else []
+    else:
+        targets=reviewed
+    if targets:
+        normal,dist,hashes=depth.source_fields(g,c,src,img.size)
+        vanishing=depth.prior.garden.pencils(rgb,depth.prior.garden.line_segments(rgb))
+        candidates={a:[] for a in ("split-only","complete","partial","fresh-only")}
+        membership={}
+        source_verified=set()
+        partial_verified=set()
+        originals=read(charts_file)
+        region_charts=[]
+        for ch in packet["charts"]:
+            cid=ch["id"]
+            if cid not in targets:
+                for charts in candidates.values():
+                    charts.append(ch)
+                continue
+            mask=masks[cid]
+            coarse,meta=depth.partition(rgb,mask,normal,dist)
+            ids,parts,boundaries=depth.refine_adjacent(rgb,mask,normal,dist,coarse,meta)
+            path=OUT/g/"source"/n/(cid+"-ids.png");path.parent.mkdir(parents=True,exist_ok=True)
+            Image.fromarray(ids).save(path)
+            uv=np.array([(cell["u"]+.5,cell["v"]+.5) for cell in ch["cells"]]).reshape(-1,2)
+            center=project(np.asarray(ch["H"]),uv).astype(int)
+            idx=ids[center[:,1],center[:,0]]
+            details={}
+            for part in parts:
+                k=part["id"]
+                name=f"{cid}~p{k}"
+                membership[name]=cid
+                inherited=[cell for cell,assignment in zip(ch["cells"],idx) if assignment==k]
+                sub=dict(ch,id=name,cells=inherited)
+                options,brief=part_fits(sub,ids==k,rgb,np.array(part["normal_camera"]),counts[cid],vanishing)
+                details[k]=dict(pixels=int((ids==k).sum()),inherited=len(inherited),evidence=brief,grids={})
+                if inherited:
+                    candidates["split-only"].append(sub)
+                for a,kind in (("complete","refit"),("partial","visible-patches")):
+                    if kind in options:
+                        _,found,ev=options[kind]
+                        candidates[a].append(found)
+                        if a=="partial":
+                            partial_verified.add(name)
+                        if a=="complete":
+                            candidates["fresh-only"].append(found)
+                            source_verified.add(name)
+                        details[k]["grids"][a]=dict(**ev,H=found["H"],cells=len(found["cells"]))
+                        region_charts.append((cid,k,a,found))
+                    elif inherited:
+                        candidates[a].append(sub)
+            residual=[cell for cell,i in zip(ch["cells"],idx) if i==0]
+            if residual:
+                for a in ("split-only","complete","partial"):
+                    candidates[a].append(dict(ch,id=cid+"~p0",cells=residual))
+            audit[cid]=dict(mask_sha256=digest(path),fields=hashes,parts=details,
+                            boundary_count=len(boundaries),residual=len(residual))
+        decisions={}
+        for arm,charts in candidates.items():
+            filtered,dropped=border_filter(charts,sky)
+            dst=OUT/g/arm
+            save(dst/"charts"/rel,dict(packet,charts=filtered))
+            blocked=replay(g,c,dst/"charts",dst/"assembly",membership)
+            roots[arm]=dst/"assembly"
+            result=read(roots[arm]/PREFIX/n/"score.json")
+            decisions[arm]=dict(selected=result["selected_origins"],joins=result["joins"],
+                                component_sizes=result["component_sizes"],blocked_coplanar=blocked,drops=dropped)
+        selected=set(decisions["complete"]["selected"])
+        old_selected=set(read(roots["adopted"]/PREFIX/n/"score.json")["selected_origins"])
+        # Independent 3D registration is essential: the measured new pieces must
+        # belong to the actual selected component without losing its other surfaces.
+        normalize=lambda ids:{membership.get(i,i) for i in ids}
+        accept=bool(source_verified and source_verified<=selected and
+                    normalize(old_selected)<=normalize(selected) and
+                    all(any(i in j["chart_ids"] for j in decisions["complete"]["joins"]) for i in source_verified))
+        roots["connected"]=roots["complete"] if accept else roots["noop"]
+        record=decisions["partial"]
+        proof=corner_proof(record["selected"],record["joins"],partial_verified,membership)
+        roots["rim-corner"]=roots["partial"] if proof else roots["noop"]
+        # Native ownership is read only after options, export and source decision.
+        for cid,k,arm,ch in region_charts:
+            audit[cid]["parts"][k]["grids"][arm]["native"]=depth.native_grid_score(c,ch)
+        audit["decision"]=dict(arms=decisions,verified=sorted(source_verified),accept=accept,rim_corner=proof)
     for a in ARMS:
         roots.setdefault(a,roots["noop"])
     row=summarize([c],roots,PREFIX)["rows"][0]
@@ -207,7 +228,7 @@ def run(job):
                reference_sha256={k:v["sha256"] for k,v in pin["reference"].items()},
                roots={a:str(p) for a,p in roots.items()},packs={a:digest(p/PREFIX/n/"reconstruction.zip") for a,p in roots.items()})
     save(OUT/g/"rows"/(n+".json.gz"),row)
-    if reviewed or transfer:
+    if reviewed or transfer or (audit and proof):
         print(g,n,[(a,row["score"][a]["geometry"]["strict"]["correct"],row["score"][a]["geometry"]["strict"]["extras"],
                     row["score"][a]["scores"]["strict"]["correct"]) for a in roots],flush=True)
 
