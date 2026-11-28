@@ -49,7 +49,11 @@ def evidence_overlay(image, charts, result, selected, path):
     chosen = selected['origins']
     for chart in charts:
         h = np.asarray(chart['H'],float)
+        allowed = chart.get('export_uv')
+        allowed = None if allowed is None else set(map(tuple, allowed))
         for face in chart['cells']:
+            if allowed is not None and (face['u'],face['v']) not in allowed:
+                continue
             x,y=face['u'],face['v']
             outline=[project(h,p) for p in [(x,y),(x+1,y),(x+1,y+1),(x,y+1)]]
             if any(c is None for c in outline):

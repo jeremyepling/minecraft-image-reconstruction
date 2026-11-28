@@ -43,6 +43,19 @@ class RelativeFaceAssemblyTest(unittest.TestCase):
         self.assertEqual(actual,expected)
         self.assertEqual(len(result['conflicts']),0)
 
+    def test_export_mask_preserves_original_component_priority_and_joins(self):
+        front=sheet('front',[1,2],3,3,((0,2),(0,3)),(0,0))
+        side=sheet('side',[3,2],1,2,((0,3),(0,3)),(0,0))
+        independent=sheet('other',[1,2],3,3,((18,20),(0,2)),(0,0))
+        ordinary=assemble([front,side,independent])
+        front['export_uv']=[[0,0]]
+        side['export_uv']=[]
+        gated=assemble([front,side,independent])
+        self.assertEqual(gated['joins'],ordinary['joins'])
+        self.assertEqual(gated['groups'][0]['origins'],ordinary['groups'][0]['origins'])
+        self.assertEqual(len(gated['groups'][0]['blocks']),1)
+        self.assertEqual(gated['groups'][1]['blocks'],ordinary['groups'][1]['blocks'])
+
     def test_require_visible_evidence_on_both_sides(self):
         front=sheet('front',[1,2],3,3,((0,2),(0,3)),(0,0))
         side=sheet('side',[3,2],1,2,((0,3),(0,3)),(0,0))
