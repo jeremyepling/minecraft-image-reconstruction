@@ -1,0 +1,44 @@
+# Choosing and evaluating Floating experiments
+
+Treat reconstruction like an OCR pipeline. Localize visible planes, read the block grid and material on each plane, then resolve their placement in one build. Give each handoff a measurable output. Use the decoded datapack to judge the user-visible result. PP-OCR is a precedent for testing individual components in a modular recognition system. [PP-OCR paper](https://arxiv.org/abs/2009.09941)
+
+## Choose the intervention
+
+Name the faulty handoff, its consumer, the repeatable failure and the export outcome it should improve. Reuse a matched [Perfect Stage replay](FLOATING_PIPELINE.md#perfect-from-this-stage) when it answers the question. Prioritize by remaining export headroom, how often the failure occurs across buildings, whether a source-image cue can resolve it, and the cost of getting an answer.
+
+| Evidence from the replay | Next experiment |
+| --- | --- |
+| Exact input helps, but the correct option is usually absent | Improve the proposal generator or replace the estimator. For grids, isolate block pitch, origin and visible cell coverage before choosing which target to learn. |
+| An answer already exists among the proposals | Freeze the real options, including the incumbent. Compare a simple rule with a small learned ranker using source-image cues such as texture agreement, junction support and projected coverage. Give the ranker a keep-incumbent option. |
+| The stage is more accurate but its output is dropped, ignored or harmful | Trace the changed faces through the next consumer and decoded export. Test the stage, consumer repair and combination as separate arms when the interaction matters. Carry a verified stage gain as a challenger when the trace gives a concrete next repair. |
+| The failure is deterministic and one image cue can settle it | Use a focused rule and a counterexample. Spend the remaining model budget on ambiguous cases that recur across families. |
+
+### Try available models early
+
+When a promising handoff could benefit from a new cue, actively look for runnable pretrained perception models and classic methods. Download and replay promising compatible checkpoints on a small development slice with failure cases and clean controls. Pin the upstream source, model revision or digest, license, preprocessing, runtime and output units. Cache model outputs by source and configuration so later variants can reuse them. Compare the incumbent, the new cue alone where usable, and a combination when the cues could complement each other. Measure runtime and memory when they could affect adoption.
+
+For a line or grid experiment, compare a classical line detector and a learned detector such as DeepLSD against the existing texture and edge evidence. Test a narrow wall and a repeating texture where a mortar line looks like a block boundary. For depth, compare the current Depth Anything V2 field with alternatives on signed recesses and separate walls. Check where they disagree before feeding either field to the normal consumers. Marigold is an example of repurposing a generative backbone for a measurable depth field. A generated or enhanced image can suggest a hypothesis, and the original screenshot must independently support every accepted measurement or placement. Keep unseen cells unknown. [DeepLSD](https://openaccess.thecvf.com/content/CVPR2023/html/Pautrat_DeepLSD_Line_Segment_Detection_and_Refinement_With_Deep_Image_Gradients_CVPR_2023_paper.html) · [Marigold](https://openaccess.thecvf.com/content/CVPR2024/html/Ke_Repurposing_Diffusion-Based_Image_Generators_for_Monocular_Depth_Estimation_CVPR_2024_paper.html)
+
+### Train for a named decision or measurement
+
+Train a chooser when the bounded Perfect chooser finds meaningful gains and observable cues vary enough that fixed thresholds struggle. Start with a regularized linear model or small tree, compare with the incumbent and a fixed rule, and measure how much of the chooser ceiling it recovers. Generate option outcomes by replaying the actual options through export, and include decisions where keeping the incumbent wins. Inspect how errors and coverage change as the chooser abstains more often. [Grid chooser protocol](FLOATING_GRID_CHOOSER.md) · [Selective classification](https://proceedings.neurips.cc/paper/2017/hash/4a8423d5e91fda00bb7e46540e2b0cf1-Abstract.html)
+
+Train a new measurement when an exact input has headroom, available models or rules miss a repeatable Minecraft-specific cue, and visible labels exist. Try a small head on a frozen encoder before fine-tuning the encoder. Use aligned source-world labels to supervise only what the supplied screenshot reveals. Compare with the existing stage on the same inputs and score the ordinary downstream route. Add model complexity when a simpler trial shows where more capacity or different features would help. [Training plan](../training/README.md) · [Google's Rules of ML](https://developers.google.com/machine-learning/guides/rules-of-ml)
+
+## Decide what to promote
+
+Freeze the cohort, scoring rule and meaningful failure cases before comparing finalists. Keep strict and facade placement and position-plus-material F1, exact counts, and paired correct gains/losses and extras added/removed. Include both pooled results and the spread by building family. Inspect concentrated regressions such as a lost wall, filled opening, unresolved orientation or empty export. Where the number of independent families supports it, estimate uncertainty by resampling paired families together. Otherwise show each family's result and the limits of the evidence.
+
+Use a weighted miss/extra cost to explain trade-offs when candidates give up one kind of accuracy for another. For a fixed set of views, try `k × missed visible blocks + extras`, lower is better. Use 3, 5 and 10 as illustrative weights until repair effort or user preferences support a primary choice. When a method loses correct blocks and removes extras, report the break-even ratio using the net changes. Pay particular attention to rank reversals across plausible costs, changes in material accuracy and a single failure driving a pooled win. A small loss of correct cells can be acceptable when it buys a substantial reduction in unsupported geometry and the benefit transfers. A measured stage improvement can advance as a challenger while the end-to-end path is repaired. Visible surface coverage can also justify promotion when it improves as a product output and other checked outputs hold steady. [Product intent](../PRODUCT_INTENT.md)
+
+Use reviewed Front 100 layouts to iterate and catch regressions. Results from an inspected test family still matter as regression evidence. For a consequential promotion, evaluate the frozen finalist on fresh building families when the previously held-out results have guided repeated selection. Keep each building and its close variants together. Prefer ordinary decoded export evidence, and show precisely which layouts remain unmeasured when fresh data is unavailable. [Research on adaptive holdout reuse](https://arxiv.org/abs/1506.02629)
+
+Revisit weights or constraints when observed repair effort, recurring severe misses or extras, or explicit product feedback shows that the current score ranks builds poorly. Use paired builds to ask which export is easier to correct, and count edits or time where available. Record the reason and expected effect in a new evaluation version, compare both versions on saved releases, then freeze the new rule before another promotion comparison. Preserve prior scores with their original rules.
+
+## Review the experiment decisions
+
+- **Coordinator.** Include the handoff, measured headroom, one plausible external model or classical method when relevant, and the cheapest test that could change the decision. Explain when a rule, pretrained model, learned chooser or trained estimator is the right next step.
+- **Experiment owner.** Return the frozen baseline and challenger, model provenance when used, the stage delta, paired decoded export delta, and a case that explains a gain or loss. Flag unplanned changes to the option set or downstream path.
+- **Scoring owner.** Verify matched inputs and visibility, report the paired trade-off and its most affected families, and flag reused holdouts or changes in orientation and empty exports. Review the choice against the original experiment brief and record what evidence would change the decision.
+
+When reviewing how the agents worked, check whether they found a plausible new cue, chose the intervention that the evidence called for, ran a fair comparison, and changed their decision when a control contradicted it. A well-designed null trial can settle whether to keep investing in a handoff.

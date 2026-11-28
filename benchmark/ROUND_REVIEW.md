@@ -18,6 +18,8 @@ Before selecting the next experiment, check [the reconstruction adjustment log](
 
 At round boundaries, lift repeatable checks and decision rules into the relevant skill. Leave case-specific measurements and unresolved hypotheses in the log and report. Update an agent's instructions when its responsibilities or handoffs change. A new agent is useful when it has a distinct assignment that the existing roles cannot cover.
 
+Use the [model evaluation guide](FLOATING_MODEL_EVALUATION.md) to choose between a rule, a pretrained cue, a learned chooser and a trained estimator. Apply its paired promotion review when stage quality, misses and extras move in different directions.
+
 ## When a perfect-answer test earns its cost
 
 Label each score with its dataset version, split and tested frame count. For production results lead with the fixed 104 trend and show Visible Builds v3 (144 new views) and Decorative Builds v1 (40 views) alongside it. For Floating results use the named Floating cohorts. For each cohort give coverage, strict and facade placement F1, and strict and facade position-plus-ID F1. Identify development and held-out results separately. Mark an unmeasured cohort explicitly and date or identify the revision of any carried-forward score. Compare candidates on identical images within each cohort. Report paired lighting changes separately when measured. Report camera failures as their own outcome alongside overall placement. Give failed views and the visible misses on them, placement F1 on camera-supported views, and supported views that exported zero blocks. Preserve the per-image camera reason and atlas fallback reason. Keep every camera failure in the overall denominator.
