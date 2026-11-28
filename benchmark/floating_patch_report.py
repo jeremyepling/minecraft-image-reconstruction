@@ -10,7 +10,7 @@ def baseline(cohort,horizontal=False):
     if horizontal:
         if cohort=="sky":
             return SKY/"horizontal-cells"
-        if cohort=="holdout":
+        if cohort in ("holdout","holdout2"):
             return inputs(cohort)[2].parents[1]/"horizontal-cells/assembly"
         return WORKTREES/"floating-horizontal-bridges/runs/horizontal-cells/assembly"
     if cohort=="sky":
@@ -40,8 +40,8 @@ def write(name, results):
 
 if __name__=="__main__":
     results={}
-    for cohort in COHORTS:
+    for cohort in (*COHORTS,"holdout2"):
         roots={"whole-wall":baseline(cohort)}
-        roots.update({a:OUT/cohort/a/"assembly" for a in ARMS})
+        roots.update({a:OUT/cohort/a/"assembly" for a in (*ARMS,"regrow-supported")})
         results[cohort]=collect(cohort,roots)
     write("reference-controls",results)

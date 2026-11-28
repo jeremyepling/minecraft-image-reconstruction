@@ -34,7 +34,10 @@ def inputs(cohort):
     if cohort=="sky":
         base=WORKTREES/"floating-visible-builds/runs/floating-cloud-gate-01"
         return base,base/"garden-anchor-extension/connected",SKY/"charts",read(assembly.SHARED/"fixtures.json")["cases"]
-    base=NEW if cohort=="holdout" else FRESH
+    if cohort=="holdout2":
+        base=NEW.with_name(NEW.name+"-holdout2")
+    else:
+        base=NEW if cohort=="holdout" else FRESH
     manifest="supplemental-manifest.json" if cohort=="supplemental" else "manifest.json"
     return base/"ordinary",base/"ordinary/atlas/connected",base/"source_material/charts",read(base/manifest)["cases"]
 

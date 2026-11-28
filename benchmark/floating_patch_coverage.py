@@ -1,6 +1,5 @@
 """Count distinct visible block positions reachable at two reference-assisted sampling domains."""
 from concurrent.futures import ProcessPoolExecutor
-from collections import defaultdict
 from pathlib import Path
 
 import numpy as np
@@ -37,8 +36,8 @@ def measure(job):
 
 if __name__=="__main__":
     with ProcessPoolExecutor(4) as pool:
-        rows=list(pool.map(measure,[(g,c) for g in COHORTS for c in inputs(g)[3]]))
+        rows=list(pool.map(measure,[(g,c) for g in (*COHORTS,"holdout2") for c in inputs(g)[3]]))
     save(REVIEW/"visible-coverage.json",rows)
-    for group in COHORTS:
+    for group in (*COHORTS,"holdout2"):
         data=[r for r in rows if r["group"]==group]
         print(group,{k:sum(r[k] for r in data) for k in ("targets","sampled","in_masks","in_masks_without_center")})

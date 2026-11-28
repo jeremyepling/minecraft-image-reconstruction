@@ -44,11 +44,14 @@ if __name__=="__main__":
     p.add_argument("name")
     p.add_argument("chart_pattern",help="Absolute chart root with {group}, using --holdout-name for the sixth-view panel")
     p.add_argument("--holdout-name",default="new")
+    p.add_argument("--groups",nargs="+",default=COHORTS)
     a=p.parse_args()
     jobs=[]
-    for g in COHORTS:
-        charts=Path(a.chart_pattern.format(group=g if g!="holdout" else a.holdout_name))
+    for g in a.groups:
+        key={"holdout":a.holdout_name,"holdout2":"new2"}.get(g,g)
+        charts=Path(a.chart_pattern.format(group=key))
         jobs.extend((g,c,charts,OUT/g/a.name/"assembly") for c in inputs(g)[3])
     with ProcessPoolExecutor(3) as pool:
         list(pool.map(run,jobs))
-    write(a.name,{g:collect(g,{"horizontal":baseline(g,True),a.name:OUT/g/a.name/"assembly"}) for g in COHORTS})
+    report=a.name if tuple(a.groups)==tuple(COHORTS) else a.name+"-"+"-".join(a.groups)
+    write(report,{g:collect(g,{"horizontal":baseline(g,True),a.name:OUT/g/a.name/"assembly"}) for g in a.groups})
