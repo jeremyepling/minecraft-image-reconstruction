@@ -77,10 +77,10 @@
     "panel": "original",
     "wall": "mask-3",
     "title": "Twinspire 1 low left",
-    "note": "Restoring one wall removes 75 extras and costs five net correct placements. Check which ruler follows the visible left wall.",
+    "note": "Resolved. B fits the gold grid. Restoring the adjacent wall too preserves the join, keeps all 84 facade-required placements, and removes 77 extras.",
     "roots": [
       "floating-extra-isolation/runs/extra-isolation/original/large-contraction",
-      "floating-corner-overwrite/runs/corner-overwrite/original/restore-mask-3"
+      "floating-occlusion-fragments/runs/o2-first-pass"
     ],
     "scores": [
       {
@@ -116,31 +116,40 @@
       {
         "geometry": {
           "strict": {
-            "correct": 80,
-            "missed": 120,
-            "extras": 2,
-            "f1": 0.5673758865248227
+            "correct": 84,
+            "missed": 116,
+            "extras": 0,
+            "f1": 0.5915492957746479
           },
           "facade": {
-            "correct": 80,
-            "missed": 119,
-            "extras": 2,
-            "f1": 0.5693950177935944
+            "correct": 84,
+            "missed": 115,
+            "extras": 0,
+            "f1": 0.5936395759717314
           }
         },
         "scores": {
           "strict": {
-            "correct": 33,
-            "missed": 167,
-            "extras": 49,
-            "f1": 0.23404255319148937
+            "correct": 47,
+            "missed": 153,
+            "extras": 37,
+            "f1": 0.33098591549295775
           },
           "facade": {
-            "correct": 33,
-            "missed": 166,
-            "extras": 49,
-            "f1": 0.23487544483985764
-          }
+            "correct": 47,
+            "missed": 152,
+            "extras": 37,
+            "f1": 0.3321554770318021
+          },
+          "material": {
+            "correct": 47,
+            "positions": 84,
+            "accuracy": 0.5595238095238095
+          },
+          "assigned": 84,
+          "fallback": 0,
+          "assigned_correct": 47,
+          "assigned_positions": 84
         }
       }
     ]
@@ -150,7 +159,7 @@
     "panel": "supplemental",
     "wall": "mask-0",
     "title": "Watchpost 2 low left",
-    "note": "Restoring this grid adds 59 exact material matches with the same block positions. Check whether the earlier grid follows the texture without a change at the corner.",
+    "note": "Both grids are close to gold. B restores 59 exact material matches at the same block positions. Keep that result for the material comparison.",
     "roots": [
       "floating-extra-isolation/runs/extra-isolation/supplemental/large-contraction",
       "floating-corner-overwrite/runs/corner-overwrite/supplemental/restore-mask-0"
@@ -223,7 +232,7 @@
     "panel": "supplemental",
     "wall": "mask-0-wall-1",
     "title": "Watchpost 2 high right",
-    "note": "The earlier grid yields 47 more exact matches but costs 45 net correct placements. Check the outside edge and what joins the neighboring wall.",
+    "note": "A covers more of the wall. B aligns its corners more closely, but disconnects the neighbor. Keep A for placement and test whether B's material evidence can be carried over.",
     "roots": [
       "floating-extra-isolation/runs/extra-isolation/supplemental/large-contraction",
       "floating-corner-overwrite/runs/corner-overwrite/supplemental/restore-mask-0-wall-1"
@@ -296,7 +305,7 @@
     "panel": "fresh",
     "wall": "mask-0",
     "title": "Cloister 2 high right",
-    "note": "The corner grid yields 36 more correct placements and 40 more exact matches. Check the join and any cells that lie past the wall edge.",
+    "note": "A aligns more closely and keeps 36 more correct placements. The paired export supports keeping the corner grid.",
     "roots": [
       "floating-extra-isolation/runs/extra-isolation/fresh/large-contraction",
       "floating-corner-overwrite/runs/corner-overwrite/fresh/restore-mask-0"

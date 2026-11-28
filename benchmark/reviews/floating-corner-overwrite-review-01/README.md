@@ -20,16 +20,18 @@ A retrospective source-only check asked whether the earlier atlas grid scored be
 
 A shared corner can align rows without replacing the measured size across either wall. Keep both grid candidates available and compare local atlas and silhouette evidence before checking whether their assembled outputs retain the neighboring visible surfaces.
 
-## Annotation queue
+## First-pass review and annotation status
 
-Compare A, which uses the corner grid, with B, which restores the original atlas grid. The gold panel records visible block-face edges. Choose the better grid and say which parts have the right block size, which edges are misaligned, or whether either grid misses a visible section.
+The five comparisons have been reviewed against the gold visible edges and the decoded exports. The viewer gives each assessment before showing optional feedback fields. [Native reference measurements](reference-evidence.json)
 
-| ID | What to look at | Status |
+| ID | First-pass decision | Status |
 |---|---|---|
-| O1 | Twinspire 2 right brick wall. The earlier ruler removes five excess columns and two partial rows. | Reviewed example |
-| O2 | Twinspire 1 low left. Check whether B removes overdraw without losing the wall edge. | Pending |
-| O3 | Watchpost 2 low left. B improves material matches at the same positions. Look at how the grid follows the texture. | Pending |
-| O4 | Watchpost 2 high right. B improves material matches but the whole build loses part of the visible wall group. Look for the edge that should keep the walls joined. | Pending |
-| O5 | Cloister 2 high right. A produces better placements and materials. Check the joins and whether either grid extends past the wall. | Pending |
+| O1 | Earlier atlas ruler. It removes 63 extras and keeps all correct placements. | Reviewed example |
+| O2 | Earlier grid and its adjoining wall as a pair. Both walls reconnect, keeping all 84 facade-required baseline placements and removing 77 extras. | Resolved by replay |
+| O3 | Both grids fit the recorded geometry. B gives 59 more exact material matches at the same positions. | Resolved by replay |
+| O4 | Keep A for placement. B's local corner fit improves, but it covers less wall and breaks a join. Carry the material evidence forward as a separate test. | Technical follow-up |
+| O5 | Keep A. Its reference alignment is better and the exported build keeps 36 more correct placements. | Resolved by replay |
+
+On O2, across 49 complete visible faces, B increases coverage from 85.4% to 97.2%, reduces median corner error from 0.26 to 0.05 grid cells, and brings the median grid-cell count per real face from 3.17 to 1.01. The one-wall swap projected its matching edge 4.87 pixels from its neighbor, beyond the 2.5-pixel join limit. The revised two-wall replay puts the edges within 2.04 pixels. It raises strict and facade placement F1 from 46.96% / 46.67% to 59.15% / 59.36% and exact position plus material from 28 to 47 blocks. The one net strict position lost is a 30-pixel underside that A placed with the wrong material. [Ordinary export replay and coordinates](o2-placement-replay.json)
 
 The separate Mill M1 and Viaduct V1 annotations remain in the [earlier checklist](../floating-grid-round-04/README.md#annotation-checklist). The six fixed sky views tied in the overwrite replays. The integration baseline carries forward 12.64% strict and 12.90% facade placement F1. The candidate work is on the floating experiment branches.

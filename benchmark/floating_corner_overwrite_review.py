@@ -9,6 +9,7 @@ from PIL import Image, ImageDraw, ImageFont
 
 from benchmark.floating_grid_signoff import WORKTREES, make
 from benchmark.floating_second_signoff import option
+from benchmark.grid_review_evidence import grid_preference
 
 REVIEW = Path(__file__).parent/"reviews/floating-corner-overwrite-review-01"
 BG = "#14202b"
@@ -63,7 +64,11 @@ def panel(row):
     y+=max(im.height for im in imgs)+64
     a,b=(o["score"] for o in options)
     y=draw_wrap(draw,(38,y),f"Whole export · {a[0]} → {b[0]} correct · {a[1]} → {b[1]} extras · {a[2]} → {b[2]} exact position and material matches.",1460,27,MUTED)
-    y=draw_wrap(draw,(38,y+6),"Which grid has the right block size and covers the visible wall? Mark any edge that should keep the two adjoining faces aligned.",1460,28,GOLD,True)
+    geometry=row["first_pass"]
+    compare=geometry["reason"]+"."
+    y=draw_wrap(draw,(38,y+6),compare,1460,28,GOLD,True)
+    if row.get("question"):
+        y=draw_wrap(draw,(38,y+6),row["question"],1460,28,GOLD,True)
     assert y+27 < canvas.height
     return canvas.crop((0,0,canvas.width,y+27))
 
@@ -74,19 +79,27 @@ def main(rows):
         rel=Path("sky")/row["id"]/"charts.json"
         spec=(row["wall"],row["panel"],row["id"],row["wall"],f"O{i} · {row['title']}",row["note"])
         charts=[option(WORKTREES/Path(root),rel,row["wall"]) for root in row["roots"]]
-        cases.append(make(spec,dict(charts=charts,scores=row["scores"])))
+        case=make(spec,dict(charts=charts,scores=row["scores"]))
+        case["first_pass"]=grid_preference(*(op["metrics"] for op in case["options"]))
+        case["question"]=row.get("question")
+        cases.append(case)
     template=Path(__file__).with_name("floating_grid_signoff.html").read_text(encoding="utf-8")
     template=template.replace("floating-grid-signoff-02","floating-corner-overwrite-review-01")
     template=template.replace("floating-grid-signoff-feedback.json","floating-corner-overwrite-feedback.json")
     template=template.replace("A · Current grid","A · Shared-corner grid").replace("B · Tested alternative","B · Original atlas grid")
     template=template.replace("My proposed adjustment","What changed at assembly")
+    template=template.replace('$("decision").replaceChildren(node("h2","Your decision"));',
+        '$("decision").replaceChildren(node("h2",c.question?"Question for you":"Optional feedback"),node("p",c.first_pass.reason+"."));if(c.question)$("decision").append(node("p",c.question));')
     REVIEW.mkdir(parents=True,exist_ok=True)
     (REVIEW/"review.html").write_text(template.replace("__PAYLOAD__",json.dumps(cases)),encoding="utf-8")
+    evidence=[dict(id=c["id"], wall=c["wall"], metrics=[op["metrics"] for op in c["options"]],
+                   finding=c["first_pass"], question=c["question"]) for c in cases]
+    (REVIEW/"reference-evidence.json").write_text(json.dumps(evidence,indent=2)+"\n",encoding="utf-8")
     panels=[panel(row) for row in cases]
     mobile=Image.new("RGB",(1540,143+sum(p.height+12 for p in panels)),BG)
     draw=ImageDraw.Draw(mobile)
     draw.text((38,22),"Floating grids · corner overwrite review",font=font(51,True),fill=TEXT)
-    draw_wrap(draw,(38,90),"Reply with the case ID and what to keep. Check coverage, alignment and block size independently.",1460,28,MUTED)
+    draw_wrap(draw,(38,90),"First-pass findings for each grid. Optional notes can use the case ID.",1460,28,MUTED)
     y=143
     for pic in panels:
         draw.line((38,y,1502,y),fill="#567080",width=2)
