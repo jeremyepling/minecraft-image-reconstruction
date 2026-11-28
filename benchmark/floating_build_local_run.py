@@ -92,7 +92,8 @@ def summarize(cohort, cases, manifest, native_fallback):
 
 
 def main():
-    from training.floating_cohort import RELEASES, RETIRED_PALETTES, frame_index, select_active_cases
+    from training.floating_cohort import RETIRED_PALETTES, frame_index
+    from training.floating_combined import BACKGROUND, PINNED, select_active_cases
 
     parser = argparse.ArgumentParser()
     parser.add_argument('manifest',type=Path)
@@ -111,9 +112,10 @@ def main():
         cases = [case for case in cases
                  if indexed.get((case.get('dataset'), case['id']), case).get('palette') not in RETIRED_PALETTES]
     else:
-        indexed = [case for case in cases if case.get('dataset') in RELEASES]
+        known_datasets = PINNED.keys() | {BACKGROUND}
+        indexed = [case for case in cases if case.get('dataset') in known_datasets]
         active = {(case['dataset'], case['id']) for case in select_active_cases(indexed)}
-        cases = [case for case in cases if case.get('dataset') not in RELEASES
+        cases = [case for case in cases if case.get('dataset') not in known_datasets
                  or (case['dataset'], case['id']) in active]
     if not cases:
         parser.exit(message="No active floating cases in this fixture manifest.\n")

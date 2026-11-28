@@ -19,7 +19,7 @@ Every image used for learning, including local counting and material decisions, 
 
 We audited all 152 original entries. The eight removed views were the front close-ups of Wing and Courtyard on both palettes and floor settings. All eight were regression examples. Every training, validation and test image passed, and every surviving screenshot has at least 10% clearance on all four sides. The smallest margin is 93 pixels above the low-left Watchpost 1, in both palettes. An independent check of the 56 additional benchmark photos found no further failures. [Per-frame dataset audit](framing-audit-v2.json) and [additional evaluation views](../benchmark/reviews/whole-structure-framing-01/evaluation-only.json).
 
-The v2 archives omit the eight rejected frame directories and their labels. The original release is an archive for replaying previously published scores. Use v2 for training and count evaluation.
+The v2 archives omit the eight rejected frame directories and their labels. The original release is an archive for replaying previously published scores. Use the [combined Floating dataset](FLOATING_DATASETS.md) to train or evaluate across the eligible releases. It uses V2 for these original captures.
 
 ## Get the files
 

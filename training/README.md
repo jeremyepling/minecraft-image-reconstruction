@@ -2,7 +2,7 @@
 
 Use the [reconstruction adjustment log](../MODEL_CHANGELOG.md) when choosing training examples and evaluation cases. It tracks observed failures and measured changes from the existing pipeline.
 
-The active training dataset is available in [Visible Builds v2](DATASET.md). It contains exact screenshots, per-frame visible blocks and camera calibration. The proposed learning experiment below uses the same [visible-only product intent](../PRODUCT_INTENT.md) as the existing pipeline.
+Start with the [combined Floating dataset](FLOATING_DATASETS.md). It indexes exact screenshots, per-frame visible blocks and camera calibration from Visible Builds v2, Visible Builds v3 and Decorative Builds v1. The proposed learning experiment below uses the same [visible-only product intent](../PRODUCT_INTENT.md) as the existing pipeline.
 
 ## Objective
 
@@ -48,4 +48,4 @@ When testing a learned decision for a recessed wall, score its outline, visible 
 
 ### Active floating optimization cohort
 
-Use [the floating cohort manifest](floating-active-cohort-v1.json) when sampling the saved captures for Floating training and evaluation. It retains 240 of 280 whole-structure captures across the v2, v3 and Decorative releases. Orchid is retired from Floating work. All nine Orchid captures across the three Amphitheater layouts are excluded. A layout stays together across its cameras and palettes, including when a palette reaches the 80% visible concrete or unglazed terracotta threshold. Feed cases through `training.floating_cohort.select_active_cases` before making a training or benchmark batch. Read older comparison results from their published receipts.
+Use [the combined Floating manifest](floating-combined-v1.json.gz) when sampling the saved captures for Floating training and evaluation. It indexes 240 active views, preserves their current splits, and links archived and paired conditions back to their source captures. Feed fixture lists through `training.floating_combined.select_active_cases` for a normal training or evaluation batch. The [material eligibility manifest](floating-active-cohort-v1.json) records the 80% concrete and unglazed terracotta audit and the retired Orchid palette.
