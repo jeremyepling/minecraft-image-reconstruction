@@ -2,6 +2,12 @@
 
 These entries cover model inputs, rules around model outputs, and evaluation changes. **Shipped** means ordinary builds use the adjustment. **Experiment** means it was tested and left out of the default. **Diagnostic** means we learned something about errors without changing predictions.
 
+### November 28, 2026
+
+- **Diagnostic · perfect surface inputs and wall grids.** On the same 12 held-out Twinspire views from original Visible Builds V1, the guarded refit's strict placement F1 rose from 46.34% to 48.62% with exact visible masks. Correct placements rose from 1,143 to 1,269 and extras rose from 376 to 537. Exact masks plus measured facing and depth reached 50.67% with 1,178 correct and 58 extras. Exact visible wall grids reached 86.95% in a separate replay that supplied scale, phase, and visible cell membership together. Treat those gains as overlapping. Isolate block size, grid origin, and visible cell coverage one at a time, then check whether correct charts survive assembly. Use a fresh family for transfer after inspecting these Twinspire examples. [Matched replay contract](benchmark/reviews/floating-perfect-stage-inputs-01/README.md) · [Scores and native mask examples](https://floating-review.vercel.app/runs/floating-v1-guarded-refit/scores#surface-scores)
+
+- **Experimental guarded depth-first refit · carry forward as a challenger.** Against expanded split-border on 144 original Visible Builds V1 views, the refit gained 533 net correct placements and removed 78 net extras. Decoded ownership traces tied all 28 and 27 lost placements on Arcade 1 and Terrace 1 respectively to dropped walls. On Sawtooth 3, the parent surface that owned 31 lost placements survived into the refit. Test reattachment for the first pair and trace cell movement or loss through the retained chart on Sawtooth. Expanded split-border stays the next baseline. Compare the repairs on Combined V1 before proposing promotion. [Baseline and decision](benchmark/FLOATING_BRANCH.md) · [Paired scores and decoded traces](https://floating-review.vercel.app/runs/floating-v1-guarded-refit/scores)
+
 ### November 27, 2026
 
 - **Floating branch default.** Surface Finder now rejects a proposal whose entire native support matches connected sky or cloud before it creates crops or counts blocks. The six open-sky handoffs retained 193 of 216 proposals. All surviving supports and crop pixels matched the prior handoffs. [Floating pipeline and replay](benchmark/FLOATING_BRANCH.md)
