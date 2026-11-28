@@ -1,5 +1,7 @@
 # Reconstruction adjustments and lessons for training
 
+- **2026-11-27, interpreting Castle depth.** On seven sampled boundaries spanning distinct visible parallel planes, the source depth field correctly ordered the camera depths. Moving the whole region back one block removed 14 correct blocks from the south wall across two rows. Keep raw depth order, plane membership and metric setback separate when training or evaluating local grid placement. [Signed native steps and decoded audit](benchmark/reviews/floating-signoff-audit-01/README.md)
+
 - **2026-11-27, parallel visible walls.** 284 of 1,824 proposals on the active floating panel mix substantive parallel planes. A source depth offset test gained 132 correct positions and removed 127 extras. A Twinspire top row improved local coverage but the exported component omitted that wall. Retain experimental reconstruction and review coverage, alignment, and sizing independently. [Paired grids and signoff](benchmark/reviews/floating-parts-feedback-02/README.md)
 
 - **2026-11-27, floating wall feedback experiments.** Reference faces confirmed undersized grids on Riverside, Sawtooth and Chapel. Atlas scale and smooth-wall fallbacks failed to improve placement on the 81 other-layout conditions. A perfect chooser among seven existing exports reached 33.81% from 32.13% on all 92. Keep rules experimental and test local grids on separately measured wall patches. [Scores, stage controls and annotatable examples](benchmark/reviews/floating-wall-feedback-01/README.md)
