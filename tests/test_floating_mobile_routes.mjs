@@ -82,3 +82,47 @@ test('a depth mask and a selected grid render on the actual Arcade 1 surface', a
   find('next-surface').onclick();
   assert.notEqual(viewer.selection().surface.id, 'mask-1');
 });
+
+test('an empty human queue retains first-pass findings and saved evidence links', () => {
+  const document = {
+    querySelector() {},
+    createElement(tag) {
+      return {tag, children: [], append(child) { this.children.push(child); }};
+    },
+  };
+  const render = runInNewContext(definitions + '\ndecisions', {
+    document, location: new URL('https://example.test/?run=' + run), URLSearchParams,
+  });
+  const parent = document.createElement('section');
+  const item = data.cases[0];
+  const action = {id: 'compare-coverage', stage: 'Grid', title: 'Trace a dropped wall', status: 'open',
+    disposition: 'machine', basis: 'source-only', evidence: '28 baseline cells', hypothesis: 'A wall dropped.',
+    test: 'Decode the selected charts.', caseIds: [item.id]};
+  render({...data, analysis: {actions: [action]}}, parent, true);
+  const all = element => [element, ...element.children.flatMap(all)];
+  const nodes = all(parent);
+  assert.ok(nodes.some(node => node.textContent === 'No human decision is pending for this comparison.'));
+  assert.ok(nodes.some(node => node.textContent === action.test));
+  assert.ok(nodes.some(node => node.href?.endsWith('&action=compare-coverage#' + item.id)));
+});
+
+test('per-arm export trace distinguishes owned cells, conflicting writes and unavailable evidence', () => {
+  const document = {querySelector() {}, createElement() {
+    return {children: [], append(child) { this.children.push(child); }, replaceChildren() { this.children = []; },
+      addEventListener(event, fn) { this[event] = fn; }};
+  }};
+  const trace = runInNewContext(definitions + '\nsurfaceTrace', {
+    document, location: new URL('https://example.test/'), URLSearchParams,
+  });
+  const target = document.createElement();
+  const cell = {xyz:[0,1,0], block:'minecraft:stone', chart:'left'};
+  trace(target, {exports: {Baseline:{cells:[cell],selectedCharts:['left']},
+    Candidate:{overlaps:[{...cell,winnerChart:'roof',winnerBlock:'minecraft:wood'}]}},
+    decisions:[{arm:'Candidate',kind:'selection',detail:'Selected by agreement.'}]},
+    {gaps:[{stage:'Join',reason:'No saved edge receipt.'}]});
+  const all = e => [e.textContent, ...e.children.flatMap(all)].filter(Boolean).join(' ');
+  assert.match(all(target), /Baseline · 1 owned cells/);
+  assert.match(all(target), /left .* lost ownership to roof/);
+  assert.match(all(target), /Selected by agreement/);
+  assert.match(all(target), /No saved edge receipt/);
+});

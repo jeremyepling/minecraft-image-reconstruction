@@ -122,3 +122,13 @@ textarea { border: 1px solid var(--line); border-radius: 7px; width: 100%; resiz
   .stack-small { flex-wrap: wrap; }
   .stack-small select { min-height: 44px; }
 }
+.decision-card { display: grid; gap: .35rem; padding: .8rem 0; border-bottom: 1px solid var(--line); }
+.decision-card:last-child { border-bottom: 0; }
+.decision-card h3 { margin: 0; font-size: 1rem; }
+.decision-card strong { margin-top: .25rem; font-size: .85rem; }
+#review-queue details, #diagnostics details { margin-top: .7rem; }
+#review-queue a, .decision-card a { display: inline-block; padding: .45rem .4rem .45rem 0; }
+
+#surface-trace { font-size: .84rem; margin: .45rem 0; }
+#trace-body details { padding: .3rem .45rem; }
+#trace-body pre { white-space: pre-wrap; overflow-wrap: anywhere; }
