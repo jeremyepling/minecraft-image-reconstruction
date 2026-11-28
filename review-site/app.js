@@ -4,7 +4,7 @@ const route = /^\/runs\/([a-z0-9-]+)\/(scores|review)\/?$/.exec(location.pathnam
 const defaultRun = 'floating-v1-guarded-refit';
 const runId = route?.[1] || query.get('run') || defaultRun;
 const view = route?.[2] || (query.get('view') === 'review' ? 'review' : 'scores');
-const link = page => route ? `/runs/${runId}/${page}` : `/?run=${runId}&view=${page}`;
+const link = page => route ? `/runs/${runId}/${page}` : `?run=${runId}&view=${page}`;
 const fmt = number => number.toLocaleString('en-US');
 const percent = score => `${score.toFixed(2)}%`;
 const points = value => `${value > 0 ? '+' : ''}${value.toFixed(2)} pp`;
@@ -313,9 +313,10 @@ async function main() {
     anchor.href = link(page);
     if (view === page) anchor.setAttribute('aria-current', 'page');
   }
-  const response = await fetch(`/runs/${runId}/manifest.json`);
-  if (!response.ok) throw new Error('This run could not be loaded.');
-  const run = await response.json();
+  const embedded = document.querySelector('#embedded-run');
+  const response = embedded ?? await fetch(`/runs/${runId}/manifest.json`);
+  if (!embedded && !response.ok) throw new Error('This run could not be loaded.');
+  const run = embedded ? JSON.parse(embedded.textContent) : await response.json();
   if (run.schema !== 1 || run.id !== runId) throw new Error('The run manifest is incompatible.');
   document.title = `${view === 'scores' ? 'Scores' : 'Image review'} · ${run.title} · Floating`;
   app.replaceChildren(document.querySelector(`#${view}-view`).content.cloneNode(true));

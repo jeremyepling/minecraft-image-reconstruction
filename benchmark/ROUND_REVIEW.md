@@ -31,6 +31,8 @@ For supported saved Floating comparisons, generate the stage table and component
 
 Put **Perfect from this stage** beside the measured handoff table when a checksum-matched diagnostic is available. Give each reference intervention its final F1 and percentage-point change against the same source-only arm and frame IDs. Explain what remains estimated beyond that handoff. Show coverage on every row and group stages that share an exact comparison set in the interactive chart. Reference-assisted results stay outside numbered Candidates. Record the input, output, downstream revision and per-view scores once and reuse them while those dependencies match. Regenerate the affected diagnostic after changing its intervention or consumer path. An accurate writer check measures serialization. Mark independent joins or component selection unmeasured when those inputs have no verified replay. [Perfect Stage archive and viewer](reviews/floating-perfect-stage-01/README.md)
 
+For Floating experiment reports with visual evidence, publish a phone-friendly **Scores** link and an **Image review** link for the same run in the shared Vercel project. Start the review queue from the automatic comparison. Ask for feedback on a small number of remaining questions, with an aligned visible-reference view and a first-pass hypothesis. See the [mobile review workflow](MOBILE_REVIEW.md).
+
 ## From a reported error to a test
 
 | Question | Evidence to bring back |
