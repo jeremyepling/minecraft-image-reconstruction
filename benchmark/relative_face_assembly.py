@@ -311,7 +311,9 @@ def assemble(charts, *, min_edges=2, edge_pixels=3.5, coplanar_pixels=None, rela
             u,v=[axis_vector(a) for a in c['axes']]
             plane_normal=axis_vector(c['normal_axis'])
             offset=np.minimum(0,u)+np.minimum(0,v)-np.maximum(0,plane_normal)
-            for cell in c['cells']:
+            # Child depth grids share the parent's solved axes and origin. Parent
+            # cells still establish the chart's original corner and rim joins.
+            for cell in c.get('export_cells', c['cells']):
                 position=t+offset+cell['u']*u+cell['v']*v
                 if 'normal_offset' in cell:
                     position=position+cell['normal_offset']*plane_normal
