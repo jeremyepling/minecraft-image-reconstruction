@@ -19,7 +19,7 @@ from engine.geometry import UNIT
 OUT=ROOT/"runs/edge-aligned-ruler"
 REVIEW=ROOT/"benchmark/reviews/floating-edge-aligned-ruler-01"
 RECOVERY=WORKTREES/"floating-peer-refit-recovery/runs/peer-refit-recovery"
-ARMS=("line-only","refit","refit-material","verified","fine","fine-material","fine-verified","repeat-verified")
+ARMS=("line-only","refit","refit-material","verified","fine","fine-material","fine-verified","repeat-verified","original-fallback")
 
 
 def gather(rgb,mask,old):
@@ -208,6 +208,7 @@ def run(job):
             arms.update(fine=fine,**{"fine-material":fine_colored,"fine-verified":fine_colored if
                         all(v is not None for v in vps) and refined["accepted"] else keep})
             arms["repeat-verified"]=fine_colored if local["accepted"] and all(v is not None for v in vps) else keep
+            arms["original-fallback"]=fine_colored if local["accepted"] and all(v is not None for v in vps) else base
             for a,v in arms.items():
                 packets[a].append(v)
             findings[cid]=dict(lines=[item[1] for item in pairs],skew_h=line_h.tolist(),ruler=audit,refined=refined,
