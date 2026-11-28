@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#111613">
+  <title>Floating Review</title>
+  <link rel="stylesheet" href="/styles.css">
+  <script src="/app.js" type="module"></script>
+</head>
+<body>
+  <header class="top">
+    <div class="wrap top-inner">
+      <a class="brand" href="/" aria-label="Floating Review home"><span class="cube" aria-hidden="true">▧</span> Floating Review</a>
+      <nav aria-label="Run views"><a id="scores-link">Scores</a><a id="review-link">Review</a></nav>
+    </div>
+  </header>
+  <main id="app" class="wrap" aria-busy="true"><p class="muted">Loading run…</p></main>
+  <div id="status" role="status" class="toast" hidden></div>
+  <template id="score-view">
+    <section class="intro">
+      <p class="eyebrow" data-field="scope"></p>
+      <h1 data-field="title"></h1>
+      <p class="muted" data-field="cohort"></p>
+    </section>
+    <section class="score-panel panel" aria-label="Source-only scores">
+      <header class="panel-head"><h2>Placement</h2><span class="pill" data-field="placementDelta"></span></header>
+      <div class="table-wrap"><table id="scores"></table></div>
+      <p class="caption" data-field="unresolved"></p>
+    </section>
+    <section class="panel" aria-labelledby="perfect-heading">
+      <header class="panel-head stack-small">
+        <div><h2 id="perfect-heading">Perfect Stage</h2><p class="caption">Final F1 after giving one handoff the visible reference.</p></div>
+        <label class="compact-label" for="perfect-scope">Views</label><select id="perfect-scope"></select>
+      </header>
+      <div class="seg chart-switch" id="metric-switch" aria-label="Score metric"></div>
+      <div id="perfect" class="perfect-rows"></div>
+    </section>
+    <details class="panel" id="stage-details"><summary>Pipeline handoffs</summary><div class="table-wrap"><table id="stages"></table></div></details>
+    <p class="caption" data-field="datasetNote"></p>
+  </template>
+  <template id="review-view">
+    <section class="intro review-intro">
+      <div>
+        <p class="eyebrow" data-field="progress"></p>
+        <h1 data-field="case"></h1>
+        <p class="muted" data-field="stage"></p>
+      </div>
+      <label class="case-control"><span class="compact-label">Jump to case</span><select id="case-picker" aria-label="Jump to case"></select></label>
+    </section>
+    <section class="panel viewer" aria-label="Compare aligned images">
+      <div class="viewer-tools">
+        <div id="modes" class="seg" aria-label="Image view"></div>
+        <button type="button" id="zoom" aria-pressed="false">2×</button>
+      </div>
+      <div id="viewport" aria-label="Scrollable image when zoomed">
+        <div id="image-plane"><img id="evidence" alt="" draggable="false"><span id="pin" hidden></span></div>
+      </div>
+      <div class="viewer-caption">
+        <p id="image-caption" class="caption"></p>
+        <button type="button" class="quiet" id="mark" aria-pressed="false">Mark spot</button>
+        <button type="button" class="quiet" id="clear-mark" hidden>Clear</button>
+      </div>
+    </section>
+    <section class="panel feedback">
+      <div id="case-counts" class="case-counts"></div>
+      <p class="eyebrow">What to look at</p>
+      <h2 data-field="prompt"></h2>
+      <p class="caption" data-field="hypothesis"></p>
+      <div class="chips" id="tags" aria-label="Feedback topics"></div>
+      <label for="note">Your note <span class="caption">· use the keyboard mic to dictate</span></label>
+      <textarea id="note" rows="3" placeholder="Point out what should line up and what you would try."></textarea>
+      <div id="note-state" class="caption"></div>
+    </section>
+    <footer class="review-footer">
+      <button type="button" id="prev">← Prev</button>
+      <button type="button" id="copy">Copy notes</button>
+      <button type="button" id="save-json" aria-label="Share or download JSON notes">Share</button>
+      <button type="button" class="primary" id="next">Next →</button>
+    </footer>
+  </template>
+</body>
+</html>
