@@ -2,6 +2,27 @@
 
 The chart-by-chart replay isolates a useful trade. Adopt the large-contraction rule as the benchmark challenger for the floating pipeline. The six-sky integration default still has much higher precision, and the expanded challenger still needs an independent confirmation on a new layout where the rule actually fires.
 
+## How one face becomes a grid
+
+A surface mask marks pixels that the finder believes belong to one plane. A block face is one side of one block within that mask. For a wall the experimental search tries to undo the apparent narrowing toward the far end using the estimated surface direction and straight edges. In that front-facing view it searches for a square of unknown size and verifies its atlas texture against source pixels. An accepted square gives four source-image corners for one block. The projection maps a grid of equal block-size squares on the wall back into the source image, where the distant squares appear narrower. Ordinary assembly then joins compatible grids and chooses a connected group to export.
+
+```mermaid
+flowchart TD
+    S[Source image] --> M[Find visible surface and estimate its direction]
+    M --> A[Register atlas observations on visible patches]
+    A --> B[Connect supported cells and shared rows]
+    B --> D[Running floating default]
+    M --> V[Try front-facing views of the wall]
+    V --> F[Find and verify one full block face]
+    F --> R[Use its four corners as one grid cell]
+    A --> W[Existing expanded wall grid]
+    R --> G[Compare proposed grid with existing grid]
+    W --> G
+    G --> E[Assemble connected grids and select output]
+```
+
+A convincing tile can establish local spacing even when the mask crosses a corner or the estimated wall angle is slightly wrong. The farther the grid extends, the larger those errors can become. If no full face qualifies, this challenger keeps the existing expanded wall grid. The prospective Amphitheater test below shows why that fallback matters.
+
 ## Intervention
 
 Build the original wall grid and the proposed grid from the confirmed full face. Replace an individual chart only if the original contains at least 256 cells and the replacement has at most a quarter as many. Keep the rest of the assembly and registration procedure fixed. The thresholds were chosen from the earlier panels and frozen before scoring the six new views. The rule uses visible source evidence and chart sizes. It can be run from the [isolation experiment](https://github.com/jeremyepling/minecraft-image-reconstruction/tree/experiment/floating-extra-isolation).
