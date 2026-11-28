@@ -9,4 +9,6 @@ Choose the next investigation from the gap between a verified handoff and what s
 
 Compare saved Surface Finder masks against the perfect visible surface map from first-hit face ownership at native source-image pixels. Check missed pixels, spill, and where masks merge or split recorded surfaces. When choosing a surface experiment, run a matched Perfect mask-only replay. If facing or depth could be the limiting factor, add a distinct mask-plus-measured-plane replay and compare both downstream. Give correct, missed, and extra blocks and the F1 changes. Link a gain and a regression when both occurred.
 
+Whole-image coverage can stay high when a mask merges two planes or divides one wall. Inspect per-surface ownership before concluding that the Finder is accurate. When exact wall grids help more than exact masks, separate the wall-grid intervention into block size, grid origin and visible cell coverage on the same views. Keep the remaining inputs fixed and rerun the ordinary downstream path. If a correct grid still loses blocks, trace the owning chart through joins, component selection and the decoded export.
+
 Sol high owns replay and scoring. Astra high interprets unexplained differences. Return one proposed test, its target handoff, affected families, measurable outcome, and the cheapest reason to abandon it.

@@ -2,6 +2,12 @@
 
 Start with the question Jeremy asked about the build. A score update can come straight from a scored release. A question about two missing blocks calls for tracing those two positions through the ordinary build.
 
+## Review the experiment log
+
+Before selecting the next experiment, check [the reconstruction adjustment log](../MODEL_CHANGELOG.md) and the [current Floating baseline](FLOATING_BRANCH.md). Look for prior tests of the same handoff and evidence that would justify reopening a retired approach. Read the linked receipts only as needed. At the end of the round, record material gains, regressions and informative nulls in a dated log entry with the baseline and candidate, cohort, changed handoff, measured effect, disposition, and next discriminating test. Link the detailed report or code revision. Keep reference-assisted effects distinct from measured source-only improvements.
+
+At round boundaries, lift repeatable checks and decision rules into the relevant skill. Leave case-specific measurements and unresolved hypotheses in the log and report. Update an agent's instructions when its responsibilities or handoffs change. A new agent is useful when it has a distinct assignment that the existing roles cannot cover.
+
 ## When a perfect-answer test earns its cost
 
 Label each score with its dataset version, split and tested frame count. For production results lead with the fixed 104 trend and show Visible Builds v3 (144 new views) and Decorative Builds v1 (40 views) alongside it. For Floating results use the named Floating cohorts. For each cohort give coverage, strict and facade placement F1, and strict and facade position-plus-ID F1. Identify development and held-out results separately. Mark an unmeasured cohort explicitly and date or identify the revision of any carried-forward score. Compare candidates on identical images within each cohort. Report paired lighting changes separately when measured. Report camera failures as their own outcome alongside overall placement. Give failed views and the visible misses on them, placement F1 on camera-supported views, and supported views that exported zero blocks. Preserve the per-image camera reason and atlas fallback reason. Keep every camera failure in the overall denominator.
