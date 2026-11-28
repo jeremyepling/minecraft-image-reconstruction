@@ -1,4 +1,4 @@
-"""Test the frozen guarded attachment on eight smooth-dominated historical views."""
+"""Test the frozen guarded attachment on four saved Factory views."""
 from collections import Counter
 from concurrent.futures import ProcessPoolExecutor
 from pathlib import Path
@@ -17,6 +17,7 @@ SOURCE = WORKTREES / 'floating-extra-isolation/runs/extra-isolation'
 OUT = ROOT / 'runs/attachment-transfer'
 REVIEW = ROOT / 'benchmark/reviews/floating-pregrid-attachment-transfer-01'
 ARM = 'tangent-preserve-split'
+LAYOUTS = frozenset({'factory-02', 'factory-03'})
 
 
 def run(row):
@@ -75,8 +76,8 @@ def aggregate(rows, arm):
 
 
 def main():
-    cases = [row for row in read(ARCHIVE) if not row['active']]
-    assert len(cases) == 8 and len({row['layout'] for row in cases}) == 4
+    cases = [row for row in read(ARCHIVE) if not row['active'] and row['layout'] in LAYOUTS]
+    assert len(cases) == 4 and {row['layout'] for row in cases} == LAYOUTS
     with ProcessPoolExecutor(4) as pool:
         rows = list(pool.map(run, cases))
     summary = {key: aggregate(rows, key) for key in ('noop', ARM)}

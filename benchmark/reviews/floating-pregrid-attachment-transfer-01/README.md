@@ -1,11 +1,12 @@
 # Guarded wall attachment on smooth historical views
 
-The frozen `tangent-preserve-split` rule from `f572155` had zero eligible attachment offers across eight saved views outside the active 84. Every decoded coordinate and material ID matched the baseline. This transfer shows abstention on the smooth structures and provides no evidence of a placement gain on them.
+The frozen `tangent-preserve-split` rule from `f572155` had zero eligible attachment offers across four saved Factory views outside the active 84. Every decoded coordinate and material ID matched the baseline.
 
-The separate cohort has two angles each of Factory 02, Factory 03, Amphitheater 01 and Amphitheater 02. These were tagged inactive in the historical depth archive. The saved comparison uses the expanded large-contraction Floating packs for both arms. This cohort did not receive the adopted 84-view pink split and sky guard package. The attachment rule has no explicit partitions to preserve on these inputs. Both arms reuse the same immutable source charts and visible scoring references. The runner exports and decodes a fresh no-op and candidate for every view, verifies the archived bytes and matches all eight no-op coordinate and score receipts.
+The separate cohort has two angles each of Factory 02 and Factory 03. They were tagged inactive in the historical depth archive and are used here only as a smooth-material probe. Orchid is excluded from the runner. Both arms use the expanded large-contraction Floating charts and their visible scoring references. These charts have no explicit pink partitions. The runner exports and decodes a fresh no-op and candidate for every view, verifies the archived bytes and matches all four no-op coordinate and score receipts.
 
-| Eight views | Strict / facade placement F1 | Strict / facade position plus material F1 | Correct / missed / extra |
+| Four Factory views | Strict / facade placement F1 | Strict / facade position plus material F1 | Correct / missed / extra |
 | --- | ---: | ---: | ---: |
-| Saved Floating replay or guarded attachment | 25.41% / 26.23% | 3.13% / 3.23% | 2,917 / 11,169 / 5,954 |
+| Baseline — saved large-contraction Floating replay | 30.37% / 30.87% | 2.13% / 2.16% | 2,185 / 7,520 / 2,500 |
+| Guarded attachment | 30.37% / 30.87% | 2.13% / 2.16% | 2,185 / 7,520 / 2,500 |
 
 Run `python -m benchmark.floating_pregrid_attachment_transfer` from this checkout with the saved `floating-extra-isolation` and `floating-depth-refit` worktrees. Per-view pack receipts and scores are in [results.json](results.json). Outputs go to `runs/attachment-transfer`.
