@@ -29,7 +29,7 @@ On the 100 clean noon views in Floating Front 100, Expanded Split-Border scored 
 
 Use the same screenshots and visible references for the baseline and each candidate. Floating scores a single translation for the entire build, so moving the origin preserves credit while changing the spacing between parts affects the score. Report placement and position-plus-material F1 together with correct, missed and extra blocks. [Baseline and historical comparisons](benchmark/FLOATING_BRANCH.md) · [Round review and promotion](benchmark/ROUND_REVIEW.md)
 
-See the mobile workflow for original masks, reference surfaces, attempted grids, and the blocks that survived export. [Scores and image review](benchmark/MOBILE_REVIEW.md) · [Experiment log](MODEL_CHANGELOG.md)
+The [review app](https://github.com/jeremyepling/minecraft-reconstruction-review) owns the Vercel UI for one-off images and scored experiments. Clone it beside this repository, or give the review commands its location with `--app-root`. This repository produces and validates the evidence. [Scores and image review](benchmark/MOBILE_REVIEW.md) · [Experiment log](MODEL_CHANGELOG.md)
 
 ## Archived floor-and-camera algorithm
 

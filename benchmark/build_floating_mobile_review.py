@@ -213,7 +213,7 @@ def main():
     parser.add_argument('--labels', type=Path, help='Optional case ID to [title, stage, prompt, first pass] JSON')
     parser.add_argument('--questions', type=Path, help='Public-safe unresolved decision proposals (JSON array)')
     parser.add_argument('--carry-forward', help='Next baseline, each candidate disposition, and what landed')
-    parser.add_argument('--site', type=Path, default=Path('review-site'))
+    parser.add_argument('--site', type=Path, required=True, help='Directory for the staged review app and run manifest')
     args = parser.parse_args()
     if args.baseline_evidence_root and not args.evidence_root:
         parser.error('--baseline-evidence-root requires --evidence-root')

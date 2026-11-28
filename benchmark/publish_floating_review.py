@@ -14,6 +14,7 @@ from urllib.request import Request, urlopen
 
 from benchmark.build_floating_mobile_review import manifest, surface_examples
 from benchmark.floating_stage_report import read
+from benchmark.floating_review_app import RUN_MANIFESTS, app_checkout, stage_scored_review
 
 ROOT = Path(__file__).resolve().parents[1]
 REMOTE = "https://github.com/jeremyepling/minecraft-image-reconstruction"
@@ -74,7 +75,8 @@ def published_bytes(url, expected):
             time.sleep(2 ** attempt)
 
 
-def deploy(data, source_assets, site_files, cli):
+def deploy(data, source_assets, site_files, cli, app_root=None):
+    app = app_checkout(app_root)
     branch = git("branch", "--show-current")
     if branch != "main" and not branch.startswith(("feature/floating-", "experiment/floating-")):
         raise ValueError(f"Publish from a named Floating integration or feature branch: {branch}")
@@ -87,7 +89,7 @@ def deploy(data, source_assets, site_files, cli):
     subprocess.run([cli, "whoami", "--no-color"], check=True)
     slug = data["id"]
     dest = Path("benchmark/reviews/mobile-review-assets") / slug
-    target = Path("review-site/runs") / slug / "manifest.json"
+    target = RUN_MANIFESTS / slug / "manifest.json"
     if (ROOT / target).exists() and read(ROOT / target)["comparisonSha256"] != data["comparisonSha256"]:
         raise ValueError("This run ID already identifies a different comparison.")
     files = []
@@ -114,16 +116,7 @@ def deploy(data, source_assets, site_files, cli):
     with ThreadPoolExecutor(6) as pool:
         list(pool.map(check_asset, files))
 
-    # Stage only the tracked site shell and published run manifests. No local drafts, OAuth or run data.
-    for name in git("ls-files", "review-site").splitlines():
-        asset = Path(name).relative_to("review-site")
-        if asset.as_posix() not in {"app.js","index.html","styles.css","vercel.json"} and not re.fullmatch(
-                r"runs/[a-z0-9-]+/manifest\.json", asset.as_posix()):
-            if asset.name == ".gitignore":
-                continue
-            raise ValueError(f"Classify this site asset before deploying: {asset}")
-        (site_files / asset).parent.mkdir(parents=True, exist_ok=True)
-        shutil.copyfile(ROOT / name, site_files / asset)
+    stage_scored_review(app, site_files)
     subprocess.run([cli,"deploy","--prod","--yes","--scope",SCOPE,"--project",PROJECT,"--no-color"],
                    cwd=site_files, check=True)
     url = f"{LIVE}/runs/{slug}"
@@ -161,6 +154,7 @@ def main():
     cli.add_argument("--carry-forward",help="Next baseline, each candidate disposition, and what landed")
     cli.add_argument("--out",type=Path,required=True,help="Local output directory for this run")
     cli.add_argument("--publish",action="store_true")
+    cli.add_argument("--app-root", type=Path, help="Review app checkout for publishing")
     cli.add_argument("--vercel",default=shutil.which("vercel"))
     args = cli.parse_args()
     if not re.fullmatch(r"[a-z0-9]+(?:-[a-z0-9]+)*", args.run):
@@ -220,7 +214,7 @@ def main():
     print(f"Prepared {len(data['cases'])} cases in {out}")
     if args.publish:
         with tempfile.TemporaryDirectory(prefix="floating-review-") as temp:
-            deploy(data, assets, Path(temp), args.vercel)
+            deploy(data, assets, Path(temp), args.vercel, args.app_root)
 
 if __name__ == "__main__":
     main()

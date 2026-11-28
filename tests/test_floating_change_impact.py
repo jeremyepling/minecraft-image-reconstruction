@@ -4,7 +4,7 @@ from benchmark.floating_change_impact import plan
 
 class FloatingChangeImpact(unittest.TestCase):
     def test_viewer_change_reuses_scoring(self):
-        impact = plan(["review-site/app.js"])
+        impact = plan(["benchmark/floating_review_app.py"])
         self.assertEqual(list(impact["refresh"]), ["site"])
 
     def test_grid_change_requires_downstream_checks(self):

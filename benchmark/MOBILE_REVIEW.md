@@ -1,6 +1,6 @@
 # Floating mobile review
 
-Use one static Vercel project rooted at `review-site`. Give each run a stable ID and two links.
+Use the existing Floating Review Vercel project. The [review app repository](https://github.com/jeremyepling/minecraft-reconstruction-review) owns both frontends. Clone it beside the reconstruction checkout or pass its path with `--app-root`. This checkout owns evidence generation, verification and the archived public experiment manifests. Give each scored run a stable ID and two links.
 
 | Link | Contents |
 | --- | --- |
@@ -9,13 +9,20 @@ Use one static Vercel project rooted at `review-site`. Give each run a stable ID
 
 The sample uses the archived 144-view Visible Builds V1 comparison. The mobile manifest contains aggregate results and four reviewed case IDs. Annotating changes only the browser's local drafts. Copy puts case IDs and comments into plain text for chat. Share provides JSON with the comparison digest, image mode, note topics and any marked source coordinate. The app uses the phone keyboard for dictation.
 
-In **Image review**, tap **Surfaces** to step through the saved Surface Finder masks. The second picker compares the mask, gold reference, depth-partition masks and distinct grids in the same native source-image coordinates. Identical grids list all the stages that used them. The assembly receipts mark selected and unselected charts. Roof and underside charts created inside assembly are labeled as replays from the matching chart inputs, checked against the saved selection and oriented-chart count. A surface with no saved overlay shows that status explicitly. Surface notes include the ID and active grid attempt.
+In **Image review**, use **Next mask** or the mask picker and **Evidence layer** inside the Source image card. The picker compares the mask, gold reference when available, depth-partition masks and distinct grids in the same native source-image coordinates. Both review paths open with the dark gray theme and blue accent. Identical grids list all the stages that used them. The assembly receipts mark selected and unselected charts. Roof and underside charts created inside assembly are labeled as replays from the matching chart inputs, checked against the saved selection and oriented-chart count. A surface with no saved overlay shows that status explicitly. Surface notes include the ID and active grid attempt.
 
 ## Review one run
 
 Use `floating-single-run-review` with `floating_single_run_reviewer` (Sol high) for a new screenshot or an existing output the user wants to inspect. Run the requested version and settings once, or verify the saved receipts. Pass the source hash, revision, native masks, attempted grids, selected assembly and decoded pack to `floating_review_publisher`. The reviewer owns the first failure trace and the publisher owns the hosted links. One person can fill both assignments.
 
 Use the same evidence pipeline as the scored review. Reuse `benchmark.mobile_surface_evidence` for native outlines and chart coordinates, and `benchmark.mask_blocks.decoded_pack` for export readback. For a source-only image, the Scores page shows observed stage counts and decoded exports. Show accuracy as unmeasured and omit the gold reference layer. A fixture comparison can use the ordinary paired publisher below.
+
+```powershell
+python -m benchmark.build_floating_single_review --source $image --baseline $build --revision $revision --app-root $reviewApp --out $singleBundle
+vercel deploy $singleBundle --environment preview --project floating-review
+```
+
+Pass `--candidate` to show a second export from the same image. The preview bundle contains the resized source, aligned evidence and observed counts. It does not need the full fixture or its reference labels. Its routes are `/review`, `/scores`, and `/review?surface=<mask-id>`.
 
 The completion check for a requested Vercel review is a verified **Image review** link and **Scores** link, plus a direct surface link when there is a traced failure. For supplied imagery approved for private upload, use a protected preview on the existing project and verify its sign-in requirement. Record a concrete blocker if hosting needs authorization or fails. Keep local evidence available for inspection while the hosted link is pending.
 
@@ -39,10 +46,10 @@ On branches that lack the named roles, use the standard worker with that model, 
 
 **Surface masks and placement impact** on Scores shows the matched perfect-mask and mask-plus-plane replays. Click a case to open the native mask comparison. In Image review, **Perfect surfaces** shows the recorded frontmost surfaces, and **Mask comparison** overlays the saved Finder boundaries and missed or extra foreground. Tap **Surfaces** for a specific saved mask, its depth partitions and grid attempts, and **Mask over perfect surfaces** to inspect it against the recorded map. The gold block grid has its own layer. Whole-view coverage counts use the union of the saved masks. Per-surface overlap matches a proposal to the recorded surface with its highest intersection over union. The per-surface check can expose merges that whole-view coverage misses.
 
-Run the command from the repository root. Supply the existing authenticated CLI with `--vercel` if it is outside PATH. Without `--publish` the command prepares a local manifest and assets under `--out`. With it, only generated public imagery, surface evidence, and the manifest are committed on the current Floating branch. The command pins the GitHub asset revision, checks remote file hashes, deploys the tracked site to the existing Vercel project, and checks the live manifest and both routes.
+Run the command from the repository root. Supply the existing authenticated CLI with `--vercel` if it is outside PATH. Without `--publish` the command prepares a local manifest and assets under `--out`. With it, generated public imagery, surface evidence and the run manifest are committed on the current Floating branch. The command pins the GitHub asset revision and checks remote file hashes. It stages the frontend from the review app checkout and the tracked manifests from `benchmark/reviews/mobile-review-runs`, then deploys the bundle and checks both routes.
 
 ```powershell
-python -m benchmark.publish_floating_review --fixture $fixture --variant original --baseline-evidence-root $baselineOriginal --evidence-root $candidateOriginal --baseline-name 'Current method' --candidate-name 'Proposed method' --carry-forward $decision --run $runId --title $title --out "runs/mobile/$runId" --publish
+python -m benchmark.publish_floating_review --fixture $fixture --variant original --baseline-evidence-root $baselineOriginal --evidence-root $candidateOriginal --baseline-name 'Current method' --candidate-name 'Proposed method' --carry-forward $decision --run $runId --title $title --out "runs/mobile/$runId" --app-root $reviewApp --publish
 ```
 
 Each evidence directory contains one subdirectory per fixture view. Pass the `original` directory from each Expanded Split-Border replay. The publisher verifies the saved scores against the decoded packs and reads the saved source handoff, input charts, assembly charts and selection for surface evidence. The fixture bridge also reads prior local-grid replay receipts and resolves the pinned Front 100 full-block or active historical Combined Visible selection. It uses the fixture's source variant and visible labels for the overlays. A single selected frame verifies that frame. Use `--case <id>` for an additional image. Unsupported views and unavailable grid decisions should remain visible as evidence gaps.
@@ -72,17 +79,18 @@ Run `python -m benchmark.floating_change_impact --base <previous-revision>` on a
 1. Generate the ordinary stage report and visual review queue from the same comparison. Include matched Perfect Stage receipts when available and use the automatic queue as the first pass.
 2. Decide which few cases need a human answer. Provide a visible cue to judge and a brief starting hypothesis. Pass optional `--labels` with each case ID mapped to `[title, stage, prompt, first pass]`.
 3. Generate the manifest and optimized GitHub WebPs with `python -m benchmark.build_floating_mobile_review`. The command accepts the stage report JSON, queue directory and restored frame directory ending in `data`. For the original V1 runner, add `--run-root` pointing to the archived `runs/floating-v1` to include saved masks, depth partitions and grid attempts. Commit the imagery and surface-evidence JSON first. Set `--asset-base` to the immutable public raw GitHub URL of that commit and regenerate the manifest. Keep each previous run manifest when deploying so past links keep working.
-4. Deploy just `review-site` to the same Vercel project. The site is static and has no build or install step. Browser image requests go directly to the pinned public GitHub files. Keep original captures, labels, packs and private feedback outside the deployment.
+4. Stage the review app with the saved manifests and deploy the staged directory to Vercel. The site is static and has no build or install step. Browser image requests go directly to the pinned public GitHub files. Keep original captures, labels, packs and private feedback outside the deployment.
 
 Example from the repository root, with the local input paths set for the run:
 
 ```powershell
 $id = 'floating-v1-guarded-refit'
 $assets = "benchmark/reviews/mobile-review-assets/$id"
-python -m benchmark.build_floating_mobile_review $stageReport $reviewQueue $frameData --assets $assets --asset-base $assetUrl --run $id --title 'Guarded depth-first refit'
-vercel deploy review-site --prod --project floating-review
+python -m benchmark.floating_review_app --app-root $reviewApp --out $staged
+python -m benchmark.build_floating_mobile_review $stageReport $reviewQueue $frameData --assets $assets --asset-base $assetUrl --run $id --title 'Guarded depth-first refit' --site $staged
+vercel deploy $staged --prod --project floating-review
 ```
 
 Check `vercel whoami` before publishing. A signed-in CLI can update the shared project without the dashboard. When the CLI needs authorization, `vercel login` gives the owner a one-time link they can approve on their phone. A new, unlinked demo can use `vercel deploy --temporary` while signed out. Treat its URL as short-lived and keep the project's claim link private.
 
-For a local check, serve `review-site` over HTTP and open `/?run=floating-v1-guarded-refit&view=review`.
+For a local check, serve the staged directory over HTTP and open `/?run=floating-v1-guarded-refit&view=review`.

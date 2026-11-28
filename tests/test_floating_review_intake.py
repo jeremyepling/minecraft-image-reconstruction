@@ -9,7 +9,7 @@ from benchmark.floating_review_intake import connect, entries, ingest, private_h
 
 class MobileReviewIntakeTest(unittest.TestCase):
     def test_download_export_roundtrip_carry_forward_and_measured_outcome(self):
-        manifest_path = Path(__file__).resolve().parents[1] / 'review-site/runs/floating-v1-guarded-refit/manifest.json'
+        manifest_path = Path(__file__).resolve().parents[1] / 'benchmark/reviews/mobile-review-runs/floating-v1-guarded-refit/manifest.json'
         manifest = json.loads(manifest_path.read_bytes())
         case = manifest['cases'][0]
         gate = dict(id='arcade-coverage', caseId=case['id'], sourceSha256=case['sourceSha256'], type='preference',

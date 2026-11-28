@@ -18,7 +18,7 @@ STAGES = {
     "perfect": (("score",), ("benchmark/floating_perfect*","benchmark/reviews/floating-perfect*"), "matched Perfect Stage diagnostic receipts"),
     "report": (("perfect","score"), ("benchmark/floating_stage_report*","benchmark/floating_visual_review*","benchmark/floating_local_review*"), "stage report and visual queue"),
     "analysis": (("report","surfaces"), ("benchmark/floating_review_decisions*","benchmark/floating_review_intake*","benchmark/floating_grid_chooser*"), "priorities, source-only tests and pending decisions"),
-    "site": (("analysis","surfaces"), ("review-site/*","benchmark/build_floating_mobile_review*","benchmark/publish_floating_review*","benchmark/reviews/mobile-review-assets/*"), "published review cards, overlays and links"),
+    "site": (("analysis","surfaces"), ("benchmark/floating_review_app*","benchmark/build_floating_single_review*","benchmark/build_floating_mobile_review*","benchmark/publish_floating_review*","benchmark/reviews/mobile-review-assets/*","benchmark/reviews/mobile-review-runs/*"), "published review cards, overlays and links"),
 }
 RUNNERS = {"benchmark/floating_v1_run.py","benchmark/floating_build_local_run.py",
            "benchmark/floating_expanded_run.py","engine/floating.py","engine/floating_fields.py",
