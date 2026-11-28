@@ -85,7 +85,9 @@ def publish():
                  offered_frames=sum(len(offered(r))>1 for r in rows),unavailable_frames=0,
                  single_restore={f:{k:singles[f,k] for k in ('improve','tie','regress')} for f in ('geometry','scores')},
                  source_depth_archive_hash_matches=sum(r['matches_depth_refit_pack_hash'] for r in rows),
-                 all=compare(rows),by_dataset={d:compare([r for r in rows if r['dataset']==d]) for d in sorted({r['dataset'] for r in rows})})
+                 all=compare(rows),fixed_sky=compare([r for r in rows if r['panel']=='sky']),
+                 by_split={s:compare([r for r in rows if r['split']==s]) for s in sorted({r['split'] for r in rows})},
+                 by_dataset={d:compare([r for r in rows if r['dataset']==d]) for d in sorted({r['dataset'] for r in rows})})
     save(REVIEW/'conditions.json.gz',rows)
     save(REVIEW/'summary.json',summary)
 
