@@ -1,5 +1,8 @@
 # Reconstruction adjustments and lessons for training
 
+- **2026-11-28, source partitions and regional block rulers.** The Stable Yard low-left roof produced 21 distinct cut-sandstone cells from separated image patches but remained disconnected from the exported assembly. Over 84 conditions the partial refit lost three correct positions and removed 371 net extras. Keep the corrected local handoff and leave the broad export experimental. [Source regions and decoded evidence](benchmark/reviews/floating-mixed-wall-refit-01/README.md)
+
+
 - **2026-11-27, verified wall expansion.** Testing a complete-looking atlas tile accepted the repeated Stable Yard pattern. Checking separated tiles across the wall then clipped valid Castle geometry. Requiring contradictory unit heights from independent wall masks limited trimming to three of 84 conditions, removing 3,184 net extras at a cost of 123 correct positions. Keep the source guard experimental. [Verified wall expansion](benchmark/reviews/floating-verified-wall-expansion-01/README.md)
 
 - **2026-11-27, distant seam ruler check.** Switching to locally discovered faces with stronger distant seam contrast gave 31.48% strict placement across 86 conditions versus 31.47% with previous horizontal charts. On Sawtooth 2 high-right it removed 223 extras, but Watchpost 2 low-left lost 40 correct positions and the useful Chapel replacement was rejected. Keep the gate experimental. [Ruler crops and decoded placement comparisons](benchmark/reviews/floating-distant-seams-01/README.md)
