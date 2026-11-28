@@ -8,6 +8,8 @@ import numpy as np
 from benchmark.expanded_baseline import read,save
 from benchmark.mask_blocks import decoded_pack
 from benchmark.floating_horizontal_bridges import OUT,OLD,FRESH,cases,fresh_cases,round_
+from benchmark.expanded_baseline import WORKTREES
+from engine.surface_perimeter import _native_alpha
 
 
 def read_arm(path):
@@ -95,6 +97,23 @@ if __name__=="__main__":
     sky=read(round_.SHARED/"fixtures.json")["cases"]
     if all((OUT.parent/"six-sky/whole-wall/connected-atlas/sky"/c["id"]/"score.json").exists() for c in sky):
         all_results["sky"]=summarize(sky,{a:OUT.parent/"six-sky"/a for a in ("ordinary","whole-wall","horizontal-cells")},"connected-atlas/sky")
+        case=next(c for c in sky if c["id"]=="validation-hillside-chapel-1-warm-low-left")
+        handoff=WORKTREES/"floating-visible-builds/runs/floating-cloud-gate-01/sky"/case["id"]/"source-handoff"
+        plane=next(p for p in read(handoff/"surfaces.json")["planes"] if p["id"]=="mask-0")
+        with Image.open(case["variants"]["sky"]["image"]) as image:
+            alpha,(x,y,x1,y1)=_native_alpha(plane["support"],image.size)
+        frame=Path(case["frame"])
+        faces={f["id"]:f for f in read(frame/"labels.json")["faces"]}
+        with np.load(frame/"labels.npz") as arrays:
+            owners=arrays["face_id"][y:y1,x:x1][np.asarray(alpha)>0]
+        ids,counts=np.unique(owners,return_counts=True)
+        surfaces=Counter()
+        for fid,count in zip(ids,counts):
+            if fid:
+                surfaces[faces[fid]["surface_id"]]+=int(count)
+        save(review/"chapel-mask-check.json",dict(id=case["id"],mask=plane["id"],pixels=len(owners),
+             background=int((owners==0).sum()),surface_pixels=surfaces,
+             visible_blocks=len({tuple(faces[f]["xyz_world"]) for f in ids if f})))
     save(review/"results.json.gz",all_results)
     if samples:
         compare_sheet(samples,review/"placement.jpg")
