@@ -45,16 +45,18 @@ test('a depth mask and a selected grid render on the actual Arcade 1 surface', a
   const evidence = JSON.parse(readFileSync(asset, 'utf8'));
   const item = data.cases.find(row => row.id === evidence.id);
   const strokes = [];
-  const context = {clearRect() {}, fill() {}, stroke(path) { strokes.push(path.path); }};
+  const dots = [];
+  const context = {clearRect() {}, fill() {}, beginPath() {}, arc(x,y) { dots.push([x,y]); },
+    stroke(path) { if (path) strokes.push(path.path); }};
   const elements = new Map();
   const find = id => {
     if (!elements.has(id)) elements.set(id, {
-      setAttribute() {}, replaceChildren(...options) { this.options = options; }, getContext: () => context,
+      setAttribute() {}, append() {}, replaceChildren(...options) { this.options = options; }, getContext: () => context,
     });
     return elements.get(id);
   };
   const factory = runInNewContext(definitions + '\nsurfaceReview', {
-    document: {querySelector() {}},
+    document: {querySelector() {}, createElement() { return {append() {}, addEventListener() {}}; }},
     location: new URL('https://example.test/'),
     URLSearchParams,
     Option: class { constructor(text, value) { this.text = text; this.value = value; } },
@@ -80,7 +82,10 @@ test('a depth mask and a selected grid render on the actual Arcade 1 surface', a
   assert.ok(strokes.includes(selected.path));
   assert.match(find('surface-receipt').textContent, /Candidate · selected/);
   find('next-surface').onclick();
-  assert.notEqual(viewer.selection().surface.id, 'mask-1');
+  assert.equal(viewer.selection().surface.id, 'mask-2');
+  picker.value = picker.options.find(option => option.text === 'Traced placement changes').value;
+  picker.onchange();
+  assert.equal(dots.length, 28);
 });
 
 test('an empty human queue retains first-pass findings and saved evidence links', () => {
