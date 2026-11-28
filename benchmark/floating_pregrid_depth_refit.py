@@ -145,6 +145,12 @@ def run(job):
     assert decoded_pack(roots["noop"]/PREFIX/n/"reconstruction.zip")==decoded_pack(baseline_pack)
     assert read(roots["noop"]/PREFIX/n/"placements.json")==read(roots["adopted"]/PREFIX/n/"placements.json")
     assert read(roots["noop"]/PREFIX/n/"score.json")["score"]==read(roots["adopted"]/PREFIX/n/"score.json")["score"]
+    fit_case(g,c,pin,reviewed,transfer,src,package,charts_file,roots)
+
+
+def fit_case(g,c,pin,reviewed,transfer,src,package,charts_file,roots):
+    n=c['id']
+    rel=Path('sky')/n/'charts.json'
     audit={}
     rgb_path=Path(c["variants"]["sky"]["image"])
     assert digest(rgb_path)==pin["source"]["sha256"]

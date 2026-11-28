@@ -1,5 +1,7 @@
 # Reconstruction adjustments and lessons for training
 
+- **2026-11-28, Floating on original Visible Builds v1.** Across 144 original whole-structure screenshots the source-guarded pre-grid method gained 533 correct placements and 537 exact IDs and removed 78 extras versus expanded split-border. Seven exports had unresolved orientation and were charged in full. The 30 previous same-image exports matched across all three methods. [V1 source replay and decoded packs](benchmark/reviews/floating-visible-builds-v1-01/README.md)
+
 - **2026-11-28, native depth before local block grids.** Gating fresh source rulers on physical component joins and retained export size gained 183 correct placements and 175 exact block IDs across 84 images. Only two additional Twinspire layouts passed beyond the pilot. Keep experimental pending independent building-family transfer. [Pre-grid results](benchmark/reviews/floating-pregrid-depth-refit-01/README.md)
 
 - **2026-11-28, source partitions and regional block rulers.** The Stable Yard low-left roof produced 21 distinct cut-sandstone cells from separated image patches but remained disconnected from the exported assembly. Over 84 conditions the partial refit lost three correct positions and removed 371 net extras. Keep the corrected local handoff and leave the broad export experimental. [Source regions and decoded evidence](benchmark/reviews/floating-mixed-wall-refit-01/README.md)
