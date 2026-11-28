@@ -54,3 +54,30 @@ def repeat_fit(h,material,mask,rgb):
                   all(a["validation"]>=.06 and a["margin"]>=.015 for a in triangles))
     return winner,dict(accepted=accepted,fit=params,near=near,far=far,axes=triangles,
                        middle_candidates=len(uv),far_repeat=repeat,homography=winner.tolist())
+def validate_repeats(h,record,mask,rgb):
+    """Challenge each repeated sprite at half/double pitch while remaining on the same pixels."""
+    near=record.get("near",{})
+    if not near.get("ok"):
+        return dict(accepted=False,reason="unverified origin")
+    label=near["material"]
+    candidates=[dict(uv=[0,0],**near)]+[p for p in record.get("far",[]) if p["ok"] and p["material"]==label]
+    audits=[]
+    for p in candidates:
+        uv=np.array(p["uv"],float)
+        alternatives=[]
+        for sx,sy in ((.5,1.),(1.,.5),(.5,.5),(2.,1.),(1.,2.),(2.,2.)):
+            # Compare full central alternative and both half-size halves where applicable.
+            choices=lambda s: (0.,.25,.5) if s==.5 else ((-.5,) if s==2. else (0.,))
+            for dx,dy in itertools.product(choices(sx),choices(sy)):
+                trans=np.array([[sx,0.,uv[0]+dx],[0.,sy,uv[1]+dy],[0.,0.,1.]])
+                alternate=full_face(h@trans,np.zeros(2),mask,rgb)
+                if alternate.get("ok"):
+                    alternatives.append(float(alternate["correlation"]))
+        advantage=p["correlation"]-max(alternatives,default=0.)
+        audits.append(dict(uv=p["uv"],corr=p["correlation"],best_competing=max(alternatives,default=None),
+                           margin=advantage,ok=advantage>=.05))
+    passing=[v["uv"] for v in audits[1:] if v["ok"]]
+    spread=max((max(abs(a-b) for a,b in zip(u,v)) for u in passing for v in passing),default=0)
+    across_axes=any(min(abs(u),abs(v))>=2 for u,v in passing)
+    accept=bool(audits[0]["ok"] and spread>=3 and across_axes)
+    return dict(accepted=accept,spread=spread,across_axes=across_axes,tests=audits)

@@ -19,7 +19,7 @@ from engine.geometry import UNIT
 OUT=ROOT/"runs/edge-aligned-ruler"
 REVIEW=ROOT/"benchmark/reviews/floating-edge-aligned-ruler-01"
 RECOVERY=WORKTREES/"floating-peer-refit-recovery/runs/peer-refit-recovery"
-ARMS=("line-only","refit","refit-material","verified","fine","fine-material","fine-verified")
+ARMS=("line-only","refit","refit-material","verified","fine","fine-material","fine-verified","repeat-verified")
 
 
 def gather(rgb,mask,old):
@@ -196,15 +196,18 @@ def run(job):
             colored=correct_material(target,base,peers,mask,rgb)
             accepted=bool(all(v is not None for v in vps) and audit["accepted"])
             arms={"line-only":line_chart,"refit":target,"refit-material":colored,"verified":colored if accepted else keep}
-            from benchmark.floating_edge_repeat_fit import repeat_fit
+            from benchmark.floating_edge_repeat_fit import repeat_fit,validate_repeats
             fine=target
             refined={"accepted":False}
             if answer is not None and audit.get("near",{}).get("ok"):
                 improved,refined=repeat_fit(answer,audit["near"]["material"],mask,rgb)
                 fine=extend(ch,improved,mask,rgb)
+            local=validate_repeats(np.asarray(fine["H"]),refined,mask,rgb)
+            refined["local_repeat_check"]=local
             fine_colored=correct_material(fine,base,peers,mask,rgb)
             arms.update(fine=fine,**{"fine-material":fine_colored,"fine-verified":fine_colored if
                         all(v is not None for v in vps) and refined["accepted"] else keep})
+            arms["repeat-verified"]=fine_colored if local["accepted"] and all(v is not None for v in vps) else keep
             for a,v in arms.items():
                 packets[a].append(v)
             findings[cid]=dict(lines=[item[1] for item in pairs],skew_h=line_h.tolist(),ruler=audit,refined=refined,
