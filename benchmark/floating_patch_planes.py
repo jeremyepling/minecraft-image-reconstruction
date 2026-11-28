@@ -20,7 +20,8 @@ FRESH = WORKTREES / 'floating-fresh-validation/runs/floating-fresh'
 NEW = WORKTREES / 'floating-patch-validation/runs/floating-patch-validation'
 SKY = WORKTREES / 'floating-horizontal-bridges/runs/six-sky'
 FIXED = WORKTREES / 'floating-visible-builds/runs/floating-cloud-gate-01'
-COHORTS = ('original', 'fresh', 'supplemental', 'sky', 'new')
+COHORTS = ('original', 'fresh', 'supplemental', 'sky', 'new', 'new2')
+CANDIDATES = ('planes', 'opposed')
 OFFSETS = np.stack(np.meshgrid([.22, .5, .78], [.22, .5, .78]), -1).reshape(-1, 2)
 
 
@@ -31,8 +32,10 @@ def inputs(cohort):
         return ordinary, ordinary/'atlas/connected', whole/'charts', whole/'assembly', list(cases())
     if cohort == 'sky':
         return FIXED, FIXED/'garden-anchor-extension/connected', SKY/'charts', SKY/'whole-wall', read(assembly.SHARED/'fixtures.json')['cases']
-    root = NEW if cohort == 'new' else FRESH
+    root = NEW if cohort in ('new', 'new2') else FRESH
     manifest = 'supplemental-manifest.json' if cohort == 'supplemental' else 'manifest.json'
+    if cohort == 'new2':
+        manifest = 'holdout2-manifest.json'
     return root/'ordinary', root/'ordinary/atlas/connected', root/'source_material/charts', root/'source_material/assembly', read(root/manifest)['cases']
 
 
@@ -43,7 +46,7 @@ def field_files(cohort, case):
     if cohort == 'original':
         archived = WORKTREES/'full-expanded-controls/runs/expanded-baseline-01'/group/'handoffs'
         return archived if archived.is_dir() else NATIVE.parent/'fields'/group
-    return (NEW if cohort == 'new' else FRESH)/'fields'/group
+    return (NEW if cohort in ('new', 'new2') else FRESH)/'fields'/group
 
 
 def field_input(cohort, case, source_sha, handoff):
@@ -130,7 +133,7 @@ def patch_wall(chart, original, fields, size):
     while ground:
         anchor = min(ground)
         delta = np.max(np.abs(uv - uv[anchor]), axis=1)
-        cluster = sorted(i for i in ground if delta[i]<=3 and normals[i]@normals[anchor] >= .94)
+        cluster = sorted(i for i in ground if i == anchor or (delta[i]<=3 and normals[i]@normals[anchor] >= .94))
         ground.difference_update(cluster)
         center = np.median(xy[cluster], axis=0)
         rel = xy-center
@@ -164,7 +167,7 @@ def patch_wall(chart, original, fields, size):
     return dict(chart,cells=[c for c,k in zip(chart['cells'],keep) if k]), ev
 
 
-def predict(cohort, case):
+def predict(cohort, case, candidate):
     source, ordinary, whole, _, _ = inputs(cohort)
     name = case['id']
     rel = Path('sky')/name/'charts.json'
@@ -184,21 +187,27 @@ def predict(cohort, case):
         seed = seeds[chart['id']]
         normal = seed.get('normal_camera')
         if chart['cells'] and seed['cells'] and normal is not None and abs(normal[1]) < .67:
-            chart, ev = patch_wall(chart, seed, fields, size)
+            trimmed, ev = patch_wall(chart, seed, fields, size)
+            patches = ev['patches']
+            contradicted = bool(patches) and all(p.get('opposed',False) for p in patches)
+            if candidate == 'planes' or contradicted:
+                chart = trimmed
+            ev['all_seeds_opposed'] = contradicted
+            ev['exported_chart_cells'] = len(chart['cells'])
             evidence.append(ev)
         out.append(chart)
-    root = OUT/cohort/'planes'
+    root = OUT/cohort/candidate
     save(root/'charts'/rel, dict(wall,charts=out))
     save(root/'evidence'/(name+'.json'),dict(id=name,charts=evidence,source_sha256=sha,field_sha256=hashes,
                                             source_chart_sha256=digest(ordinary/rel),whole_chart_sha256=digest(whole/rel)))
 
 
 def run(job):
-    cohort, case = job
+    cohort, case, candidate = job
     cv2.setNumThreads(1)
-    predict(cohort,case)
+    predict(cohort,case,candidate)
     source = inputs(cohort)[0]
-    folder = OUT/cohort/'planes'
+    folder = OUT/cohort/candidate
     mode=(folder/'charts','charts.json',False,1,2.5,.5,False)
     def checked_read(path):
         result = read(path)
@@ -216,9 +225,10 @@ def run(job):
 def main():
     p = ArgumentParser(description=__doc__)
     p.add_argument('cohorts', nargs='+', choices=COHORTS)
+    p.add_argument('--candidate', choices=CANDIDATES, default='planes')
     p.add_argument('--workers', type=int, default=5)
     a = p.parse_args()
-    jobs = [(cohort, case) for cohort in a.cohorts for case in inputs(cohort)[-1]]
+    jobs = [(cohort, case, a.candidate) for cohort in a.cohorts for case in inputs(cohort)[-1]]
     with ProcessPoolExecutor(a.workers) as pool:
         list(pool.map(run,jobs))
 
