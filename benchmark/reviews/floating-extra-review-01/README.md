@@ -2,6 +2,8 @@
 
 The chart-by-chart replay isolates a useful trade. Adopt the large-contraction rule as the benchmark challenger for the floating pipeline. The six-sky integration default still has much higher precision, and the expanded challenger still needs an independent confirmation on a new layout where the rule actually fires.
 
+[Open the six-case interactive review](review.html) locally to inspect the source, mask, both grids and the visible reference boundaries. Use the reference toggle after choosing a grid if you want a blind comparison. Feedback can be downloaded as JSON. Rebuild the portable page with `python -m benchmark.floating_extra_feedback`.
+
 ## How one face becomes a grid
 
 A surface mask marks pixels that the finder believes belong to one plane. A block face is one side of one block within that mask. For a wall the experimental search tries to undo the apparent narrowing toward the far end using the estimated surface direction and straight edges. In that front-facing view it searches for a square of unknown size and verifies its atlas texture against source pixels. An accepted square gives four source-image corners for one block. The projection maps a grid of equal block-size squares on the wall back into the source image, where the distant squares appear narrower. Ordinary assembly then joins compatible grids and chooses a connected group to export.
