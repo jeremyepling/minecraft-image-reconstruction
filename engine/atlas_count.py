@@ -3,6 +3,7 @@ from dataclasses import dataclass
 import gzip
 import hashlib
 import json
+import os
 from pathlib import Path
 
 import numpy as np
@@ -62,6 +63,11 @@ def _prepare(tiles, labels, ids, provenance):
 
 
 def prepared_atlas_paths(version):
+    if version == '26.3' and (override := os.environ.get('MCIR_PREPARED_ATLAS_26_3')):
+        path = Path(override)
+        if not (path / 'atlas.json').is_file():
+            raise FileNotFoundError(f'Missing prepared Java 26.3 atlas at {path}')
+        return [path]
     workspace_atlas = Path('workspace/builds/mcir-port-validation') / ('final-cli-' + version) / 'atlas'
     paths = [ROOT/'runs'/version/'atlas', ROOT/'runs'/'atlas',
              ROOT.parent/workspace_atlas, ROOT.parent.parent/workspace_atlas]
