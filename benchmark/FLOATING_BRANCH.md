@@ -10,7 +10,6 @@ Use the **expanded split-border benchmark** for new floating reconstruction expe
 |---|---:|---:|---:|---:|
 | Baseline — frozen expanded split-border, 84 conditions | 33.99% / 34.48% | 5.66% / 5.76% | 18,318 / 61,192 / 9,965 | 64.77% |
 | Baseline — frozen expanded split-border, six fixed sky views | 27.59% / 27.83% | 5.98% / 6.01% | 890 / 3,151 / 1,521 | 36.91% |
-| Sparse connected-atlas runtime at `9435934`, same six sky views | 12.64% / 12.90% | 4.68% / 4.77% | 273 / 3,768 / 5 | 98.20% |
 
 The frozen 84 contain 30 Visible Builds v2, 30 Visible Builds v3, and 24 Decorative Builds v1 conditions. The six fixed sky conditions are included and use four Visible Builds v3 and two Decorative Builds v1 layouts. The full 240-view active cohort remains unevaluated for this benchmark. On the 84 paired inputs, the guarded ruler and O2 package removed 1,426 extras and lost five strict correct positions, four required by the facade score. The subsequent depth and border-sky checks removed a further 29 extras while preserving every correct coordinate and material ID. Twenty-one of those removals were on the six fixed sky views. The pinned exports are the research comparison. The sparse connected-atlas exports are a separate runtime control.
 
