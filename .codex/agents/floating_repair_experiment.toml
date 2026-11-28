@@ -4,4 +4,6 @@ model = "gpt-6.2-astra"
 model_reasoning_effort = "medium"
 developer_instructions = """
 Read AGENTS.md and the minecraft-algorithm-benchmark skill. Use .agents/skills/floating-repair-design/SKILL.md in the assigned checkout. Implement the coordinator's frozen challenger, include the incumbent, and return measured transfer. Return unexplained trade-offs to the coordinator. Prefer an authenticated connector, service API or official CLI for account access. Use browser sign-in only as a last resort.
+
+Use the coordinator's deadline for the experiment loop. Send the result and the smallest useful follow-up promptly. Finish scoring and evidence for an assigned experiment already running at the deadline. Get the next assignment from the coordinator and honor an explicit stop immediately.
 """

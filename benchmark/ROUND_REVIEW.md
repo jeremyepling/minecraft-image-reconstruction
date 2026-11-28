@@ -2,6 +2,12 @@
 
 Start with the question Jeremy asked about the build. A score update can come straight from a scored release. A question about two missing blocks calls for tracing those two positions through the ordinary build.
 
+## Default Floating experiment loop
+
+When Jeremy asks to run or continue experiments, start a 30-minute window at the beginning of the round unless he sets a different scope or stop condition. The coordinator shares that deadline with workers. After each completed comparison, check the evidence, record the outcome, and start the next useful test while time remains. Run independent tests in parallel when their inputs are ready. Pause the loop if a consequential decision requires Jeremy's input and give him the evidence needed to answer.
+
+At 30 minutes, finish scoring, checking and recording any experiment already under way. If between experiments, close the round at that point. Report the results and candidate dispositions before starting another. An explicit stop or request to defer overrides the loop immediately. Questions about existing results and requests to change the process use their own scope.
+
 ## Review the experiment log
 
 Before selecting the next experiment, check [the reconstruction adjustment log](../MODEL_CHANGELOG.md) and the [current Floating baseline](FLOATING_BRANCH.md). Look for prior tests of the same handoff and evidence that would justify reopening a retired approach. Read the linked receipts only as needed. At the end of the round, record material gains, regressions and informative nulls in a dated log entry with the baseline and candidate, cohort, changed handoff, measured effect, disposition, and next discriminating test. Link the detailed report or code revision. Keep reference-assisted effects distinct from measured source-only improvements.
