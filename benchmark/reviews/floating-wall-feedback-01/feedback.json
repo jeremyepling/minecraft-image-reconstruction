@@ -1,0 +1,38 @@
+{
+  "train-riverside-mill-1-warm-high-right": {
+    "case": "Riverside Mill, high right",
+    "wall": "mask-0",
+    "preferred": "B",
+    "comment": "A previous expanded grid  i really bad. It's making microscopic blocks. like 4x4 for what is a full block. soetming about finding the face and matching the texture is wrong."
+  },
+  "train-riverside-mill-1-warm-low-left": {
+    "case": "Riverside Mill, low left",
+    "wall": "mask-0",
+    "preferred": "A",
+    "comment": "A and B are good, but A is a little better aligned in some spots.  the red sandstone roof should be a searapte surface. some sky is deleted in the surroundings dimmed. the front porch area should be as separate surface at the bottom"
+  },
+  "train-sawtooth2-cool-high-right": {
+    "case": "Sawtooth",
+    "wall": "mask-0-wall-1",
+    "preferred": "B",
+    "comment": "B has proper sized blocks. They're WAY too small in A. 6 squares for each actual block. Something about the face detection and i've seen this on other ones when it picks something way tos mall. maybe force it to take a bigger one especaiily when there are lines ont he blocks or test if it can match the atlas texture better to a biger face and bias to taht."
+  },
+  "test-twinspire2-cool-low-left": {
+    "case": "Twinspire",
+    "wall": "mask-2",
+    "preferred": "A",
+    "comment": ""
+  },
+  "train-amphitheater-01-orchid-low-left": {
+    "case": "Amphitheater",
+    "wall": "mask-0",
+    "preferred": "Neither",
+    "comment": "Both are wrong. this is really hard since everything is smoth. A has a million title blocks. B has a couple tiny blocks. "
+  },
+  "validation-hillside-chapel-1-warm-low-left": {
+    "case": "Hillside Chapel",
+    "wall": "mask-0",
+    "preferred": "B",
+    "comment": "A is really bad. million tiny blocks again. this seems to happen with textured blocks more than others so maybe it's matching or sampling on too small of a face. B is much betuter but just isn't aligned with the corner on the left to start."
+  }
+}
