@@ -1,5 +1,7 @@
 # Reconstruction adjustments and lessons for training
 
+- **2026-11-27, shared-corner grid overwrite audit.** Restoring the original measured chart on the reviewed Twinspire wall removed 63 extras and kept all 110 correct positions. Across the 84 active conditions, restoring every eligible wall lost 194 correct positions and removed 289 extras. Keep the broad bypass experimental. [Frozen exports and exact reviewed control](benchmark/reviews/floating-corner-overwrite-01/README.md)
+
 - **2026-11-27, second-round grid signoffs.** The Twinspire upper edge came within one pixel of the visible seam. Independent grids plus small signed depth steps gained eight correct positions and removed 35 extras on the 84 active cases. The added cells on Twinspire and the detected bands on Shrine still fail to join the winning component. Keep the candidates experimental. [Paired source overlays and decoded scores](benchmark/reviews/floating-grid-signoff-03/README.md)
 
 - **2026-11-27, parallel visible walls.** 284 of 1,824 proposals on the active floating panel mix substantive parallel planes. A source depth offset test gained 132 correct positions and removed 127 extras. A Twinspire top row improved local coverage but the exported component omitted that wall. Retain experimental reconstruction and review coverage, alignment, and sizing independently. [Paired grids and signoff](benchmark/reviews/floating-parts-feedback-02/README.md)
