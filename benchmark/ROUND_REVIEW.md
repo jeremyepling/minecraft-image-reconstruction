@@ -32,6 +32,10 @@ Use frame-identical controls and the same visible-only scoring and alignment. St
 
 [Examples and per-view evidence from the pipeline review](reviews/pipeline-consistency-01/README.md)
 
+## Annotation follow-up
+
+When a floating grid review asks Jeremy to annotate cases, put each prompt and its status in the round report beside the viewer. Include its ID in the phone-friendly PNG. At the next floating review, check the latest pending list and carry forward unanswered IDs alongside the new results. Mark each prompt complete when its answer is recorded.
+
 ## Produce the result
 
 When launching or reassigning a worker, tell Jeremy its task, model and reasoning effort in chat.
