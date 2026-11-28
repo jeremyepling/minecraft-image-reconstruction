@@ -6,6 +6,8 @@ Treat reconstruction like an OCR pipeline. Localize visible planes, read the blo
 
 Name the faulty handoff, its consumer, the repeatable failure and the export outcome it should improve. Reuse a matched [Perfect Stage replay](FLOATING_PIPELINE.md#perfect-from-this-stage) when it answers the question. Prioritize by remaining export headroom, how often the failure occurs across buildings, whether a source-image cue can resolve it, and the cost of getting an answer.
 
+For the next rounds, favor recovering missing visible blocks through better grids and preservation of correctly read faces during assembly. Measure newly correct exported positions and paired losses alongside extras. The archived exact-grid gain motivates this priority. Reassess it against matched Perfect replays on the current baseline as grids improve. Shift effort when attainable recovery gains flatten on fresh building families, another handoff offers more attainable gain, or extras become the main factor limiting usable builds. Keep the same promotion metrics and trade-off review throughout.
+
 | Evidence from the replay | Next experiment |
 | --- | --- |
 | Exact input helps, but the correct option is usually absent | Improve the proposal generator or replace the estimator. For grids, isolate block pitch, origin and visible cell coverage before choosing which target to learn. |
