@@ -18,7 +18,7 @@ from engine.geometry import UNIT
 PRIOR = WORKTREES/"floating-peer-ruler-refit/runs/peer-ruler-refit/atlas-first"
 OUT = ROOT/"runs/peer-refit-recovery"
 REVIEW = ROOT/"benchmark/reviews/floating-peer-refit-recovery-01"
-ARMS = ("overlap","witness","phase","phase-material")
+ARMS = ("overlap","witness","anchor-region","region-overlap","phase","phase-material")
 SITES = np.stack(np.meshgrid((np.arange(9)+.5)/9,(np.arange(9)+.5)/9),-1)
 
 
@@ -69,7 +69,7 @@ def materials(chart,old,peers,mask,rgb):
                 witnesses.append((label({"block_id":proof["material"]}),descriptor(pix[visible]),
                                   xy[4,4],proof["correlation"]))
     evidence=[]
-    alternatives={a:[] for a in ("overlap","witness")}
+    alternatives={a:[] for a in ("overlap","witness","anchor-region","region-overlap")}
     for cell in chart["cells"]:
         uv=np.array(key(cell))
         xy,pix,visible=observed(rgb,mask,h,uv)
@@ -161,11 +161,14 @@ def run(job):
             mask[y:y1,x:x1]=np.asarray(alpha)>0
             peers=[v for v in original["charts"] if v["id"]!=cid]
             recolor,mat=materials(chart,old,peers,mask,rgb)
+            from benchmark.floating_peer_material_region import propagate
+            region,region_proof=propagate(chart,mask,rgb)
+            region_overlap,_=propagate(recolor["overlap"],mask,rgb)
             shifted,details=tweak(chart,mask,rgb)
             both=materials(shifted,old,peers,mask,rgb)[0]["witness"] if shifted is not chart else recolor["witness"]
-            for arm,entry in dict(**recolor,phase=shifted,**{"phase-material":both}).items():
+            for arm,entry in dict(**recolor,phase=shifted,**{"phase-material":both,"anchor-region":region,"region-overlap":region_overlap}).items():
                 packets[arm].append(entry)
-            decisions[cid]=dict(material=mat,phase=details)
+            decisions[cid]=dict(material=mat,phase=details,region=region_proof)
     roots={"original":base/"assembly","refit":source/"assembly"}
     for arm in ARMS:
         dest=OUT/g/arm
@@ -182,7 +185,7 @@ def run(job):
     for a,root in roots.items():
         receipt=read(root/PREFIX/n/"score.json")
         packed[a]=dict(pack=receipt["pack_sha256"],chart=receipt["chart_sha256"],translation=row["score"][a]["translation"])
-        if a in ("overlap","witness"):
+        if a in ("overlap","witness","anchor-region","region-overlap"):
             repl=read(root/PREFIX/n/"placements.json")
             for field in ("local","aligned"):
                 assert [v for v,_ in repl[field]]==[v for v,_ in ref[field]]
