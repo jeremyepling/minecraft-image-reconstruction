@@ -8,7 +8,7 @@ from pathlib import Path
 from PIL import Image
 
 from benchmark.expanded_baseline import digest, read
-from benchmark.floating_review_app import SINGLE_TEMPLATE, app_checkout
+from benchmark.floating_review_app import SINGLE_TEMPLATE, app_checkout, stage_scored_review
 from benchmark.mask_blocks import decoded_pack
 from benchmark.mobile_surface_evidence import add_grid, packet_grids, parent, source_surfaces
 
@@ -78,18 +78,24 @@ def prepare(args):
                 scorecards=[scorecard(label, Path(path)) for label, path in args.scorecard])
     score_blob = {key: blob[key] for key in ("title", "revision", "measures", "scorecards")}
     score_blob["arms"] = [{key: arm[key] for key in ("label", "stages")} for arm in arms]
-    template = (app_checkout(args.app_root) / SINGLE_TEMPLATE).read_text(encoding="utf-8")
-    args.out.mkdir(parents=True, exist_ok=True)
-    if any(path.name not in {"index.html", "scores.html", "vercel.json"} or not path.is_file()
-           for path in args.out.iterdir()):
-        raise ValueError("Choose a directory reserved for generated review files")
-    for name, view, data in (("index.html", "review", blob), ("scores.html", "scores", score_blob)):
+    app = app_checkout(args.app_root)
+    template = (app / SINGLE_TEMPLATE).read_text(encoding="utf-8")
+    if args.out.exists() and any(args.out.iterdir()):
+        raise ValueError("Choose a new or empty directory for the protected review bundle")
+    stage_scored_review(app, args.out, single_title=args.title)
+    single = args.out / "single"
+    single.mkdir()
+    for view, data in (("review", blob), ("scores", score_blob)):
         encoded = json.dumps(data, ensure_ascii=False, separators=(",", ":")).replace("</", r"<\/")
         page = template.replace("%%VIEW%%", view).replace("%%EVIDENCE%%", encoded)
-        (args.out / name).write_text(page, encoding="utf-8")
-    config = dict(cleanUrls=True, rewrites=[dict(source="/review", destination="/index")],
-                  headers=[dict(source="/(.*)", headers=[{"key": "X-Robots-Tag", "value": "noindex, nofollow"}])])
-    (args.out / "vercel.json").write_text(json.dumps(config, indent=2) + "\n", encoding="utf-8")
+        (single / f"{view}.html").write_text(page, encoding="utf-8")
+    config_path = args.out / "vercel.json"
+    config = read(config_path)
+    config.setdefault("rewrites", []).extend(
+        dict(source=f"/{view}", destination=f"/single/{view}") for view in ("review", "scores"))
+    config.setdefault("headers", []).append(
+        dict(source="/(.*)", headers=[{"key": "X-Robots-Tag", "value": "noindex, nofollow"}]))
+    config_path.write_text(json.dumps(config, indent=2) + "\n", encoding="utf-8")
 
 
 def main():

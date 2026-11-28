@@ -1,5 +1,6 @@
-"""Locate the review app checkout and stage only its experiment frontend files."""
+"""Stage the shared review site with its published run index."""
 import argparse
+import json
 import os
 from pathlib import Path
 import re
@@ -33,16 +34,25 @@ def stage_scored_app(app, destination):
 RUN_MANIFESTS = Path("benchmark/reviews/mobile-review-runs")
 
 
-def stage_scored_review(app, destination):
+def stage_scored_review(app, destination, *, single_title=None):
     stage_scored_app(app, destination)
     tracked = subprocess.check_output(["git", "ls-files", RUN_MANIFESTS], cwd=ROOT, text=True)
-    for name in tracked.splitlines():
+    experiments = []
+    for name in sorted(tracked.splitlines()):
         asset = Path(name).relative_to(RUN_MANIFESTS)
         if not re.fullmatch(r"[a-z0-9-]+/manifest\.json", asset.as_posix()):
             raise ValueError(f"Unexpected saved run file: {asset}")
         target = destination / "runs" / asset
         target.parent.mkdir(parents=True, exist_ok=True)
         shutil.copyfile(ROOT / name, target)
+        manifest = json.loads(target.read_text(encoding="utf-8"))
+        if manifest["id"] != asset.parent.name:
+            raise ValueError(f"Run ID differs from saved manifest path: {asset}")
+        experiments.append(dict(id=manifest["id"], title=manifest["title"]))
+    single = (dict(title=single_title, review="/single/review", scores="/single/scores")
+              if single_title is not None else None)
+    data = dict(single=single, experiments=experiments)
+    (destination / "review-home.json").write_text(json.dumps(data, ensure_ascii=False) + "\n", encoding="utf-8")
 
 
 def main():

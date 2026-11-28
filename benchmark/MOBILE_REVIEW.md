@@ -1,6 +1,6 @@
 # Floating mobile review
 
-Use the existing Floating Review Vercel project. The [review app repository](https://github.com/jeremyepling/minecraft-reconstruction-review) owns both frontends. Clone it beside the reconstruction checkout or pass its path with `--app-root`. This checkout owns evidence generation, verification and the archived public experiment manifests. Give each scored run a stable ID and two links.
+Use the existing Floating Review Vercel project. The [review app repository](https://github.com/jeremyepling/minecraft-reconstruction-review) owns the landing page, shared dark gray and blue stylesheet, and both report views. Clone it beside the reconstruction checkout or pass its path with `--app-root`. This checkout owns evidence generation, verification and the archived public experiment manifests. Give each scored run a stable ID and two links.
 
 | Link | Contents |
 | --- | --- |
@@ -22,7 +22,7 @@ python -m benchmark.build_floating_single_review --source $image --baseline $bui
 vercel deploy $singleBundle --environment preview --project floating-review
 ```
 
-Pass `--candidate` to show a second export from the same image. The preview bundle contains the resized source, aligned evidence and observed counts. It does not need the full fixture or its reference labels. Its routes are `/review`, `/scores`, and `/review?surface=<mask-id>`.
+Pass `--candidate` to show a second export from the same image. The preview bundle contains the resized source, aligned evidence and observed counts. It does not need the full fixture or its reference labels. The protected landing page at `/` links to the supplied image and the published experiments on the same preview. Use `/single/review`, `/single/scores`, or `/single/review?surface=<mask-id>`. The public bundle indexes the published experiments without staging the supplied image.
 
 The completion check for a requested Vercel review is a verified **Image review** link and **Scores** link, plus a direct surface link when there is a traced failure. For supplied imagery approved for private upload, use a protected preview on the existing project and verify its sign-in requirement. Record a concrete blocker if hosting needs authorization or fails. Keep local evidence available for inspection while the hosted link is pending.
 
