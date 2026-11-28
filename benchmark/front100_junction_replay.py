@@ -17,12 +17,13 @@ from benchmark.floating_face_proposals import image_axes
 from benchmark.floating_selective_replay import assemble_arm
 from benchmark.front100_junction_scale import MIN_CELLS, challenge
 from benchmark.mask_blocks import decoded_pack
+from benchmark.mobile_surface_evidence import build_expanded
 from engine.floating_sky import sky_support
 from runtime.mode import image_only
 
 
 def run(job):
-    entry, baseline, out, confirm_coverage = job
+    entry, baseline, out, confirm_coverage, require_multispot = job
     cv2.setNumThreads(1)
     source_dir = baseline / 'original' / entry['id']
     target = out / 'original' / entry['id']
@@ -52,7 +53,7 @@ def run(job):
                 if sky is None:
                     axes = image_axes(image,planes)
                     sky = sky_support(image)
-                improved, audit = challenge(chart,by_id[plane_id],rgb,axes,sky,confirm_coverage=confirm_coverage)
+                improved, audit = challenge(chart,by_id[plane_id],rgb,axes,sky,confirm_coverage=confirm_coverage, require_multispot=require_multispot)
                 audits[chart['id']] = audit
                 if improved is not chart:
                     changed.append(chart['id'])
@@ -102,6 +103,21 @@ def run(job):
     print(entry['id'],list(audits),changed,dict(paired),flush=True)
 
 
+def portable(job):
+    entry, baseline, out = job
+    target = out/'original'/entry['id']
+    source = baseline/'original'/entry['id']
+    if (target/'surfaces.json').is_file():
+        return
+    record = read(target/'case.json')
+    shutil.copytree(source/'source-handoff',target/'source-handoff',copy_function=shutil.copyfile,dirs_exist_ok=True)
+    if not (target/'charts.json').exists():
+        shutil.copyfile(source/'charts.json',target/'charts.json')
+    if digest(target/'charts.json')!=record['charts_sha256']:
+        raise ValueError('Portable chart hash differs: '+entry['id'])
+    build_expanded(target,Path(entry['variants']['original']['image']),record,read(target/'assembly.json'))
+
+
 def report(entries, baseline, out):
     records = [read(out/'original'/e['id']/'case.json') for e in entries if (out/'original'/e['id']/'case.json').is_file()]
     def group(rows):
@@ -123,7 +139,9 @@ def main():
     p.add_argument('--case',action='append')
     p.add_argument('--split')
     p.add_argument('--report',action='store_true')
+    p.add_argument('--portable',action='store_true')
     p.add_argument('--confirm-coverage',action='store_true')
+    p.add_argument('--require-multispot',action='store_true')
     args = p.parse_args()
     entries = read(args.baseline/'fixtures.json')['cases']
     args.out.mkdir(parents=True,exist_ok=True)
@@ -133,9 +151,12 @@ def main():
     shutil.copyfile(args.baseline/'fixtures.json',manifest)
     selected = [e for e in entries if (not args.split or e['split']==args.split) and
                 (not args.case or e['id'] in args.case)]
-    if not args.report:
+    if args.portable:
         with ProcessPoolExecutor(args.workers) as pool:
-            list(pool.map(run,[(e,args.baseline,args.out,args.confirm_coverage) for e in selected]))
+            list(pool.map(portable,[(e,args.baseline,args.out) for e in selected]))
+    elif not args.report:
+        with ProcessPoolExecutor(args.workers) as pool:
+            list(pool.map(run,[(e,args.baseline,args.out,args.confirm_coverage,args.require_multispot) for e in selected]))
     report(entries,args.baseline,args.out)
 
 

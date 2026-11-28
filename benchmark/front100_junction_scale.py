@@ -87,7 +87,7 @@ def pitch_ratio(proposed, original, center):
     return (lengths[0]/max(1e-8, lengths[1]))**.5
 
 
-def discover(patch, mask, R, original, center):
+def discover(patch, mask, R, original, center, *, limit=10):
     """Search only the discovery region. Reserve the rest for phased, fixed-ruler validation."""
     gray = patch.astype('f').mean(2)
     library = atlas()
@@ -122,7 +122,7 @@ def discover(patch, mask, R, original, center):
                     best = peak, H, ratio
             if best:
                 offers.append(best)
-    return sorted(offers, key=lambda row: row[0], reverse=True)[:10]
+    return sorted(offers, key=lambda row: row[0], reverse=True)[:limit]
 
 
 def independent_coverage(old, new, anchors, mask, rgb):
@@ -171,7 +171,56 @@ def independent_coverage(old, new, anchors, mask, rgb):
                 old_tiles=old_tiles,new_tiles=new_tiles,incumbent_only=lose,candidate_only=win)
 
 
-def challenge(chart, plane, rgb, axes, sky, *, confirm_coverage=False):
+def multispot(options, observations):
+    """Use multiple different complete sprites on a shared 2-D lattice to refit the wall."""
+    offers = []
+    for _, initial, pair in options:
+        by_uv = {}
+        inv = np.linalg.inv(initial)
+        for correlation, H, ratio, material, rough in observations[pair['axis']]:
+            if abs(np.log(ratio/pair['scale_ratio']))>np.log(1.23):
+                continue
+            q = project(H, UNIT)
+            local = project(inv, q)
+            offset = np.rint((local-UNIT).mean(0))
+            err = np.linalg.norm(local-(UNIT+offset),axis=1).max()
+            if err > .32:
+                continue
+            key = tuple(offset.astype(int).tolist())
+            if key not in by_uv or by_uv[key]['correlation'] < correlation:
+                by_uv[key] = dict(local=UNIT+offset,pixels=q,correlation=correlation,material=material)
+        anchors = list(by_uv.values())
+        if len(anchors)<3 or len({a['material'] for a in anchors})<2:
+            continue
+        hull = cv2.convexHull(np.asarray(list(by_uv),dtype='float32'))
+        if cv2.contourArea(hull) < 1.5:
+            continue
+        # Each independently located tile must land where the other tiles predict it,
+        # before letting any of its corners refine the final homography.
+        validated = []
+        errors = []
+        for index, row in enumerate(anchors):
+            other = anchors[:index]+anchors[index+1:]
+            h,_ = cv2.findHomography(np.vstack([a['local'] for a in other]),np.vstack([a['pixels'] for a in other]))
+            if h is None or not np.isfinite(h).all():
+                continue
+            residual = np.linalg.norm(project(np.linalg.inv(h),row['pixels'])-row['local'],axis=1).max()
+            if residual <= .4:
+                validated.append(row)
+                errors.append(float(residual))
+        if len(validated)<3 or len({a['material'] for a in validated})<2:
+            continue
+        H,_=cv2.findHomography(np.vstack([a['local'] for a in validated]),np.vstack([a['pixels'] for a in validated]))
+        if H is None or not np.isfinite(H).all():
+            continue
+        proof = [dict(uv=a['local'][0].tolist(),quad=a['pixels'].tolist(),correlation=a['correlation'],
+                      material=a['material'],leave_one_out_error=err) for a,err in zip(validated,errors)]
+        value = len(validated) + np.mean([a['correlation'] for a in validated]) - np.mean(errors)
+        offers.append((float(value),H,dict(pair,independent_tiles=proof)))
+    return sorted(offers,key=lambda row:row[0],reverse=True)
+
+
+def challenge(chart, plane, rgb, axes, sky, *, confirm_coverage=False, require_multispot=False):
     mask = chart_mask(chart, plane, rgb.shape[1::-1])
     y, x = np.nonzero(mask[::3, ::3])
     if len(x)<512:
@@ -179,10 +228,11 @@ def challenge(chart, plane, rgb, axes, sky, *, confirm_coverage=False):
     split, divider = np.quantile(3*x+.5, [.47,.56])
     center = np.median(np.column_stack((x,y))*3+.5, axis=0)
     options = []
+    observations = {}
     for name, patch, support, rectified, xy in views(rgb, mask, chart, axes):
         def independent(region):
             local = []
-            for rough, H, ratio in discover(patch, support & region, rectified, np.asarray(chart['H']), center):
+            for rough, H, ratio in discover(patch, support & region, rectified, np.asarray(chart['H']), center, limit=24 if require_multispot else 10):
                 hit = verify_sprite(rgb, project(H, UNIT))
                 if hit and hit[2] >= .70:
                     local.append((hit[2], H, ratio, hit[0], rough))
@@ -191,6 +241,7 @@ def challenge(chart, plane, rgb, axes, sky, *, confirm_coverage=False):
         if not near:
             continue
         far = independent(xy[...,0] >= divider)
+        observations[name] = near + far
         for correlation, H, ratio, material, rough in near:
             for other_corr, other_H, other_ratio, other_material, other_rough in far:
                 if abs(np.log(ratio/other_ratio)) > np.log(1.20):
@@ -220,6 +271,8 @@ def challenge(chart, plane, rgb, axes, sky, *, confirm_coverage=False):
                                 corner_residual=float(uv_error))
                 value = min(correlation,other_corr) + .1*same - .15*uv_error
                 options.append((value, fit, evidence))
+    if require_multispot:
+        options = multispot(options,observations)
     options.sort(key=lambda row:row[0],reverse=True)
     inspected = []
     for _, H, item in options:
