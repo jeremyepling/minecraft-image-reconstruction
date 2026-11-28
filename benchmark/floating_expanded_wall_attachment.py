@@ -185,6 +185,8 @@ def run(job):
 
 
 def workload():
+    assert digest(ARCHIVE)=="14788188ce6695a6c5865687893d258e97f5dc555951e00421449c53f3ca68eb"
+    assert digest(PREVIOUS)=="7d608468169e8528764c3478237f089a1d48547e3ff1185589d2ce2265e379f2"
     rows={(r["panel"],r["id"]):r for r in read(ARCHIVE)}
     old={(r["panel"],r["id"]):r for r in read(PREVIOUS) if r["active"]}
     cases=jobs()

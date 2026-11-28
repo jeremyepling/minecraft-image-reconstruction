@@ -1,5 +1,7 @@
 # Reconstruction adjustments and lessons for training
 
+- **2026-11-28, detached walls on expanded split-border.** Attaching observed tangent-compatible fragments gained 57 positions and 51 exact IDs without losing any, while adding 20 extras. Preserving explicit source splits blocked 12 further Pillars extras. Requiring repeated texture lost six correct Cloister placements and saved no extras. [Conditions, source fits and decoded results](benchmark/reviews/floating-expanded-wall-attachment-01/README.md)
+
 - **2026-11-28, source partitions and regional block rulers.** The Stable Yard low-left roof produced 21 distinct cut-sandstone cells from separated image patches but remained disconnected from the exported assembly. Over 84 conditions the partial refit lost three correct positions and removed 371 net extras. Keep the corrected local handoff and leave the broad export experimental. [Source regions and decoded evidence](benchmark/reviews/floating-mixed-wall-refit-01/README.md)
 
 
