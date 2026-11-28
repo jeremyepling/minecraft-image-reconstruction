@@ -2,6 +2,8 @@
 
 ## Floating-build development
 
+End each floating experiment report and chat result with **Floating branch scorecard**. Use the integration revision and cohort in `benchmark/FLOATING_BRANCH.md`, and follow the scorecard instructions in `benchmark/ROUND_REVIEW.md`.
+
 Use `experiment/floating-visible-builds` as the integration branch for the ground-independent, visible-only reconstruction effort. Base new challengers on this branch and return verified gains here. Jeremy wants this development isolated from production `main`. Promotion to `main` is a separate decision for Jeremy after comparable evaluation. Compare against the branch's connected-atlas result, retain whole-build translation scoring, and record which structures gain or regress. See [the branch baseline and replay](benchmark/FLOATING_BRANCH.md).
 
 For a reconstruction result, use [the round review guide](benchmark/ROUND_REVIEW.md) to trace a reported error, estimate the recoverable placements, generate the before/after scores and show the affected source image. Start independent cases, variants and checks in parallel using private outputs. Run timing comparisons when Jeremy asks for them. For a new model, placement chooser or cross-stage feedback loop, use a perfect-input replay or a perfect chooser over the actual options when it can change the investment decision. Measure the paired end-to-end effect, then test what source-only evidence can recover on other buildings. [Choosing the right diagnostic](benchmark/ROUND_REVIEW.md#when-a-perfect-answer-test-earns-its-cost)

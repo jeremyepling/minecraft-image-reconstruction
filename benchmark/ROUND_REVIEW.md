@@ -19,6 +19,10 @@ Before calling an input perfect, verify its handoff: compare decoded mask owners
 
 Use frame-identical controls and the same visible-only scoring and alignment. State the number of views, exact interventions, and any gap between the replay baseline and published packs. A ground-truth mask carries pixel grouping and coverage together; do not attribute a bundled result to a single cue. One-plane-at-a-time gains do not add up to a whole-build ceiling. For a small deterministic bug with a direct reproduction, the focused regression test is usually quicker. [Measured stage handoffs and source-only follow-ups](reviews/pipeline-impact-01/README.md)
 
+## Floating branch scorecard
+
+Close every floating experiment report and chat result with the scores for the actual integration default on its named fixture, followed by the candidate's scores on the same images. Give strict and facade placement F1, strict and facade position-plus-ID F1, and correct, missed and extra blocks. State the change from the previous default and which gains landed this round. Label an archived score with its measured revision and distinguish a candidate improvement from an integration change. When false positives drive a decision, show how many extras were removed for each correct position lost and identify any single view that dominates the tradeoff. Keep the fixed-104 production trend separate.
+
 ## From a reported error to a test
 
 | Question | Evidence to bring back |
