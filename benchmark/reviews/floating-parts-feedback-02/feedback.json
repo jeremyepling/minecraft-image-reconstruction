@@ -1,0 +1,50 @@
+{
+  "train-amphitheater-01-orchid-low-left-support": {
+    "case": "Smooth wall fallback · Amphitheater 01",
+    "wall": "mask-0",
+    "preferred": "Neither",
+    "comment": "these are all bad. there's a purpur block you can find at the top. maybe look for any block on any surface to get some rough estimate of shape and never go way far from that."
+  },
+  "train-amphitheater-02-orchid-high-right-support": {
+    "case": "Smooth wall fallback · Amphitheater 02",
+    "wall": "mask-1-wall-0",
+    "preferred": "Neither",
+    "comment": "The part sticking out are just 1 or 2 blocks. this is WAY too many. now realy way to know. we shouldn't use this picture and stop useing builds that almost all concreate and terracotta. it's even hard for humans. id on't want to optimize these so remove builds liek this from the data set."
+  },
+  "train-observatory-02-verdigris-low-left-support": {
+    "case": "Smooth wall fallback · Observatory",
+    "wall": "mask-0",
+    "preferred": "A",
+    "comment": "A isn't perfect, but it got eh blocks and general close position."
+  },
+  "validation-hillside-chapel-1-warm-low-left-origin": {
+    "case": "Reference origin · Hillside Chapel",
+    "wall": "mask-0",
+    "preferred": "B",
+    "comment": "b is much better."
+  },
+  "train-riverside-mill-1-warm-high-right-origin": {
+    "case": "Reference origin · Riverside high right",
+    "wall": "mask-0",
+    "preferred": "",
+    "comment": "B is much better but misses the right left side. A has the cross in the window shape of blacks better."
+  },
+  "train-riverside-mill-1-warm-low-left-boundary": {
+    "case": "Reference boundary · Riverside low left",
+    "wall": "mask-0",
+    "preferred": "A",
+    "comment": "A is better based on the dectected surface, but the dectated surface is too large the roof and winwo should be separate surfaces"
+  },
+  "train-shrine-02-ochre-low-left-scale": {
+    "case": "Atlas scale · Shrine",
+    "wall": "mask-0-wall-0",
+    "preferred": "A",
+    "comment": "The part to the right is good on A. The shairs should be a separate surfaces"
+  },
+  "test-twinspire2-earth-high-right-scale": {
+    "case": "Atlas scale · Twinspire, earth palette",
+    "wall": "mask-2",
+    "preferred": "B",
+    "comment": "B missing the top row, but is much better than a"
+  }
+}
