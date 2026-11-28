@@ -40,7 +40,10 @@ def stage(root, first, last, jar):
                 return {(x + number * 384, y + 145, z): block for (x, y, z), block in cells.items()}
             base, decor = at_world(base), at_world(decor)
             bounds = [min(point[i] for point in base) for i in range(3)]
-            pose = camera(base.keys() | decor.keys(), info["angle_deg"], info["elevation_deg"])
+            # The crane's projecting fence otherwise leaves the bare boom at 74.375% of frame.
+            frame_fraction = .94 if info["layout"] == "front-067-crane" else .90
+            pose = camera(base.keys() | decor.keys(), info["angle_deg"], info["elevation_deg"],
+                          frame_fraction=frame_fraction)
             for condition in ("full", "decorative"):
                 page = 2 * number + int(condition == "decorative")
                 extra = decor if condition == "decorative" else {p: "air" for p in decor}

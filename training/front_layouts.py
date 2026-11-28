@@ -198,7 +198,7 @@ def design(number):
                 angle_deg=int(rng.integers(-27, 28)), elevation_deg=int(rng.integers(-7, 10))), cells, decorations
 
 
-def camera(cells, azimuth, elevation):
+def camera(cells, azimuth, elevation, *, frame_fraction=.90):
     # Every silhouette extremum comes from a corner of a cell. Only the extrema of each
     # vertical column can attain the extrema in an arbitrary linear direction.
     columns = {}
@@ -212,7 +212,7 @@ def camera(cells, azimuth, elevation):
     right = np.array([np.cos(az), 0, -np.sin(az)])
     up = np.cross(outward, right)
     eye_depth = pts @ outward
-    slopes = np.tan(np.radians(55 / 2)) * np.array([1.6, 1]) * .90
+    slopes = np.tan(np.radians(55 / 2)) * np.array([1.6, 1]) * frame_fraction
     # Find the nearest eye depth where all points fit between both pairs of frustum planes.
     uv = pts @ np.stack([right, up]).T
     near_bounds = (uv + eye_depth[:, None] * slopes).max(axis=0)
