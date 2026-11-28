@@ -4,7 +4,7 @@ from pathlib import Path
 from PIL import Image, ImageDraw
 
 from benchmark.floating_corner_overwrite_review import BG, GOLD, MUTED, TEXT, draw_wrap, font, picture
-from benchmark.floating_grid_signoff import make
+from benchmark.floating_grid_signoff import make, read
 from benchmark.floating_second_signoff import option
 
 
@@ -13,14 +13,23 @@ def grid_sheet(title, summary, cases, output):
     for item in cases:
         panel, name, wall = (item[key] for key in ("panel", "id", "wall"))
         relative = Path("sky")/name/"charts.json"
-        source_options = [option(root,relative,wall) for root in item["roots"]]
+        before,after = item["roots"]
+        source_options = [option(before,relative,wall)]
+        if not item.get("candidate_chart_ids"):
+            source_options.append(option(after,relative,wall))
+        if item.get("candidate_chart_ids"):
+            candidate_packet = read(item["roots"][1]/"charts"/relative)
+            by_id = {c["id"]:c for c in candidate_packet["charts"]}
+            source_options.append(([by_id[key] for key in item["candidate_chart_ids"]], {}))
         if item.get("export_cells"):
-            chart = source_options[1][0][0]
-            cells = chart.get("export_cells",chart["cells"])
-            if "export_uv" in chart:
-                allowed = set(map(tuple, chart["export_uv"]))
-                cells = [c for c in cells if (c["u"],c["v"]) in allowed]
-            source_options[1][0][0] = dict(chart,cells=cells)
+            selected = []
+            for chart in source_options[1][0]:
+                cells = chart.get("export_cells",chart["cells"])
+                if "export_uv" in chart:
+                    allowed = set(map(tuple, chart["export_uv"]))
+                    cells = [c for c in cells if (c["u"],c["v"]) in allowed]
+                selected.append(dict(chart,cells=cells))
+            source_options[1] = (selected,{})
         record = make(("grid",panel,name,wall,item["title"],item["note"]),dict(charts=source_options,scores=item["scores"]))
         card = Image.new("RGB",(1540,1500),BG)
         d = ImageDraw.Draw(card)

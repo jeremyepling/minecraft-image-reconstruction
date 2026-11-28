@@ -1,5 +1,5 @@
 """Isolate known wall-ruler and ownership inputs on the two Stable Yard 1 views."""
-import json
+from argparse import ArgumentParser
 from collections import Counter
 from pathlib import Path
 from unittest.mock import patch
@@ -12,6 +12,7 @@ from benchmark.floating_extra_budget import LOCATION, WORKTREES, combined, paths
 from benchmark.expanded_baseline import digest, read, save
 from benchmark.floating_bridges_report import summarize
 from benchmark.floating_one_face_control import extend, face_grid, visible_quad
+from benchmark.expanded_wall_rulers import local_rulers
 from engine.geometry import project
 from engine.surface_perimeter import _native_alpha
 
@@ -20,7 +21,7 @@ PANEL = "holdout3"
 NAMES = ["train-stable-yard-1-warm-low-left","train-stable-yard-1-warm-high-right"]
 
 
-def run(case):
+def run(case, dest, local_pitch):
     name = case["id"]
     relation = Path("sky")/name/"charts.json"
     inputs = paths(PANEL)[0]
@@ -57,9 +58,15 @@ def run(case):
     fitted = face_grid(face,camera)
     roots = {"baseline":base/"assembly"}
     counts = {"baseline":len(wall["cells"])}
-    for arm,support in (("exact-ruler",mask),("exact-ruler-and-plane",reference_mask)):
-        new = extend(wall,fitted,support,rgb)
-        out = DEST/name/arm
+    treatments = {"exact-ruler": (fitted, mask), "exact-ruler-and-plane": (fitted, reference_mask)}
+    calibration = None
+    if local_pitch:
+        (_, spacing, phase), calibration = local_rulers(wall, fitted)
+        treatments = {"exact-local-pitch": (spacing, mask),
+                      "exact-local-pitch-and-phase": (phase, mask), "exact-ruler": (fitted, mask)}
+    for arm,(geometry,support) in treatments.items():
+        new = extend(wall,geometry,support,rgb)
+        out = dest/name/arm
         save(out/"charts"/relation,dict(packet,charts=[new if c["id"]=="mask-0" else c for c in packet["charts"]]))
         with patch.object(combined,"inputs",lambda _:inputs):
             combined.run((PANEL,case,out/"charts",out/"assembly"))
@@ -69,6 +76,8 @@ def run(case):
     summary.update(chart_size=counts, anchor=face["id"],principal=principal,
                    source_sha256=digest(image),reference_sha256=digest(frame/"labels.npz"),
                    source_mask_pixels=int(mask.sum()),principal_pixels=int(reference_mask.sum()))
+    if calibration is not None:
+        summary["local_calibration"] = calibration
     print(name,counts,summary["source_mask_pixels"],summary["principal_pixels"],face["id"])
     print([(arm,s["geometry"]["strict"],s["scores"]["strict"]["correct"]) for arm,s in summary["score"].items()])
     return summary
@@ -77,4 +86,9 @@ def run(case):
 if __name__=="__main__":
     cv2.setNumThreads(1)
     cases={case["id"]:case for case in paths(PANEL)[0][3]}
-    save(DEST/"stable-yard-oracle.json",[run(cases[name]) for name in NAMES])
+    parser = ArgumentParser(description=__doc__)
+    parser.add_argument("--local-pitch", action="store_true", help="Preserve the source perspective and test exact pitch and phase.")
+    args = parser.parse_args()
+    dest = Path("runs/peer-mixed-review") if args.local_pitch else DEST
+    receipt = "pitch-only-control.json" if args.local_pitch else "stable-yard-oracle.json"
+    save(dest/receipt,[run(cases[name],dest,args.local_pitch) for name in NAMES])
