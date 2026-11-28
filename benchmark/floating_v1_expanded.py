@@ -95,7 +95,7 @@ def pair_fix(packet,seeds,planes,counts,rgb,name):
     return proposals.get(arm,packet["charts"]),next((o["pair"] for o in options if o["arm"]==arm),[])
 
 
-def expanded_packet(case, destination):
+def expanded_packet(case, destination, *, field_cache=None):
     n=case["id"]
     rel=Path("sky")/n/"charts.json"
     handoff=v1.handoff(n)
@@ -120,7 +120,7 @@ def expanded_packet(case, destination):
     flags=pink.guard_targets(selected,seeds,planes,rgb) if selected!=raw else initial
     fields={}
     if flags:
-        normal,dist,_=v1.source_fields(group,case,v1.SOURCE,image.size)
+        normal,dist,_=v1.source_fields(group,case,v1.SOURCE,image.size,cache=field_cache)
         for cid in flags:
             mask=pink.native_mask(planes[cid],image.size)
             coarse,meta=pink.depth.partition(rgb,mask,normal,dist)

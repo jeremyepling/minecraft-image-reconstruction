@@ -38,7 +38,7 @@ class ImageOnlyTests(unittest.TestCase):
             folder = Path(tmp)
             with patch.object(sys, 'argv', ['reconstruct', 'build', 'picture.png', '--atlas', str(folder),
                                             '--out', str(folder / 'out')]), \
-                 patch.object(reconstruct, 'reconstruct', side_effect=lambda *a, **k: verify(folder, None, folder, [])):
+                 patch('engine.floating.build', side_effect=lambda *a, **k: verify(folder, None, folder, [])):
                 with self.assertRaisesRegex(RuntimeError, 'Image-only run'):
                     reconstruct.main()
             self.assertFalse((folder / 'out').exists())

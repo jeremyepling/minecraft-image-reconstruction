@@ -2,7 +2,7 @@
 
 Use the [reconstruction adjustment log](../MODEL_CHANGELOG.md) when choosing training examples and evaluation cases. It tracks observed failures and measured changes from the existing pipeline.
 
-Start with [Floating Front 100](FLOATING_DATASETS.md) for the default algorithm on `main`. Use its exact screenshots and per-frame visible geometry. Keep the matched lighting and decoration variants of a layout in the layout’s assigned split. The proposed learning experiment below follows the [visible-only product intent](../PRODUCT_INTENT.md).
+Use the exact [Floating Front 100 screenshots and per-frame visible geometry](FLOATING_DATASETS.md) to compare with Expanded Split-Border, the default Floating method on `main`. Keep the matched lighting and decoration variants of a layout in the layout’s assigned split. The proposed learning experiment below follows the [visible-only product intent](../PRODUCT_INTENT.md).
 
 ## Objective
 

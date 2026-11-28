@@ -1,8 +1,19 @@
 # Floating reconstruction pipeline
 
-Floating uses the geometry visible in a source image to build a local block grid. It joins surfaces using their visible contacts and places the complete build at one arbitrary origin. The recorded camera and world supply scoring and diagnostics. Unseen geometry stays unknown.
+Expanded Split-Border uses the geometry visible in a source image to build local block grids. It joins surfaces using their visible contacts and exports the selected group at one arbitrary origin. The recorded camera and world supply scoring and diagnostics. Unseen geometry stays unknown.
 
-Use the [main architecture](../ARCHITECTURE.md) for the current Front 100 path. The detailed chart below traces the [archived original V1 comparison](https://github.com/jeremyepling/minecraft-image-reconstruction/blob/01d51c0/benchmark/reviews/floating-visible-builds-v1-01/README.md). Its **Baseline** is the frozen expanded split-border method. Its pink depth check separates existing chart cells while keeping their ruler. **Candidate 1** is the guarded depth-first refit. It tests fresh per-region grids and keeps the Baseline export if source evidence cannot support the joins.
+## Current Expanded Split-Border path
+
+The [single-image build](../README.md#run-floating) and [Front 100 replay](FLOATING_SHARED_DATASETS.md#replay-front-100) share the Baseline path in the diagram below. The method preserves the archived rules and thresholds. It uses the source image for every mask, grid, texture match and relative placement decision. Inspect `source-handoff`, `charts.json`, `oriented-charts.json`, `decisions.json`, `assembly.json` and the exported Java pack together. [Architecture](../ARCHITECTURE.md)
+
+1. Start with the native source masks and the initial surface counts. Trace a seed through native atlas measurements and texture witnesses, the shared-row junctions that help register its grid, and its connected-wall extensions.
+2. Check the recovered face extent and material ranking where expansion resamples full unit faces. The large-chart contraction guard requires at least 256 expanded cells and a supported alternative with at most one quarter as many. The edge-aligned replacement ruler needs peer-scale and repeat evidence. Corner-pair repair rechecks the shared transform against the counted junction.
+3. For eligible charts, the depth pass groups existing cells by the native depth region at each projected center and preserves their ruler. The border-sky pass samples a 9 × 9 lattice in each projected footprint and vetoes export when more than 40 of the 81 samples land in border-connected sky. The complete measured charts still participate in joins and group ranking.
+4. Inspect orientation and relative joins before judging the size of the export. The wall solver compares projected edges and coplanar grids. An observed horizontal chart enters assembly if two perpendicular wall rims support its grid and the resampled cells join adjoining walls. The assembly selects one connected group and serializes its permitted cells and IDs. At scoring time, unresolved nonempty exports are charged as misses and extras. Empty exports count as misses.
+
+## Archived original V1 comparison
+
+The chart includes the [archived original V1 comparison](https://github.com/jeremyepling/minecraft-image-reconstruction/blob/01d51c0/benchmark/reviews/floating-visible-builds-v1-01/README.md). Its **Baseline** is Expanded Split-Border. **Candidate 1** is the guarded depth-first refit. It tests fresh per-region grids and keeps the Baseline export if source evidence cannot support the joins.
 
 See the [baseline and historical comparisons](FLOATING_BRANCH.md) for each method's measured scope. The former pavement-based build is documented in the [floor-and-camera archive](https://github.com/jeremyepling/minecraft-image-reconstruction/blob/e3bd220188f224a0a6cf2841c8f495fd0ac9d090/ARCHITECTURE.md).
 

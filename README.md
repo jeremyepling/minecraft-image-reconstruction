@@ -1,10 +1,20 @@
 # Minecraft Image Reconstruction
 
-**Floating is the default reconstruction algorithm on `main`.** It builds from the visible surfaces in a Minecraft screenshot and places the result at an arbitrary origin. It preserves the relative spacing of supported blocks and leaves unseen areas unknown. [Product intent](PRODUCT_INTENT.md) · [Current architecture](ARCHITECTURE.md)
+**Expanded Split-Border is the default Floating reconstruction method on `main`.** It builds from the visible surfaces in a Minecraft screenshot and places the result at a local origin. It preserves the relative spacing of the assembled blocks and leaves unseen areas unknown. [Product intent](PRODUCT_INTENT.md) · [Current architecture](ARCHITECTURE.md)
 
 ## Run Floating
 
-Run the Java 26.3 offline replay from `main` or a worktree based on it. Floating Front 100 is the standard benchmark. It defaults to the 100 full-block noon images. Use a separate run for decorated builds, or select matched morning and afternoon captures to test lighting.
+Build from one screenshot with Python, NumPy, Pillow, OpenCV and ONNX Runtime. Use the prepared Java 26.3 atlas with `--atlas` or set `MCIR_PREPARED_ATLAS_26_3`. The pinned MoGe-2 and Depth Anything V2 checkpoints can live under `.deps` in the checkout or be supplied through `MINECRAFT_MOGE_ONNX` and `MINECRAFT_DEPTH_ONNX`. The benchmark setup shows the existing paths on this PC. [Model filenames and setup](benchmark/FLOATING_SHARED_DATASETS.md#replay-front-100)
+
+```powershell
+python reconstruct.py build screenshot.png --out runs/my-build --version 26.3 --atlas $atlas
+```
+
+The build runs offline and writes `reconstruction.zip`, source masks and counts under `source-handoff`, and the charts, assembly and guard decisions beside the pack. To place the build, install the ZIP as a Java 26.3 datapack, run `/reload`, stand at the desired origin, and run `/function reconstruction:build`.
+
+## Replay Floating Front 100
+
+The standard benchmark runs the same predictor on all 100 full-block noon images. Select matched morning or afternoon captures for lighting comparisons, or run the separate decorated noon cohort.
 
 ```powershell
 .\Invoke-FloatingReplay.ps1 -FixtureRoot $fixture -ModelRoot $models `
@@ -12,8 +22,6 @@ Run the Java 26.3 offline replay from `main` or a worktree based on it. Floating
 ```
 
 Use `-Case` with exact frame IDs for a focused comparison. The runner saves the fixture selection, mask and grid evidence, case scores and Java datapacks. See the benchmark guide for fixture restoration, dependencies, and available cohorts. [Floating Front 100 setup and commands](benchmark/FLOATING_SHARED_DATASETS.md)
-
-To place an exported build, install its `reconstruction.zip` as a Java 26.3 datapack, run `/reload`, stand at the desired origin, and run `/function reconstruction:build`.
 
 ## Compare results
 

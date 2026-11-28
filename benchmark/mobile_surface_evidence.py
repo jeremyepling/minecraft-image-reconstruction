@@ -319,6 +319,35 @@ def build_v1_case(root, case, output=None):
     with Image.open(src) as image:
         build(root, proof, image.convert('RGB'), (output or root / 'evidence') / marker / 'surfaces.json')
 
+
+def build_expanded(folder, source, record, assembly):
+    """Build portable evidence from the ordinary Expanded Split-Border receipts."""
+    handoff = folder / 'source-handoff'
+    planes_path, counts_path = handoff / 'surfaces.json', handoff / 'counts.json'
+    planes = read(planes_path)
+    with Image.open(source) as image:
+        if tuple(planes['image_size']) != image.size:
+            raise ValueError(f"Expanded surface evidence size differs: {record['id']}")
+        surfaces = source_surfaces(planes['planes'], read(counts_path), image)
+        size = image.size
+    source_sha = record['source_sha256']
+    proof = dict(sourceSha=source_sha, surfaceSha=hash_file(planes_path), counts=hash_file(counts_path))
+    charts, _ = packet_grids(folder / 'charts.json', proof, {})
+    for chart in charts:
+        add_grid(surfaces[parent(chart['id'])], 'Split-border grid', chart)
+    oriented = read(folder / 'oriented-charts.json')['charts']
+    for chart in oriented:
+        label = 'Horizontal grid' if chart['id'].startswith('horizontal-') else 'Oriented wall grid'
+        status = ['Candidate · selected'] if chart['id'] in assembly['selected_origins'] else []
+        add_grid(surfaces[parent(chart['id'])], label, chart, status)
+    export_support(surfaces, oriented, 'Candidate', dict(assembly, folder=folder))
+    provenance = dict(surfaceSha256=proof['surfaceSha'], countsSha256=proof['counts'],
+                      handoffSha256=hash_file(handoff / 'build-manifest.json'), fields=record['field_sha256'],
+                      arms={'Candidate': dict(packSha256=record['score']['pack_sha256'],
+                                              chartSha256=record['charts_sha256'])})
+    write_evidence(folder / 'surfaces.json', record['id'], size, source_sha, surfaces, provenance, [])
+
+
 def build_local(handoff, folder, record, image, attempts=None):
     """Package the Combined runner's own candidate sheets and decoded local export."""
     from benchmark.mask_blocks import decoded_pack

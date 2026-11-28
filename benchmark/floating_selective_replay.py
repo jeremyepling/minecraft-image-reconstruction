@@ -118,13 +118,17 @@ def refit(case,out,roots,opt):
     save(out/"evidence.json",evidence)
 
 
-def assemble_arm(packet,planes,rgb,members,edge_pixels,destination):
+def assemble_arm(packet,planes,rgb,members,edge_pixels,destination,*,save_trace=False):
     solver=v1.horizontal.solver
     original_orient=solver.oriented
     original_join=solver.coplanar_joins
+    oriented=[]
     def horizontal(charts):
         walls,hint=original_orient(charts)
-        return walls+v1.horizontal.horizontal_charts(walls,planes,rgb.shape[1::-1],rgb),hint
+        all_charts=walls+v1.horizontal.horizontal_charts(walls,planes,rgb.shape[1::-1],rgb)
+        if save_trace:
+            oriented.extend(all_charts)
+        return all_charts,hint
     def coplanar(charts,tolerance):
         joins=original_join(charts,tolerance)
         return [j for j in joins if charts[j["i"]]["id"] not in members or
@@ -140,6 +144,9 @@ def assemble_arm(packet,planes,rgb,members,edge_pixels,destination):
         raise ValueError("Java pack changed local coordinates or IDs")
     record=dict(selected=sorted(main["origins"]),assigned=sorted(main["assigned"]),joins=result["joins"],
                 orientation=result["orientation_hint"],size=len(expected))
+    if save_trace:
+        record.update(selected_origins=main["origins"],conflicts=result["conflicts"])
+        save(destination/"oriented-charts.json",dict(charts=oriented))
     save(destination/"assembly.json",record)
     return record
 

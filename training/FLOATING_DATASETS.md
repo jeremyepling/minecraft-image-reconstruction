@@ -1,6 +1,6 @@
 # Floating datasets
 
-Use [Floating Front 100](../benchmark/FLOATING_SHARED_DATASETS.md) for new sparse replays. Its four frame shards preserve the native photographs and visible-only evaluation targets. Each frame retains its measured camera, clock, readback positions and states, plus the per-pixel face and metric depth maps.
+Use [Floating Front 100](../benchmark/FLOATING_SHARED_DATASETS.md) for Expanded Split-Border replays. The standard score uses all 100 full-block noon images. The other three shards supply matched morning, afternoon and decorative noon images. Each frame retains the original source RGB and the scoring references, including its measured camera, clock, readback positions and states, and per-pixel face and metric depth maps.
 
 The companion `floating-front-100-v1-structures.zip` is a Java 26.3 datapack. It contains one full-block template and one decorated template per layout. The three full-block lighting views share the same structure. `structures.json` maps each template to a capture ID, native resource name, SHA-256, dimensions and exact world origin. The complete world is for scene recreation and label verification. Ordinary predictors receive one screenshot.
 
@@ -12,7 +12,7 @@ For a fresh acquisition of the first build, run `python -m training.capture_fron
 
 The [combined manifest](floating-combined-v1.json.gz) points to the exact saved Java 26.3 screenshots and their original labels. It retains **240 active views** from **51 layouts in 20 architectural families**. Development and comparison cohorts can use the same index. The active split is **164 train, 38 validation and 38 test**. Every family's original assignment is preserved. The frozen 84-condition Floating benchmark remains a named score comparison for existing runs.
 
-The combined index holds 200 historical Visible Builds views and 40 historical Decorative Builds V1 views. Select `visible` or `decorative` in the [sparse replay launcher](../benchmark/FLOATING_SHARED_DATASETS.md) to reproduce them. New replays default to Floating Front 100.
+The combined index holds 200 historical Visible Builds views and 40 historical Decorative Builds V1 views. Select `visible` or `decorative` in the [sparse replay launcher](../benchmark/FLOATING_SHARED_DATASETS.md) to reuse those inputs. Use the [recorded method and revision](../benchmark/FLOATING_SHARED_DATASETS.md#replay-historical-methods) when reproducing historical scores.
 
 ## Capture sources
 

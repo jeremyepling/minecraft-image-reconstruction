@@ -19,8 +19,20 @@ from engine.camera_seam import predict as production
 from runtime.mode import mark_image_only
 
 ROOT = Path(__file__).resolve().parents[1]
-STABLE = Path(subprocess.check_output(["git", "worktree", "list", "--porcelain"], cwd=ROOT,
-                                      text=True).splitlines()[0].removeprefix("worktree "))
+
+
+def stable_checkout(root):
+    """Resolve the shared checkout for historical run paths without launching Git."""
+    link = root / '.git'
+    if link.is_file():
+        git_dir = root / link.read_text(encoding='utf-8').strip().removeprefix('gitdir: ')
+        common = git_dir / 'commondir'
+        if common.is_file():
+            return (git_dir / common.read_text(encoding='utf-8').strip()).resolve().parent
+    return root
+
+
+STABLE = stable_checkout(ROOT)
 RELEASE = ROOT / "training/visible-builds-v1.json"
 DATA = STABLE / "runs/visible-builds-v1"
 TRAINING_RELEASE = ROOT / "training/visible-builds-v2.json"

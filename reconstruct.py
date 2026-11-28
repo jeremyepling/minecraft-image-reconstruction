@@ -1,9 +1,11 @@
 """Reconstruct visible Minecraft geometry or calibrate against a selected Java release."""
 import argparse
 import json
+import os
 from pathlib import Path
 import subprocess
 import sys
+from unittest.mock import patch
 
 from engine import catalog
 from engine.reconstruction import reconstruct, analyze
@@ -80,8 +82,8 @@ def main():
     p.add_argument('--out',type=Path,required=True)
     for key in ('minecraft-dir','manifest','java-home'): p.add_argument('--'+key,type=Path)
     p=cmds.add_parser('build')
-    p.add_argument('--through',choices=['camera','surfaces','counts','placement','assembly'],default='assembly',
-                   help='Fit the camera, find surfaces, count blocks, export visible geometry, or assemble a textured facade')
+    p.add_argument('--through',choices=['camera','surfaces','counts','placement','assembly'],
+                   help='Run a legacy stage explicitly. By default build the Expanded Split-Border datapack.')
     p.add_argument('--independent-plane-depth', action='store_true',
                    help='Use the previous placer with independent depths and its original edge-face pass')
     p.add_argument('--geometry-only', action='store_true',
@@ -133,6 +135,14 @@ def run_image_command(parser,args):
         print(f"{args.version}: {len(info['choices']['south'])} placeable south-face textures")
     elif args.command=='analyze':
         analyze(args.image,args.scene,args.out)
+    elif args.through is None and not (args.scene or args.geometry or args.library or args.depth is not None
+                                        or args.white_balance or args.match_exposure or args.match_appearance):
+        if args.version and args.version != '26.3':
+            parser.error('Expanded Split-Border supports Java 26.3')
+        from engine.floating import build
+        atlas_env = {'MCIR_PREPARED_ATLAS_26_3': str(args.atlas.resolve())} if args.atlas else {}
+        with patch.dict(os.environ, atlas_env):
+            build(args.image, args.out)
     elif args.through in ('camera', 'surfaces', 'counts', 'placement'):
         if not args.version:
             parser.error('Camera and surface builds need --version')

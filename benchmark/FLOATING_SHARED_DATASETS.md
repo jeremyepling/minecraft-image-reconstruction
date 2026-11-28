@@ -1,6 +1,6 @@
 # Shared Floating datasets
 
-Use Floating Front 100 for new sparse replays. Each of its 100 layouts has a full-block noon, morning and afternoon capture and a decorative noon capture. All four captures of a layout share its native camera geometry and frozen train, validation or test assignment. The clean lighting variants share visible geometry and materials. Java can render the same RGB at two recorded times. Each capture retains its own frame ID and camera record.
+Use Floating Front 100 for new Expanded Split-Border replays. Each of its 100 layouts has a full-block noon, morning and afternoon capture and a decorative noon capture. All four captures of a layout share its native camera geometry and frozen train, validation or test assignment. The clean lighting variants share visible geometry and materials. Java can render the same RGB at two recorded times. Each capture retains its own frame ID and camera record.
 
 | Launcher choice | Views |
 | --- | --- |
@@ -9,7 +9,7 @@ Use Floating Front 100 for new sparse replays. Each of its 100 layouts has a ful
 | `visible` | The historical 200 active Visible Builds views in Floating Combined V1. |
 | `decorative` | The historical 40 active Decorative Builds V1 views. |
 
-Original V1 and the archived historical placements, lighting pairs and synthetic backgrounds retain their pinned releases and entry points.
+The current launcher applies Expanded Split-Border to each selected cohort. The original V1 comparison, previous local-grid scores, historical lighting pairs and synthetic backgrounds retain their [pinned methods and inputs](#replay-historical-methods).
 
 ## Create a sparse replay worktree
 
@@ -44,9 +44,9 @@ The installer verifies the manifest against the checkout's SHA-256 pin, verifies
 
 ## Replay Front 100
 
-Use a private `-RunDirectory` per job. Omit `-Case` for the entire selection. Use `-Case` with one or more exact frame IDs from the release manifest to freeze a focused comparison. Separate runs may share the staged atlas and captures. When an archived model field has the same RGB, models, preprocessing and field hashes, pass it with `-FieldArchive` to reuse it read-only. New fields are generated inside the private job.
+Use a private `-RunDirectory` per job. Omit `-Case` for the entire selection. Use `-Case` with one or more exact frame IDs from the release manifest to freeze a focused comparison. Separate runs may share the staged atlas and captures. To reuse verified model fields, pass an earlier replay root with saved `original/<frame-id>/fields` directories or an archive with field folders keyed by exact frame ID or source SHA-256 to `-FieldArchive`. Reuse checks the RGB, pinned models, preprocessing and field hashes. New fields are generated inside the private job.
 
-On this PC the prepared model and Python add-on directories are under `$shared/runtime`.
+On this PC the prepared model and Python add-on directories are under `$shared/runtime`. `-ModelRoot` supplies the pinned `moge-2-vits.onnx` and `depth-v2-small-uint8.onnx` files. For a direct single-image CLI run, set the two environment variables below or place both models in the checkout's `.deps` directory.
 
 ```powershell
 $runtime = "$shared/runtime"
@@ -61,7 +61,15 @@ $env:PYTHONPATH = "$runtime/onnxruntime-1.23.2;$runtime/opencv-4.12.0.88"
     -RunDirectory $decorativeOutput -Python $benchmarkPython
 ```
 
-Each run saves its exact selection in `fixtures.json` beside the case scores, datapack exports and `summary.json`. The summary includes per-lighting scores for Front 100. Pass a pair of full-block runs and their fixture to the [Floating review publisher](MOBILE_REVIEW.md) for a paired review. Decorative scores are available from the separate replay summary.
+The same predictor can build from one image outside the fixture runner.
+
+```powershell
+$env:MINECRAFT_MOGE_ONNX = "$models/moge-2-vits.onnx"
+$env:MINECRAFT_DEPTH_ONNX = "$models/depth-v2-small-uint8.onnx"
+& $benchmarkPython reconstruct.py build $image --out $singleOutput --version 26.3 --atlas "$fixture/atlas"
+```
+
+Each replay saves its exact selection in `fixtures.json`. Find the source handoff, charts, assembly and guard decisions, Java pack, aligned placements and score receipt under `original/<frame-id>/`. The `summary.json` includes Front 100 scores by split and lighting. For primary scoring the evaluator gets the compass quarter turn from the source-derived orientation anchor and then fits one integer XYZ translation to the entire decoded build. The same transform scores exact block IDs. An unresolved nonempty export is charged every visible miss and every exported extra. Empty exports are charged every visible miss. Use the `original` directories from two matched full-block runs for [paired visual review](MOBILE_REVIEW.md#produce-both-links).
 
 ## Prepare a release from native captures
 
@@ -74,7 +82,11 @@ python -B -m training.floating_front_release --captures-root $batchA --captures-
 
 The packager prints the release manifest SHA-256. During release preparation, pass that verified digest as `--release-sha256` to the installer and `-ReleaseSha256` to the launcher. Save the verified digest in `training/floating-front-100-v1.sha256` when freezing the release. The checkout pin then verifies every installation and replay.
 
-## Replay historical Combined V1
+## Replay historical methods
+
+Use `4bcc191f354a663cba6552f37210f8765349e8fd` in a clean worktree and that revision's launcher to reproduce the former Floating local-grid method on Front 100 or Combined V1. The [original 144-view V1 replay](FLOATING_PIPELINE.md#resume-the-archived-v1-benchmark) uses its own launcher and archive. The [historical score tables](FLOATING_BRANCH.md) record each method and measured cohort.
+
+### Combined V1 inputs
 
 On Jeremy's PC, use `$shared/floating-combined-v1-32d151f5-java26.3`. Pass the original archive parent as `--archives-root`. Each release subdirectory there contains its original `manifest.json` and shard ZIPs. The checked-in [Combined V1 index](../training/FLOATING_DATASETS.md) pins the inputs and active framing decisions.
 

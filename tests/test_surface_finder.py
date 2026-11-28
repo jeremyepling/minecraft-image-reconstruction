@@ -49,7 +49,8 @@ class SurfaceFinderTests(unittest.TestCase):
         self.assertEqual(plane['source_crop']['xyxy'], [0, 0, 64, 21])
         self.assertEqual(manifest['artifacts']['source_crops'], 'surface-crops/')
         self.assertEqual(manifest['stages'], {'outlines':'mask-first','surface_boundary':'wall-depth-anything',
-            'initial_boundary':'color-edges','split_hints':'rectangle-finder','split_depth':'depth-anything-v2'})
+            'initial_boundary':'color-edges','split_hints':'rectangle-finder','split_depth':'depth-anything-v2',
+            'background_filter':'border-connected-whole-sky-v1'})
         self.assertEqual(set(manifest['model_sha256']), {'normal', 'depth'})
         dev = next(r for r in read(ROUND/'cases.json') if r['id'].startswith('dev-'))
         self.assertEqual(score_case(ROUND, dev, model['planes'], use_masks=True)['proposed'], 1)

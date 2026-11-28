@@ -14,7 +14,7 @@ from benchmark import native_corner_registration as registration, native_surface
 from benchmark import relative_face_round as assembly, relative_source_charts, shared_corner_rows as shared
 from benchmark import expanded_scores, floating_patch_combined as horizontal
 from benchmark.expanded_baseline import ROOT, WORKTREES, digest, read, save
-from benchmark.floating_build_local_run import build_handoff
+from engine.floating_fields import build_handoff
 
 OUT=ROOT/"runs/floating-v1"
 SOURCE=OUT/"source"
@@ -87,8 +87,9 @@ def require_fields(case,cache,proof):
     assert all(digest(cache/(k+".npz"))==proof["fields_sha256"][k] for k in ("normal","depth"))
 
 
-def source_fields(group,case,src,size):
-    cache=FIELDS/case["id"]
+def source_fields(group,case,src,size,*,cache=None):
+    if cache is None:
+        cache=FIELDS/case["id"]
     require_fields(case,cache,read(cache/"receipt.json"))
     from benchmark import floating_depth_before_atlas as depth
     values={}

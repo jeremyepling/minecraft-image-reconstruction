@@ -15,7 +15,7 @@ param(
 $ErrorActionPreference = 'Stop'
 $fixture = (Resolve-Path -LiteralPath $FixtureRoot).ProviderPath
 $run = $ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($RunDirectory)
-$arguments = @('-B', '-m', 'benchmark.floating_build_local_run', '--shared-root', $fixture,
+$arguments = @('-B', '-m', 'benchmark.floating_expanded_run', '--shared-root', $fixture,
     '--out', $run, '--cohort', $Cohort, '--workers', $Workers)
 if ($FieldArchive) { $arguments += @('--baseline', (Resolve-Path -LiteralPath $FieldArchive).ProviderPath) }
 if ($Lighting) { $arguments += @('--lighting', $Lighting) }

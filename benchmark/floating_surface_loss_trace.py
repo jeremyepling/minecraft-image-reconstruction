@@ -39,7 +39,17 @@ def _read_arm(case, label, folder, package):
             owners[xyz] = surface['id'], cell
     if {xyz: cell['block'] for xyz, (_, cell) in owners.items()} != local:
         raise ValueError(f'{label} surface ownership differs from the decoded pack.')
-    if local_grid:
+    if "registration_status" in score:
+        if score["registration_status"] == "unresolved":
+            raise TraceUnavailable(f'{label} export has no fixed scored registration.')
+        coordinates = [
+            tuple(value + delta for value, delta in zip(_yaw(xyz, score['yaw_quarters']),
+                                                        score['translation'], strict=True))
+            for xyz in local
+        ]
+        saved = read(folder / 'aligned-placements.json.gz')
+        saved_world = {tuple(item[:3]): item[3] for item in saved}
+    elif local_grid:
         transform = score['registration']['transform']
         if transform is None and local:
             raise TraceUnavailable(f'{label} export has no saved registration.')

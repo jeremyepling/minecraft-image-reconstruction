@@ -4,36 +4,17 @@ from concurrent.futures import ProcessPoolExecutor, as_completed
 import json
 import os
 from pathlib import Path
-from unittest.mock import patch
 
 from benchmark.floating_build_local_grid import predict
 from benchmark.full_block_lattice import atlas
 from benchmark.expanded_baseline import read, save, digest
 from benchmark.expanded_scores import evaluate_pack, pooled
-from engine import surface_fields, surface_model, visible_placement
+from engine.floating_fields import build_handoff, private_fields
 from engine.export import write_pack, JAVA_26_3_FORMAT
 from PIL import Image, ImageDraw
-import numpy as np
 
 ROOT = Path(__file__).resolve().parents[1]
 OUTPUT = ROOT / "runs/floating-cloud-gate-01"
-
-
-def build_handoff(source, cache, handoff):
-    from engine.floating_sky import METHOD
-    receipt = handoff / 'build-manifest.json'
-    if receipt.exists():
-        saved = read(receipt)
-        if saved['image_sha256'] == digest(source) and saved['stages'].get('background_filter') == METHOD:
-            return
-
-    def field(image, kind):
-        with np.load(cache / (kind + '.npz')) as data:
-            return data['value']
-
-    with patch.object(surface_fields, 'infer', field), patch.object(
-            visible_placement, 'seam_camera', side_effect=AssertionError("No floor-camera calls permitted")):
-        surface_model.build(source, '26.3', handoff, through='counts', boundary='wall-depth-anything')
 
 
 def arm(e, variant, cache, out, handoff, native_fallback):
@@ -101,39 +82,6 @@ def summarize(cohort, cases, manifest, native_fallback):
         report['by_lighting'] = {lighting: group([row for row in rows if lighting_by_id[row['id']] == lighting])
                                  for lighting in dict.fromkeys(lighting_by_id.values())}
     save(cohort/'summary.json', report)
-
-
-def private_fields(source, source_sha, archived, private, frame_id=None):
-    """Reuse a matching pinned inference receipt, or infer into this job's directory."""
-    fingerprints = {kind: spec[2] for kind, spec in surface_fields.MODELS.items()}
-    if digest(source) != source_sha:
-        raise ValueError(f'Source hash mismatch: {source}')
-    directory = archived/source_sha
-    receipt = directory/'receipt.json'
-    proof = read(receipt) if receipt.is_file() else None
-    if proof is None and frame_id:
-        donor = archived/frame_id/'receipt.json'
-        if donor.is_file():
-            candidate = read(donor)
-            if candidate.get('source_sha256') == source_sha:
-                receipt, directory, proof = donor, donor.parent, candidate
-    if proof is not None:
-        if (proof.get('source_sha256') != source_sha or proof.get('model_sha256') != fingerprints
-                or proof.get('preprocessing') != surface_fields.SETTINGS
-                or any(digest(directory/(kind+'.npz')) != proof['fields_sha256'][kind] for kind in fingerprints)):
-            raise ValueError(f'Invalid frozen model field receipt: {receipt}')
-        return directory
-    private.mkdir(parents=True)
-    hashes = {}
-    with Image.open(source) as image:
-        for kind in fingerprints:
-            field = surface_fields.infer(image, kind)
-            path = private/(kind+'.npz')
-            np.savez_compressed(path, value=field)
-            hashes[kind] = digest(path)
-    save(private/'receipt.json', dict(source_sha256=source_sha, model_sha256=fingerprints,
-                                      fields_sha256=hashes, preprocessing=surface_fields.SETTINGS))
-    return private
 
 
 def private_arm(e, variant, out, archived, native_fallback, handoffs_only):

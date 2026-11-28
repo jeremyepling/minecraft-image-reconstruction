@@ -1,4 +1,4 @@
-"""Adapt normal Floating local-grid runs to the same paired stage report and visual review queue."""
+"""Adapt normal Floating runs to the shared stage report and visual review queue."""
 import hashlib
 import json
 from pathlib import Path
@@ -8,12 +8,15 @@ import numpy as np
 from PIL import Image
 
 from benchmark.expanded_scores import evaluate_pack, load_reference
+from benchmark.floating_expanded_run import score_export
 from benchmark.floating_stage_report import COUNTS, DATASETS, group, handoff_metrics, hash_file, read
 from benchmark.floating_visual_review import identity, paint, select, strict_delta
 
 
 def checked_arm(folder, entry, variant, reference, shared_handoff):
     case = read(folder / "case.json")
+    if "assembly_sha256" in case:
+        return checked_expanded_arm(folder, entry, variant, reference, case)
     score = case["score"]
     evidence = case["evidence"]
     sha = entry["variants"][variant]["source_sha256"]
@@ -53,6 +56,37 @@ def checked_arm(folder, entry, variant, reference, shared_handoff):
     # cannot establish that the image contains different surfaces.
     return dict(scores=scores, stages=stages, exported=len(aligned), unresolved=bool(aligned and projection is None),
                 selected=[], pack_sha256=fresh["pack_sha256"]), aligned
+
+
+def checked_expanded_arm(folder, entry, variant, reference, case):
+    sha = entry["variants"][variant]["source_sha256"]
+    assembly_path = folder / "assembly.json"
+    chart_path = folder / "charts.json"
+    oriented_path = folder / "oriented-charts.json"
+    if (variant != "original" or case["id"] != entry["id"] or case["source_sha256"] != sha
+            or case["dataset_manifest_sha256"] != entry["dataset_manifest_sha256"]
+            or case["assembly_sha256"] != hash_file(assembly_path) or case["charts_sha256"] != hash_file(chart_path)
+            or case["oriented_charts_sha256"] != hash_file(oriented_path)):
+        raise ValueError(f"Expanded assembly evidence belongs to another source or fixture: {folder}")
+    assembly = read(assembly_path)
+    fresh, aligned = score_export(entry, folder / "reconstruction.zip", assembly, reference=reference)
+    archive = read(folder / "aligned-placements.json.gz")
+    expected = {tuple(row[:3]):row[3] for row in archive}
+    if len(expected) != len(archive) or aligned != expected or fresh != case["score"]:
+        raise ValueError(f"Decoded Expanded Split-Border pack differs from the saved score: {folder}")
+    scores = {f"{measure}_{regime}":{k:fresh[measure][regime][k] for k in COUNTS}
+              for measure in ("geometry", "scores") for regime in ("strict", "facade")}
+    strict = scores["geometry_strict"]["correct"]
+    stages = dict(axes=(int(assembly["orientation"] is not None), 1),
+                  charts=(len(assembly["selected"]), len(read(oriented_path)["charts"])),
+                  material=(scores["scores_strict"]["correct"], strict), placement=(strict, len(reference.truth)))
+    charts = read(chart_path)
+    if charts["source_sha256"] != sha:
+        raise ValueError(f"Chart evidence belongs to another source: {folder}")
+    stages.update(handoff_metrics(folder / "source-handoff", {"source_sha256":sha}, charts))
+    return dict(scores=scores, stages=stages, exported=fresh["exported"],
+                unresolved=fresh["registration_status"] == "unresolved", selected=assembly["selected"],
+                pack_sha256=fresh["pack_sha256"]), aligned
 
 
 def fixture_scope(fixture):
@@ -99,7 +133,10 @@ def prepare(fixture, baseline, candidate, variant, output, label, available, nam
         for key, root in (("baseline", baseline), ("current", candidate)):
             arms[key], positions = checked_arm(root / marker, e, variant, reference, baseline / marker / "source-handoff")
             aligned.append(positions)
-        gained, lost, paired = strict_delta(reference.truth, *aligned)
+        if any(arm["unresolved"] for arm in arms.values()):
+            gained, lost, paired = set(), set(), None
+        else:
+            gained, lost, paired = strict_delta(reference.truth, *aligned)
         change = dict(changed_pack=arms["baseline"]["pack_sha256"] != arms["current"]["pack_sha256"],
                       dropped=[], added=[], disjoint=False, paired=paired)
         frames.append(dict(id=marker, dataset=e["dataset"], panel=variant, source_sha256=sha,
@@ -149,7 +186,7 @@ def prepare(fixture, baseline, candidate, variant, output, label, available, nam
         shutil.copyfile(source, frame / "rgb.png")
         for name in ("labels.npz","labels.json","camera.json"):
             shutil.copyfile(original / name,frame / name)
-        cases.append(dict(id=marker,source_sha256=f["source_sha256"],reference_sha256=f["reference_sha256"],
+        cases.append(dict(id=marker,split=e["split"],source_sha256=f["source_sha256"],reference_sha256=f["reference_sha256"],
                           baseline=dict(pack_sha256=f["arms"]["baseline"]["pack_sha256"]),
                           candidate=dict(pack_sha256=f["arms"]["current"]["pack_sha256"]),paired=f["changes"]["current"]["paired"],
                           component=None,reasons=reasons,cohort=DATASETS[0],panel=variant,folder=layers.as_posix()))

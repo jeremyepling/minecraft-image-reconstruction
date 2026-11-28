@@ -21,6 +21,7 @@ STAGES = {
     "site": (("analysis","surfaces"), ("review-site/*","benchmark/build_floating_mobile_review*","benchmark/publish_floating_review*","benchmark/reviews/mobile-review-assets/*"), "published review cards, overlays and links"),
 }
 RUNNERS = {"benchmark/floating_v1_run.py","benchmark/floating_build_local_run.py",
+           "benchmark/floating_expanded_run.py","engine/floating.py","engine/floating_fields.py",
            "benchmark/floating_selective_replay.py","benchmark/floating_stage_cache.py"}
 
 def plan(paths):

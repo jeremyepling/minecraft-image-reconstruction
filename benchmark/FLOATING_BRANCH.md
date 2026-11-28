@@ -1,10 +1,21 @@
 # Floating-build reconstruction
 
-Floating is the default algorithm on `main`. It reconstructs visible blocks with no ground reference. One translation can place the entire build anywhere while preserving the spacing between parts. Use the current `main` revision for ordinary comparisons on Floating Front 100. The previous floor-and-camera algorithm is archived on `floor-with-camera` at `e3bd220`. [Archived architecture](https://github.com/jeremyepling/minecraft-image-reconstruction/blob/e3bd220188f224a0a6cf2841c8f495fd0ac9d090/ARCHITECTURE.md)
+Expanded Split-Border is the default Floating method on `main`. It reconstructs visible blocks with no ground reference. One translation can place the entire build anywhere while preserving the spacing between parts. Use the current `main` revision for ordinary comparisons on Floating Front 100. The previous floor-and-camera algorithm is archived on `floor-with-camera` at `e3bd220`. [Archived architecture](https://github.com/jeremyepling/minecraft-image-reconstruction/blob/e3bd220188f224a0a6cf2841c8f495fd0ac9d090/ARCHITECTURE.md)
 
 Use the [current Floating pipeline map](FLOATING_PIPELINE.md) for stage order, source evidence, and the automated loss report.
 
-**Archived V1 decision.** Expanded split-border was the comparison baseline. Candidate 1, guarded depth-first refit, gained 533 net correct positions and removed 78 net extras. On Arcade 1 and Terrace 1, it dropped walls that accounted for 28 and 27 previously correct positions respectively. This is a recorded comparison between those variants. Use the current `main` runner on Front 100 for a new baseline measurement. [Archived comparison and decision](https://floating-review.vercel.app/runs/floating-v1-guarded-refit/scores)
+## Archived original Visible Builds V1
+
+The promoted predictor follows the Expanded Split-Border baseline from the original 144-view Visible Builds V1 replay at `01d51c0`. The guarded depth-first refit remains an archived challenger. It gained 533 net correct positions and removed 78 net extras on those same V1 images. On Arcade 1 and Terrace 1, it dropped walls that accounted for 28 and 27 previously correct positions, respectively. [Original V1 replay and receipts](https://github.com/jeremyepling/minecraft-image-reconstruction/blob/01d51c0/benchmark/reviews/floating-visible-builds-v1-01/README.md) · [Archived comparison and decision](https://floating-review.vercel.app/runs/floating-v1-guarded-refit/scores)
+
+| Original Visible Builds V1 method | Tested / available | Strict / facade placement F1 | Strict / facade position + ID F1 | Strict correct / missed / extra |
+| --- | ---: | ---: | ---: | ---: |
+| Baseline — Expanded Split-Border | 144 / 144 | 37.6420% / 40.1979% | 15.1069% / 16.4243% | 9,623 / 24,831 / 7,052 |
+| Candidate 1 — guarded depth-first refit | 144 / 144 | 39.3766% / 41.3663% | 17.0557% / 18.5429% | 10,156 / 24,298 / 6,974 |
+
+## Archived Front 100 local-grid replay
+
+The first full-block noon Front 100 replay measured the former Floating local-grid method at `4bcc191`. It scored 100 / 100 views with 0.261% strict and 0.281% facade placement F1, and 0.171% strict and 0.184% facade position-plus-ID F1. Strict placement counted 185 correct, 141,387 missed and 19 extra blocks. There were 82 empty exports. The saved report and verification receipt on this PC are in `runs/front100-main-loop-20261128/baseline` in the stable checkout. Use the pinned revision to reproduce that method. [Historical replay instructions](FLOATING_SHARED_DATASETS.md#replay-historical-methods)
 
 ## Frozen expanded benchmark
 
@@ -15,7 +26,7 @@ Use the **expanded split-border benchmark** to reproduce the archived 84-conditi
 | Baseline — frozen expanded split-border, 84 conditions | 33.99% / 34.48% | 5.66% / 5.76% | 18,318 / 61,192 / 9,965 | 64.77% |
 | Baseline — frozen expanded split-border, six fixed sky views | 27.59% / 27.83% | 5.98% / 6.01% | 890 / 3,151 / 1,521 | 36.91% |
 
-The frozen 84 contain 30 Visible Builds v2, 30 Visible Builds v3, and 24 Decorative Builds v1 conditions. The six fixed sky conditions are included and use four Visible Builds v3 and two Decorative Builds v1 layouts. The full 240-view active cohort remains unevaluated for this benchmark. On the 84 paired inputs, the guarded ruler and O2 package removed 1,426 extras and lost five strict correct positions, four required by the facade score. The subsequent depth and border-sky checks removed a further 29 extras while preserving every correct coordinate and material ID. Twenty-one of those removals were on the six fixed sky views. The pinned exports are the research comparison. The sparse connected-atlas exports are a separate runtime control.
+The frozen 84 contain 30 Visible Builds v2, 30 Visible Builds v3, and 24 Decorative Builds v1 conditions. The six fixed sky conditions are included and use four Visible Builds v3 and two Decorative Builds v1 layouts. The frozen benchmark covers these 84 conditions. On the 84 paired inputs, the guarded ruler and O2 package removed 1,426 extras and lost five strict correct positions, four required by the facade score. The subsequent depth and border-sky checks removed a further 29 extras while preserving every correct coordinate and material ID. Twenty-one of those removals were on the six fixed sky views. The pinned exports are the research comparison. The sparse connected-atlas exports are a separate runtime control.
 
 Restore the [exact chart and export archive](reviews/floating-expanded-benchmark-01/exports.zip) with the [frozen manifest](reviews/floating-expanded-benchmark-01/manifest.json). It contains the chart packet, decoded coordinate record, score receipt, and original Minecraft pack bytes for each panel and frame. The manifest gives every archive member's SHA-256, the source image and native reference hashes, and the source revisions used to construct the baseline. Source and reference paths are relative to the reconstruction repository with the recorded captures restored. The archive can be checked and unpacked without the experiment worktrees.
 
@@ -33,13 +44,13 @@ Expand-Archive -LiteralPath $archive -DestinationPath 'runs/frozen-expanded-benc
 
 Find visible surfaces and check which pixels share a plane before estimating a unit block or fitting a grid. Use source normals to identify direction changes. For same-facing surfaces, look for a repeatable signed depth step across a photographed boundary, exposed return, rim or opening. Fit each sufficiently supported plane independently. Preserve those plane boundaries when attaching grids, and leave unsighted regions unknown.
 
-Inspect existing grids that span more than one visible plane first. Grade the source mask and plane assignment against recorded frontmost faces, then grade the decoded export. Keep the frozen split-border benchmark as the comparison. Its pink check groups cells on an inherited grid and can reduce extras, so it does not measure the benefit of giving each plane its own ruler and grid origin.
+Inspect existing grids that span more than one visible plane first. Grade the source mask and plane assignment against recorded frontmost faces, then grade the decoded export. The Expanded Split-Border depth check groups cells on their existing grid. An independent-ruler experiment should measure the effect of fitting a new block size and grid origin against that baseline on the same images.
 
 The local reprojection test at `fb08477` is retired from active Floating development. Its one-block shifts ran after grid fitting. The stored report is historical evidence. Use photographed depth boundaries before grid fitting for future depth work.
 
 Start with the [wrong-plane audit and five source overlays](https://github.com/jeremyepling/minecraft-image-reconstruction/blob/23c9d53/benchmark/reviews/floating-pregrid-plane-audit-01/README.md). The [Stable Yard eave replay](https://github.com/jeremyepling/minecraft-image-reconstruction/blob/edcc59f/benchmark/reviews/floating-pregrid-eave-attachment-01/README.md) shows the downstream value of attaching a separately fitted visible plane at the correct offset. The [visible-return tests](https://github.com/jeremyepling/minecraft-image-reconstruction/blob/e8326b9/benchmark/reviews/floating-pregrid-visible-returns-01/README.md) show where the source line and model depth fields still fail to distinguish parallel planes.
 
-The leading source-only experiment [fits separate rulers and requires corroborated joins](https://github.com/jeremyepling/minecraft-image-reconstruction/blob/experiment/floating-pregrid-depth-refit/benchmark/reviews/floating-pregrid-depth-refit-01/README.md). On the frozen 84 it gained 211 correct placements, lost 28, and held the extra count at 9,965. It kept all six sky exports unchanged. Keep the frozen benchmark as the reproducible comparison and the guarded refit as a candidate pending validation on new qualifying joins.
+An earlier source-only experiment fits separate rulers and requires corroborated joins. On the frozen 84 it gained 211 correct placements, lost 28, and held the extra count at 9,965. It kept all six sky exports unchanged. [Guarded depth refit evidence](https://github.com/jeremyepling/minecraft-image-reconstruction/blob/experiment/floating-pregrid-depth-refit/benchmark/reviews/floating-pregrid-depth-refit-01/README.md)
 
 ## Sparse connected-atlas runtime
 
@@ -60,7 +71,7 @@ python -m benchmark.garden_anchor_extension --arm connected --workers 3
 python -m benchmark.relative_face_round connected-atlas
 ```
 
-The floating Surface Finder refines a proposal, then tests its native support against a sky mask built from the source image. Each row requires agreeing blue samples at both side borders. Sky and cloud-colored pixels must connect back to a border. A proposal is rejected only when every supported pixel qualifies. Mixed proposals retain their full support. The gate runs before outlines, crops and counts. Each build manifest records its rejected proposal IDs. The sky-handoff command uses the frozen normal and depth fields to reproduce the six inputs. The following stages consume outputs within this checkout. Decoded and scored exports are under `runs/floating-cloud-gate-01/relative-face-assembly/connected-atlas/sky`. This is the benchmark entry point for the floating branch; the ordinary build CLI still runs the production-style pipeline.
+The Floating Surface Finder refines a proposal, then tests its native support against a sky mask built from the source image. Each row requires agreeing blue samples at both side borders. Sky and cloud-colored pixels must connect back to a border. A proposal is rejected only when every supported pixel qualifies. Mixed proposals retain their full support. The gate runs before outlines, crops and counts. Each build manifest records its rejected proposal IDs. The sky-handoff command uses the frozen normal and depth fields to reproduce the six inputs. The following stages consume outputs within this checkout. Decoded and scored exports for this historical control are under `runs/floating-cloud-gate-01/relative-face-assembly/connected-atlas/sky`.
 
 ## Which work belongs here
 
