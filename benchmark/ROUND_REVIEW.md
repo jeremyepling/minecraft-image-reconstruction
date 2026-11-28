@@ -27,6 +27,8 @@ Default to the 200 Visible Builds views in Floating Combined V1, or freeze a nam
 
 Show a stage-by-stage comparison using the actual run's metrics. Include source framing or usable local orientation, Surface Finder and depth separation, Block Counter grids and counts, relative joins and placement, material matching, and decoded export as applicable. Use columns for stage, measure and denominator, Baseline, numbered candidates, and what failed or was lost at that handoff. Use consistent denominators when tracking attrition on the same views or visible targets. Give distinct measures and denominators when stages score different things. Mark a stage as unmeasured when its output or reference was unavailable. Show unresolved orientations and empty exports separately and keep their effects in the final denominator. Link an example where the stage evidence explains the placement delta.
 
+For supported saved Floating comparisons, generate the stage table and component-loss queue with `python -m benchmark.floating_stage_report`. Use its Markdown and JSON output as the first pass before reading full case artifacts. The [Floating pipeline map and replay command](FLOATING_PIPELINE.md#generate-the-loss-report) describe the input formats and optional handoffs.
+
 ## From a reported error to a test
 
 | Question | Evidence to bring back |

@@ -2,6 +2,8 @@
 
 `experiment/floating-visible-builds` is the long-lived integration branch for reconstructing visible blocks with no ground reference. One translation can place the entire build anywhere. All visible components retain their relative spacing. Production `main` at the fork was `e3bd220`.
 
+Use the [current Floating pipeline map](FLOATING_PIPELINE.md) for stage order, source evidence, and the automated loss report.
+
 ## Frozen expanded benchmark
 
 Use the **expanded split-border benchmark** for new floating reconstruction experiments. It pins the selected expanded package at `ac69f22` and the source depth split plus projected border-sky outputs at `4d9aca1`. The selected package uses the guarded replacement ruler and O2 corner repair on top of the large-contraction charts. Compare candidates on the same source images and visible references. Report distinct correct positions gained and lost, exact material matches, and extras separately alongside strict and facade placement F1. Prioritize retaining correct visible placements when judging an apparent improvement from removing extras.

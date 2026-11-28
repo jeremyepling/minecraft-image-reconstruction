@@ -2,9 +2,11 @@
 
 The [product intent](PRODUCT_INTENT.md) is visible-only reconstruction for both the current pipeline and proposed learned components. Only blocks supported by visible faces in the supplied input belong in the output. Unobserved backs, interiors and occluded regions stay unknown; geometry consistency must not become a hidden-area completion step.
 
+For the Floating branch, use the [current Floating pipeline and saved stage measures](benchmark/FLOATING_PIPELINE.md). This page describes the ordinary exterior command and its camera-based workflows.
+
 ## Pipeline terms in reading order
 
-The [pipeline diagram in the README](README.md#from-source-image-to-placed-blocks) shows the ordinary Java 26.3 exterior command. The camera and surface paths share the same source image. The finder can outline a wall and the counter can measure its crop even when the camera cannot establish a 3D block scale. A count can also help validate a proposed recess before the full counting pass. The files below let you follow a single wall through the build.
+The [pipeline diagram in the README](README.md#ordinary-exterior-pipeline) shows the ordinary Java 26.3 exterior command. The camera and surface paths share the same source image. The finder can outline a wall and the counter can measure its crop even when the camera cannot establish a 3D block scale. A count can also help validate a proposed recess before the full counting pass. The files below let you follow a single wall through the build.
 
 | Stage | Terms and tasks | What you can inspect |
 | --- | --- | --- |
