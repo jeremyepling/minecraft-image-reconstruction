@@ -1,7 +1,6 @@
 """Evaluate source-only perpendicular wall-join evidence on frozen floating wall packets."""
 import argparse
 from concurrent.futures import ProcessPoolExecutor
-from contextlib import nullcontext
 from itertools import combinations
 from pathlib import Path
 from unittest.mock import patch
@@ -206,4 +205,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-
