@@ -20,7 +20,7 @@ OUT = ROOT/'runs/face-proposals'
 
 
 def source_inputs(group, extra):
-    if group != 'new6':
+    if group not in ('new6','new7'):
         return inputs(group)
     folder = Path(extra)
     return folder/'ordinary',folder/'ordinary/atlas/connected',folder/'source_material/charts',read(folder/'manifest.json')['cases']
