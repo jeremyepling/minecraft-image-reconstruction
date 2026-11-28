@@ -47,3 +47,9 @@ python -m benchmark.floating_stage_report ../floating-visible-builds-v1/benchmar
 ```
 
 The [generated V1 example](reviews/floating-stage-report-01/report.md) is a replay of saved results. For a pre-grid comparison, pass its `conditions.json.gz` and the saved arm keys using `--baseline` and repeatable `--candidate` flags. The pre-grid archive needs the original `score.json` receipts for orientation and assembly. Set `--visible-available` to the size of the named cohort. Decorative is reported in its own table when included in the input. The stage figures describe the saved opportunities at each handoff. A comparison can count more correctly placed blocks while losing an entire previously selected group, as [Arcade 1](reviews/floating-stage-report-01/report.md#component-changes) shows.
+
+## Perfect from this stage
+
+The [Perfect Stage viewer](reviews/floating-perfect-stage-01/perfect-stage.html) pairs the source-only score with the final score when a visible reference answer enters at one handoff. Pick strict or facade placement or position + material F1. Expand a row for individual views. Use the held-out split to compare interventions on the same views. The companion [report and replay instructions](reviews/floating-perfect-stage-01/README.md) record the tested views, the exact input supplied, and which downstream stages still estimate their inputs.
+
+Pass `--perfect` and optionally `--perfect-inputs` to the stage report to add the table, per-view data and viewer from saved diagnostics. The report verifies the comparison, anchor arm, source pixels, reference labels, pack and matched scores. A report-only or layout change can reuse the data. A different intervention, input or downstream behavior requires refreshing the affected replay. The heading chooser, material substitution and writer check answer different questions and their gains overlap.

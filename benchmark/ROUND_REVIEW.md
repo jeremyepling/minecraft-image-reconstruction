@@ -29,6 +29,8 @@ Show a stage-by-stage comparison using the actual run's metrics. Include source 
 
 For supported saved Floating comparisons, generate the stage table and component-loss queue with `python -m benchmark.floating_stage_report`. Use its Markdown and JSON output as the first pass before reading full case artifacts. The [Floating pipeline map and replay command](FLOATING_PIPELINE.md#generate-the-loss-report) describe the input formats and optional handoffs.
 
+Put **Perfect from this stage** beside the measured handoff table when a checksum-matched diagnostic is available. Give each reference intervention its final F1 and percentage-point change against the same source-only arm and frame IDs. Explain what remains estimated beyond that handoff. Show coverage on every row and group stages that share an exact comparison set in the interactive chart. Reference-assisted results stay outside numbered Candidates. Record the input, output, downstream revision and per-view scores once and reuse them while those dependencies match. Regenerate the affected diagnostic after changing its intervention or consumer path. An accurate writer check measures serialization. Mark independent joins or component selection unmeasured when those inputs have no verified replay. [Perfect Stage archive and viewer](reviews/floating-perfect-stage-01/README.md)
+
 ## From a reported error to a test
 
 | Question | Evidence to bring back |

@@ -1,5 +1,6 @@
 import unittest
 
+from benchmark.floating_perfect_report import METRICS, from_archive, viewer
 from benchmark.floating_stage_report import capture, group, markdown
 
 
@@ -39,3 +40,23 @@ class FloatingStageReportTest(unittest.TestCase):
         self.assertIsNone(frame['changes']['current']['paired'])
         self.assertEqual(frame['arms']['current']['scores']['geometry_strict'],
                          dict(correct=0, missed=231, extras=155))
+
+    def test_perfect_handoff_requires_exact_anchor_and_shows_its_downstream_delta(self):
+        frame = capture(comparison(scored_arm(['wall'], 20, 10, 0), scored_arm(['wall'], 30, 0, 0)),
+                        'split-border', ['current'])
+        readback = {key: frame['arms']['current']['scores'][key.replace('material_', 'scores_')] for key in METRICS}
+        archive = dict(comparison_sha256='comparison-a', base='current',
+                       stages={'exact': ['Export', 'Writer control', 'Recorded visible coordinates and block IDs']},
+                       cases=[dict(id='arcade', split='test',
+                                   inputs=dict(source_sha256='source', reference_sha256={}),
+                                   results={'baseline': dict(scores=readback, pack_sha256='30'),
+                                            'exact': dict(scores=readback, pack_sha256='writer-check')})])
+        names = {'split-border': 'Baseline', 'current': 'Candidate 1'}
+        payload = from_archive(archive, 'comparison-a', [frame], names)
+        self.assertEqual(payload['rows'][0]['after']['geometry_strict']['f1'], 100)
+        self.assertIn('Perfect from this stage', viewer(payload, 'Visible Builds'))
+        with self.assertRaisesRegex(ValueError, 'different comparison'):
+            from_archive(archive, 'stale', [frame], names)
+        frame['arms']['current']['pack_sha256'] = 'new-export'
+        with self.assertRaisesRegex(ValueError, 'does not match'):
+            from_archive(archive, 'comparison-a', [frame], names)

@@ -188,7 +188,7 @@ def group(rows, modes, available):
                 component_changes=swaps)
 
 
-def markdown(groups, names, cohort=None):
+def markdown(groups, names, cohort=None, perfect=None):
     report = ['# Floating evaluation from saved receipts', '',
               'Stage rows measure different opportunities. Assembly cells can overlap across components.',
               'A fresh atlas fit can pass its local checks and still be left out of the export.',
@@ -223,6 +223,9 @@ def markdown(groups, names, cohort=None):
                     cell += f" ({datum['views']}/{n} views)"
                 cells.append(cell)
             report.append(f'| {stage} | {meaning} | ' + ' | '.join(cells) + ' |')
+        if perfect and name == DATASETS[0]:
+            from benchmark.floating_perfect_report import markdown as perfect_markdown
+            report.extend(['', *perfect_markdown(perfect)])
         report.extend(['', '### Component changes', ''])
         for arm, changes in totals['component_changes'].items():
             report.append(f"**{names[arm]}** changed {changes['changed_packs']}/{n} packs. "
@@ -266,6 +269,8 @@ def main():
     parser.add_argument('--cohort-label', help='Name of the actual saved comparison cohort')
     parser.add_argument('--visible-available', type=int, help='Size of the named Visible Builds cohort')
     parser.add_argument('--decorative-available', type=int, default=40)
+    parser.add_argument('--perfect', type=Path, help='Optional saved Perfect Stage controls for this exact comparison')
+    parser.add_argument('--perfect-inputs', type=Path, help='Folder of early handoff controls matching --perfect')
     parser.add_argument('--out', type=Path, required=True)
     args = parser.parse_args()
     candidates = list(args.candidate or ('current',))
@@ -286,10 +291,23 @@ def main():
         split[DATASETS[row['dataset'] == 'decorative-builds-v1']].append(row)
     available = dict(zip(DATASETS, (args.visible_available, args.decorative_available), strict=True))
     data = {key: group(rows, modes, available[key]) for key, rows in split.items()}
+    comparison_sha = hash_file(args.conditions)
+    perfect = None
+    if args.perfect_inputs and not args.perfect:
+        parser.error('--perfect-inputs requires --perfect.')
+    if args.perfect:
+        from benchmark.floating_perfect_report import EARLY, from_archive, viewer
+        early = {stage: read(args.perfect_inputs / f'{stage}-conditions.json.gz') for stage in EARLY
+                 if (args.perfect_inputs / f'{stage}-conditions.json.gz').is_file()} if args.perfect_inputs else None
+        if args.perfect_inputs and not early:
+            parser.error('--perfect-inputs has no recognized early handoff archives.')
+        perfect = from_archive(read(args.perfect), comparison_sha, frames, names, early)
     args.out.mkdir(parents=True, exist_ok=True)
-    (args.out / 'report.md').write_text(markdown(data, names, args.cohort_label), encoding='utf8', newline='\n')
-    (args.out / 'report.json').write_text(json.dumps(dict(schema=1, comparison_sha256=hash_file(args.conditions),
-        cohort_label=args.cohort_label, names=names, cohorts=data, frames=frames), separators=(',', ':')) + '\n',
+    if perfect:
+        (args.out / 'perfect-stage.html').write_text(viewer(perfect, args.cohort_label), encoding='utf8', newline='\n')
+    (args.out / 'report.md').write_text(markdown(data, names, args.cohort_label, perfect), encoding='utf8', newline='\n')
+    (args.out / 'report.json').write_text(json.dumps(dict(schema=1, comparison_sha256=comparison_sha,
+        cohort_label=args.cohort_label, names=names, cohorts=data, frames=frames, perfect_stage=perfect), separators=(',', ':')) + '\n',
         encoding='utf8', newline='\n')
 
 
