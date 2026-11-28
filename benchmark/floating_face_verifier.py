@@ -25,14 +25,14 @@ GROUPS = (*COHORTS, "holdout2")
 
 
 def panel(group):
-    if group == "holdout3":
-        root = WORKTREES/"floating-face-audit/runs/floating-holdout3"
+    if group in ("holdout3","holdout4"):
+        root = WORKTREES/"floating-face-audit/runs"/("floating-"+group)
         return root/"ordinary", root/"ordinary/atlas/connected", root/"source_material/charts", read(root/"manifest.json")["cases"]
     return inputs(group)
 
 
 def placement_scores(group):
-    if group == "holdout3":
+    if group in ("holdout3","holdout4"):
         root = panel(group)[0].parent
         return summarize(panel(group)[3], {"horizontal":root/"horizontal-cells/assembly",
                          "verified":OUT/group/"assembly"}, "connected-atlas/sky")
@@ -148,4 +148,3 @@ if __name__=="__main__":
         list(pool.map(build,jobs))
     save(REVIEW/("placements-"+"-".join(args.groups)+".json.gz"),
          {g:placement_scores(g) for g in args.groups})
-

@@ -95,9 +95,15 @@ def replay(job):
 
 def main():
     p=argparse.ArgumentParser(description=__doc__)
-    p.add_argument("groups",nargs="*",default=[*GROUPS,"holdout3"])
+    p.add_argument("groups",nargs="*",default=[*GROUPS,"holdout3","holdout4"])
     args=p.parse_args()
     audit=read(AUDIT)
+    files=[AUDIT]
+    for group in ("holdout3","holdout4"):
+        if group not in args.groups:
+            continue
+        files.append(AUDIT.with_name("seed-audit-"+group+".json.gz"))
+        audit=dict(cases=[*audit["cases"],*read(files[-1])["cases"]])
     audits={(r["group"],r["id"]):truth_index(r) for r in audit["cases"]}
     training=[]
     for case in panel("supplemental")[3]:
@@ -109,11 +115,11 @@ def main():
     jobs=[(g,c,audits[g,c["id"]],models.get(c["layout"],models["all"])) for g in args.groups for c in panel(g)[3]]
     with ProcessPoolExecutor(4) as pool:
         rows=list(pool.map(replay,jobs))
-    save(REVIEW/"classification.json.gz",dict(audit_sha256=digest(AUDIT),training=sorted(TRAIN),threshold=THRESHOLD,
+    save(REVIEW/"classification.json.gz",dict(audit_sha256={f.name:digest(f) for f in files},training=sorted(TRAIN),threshold=THRESHOLD,
                                               features=FEATURES,models=models,cases=rows))
     results={}
     for g in args.groups:
-        prior=panel(g)[0].parent/"horizontal-cells/assembly" if g=="holdout3" else baseline(g,True)
+        prior=panel(g)[0].parent/"horizontal-cells/assembly" if g in ("holdout3","holdout4") else baseline(g,True)
         arms={"horizontal":prior,"verified":OUT/g/"assembly"}
         arms.update({a:OUT/g/a/"assembly" for a in ("logistic","oracle")})
         results[g]=summarize(panel(g)[3],arms,"connected-atlas/sky")
