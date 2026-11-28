@@ -2,6 +2,10 @@
 
 These entries cover model inputs, rules around model outputs, and evaluation changes. **Shipped** means ordinary builds use the adjustment. **Experiment** means it was tested and left out of the default. **Diagnostic** means we learned something about errors without changing predictions.
 
+### November 28, 2026
+
+- **Experimental floor-free first-hit wall depth selection.** On 18 saved conditions, the perfect chooser gained 37 net positions over the incumbent by testing one-block normal shifts on frozen patches. Source-only and recorded-camera reprojection kept all incumbents. Two reference wins occurred on views with only one selected wall plane. The verification trial stays off both defaults. [Decoded exports and projection checks](benchmark/reviews/floating-local-reprojection-01/README.md)
+
 ### November 27, 2026
 
 - **Floating branch default.** Surface Finder now rejects a proposal whose entire native support matches connected sky or cloud before it creates crops or counts blocks. The six open-sky handoffs retained 193 of 216 proposals. All surviving supports and crop pixels matched the prior handoffs. [Floating pipeline and replay](benchmark/FLOATING_BRANCH.md)
