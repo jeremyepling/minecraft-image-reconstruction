@@ -1,6 +1,6 @@
 # Floating-build reconstruction
 
-`experiment/floating-visible-builds` is the long-lived integration branch for reconstructing visible blocks with no ground reference. One translation can place the entire build anywhere. All visible components retain their relative spacing. Production `main` at the fork was `e3bd220`.
+Floating reconstructs visible blocks with no ground reference. One translation can place the entire build anywhere. All visible components retain their relative spacing. Production `main` adopted `experiment/floating-visible-builds` at `b6262ad`. The previous production revision is available on `floor-with-camera` at `e3bd220`.
 
 Use the [current Floating pipeline map](FLOATING_PIPELINE.md) for stage order, source evidence, and the automated loss report.
 
