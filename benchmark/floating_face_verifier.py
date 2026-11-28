@@ -2,6 +2,7 @@
 import argparse
 from concurrent.futures import ProcessPoolExecutor
 from pathlib import Path
+from unittest.mock import patch
 
 import cv2
 import numpy as np
@@ -9,8 +10,9 @@ from PIL import Image
 
 from benchmark.expanded_baseline import ROOT, digest, read, save
 from benchmark.expanded_wall_source_resample import TEXELS
-from benchmark.floating_patch_combined import run
-from benchmark.floating_patch_controls import inputs, paths
+from benchmark import floating_patch_combined
+from benchmark.floating_bridges_report import summarize
+from benchmark.floating_patch_controls import WORKTREES, inputs, paths
 from benchmark.floating_patch_report import COHORTS, baseline, collect
 from benchmark.full_block_lattice import atlas
 from engine.atlas_count import _shortlist
@@ -20,6 +22,21 @@ from engine.surface_perimeter import _native_alpha
 OUT = ROOT / "runs/face-verifier"
 REVIEW = ROOT / "benchmark/reviews/floating-face-verifier-01"
 GROUPS = (*COHORTS, "holdout2")
+
+
+def panel(group):
+    if group == "holdout3":
+        root = WORKTREES/"floating-face-audit/runs/floating-holdout3"
+        return root/"ordinary", root/"ordinary/atlas/connected", root/"source_material/charts", read(root/"manifest.json")["cases"]
+    return inputs(group)
+
+
+def placement_scores(group):
+    if group == "holdout3":
+        root = panel(group)[0].parent
+        return summarize(panel(group)[3], {"horizontal":root/"horizontal-cells/assembly",
+                         "verified":OUT/group/"assembly"}, "connected-atlas/sky")
+    return collect(group,{"horizontal":baseline(group,True),"verified":OUT/group/"assembly"})
 
 
 def correlation(patterns, observed):
@@ -115,7 +132,8 @@ def build(job):
     save(dest/"charts"/rel,dict(charts,charts=result))
     save(dest/"evidence"/(name+".json"),dict(id=name,source_sha256=sha,ordinary_sha256=digest(ordinary/rel),
                                               expanded_sha256=digest(whole/rel),charts=evidence))
-    run((group,case,dest/"charts",dest/"assembly"))
+    with patch.object(floating_patch_combined,"inputs",panel):
+        floating_patch_combined.run((group,case,dest/"charts",dest/"assembly"))
 
 
 if __name__=="__main__":
@@ -124,9 +142,10 @@ if __name__=="__main__":
     args=p.parse_args()
     jobs=[]
     for g in args.groups:
-        source, ordinary, whole, cases=inputs(g)
+        source, ordinary, whole, cases=panel(g)
         jobs.extend((g,c,source,ordinary,whole) for c in cases)
     with ProcessPoolExecutor(4) as pool:
         list(pool.map(build,jobs))
     save(REVIEW/("placements-"+"-".join(args.groups)+".json.gz"),
-         {g:collect(g,{"horizontal":baseline(g,True),"verified":OUT/g/"assembly"}) for g in args.groups})
+         {g:placement_scores(g) for g in args.groups})
+
