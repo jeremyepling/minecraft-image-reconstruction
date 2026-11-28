@@ -15,7 +15,7 @@ PART=WORKTREES/"floating-part-grids/runs/part-depth"
 CROSS=WORKTREES/"floating-cross-ruler/runs/cross-ruler"
 CASES=[
     ("row","original","test-twinspire2-earth-high-right","mask-2","Twinspire · upper brick row",
-     "Keep the horizontal spacing and test one more row of visible brick above the current grid. Stop at the projecting pale blocks. The red brick pattern repeats inside each full block."),
+     "My vote is Adjust. Keep the block size and recover the top brick row. B overshoots the brick-to-sandstone edge: its added footprint covers 3,245 east-facing brick pixels and 2,012 east-facing sandstone pixels. Pin the top corners to the visible material boundary and check for drift toward the right. The projecting ledge needs its own grid."),
     ("depth","holdout4","train-riverside-mill-1-warm-low-left","mask-0","Riverside Mill · window and porch",
      "Keep the wall grid and separate the recessed and projecting parts by one block in depth. Preserve the window cross where the source shows it. A change in material alone cannot establish depth."),
     ("depth","holdout4","train-viaduct-01-riverstone-low-left","mask-0","Viaduct · projecting faces",
