@@ -53,3 +53,15 @@ The [generated V1 example](reviews/floating-stage-report-01/report.md) is a repl
 The [Perfect Stage viewer](reviews/floating-perfect-stage-01/perfect-stage.html) pairs the source-only score with the final score when a visible reference answer enters at one handoff. Pick strict or facade placement or position + material F1. Expand a row for individual views. Use the held-out split to compare interventions on the same views. The companion [report and replay instructions](reviews/floating-perfect-stage-01/README.md) record the tested views, the exact input supplied, and which downstream stages still estimate their inputs.
 
 Pass `--perfect` and optionally `--perfect-inputs` to the stage report to add the table, per-view data and viewer from saved diagnostics. The report verifies the comparison, anchor arm, source pixels, reference labels, pack and matched scores. A report-only or layout change can reuse the data. A different intervention, input or downstream behavior requires refreshing the affected replay. The heading chooser, material substitution and writer check answer different questions and their gains overlap.
+
+## Generate the visual review queue
+
+Run `benchmark.floating_visual_review` after scoring. It selects large gains, gross losses and dropped components from the saved comparison. It verifies the source and decoded exports, then traces changes to native visible face pixels. The [V1 example](reviews/floating-auto-review-queue-01/queue.md) includes zoomable overlays and paired placement and material counts. Extra coordinates are charged in the counts. An unresolved orientation stays visible as a failure even when a registered overlay is unavailable.
+
+```powershell
+$release = '../floating-visible-builds-v1/benchmark/reviews/floating-visible-builds-v1-01'
+$frames = 'runs/v1-release/data'
+python -m benchmark.floating_visual_review runs/perfect-stage-report/report.json "$release/conditions.json.gz" --run-root ../floating-visible-builds-v1/runs/floating-v1 --frame-root $frames --out runs/visual-review
+```
+
+Use `--shard` with an archived frame ZIP instead of the extracted frame root. Decorative review is opt-in with `--decorative` and also needs its own scored inputs.
