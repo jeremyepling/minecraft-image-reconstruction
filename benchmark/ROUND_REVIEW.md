@@ -21,7 +21,7 @@ Use frame-identical controls and the same visible-only scoring and alignment. St
 
 ## Floating branch scorecard
 
-Close every floating experiment report and chat result with the scores for the actual integration default on its named fixture, followed by the candidate's scores on the same images. Give strict and facade placement F1, strict and facade position-plus-ID F1, and correct, missed and extra blocks. State the change from the previous default and which gains landed this round. Label an archived score with its measured revision and distinguish a candidate improvement from an integration change. When false positives drive a decision, show how many extras were removed for each correct position lost and identify any single view that dominates the tradeoff. Keep the fixed-104 production trend separate.
+Use Floating reconstruction scores in Floating reports and chat results. Compare the frozen Floating benchmark and candidate on the same images. Give strict and facade placement F1, strict and facade position-plus-ID F1, and correct, missed and extra blocks. State which gains landed and label carried-forward results with their measured revision. When false positives drive a decision, show how many extras were removed for each correct position lost and identify any single view that dominates the tradeoff. Include production trend scores only when Jeremy requests them.
 
 ## From a reported error to a test
 

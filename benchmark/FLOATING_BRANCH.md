@@ -26,6 +26,14 @@ if ((Get-FileHash -LiteralPath $archive -Algorithm SHA256).Hash -ne $manifest.ar
 Expand-Archive -LiteralPath $archive -DestinationPath 'runs/frozen-expanded-benchmark-01'
 ```
 
+## Depth separation before the grid
+
+Find visible surfaces and check which pixels share a plane before estimating a unit block or fitting a grid. Use source normals to identify direction changes. For same-facing surfaces, look for a repeatable signed depth step across a photographed boundary, exposed return, rim or opening. Fit each sufficiently supported plane independently. Preserve those plane boundaries when attaching grids, and leave unsighted regions unknown.
+
+Inspect existing grids that span more than one visible plane first. Grade the source mask and plane assignment against recorded frontmost faces, then grade the decoded export. Keep the frozen split-border benchmark as the comparison. Its pink check groups cells on an inherited grid and can reduce extras, so it does not measure the benefit of giving each plane its own ruler and grid origin.
+
+The local reprojection test at `fb08477` is retired from active Floating development. Its one-block shifts ran after grid fitting. The stored report is historical evidence. Use photographed depth boundaries before grid fitting for future depth work.
+
 ## Sparse connected-atlas runtime
 
 The connected-atlas baseline transfers shared rows across supported corners, registers native atlas matches to the grid, and proposes grids on additional visible wall patches where neighboring atlas observations agree. It scores **12.64% strict and 12.90% facade placement F1** on six open-sky composites. Strict/facade position-plus-material F1 is **4.68% / 4.77%**. It places 273 correct blocks, misses 3,768, and adds five extras. The preceding registered-seam baseline placed 239 correctly with five extras. The gains came from Walled Garden and Harbor. [Garden experiments and source overlays](reviews/garden-feedback-01/README.md)

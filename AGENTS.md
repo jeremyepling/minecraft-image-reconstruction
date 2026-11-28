@@ -2,7 +2,9 @@
 
 ## Floating-build development
 
-End each floating experiment report and chat result with **Floating branch scorecard**. Use the integration revision and cohort in `benchmark/FLOATING_BRANCH.md`, and follow the scorecard instructions in `benchmark/ROUND_REVIEW.md`.
+Use the named Floating revisions and cohorts in `benchmark/FLOATING_BRANCH.md` for each Floating report or chat result. Report Floating reconstruction scores, including strict and facade placement, position plus material, and correct, missed and extra positions. Include production numbers only when Jeremy asks for a production comparison.
+
+Separate and check visible plane depths before fitting grids. Preserve explicit depth splits during attachment. The fixed-grid one-block reprojection test is retired from active Floating development. See [depth separation before the grid](benchmark/FLOATING_BRANCH.md#depth-separation-before-the-grid).
 
 Use `experiment/floating-visible-builds` as the integration branch for the ground-independent, visible-only reconstruction effort. Base new challengers on this branch and return verified gains here. Jeremy wants this development isolated from production `main`. Promotion to `main` is a separate decision for Jeremy after comparable evaluation. Compare against the branch's connected-atlas result, retain whole-build translation scoring, and record which structures gain or regress. See [the branch baseline and replay](benchmark/FLOATING_BRANCH.md).
 
