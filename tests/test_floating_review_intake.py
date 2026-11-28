@@ -48,3 +48,30 @@ class MobileReviewIntakeTest(unittest.TestCase):
             baseline, candidate = manifest['methods']
             self.assertEqual(tested['measuredDelta']['correct'], candidate['scores']['geometry_strict']['correct'] -
                              baseline['scores']['geometry_strict']['correct'])
+
+    def test_criterion_only_annotation_and_surface_gated_answer(self):
+        manifest = dict(id='round',comparisonSha256='sha',cases=[dict(id='arcade',sourceSha256='source')])
+        gate = dict(id='wall-grid',caseId='arcade',sourceSha256='source',surfaceId='Baseline / mask-2',
+                    type='visible-ambiguity',theme='grid',stage='Block Counter',prompt='Which seam?',cue='Inspect the roof.',
+                    firstPass='Earlier line is plausible.',checked='Compared both overlays.',
+                    choices=[dict(answer='Near',experiment='Near test'),dict(answer='Far',experiment='Far test')])
+        observation = dict(caseId='arcade', surfaceId=gate['surfaceId'], gridAttempt='Refit', gridOccurrence=1,
+                           assessments={'coverage':{'answer':'no','note':'Misses rim.'},
+                                        'blockSize':{'answer':'yes','note':''},
+                                        'alignment':{'answer':'unclear','note':'Occluded seam.'}})
+        answer = dict(caseId='arcade',surfaceId=gate['surfaceId'],actionId=gate['id'],
+                      questionType=gate['type'],answer='Near')
+        export = dict(schema=1,runId='round',comparisonSha256='sha')
+        with tempfile.TemporaryDirectory() as dir_name:
+            folder = Path(dir_name)
+            database = folder/'history.sqlite3'
+            history = private_history(manifest, database=database, downloads=folder, questions=[gate])
+            self.assertEqual(history['questions'][0]['surfaceId'], gate['surfaceId'])
+            with closing(connect(database)) as db:
+                self.assertEqual(ingest(db, dict(export,feedback=[observation,answer]), manifest), 2)
+                observed, answered = entries(db)
+                self.assertEqual(observed['assessments'], observation['assessments'])
+                self.assertEqual(observed['gridOccurrence'], 1)
+                self.assertEqual(answered['status'], 'answered')
+                with self.assertRaises(ValueError):
+                    ingest(db, dict(export,feedback=[dict(answer,surfaceId='mask-2')]), manifest)
