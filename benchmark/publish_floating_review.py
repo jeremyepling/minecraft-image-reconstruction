@@ -12,7 +12,7 @@ import tempfile
 import time
 from urllib.request import Request, urlopen
 
-from benchmark.build_floating_mobile_review import DEFAULT_LABELS, manifest
+from benchmark.build_floating_mobile_review import manifest
 from benchmark.floating_stage_report import read
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -107,7 +107,9 @@ def deploy(data, source_assets, site_files, cli):
     if git("ls-remote", "origin", f"refs/heads/{branch}").split()[0] != git("rev-parse", "HEAD"):
         raise ValueError("Remote branch does not match the prepared review.")
     def check_asset(path):
-        expected = hashlib.sha256((ROOT / path).read_bytes()).digest()
+        # Git can normalize Windows line endings. Verify the bytes from the pinned tree.
+        blob = subprocess.check_output(["git","show",f"{pin}:{path.as_posix()}"],cwd=ROOT)
+        expected = hashlib.sha256(blob).digest()
         published_bytes(f"{RAW}/{pin}/{path.as_posix()}", lambda body: hashlib.sha256(body).digest() == expected)
     with ThreadPoolExecutor(6) as pool:
         list(pool.map(check_asset, files))

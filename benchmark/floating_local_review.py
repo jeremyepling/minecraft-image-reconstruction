@@ -8,11 +8,11 @@ import numpy as np
 from PIL import Image
 
 from benchmark.expanded_scores import evaluate_pack, load_reference
-from benchmark.floating_stage_report import COUNTS, DATASETS, group, hash_file, read
+from benchmark.floating_stage_report import COUNTS, DATASETS, group, handoff_metrics, hash_file, read
 from benchmark.floating_visual_review import identity, paint, select, strict_delta
 
 
-def checked_arm(folder, entry, variant, reference):
+def checked_arm(folder, entry, variant, reference, shared_handoff):
     case = read(folder / "case.json")
     score = case["score"]
     evidence = case["evidence"]
@@ -38,17 +38,27 @@ def checked_arm(folder, entry, variant, reference):
     strict = scores["geometry_strict"]["correct"]
     stages = dict(axes=(int(projection is not None), 1), material=(scores["scores_strict"]["correct"],strict),
                   placement=(strict, len(reference.truth)))
+    package_path = folder / "surfaces.json"
+    if package_path.exists():
+        package = read(package_path)
+        provenance = package["provenance"]
+        if (package["sourceSha256"] != sha or provenance["arms"]["Candidate"]["packSha256"] != fresh["pack_sha256"]):
+            raise ValueError(f"Surface evidence differs from the scored output: {folder}")
+        for handoff in (folder / "source-handoff", shared_handoff):
+            receipt = handoff / "build-manifest.json"
+            if receipt.is_file() and hash_file(receipt) == provenance["handoffSha256"]:
+                stages.update(handoff_metrics(handoff, {"source_sha256":sha}, {"counts_sha256":provenance["countsSha256"]}))
+                break
     # No selected-component ID contract in this runner. Distinct sheet names across arms
     # cannot establish that the image contains different surfaces.
     return dict(scores=scores, stages=stages, exported=len(aligned), unresolved=bool(aligned and projection is None),
                 selected=[], pack_sha256=fresh["pack_sha256"]), aligned
 
 
-def prepare(fixture, baseline, candidate, variant, output, label, available, names, *, case_ids=(), historical=False):
+def prepare(fixture, baseline, candidate, variant, output, label, available, names, *, case_ids=()):
     from training.floating_combined import select_active_cases
     entries = [e for e in read(fixture)["cases"] if e["dataset"] != "decorative-builds-v1"]
-    if not historical:
-        entries = list(select_active_cases(entries))
+    entries = list(select_active_cases(entries))
     if not entries:
         raise ValueError("No eligible visible views in this fixture.")
     if len({e["id"] for e in entries}) != len(entries):
@@ -65,7 +75,7 @@ def prepare(fixture, baseline, candidate, variant, output, label, available, nam
         reference = load_reference(e)
         arms, aligned = {}, []
         for key, root in (("baseline", baseline), ("current", candidate)):
-            arms[key], positions = checked_arm(root / marker, e, variant, reference)
+            arms[key], positions = checked_arm(root / marker, e, variant, reference, baseline / marker / "source-handoff")
             aligned.append(positions)
         gained, lost, paired = strict_delta(reference.truth, *aligned)
         change = dict(changed_pack=arms["baseline"]["pack_sha256"] != arms["current"]["pack_sha256"],
@@ -112,7 +122,8 @@ def prepare(fixture, baseline, candidate, variant, output, label, available, nam
         frame = output / "frames" / e["split"] / "frames" / marker
         frame.mkdir(parents=True,exist_ok=True)
         shutil.copyfile(source, frame / "rgb.png")
-        shutil.copyfile(original / "labels.npz",frame / "labels.npz")
+        for name in ("labels.npz","labels.json","camera.json"):
+            shutil.copyfile(original / name,frame / name)
         cases.append(dict(id=marker,source_sha256=f["source_sha256"],reference_sha256=f["reference_sha256"],
                           baseline=dict(pack_sha256=f["arms"]["baseline"]["pack_sha256"]),
                           candidate=dict(pack_sha256=f["arms"]["current"]["pack_sha256"]),paired=f["changes"]["current"]["paired"],

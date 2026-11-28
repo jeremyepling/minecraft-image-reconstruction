@@ -303,7 +303,7 @@ def _measured_outcome(entry):
                 delta={field: values[field] for field in fields})
 
 
-def _questions(ledger, frames, cases):
+def _questions(ledger, frames, cases, packages=None):
     pictured = {c['id'] for c in cases}
     entries = ledger.get('entries', [])
     cards = []
@@ -352,6 +352,9 @@ def _questions(ledger, frames, cases):
             raise ValueError(f'Unsupported human question type: {kind}')
         if marker not in pictured or not any(f['source_sha256'] == gate['sourceSha256'] for f in frames[marker]):
             continue
+        surface_id = gate.get('surfaceId')
+        if surface_id and surface_id not in {s['id'] for s in (packages or {}).get(marker, {}).get('surfaces', [])}:
+            continue
         if any(not isinstance(gate.get(field), str) or not gate[field].strip()
                for field in ('theme', 'stage', 'prompt', 'cue', 'firstPass', 'checked')):
             raise ValueError(f'Question {key} lacks a cue, prior check or actionable first pass.')
@@ -373,6 +376,8 @@ def _questions(ledger, frames, cases):
         card.update(disposition='question', status='pending',
                     question=dict(id=key, type=kind, prompt=gate['prompt'], cue=gate['cue'],
                                   choices=[dict(answer=c['answer'], experiment=c['experiment']) for c in choices]))
+        if surface_id:
+            card['question']['surfaceId'] = surface_id
         cards.append(card)
     metrics.update(presented=len(cards), pending=metrics['proposed'])
     return cards, sorted(outcomes, key=lambda o: o['actionId']), metrics
@@ -478,7 +483,7 @@ def analyze(report, queue_receipts=None, candidate='current', *, ledger=None, su
     # The first investment is supported by the widest matched replay. Follow with concrete positions
     # to trace before lower-priority models, including material-only opportunities.
     cards = cards[:1] + checks + cards[1:]
-    questions, outcomes, metrics = _questions(ledger or {}, frames, cases)
+    questions, outcomes, metrics = _questions(ledger or {}, frames, cases, surface_evidence)
     cards.extend(questions)
     ids = [card['id'] for card in cards]
     if len(set(ids)) != len(ids):

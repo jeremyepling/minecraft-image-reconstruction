@@ -2,6 +2,8 @@
 
 ## Floating-build development
 
+For a Floating review round use the [coordinator and specialist workflow](benchmark/MOBILE_REVIEW.md#coordinate-a-round). The checkout provides scoped analysis skills in `.agents/skills` and worker configurations in `.codex/agents`. Take the first pass with the verified stage report, matched diagnostics and decoded change trace. Present only unresolved visual interpretations or preferences whose answers change the next experiment. The same publisher emits a Scores link and an Image review link.
+
 Use the named Floating revisions and cohorts in `benchmark/FLOATING_BRANCH.md` for each Floating report or chat result. Routine evaluations use the Visible Builds portion of Floating Combined V1. Run Decorative Builds v1 on request and report it as a separate cohort. If skipped, mark it unmeasured and offer a separate run. Use the Baseline and numbered Candidate labels, stage measures and decoded placement metrics in `benchmark/ROUND_REVIEW.md`. Include production numbers only when Jeremy asks for a production comparison.
 
 Separate and check visible plane depths before fitting grids. Preserve explicit depth splits during attachment. The fixed-grid one-block reprojection test is retired from active Floating development. See [depth separation before the grid](benchmark/FLOATING_BRANCH.md#depth-separation-before-the-grid).

@@ -89,7 +89,8 @@ def make_case(case, queue, frames, assets, asset_base, labels, run_root=None, ev
         filename = f'{key}.webp'
         webp(image, out / filename)
         modes.append(dict(key=key, label=title, caption=caption, url=f'{asset_base}/{marker}/{filename}'))
-    title, stage, prompt, first_pass = labels.get(marker, (marker, 'Placement',
+    readable = DEFAULT_LABELS[marker][0] if marker in DEFAULT_LABELS else marker
+    title, stage, prompt, first_pass = labels.get(marker, (readable, 'Placement',
         'Where would you adjust placement?', 'Compare changes with the source and recorded visible grid.'))
     result = dict(id=marker, title=title, stage=stage, prompt=prompt, firstPass=first_pass,
                   width=original.width, height=original.height, modes=modes, counts=case['paired'],
@@ -104,6 +105,22 @@ def make_case(case, queue, frames, assets, asset_base, labels, run_root=None, ev
             reuse_evidence(package, out / 'surfaces.json', case, original.size)
         else:
             build(run_root, case, original, out / 'surfaces.json')
+        from benchmark.floating_surface_loss_trace import trace_case
+        public_package = out / 'surfaces.json'
+        data = read(public_package)
+        folders = None
+        if baseline_evidence_root:
+            folders = (baseline_evidence_root / marker, evidence_root / marker)
+        elif run_root and all('score' in arm for arm in data['provenance']['arms'].values()):
+            folders = tuple((run_root / data['provenance']['arms'][name]['score']).parent
+                            for name in ('Baseline','Candidate'))
+        if folders:
+            trace = trace_case(case, data, frame, *folders)
+            result['placementTrace'] = {k: trace[k] for k in ('status','reason','droppedLosses') if k in trace}
+            if trace['status'] == 'verified':
+                for surface in data['surfaces']:
+                    surface['placementChange'] = trace['surfaces'].get(surface['id'])
+                public_package.write_text(json.dumps(data, separators=(',', ':')) + '\n', encoding='utf-8')
         result['surfaceEvidence'] = f'{asset_base}/{marker}/surfaces.json'
     return result
 

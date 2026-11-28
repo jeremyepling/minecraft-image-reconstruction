@@ -240,6 +240,11 @@ function scores(run) {
 
 function surfaceTrace(container, surface, evidence) {
   container.replaceChildren();
+  if (surface.placementChange) {
+    const change = surface.placementChange;
+    el('p', 'Correct positions gained ' + fmt(change.gained) + ' · lost ' + fmt(change.lost) +
+      ' · extras added ' + fmt(change.extrasAdded) + ' · removed ' + fmt(change.extrasRemoved), container);
+  }
   for (const [arm, record] of Object.entries(surface.exports || {})) {
     const label = el('details', '', container);
     const cells = record.cells || [];
