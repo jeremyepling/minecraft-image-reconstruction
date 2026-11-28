@@ -1,0 +1,3163 @@
+{
+  "baseline": {
+    "all": {
+      "n": 100,
+      "geometry": {
+        "strict": {
+          "correct": 25960,
+          "missed": 115612,
+          "extras": 52734,
+          "f1": 0.2357149991374066
+        },
+        "facade": {
+          "correct": 25931,
+          "missed": 105677,
+          "extras": 52734,
+          "f1": 0.24664127110946246
+        }
+      },
+      "scores": {
+        "strict": {
+          "correct": 5144,
+          "missed": 136428,
+          "extras": 73550,
+          "f1": 0.04670716315727348
+        },
+        "facade": {
+          "correct": 5144,
+          "missed": 126464,
+          "extras": 73521,
+          "f1": 0.048926871257840995
+        }
+      },
+      "paired": {
+        "correct_gained": 0,
+        "correct_lost": 0,
+        "extras_added": 0,
+        "extras_removed": 0
+      },
+      "active": [],
+      "changed": []
+    },
+    "train": {
+      "n": 72,
+      "geometry": {
+        "strict": {
+          "correct": 19668,
+          "missed": 95526,
+          "extras": 46079,
+          "f1": 0.2173968310112136
+        },
+        "facade": {
+          "correct": 19643,
+          "missed": 88236,
+          "extras": 46079,
+          "f1": 0.22630053974343467
+        }
+      },
+      "scores": {
+        "strict": {
+          "correct": 3880,
+          "missed": 111314,
+          "extras": 61867,
+          "f1": 0.04288690788710132
+        },
+        "facade": {
+          "correct": 3880,
+          "missed": 103999,
+          "extras": 61842,
+          "f1": 0.04470020333984251
+        }
+      },
+      "paired": {
+        "correct_gained": 0,
+        "correct_lost": 0,
+        "extras_added": 0,
+        "extras_removed": 0
+      },
+      "active": [],
+      "changed": []
+    },
+    "validation": {
+      "n": 14,
+      "geometry": {
+        "strict": {
+          "correct": 4682,
+          "missed": 8660,
+          "extras": 3211,
+          "f1": 0.4409700965387332
+        },
+        "facade": {
+          "correct": 4682,
+          "missed": 7663,
+          "extras": 3211,
+          "f1": 0.4626939420891392
+        }
+      },
+      "scores": {
+        "strict": {
+          "correct": 995,
+          "missed": 12347,
+          "extras": 6898,
+          "f1": 0.09371320932422887
+        },
+        "facade": {
+          "correct": 995,
+          "missed": 11350,
+          "extras": 6898,
+          "f1": 0.09832987449352702
+        }
+      },
+      "paired": {
+        "correct_gained": 0,
+        "correct_lost": 0,
+        "extras_added": 0,
+        "extras_removed": 0
+      },
+      "active": [],
+      "changed": []
+    },
+    "test": {
+      "n": 14,
+      "geometry": {
+        "strict": {
+          "correct": 1610,
+          "missed": 11426,
+          "extras": 3444,
+          "f1": 0.17799889441680486
+        },
+        "facade": {
+          "correct": 1606,
+          "missed": 9778,
+          "extras": 3444,
+          "f1": 0.19544846050870146
+        }
+      },
+      "scores": {
+        "strict": {
+          "correct": 269,
+          "missed": 12767,
+          "extras": 4785,
+          "f1": 0.02974018794914317
+        },
+        "facade": {
+          "correct": 269,
+          "missed": 11115,
+          "extras": 4781,
+          "f1": 0.0327370086406231
+        }
+      },
+      "paired": {
+        "correct_gained": 0,
+        "correct_lost": 0,
+        "extras_added": 0,
+        "extras_removed": 0
+      },
+      "active": [],
+      "changed": []
+    },
+    "focus": {
+      "n": 2,
+      "geometry": {
+        "strict": {
+          "correct": 1924,
+          "missed": 4045,
+          "extras": 2701,
+          "f1": 0.3632244666792524
+        },
+        "facade": {
+          "correct": 1924,
+          "missed": 3881,
+          "extras": 2701,
+          "f1": 0.3689357622243528
+        }
+      },
+      "scores": {
+        "strict": {
+          "correct": 456,
+          "missed": 5513,
+          "extras": 4169,
+          "f1": 0.08608646403624694
+        },
+        "facade": {
+          "correct": 456,
+          "missed": 5349,
+          "extras": 4169,
+          "f1": 0.08744007670182166
+        }
+      },
+      "paired": {
+        "correct_gained": 0,
+        "correct_lost": 0,
+        "extras_added": 0,
+        "extras_removed": 0
+      },
+      "active": [],
+      "changed": []
+    },
+    "control": {
+      "n": 2,
+      "geometry": {
+        "strict": {
+          "correct": 49,
+          "missed": 96,
+          "extras": 6189,
+          "f1": 0.015353282155726148
+        },
+        "facade": {
+          "correct": 49,
+          "missed": 93,
+          "extras": 6189,
+          "f1": 0.015360501567398118
+        }
+      },
+      "scores": {
+        "strict": {
+          "correct": 0,
+          "missed": 145,
+          "extras": 6238,
+          "f1": 0.0
+        },
+        "facade": {
+          "correct": 0,
+          "missed": 142,
+          "extras": 6238,
+          "f1": 0.0
+        }
+      },
+      "paired": {
+        "correct_gained": 0,
+        "correct_lost": 0,
+        "extras_added": 0,
+        "extras_removed": 0
+      },
+      "active": [],
+      "changed": []
+    }
+  },
+  "separate": {
+    "all": {
+      "n": 100,
+      "geometry": {
+        "strict": {
+          "correct": 23510,
+          "missed": 118062,
+          "extras": 40971,
+          "f1": 0.22819371715044187
+        },
+        "facade": {
+          "correct": 23487,
+          "missed": 108121,
+          "extras": 40971,
+          "f1": 0.2395825895361766
+        }
+      },
+      "scores": {
+        "strict": {
+          "correct": 4932,
+          "missed": 136640,
+          "extras": 59549,
+          "f1": 0.047871178774392995
+        },
+        "facade": {
+          "correct": 4932,
+          "missed": 126676,
+          "extras": 59526,
+          "f1": 0.05030958962798241
+        }
+      },
+      "paired": {
+        "correct_gained": 2512,
+        "correct_lost": 4962,
+        "extras_added": 6914,
+        "extras_removed": 18677
+      },
+      "active": [
+        "front-002-sawtooth-full-noon",
+        "front-006-bell-tower-full-noon",
+        "front-008-observatory-full-noon",
+        "front-012-water-tower-full-noon",
+        "front-015-arcade-full-noon",
+        "front-017-skybridge-full-noon",
+        "front-020-bell-tower-full-noon",
+        "front-026-water-tower-full-noon",
+        "front-030-sawtooth-full-noon",
+        "front-033-portico-full-noon",
+        "front-039-crane-full-noon",
+        "front-041-windmill-full-noon",
+        "front-042-vault-full-noon",
+        "front-044-sawtooth-full-noon",
+        "front-045-skybridge-full-noon",
+        "front-047-portico-full-noon",
+        "front-048-bell-tower-full-noon",
+        "front-050-observatory-full-noon",
+        "front-051-gatehouse-full-noon",
+        "front-053-crane-full-noon",
+        "front-054-water-tower-full-noon",
+        "front-060-terrace-full-noon",
+        "front-062-bell-tower-full-noon",
+        "front-066-gabled-hall-full-noon",
+        "front-068-water-tower-full-noon",
+        "front-070-vault-full-noon",
+        "front-072-sawtooth-full-noon",
+        "front-075-portico-full-noon",
+        "front-080-gabled-hall-full-noon",
+        "front-084-vault-full-noon",
+        "front-089-portico-full-noon",
+        "front-090-bell-tower-full-noon",
+        "front-092-observatory-full-noon",
+        "front-093-gatehouse-full-noon",
+        "front-096-water-tower-full-noon"
+      ],
+      "changed": [
+        "front-002-sawtooth-full-noon",
+        "front-006-bell-tower-full-noon",
+        "front-008-observatory-full-noon",
+        "front-012-water-tower-full-noon",
+        "front-015-arcade-full-noon",
+        "front-017-skybridge-full-noon",
+        "front-020-bell-tower-full-noon",
+        "front-026-water-tower-full-noon",
+        "front-030-sawtooth-full-noon",
+        "front-033-portico-full-noon",
+        "front-039-crane-full-noon",
+        "front-041-windmill-full-noon",
+        "front-042-vault-full-noon",
+        "front-044-sawtooth-full-noon",
+        "front-045-skybridge-full-noon",
+        "front-047-portico-full-noon",
+        "front-048-bell-tower-full-noon",
+        "front-050-observatory-full-noon",
+        "front-051-gatehouse-full-noon",
+        "front-053-crane-full-noon",
+        "front-054-water-tower-full-noon",
+        "front-060-terrace-full-noon",
+        "front-062-bell-tower-full-noon",
+        "front-066-gabled-hall-full-noon",
+        "front-068-water-tower-full-noon",
+        "front-070-vault-full-noon",
+        "front-072-sawtooth-full-noon",
+        "front-075-portico-full-noon",
+        "front-080-gabled-hall-full-noon",
+        "front-084-vault-full-noon",
+        "front-090-bell-tower-full-noon",
+        "front-092-observatory-full-noon",
+        "front-093-gatehouse-full-noon",
+        "front-096-water-tower-full-noon"
+      ]
+    },
+    "train": {
+      "n": 72,
+      "geometry": {
+        "strict": {
+          "correct": 17932,
+          "missed": 97262,
+          "extras": 36520,
+          "f1": 0.21140492555085294
+        },
+        "facade": {
+          "correct": 17912,
+          "missed": 89967,
+          "extras": 36520,
+          "f1": 0.22071208975362114
+        }
+      },
+      "scores": {
+        "strict": {
+          "correct": 3738,
+          "missed": 111456,
+          "extras": 50714,
+          "f1": 0.04406823620951864
+        },
+        "facade": {
+          "correct": 3738,
+          "missed": 104141,
+          "extras": 50694,
+          "f1": 0.046059724849209234
+        }
+      },
+      "paired": {
+        "correct_gained": 2389,
+        "correct_lost": 4125,
+        "extras_added": 6341,
+        "extras_removed": 15900
+      },
+      "active": [
+        "front-002-sawtooth-full-noon",
+        "front-006-bell-tower-full-noon",
+        "front-008-observatory-full-noon",
+        "front-015-arcade-full-noon",
+        "front-017-skybridge-full-noon",
+        "front-020-bell-tower-full-noon",
+        "front-030-sawtooth-full-noon",
+        "front-033-portico-full-noon",
+        "front-044-sawtooth-full-noon",
+        "front-045-skybridge-full-noon",
+        "front-047-portico-full-noon",
+        "front-048-bell-tower-full-noon",
+        "front-050-observatory-full-noon",
+        "front-051-gatehouse-full-noon",
+        "front-060-terrace-full-noon",
+        "front-062-bell-tower-full-noon",
+        "front-066-gabled-hall-full-noon",
+        "front-072-sawtooth-full-noon",
+        "front-075-portico-full-noon",
+        "front-080-gabled-hall-full-noon",
+        "front-089-portico-full-noon",
+        "front-090-bell-tower-full-noon",
+        "front-092-observatory-full-noon",
+        "front-093-gatehouse-full-noon"
+      ],
+      "changed": [
+        "front-002-sawtooth-full-noon",
+        "front-006-bell-tower-full-noon",
+        "front-008-observatory-full-noon",
+        "front-015-arcade-full-noon",
+        "front-017-skybridge-full-noon",
+        "front-020-bell-tower-full-noon",
+        "front-030-sawtooth-full-noon",
+        "front-033-portico-full-noon",
+        "front-044-sawtooth-full-noon",
+        "front-045-skybridge-full-noon",
+        "front-047-portico-full-noon",
+        "front-048-bell-tower-full-noon",
+        "front-050-observatory-full-noon",
+        "front-051-gatehouse-full-noon",
+        "front-060-terrace-full-noon",
+        "front-062-bell-tower-full-noon",
+        "front-066-gabled-hall-full-noon",
+        "front-072-sawtooth-full-noon",
+        "front-075-portico-full-noon",
+        "front-080-gabled-hall-full-noon",
+        "front-090-bell-tower-full-noon",
+        "front-092-observatory-full-noon",
+        "front-093-gatehouse-full-noon"
+      ]
+    },
+    "validation": {
+      "n": 14,
+      "geometry": {
+        "strict": {
+          "correct": 4187,
+          "missed": 9155,
+          "extras": 2292,
+          "f1": 0.42248120680086776
+        },
+        "facade": {
+          "correct": 4187,
+          "missed": 8158,
+          "extras": 2292,
+          "f1": 0.444857628559286
+        }
+      },
+      "scores": {
+        "strict": {
+          "correct": 943,
+          "missed": 12399,
+          "extras": 5536,
+          "f1": 0.09515160688159023
+        },
+        "facade": {
+          "correct": 943,
+          "missed": 11402,
+          "extras": 5536,
+          "f1": 0.10019124521886953
+        }
+      },
+      "paired": {
+        "correct_gained": 103,
+        "correct_lost": 598,
+        "extras_added": 523,
+        "extras_removed": 1442
+      },
+      "active": [
+        "front-012-water-tower-full-noon",
+        "front-026-water-tower-full-noon",
+        "front-039-crane-full-noon",
+        "front-053-crane-full-noon",
+        "front-054-water-tower-full-noon",
+        "front-068-water-tower-full-noon",
+        "front-096-water-tower-full-noon"
+      ],
+      "changed": [
+        "front-012-water-tower-full-noon",
+        "front-026-water-tower-full-noon",
+        "front-039-crane-full-noon",
+        "front-053-crane-full-noon",
+        "front-054-water-tower-full-noon",
+        "front-068-water-tower-full-noon",
+        "front-096-water-tower-full-noon"
+      ]
+    },
+    "test": {
+      "n": 14,
+      "geometry": {
+        "strict": {
+          "correct": 1391,
+          "missed": 11645,
+          "extras": 2159,
+          "f1": 0.16773182201856987
+        },
+        "facade": {
+          "correct": 1388,
+          "missed": 9996,
+          "extras": 2159,
+          "f1": 0.1859219074408948
+        }
+      },
+      "scores": {
+        "strict": {
+          "correct": 251,
+          "missed": 12785,
+          "extras": 3299,
+          "f1": 0.030266489810683708
+        },
+        "facade": {
+          "correct": 251,
+          "missed": 11133,
+          "extras": 3296,
+          "f1": 0.033621324760565265
+        }
+      },
+      "paired": {
+        "correct_gained": 20,
+        "correct_lost": 239,
+        "extras_added": 50,
+        "extras_removed": 1335
+      },
+      "active": [
+        "front-041-windmill-full-noon",
+        "front-042-vault-full-noon",
+        "front-070-vault-full-noon",
+        "front-084-vault-full-noon"
+      ],
+      "changed": [
+        "front-041-windmill-full-noon",
+        "front-042-vault-full-noon",
+        "front-070-vault-full-noon",
+        "front-084-vault-full-noon"
+      ]
+    },
+    "focus": {
+      "n": 2,
+      "geometry": {
+        "strict": {
+          "correct": 1581,
+          "missed": 4388,
+          "extras": 447,
+          "f1": 0.39539827435288233
+        },
+        "facade": {
+          "correct": 1581,
+          "missed": 4224,
+          "extras": 447,
+          "f1": 0.4036767522022214
+        }
+      },
+      "scores": {
+        "strict": {
+          "correct": 430,
+          "missed": 5539,
+          "extras": 1598,
+          "f1": 0.10754032762285858
+        },
+        "facade": {
+          "correct": 430,
+          "missed": 5375,
+          "extras": 1598,
+          "f1": 0.10979190603855483
+        }
+      },
+      "paired": {
+        "correct_gained": 44,
+        "correct_lost": 387,
+        "extras_added": 77,
+        "extras_removed": 2331
+      },
+      "active": [
+        "front-006-bell-tower-full-noon",
+        "front-060-terrace-full-noon"
+      ],
+      "changed": [
+        "front-006-bell-tower-full-noon",
+        "front-060-terrace-full-noon"
+      ]
+    },
+    "control": {
+      "n": 2,
+      "geometry": {
+        "strict": {
+          "correct": 49,
+          "missed": 96,
+          "extras": 6189,
+          "f1": 0.015353282155726148
+        },
+        "facade": {
+          "correct": 49,
+          "missed": 93,
+          "extras": 6189,
+          "f1": 0.015360501567398118
+        }
+      },
+      "scores": {
+        "strict": {
+          "correct": 0,
+          "missed": 145,
+          "extras": 6238,
+          "f1": 0.0
+        },
+        "facade": {
+          "correct": 0,
+          "missed": 142,
+          "extras": 6238,
+          "f1": 0.0
+        }
+      },
+      "paired": {
+        "correct_gained": 0,
+        "correct_lost": 0,
+        "extras_added": 0,
+        "extras_removed": 0
+      },
+      "active": [],
+      "changed": []
+    }
+  },
+  "same-plane": {
+    "all": {
+      "n": 100,
+      "geometry": {
+        "strict": {
+          "correct": 25078,
+          "missed": 116494,
+          "extras": 50561,
+          "f1": 0.23090911602082767
+        },
+        "facade": {
+          "correct": 25049,
+          "missed": 106559,
+          "extras": 50561,
+          "f1": 0.24176471155980658
+        }
+      },
+      "scores": {
+        "strict": {
+          "correct": 5054,
+          "missed": 136518,
+          "extras": 70585,
+          "f1": 0.04653539645782212
+        },
+        "facade": {
+          "correct": 5054,
+          "missed": 126554,
+          "extras": 70556,
+          "f1": 0.04877954617842079
+        }
+      },
+      "paired": {
+        "correct_gained": 863,
+        "correct_lost": 1745,
+        "extras_added": 3288,
+        "extras_removed": 5461
+      },
+      "active": [
+        "front-002-sawtooth-full-noon",
+        "front-006-bell-tower-full-noon",
+        "front-008-observatory-full-noon",
+        "front-012-water-tower-full-noon",
+        "front-015-arcade-full-noon",
+        "front-017-skybridge-full-noon",
+        "front-020-bell-tower-full-noon",
+        "front-026-water-tower-full-noon",
+        "front-030-sawtooth-full-noon",
+        "front-033-portico-full-noon",
+        "front-039-crane-full-noon",
+        "front-041-windmill-full-noon",
+        "front-042-vault-full-noon",
+        "front-044-sawtooth-full-noon",
+        "front-045-skybridge-full-noon",
+        "front-047-portico-full-noon",
+        "front-048-bell-tower-full-noon",
+        "front-050-observatory-full-noon",
+        "front-051-gatehouse-full-noon",
+        "front-053-crane-full-noon",
+        "front-054-water-tower-full-noon",
+        "front-060-terrace-full-noon",
+        "front-062-bell-tower-full-noon",
+        "front-066-gabled-hall-full-noon",
+        "front-068-water-tower-full-noon",
+        "front-070-vault-full-noon",
+        "front-072-sawtooth-full-noon",
+        "front-075-portico-full-noon",
+        "front-080-gabled-hall-full-noon",
+        "front-084-vault-full-noon",
+        "front-089-portico-full-noon",
+        "front-090-bell-tower-full-noon",
+        "front-092-observatory-full-noon",
+        "front-093-gatehouse-full-noon",
+        "front-096-water-tower-full-noon"
+      ],
+      "changed": [
+        "front-002-sawtooth-full-noon",
+        "front-006-bell-tower-full-noon",
+        "front-008-observatory-full-noon",
+        "front-012-water-tower-full-noon",
+        "front-015-arcade-full-noon",
+        "front-017-skybridge-full-noon",
+        "front-020-bell-tower-full-noon",
+        "front-026-water-tower-full-noon",
+        "front-030-sawtooth-full-noon",
+        "front-033-portico-full-noon",
+        "front-039-crane-full-noon",
+        "front-041-windmill-full-noon",
+        "front-042-vault-full-noon",
+        "front-044-sawtooth-full-noon",
+        "front-045-skybridge-full-noon",
+        "front-047-portico-full-noon",
+        "front-048-bell-tower-full-noon",
+        "front-050-observatory-full-noon",
+        "front-051-gatehouse-full-noon",
+        "front-053-crane-full-noon",
+        "front-054-water-tower-full-noon",
+        "front-060-terrace-full-noon",
+        "front-062-bell-tower-full-noon",
+        "front-066-gabled-hall-full-noon",
+        "front-068-water-tower-full-noon",
+        "front-072-sawtooth-full-noon",
+        "front-075-portico-full-noon",
+        "front-080-gabled-hall-full-noon",
+        "front-084-vault-full-noon",
+        "front-090-bell-tower-full-noon",
+        "front-092-observatory-full-noon",
+        "front-093-gatehouse-full-noon",
+        "front-096-water-tower-full-noon"
+      ]
+    },
+    "train": {
+      "n": 72,
+      "geometry": {
+        "strict": {
+          "correct": 19123,
+          "missed": 96071,
+          "extras": 44655,
+          "f1": 0.21369823212569564
+        },
+        "facade": {
+          "correct": 19098,
+          "missed": 88781,
+          "extras": 44655,
+          "f1": 0.22254591218420808
+        }
+      },
+      "scores": {
+        "strict": {
+          "correct": 3836,
+          "missed": 111358,
+          "extras": 59942,
+          "f1": 0.04286704065440404
+        },
+        "facade": {
+          "correct": 3836,
+          "missed": 104043,
+          "extras": 59917,
+          "f1": 0.04470028899039806
+        }
+      },
+      "paired": {
+        "correct_gained": 762,
+        "correct_lost": 1307,
+        "extras_added": 1938,
+        "extras_removed": 3362
+      },
+      "active": [
+        "front-002-sawtooth-full-noon",
+        "front-006-bell-tower-full-noon",
+        "front-008-observatory-full-noon",
+        "front-015-arcade-full-noon",
+        "front-017-skybridge-full-noon",
+        "front-020-bell-tower-full-noon",
+        "front-030-sawtooth-full-noon",
+        "front-033-portico-full-noon",
+        "front-044-sawtooth-full-noon",
+        "front-045-skybridge-full-noon",
+        "front-047-portico-full-noon",
+        "front-048-bell-tower-full-noon",
+        "front-050-observatory-full-noon",
+        "front-051-gatehouse-full-noon",
+        "front-060-terrace-full-noon",
+        "front-062-bell-tower-full-noon",
+        "front-066-gabled-hall-full-noon",
+        "front-072-sawtooth-full-noon",
+        "front-075-portico-full-noon",
+        "front-080-gabled-hall-full-noon",
+        "front-089-portico-full-noon",
+        "front-090-bell-tower-full-noon",
+        "front-092-observatory-full-noon",
+        "front-093-gatehouse-full-noon"
+      ],
+      "changed": [
+        "front-002-sawtooth-full-noon",
+        "front-006-bell-tower-full-noon",
+        "front-008-observatory-full-noon",
+        "front-015-arcade-full-noon",
+        "front-017-skybridge-full-noon",
+        "front-020-bell-tower-full-noon",
+        "front-030-sawtooth-full-noon",
+        "front-033-portico-full-noon",
+        "front-044-sawtooth-full-noon",
+        "front-045-skybridge-full-noon",
+        "front-047-portico-full-noon",
+        "front-048-bell-tower-full-noon",
+        "front-050-observatory-full-noon",
+        "front-051-gatehouse-full-noon",
+        "front-060-terrace-full-noon",
+        "front-062-bell-tower-full-noon",
+        "front-066-gabled-hall-full-noon",
+        "front-072-sawtooth-full-noon",
+        "front-075-portico-full-noon",
+        "front-080-gabled-hall-full-noon",
+        "front-090-bell-tower-full-noon",
+        "front-092-observatory-full-noon",
+        "front-093-gatehouse-full-noon"
+      ]
+    },
+    "validation": {
+      "n": 14,
+      "geometry": {
+        "strict": {
+          "correct": 4433,
+          "missed": 8909,
+          "extras": 2724,
+          "f1": 0.4325089028733109
+        },
+        "facade": {
+          "correct": 4433,
+          "missed": 7912,
+          "extras": 2724,
+          "f1": 0.454620038970362
+        }
+      },
+      "scores": {
+        "strict": {
+          "correct": 945,
+          "missed": 12397,
+          "extras": 6212,
+          "f1": 0.09219961949363384
+        },
+        "facade": {
+          "correct": 945,
+          "missed": 11400,
+          "extras": 6212,
+          "f1": 0.09691313711414214
+        }
+      },
+      "paired": {
+        "correct_gained": 71,
+        "correct_lost": 320,
+        "extras_added": 618,
+        "extras_removed": 1105
+      },
+      "active": [
+        "front-012-water-tower-full-noon",
+        "front-026-water-tower-full-noon",
+        "front-039-crane-full-noon",
+        "front-053-crane-full-noon",
+        "front-054-water-tower-full-noon",
+        "front-068-water-tower-full-noon",
+        "front-096-water-tower-full-noon"
+      ],
+      "changed": [
+        "front-012-water-tower-full-noon",
+        "front-026-water-tower-full-noon",
+        "front-039-crane-full-noon",
+        "front-053-crane-full-noon",
+        "front-054-water-tower-full-noon",
+        "front-068-water-tower-full-noon",
+        "front-096-water-tower-full-noon"
+      ]
+    },
+    "test": {
+      "n": 14,
+      "geometry": {
+        "strict": {
+          "correct": 1522,
+          "missed": 11514,
+          "extras": 3182,
+          "f1": 0.17158962795941377
+        },
+        "facade": {
+          "correct": 1518,
+          "missed": 9866,
+          "extras": 3182,
+          "f1": 0.18875901517035562
+        }
+      },
+      "scores": {
+        "strict": {
+          "correct": 273,
+          "missed": 12763,
+          "extras": 4431,
+          "f1": 0.030777903043968432
+        },
+        "facade": {
+          "correct": 273,
+          "missed": 11111,
+          "extras": 4427,
+          "f1": 0.03394677940810743
+        }
+      },
+      "paired": {
+        "correct_gained": 30,
+        "correct_lost": 118,
+        "extras_added": 732,
+        "extras_removed": 994
+      },
+      "active": [
+        "front-041-windmill-full-noon",
+        "front-042-vault-full-noon",
+        "front-070-vault-full-noon",
+        "front-084-vault-full-noon"
+      ],
+      "changed": [
+        "front-041-windmill-full-noon",
+        "front-042-vault-full-noon",
+        "front-084-vault-full-noon"
+      ]
+    },
+    "focus": {
+      "n": 2,
+      "geometry": {
+        "strict": {
+          "correct": 1758,
+          "missed": 4211,
+          "extras": 2512,
+          "f1": 0.34339290946381484
+        },
+        "facade": {
+          "correct": 1758,
+          "missed": 4047,
+          "extras": 2512,
+          "f1": 0.34898263027295284
+        }
+      },
+      "scores": {
+        "strict": {
+          "correct": 446,
+          "missed": 5523,
+          "extras": 3824,
+          "f1": 0.08711788260572322
+        },
+        "facade": {
+          "correct": 446,
+          "missed": 5359,
+          "extras": 3824,
+          "f1": 0.08853598014888338
+        }
+      },
+      "paired": {
+        "correct_gained": 0,
+        "correct_lost": 166,
+        "extras_added": 0,
+        "extras_removed": 189
+      },
+      "active": [
+        "front-006-bell-tower-full-noon",
+        "front-060-terrace-full-noon"
+      ],
+      "changed": [
+        "front-006-bell-tower-full-noon",
+        "front-060-terrace-full-noon"
+      ]
+    },
+    "control": {
+      "n": 2,
+      "geometry": {
+        "strict": {
+          "correct": 49,
+          "missed": 96,
+          "extras": 6189,
+          "f1": 0.015353282155726148
+        },
+        "facade": {
+          "correct": 49,
+          "missed": 93,
+          "extras": 6189,
+          "f1": 0.015360501567398118
+        }
+      },
+      "scores": {
+        "strict": {
+          "correct": 0,
+          "missed": 145,
+          "extras": 6238,
+          "f1": 0.0
+        },
+        "facade": {
+          "correct": 0,
+          "missed": 142,
+          "extras": 6238,
+          "f1": 0.0
+        }
+      },
+      "paired": {
+        "correct_gained": 0,
+        "correct_lost": 0,
+        "extras_added": 0,
+        "extras_removed": 0
+      },
+      "active": [],
+      "changed": []
+    }
+  },
+  "true-depth": {
+    "all": {
+      "n": 100,
+      "geometry": {
+        "strict": {
+          "correct": 28915,
+          "missed": 112657,
+          "extras": 46724,
+          "f1": 0.266238818476044
+        },
+        "facade": {
+          "correct": 28886,
+          "missed": 102722,
+          "extras": 46724,
+          "f1": 0.27879817390381145
+        }
+      },
+      "scores": {
+        "strict": {
+          "correct": 6517,
+          "missed": 135055,
+          "extras": 69122,
+          "f1": 0.06000616911666536
+        },
+        "facade": {
+          "correct": 6516,
+          "missed": 125092,
+          "extras": 69094,
+          "f1": 0.0628902894536189
+        }
+      },
+      "paired": {
+        "correct_gained": 8190,
+        "correct_lost": 5235,
+        "extras_added": 13325,
+        "extras_removed": 19335
+      },
+      "active": [
+        "front-002-sawtooth-full-noon",
+        "front-006-bell-tower-full-noon",
+        "front-008-observatory-full-noon",
+        "front-012-water-tower-full-noon",
+        "front-015-arcade-full-noon",
+        "front-017-skybridge-full-noon",
+        "front-020-bell-tower-full-noon",
+        "front-026-water-tower-full-noon",
+        "front-030-sawtooth-full-noon",
+        "front-033-portico-full-noon",
+        "front-039-crane-full-noon",
+        "front-041-windmill-full-noon",
+        "front-042-vault-full-noon",
+        "front-044-sawtooth-full-noon",
+        "front-045-skybridge-full-noon",
+        "front-047-portico-full-noon",
+        "front-048-bell-tower-full-noon",
+        "front-050-observatory-full-noon",
+        "front-051-gatehouse-full-noon",
+        "front-053-crane-full-noon",
+        "front-054-water-tower-full-noon",
+        "front-060-terrace-full-noon",
+        "front-062-bell-tower-full-noon",
+        "front-066-gabled-hall-full-noon",
+        "front-068-water-tower-full-noon",
+        "front-070-vault-full-noon",
+        "front-072-sawtooth-full-noon",
+        "front-075-portico-full-noon",
+        "front-080-gabled-hall-full-noon",
+        "front-084-vault-full-noon",
+        "front-089-portico-full-noon",
+        "front-090-bell-tower-full-noon",
+        "front-092-observatory-full-noon",
+        "front-093-gatehouse-full-noon",
+        "front-096-water-tower-full-noon"
+      ],
+      "changed": [
+        "front-002-sawtooth-full-noon",
+        "front-006-bell-tower-full-noon",
+        "front-008-observatory-full-noon",
+        "front-012-water-tower-full-noon",
+        "front-015-arcade-full-noon",
+        "front-017-skybridge-full-noon",
+        "front-020-bell-tower-full-noon",
+        "front-026-water-tower-full-noon",
+        "front-030-sawtooth-full-noon",
+        "front-033-portico-full-noon",
+        "front-039-crane-full-noon",
+        "front-041-windmill-full-noon",
+        "front-042-vault-full-noon",
+        "front-044-sawtooth-full-noon",
+        "front-045-skybridge-full-noon",
+        "front-047-portico-full-noon",
+        "front-048-bell-tower-full-noon",
+        "front-050-observatory-full-noon",
+        "front-051-gatehouse-full-noon",
+        "front-053-crane-full-noon",
+        "front-054-water-tower-full-noon",
+        "front-060-terrace-full-noon",
+        "front-062-bell-tower-full-noon",
+        "front-066-gabled-hall-full-noon",
+        "front-068-water-tower-full-noon",
+        "front-072-sawtooth-full-noon",
+        "front-075-portico-full-noon",
+        "front-080-gabled-hall-full-noon",
+        "front-084-vault-full-noon",
+        "front-090-bell-tower-full-noon",
+        "front-092-observatory-full-noon",
+        "front-093-gatehouse-full-noon",
+        "front-096-water-tower-full-noon"
+      ]
+    },
+    "train": {
+      "n": 72,
+      "geometry": {
+        "strict": {
+          "correct": 22882,
+          "missed": 92312,
+          "extras": 40896,
+          "f1": 0.25570480298594195
+        },
+        "facade": {
+          "correct": 22856,
+          "missed": 85023,
+          "extras": 40896,
+          "f1": 0.2663388315630626
+        }
+      },
+      "scores": {
+        "strict": {
+          "correct": 5162,
+          "missed": 110032,
+          "extras": 58616,
+          "f1": 0.05768500100574391
+        },
+        "facade": {
+          "correct": 5161,
+          "missed": 102718,
+          "extras": 58591,
+          "f1": 0.06014065058177136
+        }
+      },
+      "paired": {
+        "correct_gained": 7371,
+        "correct_lost": 4157,
+        "extras_added": 11139,
+        "extras_removed": 16322
+      },
+      "active": [
+        "front-002-sawtooth-full-noon",
+        "front-006-bell-tower-full-noon",
+        "front-008-observatory-full-noon",
+        "front-015-arcade-full-noon",
+        "front-017-skybridge-full-noon",
+        "front-020-bell-tower-full-noon",
+        "front-030-sawtooth-full-noon",
+        "front-033-portico-full-noon",
+        "front-044-sawtooth-full-noon",
+        "front-045-skybridge-full-noon",
+        "front-047-portico-full-noon",
+        "front-048-bell-tower-full-noon",
+        "front-050-observatory-full-noon",
+        "front-051-gatehouse-full-noon",
+        "front-060-terrace-full-noon",
+        "front-062-bell-tower-full-noon",
+        "front-066-gabled-hall-full-noon",
+        "front-072-sawtooth-full-noon",
+        "front-075-portico-full-noon",
+        "front-080-gabled-hall-full-noon",
+        "front-089-portico-full-noon",
+        "front-090-bell-tower-full-noon",
+        "front-092-observatory-full-noon",
+        "front-093-gatehouse-full-noon"
+      ],
+      "changed": [
+        "front-002-sawtooth-full-noon",
+        "front-006-bell-tower-full-noon",
+        "front-008-observatory-full-noon",
+        "front-015-arcade-full-noon",
+        "front-017-skybridge-full-noon",
+        "front-020-bell-tower-full-noon",
+        "front-030-sawtooth-full-noon",
+        "front-033-portico-full-noon",
+        "front-044-sawtooth-full-noon",
+        "front-045-skybridge-full-noon",
+        "front-047-portico-full-noon",
+        "front-048-bell-tower-full-noon",
+        "front-050-observatory-full-noon",
+        "front-051-gatehouse-full-noon",
+        "front-060-terrace-full-noon",
+        "front-062-bell-tower-full-noon",
+        "front-066-gabled-hall-full-noon",
+        "front-072-sawtooth-full-noon",
+        "front-075-portico-full-noon",
+        "front-080-gabled-hall-full-noon",
+        "front-090-bell-tower-full-noon",
+        "front-092-observatory-full-noon",
+        "front-093-gatehouse-full-noon"
+      ]
+    },
+    "validation": {
+      "n": 14,
+      "geometry": {
+        "strict": {
+          "correct": 4392,
+          "missed": 8950,
+          "extras": 2765,
+          "f1": 0.4285087077418411
+        },
+        "facade": {
+          "correct": 4392,
+          "missed": 7953,
+          "extras": 2765,
+          "f1": 0.4504153420162035
+        }
+      },
+      "scores": {
+        "strict": {
+          "correct": 1042,
+          "missed": 12300,
+          "extras": 6115,
+          "f1": 0.10166349578028197
+        },
+        "facade": {
+          "correct": 1042,
+          "missed": 11303,
+          "extras": 6115,
+          "f1": 0.10686083478617578
+        }
+      },
+      "paired": {
+        "correct_gained": 481,
+        "correct_lost": 771,
+        "extras_added": 956,
+        "extras_removed": 1402
+      },
+      "active": [
+        "front-012-water-tower-full-noon",
+        "front-026-water-tower-full-noon",
+        "front-039-crane-full-noon",
+        "front-053-crane-full-noon",
+        "front-054-water-tower-full-noon",
+        "front-068-water-tower-full-noon",
+        "front-096-water-tower-full-noon"
+      ],
+      "changed": [
+        "front-012-water-tower-full-noon",
+        "front-026-water-tower-full-noon",
+        "front-039-crane-full-noon",
+        "front-053-crane-full-noon",
+        "front-054-water-tower-full-noon",
+        "front-068-water-tower-full-noon",
+        "front-096-water-tower-full-noon"
+      ]
+    },
+    "test": {
+      "n": 14,
+      "geometry": {
+        "strict": {
+          "correct": 1641,
+          "missed": 11395,
+          "extras": 3063,
+          "f1": 0.18500563697857947
+        },
+        "facade": {
+          "correct": 1638,
+          "missed": 9746,
+          "extras": 3063,
+          "f1": 0.20366801367733914
+        }
+      },
+      "scores": {
+        "strict": {
+          "correct": 313,
+          "missed": 12723,
+          "extras": 4391,
+          "f1": 0.035287485907553554
+        },
+        "facade": {
+          "correct": 313,
+          "missed": 11071,
+          "extras": 4388,
+          "f1": 0.038918246813801675
+        }
+      },
+      "paired": {
+        "correct_gained": 338,
+        "correct_lost": 307,
+        "extras_added": 1230,
+        "extras_removed": 1611
+      },
+      "active": [
+        "front-041-windmill-full-noon",
+        "front-042-vault-full-noon",
+        "front-070-vault-full-noon",
+        "front-084-vault-full-noon"
+      ],
+      "changed": [
+        "front-041-windmill-full-noon",
+        "front-042-vault-full-noon",
+        "front-084-vault-full-noon"
+      ]
+    },
+    "focus": {
+      "n": 2,
+      "geometry": {
+        "strict": {
+          "correct": 3290,
+          "missed": 2679,
+          "extras": 980,
+          "f1": 0.6426408828987206
+        },
+        "facade": {
+          "correct": 3290,
+          "missed": 2515,
+          "extras": 980,
+          "f1": 0.6531017369727047
+        }
+      },
+      "scores": {
+        "strict": {
+          "correct": 1047,
+          "missed": 4922,
+          "extras": 3223,
+          "f1": 0.2045121593905655
+        },
+        "facade": {
+          "correct": 1047,
+          "missed": 4758,
+          "extras": 3223,
+          "f1": 0.20784119106699753
+        }
+      },
+      "paired": {
+        "correct_gained": 2057,
+        "correct_lost": 691,
+        "extras_added": 622,
+        "extras_removed": 2343
+      },
+      "active": [
+        "front-006-bell-tower-full-noon",
+        "front-060-terrace-full-noon"
+      ],
+      "changed": [
+        "front-006-bell-tower-full-noon",
+        "front-060-terrace-full-noon"
+      ]
+    },
+    "control": {
+      "n": 2,
+      "geometry": {
+        "strict": {
+          "correct": 49,
+          "missed": 96,
+          "extras": 6189,
+          "f1": 0.015353282155726148
+        },
+        "facade": {
+          "correct": 49,
+          "missed": 93,
+          "extras": 6189,
+          "f1": 0.015360501567398118
+        }
+      },
+      "scores": {
+        "strict": {
+          "correct": 0,
+          "missed": 145,
+          "extras": 6238,
+          "f1": 0.0
+        },
+        "facade": {
+          "correct": 0,
+          "missed": 142,
+          "extras": 6238,
+          "f1": 0.0
+        }
+      },
+      "paired": {},
+      "active": [],
+      "changed": []
+    }
+  },
+  "source-depth": {
+    "all": {
+      "n": 100,
+      "geometry": {
+        "strict": {
+          "correct": 25701,
+          "missed": 115871,
+          "extras": 52440,
+          "f1": 0.23395065380746702
+        },
+        "facade": {
+          "correct": 25672,
+          "missed": 105936,
+          "extras": 52440,
+          "f1": 0.24482166698455082
+        }
+      },
+      "scores": {
+        "strict": {
+          "correct": 5100,
+          "missed": 136472,
+          "extras": 73041,
+          "f1": 0.04642419884121558
+        },
+        "facade": {
+          "correct": 5100,
+          "missed": 126508,
+          "extras": 73012,
+          "f1": 0.048636276940682815
+        }
+      },
+      "paired": {
+        "correct_gained": 0,
+        "correct_lost": 259,
+        "extras_added": 0,
+        "extras_removed": 294
+      },
+      "active": [
+        "front-039-crane-full-noon",
+        "front-084-vault-full-noon"
+      ],
+      "changed": [
+        "front-039-crane-full-noon",
+        "front-084-vault-full-noon"
+      ]
+    },
+    "train": {
+      "n": 72,
+      "geometry": {
+        "strict": {
+          "correct": 19668,
+          "missed": 95526,
+          "extras": 46079,
+          "f1": 0.2173968310112136
+        },
+        "facade": {
+          "correct": 19643,
+          "missed": 88236,
+          "extras": 46079,
+          "f1": 0.22630053974343467
+        }
+      },
+      "scores": {
+        "strict": {
+          "correct": 3880,
+          "missed": 111314,
+          "extras": 61867,
+          "f1": 0.04288690788710132
+        },
+        "facade": {
+          "correct": 3880,
+          "missed": 103999,
+          "extras": 61842,
+          "f1": 0.04470020333984251
+        }
+      },
+      "paired": {
+        "correct_gained": 0,
+        "correct_lost": 0,
+        "extras_added": 0,
+        "extras_removed": 0
+      },
+      "active": [],
+      "changed": []
+    },
+    "validation": {
+      "n": 14,
+      "geometry": {
+        "strict": {
+          "correct": 4423,
+          "missed": 8919,
+          "extras": 3105,
+          "f1": 0.4238620028749401
+        },
+        "facade": {
+          "correct": 4423,
+          "missed": 7922,
+          "extras": 3105,
+          "f1": 0.44512655361545816
+        }
+      },
+      "scores": {
+        "strict": {
+          "correct": 951,
+          "missed": 12391,
+          "extras": 6577,
+          "f1": 0.09113560134163871
+        },
+        "facade": {
+          "correct": 951,
+          "missed": 11394,
+          "extras": 6577,
+          "f1": 0.09570774417551452
+        }
+      },
+      "paired": {
+        "correct_gained": 0,
+        "correct_lost": 259,
+        "extras_added": 0,
+        "extras_removed": 106
+      },
+      "active": [
+        "front-039-crane-full-noon"
+      ],
+      "changed": [
+        "front-039-crane-full-noon"
+      ]
+    },
+    "test": {
+      "n": 14,
+      "geometry": {
+        "strict": {
+          "correct": 1610,
+          "missed": 11426,
+          "extras": 3256,
+          "f1": 0.179868171154061
+        },
+        "facade": {
+          "correct": 1606,
+          "missed": 9778,
+          "extras": 3256,
+          "f1": 0.19771020558906807
+        }
+      },
+      "scores": {
+        "strict": {
+          "correct": 269,
+          "missed": 12767,
+          "extras": 4597,
+          "f1": 0.03005250809965367
+        },
+        "facade": {
+          "correct": 269,
+          "missed": 11115,
+          "extras": 4593,
+          "f1": 0.03311584390003693
+        }
+      },
+      "paired": {
+        "correct_gained": 0,
+        "correct_lost": 0,
+        "extras_added": 0,
+        "extras_removed": 188
+      },
+      "active": [
+        "front-084-vault-full-noon"
+      ],
+      "changed": [
+        "front-084-vault-full-noon"
+      ]
+    },
+    "focus": {
+      "n": 2,
+      "geometry": {
+        "strict": {
+          "correct": 1924,
+          "missed": 4045,
+          "extras": 2701,
+          "f1": 0.3632244666792524
+        },
+        "facade": {
+          "correct": 1924,
+          "missed": 3881,
+          "extras": 2701,
+          "f1": 0.3689357622243528
+        }
+      },
+      "scores": {
+        "strict": {
+          "correct": 456,
+          "missed": 5513,
+          "extras": 4169,
+          "f1": 0.08608646403624694
+        },
+        "facade": {
+          "correct": 456,
+          "missed": 5349,
+          "extras": 4169,
+          "f1": 0.08744007670182166
+        }
+      },
+      "paired": {
+        "correct_gained": 0,
+        "correct_lost": 0,
+        "extras_added": 0,
+        "extras_removed": 0
+      },
+      "active": [],
+      "changed": []
+    },
+    "control": {
+      "n": 2,
+      "geometry": {
+        "strict": {
+          "correct": 49,
+          "missed": 96,
+          "extras": 6189,
+          "f1": 0.015353282155726148
+        },
+        "facade": {
+          "correct": 49,
+          "missed": 93,
+          "extras": 6189,
+          "f1": 0.015360501567398118
+        }
+      },
+      "scores": {
+        "strict": {
+          "correct": 0,
+          "missed": 145,
+          "extras": 6238,
+          "f1": 0.0
+        },
+        "facade": {
+          "correct": 0,
+          "missed": 142,
+          "extras": 6238,
+          "f1": 0.0
+        }
+      },
+      "paired": {
+        "correct_gained": 0,
+        "correct_lost": 0,
+        "extras_added": 0,
+        "extras_removed": 0
+      },
+      "active": [],
+      "changed": []
+    }
+  },
+  "source-appearance": {
+    "all": {
+      "n": 100,
+      "geometry": {
+        "strict": {
+          "correct": 25954,
+          "missed": 115618,
+          "extras": 52538,
+          "f1": 0.23587683582957686
+        },
+        "facade": {
+          "correct": 25925,
+          "missed": 105683,
+          "extras": 52538,
+          "f1": 0.24682131279424577
+        }
+      },
+      "scores": {
+        "strict": {
+          "correct": 5143,
+          "missed": 136429,
+          "extras": 73349,
+          "f1": 0.046740948087829
+        },
+        "facade": {
+          "correct": 5143,
+          "missed": 126465,
+          "extras": 73320,
+          "f1": 0.04896439775123649
+        }
+      },
+      "paired": {
+        "correct_gained": 25,
+        "correct_lost": 31,
+        "extras_added": 171,
+        "extras_removed": 367
+      },
+      "active": [
+        "front-020-bell-tower-full-noon",
+        "front-063-viaduct-full-noon",
+        "front-089-portico-full-noon",
+        "front-092-observatory-full-noon"
+      ],
+      "changed": [
+        "front-020-bell-tower-full-noon",
+        "front-092-observatory-full-noon"
+      ]
+    },
+    "train": {
+      "n": 72,
+      "geometry": {
+        "strict": {
+          "correct": 19662,
+          "missed": 95532,
+          "extras": 45883,
+          "f1": 0.21757340695699323
+        },
+        "facade": {
+          "correct": 19637,
+          "missed": 88242,
+          "extras": 45883,
+          "f1": 0.22649496248536613
+        }
+      },
+      "scores": {
+        "strict": {
+          "correct": 3879,
+          "missed": 111315,
+          "extras": 61666,
+          "f1": 0.0429237740609387
+        },
+        "facade": {
+          "correct": 3879,
+          "missed": 104000,
+          "extras": 61641,
+          "f1": 0.044740742449495094
+        }
+      },
+      "paired": {
+        "correct_gained": 25,
+        "correct_lost": 31,
+        "extras_added": 171,
+        "extras_removed": 367
+      },
+      "active": [
+        "front-020-bell-tower-full-noon",
+        "front-063-viaduct-full-noon",
+        "front-089-portico-full-noon",
+        "front-092-observatory-full-noon"
+      ],
+      "changed": [
+        "front-020-bell-tower-full-noon",
+        "front-092-observatory-full-noon"
+      ]
+    },
+    "validation": {
+      "n": 14,
+      "geometry": {
+        "strict": {
+          "correct": 4682,
+          "missed": 8660,
+          "extras": 3211,
+          "f1": 0.4409700965387332
+        },
+        "facade": {
+          "correct": 4682,
+          "missed": 7663,
+          "extras": 3211,
+          "f1": 0.4626939420891392
+        }
+      },
+      "scores": {
+        "strict": {
+          "correct": 995,
+          "missed": 12347,
+          "extras": 6898,
+          "f1": 0.09371320932422887
+        },
+        "facade": {
+          "correct": 995,
+          "missed": 11350,
+          "extras": 6898,
+          "f1": 0.09832987449352702
+        }
+      },
+      "paired": {
+        "correct_gained": 0,
+        "correct_lost": 0,
+        "extras_added": 0,
+        "extras_removed": 0
+      },
+      "active": [],
+      "changed": []
+    },
+    "test": {
+      "n": 14,
+      "geometry": {
+        "strict": {
+          "correct": 1610,
+          "missed": 11426,
+          "extras": 3444,
+          "f1": 0.17799889441680486
+        },
+        "facade": {
+          "correct": 1606,
+          "missed": 9778,
+          "extras": 3444,
+          "f1": 0.19544846050870146
+        }
+      },
+      "scores": {
+        "strict": {
+          "correct": 269,
+          "missed": 12767,
+          "extras": 4785,
+          "f1": 0.02974018794914317
+        },
+        "facade": {
+          "correct": 269,
+          "missed": 11115,
+          "extras": 4781,
+          "f1": 0.0327370086406231
+        }
+      },
+      "paired": {
+        "correct_gained": 0,
+        "correct_lost": 0,
+        "extras_added": 0,
+        "extras_removed": 0
+      },
+      "active": [],
+      "changed": []
+    },
+    "focus": {
+      "n": 2,
+      "geometry": {
+        "strict": {
+          "correct": 1924,
+          "missed": 4045,
+          "extras": 2701,
+          "f1": 0.3632244666792524
+        },
+        "facade": {
+          "correct": 1924,
+          "missed": 3881,
+          "extras": 2701,
+          "f1": 0.3689357622243528
+        }
+      },
+      "scores": {
+        "strict": {
+          "correct": 456,
+          "missed": 5513,
+          "extras": 4169,
+          "f1": 0.08608646403624694
+        },
+        "facade": {
+          "correct": 456,
+          "missed": 5349,
+          "extras": 4169,
+          "f1": 0.08744007670182166
+        }
+      },
+      "paired": {
+        "correct_gained": 0,
+        "correct_lost": 0,
+        "extras_added": 0,
+        "extras_removed": 0
+      },
+      "active": [],
+      "changed": []
+    },
+    "control": {
+      "n": 2,
+      "geometry": {
+        "strict": {
+          "correct": 49,
+          "missed": 96,
+          "extras": 6189,
+          "f1": 0.015353282155726148
+        },
+        "facade": {
+          "correct": 49,
+          "missed": 93,
+          "extras": 6189,
+          "f1": 0.015360501567398118
+        }
+      },
+      "scores": {
+        "strict": {
+          "correct": 0,
+          "missed": 145,
+          "extras": 6238,
+          "f1": 0.0
+        },
+        "facade": {
+          "correct": 0,
+          "missed": 142,
+          "extras": 6238,
+          "f1": 0.0
+        }
+      },
+      "paired": {
+        "correct_gained": 0,
+        "correct_lost": 0,
+        "extras_added": 0,
+        "extras_removed": 0
+      },
+      "active": [],
+      "changed": []
+    }
+  },
+  "native-regions-image-depth": {
+    "all": {
+      "n": 100,
+      "geometry": {
+        "strict": {
+          "correct": 25062,
+          "missed": 116510,
+          "extras": 50577,
+          "f1": 0.2307617938318041
+        },
+        "facade": {
+          "correct": 25033,
+          "missed": 106575,
+          "extras": 50577,
+          "f1": 0.24161028482081673
+        }
+      },
+      "scores": {
+        "strict": {
+          "correct": 5051,
+          "missed": 136521,
+          "extras": 70588,
+          "f1": 0.0465077735473802
+        },
+        "facade": {
+          "correct": 5051,
+          "missed": 126557,
+          "extras": 70559,
+          "f1": 0.0487505911648602
+        }
+      },
+      "paired": {
+        "correct_gained": 883,
+        "correct_lost": 1781,
+        "extras_added": 4883,
+        "extras_removed": 7040
+      },
+      "active": [
+        "front-002-sawtooth-full-noon",
+        "front-006-bell-tower-full-noon",
+        "front-008-observatory-full-noon",
+        "front-012-water-tower-full-noon",
+        "front-015-arcade-full-noon",
+        "front-017-skybridge-full-noon",
+        "front-020-bell-tower-full-noon",
+        "front-026-water-tower-full-noon",
+        "front-030-sawtooth-full-noon",
+        "front-033-portico-full-noon",
+        "front-039-crane-full-noon",
+        "front-041-windmill-full-noon",
+        "front-042-vault-full-noon",
+        "front-044-sawtooth-full-noon",
+        "front-045-skybridge-full-noon",
+        "front-047-portico-full-noon",
+        "front-048-bell-tower-full-noon",
+        "front-050-observatory-full-noon",
+        "front-051-gatehouse-full-noon",
+        "front-053-crane-full-noon",
+        "front-054-water-tower-full-noon",
+        "front-060-terrace-full-noon",
+        "front-062-bell-tower-full-noon",
+        "front-066-gabled-hall-full-noon",
+        "front-068-water-tower-full-noon",
+        "front-070-vault-full-noon",
+        "front-072-sawtooth-full-noon",
+        "front-075-portico-full-noon",
+        "front-080-gabled-hall-full-noon",
+        "front-084-vault-full-noon",
+        "front-089-portico-full-noon",
+        "front-090-bell-tower-full-noon",
+        "front-092-observatory-full-noon",
+        "front-093-gatehouse-full-noon",
+        "front-096-water-tower-full-noon"
+      ],
+      "changed": [
+        "front-002-sawtooth-full-noon",
+        "front-006-bell-tower-full-noon",
+        "front-008-observatory-full-noon",
+        "front-012-water-tower-full-noon",
+        "front-015-arcade-full-noon",
+        "front-017-skybridge-full-noon",
+        "front-020-bell-tower-full-noon",
+        "front-026-water-tower-full-noon",
+        "front-030-sawtooth-full-noon",
+        "front-033-portico-full-noon",
+        "front-039-crane-full-noon",
+        "front-041-windmill-full-noon",
+        "front-042-vault-full-noon",
+        "front-044-sawtooth-full-noon",
+        "front-045-skybridge-full-noon",
+        "front-047-portico-full-noon",
+        "front-048-bell-tower-full-noon",
+        "front-050-observatory-full-noon",
+        "front-051-gatehouse-full-noon",
+        "front-053-crane-full-noon",
+        "front-054-water-tower-full-noon",
+        "front-060-terrace-full-noon",
+        "front-062-bell-tower-full-noon",
+        "front-066-gabled-hall-full-noon",
+        "front-068-water-tower-full-noon",
+        "front-072-sawtooth-full-noon",
+        "front-075-portico-full-noon",
+        "front-080-gabled-hall-full-noon",
+        "front-084-vault-full-noon",
+        "front-090-bell-tower-full-noon",
+        "front-092-observatory-full-noon",
+        "front-093-gatehouse-full-noon",
+        "front-096-water-tower-full-noon"
+      ]
+    },
+    "train": {
+      "n": 72,
+      "geometry": {
+        "strict": {
+          "correct": 19107,
+          "missed": 96087,
+          "extras": 44671,
+          "f1": 0.21351943320742908
+        },
+        "facade": {
+          "correct": 19082,
+          "missed": 88797,
+          "extras": 44671,
+          "f1": 0.2223594667661042
+        }
+      },
+      "scores": {
+        "strict": {
+          "correct": 3833,
+          "missed": 111361,
+          "extras": 59945,
+          "f1": 0.04283351585722906
+        },
+        "facade": {
+          "correct": 3833,
+          "missed": 104046,
+          "extras": 59920,
+          "f1": 0.04466533047450359
+        }
+      },
+      "paired": {
+        "correct_gained": 782,
+        "correct_lost": 1343,
+        "extras_added": 3533,
+        "extras_removed": 4941
+      },
+      "active": [
+        "front-002-sawtooth-full-noon",
+        "front-006-bell-tower-full-noon",
+        "front-008-observatory-full-noon",
+        "front-015-arcade-full-noon",
+        "front-017-skybridge-full-noon",
+        "front-020-bell-tower-full-noon",
+        "front-030-sawtooth-full-noon",
+        "front-033-portico-full-noon",
+        "front-044-sawtooth-full-noon",
+        "front-045-skybridge-full-noon",
+        "front-047-portico-full-noon",
+        "front-048-bell-tower-full-noon",
+        "front-050-observatory-full-noon",
+        "front-051-gatehouse-full-noon",
+        "front-060-terrace-full-noon",
+        "front-062-bell-tower-full-noon",
+        "front-066-gabled-hall-full-noon",
+        "front-072-sawtooth-full-noon",
+        "front-075-portico-full-noon",
+        "front-080-gabled-hall-full-noon",
+        "front-089-portico-full-noon",
+        "front-090-bell-tower-full-noon",
+        "front-092-observatory-full-noon",
+        "front-093-gatehouse-full-noon"
+      ],
+      "changed": [
+        "front-002-sawtooth-full-noon",
+        "front-006-bell-tower-full-noon",
+        "front-008-observatory-full-noon",
+        "front-015-arcade-full-noon",
+        "front-017-skybridge-full-noon",
+        "front-020-bell-tower-full-noon",
+        "front-030-sawtooth-full-noon",
+        "front-033-portico-full-noon",
+        "front-044-sawtooth-full-noon",
+        "front-045-skybridge-full-noon",
+        "front-047-portico-full-noon",
+        "front-048-bell-tower-full-noon",
+        "front-050-observatory-full-noon",
+        "front-051-gatehouse-full-noon",
+        "front-060-terrace-full-noon",
+        "front-062-bell-tower-full-noon",
+        "front-066-gabled-hall-full-noon",
+        "front-072-sawtooth-full-noon",
+        "front-075-portico-full-noon",
+        "front-080-gabled-hall-full-noon",
+        "front-090-bell-tower-full-noon",
+        "front-092-observatory-full-noon",
+        "front-093-gatehouse-full-noon"
+      ]
+    },
+    "validation": {
+      "n": 14,
+      "geometry": {
+        "strict": {
+          "correct": 4433,
+          "missed": 8909,
+          "extras": 2724,
+          "f1": 0.4325089028733109
+        },
+        "facade": {
+          "correct": 4433,
+          "missed": 7912,
+          "extras": 2724,
+          "f1": 0.454620038970362
+        }
+      },
+      "scores": {
+        "strict": {
+          "correct": 945,
+          "missed": 12397,
+          "extras": 6212,
+          "f1": 0.09219961949363384
+        },
+        "facade": {
+          "correct": 945,
+          "missed": 11400,
+          "extras": 6212,
+          "f1": 0.09691313711414214
+        }
+      },
+      "paired": {
+        "correct_gained": 71,
+        "correct_lost": 320,
+        "extras_added": 618,
+        "extras_removed": 1105
+      },
+      "active": [
+        "front-012-water-tower-full-noon",
+        "front-026-water-tower-full-noon",
+        "front-039-crane-full-noon",
+        "front-053-crane-full-noon",
+        "front-054-water-tower-full-noon",
+        "front-068-water-tower-full-noon",
+        "front-096-water-tower-full-noon"
+      ],
+      "changed": [
+        "front-012-water-tower-full-noon",
+        "front-026-water-tower-full-noon",
+        "front-039-crane-full-noon",
+        "front-053-crane-full-noon",
+        "front-054-water-tower-full-noon",
+        "front-068-water-tower-full-noon",
+        "front-096-water-tower-full-noon"
+      ]
+    },
+    "test": {
+      "n": 14,
+      "geometry": {
+        "strict": {
+          "correct": 1522,
+          "missed": 11514,
+          "extras": 3182,
+          "f1": 0.17158962795941377
+        },
+        "facade": {
+          "correct": 1518,
+          "missed": 9866,
+          "extras": 3182,
+          "f1": 0.18875901517035562
+        }
+      },
+      "scores": {
+        "strict": {
+          "correct": 273,
+          "missed": 12763,
+          "extras": 4431,
+          "f1": 0.030777903043968432
+        },
+        "facade": {
+          "correct": 273,
+          "missed": 11111,
+          "extras": 4427,
+          "f1": 0.03394677940810743
+        }
+      },
+      "paired": {
+        "correct_gained": 30,
+        "correct_lost": 118,
+        "extras_added": 732,
+        "extras_removed": 994
+      },
+      "active": [
+        "front-041-windmill-full-noon",
+        "front-042-vault-full-noon",
+        "front-070-vault-full-noon",
+        "front-084-vault-full-noon"
+      ],
+      "changed": [
+        "front-041-windmill-full-noon",
+        "front-042-vault-full-noon",
+        "front-084-vault-full-noon"
+      ]
+    },
+    "focus": {
+      "n": 2,
+      "geometry": {
+        "strict": {
+          "correct": 1758,
+          "missed": 4211,
+          "extras": 2512,
+          "f1": 0.34339290946381484
+        },
+        "facade": {
+          "correct": 1758,
+          "missed": 4047,
+          "extras": 2512,
+          "f1": 0.34898263027295284
+        }
+      },
+      "scores": {
+        "strict": {
+          "correct": 446,
+          "missed": 5523,
+          "extras": 3824,
+          "f1": 0.08711788260572322
+        },
+        "facade": {
+          "correct": 446,
+          "missed": 5359,
+          "extras": 3824,
+          "f1": 0.08853598014888338
+        }
+      },
+      "paired": {
+        "correct_gained": 0,
+        "correct_lost": 166,
+        "extras_added": 0,
+        "extras_removed": 189
+      },
+      "active": [
+        "front-006-bell-tower-full-noon",
+        "front-060-terrace-full-noon"
+      ],
+      "changed": [
+        "front-006-bell-tower-full-noon",
+        "front-060-terrace-full-noon"
+      ]
+    },
+    "control": {
+      "n": 2,
+      "geometry": {
+        "strict": {
+          "correct": 49,
+          "missed": 96,
+          "extras": 6189,
+          "f1": 0.015353282155726148
+        },
+        "facade": {
+          "correct": 49,
+          "missed": 93,
+          "extras": 6189,
+          "f1": 0.015360501567398118
+        }
+      },
+      "scores": {
+        "strict": {
+          "correct": 0,
+          "missed": 145,
+          "extras": 6238,
+          "f1": 0.0
+        },
+        "facade": {
+          "correct": 0,
+          "missed": 142,
+          "extras": 6238,
+          "f1": 0.0
+        }
+      },
+      "paired": {
+        "correct_gained": 0,
+        "correct_lost": 0,
+        "extras_added": 0,
+        "extras_removed": 0
+      },
+      "active": [],
+      "changed": []
+    }
+  },
+  "source-image-depth": {
+    "all": {
+      "n": 100,
+      "geometry": {
+        "strict": {
+          "correct": 25743,
+          "missed": 115829,
+          "extras": 52951,
+          "f1": 0.23374465419084198
+        },
+        "facade": {
+          "correct": 25714,
+          "missed": 105894,
+          "extras": 52951,
+          "f1": 0.24457728762133035
+        }
+      },
+      "scores": {
+        "strict": {
+          "correct": 5105,
+          "missed": 136467,
+          "extras": 73589,
+          "f1": 0.046353045862729605
+        },
+        "facade": {
+          "correct": 5105,
+          "missed": 126503,
+          "extras": 73560,
+          "f1": 0.04855592491665597
+        }
+      },
+      "paired": {
+        "correct_gained": 103,
+        "correct_lost": 320,
+        "extras_added": 1864,
+        "extras_removed": 1647
+      },
+      "active": [
+        "front-017-skybridge-full-noon",
+        "front-034-bell-tower-full-noon",
+        "front-063-viaduct-full-noon",
+        "front-092-observatory-full-noon",
+        "front-096-water-tower-full-noon"
+      ],
+      "changed": [
+        "front-017-skybridge-full-noon",
+        "front-092-observatory-full-noon",
+        "front-096-water-tower-full-noon"
+      ]
+    },
+    "train": {
+      "n": 72,
+      "geometry": {
+        "strict": {
+          "correct": 19655,
+          "missed": 95539,
+          "extras": 46092,
+          "f1": 0.21725313776313826
+        },
+        "facade": {
+          "correct": 19630,
+          "missed": 88249,
+          "extras": 46092,
+          "f1": 0.22615077102090425
+        }
+      },
+      "scores": {
+        "strict": {
+          "correct": 3881,
+          "missed": 111313,
+          "extras": 61866,
+          "f1": 0.042897961213876346
+        },
+        "facade": {
+          "correct": 3881,
+          "missed": 103998,
+          "extras": 61841,
+          "f1": 0.04471172401080639
+        }
+      },
+      "paired": {
+        "correct_gained": 39,
+        "correct_lost": 52,
+        "extras_added": 1045,
+        "extras_removed": 1032
+      },
+      "active": [
+        "front-017-skybridge-full-noon",
+        "front-034-bell-tower-full-noon",
+        "front-063-viaduct-full-noon",
+        "front-092-observatory-full-noon"
+      ],
+      "changed": [
+        "front-017-skybridge-full-noon",
+        "front-092-observatory-full-noon"
+      ]
+    },
+    "validation": {
+      "n": 14,
+      "geometry": {
+        "strict": {
+          "correct": 4478,
+          "missed": 8864,
+          "extras": 3415,
+          "f1": 0.42175653402401697
+        },
+        "facade": {
+          "correct": 4478,
+          "missed": 7867,
+          "extras": 3415,
+          "f1": 0.44253384721810457
+        }
+      },
+      "scores": {
+        "strict": {
+          "correct": 955,
+          "missed": 12387,
+          "extras": 6938,
+          "f1": 0.08994584412526489
+        },
+        "facade": {
+          "correct": 955,
+          "missed": 11390,
+          "extras": 6938,
+          "f1": 0.09437691471489278
+        }
+      },
+      "paired": {
+        "correct_gained": 64,
+        "correct_lost": 268,
+        "extras_added": 819,
+        "extras_removed": 615
+      },
+      "active": [
+        "front-096-water-tower-full-noon"
+      ],
+      "changed": [
+        "front-096-water-tower-full-noon"
+      ]
+    },
+    "test": {
+      "n": 14,
+      "geometry": {
+        "strict": {
+          "correct": 1610,
+          "missed": 11426,
+          "extras": 3444,
+          "f1": 0.17799889441680486
+        },
+        "facade": {
+          "correct": 1606,
+          "missed": 9778,
+          "extras": 3444,
+          "f1": 0.19544846050870146
+        }
+      },
+      "scores": {
+        "strict": {
+          "correct": 269,
+          "missed": 12767,
+          "extras": 4785,
+          "f1": 0.02974018794914317
+        },
+        "facade": {
+          "correct": 269,
+          "missed": 11115,
+          "extras": 4781,
+          "f1": 0.0327370086406231
+        }
+      },
+      "paired": {
+        "correct_gained": 0,
+        "correct_lost": 0,
+        "extras_added": 0,
+        "extras_removed": 0
+      },
+      "active": [],
+      "changed": []
+    },
+    "focus": {
+      "n": 2,
+      "geometry": {
+        "strict": {
+          "correct": 1924,
+          "missed": 4045,
+          "extras": 2701,
+          "f1": 0.3632244666792524
+        },
+        "facade": {
+          "correct": 1924,
+          "missed": 3881,
+          "extras": 2701,
+          "f1": 0.3689357622243528
+        }
+      },
+      "scores": {
+        "strict": {
+          "correct": 456,
+          "missed": 5513,
+          "extras": 4169,
+          "f1": 0.08608646403624694
+        },
+        "facade": {
+          "correct": 456,
+          "missed": 5349,
+          "extras": 4169,
+          "f1": 0.08744007670182166
+        }
+      },
+      "paired": {
+        "correct_gained": 0,
+        "correct_lost": 0,
+        "extras_added": 0,
+        "extras_removed": 0
+      },
+      "active": [],
+      "changed": []
+    },
+    "control": {
+      "n": 2,
+      "geometry": {
+        "strict": {
+          "correct": 49,
+          "missed": 96,
+          "extras": 6189,
+          "f1": 0.015353282155726148
+        },
+        "facade": {
+          "correct": 49,
+          "missed": 93,
+          "extras": 6189,
+          "f1": 0.015360501567398118
+        }
+      },
+      "scores": {
+        "strict": {
+          "correct": 0,
+          "missed": 145,
+          "extras": 6238,
+          "f1": 0.0
+        },
+        "facade": {
+          "correct": 0,
+          "missed": 142,
+          "extras": 6238,
+          "f1": 0.0
+        }
+      },
+      "paired": {
+        "correct_gained": 0,
+        "correct_lost": 0,
+        "extras_added": 753,
+        "extras_removed": 753
+      },
+      "active": [
+        "front-034-bell-tower-full-noon"
+      ],
+      "changed": []
+    }
+  },
+  "native-regions-image-pitch": {
+    "all": {
+      "n": 100,
+      "geometry": {
+        "strict": {
+          "correct": 25078,
+          "missed": 116494,
+          "extras": 50561,
+          "f1": 0.23090911602082767
+        },
+        "facade": {
+          "correct": 25049,
+          "missed": 106559,
+          "extras": 50561,
+          "f1": 0.24176471155980658
+        }
+      },
+      "scores": {
+        "strict": {
+          "correct": 5054,
+          "missed": 136518,
+          "extras": 70585,
+          "f1": 0.04653539645782212
+        },
+        "facade": {
+          "correct": 5054,
+          "missed": 126554,
+          "extras": 70556,
+          "f1": 0.04877954617842079
+        }
+      },
+      "paired": {
+        "correct_gained": 863,
+        "correct_lost": 1745,
+        "extras_added": 3288,
+        "extras_removed": 5461
+      },
+      "active": [
+        "front-002-sawtooth-full-noon",
+        "front-006-bell-tower-full-noon",
+        "front-008-observatory-full-noon",
+        "front-012-water-tower-full-noon",
+        "front-015-arcade-full-noon",
+        "front-017-skybridge-full-noon",
+        "front-020-bell-tower-full-noon",
+        "front-026-water-tower-full-noon",
+        "front-030-sawtooth-full-noon",
+        "front-033-portico-full-noon",
+        "front-039-crane-full-noon",
+        "front-041-windmill-full-noon",
+        "front-042-vault-full-noon",
+        "front-044-sawtooth-full-noon",
+        "front-045-skybridge-full-noon",
+        "front-047-portico-full-noon",
+        "front-048-bell-tower-full-noon",
+        "front-050-observatory-full-noon",
+        "front-051-gatehouse-full-noon",
+        "front-053-crane-full-noon",
+        "front-054-water-tower-full-noon",
+        "front-060-terrace-full-noon",
+        "front-062-bell-tower-full-noon",
+        "front-066-gabled-hall-full-noon",
+        "front-068-water-tower-full-noon",
+        "front-070-vault-full-noon",
+        "front-072-sawtooth-full-noon",
+        "front-075-portico-full-noon",
+        "front-080-gabled-hall-full-noon",
+        "front-084-vault-full-noon",
+        "front-089-portico-full-noon",
+        "front-090-bell-tower-full-noon",
+        "front-092-observatory-full-noon",
+        "front-093-gatehouse-full-noon",
+        "front-096-water-tower-full-noon"
+      ],
+      "changed": [
+        "front-002-sawtooth-full-noon",
+        "front-006-bell-tower-full-noon",
+        "front-008-observatory-full-noon",
+        "front-012-water-tower-full-noon",
+        "front-015-arcade-full-noon",
+        "front-017-skybridge-full-noon",
+        "front-020-bell-tower-full-noon",
+        "front-026-water-tower-full-noon",
+        "front-030-sawtooth-full-noon",
+        "front-033-portico-full-noon",
+        "front-039-crane-full-noon",
+        "front-041-windmill-full-noon",
+        "front-042-vault-full-noon",
+        "front-044-sawtooth-full-noon",
+        "front-045-skybridge-full-noon",
+        "front-047-portico-full-noon",
+        "front-048-bell-tower-full-noon",
+        "front-050-observatory-full-noon",
+        "front-051-gatehouse-full-noon",
+        "front-053-crane-full-noon",
+        "front-054-water-tower-full-noon",
+        "front-060-terrace-full-noon",
+        "front-062-bell-tower-full-noon",
+        "front-066-gabled-hall-full-noon",
+        "front-068-water-tower-full-noon",
+        "front-072-sawtooth-full-noon",
+        "front-075-portico-full-noon",
+        "front-080-gabled-hall-full-noon",
+        "front-084-vault-full-noon",
+        "front-090-bell-tower-full-noon",
+        "front-092-observatory-full-noon",
+        "front-093-gatehouse-full-noon",
+        "front-096-water-tower-full-noon"
+      ]
+    },
+    "train": {
+      "n": 72,
+      "geometry": {
+        "strict": {
+          "correct": 19123,
+          "missed": 96071,
+          "extras": 44655,
+          "f1": 0.21369823212569564
+        },
+        "facade": {
+          "correct": 19098,
+          "missed": 88781,
+          "extras": 44655,
+          "f1": 0.22254591218420808
+        }
+      },
+      "scores": {
+        "strict": {
+          "correct": 3836,
+          "missed": 111358,
+          "extras": 59942,
+          "f1": 0.04286704065440404
+        },
+        "facade": {
+          "correct": 3836,
+          "missed": 104043,
+          "extras": 59917,
+          "f1": 0.04470028899039806
+        }
+      },
+      "paired": {
+        "correct_gained": 762,
+        "correct_lost": 1307,
+        "extras_added": 1938,
+        "extras_removed": 3362
+      },
+      "active": [
+        "front-002-sawtooth-full-noon",
+        "front-006-bell-tower-full-noon",
+        "front-008-observatory-full-noon",
+        "front-015-arcade-full-noon",
+        "front-017-skybridge-full-noon",
+        "front-020-bell-tower-full-noon",
+        "front-030-sawtooth-full-noon",
+        "front-033-portico-full-noon",
+        "front-044-sawtooth-full-noon",
+        "front-045-skybridge-full-noon",
+        "front-047-portico-full-noon",
+        "front-048-bell-tower-full-noon",
+        "front-050-observatory-full-noon",
+        "front-051-gatehouse-full-noon",
+        "front-060-terrace-full-noon",
+        "front-062-bell-tower-full-noon",
+        "front-066-gabled-hall-full-noon",
+        "front-072-sawtooth-full-noon",
+        "front-075-portico-full-noon",
+        "front-080-gabled-hall-full-noon",
+        "front-089-portico-full-noon",
+        "front-090-bell-tower-full-noon",
+        "front-092-observatory-full-noon",
+        "front-093-gatehouse-full-noon"
+      ],
+      "changed": [
+        "front-002-sawtooth-full-noon",
+        "front-006-bell-tower-full-noon",
+        "front-008-observatory-full-noon",
+        "front-015-arcade-full-noon",
+        "front-017-skybridge-full-noon",
+        "front-020-bell-tower-full-noon",
+        "front-030-sawtooth-full-noon",
+        "front-033-portico-full-noon",
+        "front-044-sawtooth-full-noon",
+        "front-045-skybridge-full-noon",
+        "front-047-portico-full-noon",
+        "front-048-bell-tower-full-noon",
+        "front-050-observatory-full-noon",
+        "front-051-gatehouse-full-noon",
+        "front-060-terrace-full-noon",
+        "front-062-bell-tower-full-noon",
+        "front-066-gabled-hall-full-noon",
+        "front-072-sawtooth-full-noon",
+        "front-075-portico-full-noon",
+        "front-080-gabled-hall-full-noon",
+        "front-090-bell-tower-full-noon",
+        "front-092-observatory-full-noon",
+        "front-093-gatehouse-full-noon"
+      ]
+    },
+    "validation": {
+      "n": 14,
+      "geometry": {
+        "strict": {
+          "correct": 4433,
+          "missed": 8909,
+          "extras": 2724,
+          "f1": 0.4325089028733109
+        },
+        "facade": {
+          "correct": 4433,
+          "missed": 7912,
+          "extras": 2724,
+          "f1": 0.454620038970362
+        }
+      },
+      "scores": {
+        "strict": {
+          "correct": 945,
+          "missed": 12397,
+          "extras": 6212,
+          "f1": 0.09219961949363384
+        },
+        "facade": {
+          "correct": 945,
+          "missed": 11400,
+          "extras": 6212,
+          "f1": 0.09691313711414214
+        }
+      },
+      "paired": {
+        "correct_gained": 71,
+        "correct_lost": 320,
+        "extras_added": 618,
+        "extras_removed": 1105
+      },
+      "active": [
+        "front-012-water-tower-full-noon",
+        "front-026-water-tower-full-noon",
+        "front-039-crane-full-noon",
+        "front-053-crane-full-noon",
+        "front-054-water-tower-full-noon",
+        "front-068-water-tower-full-noon",
+        "front-096-water-tower-full-noon"
+      ],
+      "changed": [
+        "front-012-water-tower-full-noon",
+        "front-026-water-tower-full-noon",
+        "front-039-crane-full-noon",
+        "front-053-crane-full-noon",
+        "front-054-water-tower-full-noon",
+        "front-068-water-tower-full-noon",
+        "front-096-water-tower-full-noon"
+      ]
+    },
+    "test": {
+      "n": 14,
+      "geometry": {
+        "strict": {
+          "correct": 1522,
+          "missed": 11514,
+          "extras": 3182,
+          "f1": 0.17158962795941377
+        },
+        "facade": {
+          "correct": 1518,
+          "missed": 9866,
+          "extras": 3182,
+          "f1": 0.18875901517035562
+        }
+      },
+      "scores": {
+        "strict": {
+          "correct": 273,
+          "missed": 12763,
+          "extras": 4431,
+          "f1": 0.030777903043968432
+        },
+        "facade": {
+          "correct": 273,
+          "missed": 11111,
+          "extras": 4427,
+          "f1": 0.03394677940810743
+        }
+      },
+      "paired": {
+        "correct_gained": 30,
+        "correct_lost": 118,
+        "extras_added": 732,
+        "extras_removed": 994
+      },
+      "active": [
+        "front-041-windmill-full-noon",
+        "front-042-vault-full-noon",
+        "front-070-vault-full-noon",
+        "front-084-vault-full-noon"
+      ],
+      "changed": [
+        "front-041-windmill-full-noon",
+        "front-042-vault-full-noon",
+        "front-084-vault-full-noon"
+      ]
+    },
+    "focus": {
+      "n": 2,
+      "geometry": {
+        "strict": {
+          "correct": 1758,
+          "missed": 4211,
+          "extras": 2512,
+          "f1": 0.34339290946381484
+        },
+        "facade": {
+          "correct": 1758,
+          "missed": 4047,
+          "extras": 2512,
+          "f1": 0.34898263027295284
+        }
+      },
+      "scores": {
+        "strict": {
+          "correct": 446,
+          "missed": 5523,
+          "extras": 3824,
+          "f1": 0.08711788260572322
+        },
+        "facade": {
+          "correct": 446,
+          "missed": 5359,
+          "extras": 3824,
+          "f1": 0.08853598014888338
+        }
+      },
+      "paired": {
+        "correct_gained": 0,
+        "correct_lost": 166,
+        "extras_added": 0,
+        "extras_removed": 189
+      },
+      "active": [
+        "front-006-bell-tower-full-noon",
+        "front-060-terrace-full-noon"
+      ],
+      "changed": [
+        "front-006-bell-tower-full-noon",
+        "front-060-terrace-full-noon"
+      ]
+    },
+    "control": {
+      "n": 2,
+      "geometry": {
+        "strict": {
+          "correct": 49,
+          "missed": 96,
+          "extras": 6189,
+          "f1": 0.015353282155726148
+        },
+        "facade": {
+          "correct": 49,
+          "missed": 93,
+          "extras": 6189,
+          "f1": 0.015360501567398118
+        }
+      },
+      "scores": {
+        "strict": {
+          "correct": 0,
+          "missed": 145,
+          "extras": 6238,
+          "f1": 0.0
+        },
+        "facade": {
+          "correct": 0,
+          "missed": 142,
+          "extras": 6238,
+          "f1": 0.0
+        }
+      },
+      "paired": {
+        "correct_gained": 0,
+        "correct_lost": 0,
+        "extras_added": 0,
+        "extras_removed": 0
+      },
+      "active": [],
+      "changed": []
+    }
+  },
+  "source-image-pitch": {
+    "all": {
+      "n": 100,
+      "geometry": {
+        "strict": {
+          "correct": 25960,
+          "missed": 115612,
+          "extras": 52734,
+          "f1": 0.2357149991374066
+        },
+        "facade": {
+          "correct": 25931,
+          "missed": 105677,
+          "extras": 52734,
+          "f1": 0.24664127110946246
+        }
+      },
+      "scores": {
+        "strict": {
+          "correct": 5144,
+          "missed": 136428,
+          "extras": 73550,
+          "f1": 0.04670716315727348
+        },
+        "facade": {
+          "correct": 5144,
+          "missed": 126464,
+          "extras": 73521,
+          "f1": 0.048926871257840995
+        }
+      },
+      "paired": {
+        "correct_gained": 0,
+        "correct_lost": 0,
+        "extras_added": 0,
+        "extras_removed": 0
+      },
+      "active": [],
+      "changed": []
+    },
+    "train": {
+      "n": 72,
+      "geometry": {
+        "strict": {
+          "correct": 19668,
+          "missed": 95526,
+          "extras": 46079,
+          "f1": 0.2173968310112136
+        },
+        "facade": {
+          "correct": 19643,
+          "missed": 88236,
+          "extras": 46079,
+          "f1": 0.22630053974343467
+        }
+      },
+      "scores": {
+        "strict": {
+          "correct": 3880,
+          "missed": 111314,
+          "extras": 61867,
+          "f1": 0.04288690788710132
+        },
+        "facade": {
+          "correct": 3880,
+          "missed": 103999,
+          "extras": 61842,
+          "f1": 0.04470020333984251
+        }
+      },
+      "paired": {
+        "correct_gained": 0,
+        "correct_lost": 0,
+        "extras_added": 0,
+        "extras_removed": 0
+      },
+      "active": [],
+      "changed": []
+    },
+    "validation": {
+      "n": 14,
+      "geometry": {
+        "strict": {
+          "correct": 4682,
+          "missed": 8660,
+          "extras": 3211,
+          "f1": 0.4409700965387332
+        },
+        "facade": {
+          "correct": 4682,
+          "missed": 7663,
+          "extras": 3211,
+          "f1": 0.4626939420891392
+        }
+      },
+      "scores": {
+        "strict": {
+          "correct": 995,
+          "missed": 12347,
+          "extras": 6898,
+          "f1": 0.09371320932422887
+        },
+        "facade": {
+          "correct": 995,
+          "missed": 11350,
+          "extras": 6898,
+          "f1": 0.09832987449352702
+        }
+      },
+      "paired": {
+        "correct_gained": 0,
+        "correct_lost": 0,
+        "extras_added": 0,
+        "extras_removed": 0
+      },
+      "active": [],
+      "changed": []
+    },
+    "test": {
+      "n": 14,
+      "geometry": {
+        "strict": {
+          "correct": 1610,
+          "missed": 11426,
+          "extras": 3444,
+          "f1": 0.17799889441680486
+        },
+        "facade": {
+          "correct": 1606,
+          "missed": 9778,
+          "extras": 3444,
+          "f1": 0.19544846050870146
+        }
+      },
+      "scores": {
+        "strict": {
+          "correct": 269,
+          "missed": 12767,
+          "extras": 4785,
+          "f1": 0.02974018794914317
+        },
+        "facade": {
+          "correct": 269,
+          "missed": 11115,
+          "extras": 4781,
+          "f1": 0.0327370086406231
+        }
+      },
+      "paired": {
+        "correct_gained": 0,
+        "correct_lost": 0,
+        "extras_added": 0,
+        "extras_removed": 0
+      },
+      "active": [],
+      "changed": []
+    },
+    "focus": {
+      "n": 2,
+      "geometry": {
+        "strict": {
+          "correct": 1924,
+          "missed": 4045,
+          "extras": 2701,
+          "f1": 0.3632244666792524
+        },
+        "facade": {
+          "correct": 1924,
+          "missed": 3881,
+          "extras": 2701,
+          "f1": 0.3689357622243528
+        }
+      },
+      "scores": {
+        "strict": {
+          "correct": 456,
+          "missed": 5513,
+          "extras": 4169,
+          "f1": 0.08608646403624694
+        },
+        "facade": {
+          "correct": 456,
+          "missed": 5349,
+          "extras": 4169,
+          "f1": 0.08744007670182166
+        }
+      },
+      "paired": {
+        "correct_gained": 0,
+        "correct_lost": 0,
+        "extras_added": 0,
+        "extras_removed": 0
+      },
+      "active": [],
+      "changed": []
+    },
+    "control": {
+      "n": 2,
+      "geometry": {
+        "strict": {
+          "correct": 49,
+          "missed": 96,
+          "extras": 6189,
+          "f1": 0.015353282155726148
+        },
+        "facade": {
+          "correct": 49,
+          "missed": 93,
+          "extras": 6189,
+          "f1": 0.015360501567398118
+        }
+      },
+      "scores": {
+        "strict": {
+          "correct": 0,
+          "missed": 145,
+          "extras": 6238,
+          "f1": 0.0
+        },
+        "facade": {
+          "correct": 0,
+          "missed": 142,
+          "extras": 6238,
+          "f1": 0.0
+        }
+      },
+      "paired": {
+        "correct_gained": 0,
+        "correct_lost": 0,
+        "extras_added": 0,
+        "extras_removed": 0
+      },
+      "active": [],
+      "changed": []
+    }
+  }
+}
