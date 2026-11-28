@@ -24,7 +24,7 @@ Green marks a newly correct visible position. Orange marks a lost one. The marks
 
 ## Then choose from the same exports using the source image
 
-The Depth Anything and MoGe arms independently detrend inverse depth against nearby stable parent-wall cells. MoGe uses the point head's Z values and validity mask from independent inference. The two fields vote on whether the patch is at the same relative depth, nearer or farther. They cannot distinguish a one-block step from two blocks of the same sign, so the incumbent wins a tie.
+The Depth Anything and MoGe arms independently detrend inverse depth against nearby stable parent-wall cells. MoGe uses the point head's Z values and validity mask from independent inference. The two fields vote on whether the patch is at the same relative depth, nearer or farther. The joint depth-only arm averages their scores with equal weight. They cannot distinguish a one-block step from two blocks of the same sign, so the incumbent wins a tie.
 
 The first-hit arm fits a 3×4 projection to source-grid corners on two nonparallel faces in the selected local group, anchored on one visible grid corner. It excludes moving UVs and their one-cell fringe. Held-out grid corners on those faces check fit consistency. Native grayscale gradients at the projected rim and internal block seams supply a separate source-image check. The pose stays fixed for all options. The rasterizer from `engine/visible_placement.py` measures which voxel and axis the ray reaches first. A candidate must show adequate source-mask support for every moved block, avoid collisions, preserve neighboring visible voxel faces and avoid adding coverage in source support gaps. It needs independent photographed rim or seam agreement as well as improved mask overlap. The combined arm adds the two depth votes without relaxing these checks.
 
@@ -34,11 +34,11 @@ The recorded-projection diagnostic uses the same first-hit scorer. It rebases th
 
 | Cohort and selector | Strict / facade placement F1 | Strict / facade position + material F1 | Correct / missed / extra | Correct gained / lost | Extras added / removed |
 | --- | ---: | ---: | ---: | ---: | ---: |
-| Development, incumbent, Depth Anything, reprojection, combined or recorded-camera diagnostic | 49.314% / 49.465% | 19.871% / 19.944% | 881 / 1,308 / 503 | 0 / 0 | 0 / 0 |
+| Development, incumbent, Depth Anything, joint depth-only, reprojection, combined or recorded-camera diagnostic | 49.314% / 49.465% | 19.871% / 19.944% | 881 / 1,308 / 503 | 0 / 0 | 0 / 0 |
 | Development, MoGe | 49.426% / 49.577% | 19.871% / 19.944% | 883 / 1,306 / 501 | 2 / 0 | 0 / 2 |
 | Development, perfect chooser | 49.986% / 50.141% | 20.151% / 20.225% | 893 / 1,296 / 491 | 12 / 0 | 75 / 87 |
 | Held out, incumbent, reprojection, combined or recorded-camera diagnostic | 17.717% / 18.142% | 6.265% / 6.326% | 509 / 1,996 / 2,732 | 0 / 0 | 0 / 0 |
-| Held out, Depth Anything | 17.682% / 18.205% | 5.813% / 5.850% | 508 / 1,997 / 2,733 | 2 / 3 | 41 / 40 |
+| Held out, Depth Anything or joint depth-only | 17.682% / 18.205% | 5.813% / 5.850% | 508 / 1,997 / 2,733 | 2 / 3 | 41 / 40 |
 | Held out, MoGe | 17.543% / 18.060% | 5.674% / 5.705% | 504 / 2,001 / 2,737 | 2 / 7 | 45 / 40 |
 | Held out, perfect chooser | 18.587% / 19.150% | 6.544% / 6.613% | 534 / 1,971 / 2,707 | 38 / 13 | 11 / 36 |
 

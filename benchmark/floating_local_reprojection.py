@@ -349,12 +349,14 @@ def projection_case(job):
     projection = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(projection)
     scores = {key:(da["scores"][key]+moge["scores"][key])/2 for key in source["options"]}
+    model_only = dict(choice=max(scores, key=scores.get), scores=scores)
     reprojection = projection.rank_options(source)
     blend = projection.rank_options(source,depth_scores=scores)
     registration = results["options"]["incumbent"]["score"]
     known = projection.rank_reference_camera(source,Path(case["frame"]),registration["yaw_quarters"],
                                              registration["translation"])
-    decisions = dict(depth_anything=da,moge=moge,reprojection=reprojection,combined=blend,reference_camera=known)
+    decisions = dict(depth_anything=da, moge=moge, model_only=model_only, reprojection=reprojection,
+                     combined=blend, reference_camera=known)
     save(directory/"depth.json",decisions)
     print(group,case["id"],{k:v["choice"] for k,v in decisions.items()},flush=True)
 

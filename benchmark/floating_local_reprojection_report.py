@@ -10,7 +10,7 @@ from PIL import Image, ImageDraw, ImageFont, ImageOps
 from benchmark.expanded_baseline import read, save
 
 
-ARMS = ('incumbent', 'depth_anything', 'moge', 'reprojection', 'combined', 'reference_camera', 'oracle')
+ARMS = ('incumbent', 'depth_anything', 'moge', 'model_only', 'reprojection', 'combined', 'reference_camera', 'oracle')
 
 
 def group_scores(rows, arm):
