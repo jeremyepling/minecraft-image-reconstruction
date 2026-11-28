@@ -1,6 +1,8 @@
 """Replay the frozen local-grid predictor on the paired screenshot cohort."""
 import argparse
 from concurrent.futures import ProcessPoolExecutor, as_completed
+import json
+import os
 from pathlib import Path
 from unittest.mock import patch
 
@@ -34,17 +36,12 @@ def build_handoff(source, cache, handoff):
         surface_model.build(source, '26.3', handoff, through='counts', boundary='wall-depth-anything')
 
 
-def arm(task):
-    e, variant, baseline, native_fallback = task
+def arm(e, variant, cache, out, handoff, native_fallback):
     spec = e['variants'][variant]
     source = Path(spec['image'])
-    cohort = OUTPUT.parent/'floating-cloud-gate-native-01' if native_fallback else OUTPUT
-    out = cohort / variant / e['id']
     out.mkdir(parents=True, exist_ok=True)
-    cache = baseline / variant / e['dataset'] / e['id'] / 'handoffs'
     if digest(source) != spec['source_sha256']:
         raise ValueError("Source hash mismatch")
-    handoff = OUTPUT / variant / e['id'] / 'source-handoff'
     build_handoff(source, cache, handoff)
     from benchmark.mobile_surface_evidence import build_local
     if (out/'case.json').is_file():
@@ -99,12 +96,94 @@ def summarize(cohort, cases, manifest, native_fallback):
         all_arms=group(rows), direction_registration='Source sheet tangent axes matched to compass by evaluator; single integer translation by whole-build overlap. Absolute location unscored.'))
 
 
+def private_fields(source, source_sha, archived, private, frame_id=None):
+    """Reuse a matching pinned inference receipt, or infer into this job's directory."""
+    fingerprints = {kind: spec[2] for kind, spec in surface_fields.MODELS.items()}
+    if digest(source) != source_sha:
+        raise ValueError(f'Source hash mismatch: {source}')
+    directory = archived/source_sha
+    receipt = directory/'receipt.json'
+    proof = read(receipt) if receipt.is_file() else None
+    if proof is None and frame_id:
+        donor = archived/frame_id/'receipt.json'
+        if donor.is_file():
+            candidate = read(donor)
+            if candidate.get('source_sha256') == source_sha:
+                receipt, directory, proof = donor, donor.parent, candidate
+    if proof is not None:
+        if (proof.get('source_sha256') != source_sha or proof.get('model_sha256') != fingerprints
+                or proof.get('preprocessing') != surface_fields.SETTINGS
+                or any(digest(directory/(kind+'.npz')) != proof['fields_sha256'][kind] for kind in fingerprints)):
+            raise ValueError(f'Invalid frozen model field receipt: {receipt}')
+        return directory
+    private.mkdir(parents=True)
+    hashes = {}
+    with Image.open(source) as image:
+        for kind in fingerprints:
+            field = surface_fields.infer(image, kind)
+            path = private/(kind+'.npz')
+            np.savez_compressed(path, value=field)
+            hashes[kind] = digest(path)
+    save(private/'receipt.json', dict(source_sha256=source_sha, model_sha256=fingerprints,
+                                      fields_sha256=hashes, preprocessing=surface_fields.SETTINGS))
+    return private
+
+
+def private_arm(e, variant, out, archived, native_fallback, handoffs_only):
+    spec = e['variants'][variant]
+    source = Path(spec['image'])
+    cache = private_fields(source, spec['source_sha256'], archived, out/'fields', e['id'])
+    handoff = out/'source-handoff'
+    if handoffs_only:
+        build_handoff(source, cache, handoff)
+    else:
+        arm(e, variant, cache, out, handoff, native_fallback)
+
+
+def run_private(args, cases):
+    if not cases:
+        raise ValueError('No Floating cases matched the requested cohort and frame selection')
+    out = args.out.resolve()
+    shared = args.shared_root.resolve()
+    archived = (args.baseline or shared/'fields').resolve()
+    atlas_dir = Path(os.environ.get('MCIR_PREPARED_ATLAS_26_3', shared/'atlas')).resolve()
+    inputs = [shared, archived, atlas_dir]
+    if any(out.is_relative_to(path) or path.is_relative_to(out) for path in inputs):
+        raise ValueError(f'Private output must be separate from inputs: {out}')
+    # A fresh directory gives every invocation exclusive ownership, including across processes.
+    if out.exists() and any(out.iterdir()):
+        raise ValueError(f'Private output directory must be new or empty: {out}')
+    out.mkdir(parents=True, exist_ok=True)
+    manifest = out/'fixtures.json'
+    with manifest.open('x', encoding='utf-8') as stream:
+        json.dump(dict(cases=cases), stream)
+    os.environ.setdefault('MCIR_PREPARED_ATLAS_26_3', str(shared/'atlas'))
+    jobs = [(e, variant) for e in cases for variant in e['variants']]
+    # Active cohort IDs are unique. Preserve the case layout consumed by the review publisher.
+    if len({(e['id'], variant) for e, variant in jobs}) != len(jobs):
+        raise ValueError('Duplicate Floating case and variant in the selected cohort')
+    with ProcessPoolExecutor(args.workers) as pool:
+        futures = [pool.submit(private_arm, e, variant, out/variant/e['id'], archived,
+                               args.native_fallback, args.handoffs_only) for e, variant in jobs]
+        for future in as_completed(futures):
+            future.result()
+    if not args.handoffs_only:
+        summarize(out, cases, manifest, args.native_fallback)
+
+
 def main():
     from training.floating_cohort import RETIRED_PALETTES, frame_index
     from training.floating_combined import BACKGROUND, PINNED, select_active_cases
 
     parser = argparse.ArgumentParser()
-    parser.add_argument('manifest',type=Path)
+    source = parser.add_mutually_exclusive_group(required=True)
+    source.add_argument('manifest', type=Path, nargs='?')
+    source.add_argument('--shared-root', type=Path, help='Versioned Floating input bundle')
+    parser.add_argument('--out', type=Path, help='New private run directory (required with --shared-root)')
+    parser.add_argument('--baseline', type=Path, help='Read-only verified field directory for a private run')
+    parser.add_argument('--cohort', choices=['visible', 'decorative'], help='Select an active shared cohort (default: visible)')
+    parser.add_argument('--case', action='append', help='Select a shared frame ID (repeatable)')
+    parser.add_argument('--handoffs-only', action='store_true', help='Build only the selected private source handoffs')
     parser.add_argument('--workers',type=int,default=4)
     parser.add_argument('--native-fallback',action='store_true')
     parser.add_argument('--sky-handoffs-only', action='store_true', help='Build the floating Surface Finder and counter inputs for the six-view benchmark.')
@@ -113,6 +192,19 @@ def main():
     parser.add_argument('--historical-cohort', action='store_true',
                         help='Replay archived layouts while skipping retired palettes.')
     args = parser.parse_args()
+    if args.workers < 1:
+        parser.error('--workers must be positive')
+    if args.shared_root:
+        if not args.out:
+            parser.error('--shared-root requires --out')
+        if args.historical_cohort or args.include_decorative or args.sky_handoffs_only:
+            parser.error('Use --cohort and --handoffs-only with shared inputs')
+        from training.floating_shared_inputs import cases as shared_cases
+        cases = shared_cases(args.shared_root, cohort=args.cohort or 'visible', ids=args.case)
+        run_private(args, list(cases))
+        return
+    if args.cohort or args.case or args.out or args.baseline or args.handoffs_only:
+        parser.error('--cohort, --case, --out, --baseline and --handoffs-only require --shared-root')
     cohort = OUTPUT.parent/'floating-cloud-gate-native-01' if args.native_fallback else OUTPUT
     import time
     baseline = args.manifest.parent/'baseline'
@@ -156,7 +248,7 @@ def main():
                 if args.native_fallback and not (OUTPUT/v/e['id']/'case.json').exists():
                     continue
                 if (cohort/v/e['id']/'case.json').exists() or ((cache/'mlsd.json.gz').exists() and (cache/'depth.npz').exists()):
-                    pending[pool.submit(arm,task)]=task
+                    pending[pool.submit(arm, e, v, cache, cohort/v/e['id'], OUTPUT/v/e['id']/'source-handoff', args.native_fallback)]=task
                     tasks.remove(task)
             for future in list(pending):
                 if future.done():
