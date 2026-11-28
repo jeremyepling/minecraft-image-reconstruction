@@ -137,8 +137,11 @@ def run(job):
         sparse(case)
     else:
         from benchmark.floating_v1_expanded import run as expand
-        predict(case)
-        expand(case)
+        if not (OUT/'rows'/(case['id']+'.json.gz')).is_file():
+            predict(case)
+            expand(case)
+        from benchmark.mobile_surface_evidence import build_v1_case
+        build_v1_case(OUT, case)
     return case["id"]
 
 
@@ -158,7 +161,8 @@ if __name__=="__main__":
     args=p.parse_args()
     cases=[c for c in tasks() if args.filter in c["id"] and
            (not args.ready or (FIELDS/c["id"]/"receipt.json").is_file())]
-    cases=[c for c in cases if not (OUT/"rows"/(c["id"]+".json.gz")).is_file()][:args.limit]
+    cases=[c for c in cases if not (OUT/"rows"/(c["id"]+".json.gz")).is_file()
+           or (args.stage=="current" and not (OUT/"evidence"/c["id"]/"surfaces.json").is_file())][:args.limit]
     with ProcessPoolExecutor(args.workers) as pool:
         futures=[pool.submit(run,(args.stage,c,args.await_sparse)) for c in cases]
         for task in as_completed(futures):

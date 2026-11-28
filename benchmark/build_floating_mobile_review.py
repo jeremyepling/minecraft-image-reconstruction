@@ -63,7 +63,7 @@ def webp(image, target):
     image.save(target, 'WEBP', quality=86, method=6)
 
 
-def make_case(case, queue, frames, assets, asset_base, labels, run_root=None):
+def make_case(case, queue, frames, assets, asset_base, labels, run_root=None, evidence_root=None, baseline_evidence_root=None):
     marker = case['id']
     split = marker.split('-', 1)[0]
     frame = frames / split / 'frames' / marker
@@ -95,15 +95,21 @@ def make_case(case, queue, frames, assets, asset_base, labels, run_root=None):
                   width=original.width, height=original.height, modes=modes, counts=case['paired'],
                   sourceSha256=case['source_sha256'],
                   baselinePackSha256=case['baseline']['pack_sha256'], candidatePackSha256=case['candidate']['pack_sha256'])
-    if run_root:
-        from benchmark.mobile_surface_evidence import build
-        build(run_root, case, original, out / 'surfaces.json')
+    if run_root or evidence_root:
+        from benchmark.mobile_surface_evidence import build, pair_evidence, reuse_evidence
+        package = (evidence_root or run_root / 'evidence') / marker / 'surfaces.json'
+        if baseline_evidence_root:
+            pair_evidence(baseline_evidence_root / marker / 'surfaces.json', package, out / 'surfaces.json', case, original.size)
+        elif evidence_root or package.is_file():
+            reuse_evidence(package, out / 'surfaces.json', case, original.size)
+        else:
+            build(run_root, case, original, out / 'surfaces.json')
         result['surfaceEvidence'] = f'{asset_base}/{marker}/surfaces.json'
     return result
 
 
 def manifest(report, queue, frames, assets, asset_base, run, title, candidate, labels, run_root=None,
-             *, questions=None, database=None, downloads=None):
+             evidence_root=None, baseline_evidence_root=None, *, questions=None, database=None, downloads=None):
     from benchmark.floating_review_decisions import analyze
     from benchmark.floating_review_intake import private_history
 
@@ -139,7 +145,8 @@ def manifest(report, queue, frames, assets, asset_base, run, title, candidate, l
                 stages=[dict(name=name, measure=description, values=[visible['stages'][arm].get(key)
                              for arm in (baseline, candidate)]) for key, (name, description) in MEASURES.items()],
                 perfect=perfect, cases=[
-                    make_case(case, queue, frames, assets, asset_base, labels, run_root) for case in cases
+                    make_case(case, queue, frames, assets, asset_base, labels, run_root,
+                              evidence_root, baseline_evidence_root) for case in cases
                 ])
     packages = {case['id']: read(assets / case['id'] / 'surfaces.json')
                 for case in data['cases'] if case.get('surfaceEvidence')}
@@ -159,15 +166,20 @@ def main():
     parser.add_argument('--title', required=True)
     parser.add_argument('--candidate', default='current')
     parser.add_argument('--run-root', type=Path, help='Saved Floating V1 run root for mask and grid evidence')
+    parser.add_argument('--evidence-root', type=Path, help='Portable runner packages in CASE/surfaces.json')
+    parser.add_argument('--baseline-evidence-root', type=Path, help='Baseline local-grid packages to compare with --evidence-root')
     parser.add_argument('--labels', type=Path, help='Optional case ID to [title, stage, prompt, first pass] JSON')
     parser.add_argument('--questions', type=Path, help='Public-safe unresolved decision proposals (JSON array)')
     parser.add_argument('--site', type=Path, default=Path('review-site'))
     args = parser.parse_args()
+    if args.baseline_evidence_root and not args.evidence_root:
+        parser.error('--baseline-evidence-root requires --evidence-root')
     if not re.fullmatch(r'[a-z0-9]+(?:-[a-z0-9]+)*', args.run):
         parser.error('Use a lowercase, hyphenated run ID.')
     data = manifest(read(args.report), args.queue, args.frames, args.assets, args.asset_base.rstrip('/'),
                     args.run, args.title, args.candidate, read(args.labels) if args.labels else DEFAULT_LABELS,
-                    args.run_root, questions=read(args.questions) if args.questions else None)
+                    args.run_root, args.evidence_root, args.baseline_evidence_root,
+                    questions=read(args.questions) if args.questions else None)
     target = args.site / 'runs' / args.run / 'manifest.json'
     target.parent.mkdir(parents=True, exist_ok=True)
     target.write_text(json.dumps(data, ensure_ascii=False, separators=(',', ':')) + '\n', encoding='utf-8')

@@ -46,10 +46,16 @@ def arm(task):
         raise ValueError("Source hash mismatch")
     handoff = OUTPUT / variant / e['id'] / 'source-handoff'
     build_handoff(source, cache, handoff)
+    from benchmark.mobile_surface_evidence import build_local
+    if (out/'case.json').is_file():
+        with Image.open(source) as image:
+            build_local(handoff, out, read(out/'case.json'), image)
+        return
     parts = read(handoff/'surfaces.json')['planes']
     counts = read(handoff/'counts.json')
     image = Image.open(source).convert('RGB')
-    anchors,p,evidence = predict(image,parts,counts,native_fallback=native_fallback)
+    attempts = []
+    anchors,p,evidence = predict(image,parts,counts,native_fallback=native_fallback,attempts=attempts)
     cells = {tuple(a['cell']):a['block'] for a in anchors}
     pack = out/'reconstruction.zip'
     write_pack(pack,cells,JAVA_26_3_FORMAT)
@@ -72,7 +78,9 @@ def arm(task):
         draw.line(corners+corners[:1],fill='lime',width=3)
     image.save(out/'source.jpg',quality=88)
     save(out/'aligned-placements.json.gz',[[*cell,block] for cell,block in sorted(world.items())])
-    save(out/'case.json',dict(variant=variant,id=e['id'],evidence=evidence,score=score))
+    record = dict(variant=variant, id=e['id'], evidence=evidence, score=score)
+    build_local(handoff, out, record, image, attempts)
+    save(out/'case.json', record)
     print(variant,e['id'],evidence['status'],len(cells),flush=True)
 
 
@@ -137,7 +145,7 @@ def main():
                 job.result()
         return
     tasks = [(e,v,baseline,args.native_fallback) for e in cases for v in e['variants']
-             if not (cohort/v/e['id']/'case.json').exists()]
+             if not (cohort/v/e['id']/'case.json').exists() or not (cohort/v/e['id']/'surfaces.json').exists()]
     pending = {}
     with ProcessPoolExecutor(args.workers) as pool:
         while tasks or pending:
@@ -147,7 +155,7 @@ def main():
                 cache=baseline/v/e['dataset']/e['id']/'handoffs'
                 if args.native_fallback and not (OUTPUT/v/e['id']/'case.json').exists():
                     continue
-                if (cache/'mlsd.json.gz').exists() and (cache/'depth.npz').exists():
+                if (cohort/v/e['id']/'case.json').exists() or ((cache/'mlsd.json.gz').exists() and (cache/'depth.npz').exists()):
                     pending[pool.submit(arm,task)]=task
                     tasks.remove(task)
             for future in list(pending):

@@ -159,7 +159,7 @@ def native_sheet(rgb, part, anchors, linear):
     return best,best_p
 
 
-def predict(image, parts, counts, *, native_fallback=False):
+def predict(image, parts, counts, *, native_fallback=False, attempts=None):
     rgb = np.asarray(image.convert("RGB"))
     rows = {r["id"]:r for r in counts['surfaces']}
     walls = [p for p in parts if p.get("support") and p.get("normal_camera") is not None
@@ -174,6 +174,11 @@ def predict(image, parts, counts, *, native_fallback=False):
         for part in fitted_parts:
             if part['axis'] != 1:
                 native.extend(sprite_candidates(part,rgb,linear))
+        if attempts is not None:
+            for part in fitted_parts:
+                hits = [a for a in native if a['surface'] == part['id']]
+                if hits:
+                    attempts.append((part['id'], 'Native sprite proposals', hits))
         consensus_rows, eye, _ = consensus(native)
         strong_axes = {r['axis'] for r in consensus_rows if sum(other['surface']==r['surface']
                        for other in consensus_rows)>=2}
@@ -192,12 +197,16 @@ def predict(image, parts, counts, *, native_fallback=False):
         for part in fitted_parts:
             local = [a for a in native if a['surface']==part['id']]
             found,p = native_sheet(rgb,part,local,linear)
+            if attempts is not None and found:
+                attempts.append((part['id'], 'Native connected sheet', found))
             if len(found)>len(best):
                 best,projection=found,p
     for part in sorted(walls,key=lambda p:-p['support_area'])[:16]:
         if part['id'] not in rows:
             continue
         for verified,p in planar_witnesses(rgb,part,rows[part['id']],image.size):
+            if attempts is not None:
+                attempts.append((part['id'], 'Verified planar grid', verified))
             if (len(verified), np.mean([a['corr'] for a in verified])) > (
                     len(best), np.mean([a['corr'] for a in best]) if best else 0):
                 best,projection = verified,p
