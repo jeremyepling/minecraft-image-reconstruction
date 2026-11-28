@@ -312,7 +312,10 @@ def assemble(charts, *, min_edges=2, edge_pixels=3.5, coplanar_pixels=None, rela
             plane_normal=axis_vector(c['normal_axis'])
             offset=np.minimum(0,u)+np.minimum(0,v)-np.maximum(0,plane_normal)
             for cell in c['cells']:
-                xyz=tuple((t+offset+cell['u']*u+cell['v']*v).tolist())
+                position=t+offset+cell['u']*u+cell['v']*v
+                if 'normal_offset' in cell:
+                    position=position+cell['normal_offset']*plane_normal
+                xyz=tuple(position.tolist())
                 if xyz not in blocks:
                     blocks[xyz]=cell['block_id']
                     if not cell.get('fallback'):
