@@ -126,3 +126,26 @@ test('per-arm export trace distinguishes owned cells, conflicting writes and una
   assert.match(all(target), /Selected by agreement/);
   assert.match(all(target), /No saved edge receipt/);
 });
+
+test('old grid drafts retain the formal answer while each attempted grid keeps separate notes', () => {
+  const api = runInNewContext(definitions + '\n({gridKey,separateGridDrafts,assessmentLines,evidenceLink})', {
+    document:{querySelector(){}}, location:new URL('https://example.test/?run=' + run), URLSearchParams,
+  });
+  const parent = 'arcade/mask-2@coverage';
+  const draft = {text:'Original grid comment',tags:[],imageView:'attempted-grid',gridAttempt:'Refit',
+    chartId:'mask-2~p1',answer:'B',actionId:'coverage',questionType:'preference',preference:'B'};
+  const notes = {[parent]:draft};
+  api.separateGridDrafts(notes);
+  const first = api.gridKey(parent, draft.chartId, draft.gridAttempt);
+  assert.equal(notes[parent].answer, 'B');
+  assert.equal(notes[first].text, draft.text);
+  assert.equal(notes[first].preference, 'B');
+  assert.notEqual(first, api.gridKey(parent, draft.chartId, draft.gridAttempt, 1));
+  api.separateGridDrafts(notes);
+  assert.equal(Object.keys(notes).length, 2);
+  const lines = api.assessmentLines({coverage:{answer:'no',note:'Misses the rim.'},
+    alignment:{answer:'unclear',note:''},blockSize:{answer:'yes',note:'One visible block.'}});
+  assert.equal([...lines].join('\n'), 'Coverage · no · Misses the rim.\nAlignment · unclear\nBlock size · yes · One visible block.');
+  assert.ok(api.evidenceLink({id:'coverage',question:{surfaceId:'Baseline / mask-2'}},'arcade')
+    .endsWith('#arcade/Baseline%20%2F%20mask-2'));
+});

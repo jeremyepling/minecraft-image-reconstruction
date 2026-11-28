@@ -57,6 +57,11 @@ def register(db, manifest, questions):
             if len({c['answer'] for c in clean}) != len(clean) or len({c['experiment'] for c in clean}) < 2:
                 raise ValueError('Supply distinct answers that affect the experiment.')
             gate['choices'] = clean
+            if 'surfaceId' in supplied:
+                surface = supplied['surfaceId']
+                if not isinstance(surface, str) or not re.fullmatch(r'(?:Baseline / |Candidate / )?[A-Za-z0-9_.~-]{1,128}', surface):
+                    raise ValueError('Invalid surface ID.')
+                gate['surfaceId'] = surface
             if 'priority' in supplied:
                 gate['priority'] = int(supplied['priority'])
             db.execute('INSERT OR REPLACE INTO questions VALUES (?, ?, ?, ?)',
@@ -78,6 +83,7 @@ def check_answer(db, manifest, entry):
             question = action['question']
             break
     if (question is None or entry.get('questionType') != question['type'] or
+            (question.get('surfaceId') and question['surfaceId'] != entry.get('surfaceId')) or
             (entry.get('answer') and entry['answer'] not in {choice['answer'] for choice in question['choices']})):
         raise ValueError('Answer does not match a recorded question, case and choice.')
 
@@ -99,11 +105,23 @@ def ingest(db, export, manifest):
                 raise ValueError('Feedback source differs from the measured case.')
             entry = {key: value for key, value in note.items() if key in {
                 'actionId', 'questionType', 'answer', 'caseId', 'surfaceId', 'text', 'tags', 'spot',
-                'imageView', 'chartId', 'gridAttempt', 'preference', 'updatedAt'}}
+                'imageView', 'chartId', 'gridAttempt', 'gridOccurrence', 'assessments', 'preference', 'updatedAt'}}
             entry.update(runId=manifest['id'], comparisonSha256=manifest['comparisonSha256'],
                          sourceSha256=case['sourceSha256'])
+            if 'assessments' in entry:
+                assessments = entry['assessments']
+                if not isinstance(assessments, dict):
+                    raise ValueError('Expected a map of criterion judgments.')
+                for key, criterion in assessments.items():
+                    if (key not in ('coverage', 'alignment', 'blockSize') or not isinstance(criterion, dict) or
+                            set(criterion) - {'answer', 'note'} or
+                            criterion.get('answer', '') not in ('', 'yes', 'no', 'unclear') or
+                            not isinstance(criterion.get('note', ''), str)):
+                        raise ValueError('Invalid criterion judgment.')
+                entry['assessments'] = {key: item for key, item in assessments.items()
+                                        if item.get('answer') or item.get('note', '').strip()}
             check_answer(db, manifest, entry)
-            if not any(entry.get(key) for key in ('answer', 'text', 'tags', 'spot', 'preference')):
+            if not any(entry.get(key) for key in ('answer', 'text', 'tags', 'spot', 'preference', 'assessments')):
                 continue
             content = json.dumps(entry, sort_keys=True, separators=(',', ':'), ensure_ascii=False)
             feedback_id = hashlib.sha256(content.encode()).hexdigest()

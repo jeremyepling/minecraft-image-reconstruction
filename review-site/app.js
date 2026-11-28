@@ -74,7 +74,8 @@ function row(table, name, values) {
 function evidenceLink(action, id) {
   const base = link('review');
   const key = action ? (base.includes('?') ? '&' : '?') + 'action=' + encodeURIComponent(action.id) : '';
-  return base + key + '#' + encodeURIComponent(id);
+  const surface = action?.question?.surfaceId;
+  return base + key + '#' + encodeURIComponent(id) + (surface ? '/' + encodeURIComponent(surface) : '');
 }
 
 function decisionCard(parent, action, run) {
@@ -365,9 +366,14 @@ function surfaceReview(find, changed) {
     find('next-surface').disabled = index === data.surfaces.length - 1;
     choices = [{label: 'Surface mask', kind: 'mask'}, {label: 'Gold reference', kind: 'gold'}];
     for (const part of Object.keys(surface.parts)) choices.push({label: `Depth region ${part.split('~p')[1]}`, part});
-    for (const grid of surface.layers) choices.push({
-      ...grid, label: grid.part ? `${grid.label} · region ${grid.part.split('~p')[1]}` : grid.label,
-    });
+    const attempts = new Map();
+    for (const grid of surface.layers) {
+      const label = grid.part ? `${grid.label} · region ${grid.part.split('~p')[1]}` : grid.label;
+      const identity = JSON.stringify([grid.chart, label]);
+      const occurrence = attempts.get(identity) || 0;
+      attempts.set(identity, occurrence + 1);
+      choices.push({...grid, label, occurrence});
+    }
     for (const [arm, exported] of Object.entries(surface.exports || {})) {
       choices.push({kind: 'export', label: arm + ' · exported cells', cells: exported.cells || []});
     }
@@ -436,12 +442,69 @@ function surfaceReview(find, changed) {
   };
 }
 
+const assessmentFields = [
+  ['coverage', 'Coverage', 'Does it cover the visible surface?'],
+  ['alignment', 'Alignment', 'Do the grid lines align with the visible seams?'],
+  ['blockSize', 'Block size', 'Is the block size correct?'],
+];
+
+function assessmentControls(container, initial, changed) {
+  container.replaceChildren();
+  for (const [key, title, prompt] of assessmentFields) {
+    const group = el('fieldset', '', container);
+    el('legend', prompt, group);
+    const pick = el('select', '', group);
+    pick.setAttribute('aria-label', title + ' judgment');
+    for (const [value, label] of [['', 'Unanswered'], ['yes', 'Yes'], ['no', 'No'], ['unclear', 'Unclear']]) {
+      pick.add(new Option(label, value));
+    }
+    const label = el('label', title + ' note (optional)', group);
+    const input = el('textarea', '', label);
+    input.rows = 1;
+    pick.value = initial?.[key]?.answer || '';
+    input.value = initial?.[key]?.note || '';
+    const update = () => changed(key, {answer: pick.value, note: input.value});
+    pick.onchange = input.oninput = update;
+  }
+}
+
+function gridKey(parent, chart, label, occurrence = 0) {
+  return parent + '#' + encodeURIComponent(JSON.stringify([chart || '', label, occurrence]));
+}
+
+function emptyNote() {
+  return {text: '', tags: [], spot: null, imageView: 'changes'};
+}
+
+function separateGridDrafts(notes) {
+  for (const [key, draft] of Object.entries(notes)) {
+    if (key.includes('#') || !['attempted-grid', 'export'].includes(draft.imageView) || !draft.gridAttempt) continue;
+    const attempt = gridKey(key, draft.chartId, draft.gridAttempt);
+    if (notes[attempt]) continue;
+    notes[attempt] = {...draft};
+    if (draft.answer) {
+      notes[key] = {...emptyNote(), actionId: draft.actionId, questionType: draft.questionType, answer: draft.answer};
+      delete notes[attempt].answer;
+    } else {
+      delete notes[key];
+    }
+  }
+}
+
+function assessmentLines(assessments) {
+  return assessmentFields.flatMap(([key, label]) => {
+    const item = assessments?.[key];
+    return item ? [label + ' · ' + [item.answer, item.note].filter(Boolean).join(' · ')] : [];
+  });
+}
+
 function review(run) {
   const storageKey = `floating-review/${run.id}/${run.comparisonSha256}`;
   let notes = {};
   let persistent = true;
   try { notes = JSON.parse(localStorage.getItem(storageKey) || '{}'); }
   catch { persistent = false; }
+  separateGridDrafts(notes);
   const find = id => app.querySelector(`#${id}`);
   const {cases} = run;
   decisions(run, find('review-queue'), true);
@@ -474,15 +537,24 @@ function review(run) {
   });
   const currentSurface = () => surfaceUI.selection()?.surface;
   const chosenAction = () => run.analysis?.actions.find(a => a.id === query.get('action') && a.caseIds.includes(active().id));
-  const question = () => chosenAction()?.disposition === 'question' ? chosenAction().question : null;
-  const noteKey = () => {
+  const question = () => {
+    const action = chosenAction();
+    if (action?.disposition !== 'question') return null;
+    const target = action.question.surfaceId;
+    return !target || target === currentSurface()?.id ? action.question : null;
+  };
+  const parentKey = () => {
     const base = currentSurface() ? active().id + '/' + encodeURIComponent(currentSurface().id) : active().id;
     return question() ? base + '@' + encodeURIComponent(question().id) : base;
   };
-  const note = () => notes[noteKey()] ??= {text: '', tags: [], spot: null, imageView: 'changes'};
-  const annotated = value => value.text.trim() || value.tags.length || value.spot || value.preference || value.answer;
+  const noteKey = () => {
+    const layer = surfaceUI.selection()?.layer;
+    return (layer?.path || layer?.kind === 'export') ? gridKey(parentKey(), layer.chart, layer.label, layer.occurrence) : parentKey();
+  };
+  const note = () => notes[noteKey()] ??= emptyNote();
+  const annotated = value => value.text.trim() || value.tags.length || value.spot || value.preference || value.answer || Object.keys(value.assessments || {}).length;
   const feedback = () => Object.entries(notes).filter(([, value]) => annotated(value)).flatMap(([key, value]) => {
-    const [identity] = key.split('@');
+    const [identity] = key.split('#')[0].split('@');
     const [caseId, encodedSurface] = identity.split('/');
     const surfaceId = encodedSurface && decodeURIComponent(encodedSurface);
     const item = cases.find(record => record.id === caseId);
@@ -499,9 +571,9 @@ function review(run) {
     for (const id of ['copy', 'save-json']) find(id).disabled = !count;
   }
 
-  function save() {
-    if (question()) Object.assign(note(), {actionId: chosenAction().id, questionType: question().type});
-    note().updatedAt = new Date().toISOString();
+  function save(draft = note()) {
+    if (question()) Object.assign(draft, {actionId: chosenAction().id, questionType: question().type});
+    draft.updatedAt = new Date().toISOString();
     try { localStorage.setItem(storageKey, JSON.stringify(notes)); }
     catch { persistent = false; }
     noteState();
@@ -597,6 +669,7 @@ function review(run) {
     if (selection) {
       note().gridAttempt = selection.layer.label;
       note().chartId = selection.layer.chart || null;
+      if (selection.layer.path) note().gridOccurrence = selection.layer.occurrence;
     }
   }
 
@@ -651,15 +724,22 @@ function review(run) {
     choices.replaceChildren();
     if (question()) {
       const selected = question();
-      toggle(choices, selected.choices.map(c => [c.answer, c.answer]), note().answer, answer => {
-        Object.assign(note(), {actionId: chosenAction().id, questionType: selected.type, answer});
-        recordContext();
-        save();
+      const decision = notes[parentKey()] ??= emptyNote();
+      toggle(choices, selected.choices.map(c => [c.answer, c.answer]), decision.answer, answer => {
+        decision.answer = answer;
+        save(decision);
       });
     }
     const preference = find('arm-preference');
     preference.value = note().preference || '';
     preference.onchange = () => { note().preference = preference.value; recordContext(); save(); };
+    assessmentControls(find('criterion-fields'), note().assessments, (key, value) => {
+      const assessments = note().assessments ??= {};
+      if (value.answer || value.note.trim()) assessments[key] = value;
+      else delete assessments[key];
+      recordContext();
+      save();
+    });
     textarea.value = note().text;
     noteState();
   }
@@ -673,6 +753,7 @@ function review(run) {
     const text = feedback().map(item => {
       const context = [item.title, item.stage, item.surfaceId, item.gridAttempt].filter(Boolean).join(' · ');
       const parts = [`${context} [${item.caseId}]`, item.answer, item.preference && ('Preference · ' + item.preference), ...item.tags].filter(Boolean);
+      parts.push(...assessmentLines(item.assessments));
       if (item.spot) parts.push(`At ${Math.round(item.spot.x * 100)}% across, ${Math.round(item.spot.y * 100)}% down (${item.spot.mode})`);
       if (item.text) parts.push(item.text);
       return parts.join('\n');
