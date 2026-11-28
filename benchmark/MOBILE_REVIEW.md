@@ -25,4 +25,6 @@ python -m benchmark.build_floating_mobile_review $stageReport $reviewQueue $fram
 vercel deploy review-site --prod --project floating-review
 ```
 
-When using Vercel Drop, ZIP the contents of `review-site` with `index.html` at the root. Choose the existing review project after the initial deployment. A personal Vercel account must be signed in. For a local check, serve `review-site` over HTTP and open `/?run=floating-v1-guarded-refit&view=review`.
+Check `vercel whoami` before publishing. A signed-in CLI can update the shared project without the dashboard. When the CLI needs authorization, `vercel login` gives the owner a one-time link they can approve on their phone. A new, unlinked demo can use `vercel deploy --temporary` while signed out. Treat its URL as short-lived and keep the project's claim link private.
+
+For a local check, serve `review-site` over HTTP and open `/?run=floating-v1-guarded-refit&view=review`.
