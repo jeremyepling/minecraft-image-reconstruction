@@ -22,7 +22,7 @@ from runtime.mode import image_only
 
 
 def run(job):
-    entry, baseline, out = job
+    entry, baseline, out, confirm_coverage = job
     cv2.setNumThreads(1)
     source_dir = baseline / 'original' / entry['id']
     target = out / 'original' / entry['id']
@@ -52,7 +52,7 @@ def run(job):
                 if sky is None:
                     axes = image_axes(image,planes)
                     sky = sky_support(image)
-                improved, audit = challenge(chart,by_id[plane_id],rgb,axes,sky)
+                improved, audit = challenge(chart,by_id[plane_id],rgb,axes,sky,confirm_coverage=confirm_coverage)
                 audits[chart['id']] = audit
                 if improved is not chart:
                     changed.append(chart['id'])
@@ -123,6 +123,7 @@ def main():
     p.add_argument('--case',action='append')
     p.add_argument('--split')
     p.add_argument('--report',action='store_true')
+    p.add_argument('--confirm-coverage',action='store_true')
     args = p.parse_args()
     entries = read(args.baseline/'fixtures.json')['cases']
     args.out.mkdir(parents=True,exist_ok=True)
@@ -134,7 +135,7 @@ def main():
                 (not args.case or e['id'] in args.case)]
     if not args.report:
         with ProcessPoolExecutor(args.workers) as pool:
-            list(pool.map(run,[(e,args.baseline,args.out) for e in selected]))
+            list(pool.map(run,[(e,args.baseline,args.out,args.confirm_coverage) for e in selected]))
     report(entries,args.baseline,args.out)
 
 

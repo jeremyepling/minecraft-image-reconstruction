@@ -125,7 +125,53 @@ def discover(patch, mask, R, original, center):
     return sorted(offers, key=lambda row: row[0], reverse=True)[:10]
 
 
-def challenge(chart, plane, rgb, axes, sky):
+def independent_coverage(old, new, anchors, mask, rgb):
+    """Compare source-only atlas matches at common visible pixels outside the two discovery tiles."""
+    keep = mask.astype('B')
+    for quad in anchors:
+        cv2.fillConvexPoly(keep, np.rint(quad).astype('int32'), 0)
+    y, x = np.nonzero(keep[::4,::4])
+    if not len(x):
+        return dict(accept=False, probes=0)
+    points = np.column_stack((x,y))*4+.5
+    # One foreground pixel at a fixed quantile in each occupied source-image bin.
+    xmin,ymin = points.min(0)
+    span = np.maximum(1, points.max(0)-points.min(0))
+    regions = np.minimum(9, np.floor((points-[xmin,ymin])*10/span).astype(int))
+    probes = []
+    for cell in np.unique(regions,axis=0):
+        chunk=points[(regions==cell).all(1)]
+        center=chunk.mean(0)
+        probes.append(chunk[np.argmin(np.linalg.norm(chunk-center,axis=1))])
+    probes=np.asarray(probes)
+    samples=np.linspace(.03,.97,7)
+    interior=np.stack(np.meshgrid(samples,samples),-1)
+    def match(H):
+        observed = {}
+        for uv in map(tuple,np.floor(project(np.linalg.inv(H),probes)).astype(int)):
+            if uv in observed:
+                continue
+            coords=project(H,interior+uv).astype(int)
+            if (coords<0).any() or (coords>=mask.shape[::-1]).any() or not keep[coords[...,1],coords[...,0]].all():
+                observed[uv]=False
+                continue
+            quad=project(H,UNIT+uv)
+            if np.linalg.norm(np.roll(quad,1,axis=0)-quad,axis=1).min()<6:
+                observed[uv]=False
+                continue
+            hit=verify_sprite(rgb,quad)
+            observed[uv]=bool(hit and hit[2]>=.65)
+        votes=[observed[tuple(uv)] for uv in np.floor(project(np.linalg.inv(H),probes)).astype(int)]
+        return votes,sum(observed.values())
+    old_votes,old_tiles = match(old)
+    new_votes,new_tiles = match(new)
+    win=sum(b and not a for a,b in zip(old_votes,new_votes))
+    lose=sum(a and not b for a,b in zip(old_votes,new_votes))
+    return dict(accept=bool(new_tiles>=2 and win-lose>=max(2,.05*len(probes))),probes=len(probes),
+                old_tiles=old_tiles,new_tiles=new_tiles,incumbent_only=lose,candidate_only=win)
+
+
+def challenge(chart, plane, rgb, axes, sky, *, confirm_coverage=False):
     mask = chart_mask(chart, plane, rgb.shape[1::-1])
     y, x = np.nonzero(mask[::3, ::3])
     if len(x)<512:
@@ -178,6 +224,12 @@ def challenge(chart, plane, rgb, axes, sky):
     inspected = []
     for _, H, item in options:
         inspected.append(item)
+        if confirm_coverage:
+            evidence = independent_coverage(np.asarray(chart['H']), H,
+                                            (item['near_quad'],item['far_quad']),mask,rgb)
+            item['independent_coverage'] = evidence
+            if not evidence['accept']:
+                continue
         corrected = fit_homography([0,0], project(H,UNIT)[[3,2,1,0]])
         y, x = np.nonzero(mask)
         points = np.column_stack((x,y))+.5
