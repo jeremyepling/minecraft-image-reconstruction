@@ -11,7 +11,15 @@ The sample uses the archived 144-view Visible Builds V1 comparison. The mobile m
 
 In **Image review**, tap **Surfaces** to step through the saved Surface Finder masks. The second picker compares the mask, gold reference, depth-partition masks and distinct grids in the same native source-image coordinates. Identical grids list all the stages that used them. The assembly receipts mark selected and unselected charts. Roof and underside charts created inside assembly are labeled as replays from the matching chart inputs, checked against the saved selection and oriented-chart count. A surface with no saved overlay shows that status explicitly. Surface notes include the ID and active grid attempt.
 
-## Publish another run
+## Review one run
+
+Use `floating-single-run-review` with `floating_single_run_reviewer` (Sol high) for a new screenshot or an existing output the user wants to inspect. Run the requested version and settings once, or verify the saved receipts. Pass the source hash, revision, native masks, attempted grids, selected assembly and decoded pack to `floating_review_publisher`. The reviewer owns the first failure trace and the publisher owns the hosted links. One person can fill both assignments.
+
+Use the same evidence pipeline as the scored review. Reuse `benchmark.mobile_surface_evidence` for native outlines and chart coordinates, and `benchmark.mask_blocks.decoded_pack` for export readback. For a source-only image, the Scores page shows observed stage counts and decoded exports. Show accuracy as unmeasured and omit the gold reference layer. A fixture comparison can use the ordinary paired publisher below.
+
+The completion check for a requested Vercel review is a verified **Image review** link and **Scores** link, plus a direct surface link when there is a traced failure. For supplied imagery approved for private upload, use a protected preview on the existing project and verify its sign-in requirement. Record a concrete blocker if hosting needs authorization or fails. Keep local evidence available for inspection while the hosted link is pending.
+
+## Publish a scored comparison
 
 ### Coordinate a round
 

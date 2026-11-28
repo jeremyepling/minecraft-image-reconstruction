@@ -2,6 +2,8 @@
 
 Start with the question Jeremy asked about the build. A score update can come straight from a scored release. A question about two missing blocks calls for tracing those two positions through the ordinary build.
 
+A request to run or inspect one image uses the [single-run review workflow](MOBILE_REVIEW.md#review-one-run). A request for one experiment turn uses the comparison workflow below and stops after one matched candidate comparison, including scoring and delivery.
+
 ## Default Floating experiment loop
 
 When Jeremy asks to run or continue experiments, start a 30-minute window at the beginning of the round unless he sets a different scope or stop condition. The coordinator shares that deadline with workers. After each completed comparison, check the evidence, record the outcome, and start the next useful test while time remains. Run independent tests in parallel when their inputs are ready. Pause the loop if a consequential decision requires Jeremy's input and give him the evidence needed to answer.
