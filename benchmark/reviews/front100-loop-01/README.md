@@ -1,0 +1,44 @@
+# Floating Front 100 experiment round 1
+
+## Decision for the next round
+
+Keep Expanded Split-Border on `main`. Carry the low-texture expansion guard and its tested density-gated combination as challengers. The combination had the highest strict F1, while the expansion guard alone kept 116 more correct placements. Investigate the lost cross-wall orientation before promotion. The multi-anchor and corrected-component combination remains experimental because its changes occurred only on training layouts. The round added evidence and experiment branches to the repository.
+
+Expanded Split-Border was measured at `b0b6e3b` and carried forward on integration revision `c33f3b0`. All complete trials used the same 100 full-block noon screenshots from Floating Front 100 v1, with the 72/14/14 building split and the same visible-only scorer. The decorated cohort was unmeasured.
+
+## Paired evidence
+
+| Trial | Correct gained / lost | Extras added / removed | Decision and evidence |
+| --- | ---: | ---: | --- |
+| Candidate 1 · Wall expansion bypass | 827 / 25,322 (94 paired views) | 84 / 50,605 | Retired. Replaying seed charts alone lost 24,816 net correct blocks. [Scores](https://floating-review.vercel.app/runs/front100-r01-expansion-bypass/scores) · [Image review](https://floating-review.vercel.app/runs/front100-r01-expansion-bypass/review). [Experiment branch](https://github.com/jeremyepling/minecraft-image-reconstruction/tree/experiment/front100-expansion-bypass). |
+| Candidate 2 · Two-window larger ruler | 152 / 695 (99 paired views) | 950 / 11,477 | Retired as a standalone rule. It accepted partial-face matches and regressed validation. [Scores](https://floating-review.vercel.app/runs/front100-r01-two-window-ruler/scores) · [Image review](https://floating-review.vercel.app/runs/front100-r01-two-window-ruler/review). [Experiment branch](https://github.com/jeremyepling/minecraft-image-reconstruction/tree/experiment/front100-junction-scale-guard). |
+| Candidate 3 · Independently checked ruler | 79 / 205 (99 paired views) | 866 / 6,276 | Experimental. The rule checked other source regions, but neither held-out split changed. [Scores](https://floating-review.vercel.app/runs/front100-r01-ruler-coverage/scores) · [Image review](https://floating-review.vercel.app/runs/front100-r01-ruler-coverage/review). [Experiment branch](https://github.com/jeremyepling/minecraft-image-reconstruction/tree/experiment/front100-junction-scale-guard). |
+| Candidate 4 · Multi-anchor ruler | 0 / 47 (99 paired views) | 868 / 11,148 | Superseded by the tested corrected-component combination. It requires at least three mutually consistent sprites. [Scores](https://floating-review.vercel.app/runs/front100-r01-multi-anchor-ruler/scores) · [Image review](https://floating-review.vercel.app/runs/front100-r01-multi-anchor-ruler/review). [Experiment branch](https://github.com/jeremyepling/minecraft-image-reconstruction/tree/experiment/front100-junction-scale-guard). |
+| Candidate 5 · Multi-anchor and corrected-component preference | 0 / 40 (99 paired views) | 719 / 11,315 | Carry forward as an experimental challenger. The added selector preserved seven more correct positions and removed 316 extras versus Candidate 4. Neither held-out split changed. [Scores](https://floating-review.vercel.app/runs/front100-r01-corrected-component/scores) · [Image review](https://floating-review.vercel.app/runs/front100-r01-corrected-component/review). [Experiment branch](https://github.com/jeremyepling/minecraft-image-reconstruction/tree/experiment/front100-junction-scale-component). |
+| Candidate 6 · Projected source coverage | 2,072 / 2,454 (99 paired views) | 1,075 / 16,386 | Superseded by the density gate. Coverage-only ranking displaced 149 correct positions on Gabled Hall 066. [Scores](https://floating-review.vercel.app/runs/front100-r01-source-coverage/scores) · [Image review](https://floating-review.vercel.app/runs/front100-r01-source-coverage/review). [Experiment branch](https://github.com/jeremyepling/minecraft-image-reconstruction/tree/experiment/front100-source-coverage-selection). |
+| Candidate 7 · Projected coverage with density gate | 112 / 308 (99 paired views) | 0 / 12,551 | Experimental. The gate preserved Gabled Hall 066 and recovered 186 net correct positions versus Candidate 6, while restoring 2,760 extras. [Scores](https://floating-review.vercel.app/runs/front100-r01-coverage-density/scores) · [Image review](https://floating-review.vercel.app/runs/front100-r01-coverage-density/review). [Experiment branch](https://github.com/jeremyepling/minecraft-image-reconstruction/tree/experiment/front100-coverage-density-gate). |
+| Candidate 8 · Source appearance depth partition | 25 / 31 (99 paired views) | 171 / 367 | Experimental. It changed two exports and missed the motivating parallel walls. [Scores](https://floating-review.vercel.app/runs/front100-r01-depth-appearance/scores) · [Image review](https://floating-review.vercel.app/runs/front100-r01-depth-appearance/review). [Experiment branch](https://github.com/jeremyepling/minecraft-image-reconstruction/tree/experiment/front100-wall-depth-partition). |
+| Candidate 9 · Low-texture expansion guard | 114 / 245 (98 paired views) | 1,692 / 17,946 | Carry as a challenger. It retained all 36 baseline contractions and improved strict F1 on train, validation and test. It lost 171 net correct blocks and one extra orientation. [Scores](https://floating-review.vercel.app/runs/front100-r01-low-texture/scores) · [Image review](https://floating-review.vercel.app/runs/front100-r01-low-texture/review). [Experiment branch](https://github.com/jeremyepling/minecraft-image-reconstruction/tree/experiment/front100-low-texture-expansion-guard). |
+| Candidate 10 · Low-texture expansion guard and density-gated coverage | 132 / 379 (98 paired views) | 775 / 20,452 | Carry as a tested combination of Candidates 7 and 9. It had the highest strict F1, while losing 116 more correct positions and removing 3,423 more extras than Candidate 9. [Scores](https://floating-review.vercel.app/runs/front100-r01-expansion-coverage/scores) · [Image review](https://floating-review.vercel.app/runs/front100-r01-expansion-coverage/review). [Experiment branch](https://github.com/jeremyepling/minecraft-image-reconstruction/tree/experiment/front100-expansion-coverage-gate). |
+
+## Reference-assisted findings
+
+- The existing-component chooser reproduced every baseline output, then chose among 308 actual options. Its ceiling was 26.88% strict and 28.34% facade placement F1 with 25,561 correct, 116,011 missed and 23,088 extras. Choosing by post-veto block count tied the baseline.
+- The native-pixel audit traced 22 dense exports. Sawtooth 100 had an 8 × 7 pixel proposed block inside a roughly 122 × 122 pixel visible face. A bounded reference chooser supplying width and height on those outliers reached 26.22% strict and 27.61% facade with 25,469 correct, 116,103 missed and 27,233 extras after carrying forward the other 78 baseline views.
+- For same-facing wall regions, exact native depth partitions with signed relative plane separation reached 26.62% strict and 27.88% facade placement F1. This added 2,955 correct positions and removed 6,010 extras across the 100 views. The signed separation was supplied by the reference.
+
+## Floating branch scorecard
+
+| Method | Strict / facade placement F1 | Strict / facade position + ID F1 | Strict correct / missed / extra | Empty / unresolved nonempty |
+| --- | ---: | ---: | ---: | ---: |
+| Baseline — Expanded Split-Border | 23.57% / 24.66% | 4.67% / 4.89% | 25,960 / 115,612 / 52,734 | 8 / 1 |
+| Candidate 1 · Wall expansion bypass | 1.60% / 1.71% | 0.87% / 0.93% | 1,144 / 140,428 / 155 | 8 / 6 |
+| Candidate 2 · Two-window larger ruler | 24.30% / 25.49% | 4.95% / 5.20% | 25,417 / 116,155 / 42,207 | 8 / 1 |
+| Candidate 3 · Independently checked ruler | 24.06% / 25.21% | 4.79% / 5.02% | 25,834 / 115,738 / 47,324 | 8 / 1 |
+| Candidate 4 · Multi-anchor ruler | 24.69% / 25.89% | 4.92% / 5.17% | 25,913 / 115,659 / 42,454 | 8 / 1 |
+| Candidate 5 · Multi-anchor and corrected-component preference | 24.73% / 25.94% | 5.07% / 5.33% | 25,920 / 115,652 / 42,138 | 8 / 1 |
+| Candidate 6 · Projected source coverage | 25.01% / 26.27% | 5.71% / 6.00% | 25,578 / 115,994 / 37,423 | 8 / 1 |
+| Candidate 7 · Projected coverage with density gate | 24.83% / 26.07% | 5.12% / 5.38% | 25,764 / 115,808 / 40,183 | 8 / 1 |
+| Candidate 8 · Source appearance depth partition | 23.59% / 24.68% | 4.67% / 4.90% | 25,954 / 115,618 / 52,538 | 8 / 1 |
+| Candidate 9 · Low-texture expansion guard | 25.40% / 26.68% | 5.10% / 5.37% | 25,789 / 115,783 / 35,689 | 8 / 2 |
+| Candidate 10 · Low-texture expansion guard and density-gated coverage | 25.74% / 27.07% | 5.32% / 5.60% | 25,673 / 115,899 / 32,266 | 8 / 2 |
