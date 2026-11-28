@@ -74,7 +74,7 @@ function row(table, name, values) {
 function evidenceLink(action, id) {
   const base = link('review');
   const key = action ? (base.includes('?') ? '&' : '?') + 'action=' + encodeURIComponent(action.id) : '';
-  const surface = action?.question?.surfaceId;
+  const surface = action?.question?.surfaceId || action?.surfaceLinks?.[id];
   return base + key + '#' + encodeURIComponent(id) + (surface ? '/' + encodeURIComponent(surface) : '');
 }
 
@@ -329,6 +329,19 @@ function surfaceReview(find, changed) {
       context.lineWidth = 2.5;
       context.stroke(owned);
     }
+    if (layer.markers) {
+      const colors = {gained:'#65e6e8', lost:'#ff78ae', extrasAdded:'#ffc461', extrasRemoved:'#be9cff'};
+      for (const marker of layer.markers) {
+        const [x, y] = marker.source;
+        context.fillStyle = colors[marker.kind];
+        context.strokeStyle = '#151918';
+        context.lineWidth = 1.5;
+        context.beginPath();
+        context.arc(x, y, 4, 0, 2 * Math.PI);
+        context.fill();
+        context.stroke();
+      }
+    }
     canvas.hidden = false;
   }
 
@@ -350,6 +363,7 @@ function surfaceReview(find, changed) {
       for (const [kind, fit] of Object.entries(part.fitEvidence)) detail.push(kind + ' · ' + fit.reason + '.');
     }
     if (layer.cells) detail.push(fmt(layer.cells.length) + ' owned exported cells.');
+    if (layer.markers) detail.push('Source-face centers · cyan correct gained · pink correct lost · amber extras added · violet extras removed.');
     if (layer.path) detail.push(`${fmt(layer.cellCount)} grid cells · ${layer.stages.join(' · ')}.`);
     if (layer.status?.length) detail.push(layer.status.join(' · '));
     if (!surface.layers.length) detail.push('No grid overlay was saved for this surface.');
@@ -376,6 +390,9 @@ function surfaceReview(find, changed) {
     }
     for (const [arm, exported] of Object.entries(surface.exports || {})) {
       choices.push({kind: 'export', label: arm + ' · exported cells', cells: exported.cells || []});
+    }
+    if (surface.placementChange?.markers.length) {
+      choices.push({kind:'changes', label:'Traced placement changes', markers:surface.placementChange.markers});
     }
     find('surface-trace').hidden = data.schema !== 2;
     if (data.schema === 2) surfaceTrace(find('trace-body'), surface, data);

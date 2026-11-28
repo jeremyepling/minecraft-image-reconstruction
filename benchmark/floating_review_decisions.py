@@ -220,6 +220,7 @@ def _machine_checks(frames, cases, candidate, chooser_covered):
 def _surface_checks(evidence, cases):
     by_id = {case['id']: case for case in cases}
     events, split_records, conflicts = {}, {}, defaultdict(set)
+    dropped_owners = []
     for marker, package in (evidence or {}).items():
         case = by_id.get(marker)
         if case is None or package['id'] != marker or package['sourceSha256'] != case['source_sha256']:
@@ -231,6 +232,9 @@ def _surface_checks(evidence, cases):
         if package.get('schema') not in (1, 2):
             raise ValueError(f'Unknown surface evidence schema for {marker}')
         for surface in package['surfaces']:
+            change = surface.get('placementChange') or {}
+            if change.get('droppedLosses'):
+                dropped_owners.append((marker, surface['id'], change['droppedLosses']))
             parts = surface.get('parts') or {}
             if len(parts) > 1:
                 split_records.setdefault(marker, []).append((surface['id'], len(parts)))
@@ -242,6 +246,18 @@ def _surface_checks(evidence, cases):
                 if decision['arm'] == 'Candidate' and decision['kind'] == 'conflict':
                     conflicts[marker].add(json.dumps(decision['detail'], sort_keys=True))
     checks = []
+    if dropped_owners:
+        affected = {marker for marker, _, _ in dropped_owners}
+        gross = sum(by_id[marker]['paired']['loss'] for marker in affected)
+        measured = sum(n for _, _, n in dropped_owners)
+        card = _card('trace-dropped-walls', 'Component selection', 'component', 'Keep the recovered part and test the dropped wall',
+                     f'{measured} of {gross} lost correct positions in these {len(affected)} reviewed views were owned by dropped charts. '
+                     + ' · '.join(f'{marker} / {surface}: {n}' for marker, surface, n in dropped_owners),
+                     'A dropped wall can have a usable grid while its attachment to the selected group is still unresolved.',
+                     'Keep the winning group fixed. Test attachment at visible shared edges, then decode and count recovered correct positions and new extras on other buildings.',
+                     cases=affected, basis='verified placement trace')
+        card['surfaceLinks'] = {marker: surface for marker, surface, _ in sorted(dropped_owners, key=lambda row:row[2])}
+        checks.append(card)
     if events:
         marker = sorted(events)[0]
         example = events[marker][0]

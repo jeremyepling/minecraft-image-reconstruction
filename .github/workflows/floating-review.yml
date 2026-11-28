@@ -23,4 +23,6 @@ jobs:
           if [[ "$BASE" =~ ^0+$ ]]; then BASE="$(git hash-object -t tree /dev/null)"; fi
           python -m benchmark.floating_change_impact --base "$BASE" >> "$GITHUB_STEP_SUMMARY"
       - run: python -m unittest discover -s tests -p 'test_floating_change_impact.py'
+      - run: python -m unittest discover -s tests -p 'test_floating_review_*.py'
+      - run: python -m unittest discover -s tests -p 'test_floating_grid_chooser.py'
       - run: node --test tests/test_floating_mobile_routes.mjs

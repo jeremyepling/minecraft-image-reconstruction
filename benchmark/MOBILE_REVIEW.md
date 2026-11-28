@@ -51,7 +51,7 @@ python -m benchmark.floating_review_intake list
 python -m benchmark.floating_review_intake outcome $feedbackId --experiment $test --result $finding --changed-experiment yes --score-manifest $laterManifest
 ```
 
-Private notes and measurements stay in SQLite under the repository's shared Git directory. The public manifest carries question status and aggregate usefulness measures. Attach a later paired score to distinguish answering a question from measuring an effect. Hold train and test building families apart when turning answers into a rule.
+Private notes and measurements stay in SQLite under the repository's shared Git directory. The public manifest carries question status and aggregate usefulness measures. Attach a later paired score to distinguish answering a question from measuring an effect. For a grid chooser, use the [pilot and paired option protocol](FLOATING_GRID_CHOOSER.md). It compares the incumbent, a fixed edge rule and a learned rule on untouched building families. Exact reference grids alone cannot supply the required option outcomes.
 
 ### Check a pipeline change
 
