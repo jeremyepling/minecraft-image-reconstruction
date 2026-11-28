@@ -149,8 +149,8 @@ def partial_witnesses(h, uv, region, rgb, texture):
             for pt,ok,v,z in zip(uv,passed[:,orientation],scores[0,:,orientation],control[:,orientation]) if ok]
 
 
-def region_ruler(chart, region, rgb, quad, aspect):
-    aligned=rectify(quad,aspect,rgb,region)
+def region_ruler(chart, region, rgb, quad, aspect, *, rectified=None):
+    aligned=rectify(quad,aspect,rgb,region) if rectified is None else rectified
     if aligned is None:
         return {},dict(reason='small rectification')
     H,img,mask=aligned
