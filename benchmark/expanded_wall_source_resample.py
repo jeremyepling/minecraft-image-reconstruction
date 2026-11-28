@@ -44,11 +44,10 @@ def preserve_and_rank(old, chart, rgb, mask):
     return dict(chart,cells=cells)
 
 
-def run(case, material=False):
+def run(case, material=False, *, output_root=OUT, source=NATIVE.parent/'source'):
     cv2.setNumThreads(1)
     name=case['id']
-    root=OUT/('source_material' if material else 'source_resample')
-    source=NATIVE.parent/'source'
+    root=output_root/('source_material' if material else 'source_resample')
     src=Path(case['variants']['sky']['image'])
     assert digest(src)==case['rgb_sha256']
     rgb=np.array(Image.open(src).convert('RGB'))
@@ -60,7 +59,7 @@ def run(case, material=False):
     output=[]
     evidence=[]
     if material:
-        measured=read(OUT/'source_resample/charts/sky'/name/'charts.json')
+        measured=read(output_root/'source_resample/charts/sky'/name/'charts.json')
         assert measured['source_packet_sha256']==digest(original)
         resampled={c['id']:c for c in measured['charts']}
     for chart in packet['charts']:
@@ -95,7 +94,7 @@ def run(case, material=False):
         assembly.evaluate((case,'sky','connected-atlas'))
     if material:
         export=Path('assembly/connected-atlas/sky')/name/'placements.json'
-        previous=read(OUT/'source_resample'/export)
+        previous=read(output_root/'source_resample'/export)
         current=read(root/export)
         for space in ('local','aligned'):
             assert [p for p,m in previous[space]]==[p for p,m in current[space]]

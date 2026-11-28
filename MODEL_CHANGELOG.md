@@ -4,6 +4,8 @@ These entries cover model inputs, rules around model outputs, and evaluation cha
 
 ### November 27, 2026
 
+- **Experiment, floating whole-wall transfer.** Across 12 original views of six layouts, whole-wall resampling with masked atlas IDs raised strict geometry from 6.75% to 27.25% and strict position-plus-ID F1 from 4.31% to 5.63%. The number of extra placements rose from 12 to 1,418. Both Factory 02 views gained geometry while their pooled typed score dipped from 3.10% to 2.99%. Keep this rule experimental and use Factory 02 to test masked-atlas ambiguity and unsupported occupancy. [Frozen layouts and decoded comparison](benchmark/reviews/floating-fresh-validation-01/README.md)
+
 - **Experiment, floating wall coverage and rulers.** Across 38 original test views, resampling observed pixels across ordinary wall grids raised strict visible placement from 3.72% to 35.34%. Retaining existing materials and ranking new cells from masked source pixels raised strict position-plus-ID F1 from 1.54% to 4.51%. With exact surface masks, local ruler correction raised the matched resampling control from 41.18% to 51.88%, then one correct local origin reached 53.32%. Kept experimental pending independent transfer and better material accuracy. [Replays and per-frame results](benchmark/reviews/expanded-wall-rulers-01/README.md)
 
 - **Diagnostic, floating surface masks.** On 38 original test images, supplying the exact native visible surfaces before counting raised strict placement F1 from 3.72% to 8.47%. The crop intervention recovered 1,505 more correct placements across the paired totals. [Per-cohort results and ceilings](benchmark/reviews/expanded-crop-ceiling-01/README.md)

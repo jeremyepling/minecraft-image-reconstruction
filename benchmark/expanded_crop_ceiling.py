@@ -78,7 +78,7 @@ def fields(case):
     return cache
 
 
-def paired_case(case):
+def paired_case(case, *, arms=('source','native'), source_name='source'):
     cv2.setNumThreads(1)
     name=case['id']
     src=Path(case['frame'])/'rgb.png'
@@ -89,8 +89,8 @@ def paired_case(case):
     assert all(digest(src.with_name(n))==metadata['files'][n] for n in ('camera.json','labels.npz','labels.json'))
     cache=fields(case)
     answers={}
-    for arm in ('source','native'):
-        root=OUT/arm
+    for arm in arms:
+        root=OUT/(source_name if arm=='source' else arm)
         folder=root/'sky'/name/'source-handoff'
         rows=root/'shared'
         native=root/'counter'
