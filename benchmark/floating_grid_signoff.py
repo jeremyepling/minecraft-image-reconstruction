@@ -40,22 +40,27 @@ def paint(image,mask,color,amount):
     image[mask]=np.uint8((1-amount)*image[mask]+amount*np.array(color))
 
 
-def render(chart,rgb,owners,plane_ids,faces,case_mask,gold,box,shifts):
+def render(chart,rgb,owners,plane_ids,faces,case_mask,gold,box,shifts,additional=()):
     x,y,r,b=box
     covered=np.zeros(owners.shape,"uint8")
     lines=np.zeros_like(covered)
     signed=np.zeros(owners.shape,"int8")
-    h=np.asarray(chart["H"])
-    for cell in chart["cells"]:
-        u,v=cell["u"],cell["v"]
-        pts=project(h,SQUARE+[u,v])
-        if not np.isfinite(pts).all() or np.max(abs(pts))>1e6:
-            continue
-        pts=np.rint(pts).astype("int32")
-        cv2.fillConvexPoly(covered,pts,1)
-        cv2.polylines(lines,[pts],True,1,1)
-        if (u,v) in shifts:
-            cv2.fillConvexPoly(signed,pts,shifts[u,v])
+    groups=[chart,*additional]
+    polygons=np.full(owners.shape,-1,"int16")
+    for group_id,group in enumerate(groups):
+        h=np.asarray(group["H"])
+        for cell in group["cells"]:
+            u,v=cell["u"],cell["v"]
+            pts=project(h,SQUARE+[u,v])
+            if not np.isfinite(pts).all() or np.max(abs(pts))>1e6:
+                continue
+            pts=np.rint(pts).astype("int32")
+            cv2.fillConvexPoly(covered,pts,1)
+            cv2.fillConvexPoly(polygons,pts,group_id)
+            cv2.polylines(lines,[pts],True,1,1)
+            offset=cell.get("normal_offset",shifts.get((u,v),0))
+            if offset:
+                cv2.fillConvexPoly(signed,pts,int(offset))
     current=rgb.copy()
     paint(current,signed>0,(243,111,191),.5)
     paint(current,signed<0,(130,121,255),.55)
@@ -67,8 +72,18 @@ def render(chart,rgb,owners,plane_ids,faces,case_mask,gold,box,shifts):
     target=np.isin(owners,plane_ids)
     area_target=target[y:b,x:r]
     coverage=(covered[y:b,x:r].astype(bool) & area_target).sum()/max(1,area_target.sum())
-    inv=np.linalg.inv(h)
-    corner_sets=[project(inv,np.asarray(f["corners_px"])) for f in faces]
+    corner_sets=[]
+    inverses=[np.linalg.inv(group["H"]) for group in groups]
+    for face in faces:
+        group_id=0
+        if additional:
+            xx,yy=np.floor(np.mean(face["corners_px"],axis=0)).astype(int)
+            if not (0<=xx<polygons.shape[1] and 0<=yy<polygons.shape[0]):
+                continue
+            group_id=polygons[yy,xx]
+            if group_id<0:
+                continue
+        corner_sets.append(project(inverses[group_id],np.asarray(face["corners_px"])))
     metrics={"covered":round(100*coverage,1)}
     if corner_sets:
         uv=np.asarray(corner_sets)
@@ -79,7 +94,7 @@ def render(chart,rgb,owners,plane_ids,faces,case_mask,gold,box,shifts):
     return [picture(Image.fromarray(pic[y:b,x:r])) for pic in (current,combined)],metrics
 
 
-def make(spec):
+def make(spec, comparison=None):
     kind,panel,name,wall,title,proposal=spec
     (root,_,_,cases),_,_=paths(panel)
     case=next(c for c in cases if c["id"]==name)
@@ -123,7 +138,9 @@ def make(spec):
     rel=Path("sky")/name/"charts.json"
     a=ISOLATION/panel/"large-contraction"
     shifts={}
-    if kind=="row":
+    if comparison is not None:
+        before,after=comparison["scores"]
+    elif kind=="row":
         a=SCALE/panel
         b_folder=RUN/panel/"row-with-material"
         scores=read(OUT/"top-row.json.gz")[name]["stats"]["score"]
@@ -145,8 +162,12 @@ def make(spec):
         b_folder=a
         before=data["score"]["large-contraction"];after=data["score"]["source"]
     options=[]
-    for folder,shift,score in [(a,{},before),(b_folder,shifts,after)]:
-        imgs,m=render(get_chart(folder,rel,wall),rgb,ids,plane_ids,eligible,mask,gold,box,shift)
+    if comparison is None:
+        charts_and_shifts=[([get_chart(folder,rel,wall)],shift) for folder,shift in [(a,{}),(b_folder,shifts)]]
+    else:
+        charts_and_shifts=comparison["charts"]
+    for (charts,shift),score in zip(charts_and_shifts,(before,after),strict=True):
+        imgs,m=render(charts[0],rgb,ids,plane_ids,eligible,mask,gold,box,shift,charts[1:])
         geom=score["geometry"]["strict"]
         options.append(dict(images=imgs,metrics=m,score=[geom["correct"],geom["extras"],score["scores"]["strict"]["correct"]]))
     context=Image.fromarray(rgb)

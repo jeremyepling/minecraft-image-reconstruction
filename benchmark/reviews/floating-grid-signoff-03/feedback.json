@@ -1,0 +1,64 @@
+{
+  "schema": "floating-grid-signoff-v2",
+  "reviews": {
+    "test-twinspire2-earth-high-right-row": {
+      "id": "test-twinspire2-earth-high-right-row",
+      "case": "Twinspire · upper brick row",
+      "wall": "mask-2",
+      "A_coverage": "Missing area",
+      "B_coverage": "Extra area",
+      "B_coverage_comment": "I'll take extra area if more than 50% of a block is still in the bounds. There is an edge where the bricks and standtone bridge meet that could be a place to reset the grid as it goes up and adjust the height. when other blocks meet it's a good place to really nail the face size sinc eyou have antoher block next to it with a corner. and edge.",
+      "B_alignment": "Aligned",
+      "A_alignment": "Aligned",
+      "B_size": "Right",
+      "A_size": "Right",
+      "relative_preference": "B",
+      "proposal_decision_comment": "There is an edge where the bricks and standtone bridge meet that could be a place to reset the grid as it goes up and adjust the height. when other blocks meet it's a good place to really nail the face size sinc eyou have antoher block next to it with a corner. and edge."
+    },
+    "train-riverside-mill-1-warm-low-left-depth": {
+      "id": "train-riverside-mill-1-warm-low-left-depth",
+      "case": "Riverside Mill · window and porch",
+      "wall": "mask-0",
+      "A_coverage": "Extra area",
+      "B_coverage": "Extra area",
+      "proposal_decision_comment": "Keep the wall grid and separate the recessed and projecting parts by one block in depth. Preserve the window cross where the source shows it. A change in material alone cannot establish depth. The gride should be reestablished with the block face from the each surface at it's own depth."
+    },
+    "train-viaduct-01-riverstone-low-left-depth": {
+      "id": "train-viaduct-01-riverstone-low-left-depth",
+      "case": "Viaduct · projecting faces",
+      "wall": "mask-0",
+      "relative_preference_comment": "Retain the sampled cells and test a separate one-block depth for the coherent projecting region. Inspect the return faces where the two planes meet. Brown blocks at the bottom are a seprate depth as well sticking toward the camera more. wit that separate surface, the grid shoudl be established again in the edge and corner."
+    },
+    "test-castle-01-ashlar-high-right-depth": {
+      "id": "test-castle-01-ashlar-high-right-depth",
+      "case": "Castle · harmful depth adjustment",
+      "wall": "mask-0",
+      "proposal_decision_comment": "the depth information is correct. it should be used for correct placement and the gird."
+    },
+    "train-shrine-02-ochre-low-left-depth": {
+      "id": "train-shrine-02-ochre-low-left-depth",
+      "case": "Shrine · stairs and right wall",
+      "wall": "mask-0-wall-0",
+      "proposal_decision_comment": "Keep the right wall and give the visible stair treads and risers separate small surfaces. The tested one-block depth rule leaves this example unresolved"
+    },
+    "train-pillars-01-marble-low-left-cross": {
+      "id": "train-pillars-01-marble-low-left-cross",
+      "case": "Pillars · ruler from another wall",
+      "wall": "mask-1",
+      "proposal_decision_comment": "B is better block size, but was too skewed.",
+      "B_size": "Right",
+      "B_alignment": "Drifts across the wall",
+      "B_coverage": "Missing area"
+    },
+    "validation-hillside-chapel-1-warm-low-left-origin": {
+      "id": "validation-hillside-chapel-1-warm-low-left-origin",
+      "case": "Chapel · left edge",
+      "wall": "mask-0",
+      "proposal_decision_comment": "b is better. separate the surfaces and establishing a new grid should help.\n\n\n",
+      "B_size": "Right",
+      "B_alignment": "Aligned",
+      "B_coverage": "Missing area",
+      "B_size_comment": ""
+    }
+  }
+}
