@@ -18,7 +18,7 @@ from engine.geometry import UNIT
 PRIOR = WORKTREES/"floating-peer-ruler-refit/runs/peer-ruler-refit/atlas-first"
 OUT = ROOT/"runs/peer-refit-recovery"
 REVIEW = ROOT/"benchmark/reviews/floating-peer-refit-recovery-01"
-ARMS = ("overlap","witness","anchor-region","region-overlap","phase","phase-material")
+ARMS = ("overlap","witness","anchor-region","region-overlap","corroborated","partial","phase","phase-material")
 SITES = np.stack(np.meshgrid((np.arange(9)+.5)/9,(np.arange(9)+.5)/9),-1)
 
 
@@ -69,7 +69,7 @@ def materials(chart,old,peers,mask,rgb):
                 witnesses.append((label({"block_id":proof["material"]}),descriptor(pix[visible]),
                                   xy[4,4],proof["correlation"]))
     evidence=[]
-    alternatives={a:[] for a in ("overlap","witness","anchor-region","region-overlap")}
+    alternatives={a:[] for a in ("overlap","witness")}
     for cell in chart["cells"]:
         uv=np.array(key(cell))
         xy,pix,visible=observed(rgb,mask,h,uv)
@@ -105,6 +105,45 @@ def materials(chart,old,peers,mask,rgb):
                                       else dict(cell,block_id="minecraft:"+new_id,fallback=False))
         evidence.append(dict(uv=key(cell),old=label(cell),vote=consensus,witness=chosen))
     return {a:dict(chart,cells=c) for a,c in alternatives.items()},dict(witness_count=len(witnesses),cells=evidence)
+
+
+def recover_partial(chart,old,mask,rgb):
+    """Test visibly clipped unit cells with a connected neighbor and old covered image evidence."""
+    cells={key(c):c for c in chart["cells"]}
+    old_cells={key(c):c for c in old["cells"]}
+    inv=np.linalg.inv(old["H"])
+    h=np.asarray(chart["H"])
+    offered=set()
+    for u,v in cells:
+        offered.update(((u+1,v),(u-1,v),(u,v+1),(u,v-1)))
+    new=[]
+    for uv in sorted(offered-cells.keys()):
+        xy,pixels,visible=observed(rgb,mask,h,np.asarray(uv))
+        if not .40<=visible.mean()<.85:
+            continue
+        # Demand a single observed component crossing two or more edges of this tile;
+        # both neighboring source cells must agree on the surface material.
+        _,cc=cv2.connectedComponents(visible.astype("B"),connectivity=4)
+        parts=np.bincount(cc.ravel())
+        if len(parts)<2:
+            continue
+        component=cc==np.argmax(parts[1:])+1
+        if component.sum()<.9*visible.sum():
+            continue
+        u,v=uv
+        neighbors=[cells[q] for q,edge in (((u-1,v),component[:,0]),((u+1,v),component[:,-1]),
+                   ((u,v-1),component[0]),((u,v+1),component[-1])) if q in cells and edge.sum()>=3]
+        votes=Counter(label(c) for c in neighbors)
+        if not votes or votes.most_common(1)[0][1]<2:
+            continue
+        material=votes.most_common(1)[0][0]
+        old_samples={tuple(p) for p in np.floor(project(inv,xy[component])).astype(int)}
+        corroboration=[old_cells[p] for p in old_samples if p in old_cells and label(old_cells[p])==material]
+        if len(corroboration)<2:
+            continue
+        new.append(dict(u=u,v=v,block_id="minecraft:"+material,confidence=float(np.mean([c["confidence"] for c in corroboration])),
+                        mask_coverage=float(visible.mean()),fallback=False))
+    return dict(chart,cells=chart["cells"]+new),new
 
 
 def tweak(chart,mask,rgb):
@@ -164,11 +203,15 @@ def run(job):
             from benchmark.floating_peer_material_region import propagate
             region,region_proof=propagate(chart,mask,rgb)
             region_overlap,_=propagate(recolor["overlap"],mask,rgb)
+            secondary=[tuple(c["uv"]) for c in mat["cells"] if region_proof.get("accepted") and
+                       c["vote"]==region_proof["proof"]["material"].removeprefix("minecraft:")]
+            corroborated,spread=propagate(recolor["overlap"],mask,rgb,secondary)
+            partial,added=recover_partial(corroborated,old,mask,rgb)
             shifted,details=tweak(chart,mask,rgb)
             both=materials(shifted,old,peers,mask,rgb)[0]["witness"] if shifted is not chart else recolor["witness"]
-            for arm,entry in dict(**recolor,phase=shifted,**{"phase-material":both,"anchor-region":region,"region-overlap":region_overlap}).items():
+            for arm,entry in dict(**recolor,phase=shifted,**{"phase-material":both,"anchor-region":region,"region-overlap":region_overlap,"corroborated":corroborated,"partial":partial}).items():
                 packets[arm].append(entry)
-            decisions[cid]=dict(material=mat,phase=details,region=region_proof)
+            decisions[cid]=dict(material=mat,phase=details,region=region_proof,secondary=secondary,corroborated=spread,added=added)
     roots={"original":base/"assembly","refit":source/"assembly"}
     for arm in ARMS:
         dest=OUT/g/arm
@@ -185,7 +228,7 @@ def run(job):
     for a,root in roots.items():
         receipt=read(root/PREFIX/n/"score.json")
         packed[a]=dict(pack=receipt["pack_sha256"],chart=receipt["chart_sha256"],translation=row["score"][a]["translation"])
-        if a in ("overlap","witness","anchor-region","region-overlap"):
+        if a in ("overlap","witness","anchor-region","region-overlap","corroborated"):
             repl=read(root/PREFIX/n/"placements.json")
             for field in ("local","aligned"):
                 assert [v for v,_ in repl[field]]==[v for v,_ in ref[field]]

@@ -5,7 +5,7 @@ import numpy as np
 from benchmark.floating_peer_recovery import descriptor, error, full_face, key, observed
 
 
-def propagate(chart,mask,rgb):
+def propagate(chart,mask,rgb,secondary=()):
     h=np.asarray(chart["H"])
     seeds=full_face(h,np.zeros(2),mask,rgb)
     if not seeds["ok"]:
@@ -21,7 +21,7 @@ def propagate(chart,mask,rgb):
         _,pix,visible=observed(rgb,mask,h,np.array(uv))
         if visible.mean()>=.78 and error(descriptor(pix[visible]),reference)<=limit:
             supported.add(uv)
-    starts={(0,0)} & supported
+    starts=({(0,0)} | set(secondary)) & supported
     queue=deque(starts)
     reached=set(starts)
     while queue:
