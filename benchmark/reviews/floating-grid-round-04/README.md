@@ -48,3 +48,30 @@ We replayed the ordinary assembler and pack export, supplying only the relative 
 The proposed offset already rounds correctly from the source image. The next source-only test is to validate whether the two separated walls share a plane using an independent cue before accepting the offset. Hold the existing tolerances for cases with no corroboration. The replay is reference-only evidence for this case. The floating default remains the previously scored 12.64% strict and 12.90% facade on six sky images.
 
 [Zoomable before and after](twinspire-join.png) · [Decode receipts](twinspire-join-scores.json)
+
+## Test the right tower's block size
+
+[Open the left-to-right scale comparison](twinspire-scale-test.png) or [see exactly where the extra blocks landed](twinspire-right-extras.png). The left wall where the bridge attaches and the right tower's outer side wall face the same direction, with 11 blocks between their planes. The front-facing brick walls are the coplanar pair. The right outer side has 8 columns and 10 rows. The shared-corner step kept its vertical seam with the right front but replaced its cross-wall scale. Sampling the replacement across the right wall gave 143 cells instead of 80. The 50 extra cells from five surplus columns and the 13 below the wall all landed at the correct wall depth.
+
+The experimental transfer uses the left side wall's block ruler and the right tower's local vertical seam, proposes different widths using the visible right edge, and chooses by how well repeating brick texture matches on the right. It emits 8 columns and 10 rows from the image. The native reference, used to grade the result, finds 80 distinct faces under those 80 projected centers. Before transfer, 143 centers covered 79 distinct faces. We also bypassed the corner override and restored the right wall's own earlier atlas grid using the same downstream sampling and export. That was almost as good. The corner can support vertical alignment without overwriting the independently measured horizontal ruler.
+
+| Twinspire high-right arm | Correct / missed / extra | Strict / facade placement F1 | Exact positions with material |
+|---|---:|---:|---:|
+| Existing experimental grid | 110 / 184 / 63 | 47.11% / 49.22% | 42 |
+| Restore the right wall's earlier atlas grid | 110 / 184 / 0 | 54.46% / 57.29% | 88 |
+| Transfer the left wall's ruler | 110 / 184 / 0 | 54.46% / 57.29% | 90 |
+| Ruler transfer plus the reference-only tower offset | 180 / 114 / 0 | 75.95% / 79.30% | 153 |
+
+On the opposite Twinspire view, the transfer gained 12 exact position and material matches with the same geometry. On six fixed sky views the rule did not fire. Keep the transfer on the experimental branch until there are positive cases from other buildings.
+
+### Evidence for surface relationships
+
+Keep each surface's direction, visible support, proposed depth and independently measured grid. Depth ordering guides which same-facing patches may share a plane. Test the relationships against the source boundaries and local grid proposals before assembly consumes them.
+
+| Relationship | What assembly can use |
+|---|---|
+| Adjacent faces sharing a physical edge | Match visible edge endpoints and corresponding block rows. Preserve each face's independent spacing across its width until its own texture or silhouette verifies a candidate. |
+| Parallel faces at different depths | Transfer a unit block size after perspective adjustment. Keep the offset between the planes independent. Check the resulting phase and block count against the receiving wall's visible pixels. |
+| Coplanar fragments separated by an opening or occluder | Check that the depths, scale, and grid phase agree at multiple visible locations. An accepted hypothesis shares the plane and integer grid offset. Only cells with visible support enter the export. |
+
+The source-only ruler test implements part of the parallel-wall rule. The Twinspire left-to-right placement still uses a reference-only offset in the combined diagnostic. A future candidate can use the same-plane checks to establish that offset from the source image.
