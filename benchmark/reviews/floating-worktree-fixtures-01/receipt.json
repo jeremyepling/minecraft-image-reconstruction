@@ -1,0 +1,153 @@
+{
+  "exact_matches": [
+    "sparse-exact",
+    "shared-a",
+    "shared-b",
+    "historical",
+    "launcher-a",
+    "launcher-b"
+  ],
+  "hashes": {
+    "atlas/atlas.json": "f33529ac90984827e82bf8720d8bd122e11f1386fb6c49a70379437a3c4c54a2",
+    "atlas/atlas.png": "49b477fbfe5f2171c2529e3ffe1722f09fee5a094de2b6b99831512b8601c950",
+    "atlas/placement-index.json": "32f95873f5b10e0fa36023c149b4277a4b1f7a59fb77940ede120f9292f37ac6",
+    "checkout/benchmark/data/count-atlas-v1/placement-index-26.3.json.gz": "948396442cfa6ec0f5fa21fc23a95261730dbea4800973768bda320d2a77518d",
+    "checkout/benchmark/reviews/floating-visible-builds-v1-01/conditions.json.gz": "3e7cf218747195f0733bf2755b0438b98d8806a580f46e37c8eaab525c44efd7",
+    "checkout/benchmark/reviews/floating-visible-builds-v1-01/fixtures.json.gz": "6eb308fe3b08e8b331351e0172c9b2dcb3922978ab1a5da7dde23bae61f0a3c5",
+    "checkout/engine/surface_defaults.json": "3dce18c2e8359dd10b3acde272bacda0854bf15a1cb40e0a84740ed1a57d00ea",
+    "fields/train-arcade1-cool-high-right/depth.npz": "e96f7e663b67f9a8673ca800adbf4ed658564a6c676bd645ff1123eb6ddb9573",
+    "fields/train-arcade1-cool-high-right/normal.npz": "4a3a55e9df5326d7c8810bbe4f99a04b69d612f5ab13930461689427e731e7cb",
+    "fields/train-arcade1-cool-high-right/receipt.json": "38895af3ad637a60df40854a2c283736a952d50f93f85c7a5a93d630be733826",
+    "fields/train-terrace2-cool-low-left/depth.npz": "eb090fc9ad8a2dd8b8a4f402876b7bb0768c5c27a0d10535310886367c2bba33",
+    "fields/train-terrace2-cool-low-left/normal.npz": "4476878fa1a7a55dea1d2b9a44b36db55e4c2eb0cce0d03df8024f566d17db07",
+    "fields/train-terrace2-cool-low-left/receipt.json": "fc2939ea073a0fb02c4f7e6d5d8b33f5f940e77670b92da69e0b5fc5675ef2a0",
+    "release/data/train/frames/train-arcade1-cool-high-right/camera.json": "b3bdf18c844b15c5ebd5073324ac50da8c7b41fac77a5d0bfbb12007f952c050",
+    "release/data/train/frames/train-arcade1-cool-high-right/frame.json": "4b267bf2bdccd12ae5b76cc12ab2a629d0f6118d4c35a774420bb85003be9e79",
+    "release/data/train/frames/train-arcade1-cool-high-right/labels.json": "5986412590242a7ba836309361db8b5412cbda141477dc04cd9c1991a6a19e34",
+    "release/data/train/frames/train-arcade1-cool-high-right/labels.npz": "2e9c0932a475e445d00be26318940db74957c175db4b95a10eb8bdcf419e0ce6",
+    "release/data/train/frames/train-arcade1-cool-high-right/rgb.png": "695a2884d3f7aa5906696f990116c4e9bf404c89db469164c12c5513db04e1fb",
+    "release/data/train/frames/train-terrace2-cool-low-left/camera.json": "93372d30c91ba89205c9be0f90c16e39456c28bee40c53aa2feadc792feff4a7",
+    "release/data/train/frames/train-terrace2-cool-low-left/frame.json": "b8afc2d8e8d25fb46c5afc49869dc7186b6ae6a07c895be588f1d28c2a92203f",
+    "release/data/train/frames/train-terrace2-cool-low-left/labels.json": "7191b9540bf9ec0f080f5f8594489d366a52477872135c4cd92cc47dc70797b3",
+    "release/data/train/frames/train-terrace2-cool-low-left/labels.npz": "1063fd2b5f4431815bcc904522bd60ffdd4526aa5b350f1d5402f6080a0f1f1b",
+    "release/data/train/frames/train-terrace2-cool-low-left/rgb.png": "045d885a436bb2a27adfffb2e694af22281262a098f4a6263592204c3a7f210c",
+    "release/manifest.json": "a702f1d1a79c9e471680fd362993e14a4c2eeb20b4790d6b67b054b5f4bf0a56"
+  },
+  "historical_revision": "5a62761fb218005eab3d7d5ca66901cfdf7dcfa3",
+  "immutable_inputs": {
+    "concurrent_overlap_seconds": 27.625,
+    "files": 20,
+    "launcher_overlap_seconds": 25.297
+  },
+  "measurements": {
+    "external_fixture": {
+      "file_allocation": 12271616,
+      "files": 20,
+      "logical": 12232341
+    },
+    "normal": {
+      "file_allocation": 564326032,
+      "files": 6814,
+      "logical": 550658822
+    },
+    "sparse": {
+      "file_allocation": 88448496,
+      "files": 1497,
+      "logical": 85464973
+    }
+  },
+  "per_view": {
+    "train-arcade1-cool-high-right": {
+      "aligned_count": 154,
+      "aligned_sha256": "5c6984fa58f227fc41c780fa0a174eea5ec48376e601403c69c18f96406ba104",
+      "assembly_arms": {
+        "baseline": "9f8af2d9f6033148e4a178b87493baf79a5c7729c17c320481b541c1326bde1c",
+        "complete": "9f8af2d9f6033148e4a178b87493baf79a5c7729c17c320481b541c1326bde1c",
+        "partial": "f8c4972ca84a8dcd8d046249bb5d9b4cefcdd33480ca2c7865ba9c10bc106b25"
+      },
+      "geometry": {
+        "facade": {
+          "correct": 154,
+          "extras": 0,
+          "f1": 0.8,
+          "missed": 77
+        },
+        "strict": {
+          "correct": 154,
+          "extras": 0,
+          "f1": 0.8,
+          "missed": 77
+        }
+      },
+      "material": {
+        "facade": {
+          "correct": 153,
+          "extras": 1,
+          "f1": 0.7948051948051948,
+          "missed": 78
+        },
+        "strict": {
+          "correct": 153,
+          "extras": 1,
+          "f1": 0.7948051948051948,
+          "missed": 78
+        }
+      },
+      "resolved": true,
+      "scorer_symbols_sha256": "8cac04c4089e189ea72b42778f396ebe6fc478a4889d9adebb450829922d1a22",
+      "selected": "partial"
+    },
+    "train-terrace2-cool-low-left": {
+      "aligned_count": 49,
+      "aligned_sha256": "91606245ee897fc9c2c7faeeca26672e902a78209f39dd1f7af68d2993f39690",
+      "assembly_arms": {
+        "baseline": "568e2baf45f8e48711ecbe264a5ae0ac6bdef1e373a779e066fd70b79289e544",
+        "complete": "45acba3d410ca2b3e501ebd428282b72fb66340eb47c1ba1cfcde3220fb8cf2f",
+        "partial": "45acba3d410ca2b3e501ebd428282b72fb66340eb47c1ba1cfcde3220fb8cf2f"
+      },
+      "geometry": {
+        "facade": {
+          "correct": 33,
+          "extras": 16,
+          "f1": 0.3013698630136986,
+          "missed": 137
+        },
+        "strict": {
+          "correct": 33,
+          "extras": 16,
+          "f1": 0.29333333333333333,
+          "missed": 143
+        }
+      },
+      "material": {
+        "facade": {
+          "correct": 23,
+          "extras": 26,
+          "f1": 0.2100456621004566,
+          "missed": 147
+        },
+        "strict": {
+          "correct": 23,
+          "extras": 26,
+          "f1": 0.20444444444444446,
+          "missed": 153
+        }
+      },
+      "resolved": true,
+      "scorer_symbols_sha256": "8cac04c4089e189ea72b42778f396ebe6fc478a4889d9adebb450829922d1a22",
+      "selected": "baseline"
+    }
+  },
+  "revision": "9ccf8138cbb7d84ddd2ae5ea4d1582a407fac9a5",
+  "settings": {
+    "edge_pixels": 2.5,
+    "min_area": 5000,
+    "numpy": "2.3.5",
+    "opencv": "4.12.0",
+    "orientation": "charge",
+    "pillow": "13.0.0",
+    "python": "3.12.14",
+    "through": "score",
+    "workers": 1
+  }
+}
