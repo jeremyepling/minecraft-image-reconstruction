@@ -4,7 +4,7 @@ from collections import Counter
 import cv2
 import numpy as np
 
-from benchmark.floating_peer_ruler_refit import (RES, candidates, harmonic_margin, perspective, profiles,
+from benchmark.floating_peer_ruler_refit import (RES, harmonic_margin, perspective, profiles,
     project, texture)
 from benchmark.floating_verified_wall_expansion import full_face
 from benchmark.full_block_lattice import atlas
@@ -85,10 +85,16 @@ def search(chart,ratios,mask,rgb):
                        highest_template_match=match,near=proof,far=far,perspective=1.,homography=winner.tolist())
 
 
+def run_atlas(job):
+    from unittest.mock import patch
+    from benchmark import floating_peer_ruler_refit as edge
+    with patch.object(edge,"OUT",edge.OUT/"atlas-first"),patch.object(edge,"search",search):
+        edge.run(job)
+
+
 if __name__=="__main__":
     import argparse
     from concurrent.futures import ProcessPoolExecutor
-    from pathlib import Path
     from unittest.mock import patch
     from benchmark import floating_peer_ruler_refit as edge
     def main():
@@ -102,13 +108,6 @@ if __name__=="__main__":
         else:
             with ProcessPoolExecutor(5) as pool:
                 list(pool.map(run_atlas,items))
-    # Worker is imported by name under spawn.
-    from benchmark.floating_peer_atlas_search import run_atlas
     main()
 
 
-def run_atlas(job):
-    from unittest.mock import patch
-    from benchmark import floating_peer_ruler_refit as edge
-    with patch.object(edge,"OUT",edge.OUT/"atlas-first"),patch.object(edge,"search",search):
-        edge.run(job)

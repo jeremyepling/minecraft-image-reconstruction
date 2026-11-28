@@ -1,5 +1,7 @@
 # Reconstruction adjustments and lessons for training
 
+- **2026-11-27, peer-guided wall ruler replacement.** Stable Yard low-left yielded a source sandstone fit with 70 correct placements and 53 extras versus 78 and 1,374, but it produced zero correct material IDs. Two independent source regions failed to verify either replacement method on all three challenged walls. Keep both in experiment. [Source grids, decoded builds and held-out evidence](benchmark/reviews/floating-peer-ruler-refit-01/README.md)
+
 - **2026-11-27, verified wall expansion.** Testing a complete-looking atlas tile accepted the repeated Stable Yard pattern. Checking separated tiles across the wall then clipped valid Castle geometry. Requiring contradictory unit heights from independent wall masks limited trimming to three of 84 conditions, removing 3,184 net extras at a cost of 123 correct positions. Keep the source guard experimental. [Verified wall expansion](benchmark/reviews/floating-verified-wall-expansion-01/README.md)
 
 - **2026-11-27, distant seam ruler check.** Switching to locally discovered faces with stronger distant seam contrast gave 31.48% strict placement across 86 conditions versus 31.47% with previous horizontal charts. On Sawtooth 2 high-right it removed 223 extras, but Watchpost 2 low-left lost 40 correct positions and the useful Chapel replacement was rejected. Keep the gate experimental. [Ruler crops and decoded placement comparisons](benchmark/reviews/floating-distant-seams-01/README.md)

@@ -236,6 +236,8 @@ def report(items):
     totals={}
     for cohort in ("all","sky",*sorted({r["dataset"] for r in rows})):
         subset=[r for r in rows if cohort in ("all",r["audit"]["group"],r["dataset"])]
+        if not subset:
+            continue
         options=best([r["score"] for r in subset],["base","relaxed"])
         sums={}
         for arm in ("base",*ARMS,"reference-chooser"):
