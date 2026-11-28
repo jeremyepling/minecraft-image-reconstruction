@@ -36,6 +36,16 @@ Close every floating experiment report and chat result with the scores for the a
 
 [Examples and per-view evidence from the pipeline review](reviews/pipeline-consistency-01/README.md)
 
+## First pass before asking for annotations
+
+For each candidate, put the source crop, both projected grids, and visible reference boundaries in the same pixel coordinates. Check the projection against native image ownership or reprojected visible corners. Compare coverage, alignment, scale and suspicious warp independently. When the measurements agree, record the preferred stage output and the evidence yourself. Keep a relative preference distinct from a complete or correct grid.
+
+If the preferred grid yields a worse build, trace the affected coordinates into the exported pack. Check whether different charts were selected, a shared edge broke, the grid changed its depth, or the whole-build alignment moved. Report gained and lost positions as well as the net difference. Replaying the changed grid with its measured neighbor can isolate a corner compatibility problem. Use a reference-only replay at the exact handoff when that answers what improvement is possible. Use source-only tests for behavior changes.
+
+Use an existing focused regression or add a small deterministic case when the check catches a specific failure. Run the ordinary export on the affected view and a relevant control. Use existing CI for portable checks. If a fixture exists only in the saved local archives, keep its paired checksum and replay receipt alongside the portable test and report CI separately.
+
+For questions that remain, put the smallest useful prompt beside your own assessment in the viewer and phone PNG. Ask about ambiguous visible evidence or a preference that would change the result. Keep pending and resolved IDs in the report, check them before each new review, and close items answered by replay or by Jeremy.
+
 ## Produce the result
 
 When launching or reassigning a worker, tell Jeremy its task, model and reasoning effort in chat.
