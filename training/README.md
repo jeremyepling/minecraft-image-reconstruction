@@ -45,3 +45,7 @@ Progress means more correct visible blocks, fewer incorrect or unsupported place
 Read [AGENTS.md](AGENTS.md) before implementing the training work and [the current architecture](../ARCHITECTURE.md) before integrating a model.
 
 When testing a learned decision for a recessed wall, score its outline, visible block count and setback separately. Compare the final outputs with the tree switched on and off while keeping the photographic checks identical. On the first 204-image test the tree found the same five additional outlines as the count checks alone, and a separate tree trained to choose depth misplaced two deep openings. [Facade experiment and paired comparison](../benchmark/reviews/facade-inset-round-01/README.md)
+
+### Active floating optimization cohort
+
+Use [the floating cohort manifest](floating-active-cohort-v1.json) when sampling the saved captures for floating training and optimization. It retains 240 of 280 whole-structure captures across the v2, v3 and Decorative releases. It excludes all views and palettes of a layout if a palette has at least 80% of its visible structure pixels in concrete or unglazed terracotta, plus the two Amphitheaters identified in review. Feed cases through `training.floating_cohort.select_active_cases` before making a training or benchmark batch. Published release archives and historical comparisons remain available for exact reproduction.

@@ -97,11 +97,21 @@ def main():
     parser.add_argument('--workers',type=int,default=4)
     parser.add_argument('--native-fallback',action='store_true')
     parser.add_argument('--sky-handoffs-only', action='store_true', help='Build the floating Surface Finder and counter inputs for the six-view benchmark.')
+    parser.add_argument('--historical-cohort', action='store_true',
+                        help='Replay all cases of an archived manifest, including retired layouts.')
     args = parser.parse_args()
     cohort = OUTPUT.parent/'floating-cloud-gate-native-01' if args.native_fallback else OUTPUT
     import time
     baseline = args.manifest.parent/'baseline'
     cases = read(args.manifest)['cases']
+    if not args.historical_cohort:
+        from training.floating_cohort import RELEASES, select_active_cases
+        indexed = [case for case in cases if case.get('dataset') in RELEASES]
+        active = {(case['dataset'], case['id']) for case in select_active_cases(indexed)}
+        cases = [case for case in cases if case.get('dataset') not in RELEASES
+                 or (case['dataset'], case['id']) in active]
+    if not cases:
+        parser.exit(message="No active floating cases in this fixture manifest.\n")
     if args.sky_handoffs_only:
         with ProcessPoolExecutor(args.workers) as pool:
             jobs = []

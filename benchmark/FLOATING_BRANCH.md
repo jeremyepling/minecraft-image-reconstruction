@@ -39,3 +39,5 @@ The `experiment/floating-build-floor-bypass` worktree remains a historical diagn
 ## Next annotations
 
 Prioritize a second building with a visible corner that the assembler failed to join, a normal-looking crop where straightening breaks the texture rows, and a similar-looking wall where the current counter is already right. Note the surface IDs, the edge or rows you followed, and whether the two surfaces share the full height or only part of it. Mark a block count only when you can actually see it. Cloud examples from real skies, especially beside pale blocks, would extend the synthetic-sky check. Keep development annotations separate from a fresh held-out building used to judge promotion.
+
+The floating benchmark runner selects the active [240-view training and optimization cohort](../training/floating-active-cohort-v1.json) by default. Use `--historical-cohort` with the manifest runner to replay a historical comparison. The six fixed sky composites are all active.
