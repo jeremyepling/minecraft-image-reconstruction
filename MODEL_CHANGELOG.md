@@ -1,5 +1,7 @@
 # Reconstruction adjustments and lessons for training
 
+- **2026-11-28, native depth before local block grids.** Gating fresh source rulers on physical component joins and retained export size gained 183 correct placements and 175 exact block IDs across 84 images. Only two additional Twinspire layouts passed beyond the pilot. Keep experimental pending independent building-family transfer. [Pre-grid results](benchmark/reviews/floating-pregrid-depth-refit-01/README.md)
+
 - **2026-11-28, source partitions and regional block rulers.** The Stable Yard low-left roof produced 21 distinct cut-sandstone cells from separated image patches but remained disconnected from the exported assembly. Over 84 conditions the partial refit lost three correct positions and removed 371 net extras. Keep the corrected local handoff and leave the broad export experimental. [Source regions and decoded evidence](benchmark/reviews/floating-mixed-wall-refit-01/README.md)
 
 

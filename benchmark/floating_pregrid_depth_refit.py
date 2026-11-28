@@ -22,6 +22,7 @@ RECHECK=WORKTREES/"floating-package-rechecks/runs/package-rechecks"
 OUT=ROOT/"runs/pregrid-depth-refit"
 REVIEW=ROOT/"benchmark/reviews/floating-pregrid-depth-refit-01"
 ARMS=("noop","split-only","complete","partial","fresh-only","connected","rim-corner")
+FINAL=("combined","nonshrinking")
 
 
 def workload():
@@ -39,6 +40,27 @@ def workload():
         transfer.update((p,n) for n in ids if n.rsplit("-",2)[0]==family)
     assert len(pinned)==len(cases)==84 and len(reviewed)==3 and len(transfer)==6
     return [(g,c,pinned[g,c["id"]],reviewed.get((g,c["id"]),[]),(g,c["id"]) in transfer) for g,c in cases]
+
+
+def fields(panel,case,src,size):
+    folder=depth.prior.NATIVE.parent/"fields"/case["dataset"]/case["id"]
+    archived=WORKTREES/"full-expanded-controls/runs/expanded-baseline-01"/case["dataset"]/case["id"]/"handoffs"
+    if panel!="original" or archived.exists() or (folder/"receipt.json").exists():
+        return depth.source_fields(panel,case,src,size)
+    # The historical v2 producer wrote per-case npz arrays, while its source RGB
+    # and model fingerprints live in the source handoff and paired crop receipt.
+    manifest=read(src/"sky"/case["id"]/"source-handoff/build-manifest.json")
+    paired=read(depth.prior.NATIVE.parent/"pairs"/case["dataset"]/(case["id"]+".json"))
+    assert manifest["image_sha256"]==case["rgb_sha256"]==paired["source_sha256"]
+    values={}
+    sha={}
+    for kind in ("normal","depth"):
+        assert manifest["model_sha256"][kind]==depth.MODELS[kind][2]
+        path=folder/(kind+".npz")
+        with np.load(path) as raw:
+            values[kind]=cv2.resize(raw["value"].astype("f"),size)
+        sha[kind]=digest(path)
+    return depth._unit(values["normal"]),values["depth"],sha
 
 
 def part_fits(chart,region,rgb,normal,whole,vanishing):
@@ -143,7 +165,7 @@ def run(job):
     else:
         targets=reviewed
     if targets:
-        normal,dist,hashes=depth.source_fields(g,c,src,img.size)
+        normal,dist,hashes=fields(g,c,src,img.size)
         vanishing=depth.prior.garden.pencils(rgb,depth.prior.garden.line_segments(rgb))
         candidates={a:[] for a in ("split-only","complete","partial","fresh-only")}
         membership={}
@@ -233,15 +255,43 @@ def run(job):
                     row["score"][a]["scores"]["strict"]["correct"]) for a in roots],flush=True)
 
 
+def finalize(row,case):
+    # These are mutually ordered alternatives over already assembled whole exports.
+    # Source selection reads physical-join receipts and actual local pack size only.
+    decision=row["audit"].get("decision",{})
+    accepted=decision.get("accept",False)
+    triangle=bool(decision.get("rim_corner"))
+    n=row["id"]
+    local=lambda arm:decoded_pack(Path(row["roots"][arm])/PREFIX/n/"reconstruction.zip")
+    no_shrink=not accepted or len(local("connected"))>=len(local("noop"))
+    for arm,condition in (("combined",accepted),("nonshrinking",accepted and no_shrink)):
+        use="rim-corner" if triangle else "connected" if condition else "noop"
+        for key in ("roots","packs","score","paired"):
+            row[key][arm]=row[key][use]
+    # Gross exact changes are evaluated in the ordinary arm-specific registration.
+    labels=read(Path(case["frame"])/"labels.json")
+    blocks={b["id"]:b["block_id"] for b in labels["blocks"]}
+    truth={tuple(f["xyz_world"]):blocks[f["block"]] for f in labels["faces"]}
+    cache={}
+    for arm,root in row["roots"].items():
+        if root not in cache:
+            placed=read(Path(root)/PREFIX/n/"placements.json")["aligned"]
+            cache[root]={tuple(p) for p,b in placed if truth.get(tuple(p))==b}
+    orig=cache[row["roots"]["noop"]]
+    row["exact_paired"]={arm:dict(gained=len(cache[root]-orig),lost=len(orig-cache[root])) for arm,root in row["roots"].items()}
+    row["source_choices"]=dict(connected=accepted,rim=triangle,nonshrinking=no_shrink)
+    return row
+
+
 def report(work):
-    rows=[read(OUT/g/"rows"/(c["id"]+".json.gz")) for g,c,*_ in work]
+    rows=[finalize(read(OUT/g/"rows"/(c["id"]+".json.gz")),c) for g,c,*_ in work]
     save(REVIEW/"conditions.json.gz",rows)
     summary={}
     for group in ("all","sky","transfer",*sorted({r["dataset"] for r in rows})):
         subset=[r for r in rows if group in ("all",r["panel"],r["dataset"]) or (group=="transfer" and r["transfer"])]
-        chooser=best([r["score"] for r in subset],list(ARMS))
+        chooser=best([r["score"] for r in subset],[*ARMS,*FINAL])
         arms={}
-        for arm in (*ARMS,"whole-export-chooser"):
+        for arm in (*ARMS,*FINAL,"whole-export-chooser"):
             choices=chooser if arm=="whole-export-chooser" else [arm]*len(subset)
             metrics={}
             for f in ("geometry","scores"):
@@ -253,6 +303,7 @@ def report(work):
                     metrics[f+"_"+k]=dict(t)
             metrics["paired"]={key:sum(r["paired"][a][key] for r,a in zip(subset,choices))
                                for key in ("gained","lost","added","removed")}
+            metrics["exact_paired"]={k:sum(r["exact_paired"][a][k] for r,a in zip(subset,choices)) for k in ("gained","lost")}
             arms[arm]=metrics
         summary[group]=arms
     save(REVIEW/"summary.json",summary)
@@ -270,6 +321,7 @@ if __name__=="__main__":
         report(work)
     else:
         items=[j for j in work if args.filter in j[1]["id"] and
-               not(args.resume and (OUT/j[0]/"rows"/(j[1]["id"]+".json.gz")).exists())]
+               not(args.resume and (OUT/j[0]/"rows"/(j[1]["id"]+".json.gz")).exists() and
+                   "rim-corner" in read(OUT/j[0]/"rows"/(j[1]["id"]+".json.gz"))["score"])]
         with ProcessPoolExecutor(args.workers) as pool:
             list(pool.map(run,items))
