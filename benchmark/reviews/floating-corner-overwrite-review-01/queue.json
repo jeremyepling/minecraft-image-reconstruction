@@ -1,0 +1,367 @@
+[
+  {
+    "id": "test-twinspire2-earth-high-right",
+    "panel": "original",
+    "wall": "mask-1",
+    "title": "Twinspire right tower",
+    "note": "Already reviewed. The earlier ruler keeps all correct placements and removes 63 extras. This sets the comparison for the other cases.",
+    "roots": [
+      "floating-occlusion-fragments/runs/occlusion-fragments/original",
+      "floating-occlusion-fragments/runs/t1-grid-diagnosis/bypass-shared"
+    ],
+    "scores": [
+      {
+        "geometry": {
+          "strict": {
+            "correct": 110,
+            "missed": 184,
+            "extras": 63,
+            "f1": 0.47109207708779444
+          },
+          "facade": {
+            "correct": 110,
+            "missed": 164,
+            "extras": 63,
+            "f1": 0.49217002237136465
+          }
+        },
+        "scores": {
+          "strict": {
+            "correct": 42,
+            "missed": 252,
+            "extras": 131,
+            "f1": 0.17987152034261242
+          },
+          "facade": {
+            "correct": 42,
+            "missed": 232,
+            "extras": 131,
+            "f1": 0.18791946308724833
+          }
+        }
+      },
+      {
+        "geometry": {
+          "strict": {
+            "correct": 110,
+            "missed": 184,
+            "extras": 0,
+            "f1": 0.5445544554455446
+          },
+          "facade": {
+            "correct": 110,
+            "missed": 164,
+            "extras": 0,
+            "f1": 0.5729166666666666
+          }
+        },
+        "scores": {
+          "strict": {
+            "correct": 88,
+            "missed": 206,
+            "extras": 22,
+            "f1": 0.43564356435643564
+          },
+          "facade": {
+            "correct": 88,
+            "missed": 186,
+            "extras": 22,
+            "f1": 0.4583333333333333
+          }
+        }
+      }
+    ]
+  },
+  {
+    "id": "test-twinspire1-earth-low-left",
+    "panel": "original",
+    "wall": "mask-3",
+    "title": "Twinspire 1 low left",
+    "note": "Restoring one wall removes 75 extras and costs five net correct placements. Check which ruler follows the visible left wall.",
+    "roots": [
+      "floating-extra-isolation/runs/extra-isolation/original/large-contraction",
+      "floating-corner-overwrite/runs/corner-overwrite/original/restore-mask-3"
+    ],
+    "scores": [
+      {
+        "geometry": {
+          "strict": {
+            "correct": 85,
+            "missed": 115,
+            "extras": 77,
+            "f1": 0.4696132596685083
+          },
+          "facade": {
+            "correct": 84,
+            "missed": 115,
+            "extras": 77,
+            "f1": 0.4666666666666667
+          }
+        },
+        "scores": {
+          "strict": {
+            "correct": 28,
+            "missed": 172,
+            "extras": 134,
+            "f1": 0.15469613259668508
+          },
+          "facade": {
+            "correct": 28,
+            "missed": 171,
+            "extras": 133,
+            "f1": 0.15555555555555556
+          }
+        }
+      },
+      {
+        "geometry": {
+          "strict": {
+            "correct": 80,
+            "missed": 120,
+            "extras": 2,
+            "f1": 0.5673758865248227
+          },
+          "facade": {
+            "correct": 80,
+            "missed": 119,
+            "extras": 2,
+            "f1": 0.5693950177935944
+          }
+        },
+        "scores": {
+          "strict": {
+            "correct": 33,
+            "missed": 167,
+            "extras": 49,
+            "f1": 0.23404255319148937
+          },
+          "facade": {
+            "correct": 33,
+            "missed": 166,
+            "extras": 49,
+            "f1": 0.23487544483985764
+          }
+        }
+      }
+    ]
+  },
+  {
+    "id": "train-watchpost2-cool-low-left",
+    "panel": "supplemental",
+    "wall": "mask-0",
+    "title": "Watchpost 2 low left",
+    "note": "Restoring this grid adds 59 exact material matches with the same block positions. Check whether the earlier grid follows the texture without a change at the corner.",
+    "roots": [
+      "floating-extra-isolation/runs/extra-isolation/supplemental/large-contraction",
+      "floating-corner-overwrite/runs/corner-overwrite/supplemental/restore-mask-0"
+    ],
+    "scores": [
+      {
+        "geometry": {
+          "strict": {
+            "correct": 120,
+            "missed": 203,
+            "extras": 25,
+            "f1": 0.5128205128205128
+          },
+          "facade": {
+            "correct": 120,
+            "missed": 185,
+            "extras": 25,
+            "f1": 0.5333333333333333
+          }
+        },
+        "scores": {
+          "strict": {
+            "correct": 21,
+            "missed": 302,
+            "extras": 124,
+            "f1": 0.08974358974358974
+          },
+          "facade": {
+            "correct": 21,
+            "missed": 284,
+            "extras": 124,
+            "f1": 0.09333333333333334
+          }
+        }
+      },
+      {
+        "geometry": {
+          "strict": {
+            "correct": 120,
+            "missed": 203,
+            "extras": 25,
+            "f1": 0.5128205128205128
+          },
+          "facade": {
+            "correct": 120,
+            "missed": 185,
+            "extras": 25,
+            "f1": 0.5333333333333333
+          }
+        },
+        "scores": {
+          "strict": {
+            "correct": 80,
+            "missed": 243,
+            "extras": 65,
+            "f1": 0.3418803418803419
+          },
+          "facade": {
+            "correct": 80,
+            "missed": 225,
+            "extras": 65,
+            "f1": 0.35555555555555557
+          }
+        }
+      }
+    ]
+  },
+  {
+    "id": "train-watchpost2-cool-high-right",
+    "panel": "supplemental",
+    "wall": "mask-0-wall-1",
+    "title": "Watchpost 2 high right",
+    "note": "The earlier grid yields 47 more exact matches but costs 45 net correct placements. Check the outside edge and what joins the neighboring wall.",
+    "roots": [
+      "floating-extra-isolation/runs/extra-isolation/supplemental/large-contraction",
+      "floating-corner-overwrite/runs/corner-overwrite/supplemental/restore-mask-0-wall-1"
+    ],
+    "scores": [
+      {
+        "geometry": {
+          "strict": {
+            "correct": 115,
+            "missed": 325,
+            "extras": 7,
+            "f1": 0.4092526690391459
+          },
+          "facade": {
+            "correct": 115,
+            "missed": 64,
+            "extras": 7,
+            "f1": 0.7641196013289037
+          }
+        },
+        "scores": {
+          "strict": {
+            "correct": 5,
+            "missed": 435,
+            "extras": 117,
+            "f1": 0.017793594306049824
+          },
+          "facade": {
+            "correct": 5,
+            "missed": 174,
+            "extras": 117,
+            "f1": 0.03322259136212625
+          }
+        }
+      },
+      {
+        "geometry": {
+          "strict": {
+            "correct": 70,
+            "missed": 370,
+            "extras": 0,
+            "f1": 0.27450980392156865
+          },
+          "facade": {
+            "correct": 70,
+            "missed": 109,
+            "extras": 0,
+            "f1": 0.5622489959839357
+          }
+        },
+        "scores": {
+          "strict": {
+            "correct": 52,
+            "missed": 388,
+            "extras": 18,
+            "f1": 0.20392156862745098
+          },
+          "facade": {
+            "correct": 52,
+            "missed": 127,
+            "extras": 18,
+            "f1": 0.41767068273092367
+          }
+        }
+      }
+    ]
+  },
+  {
+    "id": "validation-cloister2-cool-high-right",
+    "panel": "fresh",
+    "wall": "mask-0",
+    "title": "Cloister 2 high right",
+    "note": "The corner grid yields 36 more correct placements and 40 more exact matches. Check the join and any cells that lie past the wall edge.",
+    "roots": [
+      "floating-extra-isolation/runs/extra-isolation/fresh/large-contraction",
+      "floating-corner-overwrite/runs/corner-overwrite/fresh/restore-mask-0"
+    ],
+    "scores": [
+      {
+        "geometry": {
+          "strict": {
+            "correct": 120,
+            "missed": 109,
+            "extras": 5,
+            "f1": 0.6779661016949152
+          },
+          "facade": {
+            "correct": 120,
+            "missed": 100,
+            "extras": 5,
+            "f1": 0.6956521739130435
+          }
+        },
+        "scores": {
+          "strict": {
+            "correct": 92,
+            "missed": 137,
+            "extras": 33,
+            "f1": 0.519774011299435
+          },
+          "facade": {
+            "correct": 92,
+            "missed": 128,
+            "extras": 33,
+            "f1": 0.5333333333333333
+          }
+        }
+      },
+      {
+        "geometry": {
+          "strict": {
+            "correct": 84,
+            "missed": 145,
+            "extras": 0,
+            "f1": 0.536741214057508
+          },
+          "facade": {
+            "correct": 84,
+            "missed": 136,
+            "extras": 0,
+            "f1": 0.5526315789473685
+          }
+        },
+        "scores": {
+          "strict": {
+            "correct": 52,
+            "missed": 177,
+            "extras": 32,
+            "f1": 0.33226837060702874
+          },
+          "facade": {
+            "correct": 52,
+            "missed": 168,
+            "extras": 32,
+            "f1": 0.34210526315789475
+          }
+        }
+      }
+    ]
+  }
+]
