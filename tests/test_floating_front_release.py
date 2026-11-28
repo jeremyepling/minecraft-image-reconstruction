@@ -1,8 +1,6 @@
 import json
 from pathlib import Path
-import sys
 from tempfile import TemporaryDirectory
-from types import SimpleNamespace
 import unittest
 from unittest.mock import patch
 from zipfile import ZipFile
@@ -20,8 +18,7 @@ class FloatingFrontReleaseTest(unittest.TestCase):
         self.pin = self.root / front.PIN.name
         self.enterContext(patch.object(front, 'PIN', self.pin))
         self.enterContext(patch.object(front, 'LAYOUTS', 2))
-        module = SimpleNamespace(build_archive=self.build_structures)
-        self.enterContext(patch.dict(sys.modules, {'training.front_structures': module}))
+        self.enterContext(patch('training.front_structures.build_archive', self.build_structures))
         self.batches = [self.root / 'batch-a', self.root / 'batch-b']
         self.write_layout(self.batches[0], 'front-001-arcade', 'arcade', 'train')
         self.write_layout(self.batches[1], 'front-002-terrace', 'terrace', 'test')
@@ -139,8 +136,13 @@ class FloatingFrontReleaseTest(unittest.TestCase):
             shared.install(self.fixture, self.archives, front.DATASET, release_sha256=digest)
 
     def test_incomplete_pairs_and_changed_cameras_are_rejected(self):
-        self.replace_asset('decorative-noon', 'camera.json', dict(image_size=[900, 600], eye_world=[1, 0, 0],
-                                                                view_rotation_projection=[1] * 16))
+        camera = dict(id='front-001-arcade-decorative-noon', clock_ticks=front.CLOCK['noon'] + 1,
+                      image_size=[900, 600], eye_world=[1, 0, 0], view_rotation_projection=[1] * 16)
+        self.replace_asset('decorative-noon', 'camera.json', camera)
+        with self.assertRaisesRegex(ValueError, 'Native camera frame or clock differs'):
+            front.package(self.batches, self.release)
+        camera['clock_ticks'] = front.CLOCK['noon']
+        self.replace_asset('decorative-noon', 'camera.json', camera)
         with self.assertRaisesRegex(ValueError, 'Paired camera geometry changed'):
             front.package(self.batches, self.release)
         (self.batches[0] / 'frames' / 'front-001-arcade-decorative-noon' / 'frame.json').unlink()

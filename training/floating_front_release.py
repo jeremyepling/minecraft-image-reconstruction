@@ -97,13 +97,15 @@ def validate_rows(rows):
     return by_shard
 
 
-def camera_geometry(payload):
+def camera_geometry(row, payload):
     camera = json.loads(payload)
+    if camera['id'] != row['id'] or camera['clock_ticks'] % 24000 != row['clock_ticks']:
+        raise ValueError(f"Native camera frame or clock differs from release metadata: {row['id']}")
     return tuple(camera[key] for key in ('image_size', 'eye_world', 'view_rotation_projection'))
 
 
 def check_camera_pairs(rows, payload_for):
-    cameras = {row['id']: camera_geometry(payload_for(row, 'camera.json')) for row in rows}
+    cameras = {row['id']: camera_geometry(row, payload_for(row, 'camera.json')) for row in rows}
     for row in rows:
         if cameras[row['id']] != cameras[row['parent_id']]:
             raise ValueError(f"Paired camera geometry changed: {row['id']}")
@@ -181,7 +183,7 @@ def package(captures, out):
         structures = build_archive(captures, release / STRUCTURES)
         checked_structures(release, structures)
         manifest = dict(dataset=DATASET, schema_version=1, minecraft_version='26.3', layouts=LAYOUTS,
-                        shards=specs, structures=structures, frames=rows)
+                        clock_ticks=CLOCK, shards=specs, structures=structures, frames=rows)
         payload = encode(manifest)
         (release / 'manifest.json').write_bytes(payload)
         release.rename(out)
@@ -198,7 +200,7 @@ def load_manifest(directory, expected):
     manifest = json.loads(payload)
     if (manifest['dataset'] != DATASET or manifest['schema_version'] != 1
             or manifest['minecraft_version'] != '26.3' or manifest['layouts'] != LAYOUTS
-            or set(manifest['shards']) != set(SHARDS)):
+            or manifest['clock_ticks'] != CLOCK or set(manifest['shards']) != set(SHARDS)):
         raise ValueError(f'Unexpected front capture release index: {path}')
     grouped = validate_rows(manifest['frames'])
     for key, frames in grouped.items():
