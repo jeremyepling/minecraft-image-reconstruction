@@ -2,11 +2,33 @@
 
 `experiment/floating-visible-builds` is the long-lived integration branch for reconstructing visible blocks with no ground reference. One translation can place the entire build anywhere. All visible components retain their relative spacing. Production `main` at the fork was `e3bd220`.
 
-## Baseline to beat
+## Frozen expanded benchmark
+
+Use the **expanded split-border benchmark** for new floating reconstruction experiments. It pins the selected expanded package at `ac69f22` and the source depth split plus projected border-sky outputs at `4d9aca1`. The selected package uses the guarded replacement ruler and O2 corner repair on top of the large-contraction charts. Compare candidates on the same source images and visible references. Report distinct correct positions gained and lost, exact material matches, and extras separately alongside strict and facade placement F1. Prioritize retaining correct visible placements when judging an apparent improvement from removing extras.
+
+| Benchmark | Strict / facade placement F1 | Strict / facade position + material F1 | Strict correct / missed / extra | Strict precision |
+|---|---:|---:|---:|---:|
+| Frozen expanded split-border, 84 conditions | 33.99% / 34.48% | 5.66% / 5.76% | 18,318 / 61,192 / 9,965 | 64.77% |
+| Frozen expanded split-border, six fixed sky views | 27.59% / 27.83% | 5.98% / 6.01% | 890 / 3,151 / 1,521 | 36.91% |
+| Sparse connected-atlas runtime at `9435934`, same six sky views | 12.64% / 12.90% | 4.68% / 4.77% | 273 / 3,768 / 5 | 98.20% |
+
+The frozen 84 contain 30 Visible Builds v2, 30 Visible Builds v3, and 24 Decorative Builds v1 conditions. The six fixed sky conditions are included and use four Visible Builds v3 and two Decorative Builds v1 layouts. The full 240-view active cohort remains unevaluated for this benchmark. On the 84 paired inputs, the guarded ruler and O2 package removed 1,426 extras and lost five strict correct positions, four required by the facade score. The subsequent depth and border-sky checks removed a further 29 extras while preserving every correct coordinate and material ID. Twenty-one of those removals were on the six fixed sky views. This pin adopts the expanded exports as the research comparison and leaves the sparse connected-atlas runtime in place. The separate fixed-104 production measurement is carried forward at 91.27% strict and 93.42% facade placement F1.
+
+Restore the [exact chart and export archive](reviews/floating-expanded-benchmark-01/exports.zip) with the [frozen manifest](reviews/floating-expanded-benchmark-01/manifest.json). It contains the chart packet, decoded coordinate record, score receipt, and original Minecraft pack bytes for each panel and frame. The manifest gives every archive member's SHA-256, the source image and native reference hashes, and the source revisions used to construct the baseline. Source and reference paths are relative to the reconstruction repository with the recorded captures restored. The archive can be checked and unpacked without the experiment worktrees.
+
+```powershell
+$review = Join-Path 'benchmark/reviews' 'floating-expanded-benchmark-01'
+$archive = Join-Path $review 'exports.zip'
+$manifest = Get-Content (Join-Path $review 'manifest.json') -Raw | ConvertFrom-Json
+if ((Get-FileHash -LiteralPath $archive -Algorithm SHA256).Hash -ne $manifest.archive.sha256) {
+    throw 'Frozen expanded benchmark archive checksum mismatch'
+}
+Expand-Archive -LiteralPath $archive -DestinationPath 'runs/frozen-expanded-benchmark-01'
+```
+
+## Sparse connected-atlas runtime
 
 The connected-atlas baseline transfers shared rows across supported corners, registers native atlas matches to the grid, and proposes grids on additional visible wall patches where neighboring atlas observations agree. It scores **12.64% strict and 12.90% facade placement F1** on six open-sky composites. Strict/facade position-plus-material F1 is **4.68% / 4.77%**. It places 273 correct blocks, misses 3,768, and adds five extras. The preceding registered-seam baseline placed 239 correctly with five extras. The gains came from Walled Garden and Harbor. [Garden experiments and source overlays](reviews/garden-feedback-01/README.md)
-
-Four views are from Visible Builds v3 and two from Decorative Builds v1. Use the fixed 104 production trend (91.27% strict, 93.42% facade) for historical context. Assess the gap to production using the same buildings, backgrounds, inputs and scoring rule on both branches.
 
 The default sky check rejected 23 of 216 proposals across six views, removing 81,896 background pixels from the combined surface masks. All 193 retained supports and their source crops matched their prior versions. The six decoded placement exports matched in coordinates and materials. [Filtered pipeline replay](reviews/sky-mask-feedback-01/filtered-pipeline-replay.json.gz)
 
@@ -40,4 +62,4 @@ The `experiment/floating-build-floor-bypass` worktree remains a historical diagn
 
 Prioritize a second building with a visible corner that the assembler failed to join, a normal-looking crop where straightening breaks the texture rows, and a similar-looking wall where the current counter is already right. Note the surface IDs, the edge or rows you followed, and whether the two surfaces share the full height or only part of it. Mark a block count only when you can actually see it. Cloud examples from real skies, especially beside pale blocks, would extend the synthetic-sky check. Keep development annotations separate from a fresh held-out building used to judge promotion.
 
-The floating benchmark runner selects the active [240-view training and optimization cohort](../training/floating-active-cohort-v1.json) by default. Use `--historical-cohort` with the manifest runner to replay a historical comparison. The six fixed sky composites are all active.
+The capture-manifest runner selects the [240-view training and optimization cohort](../training/floating-active-cohort-v1.json) by default. Use `--historical-cohort` with that runner to replay a historical comparison. The six fixed sky composites are all active.
