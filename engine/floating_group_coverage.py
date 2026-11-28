@@ -47,4 +47,9 @@ def coverage_scores(groups, charts, planes, size):
 
 def select_group(groups, charts, planes, size):
     scores = coverage_scores(groups, charts, planes, size)
-    return groups[max(range(len(groups)), key=scores.__getitem__)]
+    incumbent = groups[0]
+    best = max(range(len(groups)), key=scores.__getitem__)
+    alternative = groups[best]
+    if best and 4 * len(alternative['blocks']) <= len(incumbent['blocks']):
+        return alternative
+    return incumbent
