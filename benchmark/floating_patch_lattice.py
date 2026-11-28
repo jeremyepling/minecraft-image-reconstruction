@@ -31,11 +31,11 @@ def inputs(cohort):
         source = WORKTREES/'floating-visible-builds/runs/floating-cloud-gate-01'
         sky = BRIDGES/'six-sky'
         return source,source/'garden-anchor-extension/connected',sky/'charts',sky/'whole-wall',sky/'horizontal-cells',read(assembly.SHARED/'fixtures.json')['cases']
-    run = NEW if cohort == 'new' else FRESH
+    run = {'new':NEW,'new2':NEW.with_name('floating-patch-validation-holdout2')}.get(cohort,FRESH)
     manifest = 'supplemental-manifest.json' if cohort == 'supplemental' else 'manifest.json'
     source = run/'ordinary'
     whole = run/'source_material'
-    horiz = run if cohort == 'new' else BRIDGES
+    horiz = run if cohort in ('new','new2') else BRIDGES
     return source,source/'atlas/connected',whole/'charts',whole/'assembly',horiz/'horizontal-cells/assembly',read(run/manifest)['cases']
 
 
@@ -98,7 +98,7 @@ def run(job):
 
 if __name__=='__main__':
     cli=argparse.ArgumentParser(description=__doc__)
-    cli.add_argument('cohorts',nargs='+',choices=('original','fresh','supplemental','sky','new'))
+    cli.add_argument('cohorts',nargs='+',choices=('original','fresh','supplemental','sky','new','new2'))
     cli.add_argument('--workers',type=int,default=5)
     args=cli.parse_args()
     jobs=[(group,c) for group in args.cohorts for c in inputs(group)[-1]]
