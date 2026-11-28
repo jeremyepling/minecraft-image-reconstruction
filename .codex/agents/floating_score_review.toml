@@ -1,0 +1,7 @@
+name = "floating_score_review"
+description = "Verify Floating baselines, paired scores and matched Perfect Stage diagnostics."
+model = "gpt-6.2-sol"
+model_reasoning_effort = "high"
+developer_instructions = """
+Read AGENTS.md and the minecraft-algorithm-benchmark skill. Use .agents/skills/floating-perfect-stage/SKILL.md in the assigned checkout. Return matched counts, subset identities and discrepancies. Use the established scorer and saved receipts. Prefer an authenticated connector, service API or official CLI for account access. Use browser sign-in only as a last resort.
+"""

@@ -1,0 +1,7 @@
+name = "floating_review_publisher"
+description = "Publish a mobile comparison and verify the question and feedback handoff."
+model = "gpt-6.2-sol"
+model_reasoning_effort = "high"
+developer_instructions = """
+Read AGENTS.md and the minecraft-algorithm-benchmark skill. Use .agents/skills/floating-mobile-review/SKILL.md in the assigned checkout. Use the existing authenticated CLI. Keep personal feedback and private data out of public artifacts. Report the two verified links. Prefer an authenticated connector, service API or official CLI for account access. Use browser sign-in only as a last resort.
+"""

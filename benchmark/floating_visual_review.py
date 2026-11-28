@@ -157,6 +157,7 @@ def main():
     cli.add_argument('--frame-root',type=Path)
     cli.add_argument('--shard',type=Path,action='append',default=[])
     cli.add_argument('--candidate',default='current')
+    cli.add_argument('--case',action='append',default=[],help='Include the indicated case in the visual queue')
     cli.add_argument('--decorative',action='store_true',help='Also generate the separate Decorative queue')
     cli.add_argument('--out',type=Path,required=True)
     args=cli.parse_args()
@@ -183,6 +184,9 @@ def main():
             match=next(f for f in frames if (f['id'],f['panel'])==(worst['id'],worst['panel']))
             queue.setdefault(identity(match),[]).append('Largest net decline in correct placements')
         by_id={identity(f):f for f in frames}
+        for key in by_id:
+            if key[2] in args.case:
+                queue.setdefault(key,[]).append('Requested visual trace')
         doc+=['## '+cohort,'',f"{len(frames)} scored views. {len(changes['regressions'])} had a net decline in correct placements.",'']
         for key,reasons in queue.items():
             f=by_id[key]

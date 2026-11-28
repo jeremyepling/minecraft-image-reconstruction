@@ -1,0 +1,26 @@
+name: Floating review contract
+on:
+  pull_request:
+    branches: ['experiment/floating-visible-builds']
+  push:
+    branches: ['experiment/floating-visible-builds']
+permissions:
+  contents: read
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Identify affected data, diagnostics and tools
+        env:
+          BASE: ${{ github.event.pull_request.base.sha || github.event.before }}
+        run: |
+          if [[ "$BASE" =~ ^0+$ ]]; then BASE="$(git hash-object -t tree /dev/null)"; fi
+          python -m benchmark.floating_change_impact --base "$BASE" >> "$GITHUB_STEP_SUMMARY"
+      - run: python -m unittest discover -s tests -p 'test_floating_change_impact.py'
+      - run: node --test tests/test_floating_mobile_routes.mjs
