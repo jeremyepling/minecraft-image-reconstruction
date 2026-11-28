@@ -1,5 +1,7 @@
 # Reconstruction adjustments and lessons for training
 
+- **2026-11-27, floating wall depth patches.** A seeded local inverse-depth filter reduced original 38-view geometry from 35.34% to 30.49%. Requiring every measured seed patch to contradict its projected wall grid preserved the large Castle and Observatory exports and changed only the development Chapel build across 74 evaluations. It removed a net 1,224 extra Chapel positions but lost 59 correct positions and 15 exact IDs. Keep both rules experimental. [Paired datapack scores and source overlays](benchmark/reviews/floating-patch-planes-01/README.md)
+
 - **2026-11-27, floating horizontal cell experiment.** Measuring a bounded visible top with two perpendicular counted wall rims improved placement on the first 12 fresh views from 27.25% to 30.43% and strict position-plus-ID from 5.63% to 6.85%. Six other fresh images and six floating-sky composites tied the whole-wall baseline. The Arcade roof acquired 166 net correct positions. Keep the option experimental. [Frozen scores and overlays](benchmark/reviews/floating-horizontal-bridges-01/README.md)
 
 These entries cover model inputs, rules around model outputs, and evaluation changes. **Shipped** means ordinary builds use the adjustment. **Experiment** means it was tested and left out of the default. **Diagnostic** means we learned something about errors without changing predictions.

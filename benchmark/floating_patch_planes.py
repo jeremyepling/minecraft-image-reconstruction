@@ -18,6 +18,7 @@ from engine.surface_fields import MODELS
 OUT = ROOT / 'runs/patch-planes'
 FRESH = WORKTREES / 'floating-fresh-validation/runs/floating-fresh'
 NEW = WORKTREES / 'floating-patch-validation/runs/floating-patch-validation'
+NEW2 = NEW.with_name('floating-patch-validation-holdout2')
 SKY = WORKTREES / 'floating-horizontal-bridges/runs/six-sky'
 FIXED = WORKTREES / 'floating-visible-builds/runs/floating-cloud-gate-01'
 COHORTS = ('original', 'fresh', 'supplemental', 'sky', 'new', 'new2')
@@ -32,10 +33,8 @@ def inputs(cohort):
         return ordinary, ordinary/'atlas/connected', whole/'charts', whole/'assembly', list(cases())
     if cohort == 'sky':
         return FIXED, FIXED/'garden-anchor-extension/connected', SKY/'charts', SKY/'whole-wall', read(assembly.SHARED/'fixtures.json')['cases']
-    root = NEW if cohort in ('new', 'new2') else FRESH
+    root = {'new': NEW, 'new2': NEW2}.get(cohort, FRESH)
     manifest = 'supplemental-manifest.json' if cohort == 'supplemental' else 'manifest.json'
-    if cohort == 'new2':
-        manifest = 'holdout2-manifest.json'
     return root/'ordinary', root/'ordinary/atlas/connected', root/'source_material/charts', root/'source_material/assembly', read(root/manifest)['cases']
 
 
@@ -46,7 +45,7 @@ def field_files(cohort, case):
     if cohort == 'original':
         archived = WORKTREES/'full-expanded-controls/runs/expanded-baseline-01'/group/'handoffs'
         return archived if archived.is_dir() else NATIVE.parent/'fields'/group
-    return (NEW if cohort in ('new', 'new2') else FRESH)/'fields'/group
+    return {'new': NEW, 'new2': NEW2}.get(cohort, FRESH)/'fields'/group
 
 
 def field_input(cohort, case, source_sha, handoff):
