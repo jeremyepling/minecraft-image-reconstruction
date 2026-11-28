@@ -8,13 +8,13 @@ The narrow projected-sky veto removed 10 extras without losing a correct positio
 
 The six-view floating integration baseline remains 12.64% strict and 12.90% facade placement, and 4.68% and 4.77% position plus material. These research variants have separate paired baselines. Production and integration were not rerun or modified.
 
-## Pending annotation
+## Annotation checklist
 
 [Open the zoomable mobile PNG](mobile-annotation.png). Reply with the IDs below or mark up the PNG. For each grid, record coverage, alignment, and block size separately. If comparing alternatives, record your preference on its own.
 
 | ID | What to mark | Status |
 |---|---|---|
-| T1 | Mark visible brick fragments to keep, cyan cells spanning two bricks, and any visible edge that could establish the wall connection. | Pending |
+| T1 | Twinspire cyan grid beside the sandstone. | Reviewed. Jeremy said the cyan cells look right and should follow the gold reference. No further grid sign-off requested. Follow-up is to trace the placement handoff. |
 | M1 | Trace the roof edge against cloud. Circle pale material to preserve and flag any missed roof edge outside the red boxes. | Pending |
 | V1 | Check the second base width and post height or depth. Mark any grid crossing a true opening. | Pending |
 
@@ -36,3 +36,15 @@ The six-sky integration replay has five extras. The expanded research baseline h
 The repeated-texture attachment adds 18 extras. In Stable Yard 2, it copies the oak post depth into the two-by-four sandstone panel behind it. The sandstone lands two blocks too far forward and one block sideways. In Walled Garden 1, it places the tuff faces between the green posts at the wrong depth and moves them sideways and down. The lower group lands two blocks too far forward. Two cells by the upper opening land six blocks too far forward. All 18 had wall pixels at all nine source sample points. Sixteen of the final positions lack a recorded block, and two hit a hidden block. The later Viaduct extent fixes remove seven extras on that view, leaving the full column candidate with 11 more extras than its paired baseline.
 
 [Traced source faces for the 18 attachment extras](attachment-extras.jpg) · [Counts by view](extras-by-view.csv) · [All extra coordinates and emitting charts](extra-coordinates.csv.gz)
+
+## Twinspire placement follow-up
+
+Jeremy confirmed the cyan grid shown in T1 as the intended grid. It is actual output from the experimental grid stage. The standard export has 173 blocks from the two walls of the right tower. The left tower's two brick walls already join each other on two consecutive grid edges with 1.79 pixels average worst-endpoint error. They form a separate 70-block group.
+
+The missing link is between the two towers' south-facing brick walls. They share the same recorded plane. Projecting four outer cell centers from the left grid into the right grid proposes the same integer offset each time, six rows and 15 columns in the signed local axes. The maximum error is 0.308 block against a 0.13-block limit, so the join never reaches assembly. The subsequent image check would also fail. Its maximum error is 8.05 pixels against a 0.50-pixel limit. There are no depth vetoes or graph conflicts. The east-facing walls face the same way but are 11 blocks apart in depth.
+
+We replayed the ordinary assembler and pack export, supplying only the relative offset from visible reference data. The selected chart packet, whole-build orientation, and translation stayed fixed. The replay on the earlier grid recovered 65 correct blocks. The replay on the approved grid recovered those 65 plus the five new partial cells, with zero correct placements lost and zero new extras. Strict and facade placement rose from 47.11% and 49.22% to 67.04% and 69.63%. Exact position-plus-material rose from 17.99% and 18.79% to 39.11% and 40.62%.
+
+The proposed offset already rounds correctly from the source image. The next source-only test is to validate whether the two separated walls share a plane using an independent cue before accepting the offset. Hold the existing tolerances for cases with no corroboration. The replay is reference-only evidence for this case. The floating default remains the previously scored 12.64% strict and 12.90% facade on six sky images.
+
+[Zoomable before and after](twinspire-join.png) · [Decode receipts](twinspire-join-scores.json)

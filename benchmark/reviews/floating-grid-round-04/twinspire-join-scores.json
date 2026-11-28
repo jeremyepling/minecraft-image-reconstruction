@@ -1,0 +1,464 @@
+{
+  "ordinary": {
+    "source_sha256": "fc71ebed34081656bdab0306f0f84b1acc3aebb5a87c3e73393999eabb4d50e8",
+    "reference_sha256": {
+      "camera.json": "bd5b95eafa130515104fdfcd7ab2adb544b2e158a3025e4ab4eb8abeda0571f1",
+      "labels.json": "a0c2e1fd1b996245917828d31abb1af357ab03f310917e2eddbc71ec38a8c5e6",
+      "labels.npz": "fe3d760e56f5bbd56a0b43510c5bcaa36b155b99f827a230398baa263ca93aaf"
+    },
+    "chart_sha256": "2e9c6d301d4599c3ea75a9396860b0b05d137cb05d0a4acc2ec7e93ce3db1b88",
+    "pack_sha256": "79e8ab7cc0fca18d7bb0dac36ac6a779cc166add4549d560114f0ccbdaaa0ff1",
+    "component_sizes": [
+      173,
+      70,
+      15,
+      12,
+      11,
+      10,
+      6
+    ],
+    "selected_origins": {
+      "mask-0": [
+        0,
+        0,
+        0
+      ],
+      "mask-1": [
+        0,
+        0,
+        0
+      ]
+    },
+    "score": {
+      "fixed": {
+        "yaw_quarters": 3,
+        "translation": [
+          11279,
+          65,
+          0
+        ],
+        "geometry": {
+          "strict": {
+            "correct": 110,
+            "missed": 184,
+            "extras": 63,
+            "f1": 0.47109207708779444
+          },
+          "facade": {
+            "correct": 110,
+            "missed": 164,
+            "extras": 63,
+            "f1": 0.49217002237136465
+          }
+        },
+        "scores": {
+          "strict": {
+            "correct": 42,
+            "missed": 252,
+            "extras": 131,
+            "f1": 0.17987152034261242
+          },
+          "facade": {
+            "correct": 42,
+            "missed": 232,
+            "extras": 131,
+            "f1": 0.18791946308724833
+          },
+          "material": {
+            "correct": 42,
+            "positions": 110,
+            "accuracy": 0.38181818181818183
+          },
+          "assigned": 154,
+          "fallback": 19,
+          "assigned_correct": 42,
+          "assigned_positions": 91
+        },
+        "targets": {
+          "full_cube": {
+            "target": 294,
+            "correct": 110,
+            "missed": 184,
+            "exact_id": 42,
+            "facade_target": 274,
+            "facade_correct": 110,
+            "facade_exact_id": 42
+          }
+        }
+      },
+      "relaxed_yaw": {
+        "yaw_quarters": 3,
+        "translation": [
+          11279,
+          65,
+          0
+        ],
+        "geometry": {
+          "strict": {
+            "correct": 110,
+            "missed": 184,
+            "extras": 63,
+            "f1": 0.47109207708779444
+          },
+          "facade": {
+            "correct": 110,
+            "missed": 164,
+            "extras": 63,
+            "f1": 0.49217002237136465
+          }
+        },
+        "scores": {
+          "strict": {
+            "correct": 42,
+            "missed": 252,
+            "extras": 131,
+            "f1": 0.17987152034261242
+          },
+          "facade": {
+            "correct": 42,
+            "missed": 232,
+            "extras": 131,
+            "f1": 0.18791946308724833
+          },
+          "material": {
+            "correct": 42,
+            "positions": 110,
+            "accuracy": 0.38181818181818183
+          },
+          "assigned": 154,
+          "fallback": 19,
+          "assigned_correct": 42,
+          "assigned_positions": 91
+        },
+        "targets": {
+          "full_cube": {
+            "target": 294,
+            "correct": 110,
+            "missed": 184,
+            "exact_id": 42,
+            "facade_target": 274,
+            "facade_correct": 110,
+            "facade_exact_id": 42
+          }
+        }
+      },
+      "exported": 173,
+      "visible_truth": 294,
+      "required_truth": 274
+    }
+  },
+  "reference_only_join": {
+    "source_sha256": "fc71ebed34081656bdab0306f0f84b1acc3aebb5a87c3e73393999eabb4d50e8",
+    "reference_sha256": {
+      "camera.json": "bd5b95eafa130515104fdfcd7ab2adb544b2e158a3025e4ab4eb8abeda0571f1",
+      "labels.json": "a0c2e1fd1b996245917828d31abb1af357ab03f310917e2eddbc71ec38a8c5e6",
+      "labels.npz": "fe3d760e56f5bbd56a0b43510c5bcaa36b155b99f827a230398baa263ca93aaf"
+    },
+    "chart_sha256": "2e9c6d301d4599c3ea75a9396860b0b05d137cb05d0a4acc2ec7e93ce3db1b88",
+    "pack_sha256": "ab8cc1134f0dcff5ab73a7a3826e45fdcd37acbc7f5a026ed9574547f89df936",
+    "component_sizes": [
+      243,
+      15,
+      12,
+      11,
+      10,
+      6
+    ],
+    "selected_origins": {
+      "mask-0": [
+        0,
+        0,
+        0
+      ],
+      "mask-1": [
+        0,
+        0,
+        0
+      ],
+      "mask-3": [
+        0,
+        6,
+        -15
+      ],
+      "mask-2": [
+        2,
+        1,
+        -11
+      ]
+    },
+    "score": {
+      "fixed": {
+        "yaw_quarters": 3,
+        "translation": [
+          11279,
+          65,
+          0
+        ],
+        "geometry": {
+          "strict": {
+            "correct": 180,
+            "missed": 114,
+            "extras": 63,
+            "f1": 0.6703910614525139
+          },
+          "facade": {
+            "correct": 180,
+            "missed": 94,
+            "extras": 63,
+            "f1": 0.6963249516441006
+          }
+        },
+        "scores": {
+          "strict": {
+            "correct": 105,
+            "missed": 189,
+            "extras": 138,
+            "f1": 0.39106145251396646
+          },
+          "facade": {
+            "correct": 105,
+            "missed": 169,
+            "extras": 138,
+            "f1": 0.40618955512572535
+          },
+          "material": {
+            "correct": 105,
+            "positions": 180,
+            "accuracy": 0.5833333333333334
+          },
+          "assigned": 224,
+          "fallback": 19,
+          "assigned_correct": 105,
+          "assigned_positions": 161
+        },
+        "targets": {
+          "full_cube": {
+            "target": 294,
+            "correct": 180,
+            "missed": 114,
+            "exact_id": 105,
+            "facade_target": 274,
+            "facade_correct": 180,
+            "facade_exact_id": 105
+          }
+        }
+      },
+      "relaxed_yaw": {
+        "yaw_quarters": 3,
+        "translation": [
+          11279,
+          65,
+          0
+        ],
+        "geometry": {
+          "strict": {
+            "correct": 180,
+            "missed": 114,
+            "extras": 63,
+            "f1": 0.6703910614525139
+          },
+          "facade": {
+            "correct": 180,
+            "missed": 94,
+            "extras": 63,
+            "f1": 0.6963249516441006
+          }
+        },
+        "scores": {
+          "strict": {
+            "correct": 105,
+            "missed": 189,
+            "extras": 138,
+            "f1": 0.39106145251396646
+          },
+          "facade": {
+            "correct": 105,
+            "missed": 169,
+            "extras": 138,
+            "f1": 0.40618955512572535
+          },
+          "material": {
+            "correct": 105,
+            "positions": 180,
+            "accuracy": 0.5833333333333334
+          },
+          "assigned": 224,
+          "fallback": 19,
+          "assigned_correct": 105,
+          "assigned_positions": 161
+        },
+        "targets": {
+          "full_cube": {
+            "target": 294,
+            "correct": 180,
+            "missed": 114,
+            "exact_id": 105,
+            "facade_target": 274,
+            "facade_correct": 180,
+            "facade_exact_id": 105
+          }
+        }
+      },
+      "exported": 243,
+      "visible_truth": 294,
+      "required_truth": 274
+    }
+  },
+  "reference_only_join_earlier_grid": {
+    "source_sha256": "fc71ebed34081656bdab0306f0f84b1acc3aebb5a87c3e73393999eabb4d50e8",
+    "reference_sha256": {
+      "camera.json": "bd5b95eafa130515104fdfcd7ab2adb544b2e158a3025e4ab4eb8abeda0571f1",
+      "labels.json": "a0c2e1fd1b996245917828d31abb1af357ab03f310917e2eddbc71ec38a8c5e6",
+      "labels.npz": "fe3d760e56f5bbd56a0b43510c5bcaa36b155b99f827a230398baa263ca93aaf"
+    },
+    "chart_sha256": "379ad738ca5fd1535979152123e35884b23a1d5acf660ebd14b6615305f532e5",
+    "pack_sha256": "fc7fb5e64366e374aaa94e1e68bd2af338e4cf30979f2e2fb1399e9430564fe0",
+    "component_sizes": [
+      238,
+      15,
+      12,
+      11,
+      10,
+      6
+    ],
+    "selected_origins": {
+      "mask-0": [
+        0,
+        0,
+        0
+      ],
+      "mask-1": [
+        0,
+        0,
+        0
+      ],
+      "mask-3": [
+        0,
+        6,
+        -15
+      ],
+      "mask-2": [
+        2,
+        1,
+        -11
+      ]
+    },
+    "score": {
+      "fixed": {
+        "yaw_quarters": 3,
+        "translation": [
+          11279,
+          65,
+          0
+        ],
+        "geometry": {
+          "strict": {
+            "correct": 175,
+            "missed": 119,
+            "extras": 63,
+            "f1": 0.6578947368421053
+          },
+          "facade": {
+            "correct": 175,
+            "missed": 99,
+            "extras": 63,
+            "f1": 0.68359375
+          }
+        },
+        "scores": {
+          "strict": {
+            "correct": 100,
+            "missed": 194,
+            "extras": 138,
+            "f1": 0.37593984962406013
+          },
+          "facade": {
+            "correct": 100,
+            "missed": 174,
+            "extras": 138,
+            "f1": 0.390625
+          },
+          "material": {
+            "correct": 100,
+            "positions": 175,
+            "accuracy": 0.5714285714285714
+          },
+          "assigned": 219,
+          "fallback": 19,
+          "assigned_correct": 100,
+          "assigned_positions": 156
+        },
+        "targets": {
+          "full_cube": {
+            "target": 294,
+            "correct": 175,
+            "missed": 119,
+            "exact_id": 100,
+            "facade_target": 274,
+            "facade_correct": 175,
+            "facade_exact_id": 100
+          }
+        }
+      },
+      "relaxed_yaw": {
+        "yaw_quarters": 3,
+        "translation": [
+          11279,
+          65,
+          0
+        ],
+        "geometry": {
+          "strict": {
+            "correct": 175,
+            "missed": 119,
+            "extras": 63,
+            "f1": 0.6578947368421053
+          },
+          "facade": {
+            "correct": 175,
+            "missed": 99,
+            "extras": 63,
+            "f1": 0.68359375
+          }
+        },
+        "scores": {
+          "strict": {
+            "correct": 100,
+            "missed": 194,
+            "extras": 138,
+            "f1": 0.37593984962406013
+          },
+          "facade": {
+            "correct": 100,
+            "missed": 174,
+            "extras": 138,
+            "f1": 0.390625
+          },
+          "material": {
+            "correct": 100,
+            "positions": 175,
+            "accuracy": 0.5714285714285714
+          },
+          "assigned": 219,
+          "fallback": 19,
+          "assigned_correct": 100,
+          "assigned_positions": 156
+        },
+        "targets": {
+          "full_cube": {
+            "target": 294,
+            "correct": 175,
+            "missed": 119,
+            "exact_id": 100,
+            "facade_target": 274,
+            "facade_correct": 175,
+            "facade_exact_id": 100
+          }
+        }
+      },
+      "exported": 238,
+      "visible_truth": 294,
+      "required_truth": 274
+    }
+  }
+}
