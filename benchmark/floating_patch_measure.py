@@ -85,3 +85,45 @@ def partition(rgb, mask, chart, seed):
         observations.append(dict(region=list(region), center_uv=center.tolist(), members=len(members),
                                  rejected=bool(veto), fits=fits))
     return dict(chart,cells=[c for c in cells if (c['u'],c['v']) not in rejected]), observations
+
+def rechart(rgb, mask, chart, observations):
+    """Rebuild rejected regions only when both nonparallel line families validate."""
+    from benchmark.expanded_wall_rulers import resample
+    from benchmark.expanded_wall_source_resample import preserve_and_rank
+    h = np.asarray(chart['H'])
+    new = []
+    for obs in observations:
+        fits = obs['fits']
+        if not obs['rejected'] or not all(f and f['fit_strength'] >= .26 and
+                                          f['validation_strength'] >= .21 for f in fits):
+            continue
+        a, b = fits
+        inverse_basis = np.array([[1., -a['transverse_slope']], [-b['transverse_slope'], 1.]])
+        basis = np.linalg.inv(inverse_basis)
+        center = np.array(obs['center_uv'])
+        local = np.eye(3)
+        local[:2, :2] = basis @ np.diag([a['pitch_chart_units'], b['pitch_chart_units']])
+        local[:2, 2] = center + basis @ [a['phase_at_patch_center'], b['phase_at_patch_center']]
+        rect = project(h, center + np.array([[-2,-2],[2,-2],[2,2],[-2,2]]))
+        region = np.zeros_like(mask)
+        cv2.fillConvexPoly(region, np.rint(rect-.5).clip(-100000,100000).astype('int32'), 1)
+        region &= mask
+        points = np.column_stack(np.nonzero(region)[::-1])+.5
+        if not len(points):
+            continue
+        # Recheck the true chart interval for center membership and avoid
+        # counting a promoted cell outside this patch at a vanishing line.
+        uv = project(np.linalg.inv(h), points)
+        inside = np.all((uv >= center-2) & (uv < center+2),axis=1)
+        points = points[inside]
+        if not len(points):
+            continue
+        region.fill(0)
+        xy = points.astype(int)
+        region[xy[:,1],xy[:,0]]=1
+        tag = '-'.join(map(str, obs['region']))
+        blank = dict(chart, id=f"{chart['id']}-patch-{tag}", cells=[])
+        patch = resample(blank, h @ local, region, rgb, points)
+        if patch['cells']:
+            new.append(preserve_and_rank(blank, patch, rgb, region.astype(bool)))
+    return new
