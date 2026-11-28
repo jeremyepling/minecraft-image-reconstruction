@@ -155,16 +155,10 @@ if __name__=='__main__':
     p.add_argument('--ids',nargs='+')
     p.add_argument('--workers',type=int,default=4)
     a=p.parse_args()
-    jobs=list(cases())
-    if a.fresh:
-        jobs=[]
-        for dataset in ('visible-builds-v2','visible-builds-v3','decorative-builds-v1'):
-            for rec in read(SOURCE/dataset/'manifest.json')['frames']:
-                if a.ids and rec['id'] in a.ids:
-                    frame=SOURCE/dataset/'data'/rec['split']/'frames'/rec['id']
-                    jobs.append(dict(rec,dataset=dataset,frame=str(frame),variants={'sky':dict(image=str(frame/'rgb.png'),source_sha256=rec['rgb_sha256'])}))
+    jobs=read(FRESH/'manifest.json')['cases'] if a.fresh else list(cases())
     if a.ids:
         jobs=[case for case in jobs if case['id'] in a.ids]
         assert len(jobs)==len(a.ids)
     with ProcessPoolExecutor(a.workers) as pool:
         list(pool.map(partial(run,fresh=a.fresh),jobs))
+
