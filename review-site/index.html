@@ -51,10 +51,20 @@
     <section class="panel viewer" aria-label="Compare aligned images">
       <div class="viewer-tools">
         <div id="modes" class="seg" aria-label="Image view"></div>
+        <button type="button" id="surface-mode" aria-pressed="false" hidden>Surfaces</button>
         <button type="button" id="zoom" aria-pressed="false">2×</button>
       </div>
+      <div id="surface-controls" hidden>
+        <div class="surface-tools">
+          <button type="button" id="prev-surface" aria-label="Previous surface">‹</button>
+          <select id="surface-picker" aria-label="Surface"></select>
+          <button type="button" id="next-surface" aria-label="Next surface">›</button>
+          <select id="surface-layer" aria-label="Mask or attempted grid"></select>
+        </div>
+        <p id="surface-receipt" class="caption" aria-live="polite"></p>
+      </div>
       <div id="viewport" aria-label="Scrollable image when zoomed">
-        <div id="image-plane"><img id="evidence" alt="" draggable="false"><span id="pin" hidden></span></div>
+        <div id="image-plane"><img id="evidence" alt="" draggable="false"><canvas id="surface-overlay" aria-hidden="true" hidden></canvas><span id="pin" hidden></span></div>
       </div>
       <div class="viewer-caption">
         <p id="image-caption" class="caption"></p>
