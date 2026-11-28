@@ -1,0 +1,76 @@
+{
+  "schema": "floating-grid-signoff-v2",
+  "reviews": {
+    "test-twinspire2-earth-high-right-row": {
+      "id": "test-twinspire2-earth-high-right-row",
+      "case": "Twinspire · upper brick row",
+      "wall": "mask-2",
+      "B_coverage": "Missing area",
+      "B_coverage_comment": "project that grid intot areas where you cant fit full faces when the occludting part is another surface on a different plane - like the sandstone bridge is. that will allwo you to fill in the bricks. tere won't be a conflict in 3d space even if that gride wold overlap another surface here.",
+      "B_alignment": "Aligned",
+      "B_size": "Right",
+      "relative_preference": "B",
+      "proposal_decision": "Adjust / clarify"
+    },
+    "train-riverside-mill-1-warm-low-left-depth": {
+      "id": "train-riverside-mill-1-warm-low-left-depth",
+      "case": "Riverside Mill · window and porch",
+      "wall": "mask-0",
+      "B_coverage": "Missing area",
+      "B_coverage_comment": "what is casing the blocks that are clearing in the sky with clouds. shouldn't the surface mask pass prevent that or it should go back and crop. project hte grid and then apply the sky mask nd remove what overlaps.",
+      "B_alignment": "Aligned",
+      "B_alignment_comment": "The pin roof could be a little higher. since it's a seprate surface you should  set it on that surace. you starting from the eave under the block isntead of the face. look for an exact atlas face match or close to it to set the block int he right of the pink overlay roof then it would be perfect that iwll move it up just a little there.",
+      "B_size": "Right",
+      "relative_preference": "B"
+    },
+    "train-viaduct-01-riverstone-low-left-depth": {
+      "id": "train-viaduct-01-riverstone-low-left-depth",
+      "case": "Viaduct · projecting faces",
+      "wall": "mask-0",
+      "B_size": "Right",
+      "B_coverage": "Missing area",
+      "B_coverage_comment": "not sure why the entire left column is missing. need to experiment to figure out why. the grid for the second column from the left should refeedback in to see if it covers the surface because it doesn't for the brown area.\n\nstripped logs at the bottom have a veritcal line. thats'a  great way to figure out a face position and should be an easiy surface to find and match.",
+      "B_alignment": "Shifted",
+      "B_alignment_comment": "pink and found columsn are good. The top pillars should have their grid set from the top that touches the sky. it hink it's trying to extend from the pillar to the perspective chagnes. ",
+      "relative_preference": "B"
+    },
+    "test-castle-01-ashlar-high-right-depth": {
+      "id": "test-castle-01-ashlar-high-right-depth",
+      "case": "Castle · harmful depth adjustment",
+      "wall": "mask-0",
+      "proposal_decision_comment": "",
+      "depth_quality_comment": "It isn't finding the serpate surfaces and different depth. need to do that to really nail this one."
+    },
+    "train-shrine-02-ochre-low-left-depth": {
+      "id": "train-shrine-02-ochre-low-left-depth",
+      "case": "Shrine · stairs and right wall",
+      "wall": "mask-0-wall-0",
+      "proposal_decision_comment": "B is terrible. never hav diagonal lines that like that and weird shapes. A needs to be shifted right and it isn't gettin the block size. focus on that with better matrial matching and edge/corner deteciton. "
+    },
+    "train-pillars-01-marble-low-left-cross": {
+      "id": "train-pillars-01-marble-low-left-cross",
+      "case": "Pillars · ruler from another wall",
+      "wall": "mask-1",
+      "B_coverage": "Missing area",
+      "B_alignment": "Shifted",
+      "B_alignment_comment": "It's a bit too high. There's a part sticking toward the camera that isn't detected which should have it's own grid and face pattern then it falls back after.",
+      "B_size": "Right",
+      "relative_preference": "B",
+      "relative_preference_comment": "A is terrible."
+    },
+    "validation-hillside-chapel-1-warm-low-left-origin": {
+      "id": "validation-hillside-chapel-1-warm-low-left-origin",
+      "case": "Chapel · left edge",
+      "wall": "mask-0",
+      "relative_preference": "B",
+      "relative_preference_comment": "B but ist ill needs work to align wit hte edges. still pretty far in from the left side which sets off a lot of oter pieces"
+    },
+    "train-arcbridge2-cool-high-right-depth": {
+      "id": "train-arcbridge2-cool-high-right-depth",
+      "case": "Arcbridge · boundary check regression",
+      "wall": "mask-0",
+      "relative_preference": "A",
+      "relative_preference_comment": "A but this is hard with concret. Assume some of the steped out blocks are single blocks if you can find another high confidence block texture that's roughly the same size on that plan. use that to better align the edge and grid. lots of drift and centering a single column that hsould be two wide."
+    }
+  }
+}
