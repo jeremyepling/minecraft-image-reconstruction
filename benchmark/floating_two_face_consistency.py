@@ -38,10 +38,28 @@ def corrections(pick,offers,h):
     return h@t,index
 
 
+def square_seed(original, proposed):
+    """Check whether any prior seed could be an axis-aligned square in the discovered wall plane."""
+    mapping=np.linalg.inv(proposed["H"])@original["H"]
+    for cell in original["cells"]:
+        quad=project(mapping,UNIT+[cell["u"],cell["v"]])
+        edges=np.roll(quad,-1,axis=0)-quad
+        lengths=np.linalg.norm(edges,axis=1)
+        if not np.isfinite(lengths).all() or lengths.min()<1e-6:
+            continue
+        sides=(lengths[:2]+lengths[2:])/2
+        directions=edges/lengths[:,None]
+        # The allowable image-plane error is about one pixel on a four-pixel edge.
+        if sides.max()/sides.min()<=1.30 and np.min(np.abs(directions).max(axis=1))>=np.cos(np.deg2rad(15)):
+            if np.argmax(np.abs(directions[0]))!=np.argmax(np.abs(directions[1])):
+                return True
+    return False
+
+
 def run(job):
-    group,case=job
+    group,case,shape_only=job
     cv2.setNumThreads(1)
-    src,_,whole,_=inputs(group)
+    src,ordinary,whole,_=inputs(group)
     key={"holdout3":"new6","holdout4":"new7"}.get(group,group)
     parent=WORKTREES/"floating-face-proposals/runs/face-proposals"/key
     name=case["id"]
@@ -56,11 +74,20 @@ def run(job):
     evidence={r["id"]:r for r in receipts["charts"]}
     parts={p["id"]:p for p in read(src/"sky"/name/"source-handoff/surfaces.json")["planes"]}
     choices={"pair-required":[],"pair-refined":[]}
+    if shape_only:
+        choices={"square-challenge":[]}
+        originals={c["id"]:c for c in read(ordinary/rel)["charts"]}
     accepted=[]
     for old,one in zip(raw["charts"],proposed["charts"],strict=True):
         pid=old["id"]
         assert one["id"]==pid
         row=evidence.get(pid,{})
+        if shape_only:
+            switch=row.get("picked") is not None and not square_seed(originals[pid],one)
+            choices["square-challenge"].append(one if switch else old)
+            if switch:
+                accepted.append(dict(id=pid,first=row["picked"]))
+            continue
         trial=corrections(row["picked"],row["offers"],np.asarray(one["H"])) if row.get("picked") is not None else None
         if trial is None:
             choices["pair-required"].append(old)
@@ -79,20 +106,23 @@ def run(job):
         save(folder/"charts"/rel,dict(raw,charts=charts,proposal_packet=digest(parent/"charts"/rel)))
         with patch.object(combined,"inputs",inputs):
             combined.run((group,case,folder/"charts",folder/"assembly"))
-    save(OUT/group/"pair-audit"/(name+".json"),dict(id=name,accepted=accepted))
+    save(OUT/group/("shape-audit" if shape_only else "pair-audit")/(name+".json"),dict(id=name,accepted=accepted))
 
 
 if __name__=="__main__":
     p=argparse.ArgumentParser(description=__doc__)
     p.add_argument("groups",nargs="*",default=(*PANELS,"holdout3"))
-    groups=p.parse_args().groups
+    p.add_argument("--shape",action="store_true")
+    args=p.parse_args()
+    groups=args.groups
     with ProcessPoolExecutor(4) as pool:
-        list(pool.map(run,[(g,c) for g in groups for c in inputs(g)[3]]))
+        list(pool.map(run,[(g,c,args.shape) for g in groups for c in inputs(g)[3]]))
     scores={}
     for g in groups:
         key={"holdout3":"new6","holdout4":"new7"}.get(g,g)
         source=WORKTREES/"floating-face-proposals/runs/face-proposals"/key
-        roots={"horizontal":base(g),"source-one":source/"assembly",**{k:OUT/g/k/"assembly" for k in ("pair-required","pair-refined")}}
+        variants=("square-challenge",) if args.shape else ("pair-required","pair-refined")
+        roots={"horizontal":base(g),"source-one":source/"assembly",**{k:OUT/g/k/"assembly" for k in variants}}
         scores[g]=summarize(inputs(g)[3],roots,"connected-atlas/sky")
         print(g,{k:round(v["geometry_strict"]["f1"]*100,2) for k,v in scores[g]["cohorts"]["all"].items()})
-    save(REVIEW/("pairs-"+"-".join(groups)+".json.gz"),scores)
+    save(REVIEW/(("shape-" if args.shape else "pairs-")+"-".join(groups)+".json.gz"),scores)
