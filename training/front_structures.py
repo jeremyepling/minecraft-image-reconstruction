@@ -75,6 +75,7 @@ def build_archive(capture_roots, output_path):
                      world / 'level.dat', world / 'datapacks' / PACK, *sorted((world / 'data').rglob('*.dat'))]
             if (root / 'capture-run.json').is_file():
                 paths.append(root / 'capture-run.json')
+            paths.extend(p for p in sorted((root / 'capture-source').rglob('*')) if p.suffix in ('.py', '.java'))
             for path in paths:
                 name = prefix + path.relative_to(root).as_posix()
                 payload = path.read_bytes()
@@ -89,6 +90,12 @@ def build_archive(capture_roots, output_path):
                     receipt = root.parent / filename
                     if receipt.is_file():
                         member(archive, 'capture/' + filename, receipt.read_bytes())
+                for path in sorted((root.parent / 'capture-source').rglob('*')):
+                    if path.suffix in ('.py', '.java'):
+                        name = 'capture/source/' + path.relative_to(root.parent / 'capture-source').as_posix()
+                        payload = path.read_bytes()
+                        member(archive, name, payload)
+                        records[name] = sha256(payload).hexdigest()
             for path in sorted((root / 'frames').glob('*/frame.json')):
                 frame = json.loads(path.read_bytes())
                 if frame['lighting'] != 'noon':
