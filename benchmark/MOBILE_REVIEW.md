@@ -29,6 +29,8 @@ On branches that lack the named roles, use the standard worker with that model, 
 
 ### Produce both links
 
+**Surface masks and placement impact** on Scores shows the matched perfect-mask and mask-plus-plane replays. Click a case to open the native mask comparison. In Image review, **Perfect surfaces** shows the recorded frontmost surfaces, and **Mask comparison** overlays the saved Finder boundaries and missed or extra foreground. Tap **Surfaces** for a specific saved mask, its depth partitions and grid attempts, and **Mask over perfect surfaces** to inspect it against the recorded map. The gold block grid has its own layer. Whole-view coverage counts use the union of the saved masks. Per-surface overlap matches a proposal to the recorded surface with its highest intersection over union. The per-surface check can expose merges that whole-view coverage misses.
+
 Run the command from the repository root. Supply the existing authenticated CLI with `--vercel` if it is outside PATH. Without `--publish` the command prepares a local manifest and assets under `--out`. With it, only generated public imagery, surface evidence, and the manifest are committed on the current Floating branch. The command pins the GitHub asset revision, checks remote file hashes, deploys the tracked site to the existing Vercel project, and checks the live manifest and both routes.
 
 ```powershell

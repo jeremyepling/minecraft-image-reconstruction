@@ -196,7 +196,8 @@ def main():
                 doc+=['### '+label,'',' / '.join(reasons)+'. Fixed orientation unresolved, so a registered overlay is unavailable.','']
                 continue
             entry=render(rows[key],f,baseline,candidate,args.run_root,args.frame_root,args.shard,args.out/folder)
-            receipts.append(dict(entry,reasons=reasons,cohort=cohort,panel=f['panel'],folder=folder.as_posix()))
+            receipts.append(dict(entry,reasons=reasons,cohort=cohort,panel=f['panel'],
+                                 split=rows[key]['split'],folder=folder.as_posix()))
             m=entry['paired']
             doc+=['### '+label,'',' / '.join(reasons)+'.','',
                   f"Correct positions gained {m['gain']}, lost {m['loss']}. Extras added {m['add']}, removed {m['remove']}. "

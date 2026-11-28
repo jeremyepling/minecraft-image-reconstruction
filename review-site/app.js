@@ -204,6 +204,7 @@ function scores(run) {
       value ? `${fmt(value.numerator)} / ${fmt(value.denominator)}` : 'Unmeasured'));
     el('div', stage.measure, th, 'caption');
   }
+  surfaceScores(run);
 
   const chart = app.querySelector('#perfect');
   const scope = app.querySelector('#perfect-scope');
@@ -238,6 +239,45 @@ function scores(run) {
   toggle(metricMenu, metrics, metric, value => { metric = value; draw(); });
   scope.addEventListener('change', draw);
   draw();
+}
+
+function surfaceScores(run) {
+  const rows = run.perfect.filter(row => ['Surface Finder', 'Surface and depth separation'].includes(row.stage));
+  const cases = run.cases.filter(item => item.modes.some(layer => layer.key === 'surface-reference'));
+  if (!rows.length && !cases.length) return;
+  const panel = app.querySelector('#surface-scores');
+  panel.hidden = false;
+  el('h2', 'Surface masks and placement impact', panel);
+  for (const row of rows) {
+    const before = row.before.geometry_strict;
+    const after = row.after.geometry_strict;
+    const sample = el('div', '', panel, 'decision-card');
+    el('h3', row.stage === 'Surface Finder' ? 'Perfect masks' : 'Perfect masks + measured plane depth and facing', sample);
+    el('p', row.cohort + ' · ' + row.tested + ' views', sample, 'caption');
+    el('p', 'Strict placement ' + percent(before.f1) + ' → ' + percent(after.f1) + ' (' +
+      points(after.f1 - before.f1) + ') · correct ' + fmt(before.correct) + ' → ' + fmt(after.correct) +
+      ' · missed ' + fmt(before.missed) + ' → ' + fmt(after.missed) +
+      ' · extras ' + fmt(before.extras) + ' → ' + fmt(after.extras), sample);
+    el('p', row.change, sample, 'caption');
+    for (const id of row.surfaceExamples || []) {
+      const item = cases.find(candidate => candidate.id === id);
+      if (item) appendSurfaceLink(sample, item);
+    }
+  }
+  if (!rows.length) el('p', 'Perfect surface replay unmeasured on these views.', panel, 'caption');
+  if (cases.length) {
+    const details = el('details', '', panel);
+    el('summary', 'Browse surface maps (' + cases.length + ')', details);
+    for (const item of cases) appendSurfaceLink(details, item);
+  }
+}
+
+function appendSurfaceLink(parent, item) {
+  const mode = item.modes.some(layer => layer.key === 'surface-compare') ? 'surface-compare' : 'surface-reference';
+  const href = link('review');
+  const line = el('p', '', parent);
+  el('a', item.title + ' · masks', line).href = href + (href.includes('?') ? '&' : '?') +
+    'layer=' + mode + '#' + encodeURIComponent(item.id);
 }
 
 function surfaceTrace(container, surface, evidence) {
@@ -303,7 +343,7 @@ function surfaceReview(find, changed) {
     const context = canvas.getContext('2d');
     context.clearRect(0, 0, canvas.width, canvas.height);
     context.fillStyle = 'rgba(9, 17, 14, .57)';
-    context.fill(outside, 'evenodd');
+    if (layer.kind !== 'surface-reference') context.fill(outside, 'evenodd');
     if (!part) {
       context.strokeStyle = '#bcf2c5';
       context.lineWidth = 3;
@@ -364,6 +404,13 @@ function surfaceReview(find, changed) {
       for (const [kind, fit] of Object.entries(part.fitEvidence)) detail.push(kind + ' · ' + fit.reason + '.');
     }
     if (layer.cells) detail.push(fmt(layer.cells.length) + ' owned exported cells.');
+    if (layer.kind === 'surface-reference' && surface.maskOverlap) {
+      const m = surface.maskOverlap;
+      detail.push('Best reference overlap · surface ' + m.surfaceId + ' · ' + fmt(m.overlap) + ' / ' +
+        fmt(m.reference) + ' reference pixels covered · ' + fmt(m.predicted - m.overlap) + ' mask pixels outside that surface.');
+      if (m.otherSurfaces?.length) detail.push('Also covers ' +
+        m.otherSurfaces.map(s => 'surface ' + s.surfaceId + ' (' + fmt(s.pixels) + ' pixels)').join(', ') + '.');
+    }
     if (layer.markers) detail.push('Source-face centers · cyan correct gained · pink correct lost · amber extras added · violet extras removed.');
     if (layer.path) detail.push(`${fmt(layer.cellCount)} grid cells · ${layer.stages.join(' · ')}.`);
     if (layer.status?.length) detail.push(layer.status.join(' · '));
@@ -379,7 +426,7 @@ function surfaceReview(find, changed) {
     picker.value = index;
     find('prev-surface').disabled = index === 0;
     find('next-surface').disabled = index === data.surfaces.length - 1;
-    choices = [{label: 'Surface mask', kind: 'mask'}, {label: 'Gold reference', kind: 'gold'}];
+    choices = [{label: 'Surface mask', kind: 'mask'}, {label: 'Gold block grid', kind: 'gold'}];
     for (const part of Object.keys(surface.parts)) choices.push({label: `Depth region ${part.split('~p')[1]}`, part});
     const attempts = new Map();
     for (const grid of surface.layers) {
@@ -394,6 +441,9 @@ function surfaceReview(find, changed) {
     }
     if (surface.placementChange?.markers.length) {
       choices.push({kind:'changes', label:'Traced placement changes', markers:surface.placementChange.markers});
+    }
+    if (item.modes.some(mode => mode.key === 'surface-reference')) {
+      choices.push({kind: 'surface-reference', label: 'Mask over perfect surfaces'});
     }
     find('surface-trace').hidden = data.schema !== 2;
     if (data.schema === 2) surfaceTrace(find('trace-body'), surface, data);
@@ -616,13 +666,17 @@ function review(run) {
 
   function showImage() {
     const selection = surfaceUI.selection();
-    const key = selection ? (selection.layer.kind === 'gold' ? 'gold' : 'source') : mode;
+    const key = selection ? (['gold', 'surface-reference'].includes(selection.layer.kind) ?
+      selection.layer.kind : 'source') : mode;
     const background = active().modes.find(item => item.key === key);
     if (image.getAttribute('src') !== background.url) image.src = background.url;
     image.alt = selection ? `${active().title} · ${selection.surface.id} · ${selection.layer.label}` :
       `${active().title} · ${background.label}`;
     if (!selection) {
-      find('image-caption').textContent = background.caption;
+      const c = active().maskCoverage;
+      find('image-caption').textContent = background.caption + (mode === 'surface-compare' && c ?
+        ' Finder covered ' + fmt(c.covered) + ' / ' + fmt(c.reference) + ' visible pixels across ' +
+        fmt(c.referenceSurfaces) + ' reference surfaces, with ' + fmt(c.extra) + ' extra pixels.' : '');
       return;
     }
     const {layer, surface} = selection;
@@ -633,7 +687,9 @@ function review(run) {
     }
     find('image-caption').textContent = layer.path ? (region ? 'Cyan attempted grid · highlighted depth region' :
       'Cyan attempted grid · pale green surface outline') :
-      layer.kind === 'gold' ? 'Gold recorded visible face boundaries' : 'Highlighted support in the source image';
+      layer.kind === 'gold' ? 'Gold recorded visible face boundaries' :
+      layer.kind === 'surface-reference' ? 'Green outline is the saved mask over the recorded gold surface map.' :
+      'Highlighted support in the source image';
   }
 
   function showPrompt() {
@@ -706,6 +762,12 @@ function review(run) {
     el('span', `−${fmt(item.counts.loss)} correct`, counts, 'loss');
     el('span', `Extras +${fmt(item.counts.add)} / −${fmt(item.counts.remove)}`, counts, 'caption');
     mode = item.modes.some(layer => layer.key === note().imageView) ? note().imageView : item.modes[0].key;
+    if (query.get('layer') && item.modes.some(layer => layer.key === query.get('layer'))) mode = query.get('layer');
+    for (const replay of item.surfaceReplays || []) {
+      const delta = replay.after.correct - replay.before.correct;
+      el('span', (replay.stage === 'Surface Finder' ? 'Perfect masks' : 'Perfect masks + planes') +
+        ' · ' + (delta > 0 ? '+' : '') + fmt(delta) + ' correct', counts, 'caption');
+    }
     viewport.style.setProperty('--aspect', `${item.width} / ${item.height}`);
     image.width = item.width;
     image.height = item.height;

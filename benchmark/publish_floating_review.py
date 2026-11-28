@@ -12,7 +12,7 @@ import tempfile
 import time
 from urllib.request import Request, urlopen
 
-from benchmark.build_floating_mobile_review import manifest
+from benchmark.build_floating_mobile_review import manifest, surface_examples
 from benchmark.floating_stage_report import read
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -204,6 +204,10 @@ def main():
                 cmd.extend(["--" + key.replace("_", "-"), value])
         subprocess.run(cmd, check=True)
         report = out / "stage/report.json"
+        requested = list(dict.fromkeys([*requested, *(
+            frame["id"] for row in (read(report).get("perfect_stage") or {}).get("rows", [])
+            if row["stage"] in ("Surface Finder", "Surface and depth separation")
+            for frame in surface_examples(row))]))
         queue = out / "queue"
         subprocess.run([sys.executable,"-m","benchmark.floating_visual_review",report,args.conditions,
                         "--run-root",args.run_root,"--frame-root",args.frames,"--candidate",args.candidate,

@@ -14,7 +14,7 @@ STAGES = {
     "parts": (("grid","masks"), ("benchmark/floating_pregrid*","benchmark/floating_depth*"), "depth partitions and inherited/refit grids"),
     "assembly": (("grid","parts"), ("benchmark/relative_face_assembly*","benchmark/floating_patch_combined*","benchmark/floating_horizontal*","engine/export*"), "joined charts, chart ownership and local exported blocks"),
     "score": (("assembly",), ("benchmark/relative_face_scoring*","benchmark/expanded_scores*","benchmark/mask_blocks*"), "decoded placement and material scores"),
-    "surfaces": (("grid","parts","assembly"), ("benchmark/mobile_surface_evidence*","benchmark/floating_surface_evidence*","benchmark/floating_surface_loss_trace*"), "surface, grid and export overlays"),
+    "surfaces": (("grid","parts","assembly"), ("benchmark/mobile_surface_evidence*","benchmark/mobile_surface_maps*","benchmark/floating_surface_evidence*","benchmark/floating_surface_loss_trace*"), "surface, grid and export overlays"),
     "perfect": (("score",), ("benchmark/floating_perfect*","benchmark/reviews/floating-perfect*"), "matched Perfect Stage diagnostic receipts"),
     "report": (("perfect","score"), ("benchmark/floating_stage_report*","benchmark/floating_visual_review*","benchmark/floating_local_review*"), "stage report and visual queue"),
     "analysis": (("report","surfaces"), ("benchmark/floating_review_decisions*","benchmark/floating_review_intake*","benchmark/floating_grid_chooser*"), "priorities, source-only tests and pending decisions"),

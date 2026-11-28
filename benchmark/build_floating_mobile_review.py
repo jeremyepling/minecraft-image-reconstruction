@@ -9,6 +9,7 @@ import numpy as np
 from PIL import Image
 
 from benchmark.floating_stage_report import MEASURES, read
+from benchmark.mobile_surface_maps import maps, visible_edges
 
 
 DEFAULT_LABELS = {
@@ -36,19 +37,6 @@ def checked(path, expected):
         raise ValueError(f'Content changed from the visual review receipt: {path}')
 
 
-def visible_edges(ids):
-    """Rasterize grid lines only on pixels owned by visible reference faces."""
-    keep = ids != 0
-    borders = np.zeros_like(keep)
-    dx = ids[:, 1:] != ids[:, :-1]
-    dy = ids[1:, :] != ids[:-1, :]
-    borders[:, 1:] |= dx & keep[:, 1:]
-    borders[:, :-1] |= dx & keep[:, :-1]
-    borders[1:, :] |= dy & keep[1:, :]
-    borders[:-1, :] |= dy & keep[:-1, :]
-    return borders
-
-
 def reference_grid(path, owner_path):
     rgb = np.array(Image.open(path).convert('RGB'))
     with np.load(owner_path, allow_pickle=False) as channels:
@@ -65,7 +53,7 @@ def webp(image, target):
 
 def make_case(case, queue, frames, assets, asset_base, labels, run_root=None, evidence_root=None, baseline_evidence_root=None):
     marker = case['id']
-    split = marker.split('-', 1)[0]
+    split = case.get('split') or marker.split('-', 1)[0]
     frame = frames / split / 'frames' / marker
     source = frame / 'rgb.png'
     owner = frame / 'labels.npz'
@@ -83,12 +71,6 @@ def make_case(case, queue, frames, assets, asset_base, labels, run_root=None, ev
         layers.append(('outline', 'Dropped', 'Amber outlines the dropped surface support.',
                        Image.open(queue / case['folder'] / 'dropped.png').convert('RGB')))
     modes = []
-    for key, title, caption, image in layers:
-        if image.size != original.size:
-            raise ValueError(f'Unregistered review layer: {marker}/{key}')
-        filename = f'{key}.webp'
-        webp(image, out / filename)
-        modes.append(dict(key=key, label=title, caption=caption, url=f'{asset_base}/{marker}/{filename}'))
     readable = DEFAULT_LABELS[marker][0] if marker in DEFAULT_LABELS else marker
     title, stage, prompt, first_pass = labels.get(marker, (readable, 'Placement',
         'Where would you adjust placement?', 'Compare changes with the source and recorded visible grid.'))
@@ -96,6 +78,13 @@ def make_case(case, queue, frames, assets, asset_base, labels, run_root=None, ev
                   width=original.width, height=original.height, modes=modes, counts=case['paired'],
                   sourceSha256=case['source_sha256'],
                   baselinePackSha256=case['baseline']['pack_sha256'], candidatePackSha256=case['candidate']['pack_sha256'])
+    data = None
+    handoffs = []
+    if run_root:
+        handoffs.append(run_root / 'source' / 'sky' / marker / 'source-handoff' / 'surfaces.json')
+    if baseline_evidence_root:
+        handoffs.extend(directory / marker / 'source-handoff' / 'surfaces.json'
+                        for directory in (evidence_root, baseline_evidence_root))
     if run_root or evidence_root:
         from benchmark.mobile_surface_evidence import build, pair_evidence, reuse_evidence
         package = (evidence_root or run_root / 'evidence') / marker / 'surfaces.json'
@@ -120,8 +109,18 @@ def make_case(case, queue, frames, assets, asset_base, labels, run_root=None, ev
             if trace['status'] == 'verified':
                 for surface in data['surfaces']:
                     surface['placementChange'] = trace['surfaces'].get(surface['id'])
-                public_package.write_text(json.dumps(data, separators=(',', ':')) + '\n', encoding='utf-8')
         result['surfaceEvidence'] = f'{asset_base}/{marker}/surfaces.json'
+    surface_layers, coverage = maps(original, frame, case['reference_sha256'], data, handoffs)
+    if data is not None:
+        public_package.write_text(json.dumps(data, separators=(',', ':')) + '\n', encoding='utf-8')
+    if coverage:
+        result['maskCoverage'] = coverage
+    for key, label, caption, image in [*layers, *surface_layers]:
+        if image.size != original.size:
+            raise ValueError(f'Unregistered review layer: {marker}/{key}')
+        filename = f'{key}.webp'
+        webp(image, out / filename)
+        modes.append(dict(key=key, label=label, caption=caption, url=f'{asset_base}/{marker}/{filename}'))
     return result
 
 
@@ -153,7 +152,10 @@ def manifest(report, queue, frames, assets, asset_base, run, title, candidate, l
             raise ValueError(f'Visual evidence differs from the scorecard: {case["id"]}')
     perfect = []
     for row in (report.get('perfect_stage') or {}).get('rows', []):
-        perfect.append({key: row[key] for key in ('stage', 'kind', 'change', 'tested', 'cohort', 'before', 'after')})
+        entry = {key: row[key] for key in ('stage', 'kind', 'change', 'tested', 'cohort', 'before', 'after')}
+        if row['stage'] in ('Surface Finder', 'Surface and depth separation'):
+            entry['surfaceExamples'] = [case['id'] for case in surface_examples(row)]
+        perfect.append(entry)
     data = dict(schema=1, id=run, title=title, cohort=report['cohort_label'],
                 views=visible['views'], available=visible['available'], comparisonSha256=report['comparison_sha256'],
                 carryForward=carry_forward or report.get('carry_forward'),
@@ -169,9 +171,30 @@ def manifest(report, queue, frames, assets, asset_base, run, title, candidate, l
                 ])
     packages = {case['id']: read(assets / case['id'] / 'surfaces.json')
                 for case in data['cases'] if case.get('surfaceEvidence')}
+    for case in data['cases']:
+        replays = []
+        for row in (report.get('perfect_stage') or {}).get('rows', []):
+            if row['stage'] not in ('Surface Finder', 'Surface and depth separation'):
+                continue
+            measured = next((frame for frame in row['cases'] if frame['id'] == case['id']), None)
+            if measured:
+                replays.append(dict(stage=row['stage'], before=measured['before']['geometry_strict'],
+                                    after=measured['after']['geometry_strict']))
+        if replays:
+            case['surfaceReplays'] = replays
     ledger = private_history(data, database=database, downloads=downloads, questions=questions)
     data['analysis'] = analyze(report, saved, candidate, ledger=ledger, surface_evidence=packages)
     return data
+
+
+def surface_examples(row):
+    """Show both directions of the downstream effect where measured."""
+    def delta(case):
+        return case['after']['geometry_strict']['f1'] - case['before']['geometry_strict']['f1']
+    ordered = sorted(row.get('cases', []), key=delta)
+    if not ordered:
+        return []
+    return ([ordered[-1]] if delta(ordered[-1]) > 0 else []) + ([ordered[0]] if delta(ordered[0]) < 0 else [])
 
 
 def main():
