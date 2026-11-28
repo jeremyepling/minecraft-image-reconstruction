@@ -1,5 +1,7 @@
 # Reconstruction adjustments and lessons for training
 
+- **2026-11-28, selected floating chart package.** Ordinary replay of large contraction plus the original-fallback edge ruler and compatible corner-pair repair changed two of 84 conditions. It removed 1,426 extras, lost five correct positions and gained 37 exact IDs. Both repairs abstained on the fixed six sky composites. [Java datapacks, frozen chart packets and comparative scores](benchmark/reviews/floating-selected-package-01/README.md)
+
 - **2026-11-28, structural edge and local harmonic checks.** Line-guided refinement plus separated sandstone repeats recovered six of eight missing Stable Yard positions and all 26 previous exact IDs. The original-fallback arm changed one of 84 views, removing 1,349 extras while losing four net correct positions. Keep experimental pending transfer beyond one corroborated strip. [Projected lines, source checks and decoded results](benchmark/reviews/floating-edge-aligned-ruler-01/README.md)
 
 - **2026-11-28, refit material recovery.** A complete atlas tile and local subcell votes recovered 36 exact IDs on Stable Yard 1 low-left, at the same 70 correct positions and 53 extras. A separate phase change failed to recover the eight missed positions. [Source votes and decoded scores](benchmark/reviews/floating-peer-refit-recovery-01/README.md)
