@@ -75,3 +75,7 @@ flowchart TD
 ```
 
 The ordinary reconstruction, scoring and rendering commands make zero language-model calls. Local vision inference consumes compute on this PC. Codex uses tokens for its own instructions, reasoning, tool inputs and outputs, and any images it inspects. Keep full results on disk and bring the relevant rows and overlays into the conversation. Measure wall time in a dedicated timing run when requested.
+
+### Floating feedback rounds
+
+Publish an annotatable comparison with each experiment report. Keep the full source image above matched crops, mark the changed wall, show both grids and let the reviewer choose either, neither, or only part. Save a comment per case and experiment and export the annotations as JSON. Include both a successful case and a transfer failure when available. Label any reference-assisted view and give the corresponding whole-export scores. Report the most promising next experiment alongside a table of measured reference controls, with the cohort, baseline and exact handoff for each. Distinguish a perfect chooser among existing options from an exact reference input and from a deployable source-only gain.
