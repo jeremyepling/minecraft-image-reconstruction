@@ -4,13 +4,16 @@ The current guarded pre-grid method recovered 10,156 of 34,454 visible blocks ac
 
 | Method and cohort | Correct / missed / extra | Strict / facade placement F1 | Strict / facade position + ID F1 | Exact IDs |
 |---|---:|---:|---:|---:|
-| Baseline — sparse connected atlas, original V1 144 | 4,821 / 29,633 / 1,191 | 23.8274 / 26.3884% | 13.3297 / 14.9593% | 2,697 |
-| Baseline — expanded split-border, same 144 | 9,623 / 24,831 / 7,052 | 37.6420 / 40.1979% | 15.1069 / 16.4243% | 3,862 |
-| Current guarded pre-grid, same 144 | **10,156 / 24,298 / 6,974** | **39.3766 / 41.3663%** | **17.0557 / 18.5429%** | **4,399** |
+| Baseline — expanded split-border, original V1 144 | 9,623 / 24,831 / 7,052 | 37.6420 / 40.1979% | 15.1069 / 16.4243% | 3,862 |
+| Candidate — guarded pre-grid, same 144 | **10,156 / 24,298 / 6,974** | **39.3766 / 41.3663%** | **17.0557 / 18.5429%** | **4,399** |
 
 All released V1 images were inspected. Eight close-front images failed the 2% clearance rule, leaving 72 train, 12 validation, 12 test and 48 regression frames. No Orchid image was present. Seventy-two source images match the historical fixed-104 by RGB checksum. On these 72 the current Floating method scores 4,917 / 11,215 / 3,897 with 39.42 / 41.27% placement and 18.16 / 19.51% position-plus-ID. The full result above uses all 144.
 
-All exports were nonempty. Sparse resolved the orientation on 144 images. Expanded and current each resolved 137. The primary table charges all visible targets as misses and every exported block as extra on the seven unresolved images. The same seven fail in both arms. For resolved images the evaluator uses the source orientation's camera-compass correspondence and a single whole-build integer translation. IDs use the geometry-selected transform. Source reference data is used only in these evaluations and recorded native-grid diagnostics.
+All exports were nonempty. The baseline and candidate both resolved 137 orientations and failed on the same seven. The primary table charges all visible targets as misses and every exported block as extra on those seven images. For resolved images the evaluator uses the source orientation's camera-compass correspondence and a single whole-build integer translation. IDs use the geometry-selected transform. Source reference data is used only in these evaluations and recorded native-grid diagnostics.
+
+## Historical controls
+
+The sparse connected-atlas replay measures the effect of the earlier expansion. Its 144 V1 exports and separate scores remain in the [score archive](strict-orientation.json).
 
 The historical evaluator also scores unresolved builds under the best of four upright rotations. Its diagnostic counts are 10,243 / 24,211 / 6,432 for expanded and 10,773 / 23,681 / 6,357 for current, with 40.07 / 42.87% versus 41.77 / 44.01% placement F1. Under these registered transforms current gains 676 and loses 146 correct coordinates, adds two and removes 77 extras, and gains 606 and loses 78 exact IDs. Only 12 of the 14 source-selected alternatives changed decoded local positions or IDs.
 
