@@ -2,6 +2,8 @@
 
 The [combined manifest](floating-combined-v1.json.gz) points to the exact saved Java 26.3 screenshots and their original labels. It retains **240 active views** from **51 layouts in 20 architectural families**. Development and comparison cohorts can use the same index. The active split is **164 train, 38 validation and 38 test**. Every family's original assignment is preserved. The frozen 84-condition Floating benchmark remains a named score comparison for existing runs.
 
+The combined index holds 200 active Visible Builds views and 40 active Decorative Builds v1 views. Evaluate and report Decorative separately, including when both cohorts run in a single batch.
+
 ## Capture sources
 
 | Source | Saved coverage | Use in the combined dataset |

@@ -23,6 +23,8 @@ Use frame-identical controls and the same visible-only scoring and alignment. St
 
 Use Floating reconstruction scores in Floating reports and chat results. Start each matched comparison with **Baseline — method and cohort**. Use **Candidate — method** for a single alternative and **Candidate 1 — method**, **Candidate 2 — method**, and so on when testing several on the same images. Keep older controls, including sparse connected atlas, in a separate diagnostic section when they answer a specific question. Give strict and facade placement F1, strict and facade position-plus-ID F1, and correct, missed and extra blocks. State which gains landed and label carried-forward results with their measured revision. When false positives drive a decision, show how many extras were removed for each correct position lost and identify any single view that dominates the tradeoff. Include production trend scores only when Jeremy requests them.
 
+Report Visible Builds and Decorative Builds v1 separately whenever presenting Floating results. Use separate Baseline and Candidate rows for Decorative on the same decorative views, with tested and available counts. Mark Decorative as unmeasured if it was outside the run. A requested overall combined score can accompany the separate cohort scores.
+
 ## From a reported error to a test
 
 | Question | Evidence to bring back |
