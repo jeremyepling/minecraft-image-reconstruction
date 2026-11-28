@@ -4,7 +4,7 @@
 
 | Work | Where to find it |
 | --- | --- |
-| Earlier deterministic camera, projected grids, visible geometry and material tests | [Architecture](../ARCHITECTURE.md) and [camera round](CAMERA_ROUND.md) |
+| Earlier deterministic camera, projected grids, visible geometry and material tests | [Archived floor-and-camera architecture](https://github.com/jeremyepling/minecraft-image-reconstruction/blob/e3bd220188f224a0a6cf2841c8f495fd0ac9d090/ARCHITECTURE.md) and [camera round](CAMERA_ROUND.md) |
 | Region masks, the historical Rectangle Finder (B), and the two line-model comparisons | [Four-way review](MASK_ROUND.md) |
 | Stage names, perspective correction and counting repeated textures | [Surface Finder](SURFACE_FINDER.md) and [Block Counter](COUNT_ROUND.md) |
 | True mask perimeters, holes and review sheets | [Perimeter round](PERIMETER_ROUND.md) |

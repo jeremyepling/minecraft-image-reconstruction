@@ -76,7 +76,7 @@ def published_bytes(url, expected):
 
 def deploy(data, source_assets, site_files, cli):
     branch = git("branch", "--show-current")
-    if branch != "experiment/floating-visible-builds" and not branch.startswith("feature/floating-"):
+    if branch != "main" and not branch.startswith(("feature/floating-", "experiment/floating-")):
         raise ValueError(f"Publish from a named Floating integration or feature branch: {branch}")
     if git("remote", "get-url", "--push", "origin").removesuffix(".git") != REMOTE:
         raise ValueError("Expected the verified Jeremy-owned HTTPS repository.")

@@ -1,9 +1,9 @@
 name: Floating review contract
 on:
   pull_request:
-    branches: ['experiment/floating-visible-builds']
+    branches: ['main']
   push:
-    branches: ['experiment/floating-visible-builds']
+    branches: ['main']
 permissions:
   contents: read
 jobs:

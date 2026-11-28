@@ -1,10 +1,10 @@
 # Floating-build reconstruction
 
-Floating reconstructs visible blocks with no ground reference. One translation can place the entire build anywhere. All visible components retain their relative spacing. Production `main` adopted `experiment/floating-visible-builds` at `b6262ad`. The previous production revision is available on `floor-with-camera` at `e3bd220`.
+Floating is the default algorithm on `main`. It reconstructs visible blocks with no ground reference. One translation can place the entire build anywhere while preserving the spacing between parts. Use the current `main` revision for ordinary comparisons on Floating Front 100. The previous floor-and-camera algorithm is archived on `floor-with-camera` at `e3bd220`. [Archived architecture](https://github.com/jeremyepling/minecraft-image-reconstruction/blob/e3bd220188f224a0a6cf2841c8f495fd0ac9d090/ARCHITECTURE.md)
 
 Use the [current Floating pipeline map](FLOATING_PIPELINE.md) for stage order, source evidence, and the automated loss report.
 
-**Carry forward the expanded split-border baseline. Keep Candidate 1, guarded depth-first refit, experimental.** It gained 533 net correct positions and removed 78 net extras on the archived 144 views. On Arcade 1 and Terrace 1, it dropped walls that accounted for 28 and 27 previously correct positions respectively. Carry the refit forward as a challenger and test whether it can retain those walls while preserving its gains on the active Combined V1 Visible Builds cohort. The mobile reporting tools landed on Floating. [Archived comparison and decision](https://floating-review.vercel.app/runs/floating-v1-guarded-refit/scores)
+**Archived V1 decision.** Expanded split-border was the comparison baseline. Candidate 1, guarded depth-first refit, gained 533 net correct positions and removed 78 net extras. On Arcade 1 and Terrace 1, it dropped walls that accounted for 28 and 27 previously correct positions respectively. This is a recorded comparison between those variants. Use the current `main` runner on Front 100 for a new baseline measurement. [Archived comparison and decision](https://floating-review.vercel.app/runs/floating-v1-guarded-refit/scores)
 
 ## Frozen expanded benchmark
 

@@ -2,7 +2,7 @@
 
 Use the [reconstruction adjustment log](../MODEL_CHANGELOG.md) when choosing training examples and evaluation cases. It tracks observed failures and measured changes from the existing pipeline.
 
-Start with the [combined Floating dataset](FLOATING_DATASETS.md). It indexes exact screenshots, per-frame visible blocks and camera calibration from Visible Builds v2, Visible Builds v3 and Decorative Builds v1. The proposed learning experiment below uses the same [visible-only product intent](../PRODUCT_INTENT.md) as the existing pipeline.
+Start with [Floating Front 100](FLOATING_DATASETS.md) for the default algorithm on `main`. Use its exact screenshots and per-frame visible geometry. Keep the matched lighting and decoration variants of a layout in the layout’s assigned split. The proposed learning experiment below follows the [visible-only product intent](../PRODUCT_INTENT.md).
 
 ## Objective
 
@@ -48,4 +48,4 @@ When testing a learned decision for a recessed wall, score its outline, visible 
 
 ### Active floating optimization cohort
 
-Use [the combined Floating manifest](floating-combined-v1.json.gz) when sampling the saved captures for Floating training and evaluation. It indexes 240 active views, preserves their current splits, and links archived and paired conditions back to their source captures. Feed fixture lists through `training.floating_combined.select_active_cases` for a normal training or evaluation batch. The [material eligibility manifest](floating-active-cohort-v1.json) records the 80% concrete and unglazed terracotta audit and the retired Orchid palette.
+Use the pinned [Front 100 release manifests](FLOATING_DATASETS.md) for new comparisons on `main`. For historical Combined V1 replays, the [combined manifest](floating-combined-v1.json.gz) retains 240 views and their original splits. The [material eligibility manifest](floating-active-cohort-v1.json) records the historical 80% concrete and unglazed terracotta audit and the retired Orchid palette.

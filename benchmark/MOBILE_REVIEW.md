@@ -15,7 +15,7 @@ In **Image review**, tap **Surfaces** to step through the saved Surface Finder m
 
 ### Coordinate a round
 
-Start in the Floating integration checkout. Run the stage report and publisher on the measured Baseline and Candidate. The output manifest contains `analysis.actions`, the matched Perfect groups, and the chooser pilot. With an active round the coordinator assigns the first discriminating machine test, checks its result, records the outcome, and repeats while the requested round has scope. The publisher itself runs deterministically and starts no background agent. One paired publication per Candidate preserves its own changes and question history. Ordinary rounds use the 100 Floating Front full-block noon views. Run lighting checks on matched selections and score decorative noon separately.
+Start from main. Run the stage report and publisher on the measured Baseline and Candidate. The output manifest contains `analysis.actions`, the matched Perfect groups, and the chooser pilot. With an active round the coordinator assigns the first discriminating machine test, checks its result, records the outcome, and repeats while the requested round has scope. The publisher itself runs deterministically and starts no background agent. One paired publication per Candidate preserves its own changes and question history. Ordinary rounds use the 100 Floating Front full-block noon views. Run lighting checks on matched selections and score decorative noon separately.
 
 | Assignment | Skill and worker | Deliverable |
 | --- | --- | --- |
@@ -25,7 +25,7 @@ Start in the Floating integration checkout. Run the stage report and publisher o
 | Brainstorm and test a repair | `floating-repair-design` · Astra high designs, `floating_repair_experiment`, Astra medium, implements | Two competing explanations, a distinguishing test and a family-held-out result |
 | Publish and ingest | `floating-mobile-review` · `floating_review_publisher`, Sol high for verification | Two verified mobile routes and private feedback tied to its question |
 
-On branches that lack the named roles, use the standard worker with that model, reasoning effort and skill from the integration checkout. Announce the actual worker/model assignments. The report distinguishes measured downstream effects from hypotheses. Use the Perfect gain for a specific intervention only. A scorer-assisted choice across two whole packs answers a different question from a choice among attempted grids on a wall.
+On branches that lack the named roles, use the standard worker with that model, reasoning effort and skill from the main checkout. Announce the actual worker/model assignments. The report distinguishes measured downstream effects from hypotheses. Use the Perfect gain for a specific intervention only. A scorer-assisted choice across two whole packs answers a different question from a choice among attempted grids on a wall.
 
 ### Produce both links
 

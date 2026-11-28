@@ -2,9 +2,9 @@
 
 Floating uses the geometry visible in a source image to build a local block grid. It joins surfaces using their visible contacts and places the complete build at one arbitrary origin. The recorded camera and world supply scoring and diagnostics. Unseen geometry stays unknown.
 
-**Baseline** is the frozen expanded split-border method. Its pink depth check separates existing chart cells while keeping their ruler. **Candidate 1** is the guarded depth-first refit used in the [V1 comparison](https://github.com/jeremyepling/minecraft-image-reconstruction/blob/01d51c0/benchmark/reviews/floating-visible-builds-v1-01/README.md). It tests fresh per-region grids and keeps the Baseline export if the source evidence cannot support the joins. The sparse connected-atlas runtime is an available historical control. The ordinary exterior command has its own [pavement-based architecture](../ARCHITECTURE.md).
+Use the [main architecture](../ARCHITECTURE.md) for the current Front 100 path. The detailed chart below traces the [archived original V1 comparison](https://github.com/jeremyepling/minecraft-image-reconstruction/blob/01d51c0/benchmark/reviews/floating-visible-builds-v1-01/README.md). Its **Baseline** is the frozen expanded split-border method. Its pink depth check separates existing chart cells while keeping their ruler. **Candidate 1** is the guarded depth-first refit. It tests fresh per-region grids and keeps the Baseline export if source evidence cannot support the joins.
 
-The expanded split-border method remains the baseline for the next round. Guarded depth-first refit continues as a challenger. See the [carry-forward decision](FLOATING_BRANCH.md).
+See the [baseline and historical comparisons](FLOATING_BRANCH.md) for each method's measured scope. The former pavement-based build is documented in the [floor-and-camera archive](https://github.com/jeremyepling/minecraft-image-reconstruction/blob/e3bd220188f224a0a6cf2841c8f495fd0ac9d090/ARCHITECTURE.md).
 
 ```mermaid
 flowchart TD

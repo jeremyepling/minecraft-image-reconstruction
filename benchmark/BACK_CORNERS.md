@@ -47,4 +47,4 @@ python -m benchmark.back_corners --cache DEV_CACHE --out dev.json
 python -m benchmark.back_corners --cache FRESH_CACHE --selection dev.json --out fresh.json
 ```
 
-These are measurement experiments. The public build's frontal recess exporter uses a different call path. [Architecture and enabled modes](../ARCHITECTURE.md)
+These are historical measurement experiments. See the frontal recess exporter and its call path in the [archived floor-and-camera architecture](https://github.com/jeremyepling/minecraft-image-reconstruction/blob/e3bd220188f224a0a6cf2841c8f495fd0ac9d090/ARCHITECTURE.md).
