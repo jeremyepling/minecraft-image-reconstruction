@@ -92,20 +92,25 @@ def summarize(cohort, cases, manifest, native_fallback):
 
 
 def main():
+    from training.floating_cohort import RELEASES, RETIRED_PALETTES, frame_index, select_active_cases
+
     parser = argparse.ArgumentParser()
     parser.add_argument('manifest',type=Path)
     parser.add_argument('--workers',type=int,default=4)
     parser.add_argument('--native-fallback',action='store_true')
     parser.add_argument('--sky-handoffs-only', action='store_true', help='Build the floating Surface Finder and counter inputs for the six-view benchmark.')
     parser.add_argument('--historical-cohort', action='store_true',
-                        help='Replay all cases of an archived manifest, including retired layouts.')
+                        help='Replay archived layouts while skipping retired palettes.')
     args = parser.parse_args()
     cohort = OUTPUT.parent/'floating-cloud-gate-native-01' if args.native_fallback else OUTPUT
     import time
     baseline = args.manifest.parent/'baseline'
-    cases = read(args.manifest)['cases']
-    if not args.historical_cohort:
-        from training.floating_cohort import RELEASES, select_active_cases
+    cases = [case for case in read(args.manifest)['cases'] if case.get('palette') not in RETIRED_PALETTES]
+    if args.historical_cohort:
+        indexed = frame_index()
+        cases = [case for case in cases
+                 if indexed.get((case.get('dataset'), case['id']), case).get('palette') not in RETIRED_PALETTES]
+    else:
         indexed = [case for case in cases if case.get('dataset') in RELEASES]
         active = {(case['dataset'], case['id']) for case in select_active_cases(indexed)}
         cases = [case for case in cases if case.get('dataset') not in RELEASES

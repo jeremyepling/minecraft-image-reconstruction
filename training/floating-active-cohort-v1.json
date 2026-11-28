@@ -1,6 +1,9 @@
 {
   "cohort": "floating-active-cohort-v1",
   "min_smooth_percent": 80,
+  "retired_palettes": [
+    "orchid"
+  ],
   "material_scope": "Minecraft concrete and unglazed terracotta",
   "threshold_scope": "frontmost visible building pixels pooled across the camera views of each layout and palette",
   "exclusion_scope": "all views and palettes of the layout in its original split",
@@ -1562,7 +1565,8 @@
             "amphitheater-01": {
               "active": false,
               "reasons": [
-                "reviewer-exclusion"
+                "reviewer-exclusion",
+                "retired-palette"
               ],
               "dominant_palettes": [],
               "palettes": {
@@ -1650,6 +1654,7 @@
               "active": false,
               "reasons": [
                 "reviewer-exclusion",
+                "retired-palette",
                 "smooth-material-coverage"
               ],
               "dominant_palettes": [
@@ -1739,6 +1744,7 @@
             "amphitheater-03": {
               "active": false,
               "reasons": [
+                "retired-palette",
                 "smooth-material-coverage"
               ],
               "dominant_palettes": [

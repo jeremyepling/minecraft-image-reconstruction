@@ -17,6 +17,7 @@ RELEASES = {
 }
 SPLITS = ("train", "validation", "test")
 MIN_SMOOTH_PERCENT = 80
+RETIRED_PALETTES = frozenset({"orchid"})
 NAMED_EXCLUSIONS = {
     "visible-builds-v3": {"amphitheater-01", "amphitheater-02"},
 }
@@ -85,6 +86,8 @@ def score_layout(frames, explicitly_excluded):
     reasons = []
     if explicitly_excluded:
         reasons.append("reviewer-exclusion")
+    if RETIRED_PALETTES.intersection(coverage):
+        reasons.append("retired-palette")
     if dominant:
         reasons.append("smooth-material-coverage")
     return dict(active=not reasons, reasons=reasons, dominant_palettes=dominant, palettes=coverage)
@@ -125,6 +128,7 @@ def build(archives_root):
         datasets[dataset] = dict(release_manifest_sha256=expected, splits=splits)
     return dict(
         cohort=COHORT, min_smooth_percent=MIN_SMOOTH_PERCENT,
+        retired_palettes=sorted(RETIRED_PALETTES),
         material_scope="Minecraft concrete and unglazed terracotta",
         threshold_scope="frontmost visible building pixels pooled across the camera views of each layout and palette",
         exclusion_scope="all views and palettes of the layout in its original split",

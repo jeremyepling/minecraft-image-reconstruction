@@ -8,8 +8,8 @@ Use the **expanded split-border benchmark** for new floating reconstruction expe
 
 | Benchmark | Strict / facade placement F1 | Strict / facade position + material F1 | Strict correct / missed / extra | Strict precision |
 |---|---:|---:|---:|---:|
-| Frozen expanded split-border, 84 conditions | 33.99% / 34.48% | 5.66% / 5.76% | 18,318 / 61,192 / 9,965 | 64.77% |
-| Frozen expanded split-border, six fixed sky views | 27.59% / 27.83% | 5.98% / 6.01% | 890 / 3,151 / 1,521 | 36.91% |
+| Baseline — frozen expanded split-border, 84 conditions | 33.99% / 34.48% | 5.66% / 5.76% | 18,318 / 61,192 / 9,965 | 64.77% |
+| Baseline — frozen expanded split-border, six fixed sky views | 27.59% / 27.83% | 5.98% / 6.01% | 890 / 3,151 / 1,521 | 36.91% |
 | Sparse connected-atlas runtime at `9435934`, same six sky views | 12.64% / 12.90% | 4.68% / 4.77% | 273 / 3,768 / 5 | 98.20% |
 
 The frozen 84 contain 30 Visible Builds v2, 30 Visible Builds v3, and 24 Decorative Builds v1 conditions. The six fixed sky conditions are included and use four Visible Builds v3 and two Decorative Builds v1 layouts. The full 240-view active cohort remains unevaluated for this benchmark. On the 84 paired inputs, the guarded ruler and O2 package removed 1,426 extras and lost five strict correct positions, four required by the facade score. The subsequent depth and border-sky checks removed a further 29 extras while preserving every correct coordinate and material ID. Twenty-one of those removals were on the six fixed sky views. The pinned exports are the research comparison. The sparse connected-atlas exports are a separate runtime control.
@@ -74,4 +74,4 @@ The `experiment/floating-build-floor-bypass` worktree remains a historical diagn
 
 Prioritize a second building with a visible corner that the assembler failed to join, a normal-looking crop where straightening breaks the texture rows, and a similar-looking wall where the current counter is already right. Note the surface IDs, the edge or rows you followed, and whether the two surfaces share the full height or only part of it. Mark a block count only when you can actually see it. Cloud examples from real skies, especially beside pale blocks, would extend the synthetic-sky check. Keep development annotations separate from a fresh held-out building used to judge promotion.
 
-The capture-manifest runner selects the [240-view training and optimization cohort](../training/floating-active-cohort-v1.json) by default. Use `--historical-cohort` with that runner to replay a historical comparison. The six fixed sky composites are all active.
+The capture-manifest runner selects the [240-view training and optimization cohort](../training/floating-active-cohort-v1.json) by default. Orchid is retired from Floating runs, including when replaying the other layouts with `--historical-cohort`. The six fixed sky composites are all active.

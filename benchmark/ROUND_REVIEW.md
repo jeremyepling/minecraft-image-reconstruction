@@ -21,7 +21,7 @@ Use frame-identical controls and the same visible-only scoring and alignment. St
 
 ## Floating branch scorecard
 
-Use Floating reconstruction scores in Floating reports and chat results. Compare the frozen Floating benchmark and candidate on the same images. Give strict and facade placement F1, strict and facade position-plus-ID F1, and correct, missed and extra blocks. State which gains landed and label carried-forward results with their measured revision. When false positives drive a decision, show how many extras were removed for each correct position lost and identify any single view that dominates the tradeoff. Include production trend scores only when Jeremy requests them.
+Use Floating reconstruction scores in Floating reports and chat results. Start the comparison row with **Baseline**, then name its method and cohort. Compare it with the candidate on the same images. Give strict and facade placement F1, strict and facade position-plus-ID F1, and correct, missed and extra blocks. State which gains landed and label carried-forward results with their measured revision. When false positives drive a decision, show how many extras were removed for each correct position lost and identify any single view that dominates the tradeoff. Include production trend scores only when Jeremy requests them.
 
 ## From a reported error to a test
 
