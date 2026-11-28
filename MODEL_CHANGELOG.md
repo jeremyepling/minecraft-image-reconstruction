@@ -4,6 +4,8 @@ These entries cover model inputs, rules around model outputs, and evaluation cha
 
 ### November 27, 2026
 
+- **Experiment, floating wall extent.** A four-cell reach limit on sparse anchors raised strict placement on six sky composites from 22.93% to 26.42%, entirely on the chapel, but lowered it on the original 38 from 35.34% to 26.17% and six new original-RGB views from 39.92% to 32.02%. Retain whole-wall reach. [Per-frame replays](benchmark/reviews/floating-grid-reach-01/README.md)
+
 - **Experiment, floating wall coverage and rulers.** Across 38 original test views, resampling observed pixels across ordinary wall grids raised strict visible placement from 3.72% to 35.34%. Retaining existing materials and ranking new cells from masked source pixels raised strict position-plus-ID F1 from 1.54% to 4.51%. With exact surface masks, local ruler correction raised the matched resampling control from 41.18% to 51.88%, then one correct local origin reached 53.32%. Kept experimental pending independent transfer and better material accuracy. [Replays and per-frame results](benchmark/reviews/expanded-wall-rulers-01/README.md)
 
 - **Diagnostic, floating surface masks.** On 38 original test images, supplying the exact native visible surfaces before counting raised strict placement F1 from 3.72% to 8.47%. The crop intervention recovered 1,505 more correct placements across the paired totals. [Per-cohort results and ceilings](benchmark/reviews/expanded-crop-ceiling-01/README.md)
