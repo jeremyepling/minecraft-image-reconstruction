@@ -21,7 +21,26 @@ from benchmark.relative_oracle_charts import fit_homography
 from benchmark.floating_v1_export_filter import with_visible_export
 
 
-def expand(seeds,planes,image,rgb):
+def source_transitions(chart, rgb):
+    """Measure within-cell color changes in both chart axes on spatially distributed cells."""
+    uv = np.array([(cell["u"], cell["v"]) for cell in chart["cells"]])
+    uv = uv[np.lexsort((uv[:, 1], uv[:, 0]))]
+    sampled = uv[np.linspace(0, len(uv) - 1, min(192, len(uv))).astype(int)]
+    grid = (np.arange(32) + .5) / 32
+    offsets = np.stack(np.meshgrid(grid, grid), axis=-1)
+    pixels = np.floor(project(np.asarray(chart["H"]), sampled[:, None, None, :] + offsets)).astype(int)
+    x = np.clip(pixels[..., 0], 0, rgb.shape[1] - 1)
+    y = np.clip(pixels[..., 1], 0, rgb.shape[0] - 1)
+    patches = rgb[y, x].astype(np.float32)
+    medians = []
+    for axis in (1, 2):
+        steps = np.linalg.norm(np.diff(patches, axis=axis), axis=-1)
+        counts = (steps >= 4).sum(axis=axis).mean(axis=1)
+        medians.append(float(np.median(counts)))
+    return medians
+
+
+def expand(seeds,planes,image,rgb,*,texture_checks=None):
     linear=None
     charts=[]
     changed=[]
@@ -46,6 +65,14 @@ def expand(seeds,planes,image,rgb):
                 if 4*len(alt["cells"])<=len(grown["cells"]):
                     grown=alt
                     changed.append(cid)
+        if cid not in changed and len(grown["cells"]) >= max(512, 16 * len(seed["cells"])):
+            transitions = source_transitions(grown, rgb)
+            bypass = max(transitions) <= 2
+            if texture_checks is not None:
+                texture_checks[cid] = dict(seed_cells=len(seed["cells"]), grown_cells=len(grown["cells"]),
+                                           median_transitions=transitions, bypass=bypass)
+            if bypass:
+                grown = seed
         charts.append(grown)
     return charts,changed
 
@@ -105,7 +132,8 @@ def expanded_packet(case, destination, *, field_cache=None):
     counts={p["id"]:p for p in read(handoff/"counts.json")["surfaces"]}
     image=Image.open(case["variants"]["sky"]["image"]).convert("RGB")
     rgb=np.asarray(image)
-    raw,contracted=expand(seeds_packet["charts"],planes,image,rgb)
+    texture_checks={}
+    raw,contracted=expand(seeds_packet["charts"],planes,image,rgb,texture_checks=texture_checks)
     initial=pink.guard_targets(raw,seeds,planes,rgb)
     edge_charts=[edge_refit(c,raw,pink.native_mask(planes[c["id"]],image.size),rgb) if c["id"] in initial else c for c in raw]
     edge_ids=[a["id"] for a,b in zip(raw,edge_charts,strict=True) if a!=b]
@@ -129,7 +157,8 @@ def expanded_packet(case, destination, *, field_cache=None):
     bordered,dropped=pink.border_filter(split,pink.sky_support(image))
     baseline_file=base/"charts"/rel
     save(baseline_file,dict(packet,charts=bordered))
-    return packet,dict(contracted=contracted,edge=edge_ids,pair=pairs,split=sorted(flags),border_dropped=dropped)
+    return packet,dict(contracted=contracted,edge=edge_ids,pair=pairs,split=sorted(flags),border_dropped=dropped,
+                       texture_checks=texture_checks)
 
 
 def run(case):
