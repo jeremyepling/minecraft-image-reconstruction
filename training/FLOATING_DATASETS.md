@@ -2,7 +2,7 @@
 
 The [combined manifest](floating-combined-v1.json.gz) points to the exact saved Java 26.3 screenshots and their original labels. It retains **240 active views** from **51 layouts in 20 architectural families**. Development and comparison cohorts can use the same index. The active split is **164 train, 38 validation and 38 test**. Every family's original assignment is preserved. The frozen 84-condition Floating benchmark remains a named score comparison for existing runs.
 
-The combined index holds 200 active Visible Builds views and 40 active Decorative Builds v1 views. Routine evaluations select Visible Builds. Use `--include-decorative` on `benchmark.floating_build_local_run` when explicitly evaluating Decorative, and give it a separate results table.
+The combined index holds 200 active Visible Builds views and 40 active Decorative Builds v1 views. Use the [same sparse replay launcher](../benchmark/FLOATING_SHARED_DATASETS.md) for both. Select `visible` for ordinary evaluations or `decorative` for Decorative Builds V1 with its own results table.
 
 ## Capture sources
 
