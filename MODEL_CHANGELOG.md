@@ -1,5 +1,8 @@
 # Reconstruction adjustments and lessons for training
 
+- **2026-11-27, paired wall grids at visible corners.** In the expanded pipeline, selecting two earlier grids when the receiver's texture count and new atlas matches agree removed 77 extra O2 blocks and retained all 84 facade-required correct positions. Strict scoring lost one 30-pixel underside. The other 83 active exports tied. The sparse floating input selected a different tower and the same guard abstained. [Replay and source measurements](benchmark/reviews/floating-corner-pair-01/README.md)
+
+
 - **2026-11-27, shared-corner grid overwrite audit.** Restoring the original measured chart on the reviewed Twinspire wall removed 63 extras and kept all 110 correct positions. Across the 84 active conditions, restoring every eligible wall lost 194 correct positions and removed 289 extras. Keep the broad bypass experimental. [Frozen exports and exact reviewed control](benchmark/reviews/floating-corner-overwrite-01/README.md)
 
 - **2026-11-27, second-round grid signoffs.** The Twinspire upper edge came within one pixel of the visible seam. Independent grids plus small signed depth steps gained eight correct positions and removed 35 extras on the 84 active cases. The added cells on Twinspire and the detected bands on Shrine still fail to join the winning component. Keep the candidates experimental. [Paired source overlays and decoded scores](benchmark/reviews/floating-grid-signoff-03/README.md)
