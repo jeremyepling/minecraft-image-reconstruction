@@ -73,6 +73,8 @@ def build_archive(capture_roots, output_path):
             paths = [root / 'layout.json', root / 'views.json', root / 'client/options.txt',
                      root / 'runtime-block-registry.json',
                      world / 'level.dat', world / 'datapacks' / PACK, *sorted((world / 'data').rglob('*.dat'))]
+            if (root / 'capture-run.json').is_file():
+                paths.append(root / 'capture-run.json')
             for path in paths:
                 name = prefix + path.relative_to(root).as_posix()
                 payload = path.read_bytes()
