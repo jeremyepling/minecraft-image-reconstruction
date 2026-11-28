@@ -2,7 +2,7 @@
 
 ## Floating-build development
 
-Use the named Floating revisions and cohorts in `benchmark/FLOATING_BRANCH.md` for each Floating report or chat result. Treat Decorative Builds v1 as its own evaluation cohort even when it runs from the combined dataset. Show its tested view count and scores separately from Visible Builds. Mark it as unmeasured when the run omits it. Report strict and facade placement, position plus material, and correct, missed and extra positions. Include production numbers only when Jeremy asks for a production comparison.
+Use the named Floating revisions and cohorts in `benchmark/FLOATING_BRANCH.md` for each Floating report or chat result. Routine evaluations use the Visible Builds portion of Floating Combined V1. Run Decorative Builds v1 on request and report it as a separate cohort. If skipped, mark it unmeasured and offer a separate run. Use the Baseline and numbered Candidate labels, stage measures and decoded placement metrics in `benchmark/ROUND_REVIEW.md`. Include production numbers only when Jeremy asks for a production comparison.
 
 Separate and check visible plane depths before fitting grids. Preserve explicit depth splits during attachment. The fixed-grid one-block reprojection test is retired from active Floating development. See [depth separation before the grid](benchmark/FLOATING_BRANCH.md#depth-separation-before-the-grid).
 

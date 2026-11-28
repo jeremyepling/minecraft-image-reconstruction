@@ -100,6 +100,8 @@ def main():
     parser.add_argument('--workers',type=int,default=4)
     parser.add_argument('--native-fallback',action='store_true')
     parser.add_argument('--sky-handoffs-only', action='store_true', help='Build the floating Surface Finder and counter inputs for the six-view benchmark.')
+    parser.add_argument('--include-decorative', action='store_true',
+                        help='Include Decorative Builds v1 from the supplied fixture manifest.')
     parser.add_argument('--historical-cohort', action='store_true',
                         help='Replay archived layouts while skipping retired palettes.')
     args = parser.parse_args()
@@ -107,6 +109,8 @@ def main():
     import time
     baseline = args.manifest.parent/'baseline'
     cases = [case for case in read(args.manifest)['cases'] if case.get('palette') not in RETIRED_PALETTES]
+    if not args.include_decorative:
+        cases = [case for case in cases if case.get('dataset') != 'decorative-builds-v1']
     if args.historical_cohort:
         indexed = frame_index()
         cases = [case for case in cases

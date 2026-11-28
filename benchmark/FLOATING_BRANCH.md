@@ -48,7 +48,7 @@ The default sky check rejected 23 of 216 proposals across six views, removing 81
 From this checkout, using the benchmark Python environment and the saved open-sky fixtures, source masks/counts, and dense atlas chart handoffs on this PC:
 
 ```powershell
-python -m benchmark.floating_build_local_run ../../minecraft-image-reconstruction/runs/floating-build-grid-01/fixtures.json --sky-handoffs-only
+python -m benchmark.floating_build_local_run ../../minecraft-image-reconstruction/runs/floating-build-grid-01/fixtures.json --sky-handoffs-only --include-decorative
 python -m benchmark.shared_corner_rows
 python -m benchmark.native_surface_counter
 python -m benchmark.native_corner_registration
@@ -73,4 +73,4 @@ The `experiment/floating-build-floor-bypass` worktree remains a historical diagn
 
 Prioritize a second building with a visible corner that the assembler failed to join, a normal-looking crop where straightening breaks the texture rows, and a similar-looking wall where the current counter is already right. Note the surface IDs, the edge or rows you followed, and whether the two surfaces share the full height or only part of it. Mark a block count only when you can actually see it. Cloud examples from real skies, especially beside pale blocks, would extend the synthetic-sky check. Keep development annotations separate from a fresh held-out building used to judge promotion.
 
-The capture-manifest runner selects the [combined Floating dataset's 240 active views](../training/FLOATING_DATASETS.md) by default. Request the fixed sky fixtures explicitly for their paired sky comparison. Orchid is retired from Floating runs, including when replaying other layouts with `--historical-cohort`.
+The capture-manifest runner selects the [200 Visible Builds views in Floating Combined V1](../training/FLOATING_DATASETS.md) by default. Set `--include-decorative` for an explicit Decorative Builds V1 test. Request the fixed sky fixtures explicitly for their paired sky comparison. Orchid is retired from Floating runs, including when replaying other layouts with `--historical-cohort`.
