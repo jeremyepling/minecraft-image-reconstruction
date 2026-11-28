@@ -1,5 +1,7 @@
 # Reconstruction adjustments and lessons for training
 
+- **2026-11-28, visible return lines before grid fitting.** On five native masks the only added cut was on Viaduct. Both source rules recovered the existing 51 of 2,161 parallel same-material transitions. The lone cut changed the local atlas fit and left every decoded site unchanged. Keep experimental. [Source evidence and paired replay](benchmark/reviews/floating-pregrid-visible-returns-01/README.md)
+
 - **2026-11-28, source partitions and regional block rulers.** The Stable Yard low-left roof produced 21 distinct cut-sandstone cells from separated image patches but remained disconnected from the exported assembly. Over 84 conditions the partial refit lost three correct positions and removed 371 net extras. Keep the corrected local handoff and leave the broad export experimental. [Source regions and decoded evidence](benchmark/reviews/floating-mixed-wall-refit-01/README.md)
 
 
