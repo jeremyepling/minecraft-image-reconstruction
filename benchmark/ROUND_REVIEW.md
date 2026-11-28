@@ -8,6 +8,8 @@ When Jeremy asks to run or continue experiments, start a 30-minute window at the
 
 At 30 minutes, finish scoring, checking and recording any experiment already under way. If between experiments, close the round at that point. Report the results and candidate dispositions before starting another. An explicit stop or request to defer overrides the loop immediately. Questions about existing results and requests to change the process use their own scope.
 
+Keep a results link for every experiment as it finishes. In the closing report, give each comparison its own link, measured outcome and disposition, including null results, regressions and superseded candidates. Use the mobile scorecard when available and link the saved report or receipt otherwise. For anything carried forward, say what changed, which later challenger received it, and whether that combination was tested. For a baseline promotion, name the method, branch and landed revision. When the baseline is retained, name it explicitly.
+
 ## Review the experiment log
 
 Before selecting the next experiment, check [the reconstruction adjustment log](../MODEL_CHANGELOG.md) and the [current Floating baseline](FLOATING_BRANCH.md). Look for prior tests of the same handoff and evidence that would justify reopening a retired approach. Read the linked receipts only as needed. At the end of the round, record material gains, regressions and informative nulls in a dated log entry with the baseline and candidate, cohort, changed handoff, measured effect, disposition, and next discriminating test. Link the detailed report or code revision. Keep reference-assisted effects distinct from measured source-only improvements.
