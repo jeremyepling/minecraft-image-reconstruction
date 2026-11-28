@@ -11,7 +11,7 @@ from benchmark.full_block_lattice import atlas
 from engine.atlas_count import _shortlist
 
 
-def search(chart,ratios,mask,rgb):
+def search(chart,ratios,mask,rgb,chooser=None):
     old=np.asarray(chart["H"])
     xy=np.column_stack(np.nonzero(mask)[::-1])+.5
     split=np.quantile(xy[:,0],[.4,.6])
@@ -70,7 +70,12 @@ def search(chart,ratios,mask,rgb):
                 response[max(0,y-ht//2):y+ht//2+1,max(0,x-width//2):x+width//2+1]=-2
     if not offers:
         return None,dict(accepted=False,reason="no complete candidate window")
-    score,match,winner,pitches,start,proof=max(offers,key=lambda s:(s[5]["ok"],s[0]))
+    if chooser is None:
+        pick=max(offers,key=lambda s:(s[5]["ok"],s[0]))
+        selection={}
+    else:
+        pick,selection=chooser(offers,mask,rgb,split)
+    score,match,winner,pitches,start,proof=pick
     far=texture(winner,mask,rgb,split)[1]
     atlas_hits=[int(proof["ok"]),sum(s["ok"] for s in far)]
     prof=profiles(h,mask,rgb,split)
@@ -81,7 +86,7 @@ def search(chart,ratios,mask,rgb):
     if not all(a["validation"]>=.06 and a["margin"]>=.015 for a in tests):
         failures.append("distant two-axis and harmonic challenge")
     return winner,dict(accepted=not failures,failures=failures,atlas_hits=atlas_hits,axes=tests,
-                       proposal_count=len(offers),near_verified=sum(s[5]["ok"] for s in offers),
+                       proposal_count=len(offers),near_verified=sum(s[5]["ok"] for s in offers),selection=selection,
                        highest_template_match=match,near=proof,far=far,perspective=1.,homography=winner.tolist())
 
 
