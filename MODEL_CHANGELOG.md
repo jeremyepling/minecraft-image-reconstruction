@@ -1,5 +1,7 @@
 # Reconstruction adjustments and lessons for training
 
+- **2026-11-27, fitting an upper row to the visible material seam.** On Twinspire, the predicted brick-to-sandstone edge moved from 12 pixels to 1 pixel from the frontmost visible boundary. The exported component omits that wall. Across 84 active conditions the fit lost five correct placements and removed seven extras. Keep the rule experimental. [Native measurements and decoded replays](benchmark/reviews/floating-majority-edge/README.md)
+
 - **2026-11-27, parallel visible walls.** 284 of 1,824 proposals on the active floating panel mix substantive parallel planes. A source depth offset test gained 132 correct positions and removed 127 extras. A Twinspire top row improved local coverage but the exported component omitted that wall. Retain experimental reconstruction and review coverage, alignment, and sizing independently. [Paired grids and signoff](benchmark/reviews/floating-parts-feedback-02/README.md)
 
 - **2026-11-27, floating wall feedback experiments.** Reference faces confirmed undersized grids on Riverside, Sawtooth and Chapel. Atlas scale and smooth-wall fallbacks failed to improve placement on the 81 other-layout conditions. A perfect chooser among seven existing exports reached 33.81% from 32.13% on all 92. Keep rules experimental and test local grids on separately measured wall patches. [Scores, stage controls and annotatable examples](benchmark/reviews/floating-wall-feedback-01/README.md)
