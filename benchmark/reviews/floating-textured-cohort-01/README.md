@@ -45,7 +45,7 @@ Compared on those same conditions, the large-contraction rule gains 1.28 strict 
 
 ## Floating branch scorecard
 
-Integration revision `7033891` carries forward the connected-atlas default on all six eligible fixed sky composites. The six exports were decoded again for this report. The candidate rows use the same six source images and frozen scoring rule. Production fixed 104 carries forward separately at 91.27% strict and 93.42% facade with 20,773 correct, 2,929 missed, and 1,046 extras.
+The connected-atlas result measured at `7033891` carries forward at integration revision `baaa572` on all six eligible fixed sky composites. The six exports were decoded again for this report. The candidate rows use the same six source images and frozen scoring rule. Production fixed 104 carries forward separately at 91.27% strict and 93.42% facade with 20,773 correct, 2,929 missed, and 1,046 extras.
 
 | Method on the six sky conditions | Strict F1 | Facade F1 | Position + ID F1 | Facade + ID F1 | Correct / missed / extra |
 |---|---:|---:|---:|---:|---:|
@@ -54,4 +54,4 @@ Integration revision `7033891` carries forward the connected-atlas default on al
 | Unrestricted full-face ruler | 27.45% | 27.68% | 5.97% | 5.99% | 888 / 3,153 / 1,542 |
 | Large-contraction rule | 27.50% | 27.73% | 5.96% | 5.99% | 890 / 3,151 / 1,542 |
 
-The contraction rule places 617 more correct blocks and 1,537 more extras than integration on the six sky views. No reconstruction behavior was promoted by the cohort experiment. Land the cohort policy on floating integration and keep the branch separate from production `main`.
+The contraction rule places 617 more correct blocks and 1,537 more extras than integration on the six sky views. The active cohort policy and loader landed on floating integration. The ruler methods remain experimental. Keep this floating dataset policy and its comparisons separate from production `main`.
