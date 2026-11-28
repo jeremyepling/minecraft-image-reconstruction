@@ -1,0 +1,213 @@
+{
+  "stage_report_sha256": "a2952da75f4ab925c3beeb88a1ddee8b95cee6f60b935acf3aaf9c4da350f5f0",
+  "comparison_sha256": "3e7cf218747195f0733bf2755b0438b98d8806a580f46e37c8eaab525c44efd7",
+  "cases": [
+    {
+      "id": "train-arcade1-cool-high-right",
+      "source_sha256": "695a2884d3f7aa5906696f990116c4e9bf404c89db469164c12c5513db04e1fb",
+      "reference_sha256": {
+        "camera.json": "b3bdf18c844b15c5ebd5073324ac50da8c7b41fac77a5d0bfbb12007f952c050",
+        "labels.json": "5986412590242a7ba836309361db8b5412cbda141477dc04cd9c1991a6a19e34",
+        "labels.npz": "2e9c0932a475e445d00be26318940db74957c175db4b95a10eb8bdcf419e0ce6"
+      },
+      "baseline": {
+        "yaw_quarters": 3,
+        "translation": [
+          268,
+          66,
+          -2
+        ],
+        "pack_sha256": "1f6636780e6fd5476ebb598e404f3f8d0ecffa9741477fb86a670cfed63011ff"
+      },
+      "candidate": {
+        "yaw_quarters": 3,
+        "translation": [
+          256,
+          70,
+          3
+        ],
+        "pack_sha256": "a950c85639326b175595afe964eea1a2ce88dc159058e8002f9e6b12796431ab"
+      },
+      "paired": {
+        "gain": 154,
+        "loss": 28,
+        "add": 0,
+        "remove": 0,
+        "exact_gain": 153,
+        "exact_loss": 24
+      },
+      "component": {
+        "surface_sha256": "ee04b7b37d3e146ef4360969734664d578b7e55f3b58f1c81c5d5e5bae96f7e6",
+        "pixels": 17360,
+        "dropped": [
+          "mask-2"
+        ],
+        "added": [
+          "horizontal-mask-0",
+          "mask-1",
+          "mask-4"
+        ]
+      },
+      "native_pixels": {
+        "gained": 73925,
+        "lost": 22403
+      },
+      "reasons": [
+        "Disjoint component selection"
+      ],
+      "cohort": "Visible Builds",
+      "panel": null,
+      "folder": "visible/original/train-arcade1-cool-high-right"
+    },
+    {
+      "id": "train-terrace1-cool-high-right",
+      "source_sha256": "1f4db47d8a0aac3edbf6ee54dc3ac6e89159105aa864635063b46c58e39c0f5c",
+      "reference_sha256": {
+        "camera.json": "f1e00b48c2cc895b5bf1b8baa794d97c4bf3c6386d58ec5ae353623421bee586",
+        "labels.json": "efdfffc7bd68d47677d97c4c5702ffe5c025e0d24ae0d19f0113e741d1682e3c",
+        "labels.npz": "9cb2f2e78468d05c8ed8a13d3ee6beaa6fc98681eb71cc7b14ed9c41bb4052c5"
+      },
+      "baseline": {
+        "yaw_quarters": 0,
+        "translation": [
+          4868,
+          69,
+          0
+        ],
+        "pack_sha256": "2a8a2a3ec13f418e13c00505b85ca7167a133ea1f72dbdc5c518d67b6ff1c371"
+      },
+      "candidate": {
+        "yaw_quarters": 0,
+        "translation": [
+          4873,
+          66,
+          2
+        ],
+        "pack_sha256": "3f811aeb43fa1df1e4a9e02143bc0afc6159ff1f6abaa3d43abba78628700b84"
+      },
+      "paired": {
+        "gain": 42,
+        "loss": 27,
+        "add": 0,
+        "remove": 0,
+        "exact_gain": 42,
+        "exact_loss": 20
+      },
+      "component": {
+        "surface_sha256": "064dd033ea99e8d9d606aca2a34138c65017a1d59ddb12c1b77aa2812ec5f5a5",
+        "pixels": 43012,
+        "dropped": [
+          "mask-1"
+        ],
+        "added": [
+          "horizontal-mask-6",
+          "mask-0",
+          "mask-11",
+          "mask-9"
+        ]
+      },
+      "native_pixels": {
+        "gained": 79981,
+        "lost": 48740
+      },
+      "reasons": [
+        "Disjoint component selection"
+      ],
+      "cohort": "Visible Builds",
+      "panel": null,
+      "folder": "visible/original/train-terrace1-cool-high-right"
+    },
+    {
+      "id": "train-sawtooth3-earth-high-right",
+      "source_sha256": "3591bca86b184ad5b4a09ad94cbecf279600b2e64edd3f2b5e08a81e369854ee",
+      "reference_sha256": {
+        "camera.json": "5114301d025cac476db5cdb69ee834227624096c7ec12a713f036d0024f8013c",
+        "labels.json": "039b9a107a2ce4f6d3f48b56ee44d10721aaec7da16c9f0cb8f7bc6e4fba61a3",
+        "labels.npz": "55ce38e78a7e3f141c0c65f964792d929bcea482758c66f957d9dc36ddf14e9c"
+      },
+      "baseline": {
+        "yaw_quarters": 0,
+        "translation": [
+          4111,
+          67,
+          1
+        ],
+        "pack_sha256": "11dd1266cd56744c184ed615adfea1939e65d1aa9fd1ba1136b42c10d8199b5e"
+      },
+      "candidate": {
+        "yaw_quarters": 3,
+        "translation": [
+          4112,
+          67,
+          0
+        ],
+        "pack_sha256": "e7edd20445eceb305c2462bc7d971f04cb9a5ed608029fed9c75d257a1440d1a"
+      },
+      "paired": {
+        "gain": 61,
+        "loss": 31,
+        "add": 0,
+        "remove": 8,
+        "exact_gain": 60,
+        "exact_loss": 9
+      },
+      "component": null,
+      "native_pixels": {
+        "gained": 29321,
+        "lost": 28128
+      },
+      "reasons": [
+        "Most previously correct positions lost"
+      ],
+      "cohort": "Visible Builds",
+      "panel": null,
+      "folder": "visible/original/train-sawtooth3-earth-high-right"
+    },
+    {
+      "id": "train-arcade3-cool-high-right",
+      "source_sha256": "fee596eb65ce299528e2c713f15ef89c924cb7311552c5141f19b11563ba6c34",
+      "reference_sha256": {
+        "camera.json": "2ed083b7b262890f19f821626923339e9bbada25c93001884d14b40d90305aad",
+        "labels.json": "2a6d5128f0e58f763a3172b0d0340587d5f440225e61bade7769a82aff9f687f",
+        "labels.npz": "1afa9cd18913e590696be172893a4ce37e3c1a2b9f4a71a153daf470ffb2431a"
+      },
+      "baseline": {
+        "yaw_quarters": 0,
+        "translation": [
+          1284,
+          72,
+          2
+        ],
+        "pack_sha256": "a54259392db4f1ece10f20af0be7b53d6fc994828dab775e5bd4edeb13dae837"
+      },
+      "candidate": {
+        "yaw_quarters": 0,
+        "translation": [
+          1285,
+          72,
+          4
+        ],
+        "pack_sha256": "99189cf26724d1be117a554c66c31b3983a2cab4c55a91bece31ea91889dd1ac"
+      },
+      "paired": {
+        "gain": 218,
+        "loss": 15,
+        "add": 2,
+        "remove": 1,
+        "exact_gain": 63,
+        "exact_loss": 12
+      },
+      "component": null,
+      "native_pixels": {
+        "gained": 34715,
+        "lost": 7750
+      },
+      "reasons": [
+        "Most new correct positions"
+      ],
+      "cohort": "Visible Builds",
+      "panel": null,
+      "folder": "visible/original/train-arcade3-cool-high-right"
+    }
+  ]
+}
