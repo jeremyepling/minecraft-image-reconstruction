@@ -14,7 +14,7 @@ const metrics = [
   ['material_strict', 'Strict + ID', 'Strict position + ID F1'],
   ['material_facade', 'Facade + ID', 'Facade position + ID F1'],
 ];
-const topics = ['Coverage', 'Alignment', 'Block size', 'Depth or join', 'Material', 'Looks right'];
+const topics = ['Covers more visible area', 'Missing visible area', 'Alignment is off', 'Block scale is wrong', 'Depth or join', 'Material', 'Looks right'];
 let toastTimeout;
 
 function el(tag, text, parent, className) {
@@ -71,7 +71,114 @@ function row(table, name, values) {
   return th;
 }
 
+function evidenceLink(action, id) {
+  const base = link('review');
+  const key = action ? (base.includes('?') ? '&' : '?') + 'action=' + encodeURIComponent(action.id) : '';
+  return base + key + '#' + encodeURIComponent(id);
+}
+
+function decisionCard(parent, action, run) {
+  const card = el('article', '', parent, 'decision-card');
+  el('p', action.stage + ' · ' + action.basis, card, 'eyebrow');
+  el('h3', action.title, card);
+  el('p', action.evidence, card);
+  el('p', action.hypothesis, card, 'caption');
+  el('strong', 'Next test', card);
+  el('p', action.test, card);
+  if (action.question && action.disposition === 'question') {
+    if (action.title !== action.question.prompt) el('p', action.question.prompt, card);
+    el('p', action.question.cue, card, 'caption');
+  }
+  for (const id of action.caseIds) {
+    const item = run.cases.find(row => row.id === id);
+    if (item) el('a', item.title, card).href = evidenceLink(action, id);
+  }
+}
+
+function decisions(run, target, reviewPage) {
+  if (!run.analysis) return;
+  target.hidden = false;
+  const actions = run.analysis.actions;
+  if (!reviewPage) {
+    el('h2', 'Ranked next tests', target);
+    if (actions.length) decisionCard(target, actions[0], run);
+    if (actions.length > 1) {
+      const rest = el('details', '', target);
+      el('summary', 'Other ranked tests (' + (actions.length - 1) + ')', rest);
+      for (const action of actions.slice(1)) decisionCard(rest, action, run);
+    }
+    if (!actions.length) el('p', 'No next test identified for this comparison.', target);
+    return;
+  }
+  const human = actions.filter(a => a.disposition === 'question' && !['answered', 'tested'].includes(a.status));
+  el('h2', 'Questions for you', target);
+  if (!human.length) el('p', 'No human decision is pending for this comparison.', target);
+  for (const action of human) decisionCard(target, action, run);
+  const metrics = run.analysis.questionMetrics;
+  if (metrics && (metrics.answered || metrics.tested || metrics.proposed > human.length)) {
+    const history = el('details', '', target);
+    el('summary', 'Question history', history);
+    el('p', metrics.presented + ' shown · ' + metrics.pending + ' pending · ' +
+      metrics.answered + ' answered · ' + metrics.tested + ' tested · ' + metrics.measuredEffects + ' measured outcomes', history);
+    for (const [type, values] of Object.entries(metrics.byType)) {
+      el('p', type + ' · ' + values.changedExperiment + ' changed the experiment out of ' + values.tested + ' tested', history);
+    }
+    for (const outcome of run.analysis.outcomes) el('p', outcome.actionId + ' · ' + outcome.status, history, 'caption');
+  }
+  const handled = actions.filter(action => !human.includes(action));
+  if (handled.length) {
+    const details = el('details', '', target);
+    el('summary', 'First-pass findings and follow-up tests (' + handled.length + ')', details);
+    for (const action of handled) decisionCard(details, action, run);
+  }
+  if (run.cases.length) {
+    const details = el('details', '', target);
+    el('summary', 'Browse saved image evidence (' + run.cases.length + ')', details);
+    for (const item of run.cases) el('a', item.title, details).href = evidenceLink(null, item.id);
+  }
+}
+
+function diagnosticSummary(run) {
+  if (!run.analysis) return;
+  const section = app.querySelector('#diagnostics');
+  section.hidden = false;
+  el('h2', 'Diagnostic coverage', section);
+  for (const group of run.analysis.diagnosticGroups) {
+    const details = el('details', '', section);
+    el('summary', group.cohort + ' · ' + group.tested + ' tested', details);
+    el('p', 'Replay anchor · ' + group.anchor, details, 'caption');
+    for (const item of group.rows) {
+      el('p', item.stage + ' · ' + item.category + ' · ' + points(item.delta.geometry_strict) + ' strict', details);
+    }
+  }
+  const pilot = run.analysis.chooserPilot;
+  if (pilot) {
+    const details = el('details', '', section);
+    const pack = pilot.exportChooser;
+    const grids = pilot.reviewedGrids;
+    el('summary', 'Chooser pilot · ' + pack.tested + ' paired exports', details);
+    const before = pack.before.geometry_strict;
+    const after = pack.after.geometry_strict;
+    el('p', pack.switches + ' switches among the measured exports · ' +
+      points(after.f1 - before.f1) + ' strict · ' + fmt(after.correct - before.correct) +
+      ' additional correct positions · ' + fmt(after.extras - before.extras) + ' change in extras.', details);
+    el('p', pack.criterion, details, 'caption');
+    const splits = Object.entries(grids.splits).map(([split, count]) => count + ' ' + split).join(', ');
+    el('p', grids.multipleGridLayers + ' of ' + grids.parents + ' reviewed surfaces have multiple saved grid layers across ' +
+      grids.views + ' views' + (splits ? ' (' + splits + ').' : '.'), details);
+    for (const [split, heading] of Object.entries(pilot.headingBySplit)) {
+      el('p', 'Heading chooser · ' + split + ' · ' + heading.views + ' views · ' + heading.unresolved +
+        ' unresolved · ' + fmt(heading.correctGain) + ' additional correct positions.', details, 'caption');
+    }
+    for (const gap of pilot.missing) el('p', gap, details, 'caption');
+  }
+  const missing = run.analysis.diagnosticsMissing;
+  if (missing.length) el('p', 'Unmeasured stages · ' + missing.join(', '), section, 'caption');
+}
+
 function scores(run) {
+  decisions(run, app.querySelector('#priorities'), false);
+  diagnosticSummary(run);
   field('scope', 'Floating comparison');
   field('title', run.title);
   field('cohort', `${run.cohort} · ${run.views}/${run.available ?? run.views} views`);
@@ -131,6 +238,43 @@ function scores(run) {
   draw();
 }
 
+function surfaceTrace(container, surface, evidence) {
+  container.replaceChildren();
+  for (const [arm, record] of Object.entries(surface.exports || {})) {
+    const label = el('details', '', container);
+    const cells = record.cells || [];
+    const overlaps = record.overlaps || [];
+    el('summary', arm + ' · ' + fmt(cells.length) + ' owned cells · ' + fmt(overlaps.length) + ' lost writes', label);
+    el('p', 'Selected charts · ' + ((record.selectedCharts || []).join(', ') || 'none'), label);
+    for (const lost of overlaps) {
+      el('p', lost.xyz.join(', ') + ' · ' + lost.chart + ' (' + lost.block + ') lost ownership to ' +
+        lost.winnerChart + ' (' + lost.winnerBlock + ')', label, 'caption');
+    }
+    if (cells.length) {
+      const owned = el('details', '', label);
+      el('summary', 'Decoded coordinates and block IDs', owned);
+      owned.addEventListener('toggle', () => {
+        if (!owned.open || owned.children.length > 1) return;
+        for (const cell of cells) el('p', cell.xyz.join(', ') + ' · ' + cell.block + ' · ' + cell.chart +
+          (cell.fallback ? ' · fallback material' : ''), owned, 'caption');
+      });
+    }
+  }
+  for (const decision of surface.decisions || []) {
+    const details = el('details', '', container);
+    const receipt = decision.detail;
+    const charts = receipt?.chart_ids || [];
+    el('summary', [decision.arm, decision.kind, ...charts].join(' · '), details);
+    if (typeof receipt === 'string') {
+      el('p', receipt, details);
+    } else if (receipt) {
+      const {image_edges, ...fields} = receipt;
+      el('pre', JSON.stringify(fields, null, 2), details);
+    }
+  }
+  for (const gap of evidence.gaps || []) el('p', gap.stage + ' · ' + gap.reason, container, 'caption');
+}
+
 function surfaceReview(find, changed) {
   const button = find('surface-mode');
   const controls = find('surface-controls');
@@ -167,6 +311,18 @@ function surfaceReview(find, changed) {
       context.strokeStyle = '#78eeff';
       context.stroke(grid);
     }
+    if (layer.cells) {
+      const owned = new Path2D();
+      for (const cell of layer.cells) {
+        if (!cell.quad?.length) continue;
+        owned.moveTo(...cell.quad[0]);
+        for (const point of cell.quad.slice(1)) owned.lineTo(...point);
+        owned.closePath();
+      }
+      context.strokeStyle = '#78eeff';
+      context.lineWidth = 2.5;
+      context.stroke(owned);
+    }
     canvas.hidden = false;
   }
 
@@ -184,6 +340,10 @@ function surfaceReview(find, changed) {
       const blocks = count.blocks?.map(value => value ?? '?').join(' × ');
       detail.push(blocks && count.blocks.some(value => value !== null) ? `Block Counter: ${blocks}.` : 'Block Counter found no dimensions.');
     }
+    if (part?.fitEvidence) {
+      for (const [kind, fit] of Object.entries(part.fitEvidence)) detail.push(kind + ' · ' + fit.reason + '.');
+    }
+    if (layer.cells) detail.push(fmt(layer.cells.length) + ' owned exported cells.');
     if (layer.path) detail.push(`${fmt(layer.cellCount)} grid cells · ${layer.stages.join(' · ')}.`);
     if (layer.status?.length) detail.push(layer.status.join(' · '));
     if (!surface.layers.length) detail.push('No grid overlay was saved for this surface.');
@@ -203,6 +363,11 @@ function surfaceReview(find, changed) {
     for (const grid of surface.layers) choices.push({
       ...grid, label: grid.part ? `${grid.label} · region ${grid.part.split('~p')[1]}` : grid.label,
     });
+    for (const [arm, exported] of Object.entries(surface.exports || {})) {
+      choices.push({kind: 'export', label: arm + ' · exported cells', cells: exported.cells || []});
+    }
+    find('surface-trace').hidden = data.schema !== 2;
+    if (data.schema === 2) surfaceTrace(find('trace-body'), surface, data);
     layers.replaceChildren(...choices.map(({label}, option) => new Option(label, option)));
     selectLayer(0);
   }
@@ -274,6 +439,13 @@ function review(run) {
   catch { persistent = false; }
   const find = id => app.querySelector(`#${id}`);
   const {cases} = run;
+  decisions(run, find('review-queue'), true);
+  const inspector = find('case-inspector');
+  if (!cases.length) {
+    inspector.hidden = true;
+    if (!run.analysis) el('p', 'This run has no images queued for review.', app);
+    return;
+  }
   const picker = find('case-picker');
   const textarea = find('note');
   const image = find('evidence');
@@ -296,14 +468,21 @@ function review(run) {
     markLocation();
   });
   const currentSurface = () => surfaceUI.selection()?.surface;
-  const noteKey = () => currentSurface() ? `${active().id}/${currentSurface().id}` : active().id;
+  const chosenAction = () => run.analysis?.actions.find(a => a.id === query.get('action') && a.caseIds.includes(active().id));
+  const question = () => chosenAction()?.disposition === 'question' ? chosenAction().question : null;
+  const noteKey = () => {
+    const base = currentSurface() ? active().id + '/' + encodeURIComponent(currentSurface().id) : active().id;
+    return question() ? base + '@' + encodeURIComponent(question().id) : base;
+  };
   const note = () => notes[noteKey()] ??= {text: '', tags: [], spot: null, imageView: 'changes'};
-  const annotated = value => value.text.trim() || value.tags.length || value.spot;
+  const annotated = value => value.text.trim() || value.tags.length || value.spot || value.preference || value.answer;
   const feedback = () => Object.entries(notes).filter(([, value]) => annotated(value)).flatMap(([key, value]) => {
-    const [caseId, surfaceId] = key.split('/');
+    const [identity] = key.split('@');
+    const [caseId, encodedSurface] = identity.split('/');
+    const surfaceId = encodedSurface && decodeURIComponent(encodedSurface);
     const item = cases.find(record => record.id === caseId);
     if (!item) return [];
-    return [{caseId, title: item.title, stage: surfaceId ? 'Surface masks and grids' : item.stage,
+    return [{caseId, sourceSha256: item.sourceSha256, title: item.title, stage: surfaceId ? 'Surface masks and grids' : item.stage,
       ...(surfaceId && {surfaceId}), ...value}];
   });
 
@@ -316,6 +495,8 @@ function review(run) {
   }
 
   function save() {
+    if (question()) Object.assign(note(), {actionId: chosenAction().id, questionType: question().type});
+    note().updatedAt = new Date().toISOString();
     try { localStorage.setItem(storageKey, JSON.stringify(notes)); }
     catch { persistent = false; }
     noteState();
@@ -351,6 +532,10 @@ function review(run) {
     }
     const {layer, surface} = selection;
     const region = layer.part && surface.parts[layer.part];
+    if (layer.kind === 'export') {
+      find('image-caption').textContent = 'Cyan outlines show owned exported cells with saved image coordinates.';
+      return;
+    }
     find('image-caption').textContent = layer.path ? (region ? 'Cyan attempted grid · highlighted depth region' :
       'Cyan attempted grid · pale green surface outline') :
       layer.kind === 'gold' ? 'Gold recorded visible face boundaries' : 'Highlighted support in the source image';
@@ -372,6 +557,14 @@ function review(run) {
         firstPass = 'Check the edges for missed visible pixels, neighboring faces and openings.';
       }
     }
+    const action = chosenAction();
+    if (action) {
+      prompt = question()?.prompt || action.title;
+      firstPass = [action.evidence, action.hypothesis, question()?.cue, 'Next test · ' + action.test].filter(Boolean).join(' ');
+    } else if (run.analysis) {
+      prompt = 'Image evidence';
+      firstPass = active().stage;
+    }
     field('prompt', prompt);
     field('hypothesis', firstPass);
   }
@@ -390,7 +583,7 @@ function review(run) {
   }
 
   function markLocation() {
-    history.replaceState(null, '', `#${active().id}${currentSurface() ? '/' + currentSurface().id : ''}`);
+    history.replaceState(null, '', `#${active().id}${currentSurface() ? '/' + encodeURIComponent(currentSurface().id) : ''}`);
   }
 
   function recordContext() {
@@ -436,7 +629,7 @@ function review(run) {
   function loadNote() {
     showPin();
     find('tags').replaceChildren();
-    for (const topic of topics) {
+    for (const topic of new Set([...topics, ...note().tags])) {
       const button = el('button', topic, find('tags'));
       button.type = 'button';
       button.setAttribute('aria-pressed', String(note().tags.includes(topic)));
@@ -449,6 +642,19 @@ function review(run) {
         save();
       };
     }
+    const choices = find('question-choices');
+    choices.replaceChildren();
+    if (question()) {
+      const selected = question();
+      toggle(choices, selected.choices.map(c => [c.answer, c.answer]), note().answer, answer => {
+        Object.assign(note(), {actionId: chosenAction().id, questionType: selected.type, answer});
+        recordContext();
+        save();
+      });
+    }
+    const preference = find('arm-preference');
+    preference.value = note().preference || '';
+    preference.onchange = () => { note().preference = preference.value; recordContext(); save(); };
     textarea.value = note().text;
     noteState();
   }
@@ -461,7 +667,7 @@ function review(run) {
   async function copy() {
     const text = feedback().map(item => {
       const context = [item.title, item.stage, item.surfaceId, item.gridAttempt].filter(Boolean).join(' · ');
-      const parts = [`${context} [${item.caseId}]`, ...item.tags];
+      const parts = [`${context} [${item.caseId}]`, item.answer, item.preference && ('Preference · ' + item.preference), ...item.tags].filter(Boolean);
       if (item.spot) parts.push(`At ${Math.round(item.spot.x * 100)}% across, ${Math.round(item.spot.y * 100)}% down (${item.spot.mode})`);
       if (item.text) parts.push(item.text);
       return parts.join('\n');
@@ -469,7 +675,7 @@ function review(run) {
     try {
       await navigator.clipboard.writeText(`Floating review · ${run.id}\n\n${text}`);
       notify('Copied. Paste the notes into this chat.');
-    } catch { notify('Clipboard unavailable. Tap Share to export.'); }
+    } catch { notify('Clipboard unavailable. Tap Export notes to save the file.'); }
   }
 
   async function share() {
@@ -508,8 +714,12 @@ function review(run) {
     save();
   };
   function fromHash() {
-    const [caseId, surfaceId] = location.hash.slice(1).split('/');
-    showCase(Math.max(0, cases.findIndex(item => item.id === caseId)), surfaceId);
+    const [caseId, encodedSurface] = location.hash.slice(1).split('/');
+    let surfaceId;
+    try { surfaceId = encodedSurface && decodeURIComponent(encodedSurface); } catch { surfaceId = null; }
+    const selected = cases.findIndex(item => item.id === caseId);
+    inspector.hidden = Boolean(run.analysis && selected < 0);
+    if (!inspector.hidden) showCase(Math.max(0, selected), surfaceId);
   }
   window.addEventListener('hashchange', fromHash);
   fromHash();
@@ -530,8 +740,7 @@ async function main() {
   document.title = `${view === 'scores' ? 'Scores' : 'Image review'} · ${run.title} · Floating`;
   app.replaceChildren(document.querySelector(`#${view}-view`).content.cloneNode(true));
   app.setAttribute('aria-busy', 'false');
-  if (view === 'review' && !run.cases.length) app.replaceChildren(el('p', 'This run has no images queued for review.'));
-  else if (view === 'review') review(run);
+  if (view === 'review') review(run);
   else scores(run);
 }
 

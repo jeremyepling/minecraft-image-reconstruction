@@ -23,6 +23,7 @@
       <h1 data-field="title"></h1>
       <p class="muted" data-field="cohort"></p>
     </section>
+    <section id="priorities" class="panel" hidden></section>
     <section class="score-panel panel" aria-label="Source-only scores">
       <header class="panel-head"><h2>Placement</h2><span class="pill" data-field="placementDelta"></span></header>
       <div class="table-wrap"><table id="scores"></table></div>
@@ -36,10 +37,13 @@
       <div class="seg chart-switch" id="metric-switch" aria-label="Score metric"></div>
       <div id="perfect" class="perfect-rows"></div>
     </section>
+    <section id="diagnostics" class="panel" hidden></section>
     <details class="panel" id="stage-details"><summary>Pipeline handoffs</summary><div class="table-wrap"><table id="stages"></table></div></details>
     <p class="caption" data-field="datasetNote"></p>
   </template>
   <template id="review-view">
+    <section id="review-queue" class="panel" hidden></section>
+    <div id="case-inspector">
     <section class="intro review-intro">
       <div>
         <p class="eyebrow" data-field="progress"></p>
@@ -61,6 +65,7 @@
           <button type="button" id="next-surface" aria-label="Next surface">›</button>
           <select id="surface-layer" aria-label="Mask or attempted grid"></select>
         </div>
+        <details id="surface-trace" hidden><summary>Assembly and export receipts</summary><div id="trace-body"></div></details>
         <p id="surface-receipt" class="caption" aria-live="polite"></p>
       </div>
       <div id="viewport" aria-label="Scrollable image when zoomed">
@@ -77,6 +82,9 @@
       <p class="eyebrow">What to look at</p>
       <h2 data-field="prompt"></h2>
       <p class="caption" data-field="hypothesis"></p>
+      <div id="question-choices" class="chips" aria-label="Answer choices"></div>
+      <label for="arm-preference">Preferred result</label>
+      <select id="arm-preference"><option value="">No preference recorded</option><option value="A">A · Baseline</option><option value="B">B · Candidate</option><option value="neither">Neither</option><option value="uncertain">Unsure</option></select>
       <div class="chips" id="tags" aria-label="Feedback topics"></div>
       <label for="note">Your note <span class="caption">· use the keyboard mic to dictate</span></label>
       <textarea id="note" rows="3" placeholder="Point out what should line up and what you would try."></textarea>
@@ -85,9 +93,10 @@
     <footer class="review-footer">
       <button type="button" id="prev">← Prev</button>
       <button type="button" id="copy">Copy notes</button>
-      <button type="button" id="save-json" aria-label="Share or download JSON notes">Share</button>
+      <button type="button" id="save-json" aria-label="Share or download JSON notes">Export notes</button>
       <button type="button" class="primary" id="next">Next →</button>
     </footer>
+    </div>
   </template>
 </body>
 </html>
