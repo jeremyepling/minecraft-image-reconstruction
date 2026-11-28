@@ -8,6 +8,8 @@ Ordinary assembly grew the second-largest Twinspire component from 65 to 70 bloc
 
 The experiment branches from 1442344. Reproduce with the saved manifests and chart folders by running `../mask-scalelsd/runs/env/Scripts/python.exe -m benchmark.floating_occlusion_fragments`. Per-case source and chart hashes, native ownership and paired decoded export scores are in [paired.json.gz](paired.json.gz).
 
+![Source, accepted grid cells, and native frontmost brick edges and witness pixels](twinspire-fragments.png)
+ 
 ## Floating branch scorecard
 
 Six fixed open-sky images, comprising four Visible Builds v3 and two Decorative Builds v1 cases. The integration default at 9963dee carries forward its existing measurements. The other two rows are paired on these same six views.
