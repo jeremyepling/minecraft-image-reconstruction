@@ -1,6 +1,6 @@
 # Floor-free wall depth verification
 
-Keep this experimental. First-hit reprojection kept every incumbent export, including with the recorded projection. The perfect chooser recovered 37 net correct positions across 18 conditions. Neither depth model recovered that gain on the held-out buildings. No reconstruction behavior changed on Floating integration or production `main`.
+**Retired from active Floating work.** Use pink depth separation before fitting grids for future Floating depth experiments. This page preserves the completed fixed-grid comparison. First-hit reprojection kept every incumbent export, including with the recorded projection. The perfect chooser recovered 37 net correct positions across 18 conditions. Neither depth model recovered that gain on the held-out buildings.
 
 ## The pink split and this test change different handoffs
 
