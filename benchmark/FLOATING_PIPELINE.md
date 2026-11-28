@@ -65,3 +65,7 @@ python -m benchmark.floating_visual_review runs/perfect-stage-report/report.json
 ```
 
 Use `--shard` with an archived frame ZIP instead of the extracted frame root. Decorative review is opt-in with `--decorative` and also needs its own scored inputs.
+
+## Resume the archived V1 benchmark
+
+Use the optional [verified checkpoint replay](reviews/floating-selective-replay-01/README.md) to rerun the original V1 comparison. The runner reuses verified upstream results and reruns the first affected stage and its consumers. For a reporting-only edit, regenerate the report directly from saved receipts. The checkpoint adapter currently targets the original 144-view V1 replay. Floating Combined V1 continues to use its existing evaluation entry point.
