@@ -17,7 +17,7 @@ Run from the reconstruction repository. Choose an unused worktree path. A review
 $checkout = 'C:/code/minecraft/minecraft-image-reconstruction-worktrees/floating-replay'
 git worktree add --no-checkout --detach $checkout experiment/floating-visible-builds
 git -C $checkout sparse-checkout set --no-cone -- '/**' '!/benchmark/reviews/**'
-git -C $checkout restore --source=HEAD --staged --worktree -- .
+git -C $checkout reset --hard HEAD
 ```
 
 ## Prepare shared inputs once
