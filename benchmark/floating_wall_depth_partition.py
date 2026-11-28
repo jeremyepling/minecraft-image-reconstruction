@@ -190,7 +190,6 @@ def chart_distance(chart, size):
 
 def image_pitch_offsets(chart, groups, rgb):
     """Estimate separation from the two periods of the photographed projected block lattice."""
-    from engine.geometry import project
     h = np.asarray(chart['H'])
     info, distance = chart_distance(chart, rgb.shape[1::-1])
     if distance is None:
@@ -393,7 +392,10 @@ def replay(job):
     image_levels = {}
     if groups is not None and mode in ('source-image-offset', 'reference-image-offset', 'source-pitch-offset', 'reference-pitch-offset'):
         if 'pitch' in mode:
-            image_levels, calibration = image_pitch_offsets(target, groups, image)
+            from benchmark.floating_package_rechecks import native_mask
+            plane = next(p for p in planes if p['id'] == target['id'])
+            support = native_mask(plane, image.shape[1::-1])
+            image_levels, calibration = image_pitch_offsets(target, np.where(support, groups, 0), image)
         else:
             image_levels, calibration = image_depth_offsets(target, groups, fields/marker/'fields', receipt, image.shape[1::-1])
         detail['image_calibration'] = calibration
