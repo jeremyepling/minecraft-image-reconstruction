@@ -49,7 +49,9 @@ def create_world(world, metadata, extra_rules=None, level_name='Palette Lab', *,
     save_nbt(world/'level.dat',{'Data':level})
     flat=dict(features=False,biome='minecraft:plains',structure_overrides=[],lakes=False,layers=[
         dict(block='minecraft:bedrock',height=1),dict(block='minecraft:stone',height=127),
-        dict(block='minecraft:'+floor,height=1)])
+        dict(block='minecraft:'+(floor or 'air'),height=1)])
+    if floor is None:
+        flat.update(biome='minecraft:the_void', layers=[dict(block='minecraft:air', height=1)])
     dims={over:dict(type=over,generator=dict(type='minecraft:flat',settings=flat)),
           nether:dict(type=nether,generator=dict(type='minecraft:noise',settings='minecraft:nether',
                                                  biome_source=dict(type='minecraft:multi_noise',preset='minecraft:nether'))),
