@@ -15,7 +15,7 @@ from training.floating_front_release import CLOCK
 LIGHTS = tuple((name, CLOCK[name]) for name in ("noon", "morning", "afternoon"))
 
 
-def stage(root, first, last, jar):
+def stage(root, first, last, jar, *, lighting_mode="standard"):
     with ZipFile(jar) as archive:
         version = json.loads(archive.read("version.json"))
     if version["id"] != VERSION:
@@ -58,6 +58,7 @@ def stage(root, first, last, jar):
                     views.append(dict(**info, **pose, id=f"{layout}-{condition}-{lighting}",
                                       parent_id=f"{layout}-full-noon", page=page, number=number,
                                       origin_world=bounds, cloudless=True, angle="front", lighting=lighting,
+                                      capture_lighting_mode=lighting_mode,
                                       clock_ticks=ticks, condition=condition))
     write(root / "layout.json", dict(version=VERSION, client_sha256=digest(jar), blocks=blocks))
     write(root / "views.json", views)
@@ -69,6 +70,8 @@ def main():
     parser.add_argument("--first", type=int, default=1)
     parser.add_argument("--last", type=int, default=100)
     parser.add_argument("--jar", type=Path)
+    parser.add_argument("--lighting-mode", choices=("standard", "reload", "resync"), default="standard",
+                        help="Use reload for chunk-light retry, or resync to resend vanilla light packets")
     modes = parser.add_mutually_exclusive_group()
     modes.add_argument("--capture-only", action="store_true")
     modes.add_argument("--labels-only", action="store_true")
@@ -79,7 +82,7 @@ def main():
     jar = (args.jar or discover(VERSION)).resolve()
     root = args.out.resolve()
     if not args.labels_only:
-        stage(root, args.first, args.last, jar)
+        stage(root, args.first, args.last, jar, lighting_mode=args.lighting_mode)
         if args.stage_only:
             return
         subprocess.run([sys.executable, "-m", "runtime.capture", "capture", "--version", VERSION,

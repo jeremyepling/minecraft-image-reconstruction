@@ -1,6 +1,12 @@
 import com.google.gson.GsonBuilder;
 import com.google.gson.Gson;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.core.SectionPos;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.ChunkPos;
+import net.minecraft.network.protocol.game.ClientboundLightUpdatePacket;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.LightLayer;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.client.Camera;
@@ -23,7 +29,7 @@ import java.util.concurrent.TimeUnit;
 
 /** Start the unmodified client, drive only this process, and persist its native framebuffer. */
 public final class PaletteCapture {
-    private record View(String id, double x, double feetY, double z, double[] target, int page, Integer clock_ticks, boolean cloudless) {
+    private record View(String id, double x, double feetY, double z, double[] target, int page, Integer clock_ticks, boolean cloudless, String capture_lighting_mode) {
     }
 
     private record Cell(int x, int y, int z, int page) {}
@@ -45,6 +51,93 @@ public final class PaletteCapture {
 
     private static void command(MinecraftServer server, String text) {
         server.getCommands().performPrefixedCommand(server.createCommandSourceStack(), text);
+    }
+
+    private static long sampleSkyAndState(Level level, Cell cell) {
+        var pos = new BlockPos(cell.x(), cell.y(), cell.z());
+        long value = Block.getId(level.getBlockState(pos));
+        for (var side : Direction.values())
+            value = (value << 4) | level.getBrightness(LightLayer.SKY, pos.relative(side));
+        return value;
+    }
+
+    private static void reloadLitScene(Minecraft mc, MinecraftServer server, ArrayList<Cell> cells,
+                                       String tp, boolean resend) throws Exception {
+        // Finish light work with the player still tracking the built chunks. A later
+        // full chunk packet then carries the final light sections together with the blocks.
+        var waitForLight = server.submit(() -> {
+            var chunks = new HashSet<Long>();
+            var pending = new ArrayList<CompletableFuture<?>>();
+            var engine = server.overworld().getChunkSource().getLightEngine();
+            for (var cell : cells) {
+                int x = cell.x() >> 4, z = cell.z() >> 4;
+                if (chunks.add(((long)x << 32) | Integer.toUnsignedLong(z)))
+                    pending.add(engine.waitForPendingTasks(x, z));
+            }
+            return CompletableFuture.allOf(pending.toArray(CompletableFuture[]::new));
+        }).get(20, TimeUnit.SECONDS);
+        waitForLight.get(30, TimeUnit.SECONDS);
+        var prior = resend ? null : server.submit(() -> cells.stream()
+            .mapToLong(cell -> sampleSkyAndState(server.overworld(), cell)).toArray()).get(30, TimeUnit.SECONDS);
+        server.submit(() -> command(server, "tp @a 0.5 160 0.5")).get(20, TimeUnit.SECONDS);
+        var sample = cells.get(0);
+        long deadline = System.nanoTime() + TimeUnit.SECONDS.toNanos(45);
+        while (mc.submit(() -> mc.level.getChunkSource().hasChunk(sample.x() >> 4, sample.z() >> 4)).get(10, TimeUnit.SECONDS)) {
+            if (System.nanoTime() >= deadline) throw new IllegalStateException("Fixture chunks failed to unload");
+            Thread.sleep(100);
+        }
+        server.submit(() -> command(server, tp)).get(20, TimeUnit.SECONDS);
+        var chunks = new HashSet<ChunkPos>();
+        for (var cell : cells) chunks.add(new ChunkPos(cell.x() >> 4, cell.z() >> 4));
+        deadline = System.nanoTime() + TimeUnit.SECONDS.toNanos(45);
+        while (!mc.submit(() -> chunks.stream().allMatch(
+                chunk -> mc.level.getChunkSource().hasChunk(chunk.x(), chunk.z()))).get(10, TimeUnit.SECONDS)) {
+            if (System.nanoTime() >= deadline) throw new IllegalStateException("Fixture chunks failed to reload");
+            Thread.sleep(100);
+        }
+        var expected = !resend ? prior : server.submit(() -> {
+            var level = server.overworld();
+            var engine = level.getChunkSource().getLightEngine();
+            var halo = new HashSet<ChunkPos>();
+            for (var chunk : chunks)
+                for (int x = -1; x <= 1; x++)
+                    for (int z = -1; z <= 1; z++)
+                        halo.add(new ChunkPos(chunk.x() + x, chunk.z() + z));
+            var player = server.getPlayerList().getPlayers().getFirst();
+            for (var chunk : halo)
+                player.connection.send(new ClientboundLightUpdatePacket(chunk, engine, null, null));
+            return cells.stream().mapToLong(cell -> sampleSkyAndState(level, cell)).toArray();
+        }).get(30, TimeUnit.SECONDS);
+        deadline = System.nanoTime() + TimeUnit.SECONDS.toNanos(30);
+        while (true) {
+            int mismatch = mc.submit(() -> {
+                for (int i = 0; i < cells.size(); i++)
+                    if (sampleSkyAndState(mc.level, cells.get(i)) != expected[i]) return i;
+                return -1;
+            }).get(10, TimeUnit.SECONDS);
+            if (mismatch < 0) break;
+            if (System.nanoTime() >= deadline) {
+                var cell = cells.get(mismatch);
+                long actual = mc.submit(() -> sampleSkyAndState(mc.level, cell)).get(10, TimeUnit.SECONDS);
+                throw new IllegalStateException("Client blocks or sky light disagree at " + cell +
+                    " server=" + Long.toHexString(expected[mismatch]) + " client=" + Long.toHexString(actual));
+            }
+            Thread.sleep(150);
+        }
+        var occupiedSections = mc.submit(() -> {
+            var sections = new HashSet<SectionPos>();
+            for (var cell : cells) {
+                var pos = new BlockPos(cell.x(), cell.y(), cell.z());
+                if (!mc.level.getBlockState(pos).isAir()) sections.add(SectionPos.of(pos));
+            }
+            return sections;
+        }).get(20, TimeUnit.SECONDS);
+        deadline = System.nanoTime() + TimeUnit.SECONDS.toNanos(40);
+        while (!mc.submit(() -> occupiedSections.stream().allMatch(
+                section -> ClientView.meshReady(mc, section.center()))).get(10, TimeUnit.SECONDS)) {
+            if (System.nanoTime() >= deadline) throw new IllegalStateException("Occupied fixture sections lack rendered meshes");
+            Thread.sleep(150);
+        }
     }
 
     private static void capture() throws Exception {
@@ -111,6 +204,8 @@ public final class PaletteCapture {
                     }
                     command(server,"function palette_lab:page_"+v.page());
                 }).get(60,TimeUnit.SECONDS);
+                if ("reload".equals(v.capture_lighting_mode()) || "resync".equals(v.capture_lighting_mode()))
+                    reloadLitScene(mc, server, pages.get(v.page()), tp, "resync".equals(v.capture_lighting_mode()));
             }
             // Wait for chunk meshes, the initial loading fade and camera interpolation.
             Thread.sleep(v==selected[0] ? 6500 : 2300);
@@ -143,6 +238,10 @@ public final class PaletteCapture {
                 info.put("vertical_fov_deg",c.getFov());
                 info.put("view_rotation_projection",c.getViewRotationProjectionMatrix(new Matrix4f()).get(new float[16]));
                 if (v.cloudless()) {
+                    if (v.capture_lighting_mode() != null)
+                        info.put("capture_lighting_mode", v.capture_lighting_mode());
+                    if ("reload".equals(v.capture_lighting_mode()) || "resync".equals(v.capture_lighting_mode()))
+                        info.put("client_skylight_checked_cells", pages.get(v.page()).size());
                     info.put("clouds", mc.options.getCloudStatus().getSerializedName());
                     if (mc.options.getCloudStatus() != net.minecraft.client.CloudStatus.OFF)
                         throw new IllegalStateException("Clouds enabled");

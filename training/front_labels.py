@@ -28,6 +28,8 @@ def check_scene(view, pose, rows, expected):
             or pose["clouds"] not in ("false", "off")
             or pose["resource_packs"] != ["vanilla"] or not pose["hud_hidden"]):
         raise ValueError(f"Unexpected native conditions for {view['id']}: {pose}")
+    if "client_skylight_checked_cells" in pose and pose["client_skylight_checked_cells"] != len(rows):
+        raise ValueError(f"Incomplete native client skylight readback in {view['id']}")
     states = {(r["x"], r["y"], r["z"]): r for r in rows}
     if len(states) != len(rows) or states.keys() != expected.keys():
         raise ValueError(f"Missing or duplicated server readbacks in {view['id']}")
@@ -102,7 +104,10 @@ def finalize(root, jar):
                       "elevation_deg", "lighting", "clock_ticks", "condition", "dimensions",
                       "origin_world", "parent_id", "number")
             info = {k: view[k] for k in fields}
-            info.update(dataset=DATASET, version=VERSION, client_sha256=layout["client_sha256"],
+            # Earlier standard captures have neither marker. The first reload pilot
+            # recorded its verified client-cell count before the named mode existed.
+            mode = pose.get("capture_lighting_mode", "reload" if "client_skylight_checked_cells" in pose else "standard")
+            info.update(capture_lighting_mode=mode, dataset=DATASET, version=VERSION, client_sha256=layout["client_sha256"],
                         ground_y=64, floor="void", directory="frames/" + fid, counts=counts,
                         framing=framing, files={file: digest(frame / file) for file in FILES})
             write(frame / "frame.json", info)
