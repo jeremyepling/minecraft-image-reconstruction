@@ -63,7 +63,7 @@ def webp(image, target):
     image.save(target, 'WEBP', quality=86, method=6)
 
 
-def make_case(case, queue, frames, assets, asset_base, labels):
+def make_case(case, queue, frames, assets, asset_base, labels, run_root=None):
     marker = case['id']
     split = marker.split('-', 1)[0]
     frame = frames / split / 'frames' / marker
@@ -91,13 +91,18 @@ def make_case(case, queue, frames, assets, asset_base, labels):
         modes.append(dict(key=key, label=title, caption=caption, url=f'{asset_base}/{marker}/{filename}'))
     title, stage, prompt, first_pass = labels.get(marker, (marker, 'Placement',
         'Where would you adjust placement?', 'Compare changes with the source and recorded visible grid.'))
-    return dict(id=marker, title=title, stage=stage, prompt=prompt, firstPass=first_pass,
-                width=original.width, height=original.height, modes=modes, counts=case['paired'],
-                sourceSha256=case['source_sha256'],
-                baselinePackSha256=case['baseline']['pack_sha256'], candidatePackSha256=case['candidate']['pack_sha256'])
+    result = dict(id=marker, title=title, stage=stage, prompt=prompt, firstPass=first_pass,
+                  width=original.width, height=original.height, modes=modes, counts=case['paired'],
+                  sourceSha256=case['source_sha256'],
+                  baselinePackSha256=case['baseline']['pack_sha256'], candidatePackSha256=case['candidate']['pack_sha256'])
+    if run_root:
+        from benchmark.mobile_surface_evidence import build
+        build(run_root, case, original, out / 'surfaces.json')
+        result['surfaceEvidence'] = f'{asset_base}/{marker}/surfaces.json'
+    return result
 
 
-def manifest(report, queue, frames, assets, asset_base, run, title, candidate, labels):
+def manifest(report, queue, frames, assets, asset_base, run, title, candidate, labels, run_root=None):
     saved = read(queue / 'receipts.json')
     if report['comparison_sha256'] != saved['comparison_sha256']:
         raise ValueError('The visuals and scorecard describe different comparisons.')
@@ -123,7 +128,9 @@ def manifest(report, queue, frames, assets, asset_base, run, title, candidate, l
                          for arm in (baseline, candidate)],
                 stages=[dict(name=name, measure=description, values=[visible['stages'][arm].get(key)
                              for arm in (baseline, candidate)]) for key, (name, description) in MEASURES.items()],
-                perfect=perfect, cases=[make_case(case, queue, frames, assets, asset_base, labels) for case in saved['cases']])
+                perfect=perfect, cases=[
+                    make_case(case, queue, frames, assets, asset_base, labels, run_root) for case in saved['cases']
+                ])
 
 
 def main():
@@ -136,13 +143,14 @@ def main():
     parser.add_argument('--run', required=True)
     parser.add_argument('--title', required=True)
     parser.add_argument('--candidate', default='current')
+    parser.add_argument('--run-root', type=Path, help='Saved Floating V1 run root for mask and grid evidence')
     parser.add_argument('--labels', type=Path, help='Optional case ID to [title, stage, prompt, first pass] JSON')
     parser.add_argument('--site', type=Path, default=Path('review-site'))
     args = parser.parse_args()
     if not re.fullmatch(r'[a-z0-9]+(?:-[a-z0-9]+)*', args.run):
         parser.error('Use a lowercase, hyphenated run ID.')
     data = manifest(read(args.report), args.queue, args.frames, args.assets, args.asset_base.rstrip('/'),
-                    args.run, args.title, args.candidate, read(args.labels) if args.labels else DEFAULT_LABELS)
+                    args.run, args.title, args.candidate, read(args.labels) if args.labels else DEFAULT_LABELS, args.run_root)
     target = args.site / 'runs' / args.run / 'manifest.json'
     target.parent.mkdir(parents=True, exist_ok=True)
     target.write_text(json.dumps(data, ensure_ascii=False, separators=(',', ':')) + '\n', encoding='utf-8')
