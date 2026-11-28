@@ -184,6 +184,7 @@ function scores(run) {
   field('title', run.title);
   field('cohort', `${run.cohort} · ${run.views}/${run.available ?? run.views} views`);
   field('datasetNote', run.datasetNote);
+  field('carryForward', run.carryForward || 'Decision for this comparison is pending.');
   const [baseline, candidate] = run.methods;
   const delta = candidate.scores.geometry_strict.f1_percent - baseline.scores.geometry_strict.f1_percent;
   field('placementDelta', `${points(delta)} strict`);

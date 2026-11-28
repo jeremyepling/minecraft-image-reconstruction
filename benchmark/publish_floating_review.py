@@ -158,6 +158,7 @@ def main():
     cli.add_argument("--perfect-inputs",type=Path)
     cli.add_argument("--labels",type=Path)
     cli.add_argument("--questions",type=Path,help="JSON array of unresolved decisions with visible cues and distinct next tests")
+    cli.add_argument("--carry-forward",help="Next baseline, each candidate disposition, and what landed")
     cli.add_argument("--out",type=Path,required=True,help="Local output directory for this run")
     cli.add_argument("--publish",action="store_true")
     cli.add_argument("--vercel",default=shutil.which("vercel"))
@@ -198,7 +199,7 @@ def main():
         cmd = [sys.executable, "-m", "benchmark.floating_stage_report", args.conditions, "--out", out / "stage",
                "--run-root", args.run_root, "--baseline", args.baseline, "--candidate", args.candidate,
                "--cohort-label", args.cohort_label, "--visible-available", str(args.visible_available)]
-        for key in ("perfect", "perfect_inputs","baseline_name","candidate_name"):
+        for key in ("perfect", "perfect_inputs","baseline_name","candidate_name","carry_forward"):
             if value := getattr(args, key):
                 cmd.extend(["--" + key.replace("_", "-"), value])
         subprocess.run(cmd, check=True)
@@ -209,7 +210,8 @@ def main():
                         "--out",queue,*(arg for marker in requested for arg in ("--case",marker))], check=True)
     data = manifest(read(report),queue,frames,assets,"assets",args.run,args.title,args.candidate,
                     read(args.labels) if args.labels else {},args.run_root,
-                    questions=authored,evidence_root=args.evidence_root,baseline_evidence_root=args.baseline_evidence_root)
+                    questions=authored,evidence_root=args.evidence_root,baseline_evidence_root=args.baseline_evidence_root,
+                    carry_forward=args.carry_forward)
     save(out / "manifest.json", data)
     print(f"Prepared {len(data['cases'])} cases in {out}")
     if args.publish:

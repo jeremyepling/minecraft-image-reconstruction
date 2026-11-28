@@ -4,6 +4,8 @@
 
 Use the [current Floating pipeline map](FLOATING_PIPELINE.md) for stage order, source evidence, and the automated loss report.
 
+**Carry forward the expanded split-border baseline. Keep Candidate 1, guarded depth-first refit, experimental.** It gained 533 net correct positions and removed 78 net extras on the archived 144 views. On Arcade 1 and Terrace 1, it dropped walls that accounted for 28 and 27 previously correct positions respectively. Carry the refit forward as a challenger and test whether it can retain those walls while preserving its gains on the active Combined V1 Visible Builds cohort. The mobile reporting tools landed on Floating. [Archived comparison and decision](https://floating-review.vercel.app/runs/floating-v1-guarded-refit/scores)
+
 ## Frozen expanded benchmark
 
 Use the **expanded split-border benchmark** for new floating reconstruction experiments. It pins the selected expanded package at `ac69f22` and the source depth split plus projected border-sky outputs at `4d9aca1`. The selected package uses the guarded replacement ruler and O2 corner repair on top of the large-contraction charts. Compare candidates on the same source images and visible references. Report distinct correct positions gained and lost, exact material matches, and extras separately alongside strict and facade placement F1. Prioritize retaining correct visible placements when judging an apparent improvement from removing extras.

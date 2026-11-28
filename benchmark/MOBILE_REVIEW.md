@@ -32,7 +32,7 @@ On branches that lack the named roles, use the standard worker with that model, 
 Run the command from the repository root. Supply the existing authenticated CLI with `--vercel` if it is outside PATH. Without `--publish` the command prepares a local manifest and assets under `--out`. With it, only generated public imagery, surface evidence, and the manifest are committed on the current Floating branch. The command pins the GitHub asset revision, checks remote file hashes, deploys the tracked site to the existing Vercel project, and checks the live manifest and both routes.
 
 ```powershell
-python -m benchmark.publish_floating_review --fixture $fixture --variant sky --baseline-evidence-root $baselineSky --evidence-root $candidateSky --baseline-name 'Current method' --candidate-name 'Proposed method' --run $runId --title $title --out "runs/mobile/$runId" --publish
+python -m benchmark.publish_floating_review --fixture $fixture --variant sky --baseline-evidence-root $baselineSky --evidence-root $candidateSky --baseline-name 'Current method' --candidate-name 'Proposed method' --carry-forward $decision --run $runId --title $title --out "runs/mobile/$runId" --publish
 ```
 
 Each evidence directory contains one subdirectory per fixture view. The normal local-grid and V1 runners produce portable surface packages as part of the run. The fixture bridge filters to active Combined Visible views, checks the actual scored packs, and uses the fixture's source variant and visible labels for the overlays. A one-frame fixture is a one-frame verification even when 200 views are available. Use `--case <id>` for an additional image. Unsupported views and unavailable grid decisions should remain visible as evidence gaps.

@@ -188,13 +188,15 @@ def group(rows, modes, available):
                 component_changes=swaps)
 
 
-def markdown(groups, names, cohort=None, perfect=None):
+def markdown(groups, names, cohort=None, perfect=None, carry_forward=None):
     report = ['# Floating evaluation from saved receipts', '',
               'Stage rows measure different opportunities. Assembly cells can overlap across components.',
               'A fresh atlas fit can pass its local checks and still be left out of the export.',
               'Unresolved nonempty exports receive no correct placements. Paired counts omit unresolved views.', '']
     if cohort:
         report[2:2] = [f'**Cohort** {cohort}', '']
+    report[2:2] = ['## Decision for the next round', '',
+                   carry_forward or 'Decision for this comparison is pending.', '']
     for name, totals in groups.items():
         report.extend([f'## {name}', ''])
         n = totals['views']
@@ -267,6 +269,7 @@ def main():
     parser.add_argument('--candidate-name', action='append', help='Description of each candidate, in arm order')
     parser.add_argument('--run-root', type=Path, help='Optional V1 run root with source handoffs and depth audit rows')
     parser.add_argument('--cohort-label', help='Name of the actual saved comparison cohort')
+    parser.add_argument('--carry-forward', help='Next baseline, each candidate disposition, and what landed')
     parser.add_argument('--visible-available', type=int, help='Size of the named Visible Builds cohort')
     parser.add_argument('--decorative-available', type=int, default=40)
     parser.add_argument('--perfect', type=Path, help='Optional saved Perfect Stage controls for this exact comparison')
@@ -305,9 +308,11 @@ def main():
     args.out.mkdir(parents=True, exist_ok=True)
     if perfect:
         (args.out / 'perfect-stage.html').write_text(viewer(perfect, args.cohort_label), encoding='utf8', newline='\n')
-    (args.out / 'report.md').write_text(markdown(data, names, args.cohort_label, perfect), encoding='utf8', newline='\n')
+    (args.out / 'report.md').write_text(markdown(data, names, args.cohort_label, perfect, args.carry_forward),
+                                        encoding='utf8', newline='\n')
     (args.out / 'report.json').write_text(json.dumps(dict(schema=1, comparison_sha256=comparison_sha,
-        cohort_label=args.cohort_label, names=names, cohorts=data, frames=frames, perfect_stage=perfect), separators=(',', ':')) + '\n',
+        cohort_label=args.cohort_label, names=names, cohorts=data, frames=frames, perfect_stage=perfect,
+        carry_forward=args.carry_forward), separators=(',', ':')) + '\n',
         encoding='utf8', newline='\n')
 
 

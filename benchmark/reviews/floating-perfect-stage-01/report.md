@@ -1,5 +1,9 @@
 # Floating evaluation from saved receipts
 
+## Decision for the next round
+
+Baseline — expanded split-border stays the benchmark. Candidate 1 — guarded depth-first refit continues as an experimental challenger. It gained 533 net correct positions and removed 78 net extras on the archived 144 views. Dropped walls accounted for 28 previously correct positions on Arcade 1 and 27 on Terrace 1. Test wall retention and compare on active Combined V1 before promoting. The reporting tools landed on Floating.
+
 **Cohort** Original Visible Builds V1 replay
 
 Stage rows measure different opportunities. Assembly cells can overlap across components.

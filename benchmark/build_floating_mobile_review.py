@@ -126,7 +126,8 @@ def make_case(case, queue, frames, assets, asset_base, labels, run_root=None, ev
 
 
 def manifest(report, queue, frames, assets, asset_base, run, title, candidate, labels, run_root=None,
-             evidence_root=None, baseline_evidence_root=None, *, questions=None, database=None, downloads=None):
+             evidence_root=None, baseline_evidence_root=None, *, questions=None, database=None, downloads=None,
+             carry_forward=None):
     from benchmark.floating_review_decisions import analyze
     from benchmark.floating_review_intake import private_history
 
@@ -155,6 +156,7 @@ def manifest(report, queue, frames, assets, asset_base, run, title, candidate, l
         perfect.append({key: row[key] for key in ('stage', 'kind', 'change', 'tested', 'cohort', 'before', 'after')})
     data = dict(schema=1, id=run, title=title, cohort=report['cohort_label'],
                 views=visible['views'], available=visible['available'], comparisonSha256=report['comparison_sha256'],
+                carryForward=carry_forward or report.get('carry_forward'),
                 datasetNote='Decorative Builds V1 unmeasured.' if not report['cohorts']['Decorative Builds V1']['views']
                 else 'Decorative Builds V1 has a separate benchmark result.',
                 methods=[dict(name=report['names'][arm], scores=visible['scores'][arm], failures=visible['failures'][arm])
@@ -187,6 +189,7 @@ def main():
     parser.add_argument('--baseline-evidence-root', type=Path, help='Baseline local-grid packages to compare with --evidence-root')
     parser.add_argument('--labels', type=Path, help='Optional case ID to [title, stage, prompt, first pass] JSON')
     parser.add_argument('--questions', type=Path, help='Public-safe unresolved decision proposals (JSON array)')
+    parser.add_argument('--carry-forward', help='Next baseline, each candidate disposition, and what landed')
     parser.add_argument('--site', type=Path, default=Path('review-site'))
     args = parser.parse_args()
     if args.baseline_evidence_root and not args.evidence_root:
@@ -196,7 +199,7 @@ def main():
     data = manifest(read(args.report), args.queue, args.frames, args.assets, args.asset_base.rstrip('/'),
                     args.run, args.title, args.candidate, read(args.labels) if args.labels else DEFAULT_LABELS,
                     args.run_root, args.evidence_root, args.baseline_evidence_root,
-                    questions=read(args.questions) if args.questions else None)
+                    questions=read(args.questions) if args.questions else None, carry_forward=args.carry_forward)
     target = args.site / 'runs' / args.run / 'manifest.json'
     target.parent.mkdir(parents=True, exist_ok=True)
     target.write_text(json.dumps(data, ensure_ascii=False, separators=(',', ':')) + '\n', encoding='utf-8')
