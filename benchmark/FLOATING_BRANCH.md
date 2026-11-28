@@ -4,6 +4,19 @@ Expanded Split-Border is the default Floating method on `main`. It reconstructs 
 
 Use the [current Floating pipeline map](FLOATING_PIPELINE.md) for stage order, source evidence, and the automated loss report.
 
+## Current Front 100 benchmark
+
+The new baseline is Expanded Split-Border at `b0b6e3b`. Both rows used the same 100 full-block noon views from `floating-front-100-v1`, with the same source-only model fields and visible references. The cohort covers 72 train, 14 validation and 14 test views. Decorated noon was unmeasured.
+
+| Method | Tested / available | Strict / facade placement F1 | Strict / facade position + ID F1 | Strict correct / missed / extra | Empty exports |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| Baseline — Expanded Split-Border, `b0b6e3b` | 100 / 100 | 23.57% / 24.66% | 4.67% / 4.89% | 25,960 / 115,612 / 52,734 | 8 |
+| Previous default — local grid, `4bcc191` | 100 / 100 | 0.26% / 0.28% | 0.17% / 0.18% | 185 / 141,387 / 19 | 82 |
+
+The promoted method gained 25,775 net correct positions and added 52,715 net extras. Orientations registered on 91 views. One nonempty export had unresolved orientation and was charged all visible misses and exported extras. Six original V1 images reproduced all 1,019 archived positions and material IDs and all 31 joins, including cases exercising contraction, corner repair, depth splitting and the projected sky veto.
+
+The per-view report, packs and comparisons are under `runs/front100-expanded-split-border-20261128` on this PC. [Repeat the full-block noon replay](FLOATING_SHARED_DATASETS.md#replay-front-100)
+
 ## Archived original Visible Builds V1
 
 The promoted predictor follows the Expanded Split-Border baseline from the original 144-view Visible Builds V1 replay at `01d51c0`. The guarded depth-first refit remains an archived challenger. It gained 533 net correct positions and removed 78 net extras on those same V1 images. On Arcade 1 and Terrace 1, it dropped walls that accounted for 28 and 27 previously correct positions, respectively. [Original V1 replay and receipts](https://github.com/jeremyepling/minecraft-image-reconstruction/blob/01d51c0/benchmark/reviews/floating-visible-builds-v1-01/README.md) · [Archived comparison and decision](https://floating-review.vercel.app/runs/floating-v1-guarded-refit/scores)
@@ -15,7 +28,7 @@ The promoted predictor follows the Expanded Split-Border baseline from the origi
 
 ## Archived Front 100 local-grid replay
 
-The first full-block noon Front 100 replay measured the former Floating local-grid method at `4bcc191`. It scored 100 / 100 views with 0.261% strict and 0.281% facade placement F1, and 0.171% strict and 0.184% facade position-plus-ID F1. Strict placement counted 185 correct, 141,387 missed and 19 extra blocks. There were 82 empty exports. The saved report and verification receipt on this PC are in `runs/front100-main-loop-20261128/baseline` in the stable checkout. Use the pinned revision to reproduce that method. [Historical replay instructions](FLOATING_SHARED_DATASETS.md#replay-historical-methods)
+The first full-block noon replay's original report and verification receipt are under `runs/front100-main-loop-20261128/baseline`. Use `4bcc191` to reproduce the local-grid method. [Historical replay instructions](FLOATING_SHARED_DATASETS.md#replay-historical-methods)
 
 ## Frozen expanded benchmark
 

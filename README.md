@@ -25,6 +25,8 @@ Use `-Case` with exact frame IDs for a focused comparison. The runner saves the 
 
 ## Compare results
 
+On the 100 clean noon views in Floating Front 100, Expanded Split-Border scored **23.57% strict / 24.66% facade placement F1**. The previous local-grid launcher scored 0.26% / 0.28% on the same screenshots. [Front 100 scorecard](benchmark/FLOATING_BRANCH.md#current-front-100-benchmark)
+
 Use the same screenshots and visible references for the baseline and each candidate. Floating scores a single translation for the entire build, so moving the origin preserves credit while changing the spacing between parts affects the score. Report placement and position-plus-material F1 together with correct, missed and extra blocks. [Baseline and historical comparisons](benchmark/FLOATING_BRANCH.md) · [Round review and promotion](benchmark/ROUND_REVIEW.md)
 
 See the mobile workflow for original masks, reference surfaces, attempted grids, and the blocks that survived export. [Scores and image review](benchmark/MOBILE_REVIEW.md) · [Experiment log](MODEL_CHANGELOG.md)
