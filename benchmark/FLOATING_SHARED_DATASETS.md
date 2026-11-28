@@ -13,13 +13,14 @@ Original V1 and the archived historical placements, lighting pairs and synthetic
 
 ## Create a sparse replay worktree
 
-Run from the reconstruction repository. Point `$revision` at the commit or branch containing the Front 100 release pin. Use a new checkout path. A full checkout can also access the archived review artifacts.
+Run from the reconstruction repository. Use a new checkout path when creating a worktree. For an existing clean, detached sparse worktree on this PC, update it with `git -C $checkout checkout --detach main`. A full checkout can also access the archived review artifacts.
 
 ```powershell
 $checkout = 'C:/code/minecraft/minecraft-image-reconstruction-worktrees/floating-replay'
+$revision = 'main'
 git worktree add --no-checkout --detach $checkout $revision
 git -C $checkout sparse-checkout set --no-cone -- '/**' '!/benchmark/reviews/**'
-git -C $checkout reset --hard HEAD
+git -C $checkout checkout --detach $revision
 Set-Location $checkout
 ```
 
