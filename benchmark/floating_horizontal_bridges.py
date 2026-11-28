@@ -165,8 +165,9 @@ def horizontal_charts(walls, planes, size, rgb):
         chart=preserve_and_rank(raw,chart,rgb,mask)
         # Confirm cell boundaries on the materialized grid agree with two actual wall charts.
         joins,_=solver.propose_joins([*walls,chart],min_edges=1,edge_pixels=2.5)
-        if len({join["i"] for join in joins if join["j"]==len(walls)})>=2:
-            result.append(chart)
+        adjoining = sorted({walls[join["i"]]["id"] for join in joins if join["j"]==len(walls)})
+        if len(adjoining)>=2:
+            result.append(dict(chart,supporting_walls=adjoining))
     return result
 
 
@@ -189,7 +190,7 @@ def run(job):
     def add_tiles(inputs):
         walls,hint=orient(inputs)
         extra=horizontal_charts(walls,parts,size,rgb)
-        audit.update(tiles=len(extra),tile_cells=sum(len(c["cells"]) for c in extra))
+        audit.update(tiles=len(extra),tile_cells=sum(len(c["cells"]) for c in extra),horizontal_charts=extra)
         return walls+extra,hint
     def add_bridges(oriented, tolerance):
         result = existing(oriented, tolerance)
@@ -209,12 +210,13 @@ def run(job):
     save(output/"audit"/(name+".json"),dict(id=name,**audit))
 
 
-def fresh_cases():
+def fresh_cases(supplemental=False):
+    names=(("train-watchpost2-cool","train-observatory-02-verdigris","train-riverside-mill-2-warm") if supplemental else
+           ("validation-cloister2-cool","train-arcade2-cool","validation-harbor-02-seafoam",
+            "train-factory-02-kiln","validation-hillside-chapel-2-warm","train-market-court-2-warm"))
     for ds in ("visible-builds-v2","visible-builds-v3","decorative-builds-v1"):
         for row in read(SOURCE/ds/"manifest.json")["frames"]:
-            if not any(row["id"] == p+"-"+view for view in ("low-left","high-right") for p in (
-                "validation-cloister2-cool","train-arcade2-cool","validation-harbor-02-seafoam",
-                "train-factory-02-kiln","validation-hillside-chapel-2-warm","train-market-court-2-warm")):
+            if not any(row["id"] == p+"-"+view for view in ("low-left","high-right") for p in names):
                 continue
             frame = SOURCE/ds/"data"/row["split"]/"frames"/row["id"]
             yield dict(row,dataset=ds,frame=str(frame),variants={"sky":dict(image=str(frame/"rgb.png"),source_sha256=row["rgb_sha256"])})
@@ -224,8 +226,10 @@ if __name__ == "__main__":
     cli=argparse.ArgumentParser(description=__doc__)
     cli.add_argument("--fresh",action="store_true")
     cli.add_argument("--tiles",action="store_true")
+    cli.add_argument("--supplemental",action="store_true")
     cfg=cli.parse_args()
-    rows=list(fresh_cases() if cfg.fresh else cases())
-    assert len(rows)==(12 if cfg.fresh else 38)
+    fresh=cfg.fresh or cfg.supplemental
+    rows=list(fresh_cases(cfg.supplemental) if fresh else cases())
+    assert len(rows)==(6 if cfg.supplemental else 12 if cfg.fresh else 38)
     with ProcessPoolExecutor(3) as pool:
-        list(pool.map(run,[(r,cfg.fresh,cfg.tiles) for r in rows]))
+        list(pool.map(run,[(r,fresh,cfg.tiles) for r in rows]))

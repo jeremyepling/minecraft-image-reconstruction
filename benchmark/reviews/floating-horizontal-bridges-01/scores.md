@@ -1,0 +1,72 @@
+# Placement and material scores
+
+Each row pools decoded blocks across its views. F1 is reported as a percentage. The last column counts correct positions, visible misses and extra placements.
+
+| Cohort | Dataset | Method | Position | Facade position | Position + ID | Facade position + ID | Correct / missed / extra |
+|---|---|---|---:|---:|---:|---:|---|
+| previous | all | whole-wall | 35.34 | 35.55 | 4.51 | 4.53 | 13,895 / 45,543 / 5,302 |
+| previous | all | rim-joins | 35.34 | 35.55 | 4.51 | 4.53 | 13,895 / 45,543 / 5,302 |
+| previous | all | horizontal-cells | 35.64 | 35.82 | 4.63 | 4.65 | 14,065 / 45,373 / 5,422 |
+| previous | visible-builds-v2 | whole-wall | 41.90 | 44.06 | 19.42 | 20.44 | 1,029 / 2,385 / 469 |
+| previous | visible-builds-v2 | rim-joins | 41.90 | 44.06 | 19.42 | 20.44 | 1,029 / 2,385 / 469 |
+| previous | visible-builds-v2 | horizontal-cells | 43.88 | 46.14 | 20.31 | 21.37 | 1,087 / 2,327 / 453 |
+| previous | test | whole-wall | 35.34 | 35.55 | 4.51 | 4.53 | 13,895 / 45,543 / 5,302 |
+| previous | test | rim-joins | 35.34 | 35.55 | 4.51 | 4.53 | 13,895 / 45,543 / 5,302 |
+| previous | test | horizontal-cells | 35.64 | 35.82 | 4.63 | 4.65 | 14,065 / 45,373 / 5,422 |
+| previous | visible-builds-v3 | whole-wall | 35.89 | 35.82 | 3.62 | 3.60 | 12,345 / 40,057 / 4,048 |
+| previous | visible-builds-v3 | rim-joins | 35.89 | 35.82 | 3.62 | 3.60 | 12,345 / 40,057 / 4,048 |
+| previous | visible-builds-v3 | horizontal-cells | 35.89 | 35.82 | 3.62 | 3.60 | 12,345 / 40,057 / 4,048 |
+| previous | decorative-builds-v1 | whole-wall | 21.14 | 22.76 | 2.07 | 2.24 | 521 / 3,101 / 785 |
+| previous | decorative-builds-v1 | rim-joins | 21.14 | 22.76 | 2.07 | 2.24 | 521 / 3,101 / 785 |
+| previous | decorative-builds-v1 | horizontal-cells | 24.46 | 25.63 | 3.09 | 3.34 | 633 / 2,989 / 921 |
+| fresh | all | whole-wall | 27.25 | 28.39 | 5.63 | 6.04 | 1,409 / 6,105 / 1,418 |
+| fresh | all | rim-joins | 27.54 | 28.69 | 5.96 | 6.40 | 1,427 / 6,087 / 1,423 |
+| fresh | all | horizontal-cells | 30.43 | 31.11 | 6.85 | 7.36 | 1,600 / 5,914 / 1,401 |
+| fresh | visible-builds-v2 | whole-wall | 36.19 | 38.62 | 17.15 | 18.30 | 230 / 736 / 75 |
+| fresh | visible-builds-v2 | rim-joins | 38.33 | 40.86 | 19.63 | 20.92 | 248 / 718 / 80 |
+| fresh | visible-builds-v2 | horizontal-cells | 58.27 | 57.51 | 24.64 | 26.72 | 421 / 545 / 58 |
+| fresh | train | whole-wall | 26.48 | 27.23 | 3.05 | 3.20 | 817 / 3,690 / 846 |
+| fresh | train | rim-joins | 26.48 | 27.23 | 3.05 | 3.20 | 817 / 3,690 / 846 |
+| fresh | train | horizontal-cells | 31.14 | 30.98 | 4.37 | 4.59 | 983 / 3,524 / 824 |
+| fresh | validation | whole-wall | 28.39 | 30.22 | 9.45 | 10.54 | 592 / 2,415 / 572 |
+| fresh | validation | rim-joins | 29.09 | 31.00 | 10.25 | 11.44 | 610 / 2,397 / 577 |
+| fresh | validation | horizontal-cells | 29.37 | 31.31 | 10.57 | 11.80 | 617 / 2,390 / 577 |
+| fresh | visible-builds-v3 | whole-wall | 23.66 | 24.46 | 2.64 | 2.77 | 807 / 4,021 / 1,187 |
+| fresh | visible-builds-v3 | rim-joins | 23.66 | 24.46 | 2.64 | 2.77 | 807 / 4,021 / 1,187 |
+| fresh | visible-builds-v3 | horizontal-cells | 23.66 | 24.46 | 2.64 | 2.77 | 807 / 4,021 / 1,187 |
+| fresh | decorative-builds-v1 | whole-wall | 33.10 | 34.66 | 8.19 | 9.06 | 372 / 1,348 / 156 |
+| fresh | decorative-builds-v1 | rim-joins | 33.10 | 34.66 | 8.19 | 9.06 | 372 / 1,348 / 156 |
+| fresh | decorative-builds-v1 | horizontal-cells | 33.10 | 34.66 | 8.19 | 9.06 | 372 / 1,348 / 156 |
+| supplemental | all | whole-wall | 39.92 | 43.08 | 9.27 | 10.00 | 900 / 2,353 / 356 |
+| supplemental | all | rim-joins | 39.92 | 43.08 | 9.27 | 10.00 | 900 / 2,353 / 356 |
+| supplemental | all | horizontal-cells | 39.92 | 43.08 | 9.27 | 10.00 | 900 / 2,353 / 356 |
+| supplemental | visible-builds-v2 | whole-wall | 45.63 | 62.58 | 5.05 | 6.92 | 235 / 528 / 32 |
+| supplemental | visible-builds-v2 | rim-joins | 45.63 | 62.58 | 5.05 | 6.92 | 235 / 528 / 32 |
+| supplemental | visible-builds-v2 | horizontal-cells | 45.63 | 62.58 | 5.05 | 6.92 | 235 / 528 / 32 |
+| supplemental | train | whole-wall | 39.92 | 43.08 | 9.27 | 10.00 | 900 / 2,353 / 356 |
+| supplemental | train | rim-joins | 39.92 | 43.08 | 9.27 | 10.00 | 900 / 2,353 / 356 |
+| supplemental | train | horizontal-cells | 39.92 | 43.08 | 9.27 | 10.00 | 900 / 2,353 / 356 |
+| supplemental | visible-builds-v3 | whole-wall | 36.48 | 36.94 | 5.49 | 5.56 | 379 / 1,108 / 212 |
+| supplemental | visible-builds-v3 | rim-joins | 36.48 | 36.94 | 5.49 | 5.56 | 379 / 1,108 / 212 |
+| supplemental | visible-builds-v3 | horizontal-cells | 36.48 | 36.94 | 5.49 | 5.56 | 379 / 1,108 / 212 |
+| supplemental | decorative-builds-v1 | whole-wall | 40.83 | 41.60 | 17.99 | 18.33 | 286 / 717 / 112 |
+| supplemental | decorative-builds-v1 | rim-joins | 40.83 | 41.60 | 17.99 | 18.33 | 286 / 717 / 112 |
+| supplemental | decorative-builds-v1 | horizontal-cells | 40.83 | 41.60 | 17.99 | 18.33 | 286 / 717 / 112 |
+| sky | all | ordinary | 12.64 | 12.90 | 4.68 | 4.77 | 273 / 3,768 / 5 |
+| sky | all | whole-wall | 22.93 | 23.07 | 4.40 | 4.40 | 901 / 3,140 / 2,915 |
+| sky | all | horizontal-cells | 22.93 | 23.07 | 4.40 | 4.40 | 901 / 3,140 / 2,915 |
+| sky | visible-builds-v3 | ordinary | 13.87 | 13.98 | 4.17 | 4.20 | 243 / 3,013 / 5 |
+| sky | visible-builds-v3 | whole-wall | 27.87 | 27.85 | 5.62 | 5.58 | 764 / 2,492 / 1,463 |
+| sky | visible-builds-v3 | horizontal-cells | 27.87 | 27.85 | 5.62 | 5.58 | 764 / 2,492 / 1,463 |
+| sky | test | ordinary | 22.78 | 23.32 | 7.81 | 8.00 | 245 / 1,659 / 2 |
+| sky | test | whole-wall | 24.33 | 24.70 | 6.67 | 6.79 | 350 / 1,554 / 623 |
+| sky | test | horizontal-cells | 24.33 | 24.70 | 6.67 | 6.79 | 350 / 1,554 / 623 |
+| sky | validation | ordinary | 3.85 | 3.92 | 3.25 | 3.31 | 13 / 650 / 0 |
+| sky | validation | whole-wall | 11.69 | 11.75 | 1.71 | 1.72 | 130 / 533 / 1,431 |
+| sky | validation | horizontal-cells | 11.69 | 11.75 | 1.71 | 1.72 | 130 / 533 / 1,431 |
+| sky | train | ordinary | 2.01 | 2.04 | 0.80 | 0.82 | 15 / 1,459 / 3 |
+| sky | train | whole-wall | 30.55 | 30.57 | 4.21 | 4.11 | 421 / 1,053 / 861 |
+| sky | train | horizontal-cells | 30.55 | 30.57 | 4.21 | 4.11 | 421 / 1,053 / 861 |
+| sky | decorative-builds-v1 | ordinary | 7.36 | 7.94 | 6.87 | 7.41 | 30 / 755 / 0 |
+| sky | decorative-builds-v1 | whole-wall | 11.54 | 11.84 | 1.60 | 1.64 | 137 / 648 / 1,452 |
+| sky | decorative-builds-v1 | horizontal-cells | 11.54 | 11.84 | 1.60 | 1.64 | 137 / 648 / 1,452 |

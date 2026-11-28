@@ -1,5 +1,7 @@
 # Reconstruction adjustments and lessons for training
 
+- **2026-11-27, floating horizontal cell experiment.** Measuring a bounded visible top with two perpendicular counted wall rims improved placement on the first 12 fresh views from 27.25% to 30.43% and strict position-plus-ID from 5.63% to 6.85%. Six other fresh images and six floating-sky composites tied the whole-wall baseline. The Arcade roof acquired 166 net correct positions. Keep the option experimental. [Frozen scores and overlays](benchmark/reviews/floating-horizontal-bridges-01/README.md)
+
 These entries cover model inputs, rules around model outputs, and evaluation changes. **Shipped** means ordinary builds use the adjustment. **Experiment** means it was tested and left out of the default. **Diagnostic** means we learned something about errors without changing predictions.
 
 ### November 27, 2026
