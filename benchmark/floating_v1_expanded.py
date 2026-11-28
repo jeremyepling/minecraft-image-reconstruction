@@ -105,7 +105,10 @@ def expanded_packet(case, destination, *, field_cache=None):
     counts={p["id"]:p for p in read(handoff/"counts.json")["surfaces"]}
     image=Image.open(case["variants"]["sky"]["image"]).convert("RGB")
     rgb=np.asarray(image)
-    raw,contracted=expand(seeds_packet["charts"],planes,image,rgb)
+    # Direct bypass: retain the connected seeds and skip wall resampling and
+    # its nested contraction. All later guard, repair and export steps run.
+    raw=seeds_packet["charts"]
+    contracted=[]
     initial=pink.guard_targets(raw,seeds,planes,rgb)
     edge_charts=[edge_refit(c,raw,pink.native_mask(planes[c["id"]],image.size),rgb) if c["id"] in initial else c for c in raw]
     edge_ids=[a["id"] for a,b in zip(raw,edge_charts,strict=True) if a!=b]
