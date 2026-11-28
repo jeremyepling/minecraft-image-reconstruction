@@ -1,5 +1,7 @@
 # Reconstruction adjustments and lessons for training
 
+- **2026-11-27, sky pixels in a retained wall mask.** Riverside Mill's cyan parent grid emitted five cells with majority sky, including two packed-ice placements sampled entirely from the sky. The current source sky detector missed all of their pixels. A native diagnostic removed five extras with all 160 correct positions preserved. Rejecting every overlap also lost three correct blocks. [Native projection and pack audit](benchmark/reviews/floating-projection-audit-01/README.md)
+
 - **2026-11-27, second-round grid signoffs.** The Twinspire upper edge came within one pixel of the visible seam. Independent grids plus small signed depth steps gained eight correct positions and removed 35 extras on the 84 active cases. The added cells on Twinspire and the detected bands on Shrine still fail to join the winning component. Keep the candidates experimental. [Paired source overlays and decoded scores](benchmark/reviews/floating-grid-signoff-03/README.md)
 
 - **2026-11-27, parallel visible walls.** 284 of 1,824 proposals on the active floating panel mix substantive parallel planes. A source depth offset test gained 132 correct positions and removed 127 extras. A Twinspire top row improved local coverage but the exported component omitted that wall. Retain experimental reconstruction and review coverage, alignment, and sizing independently. [Paired grids and signoff](benchmark/reviews/floating-parts-feedback-02/README.md)
