@@ -1,5 +1,7 @@
 # Reconstruction adjustments and lessons for training
 
+- **2026-11-28, refit material recovery.** A complete atlas tile and local subcell votes recovered 36 exact IDs on Stable Yard 1 low-left, at the same 70 correct positions and 53 extras. A separate phase change failed to recover the eight missed positions. [Source votes and decoded scores](benchmark/reviews/floating-peer-refit-recovery-01/README.md)
+
 - **2026-11-27, peer-guided wall ruler replacement.** Stable Yard low-left yielded a source sandstone fit with 70 correct placements and 53 extras versus 78 and 1,374, but it produced zero correct material IDs. Two independent source regions failed to verify either replacement method on all three challenged walls. Keep both in experiment. [Source grids, decoded builds and held-out evidence](benchmark/reviews/floating-peer-ruler-refit-01/README.md)
 
 - **2026-11-27, verified wall expansion.** Testing a complete-looking atlas tile accepted the repeated Stable Yard pattern. Checking separated tiles across the wall then clipped valid Castle geometry. Requiring contradictory unit heights from independent wall masks limited trimming to three of 84 conditions, removing 3,184 net extras at a cost of 123 correct positions. Keep the source guard experimental. [Verified wall expansion](benchmark/reviews/floating-verified-wall-expansion-01/README.md)
