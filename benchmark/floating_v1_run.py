@@ -60,6 +60,11 @@ def predict(case):
     proof=read(cache/"receipt.json")
     require_fields(case,cache,proof)
     build_handoff(src,cache,handoff(n))
+    native_charts(case)
+
+
+def native_charts(case):
+    n=case['id']
     with ExitStack() as env:
         env.enter_context(patch.object(paths,"RUN",SOURCE))
         env.enter_context(patch.object(shared,"OUTPUT",OUT/"shared"))
@@ -138,6 +143,11 @@ def run(job):
 
 
 if __name__=="__main__":
+    import sys
+    if "--selective" in sys.argv[1:]:
+        from benchmark.floating_selective_replay import main
+        main([arg for arg in sys.argv[1:] if arg!="--selective"])
+        raise SystemExit(0)
     p=argparse.ArgumentParser()
     p.add_argument("--stage",choices=["source","sparse","current"],default="current")
     p.add_argument("--workers",type=int,default=6)

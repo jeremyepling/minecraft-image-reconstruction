@@ -18,6 +18,7 @@ from benchmark.floating_face_proposals import image_axes,source_offers
 from benchmark.floating_peer_atlas_search import search
 from benchmark.floating_verified_wall_expansion import peer_pitches,project
 from benchmark.relative_oracle_charts import fit_homography
+from benchmark.floating_v1_export_filter import with_visible_export
 
 
 def expand(seeds,planes,image,rgb):
@@ -94,7 +95,7 @@ def pair_fix(packet,seeds,planes,counts,rgb,name):
     return proposals.get(arm,packet["charts"]),next((o["pair"] for o in options if o["arm"]==arm),[])
 
 
-def run(case):
+def expanded_packet(case, destination):
     n=case["id"]
     rel=Path("sky")/n/"charts.json"
     handoff=v1.handoff(n)
@@ -113,8 +114,8 @@ def run(case):
     selected,pairs=pair_fix(dict(seeds_packet,charts=edge_charts),seeds,planes,counts,rgb,n)
     packet=dict(seeds_packet,charts=selected)
     group="v1"
-    base=v1.OUT/"split-border"
-    package=v1.OUT/"package"
+    base=destination/"split-border"
+    package=destination/"package"
     save(package/"charts"/rel,packet)
     flags=pink.guard_targets(selected,seeds,planes,rgb) if selected!=raw else initial
     fields={}
@@ -128,12 +129,25 @@ def run(case):
     bordered,dropped=pink.border_filter(split,pink.sky_support(image))
     baseline_file=base/"charts"/rel
     save(baseline_file,dict(packet,charts=bordered))
+    return packet,dict(contracted=contracted,edge=edge_ids,pair=pairs,split=sorted(flags),border_dropped=dropped)
+
+
+def run(case):
+    n=case["id"]
+    group="v1"
+    rel=Path("sky")/n/"charts.json"
+    base=v1.OUT/"split-border"
+    package=v1.OUT/"package"
+    baseline_file=base/"charts"/rel
+    handoff=v1.handoff(n)
+    packet,decisions=expanded_packet(case,v1.OUT)
     pin=dict(source=dict(sha256=case["rgb_sha256"]),reference={k:dict(sha256=v) for k,v in case["reference_sha256"].items()},
              selected_package_chart_sha256=digest(package/"charts"/rel),surfaces_sha256=digest(handoff/"surfaces.json"))
     def inputs(group):
         return v1.SOURCE,v1.OUT/"seeds/connected",package/"charts",[case]
     with ExitStack() as ctx:
         ctx.enter_context(patch.object(v1.assembly,"load_reference",v1.score_reference))
+        ctx.enter_context(patch.object(v1.assembly,"assemble",with_visible_export(v1.assembly.assemble)))
         ctx.enter_context(patch.object(pregrid,"data",inputs))
         ctx.enter_context(patch.object(pregrid,"OUT",v1.OUT/"pregrid"))
         ctx.enter_context(patch.object(pregrid,"fields",v1.source_fields))
@@ -144,6 +158,5 @@ def run(case):
     sparse=v1.OUT/"sparse/assembly"
     if not (sparse/v1.PREFIX/n/"score.json").is_file():
         v1.sparse(case)
-    row.update(sparse=v1.horizontal.read(sparse/v1.PREFIX/n/"score.json"),contracted=contracted,edge=edge_ids,pair=pairs,
-               split=sorted(flags),border_dropped=dropped,source_fields=read(v1.FIELDS/n/"receipt.json"))
+    row.update(sparse=v1.horizontal.read(sparse/v1.PREFIX/n/"score.json"),**decisions,source_fields=read(v1.FIELDS/n/"receipt.json"))
     save(v1.OUT/"rows"/(n+".json.gz"),row)

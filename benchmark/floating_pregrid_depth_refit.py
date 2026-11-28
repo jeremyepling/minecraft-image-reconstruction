@@ -148,7 +148,7 @@ def run(job):
     fit_case(g,c,pin,reviewed,transfer,src,package,charts_file,roots)
 
 
-def fit_case(g,c,pin,reviewed,transfer,src,package,charts_file,roots):
+def prepare_charts(g,c,pin,reviewed,src,package,min_area=5000):
     n=c['id']
     rel=Path('sky')/n/'charts.json'
     audit={}
@@ -167,7 +167,7 @@ def fit_case(g,c,pin,reviewed,transfer,src,package,charts_file,roots):
            and p.get("normal_camera") is not None and abs(p["normal_camera"][1])<.67 and k in counts}
     if not reviewed:
         target=max(masks,key=lambda k:masks[k].sum(),default=None)
-        targets=[target] if target and masks[target].sum()>=5000 else []
+        targets=[target] if target and masks[target].sum()>=min_area else []
     else:
         targets=reviewed
     if targets:
@@ -177,7 +177,6 @@ def fit_case(g,c,pin,reviewed,transfer,src,package,charts_file,roots):
         membership={}
         source_verified=set()
         partial_verified=set()
-        originals=read(charts_file)
         region_charts=[]
         for ch in packet["charts"]:
             cid=ch["id"]
@@ -223,6 +222,18 @@ def fit_case(g,c,pin,reviewed,transfer,src,package,charts_file,roots):
                     candidates[a].append(dict(ch,id=cid+"~p0",cells=residual))
             audit[cid]=dict(mask_sha256=digest(path),fields=hashes,parts=details,
                             boundary_count=len(boundaries),residual=len(residual))
+        return packet,sky,audit,candidates,membership,source_verified,partial_verified,region_charts
+    return None
+
+
+def fit_case(g,c,pin,reviewed,transfer,src,package,charts_file,roots):
+    n=c["id"]
+    rel=Path("sky")/n/"charts.json"
+    audit={}
+    proof=[]
+    prepared=prepare_charts(g,c,pin,reviewed,src,package)
+    if prepared:
+        packet,sky,audit,candidates,membership,source_verified,partial_verified,region_charts=prepared
         decisions={}
         for arm,charts in candidates.items():
             filtered,dropped=border_filter(charts,sky)
