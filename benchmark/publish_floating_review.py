@@ -138,13 +138,13 @@ def main():
     inputs = cli.add_mutually_exclusive_group(required=True)
     inputs.add_argument("--report", type=Path, help="Verified existing stage report, with --queue")
     inputs.add_argument("--conditions", type=Path, help="Generate the stage report and queue first")
-    inputs.add_argument("--fixture", type=Path, help="Compare normal local-grid outputs for an active Combined V1 fixture")
+    inputs.add_argument("--fixture", type=Path, help="Compare normal local-grid outputs for a front-full or Combined V1 fixture")
     cli.add_argument("--queue",type=Path)
     cli.add_argument("--frames",type=Path)
     cli.add_argument("--run-root",type=Path)
     cli.add_argument("--evidence-root",type=Path,help="Candidate variant directory or paired evidence directory")
     cli.add_argument("--baseline-evidence-root",type=Path,help="Baseline variant directory for local-grid pairs")
-    cli.add_argument("--variant",default="sky",help="One source variant for this matched local-grid comparison")
+    cli.add_argument("--variant",help="Source variant for this comparison (sky if available, otherwise original)")
     cli.add_argument("--case",action="append",default=[],help="Also include this case in a generated visual queue")
     cli.add_argument("--run",required=True)
     cli.add_argument("--title",required=True)
@@ -190,8 +190,8 @@ def main():
     if args.fixture:
         from benchmark.floating_local_review import prepare
         data, queue, frames = prepare(args.fixture, args.baseline_evidence_root, args.evidence_root,
-            args.variant, out, args.cohort_label or "Floating Combined V1 · Visible Builds",
-            args.visible_available or 200, {"baseline":"Baseline — " + args.baseline_name,
+            args.variant, out, args.cohort_label,
+            args.visible_available, {"baseline":"Baseline — " + args.baseline_name,
             "current":"Candidate 1 — " + args.candidate_name},case_ids=requested)
         report = out / "stage/report.json"
         save(report, data)

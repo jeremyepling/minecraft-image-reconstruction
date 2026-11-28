@@ -2,12 +2,14 @@
 param(
     [Parameter(Mandatory)][string] $FixtureRoot,
     [Parameter(Mandatory)][string] $RunDirectory,
-    [ValidateSet('visible', 'decorative')][string] $Cohort = 'visible',
+    [ValidateSet('front-full', 'front-decorative', 'visible', 'decorative')][string] $Cohort = 'front-full',
     [string[]] $Case,
     [string] $FieldArchive,
     [string] $ModelRoot,
     [string] $Python = 'python',
-    [ValidateRange(1, 128)][int] $Workers = 1
+    [ValidateRange(1, 128)][int] $Workers = 1,
+    [ValidateSet('noon', 'morning', 'afternoon', 'all')][string] $Lighting,
+    [ValidatePattern('^[0-9a-f]{64}$')][string] $ReleaseSha256
 )
 
 $ErrorActionPreference = 'Stop'
@@ -16,6 +18,8 @@ $run = $ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($
 $arguments = @('-B', '-m', 'benchmark.floating_build_local_run', '--shared-root', $fixture,
     '--out', $run, '--cohort', $Cohort, '--workers', $Workers)
 if ($FieldArchive) { $arguments += @('--baseline', (Resolve-Path -LiteralPath $FieldArchive).ProviderPath) }
+if ($Lighting) { $arguments += @('--lighting', $Lighting) }
+if ($ReleaseSha256) { $arguments += @('--release-sha256', $ReleaseSha256) }
 foreach ($frame in $Case) { $arguments += @('--case', $frame) }
 
 $previousImageOnly = $env:MCIR_IMAGE_ONLY

@@ -65,6 +65,8 @@ def arm(e, variant, cache, out, handoff, native_fallback):
     score,world = evaluate_pack(e,pack,camera,assignment={cell:'native atlas' for cell in cells})
     score.update(source_sha256=spec['source_sha256'],original_source_sha256=e['rgb_sha256'],
                  variant=variant,global_projection=evidence['global_projection'])
+    if 'lighting' in e:
+        score.update(lighting=e['lighting'], condition=e['condition'], parent_id=e['parent_id'], size=e['size'])
     if not evidence['global_projection']:
         score['camera_usable']=False
         score['camera_status']='local-sheet-only' if anchors else 'uncertain'
@@ -88,12 +90,17 @@ def summarize(cohort, cases, manifest, native_fallback):
         report.pop('registration',None)
         report['local_only_nonempty'] = sum(r['evidence']['status']=='local_only_nonempty' for r in records)
         return report
-    save(cohort/'summary.json',dict(
+    report = dict(
         fixture_manifest_sha256=digest(manifest), native_sheet_fallback=native_fallback,
         predictor_sha256=digest(Path(__file__).with_name('floating_build_local_grid.py')),
         atlas_sha256=atlas().provenance['atlas_sha256'],
         by_variant={v:group([r for r in rows if r['variant']==v]) for v in cases[0]['variants']},
-        all_arms=group(rows), direction_registration='Source sheet tangent axes matched to compass by evaluator; single integer translation by whole-build overlap. Absolute location unscored.'))
+        all_arms=group(rows), direction_registration='Source sheet tangent axes matched to compass by evaluator; single integer translation by whole-build overlap. Absolute location unscored.')
+    if 'lighting' in cases[0]:
+        lighting_by_id = {case['id']: case['lighting'] for case in cases}
+        report['by_lighting'] = {lighting: group([row for row in rows if lighting_by_id[row['id']] == lighting])
+                                 for lighting in dict.fromkeys(lighting_by_id.values())}
+    save(cohort/'summary.json', report)
 
 
 def private_fields(source, source_sha, archived, private, frame_id=None):
@@ -174,6 +181,8 @@ def run_private(args, cases):
 def main():
     from training.floating_cohort import RETIRED_PALETTES, frame_index
     from training.floating_combined import BACKGROUND, PINNED, select_active_cases
+    from training.floating_shared_inputs import COHORTS, DEFAULT_COHORT, cases as shared_cases
+    from training.floating_front_release import LIGHTING
 
     parser = argparse.ArgumentParser()
     source = parser.add_mutually_exclusive_group(required=True)
@@ -181,7 +190,9 @@ def main():
     source.add_argument('--shared-root', type=Path, help='Versioned Floating input bundle')
     parser.add_argument('--out', type=Path, help='New private run directory (required with --shared-root)')
     parser.add_argument('--baseline', type=Path, help='Read-only verified field directory for a private run')
-    parser.add_argument('--cohort', choices=['visible', 'decorative'], help='Select an active shared cohort (default: visible)')
+    parser.add_argument('--cohort', choices=COHORTS, help=f'Select a shared cohort (default: {DEFAULT_COHORT})')
+    parser.add_argument('--lighting', choices=LIGHTING, help='Select front-view lighting (default: noon)')
+    parser.add_argument('--release-sha256', help='Manifest digest for a local front-view release before pinning')
     parser.add_argument('--case', action='append', help='Select a shared frame ID (repeatable)')
     parser.add_argument('--handoffs-only', action='store_true', help='Build only the selected private source handoffs')
     parser.add_argument('--workers',type=int,default=4)
@@ -199,12 +210,12 @@ def main():
             parser.error('--shared-root requires --out')
         if args.historical_cohort or args.include_decorative or args.sky_handoffs_only:
             parser.error('Use --cohort and --handoffs-only with shared inputs')
-        from training.floating_shared_inputs import cases as shared_cases
-        cases = shared_cases(args.shared_root, cohort=args.cohort or 'visible', ids=args.case)
-        run_private(args, list(cases))
+        cases = shared_cases(args.shared_root, cohort=args.cohort or DEFAULT_COHORT, ids=args.case,
+                             lighting=args.lighting, release_sha256=args.release_sha256)
+        run_private(args, cases)
         return
-    if args.cohort or args.case or args.out or args.baseline or args.handoffs_only:
-        parser.error('--cohort, --case, --out, --baseline and --handoffs-only require --shared-root')
+    if args.cohort or args.case or args.out or args.baseline or args.handoffs_only or args.lighting or args.release_sha256:
+        parser.error('Shared cohort, frame, lighting, release, output and field options require --shared-root')
     cohort = OUTPUT.parent/'floating-cloud-gate-native-01' if args.native_fallback else OUTPUT
     import time
     baseline = args.manifest.parent/'baseline'

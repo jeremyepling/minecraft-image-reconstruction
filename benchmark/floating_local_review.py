@@ -55,14 +55,36 @@ def checked_arm(folder, entry, variant, reference, shared_handoff):
                 selected=[], pack_sha256=fresh["pack_sha256"]), aligned
 
 
-def prepare(fixture, baseline, candidate, variant, output, label, available, names, *, case_ids=()):
+def fixture_scope(fixture):
+    from training import floating_front_release as front
     from training.floating_combined import select_active_cases
-    entries = [e for e in read(fixture)["cases"] if e["dataset"] != "decorative-builds-v1"]
-    entries = list(select_active_cases(entries))
+
+    entries = read(fixture)["cases"]
+    if any(entry['dataset'] == front.DATASET for entry in entries):
+        if any(entry['dataset'] != front.DATASET or entry['condition'] != 'full' for entry in entries):
+            raise ValueError('Use a front-full fixture for paired visual review. Front-decorative scores are in the replay summary.')
+        first = entries[0]
+        lighting = {entry['lighting'] for entry in entries}
+        expected = front.cases(Path(first['frame']).parents[2], cohort='front-full',
+                               lighting=next(iter(lighting)) if len(lighting) == 1 else 'all',
+                               ids=[entry['id'] for entry in entries], release_sha256=first['dataset_manifest_sha256'])
+        if {entry['id']: entry for entry in entries} != {entry['id']: entry for entry in expected}:
+            raise ValueError('Front-view review fixture differs from its staged capture release.')
+        labels = ', '.join(label for label in front.CLOCK if label in lighting)
+        return entries, f'Floating Front 100 · Full blocks · {labels}', front.LAYOUTS * len(lighting), front.LAYOUTS
+    visible = [entry for entry in entries if entry['dataset'] != 'decorative-builds-v1']
+    return list(select_active_cases(visible)), 'Floating Combined V1 · Visible Builds', 200, 40
+
+
+def prepare(fixture, baseline, candidate, variant, output, label, available, names, *, case_ids=()):
+    entries, default_label, default_available, decorative_available = fixture_scope(fixture)
     if not entries:
         raise ValueError("No eligible visible views in this fixture.")
     if len({e["id"] for e in entries}) != len(entries):
         raise ValueError("Use one dataset and variant per repeated frame ID.")
+    variant = variant or ('sky' if all('sky' in entry['variants'] for entry in entries) else 'original')
+    label = label or default_label
+    available = available or default_available
     if available < len(entries):
         raise ValueError("Available views must include every tested view.")
     frames, metadata = [], {}
@@ -84,9 +106,12 @@ def prepare(fixture, baseline, candidate, variant, output, label, available, nam
                            reference_sha256=reference.hashes, arms=arms, changes={"current":change}))
         metadata[marker] = e, gained, lost
     comparison = hashlib.sha256(json.dumps(frames, sort_keys=True, separators=(",",":")).encode()).hexdigest()
-    groups = {DATASETS[0]:group(frames, tuple(names), available), DATASETS[1]:group([], tuple(names), 40)}
+    groups = {DATASETS[0]:group(frames, tuple(names), available),
+              DATASETS[1]:group([], tuple(names), decorative_available)}
     report = dict(schema=1, comparison_sha256=comparison, cohort_label=label,names=names,cohorts=groups,
                   frames=frames,perfect_stage=None)
+    if entries[0].get('condition') == 'full':
+        report['dataset_note'] = 'Decorative front views are scored separately.'
     queue = output / "queue"
     queue.mkdir(parents=True,exist_ok=True)
     selected = select(frames,"current")

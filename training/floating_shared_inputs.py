@@ -1,4 +1,4 @@
-"""Stage and resolve the two active Floating cohorts from pinned capture releases."""
+"""Stage and resolve current and historical Floating cohorts from pinned releases."""
 
 import argparse
 from collections import defaultdict
@@ -8,13 +8,17 @@ from pathlib import Path
 from tempfile import TemporaryDirectory
 from zipfile import ZipFile
 
+from training import floating_front_release as front
 from training.floating_combined import MANIFEST, PINNED, REFERENCE, load, read_release, sha256
 
 
-COHORTS = {
+HISTORICAL_COHORTS = {
     'visible': ('visible-builds-v2', 'visible-builds-v3'),
     'decorative': ('decorative-builds-v1',),
 }
+DEFAULT_COHORT = 'front-full'
+COHORTS = (*front.COHORTS, *HISTORICAL_COHORTS)
+DATASETS = (front.DATASET, *(name for group in HISTORICAL_COHORTS.values() for name in group))
 CAPTURE_FILES = ('rgb.png', *REFERENCE)
 RECEIPT = 'sha256.json'
 
@@ -40,8 +44,12 @@ def json_bytes(value):
     return (json.dumps(value, indent=2, sort_keys=True) + '\n').encode('utf-8')
 
 
-def install(root, archives, dataset):
+def install(root, archives, dataset, *, release_sha256=None):
     """Publish one complete verified dataset directory in a single rename."""
+    if dataset == front.DATASET:
+        return front.stage(root, archives / dataset, release_sha256=release_sha256)
+    if release_sha256 is not None:
+        raise ValueError(f'Explicit release digests are only supported for {front.DATASET}')
     wanted = {row['id']: row for row in active_rows() if row['dataset'] == dataset}
     if not wanted:
         raise ValueError(f'No active Floating views in {dataset}')
@@ -86,8 +94,12 @@ def install(root, archives, dataset):
     return len(wanted)
 
 
-def cases(root, *, cohort='visible', ids=None):
-    datasets = COHORTS[cohort]
+def cases(root, *, cohort=DEFAULT_COHORT, ids=None, lighting=None, release_sha256=None):
+    if cohort in front.COHORTS:
+        return front.cases(root, cohort=cohort, ids=ids, lighting=lighting, release_sha256=release_sha256)
+    if lighting is not None or release_sha256 is not None:
+        raise ValueError(f'Lighting and explicit release digests are only supported for {front.DATASET}')
+    datasets = HISTORICAL_COHORTS[cohort]
     root = root.resolve()
     rows = [row for row in active_rows() if row['dataset'] in datasets]
     if ids:
@@ -130,10 +142,10 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--archives-root', type=Path, required=True)
     parser.add_argument('--fixture-root', type=Path, required=True)
-    parser.add_argument('--dataset', choices=tuple(name for group in COHORTS.values() for name in group),
-                        required=True)
+    parser.add_argument('--dataset', choices=DATASETS, required=True)
+    parser.add_argument('--release-sha256', help=f'Manifest digest for a local {front.DATASET} release before pinning')
     args = parser.parse_args()
-    count = install(args.fixture_root, args.archives_root, args.dataset)
+    count = install(args.fixture_root, args.archives_root, args.dataset, release_sha256=args.release_sha256)
     print(f'Installed {count} read-only {args.dataset} views in {args.fixture_root}')
 
 

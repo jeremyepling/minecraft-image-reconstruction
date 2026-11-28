@@ -159,8 +159,8 @@ def manifest(report, queue, frames, assets, asset_base, run, title, candidate, l
     data = dict(schema=1, id=run, title=title, cohort=report['cohort_label'],
                 views=visible['views'], available=visible['available'], comparisonSha256=report['comparison_sha256'],
                 carryForward=carry_forward or report.get('carry_forward'),
-                datasetNote='Decorative Builds V1 unmeasured.' if not report['cohorts']['Decorative Builds V1']['views']
-                else 'Decorative Builds V1 has a separate benchmark result.',
+                datasetNote=report.get('dataset_note') or ('Decorative Builds V1 unmeasured.'
+                if not report['cohorts']['Decorative Builds V1']['views'] else 'Decorative Builds V1 has a separate benchmark result.'),
                 methods=[dict(name=report['names'][arm], scores=visible['scores'][arm], failures=visible['failures'][arm])
                          for arm in (baseline, candidate)],
                 stages=[dict(name=name, measure=description, values=[visible['stages'][arm].get(key)

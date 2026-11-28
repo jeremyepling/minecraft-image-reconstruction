@@ -1,8 +1,18 @@
-# Combined Floating dataset
+# Floating datasets
+
+Use [Floating Front 100](../benchmark/FLOATING_SHARED_DATASETS.md) for new sparse replays. Its four frame shards preserve the native photographs and visible-only evaluation targets. Each frame retains its measured camera, clock, readback positions and states, plus the per-pixel face and metric depth maps.
+
+The companion `floating-front-100-v1-structures.zip` is a Java 26.3 datapack. It contains one full-block template and one decorated template per layout. The three full-block lighting views share the same structure. `structures.json` maps each template to a capture ID, native resource name, SHA-256, dimensions and exact world origin. The complete world is for scene recreation and label verification. Ordinary predictors receive one screenshot.
+
+To place a saved build, install the ZIP into the world's `datapacks` directory and reload. In an empty area, use `/place template <resource> <x> <y> <z>` with the resource and origin from `structures.json`. Each template includes all occupied cells, including hidden parts. The recorded empty void provides the background. To recreate the original scene, the ZIP also contains each batch's starting save, original placement commands, layout, requested views, client settings and block registry. The frame shard carries the measured camera and resulting world readback.
+
+For a fresh acquisition of the first build, run `python -m training.capture_front --out runs/front-recapture-001 --first 1 --last 1` with Java 26.3 and the benchmark dependencies. Omit the range to generate all 100. Use the checksum-verified original PNGs and label maps whenever reproducing a published score. GPU, driver and renderer timing can affect newly captured pixels.
+
+## Historical Combined Floating dataset
 
 The [combined manifest](floating-combined-v1.json.gz) points to the exact saved Java 26.3 screenshots and their original labels. It retains **240 active views** from **51 layouts in 20 architectural families**. Development and comparison cohorts can use the same index. The active split is **164 train, 38 validation and 38 test**. Every family's original assignment is preserved. The frozen 84-condition Floating benchmark remains a named score comparison for existing runs.
 
-The combined index holds 200 active Visible Builds views and 40 active Decorative Builds v1 views. Use the [same sparse replay launcher](../benchmark/FLOATING_SHARED_DATASETS.md) for both. Select `visible` for ordinary evaluations or `decorative` for Decorative Builds V1 with its own results table.
+The combined index holds 200 historical Visible Builds views and 40 historical Decorative Builds V1 views. Select `visible` or `decorative` in the [sparse replay launcher](../benchmark/FLOATING_SHARED_DATASETS.md) to reproduce them. New replays default to Floating Front 100.
 
 ## Capture sources
 

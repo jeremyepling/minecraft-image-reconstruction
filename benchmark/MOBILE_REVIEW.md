@@ -15,7 +15,7 @@ In **Image review**, tap **Surfaces** to step through the saved Surface Finder m
 
 ### Coordinate a round
 
-Start in the Floating integration checkout. Run the stage report and publisher on the measured Baseline and Candidate. The output manifest contains `analysis.actions`, the matched Perfect groups, and the chooser pilot. With an active round the coordinator assigns the first discriminating machine test, checks its result, records the outcome, and repeats while the requested round has scope. The publisher itself runs deterministically and starts no background agent. One paired publication per Candidate preserves its own changes and question history. Ordinary rounds use the 200 active Visible Builds in Combined V1. Request Decorative separately.
+Start in the Floating integration checkout. Run the stage report and publisher on the measured Baseline and Candidate. The output manifest contains `analysis.actions`, the matched Perfect groups, and the chooser pilot. With an active round the coordinator assigns the first discriminating machine test, checks its result, records the outcome, and repeats while the requested round has scope. The publisher itself runs deterministically and starts no background agent. One paired publication per Candidate preserves its own changes and question history. Ordinary rounds use the 100 Floating Front full-block noon views. Run lighting checks on matched selections and score decorative noon separately.
 
 | Assignment | Skill and worker | Deliverable |
 | --- | --- | --- |
@@ -34,10 +34,10 @@ On branches that lack the named roles, use the standard worker with that model, 
 Run the command from the repository root. Supply the existing authenticated CLI with `--vercel` if it is outside PATH. Without `--publish` the command prepares a local manifest and assets under `--out`. With it, only generated public imagery, surface evidence, and the manifest are committed on the current Floating branch. The command pins the GitHub asset revision, checks remote file hashes, deploys the tracked site to the existing Vercel project, and checks the live manifest and both routes.
 
 ```powershell
-python -m benchmark.publish_floating_review --fixture $fixture --variant sky --baseline-evidence-root $baselineSky --evidence-root $candidateSky --baseline-name 'Current method' --candidate-name 'Proposed method' --carry-forward $decision --run $runId --title $title --out "runs/mobile/$runId" --publish
+python -m benchmark.publish_floating_review --fixture $fixture --variant original --baseline-evidence-root $baselineOriginal --evidence-root $candidateOriginal --baseline-name 'Current method' --candidate-name 'Proposed method' --carry-forward $decision --run $runId --title $title --out "runs/mobile/$runId" --publish
 ```
 
-Each evidence directory contains one subdirectory per fixture view. The normal local-grid and V1 runners produce portable surface packages as part of the run. The fixture bridge filters to active Combined Visible views, checks the actual scored packs, and uses the fixture's source variant and visible labels for the overlays. A one-frame fixture is a one-frame verification even when 200 views are available. Use `--case <id>` for an additional image. Unsupported views and unavailable grid decisions should remain visible as evidence gaps.
+Each evidence directory contains one subdirectory per fixture view. The normal local-grid and V1 runners produce portable surface packages as part of the run. The fixture bridge resolves the pinned Front 100 full-block selection or the active historical Combined Visible selection. It checks the actual scored packs and uses the fixture's source variant and visible labels for the overlays. A single selected frame verifies that frame. Use `--case <id>` for an additional image. Unsupported views and unavailable grid decisions should remain visible as evidence gaps.
 
 For a saved V1 or stage comparison, supply `--report <report.json> --queue <queue-dir> --frames <data> --evidence-root <paired-evidence>` in place of the fixture and two variant directories. When starting with raw conditions, supply `--conditions`, `--run-root`, `--frames`, `--cohort-label`, and `--visible-available`. Supply matched `--perfect` and `--perfect-inputs` archives when generating that stage report. Review the reported scope before interpreting a gain.
 
