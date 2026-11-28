@@ -109,5 +109,3 @@ if __name__=="__main__":
             with ProcessPoolExecutor(5) as pool:
                 list(pool.map(run_atlas,items))
     main()
-
-
