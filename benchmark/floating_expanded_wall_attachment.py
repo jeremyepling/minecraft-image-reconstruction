@@ -21,24 +21,23 @@ ARCHIVE=RECHECK/"benchmark/reviews/floating-package-rechecks-01/conditions.json.
 PREVIOUS=WORKTREES/"floating-column-recovery/benchmark/reviews/floating-column-recovery-01/conditions.json.gz"
 OUT=ROOT/"runs/expanded-wall-attachment"
 REVIEW=ROOT/"benchmark/reviews/floating-expanded-wall-attachment-01"
-ARMS=("tangent","texture","majority")
+ARMS=("tangent","texture","majority","tangent-preserve-split","texture-preserve-split")
 
 
 def baseline(g,n,archived):
     """Resolve aliases exactly as the source split-border replay did, by its recorded pack digest."""
     expected=archived["audit"]["pack_sha256"]["split-border"]
     root=RECHECK/"runs/package-rechecks"/g
-    for folder in (root/"split-border",root/"border",root/"split",PACKAGE/g):
-        path=folder/"assembly"/PREFIX/n
-        if not (path/"score.json").exists():
-            continue
-        receipt=read(path/"score.json")
-        if receipt["pack_sha256"]==expected:
-            chart=folder/"charts/sky"/n/"charts.json"
-            assert digest(chart)==receipt["chart_sha256"]
-            assert digest(path/"reconstruction.zip")==expected
-            return folder,receipt
-    raise FileNotFoundError((g,n,expected))
+    audit=archived["audit"]
+    if audit["current_split"]:
+        folder=root/("split-border" if audit["split_border_votes"] else "split")
+    else:
+        folder=root/"border" if audit["split_border_votes"] else PACKAGE/g
+    path=folder/"assembly"/PREFIX/n
+    receipt=read(path/"score.json")
+    assert digest(folder/"charts/sky"/n/"charts.json")==receipt["chart_sha256"]
+    assert digest(path/"reconstruction.zip")==receipt["pack_sha256"]==expected
+    return folder,receipt
 
 
 def permitted(chart):
@@ -51,7 +50,7 @@ def permitted(chart):
     return dict(chart,cells=cells)
 
 
-def options(packet,selected,rgb):
+def options(packet,selected,rgb,partition_members):
     walls,_=oriented(packet["charts"])
     # All chart geometry remains intact for the orientation/join solve. The attachment
     # evidence and newly exported faces see exactly the existing export membership.
@@ -83,18 +82,21 @@ def options(packet,selected,rgb):
         start=np.asarray(selected[pid])+np.minimum(0,u)+np.minimum(0,v)-np.maximum(0,normal)
         raw_parent=next(c for c in walls if c["id"]==pid)
         rejected=set(map(tuple,uv_cells(raw_parent)))-set(map(tuple,uv_cells(parent)))
+        same_partition=cid in partition_members and partition_members[cid]==partition_members.get(pid)
         skips=0
         for cell,(a,b),step in zip(child["cells"],uv_cells(child)+shift,steps):
             if (a,b) in rejected:
                 skips+=1
                 continue
-            for arm,active,dz in (("tangent",True,0),("texture",accepted,step),("majority",majority,step)):
+            for arm,active,dz in (("tangent",True,0),("texture",accepted,step),("majority",majority,step),
+                                  ("tangent-preserve-split",not same_partition,0),
+                                  ("texture-preserve-split",accepted and not same_partition,step)):
                 if active:
                     pos=tuple((start+a*u+b*v+dz*normal).tolist())
                     inserts[arm].append((pos,cell["block_id"],not cell.get("fallback"),pid,cid))
         audit.append(dict(parent=pid,child=cid,fit=fit,accepted=accepted,majority=majority,steps=steps,
                           kept=len(child["cells"]),blocked_child=len(original["cells"])-len(child["cells"]),
-                          blocked_parent_uv=skips,hits=hits))
+                          blocked_parent_uv=skips,same_partition=same_partition,hits=hits))
     return inserts,audit
 
 
@@ -137,7 +139,8 @@ def run(job):
     assert digest(rgb_path)==rec["source_sha256"]==row["audit"]["source_sha256"]
     rgb=np.asarray(Image.open(rgb_path).convert("RGB"))
     selected=rec["selected_origins"]
-    inserts,audit=options(packet,selected,rgb)
+    partition_members={f"{pid}~p{code}":pid for pid,groups in row["audit"]["current_split"].items() for code in groups}
+    inserts,audit=options(packet,selected,rgb,partition_members)
     roots={"adopted":folder/"assembly"}
     prefix=PREFIX/n
     for a,adds in [("noop",[])]+list(inserts.items()):
